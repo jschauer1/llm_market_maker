@@ -127,6 +127,7 @@ Claimed edge is shrunk toward demonstrated edge:
 ranked_edge = edge_pts_net × credibility
 credibility = 0.25                          if n < 10   (probation)
             = (n / (n + 20)) × realization  if n >= 10
+realization = clamp(calibration_edge_net / mean_claimed_edge, 0, 1.5)
 ```
 
 A new theory claiming 12 points ranks as 3 — visible, not dominant. A theory
@@ -154,8 +155,10 @@ automatic rule.
 
 ## Theory lifecycle and versioning
 
-`proposed` → `active` (needs a tier A/B backtest with positive calibration
-edge) → review at `n=20` if edge ≤ 0 → `paused` at `n=50` → `retired`.
+`proposed` → `active` (needs a tier A/B backtest with positive *net*
+calibration edge, `calibration_edge_net`) → review at `n=20` if
+`calibration_edge_net` ≤ 0 → `paused` at `n=50` if `calibration_edge_net` ≤ 0
+→ `retired`.
 
 **Any change to a theory's decision procedure bumps its version.** Thresholds,
 prompts, scan logic, or migrating a stage-2 heuristic into stage-1 code.

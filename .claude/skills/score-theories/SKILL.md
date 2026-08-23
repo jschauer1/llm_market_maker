@@ -61,10 +61,12 @@ It is `None` until both endorsed and rejected samples have settled.
 
 ## 4. Apply lifecycle flags
 
-- `n = 20` with calibration edge ≤ 0 → flag for review.
-- `n = 50` with calibration edge ≤ 0 → pause. **First check the disposition
-  split**: a theory whose *endorsed* subset performs well while the overall
-  screen does not is not dead, it needs a tighter stage 1.
+- `n = 20` with *net* calibration edge (`calibration_edge_net`) ≤ 0 → flag for
+  review.
+- `n = 50` with *net* calibration edge (`calibration_edge_net`) ≤ 0 → pause.
+  **First check the disposition split**: a theory whose *endorsed* subset
+  performs well while the overall screen does not is not dead, it needs a
+  tighter stage 1.
 - Retiring? Record why against the originating idea:
   ```bash
   python -m tools.cli ideas status <slug> dead \

@@ -67,8 +67,9 @@ with tests. Theory-local code stays local until it earns promotion — see
 ## 6. Stay at `proposed`
 
 A new theory does not become `active` until a tier A or B backtest shows
-positive calibration edge, or the user explicitly overrides. Say what evidence
-you would need to promote it.
+positive *net* calibration edge (`calibration_edge_net` — gross
+`calibration_edge` is not the promotion bar), or the user explicitly
+overrides. Say what evidence you would need to promote it.
 
 ## If you drop the idea instead
 
