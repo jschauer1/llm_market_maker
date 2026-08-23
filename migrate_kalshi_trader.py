@@ -137,6 +137,18 @@ def migrate(
 
     imported = 0
     deduped = 0
+    # Note on repeat sightings: record_opportunity's ON CONFLICT clause
+    # refreshes model_prob to the LATEST sighting's value (COALESCE prefers
+    # excluded/new over existing), but extra_json is only written on the
+    # initial INSERT and is never touched by the update clause, so it
+    # freezes at the FIRST sighting's q_model/q_blend. For a ticker seen
+    # more than once, model_prob and extra_json.q_blend can therefore
+    # disagree. This is pre-existing behavior of tools.ledger's upsert
+    # design (entry_price/first_seen_at also freeze at first sighting on
+    # purpose); changing it would mean altering ledger.record_opportunity's
+    # ON CONFLICT clause, which affects live scanning far beyond this
+    # one-time migration, so it is accepted rather than worked around here.
+    # It does not affect compute_score, which reads neither field.
     for entry in parsed:
         _, created = ledger.record_opportunity(
             conn,
@@ -170,11 +182,27 @@ def migrate(
     settlements = 0
     for row in scored_rows or []:
         ticker = _first(row, "ticker", "market_ticker")
-        result = _first(row, "result", "settlement_result", "outcome")
+        # `result` (the market's resolution: "yes"/"no", empty while
+        # unresolved) and `outcome` (whether the BET won: "WIN"/"LOSS"/
+        # "pending") are categorically different columns in the real scored
+        # CSV — `outcome` must never be used as a fallback for `result`.
+        # Conflating them silently wrote "pending" as a settlement result
+        # for still-open markets, which never matches a bet's "yes"/"no"
+        # outcome and so scored every unresolved row as a guaranteed loss.
+        result = _first(row, "result", "settlement_result")
+        market_status = _first(row, "market_status")
         if not ticker or not result:
+            continue
+        # Belt-and-braces: also skip anything explicitly flagged as not yet
+        # finalized, in case a future source ever populates `result` early.
+        if market_status and market_status.lower() != "finalized":
             continue
         score.record_settlement(
             conn, ticker, str(result).lower(),
+            # The real scored CSV carries no resolution timestamp at all
+            # (no resolved_at/settled_at/timestamp column) — resolved_at
+            # stays NULL rather than being derived from close_time, which
+            # is when the market closed, not when it actually resolved.
             resolved_at=_first(row, "resolved_at", "settled_at", "timestamp"),
         )
         settlements += 1

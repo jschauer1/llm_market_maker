@@ -208,3 +208,30 @@ def test_migrate_extra_json_round_trips_provenance(conn):
         "kalshi_trader gpt-5 (LLM-introspected)"
     assert extra["q_model"] == pytest.approx(0.84)
     assert extra["q_blend"] == pytest.approx(0.787)
+
+
+# --- Fix round 1: `result` (market resolution) vs `outcome` (bet W/L) --
+#
+# The real scored CSV has BOTH a `result` column (the market's resolution:
+# "yes"/"no", empty while unresolved) and an `outcome` column (whether the
+# BET won: "WIN"/"LOSS"/"pending"). These are categorically different and
+# must not be used as fallbacks for each other. Before this fix, the
+# settlement loop's `_first(row, "result", "settlement_result", "outcome")`
+# would, for an unresolved row (`result=""`, `outcome="pending"`), fall
+# through to writing a settlement with result="pending" — which never
+# matches a bet's "yes"/"no" outcome in `compute_score`, silently scoring
+# every such row as a loss.
+
+def test_migrate_skips_unresolved_scored_rows(conn):
+    result = mig.migrate(
+        conn,
+        [_row("KXA")],
+        scored_rows=[{"ticker": "KXA", "result": "", "outcome": "pending",
+                      "market_status": "active"}],
+        now=TS,
+    )
+    assert result["settlements"] == 0
+
+    score_result = score.compute_score(conn, "insider_bias", 1)
+    assert score_result["n"] == 0, \
+        "an unresolved market must not be scored as a settled loss"
