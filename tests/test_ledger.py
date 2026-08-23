@@ -164,3 +164,77 @@ def test_judged_blind_is_recorded(conn):
     assert ledger.get_opportunity(conn, blind)["judged_blind"] == 1
     assert ledger.get_opportunity(conn, seeing)["judged_blind"] == 0
     assert ledger.get_opportunity(conn, unknown)["judged_blind"] is None
+
+
+def test_interpret_endorses_an_opportunity(conn):
+    opp_id, _ = _record(conn)
+    ledger.interpret(
+        conn, opp_id, "endorsed",
+        "Reality TV market; resolution language is unusually loose.",
+        now=LATER,
+    )
+    row = ledger.get_opportunity(conn, opp_id)
+    assert row["disposition"] == "endorsed"
+    assert "Reality TV" in row["interpretation"]
+    assert row["interpreted_at"] == LATER
+
+
+def test_interpret_rejects_and_keeps_the_row_as_a_control(conn):
+    opp_id, _ = _record(conn)
+    ledger.interpret(conn, opp_id, "rejected", "Resolution requires an "
+                     "official source that rarely publishes in time.")
+    row = ledger.get_opportunity(conn, opp_id)
+    assert row["disposition"] == "rejected"
+    # The row must survive: rejected candidates are the control group.
+    assert len(ledger.list_opportunities(conn)) == 1
+
+
+def test_interpret_can_revise_the_edge_without_touching_the_screen_edge(conn):
+    opp_id, _ = _record(conn, edge_pts_net=6.0)
+    ledger.interpret(conn, opp_id, "endorsed", "Stronger than the screen "
+                     "thought.", revised_edge_pts_net=9.0)
+    row = ledger.get_opportunity(conn, opp_id)
+    assert row["edge_pts_net"] == pytest.approx(9.0)
+    assert row["screen_edge_pts_net"] == pytest.approx(6.0)
+
+
+def test_interpret_without_revision_leaves_edge_alone(conn):
+    opp_id, _ = _record(conn, edge_pts_net=6.0)
+    ledger.interpret(conn, opp_id, "endorsed", "Confirmed as screened.")
+    row = ledger.get_opportunity(conn, opp_id)
+    assert row["edge_pts_net"] == pytest.approx(6.0)
+
+
+def test_interpret_rejects_invalid_disposition(conn):
+    opp_id, _ = _record(conn)
+    with pytest.raises(ValueError):
+        ledger.interpret(conn, opp_id, "maybe", "hmm")
+
+
+def test_interpret_rejects_unknown_opportunity(conn):
+    with pytest.raises(KeyError):
+        ledger.interpret(conn, 9999, "endorsed", "nope")
+
+
+def test_mark_user_action_records_a_taken_bet(conn):
+    opp_id, _ = _record(conn)
+    ledger.mark_user_action(conn, opp_id, "taken", size=25.0,
+                            reason="reality TV markets are soft")
+    row = ledger.get_opportunity(conn, opp_id)
+    assert row["user_action"] == "taken"
+    assert row["user_size"] == pytest.approx(25.0)
+    assert row["user_reason"] == "reality TV markets are soft"
+
+
+def test_mark_user_action_records_a_skip_with_reason(conn):
+    opp_id, _ = _record(conn)
+    ledger.mark_user_action(conn, opp_id, "skipped", reason="too illiquid")
+    row = ledger.get_opportunity(conn, opp_id)
+    assert row["user_action"] == "skipped"
+    assert row["user_reason"] == "too illiquid"
+
+
+def test_mark_user_action_rejects_invalid_action(conn):
+    opp_id, _ = _record(conn)
+    with pytest.raises(ValueError):
+        ledger.mark_user_action(conn, opp_id, "pondered")

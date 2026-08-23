@@ -21,6 +21,8 @@ import sqlite3
 from tools.db import utcnow
 
 LIVE_RUN_ID = "live"
+VALID_DISPOSITIONS = ("screened", "endorsed", "rejected")
+VALID_USER_ACTIONS = ("untouched", "taken", "skipped")
 VALID_EDGE_BASES = ("measured", "prior", "model")
 
 
@@ -192,3 +194,85 @@ def list_opportunities(
     return conn.execute(
         f"SELECT * FROM opportunities{where} ORDER BY id", params
     ).fetchall()
+
+
+def interpret(
+    conn: sqlite3.Connection,
+    opportunity_id: int,
+    disposition: str,
+    interpretation: str,
+    revised_edge_pts_net: float | None = None,
+    now: str | None = None,
+) -> None:
+    """Record a stage-2 research verdict (spec section 7).
+
+    Rejections are recorded, not deleted: they are the control group that
+    makes the value of interpretation measurable. `screen_edge_pts_net` is
+    never touched here, so a revised edge stays comparable to what the
+    mechanical screen originally claimed.
+    """
+    if disposition not in VALID_DISPOSITIONS:
+        raise ValueError(
+            f"invalid disposition {disposition!r}; "
+            f"expected one of {VALID_DISPOSITIONS}"
+        )
+    if get_opportunity(conn, opportunity_id) is None:
+        raise KeyError(opportunity_id)
+
+    stamp = now or utcnow()
+    if revised_edge_pts_net is None:
+        conn.execute(
+            """
+            UPDATE opportunities
+            SET disposition = ?, interpretation = ?, interpreted_at = ?
+            WHERE id = ?
+            """,
+            (disposition, interpretation, stamp, opportunity_id),
+        )
+    else:
+        conn.execute(
+            """
+            UPDATE opportunities
+            SET disposition = ?, interpretation = ?, interpreted_at = ?,
+                edge_pts_net = ?
+            WHERE id = ?
+            """,
+            (
+                disposition,
+                interpretation,
+                stamp,
+                revised_edge_pts_net,
+                opportunity_id,
+            ),
+        )
+    conn.commit()
+
+
+def mark_user_action(
+    conn: sqlite3.Connection,
+    opportunity_id: int,
+    action: str,
+    size: float | None = None,
+    reason: str | None = None,
+) -> None:
+    """Record what the user actually did (spec sections 6 and 7).
+
+    The reason matters: divergence between what the system endorsed and what
+    the user bet is usually an unencoded heuristic, and those get mined into
+    new theory candidates.
+    """
+    if action not in VALID_USER_ACTIONS:
+        raise ValueError(
+            f"invalid action {action!r}; expected one of {VALID_USER_ACTIONS}"
+        )
+    if get_opportunity(conn, opportunity_id) is None:
+        raise KeyError(opportunity_id)
+    conn.execute(
+        """
+        UPDATE opportunities
+        SET user_action = ?, user_size = ?, user_reason = ?
+        WHERE id = ?
+        """,
+        (action, size, reason, opportunity_id),
+    )
+    conn.commit()
