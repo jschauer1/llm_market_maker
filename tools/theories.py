@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import sqlite3
 
-from tools.db import utcnow
+from tools.db import utcnow, write
 
 VALID_STATUSES = ("proposed", "active", "paused", "retired")
 
@@ -32,19 +32,19 @@ def register(
             f"invalid status {status!r}; expected one of {VALID_STATUSES}"
         )
     stamp = now or utcnow()
-    conn.execute(
-        """
-        INSERT INTO theories (id, name, version, status, path,
-                              created_at, updated_at)
-        VALUES (?, ?, 1, ?, ?, ?, ?)
-        ON CONFLICT(id) DO UPDATE SET
-            name = excluded.name,
-            path = excluded.path,
-            updated_at = excluded.updated_at
-        """,
-        (theory_id, name, status, path, stamp, stamp),
-    )
-    conn.commit()
+    with write(conn):
+        conn.execute(
+            """
+            INSERT INTO theories (id, name, version, status, path,
+                                  created_at, updated_at)
+            VALUES (?, ?, 1, ?, ?, ?, ?)
+            ON CONFLICT(id) DO UPDATE SET
+                name = excluded.name,
+                path = excluded.path,
+                updated_at = excluded.updated_at
+            """,
+            (theory_id, name, status, path, stamp, stamp),
+        )
 
 
 def get(conn: sqlite3.Connection, theory_id: str) -> sqlite3.Row | None:
@@ -75,11 +75,11 @@ def set_status(
         )
     if get(conn, theory_id) is None:
         raise KeyError(theory_id)
-    conn.execute(
-        "UPDATE theories SET status = ?, updated_at = ? WHERE id = ?",
-        (status, now or utcnow(), theory_id),
-    )
-    conn.commit()
+    with write(conn):
+        conn.execute(
+            "UPDATE theories SET status = ?, updated_at = ? WHERE id = ?",
+            (status, now or utcnow(), theory_id),
+        )
 
 
 def bump_version(
@@ -90,9 +90,9 @@ def bump_version(
     if row is None:
         raise KeyError(theory_id)
     new_version = row["version"] + 1
-    conn.execute(
-        "UPDATE theories SET version = ?, updated_at = ? WHERE id = ?",
-        (new_version, now or utcnow(), theory_id),
-    )
-    conn.commit()
+    with write(conn):
+        conn.execute(
+            "UPDATE theories SET version = ?, updated_at = ? WHERE id = ?",
+            (new_version, now or utcnow(), theory_id),
+        )
     return new_version

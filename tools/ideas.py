@@ -20,7 +20,7 @@ from __future__ import annotations
 
 import sqlite3
 
-from tools.db import utcnow
+from tools.db import utcnow, write
 
 VALID_STATUSES = (
     "considered",
@@ -47,20 +47,20 @@ def record(
             f"invalid status {status!r}; expected one of {VALID_STATUSES}"
         )
     stamp = now or utcnow()
-    conn.execute(
-        """
-        INSERT INTO ideas (slug, title, description, status, source,
-                           created_at, updated_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-        ON CONFLICT(slug) DO UPDATE SET
-            title = excluded.title,
-            description = excluded.description,
-            source = excluded.source,
-            updated_at = excluded.updated_at
-        """,
-        (slug, title, description, status, source, stamp, stamp),
-    )
-    conn.commit()
+    with write(conn):
+        conn.execute(
+            """
+            INSERT INTO ideas (slug, title, description, status, source,
+                               created_at, updated_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(slug) DO UPDATE SET
+                title = excluded.title,
+                description = excluded.description,
+                source = excluded.source,
+                updated_at = excluded.updated_at
+            """,
+            (slug, title, description, status, source, stamp, stamp),
+        )
     return conn.execute(
         "SELECT id FROM ideas WHERE slug = ?", (slug,)
     ).fetchone()["id"]
@@ -111,30 +111,30 @@ def update_status(
         )
     if get(conn, slug) is None:
         raise KeyError(slug)
-    conn.execute(
-        """
-        UPDATE ideas SET
-            status = ?,
-            what_was_tried = COALESCE(?, what_was_tried),
-            outcome = COALESCE(?, outcome),
-            revisit_angle = COALESCE(?, revisit_angle),
-            revisit_after = COALESCE(?, revisit_after),
-            theory_id = COALESCE(?, theory_id),
-            updated_at = ?
-        WHERE slug = ?
-        """,
-        (
-            status,
-            what_was_tried,
-            outcome,
-            revisit_angle,
-            revisit_after,
-            theory_id,
-            now or utcnow(),
-            slug,
-        ),
-    )
-    conn.commit()
+    with write(conn):
+        conn.execute(
+            """
+            UPDATE ideas SET
+                status = ?,
+                what_was_tried = COALESCE(?, what_was_tried),
+                outcome = COALESCE(?, outcome),
+                revisit_angle = COALESCE(?, revisit_angle),
+                revisit_after = COALESCE(?, revisit_after),
+                theory_id = COALESCE(?, theory_id),
+                updated_at = ?
+            WHERE slug = ?
+            """,
+            (
+                status,
+                what_was_tried,
+                outcome,
+                revisit_angle,
+                revisit_after,
+                theory_id,
+                now or utcnow(),
+                slug,
+            ),
+        )
 
 
 def list_revisitable(conn: sqlite3.Connection) -> list[sqlite3.Row]:
