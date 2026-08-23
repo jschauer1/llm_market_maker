@@ -41,6 +41,16 @@ def test_register_does_not_reset_version(conn):
     assert theories.get(conn, "t1")["version"] == 2
 
 
+def test_register_does_not_reset_status(conn):
+    # Re-registering happens on every scan that discovers theories on disk.
+    # If it reset status, an active theory would be silently demoted to
+    # proposed and drop out of the live run.
+    theories.register(conn, "t1", "One", "theories/t1", now=TS)
+    theories.set_status(conn, "t1", "active", now=TS)
+    theories.register(conn, "t1", "One", "theories/t1", now=TS)
+    assert theories.get(conn, "t1")["status"] == "active"
+
+
 def test_set_status_updates_status_and_timestamp(conn):
     theories.register(conn, "t1", "One", "theories/t1", now=TS)
     theories.set_status(conn, "t1", "active", now="2026-08-24T00:00:00Z")

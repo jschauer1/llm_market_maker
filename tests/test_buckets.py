@@ -114,6 +114,41 @@ def test_bucket_rates_are_segmented_by_version(conn):
         pytest.approx(0.0)
 
 
+def test_bucket_rates_are_segmented_by_run_mode(conn):
+    # Backtest results must not silently redefine what a live bucket means.
+    _bet(conn, "A", 0.50, "strong", won=True)
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="B",
+        outcome="yes", entry_price=0.5, edge_pts_net=4.0,
+        confidence="strong", run_mode="backtest", run_id="bt-1", now=TS,
+    )
+    score.record_settlement(conn, "B", "no")
+
+    live = score.bucket_rates(conn, "t1", 1)
+    backtest = score.bucket_rates(conn, "t1", 1, run_mode="backtest")
+    assert live["strong"]["n"] == 1
+    assert live["strong"]["win_rate"] == pytest.approx(1.0)
+    assert backtest["strong"]["n"] == 1
+    assert backtest["strong"]["win_rate"] == pytest.approx(0.0)
+
+
+def test_bucket_rates_can_be_scoped_to_a_single_run(conn):
+    for run in ("run-a", "run-b"):
+        ledger.record_opportunity(
+            conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
+            outcome="yes", entry_price=0.5, edge_pts_net=4.0,
+            confidence="strong", run_mode="backtest", run_id=run, now=TS,
+        )
+    score.record_settlement(conn, "A", "yes")
+
+    pooled = score.bucket_rates(conn, "t1", 1, run_mode="backtest")
+    assert pooled["strong"]["n"] == 2
+    scoped = score.bucket_rates(
+        conn, "t1", 1, run_mode="backtest", run_id="run-a"
+    )
+    assert scoped["strong"]["n"] == 1
+
+
 def test_save_bucket_rates_persists_rows(conn):
     _bet(conn, "A", 0.50, "strong", won=True)
     rates = score.bucket_rates(conn, "t1", 1)
