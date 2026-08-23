@@ -5,17 +5,27 @@ price-implied rate, in percentage points. It answers the only question that
 matters about a theory — did markets it picked resolve in its favour more
 often than their prices implied.
 
-Scores are computed per (theory, version, run_mode, disposition). The
-disposition split is what makes the value of stage-2 interpretation
-measurable: endorsed versus rejected, with rejected candidates serving as a
-free control group.
+Calibration edge comes in two flavours and the difference matters.
+`calibration_edge` is GROSS: it measures how wrong the market's prices were,
+which is a real quantity worth reporting on its own. `calibration_edge_net`
+subtracts the mean per-contract fee, so it measures what a trader actually
+kept. Only the net figure may be compared against `mean_claimed_edge`, which
+is net of fees by definition — comparing the gross figure against a net claim
+inflates realization and lets a theory that breaks exactly even after fees
+report a positive edge.
+
+Scores are computed per (theory, version, run_mode, disposition), and
+optionally per run_id. The disposition split is what makes the value of
+stage-2 interpretation measurable: endorsed versus rejected, with rejected
+candidates serving as a free control group. The run_id filter keeps a
+re-run backtest from pooling into one inflated sample.
 """
 
 from __future__ import annotations
 
 import sqlite3
 
-from tools.db import utcnow
+from tools.db import utcnow, write
 from tools.rank import realization as _realization
 from tools.sizing import fee_pts
 
@@ -24,11 +34,23 @@ EMPTY_SCORE = {
     "win_rate": None,
     "price_implied_rate": None,
     "calibration_edge": None,
+    "calibration_edge_net": None,
     "mean_claimed_edge": None,
+    "mean_fee_pts": None,
     "realization": None,
     "roi_all": None,
     "roi_taken": None,
 }
+
+
+def _won(outcome: object, result: object) -> bool:
+    """Did the settlement resolve the side this opportunity took?
+
+    Case-insensitive on both sides. `ledger.record_opportunity` already
+    lowercases `outcome` on entry; settlements arrive from a connector and
+    are not normalized, so the comparison stays defensive.
+    """
+    return str(result).lower() == str(outcome).lower()
 
 
 def record_settlement(
@@ -39,19 +61,19 @@ def record_settlement(
     settle_price: float | None = None,
 ) -> None:
     """Record how a Kalshi market resolved. Latest write wins."""
-    conn.execute(
-        """
-        INSERT INTO settlements (kalshi_ticker, resolved_at, result,
-                                 settle_price)
-        VALUES (?, ?, ?, ?)
-        ON CONFLICT(kalshi_ticker) DO UPDATE SET
-            resolved_at = excluded.resolved_at,
-            result = excluded.result,
-            settle_price = excluded.settle_price
-        """,
-        (kalshi_ticker, resolved_at, result, settle_price),
-    )
-    conn.commit()
+    with write(conn):
+        conn.execute(
+            """
+            INSERT INTO settlements (kalshi_ticker, resolved_at, result,
+                                     settle_price)
+            VALUES (?, ?, ?, ?)
+            ON CONFLICT(kalshi_ticker) DO UPDATE SET
+                resolved_at = excluded.resolved_at,
+                result = excluded.result,
+                settle_price = excluded.settle_price
+            """,
+            (kalshi_ticker, resolved_at, result, settle_price),
+        )
 
 
 def compute_score(
@@ -60,8 +82,15 @@ def compute_score(
     theory_version: int,
     run_mode: str = "live",
     disposition: str = "all",
+    *,
+    run_id: str | None = None,
 ) -> dict:
-    """Score every settled opportunity matching the given segment."""
+    """Score every settled opportunity matching the given segment.
+
+    Pass `run_id` to score a single run. Without it every run of the same
+    theory version pools together, so re-running a backtest over the same
+    markets multiplies `n` without adding a single real bet.
+    """
     sql = """
         SELECT o.outcome, o.entry_price, o.edge_pts_net, o.user_action,
                s.result
@@ -73,6 +102,9 @@ def compute_score(
     if disposition != "all":
         sql += " AND o.disposition = ?"
         params.append(disposition)
+    if run_id is not None:
+        sql += " AND o.run_id = ?"
+        params.append(run_id)
 
     rows = conn.execute(sql, params).fetchall()
     if not rows:
@@ -82,19 +114,22 @@ def compute_score(
     wins = 0
     total_cost = 0.0
     total_return = 0.0
+    total_fee_pts = 0.0
     taken_cost = 0.0
     taken_return = 0.0
     has_taken = False
 
     for row in rows:
-        won = str(row["result"]).lower() == str(row["outcome"]).lower()
+        won = _won(row["outcome"], row["result"])
         price = row["entry_price"]
-        cost = price + fee_pts(price) / 100.0
+        fee = fee_pts(price)
+        cost = price + fee / 100.0
         payout = 1.0 if won else 0.0
 
         wins += 1 if won else 0
         total_cost += cost
         total_return += payout
+        total_fee_pts += fee
 
         if row["user_action"] == "taken":
             has_taken = True
@@ -104,6 +139,10 @@ def compute_score(
     win_rate = wins / n
     price_implied_rate = sum(r["entry_price"] for r in rows) / n
     calibration_edge = (win_rate - price_implied_rate) * 100.0
+    mean_fee_pts = total_fee_pts / n
+    # Net of fees, so it is comparable with mean_claimed_edge, which is
+    # net by definition. Realization must use this one.
+    calibration_edge_net = calibration_edge - mean_fee_pts
     mean_claimed_edge = sum(r["edge_pts_net"] for r in rows) / n
 
     roi_all = (total_return - total_cost) / total_cost if total_cost else None
@@ -118,8 +157,10 @@ def compute_score(
         "win_rate": win_rate,
         "price_implied_rate": price_implied_rate,
         "calibration_edge": calibration_edge,
+        "calibration_edge_net": calibration_edge_net,
         "mean_claimed_edge": mean_claimed_edge,
-        "realization": _realization(calibration_edge, mean_claimed_edge),
+        "mean_fee_pts": mean_fee_pts,
+        "realization": _realization(calibration_edge_net, mean_claimed_edge),
         "roi_all": roi_all,
         "roi_taken": roi_taken,
     }
@@ -135,31 +176,32 @@ def save_score(
     now: str | None = None,
 ) -> int:
     """Persist a computed score. Returns the new row id."""
-    cursor = conn.execute(
-        """
-        INSERT INTO scores (
-            theory_id, theory_version, run_mode, disposition, n, win_rate,
-            price_implied_rate, calibration_edge, mean_claimed_edge,
-            realization, roi_all, roi_taken, computed_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """,
-        (
-            theory_id,
-            theory_version,
-            run_mode,
-            disposition,
-            result["n"],
-            result["win_rate"],
-            result["price_implied_rate"],
-            result["calibration_edge"],
-            result["mean_claimed_edge"],
-            result["realization"],
-            result["roi_all"],
-            result["roi_taken"],
-            now or utcnow(),
-        ),
-    )
-    conn.commit()
+    with write(conn):
+        cursor = conn.execute(
+            """
+            INSERT INTO scores (
+                theory_id, theory_version, run_mode, disposition, n, win_rate,
+                price_implied_rate, calibration_edge, calibration_edge_net,
+                mean_claimed_edge, realization, roi_all, roi_taken, computed_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                theory_id,
+                theory_version,
+                run_mode,
+                disposition,
+                result["n"],
+                result["win_rate"],
+                result["price_implied_rate"],
+                result["calibration_edge"],
+                result["calibration_edge_net"],
+                result["mean_claimed_edge"],
+                result["realization"],
+                result["roi_all"],
+                result["roi_taken"],
+                now or utcnow(),
+            ),
+        )
     return cursor.lastrowid
 
 
@@ -193,22 +235,29 @@ def bucket_rates(
     theory_id: str,
     theory_version: int,
     run_mode: str = "live",
+    *,
+    run_id: str | None = None,
 ) -> dict[str, dict]:
     """Realized win rate per confidence bucket (spec section 7).
 
     This is what a theory's confidence labels actually MEAN, measured rather
-    than asserted. Only settled opportunities carrying a bucket count.
+    than asserted. Only settled opportunities carrying a bucket count. As
+    with `compute_score`, pass `run_id` to measure a single run rather than
+    every run of this theory version pooled together.
     """
-    rows = conn.execute(
-        """
+    sql = """
         SELECT o.confidence, o.outcome, o.entry_price, s.result
         FROM opportunities o
         JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker
         WHERE o.theory_id = ? AND o.theory_version = ? AND o.run_mode = ?
           AND o.confidence IS NOT NULL AND o.confidence != ''
-        """,
-        (theory_id, theory_version, run_mode),
-    ).fetchall()
+    """
+    params: list[object] = [theory_id, theory_version, run_mode]
+    if run_id is not None:
+        sql += " AND o.run_id = ?"
+        params.append(run_id)
+
+    rows = conn.execute(sql, params).fetchall()
 
     grouped: dict[str, list] = {}
     for row in rows:
@@ -218,9 +267,7 @@ def bucket_rates(
         bucket: {
             "n": len(members),
             "win_rate": sum(
-                1
-                for m in members
-                if str(m["result"]).lower() == str(m["outcome"]).lower()
+                1 for m in members if _won(m["outcome"], m["result"])
             )
             / len(members),
             "mean_entry_price": sum(m["entry_price"] for m in members)
@@ -246,13 +293,14 @@ def save_bucket_rates(
     ]
     if not rows:
         return 0
-    conn.executemany(
-        """
-        INSERT INTO bucket_rates (theory_id, theory_version, confidence, n,
-                                  win_rate, mean_entry_price, computed_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-        """,
-        rows,
-    )
-    conn.commit()
+    with write(conn):
+        conn.executemany(
+            """
+            INSERT INTO bucket_rates (theory_id, theory_version, confidence,
+                                      n, win_rate, mean_entry_price,
+                                      computed_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            """,
+            rows,
+        )
     return len(rows)

@@ -1,3 +1,5 @@
+import math
+
 import pytest
 
 from tools import db, ledger, score, theories
@@ -81,7 +83,9 @@ def test_positive_calibration_edge(conn):
 
 
 def test_realization_compares_delivered_to_claimed(conn):
-    # 25 points delivered against a 25 point claim -> realization 1.0
+    # 25 points delivered GROSS against a 25 point claim that is already net
+    # of fees. The comparison must be net-to-net: at 0.50 the fee is 1.75
+    # points, so 23.25 net points were delivered against the 25 claimed.
     for ticker in "ABCD":
         _bet(conn, ticker, 0.50, 25.0)
     for ticker in "ABC":
@@ -90,7 +94,67 @@ def test_realization_compares_delivered_to_claimed(conn):
 
     result = score.compute_score(conn, "t1", 1)
     assert result["mean_claimed_edge"] == pytest.approx(25.0)
-    assert result["realization"] == pytest.approx(1.0)
+    assert result["mean_fee_pts"] == pytest.approx(1.75)
+    assert result["calibration_edge"] == pytest.approx(25.0)
+    assert result["calibration_edge_net"] == pytest.approx(23.25)
+    assert result["realization"] == pytest.approx(23.25 / 25.0)
+
+
+def test_break_even_after_fees_scores_zero_net_edge(conn):
+    # A theory whose bets exactly cover their fees has delivered nothing.
+    # Gross calibration edge is positive and says so honestly; the net figure
+    # — the one realization and the lifecycle thresholds read — must be zero,
+    # or a zero-profit theory survives the "pause if edge <= 0" rule.
+    #
+    # P is the price at which a 50% win rate breaks even after fees:
+    #   0.50 - P == fee_pts(P)/100 == 0.07*P*(1-P)
+    #   =>  0.07 P^2 - 1.07 P + 0.5 == 0
+    p = (1.07 - math.sqrt(1.07**2 - 4 * 0.07 * 0.5)) / (2 * 0.07)
+    _bet(conn, "A", p, 6.0)
+    _bet(conn, "B", p, 6.0)
+    score.record_settlement(conn, "A", "yes")
+    score.record_settlement(conn, "B", "no")
+
+    result = score.compute_score(conn, "t1", 1)
+    assert result["calibration_edge"] > 0, "the market really was mispriced"
+    assert result["calibration_edge_net"] == pytest.approx(0.0, abs=0.01)
+    assert result["roi_all"] == pytest.approx(0.0, abs=0.001)
+
+
+def test_scoring_uses_the_revised_claim_not_the_screen_claim(conn):
+    # The whole point of stage-2 revision is that the revised number is the
+    # one the theory is held to. Scoring against the frozen screen claim
+    # would make interpretation unmeasurable.
+    opp_id = _bet(conn, "A", 0.50, 6.0)
+    ledger.interpret(
+        conn, opp_id, "endorsed", "stronger than the screen thought",
+        revised_edge_pts_net=9.0, now=TS,
+    )
+    score.record_settlement(conn, "A", "yes")
+
+    result = score.compute_score(conn, "t1", 1)
+    assert result["mean_claimed_edge"] == pytest.approx(9.0)
+
+
+def test_scores_can_be_scoped_to_a_single_run(conn):
+    # Re-running a backtest over the same markets must not multiply n.
+    for run in ("run-a", "run-b"):
+        ledger.record_opportunity(
+            conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
+            outcome="yes", entry_price=0.50, edge_pts_net=6.0,
+            run_mode="backtest", run_id=run, now=TS,
+        )
+    score.record_settlement(conn, "A", "yes")
+
+    pooled = score.compute_score(conn, "t1", 1, run_mode="backtest")
+    assert pooled["n"] == 2, "unfiltered scoring still pools every run"
+
+    for run in ("run-a", "run-b"):
+        scoped = score.compute_score(
+            conn, "t1", 1, run_mode="backtest", run_id=run
+        )
+        assert scoped["n"] == 1
+        assert scoped["win_rate"] == pytest.approx(1.0)
 
 
 def test_roi_is_net_of_fees(conn):
@@ -185,6 +249,9 @@ def test_save_score_persists_a_row(conn):
     assert saved["disposition"] == "all"
     assert saved["n"] == 1
     assert saved["computed_at"] == TS
+    assert saved["calibration_edge_net"] == pytest.approx(
+        result["calibration_edge_net"]
+    )
 
 
 def test_record_settlement_is_idempotent(conn):

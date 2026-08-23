@@ -116,6 +116,7 @@ CREATE TABLE IF NOT EXISTS scores (
     win_rate           REAL,
     price_implied_rate REAL,
     calibration_edge   REAL,
+    calibration_edge_net REAL,
     mean_claimed_edge  REAL,
     realization        REAL,
     roi_all            REAL,

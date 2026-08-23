@@ -274,9 +274,10 @@ data — safe to delete and rebuild from `opportunities` + `settlements`.
 | n | integer | settled sample size |
 | win_rate | real | |
 | price_implied_rate | real | mean entry price of the settled sample |
-| calibration_edge | real | `win_rate − price_implied_rate` — the key metric |
-| mean_claimed_edge | real | mean `edge_pts_net` claimed at call time |
-| realization | real | `calibration_edge / mean_claimed_edge`, clamped (section 8) |
+| calibration_edge | real | `(win_rate − price_implied_rate) × 100` — gross of fees, in points. How wrong the market's prices were |
+| calibration_edge_net | real | `calibration_edge − mean fee_pts(entry_price)`. What a trader actually kept, and the only figure comparable with a net claim |
+| mean_claimed_edge | real | mean `edge_pts_net` claimed at call time — net of fees by definition |
+| realization | real | `calibration_edge_net / mean_claimed_edge`, clamped (section 8) |
 | roi_all | real | hypothetical ROI across all suggestions, net of fees |
 | roi_taken | real, nullable | realized ROI across `user_action = 'taken'` only |
 | computed_at | timestamp | |
@@ -498,10 +499,21 @@ number. `find-edge` ranks on a shrunk edge:
 ```
 ranked_edge = edge_pts_net × credibility
 
-realization  = clamp(calibration_edge / mean_claimed_edge, 0, 1.5)   # 1.0 if n = 0
+realization  = clamp(calibration_edge_net / mean_claimed_edge, 0, 1.5)  # 1.0 if n = 0
 credibility  = 0.25                            if n < 10   (probationary floor)
              = (n / (n + 20)) × realization    if n >= 10
 ```
+
+**Realization must use the NET calibration edge.** `mean_claimed_edge`
+averages `edge_pts_net`, which is net of fees by definition, so comparing it
+against the gross `calibration_edge` credits a theory with edge it never
+kept. A theory delivering exactly its claimed 6.0 net points would score
+realization 1.29, and a theory breaking exactly even after fees would post a
+positive calibration edge — clearing the "pause if calibration edge ≤ 0"
+lifecycle rule and out-ranking an untested idea on zero profit. `scores`
+stores both figures: the gross one because market miscalibration is worth
+reporting on its own, the net one because it is the one that may be compared
+against a claim, and it is the figure the lifecycle thresholds read.
 
 Worked through: a brand-new theory claiming 12pt ranks as 3.0pt — visible, able
 to beat a proven theory's weak suggestion, unable to dominate. A theory with
@@ -742,11 +754,12 @@ record the reason in `THEORY.md` — the point is that drift and accumulation st
 visible, not that Claude lacks agency.
 
 - **`proposed` → `active`** — requires either a tier A or tier B backtest
-  showing positive calibration edge, or an explicit user override. This keeps
-  untested ideas from consuming scan budget.
+  showing positive *net* calibration edge, or an explicit user override. This
+  keeps untested ideas from consuming scan budget.
 - **`active` → review** — at `n = 20` settled, `score-theories` flags any theory
-  whose calibration edge is ≤ 0 for a look.
-- **`active` → `paused`** — at `n = 50` settled with calibration edge still ≤ 0.
+  whose *net* calibration edge is ≤ 0 for a look.
+- **`active` → `paused`** — at `n = 50` settled with *net* calibration edge
+  still ≤ 0.
   (`kalshi_trader`'s own strategy notes argue for flat stakes until 50+ settled
   bets before trusting a result; the same threshold applies to disbelieving
   one.) Before pausing, check the section 7 breakdown: a theory whose *endorsed*
