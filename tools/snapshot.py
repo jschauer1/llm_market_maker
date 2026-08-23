@@ -28,6 +28,22 @@ _INSERT = """
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 """
 
+# Kalshi's own status strings (see kalshi_markets.OPEN_STATUSES and
+# normalize()'s is_open) mapped onto the three-state open|closed|settled
+# column defined by db/schema.sql and the design spec. Kalshi genuinely has
+# a third state — closed but not yet settled — that a strict is_open/else
+# binary would collapse into "settled" incorrectly.
+_SETTLED_STATUSES = {"finalized", "settled"}
+
+
+def _kalshi_snapshot_status(m: dict) -> str:
+    status = m.get("status")
+    if status in kalshi_markets.OPEN_STATUSES:
+        return "open"
+    if status in _SETTLED_STATUSES:
+        return "settled"
+    return "closed"
+
 
 def save_kalshi(
     conn: sqlite3.Connection, markets: list[dict], now: str | None = None
@@ -40,13 +56,16 @@ def save_kalshi(
             m["ticker"],
             stamp,
             m.get("title"),
+            # This is the market MID, not an executable price — anything
+            # that needs an actual entry price for a bet must use yes_ask
+            # (or yes_bid for the NO side), never this column.
             m.get("mid"),
             m.get("yes_bid"),
             m.get("yes_ask"),
             m.get("volume"),
             m.get("open_interest"),
             m.get("close_time"),
-            "open" if m.get("is_open") else "settled",
+            _kalshi_snapshot_status(m),
             json.dumps(m.get("raw", {})),
         )
         for m in markets

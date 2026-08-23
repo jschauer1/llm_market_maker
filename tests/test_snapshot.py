@@ -75,6 +75,17 @@ def test_save_kalshi_maps_finalized_to_settled(conn):
     ).fetchone()["status"] == "settled"
 
 
+def test_save_kalshi_maps_closed_but_unsettled_to_closed(conn):
+    # Kalshi genuinely has a third state: closed, awaiting settlement. A
+    # strict is_open/else binary would collapse this into "settled", which
+    # is wrong — it hasn't resolved yet.
+    closed = dict(KALSHI_MARKET, status="closed", is_open=False)
+    snapshot.save_kalshi(conn, [closed], now=TS)
+    assert conn.execute(
+        "SELECT status FROM market_snapshots"
+    ).fetchone()["status"] == "closed"
+
+
 def test_save_kalshi_preserves_the_raw_payload(conn):
     snapshot.save_kalshi(conn, [KALSHI_MARKET], now=TS)
     row = conn.execute("SELECT raw_json FROM market_snapshots").fetchone()
