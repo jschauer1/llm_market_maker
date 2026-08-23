@@ -165,6 +165,19 @@ def test_quotes_maps_tickers_to_markets(monkeypatch):
     assert result["A"]["yes_ask"] == pytest.approx(0.93)
 
 
+def test_quotes_sends_a_limit_matching_the_ticker_count(monkeypatch):
+    captured = {}
+
+    def fake_get(url, params=None, **kwargs):
+        captured.update(params or {})
+        return {"markets": [dict(RAW, ticker="A"), dict(RAW, ticker="B"),
+                            dict(RAW, ticker="C")]}
+
+    monkeypatch.setattr(markets, "get_json", fake_get)
+    markets.quotes(["A", "B", "C"])
+    assert captured["limit"] == 3
+
+
 def test_quotes_returns_empty_for_no_tickers(monkeypatch):
     assert markets.quotes([]) == {}
 

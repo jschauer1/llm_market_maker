@@ -5,6 +5,13 @@ decimal-dollar strings (`yes_ask_dollars`) and sizes gained an `_fp` suffix.
 `normalize` is the seam that absorbs that: everything downstream sees one
 stable dict of floats, and a shape we do not recognize raises instead of
 quietly producing zeros.
+
+Error-handling contract: list_open, list_settled, and quotes all raise on a
+single malformed row, propagating the whole page's failure. That is a
+different contract from tools/polymarket/markets.py, whose functions skip
+an individual bad row and only raise if an entire page fails to parse.
+Don't assume one client's tolerance for partial failure carries over to
+the other.
 """
 
 from __future__ import annotations
@@ -130,11 +137,16 @@ def list_settled(limit: int = 200, max_pages: int = 5) -> list[dict]:
 
 
 def quotes(tickers: list[str]) -> dict[str, dict]:
-    """Live re-quote for specific tickers, keyed by ticker."""
+    """Live re-quote for specific tickers, keyed by ticker.
+
+    A ticker absent from the returned dict was not found or not returned
+    by Kalshi — the caller must not assume every requested ticker appears.
+    """
     if not tickers:
         return {}
     payload = get_json(
-        f"{BASE_URL}/markets", params={"tickers": ",".join(tickers)}
+        f"{BASE_URL}/markets",
+        params={"tickers": ",".join(tickers), "limit": len(tickers)},
     )
     return {
         market["ticker"]: market
