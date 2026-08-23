@@ -23,6 +23,7 @@ then counts as two independent wins.
 
 from __future__ import annotations
 
+import math
 import sqlite3
 
 from tools.db import utcnow, write
@@ -42,6 +43,16 @@ def _validate_entry_price(entry_price: object) -> None:
     if isinstance(entry_price, bool) or not isinstance(
         entry_price, (int, float)
     ):
+        raise ValueError(
+            f"entry_price must be a number in decimal dollars [0, 1], "
+            f"got {entry_price!r}"
+        )
+    if isinstance(entry_price, float) and math.isnan(entry_price):
+        # NaN compares False to every `>`/`<` check below, so it would
+        # otherwise sail through this validator. It is only caught by
+        # accident downstream: sqlite3 binds a NaN float as SQL NULL, which
+        # then trips the NOT NULL constraint on entry_price and raises a
+        # confusing IntegrityError instead of this purpose-built ValueError.
         raise ValueError(
             f"entry_price must be a number in decimal dollars [0, 1], "
             f"got {entry_price!r}"

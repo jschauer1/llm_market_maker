@@ -1,3 +1,4 @@
+import math
 import sqlite3
 
 import pytest
@@ -194,6 +195,16 @@ def test_entry_price_must_be_decimal_dollars(conn, bad_price):
     # where dollars were meant, which scores as -3900 points of edge.
     with pytest.raises(ValueError, match="entry_price"):
         _record(conn, entry_price=bad_price)
+
+
+def test_entry_price_nan_is_rejected(conn):
+    # NaN compares False to every `>`/`<` check, so the range checks alone
+    # let it through. Without an explicit isnan() check it is only rejected
+    # by accident: sqlite3 binds a NaN float as SQL NULL, which trips the
+    # entry_price NOT NULL constraint and raises IntegrityError instead of
+    # this purpose-built ValueError.
+    with pytest.raises(ValueError, match="entry_price"):
+        _record(conn, entry_price=math.nan)
 
 
 def test_entry_price_bounds_are_inclusive(conn):
