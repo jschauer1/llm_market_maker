@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 import pytest
 
 from theories.insider_bias import screen
+from tools.kalshi import markets
 
 NOW = datetime(2026, 8, 23, tzinfo=timezone.utc)
 
@@ -128,3 +129,49 @@ def test_screen_thresholds_are_overridable():
 def test_screen_keeps_resolution_rules_for_stage_two():
     result = screen.screen([_market()], now=NOW)
     assert "named winner" in result[0]["rules_primary"]
+
+
+def test_screen_accepts_a_clean_no_side_candidate():
+    # 36 of the 96 imported historical rows are NO-side, but every other
+    # acceptance test in this file drives a YES candidate through screen();
+    # the existing NO-side test (test_favorite_is_no_when_mid_below_half)
+    # uses no_ask=0.22, which the [0.65, 0.97] favorite band rejects. This
+    # is the one test that proves a NO candidate can reach acceptance.
+    result = screen.screen([_market(mid=0.10, no_ask=0.90)], now=NOW)
+    assert len(result) == 1
+    assert result[0]["fav_side"] == "no"
+    assert result[0]["entry_price"] == pytest.approx(0.90)
+
+
+# --- Coupling test: normalize() output must still be what screen() wants ---
+#
+# The tests above hand-write normalize()'s output shape as fixtures. That
+# means a key rename inside tools.kalshi.markets.normalize() could leave
+# every one of them green while screen() silently returns [] against a real,
+# normalized board. This test runs a raw Kalshi payload through the real
+# normalize() and asserts a candidate survives, so that seam is covered too.
+
+def _raw_kalshi_market(**overrides):
+    base = {
+        "ticker": "KXTRAITORS-26-WINNER",
+        "event_ticker": "KXTRAITORS-26",
+        "title": "Will contestant X win The Traitors?",
+        "status": "active",
+        "yes_bid_dollars": "0.7800",
+        "yes_ask_dollars": "0.8000",
+        "no_bid_dollars": "0.2000",
+        "no_ask_dollars": "0.2200",
+        "volume_fp": "5000.00",
+        "close_time": "2026-08-30T00:00:00Z",
+        "rules_primary": "Resolves Yes if X is named winner.",
+    }
+    base.update(overrides)
+    return base
+
+
+def test_normalized_kalshi_payload_survives_the_screen():
+    market = markets.normalize(_raw_kalshi_market())
+    result = screen.screen([market], now=NOW)
+    assert len(result) == 1
+    assert result[0]["fav_side"] == "yes"
+    assert result[0]["entry_price"] == pytest.approx(0.80)

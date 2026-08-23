@@ -20,8 +20,16 @@ MAX_SPREAD = 0.07
 MIN_VOLUME = 500.0
 MAX_DAYS_AHEAD = 14.0
 
-# Sports, esports, and multi-variate parlays: outcomes nobody can know in
-# advance, so the insider thesis cannot apply by construction.
+# A coarse proxy: excludes whole sports/esports LEAGUES by ticker prefix, on
+# the assumption that a league's markets are mostly live game outcomes the
+# insider thesis cannot apply to. That assumption is not precise — checked
+# against the live board, none of the markets these prefixes actually
+# exclude are game outcomes; they are league-adjacent items (MLB call-ups,
+# retirement announcements, franchise approvals) that a specific informed
+# group plausibly *does* know in advance, exactly what this theory targets
+# (a franchise approval is "a board that has voted"). Known trade-off:
+# excluding by whole league is cheap and safe against the live-score
+# majority, at the cost of dropping those non-game league markets too.
 EXCLUDED_PREFIXES = (
     "KXMVE",
     "KXMLB", "KXNBA", "KXNFL", "KXNHL",
