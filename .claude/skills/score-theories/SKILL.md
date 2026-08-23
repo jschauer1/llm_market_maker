@@ -11,8 +11,8 @@ description: Settle resolved opportunities and recompute calibration scores. Use
 from tools import db, ledger
 from tools.kalshi import markets
 conn = db.connect(); db.init_db(conn)
-open_rows = [r for r in ledger.list_opportunities(conn)]
-quotes = markets.quotes([r["kalshi_ticker"] for r in open_rows])
+rows = ledger.list_opportunities(conn)  # every opportunity, settled or not
+quotes = markets.quotes([r["kalshi_ticker"] for r in rows])
 ```
 
 A Kalshi market is settled when its status is `finalized` and `result` is set.

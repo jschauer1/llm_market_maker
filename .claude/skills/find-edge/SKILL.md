@@ -99,8 +99,20 @@ python -m tools.cli rank --edge <edge_pts_net> --n <settled_n> \
 also in that report and useful for diagnosis, but only the net figure is
 comparable to a claim, which is net of fees by definition.
 
-Use the theory's *endorsed* score row for realization when ranking an
-endorsed opportunity.
+**`--n`, `--calibration-edge-net`, and `--mean-claimed-edge` must all come
+from the same disposition-matched `score report` row.** Ranking an endorsed
+opportunity means all three come from the *endorsed* row — never mix `n` from
+one row (e.g. `all`) with realization figures from another (e.g.
+`endorsed`). Mixing rows is how a `n=29` sample from `all` ends up shrinking
+an edge whose realization was measured on a completely different, unrelated
+sample.
+
+**If credibility computes to 0** — realization is 0.0 even though `n` clears
+the probation floor — do not present a table of zeroed-out ranked edges. That
+reads as "no edge exists" when the truth is "this theory hasn't demonstrated
+the edge it claims yet." Report the claimed edge with the shrinkage reason
+stated plainly instead, the same way you would never hide the shrinkage on
+any other row.
 
 ## 7. Report in two layers
 
@@ -108,7 +120,11 @@ endorsed opportunity.
 claimed edge, **edge basis**, ranked edge, `n`, realization, theory, suggested
 size, and your interpretation.
 
-**Unresearched remainder** — a count, plus the top few by screen edge.
+**Unresearched remainder** — a count, plus the top few ordered by whatever the
+theory's stage 1 provides (a screen edge, if it computes one). Some theories
+— `insider_bias` deliberately among them — produce no screen edge at all;
+when a theory provides no ordering, fall back to an unordered list rather
+than implying a ranking that does not exist.
 
 Always show claimed edge next to ranked edge, and always show the edge basis.
 `prior` means the number is a placeholder nobody has measured yet; `measured`
