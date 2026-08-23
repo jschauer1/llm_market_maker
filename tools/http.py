@@ -10,6 +10,7 @@ an answer, not a hiccup.
 
 from __future__ import annotations
 
+import json
 import time
 
 import requests
@@ -33,14 +34,29 @@ def get_json(
     last_status: int | None = None
 
     for attempt in range(max_retries):
-        response = requests.get(
-            url,
-            params=params,
-            timeout=timeout,
-            headers={"User-Agent": USER_AGENT},
-        )
+        try:
+            response = requests.get(
+                url,
+                params=params,
+                timeout=timeout,
+                headers={"User-Agent": USER_AGENT},
+            )
+        except requests.exceptions.RequestException as exc:
+            if attempt < max_retries - 1:
+                time.sleep(delay)
+                delay *= 2
+                continue
+            raise HttpError(
+                f"GET {url} failed after {max_retries} attempts: {exc}"
+            ) from exc
+
         if response.status_code == 200:
-            return response.json()
+            try:
+                return response.json()
+            except json.JSONDecodeError as exc:
+                raise HttpError(
+                    f"GET {url} returned a 200 that was not valid JSON"
+                ) from exc
 
         last_status = response.status_code
         if last_status not in RETRYABLE_STATUS:

@@ -1,4 +1,7 @@
+import json
+
 import pytest
+import requests
 
 from tools import http
 
@@ -68,6 +71,47 @@ def test_does_not_retry_on_404(monkeypatch):
     with pytest.raises(http.HttpError, match="404"):
         http.get_json("https://example.test")
     assert calls["n"] == 1, "client errors must not be retried"
+
+
+def test_retries_on_connection_error_then_succeeds(monkeypatch):
+    calls = {"n": 0}
+
+    def fake_get(*a, **k):
+        calls["n"] += 1
+        if calls["n"] < 3:
+            raise requests.exceptions.ConnectionError("boom")
+        return FakeResponse(200, {"ok": True})
+
+    sleeps = []
+    monkeypatch.setattr(http.requests, "get", fake_get)
+    monkeypatch.setattr(http.time, "sleep", lambda s: sleeps.append(s))
+    assert http.get_json("https://example.test") == {"ok": True}
+    assert calls["n"] == 3
+    assert sleeps, "expected a backoff sleep between retries"
+
+
+def test_raises_http_error_after_exhausting_retries_on_connection_error(
+    monkeypatch,
+):
+    def fake_get(*a, **k):
+        raise requests.exceptions.ConnectionError("boom")
+
+    monkeypatch.setattr(http.requests, "get", fake_get)
+    monkeypatch.setattr(http.time, "sleep", lambda s: None)
+    with pytest.raises(http.HttpError):
+        http.get_json("https://example.test", max_retries=2)
+
+
+def test_raises_http_error_on_non_json_response(monkeypatch):
+    class BadJsonResponse(FakeResponse):
+        def json(self):
+            raise json.JSONDecodeError("Expecting value", "<html>", 0)
+
+    monkeypatch.setattr(
+        http.requests, "get", lambda *a, **k: BadJsonResponse(200)
+    )
+    with pytest.raises(http.HttpError):
+        http.get_json("https://example.test")
 
 
 def test_backoff_grows_between_attempts(monkeypatch):
