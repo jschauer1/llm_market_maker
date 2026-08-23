@@ -18,9 +18,13 @@ The system does not ship with a fixed strategy. It ships with:
 - A lightweight, unopinionated format for capturing a trading **theory**
   (hypothesis) so ideas can be proposed, run, backtested, scored, and compared
   against each other over time.
-- A **ranking discipline** that converts a theory's *claimed* edge into a
+- A **two-stage model** (section 7) that treats a theory's pipeline output as a
+  candidate set to be researched and interpreted, not as a finished
+  recommendation — and measures whether that interpretation actually adds
+  value.
+- A **ranking discipline** (section 8) that converts a *claimed* edge into a
   *credibility-weighted* one, so "largest edge" is an evidence-backed claim
-  rather than whichever theory happens to sound most confident.
+  rather than whichever theory sounds most confident.
 - One theory ported from an existing project (`insider_bias`, from
   `kalshi_trader`) as a working reference example, including its real
   historical track record.
@@ -91,14 +95,14 @@ system; `record_opportunity` enforces this by requiring a Kalshi ticker.
 
 ```
 LLM_market_identifier/
-  CLAUDE.md                        Onboarding briefing (see section 13)
+  CLAUDE.md                        Onboarding briefing (see section 14)
   .claude/
     skills/
-      find-edge/SKILL.md           Main entrypoint: scan, rank, report
+      find-edge/SKILL.md           Main entrypoint: scan, research, rank, report
       propose-theory/SKILL.md      Scaffold + register a new theory
       backtest-theory/SKILL.md     Tiered retroactive testing
       score-theories/SKILL.md      Settle outcomes, recompute scores
-      compare-theories/SKILL.md    Cross-theory performance report
+      compare-theories/SKILL.md    Cross-theory + interpretation-value report
   db/
     schema.sql                     SQLite schema (source of truth)
     market_edge.db                 The database (gitignored — data, not code)
@@ -112,9 +116,9 @@ LLM_market_identifier/
       markets.py                   Open/resolved markets
       trades.py                    Trade history, large/whale-trade filtering
     match_market.py                Non-Kalshi finding -> Kalshi ticker shortlist
-    ledger.py                      record_opportunity, mark-taken, queries
+    ledger.py                      record_opportunity, interpret, mark-taken
     score.py                       Settlement fetch, calibration, ROI
-    rank.py                        Credibility-weighted ranking (section 7)
+    rank.py                        Credibility-weighted ranking (section 8)
     sizing.py                      Fee model, Kelly, portfolio caps
     snapshot.py                    Market snapshot capture (forward history)
   theories/
@@ -141,20 +145,20 @@ carries lifecycle state.
 |---|---|---|
 | id | text PK | slug, e.g. `insider_bias` |
 | name | text | |
-| version | integer | starts at 1; bumped on any change to the decision procedure (section 9) |
-| status | text | `proposed` \| `active` \| `paused` \| `retired` (section 10) |
+| version | integer | starts at 1; bumped on any change to the decision procedure (section 10) |
+| status | text | `proposed` \| `active` \| `paused` \| `retired` (section 11) |
 | path | text | folder under `theories/` |
 | created_at / updated_at | timestamp | |
 
 ### `market_snapshots`
 Forward-history engine. Time-series observations of market state, keeping a
-flexible `raw_json` alongside normalized columns since Kalshi (binary, cents)
-and Polymarket (possibly multi-outcome, 0–1 probabilities) don't share a native
-shape.
+flexible `raw_json` alongside normalized columns since Kalshi (binary, decimal
+dollars) and Polymarket (possibly multi-outcome, 0–1 probabilities) don't share
+a native shape.
 
 This table has a specific job, not speculative: it is the hedge against either
 platform's own historical API being too shallow, and it is what grows the clean
-backtest window described in section 11. **Every `find-edge` run writes
+backtest window described in section 12. **Every `find-edge` run writes
 snapshots of the markets it fetches as a side effect**, so history accumulates
 from normal use even with no scheduler configured.
 
@@ -162,7 +166,7 @@ from normal use even with no scheduler configured.
 |---|---|---|
 | id | integer PK | |
 | platform | text | `kalshi` \| `polymarket` |
-| market_id | text | ticker (Kalshi) or market/condition id (Polymarket) |
+| market_id | text | ticker (Kalshi) or condition id (Polymarket) |
 | captured_at | timestamp | |
 | title | text | |
 | implied_prob_yes | real, nullable | normalized convenience field for binary markets |
@@ -176,8 +180,8 @@ from normal use even with no scheduler configured.
 Index on `(platform, market_id, captured_at)`.
 
 ### `opportunities`
-The shared spine. See section 6 for the full contract, including the dedup key
-and the definition of edge.
+The shared spine. See section 6 for the contract and section 7 for the
+screen-versus-interpretation distinction the disposition columns encode.
 
 | column | type | notes |
 |---|---|---|
@@ -195,14 +199,19 @@ and the definition of edge.
 | model_prob | real, nullable | theory's probability estimate, if it makes one |
 | edge_pts_gross | real, nullable | `(model_prob − entry_price) × 100` |
 | fee_pts | real, nullable | estimated Kalshi fee in points, from `sizing.py` |
-| edge_pts_net | real NOT NULL | **the ranking number** — gross minus fees (section 6) |
+| screen_edge_pts_net | real NOT NULL | what stage 1 claimed — frozen, never revised |
+| edge_pts_net | real NOT NULL | current best estimate; **the ranking number** (section 6) |
+| disposition | text | `screened` \| `endorsed` \| `rejected` (section 7) |
+| interpretation | text, nullable | Claude's research notes and reasoning at stage 2 |
+| interpreted_at | timestamp, nullable | null if never researched |
 | confidence | text, nullable | theory's own scale — free text |
-| rationale | text | |
+| rationale | text | the theory's own reasoning at screen time |
 | suggested_size | real, nullable | |
 | evidence_source | text, nullable | `kalshi` \| `polymarket` \| other — where the signal originated |
 | evidence_market_id | text, nullable | e.g. the Polymarket id that triggered the finding |
 | user_action | text | `untouched` \| `taken` \| `skipped` (section 6) |
 | user_size | real, nullable | what the user actually staked, if taken |
+| user_reason | text, nullable | why the user diverged — mined for new theories (section 7) |
 | first_seen_at | timestamp | entry timestamp; `entry_price` is from this moment |
 | last_seen_at | timestamp | updated on re-sighting |
 | times_seen | integer | incremented on re-sighting |
@@ -222,8 +231,9 @@ Kalshi-only, since every opportunity resolves to a Kalshi ticker.
 | settle_price | real, nullable | |
 
 ### `scores`
-Recomputable performance summaries per theory *version*. Derived data — safe to
-delete and rebuild from `opportunities` + `settlements`.
+Recomputable performance summaries, segmented by theory version **and
+disposition** so the value of interpretation is measurable (section 7). Derived
+data — safe to delete and rebuild from `opportunities` + `settlements`.
 
 | column | type | notes |
 |---|---|---|
@@ -231,14 +241,15 @@ delete and rebuild from `opportunities` + `settlements`.
 | theory_id | text FK | |
 | theory_version | integer | |
 | run_mode | text | `live` \| `backtest` |
-| backtest_tier | text, nullable | `A` \| `B` \| `C` (section 11) |
+| disposition | text | `all` \| `screened` \| `endorsed` \| `rejected` |
+| backtest_tier | text, nullable | `A` \| `B` \| `C` (section 12) |
 | window_start / window_end | timestamp | |
 | n | integer | settled sample size |
 | win_rate | real | |
 | price_implied_rate | real | mean entry price of the settled sample |
 | calibration_edge | real | `win_rate − price_implied_rate` — the key metric |
 | mean_claimed_edge | real | mean `edge_pts_net` claimed at call time |
-| realization | real | `calibration_edge / mean_claimed_edge`, clamped (section 7) |
+| realization | real | `calibration_edge / mean_claimed_edge`, clamped (section 8) |
 | roi_all | real | hypothetical ROI across all suggestions, net of fees |
 | roi_taken | real, nullable | realized ROI across `user_action = 'taken'` only |
 | computed_at | timestamp | |
@@ -250,7 +261,7 @@ delete and rebuild from `opportunities` + `settlements`.
 | theory_id | text FK | |
 | theory_version | integer | |
 | as_of_start / as_of_end | timestamp | historical window replayed |
-| tier | text | `A` \| `B` \| `C` — **derived, not self-reported** (section 11) |
+| tier | text | `A` \| `B` \| `C` — **derived, not self-reported** (section 12) |
 | uses_llm_judgment | boolean | did the decision path invoke a subagent |
 | model_cutoff | date | knowledge cutoff used to compute the tier |
 | notes | text | |
@@ -259,7 +270,7 @@ delete and rebuild from `opportunities` + `settlements`.
 ## 6. The opportunity contract
 
 This is the one interface every theory implements, and the reason the system
-can compare hypotheses at all. Four rules make it work.
+can compare hypotheses at all. Five rules make it work.
 
 **It must be tradeable on Kalshi.** `kalshi_ticker` is `NOT NULL`. A theory
 whose signal came from Polymarket resolves it through `tools/match_market.py`
@@ -273,14 +284,16 @@ edge measured against mid is partly fictional. `edge_pts_net` is
 and it is the only number ranking uses. Theories that derive edge some other
 way (structural arbitrage, for instance) may leave `model_prob` and
 `edge_pts_gross` null, but must still state an `edge_pts_net` — it is the
-common currency across theories.
+common currency across theories. `screen_edge_pts_net` freezes what stage 1
+claimed so a later interpretive revision (section 7) stays comparable against
+the original.
 
 **Executability is a first-class filter.** `spread_at_call` and
 `volume_at_call` are recorded so `find-edge` can drop suggestions that aren't
 really takeable. A 3-point edge on a market with a 6-point spread and $80 of
 volume is not an opportunity. Default thresholds live in `find-edge`, are
-overridable per theory, and any filtered-out candidates are reported as a count
-so nothing disappears silently.
+overridable per theory, and filtered-out candidates are reported as a count so
+nothing disappears silently.
 
 **Re-sighting updates, it does not duplicate.** `record_opportunity` is an
 upsert on `(theory_id, theory_version, run_id, kalshi_ticker, outcome)`. Live
@@ -293,12 +306,76 @@ meaningless. (`kalshi_trader` hit exactly this and deduped at scoring time; here
 it is prevented at the data layer.)
 
 **Suggested is not the same as taken.** The user places bets manually and may
-skip many. `ledger.py mark-taken` sets `user_action`/`user_size`. Scoring then
-reports two distinct numbers: **theory calibration** over all suggestions (which
-measures the theory) and **realized ROI** over taken ones (which measures the
-account). Conflating them would report hypothetical money as real.
+skip many. `ledger.py mark-taken` sets `user_action`/`user_size`/`user_reason`.
+Scoring reports two distinct numbers: **theory calibration** over all
+suggestions (which measures the theory) and **realized ROI** over taken ones
+(which measures the account). Conflating them would report hypothetical money
+as real.
 
-## 7. Ranking: from claimed edge to defensible edge
+## 7. Pipelines propose, judgment disposes
+
+**The aspiration:** a theory is a deterministic pipeline. Run it, and out come
+markets with a quantified edge — reproducible, cheap, no interpretation needed.
+That is the target every theory should be pushed toward, because anything
+encoded in code is testable, repeatable, and scales to thousands of markets for
+free.
+
+**The reality:** that is rarely the whole story, and pretending otherwise
+produces bad bets. `insider_bias` is the worked example. It emits ranked picks,
+but those picks are not bet as given. What actually happens is that a human
+reads the output and recognizes something the pipeline never encoded — a
+reality-TV market is *structurally* vulnerable in a way a general
+"insider knowledge" screen does not capture. The edge lives partly in the
+pipeline and partly in the pattern recognition applied to its output.
+
+So every theory is understood as two stages, and the system must never collapse
+them:
+
+**Stage 1 — mechanical screen.** Deterministic, reproducible, cheap over
+thousands of markets: filters, thresholds, structural checks, cross-platform
+matching, whatever the theory can express in code. This narrows the universe.
+Anything that *can* be encoded here should be — pushing work from stage 2 into
+stage 1 is how a theory gets better over time.
+
+**Stage 2 — interpretive judgment.** Contextual research on the narrowed set:
+what kind of market is this really, what does the resolution language actually
+require, is this market type structurally soft or structurally dangerous, does
+recent news change the picture. This is Claude reading the output rather than
+trusting it, and it is expected to be the norm rather than the exception.
+
+**Pipeline output is a candidate set, not a recommendation.** `find-edge` must
+present the two layers distinctly — what the screen surfaced, and what research
+concluded about it — and must never present unresearched screen output as a
+recommended bet. Because stage 2 costs real time, it is applied within the scan
+budget to the highest-ranked candidates, and the count of screened-but-not-yet-
+researched candidates is always reported so the unexamined remainder is visible.
+
+**Measuring whether interpretation earns its keep.** Every opportunity carries a
+`disposition`: `screened` (the pipeline surfaced it, no research yet),
+`endorsed` (researched and recommended), or `rejected` (researched and
+declined). Rejected candidates stay in the database and still settle, which
+makes them a free control group. Scoring therefore reports calibration three
+ways per theory — across all screened, across endorsed only, and across
+rejected only — and the comparison answers a question neither stage can answer
+alone:
+
+- **Endorsed clearly outperforms rejected** → interpretation is adding edge.
+  The pipeline is a candidate generator; the judgment is the product.
+- **Endorsed and rejected perform alike** → interpretation is adding nothing.
+  Either strengthen stage 1 or trust the pipeline and save the research time.
+- **Rejected outperforms endorsed** → interpretation is destroying value, which
+  is worth discovering early rather than never.
+
+**Mining divergence for new theories.** When the user takes a bet the system did
+not endorse, or skips one it did, that gap is usually an unencoded heuristic —
+exactly like "reality TV markets are soft." `mark-taken` captures an optional
+`user_reason`, and `compare-theories` surfaces recurring patterns in those
+reasons as candidate theories. This is one of the most direct routes to Claude
+proposing genuinely new hypotheses: tacit intuition becomes an explicit,
+testable theory, and if it survives scoring it graduates from stage 2 judgment
+into stage 1 code.
+
+## 8. Ranking: from claimed edge to defensible edge
 
 A theory Claude invented this morning claiming 12 points of edge and a theory
 with 40 settled bets and a *measured* calibration edge are not the same kind of
@@ -319,26 +396,29 @@ ranks 4.0pt. A theory with n=40 that realizes *none* of its claimed edge gets
 credibility 0 and sinks — the probationary floor deliberately does not protect
 a theory that has been measured and found wanting.
 
-Two supporting rules:
+Three supporting rules:
 
 - **Never hide the shrinkage.** Output shows claimed edge, ranked edge, `n`,
-  and realization side by side. The user should always be able to see that a
-  top-ranked suggestion is top-ranked because of evidence, or in spite of having
-  none.
+  and realization side by side, so the user can always see whether a top-ranked
+  suggestion earned its place on evidence or in the absence of any.
+- **Credibility uses the matching disposition.** For an endorsed opportunity,
+  `realization` comes from the theory's *endorsed* score row, not its
+  all-candidates row — a theory whose screen is mediocre but whose interpreted
+  picks are good should be credited for the latter.
 - **Which settlements count toward `n`.** Live settlements always count.
   Backtest settlements count at full weight for tiers A and B; tier C is
-  excluded from credibility entirely (section 11), because contaminated
-  results are not evidence of edge.
+  excluded from credibility entirely (section 12), because contaminated results
+  are not evidence of edge.
 
 **Cross-theory convergence.** When several theories independently surface the
 same ticker and side, `find-edge` collapses them into one line and reports the
 agreement — convergent independent evidence is a genuine positive signal, and
-listing it three times would otherwise inflate one bet into three. Conversely,
-when many top suggestions cluster on correlated markets (several Fed-linked
-markets, say), that concentration is called out, since a portfolio of
-correlated bets is not diversified regardless of individual edge.
+listing it three times would inflate one bet into three. Conversely, when many
+top suggestions cluster on correlated markets (several Fed-linked markets, say),
+that concentration is called out, since a portfolio of correlated bets is not
+diversified regardless of individual edge.
 
-## 8. Tools
+## 9. Tools
 
 Flat, small, single-purpose scripts — not a framework. `tools/README.md`
 documents the convention (JSON/SQLite in and out, a `--help` describing what the
@@ -347,38 +427,50 @@ end-to-end and write a new one in the same shape — "fetch weather data," "fetc
 congressional trading disclosures" — without first learning an abstraction
 layer.
 
+All Kalshi and Polymarket endpoints used here were verified live during design
+(2026-08-23) and require **no authentication**. Field shapes are documented in
+the implementation plan; note that Kalshi's current schema returns prices as
+decimal-dollar strings (`yes_ask_dollars`) and sizes as `_fp` strings, which
+differs from the older integer-cent schema `kalshi_trader` was written against.
+
 - **`tools/kalshi/markets.py`** — open markets, settled markets with
-  resolution, live re-quote by ticker (bid/ask, not just mid). Ported from
-  `kalshi_trader`'s `fetch_kalshi_markets.py`; Kalshi market data needs no auth.
-- **`tools/kalshi/history.py`** — historical candlesticks (1min/1hr/1day, public
-  API) plus point-in-time market-state reconstruction built on them.
-- **`tools/polymarket/markets.py`** — open/resolved markets via Polymarket's
-  public Gamma API. *Endpoint shapes unverified at design time* (section 17).
+  resolution, live re-quote by ticker (bid/ask, not just mid), plus each
+  market's `rules_primary` resolution text, which stage 2 research depends on.
+- **`tools/kalshi/history.py`** — historical candlesticks (1min/1hr/1day) which
+  include **historical bid/ask**, not just last trade — so point-in-time
+  reconstruction can produce genuinely executable prices for backtests.
+  Verified to reach back at least ~12 months.
+- **`tools/polymarket/markets.py`** — open/resolved markets via the public
+  Gamma API (`conditionId`, `question`, `outcomePrices`, `bestBid`/`bestAsk`,
+  `volumeNum`, `endDate`, `description`).
 - **`tools/polymarket/trades.py`** — trade history and large/whale-trade
-  filtering via the public CLOB/data API. Also unverified at design time.
+  filtering via the public data API, including per-trade wallet identity and
+  per-market holder positions — the raw material for whale-following theories.
 - **`tools/match_market.py`** — the required bridge from a non-Kalshi finding to
   an actionable suggestion. Returns a mechanically-generated shortlist of
   plausible Kalshi equivalents (keyword/category/date overlap). Deliberately
   does *not* make the final "same market?" call — that judgment belongs to
-  Claude or a subagent reading the shortlist, and it must check resolution
+  Claude or a subagent reading the shortlist, and it must compare resolution
   criteria, not just topic: two markets about the same event with different
   settlement rules are not the same market.
 - **`tools/ledger.py`** — `record-opportunity` (upserts per section 6; rejects a
-  call with no `kalshi_ticker` or no `edge_pts_net`), `mark-taken`,
-  `list-opportunities`.
+  call with no `kalshi_ticker` or no `edge_pts_net`), `interpret` (sets
+  disposition, interpretation text, and any revised edge — section 7),
+  `mark-taken`, `list-opportunities`.
 - **`tools/score.py`** — `settle` (fetch outcomes for opportunities that have
   resolved) and `report` (win rate, price-implied rate, calibration edge,
-  realization, ROI split by all-vs-taken, segmented by theory version).
-- **`tools/rank.py`** — the section 7 credibility calculation, factored out so
+  realization, ROI split by all-vs-taken, segmented by theory version and
+  disposition).
+- **`tools/rank.py`** — the section 8 credibility calculation, factored out so
   `find-edge` and `compare-theories` rank identically.
 - **`tools/sizing.py`** — Kalshi fee model, Kelly sizing, portfolio caps, ported
-  from `kalshi_trader`. A theory may use these or size its own way, but
-  `fee_pts` always comes from here so edge is defined consistently.
+  from `kalshi_trader`. A theory may size its own way, but `fee_pts` always
+  comes from here so edge is defined consistently.
 - **`tools/snapshot.py`** — capture current market state into
-  `market_snapshots`. Callable directly; also invoked automatically by
-  `find-edge` so forward history accrues from normal use.
+  `market_snapshots`. Callable directly; also invoked by `find-edge` so forward
+  history accrues from normal use.
 
-## 9. Theory format and versioning
+## 10. Theory format and versioning
 
 A theory is a folder under `theories/<slug>/`. The only required file is
 `THEORY.md`:
@@ -399,16 +491,21 @@ proposed | active | paused | retired — with a journal of changes and why.
 ## Version
 Current version number, and a changelog of what changed at each bump.
 
-## How to scan for live candidates
-A procedure for Claude to follow: which tools to call, what to filter for,
-when to spawn a subagent for judgment, how results reach record_opportunity.
-If the signal originates outside Kalshi, this must include the
+## Stage 1 — mechanical screen
+What this theory can encode deterministically: which tools to call, what
+filters and thresholds, how candidates reach record_opportunity. If the
+signal originates outside Kalshi, this must include the
 tools/match_market.py step — record_opportunity has no Kalshi-less path.
 
+## Stage 2 — what needs judgment
+What this theory cannot encode, and what Claude should look for when reading
+its output: market types that are structurally soft or dangerous,
+resolution-language traps, context worth researching before endorsing.
+Anything here that proves reliable should eventually migrate into stage 1.
+
 ## How to backtest
-A procedure for Claude to follow using the point-in-time tools (section 11).
-State plainly whether the decision path uses LLM judgment, since that
-determines the backtest tier.
+A procedure using the point-in-time tools (section 12). State plainly whether
+the decision path uses LLM judgment, since that determines the tier.
 
 ## Learnings
 Running journal — what worked, what didn't, surprises.
@@ -417,51 +514,53 @@ Running journal — what worked, what didn't, surprises.
 Everything else in the folder is theory-owned: Python scripts, prompt templates,
 notebooks, fixture data — whatever the hypothesis needs. There is no mandated
 internal shape and no required functions. A structural arbitrage theory might be
-deterministic math with no LLM at all; a whale-copy theory might be almost
-entirely subagent judgment across both platforms; a research theory might lean
-on web search. `_TEMPLATE/` carries the empty `THEORY.md` and a note describing
-this freedom, so a theory scaffolded via `propose-theory` isn't tempted to copy
-`insider_bias`'s specific shape as though it were mandatory.
+deterministic math with no LLM at all (and an empty stage 2); a whale-copy
+theory might be almost entirely subagent judgment across both platforms; a
+research theory might lean on web search. `_TEMPLATE/` carries the empty
+`THEORY.md` and a note describing this freedom, so a scaffolded theory isn't
+tempted to copy `insider_bias`'s specific shape as though it were mandatory.
 
 **Versioning exists to prevent silent drift.** Any change to a theory's decision
-procedure — thresholds, prompts, scan logic — bumps `theories.version` and adds
-a changelog entry. Every opportunity stamps `theory_version`, and scoring
-segments on it. Without this, tweaking a theory after 20 settled bets silently
-merges two different theories into one track record, which both destroys the
-long-time-span testing this project exists for and invites the classic
-overfitting trap of tuning until the history looks good. `compare-theories`
-shows versions separately and flags any version whose `n` is too small to mean
-much.
+procedure — thresholds, prompts, scan logic, or migrating a stage 2 heuristic
+into stage 1 — bumps `theories.version` and adds a changelog entry. Every
+opportunity stamps `theory_version`, and scoring segments on it. Without this,
+tweaking a theory after 20 settled bets silently merges two different theories
+into one track record, which both destroys the long-time-span testing this
+project exists for and invites the classic overfitting trap of tuning until the
+history looks good. `compare-theories` shows versions separately and flags any
+version whose `n` is too small to mean much.
 
-## 10. Theory lifecycle
+## 11. Theory lifecycle
 
-Status transitions have default bars. Claude may override any of them, but must
-record the reason in `THEORY.md` — the point is that drift and accumulation are
+Status transitions have default bars. Claude may override any of them but must
+record the reason in `THEORY.md` — the point is that drift and accumulation stay
 visible, not that Claude lacks agency.
 
 - **`proposed` → `active`** — requires either a tier A or tier B backtest
   showing positive calibration edge, or an explicit user override. This keeps
-  untested ideas from immediately consuming scan budget.
+  untested ideas from consuming scan budget.
 - **`active` → review** — at `n = 20` settled, `score-theories` flags any theory
   whose calibration edge is ≤ 0 for a look.
-- **`active` → `paused`** — at `n = 50` settled with calibration edge still
-  ≤ 0. (`kalshi_trader`'s own strategy notes argue for flat stakes until 50+
-  settled bets before trusting a result; the same threshold applies to
-  disbelieving one.)
+- **`active` → `paused`** — at `n = 50` settled with calibration edge still ≤ 0.
+  (`kalshi_trader`'s own strategy notes argue for flat stakes until 50+ settled
+  bets before trusting a result; the same threshold applies to disbelieving
+  one.) Before pausing, check the section 7 breakdown: a theory whose *endorsed*
+  subset performs well while its overall screen does not is not dead — it is a
+  theory whose stage 1 needs tightening.
 - **`paused` → `retired`** — reviewed and judged dead. Retired theories stay on
-  disk: a hypothesis that failed is evidence, and re-testing a retired idea
-  later against more data is legitimate.
+  disk: a failed hypothesis is evidence, and re-testing it later against more
+  data is legitimate.
 
 Retired and paused theories are skipped by `find-edge` by default.
 
-## 11. Backtesting and hindsight contamination
+## 12. Backtesting and hindsight contamination
 
 Backtesting is a toolkit a theory's own procedure draws on, not one rigid replay
 engine, because testing means different things for different hypotheses:
 
-- Point-in-time market state (`tools/kalshi/history.py`, extendable to
-  Polymarket, supplemented by `market_snapshots`) — what did this market look
-  like as of a past date.
+- Point-in-time market state (`tools/kalshi/history.py`, supplemented by
+  `market_snapshots`) — what did this market look like as of a past date,
+  including its bid/ask so entry prices stay executable rather than notional.
 - Settlement lookup (`tools/score.py`) — what actually happened.
 - The same `record_opportunity` contract with `run_mode = backtest` and a real
   `run_id`, so results land in the shared scorer but stay separable from live.
@@ -472,18 +571,18 @@ backtest built on that measures recall, not edge. The mitigation is not a
 self-reported honesty field — it is a **tier derived from facts observable at
 run time**, computed and recorded by `backtest-theory`:
 
-- **Tier A — clean.** The theory's decision path invokes no LLM judgment
-  (deterministic screens, price/volume rules, structural arbitrage, monotonicity
-  checks). No contamination is possible. Backtest over all available history;
-  results count as full evidence.
+- **Tier A — clean.** The decision path invokes no LLM judgment (deterministic
+  screens, price/volume rules, structural arbitrage, monotonicity checks). No
+  contamination is possible. Backtest over all available history; results count
+  as full evidence. Verified: Kalshi candlesticks reach back at least ~12
+  months, so tier A has real runway from day one.
 - **Tier B — quarantined.** The decision path uses LLM judgment, but replay is
   restricted to markets that resolved *after* the judging model's knowledge
-  cutoff, with web search disabled in the subagent. Small sample today (the
-  window is roughly the months since the cutoff) but genuinely valid, and it
-  grows every month — which is what makes ongoing snapshot collection worth
-  doing.
+  cutoff, with web search disabled in the subagent. Small sample today (roughly
+  the months since the cutoff) but genuinely valid, and it grows every month —
+  which is what makes ongoing snapshot collection worth doing.
 - **Tier C — indicative only.** LLM judgment against pre-cutoff markets.
-  Explicitly labeled contaminated, **excluded from credibility in section 7**,
+  Explicitly labeled contaminated, **excluded from credibility in section 8**,
   and usable only to sanity-check the *screening* stage — never as evidence of
   edge.
 
@@ -496,32 +595,37 @@ measurement, and can rescue individual obscure markets from a tier C run.
 Web search must be disabled in any backtest judgment subagent regardless of
 tier, since live search trivially reveals historical outcomes.
 
-## 12. Skills
+## 13. Skills
 
 - **`find-edge`** — the headline entrypoint. Selects theories by scope (default:
-  `active` only, prioritized by credibility); follows each `THEORY.md` scan
-  procedure within a **scan budget** (a default cap on subagent batches per
-  invocation, so the run stays interactive as the theory count grows); writes
-  snapshots as a side effect; filters unexecutable candidates and reports how
-  many were dropped; collapses cross-theory duplicates; ranks by section 7; and
-  reports a table of ticker, side, entry price, claimed edge, ranked edge, `n`,
-  realization, theory, suggested size, and rationale — plus flags on correlated
-  clustering. Accepts a scope override to run all theories or named ones.
+  `active` only, prioritized by credibility); runs each theory's stage 1 screen
+  within a **scan budget** (a cap on subagent batches per invocation, so the run
+  stays interactive as the theory count grows); writes snapshots as a side
+  effect; filters unexecutable candidates and reports how many were dropped;
+  collapses cross-theory duplicates; then applies **stage 2 research** to the
+  top-ranked candidates and records each as endorsed or rejected with reasoning.
+  Reports in two clearly separated layers: **endorsed** bets (ticker, side,
+  entry price, claimed edge, ranked edge, `n`, realization, theory, suggested
+  size, interpretation) and the **unresearched remainder** (count plus top few),
+  so the user can see both what was recommended and what went unexamined.
+  Rejected candidates and their reasons are available on request. Accepts a
+  scope override to run all theories or named ones.
 - **`propose-theory`** — scaffolds `theories/<slug>/` from `_TEMPLATE`, registers
   it at `status=proposed`, `version=1`, and works through the hypothesis, data
-  sources, and both procedures. Prompts for what would *falsify* the thesis,
-  not just support it.
+  sources, and both stages. Asks explicitly what belongs in stage 1 versus
+  stage 2, and what would *falsify* the thesis rather than only support it.
 - **`backtest-theory`** — determines the tier from the theory's decision path
-  and the market resolution dates, enforces the web-search prohibition, runs the
-  replay, records `backtest_runs`, and scores the result with the tier's caveat
-  attached.
+  and market resolution dates, enforces the web-search prohibition, runs the
+  replay, records `backtest_runs`, and scores with the tier's caveat attached.
 - **`score-theories`** — settles resolved opportunities, recomputes `scores` per
-  theory version, and surfaces lifecycle flags from section 10.
+  theory version and disposition, and surfaces lifecycle flags from section 11.
 - **`compare-theories`** — ranks theories by demonstrated calibration edge with
-  sample sizes, versions kept separate, live vs. backtest kept separate, tier C
-  clearly marked, and small-`n` caveats attached.
+  sample sizes, versions separate, live vs. backtest separate, tier C marked,
+  and small-`n` caveats attached. Also reports the **interpretation-value
+  breakdown** from section 7 (endorsed vs. rejected vs. all) and any recurring
+  patterns in `user_reason` divergences that might deserve to become theories.
 
-## 13. CLAUDE.md
+## 14. CLAUDE.md
 
 A substantial onboarding briefing for whichever Claude session opens this repo,
 since "what can I actually do here" must be explicit rather than inferred:
@@ -532,59 +636,69 @@ since "what can I actually do here" must be explicit rather than inferred:
 3. **Platform roles** — Kalshi is where bets get placed; Polymarket is an
    equally first-class research tool. Every suggestion must resolve to a Kalshi
    ticker via a confirmed match.
-4. **Toolkit map** — one paragraph per tool: what it does, when to reach for it.
-5. **The opportunity contract** — section 6 in brief: net edge at executable
+4. **Pipelines propose, judgment disposes** — section 7 as a core operating
+   principle: screen output is a candidate set, never a finished recommendation;
+   research before endorsing; record rejections so the value of your own
+   judgment stays measurable.
+5. **Toolkit map** — one paragraph per tool: what it does, when to reach for it.
+6. **The opportunity contract** — section 6 in brief: net edge at executable
    prices, dedup by upsert, executability filtering, suggested ≠ taken.
-6. **How ranking works** — section 7, so Claude understands why a confident new
+7. **How ranking works** — section 8, so Claude understands why a confident new
    theory doesn't automatically top the list, and doesn't try to game it.
-7. **Theory lifecycle and versioning** — including the requirement to bump
-   version on any procedure change.
-8. **Backtest tiers** — what's trustworthy, what's indicative, why web search is
+8. **Theory lifecycle and versioning** — including bumping version on any
+   procedure change, and migrating proven stage 2 heuristics into stage 1.
+9. **Backtest tiers** — what's trustworthy, what's indicative, why web search is
    off during replay.
-9. **Subagent usage** — when to spawn, how to batch, and why (no API keys; this
-   runs on the user's subscription).
-10. **Data conventions** — SQLite is the source of truth for structured facts;
+10. **Subagent usage** — when to spawn, how to batch, and why (no API keys; this
+    runs on the user's subscription).
+11. **Data conventions** — SQLite is the source of truth for structured facts;
     `THEORY.md` is the source of truth for a hypothesis and its procedure.
-11. **Getting started** — `find-edge` is the default entrypoint.
+12. **Getting started** — `find-edge` is the default entrypoint.
 
-## 14. Migration from kalshi_trader
+## 15. Migration from kalshi_trader
 
 - **Reusable code ported into `tools/`**: Kalshi market fetching, deterministic
   filter patterns, sizing/fee math, and the settlement + calibration-edge
   scoring approach — generalized to be theory-agnostic and to write SQLite
-  rather than CSVs.
+  rather than CSVs. **The fetch code needs updating to Kalshi's current field
+  schema** (`yes_ask_dollars`/`volume_fp` decimal strings, status `active`/
+  `finalized`), which differs from what `kalshi_trader` was written against.
 - **`insider_bias` ported as the reference theory**: its prompts and config
-  become the basis of its `THEORY.md` scan procedure; its classify/pick judgment
-  moves from OpenAI API calls to orchestrating-Claude/subagent judgment. It
-  starts at `version=1` with imported history attributed to that version.
-- **`migrate_kalshi_trader.py`** — one-time import of
-  `ledger/bets_ledger.csv` and `kalshi_data_backtest/scored_*.csv` into
-  `opportunities`/`settlements`, tagged `theory_id=insider_bias`,
-  `run_mode=live`, preserving original timestamps, and **applying the section 6
-  dedup rule** (that ledger contains repeat recommendations across runs, so a
-  naive import would import the very duplication problem this design fixes).
-  Imported rows get `user_action='untouched'` unless the user can say otherwise;
-  their `entry_price` uses the recorded price, flagged in `extra_json` where mid
-  versus executable is ambiguous in the source data.
+  become its `THEORY.md` stage 1 screen; its classify/pick judgment moves from
+  OpenAI API calls to orchestrating-Claude/subagent judgment. Its known
+  unencoded heuristics — the reality-TV-vulnerability pattern being the
+  motivating example — are written into **stage 2**, where they belong until
+  they prove out well enough to migrate into stage 1. Starts at `version=1`
+  with imported history attributed to that version.
+- **`migrate_kalshi_trader.py`** — one-time import of `ledger/bets_ledger.csv`
+  and `kalshi_data_backtest/scored_*.csv` into `opportunities`/`settlements`,
+  tagged `theory_id=insider_bias`, `run_mode=live`, preserving original
+  timestamps, and **applying the section 6 dedup rule** (that ledger contains
+  repeat recommendations across runs, so a naive import would import the very
+  duplication problem this design fixes). Imported rows get
+  `disposition='screened'` and `user_action='untouched'` unless the user can say
+  otherwise — the historical ledger records what was *suggested*, and the user
+  has said they did not bet it as given.
 - The original `kalshi_trader` repo is left untouched.
 - `obvious_mispricing` and the theories cataloged in `LLM_EDGE_STRATEGIES.md` /
   `FORECAST_GAP_IMPLEMENTATION_PLAN.md` are **not** ported — `insider_bias`
   alone proves the harness end to end. Anything further is `propose-theory` work.
 
-## 15. Testing approach
+## 16. Testing approach
 
 - Unit tests (pytest) for deterministic pieces: `sizing.py` (fee/Kelly math),
   `rank.py` (credibility formula, including the disproven-theory and n=0 cases
-  worked through in section 7), `db.py` (migrations), `ledger.py` (upsert
-  semantics — verify a re-sighting increments `times_seen` and preserves
-  `entry_price` rather than inserting), `score.py` (calibration/ROI against
-  fixtures).
+  worked through in section 8), `db.py` (migrations), `ledger.py` (upsert
+  semantics — a re-sighting must increment `times_seen` and preserve
+  `entry_price` rather than insert; `interpret` must set disposition without
+  disturbing `screen_edge_pts_net`), `score.py` (calibration/ROI against
+  fixtures, including the disposition split).
 - Rate-limit-conscious smoke tests for `kalshi/*` and `polymarket/*` against the
   real public endpoints (no auth required).
 - Skills are LLM-followed procedures, not code — verified by an end-to-end dry
   run of `find-edge` against the ported `insider_bias` theory.
 
-## 16. Out of scope for this build
+## 17. Out of scope for this build
 
 - Any theory beyond `insider_bias` — deliberately left as `propose-theory` work.
 - A scheduler for `snapshot.py`. The tool exists and `find-edge` writes
@@ -593,20 +707,22 @@ since "what can I actually do here" must be explicit rather than inferred:
 - A rendered dashboard. Chat-based reporting is the interface for now.
 - Real-money order execution.
 
-## 17. Open risks
+## 18. Open risks
 
-- **Polymarket API specifics** (Gamma/CLOB endpoint shapes, rate limits) were
-  not verified live during design and need confirming when the tools are built.
-- **Kalshi historical depth is unverified.** The candlestick endpoint exists and
-  needs no auth, but how far back it reaches and how completely it covers
-  settled markets is unknown. This directly bounds tier A backtesting on day
-  one, and is the main reason `market_snapshots` exists. Confirm early — it may
-  change how much backtesting is possible before forward collection matters.
+- **Interpretation value is unmeasurable early.** The section 7 endorsed-vs-
+  rejected comparison needs a meaningful number of *both* to have settled before
+  it says anything. Until then it's noise, and stage 2 runs on judgment alone.
 - **Tier B's window is thin today** (months since the model cutoff), so
   judgment-based theories will have weak backtest evidence initially and must
   lean on live results accumulating.
 - **The ranking constants** (probationary floor 0.25, shrinkage denominator 20,
-  `n=10` probation threshold, realization clamp 1.5) are reasoned defaults, not
+  `n=10` threshold, realization clamp 1.5) are reasoned defaults, not
   empirically derived. Revisit once several theories have real track records.
 - **Scan budget sizing** for `find-edge` needs tuning against real candidate
-  volumes and theory counts.
+  volumes and theory counts, especially since stage 2 research is the expensive
+  part.
+- **Polymarket endpoint stability.** The Gamma and data APIs are public and
+  verified working, but undocumented enough that field shapes may shift; the
+  tools should fail loudly rather than silently mis-parse.
+- **Kalshi schema drift.** Already observed once (integer cents → decimal-dollar
+  strings). Parsing should be defensive and version-aware.
