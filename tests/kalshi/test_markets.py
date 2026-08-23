@@ -124,6 +124,26 @@ def test_list_open_paginates_and_flattens(monkeypatch):
     assert result[2]["series_ticker"] == "S2"
 
 
+def test_list_open_keeps_the_markets_own_series_ticker(monkeypatch):
+    # series_ticker must not be nulled out by an event that lacks one, just
+    # like event_ticker already isn't.
+    monkeypatch.setattr(
+        markets, "get_json",
+        lambda *a, **k: {
+            "events": [
+                {
+                    "event_ticker": "E1",
+                    "title": "Event one",
+                    "markets": [dict(RAW, ticker="A", series_ticker="OWN")],
+                }
+            ],
+            "cursor": "",
+        },
+    )
+    result = markets.list_open()
+    assert result[0]["series_ticker"] == "OWN"
+
+
 def test_list_open_respects_max_pages(monkeypatch):
     monkeypatch.setattr(
         markets, "get_json",

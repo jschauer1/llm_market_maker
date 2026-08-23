@@ -100,7 +100,9 @@ def list_open(limit: int = 200, max_pages: int = 10) -> list[dict]:
                 market["event_ticker"] = (
                     market["event_ticker"] or event.get("event_ticker")
                 )
-                market["series_ticker"] = event.get("series_ticker")
+                market["series_ticker"] = (
+                    market.get("series_ticker") or event.get("series_ticker")
+                )
                 if not market["title"]:
                     market["title"] = event.get("title")
                 out.append(market)
