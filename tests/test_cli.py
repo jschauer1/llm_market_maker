@@ -123,3 +123,38 @@ def test_score_report_outputs_all_dispositions(dbpath, capsys):
 def test_unknown_command_returns_nonzero(capsys):
     with pytest.raises(SystemExit):
         cli.main(["nonsense"])
+
+
+def test_opportunities_mark_taken_persists_action_size_and_reason(
+    dbpath, capsys
+):
+    conn = db.connect(dbpath)
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="KXA",
+        outcome="yes", entry_price=0.4, edge_pts_net=6.0, now=TS,
+    )
+    opp_id = ledger.list_opportunities(conn)[0]["id"]
+    conn.close()
+
+    code, payload = _run(
+        capsys, "--db", dbpath, "opportunities", "mark-taken", str(opp_id),
+        "taken", "--size", "25", "--reason", "reality TV markets are soft",
+    )
+    assert code == 0
+    assert payload["user_action"] == "taken"
+    assert payload["user_size"] == pytest.approx(25.0)
+    assert payload["user_reason"] == "reality TV markets are soft"
+
+
+def test_opportunities_mark_taken_rejects_invalid_action(dbpath, capsys):
+    conn = db.connect(dbpath)
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="KXA",
+        outcome="yes", entry_price=0.4, edge_pts_net=6.0, now=TS,
+    )
+    opp_id = ledger.list_opportunities(conn)[0]["id"]
+    conn.close()
+
+    with pytest.raises(SystemExit):
+        cli.main(["--db", dbpath, "opportunities", "mark-taken", str(opp_id),
+                  "pondered"])

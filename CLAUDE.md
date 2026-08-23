@@ -40,6 +40,17 @@ record.
 
 Both are normal.
 
+**The user places every bet manually.** This system never sees what actually
+happened unless told:
+
+```bash
+python -m tools.cli opportunities mark-taken <id> taken --size <N> --reason "<why>"
+```
+
+Without this, `roi_taken` stays `null` forever and there is no user-divergence
+signal for `compare-theories` to mine. Always remind the user this command
+exists when reporting bets worth placing.
+
 ## Pipelines propose, judgment disposes
 
 The aspiration is a deterministic pipeline: run it, get a bet with an edge.

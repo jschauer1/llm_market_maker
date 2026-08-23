@@ -87,16 +87,23 @@ def _cmd_ideas(args) -> int:
 def _cmd_opportunities(args) -> int:
     conn = _connect(args)
     try:
-        _emit(
-            _rows(
-                ledger.list_opportunities(
-                    conn,
-                    theory_id=args.theory,
-                    run_mode=args.run_mode,
-                    disposition=args.disposition,
+        if args.action == "list":
+            _emit(
+                _rows(
+                    ledger.list_opportunities(
+                        conn,
+                        theory_id=args.theory,
+                        run_mode=args.run_mode,
+                        disposition=args.disposition,
+                    )
                 )
             )
-        )
+        elif args.action == "mark-taken":
+            ledger.mark_user_action(
+                conn, args.id, args.value, size=args.size,
+                reason=args.reason,
+            )
+            _emit(dict(ledger.get_opportunity(conn, args.id)))
     finally:
         conn.close()
     return 0
@@ -197,6 +204,13 @@ def build_parser() -> argparse.ArgumentParser:
     olist.add_argument("--theory", default=None)
     olist.add_argument("--run-mode", dest="run_mode", default=None)
     olist.add_argument("--disposition", default=None)
+    mark = osub.add_parser(
+        "mark-taken", help="record what the user actually did with a bet"
+    )
+    mark.add_argument("id", type=int)
+    mark.add_argument("value", choices=ledger.VALID_USER_ACTIONS)
+    mark.add_argument("--size", type=float, default=None)
+    mark.add_argument("--reason", default=None)
 
     p = sub.add_parser("score", help="calibration and settlement")
     p.set_defaults(func=_cmd_score)

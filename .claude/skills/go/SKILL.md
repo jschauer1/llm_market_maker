@@ -73,6 +73,13 @@ End with what the user needs: bets worth placing now, anything that changed
 about a theory's standing, anything needing their judgment. Not a transcript
 of tool calls.
 
+Tell them they can record what they actually bet with
+`python -m tools.cli opportunities mark-taken <id> taken --size <N> --reason
+"<why>"` (or `skipped` with a reason). This is not optional bookkeeping: until
+a bet is marked `taken`, `roi_taken` stays `null` forever, and divergences
+between what was endorsed and what was actually bet — the raw material
+`compare-theories` mines for new theory candidates — are invisible.
+
 ## Rules
 
 - Never present unresearched screen output as a recommended bet.
