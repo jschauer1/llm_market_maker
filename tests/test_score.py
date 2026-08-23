@@ -1,4 +1,5 @@
 import math
+import sqlite3
 
 import pytest
 
@@ -287,3 +288,48 @@ def test_record_settlement_is_idempotent(conn):
         "SELECT COUNT(*) AS n FROM settlements"
     ).fetchone()["n"]
     assert count == 1
+
+
+def test_record_backtest_run_persists_all_fields(conn):
+    score.record_backtest_run(
+        conn, "run-a", "t1", 1,
+        as_of_start="2026-01-01T00:00:00Z",
+        as_of_end="2026-06-01T00:00:00Z",
+        tier="A",
+        uses_llm_judgment=False,
+        model_cutoff="2026-01-01",
+        notes="stage-1 screen only",
+        now=TS,
+    )
+    row = conn.execute(
+        "SELECT * FROM backtest_runs WHERE run_id = 'run-a'"
+    ).fetchone()
+    assert row["theory_id"] == "t1"
+    assert row["theory_version"] == 1
+    assert row["as_of_start"] == "2026-01-01T00:00:00Z"
+    assert row["as_of_end"] == "2026-06-01T00:00:00Z"
+    assert row["tier"] == "A"
+    assert row["uses_llm_judgment"] == 0
+    assert row["model_cutoff"] == "2026-01-01"
+    assert row["notes"] == "stage-1 screen only"
+    assert row["created_at"] == TS
+
+
+def test_record_backtest_run_stores_bool_as_int(conn):
+    score.record_backtest_run(conn, "run-b", "t1", 1, uses_llm_judgment=True,
+                              now=TS)
+    row = conn.execute(
+        "SELECT uses_llm_judgment FROM backtest_runs WHERE run_id = 'run-b'"
+    ).fetchone()
+    assert row["uses_llm_judgment"] == 1
+
+
+def test_record_backtest_run_rejects_invalid_tier(conn):
+    with pytest.raises(ValueError, match="tier"):
+        score.record_backtest_run(conn, "run-c", "t1", 1, tier="Z", now=TS)
+
+
+def test_record_backtest_run_leaves_no_open_transaction_on_failure(conn):
+    with pytest.raises(sqlite3.IntegrityError):
+        score.record_backtest_run(conn, "run-d", "no_such_theory", 1, now=TS)
+    assert conn.in_transaction is False

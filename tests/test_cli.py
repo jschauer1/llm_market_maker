@@ -158,3 +158,27 @@ def test_opportunities_mark_taken_rejects_invalid_action(dbpath, capsys):
     with pytest.raises(SystemExit):
         cli.main(["--db", dbpath, "opportunities", "mark-taken", str(opp_id),
                   "pondered"])
+
+
+def test_backtest_record_persists_a_run(dbpath, capsys):
+    code, payload = _run(
+        capsys, "--db", dbpath, "backtest", "record", "run-a", "t1", "1",
+        "--tier", "A", "--model-cutoff", "2026-01-01",
+        "--notes", "stage-1 screen only",
+    )
+    assert code == 0
+    assert payload["run_id"] == "run-a"
+    assert payload["theory_id"] == "t1"
+    assert payload["theory_version"] == 1
+    assert payload["tier"] == "A"
+    assert payload["model_cutoff"] == "2026-01-01"
+    assert payload["notes"] == "stage-1 screen only"
+    assert payload["uses_llm_judgment"] is None
+
+
+def test_backtest_record_stores_uses_llm_judgment_flag(dbpath, capsys):
+    code, payload = _run(
+        capsys, "--db", dbpath, "backtest", "record", "run-b", "t1", "1",
+        "--tier", "B", "--uses-llm-judgment",
+    )
+    assert payload["uses_llm_judgment"] == 1

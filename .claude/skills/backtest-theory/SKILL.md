@@ -45,8 +45,13 @@ Record every replayed decision with `run_mode="backtest"` and a real `run_id`
 (a uuid, not `"live"`), so dedup is per-run and results stay separable from
 live. Record rejections as well as endorsements.
 
-Insert a `backtest_runs` row with the tier, `uses_llm_judgment`, and the
-`model_cutoff` you used.
+Record a `backtest_runs` row with the tier, `uses_llm_judgment`, and the
+`model_cutoff` you used:
+
+```bash
+python -m tools.cli backtest record <run_id> <theory_id> <theory_version> \
+    --tier A --model-cutoff <date> [--uses-llm-judgment] --notes "<notes>"
+```
 
 ## 5. Score and caveat
 

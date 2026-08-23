@@ -135,6 +135,26 @@ def _cmd_score(args) -> int:
     return 0
 
 
+def _cmd_backtest(args) -> int:
+    conn = _connect(args)
+    try:
+        if args.action == "record":
+            score.record_backtest_run(
+                conn, args.run_id, args.theory_id, args.theory_version,
+                as_of_start=args.as_of_start, as_of_end=args.as_of_end,
+                tier=args.tier, uses_llm_judgment=args.uses_llm_judgment,
+                model_cutoff=args.model_cutoff, notes=args.notes,
+            )
+            row = conn.execute(
+                "SELECT * FROM backtest_runs WHERE run_id = ?",
+                (args.run_id,),
+            ).fetchone()
+            _emit(dict(row))
+    finally:
+        conn.close()
+    return 0
+
+
 def _cmd_rank(args) -> int:
     credibility = rank.credibility(
         args.n, args.calibration_edge_net, args.mean_claimed_edge
@@ -223,6 +243,23 @@ def build_parser() -> argparse.ArgumentParser:
     settle.add_argument("ticker")
     settle.add_argument("result")
     settle.add_argument("--resolved-at", dest="resolved_at", default=None)
+
+    p = sub.add_parser("backtest", help="backtest run provenance")
+    p.set_defaults(func=_cmd_backtest)
+    btsub = p.add_subparsers(dest="action", required=True)
+    btrec = btsub.add_parser("record")
+    btrec.add_argument("run_id")
+    btrec.add_argument("theory_id")
+    btrec.add_argument("theory_version", type=int)
+    btrec.add_argument("--as-of-start", dest="as_of_start", default=None)
+    btrec.add_argument("--as-of-end", dest="as_of_end", default=None)
+    btrec.add_argument("--tier", choices=score.VALID_TIERS, default=None)
+    btrec.add_argument(
+        "--uses-llm-judgment", dest="uses_llm_judgment",
+        action=argparse.BooleanOptionalAction, default=None,
+    )
+    btrec.add_argument("--model-cutoff", dest="model_cutoff", default=None)
+    btrec.add_argument("--notes", default=None)
 
     p = sub.add_parser("rank", help="credibility-weighted edge")
     p.set_defaults(func=_cmd_rank)

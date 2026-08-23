@@ -29,6 +29,8 @@ from tools.db import utcnow, write
 from tools.rank import realization as _realization
 from tools.sizing import fee_pts
 
+VALID_TIERS = ("A", "B", "C")
+
 EMPTY_SCORE = {
     "n": 0,
     "win_rate": None,
@@ -203,6 +205,56 @@ def save_score(
             ),
         )
     return cursor.lastrowid
+
+
+def record_backtest_run(
+    conn: sqlite3.Connection,
+    run_id: str,
+    theory_id: str,
+    theory_version: int,
+    *,
+    as_of_start: str | None = None,
+    as_of_end: str | None = None,
+    tier: str | None = None,
+    uses_llm_judgment: bool | None = None,
+    model_cutoff: str | None = None,
+    notes: str | None = None,
+    now: str | None = None,
+) -> None:
+    """Record a backtest run's provenance (spec section 9).
+
+    `backtest_runs` is the only record of *how* a backtest was produced —
+    its tier, whether LLM judgment was in the decision path, and the model
+    cutoff that tier depended on. Without this row a `run_id` in
+    `opportunities` is just an opaque string with no way to recover whether
+    its results are trustworthy evidence or a tier-C sanity check.
+    """
+    if tier is not None and tier not in VALID_TIERS:
+        raise ValueError(
+            f"invalid tier {tier!r}; expected one of {VALID_TIERS}"
+        )
+    with write(conn):
+        conn.execute(
+            """
+            INSERT INTO backtest_runs (
+                run_id, theory_id, theory_version, as_of_start, as_of_end,
+                tier, uses_llm_judgment, model_cutoff, notes, created_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                run_id,
+                theory_id,
+                theory_version,
+                as_of_start,
+                as_of_end,
+                tier,
+                None if uses_llm_judgment is None
+                else (1 if uses_llm_judgment else 0),
+                model_cutoff,
+                notes,
+                now or utcnow(),
+            ),
+        )
 
 
 def interpretation_value(
