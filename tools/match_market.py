@@ -72,12 +72,15 @@ def score_pair(
     overlap = len(left & right) / len(left | right)
     if overlap == 0.0:
         return 0.0
-    if source_end is None and candidate_end is None:
-        # No date information at all on either side: judge on tokens alone
-        # rather than diluting a strong token match with a neutral guess.
+    left_dt, right_dt = _parse(source_end), _parse(candidate_end)
+    if left_dt is None or right_dt is None:
+        # No usable date on at least one side — whether the field was
+        # absent or just unparseable garbage, judge on tokens alone rather
+        # than diluting a strong token match with a neutral guess.
         return overlap
-    date_score = _date_similarity(source_end, candidate_end)
-    return TOKEN_WEIGHT * overlap + DATE_WEIGHT * date_score
+    return TOKEN_WEIGHT * overlap + DATE_WEIGHT * _date_similarity(
+        source_end, candidate_end
+    )
 
 
 def _text_of(market: dict) -> str:

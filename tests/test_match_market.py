@@ -73,6 +73,29 @@ def test_score_pair_tolerates_missing_dates():
     assert score > 0.0
 
 
+def test_score_pair_treats_unparseable_date_same_as_absent_date():
+    # "TBD" (garbage) and no date field at all both mean "no usable date
+    # information" and must score identically, not just similarly.
+    unparseable = match_market.score_pair(
+        "Anthropic IPO", "Anthropic IPO",
+        source_end="2026-11-03T00:00:00Z", candidate_end="TBD",
+    )
+    absent = match_market.score_pair(
+        "Anthropic IPO", "Anthropic IPO",
+        source_end="2026-11-03T00:00:00Z", candidate_end=None,
+    )
+    assert unparseable == pytest.approx(absent)
+
+
+def test_score_pair_scores_identical_same_day_dates_at_one():
+    score = match_market.score_pair(
+        "Anthropic IPO", "Anthropic IPO",
+        source_end="2026-11-03T00:00:00Z",
+        candidate_end="2026-11-03T00:00:00Z",
+    )
+    assert score == pytest.approx(1.0)
+
+
 def test_shortlist_ranks_the_best_match_first():
     source = _poly("Will Anthropic IPO before 2030?")
     candidates = [
