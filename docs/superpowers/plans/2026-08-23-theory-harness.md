@@ -10,7 +10,7 @@
 
 **Spec:** `docs/superpowers/specs/2026-08-23-llm-market-edge-finder-design.md`
 
-**Depends on:** Plans 1 and 2 complete, `python -m pytest -m "not network"` green.
+**Depends on:** Plans 1 and 2 complete, `python -m pytest -m "not network"` green (191 tests).
 
 ## Global Constraints
 
@@ -590,8 +590,30 @@ resolution-language traps, context worth researching before endorsing.
 Be concrete. "Use good judgment" helps nobody; "check whether the resolution
 source publishes on a schedule that can miss the close" is a real instruction.
 
+**Ask for classifications and a confidence bucket, never a probability.** An
+LLM-introspected number is mostly an anchor on whatever price was in context.
+State here whether judgment runs blind to price — it should, wherever the
+theory allows.
+
 Anything here that keeps proving itself should eventually migrate into
 stage 1 as code.
+
+## Confidence buckets
+
+The ordinal scale this theory's judgment step uses, with a conservative prior
+edge in points for each. Priors apply only until a bucket has 10+ settled
+results; after that its own realized win rate replaces them. Treat the priors
+as placeholders — the point of the mechanism is that measurement overrides
+them, including measuring that a bucket is worth nothing.
+
+| bucket | meaning | prior edge (pts) |
+|---|---|---|
+| `strong` | | |
+| `moderate` | | |
+| `weak` | | 0.0 |
+
+A theory whose edge comes from a mechanical model rather than judgment can
+skip this section — record `edge_basis="model"` instead.
 
 ## How to backtest
 
@@ -994,24 +1016,58 @@ own trading, not from the pipeline. **If it keeps proving out in the endorsed
 vs. rejected split, encode it in stage 1 as a ticker-family boost and bump the
 version.**
 
-**Setting the probability.** Give a genuine estimate of the favored side
-winning, then compute edge with `tools.sizing.net_edge_pts(q, entry_price)`.
-If you think the market is right, set `q` equal to the mid and record it as
-rejected — a zero-edge honest answer is worth more than an inflated one.
-Consider using `tools.sizing.blend_q` to shrink toward the market: a model
-that wildly disagrees with a liquid market is usually wrong.
+**Do not estimate a probability.** Never answer "I think this is about 85%".
+That number would be an anchor on the price you just read, not a belief.
+Instead assign a **confidence bucket** from the scale below, and let
+`tools/buckets.py` convert it using what that bucket has actually been worth.
 
-**Warning signs that lower `q`:** price momentum moving *away* from the
-favorite (informed flow leaving), a vague insider story ("someone probably
-knows"), resolution rules that differ from what the title implies, and a
-resolution source that may not publish before close.
+**Judge blind to price.** Run the judgment on the market question and its
+resolution rules *without* the price, mid, or spread in context. Reveal the
+price afterwards and compute edge mechanically. Record `judged_blind=True`
+when you do. The screen has already guaranteed the price is in a sane band,
+so the judgment step does not need it.
 
-**Recording.** Because edge depends on the judged probability, record after
-judging, not before: call `record_opportunity` with the computed
-`edge_pts_net`, then `interpret` to set `endorsed` or `rejected`. **Record the
-rejections too** — they are the control group that measures whether this
-judgment is worth anything. Candidates never reached within the scan budget
-are reported as a count, not recorded.
+**Warning signs that lower the bucket:** a vague insider story ("someone
+probably knows"), resolution rules that differ from what the title implies, a
+resolution source that may not publish before close, and — when you do look at
+price data — momentum moving *away* from the favorite, which is informed flow
+leaving.
+
+**Recording.** Because edge depends on the bucket's measured rate, record after
+judging:
+
+```python
+from tools import buckets, ledger, score
+rates = score.bucket_rates(conn, "insider_bias", version)
+edge, basis = buckets.edge_for(bucket, entry_price, rates, PRIORS)
+opp_id, _ = ledger.record_opportunity(
+    conn, ..., edge_pts_net=edge, edge_basis=basis,
+    confidence=bucket, judged_blind=True,
+)
+ledger.interpret(conn, opp_id, "endorsed" if edge > 0 else "rejected", notes)
+```
+
+**Record the rejections too** — they are the control group that measures
+whether this judgment is worth anything, and they are also what teaches the
+`weak` bucket its rate. Candidates never reached within the scan budget are
+reported as a count, not recorded.
+
+## Confidence buckets
+
+Priors are deliberately conservative and apply only until a bucket has 10+
+settled results. After that the bucket's own realized win rate replaces them.
+
+| bucket | meaning | prior edge (pts) |
+|---|---|---|
+| `strong` | A specific named group already knows — pre-taped show with a known taping date, a board that has voted, a signed deal awaiting announcement | 4.0 |
+| `moderate` | A plausible informed group exists but is less specific — "reporters likely have sources" | 2.0 |
+| `weak` | The thesis is a stretch; no concrete group identified | 0.0 |
+
+**These priors are guesses and should be treated as placeholders.** The whole
+point of the bucket mechanism is that they get replaced by measurement. If
+`strong` turns out to be worth 9 points, the data will say so; if it turns out
+to be worth nothing, the data will say that too — which is the outcome this
+design most needs to be able to detect.
 
 ## How to backtest
 
@@ -1591,20 +1647,34 @@ Within your scan budget, research the highest-ranked candidates by following
 the theory's **Stage 2** section. Batch this — tens of candidates per subagent
 call, never one subagent per candidate.
 
-For each researched candidate, record the verdict:
+**Never ask a subagent for a probability.** Ask for a classification, the
+structural features the theory cares about, and a confidence bucket from the
+theory's declared scale. A number an LLM introspects is mostly an anchor on
+whatever price was in its context — see the theory's stage 2 section and spec
+section 7.
+
+**Judge blind to price where the theory allows it.** Send the market question
+and resolution rules without the price; reveal it afterwards and compute edge
+mechanically. Record `judged_blind=True`.
+
+Convert the bucket to an edge using its measured track record, then record:
 
 ```python
-from tools import ledger
+from tools import buckets, ledger, score
+rates = score.bucket_rates(conn, theory_id, version)
+edge, basis = buckets.edge_for(bucket, entry_price, rates, theory_priors)
 opp_id, _ = ledger.record_opportunity(
     conn, theory_id=..., theory_version=..., kalshi_ticker=...,
-    outcome=..., entry_price=..., edge_pts_net=..., rationale=...,
+    outcome=..., entry_price=..., edge_pts_net=edge, edge_basis=basis,
+    confidence=bucket, judged_blind=True, rationale=...,
 )
 ledger.interpret(conn, opp_id, "endorsed", "<your reasoning>")
 ```
 
 **Record rejections too.** They are the control group that measures whether
-your judgment is worth anything. Without them, the endorsed-vs-rejected
-comparison never becomes possible.
+your judgment is worth anything — and they are what teaches the lower buckets
+their rates. Without them, neither the endorsed-vs-rejected comparison nor the
+bucket calibration ever becomes possible.
 
 ## 6. Rank
 
@@ -1620,14 +1690,17 @@ endorsed opportunity.
 
 ## 7. Report in two layers
 
-**Endorsed bets** — a table: ticker, side, entry price, claimed edge, ranked
-edge, `n`, realization, theory, suggested size, and your interpretation.
+**Endorsed bets** — a table: ticker, side, entry price, confidence bucket,
+claimed edge, **edge basis**, ranked edge, `n`, realization, theory, suggested
+size, and your interpretation.
 
 **Unresearched remainder** — a count, plus the top few by screen edge.
 
-Always show claimed edge next to ranked edge. If a theory has no track record,
-say so plainly — a 12-point claim from a theory with `n=0` ranks as 3 points
-for a reason, and the user should see why.
+Always show claimed edge next to ranked edge, and always show the edge basis.
+`prior` means the number is a placeholder nobody has measured yet; `measured`
+means the bucket has earned it. If a theory has no track record, say so
+plainly — a 12-point claim from a theory with `n=0` ranks as 3 points for a
+reason, and the user should see why.
 
 Rejected candidates and reasons are available on request.
 ````
@@ -1866,13 +1939,28 @@ from tools import score
 score.record_settlement(conn, ticker, result, resolved_at=...)
 ```
 
-## 3. Recompute scores
+## 3. Recompute scores and bucket rates
 
 ```bash
 python -m tools.cli score report <theory_id>
 ```
 
-This returns all four dispositions. The one that matters most:
+Then recompute what each confidence bucket is actually worth — this is what
+replaces guessed probabilities with measured ones:
+
+```python
+rates = score.bucket_rates(conn, theory_id, version)
+score.save_bucket_rates(conn, theory_id, version, rates)
+```
+
+Report any bucket that crossed 10 settled results: it has just graduated from
+a declared prior to a measurement, which changes every future edge that theory
+claims. If a bucket's measured rate is far from its prior, say so — a `strong`
+bucket that turns out to be worth nothing is one of the most valuable findings
+this system can produce, and the theory's priors in `THEORY.md` should be
+updated to match reality.
+
+The score report returns all four dispositions. The one that matters most:
 
 ```python
 score.interpretation_value(conn, theory_id, version)
@@ -2037,6 +2125,41 @@ judgment**. Never present unresearched screen output as a recommended bet.
 makes them a free control group. That is the only way to find out whether your
 judgment adds edge, adds nothing, or destroys value.
 
+## Never state a probability you introspected
+
+You are not a calibrated probability estimator. You cluster on round numbers,
+drift with phrasing, and — the real problem — anchor hard on any number already
+in your context. Asked for `q` while looking at a price of 0.80, you will
+produce something near 0.80 and it will feel like analysis. It is not.
+
+So this system never asks you for one. Instead:
+
+- **Classify** against a stated definition — "is there a specific identifiable
+  group who already knows?"
+- **Extract structural features** — is it pre-taped, do the rules diverge from
+  the title, can the resolution source miss the close.
+- **Assign a confidence bucket** from the theory's declared scale.
+- **Rank** candidates against each other.
+
+Then `tools/buckets.py` turns that bucket into a number using the bucket's own
+realized win rate. "When this theory says `strong`, it wins 78% of the time" is
+a fact; your felt sense of 78% is not.
+
+**Judge blind to price wherever the theory allows it.** Get the classification
+first, reveal the price second, compute edge mechanically. Record
+`judged_blind=True`. This costs nothing and removes the largest contaminant.
+
+Every recorded edge carries an `edge_basis`: `measured` (the bucket earned it),
+`model` (a mechanical calculation), or `prior` (a placeholder awaiting data).
+There is deliberately no basis meaning "it felt about right".
+
+**Mechanical probabilities are welcome.** The objection is to introspection,
+not arithmetic. A theory computing a probability from base rates, a Poisson
+process, or sibling-strike monotonicity should absolutely do so — that is
+reproducible and auditable, it records as `model`, and it backtests at tier A.
+A theory resting on a mechanical model is generally *stronger* than one resting
+on judgment.
+
 ## Research memory
 
 Search the idea registry **before** proposing anything:
@@ -2131,7 +2254,7 @@ Say `go` for a research session, or just ask a question.
 - [ ] **Step 2: Run the full offline suite**
 
 Run: `python -m pytest -m "not network" -v`
-Expected: PASS — 222 passed (174 from Plans 1–2, plus 14 cli + 19 insider_bias screen + 15 migrate)
+Expected: PASS — 239 passed (191 from Plans 1–2, plus 14 cli + 19 insider_bias screen + 15 migrate)
 
 - [ ] **Step 3: Verify the CLI end to end**
 

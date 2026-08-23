@@ -221,15 +221,17 @@ screen-versus-interpretation distinction the disposition columns encode.
 | entry_price | real NOT NULL | **executable** price for this side (ask), not mid |
 | spread_at_call | real, nullable | for executability filtering |
 | volume_at_call | real, nullable | for executability filtering |
-| model_prob | real, nullable | theory's probability estimate, if it makes one |
+| model_prob | real, nullable | probability estimate — only from a **mechanical** model, never LLM introspection (section 7) |
 | edge_pts_gross | real, nullable | `(model_prob − entry_price) × 100` |
 | fee_pts | real, nullable | estimated Kalshi fee in points, from `sizing.py` |
 | screen_edge_pts_net | real NOT NULL | what stage 1 claimed — frozen, never revised |
 | edge_pts_net | real NOT NULL | current best estimate; **the ranking number** (section 6) |
+| edge_basis | text | `measured` (from this bucket's realized rate), `prior` (bucket not yet measured), or `model` (mechanical) — section 7 |
 | disposition | text | `screened` \| `endorsed` \| `rejected` (section 7) |
 | interpretation | text, nullable | Claude's research notes and reasoning at stage 2 |
 | interpreted_at | timestamp, nullable | null if never researched |
-| confidence | text, nullable | theory's own scale — free text |
+| confidence | text, nullable | the theory's declared ordinal bucket, e.g. `strong` — scoring groups on this |
+| judged_blind | integer, nullable | 1 if the judgment step did not see the price (section 7) |
 | rationale | text | the theory's own reasoning at screen time |
 | suggested_size | real, nullable | |
 | evidence_source | text, nullable | `kalshi` \| `polymarket` \| other — where the signal originated |
@@ -279,6 +281,21 @@ data — safe to delete and rebuild from `opportunities` + `settlements`.
 | roi_taken | real, nullable | realized ROI across `user_action = 'taken'` only |
 | computed_at | timestamp | |
 
+### `bucket_rates`
+The measured meaning of a theory's confidence buckets (section 7). Derived and
+recomputable from `opportunities` + `settlements`; this table caches it.
+
+| column | type | notes |
+|---|---|---|
+| id | integer PK | |
+| theory_id | text FK | |
+| theory_version | integer | |
+| confidence | text | the bucket label, e.g. `strong` |
+| n | integer | settled sample size in this bucket |
+| win_rate | real | **this is the bucket's empirical probability** |
+| mean_entry_price | real | |
+| computed_at | timestamp | |
+
 ### `backtest_runs`
 | column | type | notes |
 |---|---|---|
@@ -304,14 +321,17 @@ and confirms the match before recording; it keeps the provenance in
 
 **Edge is net, and priced at what you'd actually pay.** `entry_price` is the
 *executable* price for the side being bought (the ask), not the mid — a claimed
-edge measured against mid is partly fictional. `edge_pts_net` is
-`edge_pts_gross − fee_pts`, using the shared Kalshi fee model in `sizing.py`,
-and it is the only number ranking uses. Theories that derive edge some other
-way (structural arbitrage, for instance) may leave `model_prob` and
-`edge_pts_gross` null, but must still state an `edge_pts_net` — it is the
-common currency across theories. `screen_edge_pts_net` freezes what stage 1
-claimed so a later interpretive revision (section 7) stays comparable against
-the original.
+edge measured against mid is partly fictional. `edge_pts_net` is the gross edge
+minus `fee_pts`, using the shared Kalshi fee model in `sizing.py`, and it is
+the only number ranking uses. It is the common currency across theories, so
+every recorded opportunity must state one.
+
+`edge_basis` says where that number came from, and the three sources are not
+equally trustworthy: `measured` (a confidence bucket's own realized win rate),
+`model` (a mechanical calculation), or `prior` (a declared placeholder for a
+bucket with too few settled results yet). **No path produces an LLM-introspected
+probability** — see section 7. `screen_edge_pts_net` freezes what stage 1
+claimed so a later interpretive revision stays comparable against the original.
 
 **Executability is a first-class filter.** `spread_at_call` and
 `volume_at_call` are recorded so `find-edge` can drop suggestions that aren't
@@ -374,6 +394,75 @@ concluded about it — and must never present unresearched screen output as a
 recommended bet. Because stage 2 costs real time, it is applied within the scan
 budget to the highest-ranked candidates, and the count of screened-but-not-yet-
 researched candidates is always reported so the unexamined remainder is visible.
+
+### What to ask a subagent for — and what not to
+
+LLMs are poorly calibrated probability estimators. They cluster on round
+numbers, shift with prompt phrasing, have no stable internal scale across
+sessions, and — worst for this system — **anchor hard on any number already in
+context.** Show a model the market price and ask for its own probability and it
+reliably returns the price plus a small delta, manufacturing "edge" that is
+nothing but anchoring noise. `kalshi_trader` did exactly this: its pick prompt
+displayed `bet=SIDE@price` and `mid`, then asked for a `q`.
+
+So this system does not ask for probabilities. It asks for what LLMs are
+actually good at and derives the numbers from measured outcomes.
+
+**Ask a judgment step for:**
+
+- **Categorical classification** against a stated definition — "is there a
+  specific, identifiable group who already knows the outcome?"
+- **Structural features** — "is this pre-taped?", "do the resolution rules
+  differ from what the title implies?", "could the resolution source fail to
+  publish before close?"
+- **An ordinal confidence bucket** on a scale the theory declares (for example
+  `strong` / `moderate` / `weak`).
+- **Relative ranking** within a candidate set — which of these is the better
+  bet, not what each one's probability is.
+- **Reading comprehension over resolution text** — genuinely a strength, and
+  the highest-value thing stage 2 does.
+
+**Do not ask a judgment step for:**
+
+- A point probability (`q = 0.87`).
+- A numeric edge estimate in points.
+- Anything needing fine-grained numeric discrimination.
+
+**Judge blind to price.** Wherever a theory allows it, the judgment step must
+not see the market price, the mid, or any implied probability. Get the
+classification and confidence bucket first, reveal the price second, compute
+edge mechanically. This is the single highest-value rule here, because
+anchoring is the largest contaminant of LLM judgment — and it costs nothing to
+follow.
+
+**Numbers come from measurement, not introspection.** A confidence bucket is
+converted to a probability by that bucket's *own realized track record*:
+
+```
+bucket_prob   = wins / n           for (theory, version, confidence bucket)
+edge_pts_net  = (bucket_prob − entry_price) × 100 − fee_pts(entry_price)
+```
+
+After enough settled bets, "when this theory says `strong`, it wins 78% of the
+time" is a fact, not a guess — and it is exactly the number the edge
+calculation needs. `tools/score.py` computes these bucket rates alongside the
+existing per-theory scores.
+
+**Cold start.** Before a bucket has enough settled results (default: 10), the
+theory's declared **prior edge** for that bucket is used instead, and the
+opportunity is flagged as resting on a prior rather than a measurement. Priors
+should be deliberately conservative — a theory claiming 12 points from an
+unmeasured bucket is claiming to know something it has not yet demonstrated.
+The section 8 credibility floor already prevents such claims from dominating,
+so the two mechanisms compound rather than overlap.
+
+**Mechanically derived probabilities remain welcome.** The objection is to
+*LLM-introspected* numbers, not to arithmetic. A theory that computes a
+probability from base rates, a Poisson process, sibling-strike monotonicity,
+or any explicit model should absolutely do so and record it in `model_prob` —
+that number is reproducible and auditable in a way an LLM's felt sense is not.
+A theory whose edge rests on a mechanical model is generally *stronger* than
+one resting on judgment, and it also backtests at tier A (section 12).
 
 **Measuring whether interpretation earns its keep.** Every opportunity carries a
 `disposition`: `screened` (the pipeline surfaced it, no research yet),
@@ -513,9 +602,10 @@ differs from the older integer-cent schema `kalshi_trader` was written against.
   `update-status`, `list-revisitable` (parked ideas whose `revisit_after`
   condition may now be met, plus dead ones that still carry a `revisit_angle`).
 - **`tools/score.py`** — `settle` (fetch outcomes for opportunities that have
-  resolved) and `report` (win rate, price-implied rate, calibration edge,
+  resolved), `report` (win rate, price-implied rate, calibration edge,
   realization, ROI split by all-vs-taken, segmented by theory version and
-  disposition).
+  disposition), and `bucket-rates` (realized win rate per confidence bucket —
+  the measured probability that replaces a guessed one, section 7).
 - **`tools/rank.py`** — the section 8 credibility calculation, factored out so
   `find-edge` and `compare-theories` rank identically.
 - **`tools/sizing.py`** — Kalshi fee model, Kelly sizing, portfolio caps, ported
@@ -557,6 +647,21 @@ What this theory cannot encode, and what Claude should look for when reading
 its output: market types that are structurally soft or dangerous,
 resolution-language traps, context worth researching before endorsing.
 Anything here that proves reliable should eventually migrate into stage 1.
+
+Ask for classifications, structural features, and a confidence bucket —
+never a probability (section 7). State whether judgment happens blind to
+price; it should wherever possible.
+
+## Confidence buckets
+The ordinal scale this theory's judgment step uses, and a conservative prior
+edge (in points) for each, used only until that bucket has enough settled
+results to measure. Example:
+
+| bucket | meaning | prior edge (pts) |
+|---|---|---|
+| strong | concrete named group that already knows | 4.0 |
+| moderate | plausible informed group, less specific | 2.0 |
+| weak | thesis is a stretch | 0.0 |
 
 ## How to backtest
 A procedure using the point-in-time tools (section 12). State plainly whether
@@ -817,7 +922,9 @@ since "what can I actually do here" must be explicit rather than inferred:
 4. **Pipelines propose, judgment disposes** — section 7 as a core operating
    principle: screen output is a candidate set, never a finished recommendation;
    research before endorsing; record rejections so the value of your own
-   judgment stays measurable.
+   judgment stays measurable. **Never state a probability you introspected** —
+   give a classification and a confidence bucket, judge blind to price where
+   you can, and let measured bucket rates supply the number.
 5. **How the user drives this** — section 13: `go` starts an autonomous
    research session; plain questions get answered directly without running the
    loop. Both are normal.

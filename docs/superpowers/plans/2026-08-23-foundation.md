@@ -130,11 +130,14 @@ CREATE TABLE IF NOT EXISTS opportunities (
     fee_pts             REAL,
     screen_edge_pts_net REAL NOT NULL,
     edge_pts_net        REAL NOT NULL,
+    edge_basis          TEXT NOT NULL DEFAULT 'prior'
+                        CHECK (edge_basis IN ('measured','prior','model')),
     disposition         TEXT NOT NULL DEFAULT 'screened'
                         CHECK (disposition IN ('screened','endorsed','rejected')),
     interpretation      TEXT,
     interpreted_at      TEXT,
     confidence          TEXT,
+    judged_blind        INTEGER,
     rationale           TEXT,
     suggested_size      REAL,
     evidence_source     TEXT,
@@ -183,6 +186,17 @@ CREATE TABLE IF NOT EXISTS scores (
     computed_at        TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS bucket_rates (
+    id                INTEGER PRIMARY KEY AUTOINCREMENT,
+    theory_id         TEXT NOT NULL REFERENCES theories(id),
+    theory_version    INTEGER NOT NULL,
+    confidence        TEXT NOT NULL,
+    n                 INTEGER NOT NULL,
+    win_rate          REAL,
+    mean_entry_price  REAL,
+    computed_at       TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS backtest_runs (
     run_id            TEXT PRIMARY KEY,
     theory_id         TEXT NOT NULL REFERENCES theories(id),
@@ -229,6 +243,7 @@ def test_all_tables_created(conn):
         "opportunities",
         "settlements",
         "scores",
+        "bucket_rates",
         "backtest_runs",
     }
     assert expected <= names
@@ -240,7 +255,7 @@ def test_init_db_is_idempotent(conn):
     count = conn.execute(
         "SELECT COUNT(*) AS n FROM sqlite_master WHERE type='table'"
     ).fetchone()["n"]
-    assert count >= 7
+    assert count >= 8
 
 
 def test_foreign_keys_are_enforced(conn):
@@ -956,7 +971,7 @@ Implements spec section 6. The upsert semantics here are the fix for the duplica
 **Interfaces:**
 - Consumes: `tools.db.utcnow`, `tools.theories`
 - Produces:
-  - `tools.ledger.record_opportunity(conn, *, theory_id, theory_version, kalshi_ticker, outcome, entry_price, edge_pts_net, run_mode="live", run_id=None, scan_id=None, spread_at_call=None, volume_at_call=None, model_prob=None, edge_pts_gross=None, fee_pts=None, confidence=None, rationale=None, suggested_size=None, evidence_source=None, evidence_market_id=None, extra_json=None, now=None) -> tuple[int, bool]` — returns `(opportunity_id, was_created)`
+  - `tools.ledger.record_opportunity(conn, *, theory_id, theory_version, kalshi_ticker, outcome, entry_price, edge_pts_net, run_mode="live", run_id=None, scan_id=None, spread_at_call=None, volume_at_call=None, model_prob=None, edge_pts_gross=None, fee_pts=None, edge_basis="prior", confidence=None, judged_blind=None, rationale=None, suggested_size=None, evidence_source=None, evidence_market_id=None, extra_json=None, now=None) -> tuple[int, bool]` — returns `(opportunity_id, was_created)`
   - `tools.ledger.get_opportunity(conn, opportunity_id: int) -> sqlite3.Row | None`
   - `tools.ledger.list_opportunities(conn, theory_id=None, run_mode=None, disposition=None) -> list[sqlite3.Row]`
   - `tools.ledger.LIVE_RUN_ID = "live"`
@@ -1101,6 +1116,37 @@ def test_list_filters_by_theory_and_disposition(conn):
     assert len(ledger.list_opportunities(conn, theory_id="other")) == 0
     assert len(ledger.list_opportunities(conn, disposition="screened")) == 2
     assert len(ledger.list_opportunities(conn, disposition="endorsed")) == 0
+
+
+def test_edge_basis_defaults_to_prior(conn):
+    opp_id, _ = _record(conn)
+    assert ledger.get_opportunity(conn, opp_id)["edge_basis"] == "prior"
+
+
+def test_edge_basis_records_where_the_number_came_from(conn):
+    opp_id, _ = _record(conn, edge_basis="measured")
+    assert ledger.get_opportunity(conn, opp_id)["edge_basis"] == "measured"
+
+
+def test_invalid_edge_basis_is_rejected(conn):
+    # There is deliberately no basis meaning "an LLM felt it was about 87%".
+    with pytest.raises(ValueError, match="edge_basis"):
+        _record(conn, edge_basis="vibes")
+
+
+def test_confidence_bucket_is_stored_for_later_measurement(conn):
+    opp_id, _ = _record(conn, confidence="strong")
+    assert ledger.get_opportunity(conn, opp_id)["confidence"] == "strong"
+
+
+def test_judged_blind_is_recorded(conn):
+    blind, _ = _record(conn, kalshi_ticker="A", judged_blind=True)
+    seeing, _ = _record(conn, kalshi_ticker="B", judged_blind=False)
+    unknown, _ = _record(conn, kalshi_ticker="C")
+
+    assert ledger.get_opportunity(conn, blind)["judged_blind"] == 1
+    assert ledger.get_opportunity(conn, seeing)["judged_blind"] == 0
+    assert ledger.get_opportunity(conn, unknown)["judged_blind"] is None
 ```
 
 - [ ] **Step 2: Run tests to verify they fail**
@@ -1134,6 +1180,7 @@ import sqlite3
 from tools.db import utcnow
 
 LIVE_RUN_ID = "live"
+VALID_EDGE_BASES = ("measured", "prior", "model")
 
 
 def record_opportunity(
@@ -1153,7 +1200,9 @@ def record_opportunity(
     model_prob: float | None = None,
     edge_pts_gross: float | None = None,
     fee_pts: float | None = None,
+    edge_basis: str = "prior",
     confidence: str | None = None,
+    judged_blind: bool | None = None,
     rationale: str | None = None,
     suggested_size: float | None = None,
     evidence_source: str | None = None,
@@ -1176,6 +1225,11 @@ def record_opportunity(
         raise ValueError(f"invalid run_mode {run_mode!r}")
     if run_mode == "backtest" and not run_id:
         raise ValueError("run_id is required for backtest runs")
+    if edge_basis not in VALID_EDGE_BASES:
+        raise ValueError(
+            f"invalid edge_basis {edge_basis!r}; "
+            f"expected one of {VALID_EDGE_BASES}"
+        )
 
     resolved_run_id = run_id or LIVE_RUN_ID
     stamp = now or utcnow()
@@ -1229,11 +1283,12 @@ def record_opportunity(
             theory_id, theory_version, run_mode, run_id, scan_id,
             kalshi_ticker, outcome, entry_price, spread_at_call,
             volume_at_call, model_prob, edge_pts_gross, fee_pts,
-            screen_edge_pts_net, edge_pts_net, disposition, confidence,
+            screen_edge_pts_net, edge_pts_net, edge_basis, disposition,
+            confidence, judged_blind,
             rationale, suggested_size, evidence_source, evidence_market_id,
             user_action, first_seen_at, last_seen_at, times_seen, extra_json
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-                  'screened', ?, ?, ?, ?, ?, 'untouched', ?, ?, 1, ?)
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                  'screened', ?, ?, ?, ?, ?, ?, 'untouched', ?, ?, 1, ?)
         """,
         (
             theory_id,
@@ -1251,7 +1306,9 @@ def record_opportunity(
             fee_pts,
             edge_pts_net,
             edge_pts_net,
+            edge_basis,
             confidence,
+            1 if judged_blind else (0 if judged_blind is not None else None),
             rationale,
             suggested_size,
             evidence_source,
@@ -1299,7 +1356,7 @@ def list_opportunities(
 - [ ] **Step 4: Run tests to verify they pass**
 
 Run: `python -m pytest tests/test_ledger.py -v`
-Expected: PASS — 13 passed
+Expected: PASS — 18 passed
 
 - [ ] **Step 5: Commit**
 
@@ -1507,7 +1564,7 @@ def mark_user_action(
 - [ ] **Step 4: Run tests to verify they pass**
 
 Run: `python -m pytest tests/test_ledger.py -v`
-Expected: PASS — 22 passed
+Expected: PASS — 27 passed
 
 - [ ] **Step 5: Commit**
 
@@ -1953,7 +2010,318 @@ git commit -m "feat: add settlement scoring with disposition split"
 
 ---
 
-### Task 8: Idea registry — research memory
+### Task 8: Confidence buckets — measured probabilities, not guessed ones
+
+Implements spec section 7's core rule: an LLM judgment step supplies a *bucket*, and the bucket's own realized win rate supplies the *number*. Until a bucket has enough settled results, a declared conservative prior stands in and the opportunity is flagged as resting on one.
+
+**Files:**
+- Modify: `tools/score.py` (append)
+- Create: `tools/buckets.py`
+- Create: `tests/test_buckets.py`
+
+**Interfaces:**
+- Consumes: `tools.db.utcnow`, `tools.sizing.fee_pts`
+- Produces:
+  - `tools.score.bucket_rates(conn, theory_id: str, theory_version: int, run_mode: str = "live") -> dict[str, dict]` — `{bucket: {"n", "win_rate", "mean_entry_price"}}`
+  - `tools.score.save_bucket_rates(conn, theory_id: str, theory_version: int, rates: dict, now: str | None = None) -> int` — rows written
+  - `tools.buckets.edge_for(bucket: str, entry_price: float, rates: dict, priors: dict, min_n: int = 10) -> tuple[float, str]` — `(edge_pts_net, edge_basis)`
+  - `tools.buckets.MIN_BUCKET_N = 10`
+
+- [ ] **Step 1: Write the failing test**
+
+Create `tests/test_buckets.py`:
+
+```python
+import pytest
+
+from tools import buckets, db, ledger, score, theories
+
+TS = "2026-08-23T12:00:00Z"
+
+PRIORS = {"strong": 4.0, "moderate": 2.0, "weak": 0.0}
+
+
+@pytest.fixture
+def conn(tmp_path):
+    c = db.connect(tmp_path / "test.db")
+    db.init_db(c)
+    theories.register(c, "t1", "Theory One", "theories/t1", now=TS)
+    yield c
+    c.close()
+
+
+def _bet(conn, ticker, entry_price, bucket, won, edge=4.0):
+    opp_id, _ = ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker=ticker,
+        outcome="yes", entry_price=entry_price, edge_pts_net=edge,
+        confidence=bucket, now=TS,
+    )
+    score.record_settlement(conn, ticker, "yes" if won else "no")
+    return opp_id
+
+
+def test_unmeasured_bucket_falls_back_to_the_prior():
+    edge, basis = buckets.edge_for("strong", 0.80, rates={}, priors=PRIORS)
+    assert edge == pytest.approx(4.0)
+    assert basis == "prior"
+
+
+def test_thin_bucket_still_uses_the_prior():
+    rates = {"strong": {"n": 3, "win_rate": 1.0, "mean_entry_price": 0.8}}
+    edge, basis = buckets.edge_for("strong", 0.80, rates, PRIORS)
+    assert basis == "prior", "3 settled results is not a measurement"
+    assert edge == pytest.approx(4.0)
+
+
+def test_measured_bucket_replaces_the_prior():
+    # 'strong' wins 90% of the time; at a price of 0.80 that is 10 points
+    # gross, minus the fee at 0.80 (1.12 points).
+    rates = {"strong": {"n": 25, "win_rate": 0.90, "mean_entry_price": 0.78}}
+    edge, basis = buckets.edge_for("strong", 0.80, rates, PRIORS)
+    assert basis == "measured"
+    assert edge == pytest.approx(10.0 - 1.12, abs=0.01)
+
+
+def test_measured_bucket_can_produce_negative_edge():
+    # A bucket that underperforms its prices must be able to say so.
+    rates = {"strong": {"n": 25, "win_rate": 0.60, "mean_entry_price": 0.80}}
+    edge, basis = buckets.edge_for("strong", 0.80, rates, PRIORS)
+    assert basis == "measured"
+    assert edge < 0
+
+
+def test_unknown_bucket_gets_zero_edge():
+    edge, basis = buckets.edge_for("wildly-confident", 0.80, {}, PRIORS)
+    assert edge == pytest.approx(0.0)
+    assert basis == "prior"
+
+
+def test_bucket_rates_are_computed_per_bucket(conn):
+    _bet(conn, "A", 0.50, "strong", won=True)
+    _bet(conn, "B", 0.50, "strong", won=True)
+    _bet(conn, "C", 0.50, "weak", won=False)
+
+    rates = score.bucket_rates(conn, "t1", 1)
+    assert rates["strong"]["n"] == 2
+    assert rates["strong"]["win_rate"] == pytest.approx(1.0)
+    assert rates["weak"]["n"] == 1
+    assert rates["weak"]["win_rate"] == pytest.approx(0.0)
+
+
+def test_bucket_rates_capture_mean_entry_price(conn):
+    _bet(conn, "A", 0.40, "strong", won=True)
+    _bet(conn, "B", 0.60, "strong", won=True)
+    rates = score.bucket_rates(conn, "t1", 1)
+    assert rates["strong"]["mean_entry_price"] == pytest.approx(0.50)
+
+
+def test_bucket_rates_ignore_unsettled_opportunities(conn):
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="UNSETTLED",
+        outcome="yes", entry_price=0.5, edge_pts_net=4.0,
+        confidence="strong", now=TS,
+    )
+    assert score.bucket_rates(conn, "t1", 1) == {}
+
+
+def test_bucket_rates_ignore_opportunities_without_a_bucket(conn):
+    opp_id, _ = ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="NOBUCKET",
+        outcome="yes", entry_price=0.5, edge_pts_net=4.0, now=TS,
+    )
+    score.record_settlement(conn, "NOBUCKET", "yes")
+    assert score.bucket_rates(conn, "t1", 1) == {}
+
+
+def test_bucket_rates_are_segmented_by_version(conn):
+    _bet(conn, "A", 0.50, "strong", won=True)
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=2, kalshi_ticker="B",
+        outcome="yes", entry_price=0.5, edge_pts_net=4.0,
+        confidence="strong", now=TS,
+    )
+    score.record_settlement(conn, "B", "no")
+
+    assert score.bucket_rates(conn, "t1", 1)["strong"]["win_rate"] == \
+        pytest.approx(1.0)
+    assert score.bucket_rates(conn, "t1", 2)["strong"]["win_rate"] == \
+        pytest.approx(0.0)
+
+
+def test_save_bucket_rates_persists_rows(conn):
+    _bet(conn, "A", 0.50, "strong", won=True)
+    rates = score.bucket_rates(conn, "t1", 1)
+    assert score.save_bucket_rates(conn, "t1", 1, rates, now=TS) == 1
+
+    row = conn.execute("SELECT * FROM bucket_rates").fetchone()
+    assert row["confidence"] == "strong"
+    assert row["n"] == 1
+    assert row["computed_at"] == TS
+
+
+def test_end_to_end_measurement_replaces_the_prior(conn):
+    # Before any settled results, 'strong' is worth its prior.
+    edge, basis = buckets.edge_for(
+        "strong", 0.80, score.bucket_rates(conn, "t1", 1), PRIORS
+    )
+    assert basis == "prior"
+
+    # After 12 settled 'strong' calls that won 75% of the time, the bucket
+    # speaks for itself.
+    for i in range(12):
+        _bet(conn, f"T{i}", 0.50, "strong", won=i < 9)
+
+    rates = score.bucket_rates(conn, "t1", 1)
+    assert rates["strong"]["n"] == 12
+    assert rates["strong"]["win_rate"] == pytest.approx(0.75)
+
+    edge, basis = buckets.edge_for("strong", 0.50, rates, PRIORS)
+    assert basis == "measured"
+    assert edge == pytest.approx(25.0 - 1.75, abs=0.01)
+```
+
+- [ ] **Step 2: Run tests to verify they fail**
+
+Run: `python -m pytest tests/test_buckets.py -v`
+Expected: FAIL — `ModuleNotFoundError: No module named 'tools.buckets'`
+
+- [ ] **Step 3: Write `tools/buckets.py`**
+
+```python
+"""Confidence buckets — measured probabilities instead of guessed ones.
+
+LLMs are poorly calibrated probability estimators. They cluster on round
+numbers, drift with phrasing, and anchor hard on any number already in
+context — so asking a model for `q` while showing it the market price mostly
+measures the anchor.
+
+This module is the alternative. A judgment step returns an ordinal bucket
+("strong", "moderate", "weak"), and the bucket's own realized win rate
+supplies the probability. "When this theory says strong, it wins 78% of the
+time" is a fact about the past, not an introspection, and it is exactly what
+the edge calculation needs.
+
+Until a bucket has MIN_BUCKET_N settled results, the theory's declared prior
+stands in and the result is flagged `prior` so nobody mistakes a placeholder
+for a measurement.
+"""
+
+from __future__ import annotations
+
+from tools.sizing import fee_pts
+
+MIN_BUCKET_N = 10
+
+
+def edge_for(
+    bucket: str,
+    entry_price: float,
+    rates: dict,
+    priors: dict,
+    min_n: int = MIN_BUCKET_N,
+) -> tuple[float, str]:
+    """Net edge in points for a bucketed judgment, and where it came from.
+
+    Returns (edge_pts_net, edge_basis) where edge_basis is "measured" when the
+    bucket has enough settled history to speak for itself, otherwise "prior".
+    """
+    measured = rates.get(bucket)
+    if measured and measured.get("n", 0) >= min_n:
+        probability = measured["win_rate"]
+        gross = (probability - entry_price) * 100.0
+        return gross - fee_pts(entry_price), "measured"
+
+    return float(priors.get(bucket, 0.0)), "prior"
+```
+
+- [ ] **Step 4: Append to `tools/score.py`**
+
+```python
+def bucket_rates(
+    conn: sqlite3.Connection,
+    theory_id: str,
+    theory_version: int,
+    run_mode: str = "live",
+) -> dict[str, dict]:
+    """Realized win rate per confidence bucket (spec section 7).
+
+    This is what a theory's confidence labels actually MEAN, measured rather
+    than asserted. Only settled opportunities carrying a bucket count.
+    """
+    rows = conn.execute(
+        """
+        SELECT o.confidence, o.outcome, o.entry_price, s.result
+        FROM opportunities o
+        JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker
+        WHERE o.theory_id = ? AND o.theory_version = ? AND o.run_mode = ?
+          AND o.confidence IS NOT NULL AND o.confidence != ''
+        """,
+        (theory_id, theory_version, run_mode),
+    ).fetchall()
+
+    grouped: dict[str, list] = {}
+    for row in rows:
+        grouped.setdefault(row["confidence"], []).append(row)
+
+    return {
+        bucket: {
+            "n": len(members),
+            "win_rate": sum(
+                1
+                for m in members
+                if str(m["result"]).lower() == str(m["outcome"]).lower()
+            )
+            / len(members),
+            "mean_entry_price": sum(m["entry_price"] for m in members)
+            / len(members),
+        }
+        for bucket, members in grouped.items()
+    }
+
+
+def save_bucket_rates(
+    conn: sqlite3.Connection,
+    theory_id: str,
+    theory_version: int,
+    rates: dict,
+    now: str | None = None,
+) -> int:
+    """Persist computed bucket rates. Returns rows written."""
+    stamp = now or utcnow()
+    rows = [
+        (theory_id, theory_version, bucket, data["n"], data["win_rate"],
+         data["mean_entry_price"], stamp)
+        for bucket, data in rates.items()
+    ]
+    if not rows:
+        return 0
+    conn.executemany(
+        """
+        INSERT INTO bucket_rates (theory_id, theory_version, confidence, n,
+                                  win_rate, mean_entry_price, computed_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+        """,
+        rows,
+    )
+    conn.commit()
+    return len(rows)
+```
+
+- [ ] **Step 5: Run tests to verify they pass**
+
+Run: `python -m pytest tests/test_buckets.py -v`
+Expected: PASS — 12 passed
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add tools/buckets.py tools/score.py tests/test_buckets.py
+git commit -m "feat: add confidence buckets with measured probabilities"
+```
+
+---
+
+### Task 9: Idea registry — research memory
 
 Implements spec section 11. This is what stops a session six months from now from re-deriving a hypothesis that was already tested and killed — and what lets it deliberately revisit one from a new angle instead.
 
@@ -2314,7 +2682,7 @@ Expected: PASS — 16 passed
 - [ ] **Step 5: Run the whole suite**
 
 Run: `python -m pytest -v`
-Expected: PASS — 94 passed (5 db + 15 sizing + 12 rank + 9 theories + 22 ledger + 15 score + 16 ideas)
+Expected: PASS — 111 passed (5 db + 15 sizing + 12 rank + 9 theories + 27 ledger + 15 score + 12 buckets + 16 ideas)
 
 - [ ] **Step 6: Commit**
 
@@ -2328,9 +2696,10 @@ git commit -m "feat: add idea registry for research memory"
 ## Definition of done for Plan 1
 
 - `python -m pytest` passes with no failures.
-- `db/schema.sql` creates all seven tables and all three indexes.
+- `db/schema.sql` creates all eight tables and all three indexes.
 - `record_opportunity` refuses a call with no `kalshi_ticker` or no `edge_pts_net`, and a re-sighting increments `times_seen` without changing `entry_price` or `screen_edge_pts_net`.
 - `compute_score` returns calibration edge in percentage points, segmented by theory version and disposition, with ROI net of fees and a separate taken-only ROI.
 - `interpretation_value` returns a delta once both endorsed and rejected samples have settled.
 - `ideas.search` finds a prior idea by keyword, and `list_revisitable` returns parked ideas plus dead ones that still carry a `revisit_angle` — while excluding exhausted and promoted ones.
+- `buckets.edge_for` returns a `prior`-based edge for an unmeasured or thin confidence bucket and a `measured` one once the bucket has 10+ settled results — and `record_opportunity` rejects any `edge_basis` outside `measured`/`prior`/`model`, so there is no path for an LLM-introspected probability to enter the ledger.
 - No network calls anywhere in `tools/` yet — that is Plan 2.

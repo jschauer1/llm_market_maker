@@ -10,7 +10,7 @@
 
 **Spec:** `docs/superpowers/specs/2026-08-23-llm-market-edge-finder-design.md`
 
-**Depends on:** Plan 1 (`tools/db.py`, `tools/sizing.py`) must be complete.
+**Depends on:** Plan 1 (`tools/db.py`, `tools/sizing.py`) must be complete (111 tests).
 
 ## Global Constraints
 
@@ -2023,7 +2023,7 @@ Expected: PASS — 14 passed
 - [ ] **Step 5: Run the full offline suite**
 
 Run: `python -m pytest -m "not network" -v`
-Expected: PASS — 174 passed (94 from Plan 1, plus 6 http + 15 kalshi markets + 9 kalshi history + 13 polymarket markets + 12 polymarket trades + 11 snapshot + 14 match_market)
+Expected: PASS — 191 passed (111 from Plan 1, plus 6 http + 15 kalshi markets + 9 kalshi history + 13 polymarket markets + 12 polymarket trades + 11 snapshot + 14 match_market)
 
 - [ ] **Step 6: Run the network suite once**
 
