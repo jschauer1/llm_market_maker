@@ -56,8 +56,12 @@ python -m tools.cli backtest record <run_id> <theory_id> <theory_version> \
 ## 5. Score and caveat
 
 ```bash
-python -m tools.cli score report <theory_id> --run-mode backtest
+python -m tools.cli score report <theory_id> --run-mode backtest --run-id <run_id>
 ```
+
+**Always pass `--run-id`.** Without it, re-running the same backtest over the
+same markets pools into every prior run of this theory version and multiplies
+`n` without adding a single real bet — and `n` feeds credibility directly.
 
 Report the tier alongside every number. Tier C results are **excluded from
 credibility** — never present them as evidence of edge, only as a sanity check

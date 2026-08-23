@@ -117,12 +117,15 @@ def _cmd_score(args) -> int:
             version = args.version or (theory["version"] if theory else 1)
             _emit(
                 {
-                    disposition: score.compute_score(
-                        conn, args.theory_id, version, args.run_mode,
-                        disposition,
-                    )
-                    for disposition in ("all", "screened", "endorsed",
-                                        "rejected")
+                    "theory_version": version,
+                    **{
+                        disposition: score.compute_score(
+                            conn, args.theory_id, version, args.run_mode,
+                            disposition, run_id=args.run_id,
+                        )
+                        for disposition in ("all", "screened", "endorsed",
+                                            "rejected")
+                    },
                 }
             )
         elif args.action == "settle-one":
@@ -239,6 +242,14 @@ def build_parser() -> argparse.ArgumentParser:
     report.add_argument("theory_id")
     report.add_argument("--version", type=int, default=None)
     report.add_argument("--run-mode", dest="run_mode", default="live")
+    report.add_argument(
+        "--run-id", dest="run_id", default=None,
+        help=(
+            "score a single run rather than pooling every run of this "
+            "theory version -- required to avoid multiplying n when "
+            "re-scoring a re-run backtest"
+        ),
+    )
     settle = ssub.add_parser("settle-one")
     settle.add_argument("ticker")
     settle.add_argument("result")

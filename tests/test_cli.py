@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from tools import cli, db, ideas, ledger, theories
+from tools import cli, db, ideas, ledger, score, theories
 
 TS = "2026-08-23T12:00:00Z"
 
@@ -118,6 +118,41 @@ def test_score_report_outputs_all_dispositions(dbpath, capsys):
     code, payload = _run(capsys, "--db", dbpath, "score", "report", "t1")
     assert set(payload) >= {"all", "endorsed", "rejected"}
     assert payload["all"]["n"] == 0
+
+
+def test_score_report_includes_theory_version(dbpath, capsys):
+    code, payload = _run(capsys, "--db", dbpath, "score", "report", "t1")
+    assert payload["theory_version"] == 1
+
+
+def test_score_report_theory_version_reflects_a_bump(dbpath, capsys):
+    _run(capsys, "--db", dbpath, "theories", "bump", "t1")
+    code, payload = _run(capsys, "--db", dbpath, "score", "report", "t1")
+    assert payload["theory_version"] == 2
+
+
+def test_score_report_run_id_scopes_the_sample(dbpath, capsys):
+    conn = db.connect(dbpath)
+    for run in ("run-a", "run-b"):
+        ledger.record_opportunity(
+            conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
+            outcome="yes", entry_price=0.50, edge_pts_net=6.0,
+            run_mode="backtest", run_id=run, now=TS,
+        )
+    score.record_settlement(conn, "A", "yes")
+    conn.close()
+
+    code, payload = _run(
+        capsys, "--db", dbpath, "score", "report", "t1",
+        "--run-mode", "backtest",
+    )
+    assert payload["all"]["n"] == 2, "unscoped report still pools every run"
+
+    code, payload = _run(
+        capsys, "--db", dbpath, "score", "report", "t1",
+        "--run-mode", "backtest", "--run-id", "run-a",
+    )
+    assert payload["all"]["n"] == 1
 
 
 def test_unknown_command_returns_nonzero(capsys):
