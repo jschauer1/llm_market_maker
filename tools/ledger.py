@@ -12,18 +12,51 @@ record_opportunity. Two rules are enforced here rather than in prose:
    bet seen seven times, not seven bets. entry_price and first_seen_at
    preserve the entry actually available at first sighting, so scoring
    measures a real position rather than an average of repeated looks.
+
+Two fields are normalized on entry, because the dedup key is compared with
+SQLite's case-sensitive binary collation while everything downstream
+compares case-insensitively: `outcome` is lowercased and `kalshi_ticker` is
+uppercased (Kalshi tickers are uppercase), both stripped. Without this,
+recording the same bet as "yes" and "Yes" produces two rows that scoring
+then counts as two independent wins.
 """
 
 from __future__ import annotations
 
 import sqlite3
 
-from tools.db import utcnow
+from tools.db import utcnow, write
 
 LIVE_RUN_ID = "live"
 VALID_DISPOSITIONS = ("screened", "endorsed", "rejected")
 VALID_USER_ACTIONS = ("untouched", "taken", "skipped")
 VALID_EDGE_BASES = ("measured", "prior", "model")
+
+
+def _validate_entry_price(entry_price: object) -> None:
+    """Prices are decimal dollars in [0, 1] — enforced at the only entry point.
+
+    The mistake this catches is passing cents. `entry_price=40` is accepted
+    silently by SQLite and produces a calibration edge of -3900 points.
+    """
+    if isinstance(entry_price, bool) or not isinstance(
+        entry_price, (int, float)
+    ):
+        raise ValueError(
+            f"entry_price must be a number in decimal dollars [0, 1], "
+            f"got {entry_price!r}"
+        )
+    if entry_price > 1.0:
+        raise ValueError(
+            f"entry_price {entry_price!r} is above 1.0; prices are decimal "
+            f"dollars in [0, 1], not cents — {entry_price} probably means "
+            f"{entry_price / 100.0}"
+        )
+    if entry_price < 0.0:
+        raise ValueError(
+            f"entry_price {entry_price!r} is below 0.0; prices are decimal "
+            f"dollars in [0, 1]"
+        )
 
 
 def record_opportunity(
@@ -68,101 +101,112 @@ def record_opportunity(
         raise ValueError(f"invalid run_mode {run_mode!r}")
     if run_mode == "backtest" and not run_id:
         raise ValueError("run_id is required for backtest runs")
+    if run_mode == "backtest" and run_id == LIVE_RUN_ID:
+        raise ValueError(
+            f"run_id {LIVE_RUN_ID!r} is a reserved sentinel for live scans; "
+            "a backtest using it would collide with, and silently overwrite, "
+            "the live row for the same ticker. Give the backtest its own "
+            "run_id."
+        )
     if edge_basis not in VALID_EDGE_BASES:
         raise ValueError(
             f"invalid edge_basis {edge_basis!r}; "
             f"expected one of {VALID_EDGE_BASES}"
         )
+    _validate_entry_price(entry_price)
+
+    # Normalize before the dedup key is built, so the same bet written with
+    # different casing lands on one row rather than several.
+    if isinstance(kalshi_ticker, str):
+        kalshi_ticker = kalshi_ticker.strip().upper()
+    if isinstance(outcome, str):
+        outcome = outcome.strip().lower()
 
     resolved_run_id = run_id or LIVE_RUN_ID
     stamp = now or utcnow()
 
-    existing = conn.execute(
+    # One atomic statement: a SELECT-then-INSERT pair would let a concurrent
+    # writer slip between them and turn a re-sighting into an IntegrityError.
+    # The DO UPDATE clause deliberately leaves entry_price, first_seen_at and
+    # screen_edge_pts_net alone — those record the first sighting and must
+    # not drift.
+    with write(conn):
+        conn.execute(
+            """
+            INSERT INTO opportunities (
+                theory_id, theory_version, run_mode, run_id, scan_id,
+                kalshi_ticker, outcome, entry_price, spread_at_call,
+                volume_at_call, model_prob, edge_pts_gross, fee_pts,
+                screen_edge_pts_net, edge_pts_net, edge_basis, disposition,
+                confidence, judged_blind,
+                rationale, suggested_size, evidence_source,
+                evidence_market_id,
+                user_action, first_seen_at, last_seen_at, times_seen,
+                extra_json
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                      'screened', ?, ?, ?, ?, ?, ?, 'untouched', ?, ?, 1, ?)
+            ON CONFLICT (theory_id, theory_version, run_id, kalshi_ticker,
+                         outcome) DO UPDATE SET
+                last_seen_at = excluded.last_seen_at,
+                times_seen = opportunities.times_seen + 1,
+                edge_pts_net = excluded.edge_pts_net,
+                model_prob =
+                    COALESCE(excluded.model_prob, opportunities.model_prob),
+                edge_pts_gross = COALESCE(excluded.edge_pts_gross,
+                                          opportunities.edge_pts_gross),
+                fee_pts = COALESCE(excluded.fee_pts, opportunities.fee_pts),
+                spread_at_call = COALESCE(excluded.spread_at_call,
+                                          opportunities.spread_at_call),
+                volume_at_call = COALESCE(excluded.volume_at_call,
+                                          opportunities.volume_at_call),
+                confidence =
+                    COALESCE(excluded.confidence, opportunities.confidence),
+                rationale =
+                    COALESCE(excluded.rationale, opportunities.rationale),
+                suggested_size = COALESCE(excluded.suggested_size,
+                                          opportunities.suggested_size)
+            """,
+            (
+                theory_id,
+                theory_version,
+                run_mode,
+                resolved_run_id,
+                scan_id,
+                kalshi_ticker,
+                outcome,
+                entry_price,
+                spread_at_call,
+                volume_at_call,
+                model_prob,
+                edge_pts_gross,
+                fee_pts,
+                edge_pts_net,
+                edge_pts_net,
+                edge_basis,
+                confidence,
+                1 if judged_blind else (0 if judged_blind is not None else None),
+                rationale,
+                suggested_size,
+                evidence_source,
+                evidence_market_id,
+                stamp,
+                stamp,
+                extra_json,
+            ),
+        )
+
+    # `times_seen` is the reliable witness: the insert path writes 1, the
+    # update path always increments to at least 2. `cursor.lastrowid` is not
+    # meaningful when the conflict clause fired.
+    row = conn.execute(
         """
-        SELECT id FROM opportunities
+        SELECT id, times_seen FROM opportunities
         WHERE theory_id = ? AND theory_version = ? AND run_id = ?
           AND kalshi_ticker = ? AND outcome = ?
         """,
         (theory_id, theory_version, resolved_run_id, kalshi_ticker, outcome),
     ).fetchone()
-
-    if existing is not None:
-        conn.execute(
-            """
-            UPDATE opportunities SET
-                last_seen_at = ?,
-                times_seen = times_seen + 1,
-                edge_pts_net = ?,
-                model_prob = COALESCE(?, model_prob),
-                edge_pts_gross = COALESCE(?, edge_pts_gross),
-                fee_pts = COALESCE(?, fee_pts),
-                spread_at_call = COALESCE(?, spread_at_call),
-                volume_at_call = COALESCE(?, volume_at_call),
-                confidence = COALESCE(?, confidence),
-                rationale = COALESCE(?, rationale),
-                suggested_size = COALESCE(?, suggested_size)
-            WHERE id = ?
-            """,
-            (
-                stamp,
-                edge_pts_net,
-                model_prob,
-                edge_pts_gross,
-                fee_pts,
-                spread_at_call,
-                volume_at_call,
-                confidence,
-                rationale,
-                suggested_size,
-                existing["id"],
-            ),
-        )
-        conn.commit()
-        return existing["id"], False
-
-    cursor = conn.execute(
-        """
-        INSERT INTO opportunities (
-            theory_id, theory_version, run_mode, run_id, scan_id,
-            kalshi_ticker, outcome, entry_price, spread_at_call,
-            volume_at_call, model_prob, edge_pts_gross, fee_pts,
-            screen_edge_pts_net, edge_pts_net, edge_basis, disposition,
-            confidence, judged_blind,
-            rationale, suggested_size, evidence_source, evidence_market_id,
-            user_action, first_seen_at, last_seen_at, times_seen, extra_json
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-                  'screened', ?, ?, ?, ?, ?, ?, 'untouched', ?, ?, 1, ?)
-        """,
-        (
-            theory_id,
-            theory_version,
-            run_mode,
-            resolved_run_id,
-            scan_id,
-            kalshi_ticker,
-            outcome,
-            entry_price,
-            spread_at_call,
-            volume_at_call,
-            model_prob,
-            edge_pts_gross,
-            fee_pts,
-            edge_pts_net,
-            edge_pts_net,
-            edge_basis,
-            confidence,
-            1 if judged_blind else (0 if judged_blind is not None else None),
-            rationale,
-            suggested_size,
-            evidence_source,
-            evidence_market_id,
-            stamp,
-            stamp,
-            extra_json,
-        ),
-    )
-    conn.commit()
-    return cursor.lastrowid, True
+    return row["id"], row["times_seen"] == 1
 
 
 def get_opportunity(
@@ -220,32 +264,32 @@ def interpret(
         raise KeyError(opportunity_id)
 
     stamp = now or utcnow()
-    if revised_edge_pts_net is None:
-        conn.execute(
-            """
-            UPDATE opportunities
-            SET disposition = ?, interpretation = ?, interpreted_at = ?
-            WHERE id = ?
-            """,
-            (disposition, interpretation, stamp, opportunity_id),
-        )
-    else:
-        conn.execute(
-            """
-            UPDATE opportunities
-            SET disposition = ?, interpretation = ?, interpreted_at = ?,
-                edge_pts_net = ?
-            WHERE id = ?
-            """,
-            (
-                disposition,
-                interpretation,
-                stamp,
-                revised_edge_pts_net,
-                opportunity_id,
-            ),
-        )
-    conn.commit()
+    with write(conn):
+        if revised_edge_pts_net is None:
+            conn.execute(
+                """
+                UPDATE opportunities
+                SET disposition = ?, interpretation = ?, interpreted_at = ?
+                WHERE id = ?
+                """,
+                (disposition, interpretation, stamp, opportunity_id),
+            )
+        else:
+            conn.execute(
+                """
+                UPDATE opportunities
+                SET disposition = ?, interpretation = ?, interpreted_at = ?,
+                    edge_pts_net = ?
+                WHERE id = ?
+                """,
+                (
+                    disposition,
+                    interpretation,
+                    stamp,
+                    revised_edge_pts_net,
+                    opportunity_id,
+                ),
+            )
 
 
 def mark_user_action(
@@ -267,12 +311,12 @@ def mark_user_action(
         )
     if get_opportunity(conn, opportunity_id) is None:
         raise KeyError(opportunity_id)
-    conn.execute(
-        """
-        UPDATE opportunities
-        SET user_action = ?, user_size = ?, user_reason = ?
-        WHERE id = ?
-        """,
-        (action, size, reason, opportunity_id),
-    )
-    conn.commit()
+    with write(conn):
+        conn.execute(
+            """
+            UPDATE opportunities
+            SET user_action = ?, user_size = ?, user_reason = ?
+            WHERE id = ?
+            """,
+            (action, size, reason, opportunity_id),
+        )

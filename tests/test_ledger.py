@@ -1,3 +1,5 @@
+import sqlite3
+
 import pytest
 
 from tools import db, ledger, theories
@@ -112,6 +114,63 @@ def test_missing_edge_is_rejected(conn):
 def test_backtest_without_run_id_is_rejected(conn):
     with pytest.raises(ValueError, match="run_id"):
         _record(conn, run_mode="backtest", run_id=None)
+
+
+def test_backtest_cannot_claim_the_live_run_id(conn):
+    # run_mode is not part of the dedup key, so a backtest writing under the
+    # 'live' run_id would overwrite the live row's edge and leave run_mode
+    # 'live' — backtest output scored as a live bet, with no trace.
+    with pytest.raises(ValueError, match="reserved sentinel"):
+        _record(conn, run_mode="backtest", run_id=ledger.LIVE_RUN_ID)
+
+
+def test_outcome_case_does_not_create_a_second_row(conn):
+    # The dedup key uses SQLite's binary collation but the win predicate
+    # compares case-insensitively: three casings would be three rows and
+    # three counted wins for one real bet.
+    _record(conn, outcome="yes")
+    _record(conn, outcome="YES", now=LATER)
+    _record(conn, outcome=" Yes ", now=LATER)
+
+    rows = ledger.list_opportunities(conn)
+    assert len(rows) == 1
+    assert rows[0]["times_seen"] == 3
+    assert rows[0]["outcome"] == "yes"
+
+
+def test_ticker_case_does_not_create_a_second_row(conn):
+    _record(conn, kalshi_ticker="kxtest-26")
+    _record(conn, kalshi_ticker="KXTEST-26", now=LATER)
+
+    rows = ledger.list_opportunities(conn)
+    assert len(rows) == 1
+    assert rows[0]["times_seen"] == 2
+    assert rows[0]["kalshi_ticker"] == "KXTEST-26"
+
+
+@pytest.mark.parametrize("bad_price", [40, -1.5, 1.7, "0.40"])
+def test_entry_price_must_be_decimal_dollars(conn, bad_price):
+    # 40 is the exact mistake the constraint exists to catch: cents passed
+    # where dollars were meant, which scores as -3900 points of edge.
+    with pytest.raises(ValueError, match="entry_price"):
+        _record(conn, entry_price=bad_price)
+
+
+def test_entry_price_bounds_are_inclusive(conn):
+    _record(conn, kalshi_ticker="LOW", entry_price=0.0)
+    _record(conn, kalshi_ticker="HIGH", entry_price=1.0)
+    assert len(ledger.list_opportunities(conn)) == 2
+
+
+def test_failed_insert_leaves_no_open_transaction(conn):
+    # Without a rollback the connection sits in an open transaction and the
+    # next writer blocks for the whole busy timeout, then fails locked.
+    with pytest.raises(sqlite3.IntegrityError):
+        _record(conn, theory_id="no_such_theory")
+    assert conn.in_transaction is False
+    # The connection must still be usable for a legitimate write.
+    _record(conn)
+    assert len(ledger.list_opportunities(conn)) == 1
 
 
 def test_polymarket_evidence_is_recorded_against_a_kalshi_ticker(conn):
