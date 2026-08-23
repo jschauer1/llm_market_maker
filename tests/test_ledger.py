@@ -1,0 +1,166 @@
+import pytest
+
+from tools import db, ledger, theories
+
+TS = "2026-08-23T12:00:00Z"
+LATER = "2026-08-24T12:00:00Z"
+
+
+@pytest.fixture
+def conn(tmp_path):
+    c = db.connect(tmp_path / "test.db")
+    db.init_db(c)
+    theories.register(c, "t1", "Theory One", "theories/t1", now=TS)
+    yield c
+    c.close()
+
+
+def _record(conn, **overrides):
+    kwargs = dict(
+        theory_id="t1",
+        theory_version=1,
+        kalshi_ticker="KXTEST-26",
+        outcome="yes",
+        entry_price=0.40,
+        edge_pts_net=6.0,
+        rationale="looks mispriced",
+        now=TS,
+    )
+    kwargs.update(overrides)
+    return ledger.record_opportunity(conn, **kwargs)
+
+
+def test_record_creates_a_row(conn):
+    opp_id, created = _record(conn)
+    assert created is True
+    row = ledger.get_opportunity(conn, opp_id)
+    assert row["kalshi_ticker"] == "KXTEST-26"
+    assert row["entry_price"] == pytest.approx(0.40)
+    assert row["times_seen"] == 1
+    assert row["disposition"] == "screened"
+    assert row["user_action"] == "untouched"
+    assert row["run_id"] == "live"
+
+
+def test_screen_edge_is_frozen_at_record_time(conn):
+    opp_id, _ = _record(conn, edge_pts_net=6.0)
+    row = ledger.get_opportunity(conn, opp_id)
+    assert row["screen_edge_pts_net"] == pytest.approx(6.0)
+    assert row["edge_pts_net"] == pytest.approx(6.0)
+
+
+def test_resighting_updates_instead_of_duplicating(conn):
+    first_id, first_created = _record(conn)
+    second_id, second_created = _record(conn, now=LATER, edge_pts_net=7.5)
+
+    assert second_created is False
+    assert second_id == first_id
+    assert len(ledger.list_opportunities(conn)) == 1
+
+
+def test_resighting_preserves_the_original_entry(conn):
+    opp_id, _ = _record(conn, entry_price=0.40)
+    _record(conn, entry_price=0.55, now=LATER)
+
+    row = ledger.get_opportunity(conn, opp_id)
+    assert row["entry_price"] == pytest.approx(0.40), "entry must not drift"
+    assert row["first_seen_at"] == TS
+    assert row["last_seen_at"] == LATER
+    assert row["times_seen"] == 2
+
+
+def test_resighting_preserves_the_frozen_screen_edge(conn):
+    opp_id, _ = _record(conn, edge_pts_net=6.0)
+    _record(conn, edge_pts_net=9.0, now=LATER)
+
+    row = ledger.get_opportunity(conn, opp_id)
+    assert row["screen_edge_pts_net"] == pytest.approx(6.0)
+    assert row["edge_pts_net"] == pytest.approx(9.0), "current edge refreshes"
+
+
+def test_different_outcome_is_a_different_opportunity(conn):
+    _record(conn, outcome="yes")
+    _record(conn, outcome="no")
+    assert len(ledger.list_opportunities(conn)) == 2
+
+
+def test_different_theory_version_is_a_different_opportunity(conn):
+    _record(conn, theory_version=1)
+    _record(conn, theory_version=2)
+    assert len(ledger.list_opportunities(conn)) == 2
+
+
+def test_backtest_runs_are_deduped_per_run(conn):
+    _record(conn, run_mode="backtest", run_id="run-a")
+    _record(conn, run_mode="backtest", run_id="run-a")
+    _record(conn, run_mode="backtest", run_id="run-b")
+    assert len(ledger.list_opportunities(conn, run_mode="backtest")) == 2
+
+
+def test_missing_kalshi_ticker_is_rejected(conn):
+    with pytest.raises(ValueError, match="kalshi_ticker"):
+        _record(conn, kalshi_ticker="")
+    with pytest.raises(ValueError, match="kalshi_ticker"):
+        _record(conn, kalshi_ticker=None)
+
+
+def test_missing_edge_is_rejected(conn):
+    with pytest.raises(ValueError, match="edge_pts_net"):
+        _record(conn, edge_pts_net=None)
+
+
+def test_backtest_without_run_id_is_rejected(conn):
+    with pytest.raises(ValueError, match="run_id"):
+        _record(conn, run_mode="backtest", run_id=None)
+
+
+def test_polymarket_evidence_is_recorded_against_a_kalshi_ticker(conn):
+    opp_id, _ = _record(
+        conn,
+        evidence_source="polymarket",
+        evidence_market_id="0xabc123",
+    )
+    row = ledger.get_opportunity(conn, opp_id)
+    assert row["kalshi_ticker"] == "KXTEST-26"
+    assert row["evidence_source"] == "polymarket"
+    assert row["evidence_market_id"] == "0xabc123"
+
+
+def test_list_filters_by_theory_and_disposition(conn):
+    _record(conn, kalshi_ticker="A")
+    _record(conn, kalshi_ticker="B")
+    assert len(ledger.list_opportunities(conn, theory_id="t1")) == 2
+    assert len(ledger.list_opportunities(conn, theory_id="other")) == 0
+    assert len(ledger.list_opportunities(conn, disposition="screened")) == 2
+    assert len(ledger.list_opportunities(conn, disposition="endorsed")) == 0
+
+
+def test_edge_basis_defaults_to_prior(conn):
+    opp_id, _ = _record(conn)
+    assert ledger.get_opportunity(conn, opp_id)["edge_basis"] == "prior"
+
+
+def test_edge_basis_records_where_the_number_came_from(conn):
+    opp_id, _ = _record(conn, edge_basis="measured")
+    assert ledger.get_opportunity(conn, opp_id)["edge_basis"] == "measured"
+
+
+def test_invalid_edge_basis_is_rejected(conn):
+    # There is deliberately no basis meaning "an LLM felt it was about 87%".
+    with pytest.raises(ValueError, match="edge_basis"):
+        _record(conn, edge_basis="vibes")
+
+
+def test_confidence_bucket_is_stored_for_later_measurement(conn):
+    opp_id, _ = _record(conn, confidence="strong")
+    assert ledger.get_opportunity(conn, opp_id)["confidence"] == "strong"
+
+
+def test_judged_blind_is_recorded(conn):
+    blind, _ = _record(conn, kalshi_ticker="A", judged_blind=True)
+    seeing, _ = _record(conn, kalshi_ticker="B", judged_blind=False)
+    unknown, _ = _record(conn, kalshi_ticker="C")
+
+    assert ledger.get_opportunity(conn, blind)["judged_blind"] == 1
+    assert ledger.get_opportunity(conn, seeing)["judged_blind"] == 0
+    assert ledger.get_opportunity(conn, unknown)["judged_blind"] is None
