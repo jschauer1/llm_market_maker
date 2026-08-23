@@ -83,6 +83,22 @@ def whales(
     return sorted(found, key=lambda t: t["usd"] or 0.0, reverse=True)
 
 
+def _normalize_holder(holder: dict, token: str | None) -> dict:
+    """Convert a raw holder entry into the internal shape."""
+    wallet = holder.get("proxyWallet")
+    if not wallet:
+        raise ValueError(
+            f"holder has no proxyWallet — schema drift? keys={sorted(holder)}"
+        )
+    return {
+        "wallet": wallet,
+        "name": holder.get("name") or holder.get("pseudonym"),
+        "amount": holder.get("amount"),
+        "outcome_index": holder.get("outcomeIndex"),
+        "token": token,
+    }
+
+
 def holders(market_id: str, limit: int = 20) -> list[dict]:
     """Largest position holders in a market, across both outcome tokens."""
     payload = get_json(
@@ -90,18 +106,25 @@ def holders(market_id: str, limit: int = 20) -> list[dict]:
     )
     rows = payload if isinstance(payload, list) else []
     out = []
+    total = 0
     for block in rows:
-        token = block.get("token") if isinstance(block, dict) else None
-        for holder in (block or {}).get("holders", []):
-            out.append(
-                {
-                    "wallet": holder.get("proxyWallet"),
-                    "name": holder.get("name") or holder.get("pseudonym"),
-                    "amount": holder.get("amount"),
-                    "outcome_index": holder.get("outcomeIndex"),
-                    "token": token,
-                }
-            )
+        if not isinstance(block, dict):
+            # A non-dict block (e.g. a bare string) has no "holders" to
+            # read — skip it rather than crashing the whole call.
+            continue
+        token = block.get("token")
+        for holder in block.get("holders", []):
+            total += 1
+            try:
+                out.append(_normalize_holder(holder, token))
+            except ValueError:
+                # One malformed holder should not sink the whole response.
+                continue
+    if total and not out:
+        raise ValueError(
+            f"received {total} holder row(s) but none parsed — "
+            "Polymarket's schema may have changed"
+        )
     return out
 
 

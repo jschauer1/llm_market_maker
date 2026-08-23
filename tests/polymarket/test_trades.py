@@ -152,10 +152,71 @@ def test_holders_handles_empty_response(monkeypatch):
     assert trades.holders("0xcondition") == []
 
 
+def test_holders_skips_a_non_dict_block(monkeypatch):
+    monkeypatch.setattr(
+        trades, "get_json",
+        lambda *a, **k: [
+            "not-a-block",
+            {
+                "token": "27146956652877944551",
+                "holders": [
+                    {"proxyWallet": "0xA", "name": "0xwhaleshark",
+                     "amount": 4008.4, "outcomeIndex": 0},
+                ],
+            },
+        ],
+    )
+    result = trades.holders("0xcondition")
+    assert len(result) == 1
+    assert result[0]["wallet"] == "0xA"
+
+
+def test_holders_skips_an_entry_missing_proxy_wallet(monkeypatch):
+    monkeypatch.setattr(
+        trades, "get_json",
+        lambda *a, **k: [
+            {
+                "token": "27146956652877944551",
+                "holders": [
+                    {"proxyWallet": "0xA", "name": "0xwhaleshark",
+                     "amount": 4008.4, "outcomeIndex": 0},
+                    {"name": "no-wallet", "amount": 12.0, "outcomeIndex": 0},
+                ],
+            }
+        ],
+    )
+    result = trades.holders("0xcondition")
+    assert len(result) == 1
+    assert result[0]["wallet"] == "0xA"
+
+
+def test_holders_raises_when_every_holder_is_unparseable(monkeypatch):
+    monkeypatch.setattr(
+        trades, "get_json",
+        lambda *a, **k: [
+            {
+                "token": "T",
+                "holders": [
+                    {"name": "no-wallet-1", "amount": 12.0},
+                    {"name": "no-wallet-2", "amount": 5.0},
+                ],
+            }
+        ],
+    )
+    with pytest.raises(ValueError, match="none parsed"):
+        trades.holders("0xcondition")
+
+
 @pytest.mark.network
 def test_live_whale_trades_are_actually_large():
-    result = trades.whales(min_usd=10000, limit=5)
+    min_usd = 10000
+    result = trades.whales(min_usd=min_usd, limit=5)
     assert result, "no whale trades returned"
     for trade in result:
         assert trade["wallet"].startswith("0x")
         assert trade["usd"] is not None
+        # whales() deliberately does no client-side re-filtering after the
+        # server-side filterAmount param, so this is the one place that
+        # would catch filterAmount meaning something other than USD
+        # notional (e.g. share count) — small tolerance for rounding.
+        assert trade["usd"] >= min_usd * 0.99
