@@ -1,3 +1,5 @@
+import logging
+
 import pytest
 
 from tools.kalshi import markets
@@ -152,6 +154,33 @@ def test_list_open_respects_max_pages(monkeypatch):
     )
     result = markets.list_open(max_pages=3)
     assert len(result) == 3
+
+
+def test_list_open_warns_when_truncated_with_the_cursor_still_live(
+    monkeypatch, caplog
+):
+    monkeypatch.setattr(
+        markets, "get_json",
+        lambda *a, **k: {"events": [{"markets": [dict(RAW)]}],
+                         "cursor": "always-more"},
+    )
+    with caplog.at_level(logging.WARNING, logger="tools.kalshi.markets"):
+        markets.list_open(max_pages=3)
+    assert len(caplog.records) == 1
+    assert "partial" in caplog.records[0].message.lower() or \
+        "truncat" in caplog.records[0].message.lower()
+
+
+def test_list_open_does_not_warn_when_the_cursor_is_exhausted(
+    monkeypatch, caplog
+):
+    monkeypatch.setattr(
+        markets, "get_json",
+        lambda *a, **k: {"events": [{"markets": [dict(RAW)]}], "cursor": ""},
+    )
+    with caplog.at_level(logging.WARNING, logger="tools.kalshi.markets"):
+        markets.list_open(max_pages=3)
+    assert caplog.records == []
 
 
 def test_quotes_maps_tickers_to_markets(monkeypatch):

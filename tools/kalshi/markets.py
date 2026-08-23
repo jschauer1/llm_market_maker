@@ -16,11 +16,15 @@ the other.
 
 from __future__ import annotations
 
+import logging
+
 from tools.http import get_json
 
 BASE_URL = "https://api.elections.kalshi.com/trade-api/v2"
 
 OPEN_STATUSES = {"active", "open"}
+
+logger = logging.getLogger(__name__)
 
 
 def _price(raw: dict, key: str) -> float | None:
@@ -88,6 +92,13 @@ def list_open(limit: int = 200, max_pages: int = 10) -> list[dict]:
 
     Events carry the series ticker, which the candlestick endpoint needs, so
     fetching this way rather than /markets keeps history reachable later.
+
+    The result can be PARTIAL: if the board has more pages than max_pages,
+    the walk stops there rather than raising, and the return type stays a
+    plain list either way — there is no field on it that says "incomplete".
+    When that happens a module-level `logging.warning` fires (logger
+    `tools.kalshi.markets`); check the log, or pass a larger max_pages,
+    before treating a market count as complete.
     """
     out: list[dict] = []
     cursor = ""
@@ -117,6 +128,15 @@ def list_open(limit: int = 200, max_pages: int = 10) -> list[dict]:
         cursor = payload.get("cursor") or ""
         if not cursor:
             break
+    else:
+        if cursor:
+            logger.warning(
+                "list_open stopped at max_pages=%d with the cursor still "
+                "live -- the %d markets returned are a PARTIAL board, not "
+                "the full one. Raise max_pages or paginate further before "
+                "treating this count as complete.",
+                max_pages, len(out),
+            )
     return out
 
 
