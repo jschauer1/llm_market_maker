@@ -148,9 +148,27 @@ The stage-1 screen alone is tier A and can be backtested over full history
 using `tools/kalshi/history.py`. That measures whether the *filter* selects
 markets that beat their price — useful on its own, and uncontaminated.
 
+**This needs an adapter first — nothing built yet.**
+`history.point_in_time()` returns a *candle*
+(`end_ts/open/high/low/close/mean/yes_bid_close/yes_ask_close/volume/
+open_interest`), but `screen.screen()` expects a *market* dict
+(`ticker/is_open/mid/yes_ask/no_ask/spread/volume/close_time`). No
+candle→market adapter exists. `no_ask` is not on a candle at all — derive it
+as `1 - yes_bid_close` (NO ask ≈ 1 − YES bid) — and this matters here: 36 of
+the 96 imported historical rows are NO-side. `tools.kalshi.markets.
+list_settled()` provides a workable replay universe of "markets open on date
+X". Write the adapter in this folder before attempting the backtest.
+
 ## Learnings
 
 - 2026-08-23 — Ported from `kalshi_trader`. The reality-TV weighting is
   recorded here as a stage-2 heuristic rather than encoded, because it has not
   yet been measured against the endorsed/rejected split. Migrate it into
   stage 1 only once there is evidence.
+- 2026-08-23 — The imported history's `edge_basis='prior'` rows are not "it
+  felt about right" placeholders — every field on this repo's convention
+  says a missing basis means that, but these rows are the exception. They
+  are LLM-introspected `q` values from `kalshi_trader`'s OpenAI gpt-5
+  classifier, kept because they are the only dataset that can answer whether
+  introspected probabilities realize their claimed edge. See each row's
+  `extra_json.model_prob_source` for the exact provenance.

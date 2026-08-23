@@ -29,4 +29,9 @@ Polymarket exposes per-trade wallet identity and server-side size filtering.
 **Next:** Nothing has settled under the new system yet. The highest-value work
 is a tier A backtest of the `insider_bias` stage-1 screen — it is
 uncontaminated, has a year of history available, and would give the first real
-evidence in the ledger.
+evidence in the ledger. **Missing prerequisite:** no adapter exists from
+`history.point_in_time()`'s candle shape to the market dict `screen.screen()`
+expects, and `no_ask` isn't on a candle at all — derive it as
+`1 - yes_bid_close`. Step one of this work is writing that candle→market
+adapter in `theories/insider_bias/`; `tools.kalshi.markets.list_settled()`
+gives a workable replay universe of "markets open on date X" in the meantime.
