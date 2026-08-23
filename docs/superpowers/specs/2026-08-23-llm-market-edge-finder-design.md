@@ -78,17 +78,21 @@ contract point is what makes cross-theory comparison and shared scoring
 possible without constraining how any individual theory thinks or works.
 
 Kalshi and Polymarket are both first-class **tools** available to any theory,
-symmetric in how they're exposed. The one real-world asymmetry: only Kalshi
-positions are ever sized/recorded as real, placeable bets, since that's the
-only platform the user can actually wager on. Polymarket is a legitimate
-research/signal source with equal tooling support, not a second-class data
-source.
+symmetric in how they're exposed — a theory can read data from either or
+both. But **every suggested bet must resolve to a specific, tradeable Kalshi
+market.** The user can only wager on Kalshi. Polymarket data (prices, whale
+trades, whatever a theory wants to look at) can inform a theory's reasoning,
+but a finding is not a valid opportunity until it's linked to a Kalshi
+market via `tools/match_market.py` plus Claude/subagent confirmation of the
+match (see sections 5 and 6). There is no such thing as a Polymarket-only
+opportunity in this system — `record_opportunity` enforces this by requiring
+a Kalshi ticker on every row.
 
 ## 4. Repository structure
 
 ```
 LLM_market_identifier/
-  CLAUDE.md                        Rich onboarding briefing (see section 9)
+  CLAUDE.md                        Rich onboarding briefing (see section 10)
   .claude/
     skills/
       find-edge/SKILL.md           Main entrypoint: scan active theories, rank opportunities
@@ -171,7 +175,15 @@ prices as 0–1 probabilities) don't share one native shape.
 ### `opportunities`
 The shared spine — the `record_opportunity` contract. Every theory writes
 here, in whatever mix of these fields makes sense for it; nothing is
-mandatory beyond identifying the theory, market, and rationale.
+mandatory beyond identifying the theory, the Kalshi market, and the
+rationale. **`kalshi_ticker` is required and NOT NULL on every row** — this
+is what enforces the "every suggestion must be tradeable on Kalshi" rule at
+the data layer, not just in prose. A theory built entirely on Kalshi's own
+data fills `evidence_source = kalshi` (or leaves it null); a theory whose
+signal came from Polymarket (or any future data source) must still resolve
+to a Kalshi ticker before calling `record_opportunity`, and records where the
+signal came from in `evidence_source`/`evidence_market_id` for
+traceability.
 
 | column | type | notes |
 |---|---|---|
@@ -179,23 +191,27 @@ mandatory beyond identifying the theory, market, and rationale.
 | theory_id | text FK → theories.id | |
 | run_mode | text | `live` \| `backtest` |
 | run_id | text | groups opportunities from one scan/backtest execution |
-| platform | text | `kalshi` \| `polymarket` \| `cross_platform` |
-| market_id | text | |
+| kalshi_ticker | text, NOT NULL | the actual, tradeable Kalshi market this suggestion is for |
 | outcome | text | free text: `yes`/`no`, or an outcome label for multi-outcome markets |
+| evidence_source | text, nullable | `kalshi` \| `polymarket` \| future sources — where the underlying signal came from |
+| evidence_market_id | text, nullable | e.g. the Polymarket market/condition id that triggered the finding, if `evidence_source` isn't Kalshi itself |
 | model_prob | real, nullable | theory's estimated probability, if it produces one |
 | edge_pts | real, nullable | theory's estimated edge in percentage points, if it produces one |
 | confidence | text, nullable | theory's own scale — free text, not fixed to one enum |
 | rationale | text | |
 | suggested_size | real, nullable | |
-| market_price_at_call | real, nullable | price observed when recorded — needed later for scoring |
+| market_price_at_call | real, nullable | Kalshi price observed when recorded — needed later for scoring |
 | extra_json | text, nullable | anything theory-specific that doesn't fit the columns above |
 | created_at | timestamp | |
 
 ### `settlements`
+Only Kalshi settlements are tracked here — since every `opportunities` row
+resolves to a Kalshi ticker, that's the only settlement data scoring ever
+needs.
+
 | column | type | notes |
 |---|---|---|
-| platform | text | |
-| market_id | text | |
+| kalshi_ticker | text | |
 | resolved_at | timestamp | |
 | result | text | winning outcome label |
 | settle_price | real, nullable | |
@@ -224,7 +240,7 @@ Metadata for a backtest execution, linked via `opportunities.run_id`.
 | run_id | text PK | |
 | theory_id | text FK | |
 | as_of_start / as_of_end | timestamp | historical window being replayed |
-| hindsight_risk | text | `low` \| `medium` \| `high` — see section 7 |
+| hindsight_risk | text | `low` \| `medium` \| `high` — see section 8 |
 | notes | text | |
 | created_at | timestamp | |
 
@@ -251,13 +267,17 @@ without first learning an abstraction layer.
 - **`tools/polymarket/trades.py`** — trade history and large/whale-trade
   filtering, via Polymarket's public CLOB/data API (also to be confirmed
   during implementation).
-- **`tools/match_market.py`** — given a market on one platform, returns a
-  mechanically-generated shortlist of plausible equivalents on the other
-  platform (keyword/category/date overlap). Deliberately does *not* make the
-  final "is this really the same market" call — that judgment belongs to the
-  orchestrating Claude or a subagent it spawns, reading the shortlist.
-- **`tools/ledger.py`** — `record-opportunity` (the shared contract) and
-  `list-opportunities`.
+- **`tools/match_market.py`** — the required bridge from a non-Kalshi
+  finding to an actionable suggestion. Given a Polymarket (or future
+  non-Kalshi) market, returns a mechanically-generated shortlist of
+  plausible equivalent Kalshi markets (keyword/category/date overlap).
+  Deliberately does *not* make the final "is this really the same market"
+  call — that judgment belongs to the orchestrating Claude or a subagent it
+  spawns, reading the shortlist. Any theory whose signal originates outside
+  Kalshi must run its finding through this tool (and confirm the match)
+  before it has a `kalshi_ticker` to record.
+- **`tools/ledger.py`** — `record-opportunity` (the shared contract; rejects
+  a call with no `kalshi_ticker`) and `list-opportunities`.
 - **`tools/score.py`** — `settle` (fetch settlement outcomes for open
   opportunities that have since resolved) and `report` (compute win rate,
   price-implied rate, calibration edge, ROI for a theory/window).
@@ -289,7 +309,10 @@ proposed | active | paused | retired — journal of status changes and why.
 ## How to scan for live candidates
 A written procedure for Claude to follow: which tools to call, what to
 filter for, when/how to spawn a subagent for judgment, and how the result
-gets written via `record_opportunity`.
+gets written via `record_opportunity`. If this theory's signal comes from
+Polymarket (or anything other than Kalshi), the procedure must include the
+`tools/match_market.py` step that resolves the finding to a specific Kalshi
+ticker — `record_opportunity` has no Kalshi-less path.
 
 ## How to backtest
 A written procedure for Claude to follow, using the point-in-time helper
@@ -369,7 +392,11 @@ discoverable rather than inferred. Sections:
 2. **Non-goals** — no fixed strategy is provided beyond the one reference
    theory; you are expected to invent new ones.
 3. **Platform roles** — Kalshi is where real bets get placed; Polymarket is
-   an equally first-class data/research tool, not tradeable directly.
+   an equally first-class data/research tool, not tradeable directly. Every
+   suggested opportunity must resolve to a specific Kalshi ticker — a
+   Polymarket-sourced finding is only a suggestion once it's been matched to
+   an equivalent Kalshi market via `tools/match_market.py` and that match is
+   confirmed.
 4. **Toolkit map** — one paragraph per tool: what it does, when to reach
    for it.
 5. **Theory lifecycle** — propose → run live → backtest → score → compare →
