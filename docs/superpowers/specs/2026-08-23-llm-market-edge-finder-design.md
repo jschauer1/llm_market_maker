@@ -119,6 +119,7 @@ LLM_market_identifier/
       trades.py                    Trade history, large/whale-trade filtering
     match_market.py                Non-Kalshi finding -> Kalshi ticker shortlist
     ledger.py                      record_opportunity, interpret, mark-taken
+    ideas.py                       Idea registry — research memory (section 11)
     score.py                       Settlement fetch, calibration, ROI
     rank.py                        Credibility-weighted ranking (section 8)
     sizing.py                      Fee model, Kelly, portfolio caps
@@ -150,6 +151,28 @@ carries lifecycle state.
 | version | integer | starts at 1; bumped on any change to the decision procedure (section 10) |
 | status | text | `proposed` \| `active` \| `paused` \| `retired` (section 11) |
 | path | text | folder under `theories/` |
+| created_at / updated_at | timestamp | |
+
+### `ideas`
+The research memory (section 11). Every hypothesis that gets *considered* is
+recorded here, whether or not it ever becomes a theory. This is what stops the
+system from re-deriving the same dead end every few months, and — just as
+importantly — what lets it deliberately revisit an idea from a new angle rather
+than abandoning it permanently.
+
+| column | type | notes |
+|---|---|---|
+| id | integer PK | |
+| slug | text UNIQUE | short handle, e.g. `polymarket-whale-copy` |
+| title | text | |
+| description | text | the hypothesis in a sentence or two |
+| status | text | `considered` \| `investigating` \| `promoted` \| `parked` \| `dead` |
+| theory_id | text FK, nullable | set when the idea becomes a theory |
+| source | text | where it came from: `claude`, `user`, `divergence` (mined from `user_reason`), `observation` |
+| what_was_tried | text, nullable | what investigation actually happened — not what was planned |
+| outcome | text, nullable | what was learned; for a dead idea, *why* it died |
+| revisit_angle | text, nullable | what a genuinely different approach would look like; null means exhausted |
+| revisit_after | text, nullable | a date or a condition, e.g. "once 6 months of snapshots exist" |
 | created_at / updated_at | timestamp | |
 
 ### `market_snapshots`
@@ -485,6 +508,10 @@ differs from the older integer-cent schema `kalshi_trader` was written against.
   call with no `kalshi_ticker` or no `edge_pts_net`), `interpret` (sets
   disposition, interpretation text, and any revised edge — section 7),
   `mark-taken`, `list-opportunities`.
+- **`tools/ideas.py`** — the research memory: `record`, `search` (by keyword,
+  so a proposal can be checked against prior art before any work starts),
+  `update-status`, `list-revisitable` (parked ideas whose `revisit_after`
+  condition may now be met, plus dead ones that still carry a `revisit_angle`).
 - **`tools/score.py`** — `settle` (fetch outcomes for opportunities that have
   resolved) and `report` (win rate, price-implied rate, calibration edge,
   realization, ROI split by all-vs-taken, segmented by theory version and
@@ -558,7 +585,52 @@ project exists for and invites the classic overfitting trap of tuning until the
 history looks good. `compare-theories` shows versions separately and flags any
 version whose `n` is too small to mean much.
 
-## 11. Theory lifecycle
+## 11. Idea and theory lifecycle
+
+### The idea registry — research memory
+
+An idea does not need to become a theory to be worth remembering. Most won't:
+some are investigated for ten minutes and dismissed, some are good but blocked
+on data that doesn't exist yet, some are tried properly and fail. **All of them
+get recorded in `ideas`.** Without this the system has no research memory — a
+session six months from now cheerfully re-derives a hypothesis that was already
+tested and killed, burns the same effort, and reaches the same dead end.
+
+Every idea carries three fields that do the real work:
+
+- **`what_was_tried`** — what investigation *actually happened*, not what was
+  planned. "Screened 400 markets, found only 6 candidates, none survived
+  research" is useful; "investigated whale-copying" is not.
+- **`outcome`** — what was learned, and for a dead idea specifically *why* it
+  died. The failure mode matters more than the failure: an idea that died
+  because the signal wasn't there is finished, while one that died because the
+  matching step was too crude is a tooling problem wearing an idea's clothes.
+- **`revisit_angle`** — what a genuinely *different* approach would look like.
+  This is the field that distinguishes "don't try this again" from "don't try
+  this again *the same way*." A null `revisit_angle` means the idea is
+  exhausted; a populated one means it's waiting for someone to come at it
+  differently.
+
+`revisit_after` holds a date or a condition (`"once 6 months of snapshots
+exist"`, `"if Kalshi lists more reality-TV markets"`) for ideas that are sound
+but premature. Those are among the highest-value work a research session can
+pick up, because the blocking condition may now be satisfied.
+
+**Statuses:** `considered` (recorded, not yet investigated) → `investigating` →
+either `promoted` (became a theory; `theory_id` links them), `parked` (not now,
+with a reason and ideally a revisit condition), or `dead` (tried and failed,
+with the why).
+
+**Two hard rules.** Before proposing a new theory, Claude **must** search the
+idea registry first — a new idea that matches a `dead` one needs a real
+`revisit_angle` to justify running again, and one that matches a `parked` one
+should check whether its `revisit_after` condition is now met. And when a theory
+is retired (below), its originating idea is updated to `dead` with the reason,
+so the failure is recorded where the next proposal will actually look for it.
+
+Retiring a theory without writing down why it failed is how a system forgets.
+
+### Theory statuses
 
 Status transitions have default bars. Claude may override any of them but must
 record the reason in `THEORY.md` — the point is that drift and accumulation stay
@@ -650,7 +722,10 @@ menu of work:
   (`find-edge`).
 - Backtest a theory that is running on claims rather than evidence.
 - Propose a new theory — from an observed market pattern, from a gap in what the
-  current theories cover, or from a recurring `user_reason` divergence.
+  current theories cover, or from a recurring `user_reason` divergence. Check
+  the idea registry first (section 11).
+- Revisit a parked idea whose blocking condition may now be met, or a dead one
+  that still carries a `revisit_angle` worth trying from a different direction.
 - Tighten an existing theory: migrate a stage 2 heuristic that keeps proving
   itself into stage 1 code, or promote a theory-local tool that multiple
   theories now use (section 9).
@@ -708,10 +783,15 @@ skill invocation.
   so the user can see both what was recommended and what went unexamined.
   Rejected candidates and their reasons are available on request. Accepts a
   scope override to run all theories or named ones.
-- **`propose-theory`** — scaffolds `theories/<slug>/` from `_TEMPLATE`, registers
-  it at `status=proposed`, `version=1`, and works through the hypothesis, data
-  sources, and both stages. Asks explicitly what belongs in stage 1 versus
-  stage 2, and what would *falsify* the thesis rather than only support it.
+- **`propose-theory`** — **starts by searching the idea registry** (section 11):
+  if this hypothesis has been tried before, the prior `outcome` and
+  `revisit_angle` decide whether to proceed, proceed differently, or stop. Then
+  records the idea, scaffolds `theories/<slug>/` from `_TEMPLATE`, registers it
+  at `status=proposed`, `version=1`, links the idea to it, and works through the
+  hypothesis, data sources, and both stages. Asks explicitly what belongs in
+  stage 1 versus stage 2, and what would *falsify* the thesis rather than only
+  support it. An idea that is investigated and dropped before ever becoming a
+  theory is still recorded, with what was tried and why it was dropped.
 - **`backtest-theory`** — determines the tier from the theory's decision path
   and market resolution dates, enforces the web-search prohibition, runs the
   replay, records `backtest_runs`, and scores with the tier's caveat attached.
@@ -754,11 +834,15 @@ since "what can I actually do here" must be explicit rather than inferred:
     off during replay.
 11. **Subagent usage** — when to spawn, how to batch, and why (no API keys; this
     runs on the user's subscription).
-12. **Data conventions** — SQLite is the source of truth for structured facts;
+12. **Research memory** — section 11: search the idea registry before proposing
+    anything, record every idea you consider (including the ones you drop and
+    why), and write a `revisit_angle` rather than closing a door permanently.
+    Never retire a theory without recording why it failed.
+13. **Data conventions** — SQLite is the source of truth for structured facts;
     `THEORY.md` is the source of truth for a hypothesis and its procedure;
     `RESEARCH_LOG.md` carries continuity between sessions — read its tail when
     starting, append to it when finishing.
-13. **Getting started** — say `go` for a research session, or just ask a
+14. **Getting started** — say `go` for a research session, or just ask a
     question.
 
 ## 16. Migration from kalshi_trader

@@ -76,6 +76,24 @@ CREATE TABLE IF NOT EXISTS theories (
     updated_at  TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS ideas (
+    id             INTEGER PRIMARY KEY AUTOINCREMENT,
+    slug           TEXT NOT NULL UNIQUE,
+    title          TEXT NOT NULL,
+    description    TEXT,
+    status         TEXT NOT NULL DEFAULT 'considered'
+                   CHECK (status IN ('considered','investigating','promoted',
+                                     'parked','dead')),
+    theory_id      TEXT REFERENCES theories(id),
+    source         TEXT,
+    what_was_tried TEXT,
+    outcome        TEXT,
+    revisit_angle  TEXT,
+    revisit_after  TEXT,
+    created_at     TEXT NOT NULL,
+    updated_at     TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS market_snapshots (
     id               INTEGER PRIMARY KEY AUTOINCREMENT,
     platform         TEXT NOT NULL CHECK (platform IN ('kalshi','polymarket')),
@@ -206,6 +224,7 @@ def test_all_tables_created(conn):
     names = {r["name"] for r in rows}
     expected = {
         "theories",
+        "ideas",
         "market_snapshots",
         "opportunities",
         "settlements",
@@ -221,7 +240,7 @@ def test_init_db_is_idempotent(conn):
     count = conn.execute(
         "SELECT COUNT(*) AS n FROM sqlite_master WHERE type='table'"
     ).fetchone()["n"]
-    assert count >= 6
+    assert count >= 7
 
 
 def test_foreign_keys_are_enforced(conn):
@@ -1925,12 +1944,7 @@ def interpretation_value(
 Run: `python -m pytest tests/test_score.py -v`
 Expected: PASS — 15 passed
 
-- [ ] **Step 5: Run the whole suite**
-
-Run: `python -m pytest -v`
-Expected: PASS — 78 passed (5 db + 15 sizing + 12 rank + 9 theories + 22 ledger + 15 score)
-
-- [ ] **Step 6: Commit**
+- [ ] **Step 5: Commit**
 
 ```bash
 git add tools/score.py tests/test_score.py
@@ -1939,11 +1953,384 @@ git commit -m "feat: add settlement scoring with disposition split"
 
 ---
 
+### Task 8: Idea registry — research memory
+
+Implements spec section 11. This is what stops a session six months from now from re-deriving a hypothesis that was already tested and killed — and what lets it deliberately revisit one from a new angle instead.
+
+**Files:**
+- Create: `tools/ideas.py`
+- Create: `tests/test_ideas.py`
+
+**Interfaces:**
+- Consumes: `tools.db.utcnow`
+- Produces:
+  - `tools.ideas.record(conn, slug: str, title: str, description: str = "", source: str = "claude", status: str = "considered", now: str | None = None) -> int`
+  - `tools.ideas.get(conn, slug: str) -> sqlite3.Row | None`
+  - `tools.ideas.search(conn, keyword: str) -> list[sqlite3.Row]` — case-insensitive over slug, title, description
+  - `tools.ideas.update_status(conn, slug: str, status: str, what_was_tried: str | None = None, outcome: str | None = None, revisit_angle: str | None = None, revisit_after: str | None = None, theory_id: str | None = None, now: str | None = None) -> None`
+  - `tools.ideas.list_revisitable(conn) -> list[sqlite3.Row]` — parked ideas plus dead ones that still carry a `revisit_angle`
+  - `tools.ideas.VALID_STATUSES: tuple[str, ...]`
+
+- [ ] **Step 1: Write the failing test**
+
+Create `tests/test_ideas.py`:
+
+```python
+import pytest
+
+from tools import db, ideas, theories
+
+TS = "2026-08-23T12:00:00Z"
+LATER = "2026-09-01T12:00:00Z"
+
+
+@pytest.fixture
+def conn(tmp_path):
+    c = db.connect(tmp_path / "test.db")
+    db.init_db(c)
+    yield c
+    c.close()
+
+
+def test_record_creates_an_idea(conn):
+    ideas.record(
+        conn,
+        "polymarket-whale-copy",
+        "Copy Polymarket whales into Kalshi",
+        "Large Polymarket traders may be informed; mirror them on Kalshi.",
+        now=TS,
+    )
+    row = ideas.get(conn, "polymarket-whale-copy")
+    assert row["title"] == "Copy Polymarket whales into Kalshi"
+    assert row["status"] == "considered"
+    assert row["source"] == "claude"
+    assert row["theory_id"] is None
+
+
+def test_get_returns_none_for_unknown_idea(conn):
+    assert ideas.get(conn, "never-thought-of-this") is None
+
+
+def test_search_finds_by_keyword_across_fields(conn):
+    ideas.record(conn, "whale-copy", "Whale copying",
+                 "Follow large Polymarket traders.", now=TS)
+    ideas.record(conn, "weather-arb", "Weather arbitrage",
+                 "NOAA forecasts versus Kalshi temperature markets.", now=TS)
+
+    assert [r["slug"] for r in ideas.search(conn, "whale")] == ["whale-copy"]
+    assert [r["slug"] for r in ideas.search(conn, "polymarket")] == \
+        ["whale-copy"]
+    assert [r["slug"] for r in ideas.search(conn, "NOAA")] == ["weather-arb"]
+
+
+def test_search_is_case_insensitive(conn):
+    ideas.record(conn, "whale-copy", "Whale copying", "Polymarket.", now=TS)
+    assert len(ideas.search(conn, "WHALE")) == 1
+    assert len(ideas.search(conn, "wHaLe")) == 1
+
+
+def test_search_returns_empty_for_no_match(conn):
+    ideas.record(conn, "whale-copy", "Whale copying", "Polymarket.", now=TS)
+    assert ideas.search(conn, "cricket") == []
+
+
+def test_dead_idea_records_why_it_died(conn):
+    ideas.record(conn, "whale-copy", "Whale copying", "...", now=TS)
+    ideas.update_status(
+        conn,
+        "whale-copy",
+        "dead",
+        what_was_tried="Screened 400 markets over 3 months; only 6 matched "
+                       "a Kalshi equivalent and none had edge after fees.",
+        outcome="Cross-platform overlap is too thin to trade.",
+        now=LATER,
+    )
+    row = ideas.get(conn, "whale-copy")
+    assert row["status"] == "dead"
+    assert "400 markets" in row["what_was_tried"]
+    assert "too thin" in row["outcome"]
+    assert row["updated_at"] == LATER
+
+
+def test_dead_idea_with_a_revisit_angle_stays_revisitable(conn):
+    ideas.record(conn, "whale-copy", "Whale copying", "...", now=TS)
+    ideas.update_status(
+        conn, "whale-copy", "dead",
+        outcome="Matching was too crude to find real equivalents.",
+        revisit_angle="Retry once match_market compares resolution criteria "
+                      "rather than title keywords.",
+        now=LATER,
+    )
+    revisitable = ideas.list_revisitable(conn)
+    assert [r["slug"] for r in revisitable] == ["whale-copy"]
+
+
+def test_exhausted_dead_idea_is_not_revisitable(conn):
+    ideas.record(conn, "coin-flip", "Bet coin flips", "...", now=TS)
+    ideas.update_status(
+        conn, "coin-flip", "dead",
+        outcome="There is no signal here by construction.",
+        now=LATER,
+    )
+    assert ideas.list_revisitable(conn) == []
+
+
+def test_parked_idea_is_revisitable_with_its_condition(conn):
+    ideas.record(conn, "snapshot-drift", "Price drift from our snapshots",
+                 "...", now=TS)
+    ideas.update_status(
+        conn, "snapshot-drift", "parked",
+        outcome="Not enough first-party history yet.",
+        revisit_after="once 6 months of snapshots exist",
+        now=LATER,
+    )
+    revisitable = ideas.list_revisitable(conn)
+    assert len(revisitable) == 1
+    assert revisitable[0]["revisit_after"] == "once 6 months of snapshots exist"
+
+
+def test_promoting_an_idea_links_it_to_a_theory(conn):
+    theories.register(conn, "insider_bias", "Insider Bias",
+                      "theories/insider_bias", now=TS)
+    ideas.record(conn, "insider-bias", "Insider bias", "...", now=TS)
+    ideas.update_status(conn, "insider-bias", "promoted",
+                        theory_id="insider_bias", now=LATER)
+
+    row = ideas.get(conn, "insider-bias")
+    assert row["status"] == "promoted"
+    assert row["theory_id"] == "insider_bias"
+
+
+def test_promoted_ideas_are_not_revisitable(conn):
+    theories.register(conn, "t1", "One", "theories/t1", now=TS)
+    ideas.record(conn, "i1", "Idea one", "...", now=TS)
+    ideas.update_status(conn, "i1", "promoted", theory_id="t1", now=LATER)
+    assert ideas.list_revisitable(conn) == []
+
+
+def test_update_status_rejects_invalid_status(conn):
+    ideas.record(conn, "i1", "Idea one", "...", now=TS)
+    with pytest.raises(ValueError):
+        ideas.update_status(conn, "i1", "vibes")
+
+
+def test_update_status_rejects_unknown_idea(conn):
+    with pytest.raises(KeyError):
+        ideas.update_status(conn, "nope", "dead")
+
+
+def test_update_preserves_fields_not_being_set(conn):
+    ideas.record(conn, "i1", "Idea one", "...", now=TS)
+    ideas.update_status(conn, "i1", "investigating",
+                        what_was_tried="Ran an initial screen.", now=LATER)
+    ideas.update_status(conn, "i1", "dead",
+                        outcome="No signal.", now=LATER)
+
+    row = ideas.get(conn, "i1")
+    assert row["what_was_tried"] == "Ran an initial screen."
+    assert row["outcome"] == "No signal."
+
+
+def test_record_is_idempotent_on_slug(conn):
+    ideas.record(conn, "i1", "Idea one", "first description", now=TS)
+    ideas.record(conn, "i1", "Idea one revised", "second description",
+                 now=LATER)
+    assert len(ideas.search(conn, "Idea one")) == 1
+    assert ideas.get(conn, "i1")["description"] == "second description"
+
+
+def test_record_does_not_reset_status(conn):
+    ideas.record(conn, "i1", "Idea one", "...", now=TS)
+    ideas.update_status(conn, "i1", "dead", outcome="No signal.", now=LATER)
+    ideas.record(conn, "i1", "Idea one", "...", now=LATER)
+    assert ideas.get(conn, "i1")["status"] == "dead"
+```
+
+- [ ] **Step 2: Run tests to verify they fail**
+
+Run: `python -m pytest tests/test_ideas.py -v`
+Expected: FAIL — `ModuleNotFoundError: No module named 'tools.ideas'`
+
+- [ ] **Step 3: Write `tools/ideas.py`**
+
+```python
+"""The idea registry — research memory (spec section 11).
+
+Every hypothesis that gets considered is recorded here, whether or not it
+ever becomes a theory. Without this the system has no memory: a session six
+months from now re-derives a hypothesis that was already tested and killed,
+burns the same effort, and reaches the same dead end.
+
+Three fields carry the weight:
+
+  what_was_tried  what investigation ACTUALLY happened, not what was planned
+  outcome         what was learned; for a dead idea, specifically why it died
+  revisit_angle   what a genuinely different approach would look like
+
+The last one is the difference between "don't try this again" and "don't try
+this again the same way". A null revisit_angle means exhausted; a populated
+one means the idea is waiting for someone to come at it differently.
+"""
+
+from __future__ import annotations
+
+import sqlite3
+
+from tools.db import utcnow
+
+VALID_STATUSES = (
+    "considered",
+    "investigating",
+    "promoted",
+    "parked",
+    "dead",
+)
+
+
+def record(
+    conn: sqlite3.Connection,
+    slug: str,
+    title: str,
+    description: str = "",
+    source: str = "claude",
+    status: str = "considered",
+    now: str | None = None,
+) -> int:
+    """Record an idea. Re-recording an existing slug updates it in place
+    without resetting its status or accumulated findings."""
+    if status not in VALID_STATUSES:
+        raise ValueError(
+            f"invalid status {status!r}; expected one of {VALID_STATUSES}"
+        )
+    stamp = now or utcnow()
+    conn.execute(
+        """
+        INSERT INTO ideas (slug, title, description, status, source,
+                           created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(slug) DO UPDATE SET
+            title = excluded.title,
+            description = excluded.description,
+            source = excluded.source,
+            updated_at = excluded.updated_at
+        """,
+        (slug, title, description, status, source, stamp, stamp),
+    )
+    conn.commit()
+    return conn.execute(
+        "SELECT id FROM ideas WHERE slug = ?", (slug,)
+    ).fetchone()["id"]
+
+
+def get(conn: sqlite3.Connection, slug: str) -> sqlite3.Row | None:
+    return conn.execute("SELECT * FROM ideas WHERE slug = ?", (slug,)).fetchone()
+
+
+def search(conn: sqlite3.Connection, keyword: str) -> list[sqlite3.Row]:
+    """Case-insensitive search over slug, title, and description.
+
+    Call this BEFORE proposing a theory. An idea matching a dead one needs a
+    real revisit_angle to justify running again.
+    """
+    pattern = f"%{keyword.lower()}%"
+    return conn.execute(
+        """
+        SELECT * FROM ideas
+        WHERE LOWER(slug) LIKE ?
+           OR LOWER(title) LIKE ?
+           OR LOWER(COALESCE(description, '')) LIKE ?
+        ORDER BY id
+        """,
+        (pattern, pattern, pattern),
+    ).fetchall()
+
+
+def update_status(
+    conn: sqlite3.Connection,
+    slug: str,
+    status: str,
+    what_was_tried: str | None = None,
+    outcome: str | None = None,
+    revisit_angle: str | None = None,
+    revisit_after: str | None = None,
+    theory_id: str | None = None,
+    now: str | None = None,
+) -> None:
+    """Move an idea along and record what was learned.
+
+    Fields left as None are preserved, so a later update does not erase an
+    earlier finding.
+    """
+    if status not in VALID_STATUSES:
+        raise ValueError(
+            f"invalid status {status!r}; expected one of {VALID_STATUSES}"
+        )
+    if get(conn, slug) is None:
+        raise KeyError(slug)
+    conn.execute(
+        """
+        UPDATE ideas SET
+            status = ?,
+            what_was_tried = COALESCE(?, what_was_tried),
+            outcome = COALESCE(?, outcome),
+            revisit_angle = COALESCE(?, revisit_angle),
+            revisit_after = COALESCE(?, revisit_after),
+            theory_id = COALESCE(?, theory_id),
+            updated_at = ?
+        WHERE slug = ?
+        """,
+        (
+            status,
+            what_was_tried,
+            outcome,
+            revisit_angle,
+            revisit_after,
+            theory_id,
+            now or utcnow(),
+            slug,
+        ),
+    )
+    conn.commit()
+
+
+def list_revisitable(conn: sqlite3.Connection) -> list[sqlite3.Row]:
+    """Ideas worth another look: parked ones (whose blocking condition may
+    now be met) and dead ones that still carry a revisit_angle."""
+    return conn.execute(
+        """
+        SELECT * FROM ideas
+        WHERE status = 'parked'
+           OR (status = 'dead' AND revisit_angle IS NOT NULL)
+        ORDER BY updated_at
+        """
+    ).fetchall()
+```
+
+- [ ] **Step 4: Run tests to verify they pass**
+
+Run: `python -m pytest tests/test_ideas.py -v`
+Expected: PASS — 16 passed
+
+- [ ] **Step 5: Run the whole suite**
+
+Run: `python -m pytest -v`
+Expected: PASS — 94 passed (5 db + 15 sizing + 12 rank + 9 theories + 22 ledger + 15 score + 16 ideas)
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add tools/ideas.py tests/test_ideas.py
+git commit -m "feat: add idea registry for research memory"
+```
+
+---
+
 ## Definition of done for Plan 1
 
 - `python -m pytest` passes with no failures.
-- `db/schema.sql` creates all six tables and both indexes.
+- `db/schema.sql` creates all seven tables and all three indexes.
 - `record_opportunity` refuses a call with no `kalshi_ticker` or no `edge_pts_net`, and a re-sighting increments `times_seen` without changing `entry_price` or `screen_edge_pts_net`.
 - `compute_score` returns calibration edge in percentage points, segmented by theory version and disposition, with ROI net of fees and a separate taken-only ROI.
 - `interpretation_value` returns a delta once both endorsed and rejected samples have settled.
+- `ideas.search` finds a prior idea by keyword, and `list_revisitable` returns parked ideas plus dead ones that still carry a `revisit_angle` — while excluding exhausted and promoted ones.
 - No network calls anywhere in `tools/` yet — that is Plan 2.
