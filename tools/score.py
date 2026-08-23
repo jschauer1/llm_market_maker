@@ -186,3 +186,73 @@ def interpretation_value(
     if endorsed["n"] and rejected["n"]:
         delta = endorsed["calibration_edge"] - rejected["calibration_edge"]
     return {"endorsed": endorsed, "rejected": rejected, "delta": delta}
+
+
+def bucket_rates(
+    conn: sqlite3.Connection,
+    theory_id: str,
+    theory_version: int,
+    run_mode: str = "live",
+) -> dict[str, dict]:
+    """Realized win rate per confidence bucket (spec section 7).
+
+    This is what a theory's confidence labels actually MEAN, measured rather
+    than asserted. Only settled opportunities carrying a bucket count.
+    """
+    rows = conn.execute(
+        """
+        SELECT o.confidence, o.outcome, o.entry_price, s.result
+        FROM opportunities o
+        JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker
+        WHERE o.theory_id = ? AND o.theory_version = ? AND o.run_mode = ?
+          AND o.confidence IS NOT NULL AND o.confidence != ''
+        """,
+        (theory_id, theory_version, run_mode),
+    ).fetchall()
+
+    grouped: dict[str, list] = {}
+    for row in rows:
+        grouped.setdefault(row["confidence"], []).append(row)
+
+    return {
+        bucket: {
+            "n": len(members),
+            "win_rate": sum(
+                1
+                for m in members
+                if str(m["result"]).lower() == str(m["outcome"]).lower()
+            )
+            / len(members),
+            "mean_entry_price": sum(m["entry_price"] for m in members)
+            / len(members),
+        }
+        for bucket, members in grouped.items()
+    }
+
+
+def save_bucket_rates(
+    conn: sqlite3.Connection,
+    theory_id: str,
+    theory_version: int,
+    rates: dict,
+    now: str | None = None,
+) -> int:
+    """Persist computed bucket rates. Returns rows written."""
+    stamp = now or utcnow()
+    rows = [
+        (theory_id, theory_version, bucket, data["n"], data["win_rate"],
+         data["mean_entry_price"], stamp)
+        for bucket, data in rates.items()
+    ]
+    if not rows:
+        return 0
+    conn.executemany(
+        """
+        INSERT INTO bucket_rates (theory_id, theory_version, confidence, n,
+                                  win_rate, mean_entry_price, computed_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+        """,
+        rows,
+    )
+    conn.commit()
+    return len(rows)
