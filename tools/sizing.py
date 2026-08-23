@@ -12,7 +12,7 @@ actually charged.
 
 from __future__ import annotations
 
-import math
+from decimal import Decimal, ROUND_CEILING
 
 FEE_RATE = 0.07
 FEE_CAP_DOLLARS = 0.035
@@ -35,8 +35,13 @@ def order_fee_dollars(price: float, contracts: int) -> float:
     """Total fee actually charged for an order, rounded up to the cent."""
     p = _clamp(price, 0.0, 1.0)
     per_contract = min(FEE_RATE * p * (1.0 - p), FEE_CAP_DOLLARS)
-    # Round to 8 decimals to handle floating-point precision before ceiling
-    return math.ceil(round(per_contract * contracts * 100.0, 8)) / 100.0
+    # Use Decimal for exact ceiling rounding in cents. A float epsilon approach
+    # (e.g., round(x, 8)) can under-round genuine fractional cents: for prices
+    # like 0.1726731648642293, the per-contract fee has real fractional cents
+    # that would be erased by thresholding. Decimal(str(x)) captures the float's
+    # exact short representation, preserving fractional parts for correct ceiling.
+    total = Decimal(str(per_contract)) * Decimal(contracts)
+    return float(total.quantize(Decimal("0.01"), rounding=ROUND_CEILING))
 
 
 def net_edge_pts(model_prob: float, entry_price: float) -> float:

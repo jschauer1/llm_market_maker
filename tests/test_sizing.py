@@ -78,3 +78,16 @@ def test_blend_q_caps_probability():
 def test_blend_q_works_downward():
     # model 0.30, mid 0.50 -> 0.40
     assert sizing.blend_q(0.30, 0.50) == pytest.approx(0.40)
+
+
+def test_order_fee_dollars_handles_fractional_cents_correctly():
+    # Regression: adversarial price where per-contract fee has genuine fractional
+    # cents (0.010000000009999999 cents). Must ceiling to $0.02, not $0.01.
+    # This case fails with epsilon-based approaches like round(x, 8).
+    assert sizing.order_fee_dollars(0.1726731648642293, 1) == pytest.approx(0.02)
+
+
+def test_order_fee_dollars_hundred_contracts_still_works():
+    # Regression: ensure the Decimal fix still correctly handles the original
+    # test case (100 contracts at $0.50 must be exactly $1.75, not $1.76).
+    assert sizing.order_fee_dollars(0.50, 100) == pytest.approx(1.75)
