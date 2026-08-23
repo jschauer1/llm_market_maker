@@ -213,10 +213,13 @@ def interpretation_value(
 ) -> dict:
     """Did stage-2 judgment earn its keep (spec section 7)?
 
-    `delta` is endorsed calibration edge minus rejected calibration edge, in
-    points. Positive means interpretation is adding edge; near zero means it
-    is adding nothing; negative means it is destroying value. It is None
-    until both groups have settled results to compare.
+    `delta` is endorsed calibration edge NET minus rejected calibration edge
+    NET, in points. Net, not gross, because the rest of the system compares
+    net-to-net (see the module docstring); comparing the gross figures would
+    let a difference in the two groups' mean fees masquerade as a difference
+    in interpretation quality. Positive means interpretation is adding edge;
+    near zero means it is adding nothing; negative means it is destroying
+    value. It is None until both groups have settled results to compare.
     """
     endorsed = compute_score(
         conn, theory_id, theory_version, run_mode, "endorsed"
@@ -226,7 +229,9 @@ def interpretation_value(
     )
     delta = None
     if endorsed["n"] and rejected["n"]:
-        delta = endorsed["calibration_edge"] - rejected["calibration_edge"]
+        delta = (
+            endorsed["calibration_edge_net"] - rejected["calibration_edge_net"]
+        )
     return {"endorsed": endorsed, "rejected": rejected, "delta": delta}
 
 

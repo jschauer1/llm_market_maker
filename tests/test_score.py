@@ -214,6 +214,28 @@ def test_interpretation_value_reports_the_delta(conn):
     assert value["delta"] == pytest.approx(100.0)
 
 
+def test_interpretation_value_delta_is_net_not_gross(conn):
+    # Endorsed bets sit at 0.10 (fee 0.63 pts), rejected bets at 0.50 (fee
+    # 1.75 pts). Both groups win every bet, so their GROSS calibration edges
+    # differ only because of the different implied prices (90 vs 50 -> a
+    # gross delta of 40). But the NET delta must also account for the
+    # differing fees: 89.37 - 48.25 = 41.12. If interpretation_value used
+    # the gross figures, delta would come out as 40.0 instead.
+    for ticker in ("A", "B"):
+        _bet(conn, ticker, 0.10, 6.0, disposition="endorsed")
+        score.record_settlement(conn, ticker, "yes")
+    for ticker in ("C", "D"):
+        _bet(conn, ticker, 0.50, 6.0, disposition="rejected")
+        score.record_settlement(conn, ticker, "yes")
+
+    value = score.interpretation_value(conn, "t1", 1)
+    assert value["endorsed"]["calibration_edge"] == pytest.approx(90.0)
+    assert value["endorsed"]["calibration_edge_net"] == pytest.approx(89.37)
+    assert value["rejected"]["calibration_edge"] == pytest.approx(50.0)
+    assert value["rejected"]["calibration_edge_net"] == pytest.approx(48.25)
+    assert value["delta"] == pytest.approx(41.12)
+
+
 def test_interpretation_value_delta_is_none_without_a_control(conn):
     _bet(conn, "A", 0.50, 6.0, disposition="endorsed")
     score.record_settlement(conn, "A", "yes")
