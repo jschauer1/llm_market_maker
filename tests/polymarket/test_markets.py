@@ -33,6 +33,14 @@ def test_normalize_extracts_implied_yes_probability():
     assert markets.normalize(RAW)["implied_prob_yes"] == pytest.approx(0.006)
 
 
+def test_normalize_handles_reversed_outcome_order():
+    # Not every market lists Yes first — reading the wrong index silently
+    # inverts the probability, so this must be exercised explicitly.
+    raw = dict(RAW, outcomes='["No", "Yes"]', outcomePrices='["0.994", "0.006"]')
+    m = markets.normalize(raw)
+    assert m["implied_prob_yes"] == pytest.approx(0.006)
+
+
 def test_normalize_handles_non_binary_markets():
     raw = dict(
         RAW,
