@@ -149,7 +149,19 @@ def record_opportunity(
                          outcome) DO UPDATE SET
                 last_seen_at = excluded.last_seen_at,
                 times_seen = opportunities.times_seen + 1,
-                edge_pts_net = excluded.edge_pts_net,
+                -- Once research has spoken, it supersedes the mechanical
+                -- screen: screen_edge_pts_net already preserves the original
+                -- screen claim, and there is deliberately no column for
+                -- "latest screen value" — the interpretation is the current
+                -- best estimate, which is precisely what edge_pts_net means.
+                -- So a re-sighting only refreshes edge_pts_net from the new
+                -- screen while the row is still uninterpreted; once
+                -- interpreted_at is set, the researched value stands.
+                edge_pts_net = CASE
+                    WHEN opportunities.interpreted_at IS NULL
+                        THEN excluded.edge_pts_net
+                    ELSE opportunities.edge_pts_net
+                END,
                 model_prob =
                     COALESCE(excluded.model_prob, opportunities.model_prob),
                 edge_pts_gross = COALESCE(excluded.edge_pts_gross,

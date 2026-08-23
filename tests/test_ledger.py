@@ -80,6 +80,46 @@ def test_resighting_preserves_the_frozen_screen_edge(conn):
     assert row["edge_pts_net"] == pytest.approx(9.0), "current edge refreshes"
 
 
+def test_resighting_does_not_overwrite_an_interpreted_edge(conn):
+    # Once interpret() has revised the edge, that is the current best
+    # estimate. A later re-sighting from the mechanical screen must not
+    # clobber it back down — that would silently discard stage-2 research
+    # on the very next scan.
+    opp_id, _ = _record(conn, edge_pts_net=6.0)
+    ledger.interpret(conn, opp_id, "endorsed", "stronger than the screen "
+                     "thought", revised_edge_pts_net=9.0, now=LATER)
+    _record(conn, edge_pts_net=4.0, now=LATER)
+
+    row = ledger.get_opportunity(conn, opp_id)
+    assert row["edge_pts_net"] == pytest.approx(9.0)
+    assert row["times_seen"] == 2
+    assert row["last_seen_at"] == LATER
+
+
+def test_resighting_an_uninterpreted_row_still_tracks_the_latest_screen(conn):
+    # Without any interpretation, the row has no researched value to protect,
+    # so a re-sighting should keep refreshing edge_pts_net from the screen.
+    opp_id, _ = _record(conn, edge_pts_net=6.0)
+    _record(conn, edge_pts_net=4.0, now=LATER)
+
+    row = ledger.get_opportunity(conn, opp_id)
+    assert row["edge_pts_net"] == pytest.approx(4.0)
+
+
+def test_resighting_after_disposition_only_interpretation_freezes_edge(conn):
+    # interpret() sets interpreted_at on every call, even one that only
+    # records a disposition (no revised_edge_pts_net). That still counts as
+    # "research has spoken" — the row is no longer purely mechanical — so a
+    # later re-sighting must not resume overwriting edge_pts_net.
+    opp_id, _ = _record(conn, edge_pts_net=6.0)
+    ledger.interpret(conn, opp_id, "endorsed", "confirmed as screened",
+                     now=LATER)
+    _record(conn, edge_pts_net=4.0, now=LATER)
+
+    row = ledger.get_opportunity(conn, opp_id)
+    assert row["edge_pts_net"] == pytest.approx(6.0)
+
+
 def test_different_outcome_is_a_different_opportunity(conn):
     _record(conn, outcome="yes")
     _record(conn, outcome="no")
