@@ -138,3 +138,14 @@ def test_capture_kalshi_open_persists_what_it_fetches(conn, monkeypatch):
     assert conn.execute(
         "SELECT COUNT(*) AS n FROM market_snapshots"
     ).fetchone()["n"] == 2
+
+
+def test_capture_polymarket_open_persists_what_it_fetches(conn, monkeypatch):
+    monkeypatch.setattr(
+        snapshot.poly_markets, "list_open",
+        lambda **kwargs: [POLY_MARKET, dict(POLY_MARKET, market_id="0xdef")],
+    )
+    assert snapshot.capture_polymarket_open(conn, now=TS) == 2
+    assert conn.execute(
+        "SELECT COUNT(*) AS n FROM market_snapshots"
+    ).fetchone()["n"] == 2
