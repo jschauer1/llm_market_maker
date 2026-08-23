@@ -23,14 +23,36 @@ def _nested(candle: dict, group: str, field: str) -> float | None:
     value = block.get(field)
     if value is None or value == "":
         return None
-    return float(value)
+    try:
+        return float(value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(
+            f"could not parse {group}.{field}={value!r} as a number — "
+            "Kalshi's schema may have changed"
+        ) from exc
 
 
 def _flat(candle: dict, key: str) -> float | None:
     value = candle.get(key)
     if value is None or value == "":
         return None
-    return float(value)
+    try:
+        return float(value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(
+            f"could not parse {key}={value!r} as a number — "
+            "Kalshi's schema may have changed"
+        ) from exc
+
+
+def _end_ts(raw: dict) -> int:
+    value = raw.get("end_period_ts")
+    if value is None:
+        raise ValueError(
+            "candle has no end_period_ts — schema drift? "
+            f"keys={sorted(raw)}"
+        )
+    return value
 
 
 def candlesticks(
@@ -56,7 +78,7 @@ def candlesticks(
     )
     candles = [
         {
-            "end_ts": raw.get("end_period_ts"),
+            "end_ts": _end_ts(raw),
             "open": _nested(raw, "price", "open_dollars"),
             "high": _nested(raw, "price", "high_dollars"),
             "low": _nested(raw, "price", "low_dollars"),

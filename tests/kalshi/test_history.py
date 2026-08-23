@@ -67,6 +67,25 @@ def test_candlesticks_tolerates_missing_bid_ask(monkeypatch):
     assert candle["close"] == pytest.approx(0.85)
 
 
+def test_candlesticks_raises_on_missing_end_period_ts(monkeypatch):
+    raw = {k: v for k, v in RAW_CANDLE.items() if k != "end_period_ts"}
+    monkeypatch.setattr(
+        history, "get_json", lambda *a, **k: {"candlesticks": [raw]}
+    )
+    with pytest.raises(ValueError, match="end_period_ts"):
+        history.candlesticks("S", "T", 0, 100)
+
+
+def test_candlesticks_raises_on_unparseable_close_price(monkeypatch):
+    raw = dict(RAW_CANDLE)
+    raw["price"] = dict(raw["price"], close_dollars="not-a-number")
+    monkeypatch.setattr(
+        history, "get_json", lambda *a, **k: {"candlesticks": [raw]}
+    )
+    with pytest.raises(ValueError, match="close_dollars"):
+        history.candlesticks("S", "T", 0, 100)
+
+
 def test_point_in_time_returns_the_last_candle_at_or_before(monkeypatch):
     candles = [
         dict(RAW_CANDLE, end_period_ts=100),
