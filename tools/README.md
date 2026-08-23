@@ -9,7 +9,10 @@ write the next one.
 - **One responsibility per file.** If you cannot describe a tool in one
   sentence, it is two tools.
 - **JSON or SQLite in, JSON or SQLite out.** Nothing prints prose for a human
-  to parse; `tools/cli.py` is where human-facing formatting happens.
+  to parse; `tools/cli.py` emits JSON, nothing more. Human-facing narration
+  happens in the skills under `.claude/skills/`, which call the CLI and turn
+  its output into prose. Do not build a pretty-printer into a tool — emit
+  structured data and let the skill narrate it.
 - **A module docstring that says what it does and why.** The "why" matters
   more than the "what" — the next reader needs to know what problem this
   existed to solve.
