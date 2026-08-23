@@ -222,6 +222,31 @@ def test_migrate_extra_json_round_trips_provenance(conn):
 # matches a bet's "yes"/"no" outcome in `compute_score`, silently scoring
 # every such row as a loss.
 
+# --- Fix round 2: `status` (BET vs LIMIT-no-edge) must survive the import --
+#
+# The source ledger's `status` column distinguishes rows kalshi_trader
+# actually BET from rows it declined ("LIMIT: bid <= Xc (ask Y% has no
+# edge)", stake_usd=0.00) where the recorded price is the ask the system
+# said had NO edge. Dropping status entirely made every imported row look
+# like a real recommendation. config_name is free to keep alongside it.
+
+def test_migrate_extra_json_round_trips_limit_status(conn):
+    row = _real_row("KXKAY")
+    row["status"] = "LIMIT: bid <= 95c (ask 97% has no edge)"
+    mig.migrate(conn, [row], now=TS)
+    opp = ledger.list_opportunities(conn)[0]
+    extra = json.loads(opp["extra_json"])
+    assert extra["status"] == "LIMIT: bid <= 95c (ask 97% has no edge)"
+    assert extra["config_name"] == "insider_bias"
+
+
+def test_migrate_extra_json_round_trips_bet_status(conn):
+    mig.migrate(conn, [_real_row("KXLIU")], now=TS)
+    opp = ledger.list_opportunities(conn)[0]
+    extra = json.loads(opp["extra_json"])
+    assert extra["status"] == "BET"
+
+
 def test_migrate_skips_unresolved_scored_rows(conn):
     result = mig.migrate(
         conn,

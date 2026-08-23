@@ -109,6 +109,13 @@ def parse_ledger_row(row: dict) -> dict | None:
         "q_model": _price(_first(row, "q_model")),
         "q_blend": _price(_first(row, "q_blend")),
         "stake_usd": _number(_first(row, "stake_usd")),
+        # `status` distinguishes a real recommendation ("BET") from one the
+        # predecessor declined ("LIMIT: bid <= Xc (ask Y% has no edge)",
+        # stake_usd=0.00, where the recorded price is the ask it said had NO
+        # edge). Dropping it made every imported row look like a real bet.
+        # `config_name` is free to keep alongside it.
+        "status": _first(row, "status"),
+        "config_name": _first(row, "config_name"),
     }
 
 
@@ -171,6 +178,8 @@ def migrate(
                     "kalshi_trader gpt-5 (LLM-introspected)",
                 "q_model": entry["q_model"],
                 "q_blend": entry["q_blend"],
+                "status": entry["status"],
+                "config_name": entry["config_name"],
             }),
             now=entry["timestamp"] or now,
         )
