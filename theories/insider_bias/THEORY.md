@@ -52,6 +52,29 @@ recorded to the ledger at this stage.
 The screen finds tradeable favorites. It cannot tell you whether anyone
 actually knows the answer. That is the whole thesis, and it is judgment.
 
+**Tiering: run a cheap gate before deep analysis.** This is how the predecessor
+system actually operated, and it is worth reproducing. Two model stages, not
+one:
+
+| Stage | Sees | Tier | Answers |
+|---|---|---|---|
+| Gate | every screened candidate | fast/small, minimal reasoning | "Could a specific group already know this outcome?" — binary yes/no, nothing else |
+| Analysis | gate survivors only | strong, high reasoning | The full stage-2 assessment below, ending in a confidence bucket |
+
+The gate exists so the expensive stage never reads raw board data. Batch it
+tens of candidates per call, and **deduplicate by `event_ticker` first** —
+sibling strikes on one event (different contestants in the same show, different
+dates for the same announcement) almost always share a gate verdict, so paying
+for each separately is waste.
+
+The gate answers only "worth a closer look." It never assigns a confidence
+bucket and never decides a bet — those come from the analysis stage, because
+that is the judgment the measured bucket rates are calibrating.
+
+When the screen returns only a handful of candidates (which is the normal case
+here — the 14-day horizon is very restrictive), skip the gate and go straight
+to analysis. The cascade is for volume, not ceremony.
+
 **The gating question.** Is there a specific, identifiable group of humans who
 probably already know the outcome, while the public does not? Not "could
 someone guess well" — *does a production crew, a board, a voting body, or a

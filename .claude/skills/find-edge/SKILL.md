@@ -53,8 +53,19 @@ markets; a portfolio of correlated bets is not diversified.
 ## 5. Research the top candidates (stage 2)
 
 Within your scan budget, research the highest-ranked candidates by following
-the theory's **Stage 2** section. Batch this — tens of candidates per subagent
-call, never one subagent per candidate.
+the theory's **Stage 2** section.
+
+**Cascade — don't spend deep reasoning on an unfiltered set.** If the screen
+left you more candidates than you can afford to research properly, insert a
+cheap gate first: a fast/small subagent answering one binary question ("does
+this plausibly fit the thesis?"), batched tens per call, deduplicated by event
+where sibling strikes share a verdict. Then send only the survivors to a strong
+subagent with high reasoning effort for the real analysis. If the theory's
+`THEORY.md` names its own tiering, follow that instead.
+
+Batch within every tier — tens of candidates per call, never one subagent per
+candidate. The confidence bucket always comes from the deep stage; a gate
+answers "worth a closer look," never "good bet."
 
 **Never ask a subagent for a probability.** Ask for a classification, the
 structural features the theory cares about, and a confidence bucket from the

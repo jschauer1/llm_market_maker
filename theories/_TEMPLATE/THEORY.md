@@ -53,6 +53,14 @@ resolution-language traps, context worth researching before endorsing.
 Be concrete. "Use good judgment" helps nobody; "check whether the resolution
 source publishes on a schedule that can miss the close" is a real instruction.
 
+**Say which model tier does what.** If stage 1 leaves more candidates than deep
+reasoning can afford, split stage 2 into a cheap gate and a deep analysis, and
+write down the split — how many candidates each tier sees, and the single
+question the gate answers. A gate decides "worth a closer look"; only the deep
+stage assigns a confidence bucket. A theory that needs no gate should say so;
+one whose decision path is fully deterministic can leave this section empty and
+is stronger for it (it backtests at tier A).
+
 **Ask for classifications and a confidence bucket, never a probability.** An
 LLM-introspected number is mostly an anchor on whatever price was in context.
 State here whether judgment runs blind to price — it should, wherever the

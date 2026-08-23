@@ -45,6 +45,15 @@ Record every replayed decision with `run_mode="backtest"` and a real `run_id`
 (a uuid, not `"live"`), so dedup is per-run and results stay separable from
 live. Record rejections as well as endorsements.
 
+**Backtests are the highest-volume judgment in this system** — a replay can
+span hundreds of historical markets, far more than a single live scan. Use the
+same cascade the theory uses live (cheap gate, then deep analysis on
+survivors), batched tens per call, and apply the theory's own tiering if its
+`THEORY.md` names one. Replaying a year of markets through a strong model
+one-at-a-time is the most expensive possible way to get this number, and the
+gate stage is deterministic enough that using a cheap tier there costs you
+almost nothing in fidelity.
+
 Record a `backtest_runs` row with the tier, `uses_llm_judgment`, and the
 `model_cutoff` you used:
 

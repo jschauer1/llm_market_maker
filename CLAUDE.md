@@ -176,13 +176,33 @@ for and invites tuning until the history looks good.
 
 Web search stays off in every backtest judgment subagent.
 
-## Subagents
+## Subagents — cheap gates, expensive analysis
 
-Spawn subagents for judgment: does this market fit the thesis, which
-candidates are best, are these two markets really the same. **Batch them** —
-tens of candidates per call, never one subagent per candidate. This runs on
-the user's Claude subscription; there are no API keys anywhere in this repo,
-and none should be added.
+Spawn subagents for judgment: does this market fit the thesis, which candidates
+are best, are these two markets really the same.
+
+**Which tier does which judgment is your call, and it matters.** Don't send an
+unfiltered board to a strong model, and don't let a cheap one make the final
+pick. Narrow in stages:
+
+| Stage | Volume | Tier |
+|---|---|---|
+| Mechanical screen | thousands | no model — code |
+| Cheap gate: "plausibly fits the thesis?" | hundreds | fast/small, minimal reasoning |
+| Deep analysis: "is it true here, which bucket?" | tens | strong, high reasoning |
+| Final selection and ranking | a handful | you, this session |
+
+That cascade is what `insider_bias` did historically — a small fast model gated
+every screened candidate to a yes/no, deduplicated so sibling strikes on one
+event shared a verdict, and only survivors reached the expensive model. The
+cheap stage exists so the expensive one never sees raw data.
+
+**Batch within a tier** — tens of candidates per call, never one subagent per
+candidate. Confidence buckets always come from the deep stage; a gate answers
+"worth a closer look," never "good bet."
+
+This runs on the user's Claude subscription; there are no API keys anywhere in
+this repo, and none should be added.
 
 ## Data conventions
 

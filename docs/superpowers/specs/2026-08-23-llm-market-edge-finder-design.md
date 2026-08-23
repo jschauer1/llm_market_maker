@@ -70,9 +70,8 @@ The orchestrating Claude Code session is the judgment engine. It:
 - Spawns its own **subagents** (via the Agent tool) for anything requiring
   judgment: does this market fit the thesis, which candidates are best, are
   these two markets on different platforms really the same market, how would
-  this theory have judged a historical market. Judgment that must scale across
-  many candidates should be **batched** — tens of candidates per subagent call,
-  not one subagent per candidate.
+  this theory have judged a historical market. **Which model tier makes a
+  given judgment is itself a decision** — see "Tiering judgment" below.
 - Follows **Skills** (markdown procedures in `.claude/skills/`) encoding the
   standard workflows: find the current best edge, propose a theory, backtest a
   theory, score against settlements, compare theories.
@@ -428,6 +427,50 @@ actually good at and derives the numbers from measured outcomes.
 - A point probability (`q = 0.87`).
 - A numeric edge estimate in points.
 - Anything needing fine-grained numeric discrimination.
+
+### Tiering judgment — cheap gates, expensive analysis
+
+Nothing says the orchestrating session must make every judgment itself, or that
+every judgment deserves the same firepower. **Choosing which model tier handles
+a given decision is part of designing a theory**, and getting it wrong is
+expensive in both directions: deep reasoning over an unfiltered board wastes
+enormous effort on markets a keyword check could have dismissed, while a cheap
+model making the final call throws away the analysis that actually finds edge.
+
+The pattern that works is a **cascade**, narrowing at each step:
+
+| Stage | Volume | Tier | Question it answers |
+|---|---|---|---|
+| Mechanical screen | thousands | no model at all | Is this even tradeable? (price band, spread, volume, horizon) |
+| **Cheap gate** | hundreds | fast/small subagent, minimal reasoning | Does this market *plausibly* fit the thesis? |
+| **Deep analysis** | tens | strong subagent, high reasoning | Is the thesis *actually* true here, and what confidence bucket? |
+| Final selection | a handful | the orchestrating session | Which of these do I put in front of the user, and how do I rank them? |
+
+`insider_bias` is the worked example, and it is not hypothetical — the
+predecessor system ran exactly this. Its config used a small fast model as a
+binary yes/no gate over every candidate that survived the mechanical screen,
+deduplicated by event so sibling markets shared one verdict, then handed only
+the survivors to a high-reasoning model for the actual pick. The cheap stage
+existed so the expensive stage never looked at raw data.
+
+Two rules follow:
+
+- **Never send an unfiltered board to a strong model.** If a judgment is being
+  made hundreds of times, it belongs in a cheap tier — or in code, if it can be
+  expressed as a threshold at all.
+- **Never let the cheap tier make the final call.** A gate answers "is this
+  worth a closer look," never "is this a good bet." Confidence buckets
+  (above) come from the deep stage, because that is the judgment the measured
+  bucket rates are calibrating.
+
+**Batch within a tier.** At the cheap-gate stage especially, send tens of
+candidates per subagent call rather than one call per candidate — the per-call
+overhead dominates otherwise. Deduplicate first where the theory allows it
+(sibling strikes on one event usually share a verdict).
+
+A theory whose decision path is entirely deterministic uses none of this, and
+is stronger for it (section 12: it backtests at tier A). A theory that needs
+judgment should say in its `THEORY.md` which tier does what, and why.
 
 **Judge blind to price.** Wherever a theory allows it, the judgment step must
 not see the market price, the mid, or any implied probability. Get the
