@@ -87,6 +87,16 @@ def test_score_pair_treats_unparseable_date_same_as_absent_date():
     assert unparseable == pytest.approx(absent)
 
 
+def test_score_pair_tolerates_a_non_string_date_value():
+    # An int epoch timestamp (rather than an ISO string) must not raise —
+    # it should be treated the same as an unparseable/absent date.
+    score = match_market.score_pair(
+        "Anthropic IPO", "Anthropic IPO",
+        source_end=1780000000, candidate_end="2026-11-03T00:00:00Z",
+    )
+    assert score == pytest.approx(1.0)
+
+
 def test_score_pair_scores_identical_same_day_dates_at_one():
     score = match_market.score_pair(
         "Anthropic IPO", "Anthropic IPO",

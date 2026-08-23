@@ -46,7 +46,10 @@ def _parse(stamp: str | None) -> datetime | None:
         return None
     try:
         return datetime.fromisoformat(stamp.replace("Z", "+00:00"))
-    except ValueError:
+    except (TypeError, ValueError, AttributeError):
+        # TypeError/ValueError: malformed timestamp text. AttributeError:
+        # stamp wasn't a string at all (e.g. an int epoch), so .replace
+        # doesn't exist. All three mean "treat this like a missing date."
         return None
 
 
@@ -55,7 +58,12 @@ def _date_similarity(source_end: str | None, candidate_end: str | None) -> float
     left, right = _parse(source_end), _parse(candidate_end)
     if left is None or right is None:
         return 0.5  # unknown: neither reward nor punish
-    days = abs((left - right).days)
+    try:
+        days = abs((left - right).days)
+    except TypeError:
+        # One parsed naive, the other timezone-aware: can't subtract.
+        # Not confident enough to compare, so treat as unavailable.
+        return 0.5
     return max(0.0, 1.0 - days / 365.0)
 
 
