@@ -95,10 +95,12 @@ system; `record_opportunity` enforces this by requiring a Kalshi ticker.
 
 ```
 LLM_market_identifier/
-  CLAUDE.md                        Onboarding briefing (see section 14)
+  CLAUDE.md                        Onboarding briefing (see section 15)
+  RESEARCH_LOG.md                  Append-only session log — continuity across "go" runs
   .claude/
     skills/
-      find-edge/SKILL.md           Main entrypoint: scan, research, rank, report
+      go/SKILL.md                  Autonomous research session (section 13)
+      find-edge/SKILL.md           Scan, research, rank, report
       propose-theory/SKILL.md      Scaffold + register a new theory
       backtest-theory/SKILL.md     Tiered retroactive testing
       score-theories/SKILL.md      Settle outcomes, recompute scores
@@ -427,6 +429,32 @@ end-to-end and write a new one in the same shape — "fetch weather data," "fetc
 congressional trading disclosures" — without first learning an abstraction
 layer.
 
+**New code starts local; promotion is earned, not automatic.** When a theory
+needs something, the default home for it is that theory's own folder. Most
+theory code is specific to one hypothesis and belongs nowhere else — generalizing
+it prematurely produces a shared layer full of near-duplicates and
+single-caller abstractions, which is worse than a little duplication.
+
+A theory-local script becomes a candidate for promotion to `tools/` when it is
+actually being used by more than one theory, or when Claude judges that a new
+theory would obviously reach for it. Promotion is a **researcher judgment call**,
+not a rule that fires automatically on a second use — sometimes two theories
+genuinely want slightly different things and should keep their own versions.
+When promoting:
+
+- Move the script to `tools/`, generalize only as far as the real callers
+  require, and give it the `tools/README.md` treatment (docstring, `--help`,
+  JSON/SQLite in and out).
+- Update the theories that used the local copy to call the shared one, and
+  delete the local copies so there is one implementation.
+- Note the promotion in each affected theory's `THEORY.md` changelog. If the
+  behavior changed at all in the process, that is a decision-procedure change
+  and bumps the theory version (section 10).
+
+This mirrors the stage 2 → stage 1 migration in section 7: a thing proves itself
+in a narrow context first, then graduates to the shared layer once there is
+evidence it belongs there.
+
 All Kalshi and Polymarket endpoints used here were verified live during design
 (2026-08-23) and require **no authentication**. Field shapes are documented in
 the implementation plan; note that Kalshi's current schema returns prices as
@@ -595,8 +623,78 @@ measurement, and can rescue individual obscure markets from a tier C run.
 Web search must be disabled in any backtest judgment subagent regardless of
 tier, since live search trivially reveals historical outcomes.
 
-## 13. Skills
+## 13. Operating modes
 
+Two ways the user drives this repo. Both must work without ceremony.
+
+### "Go" — an autonomous research session
+
+The user opens the repo and says `go`. Claude then works the research loop on
+its own initiative: sees what has happened since last time, judges where the
+marginal value is right now, does that work, and reports back. The goal is that
+this is genuinely useful with zero further direction — but *structured* enough
+that Claude doesn't flounder or default to the same action every session.
+
+**Always start by orienting.** Cheap and mechanical, no judgment required:
+active theories and their versions, opportunities still open, anything that has
+settled since the last session, current scores and lifecycle flags, and the tail
+of `RESEARCH_LOG.md` for what the previous session was in the middle of. This
+takes one pass over the database and costs almost nothing.
+
+**Then choose where the value is.** This is a judgment call, not a checklist,
+and it is the part that makes a research session worth running. The standing
+menu of work:
+
+- Settle resolved opportunities and refresh scores.
+- Hunt for live edge with the active theories, and research the top candidates
+  (`find-edge`).
+- Backtest a theory that is running on claims rather than evidence.
+- Propose a new theory — from an observed market pattern, from a gap in what the
+  current theories cover, or from a recurring `user_reason` divergence.
+- Tighten an existing theory: migrate a stage 2 heuristic that keeps proving
+  itself into stage 1 code, or promote a theory-local tool that multiple
+  theories now use (section 9).
+- Pause or retire a theory the evidence has killed.
+
+**Prefer work that changes a decision.** If nothing has settled since yesterday,
+re-scoring is busywork — go hunt instead. If every active theory is unproven,
+another scan adds unproven suggestions while a backtest adds evidence. If the
+same theory has been scanned three sessions running with no settlements yet,
+the marginal value is in a *new* theory, not a fourth scan of the old one. Say
+which you picked and why in one line, so the user can redirect cheaply.
+
+**Always leave a trail.** A session ends by appending to `RESEARCH_LOG.md`: what
+was done, what was learned, what is worth picking up next. Without this, every
+`go` starts cold and the system has no memory across sessions — the log is what
+makes a year of autonomous research accumulate into something rather than
+repeating itself. Theory-specific findings additionally go in that theory's
+`THEORY.md` Learnings section; the log is for cross-cutting observations and
+continuity.
+
+**Report for a human, not a machine.** End with what the user actually needs:
+any bets worth placing right now, anything that changed about a theory's
+standing, and anything that needs their judgment. Not a transcript of every tool
+call.
+
+A session is free to be short. "Nothing has settled, no theory needs
+backtesting, here are two candidates I researched and rejected and why" is a
+perfectly good outcome, and better than manufacturing work.
+
+### Asking questions
+
+The user can also just open the repo and ask: "how is `insider_bias` holding
+up?", "what's the best bet right now?", "why did we retire that theory?", "does
+anything on Polymarket look mispriced against Kalshi?". These get answered
+directly using the tools and the database — no research session, no ceremony,
+no running the full loop because someone asked a question. `CLAUDE.md` orients
+Claude well enough that ordinary questions route to the right tool without a
+skill invocation.
+
+## 14. Skills
+
+- **`go`** — the autonomous research session described above: orient, choose,
+  act, log, report. Deliberately thin on prescription — it establishes the
+  opening move and the standing menu, and leaves the choice to Claude.
 - **`find-edge`** — the headline entrypoint. Selects theories by scope (default:
   `active` only, prioritized by credibility); runs each theory's stage 1 screen
   within a **scan budget** (a cap on subagent batches per invocation, so the run
@@ -625,7 +723,7 @@ tier, since live search trivially reveals historical outcomes.
   breakdown** from section 7 (endorsed vs. rejected vs. all) and any recurring
   patterns in `user_reason` divergences that might deserve to become theories.
 
-## 14. CLAUDE.md
+## 15. CLAUDE.md
 
 A substantial onboarding briefing for whichever Claude session opens this repo,
 since "what can I actually do here" must be explicit rather than inferred:
@@ -640,22 +738,30 @@ since "what can I actually do here" must be explicit rather than inferred:
    principle: screen output is a candidate set, never a finished recommendation;
    research before endorsing; record rejections so the value of your own
    judgment stays measurable.
-5. **Toolkit map** — one paragraph per tool: what it does, when to reach for it.
-6. **The opportunity contract** — section 6 in brief: net edge at executable
+5. **How the user drives this** — section 13: `go` starts an autonomous
+   research session; plain questions get answered directly without running the
+   loop. Both are normal.
+6. **Toolkit map** — one paragraph per tool: what it does, when to reach for it.
+   Plus the promotion path: new code starts in the theory that needs it and
+   moves to `tools/` only once it has more than one real caller (section 9).
+7. **The opportunity contract** — section 6 in brief: net edge at executable
    prices, dedup by upsert, executability filtering, suggested ≠ taken.
-7. **How ranking works** — section 8, so Claude understands why a confident new
+8. **How ranking works** — section 8, so Claude understands why a confident new
    theory doesn't automatically top the list, and doesn't try to game it.
-8. **Theory lifecycle and versioning** — including bumping version on any
+9. **Theory lifecycle and versioning** — including bumping version on any
    procedure change, and migrating proven stage 2 heuristics into stage 1.
-9. **Backtest tiers** — what's trustworthy, what's indicative, why web search is
-   off during replay.
-10. **Subagent usage** — when to spawn, how to batch, and why (no API keys; this
+10. **Backtest tiers** — what's trustworthy, what's indicative, why web search is
+    off during replay.
+11. **Subagent usage** — when to spawn, how to batch, and why (no API keys; this
     runs on the user's subscription).
-11. **Data conventions** — SQLite is the source of truth for structured facts;
-    `THEORY.md` is the source of truth for a hypothesis and its procedure.
-12. **Getting started** — `find-edge` is the default entrypoint.
+12. **Data conventions** — SQLite is the source of truth for structured facts;
+    `THEORY.md` is the source of truth for a hypothesis and its procedure;
+    `RESEARCH_LOG.md` carries continuity between sessions — read its tail when
+    starting, append to it when finishing.
+13. **Getting started** — say `go` for a research session, or just ask a
+    question.
 
-## 15. Migration from kalshi_trader
+## 16. Migration from kalshi_trader
 
 - **Reusable code ported into `tools/`**: Kalshi market fetching, deterministic
   filter patterns, sizing/fee math, and the settlement + calibration-edge
@@ -684,7 +790,7 @@ since "what can I actually do here" must be explicit rather than inferred:
   `FORECAST_GAP_IMPLEMENTATION_PLAN.md` are **not** ported — `insider_bias`
   alone proves the harness end to end. Anything further is `propose-theory` work.
 
-## 16. Testing approach
+## 17. Testing approach
 
 - Unit tests (pytest) for deterministic pieces: `sizing.py` (fee/Kelly math),
   `rank.py` (credibility formula, including the disproven-theory and n=0 cases
@@ -698,7 +804,7 @@ since "what can I actually do here" must be explicit rather than inferred:
 - Skills are LLM-followed procedures, not code — verified by an end-to-end dry
   run of `find-edge` against the ported `insider_bias` theory.
 
-## 17. Out of scope for this build
+## 18. Out of scope for this build
 
 - Any theory beyond `insider_bias` — deliberately left as `propose-theory` work.
 - A scheduler for `snapshot.py`. The tool exists and `find-edge` writes
@@ -707,7 +813,7 @@ since "what can I actually do here" must be explicit rather than inferred:
 - A rendered dashboard. Chat-based reporting is the interface for now.
 - Real-money order execution.
 
-## 18. Open risks
+## 19. Open risks
 
 - **Interpretation value is unmeasurable early.** The section 7 endorsed-vs-
   rejected comparison needs a meaningful number of *both* to have settled before
