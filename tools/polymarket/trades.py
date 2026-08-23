@@ -67,6 +67,11 @@ def recent(
             out.append(normalize_trade(raw))
         except ValueError:
             continue
+    if rows and not out:
+        raise ValueError(
+            f"received {len(rows)} row(s) but none parsed — "
+            "Polymarket's schema may have changed"
+        )
     return out
 
 

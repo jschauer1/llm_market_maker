@@ -97,6 +97,11 @@ def _fetch(params: dict) -> list[dict]:
             # One malformed row should not sink the page. The shape guard
             # still fires for anything that reaches a caller.
             continue
+    if rows and not out:
+        raise ValueError(
+            f"received {len(rows)} row(s) but none parsed — "
+            "Polymarket's schema may have changed"
+        )
     return out
 
 

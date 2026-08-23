@@ -62,6 +62,26 @@ def test_recent_passes_the_size_filter_through(monkeypatch):
     assert captured["takerOnly"] == "true"
 
 
+def test_recent_skips_unparseable_trades(monkeypatch):
+    # One bad row must not sink the whole page.
+    monkeypatch.setattr(
+        trades, "get_json",
+        lambda *a, **k: [RAW, {"size": 1, "price": 0.5}],
+    )
+    assert len(trades.recent()) == 1
+
+
+def test_recent_raises_when_every_row_is_unparseable(monkeypatch):
+    # A page that is entirely malformed is schema drift, not "no trades".
+    monkeypatch.setattr(
+        trades, "get_json",
+        lambda *a, **k: [{"size": 1, "price": 0.5},
+                         {"size": 2, "price": 0.4}],
+    )
+    with pytest.raises(ValueError, match="none parsed"):
+        trades.recent()
+
+
 def test_recent_omits_the_filter_when_not_requested(monkeypatch):
     captured = {}
 

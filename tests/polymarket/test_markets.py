@@ -115,6 +115,17 @@ def test_list_skips_unparseable_markets(monkeypatch):
     assert len(markets.list_open()) == 1
 
 
+def test_list_raises_when_every_row_is_unparseable(monkeypatch):
+    # A page that is entirely malformed is schema drift, not "no markets".
+    monkeypatch.setattr(
+        markets, "get_json",
+        lambda *a, **k: [{"question": "no condition id"},
+                         {"question": "also no condition id"}],
+    )
+    with pytest.raises(ValueError, match="none parsed"):
+        markets.list_open()
+
+
 @pytest.mark.network
 def test_live_open_markets_have_expected_shape():
     result = markets.list_open(limit=10)
