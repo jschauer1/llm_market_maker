@@ -420,12 +420,19 @@ Whether a theory needs this stage at all is a property of its thesis, not a
 requirement of the harness. A theory that computes its edge mechanically
 records `edge_basis="model"`, skips stage 2 entirely, and is done.
 
-**Pipeline output is a candidate set, not a recommendation.** `find-edge` must
-present the two layers distinctly — what the screen surfaced, and what research
-concluded about it — and must never present unresearched screen output as a
-recommended bet. Because stage 2 costs real time, it is applied within the scan
-budget to the highest-ranked candidates, and the count of screened-but-not-yet-
-researched candidates is always reported so the unexamined remainder is visible.
+**For a theory that has a stage 2, pipeline output is a candidate set, not a
+recommendation.** `find-edge` must present the two layers distinctly — what the
+screen surfaced, and what research concluded about it — and must never present
+its unresearched screen output as a recommended bet. Because stage 2 costs real
+time, it is applied within the scan budget to the highest-ranked candidates, and
+the count of screened-but-not-yet-researched candidates is always reported so
+the unexamined remainder is visible.
+
+A mechanical theory has no such gap: its candidates arrive with an edge already
+computed, so they are recommendable directly. They still carry
+`disposition='screened'` — nothing interpreted them — which here means *needed
+no interpretation*, not *not yet assessed*. `edge_basis`, never `disposition`
+alone, is what distinguishes the two cases.
 
 ### What to ask a subagent for — and what not to
 
@@ -968,14 +975,18 @@ skill invocation.
   within a **scan budget** (a cap on subagent batches per invocation, so the run
   stays interactive as the theory count grows); writes snapshots as a side
   effect; filters unexecutable candidates and reports how many were dropped;
-  collapses cross-theory duplicates; then applies **stage 2 research** to the
-  top-ranked candidates and records each as endorsed or rejected with reasoning.
-  Reports in two clearly separated layers: **endorsed** bets (ticker, side,
-  entry price, claimed edge, ranked edge, `n`, realization, theory, suggested
-  size, interpretation) and the **unresearched remainder** (count plus top few),
-  so the user can see both what was recommended and what went unexamined.
-  Rejected candidates and their reasons are available on request. Accepts a
-  scope override to run all theories or named ones.
+  collapses cross-theory duplicates; then, **for theories that have a stage 2**,
+  applies research to the top-ranked candidates and records each as endorsed or
+  rejected with reasoning. A theory that computes its edge mechanically
+  (`edge_basis='model'`) has no stage 2 and skips straight to ranking.
+  Reports **recommended bets** in one ranked table — both researched picks
+  (`disposition='endorsed'`) and mechanical picks (`edge_basis='model'`, still
+  `disposition='screened'` because nothing needed to interpret them), told
+  apart by `edge_basis` rather than disposition — followed by the **unassessed
+  remainder** (count plus top few) for judgment theories whose candidates the
+  scan budget did not reach. Rejected candidates and their reasons are
+  available on request. Accepts a scope override to run all theories or named
+  ones.
 - **`propose-theory`** — **starts by searching the idea registry** (section 11):
   if this hypothesis has been tried before, the prior `outcome` and
   `revisit_angle` decide whether to proceed, proceed differently, or stop. Then

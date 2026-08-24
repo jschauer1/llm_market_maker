@@ -82,6 +82,8 @@ between what was endorsed and what was actually bet — the raw material
 
 ## Rules
 
-- Never present unresearched screen output as a recommended bet.
+- Never present unresearched screen output as a recommended bet — *unless* the
+  theory computed the edge mechanically (`edge_basis='model'`), in which case
+  there was nothing to research and it is recommendable as-is.
 - Never retire a theory without recording why it failed against its idea.
 - Search the idea registry before proposing anything new.
