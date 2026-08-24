@@ -15,21 +15,37 @@ judgment cannot carry the thesis, near-zero measured edge is the expected
 result." This measures the screen in isolation from that question.
 
 Three things make a naive "replay the whole settled history" infeasible and
-shape everything below:
+shape everything below -- the first was discovered the expensive way, by
+watching a naive walk run for 47 minutes without finishing:
 
-1. Kalshi's settled-market listing has no series_ticker (only /events does),
-   so the candlestick endpoint's `{series_ticker}/markets/{ticker}` path
-   needs one extra lookup per event, cached by event_ticker
-   (`series_ticker_for`).
-2. A recent close-time window is enormous -- measured 2026-08-24, the last
-   90 days alone is several million settled market rows before any
-   filtering. `settled_survivors` applies the screen's cheap, SAFE
-   pre-filters (ticker family, and a volume floor) on the settlement
-   snapshot itself, with no extra API calls: `is_excluded` doesn't change
-   over a market's life, and cumulative volume only grows, so final
-   volume < MIN_VOLUME proves the live screen could never have fired either.
-   Price band and spread cannot be checked this way and are evaluated later,
-   per day, against real point-in-time candles.
+1. **A close-time window alone does not bound the fetch.** Measured
+   2026-08-24, one series -- `KXMVECROSSCATEGORY`, a combinatorial "shard"
+   product -- alone settles 400,000+ markets *per day*, so even a 30-day
+   `min_close_ts`/`max_close_ts` window on the unscoped `/markets` listing is
+   tens of millions of rows before any filtering, dwarfing every other
+   series on the platform combined. `candidate_series` sidesteps this
+   entirely by querying Kalshi's `/series` listing (one cheap call, ~13k
+   rows) and filtering server-side-relevant series *before* ever touching
+   `/markets` -- then `iter_settled_survivors` scopes each settled-market
+   walk to one series via `series_ticker`, which Kalshi's API honours
+   directly and which keeps every individual walk small. `KXMVECROSSCATEGORY`
+   itself never gets queried: its category isn't in `NO_CATEGORIES` by name,
+   but `screen.is_excluded` already rejects its `KXMVE` prefix, and
+   `candidate_series` applies that same check before issuing any settled-
+   market request for a series, not just after receiving results.
+2. **The category pre-filter is a fetch-scoping decision, not part of the
+   screen being tested.** `screen.screen()` itself is unchanged and still
+   the only thing that decides whether a candidate clears stage 1.
+   `NO_CATEGORIES` only decides which series are worth querying at all, using
+   Kalshi's own series `category` field as a coarser, more complete analogue
+   of `gate.py`'s regex families (Sports, Crypto, Climate and Weather,
+   Commodities, Economics, Elections, Financials -- all series
+   `screen.is_excluded` and `gate.py`'s own NO_RULES already treat as "no"
+   once they reach judgment). This means the backtest measures the screen
+   over a category-narrowed slice of the platform, not literally every
+   settled market ever -- report that scope alongside any result from this
+   module. A series with no `category` or a stale `last_updated_ts` is kept
+   rather than dropped, erring toward inclusion the same way `gate.py` does.
 3. Kalshi's candlestick `volume` field is that DAY's volume, not the
    cumulative market-to-date total the live screen actually reads
    (`market["volume"]` from `list_open`/`quotes`). `replay_market`
@@ -45,6 +61,7 @@ to backtest" section specifies.
 from __future__ import annotations
 
 from datetime import datetime, timezone
+from typing import Iterator
 
 from tools.http import get_json
 from tools.kalshi import history, markets
@@ -57,7 +74,19 @@ from theories.insider_bias import screen
 #: point 3.
 VOLUME_WARMUP_DAYS = 45
 
-_series_cache: dict[str, str | None] = {}
+#: Series categories Kalshi itself labels as families the thesis cannot
+#: apply to -- see module docstring point 2. This is a fetch-scoping
+#: decision, applied before any settled-market request, not a change to
+#: `screen.screen()`.
+NO_CATEGORIES = frozenset({
+    "Sports", "Crypto", "Climate and Weather", "Commodities", "Economics",
+    "Elections", "Financials",
+})
+
+#: A series untouched this long is treated as unlikely to have anything
+#: settling inside a recent backtest window -- purely a call-count
+#: optimization, not a claim about the thesis.
+DEFAULT_RECENCY_DAYS = 60
 
 
 def _parse_ts(iso: str | None) -> int | None:
@@ -91,39 +120,84 @@ def is_candidate(raw: dict) -> bool:
     return _raw_volume(raw) >= screen.MIN_VOLUME
 
 
+def _is_recent(series: dict, cutoff_ts: float) -> bool:
+    ts = _parse_ts(series.get("last_updated_ts"))
+    return ts is None or ts >= cutoff_ts
+
+
+def candidate_series(
+    now: datetime | None = None,
+    recency_days: float = DEFAULT_RECENCY_DAYS,
+) -> list[dict]:
+    """Series worth querying for settled markets at all -- see module
+    docstring point 1. One GET /series call, then three cheap, safe-to-err-
+    toward-inclusion filters: not `screen.is_excluded` by ticker prefix, not
+    in `NO_CATEGORIES`, and touched within `recency_days`.
+    """
+    now = now or datetime.now(timezone.utc)
+    cutoff_ts = now.timestamp() - recency_days * 86400
+    payload = get_json(f"{markets.BASE_URL}/series", params={"limit": 1000})
+    all_series = payload.get("series", [])
+    return [
+        s for s in all_series
+        if not screen.is_excluded(s.get("ticker") or "")
+        and s.get("category") not in NO_CATEGORIES
+        and _is_recent(s, cutoff_ts)
+    ]
+
+
+def iter_settled_survivors(
+    series_list: list[dict],
+    min_close_ts: int,
+    max_close_ts: int,
+) -> Iterator[tuple[str, list[dict]]]:
+    """Per-series settled-market survivors, yielded as each series finishes.
+
+    A generator, not a single big return, so a long-running driver can
+    checkpoint to disk after every series instead of holding everything in
+    memory until the very end and losing it all to an interruption -- see
+    module docstring point 1 on why an unscoped walk is not an option here.
+    Each survivor dict is tagged with `series_ticker` (not present on the
+    raw settled-market payload) since the caller already knows it and the
+    candlestick replay needs it.
+    """
+    for series in series_list:
+        ticker = series.get("ticker")
+        if not ticker:
+            continue
+        survivors = markets.list_settled(
+            limit=1000,
+            min_close_ts=min_close_ts,
+            max_close_ts=max_close_ts,
+            series_ticker=ticker,
+            raw_filter=is_candidate,
+        )
+        for s in survivors:
+            s["series_ticker"] = ticker
+        yield ticker, survivors
+
+
 def settled_survivors(
     min_close_ts: int,
     max_close_ts: int,
-    on_page=None,
+    series_list: list[dict] | None = None,
 ) -> list[dict]:
-    """Settled markets in the window that could possibly clear the screen.
+    """Convenience wrapper: every survivor across `series_list`, collected.
 
-    Everything returned still needs the real per-day replay in
-    `replay_market`; `is_candidate` only prunes what could not have passed
-    under any circumstances.
+    Prefer `iter_settled_survivors` directly for a long run that should
+    checkpoint as it goes; this is for tests and short runs where holding
+    the whole result in memory is fine. `series_list` defaults to
+    `candidate_series()` -- pass a fixed list in a test to avoid the network
+    call that entails.
     """
-    return markets.list_settled(
-        limit=1000,
-        min_close_ts=min_close_ts,
-        max_close_ts=max_close_ts,
-        raw_filter=is_candidate,
-        on_page=on_page,
-    )
-
-
-def series_ticker_for(event_ticker: str) -> str | None:
-    """series_ticker for an event, via one cached GET /events/{ticker}.
-
-    Sibling markets on the same event share this, so the cache turns what
-    could be one lookup per candidate into one per event.
-    """
-    if event_ticker in _series_cache:
-        return _series_cache[event_ticker]
-    payload = get_json(f"{markets.BASE_URL}/events/{event_ticker}")
-    event = payload.get("event", payload) if isinstance(payload, dict) else {}
-    series = event.get("series_ticker") if isinstance(event, dict) else None
-    _series_cache[event_ticker] = series
-    return series
+    if series_list is None:
+        series_list = candidate_series()
+    out: list[dict] = []
+    for _ticker, survivors in iter_settled_survivors(
+        series_list, min_close_ts, max_close_ts
+    ):
+        out.extend(survivors)
+    return out
 
 
 def replay_market(settled: dict, series_ticker: str) -> dict | None:

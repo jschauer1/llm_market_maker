@@ -284,3 +284,72 @@ matters.
 `backtest_runs.uses_llm_judgment` and `model_cutoff` now overlap with
 `judgment_runs`; a later session should decide whether backtests should
 simply join the new table rather than keep their own copy.
+
+---
+
+## 2026-08-24 — First tier A backtest of the stage-1 screen, after a false
+## start that took 47 minutes to fail
+
+**Did:** Orient found nothing new to settle (all 44 v2 rows from yesterday
+still open) and no theory besides `insider_bias` on the board, so I picked
+THEORY.md's own top-priority item: a tier A backtest of the stage-1 screen
+alone, which the theory had never had. Built the candle→market adapter
+(`theories/insider_bias/backtest.py`, `replay_market`), then ran it.
+
+**Learned, the expensive way first:** A naive `list_settled(min_close_ts=...,
+max_close_ts=...)` walk is not usable for a recent window. One series,
+`KXMVECROSSCATEGORY` (a combinatorial "shard" product), settles **400,000+
+markets per day** on its own — confirmed by an exhaustive count that hadn't
+finished at 400 pages for a single day. A 30-day walk ran for 47 minutes
+without completing before I killed it, on the user's instruction to
+investigate a better approach rather than just wait longer or shrink the
+window. Two compounding mistakes made this worse than it needed to be even
+before the volume problem: the fetch phase had no incremental checkpoint, so
+47 minutes of API calls were unrecoverable the moment the process was
+killed; and I didn't check the true scale before committing to a window size
+— a few density-sampling probe calls would have caught the problem before
+launching an hour-long run instead of after.
+
+**The fix:** Kalshi's `/series` listing (one call, ~13k series) exposes a
+`category` field, and `/markets?status=settled` honours an (undocumented)
+`series_ticker` filter. `candidate_series()` narrows 13,437 series to ~2,200
+by dropping `screen.is_excluded` ticker prefixes, `NO_CATEGORIES`
+(Sports/Crypto/Weather/Commodities/Economics/Elections/Financials — the same
+families `screen.is_excluded`/`gate.py` already reject downstream), and
+series untouched in 60+ days — all *before* issuing a single settled-market
+request. `iter_settled_survivors` then walks one series at a time, which
+Kalshi's API returns dramatically smaller pages for. Result: a 90-day window
+that the old approach hadn't finished in 47 minutes ran in **~9 minutes** for
+the fetch phase, ~2.5 more for a 600-candidate candlestick replay. Both
+`tools/kalshi/markets.py::list_settled` (new `series_ticker`/`raw_filter`/
+`on_page` params) and the driver script now checkpoint incrementally —
+survivors every 100 series, replay results every 25 candidates — so this
+class of mistake cannot repeat.
+
+**Result:** `run_id=backtest-2026-08-24-stage1-90d`, tier A, no LLM in the
+decision path. 18,430 candidates survived the cheap pre-filter; a systematic
+sample of 600 replayed against real point-in-time candles; 200 actually
+cleared the screen at some point in their last 14 days. Overall:
+`win_rate=85.0%`, `calibration_edge_net=+1.38pts`. That number is a
+composite of a strongly negative slice (n=47, the "aggregate of many
+independent people" family `gate.py` already excludes: `-11.12pts` — direct
+mechanical confirmation that exclusion is correct) and two positive slices
+(n=116 "MENTION"-suffix series `gate.py`'s regex currently misses:
+`+5.48pts`; n=37 everything else, the cleanest thesis-eligible slice,
+including `KXBIGBROTHERELIMINATION` — the same series as a live v2 endorsed
+opportunity: `+4.40pts`). Full breakdown in `THEORY.md` Learnings,
+2026-08-24. Moved the theory `under_review` → `testing`: the specific v1
+diagnosis that kept it under review (is the screen itself broken) is now
+answered — no — but the theory's actual claim (does judgment add value) is
+still n=0 on the live side, so `active` isn't justified yet.
+
+**Next:** The 44 live v2 rows still settle Aug 24–Sep 5 — once they do,
+`interpretation_value` becomes computable and should be read alongside this
+backtest, not in isolation. The MENTION-family question (Status item 3) is a
+real open thread: is it thesis-relevant or a distinct, still-profitable
+phenomenon? Deciding that is a judgment call, not more plumbing, and
+probably wants a small subagent batch reading a sample of those markets'
+actual resolution rules. The `KXMVECROSSCATEGORY`-style volume trap is not
+insider_bias-specific — any future theory doing historical Kalshi analysis
+will hit the same wall; `list_settled`'s docstring and `backtest.py`'s module
+docstring both carry the account now, so it should not need rediscovering.

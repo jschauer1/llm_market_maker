@@ -21,8 +21,20 @@ Kalshi only (`tools/kalshi/markets.py`). No Polymarket dependency.
 
 ## Status
 
-`under_review` — **track record reset to zero at v2 (2026-08-23)**, by the
-user's decision, because the decision procedure changed (see Version below).
+`testing` — moved from `under_review` on 2026-08-24, by Claude
+(`authorized_by=claude`; only `retired` requires the user), because the
+specific concern that put it there has real evidence behind it now. Track
+record was reset to zero at v2 (2026-08-23), by the user's decision, because
+the decision procedure changed (see Version below).
+
+**Read `testing` narrowly: it is backed by stage-1-alone evidence, not
+evidence about this theory's actual claim.** The 2026-08-24 backtest below is
+tier A and real, but it measures the mechanical screen in isolation — it says
+nothing about whether stage 2/3 judgment (the part that actually embodies the
+insider thesis) adds value, destroys it, or is irrelevant. That question is
+still **n=0**. Do not read a future positive stage-1 number as evidence the
+full theory works; read it as evidence the floor stage 2/3 stands on is not
+broken.
 
 The v1 history — 96 imported `kalshi_trader` opportunities, 28 settlements,
 n=29 settled at `calibration_edge_net = -0.75` — was **deleted**, not
@@ -33,25 +45,48 @@ different theories into one track record. A backup of the deleted rows exists
 outside the repo, and `migrate_kalshi_trader.py` can regenerate them if a
 v1-specific question ever needs answering.
 
-So this theory now has **n=0**. It is unproven, not disproven, and every edge
-it claims is a `prior` placeholder until buckets earn measured rates. It
-stays `under_review` rather than reverting to `testing` because the v1
-diagnosis that put it here — see Learnings, 2026-08-23 — is about the
-*screen*, which v2 has not yet changed.
+**2026-08-24 — item 1 of the "what would settle it" list below is now done.**
+A tier A backtest of the stage-1 screen alone (`theories/insider_bias/
+backtest.py`, `run_id=backtest-2026-08-24-stage1-90d`) replayed `screen.py`
+— unchanged since v1 — against real point-in-time candlesticks over the last
+90 days: 200 real screen hits, `calibration_edge_net = +1.38pts` overall.
+That answers the exact question that kept this `under_review`: the v1
+diagnosis was about the screen, and the screen, alone, does not have a
+negative edge. See Learnings for the full breakdown — the headline number
+undersells it. This does **not** mean `active`: it tests stage 1 in
+isolation, and the theory's actual claim (does stage 2/3 judgment add value
+over the screen) still has **n=0** on the live side — the 44 v2 rows settle
+Aug 24–Sep 5. `testing` reflects exactly that: real accruing evidence, the
+central claim not yet demonstrated either way.
 
-What would settle it, roughly in order of value:
+What's left to settle the theory as a whole, roughly in order of value:
 
-1. **A tier A backtest of the stage-1 screen alone.** Uncontaminated, a year
-   of history available, and it separates the screen from the judgment — the
-   single most useful split available here. Prerequisite noted in
-   `RESEARCH_LOG.md`: a candle→market adapter, with `no_ask ≈ 1 - yes_bid_close`.
+1. ~~A tier A backtest of the stage-1 screen alone.~~ **Done 2026-08-24** —
+   see above and Learnings.
 2. **`interpretation_value`** once both endorsed and rejected rows have
    settled: does stage 2 add edge over its own screen, or destroy it?
-3. **A slice breakdown** by bucket, market family, days-to-close, and price
+3. **Fix `gate.py`'s incomplete "aggregate of many independent people"
+   pattern.** The 2026-08-24 backtest found it: of 200 screen hits, 116 are
+   "MENTION"/"SAY"/"ACT"-suffix series (`KXWCMENTION`, `KXTRUMPMENTION`,
+   `KXFIGHTMENTION`, ...) that `gate.py`'s current regex does **not** catch
+   (it only names a few specific instances like `TRUMPSAY`,
+   `MAMDANIMENTION`). Unlike the family gate.py *does* catch — see next
+   item — this broader mention family backtests **positive**
+   (`edge_net=+5.48pts`, n=116), so the fix here is not obviously "exclude
+   it"; it needs its own judgment pass to find out whether it is a genuine
+   thesis case or a distinct, still-profitable phenomenon (a public figure's
+   mention rate is a base-rate bet, not obviously insider knowledge). Either
+   way, gate.py's classification of it is currently just wrong — it thinks
+   these are `PLAUSIBLE` when many read exactly like the aggregate-of-many
+   pattern it already targets.
+4. **A slice breakdown** by bucket, market family, days-to-close, and price
    band. If one family carries whatever edge exists, this is a narrower
-   theory than it claims — a version bump and a real finding.
-4. **Gross vs net.** If `calibration_edge` is positive while the net figure is
-   not, the thesis is sound and the entry threshold is wrong.
+   theory than it claims — a version bump and a real finding. The 2026-08-24
+   backtest already did a first pass of this for stage 1 alone (see
+   Learnings); item 2 needs the equivalent for judged bets once they settle.
+5. **Gross vs net.** If `calibration_edge` is positive while the net figure is
+   not, the thesis is sound and the entry threshold is wrong. Already
+   answered for stage 1 alone (both are positive); still open for stage 2/3.
 
 ## Version
 
@@ -392,16 +427,30 @@ The stage-1 screen alone is tier A and can be backtested over full history
 using `tools/kalshi/history.py`. That measures whether the *filter* selects
 markets that beat their price — useful on its own, and uncontaminated.
 
-**This needs an adapter first — nothing built yet.**
-`history.point_in_time()` returns a *candle*
-(`end_ts/open/high/low/close/mean/yes_bid_close/yes_ask_close/volume/
-open_interest`), but `screen.screen()` expects a *market* dict
-(`ticker/is_open/mid/yes_ask/no_ask/spread/volume/close_time`). No
-candle→market adapter exists. `no_ask` is not on a candle at all — derive it
-as `1 - yes_bid_close` (NO ask ≈ 1 − YES bid) — and this matters here: 36 of
-the 96 imported historical rows are NO-side. `tools.kalshi.markets.
-list_settled()` provides a workable replay universe of "markets open on date
-X". Write the adapter in this folder before attempting the backtest.
+**Built 2026-08-24: `theories/insider_bias/backtest.py`.** The candle→market
+adapter this section used to ask for now exists (`replay_market`, reusing the
+real, unmodified `screen.screen()` against reconstructed daily candles —
+`no_ask ≈ 1 - yes_bid_close`, exactly as this section originally specified).
+
+**The harder problem turned out to be fetch volume, not adaptation.** An
+unscoped `list_settled(min_close_ts=..., max_close_ts=...)` walk is not
+usable for this: one series, `KXMVECROSSCATEGORY`, alone settles 400,000+
+markets per day, so even a 30-day window is tens of millions of rows before
+any filtering. `candidate_series()` sidesteps it by querying Kalshi's
+`/series` listing (one call, ~13k rows) and pre-filtering by category and
+ticker prefix *before* ever touching `/markets`, then `iter_settled_survivors`
+scopes each settled-market walk to one series via the (undocumented but
+working) `series_ticker` param. This cut a run that hadn't finished after 47
+minutes down to ~9 minutes for a 90-day window. See `backtest.py`'s module
+docstring for the full account, and `tools/kalshi/markets.py`'s
+`list_settled` docstring for the reusable fix (`series_ticker` and
+`raw_filter` params, plus checkpointing guidance for any future caller facing
+the same wall).
+
+First run: `run_id=backtest-2026-08-24-stage1-90d`, 90-day window, 18,430
+candidates survived the cheap pre-filter, systematic sample of 600 replayed
+against real point-in-time candles, 200 actually cleared the screen. Results
+and full breakdown in Learnings below.
 
 ## Learnings
 
@@ -452,3 +501,52 @@ X". Write the adapter in this folder before attempting the backtest.
   would have endorsed (25) and what the main model recommends (3) is the
   entire reason Stage 3 exists. They settle Aug 24–Sep 5, which makes
   `interpretation_value` computable for the first time.
+- 2026-08-24 — **First tier A backtest: the stage-1 screen alone is
+  net-positive, but the number is a mix of two very different signals.**
+  90-day window, `run_id=backtest-2026-08-24-stage1-90d`, n=200 real screen
+  hits (see "How to backtest" for the fetch methodology). Overall:
+  `win_rate=85.0%`, `price_implied_rate=82.7%`, `calibration_edge_net=
+  +1.38pts`. That headline number undersells what's actually there — three
+  slices tell three different stories:
+  - **n=47, series `gate.py` already classifies as "aggregate of many
+    independent people"** (Rotten Tomatoes scores, Netflix rankings, album
+    equivalent sales, YouTube view counts, shipping-lane traffic counts,
+    press-briefing/launch counts): `calibration_edge_net = -11.12pts`. This
+    is **direct mechanical confirmation that gate.py's existing exclusion of
+    this family is correct** — buying these "favorites" loses money against
+    their own price, not just against the thesis. Previously this was a
+    design argument from first principles; now it is measured, tier A, n=47.
+  - **n=116, series with a "MENTION"/"SAY"/"ACT" suffix that `gate.py`'s
+    current regex does NOT catch** (`KXWCMENTION`, `KXTRUMPMENTION`,
+    `KXFIGHTMENTION`, `KXLATENIGHTMENTION`, `KXHEARINGMENTION`,
+    `KXFEDMENTION`, `KXFOXNEWSMENTION`, ...): `calibration_edge_net =
+    +5.48pts`. Structurally this reads like the same aggregate-of-many
+    pattern (a mention is decided by whether a public figure happens to say
+    something, not by a small informed group), but it backtests
+    **positive**, unlike the family above. Two live possibilities, not yet
+    distinguished: either this is a base-rate-calibration edge unrelated to
+    the insider thesis (still worth a mechanical rule, but a different
+    theory), or "will X mention Y" markets really do have an informed
+    minority (a press office, a campaign, a network that knows what's
+    scheduled to air) the way `KXBIGBROTHERELIMINATION`'s live-feed viewers
+    do. `gate.py`'s classification of this whole family as `PLAUSIBLE` is
+    presently just an accident of which specific series got named in its
+    regex, not a decision — see Status item 3.
+  - **n=37, everything else (not mention-family, not gate-rejected)** — the
+    slice that most resembles what actually reaches judgment in the live
+    pipeline: `calibration_edge_net = +4.40pts`. Named series in this slice
+    include `KXBIGBROTHERELIMINATION` (the same series as a live v2
+    endorsed opportunity), `KXGABBARDOUT`, `KXEPSTEIN`, `KXFDAAPPROVE`,
+    `KXTRUMPMEET`, `KXSTARMERCABLEAVE`, `KXLIUKELIMINATION`/
+    `KXLOVEISLANDUSARANK` (reality-TV elimination, the theory's own
+    strongest sub-case), `KXSUMMERHOUSECAST`, `KXESPYS`,
+    `KXTAYLORSWIFTWEDDINGATTEND`. This is the cleanest tier A evidence yet
+    that the screen, restricted to genuinely thesis-eligible families, beats
+    its own price.
+
+  Methodology note: this backtest used a **category-narrowed slice of
+  settled markets** (Kalshi series `category` not in `backtest.py`'s
+  `NO_CATEGORIES`, recency ≤ 60 days), not literally every settled market —
+  see `backtest.py`'s module docstring point 2. That scoping choice is why
+  n=200 is a *sample* of 18,430 raw survivors, not the full count, and
+  should be named alongside this result, not left implicit.

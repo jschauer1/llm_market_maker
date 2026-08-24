@@ -1,9 +1,9 @@
 """insider_bias — the tier A stage-1-screen-only backtest machinery.
 
 No test here hits the network: `is_candidate` and `systematic_sample` are
-pure, and `replay_market` is exercised against a monkeypatched
-`history.candlesticks` so the real candle reconstruction and volume
-accounting run without an HTTP call.
+pure; `replay_market`, `candidate_series`, and `iter_settled_survivors` are
+each exercised against a monkeypatched network call so the real filtering
+and reconstruction logic runs without an HTTP call.
 """
 
 from datetime import datetime, timezone
@@ -184,3 +184,115 @@ def test_replay_market_no_side_candidate(monkeypatch):
 
 def test_replay_market_returns_none_without_a_parseable_close_time():
     assert backtest.replay_market(_settled(close_time=None), "KXTRAITORS") is None
+
+
+# --- candidate_series -----------------------------------------------
+
+
+def _series(ticker, category="Entertainment", days_ago=1, **overrides):
+    ts = datetime.now(timezone.utc).timestamp() - days_ago * 86400
+    last_updated = datetime.fromtimestamp(ts, tz=timezone.utc).isoformat().replace(
+        "+00:00", "Z"
+    )
+    base = {"ticker": ticker, "category": category, "last_updated_ts": last_updated}
+    base.update(overrides)
+    return base
+
+
+def test_candidate_series_drops_no_categories(monkeypatch):
+    all_series = [_series("KXTRAITORS", "Entertainment"), _series("KXBTCD", "Crypto")]
+    monkeypatch.setattr(
+        backtest, "get_json", lambda url, params=None: {"series": all_series}
+    )
+    result = backtest.candidate_series()
+    assert [s["ticker"] for s in result] == ["KXTRAITORS"]
+
+
+def test_candidate_series_drops_excluded_ticker_prefixes(monkeypatch):
+    all_series = [_series("KXTRAITORS"), _series("KXNFLGAME")]
+    monkeypatch.setattr(
+        backtest, "get_json", lambda url, params=None: {"series": all_series}
+    )
+    result = backtest.candidate_series()
+    assert [s["ticker"] for s in result] == ["KXTRAITORS"]
+
+
+def test_candidate_series_drops_stale_series(monkeypatch):
+    all_series = [
+        _series("KXFRESH", days_ago=1),
+        _series("KXSTALE", days_ago=999),
+    ]
+    monkeypatch.setattr(
+        backtest, "get_json", lambda url, params=None: {"series": all_series}
+    )
+    result = backtest.candidate_series(recency_days=60)
+    assert [s["ticker"] for s in result] == ["KXFRESH"]
+
+
+def test_candidate_series_keeps_series_with_no_category_or_timestamp(monkeypatch):
+    # Erring toward inclusion on missing metadata, same as gate.py does.
+    all_series = [{"ticker": "KXMYSTERY"}]
+    monkeypatch.setattr(
+        backtest, "get_json", lambda url, params=None: {"series": all_series}
+    )
+    result = backtest.candidate_series()
+    assert [s["ticker"] for s in result] == ["KXMYSTERY"]
+
+
+# --- iter_settled_survivors / settled_survivors -----------------------
+
+
+def test_iter_settled_survivors_scopes_each_call_by_series(monkeypatch):
+    calls = []
+
+    def fake_list_settled(**kwargs):
+        calls.append(kwargs["series_ticker"])
+        return [_settled(ticker=f"{kwargs['series_ticker']}-1")]
+
+    monkeypatch.setattr(backtest.markets, "list_settled", fake_list_settled)
+    series_list = [{"ticker": "KXA"}, {"ticker": "KXB"}]
+    results = list(backtest.iter_settled_survivors(series_list, 0, 100))
+
+    assert calls == ["KXA", "KXB"]
+    assert [t for t, _ in results] == ["KXA", "KXB"]
+
+
+def test_iter_settled_survivors_tags_each_row_with_its_series(monkeypatch):
+    monkeypatch.setattr(
+        backtest.markets, "list_settled",
+        lambda **kwargs: [_settled(ticker="X-1")],
+    )
+    _, survivors = next(
+        backtest.iter_settled_survivors([{"ticker": "KXA"}], 0, 100)
+    )
+    assert survivors[0]["series_ticker"] == "KXA"
+
+
+def test_iter_settled_survivors_skips_series_with_no_ticker(monkeypatch):
+    calls = []
+    monkeypatch.setattr(
+        backtest.markets, "list_settled",
+        lambda **kwargs: calls.append(kwargs) or [],
+    )
+    list(backtest.iter_settled_survivors([{"category": "Entertainment"}], 0, 100))
+    assert calls == []
+
+
+def test_settled_survivors_collects_across_all_series(monkeypatch):
+    monkeypatch.setattr(
+        backtest.markets, "list_settled",
+        lambda **kwargs: [_settled(ticker=f"{kwargs['series_ticker']}-1")],
+    )
+    series_list = [{"ticker": "KXA"}, {"ticker": "KXB"}]
+    result = backtest.settled_survivors(0, 100, series_list=series_list)
+    assert sorted(m["ticker"] for m in result) == ["KXA-1", "KXB-1"]
+
+
+def test_settled_survivors_uses_candidate_series_by_default(monkeypatch):
+    monkeypatch.setattr(backtest, "candidate_series", lambda: [{"ticker": "KXA"}])
+    monkeypatch.setattr(
+        backtest.markets, "list_settled",
+        lambda **kwargs: [_settled(ticker="KXA-1")],
+    )
+    result = backtest.settled_survivors(0, 100)
+    assert [m["ticker"] for m in result] == ["KXA-1"]

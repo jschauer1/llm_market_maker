@@ -166,6 +166,7 @@ def list_settled(
     limit: int = 200,
     min_close_ts: int | None = None,
     max_close_ts: int | None = None,
+    series_ticker: str | None = None,
     raw_filter=None,
     on_page=None,
 ) -> list[dict]:
@@ -183,8 +184,21 @@ def list_settled(
     list_open's ~60 pages against the live board -- easily hundreds of
     thousands of rows. `min_close_ts`/`max_close_ts` (Unix seconds) bound the
     walk to markets whose close_time falls in that window; Kalshi's API
-    honours both and this is the only way to keep a backtest's fetch volume
-    bounded rather than scanning the platform's entire history.
+    honours both, but **that bound alone is not enough to make a broad
+    settled-history walk tractable**: measured 2026-08-24, a single series
+    (`KXMVECROSSCATEGORY`, a combinatorial "shard" product) alone produces
+    400,000+ settled markets *per day*, so even a 30-day window is tens of
+    millions of rows before any filtering -- multiple minutes just to page
+    through, dwarfing every other series on the platform combined. A caller
+    that wants a bounded window without also being flooded by a handful of
+    such series should pass `series_ticker` and drive the walk per-series
+    (see `theories/insider_bias/backtest.py`'s `candidate_series` /
+    `settled_survivors` for the pattern: list `/series`, narrow to a
+    plausible candidate set, then call this once per series).
+
+    `series_ticker`, if given, scopes the walk to that one series -- Kalshi's
+    API honours it directly, and pages come back dramatically smaller than an
+    unscoped walk of the same date window.
 
     `raw_filter`, if given, is called with each raw (pre-normalize) dict and
     must return True to keep it. It runs before the expensive part of
@@ -212,6 +226,8 @@ def list_settled(
             params["min_close_ts"] = min_close_ts
         if max_close_ts is not None:
             params["max_close_ts"] = max_close_ts
+        if series_ticker is not None:
+            params["series_ticker"] = series_ticker
         if cursor:
             params["cursor"] = cursor
         payload = get_json(f"{BASE_URL}/markets", params=params)
