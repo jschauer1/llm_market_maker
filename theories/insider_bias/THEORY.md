@@ -556,6 +556,25 @@ and full breakdown in Learnings below.
   see `backtest.py`'s module docstring point 2. That scoping choice is why
   n=200 is a *sample* of 18,430 raw survivors, not the full count, and
   should be named alongside this result, not left implicit.
+
+  **How much to trust each slice, not just the point estimate.** A rough
+  z ≈ (win_rate − price_implied_rate) / sqrt(win_rate·(1−win_rate)/n) per
+  slice — an approximation, since it treats each slice's price-implied rate
+  as one fixed benchmark rather than testing each contract against its own
+  price, so read it as "roughly how many standard errors from zero," not a
+  real p-value: aggregate-of-many z≈-1.6, MENTION-family z≈+2.1, clean
+  thesis-eligible z≈+1.1. Only the MENTION slice clears a conventional
+  2-SE bar on its own; none of the others individually would survive a
+  strict significance filter. What makes the *pattern* more trustworthy than
+  any single slice's precision is that all three land exactly where the
+  theory's own structure predicts — strongly negative on the family it
+  already excludes, positive on families with a plausible informed minority.
+  Do not read any one slice's exact point estimate (`+4.40`, `-11.12`,
+  `+5.48`) as a number that will hold at this precision going forward; read
+  the *direction and rough size* as the evidence, and let more data narrow
+  it. This detail exists here rather than only in conversation because a
+  headline number without its confidence is a number that gets over-trusted
+  the next time someone reads it.
 - 2026-08-24 — **Stage 3 endorsed `KXBIGBROTHERELIMINATION-26AUG27-DRE`
   without verifying the resolution mechanism, and the user caught it, not the
   process.** The recorded rationale said "no rules divergence... resolution
