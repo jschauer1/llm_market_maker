@@ -46,10 +46,23 @@ is exactly what a future session needs to know about.
 
 ## 4. Split stage 1 from stage 2
 
-Explicitly decide what is mechanical and what needs judgment. Push as much as
-possible into stage 1 — code is repeatable and free to run at scale. Be
-concrete about stage 2: "check whether the resolution source publishes on a
-schedule that can miss the close" is useful; "use good judgment" is not.
+**Ask first whether this theory needs a stage 2 at all.** If the thesis can be
+decided by code — a monotonicity violation, a NO-basket summing below its
+payout, a base-rate regression, a cross-platform divergence on a matched pair,
+a measurable structural bias in a market family — then write the script,
+record `edge_basis="model"`, leave stage 2 empty, and stop. That theory is
+cheaper, reproducible, scales to the whole board, and backtests at tier A, so
+it can carry real evidence immediately rather than waiting out tier B's thin
+post-cutoff window. Prefer it whenever the thesis allows.
+
+Reach for LLM judgment when the thesis genuinely needs reading comprehension or
+context that no threshold captures — as `insider_bias` does, since "would a
+specific group already know this?" is not a number.
+
+If you do need stage 2: push as much as possible into stage 1 — code is
+repeatable and free to run at scale. Be concrete about what's left: "check
+whether the resolution source publishes on a schedule that can miss the close"
+is useful; "use good judgment" is not.
 
 If stage 1 is likely to leave more candidates than deep reasoning can afford,
 decide the **tiering split** now, as part of designing the theory: does stage

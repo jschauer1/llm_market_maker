@@ -61,6 +61,16 @@ markets; a portfolio of correlated bets is not diversified.
 
 ## 5. Research the top candidates (stage 2)
 
+**First check whether this theory has a stage 2 at all.** A theory that
+computes its edge mechanically — arbitrage, base rates, order-book structure,
+cross-platform divergence — has an empty Stage 2 section and records
+`edge_basis="model"`. For those, there is nothing to research: its candidates
+arrive with an edge already attached, and you skip straight to ranking (§6).
+That is not a degenerate case, it is the preferred one — such theories are
+cheaper, reproducible, and backtest at tier A.
+
+The rest of this section applies only when the theory's Stage 2 is non-empty.
+
 Within your scan budget, research the highest-ranked candidates by following
 the theory's **Stage 2** section.
 

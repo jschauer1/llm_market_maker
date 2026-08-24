@@ -41,6 +41,19 @@ pre-defined slots. This repo is a *research environment* where the LLM is the
 researcher — hypotheses are cheap to create, cheap to test, and cheap to kill,
 and the accumulated track record is what makes any edge claim meaningful.
 
+**Theories are instruments, not just experiments.** Each one is a lens that
+surfaces candidate bets the others cannot see: one reads resolution language,
+one reads order books, one reads whale flow, one reads base rates. The question
+the user actually asks — *"what bet can I take right now with the best edge?"* —
+is not answered by any single theory. It is answered by running many of them,
+weighting each by what it has actually demonstrated (section 8), and composing
+the results. A theory that fails is still useful, because knowing which lenses
+are blind is what makes the surviving ones trustworthy.
+
+That is why the harness matters more than any theory in it, and why the
+system's value compounds: every instrument added widens the board the question
+can be asked about, and every settled bet sharpens the weighting.
+
 ## 2. Non-goals
 
 - **No fixed strategy beyond the one ported reference theory.** The system
@@ -373,8 +386,23 @@ reality-TV market is *structurally* vulnerable in a way a general
 "insider knowledge" screen does not capture. The edge lives partly in the
 pipeline and partly in the pattern recognition applied to its output.
 
-So every theory is understood as two stages, and the system must never collapse
-them:
+**But `insider_bias` is one theory, not the template.** It happens to need
+judgment because its thesis — "does some specific group already know?" — is not
+expressible as a threshold. Plenty of theses *are*. A sibling-strike
+monotonicity violation, a NO-basket whose prices sum below its payout, a
+recurring series with sixty months of base rates, a persistent Kalshi-vs-
+Polymarket divergence on a matched pair: each of those is a real edge a script
+can find, decide, and size with no model in the loop at all.
+
+**A theory whose stage 2 is empty is not a lesser theory — it is usually a
+better one.** It is reproducible, costs nothing per candidate, scales to the
+whole board, and (section 12) backtests at **tier A**, meaning it can have
+genuine evidence on day one rather than waiting out tier B's thin post-cutoff
+window. If you can find edge with statistics, do that; LLM judgment is one
+instrument among several, and the most expensive and least verifiable of them.
+
+So a theory has *up to* two stages, and the system must never collapse them
+when both are present:
 
 **Stage 1 — mechanical screen.** Deterministic, reproducible, cheap over
 thousands of markets: filters, thresholds, structural checks, cross-platform
@@ -382,11 +410,15 @@ matching, whatever the theory can express in code. This narrows the universe.
 Anything that *can* be encoded here should be — pushing work from stage 2 into
 stage 1 is how a theory gets better over time.
 
-**Stage 2 — interpretive judgment.** Contextual research on the narrowed set:
-what kind of market is this really, what does the resolution language actually
-require, is this market type structurally soft or structurally dangerous, does
-recent news change the picture. This is Claude reading the output rather than
-trusting it, and it is expected to be the norm rather than the exception.
+**Stage 2 — interpretive judgment, when the thesis needs it.** Contextual
+research on the narrowed set: what kind of market is this really, what does the
+resolution language actually require, is this market type structurally soft or
+structurally dangerous, does recent news change the picture. This is Claude
+reading the output rather than trusting it.
+
+Whether a theory needs this stage at all is a property of its thesis, not a
+requirement of the harness. A theory that computes its edge mechanically
+records `edge_basis="model"`, skips stage 2 entirely, and is done.
 
 **Pipeline output is a candidate set, not a recommendation.** `find-edge` must
 present the two layers distinctly — what the screen surfaced, and what research

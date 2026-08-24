@@ -19,6 +19,30 @@ research-driven forecast-gap bets, and copying Polymarket whale activity into
 equivalent Kalshi markets — are illustrations of the *kind* of idea to
 generate, not a backlog to implement.
 
+## Theories are instruments
+
+Each theory is a lens that surfaces bets the others can't see: one reads
+resolution language, one reads order books, one reads whale flow, one reads
+base rates. The question you exist to answer — **"what bet can be taken right
+now with the best edge?"** — is not answered by any single theory. It's
+answered by running many, weighting each by what it has actually demonstrated,
+and composing the results. Every instrument you add widens the board that
+question can be asked about. A theory that fails still helps, because knowing
+which lenses are blind is what makes the surviving ones trustworthy.
+
+**Theories can be pure code, and that's often the better theory.** `insider_bias`
+needs LLM judgment only because its thesis ("does a specific group already
+know?") can't be written as a threshold. Many theses can be. Sibling-strike
+monotonicity violations, a NO-basket summing below its payout, a recurring
+series with years of base rates, a persistent Kalshi-vs-Polymarket divergence
+on a matched pair — all real edges a script decides with no model in the loop.
+
+Such a theory records `edge_basis="model"`, has no stage 2, costs nothing per
+candidate, scales to the whole board, and backtests at **tier A** — so it
+carries real evidence immediately instead of waiting out tier B's thin
+post-cutoff window. LLM judgment is one instrument, and the most expensive and
+least verifiable one. If statistics can find the edge, prefer statistics.
+
 ## Platform roles
 
 **Kalshi is where bets get placed.** The user can only wager there.

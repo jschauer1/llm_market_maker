@@ -7,13 +7,34 @@
 > There is no required function, no pipeline to conform to, no base class.
 >
 > `insider_bias` happens to be a filter-then-judge theory. That is one shape,
-> not the shape. A structural arbitrage theory might be pure deterministic
-> math with an empty stage 2. A whale-following theory might be almost
-> entirely judgment across two platforms. Build what the idea needs.
+> not the shape — it needs judgment only because its thesis ("does a specific
+> group already know?") cannot be written as a threshold.
+>
+> **A theory can be pure code, and that is often the better theory.** If you
+> can find edge statistically, do that. Real examples, all decidable with no
+> model in the loop:
+>
+> - sibling-strike monotonicity violations (">40" priced below ">50")
+> - a NO-basket on a mutually exclusive event summing below its payout
+> - a recurring series with years of base rates to regress against
+> - a persistent Kalshi-vs-Polymarket divergence on a confirmed-matched pair
+> - systematic longshot or favorite bias in a specific market family
+>
+> A mechanical theory records `edge_basis="model"`, leaves stage 2 empty,
+> costs nothing per candidate, scales to the whole board, and backtests at
+> **tier A** — so it can carry real evidence immediately instead of waiting
+> out tier B's thin post-cutoff window. LLM judgment is one instrument, and
+> the most expensive and least verifiable one. Reach for it when the thesis
+> genuinely needs reading comprehension or context, not by default.
+>
+> Write whatever code the idea needs — a scraper, a regression, an order-book
+> walker, a scheduler. The folder is yours.
 >
 > The one thing every theory must do is call `record_opportunity` with a
 > tradeable Kalshi ticker and a net edge in percentage points. That single
-> contract is what makes theories comparable to each other.
+> contract is what makes theories comparable to each other — and what lets the
+> session running this repo ask "what is the best bet right now?" across all
+> of them at once.
 
 ## Hypothesis
 
