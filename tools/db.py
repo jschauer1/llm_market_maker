@@ -57,12 +57,49 @@ def write(conn: sqlite3.Connection) -> Iterator[sqlite3.Connection]:
 
 def init_db(conn: sqlite3.Connection) -> None:
     """Create any missing tables and migrate stale ones. Safe to call repeatedly."""
+    # Runs BEFORE the schema script, which contains CREATE UNIQUE INDEX on
+    # market_snapshots. A database holding the duplicates the old non-unique
+    # index allowed would fail that statement and be unable to open at all,
+    # so the duplicates have to go first.
+    _dedupe_snapshots(conn)
     with write(conn):
         conn.executescript(SCHEMA_PATH.read_text(encoding="utf-8"))
     _migrate_theories(conn)
     _add_column_if_missing(
         conn, "theories", "uses_llm_judgment", "INTEGER NOT NULL DEFAULT 0"
     )
+
+
+def _dedupe_snapshots(conn: sqlite3.Connection) -> None:
+    """Make an older snapshot table safe for the unique index.
+
+    Before that index existed, two saves landing in the same capture second
+    each wrote a full set of rows, silently merging into one batch with every
+    market duplicated. This removes those lowest-id-wins and drops the
+    redundant non-unique index on the same three columns.
+
+    A no-op on a fresh database (no table yet) and on an already-migrated one.
+    """
+    objects = {
+        r[0] for r in conn.execute(
+            "SELECT name FROM sqlite_master WHERE type IN ('table','index')"
+        ).fetchall()
+    }
+    if "market_snapshots" not in objects:
+        return
+    if "idx_snapshots_unique" in objects and "idx_snapshots_market" not in objects:
+        return
+    with write(conn):
+        conn.execute(
+            """
+            DELETE FROM market_snapshots WHERE id NOT IN (
+                SELECT MIN(id) FROM market_snapshots
+                 GROUP BY platform, market_id, captured_at
+            )
+            """
+        )
+        # Same three columns as the unique index the schema creates next.
+        conn.execute("DROP INDEX IF EXISTS idx_snapshots_market")
 
 
 def _add_column_if_missing(

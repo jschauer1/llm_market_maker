@@ -168,3 +168,70 @@ def test_uncommon_fields_survive_the_cache_round_trip(conn):
     assert got["raw"]["yes_bid_size_fp"] == "1200"
     assert got["raw"]["can_close_early"] is True
     assert got["raw"]["early_close_condition"] == "if the event concludes early"
+
+
+# --- one row per market per capture ----------------------------------
+
+
+def test_saving_twice_in_one_second_does_not_duplicate(conn):
+    # captured_at has one-second resolution and is the batch key a whole
+    # pull shares. Without the unique index these merged into one batch with
+    # every market duplicated -- a board that rebuilds to twice its size and
+    # still looks complete.
+    snapshot.save_kalshi(conn, _board(3), now=NOW)
+    snapshot.save_kalshi(conn, _board(3), now=NOW)
+    assert board.board_info(conn, now=NOW)["markets"] == 3
+    got = board.get_board(conn, now=NOW)
+    assert len(got) == 3 == len({m["ticker"] for m in got})
+
+
+def test_re_saving_updates_rather_than_duplicating(conn):
+    from tools.kalshi import markets
+    snapshot.save_kalshi(conn, _board(1), now=NOW)
+    moved = markets.normalize(_raw("T-0", yes_ask_dollars="0.91",
+                                   yes_bid_dollars="0.89"))
+    snapshot.save_kalshi(conn, [moved], now=NOW)
+    rows = conn.execute("SELECT yes_ask FROM market_snapshots").fetchall()
+    assert len(rows) == 1
+    assert rows[0]["yes_ask"] == pytest.approx(0.91)   # last write wins
+
+
+def test_separate_seconds_are_separate_batches(conn):
+    snapshot.save_kalshi(conn, _board(3), now="2026-08-24T11:00:00Z")
+    snapshot.save_kalshi(conn, _board(3), now="2026-08-24T11:00:01Z")
+    batches = conn.execute(
+        "SELECT COUNT(DISTINCT captured_at) n FROM market_snapshots"
+    ).fetchone()["n"]
+    assert batches == 2
+    assert board.board_info(conn, now=NOW)["markets"] == 3
+
+
+def test_migration_dedupes_a_legacy_database(tmp_path):
+    # A database written before the unique index, holding the duplicates it
+    # allowed. CREATE UNIQUE INDEX would fail on these, so the migration must
+    # remove them first or the database becomes permanently un-migratable.
+    import sqlite3
+    path = tmp_path / "legacy.db"
+    c = db.connect(path)
+    db.init_db(c)
+    c.execute("DROP INDEX IF EXISTS idx_snapshots_unique")
+    c.execute("CREATE INDEX idx_snapshots_market"
+              " ON market_snapshots (platform, market_id, captured_at)")
+    for _ in range(2):
+        c.execute(
+            "INSERT INTO market_snapshots (platform, market_id, captured_at,"
+            " status, raw_json) VALUES ('kalshi','T-0',?, 'open','{}')", (NOW,))
+    c.commit()
+    assert c.execute("SELECT COUNT(*) n FROM market_snapshots").fetchone()["n"] == 2
+
+    db.init_db(c)   # migration runs
+    assert c.execute("SELECT COUNT(*) n FROM market_snapshots").fetchone()["n"] == 1
+    idx = {r[0] for r in c.execute(
+        "SELECT name FROM sqlite_master WHERE type='index'")}
+    assert "idx_snapshots_unique" in idx
+    assert "idx_snapshots_market" not in idx   # redundant, same columns
+    with pytest.raises(sqlite3.IntegrityError):
+        c.execute("INSERT INTO market_snapshots (platform, market_id,"
+                  " captured_at, status) VALUES ('kalshi','T-0',?, 'open')",
+                  (NOW,))
+    c.close()

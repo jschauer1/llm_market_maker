@@ -21,11 +21,25 @@ from tools.db import utcnow, write
 from tools.kalshi import markets as kalshi_markets
 from tools.polymarket import markets as poly_markets
 
+# Upsert on (platform, market_id, captured_at). Re-saving the same market
+# within the same capture second overwrites rather than duplicating: a batch
+# is one row per market, always. Last write wins, which is what a caller
+# re-saving a market mid-pull would mean.
 _INSERT = """
     INSERT INTO market_snapshots (
         platform, market_id, captured_at, title, implied_prob_yes,
         yes_bid, yes_ask, volume, open_interest, close_time, status, raw_json
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT (platform, market_id, captured_at) DO UPDATE SET
+        title            = excluded.title,
+        implied_prob_yes = excluded.implied_prob_yes,
+        yes_bid          = excluded.yes_bid,
+        yes_ask          = excluded.yes_ask,
+        volume           = excluded.volume,
+        open_interest    = excluded.open_interest,
+        close_time       = excluded.close_time,
+        status           = excluded.status,
+        raw_json         = excluded.raw_json
 """
 
 # Kalshi's own status strings (see kalshi_markets.OPEN_STATUSES and

@@ -63,7 +63,12 @@ CREATE TABLE IF NOT EXISTS market_snapshots (
     raw_json         TEXT
 );
 
-CREATE INDEX IF NOT EXISTS idx_snapshots_market
+-- One row per market per capture. `captured_at` has one-second resolution
+-- and is the batch key a whole pull shares, so without this two saves inside
+-- the same second silently merge into one batch with every market duplicated
+-- -- a board that rebuilds to twice its size and still looks complete.
+-- Doubles as the lookup index; the columns are the ones queries use anyway.
+CREATE UNIQUE INDEX IF NOT EXISTS idx_snapshots_unique
     ON market_snapshots (platform, market_id, captured_at);
 
 CREATE TABLE IF NOT EXISTS opportunities (
