@@ -54,6 +54,18 @@ def test_find_candidates_empty_board():
     assert mention_bucket.find_candidates([], now=NOW) == []
 
 
+def test_find_candidates_respects_default_14_day_window():
+    # 20 days out -- past the default screen.MAX_DAYS_AHEAD=14.
+    board = [_market("KXTRUMPMENTION-1", "KXTRUMPMENTION", close_time="2026-09-13T00:00:00Z")]
+    assert mention_bucket.find_candidates(board, now=NOW) == []
+
+
+def test_find_candidates_max_days_ahead_widens_the_window():
+    board = [_market("KXTRUMPMENTION-1", "KXTRUMPMENTION", close_time="2026-09-13T00:00:00Z")]
+    result = mention_bucket.find_candidates(board, now=NOW, max_days_ahead=30)
+    assert [c["ticker"] for c in result] == ["KXTRUMPMENTION-1"]
+
+
 # --- rank -----------------------------------------------------------------
 
 
@@ -102,6 +114,31 @@ def test_rank_handles_no_candidates():
     assert mention_bucket.rank([], MEASURED_RATES, top_n=20) == []
 
 
+# --- rank_preview -----------------------------------------------------
+
+
+def test_rank_preview_always_returns_model_basis_never_measured():
+    ranked = mention_bucket.rank_preview([_candidate("A", 0.80)], MEASURED_RATES, top_n=20)
+    assert ranked[0]["edge_basis"] == "model"
+
+
+def test_rank_preview_uses_the_validated_rate_as_a_point_estimate():
+    ranked = mention_bucket.rank_preview([_candidate("A", 0.80)], MEASURED_RATES, top_n=20)
+    assert ranked[0]["edge_pts_net"] == pytest.approx((0.871 - 0.80) * 100 - _fee(0.80))
+
+
+def test_rank_preview_orders_by_edge():
+    candidates = [_candidate("A", 0.95), _candidate("B", 0.70)]
+    ranked = mention_bucket.rank_preview(candidates, MEASURED_RATES, top_n=20)
+    assert [c["ticker"] for c in ranked] == ["B", "A"]
+
+
+def test_rank_preview_zero_edge_when_validated_bucket_has_no_history():
+    ranked = mention_bucket.rank_preview([_candidate("A", 0.80)], {}, top_n=20)
+    assert ranked[0]["edge_basis"] == "model"
+    assert ranked[0]["edge_pts_net"] == pytest.approx(0.0)
+
+
 # --- record (touches the database) -----------------------------------
 
 
@@ -147,3 +184,34 @@ def test_record_writes_provenance_so_the_run_is_reproducible(conn):
 
 def test_record_handles_no_candidates(conn):
     assert mention_bucket.record(conn, [], run_id="live-test-empty") == []
+
+
+def test_record_preview_uses_a_distinct_confidence_bucket(conn):
+    ranked = mention_bucket.rank_preview(
+        [_candidate("KXTRUMPMENTION-1", 0.80)], MEASURED_RATES, top_n=20
+    )
+    ids = mention_bucket.record(
+        conn, ranked, run_id="live-test-preview",
+        confidence="mention_family_preview_30d",
+    )
+    row = conn.execute(
+        "SELECT * FROM opportunities WHERE id = ?", (ids[0],)
+    ).fetchone()
+    assert row["confidence"] == "mention_family_preview_30d"
+    assert row["edge_basis"] == "model"
+    assert "EXTRAPOLATION" in row["rationale"]
+
+
+def test_record_preview_never_pools_into_the_validated_bucket(conn):
+    # Recording a preview row under a distinct confidence label means
+    # score.bucket_rates() for the validated BUCKET name is unaffected.
+    ranked = mention_bucket.rank_preview(
+        [_candidate("KXTRUMPMENTION-1", 0.80)], MEASURED_RATES, top_n=20
+    )
+    mention_bucket.record(
+        conn, ranked, run_id="live-test-preview",
+        confidence="mention_family_preview_30d",
+    )
+    from tools import score
+    rates = score.bucket_rates(conn, "insider_bias", 3, run_mode="live")
+    assert "mention_family" not in rates

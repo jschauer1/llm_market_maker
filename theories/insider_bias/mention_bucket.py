@@ -1,5 +1,14 @@
 """insider_bias v3 — the mechanical MENTION-family sub-path.
 
+**This is an EXTENSION of insider_bias, not a replacement of it, a revision
+of it, or a new version of its thesis.** The informed-minority hypothesis in
+THEORY.md's Hypothesis section is untouched; `gate.py`, the prompts, and
+Stage 3 are untouched; the 44 v1/v2 LLM-judged live rows are untouched and
+remain their own comparable cohort. This module adds a second, independent
+way for the insider_bias *theory folder* to produce opportunities, discovered
+as a side effect of backtesting the first path's screen -- it does not
+supersede anything already there.
+
 A second, wholly separate decision path alongside the theory's LLM-judged
 main pipeline (screen -> gate -> analysis -> final review). This one has no
 judgment stage at all: `screen.is_mention_family` identifies the family, the
@@ -41,6 +50,7 @@ import sqlite3
 from datetime import datetime
 
 from tools import buckets, ledger, provenance, score
+from tools.sizing import fee_pts
 from theories.insider_bias import screen
 
 BUCKET = "mention_family"
@@ -60,14 +70,23 @@ MEASURED_RATE_RUN_ID = "backtest-2026-08-24-stage1-90d"
 PRIORS = {BUCKET: 0.0}
 
 
-def find_candidates(board: list[dict], now: datetime | None = None) -> list[dict]:
+def find_candidates(
+    board: list[dict],
+    now: datetime | None = None,
+    max_days_ahead: float = screen.MAX_DAYS_AHEAD,
+) -> list[dict]:
     """Live board -> screen-eligible markets in the mention family.
 
     Reuses `screen.screen()` unmodified (price band, spread, volume,
-    days-to-close, `is_excluded`) and narrows to one family on top -- this
-    is not a new screen, it is the existing one filtered further.
+    `is_excluded`) and narrows to one family on top -- this is not a new
+    screen, it is the existing one filtered further. `max_days_ahead`
+    defaults to the screen's own validated 14 days; pass a larger value to
+    preview what is coming (see `rank_preview` -- a wider window changes
+    what edge_basis a caller should honestly attach, so `rank`/`rank_preview`
+    are two different functions on purpose, not one function with a flag
+    that is easy to call the wrong way).
     """
-    hits = screen.screen(board, now=now)
+    hits = screen.screen(board, now=now, max_days_ahead=max_days_ahead)
     return [
         h for h in hits
         if screen.is_mention_family(h.get("series_ticker") or h["ticker"])
@@ -100,6 +119,44 @@ def rank(candidates: list[dict], rates: dict, top_n: int = 20) -> list[dict]:
     return scored[:top_n]
 
 
+def rank_preview(
+    candidates: list[dict],
+    validated_rates: dict,
+    top_n: int = 20,
+) -> list[dict]:
+    """Edge estimate for candidates OUTSIDE the backtest-validated 14-day
+    window (find_candidates called with max_days_ahead > screen.MAX_DAYS_AHEAD).
+
+    Always returns `edge_basis='model'`, never `'measured'`.  `'measured'` is
+    reserved for a bucket's own accumulated evidence (`tools/buckets.py`),
+    and no market has ever settled from this wider horizon -- the backtest
+    only ever evaluated eligibility inside the 14-day window (see
+    `backtest.py` module docstring point 3). Applying that 14-day rate here
+    is a modeling assumption (nothing about the mention family obviously
+    changes with days-to-close, but that is an assumption, not something
+    this specific horizon has demonstrated), so it is labeled `'model'`,
+    which is honest about being a calculation rather than borrowing
+    `'measured'`'s stronger claim.
+    """
+    measured = validated_rates.get(BUCKET)
+    probability = (
+        measured["win_rate"]
+        if measured and measured.get("n", 0) >= buckets.MIN_BUCKET_N
+        else None
+    )
+
+    scored = []
+    for c in candidates:
+        if probability is None:
+            edge_pts_net = 0.0
+        else:
+            gross = (probability - c["entry_price"]) * 100.0
+            edge_pts_net = gross - fee_pts(c["entry_price"])
+        scored.append({**c, "edge_pts_net": edge_pts_net, "edge_basis": "model"})
+    scored.sort(key=lambda c: c["edge_pts_net"], reverse=True)
+    return scored[:top_n]
+
+
 def record_provenance(conn: sqlite3.Connection, run_id: str) -> None:
     """This path has no LLM anywhere in it, but the theory-level
     `uses_llm_judgment` flag applies to every run regardless of which path
@@ -123,17 +180,36 @@ def record(
     ranked: list[dict],
     run_id: str,
     run_mode: str = "live",
+    confidence: str = BUCKET,
 ) -> list[int]:
     """Write `ranked` to the ledger. Returns the opportunity ids.
 
-    `disposition` stays the default `'screened'` -- edge_basis='measured'
-    means nothing needs to interpret these, not that a human reviewed each
-    one (see CLAUDE.md: "screened... because nothing interpreted them, read
-    that as needed no interpretation").
+    `disposition` stays the default `'screened'` -- for `edge_basis=
+    'measured'` rows that means nothing needed to interpret them (see
+    CLAUDE.md: "screened... because nothing interpreted them, read that as
+    needed no interpretation"); for `'model'` rows from `rank_preview` it
+    means the same mechanically, though the honest caveat about an untested
+    horizon travels in `rationale` either way.
+
+    Pass `confidence` explicitly for anything from `rank_preview` -- a
+    distinct bucket name (e.g. `f"{BUCKET}_preview_30d"`) so a future
+    `score.bucket_rates()` call never pools an untested-horizon population
+    into the validated 14-day bucket's measured rate. Defaults to `BUCKET`
+    for `rank()` output, where that pooling is exactly what is wanted.
     """
     record_provenance(conn, run_id)
     ids = []
     for c in ranked:
+        basis_note = (
+            f"measured win_rate=0.871 (n=116, {MEASURED_RATE_RUN_ID})"
+            if c["edge_basis"] == "measured"
+            else (
+                f"win_rate=0.871 from {MEASURED_RATE_RUN_ID} APPLIED AS AN "
+                f"EXTRAPOLATION to a days-to-close horizon the backtest "
+                f"never tested (>{screen.MAX_DAYS_AHEAD:.0f} days) -- a "
+                f"modeling assumption, not a measurement of this population"
+            )
+        )
         opp_id, _ = ledger.record_opportunity(
             conn,
             theory_id=THEORY_ID,
@@ -147,12 +223,12 @@ def record(
             spread_at_call=c.get("spread"),
             volume_at_call=c.get("volume"),
             edge_basis=c["edge_basis"],
-            confidence=BUCKET,
+            confidence=confidence,
             rationale=(
-                f"Mechanical mention_family bucket: measured win_rate=0.871 "
-                f"(n=116, {MEASURED_RATE_RUN_ID}), no judgment applied. "
-                f"See mention_bucket.py module docstring for why every "
-                f"candidate in this bucket carries the same probability."
+                f"Mechanical mention_family bucket, no judgment applied: "
+                f"{basis_note}. See mention_bucket.py module docstring for "
+                f"why every candidate in this bucket carries the same "
+                f"probability."
             ),
             evidence_source="kalshi",
         )

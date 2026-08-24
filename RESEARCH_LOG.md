@@ -407,3 +407,29 @@ test of durability, not the 90-day retrospective window). The underlying
 still open — idea `insider-bias-mention-family` — and now lower-urgency
 since the mechanical path captures the edge regardless of the answer, but
 still worth resolving for its own sake.
+
+**Addendum, same session — 30-day preview, and making "extension not
+replacement" explicit.** Two follow-up requests: make sure v3 reads as an
+addition to insider_bias, not a revision of it (added an unmissable callout
+at the top of THEORY.md's Hypothesis section and the top of
+`mention_bucket.py`'s docstring, not just buried in the Version section);
+and widen the window to see actual live candidates, since 0 at 14 days was
+correct but not useful for "what can I bet today."
+
+Added `max_days_ahead` to `find_candidates` and a new `rank_preview`
+function that reuses the validated bucket's measured rate as a point
+estimate but always labels the result `edge_basis='model'`, never
+`'measured'` — the backtest never tested eligibility past 14 days, so
+applying that rate further out is a modeling assumption, not a
+measurement, and the two should not look identical in the ledger. Recording
+also takes an explicit `confidence` label now, so a preview run's rows
+land in a distinct bucket (`mention_family_preview_30d`) that can never
+pool into the validated `mention_family` bucket's `bucket_rates()`.
+
+Ran it at 30 days against a fresh board: **69 candidates**, top 20 recorded
+under `run_id=live-2026-08-24-mention-preview30`. Same caveat as always
+applies harder here: every candidate still shares one flat probability, so
+the ranking is by price, and now additionally by an untested-horizon
+assumption on top of that. These are more "here is what the mechanical
+model surfaces" than "here is proven edge" — said plainly when reporting
+them.

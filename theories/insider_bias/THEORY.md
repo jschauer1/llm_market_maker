@@ -15,6 +15,21 @@ which markets have an informed minority at all.
 Ported from `kalshi_trader`, where it ran from May to July 2026. That
 predecessor track record was deleted at the v2 bump — see Status.
 
+**This theory has two decision paths as of v3, and the second is an
+extension, not a replacement.** Everything above is the hypothesis the
+LLM-judged path (Stages 1–6, unchanged since v2) tests. `mention_bucket.py`
+(Version, v3) is a separate, purely mechanical path that captures a
+*different* edge — a measured historical win rate on "will X mention/say/do
+Y" markets — discovered as a side effect of backtesting the first path's
+screen. It does not test the informed-minority hypothesis above; it does not
+touch `gate.py`, the prompts, or Stage 3; and it carries its own
+`edge_basis` (`measured`/`model`, never the LLM-judged path's buckets). Read
+"insider_bias v3" as "the insider-bias *theory folder* now runs two
+instruments," not as a new or revised version of the original thesis. See
+Version and `RUNBOOK.md`'s mention-family section for exactly where the
+paths diverge and where they share infrastructure (`screen.py`'s core
+filters, the ledger, provenance).
+
 ## Data sources
 
 Kalshi only (`tools/kalshi/markets.py`). No Polymarket dependency.

@@ -152,6 +152,30 @@ existing; the near-term filter should start passing candidates within the
 next several days as those age in. Re-run rather than assume this path is
 broken.
 
+### Previewing a wider window
+
+`max_days_ahead` on `find_candidates` defaults to the validated 14 days.
+Widening it looks further out than the backtest ever tested, so use
+`rank_preview` instead of `rank` — it always returns `edge_basis='model'`,
+never `'measured'`, and record with an explicit distinct `confidence` label
+so a wider-window run can never pool into the validated bucket's rate:
+
+```python
+candidates = mention_bucket.find_candidates(live_board, now=now, max_days_ahead=30)
+ranked = mention_bucket.rank_preview(candidates, rates, top_n=20)
+if ranked:
+    ids = mention_bucket.record(
+        conn, ranked, run_id=f"live-{now.date()}-mention-preview30",
+        confidence="mention_family_preview_30d",
+    )
+```
+
+First run at 30 days, 2026-08-24: 69 candidates, top 20 recorded under
+`run_id=live-2026-08-24-mention-preview30`. Once these settle they become
+the first real, non-bootstrapped evidence for the 15–30 day horizon
+specifically — worth checking against the 14-day bucket's rate rather than
+assumed to match it.
+
 ## Known weaknesses
 
 1. **The gate classifies by series-ticker prefix and never reads resolution
