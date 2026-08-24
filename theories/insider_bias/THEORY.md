@@ -267,6 +267,12 @@ came from a change in procedure or a change in model.
 
 ## Prompts and provenance
 
+**`RUNBOOK.md` in this folder is the end-to-end procedure** — every
+stage, which artifact decides it, the model and prompt for each
+judging stage, and the provenance commands to run before any
+opportunity is written. Stages 1-4 are executable via
+`pipeline.run_mechanical_stages(board)`; stages 5-6 are judgment.
+
 This theory declares `uses_llm_judgment`, so `record_opportunity` refuses any
 row for a run whose model and prompt were not recorded first.
 
