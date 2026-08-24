@@ -155,17 +155,33 @@ the edge it claims yet." Report the claimed edge with the shrinkage reason
 stated plainly instead, the same way you would never hide the shrinkage on
 any other row.
 
-## 7. Report in two layers
+## 7. Report recommendations, then the remainder
 
-**Endorsed bets** — a table: ticker, side, entry price, confidence bucket,
-claimed edge, **edge basis**, ranked edge, `n`, realization, theory, suggested
-size, and your interpretation.
+**Recommended bets** — one ranked table across all theories: ticker, side,
+entry price, confidence bucket (blank for mechanical theories), claimed edge,
+**edge basis**, ranked edge, `n`, realization, theory, suggested size, and your
+interpretation (blank for mechanical theories).
 
-**Unresearched remainder** — a count, plus the top few ordered by whatever the
-theory's stage 1 provides (a screen edge, if it computes one). Some theories
-— `insider_bias` deliberately among them — produce no screen edge at all;
-when a theory provides no ordering, fall back to an unordered list rather
-than implying a ranking that does not exist.
+Two kinds of candidate belong in this table, and `edge_basis` is what tells
+them apart:
+
+- **Researched picks** — a judgment theory's candidates that you endorsed at
+  stage 2 (`disposition='endorsed'`, `edge_basis` `measured` or `prior`).
+- **Mechanical picks** — a code-only theory's candidates
+  (`edge_basis='model'`). These stay at `disposition='screened'` because
+  nothing interpreted them, which here means *needed no interpretation*, not
+  *not yet assessed*. They are recommendable as-is. Do **not** run
+  `ledger.interpret(..., "endorsed", ...)` on them just to make them look
+  endorsed — that would pollute the endorsed-vs-rejected control group
+  `score.interpretation_value` uses to measure stage-2 judgment.
+
+**Unassessed remainder** — candidates from a judgment theory that you did not
+reach within the scan budget. A count, plus the top few ordered by whatever
+the theory's stage 1 provides (a screen edge, if it computes one). Some
+theories — `insider_bias` deliberately among them — produce no screen edge at
+all; when a theory provides no ordering, fall back to an unordered list rather
+than implying a ranking that does not exist. A mechanical theory never has an
+unassessed remainder.
 
 Always show claimed edge next to ranked edge, and always show the edge basis.
 `prior` means the number is a placeholder nobody has measured yet; `measured`

@@ -80,14 +80,23 @@ exists when reporting bets worth placing.
 The aspiration is a deterministic pipeline: run it, get a bet with an edge.
 Push toward that — anything encoded in code is repeatable and scales for free.
 
-The reality is that pipeline output is a **candidate set, not a
-recommendation**. `insider_bias` is the worked example: its picks are not bet
-as given. A human reads the output and recognizes that a reality-TV market is
-structurally vulnerable in a way the screen never encoded. The edge lives
-partly in the pipeline and partly in the pattern recognition applied to it.
+**When a theory's screen does not itself produce an edge, its output is a
+candidate set, not a recommendation.** `insider_bias` is the worked example:
+its picks are not bet as given. A human reads the output and recognizes that a
+reality-TV market is structurally vulnerable in a way the screen never encoded.
+The edge lives partly in the pipeline and partly in the pattern recognition
+applied to it. For such a theory, never present unresearched screen output as a
+recommended bet.
 
-So every theory has two stages: a **mechanical screen** and **interpretive
-judgment**. Never present unresearched screen output as a recommended bet.
+A theory that computes its edge mechanically (`edge_basis="model"`) is the
+other case: its candidates arrive with an edge already attached, so they *are*
+recommendable without a research pass. They will still carry
+`disposition='screened'`, because nothing interpreted them — read that as
+"needed no interpretation," not "not yet assessed." Tell the two apart by
+`edge_basis`, never by `disposition` alone.
+
+So a theory has **up to** two stages — a mechanical screen, and interpretive
+judgment when the thesis needs it.
 
 **Record your rejections.** Every opportunity carries a `disposition` —
 `screened`, `endorsed`, or `rejected`. Rejected candidates still settle, which
