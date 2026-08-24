@@ -690,3 +690,34 @@ and full breakdown in Learnings below.
   rather than inventing bucket-specific smoothing, but a future session
   should not report `+8pts` on this bin with the same confidence as a bin
   that actually lost a few times.
+- 2026-08-24 — **Entry timing for the mention family: most candidates only
+  become eligible in the final days, and this is a real structural fact,
+  not a chosen delay strategy.** User question: does the edge vary with how
+  many days before close the market enters `mention_bucket`'s screen? Of
+  116 mention-family hits, **36% (42) first became screen-eligible on the
+  literal last day before close**, and 30 more in the final 1-2 days — only
+  12 were sitting as a clear favorite 10+ days out. Binned by days-to-close
+  at entry: `10-14d: n=12, win_rate=0.917, edge_net=+10.2pts` /
+  `7-10d: n=9, win_rate=0.778, edge_net=-2.2pts` /
+  `4-7d: n=17, win_rate=0.765, edge_net=-3.7pts` /
+  `0-4d: n=78, win_rate=0.897, edge_net=+7.5pts`. Not a clean "edge decays
+  as information leaks into the price" curve — noisy, non-monotonic, and the
+  middle bins are worse than both ends. **Real confound: these are different
+  markets selected by when each one happened to cross into favorite
+  territory, not the same market resampled at different entry times** — a
+  market that is already a favorite 12 days out is structurally different
+  from one that resolves into a favorite hours before close. `0-4d` is both
+  the best-supported bucket (by far the largest n) and where most real
+  candidates land regardless, which is itself the finding: for most of this
+  family, there is no earlier entry to choose between. **What was NOT
+  tested and should not be assumed:** `replay_market` always enters on the
+  FIRST day a market clears the screen. Whether *delaying* entry on a
+  market that qualifies early (say, day 6) until closer to close would
+  improve or worsen its outcome is unmeasured — that needs the market's
+  full day-by-day price trajectory, not just the entry snapshot this
+  backtest recorded. Do not read "0-4 days looks best" as "wait before
+  betting an early-qualifying candidate" without that data.
+  **Operational consequence:** because most candidates only appear in the
+  final days, running `mention_bucket` once (or on a wide `max_days_ahead`
+  preview far in advance) will miss most of them — it needs to run close to
+  markets' close dates, ideally as a recurring check, not a one-off scan.

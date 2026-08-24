@@ -187,6 +187,17 @@ settle they become the first real, non-bootstrapped evidence for the 15–30
 day horizon specifically — worth checking against the 14-day bins' rates
 rather than assumed to match them.
 
+### Run this close to close, not just once
+
+Checked entry timing directly (THEORY.md Learnings, 2026-08-24): 36% of the
+116 backtest hits only became screen-eligible on the literal last day
+before close, and most of the rest in the final 1-2 days. A one-off scan
+weeks in advance will miss most of what this path is actually finding.
+Re-run `find_candidates`/`rank` close to individual markets' close dates —
+a recurring daily check, not a single pull — or a wide `max_days_ahead`
+preview will keep showing the same handful of long-horizon candidates while
+the real opportunities are still forming.
+
 ## Known weaknesses
 
 1. **The gate classifies by series-ticker prefix and never reads resolution
