@@ -273,8 +273,17 @@ row for a run whose model and prompt were not recorded first.
 | stage | prompt file | model used 2026-08-23 |
 |---|---|---|
 | gate | `gate.py` (deterministic — no model) | none |
-| analysis | `prompts/analysis.md` | `claude-opus-5`, high effort, web search on |
+| analysis | `prompts/analysis.md` | `opus` — an Agent-tool **alias**, web search on, effort not set |
 | final_review | `prompts/final_review.md` | `claude-opus-5[1m]` (main session) |
+
+**Subagent model ids are aliases, not pins.** The Agent tool takes `opus` /
+`sonnet` / `haiku` / `fable` and resolves them harness-side without reporting
+back what it picked. So a subagent stage can record *what was asked for*, never
+*what ran*. Recording the alias is still the reproducible fact — a future
+session passing `opus` gets whatever the alias maps to then, and that drift is
+exactly what this record should expose rather than hide behind a pinned id
+nobody verified. The main session's model is known precisely; subagent stages
+are not.
 
 Editing any of those files changes what this theory decides and **bumps the
 version**, exactly like moving a threshold.

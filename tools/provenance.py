@@ -21,6 +21,15 @@ Prompts belong in the theory's own folder as files, so a change shows up in
 `git diff` and gets reviewed like any other procedure change. `prompt_path`
 records that file; `prompt_text` is the fallback for a prompt assembled
 inline. One of the two is required, and the sha always is.
+
+**Record what was actually specified, not what you believe it resolved to.**
+The Agent tool takes a model *alias* (`opus`, `sonnet`, `haiku`, `fable`) and
+resolves it harness-side without reporting back. A subagent stage therefore
+knows what was asked for and not what ran, and `model` should say so —
+`"opus (Agent tool alias)"`, not a pinned id nobody confirmed. An alias that
+silently remaps between runs is precisely the drift this table exists to
+expose; a fabricated pin hides it. Same rule for `effort`: leave it null when
+it was never passed rather than recording what the prompt seemed to ask for.
 """
 
 from __future__ import annotations
