@@ -115,11 +115,17 @@ retail price index.
 
 No judgment, no gate, no subagent, no Stage 3 — a wholly separate,
 `edge_basis='measured'` path that runs and records without a research pass.
-See `mention_bucket.py`'s module docstring for the full reasoning, including
-the two caveats that must travel with every result it produces: the measured
-rate is bootstrapped from one backtest, not this path's own live history,
-and every candidate in the bucket carries the *same* probability (0.871) --
-ranking is by price, not by any per-market signal.
+See `mention_bucket.py`'s module docstring for the full reasoning and
+caveats: the measured rates are bootstrapped from one backtest, not this
+path's own live history, and candidates are scored against **their own
+price bin** (`PRICE_BINS`), not one family-wide average — the first version
+of this module used a single flat rate and that was a real bug, caught by
+the user asking why cheap, weak favorites were ranking as the best bets when
+their own trading experience said strong (80%+) favorites were where this
+kind of edge usually lives. The backtest data agreed: win rate rises from
+0.73 below $0.75 to 1.00 at $0.85+. Volume is reported and breaks ties, but
+is not part of the edge — checked directly, it is not predictive of win rate
+here the way price is.
 
 ```python
 from datetime import datetime, timezone
@@ -132,7 +138,7 @@ now = datetime.now(timezone.utc)
 
 candidates = mention_bucket.find_candidates(live_board, now=now)
 rates = mention_bucket.measured_rate(conn)   # reads the v2 backtest, not this run
-ranked = mention_bucket.rank(candidates, rates, top_n=20)
+ranked = mention_bucket.rank(candidates, rates, top_n=20)   # each candidate scored on ITS OWN bin
 
 if ranked:
     run_id = f"live-{now.date()}-mention"
@@ -157,8 +163,8 @@ broken.
 `max_days_ahead` on `find_candidates` defaults to the validated 14 days.
 Widening it looks further out than the backtest ever tested, so use
 `rank_preview` instead of `rank` — it always returns `edge_basis='model'`,
-never `'measured'`, and record with an explicit distinct `confidence` label
-so a wider-window run can never pool into the validated bucket's rate:
+never `'measured'`, and record with `confidence_suffix` set so a wider-window
+run can never pool into a validated bin's rate:
 
 ```python
 candidates = mention_bucket.find_candidates(live_board, now=now, max_days_ahead=30)
@@ -166,15 +172,20 @@ ranked = mention_bucket.rank_preview(candidates, rates, top_n=20)
 if ranked:
     ids = mention_bucket.record(
         conn, ranked, run_id=f"live-{now.date()}-mention-preview30",
-        confidence="mention_family_preview_30d",
+        confidence_suffix="_preview_30d",
     )
 ```
 
-First run at 30 days, 2026-08-24: 69 candidates, top 20 recorded under
-`run_id=live-2026-08-24-mention-preview30`. Once these settle they become
-the first real, non-bootstrapped evidence for the 15–30 day horizon
-specifically — worth checking against the 14-day bucket's rate rather than
-assumed to match it.
+First run at 30 days, 2026-08-24: 69 candidates. **The first attempt
+(`run_id=live-2026-08-24-mention-preview30`) used the flat-rate bug above
+and ranked cheap, weak favorites highest — wrong, and marked `skipped` in
+the ledger with a correction note rather than left to look like a live
+recommendation.** Re-run with the price-binned fix under
+`run_id=live-2026-08-24-mention-preview30-v2`: the top 20 are now dominated
+by the $0.85+ bin, matching what the backtest actually supports. Once these
+settle they become the first real, non-bootstrapped evidence for the 15–30
+day horizon specifically — worth checking against the 14-day bins' rates
+rather than assumed to match them.
 
 ## Known weaknesses
 

@@ -1,9 +1,9 @@
 """insider_bias v3 — the mechanical MENTION-family sub-path.
 
-find_candidates and rank are pure/no-network and tested directly.
-measured_rate/record touch the database and are tested against a temp
-sqlite connection via tools.db, following this repo's existing convention
-for ledger-touching tests (see tests/test_ledger.py).
+find_candidates, bucket_for_price, rank, and rank_preview are pure/no-network
+and tested directly. measured_rate/record touch the database and are tested
+against a temp sqlite connection via tools.db, following this repo's
+existing convention for ledger-touching tests (see tests/test_ledger.py).
 """
 
 from datetime import datetime, timezone
@@ -11,7 +11,8 @@ from datetime import datetime, timezone
 import pytest
 
 from theories.insider_bias import mention_bucket
-from tools import db, theories
+from tools import db, score, theories
+from tools.sizing import fee_pts
 
 NOW = datetime(2026, 8, 24, tzinfo=timezone.utc)
 
@@ -30,6 +31,21 @@ def _market(ticker, series_ticker, **overrides):
     }
     base.update(overrides)
     return base
+
+
+def _candidate(ticker, entry_price, fav_side="yes", volume=5000.0):
+    return {
+        "ticker": ticker, "fav_side": fav_side, "entry_price": entry_price,
+        "spread": 0.02, "volume": volume,
+    }
+
+
+#: Mirrors the real 2026-08-24 backtest's three price bins.
+RATES = {
+    "mention_family_lt75": {"n": 37, "win_rate": 0.730, "mean_entry_price": 0.696},
+    "mention_family_75_85": {"n": 38, "win_rate": 0.868, "mean_entry_price": 0.793},
+    "mention_family_85plus": {"n": 41, "win_rate": 1.000, "mean_entry_price": 0.916},
+}
 
 
 # --- find_candidates ----------------------------------------------------
@@ -66,71 +82,96 @@ def test_find_candidates_max_days_ahead_widens_the_window():
     assert [c["ticker"] for c in result] == ["KXTRUMPMENTION-1"]
 
 
+# --- bucket_for_price ---------------------------------------------------
+
+
+def test_bucket_for_price_matches_the_three_backtest_bins():
+    assert mention_bucket.bucket_for_price(0.65) == "mention_family_lt75"
+    assert mention_bucket.bucket_for_price(0.74) == "mention_family_lt75"
+    assert mention_bucket.bucket_for_price(0.75) == "mention_family_75_85"
+    assert mention_bucket.bucket_for_price(0.84) == "mention_family_75_85"
+    assert mention_bucket.bucket_for_price(0.85) == "mention_family_85plus"
+    assert mention_bucket.bucket_for_price(0.97) == "mention_family_85plus"
+
+
+def test_bucket_for_price_clamps_out_of_range_rather_than_raising():
+    assert mention_bucket.bucket_for_price(0.50) == "mention_family_lt75"
+    assert mention_bucket.bucket_for_price(0.99) == "mention_family_85plus"
+
+
 # --- rank -----------------------------------------------------------------
 
 
-def _candidate(ticker, entry_price, fav_side="yes"):
-    return {
-        "ticker": ticker, "fav_side": fav_side, "entry_price": entry_price,
-        "spread": 0.02, "volume": 5000.0,
-    }
-
-
-MEASURED_RATES = {"mention_family": {"n": 116, "win_rate": 0.871, "mean_entry_price": 0.806}}
-
-
-def test_rank_orders_by_edge_not_input_order():
-    candidates = [_candidate("A", 0.95), _candidate("B", 0.70), _candidate("C", 0.85)]
-    ranked = mention_bucket.rank(candidates, MEASURED_RATES, top_n=20)
-    # Cheaper favorites have more room under the flat 0.871 rate -> more edge.
-    assert [c["ticker"] for c in ranked] == ["B", "C", "A"]
+def test_rank_uses_each_candidates_own_price_bin():
+    # A cheap ($0.68) and a strong ($0.90) favorite must NOT share one rate.
+    candidates = [_candidate("cheap", 0.68), _candidate("strong", 0.90)]
+    ranked = mention_bucket.rank(candidates, RATES, top_n=20)
+    by_ticker = {c["ticker"]: c for c in ranked}
+    assert by_ticker["cheap"]["bucket"] == "mention_family_lt75"
+    assert by_ticker["strong"]["bucket"] == "mention_family_85plus"
+    # The strong favorite's bin has both a higher win rate AND less edge
+    # headroom lost to fees than the naive flat-rate model would have given
+    # the cheap one -- this is the fix: the cheap end no longer looks best.
+    assert by_ticker["strong"]["edge_pts_net"] > by_ticker["cheap"]["edge_pts_net"]
 
 
 def test_rank_attaches_measured_edge_basis():
-    ranked = mention_bucket.rank([_candidate("A", 0.80)], MEASURED_RATES, top_n=20)
+    ranked = mention_bucket.rank([_candidate("A", 0.80)], RATES, top_n=20)
     assert ranked[0]["edge_basis"] == "measured"
-    assert ranked[0]["edge_pts_net"] == pytest.approx((0.871 - 0.80) * 100 - _fee(0.80))
-
-
-def _fee(price):
-    from tools.sizing import fee_pts
-    return fee_pts(price)
+    assert ranked[0]["edge_pts_net"] == pytest.approx(
+        (0.868 - 0.80) * 100 - fee_pts(0.80)
+    )
 
 
 def test_rank_respects_top_n():
-    candidates = [_candidate(str(i), 0.70 + i * 0.01) for i in range(30)]
-    ranked = mention_bucket.rank(candidates, MEASURED_RATES, top_n=20)
+    candidates = [_candidate(str(i), 0.70 + i * 0.005) for i in range(30)]
+    ranked = mention_bucket.rank(candidates, RATES, top_n=20)
     assert len(ranked) == 20
 
 
 def test_rank_falls_back_to_prior_below_min_bucket_n():
-    thin_rates = {"mention_family": {"n": 3, "win_rate": 1.0, "mean_entry_price": 0.9}}
+    thin_rates = {"mention_family_75_85": {"n": 3, "win_rate": 1.0, "mean_entry_price": 0.9}}
     ranked = mention_bucket.rank([_candidate("A", 0.80)], thin_rates, top_n=20)
     assert ranked[0]["edge_basis"] == "prior"
     assert ranked[0]["edge_pts_net"] == pytest.approx(0.0)
 
 
 def test_rank_handles_no_candidates():
-    assert mention_bucket.rank([], MEASURED_RATES, top_n=20) == []
+    assert mention_bucket.rank([], RATES, top_n=20) == []
+
+
+def test_rank_breaks_edge_ties_by_volume():
+    # Same price -> same bucket -> same edge; higher volume should sort first.
+    candidates = [
+        _candidate("thin", 0.80, volume=600.0),
+        _candidate("liquid", 0.80, volume=9000.0),
+    ]
+    ranked = mention_bucket.rank(candidates, RATES, top_n=20)
+    assert [c["ticker"] for c in ranked] == ["liquid", "thin"]
 
 
 # --- rank_preview -----------------------------------------------------
 
 
 def test_rank_preview_always_returns_model_basis_never_measured():
-    ranked = mention_bucket.rank_preview([_candidate("A", 0.80)], MEASURED_RATES, top_n=20)
+    ranked = mention_bucket.rank_preview([_candidate("A", 0.80)], RATES, top_n=20)
     assert ranked[0]["edge_basis"] == "model"
 
 
-def test_rank_preview_uses_the_validated_rate_as_a_point_estimate():
-    ranked = mention_bucket.rank_preview([_candidate("A", 0.80)], MEASURED_RATES, top_n=20)
-    assert ranked[0]["edge_pts_net"] == pytest.approx((0.871 - 0.80) * 100 - _fee(0.80))
+def test_rank_preview_uses_the_bin_rate_as_a_point_estimate():
+    ranked = mention_bucket.rank_preview([_candidate("A", 0.80)], RATES, top_n=20)
+    assert ranked[0]["edge_pts_net"] == pytest.approx(
+        (0.868 - 0.80) * 100 - fee_pts(0.80)
+    )
 
 
-def test_rank_preview_orders_by_edge():
+def test_rank_preview_orders_by_each_candidates_own_bin_edge():
+    # A: 0.95 -> mention_family_85plus (win_rate 1.0) -> edge ~4.67pts.
+    # B: 0.70 -> mention_family_lt75 (win_rate 0.730) -> edge ~1.53pts.
+    # Real per-bin lookup, not a flat rate -- computed, not assumed.
     candidates = [_candidate("A", 0.95), _candidate("B", 0.70)]
-    ranked = mention_bucket.rank_preview(candidates, MEASURED_RATES, top_n=20)
-    assert [c["ticker"] for c in ranked] == ["B", "A"]
+    ranked = mention_bucket.rank_preview(candidates, RATES, top_n=20)
+    assert [c["ticker"] for c in ranked] == ["A", "B"]
 
 
 def test_rank_preview_zero_edge_when_validated_bucket_has_no_history():
@@ -154,9 +195,9 @@ def conn(tmp_path):
     c.close()
 
 
-def test_record_writes_opportunities_with_measured_edge(conn):
+def test_record_writes_opportunities_with_the_candidates_own_bin(conn):
     ranked = mention_bucket.rank(
-        [_candidate("KXTRUMPMENTION-1", 0.80)], MEASURED_RATES, top_n=20
+        [_candidate("KXTRUMPMENTION-1", 0.80)], RATES, top_n=20
     )
     ids = mention_bucket.record(conn, ranked, run_id="live-test-mention")
     assert len(ids) == 1
@@ -165,14 +206,14 @@ def test_record_writes_opportunities_with_measured_edge(conn):
     ).fetchone()
     assert row["kalshi_ticker"] == "KXTRUMPMENTION-1"
     assert row["edge_basis"] == "measured"
-    assert row["confidence"] == "mention_family"
+    assert row["confidence"] == "mention_family_75_85"
     assert row["disposition"] == "screened"
     assert row["theory_version"] == 3
 
 
 def test_record_writes_provenance_so_the_run_is_reproducible(conn):
     ranked = mention_bucket.rank(
-        [_candidate("KXTRUMPMENTION-1", 0.80)], MEASURED_RATES, top_n=20
+        [_candidate("KXTRUMPMENTION-1", 0.80)], RATES, top_n=20
     )
     mention_bucket.record(conn, ranked, run_id="live-test-mention")
     runs = conn.execute(
@@ -186,32 +227,34 @@ def test_record_handles_no_candidates(conn):
     assert mention_bucket.record(conn, [], run_id="live-test-empty") == []
 
 
-def test_record_preview_uses_a_distinct_confidence_bucket(conn):
+def test_record_preview_uses_a_suffixed_confidence_bucket(conn):
     ranked = mention_bucket.rank_preview(
-        [_candidate("KXTRUMPMENTION-1", 0.80)], MEASURED_RATES, top_n=20
+        [_candidate("KXTRUMPMENTION-1", 0.80)], RATES, top_n=20
     )
     ids = mention_bucket.record(
         conn, ranked, run_id="live-test-preview",
-        confidence="mention_family_preview_30d",
+        confidence_suffix="_preview_30d",
     )
     row = conn.execute(
         "SELECT * FROM opportunities WHERE id = ?", (ids[0],)
     ).fetchone()
-    assert row["confidence"] == "mention_family_preview_30d"
+    assert row["confidence"] == "mention_family_75_85_preview_30d"
     assert row["edge_basis"] == "model"
     assert "EXTRAPOLATION" in row["rationale"]
 
 
 def test_record_preview_never_pools_into_the_validated_bucket(conn):
-    # Recording a preview row under a distinct confidence label means
-    # score.bucket_rates() for the validated BUCKET name is unaffected.
+    # A suffixed confidence label means score.bucket_rates() for the
+    # validated bin names is unaffected by a preview run. bucket_rates()
+    # only counts settled opportunities, so settle this one to observe it.
     ranked = mention_bucket.rank_preview(
-        [_candidate("KXTRUMPMENTION-1", 0.80)], MEASURED_RATES, top_n=20
+        [_candidate("KXTRUMPMENTION-1", 0.80)], RATES, top_n=20
     )
     mention_bucket.record(
         conn, ranked, run_id="live-test-preview",
-        confidence="mention_family_preview_30d",
+        confidence_suffix="_preview_30d",
     )
-    from tools import score
+    score.record_settlement(conn, "KXTRUMPMENTION-1", result="yes")
     rates = score.bucket_rates(conn, "insider_bias", 3, run_mode="live")
-    assert "mention_family" not in rates
+    assert "mention_family_75_85" not in rates
+    assert "mention_family_75_85_preview_30d" in rates

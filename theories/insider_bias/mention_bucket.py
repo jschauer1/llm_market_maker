@@ -13,13 +13,13 @@ A second, wholly separate decision path alongside the theory's LLM-judged
 main pipeline (screen -> gate -> analysis -> final review). This one has no
 judgment stage at all: `screen.is_mention_family` identifies the family, the
 2026-08-24 tier A backtest (`run_id=backtest-2026-08-24-stage1-90d`) supplies
-a MEASURED bucket rate from real settled history (n=116, win_rate=87.1%),
-and `tools.buckets.edge_for` turns that into a mechanical `edge_pts_net`.
-`edge_basis='measured'` — candidates from this path arrive with an edge
-already attached and are recommendable without a research pass, per
-CLAUDE.md's "pipelines propose, judgment disposes": a theory that computes
-its edge mechanically needs no interpretation, unlike `insider_bias`'s main
-path, where a screen hit is only a candidate until Stage 3 reviews it.
+measured bucket rates from real settled history, and `tools.buckets.edge_for`
+turns those into a mechanical `edge_pts_net`. `edge_basis='measured'` —
+candidates from this path arrive with an edge already attached and are
+recommendable without a research pass, per CLAUDE.md's "pipelines propose,
+judgment disposes": a theory that computes its edge mechanically needs no
+interpretation, unlike `insider_bias`'s main path, where a screen hit is
+only a candidate until Stage 3 reviews it.
 
 Why this bumped the theory to v3 rather than folding into v2: it is a
 different decision procedure sitting *alongside* the LLM-judged path, not a
@@ -29,19 +29,46 @@ v2 rows (settling Aug 24-Sep 5) stay their own comparable cohort.
 **The measured rate is bootstrapped from a backtest, not this path's own
 live history — say so every time it is reported.** It held on one 90-day
 window and has never been tested going forward. Read "measured" here as
-"measured once", not "proven durable". The MEASURED_RATE_RUN_ID constant
-below names exactly which run it came from, so that claim stays checkable.
+"measured once", not "proven durable".
 
-**Every candidate in this bucket gets the SAME probability (0.871).** There
-is no per-market signal distinguishing one mention market from another --
-the model only knows the family's aggregate historical rate, not which
-specific market is more likely to hit. Ranking by `edge_pts_net` is
-therefore equivalent to ranking by *lowest entry price* within the
-qualifying band: cheaper favorites have more room between their price and
-0.871. That is the best a purely mechanical model can do; it is not the
-same claim as "these 20 are individually more likely to win than those
-other 20" — every candidate in the bucket is equally likely to win, by
-construction. Say this plainly when reporting results, not just here.
+**Price-binned buckets, not one flat rate — this was a real bug, caught and
+fixed 2026-08-24.** The first version of this module used ONE probability
+(0.871, the mention family's overall average) for every candidate regardless
+of price. That is wrong, and the backtest data says so directly: win rate
+rises sharply with price across the family --
+
+    below 0.75:  n=37  win_rate=0.730  edge_net=+1.87pts  (barely above the price itself)
+    0.75-0.85:   n=38  win_rate=0.868  edge_net=+6.38pts
+    0.85+:       n=41  win_rate=1.000  edge_net=+7.88pts
+
+Treating a $0.65 favorite as equally likely to hit as a $0.95 one (both
+"the mention family's 87.1%") overstated the cheap end's edge and
+understated the strong end's -- the first live run ranked $0.65-0.70
+candidates highest, which the data says is close to the WORST place to be
+in this family, not the best. `PRICE_BINS` below fixes this: each candidate
+is scored against ITS OWN bin's measured rate, not the family average.
+
+**The `mention_family_85plus` bin's 100% win rate (n=41) is a striking
+number and should be treated with real skepticism, not face value.** Zero
+losses in 41 tries is strong evidence of a high win rate, not proof of
+certainty -- the true rate is very likely below 100%, and `edge_for` will
+compute a large edge for any 0.85-0.89 candidate in this bin precisely
+because it takes the measured 1.0 at face value. This module does not apply
+any shrinkage beyond `buckets.MIN_BUCKET_N` (the same convention every other
+bucket in this repo uses -- inventing bespoke shrinkage for one bucket would
+be an inconsistent, one-off fix), so say this plainly whenever this bin's
+results are reported rather than let a future reader treat +8pts as as solid
+as the 0.75-0.85 bin's +6.38pts.
+
+**Volume is reported and used as a tiebreaker, not folded into the edge.**
+Checked directly: the backtest data does not show volume as predictive of
+win rate the way price does (bins bounce between +0.9 and +11pts with no
+clean trend, and the highest-volume bin is n=4 -- too small to mean
+anything). Higher volume matters for a different, real reason -- confidence
+that the displayed price is actually fillable -- so `rank`/`rank_preview`
+sort by `(edge_pts_net, volume)` descending: edge decides the ranking,
+volume breaks ties and is always reported alongside so a human can weigh
+execution risk themselves.
 """
 
 from __future__ import annotations
@@ -53,21 +80,43 @@ from tools import buckets, ledger, provenance, score
 from tools.sizing import fee_pts
 from theories.insider_bias import screen
 
-BUCKET = "mention_family"
 THEORY_ID = "insider_bias"
 LIVE_VERSION = 3
 
-#: Where the measured rate for BUCKET comes from -- a specific backtest run
-#: at v2, not this path's own history. See module docstring.
+#: (low, high, bucket_name) -- low inclusive, high exclusive except the last.
+#: Boundaries chosen from where the backtest data actually breaks, not round
+#: numbers: see module docstring for the per-bin win rates that justify them.
+PRICE_BINS: tuple[tuple[float, float, str], ...] = (
+    (0.65, 0.75, "mention_family_lt75"),
+    (0.75, 0.85, "mention_family_75_85"),
+    (0.85, 0.98, "mention_family_85plus"),
+)
+
+#: Where the measured rates come from -- a specific backtest run at v2, not
+#: this path's own history. See module docstring.
 MEASURED_RATE_THEORY_VERSION = 2
 MEASURED_RATE_RUN_MODE = "backtest"
 MEASURED_RATE_RUN_ID = "backtest-2026-08-24-stage1-90d"
 
-#: No prior needed: the backtest's n=116 already clears buckets.MIN_BUCKET_N,
-#: so edge_for always returns the measured rate for this bucket, never a
-#: prior placeholder. Kept explicit (not omitted) so a caller passing PRIORS
+#: No prior needed for any bin: the backtest's smallest bin (n=37) already
+#: clears buckets.MIN_BUCKET_N, so edge_for always returns a measured rate,
+#: never a prior placeholder. Kept explicit so a caller passing PRIORS
 #: doesn't have to guess what happens below MIN_BUCKET_N.
-PRIORS = {BUCKET: 0.0}
+PRIORS: dict[str, float] = {name: 0.0 for _, _, name in PRICE_BINS}
+
+
+def bucket_for_price(price: float) -> str:
+    """Which PRICE_BINS bucket a price falls into.
+
+    Below the lowest bin's floor or at/above the highest bin's ceiling
+    should not happen for anything that passed `screen.screen()` (favorite
+    band is [0.65, 0.97]), but clamps rather than raises if it does --
+    a boundary mismatch should not crash a live run.
+    """
+    for lo, hi, name in PRICE_BINS:
+        if lo <= price < hi:
+            return name
+    return PRICE_BINS[0][2] if price < PRICE_BINS[0][0] else PRICE_BINS[-1][2]
 
 
 def find_candidates(
@@ -94,28 +143,40 @@ def find_candidates(
 
 
 def measured_rate(conn: sqlite3.Connection) -> dict:
-    """The bucket_rates() dict `buckets.edge_for` expects, for BUCKET only."""
+    """The bucket_rates() dict `buckets.edge_for` expects, all PRICE_BINS
+    keys at once (one query returns every confidence bucket recorded under
+    this run, not just one)."""
     return score.bucket_rates(
         conn, THEORY_ID, MEASURED_RATE_THEORY_VERSION,
         run_mode=MEASURED_RATE_RUN_MODE, run_id=MEASURED_RATE_RUN_ID,
     )
 
 
-def rank(candidates: list[dict], rates: dict, top_n: int = 20) -> list[dict]:
-    """Candidates with mechanical edge attached, best edge first.
+def _sort_key(c: dict) -> tuple[float, float]:
+    return (c["edge_pts_net"], c.get("volume") or 0.0)
 
-    Every candidate shares BUCKET's one measured probability, so this is
-    equivalent to sorting by lowest entry price within the qualifying band
-    -- see module docstring on why that is not the same as "most likely to
-    win" market-by-market.
+
+def rank(candidates: list[dict], rates: dict, top_n: int = 20) -> list[dict]:
+    """Candidates with mechanical edge attached, best first.
+
+    Each candidate is scored against its OWN price bin's measured rate
+    (`bucket_for_price`), not one family-wide average -- see module
+    docstring on why that was a real bug in the first version of this
+    module. Sorted by `(edge_pts_net, volume)` descending: edge decides
+    the ranking, volume only breaks ties (see module docstring on why
+    volume is not itself part of the edge).
     """
     scored = []
     for c in candidates:
+        bucket = bucket_for_price(c["entry_price"])
         edge_pts_net, edge_basis = buckets.edge_for(
-            BUCKET, c["entry_price"], rates, PRIORS
+            bucket, c["entry_price"], rates, PRIORS
         )
-        scored.append({**c, "edge_pts_net": edge_pts_net, "edge_basis": edge_basis})
-    scored.sort(key=lambda c: c["edge_pts_net"], reverse=True)
+        scored.append({
+            **c, "edge_pts_net": edge_pts_net, "edge_basis": edge_basis,
+            "bucket": bucket,
+        })
+    scored.sort(key=_sort_key, reverse=True)
     return scored[:top_n]
 
 
@@ -127,33 +188,32 @@ def rank_preview(
     """Edge estimate for candidates OUTSIDE the backtest-validated 14-day
     window (find_candidates called with max_days_ahead > screen.MAX_DAYS_AHEAD).
 
-    Always returns `edge_basis='model'`, never `'measured'`.  `'measured'` is
+    Always returns `edge_basis='model'`, never `'measured'`. `'measured'` is
     reserved for a bucket's own accumulated evidence (`tools/buckets.py`),
     and no market has ever settled from this wider horizon -- the backtest
     only ever evaluated eligibility inside the 14-day window (see
-    `backtest.py` module docstring point 3). Applying that 14-day rate here
-    is a modeling assumption (nothing about the mention family obviously
-    changes with days-to-close, but that is an assumption, not something
-    this specific horizon has demonstrated), so it is labeled `'model'`,
-    which is honest about being a calculation rather than borrowing
-    `'measured'`'s stronger claim.
+    `backtest.py` module docstring point 3). Applying a bin's 14-day rate
+    here is a modeling assumption (nothing about the mention family
+    obviously changes with days-to-close, but that is an assumption, not
+    something this specific horizon has demonstrated), so it is labeled
+    `'model'`, honest about being a calculation rather than borrowing
+    `'measured'`'s stronger claim. Same price-bin lookup and
+    `(edge_pts_net, volume)` sort as `rank`.
     """
-    measured = validated_rates.get(BUCKET)
-    probability = (
-        measured["win_rate"]
-        if measured and measured.get("n", 0) >= buckets.MIN_BUCKET_N
-        else None
-    )
-
     scored = []
     for c in candidates:
-        if probability is None:
-            edge_pts_net = 0.0
-        else:
-            gross = (probability - c["entry_price"]) * 100.0
+        bucket = bucket_for_price(c["entry_price"])
+        measured = validated_rates.get(bucket)
+        if measured and measured.get("n", 0) >= buckets.MIN_BUCKET_N:
+            gross = (measured["win_rate"] - c["entry_price"]) * 100.0
             edge_pts_net = gross - fee_pts(c["entry_price"])
-        scored.append({**c, "edge_pts_net": edge_pts_net, "edge_basis": "model"})
-    scored.sort(key=lambda c: c["edge_pts_net"], reverse=True)
+        else:
+            edge_pts_net = 0.0
+        scored.append({
+            **c, "edge_pts_net": edge_pts_net, "edge_basis": "model",
+            "bucket": bucket,
+        })
+    scored.sort(key=_sort_key, reverse=True)
     return scored[:top_n]
 
 
@@ -180,7 +240,7 @@ def record(
     ranked: list[dict],
     run_id: str,
     run_mode: str = "live",
-    confidence: str = BUCKET,
+    confidence_suffix: str = "",
 ) -> list[int]:
     """Write `ranked` to the ledger. Returns the opportunity ids.
 
@@ -191,23 +251,29 @@ def record(
     means the same mechanically, though the honest caveat about an untested
     horizon travels in `rationale` either way.
 
-    Pass `confidence` explicitly for anything from `rank_preview` -- a
-    distinct bucket name (e.g. `f"{BUCKET}_preview_30d"`) so a future
+    Each row's `confidence` is its own price bin (`c["bucket"]`, set by
+    `rank`/`rank_preview`) plus `confidence_suffix`. Pass a suffix (e.g.
+    `"_preview_30d"`) for anything from `rank_preview` so a future
     `score.bucket_rates()` call never pools an untested-horizon population
-    into the validated 14-day bucket's measured rate. Defaults to `BUCKET`
-    for `rank()` output, where that pooling is exactly what is wanted.
+    into the validated 14-day bins' measured rates. Leave it empty for
+    `rank()` output, where that pooling into the validated bins is exactly
+    what is wanted.
     """
     record_provenance(conn, run_id)
     ids = []
     for c in ranked:
+        bin_rate_note = (
+            f"measured rate for bucket {c['bucket']} "
+            f"({MEASURED_RATE_RUN_ID})"
+        )
         basis_note = (
-            f"measured win_rate=0.871 (n=116, {MEASURED_RATE_RUN_ID})"
+            f"{bin_rate_note}, applied directly"
             if c["edge_basis"] == "measured"
             else (
-                f"win_rate=0.871 from {MEASURED_RATE_RUN_ID} APPLIED AS AN "
-                f"EXTRAPOLATION to a days-to-close horizon the backtest "
-                f"never tested (>{screen.MAX_DAYS_AHEAD:.0f} days) -- a "
-                f"modeling assumption, not a measurement of this population"
+                f"{bin_rate_note} APPLIED AS AN EXTRAPOLATION to a "
+                f"days-to-close horizon the backtest never tested "
+                f"(>{screen.MAX_DAYS_AHEAD:.0f} days) -- a modeling "
+                f"assumption, not a measurement of this population"
             )
         )
         opp_id, _ = ledger.record_opportunity(
@@ -223,12 +289,12 @@ def record(
             spread_at_call=c.get("spread"),
             volume_at_call=c.get("volume"),
             edge_basis=c["edge_basis"],
-            confidence=confidence,
+            confidence=f"{c['bucket']}{confidence_suffix}",
             rationale=(
                 f"Mechanical mention_family bucket, no judgment applied: "
-                f"{basis_note}. See mention_bucket.py module docstring for "
-                f"why every candidate in this bucket carries the same "
-                f"probability."
+                f"{basis_note}. Volume (${c.get('volume', 0):,.0f}) is a "
+                f"tiebreaker only, not part of the edge -- see "
+                f"mention_bucket.py module docstring."
             ),
             evidence_source="kalshi",
         )

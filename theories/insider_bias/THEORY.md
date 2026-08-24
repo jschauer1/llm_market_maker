@@ -113,7 +113,7 @@ that into `gate.py` (which would change the LLM-judged path's decision
 procedure mid-flight, exactly what the versioning rule exists to prevent —
 the 44 v2 rows are still settling), it ships as its own path: `screen.py`
 gained `is_mention_family`, and `mention_bucket.py` screens the live board,
-reads a measured win rate from the backtest via `tools.buckets.edge_for`,
+reads measured win rates from the backtest via `tools.buckets.edge_for`,
 ranks by edge, and records opportunities with no gate, no subagent, and no
 Stage 3 review. Stages 1–6 (`screen.py`'s core filters, `gate.py`,
 the prompts, Stage 3) are **unchanged** — this is why the bump is
@@ -121,6 +121,16 @@ version-wide (`insider_bias` now has two decision procedures, and a flat
 version number has to describe both or it stops meaning anything) but not a
 rewrite of anything v2 already does. First live run found 0 candidates — not
 a defect, see `RUNBOOK.md`'s mention-family section for why.
+
+**Same day, same version, a real fix not a new bump:** the first cut used
+one flat win rate (0.871) for every price in the family's band. The
+backtest data shows win rate actually rises sharply with price (0.73 below
+$0.75, up to 1.00 at $0.85+), so `mention_bucket.py` now scores each
+candidate against its own price bin (`PRICE_BINS`) instead. This is a bug
+fix to v3's own implementation, not a decision-procedure change on top of
+it — the *rule* was always "use the mechanical screen plus a measured
+rate," and the rule did not change; what it measures against did. See
+Learnings for the full account of how this was caught.
 
 **2** (2026-08-23) — *Final recommendation must come from the main research
 model.* Stage 2 previously ended at the subagent verdict, and a candidate was
@@ -649,3 +659,34 @@ and full breakdown in Learnings below.
   at the mean entry price cost about $16, not $10. Worth remembering when
   reporting edge numbers: state points and ROI separately, never let one
   stand in for the other.
+- 2026-08-24 — **The flat mention-family rate was a real bug: win rate
+  rises sharply with price, and the first ranking had it backwards.** Caught
+  because the user's own trading experience ("in many of my insider bets the
+  threshold is typically 80% or higher") didn't match a ranking that put
+  $0.65-0.70 favorites at the top. Checked the backtest data directly rather
+  than argue from intuition: it agreed with the user, sharply --
+  `below 0.75: n=37, win_rate=0.730, edge_net=+1.87pts` (barely above the
+  price itself — close to zero real edge), `0.75-0.85: n=38, win_rate=0.868,
+  edge_net=+6.38pts`, `0.85+: n=41, win_rate=1.000, edge_net=+7.88pts`. The
+  flat-rate model (one probability, 0.871, for the whole $0.65-$0.97 band)
+  systematically overstated the cheap end's edge and understated the strong
+  end's, because it ignored the market's own pricing as a signal. Fixed:
+  `mention_bucket.py` now scores every candidate against its own price bin
+  (`PRICE_BINS`, `bucket_for_price`), not a family average — the 116
+  backtest rows were retagged from flat `confidence='mention_family'` into
+  three bin-specific labels so `score.bucket_rates()` measures each
+  separately. Also added volume as a reported field and tiebreaker (checked:
+  not predictive of win rate here, unlike price, so it does not belong in
+  the edge calculation itself, only in breaking ties between equal-edge
+  candidates). The first 30-day preview run
+  (`run_id=live-2026-08-24-mention-preview30`) used the buggy flat model and
+  is marked `skipped` in the ledger with a correction note rather than left
+  looking like a live recommendation; the corrected re-run
+  (`...-preview30-v2`) is dominated by the $0.85+ bin, as the data says it
+  should be. **One more caution, not yet acted on:** the $0.85+ bin's 1.000
+  win rate (n=41, zero losses) is likely to regress somewhat with more data
+  — `edge_for` takes it at face value with no shrinkage beyond
+  `buckets.MIN_BUCKET_N`, matching this repo's one consistent convention
+  rather than inventing bucket-specific smoothing, but a future session
+  should not report `+8pts` on this bin with the same confidence as a bin
+  that actually lost a few times.

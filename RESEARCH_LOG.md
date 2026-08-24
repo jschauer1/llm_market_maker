@@ -433,3 +433,35 @@ the ranking is by price, and now additionally by an untested-horizon
 assumption on top of that. These are more "here is what the mechanical
 model surfaces" than "here is proven edge" — said plainly when reporting
 them.
+
+**Addendum, same session — the flat rate was a real bug, caught by a user
+who trusted their own trading experience over the model's output.** Asked
+to also weigh volume and asked "from what point was the edge considering" —
+pointed at a real problem: one flat win rate (0.871) for the whole
+$0.65-$0.97 band meant the ranking put $0.65-0.70 favorites at the top,
+which contradicted the user's stated experience that 80%+ is where this
+kind of edge usually shows up. Checked the backtest data rather than argue
+either way: it agreed with the user sharply — win rate rises from 0.73
+below $0.75 to 0.87 at $0.75-0.85 to 1.00 at $0.85+, so the cheap end has
+close to zero real edge and the flat model was crediting it with the most.
+
+Fixed properly rather than patched: retagged the 116 backtest rows from one
+`confidence='mention_family'` into three price-bin labels
+(`mention_family_lt75`/`_75_85`/`_85plus`), added `bucket_for_price` and
+`PRICE_BINS` to `mention_bucket.py`, and made `rank`/`rank_preview` score
+each candidate against its own bin. Checked volume too before adding it:
+not predictive of win rate here (bins bounce between +0.9 and +11pts with
+no trend), so it is a tiebreaker and a reported field, not part of the edge
+— folding in a checked-non-signal would have been worse than leaving it out.
+
+Old preview run (`...preview30`, ids 403-422) marked `skipped` in the
+ledger with a correction note rather than silently overwritten. Corrected
+re-run (`...preview30-v2`) is dominated by the $0.85+ bin. Did not bump the
+theory version for this: nothing had settled yet under the buggy version
+(all 20 rows were `screened`/`untouched`), so there is no track-record
+mixing risk the versioning rule exists to prevent — this is a bug fix to
+v3's own implementation, not a new decision procedure layered on top.
+Flagged one more thing for a future session rather than fixing it now: the
+$0.85+ bin's 1.000 win rate (n=41, zero losses) will very likely regress
+with more data, and nothing in `buckets.py` shrinks it — reporting `+8pts`
+on that bin deserves more hedging than a bin that has actually lost a few.
