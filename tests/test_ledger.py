@@ -245,6 +245,26 @@ def test_list_filters_by_theory_and_disposition(conn):
     assert len(ledger.list_opportunities(conn, disposition="endorsed")) == 0
 
 
+def test_unsettled_only_excludes_settled_tickers(conn):
+    from tools import score
+
+    _record(conn, kalshi_ticker="SETTLED")
+    _record(conn, kalshi_ticker="OPEN")
+    score.record_settlement(conn, "SETTLED", "yes")
+
+    rows = ledger.list_opportunities(conn, unsettled_only=True)
+    assert [r["kalshi_ticker"] for r in rows] == ["OPEN"]
+
+
+def test_unsettled_only_defaults_to_false(conn):
+    from tools import score
+
+    _record(conn, kalshi_ticker="SETTLED")
+    score.record_settlement(conn, "SETTLED", "yes")
+
+    assert len(ledger.list_opportunities(conn)) == 1
+
+
 def test_edge_basis_defaults_to_prior(conn):
     opp_id, _ = _record(conn)
     assert ledger.get_opportunity(conn, opp_id)["edge_basis"] == "prior"

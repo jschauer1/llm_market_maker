@@ -11,9 +11,14 @@ description: Settle resolved opportunities and recompute calibration scores. Use
 from tools import db, ledger
 from tools.kalshi import markets
 conn = db.connect(); db.init_db(conn)
-rows = ledger.list_opportunities(conn)  # every opportunity, settled or not
+rows = ledger.list_opportunities(conn, unsettled_only=True)  # skip what already has a settlement
 quotes = markets.quotes([r["kalshi_ticker"] for r in rows])
 ```
+
+`unsettled_only=True` matters: without it this re-quotes every opportunity
+ever recorded, on every run, unbounded — a ledger with 95 tickers today only
+grows. A row with a settlement already on file has nothing left to check
+here.
 
 A Kalshi market is settled when its status is `finalized` and `result` is set.
 

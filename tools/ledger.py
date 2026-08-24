@@ -245,7 +245,16 @@ def list_opportunities(
     theory_id: str | None = None,
     run_mode: str | None = None,
     disposition: str | None = None,
+    unsettled_only: bool = False,
 ) -> list[sqlite3.Row]:
+    """List opportunities, optionally narrowed by theory/run_mode/disposition.
+
+    `unsettled_only=True` drops any row whose ticker already has a
+    `settlements` entry. A re-quote loop (score-theories' "find what has
+    resolved" step) only needs to check tickers that have not settled yet;
+    without this filter that loop re-quotes every opportunity ever recorded,
+    unbounded, on every run.
+    """
     clauses: list[str] = []
     params: list[object] = []
     if theory_id is not None:
@@ -257,6 +266,10 @@ def list_opportunities(
     if disposition is not None:
         clauses.append("disposition = ?")
         params.append(disposition)
+    if unsettled_only:
+        clauses.append(
+            "kalshi_ticker NOT IN (SELECT kalshi_ticker FROM settlements)"
+        )
     where = f" WHERE {' AND '.join(clauses)}" if clauses else ""
     return conn.execute(
         f"SELECT * FROM opportunities{where} ORDER BY id", params
