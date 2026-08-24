@@ -21,20 +21,36 @@ Kalshi only (`tools/kalshi/markets.py`). No Polymarket dependency.
 
 ## Status
 
-`active` — imported with real history from `kalshi_trader`. This status was
-set by the migration to demonstrate the harness end-to-end, not because the
-imported history clears the promotion bar (`calibration_edge_net` > 0). It
-does not: measured now, n=29, `calibration_edge_net = -0.75` points;
-restricted to the rows the predecessor actually bet on
-(`extra_json.status` starting `BET`, excluding the declined-limit rows),
-`calibration_edge_net = -1.87`. That is already past the `n=20` review
-trigger with a negative net edge (see `CLAUDE.md`'s lifecycle rule). Because
-`find-edge` defaults to `--status active`, a session running it today will
-scan a theory whose own imported history says it currently loses after fees.
-Validating or retiring `insider_bias` — a real stage-2 backtest, or a
-decision to pause it — is a first-order task for an early session, not
-something this status label should be read as having already settled. See
-`RESEARCH_LOG.md`, 2026-08-23, for the same numbers.
+`under_review` — imported with real history from `kalshi_trader`, and past the
+`n=20` review trigger with a negative net edge. Measured now: n=29,
+`calibration_edge_net = -0.75` points; restricted to the rows the predecessor
+actually bet on (`extra_json.status` starting `BET`, excluding the
+declined-limit rows), `calibration_edge_net = -1.87`.
+
+`under_review` is the honest label, and it means the theory **keeps running**
+while it is diagnosed. It is not a verdict. Working `score-theories` §5
+against these numbers, the first question already answers itself: at n=29 the
+standard error on a win rate is around 9 points, so a −0.75-point result is
+well inside the noise. This theory has not been measured yet — it has been
+glanced at. Nothing here justifies a retirement proposal, and a session that
+treats the negative sign as a conclusion has misread a small sample.
+
+What would actually settle it, roughly in order of value:
+
+1. **A tier A backtest of the stage-1 screen alone.** Uncontaminated, a year
+   of history available, and it separates the screen from the judgment — the
+   single most useful split available here. Prerequisite noted in
+   `RESEARCH_LOG.md`: a candle→market adapter, with `no_ask ≈ 1 - yes_bid_close`.
+2. **`interpretation_value`** once both endorsed and rejected rows have
+   settled: does stage 2 add edge over its own screen, or destroy it?
+3. **A slice breakdown** by bucket, market family, days-to-close, and price
+   band. The reality-TV intuition in stage 2 predicts that one family carries
+   whatever edge exists; if so this is a narrower theory than it claims, which
+   is a version bump and a real finding.
+4. **Gross vs net.** If `calibration_edge` is positive while the net figure is
+   not, the thesis is sound and the entry threshold is wrong.
+
+See `RESEARCH_LOG.md`, 2026-08-23, for the same numbers.
 
 ## Version
 

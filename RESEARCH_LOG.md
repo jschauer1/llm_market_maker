@@ -94,3 +94,45 @@ be rewritten after the fact) — it is a reason to flag it loudly here and in
 early session: either run the stage-2 backtest (tier B/C per its `THEORY.md`)
 to see whether interpretation recovers the edge the raw screen does not show,
 or apply the lifecycle rule and move it to `paused`/`retired` if it doesn't.
+
+---
+
+## 2026-08-23 — Theory status became an evidence level; retirement became the user's call
+
+**Did:** Reworked the theory lifecycle. Status is now an evidence level —
+`proposed` → `testing` → `active`, with `under_review` for a theory failing
+its own bar and `paused` reserved for one blocked on a missing prerequisite.
+`under_review` **keeps running**, which is the substantive change: the old
+design paused a failing theory at `n=50`, freezing its sample at exactly the
+size that made the verdict unreliable. `find-edge` now runs `testing`,
+`active`, and `under_review`; credibility weighting, not a scan filter, is
+what stops an unproven theory crowding out a proven one.
+
+Added a diagnosis checklist (`score-theories` §5) that must be worked before
+any opinion about a theory's future, and made retirement user-only:
+`theories propose-retirement <id> --rationale "..."` records a standing
+suggestion and leaves the theory running; `theories status <id> retired`
+refuses without both `--authorized-by user` and a proposal on file.
+`theories pending-retirement` surfaces unruled proposals in every orient.
+
+Moved `insider_bias` from `active` to `under_review` and rewrote its Status
+section from "flagged as questionable" to an actual diagnosis.
+
+**Learned:** The `insider_bias` numbers do not support any verdict yet. At
+n=29 the standard error on a win rate is roughly 9 points, so
+`calibration_edge_net = -0.75` is well inside the noise — the theory has been
+glanced at, not measured. The interesting failure modes (fees eating a real
+edge, judgment inverted over a sound screen, one profitable slice, an
+inverted sign, contaminated tier, mixed versions) are all indistinguishable
+from death at a glance, which is why the checklist exists.
+
+The `theories` table needed a rebuild to widen its status CHECK; SQLite
+cannot alter one in place. `db.schema_statement()` extracts the DDL from
+`schema.sql` so the migration cannot drift from the schema it recreates. The
+live database migrated cleanly — 96 opportunities, 49 settlements, no FK
+violations.
+
+**Next:** Unchanged and now sharper: the candle→market adapter for a tier A
+backtest of the `insider_bias` stage-1 screen. It is item 1 on that theory's
+own diagnosis list because it separates the screen from the judgment, which
+is the single most informative split available on it.

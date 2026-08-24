@@ -1,6 +1,6 @@
 ---
 name: find-edge
-description: Scan active theories for live opportunities, research the top candidates, and report a credibility-ranked list of the best bets. Use when the user asks what to bet, where the edge is, or what looks mispriced right now.
+description: Scan the running theories for live opportunities, research the top candidates, and report a credibility-ranked list of the best bets. Use when the user asks what to bet, where the edge is, or what looks mispriced right now.
 ---
 
 # Find Edge
@@ -10,12 +10,24 @@ narrow mechanically, then research, then rank honestly.
 
 ## 1. Select theories
 
-Default to `status=active`, best-credibility first:
+Run every theory that runs — `active`, `testing`, and `under_review`
+(`theories.SCANNABLE_STATUSES`). Skip `proposed`, `paused`, and `retired`.
 
 ```bash
-python -m tools.cli theories list --status active
+python -m tools.cli theories list --running
 python -m tools.cli score report <theory_id>
 ```
+
+Ordering by credibility is right; excluding the unproven is not. Ranking
+already shrinks an unproven claim to a quarter of its face value and a
+measured-worthless one to zero, so a weak theory cannot crowd out a strong
+one — and a theory that never runs never earns the evidence that would
+settle it. `under_review` in particular means "failing and being diagnosed,"
+not "benched": taking it off the board is how you guarantee you never learn
+whether it was broken or just unlucky.
+
+Show each theory's status and standing alongside its picks, so a `testing`
+theory's candidates are never read as a demonstrated edge.
 
 Honor a user scope override ("just insider_bias", "all theories").
 

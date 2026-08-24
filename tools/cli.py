@@ -41,13 +41,29 @@ def _cmd_theories(args) -> int:
     conn = _connect(args)
     try:
         if args.action == "list":
-            _emit(_rows(theories.list_theories(conn, status=args.status)))
+            _emit(
+                _rows(
+                    theories.list_theories(
+                        conn, status=args.status, running_only=args.running
+                    )
+                )
+            )
         elif args.action == "register":
             theories.register(conn, args.id, args.name, args.path)
             _emit(dict(theories.get(conn, args.id)))
         elif args.action == "status":
-            theories.set_status(conn, args.id, args.value)
+            theories.set_status(
+                conn, args.id, args.value, authorized_by=args.authorized_by
+            )
             _emit(dict(theories.get(conn, args.id)))
+        elif args.action == "propose-retirement":
+            theories.propose_retirement(conn, args.id, args.rationale)
+            _emit(dict(theories.get(conn, args.id)))
+        elif args.action == "withdraw-retirement":
+            theories.withdraw_retirement(conn, args.id)
+            _emit(dict(theories.get(conn, args.id)))
+        elif args.action == "pending-retirement":
+            _emit(_rows(theories.list_pending_retirement(conn)))
         elif args.action == "bump":
             version = theories.bump_version(conn, args.id)
             _emit({"id": args.id, "version": version})
@@ -189,7 +205,16 @@ def build_parser() -> argparse.ArgumentParser:
     p.set_defaults(func=_cmd_theories)
     ts = p.add_subparsers(dest="action", required=True)
     listing = ts.add_parser("list")
-    listing.add_argument("--status", default=None)
+    listing_filter = listing.add_mutually_exclusive_group()
+    listing_filter.add_argument("--status", default=None)
+    listing_filter.add_argument(
+        "--running",
+        action="store_true",
+        help=(
+            "only theories that run: testing, active, under_review "
+            "(under_review keeps running while it is diagnosed)"
+        ),
+    )
     reg = ts.add_parser("register")
     reg.add_argument("id")
     reg.add_argument("name")
@@ -197,6 +222,32 @@ def build_parser() -> argparse.ArgumentParser:
     st = ts.add_parser("status")
     st.add_argument("id")
     st.add_argument("value", choices=theories.VALID_STATUSES)
+    st.add_argument(
+        "--authorized-by",
+        dest="authorized_by",
+        default="claude",
+        choices=("claude", "user"),
+        help=(
+            "who is making this call. 'retired' requires 'user' -- only the "
+            "user declares a theory dead"
+        ),
+    )
+    pr = ts.add_parser(
+        "propose-retirement",
+        help="suggest to the user that a theory is dead (does not retire it)",
+    )
+    pr.add_argument("id")
+    pr.add_argument(
+        "--rationale", required=True,
+        help="what you diagnosed and what you ruled out",
+    )
+    wr = ts.add_parser(
+        "withdraw-retirement", help="clear a standing retirement proposal"
+    )
+    wr.add_argument("id")
+    ts.add_parser(
+        "pending-retirement", help="retirement proposals awaiting the user"
+    )
     bump = ts.add_parser("bump")
     bump.add_argument("id")
 

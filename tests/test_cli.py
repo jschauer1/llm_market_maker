@@ -62,6 +62,72 @@ def test_theories_bump_increments_version(dbpath, capsys):
     assert payload["version"] == 2
 
 
+def test_theories_list_running_flag(dbpath, capsys):
+    _run(capsys, "--db", dbpath, "theories", "status", "t1", "under_review")
+    code, payload = _run(
+        capsys, "--db", dbpath, "theories", "list", "--running"
+    )
+    assert [t["id"] for t in payload] == ["t1"]
+    _run(capsys, "--db", dbpath, "theories", "status", "t1", "paused")
+    code, payload = _run(
+        capsys, "--db", dbpath, "theories", "list", "--running"
+    )
+    assert payload == []
+
+
+def test_theories_status_accepts_under_review(dbpath, capsys):
+    code, payload = _run(
+        capsys, "--db", dbpath, "theories", "status", "t1", "under_review"
+    )
+    assert payload["status"] == "under_review"
+
+
+def test_theories_status_retired_defaults_to_refusing(dbpath, capsys):
+    _run(capsys, "--db", dbpath, "theories", "propose-retirement", "t1",
+         "--rationale", "no slice profitable")
+    with pytest.raises(PermissionError):
+        _run(capsys, "--db", dbpath, "theories", "status", "t1", "retired")
+
+
+def test_theories_status_retired_needs_user_authorization(dbpath, capsys):
+    _run(capsys, "--db", dbpath, "theories", "propose-retirement", "t1",
+         "--rationale", "no slice profitable")
+    code, payload = _run(capsys, "--db", dbpath, "theories", "status", "t1",
+                         "retired", "--authorized-by", "user")
+    assert payload["status"] == "retired"
+
+
+def test_theories_propose_retirement_records_without_retiring(dbpath, capsys):
+    code, payload = _run(
+        capsys, "--db", dbpath, "theories", "propose-retirement", "t1",
+        "--rationale", "gross and net both flat across every slice",
+    )
+    assert payload["status"] == "proposed"
+    assert payload["retirement_rationale"].startswith("gross and net")
+
+
+def test_theories_pending_retirement_lists_unruled_proposals(dbpath, capsys):
+    code, payload = _run(
+        capsys, "--db", dbpath, "theories", "pending-retirement"
+    )
+    assert payload == []
+    _run(capsys, "--db", dbpath, "theories", "propose-retirement", "t1",
+         "--rationale", "diagnosed")
+    code, payload = _run(
+        capsys, "--db", dbpath, "theories", "pending-retirement"
+    )
+    assert [t["id"] for t in payload] == ["t1"]
+
+
+def test_theories_withdraw_retirement_clears_it(dbpath, capsys):
+    _run(capsys, "--db", dbpath, "theories", "propose-retirement", "t1",
+         "--rationale", "diagnosed")
+    code, payload = _run(
+        capsys, "--db", dbpath, "theories", "withdraw-retirement", "t1"
+    )
+    assert payload["retirement_proposed_at"] is None
+
+
 def test_ideas_record_and_search(dbpath, capsys):
     _run(capsys, "--db", dbpath, "ideas", "record", "whale-copy",
          "Copy Polymarket whales", "--description", "Follow large traders.")

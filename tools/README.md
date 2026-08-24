@@ -73,7 +73,7 @@ narrow context, then promote it once there is evidence it belongs.
 |---|---|
 | `cli.py` | Unified command line over everything below |
 | `db.py` | Connection, schema, UTC timestamps |
-| `theories.py` | Theory registry, lifecycle status, versioning |
+| `theories.py` | Theory registry, evidence-level status, versioning, retirement proposals |
 | `ideas.py` | Research memory — every hypothesis considered, and why it died |
 | `ledger.py` | `record_opportunity`, interpretation, user actions |
 | `score.py` | Settlements, calibration edge, ROI, interpretation value |

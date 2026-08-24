@@ -84,12 +84,25 @@ Fill in `THEORY.md` completely. Write any stage-1 code in the theory folder,
 with tests. Theory-local code stays local until it earns promotion — see
 `tools/README.md`.
 
-## 6. Stay at `proposed`
+## 6. Start at `proposed`, move to `testing` when it runs
 
-A new theory does not become `active` until a tier A or B backtest shows
-positive *net* calibration edge (`calibration_edge_net` — gross
-`calibration_edge` is not the promotion bar), or the user explicitly
-overrides. Say what evidence you would need to promote it.
+A theory is `proposed` while its procedure is still being written. Once the
+screen actually runs end to end and starts recording opportunities, move it
+to `testing`:
+
+```bash
+python -m tools.cli theories status <slug> testing
+```
+
+`testing` means the theory is on the board and accruing evidence, while its
+claimed edge is not yet demonstrated. It does not become `active` until a
+tier A or B backtest shows positive *net* calibration edge
+(`calibration_edge_net` — gross `calibration_edge` is not the promotion bar),
+or the user explicitly overrides.
+
+Say what evidence you would need to promote it — and what result would send
+it to `under_review`. A theory whose falsifying result you cannot name is not
+testable.
 
 ## If you drop the idea instead
 

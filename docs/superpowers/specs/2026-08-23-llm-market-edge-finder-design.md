@@ -161,8 +161,10 @@ carries lifecycle state.
 | id | text PK | slug, e.g. `insider_bias` |
 | name | text | |
 | version | integer | starts at 1; bumped on any change to the decision procedure (section 10) |
-| status | text | `proposed` \| `active` \| `paused` \| `retired` (section 11) |
+| status | text | `proposed` \| `testing` \| `active` \| `under_review` \| `paused` \| `retired` (section 11) |
 | path | text | folder under `theories/` |
+| retirement_proposed_at | timestamp | set when Claude proposes retirement; null otherwise (section 11) |
+| retirement_rationale | text | the diagnosis the user rules on |
 | created_at / updated_at | timestamp | |
 
 ### `ideas`
@@ -725,7 +727,9 @@ making, and why would it persist?
 Which platforms/tools does this theory use?
 
 ## Status
-proposed | active | paused | retired — with a journal of changes and why.
+proposed | testing | active | under_review | paused | retired — with a
+journal of changes and why. See section 11: the status is an evidence level,
+`under_review` keeps running, and `retired` is the user's call alone.
 
 ## Version
 Current version number, and a changelog of what changed at each bump.
@@ -831,27 +835,81 @@ Retiring a theory without writing down why it failed is how a system forgets.
 
 ### Theory statuses
 
-Status transitions have default bars. Claude may override any of them but must
-record the reason in `THEORY.md` — the point is that drift and accumulation stay
-visible, not that Claude lacks agency.
+A status is an **evidence level**, not an administrative flag. The set exists
+so that "how much has this theory actually demonstrated?" is answerable at a
+glance, and so that a theory in trouble is visibly *in trouble* rather than
+quietly filed away.
 
-- **`proposed` → `active`** — requires either a tier A or tier B backtest
-  showing positive *net* calibration edge, or an explicit user override. This
-  keeps untested ideas from consuming scan budget.
-- **`active` → review** — at `n = 20` settled, `score-theories` flags any theory
-  whose *net* calibration edge is ≤ 0 for a look.
-- **`active` → `paused`** — at `n = 50` settled with *net* calibration edge
-  still ≤ 0.
-  (`kalshi_trader`'s own strategy notes argue for flat stakes until 50+ settled
-  bets before trusting a result; the same threshold applies to disbelieving
-  one.) Before pausing, check the section 7 breakdown: a theory whose *endorsed*
-  subset performs well while its overall screen does not is not dead — it is a
-  theory whose stage 1 needs tightening.
-- **`paused` → `retired`** — reviewed and judged dead. Retired theories stay on
-  disk: a failed hypothesis is evidence, and re-testing it later against more
-  data is legitimate.
+| status | meaning | runs? |
+|---|---|---|
+| `proposed` | hypothesis written, procedure unproven | no |
+| `testing` | procedure runs and accrues evidence; claims not demonstrated | yes |
+| `active` | demonstrated positive *net* calibration edge | yes |
+| `under_review` | failing its own bar; being diagnosed | **yes** |
+| `paused` | blocked on a missing prerequisite, not on evidence | no |
+| `retired` | judged dead — **user-only** | no |
 
-Retired and paused theories are skipped by `find-edge` by default.
+Transitions have default bars. Claude may override them but must record the
+reason in `THEORY.md` — drift should stay visible, not be prevented.
+
+- **`proposed` → `testing`** — the procedure runs end to end and records
+  opportunities. No evidence bar; this is a statement about the code, not the
+  hypothesis.
+- **`testing` → `active`** — requires a tier A or tier B backtest showing
+  positive *net* calibration edge, or an explicit user override.
+- **→ `under_review`** — at `n = 20` settled with *net* calibration edge ≤ 0.
+  Critically, this **does not stop the theory running.** A theory pulled off
+  the board stops producing the evidence that would distinguish "broken" from
+  "unlucky," which is exactly the question under review. The older design
+  paused such a theory at `n = 50`; that was backwards — it froze the sample
+  at the size that made the verdict unreliable in the first place.
+- **`paused`** — blocked on a prerequisite that does not exist yet (data,
+  tooling). Not a destination for failing theories.
+
+Retired theories stay on disk: a failed hypothesis is evidence, and re-testing
+it later against more data is legitimate.
+
+`find-edge` runs `testing`, `active`, and `under_review`; it skips `proposed`,
+`paused`, and `retired`. Including unproven theories is safe because section
+8's ranking already shrinks an unproven claim to a quarter of face value and a
+measured-worthless one to zero — the credibility weight, not a scan filter, is
+what stops a weak theory crowding out a strong one.
+
+### A failing theory is a research object
+
+The salvageable cases are indistinguishable from death at a glance, so
+diagnosis is mandatory before any judgment about a theory's future. All of
+these produce the same "negative net edge" headline:
+
+- **The sample cannot reject zero.** At n=30 the standard error on a win rate
+  is roughly 9 points. Most small negative results are noise.
+- **Gross positive, net negative.** The thesis is right and fees ate it — an
+  entry-threshold problem, fixable in a version bump.
+- **Judgment inverted over a sound screen.** `interpretation_value` catches
+  this: stage 1 has edge, stage 2 is destroying it. Cut stage 2.
+- **One profitable slice in a broad screen.** By bucket, market family,
+  days-to-close, price band. That is a narrower theory and a real finding.
+- **Sign inverted.** A reliably wrong theory is reliably informative — check
+  whether the other side clears the bar after fees.
+- **Contaminated evidence.** Tier C cannot kill anything.
+- **Mixed versions in one track record.** Two theories averaged into a number
+  describing neither.
+
+### Retirement is the user's decision
+
+Claude diagnoses; the user rules. `theories.propose_retirement()` records a
+standing suggestion with its rationale and **leaves the theory running** — the
+user has not ruled, and more evidence only sharpens the question.
+`list_pending_retirement()` surfaces it in every session's orient until it is
+acted on or withdrawn, and the `go` skill requires it be raised in the report.
+
+`set_status(..., "retired")` refuses unless *both* `authorized_by="user"` and
+a retirement proposal is on file. The second condition is the load-bearing
+one: it makes "this is dead" unreachable without first writing down the
+diagnosis that says why, so a theory cannot be discarded on momentum. The
+guard is a fail-loud default rather than a security boundary — its job is to
+make the rule impossible to drift past, in the same spirit as the rest of the
+codebase's diagnostic errors.
 
 ## 12. Backtesting and hindsight contamination
 
@@ -907,19 +965,24 @@ marginal value is right now, does that work, and reports back. The goal is that
 this is genuinely useful with zero further direction — but *structured* enough
 that Claude doesn't flounder or default to the same action every session.
 
-**Always start by orienting.** Cheap and mechanical, no judgment required:
-active theories and their versions, opportunities still open, anything that has
-settled since the last session, current scores and lifecycle flags, and the tail
-of `RESEARCH_LOG.md` for what the previous session was in the middle of. This
-takes one pass over the database and costs almost nothing.
+**Always start by orienting.** Mechanical, no judgment required. First pull a
+fresh complete Kalshi board and snapshot it — every number the session
+produces afterwards is only as current as that fetch, and `market_snapshots`
+is first-party price history that is lost permanently, not deferred, if a
+session skips a day. Then read local state in one pass over the database: the
+theories that run and their versions, opportunities still open, anything that
+has settled since the last session, current scores and lifecycle flags, any
+retirement proposal awaiting the user, and the tail of `RESEARCH_LOG.md` for
+what the previous session was in the middle of. The local queries cost almost
+nothing; the board fetch is the expensive part and is still required.
 
 **Then choose where the value is.** This is a judgment call, not a checklist,
 and it is the part that makes a research session worth running. The standing
 menu of work:
 
 - Settle resolved opportunities and refresh scores.
-- Hunt for live edge with the active theories, and research the top candidates
-  (`find-edge`).
+- Hunt for live edge with the theories that run — `testing`, `active`, and
+  `under_review` — and research the top candidates (`find-edge`).
 - Backtest a theory that is running on claims rather than evidence.
 - Propose a new theory — from an observed market pattern, from a gap in what the
   current theories cover, or from a recurring `user_reason` divergence. Check
@@ -929,7 +992,10 @@ menu of work:
 - Tighten an existing theory: migrate a stage 2 heuristic that keeps proving
   itself into stage 1 code, or promote a theory-local tool that multiple
   theories now use (section 9).
-- Pause or retire a theory the evidence has killed.
+- Diagnose an `under_review` theory (section 11) — its numbers are bad and
+  nobody knows why yet. Usually the outcome is a narrower version, not a
+  burial; where it genuinely is a burial, the session *proposes* it and the
+  user rules.
 
 **Prefer work that changes a decision.** If nothing has settled since yesterday,
 re-scoring is busywork — go hunt instead. If every active theory is unproven,
@@ -949,7 +1015,9 @@ continuity.
 **Report for a human, not a machine.** End with what the user actually needs:
 any bets worth placing right now, anything that changed about a theory's
 standing, and anything that needs their judgment. Not a transcript of every tool
-call.
+call. Any theory awaiting a retirement ruling belongs here explicitly — that
+decision is the user's, and it does not get made if it sits in the database
+unmentioned.
 
 A session is free to be short. "Nothing has settled, no theory needs
 backtesting, here are two candidates I researched and rejected and why" is a
@@ -1034,8 +1102,10 @@ since "what can I actually do here" must be explicit rather than inferred:
    prices, dedup by upsert, executability filtering, suggested ≠ taken.
 8. **How ranking works** — section 8, so Claude understands why a confident new
    theory doesn't automatically top the list, and doesn't try to game it.
-9. **Theory lifecycle and versioning** — including bumping version on any
-   procedure change, and migrating proven stage 2 heuristics into stage 1.
+9. **Theory lifecycle and versioning** — status as an evidence level, that an
+   underperforming theory is diagnosed rather than discarded, that retirement
+   is the user's call alone, plus bumping version on any procedure change and
+   migrating proven stage 2 heuristics into stage 1.
 10. **Backtest tiers** — what's trustworthy, what's indicative, why web search is
     off during replay.
 11. **Subagent usage** — when to spawn, how to batch, and why (no API keys; this

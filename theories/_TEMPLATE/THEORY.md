@@ -49,6 +49,13 @@ Which platforms and tools does this use?
 
 `proposed` — with a journal of status changes and the reason for each.
 
+Status is an evidence level: `proposed` (unproven, not running) → `testing`
+(running, accruing evidence) → `active` (demonstrated positive net calibration
+edge). A theory failing its own bar goes `under_review` and **keeps running**
+while it is diagnosed; `paused` is for one blocked on a missing prerequisite,
+not a failing one. `retired` is the user's call alone — record a diagnosis
+with `theories propose-retirement` and let them rule.
+
 ## Version
 
 1 — changelog of what changed at each bump. Any change to the decision

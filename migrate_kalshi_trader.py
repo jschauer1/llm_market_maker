@@ -126,8 +126,11 @@ def migrate(
     now: str | None = None,
 ) -> dict:
     """Import ledger rows and settlements. Returns a summary."""
+    # under_review, not active: the imported history is n=29 with
+    # calibration_edge_net = -0.75, past the n=20 review trigger. It keeps
+    # running while it is diagnosed -- see theories/insider_bias/THEORY.md.
     theories.register(conn, THEORY_ID, THEORY_NAME, THEORY_PATH,
-                      status="active", now=now)
+                      status="under_review", now=now)
 
     parsed = []
     skipped = 0

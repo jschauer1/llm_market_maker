@@ -34,12 +34,18 @@ Then read local state:
 
 ```bash
 python -m tools.cli theories list
+python -m tools.cli theories list --running   # testing + active + under_review
+python -m tools.cli theories pending-retirement
 python -m tools.cli opportunities list --disposition endorsed
 python -m tools.cli ideas revisitable
 ```
 
 Read the last ~30 lines of `RESEARCH_LOG.md` for what the previous session
-was doing. For each active theory, `python -m tools.cli score report <id>`.
+was doing. For each theory that runs, `python -m tools.cli score report <id>`.
+
+Anything `pending-retirement` returns is a decision **waiting on the user**,
+and it stays waiting until they rule. Carry it into your report every session
+— a standing proposal nobody mentions is not a suggestion to anyone.
 
 The local-state queries are mechanical and cost almost nothing; the board
 fetch above is the expensive part of this step, and still required. Do all
@@ -62,8 +68,10 @@ menu:
 - **Tighten a theory** — migrate a stage-2 heuristic that keeps proving itself
   into stage 1 code (bump the version), or promote a theory-local tool that
   now has multiple callers.
-- **Pause or retire** a theory the evidence has killed — and record why
-  against its originating idea.
+- **Diagnose an `under_review` theory** — often the highest-value work on the
+  board. Its numbers are bad and nobody knows why yet; the checklist in
+  `score-theories` §5 turns that into an answer. The outcome is usually a
+  narrower version, not a burial.
 
 **Prefer work that changes a decision.** If nothing settled since yesterday,
 re-scoring is busywork — go hunt. If every active theory is unproven, another
@@ -98,6 +106,10 @@ End with what the user needs: bets worth placing now, anything that changed
 about a theory's standing, anything needing their judgment. Not a transcript
 of tool calls.
 
+**Any theory awaiting a retirement ruling goes here explicitly** — the
+rationale, the numbers behind it, and what you ruled out. That is a decision
+only they can make, and it does not get made if you leave it in the database.
+
 Tell them they can record what they actually bet with
 `python -m tools.cli opportunities mark-taken <id> taken --size <N> --reason
 "<why>"` (or `skipped` with a reason). This is not optional bookkeeping: until
@@ -110,5 +122,12 @@ between what was endorsed and what was actually bet — the raw material
 - Never present unresearched screen output as a recommended bet — *unless* the
   theory computed the edge mechanically (`edge_basis='model'`), in which case
   there was nothing to research and it is recommendable as-is.
+- **Never write off an underperforming theory.** Diagnose it — `score-theories`
+  §5. The salvageable cases (fees ate a real edge, judgment inverted over a
+  sound screen, one slice profitable, sample too small to mean anything) all
+  look identical to death from outside.
+- **Retiring is the user's decision, not yours.** Diagnose, then
+  `theories propose-retirement <id> --rationale "..."`, then raise it in your
+  report. The tooling refuses to let you retire a theory yourself.
 - Never retire a theory without recording why it failed against its idea.
 - Search the idea registry before proposing anything new.

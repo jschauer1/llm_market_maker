@@ -188,10 +188,48 @@ automatic rule.
 
 ## Theory lifecycle and versioning
 
-`proposed` → `active` (needs a tier A/B backtest with positive *net*
-calibration edge, `calibration_edge_net`) → review at `n=20` if
-`calibration_edge_net` ≤ 0 → `paused` at `n=50` if `calibration_edge_net` ≤ 0
-→ `retired`.
+A theory's status is an **evidence level**, not a filing category:
+
+| status | what it means | runs? |
+|---|---|---|
+| `proposed` | hypothesis written, procedure unproven | no |
+| `testing` | procedure runs and accrues evidence; claims not demonstrated | yes |
+| `active` | demonstrated positive *net* calibration edge | yes |
+| `under_review` | failing its own bar; being diagnosed | **yes** |
+| `paused` | blocked on a missing prerequisite, not on evidence | no |
+| `retired` | judged dead — **user-only** | no |
+
+`proposed` → `testing` once the procedure actually runs. `testing` → `active`
+needs a tier A/B backtest with positive `calibration_edge_net`. At `n=20` with
+`calibration_edge_net` ≤ 0 a theory goes `under_review` — which does **not**
+take it off the board, because pulling a theory you suspect is broken is how
+you guarantee you never find out whether it was broken or merely unlucky.
+
+## An underperforming theory is a research object, not trash
+
+This is the part that is easy to get wrong. A theory whose numbers look bad is
+the most information-dense thing in the repo, and the interesting cases —
+a real edge eaten by fees, judgment inverted on top of a sound screen, one
+profitable slice buried in a broad screen, a sample too small to mean
+anything — all look identical to death from the outside. **Ask why before
+asking whether to keep it.** `score-theories` carries the full checklist; in
+short: is n big enough to reject zero, is the edge positive gross and negative
+net, does `interpretation_value` blame stage 2, does one slice work, is it
+inverted, what tier is the evidence, did the version change mid-track.
+
+**Only the user retires a theory.** You diagnose, then put it in front of
+them:
+
+```bash
+python -m tools.cli theories propose-retirement <id> --rationale "<what you
+    diagnosed and what you ruled out>"
+```
+
+That records a standing proposal, leaves the theory running, and surfaces in
+every session's orient until the user rules. `theories status <id> retired`
+refuses without both the user's authorization and a proposal on file — you
+cannot retire a theory you have not diagnosed, and you cannot retire one at
+all. Raise it in your report; do not let it sit in the database unmentioned.
 
 **Any change to a theory's decision procedure bumps its version.** Thresholds,
 prompts, scan logic, or migrating a stage-2 heuristic into stage-1 code.

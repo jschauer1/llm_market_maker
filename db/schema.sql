@@ -2,13 +2,25 @@
 -- All timestamps are UTC ISO-8601 TEXT. All prices are decimal dollars in [0,1].
 -- All edge values are in percentage points.
 
+-- Theory status is an evidence level, not an administrative flag:
+--   proposed     hypothesis written, procedure unproven, not scanned
+--   testing      procedure runs and accrues evidence; claims are not demonstrated
+--   active       demonstrated positive net calibration edge
+--   under_review failing its own bar; KEEPS RUNNING while it is diagnosed
+--   paused       blocked on a missing prerequisite, not on evidence
+--   retired      judged dead -- USER-ONLY, see tools/theories.py
+-- retirement_proposed_at / _rationale hold a standing suggestion to the user
+-- that a theory is dead. Claude writes them; only the user acts on them.
 CREATE TABLE IF NOT EXISTS theories (
     id          TEXT PRIMARY KEY,
     name        TEXT NOT NULL,
     version     INTEGER NOT NULL DEFAULT 1,
     status      TEXT NOT NULL DEFAULT 'proposed'
-                CHECK (status IN ('proposed','active','paused','retired')),
+                CHECK (status IN ('proposed','testing','active',
+                                  'under_review','paused','retired')),
     path        TEXT NOT NULL,
+    retirement_proposed_at TEXT,
+    retirement_rationale   TEXT,
     created_at  TEXT NOT NULL,
     updated_at  TEXT NOT NULL
 );
