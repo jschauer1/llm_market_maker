@@ -140,6 +140,36 @@ def test_capture_kalshi_open_persists_what_it_fetches(conn, monkeypatch):
     ).fetchone()["n"] == 2
 
 
+def test_capture_kalshi_open_forwards_max_pages_none_by_default(
+    conn, monkeypatch
+):
+    # Regression guard: capture_kalshi_open used to hardcode max_pages=5,
+    # which now raises TruncatedFetchError against any real board under
+    # list_open's new page-to-exhaustion contract. The default here must
+    # inherit that contract by forwarding None, not a hardcoded cap.
+    captured = {}
+
+    def fake_list_open(**kwargs):
+        captured.update(kwargs)
+        return [KALSHI_MARKET]
+
+    monkeypatch.setattr(snapshot.kalshi_markets, "list_open", fake_list_open)
+    snapshot.capture_kalshi_open(conn, now=TS)
+    assert captured["max_pages"] is None
+
+
+def test_capture_kalshi_open_forwards_an_explicit_max_pages(conn, monkeypatch):
+    captured = {}
+
+    def fake_list_open(**kwargs):
+        captured.update(kwargs)
+        return [KALSHI_MARKET]
+
+    monkeypatch.setattr(snapshot.kalshi_markets, "list_open", fake_list_open)
+    snapshot.capture_kalshi_open(conn, max_pages=3, now=TS)
+    assert captured["max_pages"] == 3
+
+
 def test_capture_polymarket_open_persists_what_it_fetches(conn, monkeypatch):
     monkeypatch.setattr(
         snapshot.poly_markets, "list_open",

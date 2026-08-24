@@ -123,10 +123,20 @@ def history_for(
 def capture_kalshi_open(
     conn: sqlite3.Connection,
     limit: int = 200,
-    max_pages: int = 5,
+    max_pages: int | None = None,
     now: str | None = None,
 ) -> int:
-    """Fetch and persist the current open Kalshi board."""
+    """Fetch and persist the current open Kalshi board.
+
+    Captures the complete board by default (`max_pages=None`, inherited from
+    `list_open`) — on the order of 95k markets, roughly a minute of paging.
+    A partial capture is worse than no capture at all for first-party
+    history: a biased slice looks like data, and nothing downstream can tell
+    the difference after the fact. Pass an explicit `max_pages` only with a
+    specific reason, and be ready to handle `kalshi_markets.
+    TruncatedFetchError` — it raises rather than silently persisting a
+    biased slice if the cap is hit while the cursor is still live.
+    """
     found = kalshi_markets.list_open(limit=limit, max_pages=max_pages)
     return save_kalshi(conn, found, now=now)
 
