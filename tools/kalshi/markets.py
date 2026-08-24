@@ -166,6 +166,8 @@ def list_settled(
     limit: int = 200,
     min_close_ts: int | None = None,
     max_close_ts: int | None = None,
+    raw_filter=None,
+    on_page=None,
 ) -> list[dict]:
     """Recently settled markets, with their results, walked to exhaustion.
 
@@ -183,6 +185,21 @@ def list_settled(
     walk to markets whose close_time falls in that window; Kalshi's API
     honours both and this is the only way to keep a backtest's fetch volume
     bounded rather than scanning the platform's entire history.
+
+    `raw_filter`, if given, is called with each raw (pre-normalize) dict and
+    must return True to keep it. It runs before the expensive part of
+    `normalize` (parsing every price field), so a caller that only wants a
+    small slice of a huge settled window (a backtest's coarse pre-filter,
+    say) skips that cost for everything it would discard anyway --
+    normalizing every field of a multi-million-row walk when only a few
+    hundred rows survive is wasted work. The ticker-presence check that
+    `normalize` would raise on always runs first, unconditionally, so
+    `raw_filter` cannot mask a row with no ticker at all; it can only skip
+    validation of a filtered-out row's *other* fields, which is the trade
+    this exists for. `on_page`, if given, is called after each page with
+    `(pages, len(out))` -- a multi-hundred-thousand-row walk can take
+    minutes, and a caller driving a long background run wants visibility
+    into that, not just a final return value.
     """
     out: list[dict] = []
     seen_tickers: set[str] = set()
@@ -201,11 +218,21 @@ def list_settled(
         pages += 1
 
         for raw in payload.get("markets", []):
-            market = normalize(raw)
-            if market["ticker"] in seen_tickers:
+            ticker = raw.get("ticker")
+            if not ticker:
+                raise ValueError(
+                    f"market payload has no ticker — schema drift? "
+                    f"keys={sorted(raw)}"
+                )
+            if ticker in seen_tickers:
                 continue
-            seen_tickers.add(market["ticker"])
-            out.append(market)
+            seen_tickers.add(ticker)
+            if raw_filter is not None and not raw_filter(raw):
+                continue
+            out.append(normalize(raw))
+
+        if on_page is not None:
+            on_page(pages, len(out))
 
         new_cursor = payload.get("cursor") or ""
         if not new_cursor:

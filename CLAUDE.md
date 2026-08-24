@@ -345,10 +345,10 @@ no prompt. That is one more reason to prefer one.
   nothing should call `markets.list_open()` directly. A complete board is
   ~100k markets in ~13s — cheap once, wasteful four times. To re-check a
   handful of prices before betting, use `markets.quotes(tickers)`.
-- **Snapshots keep a projected `raw`, not the full payload.** See
-  `snapshot.SNAPSHOT_RAW_FIELDS`; storing every field cost 216 MB per pull.
-  Need a field that isn't there? Add it to that tuple rather than reaching
-  into `market["raw"]`.
+- **Snapshots keep the complete raw payload**, so a board rebuilt from cache
+  is identical to a freshly fetched one and any field Kalshi sends stays
+  available to a future theory. ~200 MB per pull is the price of not deciding
+  today which questions tomorrow may ask.
 
 ## Getting started
 

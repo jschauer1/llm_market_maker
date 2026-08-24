@@ -17,12 +17,11 @@ persists every pull, so the freshest snapshot batch *is* the cached board —
 there is nothing extra to store, invalidate, or keep in sync, and the history
 the project accrues comes for free.
 
-**A rebuilt board's `raw` is projected, not complete.** Snapshots keep only
-the fields `normalize` reads plus the text a theory needs (see
-`snapshot.SNAPSHOT_RAW_FIELDS`); storing every raw field cost 216 MB per pull.
-Everything `normalize` returns is identical either way. If you need a field
-outside that projection, add it to `SNAPSHOT_RAW_FIELDS` — do not reach into
-`market["raw"]` and hope.
+A rebuilt board is identical to a fetched one, `market["raw"]` included:
+snapshots store the complete Kalshi payload, so a cache hit and a forced
+fetch hand back the same shape. That matters more than it sounds — a cache
+that returned a thinner `raw` would make any theory reading an uncommon field
+work on a forced pull and silently return `None` on a cached one.
 """
 
 from __future__ import annotations

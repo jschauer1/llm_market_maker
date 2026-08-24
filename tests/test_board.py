@@ -133,48 +133,38 @@ def test_unrebuildable_snapshot_fails_loudly(conn):
         board.get_board(conn, now=NOW)
 
 
-# --- raw_json projection ---------------------------------------------
+# --- raw payload is stored whole -------------------------------------
 
 
-def test_projection_drops_fields_nothing_reads(conn):
+def test_snapshot_stores_the_complete_raw_payload(conn):
     snapshot.save_kalshi(conn, _board(1), now=NOW)
     stored = json.loads(conn.execute(
         "SELECT raw_json FROM market_snapshots").fetchone()["raw_json"])
-    assert "junk_a" not in stored and "junk_b" not in stored
-    assert stored["ticker"] == "T-0"
-    assert stored["rules_primary"] == "rules"
+    # Nothing is dropped -- including fields no current code reads. An
+    # earlier projection cost us momentum and order-book depth precisely by
+    # scoping storage to what the code read at the time.
+    assert stored == _raw("T-0")
+    assert "junk_a" in stored and "junk_b" in stored
 
 
-def test_projection_keeps_everything_normalize_reads():
-    raw = _raw("T-1", result="yes", volume_24h_fp="10",
-               rules_secondary="more", yes_sub_title="a", no_sub_title="b",
-               last_price_dollars="0.81", open_time="2026-01-01T00:00:00Z")
-    projected = snapshot.project_raw(raw)
+def test_rebuilt_board_has_the_same_raw_as_a_fetched_one(conn):
+    original = _board(2)
+    snapshot.save_kalshi(conn, original, now="2026-08-24T11:00:00Z")
+    rebuilt = board.get_board(conn, now=NOW)
+    for a, b in zip(original, rebuilt):
+        assert a["raw"] == b["raw"]
+
+
+def test_uncommon_fields_survive_the_cache_round_trip(conn):
+    # The fields the bad projection destroyed, specifically.
     from tools.kalshi import markets
-    assert markets.normalize(projected) | {"raw": None} == \
-           markets.normalize(raw) | {"raw": None}
-
-
-def test_projection_omits_empty_values():
-    projected = snapshot.project_raw(_raw("T-1"))
-    # No result / rules_secondary on an open market -- storing nulls for
-    # ~100k markets is most of what made raw_json expensive.
-    assert "result" not in projected
-    assert "rules_secondary" not in projected
-
-
-def test_projection_shrinks_the_payload():
-    raw = _raw("T-1")
-    assert len(json.dumps(snapshot.project_raw(raw))) < len(json.dumps(raw)) / 2
-
-
-def test_compact_rewrites_unprojected_rows(conn):
-    snapshot.save_kalshi(conn, _board(3), now=NOW)
-    fat = json.dumps(_raw("T-0") | {"filler": "y" * 5000})
-    with db.write(conn):
-        conn.execute("UPDATE market_snapshots SET raw_json = ?", (fat,))
-    assert snapshot.compact_raw_json(conn) == 3
-    for row in conn.execute("SELECT raw_json FROM market_snapshots"):
-        assert "filler" not in row["raw_json"]
-    # Idempotent: nothing left oversized to rewrite.
-    assert snapshot.compact_raw_json(conn) == 0
+    raw = _raw("T-9", previous_yes_bid_dollars="0.75",
+               yes_bid_size_fp="1200", can_close_early=True,
+               early_close_condition="if the event concludes early")
+    snapshot.save_kalshi(conn, [markets.normalize(raw)],
+                         now="2026-08-24T11:00:00Z")
+    got = board.get_board(conn, now=NOW)[0]
+    assert got["raw"]["previous_yes_bid_dollars"] == "0.75"
+    assert got["raw"]["yes_bid_size_fp"] == "1200"
+    assert got["raw"]["can_close_early"] is True
+    assert got["raw"]["early_close_condition"] == "if the event concludes early"
