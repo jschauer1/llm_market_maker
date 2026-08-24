@@ -162,7 +162,11 @@ def list_open(limit: int = 200) -> list[dict]:
     return out
 
 
-def list_settled(limit: int = 200) -> list[dict]:
+def list_settled(
+    limit: int = 200,
+    min_close_ts: int | None = None,
+    max_close_ts: int | None = None,
+) -> list[dict]:
     """Recently settled markets, with their results, walked to exhaustion.
 
     Same contract as list_open: always pages until Kalshi's cursor comes
@@ -172,9 +176,13 @@ def list_settled(limit: int = 200) -> list[dict]:
     option, for the same reason list_open has none -- a prefix of pages is
     not a representative sample.
 
-    Kalshi's settled history spans the platform's whole lifetime, so a full
-    walk here can be considerably larger and slower than list_open's ~60
-    pages against the live board.
+    Kalshi's settled history spans the platform's whole lifetime, so an
+    unbounded walk here can be considerably larger and slower than
+    list_open's ~60 pages against the live board -- easily hundreds of
+    thousands of rows. `min_close_ts`/`max_close_ts` (Unix seconds) bound the
+    walk to markets whose close_time falls in that window; Kalshi's API
+    honours both and this is the only way to keep a backtest's fetch volume
+    bounded rather than scanning the platform's entire history.
     """
     out: list[dict] = []
     seen_tickers: set[str] = set()
@@ -183,6 +191,10 @@ def list_settled(limit: int = 200) -> list[dict]:
 
     while True:
         params = {"status": "settled", "limit": limit}
+        if min_close_ts is not None:
+            params["min_close_ts"] = min_close_ts
+        if max_close_ts is not None:
+            params["max_close_ts"] = max_close_ts
         if cursor:
             params["cursor"] = cursor
         payload = get_json(f"{BASE_URL}/markets", params=params)

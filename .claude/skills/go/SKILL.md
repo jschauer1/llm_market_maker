@@ -13,22 +13,24 @@ You are the researcher. Nobody is going to tell you what to test.
 before every local-state query below:
 
 ```python
-from tools import db, snapshot
-from tools.kalshi import markets
+from tools import board as board_tool, db
 
-board = markets.list_open()          # complete board, ~95k markets, ~1 min
 conn = db.connect(); db.init_db(conn)
-snapshot.save_kalshi(conn, board)
+board = board_tool.get_board(conn, force=True)   # ~100k markets, ~13s
 ```
 
-Every number the rest of this session produces — which markets are open,
-what they cost, what a screen returns — is only as current as this fetch.
-Reasoning over yesterday's board without noticing is exactly the failure
-mode this step exists to prevent. `market_snapshots` is also the first-party
-price history this project accrues over time; skip this and a day of history
-is gone permanently, not deferred. `list_open` always pages to exhaustion —
-there is no partial-fetch option — so budget the minute it takes rather than
-assuming it's free.
+`force=True` here and **nowhere else**: this is the session's one deliberate
+refresh. Every number the rest of the session produces — which markets are
+open, what they cost, what a screen returns — is only as current as this
+fetch, and reasoning over yesterday's board without noticing is the failure
+this step prevents. The pull is snapshotted automatically, so it also feeds
+the first-party price history the project accrues.
+
+**Every later call in the session — and every theory — uses
+`board_tool.get_board(conn)` with no `force`**, which reuses this pull
+instead of re-walking the feed. One session, one board. Two sessions on
+2026-08-24 each pulled ~100k markets 19 hours apart because that reuse was
+prose rather than a function; it is a function now.
 
 Then read local state:
 

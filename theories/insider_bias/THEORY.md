@@ -84,8 +84,9 @@ calls with Claude/subagent judgment.
 ## Stage 1 — mechanical screen
 
 `python -c "from theories.insider_bias import screen"` — or call
-`screen.screen(markets)` directly on the output of
-`tools.kalshi.markets.list_open()`.
+`screen.screen(markets)` directly on the session board from
+`tools.board.get_board(conn)` — never `markets.list_open()` directly, so one
+session makes one pull shared by every theory.
 
 Filters, all overridable per run:
 

@@ -80,6 +80,7 @@ narrow context, then promote it once there is evidence it belongs.
 | `rank.py` | Credibility-weighted ranking |
 | `buckets.py` | Confidence-bucket win rates → measured edge, not guessed |
 | `sizing.py` | Kalshi fee model, Kelly sizing |
+| `board.py` | The session's shared Kalshi board — one pull per session, reused by every theory |
 | `snapshot.py` | First-party market history capture |
 | `provenance.py` | Which model judged and with which prompt — required for any theory with an LLM in its decision path |
 | `match_market.py` | Non-Kalshi finding → Kalshi ticker shortlist |

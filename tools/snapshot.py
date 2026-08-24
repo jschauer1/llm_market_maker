@@ -45,6 +45,81 @@ def _kalshi_snapshot_status(m: dict) -> str:
     return "closed"
 
 
+#: Raw Kalshi fields kept in `market_snapshots.raw_json`.
+#:
+#: Storing the complete raw payload cost 216 MB per pull -- 431 MB of a
+#: 731 MB database after two pulls, which at one pull per session is roughly
+#: 1.5 GB a week. Everything `kalshi.markets.normalize` reads is here, plus
+#: the resolution text and sub-titles a theory actually needs, so a snapshot
+#: still round-trips into a full board (see tools/board.py). Add a field here
+#: rather than reaching into `market["raw"]` for something absent.
+SNAPSHOT_RAW_FIELDS = (
+    # identity -- normalize() requires ticker; the gate keys on series_ticker
+    "ticker", "event_ticker", "series_ticker",
+    # human context, read by judgment stages
+    "title", "yes_sub_title", "no_sub_title",
+    "rules_primary", "rules_secondary",
+    # lifecycle
+    "status", "open_time", "close_time", "result",
+    # prices, all decimal-dollar strings
+    "yes_bid_dollars", "yes_ask_dollars",
+    "no_bid_dollars", "no_ask_dollars", "last_price_dollars",
+    # liquidity
+    "volume_fp", "volume_24h_fp", "open_interest_fp",
+)
+
+
+def project_raw(raw: dict) -> dict:
+    """Keep only the raw fields a rebuilt board and its readers need.
+
+    Absent keys are omitted rather than stored as null, which matters: a
+    board is mostly markets with no `result` and no `rules_secondary`.
+    """
+    return {k: raw[k] for k in SNAPSHOT_RAW_FIELDS if raw.get(k) not in (None, "")}
+
+
+def compact_raw_json(conn: sqlite3.Connection, batch: int = 5000) -> int:
+    """Re-project raw_json on existing rows. Returns rows rewritten.
+
+    For databases written before the projection existed. Run VACUUM afterwards
+    to actually reclaim the file space -- SQLite frees pages but does not
+    shrink the file on its own.
+    """
+    rewritten = 0
+    while True:
+        rows = conn.execute(
+            """
+            SELECT id, raw_json FROM market_snapshots
+             WHERE platform = 'kalshi' AND raw_json IS NOT NULL
+               AND LENGTH(raw_json) > ?
+             LIMIT ?
+            """,
+            (_PROJECTED_MAX_BYTES, batch),
+        ).fetchall()
+        if not rows:
+            return rewritten
+        updates = []
+        for row in rows:
+            try:
+                raw = json.loads(row["raw_json"])
+            except (TypeError, ValueError):
+                continue
+            updates.append((json.dumps(project_raw(raw)), row["id"]))
+        if not updates:
+            return rewritten
+        with write(conn):
+            conn.executemany(
+                "UPDATE market_snapshots SET raw_json = ? WHERE id = ?",
+                updates,
+            )
+        rewritten += len(updates)
+
+
+#: A projected row is comfortably under this; anything larger is unprojected.
+#: Used only to find rows still needing compaction.
+_PROJECTED_MAX_BYTES = 4000
+
+
 def save_kalshi(
     conn: sqlite3.Connection, markets: list[dict], now: str | None = None
 ) -> int:
@@ -66,7 +141,7 @@ def save_kalshi(
             m.get("open_interest"),
             m.get("close_time"),
             _kalshi_snapshot_status(m),
-            json.dumps(m.get("raw", {})),
+            json.dumps(project_raw(m.get("raw", {}) or {})),
         )
         for m in markets
     ]

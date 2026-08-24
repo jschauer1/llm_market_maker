@@ -34,30 +34,27 @@ Honor a user scope override ("just insider_bias", "all theories").
 ## 2. Run each theory's stage 1
 
 Open the theory's `THEORY.md` and follow its **Stage 1 — mechanical screen**
-section. If this session already ran `go`'s Orient step, it already fetched
-the complete board and wrote a snapshot this session — reuse that `board`
-rather than fetching again. Otherwise, fetch markets once and reuse across
-theories:
+section. Get the board through the shared getter, which reuses the pull
+`go`'s Orient already made rather than re-walking the feed:
 
 ```python
-from tools.kalshi import markets
-board = markets.list_open()
-```
-
-`list_open` takes no cap and always pages to exhaustion — there is no
-partial-fetch option. Kalshi's `/events` feed is not sorted by close time, so
-anything less than the complete board is a biased slice that can silently
-exclude almost every near-term market. A full walk is on the order of 60
-requests and takes about a minute.
-
-Write snapshots as a side effect so history accrues (skip this if reusing a
-board `go` already snapshotted this session):
-
-```python
-from tools import db, snapshot
+from tools import board as board_tool, db
 conn = db.connect(); db.init_db(conn)
-snapshot.save_kalshi(conn, board)
+board = board_tool.get_board(conn)      # cached if fresh, fetches if not
 ```
+
+**Do not pass `force=True`** and do not call `markets.list_open()` directly.
+One session makes one pull, shared by every theory; `get_board` is what makes
+that true rather than aspirational. If you need current prices for a handful
+of tickers right before recommending a bet, re-quote just those with
+`markets.quotes(tickers)` — far cheaper than any board pull.
+
+The underlying walk takes no cap and always pages to exhaustion. Kalshi's
+`/events` feed is not sorted by close time, so anything less than the
+complete board is a biased slice that can silently exclude almost every
+near-term market. A full walk is ~100k markets in about 13 seconds, and
+`get_board` snapshots it automatically — you never need to call
+`snapshot.save_kalshi` yourself.
 
 ## 3. Filter for executability
 

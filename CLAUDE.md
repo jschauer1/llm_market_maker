@@ -180,6 +180,7 @@ conventions and the full map. Highlights:
 - `tools/ledger.py` — the opportunity contract
 - `tools/score.py` — calibration, ROI, interpretation value
 - `tools/rank.py`, `tools/sizing.py` — ranking and Kalshi fee/Kelly math
+- `tools/board.py` — **the session's Kalshi board; every theory starts here**
 - `tools/snapshot.py` — first-party history
 - `tools/provenance.py` — which model judged, and with which prompt
 
@@ -337,11 +338,17 @@ no prompt. That is one more reason to prefer one.
 - Prices are decimal dollars in [0, 1]. Edge is in percentage points. Entry
   prices are the **ask** you would actually pay, never the mid. Timestamps are
   UTC ISO-8601.
-- **Refresh Kalshi before reasoning about markets.** Pull a fresh complete
-  board (`markets.list_open()`) and snapshot it before answering what's open
-  or what it costs — the local database is only as current as the last
-  fetch. `go`'s Orient step does this automatically; do it yourself first
-  when answering a question directly.
+- **One board per session, shared by every theory.** Get it with
+  `tools.board.get_board(conn)`, which returns the session's existing pull if
+  it is fresh and fetches (and snapshots) if not. `go`'s Orient makes the one
+  deliberate refresh with `force=True`; nothing else should force, and
+  nothing should call `markets.list_open()` directly. A complete board is
+  ~100k markets in ~13s — cheap once, wasteful four times. To re-check a
+  handful of prices before betting, use `markets.quotes(tickers)`.
+- **Snapshots keep a projected `raw`, not the full payload.** See
+  `snapshot.SNAPSHOT_RAW_FIELDS`; storing every field cost 216 MB per pull.
+  Need a field that isn't there? Add it to that tuple rather than reaching
+  into `market["raw"]`.
 
 ## Getting started
 

@@ -25,13 +25,11 @@ Stages 1–4 are one call. Stages 5–6 are judgment and cannot be scripted.
 ## 1–4. Mechanical (reproducible by execution)
 
 ```python
-from tools import db, snapshot
-from tools.kalshi import markets
+from tools import board as board_tool, db
 from theories.insider_bias import pipeline
 
-board = markets.list_open()               # complete board, no cap, ~1 min
 conn = db.connect(); db.init_db(conn)
-snapshot.save_kalshi(conn, board)
+board = board_tool.get_board(conn)        # session's shared pull; snapshots itself
 
 out = pipeline.run_mechanical_stages(board)
 # out: board_markets, screened_markets, events, gate_counts, gated_out,
