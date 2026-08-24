@@ -320,6 +320,12 @@ per-candidate subagent cannot do. The batch view is the main model's job.
   recommended legs are jointly coherent and identify which survive *every*
   live reading of the rules.
 - Verify any post-cutoff factual claim a subagent made before relying on it.
+- **Verify the resolution *mechanism* itself, not just the facts fed into
+  it.** A subagent can correctly report that an informed group knows X and
+  still miss that the market resolves on a step *after* X that is genuinely
+  live — see Learnings, 2026-08-24 (`KXBIGBROTHERELIMINATION`). Read how the
+  outcome is actually produced before accepting "no rules divergence" as
+  "already decided."
 - Confirm the resolution source can publish before close.
 
 The final review may **lower** a bucket (the warning-sign rules above apply to
@@ -550,3 +556,27 @@ and full breakdown in Learnings below.
   see `backtest.py`'s module docstring point 2. That scoping choice is why
   n=200 is a *sample* of 18,430 raw survivors, not the full count, and
   should be named alongside this result, not left implicit.
+- 2026-08-24 — **Stage 3 endorsed `KXBIGBROTHERELIMINATION-26AUG27-DRE`
+  without verifying the resolution mechanism, and the user caught it, not the
+  process.** The recorded rationale said "no rules divergence... resolution
+  lands before close" and treated the outcome as effectively already known
+  via 24/7 live feeds. That is half right: nominations and the veto result
+  really were known days in advance. What it missed is that this season
+  resolves eviction through "BB Block Buster" — the three nominees compete
+  in a genuinely live, live-that-day competition, the winner is safe, and
+  only *then* does the house vote out one of the other two. The competition
+  itself is live sport, exactly the category this theory's own gate says no
+  to; a subagent correctly reporting the pre-known facts (nominees, veto)
+  does not mean the *thing the market actually resolves on* is one of them.
+  On checking (web search, since this was live research on an open
+  opportunity, not a backtest — see Backtest tiers on why that distinction
+  matters), the NO bet still holds up, but for a narrower and more specific
+  reason than originally recorded: the house's stated plan (Gold Derby, Big
+  Brother Network, live-feed coverage, Aug 22-23) covers every branch of the
+  live competition — Drew is protected whether Mallory, Taylor, or Drew
+  himself wins it. That is house consensus robust across a live event, not
+  an outcome already decided before the event. Corrected the opportunity's
+  recorded interpretation (id 192) rather than leave the overstated version
+  standing. The general lesson, folded into Stage 3's checklist above:
+  verifying the facts a subagent reports is not the same as verifying that
+  those facts are what the market actually resolves on.
