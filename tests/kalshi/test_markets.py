@@ -144,10 +144,10 @@ def test_list_open_keeps_the_markets_own_series_ticker(monkeypatch):
     assert result[0]["series_ticker"] == "OWN"
 
 
-def test_list_open_pages_past_ten_when_uncapped(monkeypatch):
-    # The default used to cap at 10 pages, which on the real board is a
-    # heavily biased slice (see TruncatedFetchError's docstring). The
-    # default must page to exhaustion instead.
+def test_list_open_pages_past_ten(monkeypatch):
+    # list_open used to cap at 10 pages by default, which on the real board
+    # is a heavily biased slice (see FetchError's docstring). There is no
+    # cap at all now -- the walk must page to exhaustion regardless of size.
     total_pages = 12
 
     def fake_get(url, params=None, **kwargs):
@@ -163,37 +163,6 @@ def test_list_open_pages_past_ten_when_uncapped(monkeypatch):
     result = markets.list_open()
     assert len(result) == total_pages
     assert [m["ticker"] for m in result] == [f"T{n}" for n in range(total_pages)]
-
-
-def test_list_open_raises_when_max_pages_cuts_off_a_live_cursor(monkeypatch):
-    def fake_get(url, params=None, **kwargs):
-        page_num = int((params or {}).get("cursor") or "0")
-        return {
-            "events": [{"markets": [dict(RAW, ticker=f"T{page_num}")]}],
-            # Always advances -- the cursor never empties on its own.
-            "cursor": str(page_num + 1),
-        }
-
-    monkeypatch.setattr(markets, "get_json", fake_get)
-    with pytest.raises(markets.TruncatedFetchError, match="max_pages"):
-        markets.list_open(max_pages=3)
-
-
-def test_list_open_cap_landing_exactly_on_exhaustion_does_not_raise(
-    monkeypatch,
-):
-    def fake_get(url, params=None, **kwargs):
-        page_num = int((params or {}).get("cursor") or "0")
-        next_num = page_num + 1
-        cursor = str(next_num) if next_num < 3 else ""
-        return {
-            "events": [{"markets": [dict(RAW, ticker=f"T{page_num}")]}],
-            "cursor": cursor,
-        }
-
-    monkeypatch.setattr(markets, "get_json", fake_get)
-    result = markets.list_open(max_pages=3)
-    assert len(result) == 3
 
 
 def test_list_open_deduplicates_tickers_across_pages(monkeypatch):
@@ -225,14 +194,65 @@ def test_list_open_deduplicates_tickers_across_pages(monkeypatch):
 
 def test_list_open_raises_when_the_cursor_stops_advancing(monkeypatch):
     # A server-side bug that keeps returning the same cursor must not spin
-    # forever now that the default has no page cap.
+    # forever, since there is no page cap to bound the walk.
     monkeypatch.setattr(
         markets, "get_json",
         lambda *a, **k: {"events": [{"markets": [dict(RAW)]}],
                          "cursor": "stuck"},
     )
-    with pytest.raises(markets.TruncatedFetchError, match="same cursor"):
+    with pytest.raises(markets.FetchError, match="same cursor"):
         markets.list_open()
+
+
+def test_list_settled_pages_to_exhaustion(monkeypatch):
+    # list_settled used to hardcode max_pages=5, silently truncating the
+    # walk. It must page to exhaustion just like list_open.
+    total_pages = 7
+
+    def fake_get(url, params=None, **kwargs):
+        page_num = int((params or {}).get("cursor") or "0")
+        next_num = page_num + 1
+        cursor = str(next_num) if next_num < total_pages else ""
+        return {
+            "markets": [dict(RAW, ticker=f"T{page_num}")],
+            "cursor": cursor,
+        }
+
+    monkeypatch.setattr(markets, "get_json", fake_get)
+    result = markets.list_settled()
+    assert len(result) == total_pages
+    assert [m["ticker"] for m in result] == [f"T{n}" for n in range(total_pages)]
+
+
+def test_list_settled_deduplicates_tickers_across_pages(monkeypatch):
+    pages = [
+        {"markets": [dict(RAW, ticker="A"), dict(RAW, ticker="B")],
+         "cursor": "next"},
+        {
+            # "A" reappears -- must not be counted twice.
+            "markets": [dict(RAW, ticker="A"), dict(RAW, ticker="C")],
+            "cursor": "",
+        },
+    ]
+    calls = {"n": 0}
+
+    def fake_get(url, params=None, **kwargs):
+        page = pages[calls["n"]]
+        calls["n"] += 1
+        return page
+
+    monkeypatch.setattr(markets, "get_json", fake_get)
+    result = markets.list_settled()
+    assert [m["ticker"] for m in result] == ["A", "B", "C"]
+
+
+def test_list_settled_raises_when_the_cursor_stops_advancing(monkeypatch):
+    monkeypatch.setattr(
+        markets, "get_json",
+        lambda *a, **k: {"markets": [dict(RAW)], "cursor": "stuck"},
+    )
+    with pytest.raises(markets.FetchError, match="same cursor"):
+        markets.list_settled()
 
 
 def test_quotes_maps_tickers_to_markets(monkeypatch):
@@ -265,10 +285,8 @@ def test_quotes_returns_empty_for_no_tickers(monkeypatch):
 
 @pytest.mark.network
 def test_live_open_markets_have_expected_shape():
-    # No max_pages: the default now pages to exhaustion (~60 requests
+    # list_open takes no cap: it always pages to exhaustion (~60 requests
     # against the live board), matching how this is actually called.
-    # Passing a small max_pages here would raise TruncatedFetchError, since
-    # the real board never exhausts its cursor in only one or two pages.
     result = markets.list_open()
     assert result, "Kalshi returned no open markets"
     sample = result[0]

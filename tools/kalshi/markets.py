@@ -23,14 +23,17 @@ BASE_URL = "https://api.elections.kalshi.com/trade-api/v2"
 OPEN_STATUSES = {"active", "open"}
 
 
-class TruncatedFetchError(Exception):
-    """A capped list_open() walk stopped while Kalshi's cursor was still live.
+class FetchError(Exception):
+    """A list_open()/list_settled() walk aborted before reaching exhaustion.
 
-    Kalshi's /events feed is NOT sorted by close time, so a partial walk is
-    not a representative sample of the board -- it is a biased slice that can
-    silently exclude almost all near-term markets. A wrong number is worse
-    than an exception here, so this raises rather than returning a partial
-    result that looks complete.
+    Kalshi's /events and /markets feeds are NOT sorted by close time (or any
+    other useful order), so a partial walk is not a representative sample of
+    the board -- it would be a biased slice that could silently exclude
+    almost all near-term markets. Both functions therefore always page to
+    exhaustion, with no opt-out; this only fires when Kalshi's own cursor
+    gets stuck (the same cursor returned twice), which would otherwise loop
+    forever. A wrong number is worse than an exception here, so this raises
+    rather than returning a partial result that looks complete.
     """
 
 
@@ -94,29 +97,23 @@ def normalize(raw: dict) -> dict:
     }
 
 
-def list_open(limit: int = 200, max_pages: int | None = None) -> list[dict]:
+def list_open(limit: int = 200) -> list[dict]:
     """All open markets, walked via the events endpoint to exhaustion.
 
     Events carry the series ticker, which the candlestick endpoint needs, so
     fetching this way rather than /markets keeps history reachable later.
 
-    Pages to exhaustion by default (`max_pages=None`): the walk keeps going
-    until Kalshi's cursor comes back empty. Kalshi's /events feed is NOT
-    sorted by close time, so a prefix of pages is not a random sample — it is
-    a biased slice that can contain almost no near-term markets, which
-    silently starves any screen with a tight horizon. A full walk against the
-    live board takes on the order of 60 pages.
+    Always pages to exhaustion: the walk keeps going until Kalshi's cursor
+    comes back empty. There is no partial-fetch option. Kalshi's /events feed
+    is NOT sorted by close time, so a prefix of pages is not a random sample
+    — it is a biased slice that can contain almost no near-term markets,
+    which silently starves any screen with a tight horizon. A full walk
+    against the live board takes on the order of 60 pages.
 
-    Passing an explicit `max_pages` risks exactly that bias, so it is capped
-    defensively: if the cap is reached while the cursor is still live, this
-    raises `TruncatedFetchError` instead of returning a partial board that
-    looks complete. A cap that happens to land exactly as the cursor empties
-    does not raise.
-
-    Two loop-safety guards, since the default is now uncapped: tickers
-    already seen on an earlier page are skipped rather than duplicated, and a
-    cursor that stops advancing (the same cursor returned twice) raises
-    `TruncatedFetchError` rather than looping forever.
+    Two loop-safety guards, since the walk is uncapped: tickers already seen
+    on an earlier page are skipped rather than duplicated, and a cursor that
+    stops advancing (the same cursor returned twice) raises `FetchError`
+    rather than looping forever.
     """
     out: list[dict] = []
     seen_tickers: set[str] = set()
@@ -124,15 +121,6 @@ def list_open(limit: int = 200, max_pages: int | None = None) -> list[dict]:
     pages = 0
 
     while True:
-        if max_pages is not None and pages >= max_pages:
-            raise TruncatedFetchError(
-                f"list_open stopped after {pages} page(s) "
-                f"({len(out)} markets) with max_pages={max_pages} while "
-                "Kalshi's cursor was still live -- the result would be a "
-                "biased slice, not a representative sample of the board. "
-                "Pass a larger max_pages, or omit it to page to exhaustion."
-            )
-
         params = {
             "status": "open",
             "with_nested_markets": "true",
@@ -163,7 +151,7 @@ def list_open(limit: int = 200, max_pages: int | None = None) -> list[dict]:
         if not new_cursor:
             break
         if new_cursor == cursor:
-            raise TruncatedFetchError(
+            raise FetchError(
                 f"list_open stopped after {pages} page(s) "
                 f"({len(out)} markets) -- Kalshi returned the same cursor "
                 "twice in a row, which looks like a server-side pagination "
@@ -174,19 +162,51 @@ def list_open(limit: int = 200, max_pages: int | None = None) -> list[dict]:
     return out
 
 
-def list_settled(limit: int = 200, max_pages: int = 5) -> list[dict]:
-    """Recently settled markets, with their results."""
+def list_settled(limit: int = 200) -> list[dict]:
+    """Recently settled markets, with their results, walked to exhaustion.
+
+    Same contract as list_open: always pages until Kalshi's cursor comes
+    back empty, with the same two loop-safety guards (tickers already seen
+    are skipped rather than duplicated; a cursor that stops advancing raises
+    `FetchError` rather than looping forever). There is no partial-fetch
+    option, for the same reason list_open has none -- a prefix of pages is
+    not a representative sample.
+
+    Kalshi's settled history spans the platform's whole lifetime, so a full
+    walk here can be considerably larger and slower than list_open's ~60
+    pages against the live board.
+    """
     out: list[dict] = []
+    seen_tickers: set[str] = set()
     cursor = ""
-    for _ in range(max_pages):
+    pages = 0
+
+    while True:
         params = {"status": "settled", "limit": limit}
         if cursor:
             params["cursor"] = cursor
         payload = get_json(f"{BASE_URL}/markets", params=params)
-        out.extend(normalize(raw) for raw in payload.get("markets", []))
-        cursor = payload.get("cursor") or ""
-        if not cursor:
+        pages += 1
+
+        for raw in payload.get("markets", []):
+            market = normalize(raw)
+            if market["ticker"] in seen_tickers:
+                continue
+            seen_tickers.add(market["ticker"])
+            out.append(market)
+
+        new_cursor = payload.get("cursor") or ""
+        if not new_cursor:
             break
+        if new_cursor == cursor:
+            raise FetchError(
+                f"list_settled stopped after {pages} page(s) "
+                f"({len(out)} markets) -- Kalshi returned the same cursor "
+                "twice in a row, which looks like a server-side pagination "
+                "bug. Aborting rather than looping forever."
+            )
+        cursor = new_cursor
+
     return out
 
 
