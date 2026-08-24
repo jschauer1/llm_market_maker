@@ -16,15 +16,22 @@ the other.
 
 from __future__ import annotations
 
-import logging
-
 from tools.http import get_json
 
 BASE_URL = "https://api.elections.kalshi.com/trade-api/v2"
 
 OPEN_STATUSES = {"active", "open"}
 
-logger = logging.getLogger(__name__)
+
+class TruncatedFetchError(Exception):
+    """A capped list_open() walk stopped while Kalshi's cursor was still live.
+
+    Kalshi's /events feed is NOT sorted by close time, so a partial walk is
+    not a representative sample of the board -- it is a biased slice that can
+    silently exclude almost all near-term markets. A wrong number is worse
+    than an exception here, so this raises rather than returning a partial
+    result that looks complete.
+    """
 
 
 def _price(raw: dict, key: str) -> float | None:
@@ -87,22 +94,45 @@ def normalize(raw: dict) -> dict:
     }
 
 
-def list_open(limit: int = 200, max_pages: int = 10) -> list[dict]:
-    """All open markets, walked via the events endpoint.
+def list_open(limit: int = 200, max_pages: int | None = None) -> list[dict]:
+    """All open markets, walked via the events endpoint to exhaustion.
 
     Events carry the series ticker, which the candlestick endpoint needs, so
     fetching this way rather than /markets keeps history reachable later.
 
-    The result can be PARTIAL: if the board has more pages than max_pages,
-    the walk stops there rather than raising, and the return type stays a
-    plain list either way — there is no field on it that says "incomplete".
-    When that happens a module-level `logging.warning` fires (logger
-    `tools.kalshi.markets`); check the log, or pass a larger max_pages,
-    before treating a market count as complete.
+    Pages to exhaustion by default (`max_pages=None`): the walk keeps going
+    until Kalshi's cursor comes back empty. Kalshi's /events feed is NOT
+    sorted by close time, so a prefix of pages is not a random sample — it is
+    a biased slice that can contain almost no near-term markets, which
+    silently starves any screen with a tight horizon. A full walk against the
+    live board takes on the order of 60 pages.
+
+    Passing an explicit `max_pages` risks exactly that bias, so it is capped
+    defensively: if the cap is reached while the cursor is still live, this
+    raises `TruncatedFetchError` instead of returning a partial board that
+    looks complete. A cap that happens to land exactly as the cursor empties
+    does not raise.
+
+    Two loop-safety guards, since the default is now uncapped: tickers
+    already seen on an earlier page are skipped rather than duplicated, and a
+    cursor that stops advancing (the same cursor returned twice) raises
+    `TruncatedFetchError` rather than looping forever.
     """
     out: list[dict] = []
+    seen_tickers: set[str] = set()
     cursor = ""
-    for _ in range(max_pages):
+    pages = 0
+
+    while True:
+        if max_pages is not None and pages >= max_pages:
+            raise TruncatedFetchError(
+                f"list_open stopped after {pages} page(s) "
+                f"({len(out)} markets) with max_pages={max_pages} while "
+                "Kalshi's cursor was still live -- the result would be a "
+                "biased slice, not a representative sample of the board. "
+                "Pass a larger max_pages, or omit it to page to exhaustion."
+            )
+
         params = {
             "status": "open",
             "with_nested_markets": "true",
@@ -111,10 +141,14 @@ def list_open(limit: int = 200, max_pages: int = 10) -> list[dict]:
         if cursor:
             params["cursor"] = cursor
         payload = get_json(f"{BASE_URL}/events", params=params)
+        pages += 1
 
         for event in payload.get("events", []):
             for raw in event.get("markets", []):
                 market = normalize(raw)
+                if market["ticker"] in seen_tickers:
+                    continue
+                seen_tickers.add(market["ticker"])
                 market["event_ticker"] = (
                     market["event_ticker"] or event.get("event_ticker")
                 )
@@ -125,18 +159,18 @@ def list_open(limit: int = 200, max_pages: int = 10) -> list[dict]:
                     market["title"] = event.get("title")
                 out.append(market)
 
-        cursor = payload.get("cursor") or ""
-        if not cursor:
+        new_cursor = payload.get("cursor") or ""
+        if not new_cursor:
             break
-    else:
-        if cursor:
-            logger.warning(
-                "list_open stopped at max_pages=%d with the cursor still "
-                "live -- the %d markets returned are a PARTIAL board, not "
-                "the full one. Raise max_pages or paginate further before "
-                "treating this count as complete.",
-                max_pages, len(out),
+        if new_cursor == cursor:
+            raise TruncatedFetchError(
+                f"list_open stopped after {pages} page(s) "
+                f"({len(out)} markets) -- Kalshi returned the same cursor "
+                "twice in a row, which looks like a server-side pagination "
+                "bug. Aborting rather than looping forever."
             )
+        cursor = new_cursor
+
     return out
 
 

@@ -29,6 +29,15 @@ from tools.kalshi import markets
 board = markets.list_open()
 ```
 
+Call it with no cap. Kalshi's `/events` feed is not sorted by close time, so
+a capped walk is not a sample — it is a biased slice that can silently
+exclude almost every near-term market. The default pages to exhaustion: a
+full walk is on the order of 60 requests and takes about a minute. If a
+session has a specific reason to pass an explicit `max_pages`, it must catch
+and handle `markets.TruncatedFetchError` rather than proceeding on a board
+that may have stopped short with the cursor still live — that error means
+the result would be a biased slice, not a complete one.
+
 Write snapshots as a side effect so history accrues:
 
 ```python
