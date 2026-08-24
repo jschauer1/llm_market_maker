@@ -136,3 +136,104 @@ violations.
 backtest of the `insider_bias` stage-1 screen. It is item 1 on that theory's
 own diagnosis list because it separates the screen from the judgment, which
 is the single most informative split available on it.
+
+---
+
+## 2026-08-23 — First live run: the screen has almost no thesis alignment
+
+**Did:** First real use of the system. Pulled the complete Kalshi board
+(96,084 markets, 13s, snapshotted), ran the `insider_bias` stage-1 screen →
+765 candidates across 274 events, then the documented stage-2 cascade: two
+strong subagents at high reasoning, judging **blind to price** (payload
+programmatically asserted free of `yes_ask`/`no_ask`/`mid`/`spread`/
+`fav_side`), 16 events each, returning a confidence bucket per event.
+Recorded 44 opportunities under `run_id='live-2026-08-23'` — 25 endorsed,
+19 rejected. These are the theory's **first-ever endorsed and rejected
+rows**; every prior row was `screened`.
+
+**Learned:**
+
+1. **The stage-1 screen barely intersects its own thesis.** Classifying all
+   274 candidate events against THEORY.md's own written gate rules, **242
+   (88%) fall in categories the theory is written to reject**: aggregates of
+   many independent people (61 events), live sport that leaked past
+   `EXCLUDED_PREFIXES` (47), weather (32), crypto strike ladders (31),
+   commodity/FX/rates (28), compute/collectible prices (20), scheduled
+   indicators (16), retail price indices (7). Only 32 events could carry the
+   thesis at all. The screen is a generic tradeable-favorite filter — price
+   band, spread, volume, near close — with no thesis term in it. This is a
+   live explanation for the flat imported record: if 88% of what reaches
+   judgment cannot carry the thesis, near-zero measured edge is the expected
+   result. Concrete leaks: `EXCLUDED_PREFIXES` misses `KXWNBA`, `KXUCL`,
+   `KXNWSL`, `KXTESTMATCH`, `KXLMBGAME` and ~18 more live-sport families, and
+   nothing excludes price-strike ladders (330 candidates on their own).
+
+2. **Resolution rules diverge from titles at an extraordinary rate.** 19 of
+   32 events (59%) carried a rules/title divergence, several decisive:
+   `KXCLAUDE-NXTMYTH` excludes only Fable 5 while Mythos 5 shipped the same
+   day (June 9) and is not excluded; `KXVIDEOLENGTH-GTA` never says whether
+   the strike ladder measures one episode, the total, or the YouTube cut;
+   `KXTRYFIRECOOK` has no "after Issuance" clause though Trump already
+   attempted removal in 2025; `KXHEARNCHARGE` requires a *new* charge after
+   an undefined "Issuance". THEORY.md already lists rules divergence as a
+   warning sign, but at 59% it is not an occasional trap — it is the modal
+   property of this candidate class, and reading rules may be a larger part
+   of the edge than identifying insiders.
+
+3. **The AGT heuristic in THEORY.md is wrong as written.** The theory says
+   pre-taped competition TV is the strongest sub-case and deserves extra
+   weight. The subagent correctly refused it for `KXAGTELIMINATION`: AGT's
+   live quarterfinals are *not* pre-taped, and elimination is decided by
+   public vote — the aggregate-of-many-people case the thesis excludes. The
+   heuristic needs the qualifier "pre-taped **and** taping already
+   completed"; applied to a live-vote show it inverts.
+
+4. **Two session-level overrides**, both applying the theory's own
+   warning-sign rule. `KXIPOSHEIN-DATE` strong→weak: independently verified
+   that CSRC approval (Jul 10), the HKEX prospectus (Jul 26) and the ~Sep 1
+   target are all in mainstream press, so there is no informational
+   asymmetry — the thesis needs a group who knows what the public does not.
+   `KXVIDEOLENGTH-GTA` strong→moderate on the unresolved measurement
+   ambiguity.
+
+5. **Credibility is 0.0, so every candidate ranks at 0.0.** `realization` is
+   0.0 on the imported history, so `ranked_edge = 0` for every bucket. Per
+   `find-edge` §6 this was reported as claimed edge plus the shrinkage
+   reason, not as a table of zeros.
+
+**Next:** The 44 rows resolve between Aug 24 and Sep 5, so
+`interpretation_value` — diagnosis item 2, never computable before — becomes
+available in under two weeks. Two candidate version-2 changes are now
+evidence-backed enough to specify: exclude price-strike ladders and the
+leaked sport families from stage 1, and add a mechanical rules-vs-title
+divergence check. Both are stage-1 code, which would move part of this
+theory toward tier A. Do not bump the version until the current 44 settle —
+changing the procedure mid-flight is exactly what the versioning rule exists
+to prevent.
+
+**Addendum, same session — v2 bump and track-record reset.** On the user's
+instruction the v1 data was **deleted** (96 imported opportunities, 28
+settlements; backed up outside the repo, regenerable via
+`migrate_kalshi_trader.py`) and the theory bumped to **version 2**, because
+the decision procedure changed: subagent output is now an *initial*
+recommendation only, and no candidate may be suggested as a bet unless the
+main research session reviews and recommends it itself, with the deciding
+model recorded on every row (`extra_json.final_recommendation.decided_by`).
+`disposition='endorsed'` now means "the main model recommends this bet",
+not "arithmetic produced a positive number". New `Stage 3` section in
+`THEORY.md`.
+
+The run was re-recorded under v2. **The mechanical v1 rule would have
+endorsed 25 of 44 markets; the main model recommends 3.** That gap is the
+justification for the change: the 22 it declined were dominated by a defect
+visible only in the batch view — the resolution-rules divergence broadens
+what counts as YES, and 543 of 765 screen candidates are NO-side favourites,
+so the divergence systematically damages the exact leg the screen picked. A
+per-candidate subagent cannot see that pattern; comparing candidates
+side by side is what the final stage is for.
+
+The reset means the theory is now **n=0 — unproven, not disproven**. Note the
+one thing lost: the v1 rows were the only dataset that could have answered
+whether LLM-introspected `q` values realize their claimed edge (see the
+2026-08-23 Learnings note on `model_prob_source`). That question is now
+parked behind re-running the migration, not gone.

@@ -12,8 +12,8 @@ Why it persists: the crowd cannot verify the private information, so it prices
 on public uncertainty. The edge is not a smarter forecast — it is recognizing
 which markets have an informed minority at all.
 
-Ported from `kalshi_trader`, where it ran from May to July 2026 and produced
-the imported track record.
+Ported from `kalshi_trader`, where it ran from May to July 2026. That
+predecessor track record was deleted at the v2 bump — see Status.
 
 ## Data sources
 
@@ -21,21 +21,25 @@ Kalshi only (`tools/kalshi/markets.py`). No Polymarket dependency.
 
 ## Status
 
-`under_review` — imported with real history from `kalshi_trader`, and past the
-`n=20` review trigger with a negative net edge. Measured now: n=29,
-`calibration_edge_net = -0.75` points; restricted to the rows the predecessor
-actually bet on (`extra_json.status` starting `BET`, excluding the
-declined-limit rows), `calibration_edge_net = -1.87`.
+`under_review` — **track record reset to zero at v2 (2026-08-23)**, by the
+user's decision, because the decision procedure changed (see Version below).
 
-`under_review` is the honest label, and it means the theory **keeps running**
-while it is diagnosed. It is not a verdict. Working `score-theories` §5
-against these numbers, the first question already answers itself: at n=29 the
-standard error on a win rate is around 9 points, so a −0.75-point result is
-well inside the noise. This theory has not been measured yet — it has been
-glanced at. Nothing here justifies a retirement proposal, and a session that
-treats the negative sign as a conclusion has misread a small sample.
+The v1 history — 96 imported `kalshi_trader` opportunities, 28 settlements,
+n=29 settled at `calibration_edge_net = -0.75` — was **deleted**, not
+carried forward. That was the right call: those rows were produced by a
+different procedure (OpenAI classify/pick, no main-model sign-off, no
+recorded decider), and scoring them alongside v2 rows would merge two
+different theories into one track record. A backup of the deleted rows exists
+outside the repo, and `migrate_kalshi_trader.py` can regenerate them if a
+v1-specific question ever needs answering.
 
-What would actually settle it, roughly in order of value:
+So this theory now has **n=0**. It is unproven, not disproven, and every edge
+it claims is a `prior` placeholder until buckets earn measured rates. It
+stays `under_review` rather than reverting to `testing` because the v1
+diagnosis that put it here — see Learnings, 2026-08-23 — is about the
+*screen*, which v2 has not yet changed.
+
+What would settle it, roughly in order of value:
 
 1. **A tier A backtest of the stage-1 screen alone.** Uncontaminated, a year
    of history available, and it separates the screen from the judgment — the
@@ -44,15 +48,21 @@ What would actually settle it, roughly in order of value:
 2. **`interpretation_value`** once both endorsed and rejected rows have
    settled: does stage 2 add edge over its own screen, or destroy it?
 3. **A slice breakdown** by bucket, market family, days-to-close, and price
-   band. The reality-TV intuition in stage 2 predicts that one family carries
-   whatever edge exists; if so this is a narrower theory than it claims, which
-   is a version bump and a real finding.
+   band. If one family carries whatever edge exists, this is a narrower
+   theory than it claims — a version bump and a real finding.
 4. **Gross vs net.** If `calibration_edge` is positive while the net figure is
    not, the thesis is sound and the entry threshold is wrong.
 
-See `RESEARCH_LOG.md`, 2026-08-23, for the same numbers.
-
 ## Version
+
+**2** (2026-08-23) — *Final recommendation must come from the main research
+model.* Stage 2 previously ended at the subagent verdict, and a candidate was
+endorsed mechanically whenever its bucket implied a positive edge. It no
+longer is: subagent output is now an **initial recommendation**, and no
+candidate may be suggested as a bet unless the main research session — the
+model actually running the repo — reviews it and recommends it itself. The
+model that made that final call is recorded on every opportunity. See
+*Stage 3* below. Track record reset to zero at this bump; v1 rows deleted.
 
 1 — initial port. Stage 1 is ported from the original deterministic filter,
 with two deliberate changes: it bands the favorite-price filter on the
@@ -86,14 +96,16 @@ recorded to the ledger at this stage.
 The screen finds tradeable favorites. It cannot tell you whether anyone
 actually knows the answer. That is the whole thesis, and it is judgment.
 
-**Tiering: run a cheap gate before deep analysis.** This is how the predecessor
-system actually operated, and it is worth reproducing. Two model stages, not
-one:
+**Tiering: run a cheap gate before deep analysis, and never skip the final
+review.** The first two stages are how the predecessor system operated and are
+worth reproducing; the third was added at v2 and is not optional. Three
+stages, not one:
 
 | Stage | Sees | Tier | Answers |
 |---|---|---|---|
 | Gate | every screened candidate | fast/small, minimal reasoning | "Could a specific group already know this outcome?" — binary yes/no, nothing else |
 | Analysis | gate survivors only | strong, high reasoning | The full stage-2 assessment below, ending in a confidence bucket |
+| **Final review** | **every analysed candidate, together** | **the main research session** | **"Do I recommend this bet?" — see Stage 3. Nothing reaches the user without it.** |
 
 Measured against a complete board (see `RESEARCH_LOG.md`, 2026-08-23): the
 screen yields several hundred candidates across roughly 275 events, not a
@@ -173,7 +185,8 @@ price data — momentum moving *away* from the favorite, which is informed flow
 leaving.
 
 **Recording.** Because edge depends on the bucket's measured rate, record after
-judging:
+judging — but **the disposition is not set here**. Stage 2 produces a bucket
+and an initial recommendation; Stage 3 decides whether it becomes a bet.
 
 ```python
 from tools import buckets, ledger, score
@@ -183,13 +196,74 @@ opp_id, _ = ledger.record_opportunity(
     conn, ..., edge_pts_net=edge, edge_basis=basis,
     confidence=bucket, judged_blind=True,
 )
-ledger.interpret(conn, opp_id, "endorsed" if edge > 0 else "rejected", notes)
+# Disposition comes from Stage 3, after the main research model reviews it:
+#   ledger.interpret(conn, opp_id, "endorsed"|"rejected", notes)
+# "endorsed" means the main model recommends the bet, NOT that edge > 0.
 ```
 
 **Record the rejections too** — they are the control group that measures
 whether this judgment is worth anything, and they are also what teaches the
 `weak` bucket its rate. Candidates never reached within the scan budget are
 reported as a count, not recorded.
+
+## Stage 3 — the main research model makes the final call
+
+**A subagent verdict is an initial recommendation, never a bet.** No candidate
+from this theory may be put in front of the user as a suggested bet unless the
+**main research session** — the model actually running this repo — has reviewed
+it and recommends it in its own right. Added at v2.
+
+Why this exists: at v1 the disposition was mechanical (`endorsed` whenever the
+bucket implied positive edge), so a `moderate` verdict became a suggested bet
+with nothing standing between the subagent and the user. The first live run
+showed why that fails. Deep analysis returned 25 mechanically-endorsable
+markets; reading them together, most carried a resolution-rules divergence
+that cut *against* the very side the screen had selected — a defect visible
+only when comparing candidates side by side, which is precisely what a
+per-candidate subagent cannot do. The batch view is the main model's job.
+
+**What the final review must do**, per candidate reaching it:
+
+- Re-read the subagent's `rules_note`. Ask which *side* a divergence favours,
+  not merely that one exists. A rule broader than its title makes YES easier,
+  which damages a NO favourite — and this screen picks NO most of the time.
+- Check whether the "informed group" actually knows something **the public does
+  not**. A group that knows a fact already carried by the mainstream press
+  supplies no asymmetry, and the thesis is asymmetry, not expertise.
+- Check the candidate against its siblings. On a strike ladder, confirm the
+  recommended legs are jointly coherent and identify which survive *every*
+  live reading of the rules.
+- Verify any post-cutoff factual claim a subagent made before relying on it.
+- Confirm the resolution source can publish before close.
+
+The final review may **lower** a bucket (the warning-sign rules above apply to
+it exactly as they do to the subagent) and may decline to recommend a
+candidate whose bucket implies positive edge. It should not raise a bucket:
+the subagent judged blind to price and the main session has not.
+
+**Recording — required.** Every opportunity carries, in `extra_json`:
+
+```json
+"final_recommendation": {
+  "decided_by": "<model id of the main research session>",
+  "subagent_model": "<model id that produced the initial verdict>",
+  "subagent_bucket": "strong|moderate|weak",
+  "final_bucket": "strong|moderate|weak",
+  "action": "recommended|declined|override_down",
+  "note": "why the main model reached a different conclusion, if it did"
+}
+```
+
+`disposition='endorsed'` now means **the main research model recommends this
+bet**, not merely that arithmetic produced a positive number. Anything it
+declines is `rejected` with the reason, which keeps the control group that
+`score.interpretation_value` measures meaningful.
+
+**Name the deciding model when reporting to the user.** A recommendation is
+not complete without saying which model made the final call — the user is
+entitled to know whose judgment they are being asked to act on, and a later
+session comparing track records needs it to tell whether a change in results
+came from a change in procedure or a change in model.
 
 ## Confidence buckets
 
@@ -247,3 +321,38 @@ X". Write the adapter in this folder before attempting the backtest.
   `q` at all), kept because they are the only dataset that can answer whether
   introspected probabilities realize their claimed edge. See each row's
   `extra_json.model_prob_source` for the exact provenance.
+- 2026-08-23 — **First live run.** Complete board (96,084 markets) → 765
+  candidates / 274 events. Classified against this theory's own gate rules,
+  **242 of 274 events (88%) are categories the gate is written to reject** —
+  crypto/commodity/compute strike ladders, weather, live sport that leaked
+  past `EXCLUDED_PREFIXES`, scheduled indicators, and aggregates of many
+  independent people. Stage 1 has no thesis term in it; it selects tradeable
+  favorites, not markets an insider could know. Strong candidate explanation
+  for the flat imported record.
+- 2026-08-23 — **19 of 32 judged events (59%) had resolution rules that
+  diverge from the title.** This section already lists that as a warning
+  sign; at 59% it is the modal property of the candidate class, not an
+  occasional trap. Reading rules may be a larger share of the available edge
+  than identifying informed groups.
+- 2026-08-23 — **The pre-taped-TV heuristic above is wrong as written.**
+  Applied to `KXAGTELIMINATION`, deep analysis correctly refused it: AGT's
+  live quarterfinals are not pre-taped and elimination is decided by public
+  vote — the aggregate-of-many-people case the thesis excludes. The
+  heuristic needs the qualifier *pre-taped **and** taping already completed*;
+  on a live-vote show it inverts. `KXBIGBROTHERELIMINATION` is the version
+  that does work: 24/7 live feeds give a concrete group the nominations,
+  veto result and vote plan days before broadcast.
+- 2026-08-23 — **Most rules divergences cut against the side the screen
+  picks.** 543 of 765 candidates are NO-side favourites, and a rule broader
+  than its title makes YES *easier* — so the divergence damages exactly the
+  leg the screen selected. Seen live on `KXCLAUDE-NXTMYTH` (an unexcluded
+  Mythos 5 already satisfies it), `KXNEWDEAL` (Trump already posted "we have
+  a DEAL"), `KXTRYFIRECOOK` (removal already attempted in 2025), and the
+  rolling-BLA markets (arguably already submitted). This is mechanically
+  checkable and is the strongest stage-1 candidate for v3.
+- 2026-08-23 — **v2 recorded**: 44 opportunities, 3 endorsed / 41 rejected,
+  all `judged_blind=True`, all `edge_basis='prior'`, all carrying
+  `final_recommendation.decided_by`. The gap between what the mechanical rule
+  would have endorsed (25) and what the main model recommends (3) is the
+  entire reason Stage 3 exists. They settle Aug 24–Sep 5, which makes
+  `interpretation_value` computable for the first time.
