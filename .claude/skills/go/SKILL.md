@@ -7,7 +7,30 @@ description: Run an autonomous research session — orient on current state, cho
 
 You are the researcher. Nobody is going to tell you what to test.
 
-## 1. Orient (always, and cheaply)
+## 1. Orient (always)
+
+**First, pull a fresh Kalshi board.** This is not optional, and it comes
+before every local-state query below:
+
+```python
+from tools import db, snapshot
+from tools.kalshi import markets
+
+board = markets.list_open()          # complete board, ~95k markets, ~1 min
+conn = db.connect(); db.init_db(conn)
+snapshot.save_kalshi(conn, board)
+```
+
+Every number the rest of this session produces — which markets are open,
+what they cost, what a screen returns — is only as current as this fetch.
+Reasoning over yesterday's board without noticing is exactly the failure
+mode this step exists to prevent. `market_snapshots` is also the first-party
+price history this project accrues over time; skip this and a day of history
+is gone permanently, not deferred. `list_open` always pages to exhaustion —
+there is no partial-fetch option — so budget the minute it takes rather than
+assuming it's free.
+
+Then read local state:
 
 ```bash
 python -m tools.cli theories list
@@ -18,7 +41,9 @@ python -m tools.cli ideas revisitable
 Read the last ~30 lines of `RESEARCH_LOG.md` for what the previous session
 was doing. For each active theory, `python -m tools.cli score report <id>`.
 
-This is mechanical and costs almost nothing. Do it before deciding anything.
+The local-state queries are mechanical and cost almost nothing; the board
+fetch above is the expensive part of this step, and still required. Do all
+of it before deciding anything.
 
 ## 2. Choose where the value is
 

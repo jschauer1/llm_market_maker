@@ -251,6 +251,11 @@ this repo, and none should be added.
 - Prices are decimal dollars in [0, 1]. Edge is in percentage points. Entry
   prices are the **ask** you would actually pay, never the mid. Timestamps are
   UTC ISO-8601.
+- **Refresh Kalshi before reasoning about markets.** Pull a fresh complete
+  board (`markets.list_open()`) and snapshot it before answering what's open
+  or what it costs — the local database is only as current as the last
+  fetch. `go`'s Orient step does this automatically; do it yourself first
+  when answering a question directly.
 
 ## Getting started
 

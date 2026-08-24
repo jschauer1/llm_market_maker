@@ -22,23 +22,24 @@ Honor a user scope override ("just insider_bias", "all theories").
 ## 2. Run each theory's stage 1
 
 Open the theory's `THEORY.md` and follow its **Stage 1 — mechanical screen**
-section. Fetch markets once and reuse across theories:
+section. If this session already ran `go`'s Orient step, it already fetched
+the complete board and wrote a snapshot this session — reuse that `board`
+rather than fetching again. Otherwise, fetch markets once and reuse across
+theories:
 
 ```python
 from tools.kalshi import markets
 board = markets.list_open()
 ```
 
-Call it with no cap. Kalshi's `/events` feed is not sorted by close time, so
-a capped walk is not a sample — it is a biased slice that can silently
-exclude almost every near-term market. The default pages to exhaustion: a
-full walk is on the order of 60 requests and takes about a minute. If a
-session has a specific reason to pass an explicit `max_pages`, it must catch
-and handle `markets.TruncatedFetchError` rather than proceeding on a board
-that may have stopped short with the cursor still live — that error means
-the result would be a biased slice, not a complete one.
+`list_open` takes no cap and always pages to exhaustion — there is no
+partial-fetch option. Kalshi's `/events` feed is not sorted by close time, so
+anything less than the complete board is a biased slice that can silently
+exclude almost every near-term market. A full walk is on the order of 60
+requests and takes about a minute.
 
-Write snapshots as a side effect so history accrues:
+Write snapshots as a side effect so history accrues (skip this if reusing a
+board `go` already snapshotted this session):
 
 ```python
 from tools import db, snapshot
