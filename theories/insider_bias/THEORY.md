@@ -64,6 +64,14 @@ model actually running the repo — reviews it and recommends it itself. The
 model that made that final call is recorded on every opportunity. See
 *Stage 3* below. Track record reset to zero at this bump; v1 rows deleted.
 
+**Not a version bump (2026-08-23):** THEORY.md previously described the gate
+as a cheap LLM stage while `gate.py` — deterministic code — is what actually
+ran for v2. Rewriting the description to match the code corrects a document
+that misdescribed the procedure; it does not change the procedure, so v2's
+in-flight rows keep their meaning. Narrowing the gate's patterns to fix the
+two known misclassifications *would* change the decision path and is held for
+v3, so the 44 rows settling Aug 24–Sep 5 stay one comparable cohort.
+
 1 — initial port. Stage 1 is ported from the original deterministic filter,
 with two deliberate changes: it bands the favorite-price filter on the
 **ask** rather than the **mid** (an edge measured against the mid is an edge
@@ -96,47 +104,89 @@ recorded to the ledger at this stage.
 The screen finds tradeable favorites. It cannot tell you whether anyone
 actually knows the answer. That is the whole thesis, and it is judgment.
 
-**Tiering: run a cheap gate before deep analysis, and never skip the final
-review.** The first two stages are how the predecessor system operated and are
-worth reproducing; the third was added at v2 and is not optional. Three
-stages, not one:
+**Three stages, and the gate is code.** The predecessor ran a cheap LLM gate
+here. This theory does not, and that is a deliberate design decision rather
+than a shortcut — see below. The final review was added at v2 and is not
+optional.
 
-| Stage | Sees | Tier | Answers |
+| Stage | Sees | Decided by | Answers |
 |---|---|---|---|
-| Gate | every screened candidate | fast/small, minimal reasoning | "Could a specific group already know this outcome?" — binary yes/no, nothing else |
-| Analysis | gate survivors only | strong, high reasoning | The full stage-2 assessment below, ending in a confidence bucket |
+| Gate | every screened event | **`gate.py` — deterministic, no model** | "Is this a market family where private foreknowledge is structurally impossible?" |
+| Analysis | gate survivors only | strong model, high reasoning | The full stage-2 assessment below, ending in a confidence bucket |
 | **Final review** | **every analysed candidate, together** | **the main research session** | **"Do I recommend this bet?" — see Stage 3. Nothing reaches the user without it.** |
 
-Measured against a complete board (see `RESEARCH_LOG.md`, 2026-08-23): the
-screen yields several hundred candidates across roughly 275 events, not a
-handful. That is squarely the "hundreds" regime the cascade table is built
-for, so the cheap gate is the **normal path** here, not an exception to it.
-Deduplicating by `event_ticker` before gating cuts the number of gate calls
-roughly 3× (784 candidates → 276 events on the day it was measured).
+**Deduplicate by `event_ticker` before gating.** Sibling strikes on one event
+— different contestants in one show, different dates for one announcement —
+share a gate verdict and a thesis judgment, so paying for each separately is
+waste. On 2026-08-23 this cut 765 candidates to 274 events.
 
-The gate exists so the expensive stage never reads raw board data. Batch it
-tens of candidates per call, and **deduplicate by `event_ticker` first** —
-sibling strikes on one event (different contestants in the same show, different
-dates for the same announcement) almost always share a gate verdict, so paying
-for each separately is waste.
+### Why the gate is code and not a model
 
-The gate answers only "worth a closer look." It never assigns a confidence
-bucket and never decides a bet — those come from the analysis stage, because
-that is the judgment the measured bucket rates are calibrating.
+The gating question reads like judgment, but on this board it mostly is not.
+This theory's own NO list is largely a list of **market families** — "any
+future price", "weather", "live sports", "scheduled economic indicators",
+"random draws". Whether a series is a Bitcoin strike ladder or a Chicago
+temperature market is a ticker fact, not a judgment. Measured on 2026-08-23,
+242 of 274 candidate events fell in such families. Asking a model 242 times
+whether anyone can know tomorrow's weather is paying for an answer a pattern
+already has.
+
+Four things follow, and together they outweigh what an LLM gate offers:
+
+- **Determinism.** The same board yields the same survivors, every time. This
+  theory's central problem is a tiny sample; removing a variance source from
+  the decision path is worth more here than almost anywhere else.
+- **Auditability.** Eight patterns anyone can read and challenge, against 242
+  opaque yes/nos nobody can review after the fact.
+- **One less model in the decision path.** Tier B's cutoff rule takes the
+  *later* of the judging models' cutoffs. With no gate model, the analysis
+  model alone sets it.
+- **Cost.** Free and instant, over the stage with the most volume.
+
+### The rule for what may be blocked
+
+**A family may be blocked only when the exclusion follows from the market's
+resolution mechanics — how it resolves makes private foreknowledge impossible
+— never from what the ticker name suggests the market is about.**
+
+This rule exists because breaking it is the one failure this gate has actually
+produced. The 2026-08-23 audit found two events blocked on name-shape rather
+than mechanics: `KXMAMDANIMENTION` (what a mayor will say at a scheduled
+announcement — his speechwriters are exactly the named informed group this
+thesis hunts) and `KXEOWEEK` (executive orders, which this theory's own gating
+rules list as a **yes**). Both read like counts, so both were filed as
+aggregates. Neither should have been blocked.
+
+Seven of the eight categories are genuine families and are safe. The
+`aggregate of many independent people` category is the one doing semantic work
+a ticker prefix cannot support, and both misses came from it.
+
+### Where this is weaker than an LLM gate, and why it is still the trade
+
+- It only knows families it has already seen. An unrecognised series falls
+  through to `PLAUSIBLE` and reaches the expensive stage — the safe direction,
+  but the expensive stage grows as Kalshi adds families.
+- Inside a matched family it drops silently, and **a false elimination is
+  invisible**: nothing downstream reports what the gate removed. Always report
+  `gate_counts` when reporting a run.
+- It needs maintenance, and nothing reminds anyone to do it.
+
+An LLM gate would handle novel families and read the actual rules. But its
+mistakes would be 242 unreviewable judgments, where these are eight lines in a
+file with tests. A bounded, visible, fixable failure mode beats an unbounded
+invisible one — particularly for a theory that has to earn trust from n=0.
 
 **A gate "no" is a count, not a `rejected` opportunity.** The gate cannot
 produce a bucket, so it cannot produce the edge `record_opportunity` requires,
 and `disposition='rejected'` is reserved for a deep-stage verdict — that is
 the control group `score.interpretation_value` measures stage-2 judgment
-against. Report gate rejections the same way you report candidates never
-reached at all: a count. If you want them in the ledger for bookkeeping,
-record them and leave `disposition` at its default `'screened'`; do not call
-`ledger.interpret(..., "rejected", ...)` on a gate verdict.
+against. Report gate rejections as a count, the same treatment candidates
+never reached at all get. If you want them in the ledger for bookkeeping,
+record them and leave `disposition` at its default `'screened'`.
 
-If a particular scan genuinely returns only a handful of candidates, skipping
-the gate and going straight to analysis is fine — that is an escape hatch for
-a thin scan, not the default expectation. The cascade is for volume, and on a
-complete board there is volume.
+**If the screen is ever fixed so its output is thesis-aligned**, the volume
+argument weakens and a cheap LLM gate reading actual resolution rules becomes
+the better instrument again. That switch is a version bump.
 
 **The gating question.** Is there a specific, identifiable group of humans who
 probably already know the outcome, while the public does not? Not "could
@@ -298,13 +348,12 @@ version**, exactly like moving a threshold.
 python -m tools.cli provenance list --theory insider_bias
 ```
 
-**The gate is currently code, not a model.** `THEORY.md` documents a cheap LLM
-gate, and on 2026-08-23 that was substituted with `gate.py`'s family
-classifier, because the screen's output was dominated by whole families this
-theory's own rules reject — a question a regex answers. It gated out 242 of
-274 events. If the screen is ever fixed so its output is thesis-aligned, the
-cheap LLM gate becomes the right instrument again and that switch is a version
-bump.
+**The gate is code by design, not by substitution** — see Stage 2 for the
+reasoning. It has no prompt, so its `judgment_runs` row records
+`model='none (deterministic)'` with `gate.py` itself as the artifact whose
+sha is pinned. Editing `gate.py` therefore shows up as prompt drift in
+provenance exactly as editing a prompt file would, which is the behaviour we
+want.
 
 ## Confidence buckets
 
@@ -327,6 +376,11 @@ design most needs to be able to detect.
 
 **Tier B or C** — the decision path uses LLM judgment, so it is contaminated
 on any market that resolved before the judging model's knowledge cutoff.
+
+**The gate contributes no contamination**, because it is deterministic code
+with no model in it. Only the analysis and final-review stages judge, so the
+tier is set by their cutoffs alone rather than by the later of three. That is
+one of the reasons the gate is code — see Stage 2.
 
 Prefer tier B: restrict replay to markets resolving after the cutoff, with
 web search disabled. For tier C runs, use the contamination probe first — ask

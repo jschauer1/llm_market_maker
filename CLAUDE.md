@@ -265,14 +265,27 @@ pick. Narrow in stages:
 | Stage | Volume | Tier |
 |---|---|---|
 | Mechanical screen | thousands | no model — code |
-| Cheap gate: "plausibly fits the thesis?" | hundreds | fast/small, minimal reasoning |
+| Cheap gate: "plausibly fits the thesis?" | hundreds | fast/small, minimal reasoning — **or code, if the question is mechanical** |
 | Deep analysis: "is it true here, which bucket?" | tens | strong, high reasoning |
 | Final selection | a handful | you, this session |
 
-That cascade is what `insider_bias` did historically — a small fast model gated
-every screened candidate to a yes/no, deduplicated so sibling strikes on one
-event shared a verdict, and only survivors reached the expensive model. The
-cheap stage exists so the expensive one never sees raw data.
+The cheap stage exists so the expensive one never sees raw data. Deduplicate
+before gating — sibling strikes on one event almost always share a verdict.
+
+**Check whether the gate needs a model at all.** A thesis whose exclusions are
+market *families* — "any future price", "weather", "live sport" — is asking a
+ticker question, not a judgment question, and a pattern answers it for free,
+deterministically, and auditably. `insider_bias` gates this way: `gate.py`
+removes 88% of its screened events with no model, and the cascade's expensive
+stage sees only what is left. A code gate also keeps one fewer model out of
+the decision path, which matters for the tier B cutoff rule.
+
+The trade is real in both directions. A code gate only knows families it has
+seen, and inside a matched family it drops silently — so **always report what
+the gate removed**, by category. An LLM gate handles novel families and reads
+actual resolution rules, but its mistakes are hundreds of unreviewable
+judgments. Prefer code when the exclusions follow from resolution *mechanics*;
+reach for a model when they need reading comprehension.
 
 **Batch within a tier** — tens of candidates per call, never one subagent per
 candidate. Confidence buckets always come from the deep stage; a gate answers
