@@ -95,6 +95,19 @@ where sibling strikes share a verdict. Then send only the survivors to a strong
 subagent with high reasoning effort for the real analysis. If the theory's
 `THEORY.md` names its own tiering, follow that instead.
 
+**Record what judged before you record any opportunity.** Load each stage's
+prompt from the theory's `prompts/` folder rather than composing one inline,
+and register it:
+
+```bash
+python -m tools.cli provenance record --theory <slug> --version <n>     --run <run_id> --stage analysis --model <exact model id>     --prompt-path theories/<slug>/prompts/analysis.md
+```
+
+For a theory that declares `uses_llm_judgment`, `record_opportunity` refuses
+rows for a run with no provenance, so this is not optional — and it is what
+makes an edge this scan finds reproducible rather than anecdotal. Record every
+stage that judged: `gate`, `analysis`, `final_review`.
+
 Batch within every tier — tens of candidates per call, never one subagent per
 candidate. The confidence bucket always comes from the deep stage; a gate
 answers "worth a closer look," never "good bet."

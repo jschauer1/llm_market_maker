@@ -237,3 +237,50 @@ one thing lost: the v1 rows were the only dataset that could have answered
 whether LLM-introspected `q` values realize their claimed edge (see the
 2026-08-23 Learnings note on `model_prob_source`). That question is now
 parked behind re-running the migration, not gone.
+
+---
+
+## 2026-08-23 — Provenance: model + prompt are now recorded and enforced
+
+**Did:** Made "record what judged, and what you asked it" a repo-wide
+expectation with a mechanism behind it, after noticing the gap: nothing
+persisted prompts anywhere, and the model was tracked only in an ad-hoc
+`extra_json` field I had added to one theory an hour earlier.
+
+- New `judgment_runs` table: `run_id`, theory, version, `stage`
+  (gate/analysis/final_review/other), `model`, `effort`, `prompt_path`,
+  `prompt_sha256`, `prompt_text`, `web_search`, `n_items`. A table CHECK
+  requires a path or inline text, so the prompt is always recoverable.
+- New `tools/provenance.py`. `prompt_sha` normalizes line endings so a CRLF
+  checkout does not read as prompt drift.
+- New `theories.uses_llm_judgment` flag. When set, `record_opportunity`
+  **refuses** rows for a run with no provenance — the omission is impossible,
+  not merely discouraged.
+- `provenance record|list` on the CLI.
+- Prompts moved to files: `theories/insider_bias/prompts/analysis.md` and
+  `final_review.md`, so a change appears in `git diff` and is reviewed like
+  any other procedure change.
+
+**Learned:** The sharpest finding was about this session's own work. The
+"gate" that produced the headline 88% number existed **only inside a shell
+heredoc** — not in the repo, not in the scratchpad, only in the transcript.
+A number reported as evidence in `THEORY.md` and this log was reproducible
+only by re-reading the conversation. It is now `theories/insider_bias/gate.py`
+with 26 tests, and re-running it against the same board reproduces **242/274
+exactly**. The tests also pin the one real bug: the patterns were first
+written against event-ticker shape (`RT-`, `UE-`) while they match the
+*series* ticker (`KXRT`, `KXUE`), which leaked six events into the survivor
+set before it was caught.
+
+The general lesson is that the reproducibility gap does not announce itself.
+Every number this session produced looked equally solid in the report; only
+one of them was backed by committed code. Enforcement at the write path is
+the only thing that catches this, because a discipline that depends on
+remembering will fail exactly when a session is busy — which is when it
+matters.
+
+**Next:** Unchanged — the 44 v2 rows settle Aug 24–Sep 5, making
+`interpretation_value` computable for the first time. Note that
+`backtest_runs.uses_llm_judgment` and `model_cutoff` now overlap with
+`judgment_runs`; a later session should decide whether backtests should
+simply join the new table rather than keep their own copy.

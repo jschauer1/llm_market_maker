@@ -244,6 +244,29 @@ def list_pending_retirement(conn: sqlite3.Connection) -> list[sqlite3.Row]:
     ).fetchall()
 
 
+def set_uses_llm_judgment(
+    conn: sqlite3.Connection,
+    theory_id: str,
+    uses_llm: bool,
+    now: str | None = None,
+) -> None:
+    """Declare whether any LLM sits in this theory's decision path.
+
+    Declaring it turns on the provenance requirement: opportunities cannot be
+    recorded for a run until `tools/provenance.py` has captured the model and
+    prompt for each judging stage. A fully mechanical theory leaves this off
+    and has nothing to record — which is one more reason to prefer one.
+    """
+    if get(conn, theory_id) is None:
+        raise KeyError(theory_id)
+    with write(conn):
+        conn.execute(
+            "UPDATE theories SET uses_llm_judgment = ?, updated_at = ?"
+            " WHERE id = ?",
+            (int(bool(uses_llm)), now or utcnow(), theory_id),
+        )
+
+
 def bump_version(
     conn: sqlite3.Connection, theory_id: str, now: str | None = None
 ) -> int:

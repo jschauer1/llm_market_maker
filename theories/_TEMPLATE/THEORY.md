@@ -97,6 +97,14 @@ LLM-introspected number is mostly an anchor on whatever price was in context.
 State here whether judgment runs blind to price — it should, wherever the
 theory allows.
 
+**Every judging prompt lives in `prompts/` in this folder, and every run
+records which model read it.** A prompt that exists only inside a tool call is
+part of the decision procedure that nobody wrote down, and an edge produced by
+a procedure nobody wrote down cannot be reproduced — which is most of what an
+edge is worth. Declare `theories.set_uses_llm_judgment(conn, slug, True)` and
+`record_opportunity` will refuse to write rows for a run with no provenance.
+List the prompt files here, one per judging stage.
+
 Anything here that keeps proving itself should eventually migrate into
 stage 1 as code.
 

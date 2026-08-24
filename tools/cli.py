@@ -13,7 +13,7 @@ import argparse
 import json
 import sys
 
-from tools import db, ideas, ledger, rank, score, theories
+from tools import db, ideas, ledger, provenance, rank, score, theories
 
 
 def _emit(payload) -> None:
@@ -67,6 +67,27 @@ def _cmd_theories(args) -> int:
         elif args.action == "bump":
             version = theories.bump_version(conn, args.id)
             _emit({"id": args.id, "version": version})
+    finally:
+        conn.close()
+    return 0
+
+
+def _cmd_provenance(args) -> int:
+    conn = _connect(args)
+    try:
+        if args.action == "list":
+            _emit(_rows(provenance.list_judgment_runs(
+                conn, theory_id=args.theory, run_id=args.run)))
+        elif args.action == "record":
+            provenance.record_judgment_run(
+                conn, run_id=args.run, theory_id=args.theory,
+                theory_version=args.version, stage=args.stage,
+                model=args.model, prompt_path=args.prompt_path,
+                effort=args.effort, web_search=args.web_search,
+                n_items=args.n_items, notes=args.notes,
+            )
+            _emit(_rows(provenance.list_judgment_runs(
+                conn, theory_id=args.theory, run_id=args.run)))
     finally:
         conn.close()
     return 0
@@ -250,6 +271,31 @@ def build_parser() -> argparse.ArgumentParser:
     )
     bump = ts.add_parser("bump")
     bump.add_argument("id")
+
+    p = sub.add_parser(
+        "provenance",
+        help="what model and prompt judged -- required for LLM theories")
+    p.set_defaults(func=_cmd_provenance)
+    pv = p.add_subparsers(dest="action", required=True)
+    pvl = pv.add_parser("list")
+    pvl.add_argument("--theory", default=None)
+    pvl.add_argument("--run", default=None)
+    pvr = pv.add_parser("record")
+    pvr.add_argument("--theory", required=True)
+    pvr.add_argument("--version", type=int, required=True)
+    pvr.add_argument("--run", required=True)
+    pvr.add_argument("--stage", required=True,
+                     choices=provenance.VALID_STAGES)
+    pvr.add_argument("--model", required=True,
+                     help="exact model id that judged, e.g. claude-opus-5")
+    pvr.add_argument("--prompt-path", dest="prompt_path", required=True,
+                     help="repo path to the prompt file, so a change is "
+                          "reviewable in git diff")
+    pvr.add_argument("--effort", default=None)
+    pvr.add_argument("--web-search", dest="web_search", type=int, default=None,
+                     choices=(0, 1))
+    pvr.add_argument("--n-items", dest="n_items", type=int, default=None)
+    pvr.add_argument("--notes", default=None)
 
     p = sub.add_parser("ideas", help="research memory")
     p.set_defaults(func=_cmd_ideas)

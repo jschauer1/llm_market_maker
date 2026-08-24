@@ -60,6 +60,26 @@ def init_db(conn: sqlite3.Connection) -> None:
     with write(conn):
         conn.executescript(SCHEMA_PATH.read_text(encoding="utf-8"))
     _migrate_theories(conn)
+    _add_column_if_missing(
+        conn, "theories", "uses_llm_judgment", "INTEGER NOT NULL DEFAULT 0"
+    )
+
+
+def _add_column_if_missing(
+    conn: sqlite3.Connection, table: str, column: str, decl: str
+) -> None:
+    """Additive migration for a nullable/defaulted column.
+
+    SQLite supports ALTER TABLE ADD COLUMN directly, so unlike a CHECK change
+    this needs no table rebuild.
+    """
+    existing = {
+        row[1] for row in conn.execute(f"PRAGMA table_info({table})").fetchall()
+    }
+    if column in existing:
+        return
+    with write(conn):
+        conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {decl}")
 
 
 def schema_statement(table: str) -> str:

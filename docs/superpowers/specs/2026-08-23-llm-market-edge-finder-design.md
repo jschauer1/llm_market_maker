@@ -911,6 +911,36 @@ guard is a fail-loud default rather than a security boundary — its job is to
 make the rule impossible to drift past, in the same spirit as the rest of the
 codebase's diagnostic errors.
 
+### Provenance: which model judged, and with which prompt
+
+**A theory with an LLM in its decision path must record the model identity and
+the exact prompt for every judging stage.** The `judgment_runs` table holds
+it, `tools/provenance.py` writes it, and `record_opportunity` refuses rows for
+a run that has none once the theory declares `uses_llm_judgment`.
+
+The reason is reproducibility, not bookkeeping. An edge you cannot reproduce
+is an anecdote — it cannot be re-run, audited, or built on. Model identity and
+prompt text *are* part of the decision procedure, exactly like a threshold is;
+section 10 already says prompts bump the version, but a version number is only
+a promise that something was written down. Without persistence, two runs at
+the same version can be two different theories: same label, different prompt,
+incomparable results averaged into one number. That is precisely the silent
+merge versioning exists to prevent, and it is invisible unless the prompt is
+stored.
+
+Prompts live in `theories/<slug>/prompts/` as files, so a change appears in
+`git diff` and is reviewed like any other procedure change. `prompt_path`
+records the file and `prompt_sha256` records what it contained at run time;
+`prompt_text` is the fallback for a prompt assembled inline. One of the two is
+required by a table CHECK, so the prompt is always recoverable.
+
+Stages are `gate`, `analysis`, `final_review`, `other`. Record each separately
+— they typically use different models, and a tier B backtest must use the
+*later* cutoff among them.
+
+A fully mechanical theory declares nothing and records nothing, because it has
+no prompt. One more reason to prefer one.
+
 ## 12. Backtesting and hindsight contamination
 
 Backtesting is a toolkit a theory's own procedure draws on, not one rigid replay

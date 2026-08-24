@@ -181,6 +181,7 @@ conventions and the full map. Highlights:
 - `tools/score.py` — calibration, ROI, interpretation value
 - `tools/rank.py`, `tools/sizing.py` — ranking and Kalshi fee/Kelly math
 - `tools/snapshot.py` — first-party history
+- `tools/provenance.py` — which model judged, and with which prompt
 
 **New code starts in the theory that needs it** and moves to `tools/` only
 once it has more than one real caller. That is a judgment call, not an
@@ -279,6 +280,40 @@ candidate. Confidence buckets always come from the deep stage; a gate answers
 
 This runs on the user's Claude subscription; there are no API keys anywhere in
 this repo, and none should be added.
+
+## Record what judged, and what you asked it
+
+**Any theory with an LLM in its decision path must record the model and the
+exact prompt for every judging stage.** This is not bookkeeping — it is what
+makes a found edge worth anything.
+
+An edge you cannot reproduce is an anecdote. The model identity and the prompt
+text *are* part of the decision procedure, exactly like a threshold is; the
+lifecycle rule below already says prompts bump the version, but a version
+number is only a promise that something was written down. Without the record,
+two runs at the same version can be two different theories — same label,
+different prompt, incomparable results averaged into one number. That is the
+silent merge the versioning rule exists to prevent, and it is invisible unless
+the prompt is persisted.
+
+**Prompts live in the theory's folder as files** — `theories/<slug>/prompts/`
+— so a change shows up in `git diff` and gets reviewed like any other change
+to the procedure. Never inline a judging prompt that exists nowhere on disk.
+
+```bash
+python -m tools.cli provenance record --theory <slug> --version <n> \
+    --run <run_id> --stage analysis --model claude-opus-5 \
+    --prompt-path theories/<slug>/prompts/analysis.md
+python -m tools.cli provenance list --theory <slug>
+```
+
+Declare it once with `theories.set_uses_llm_judgment(conn, slug, True)`. After
+that `record_opportunity` **refuses** to write a row for a run with no
+provenance — the omission is made impossible rather than discouraged. Record
+every stage that judged: `gate`, `analysis`, `final_review`.
+
+A fully mechanical theory declares nothing and records nothing, because it has
+no prompt. That is one more reason to prefer one.
 
 ## Data conventions
 

@@ -265,6 +265,32 @@ entitled to know whose judgment they are being asked to act on, and a later
 session comparing track records needs it to tell whether a change in results
 came from a change in procedure or a change in model.
 
+## Prompts and provenance
+
+This theory declares `uses_llm_judgment`, so `record_opportunity` refuses any
+row for a run whose model and prompt were not recorded first.
+
+| stage | prompt file | model used 2026-08-23 |
+|---|---|---|
+| gate | `gate.py` (deterministic — no model) | none |
+| analysis | `prompts/analysis.md` | `claude-opus-5`, high effort, web search on |
+| final_review | `prompts/final_review.md` | `claude-opus-5[1m]` (main session) |
+
+Editing any of those files changes what this theory decides and **bumps the
+version**, exactly like moving a threshold.
+
+```bash
+python -m tools.cli provenance list --theory insider_bias
+```
+
+**The gate is currently code, not a model.** `THEORY.md` documents a cheap LLM
+gate, and on 2026-08-23 that was substituted with `gate.py`'s family
+classifier, because the screen's output was dominated by whole families this
+theory's own rules reject — a question a regex answers. It gated out 242 of
+274 events. If the screen is ever fixed so its output is thesis-aligned, the
+cheap LLM gate becomes the right instrument again and that switch is a version
+bump.
+
 ## Confidence buckets
 
 Priors are deliberately conservative and apply only until a bucket has 10+

@@ -26,6 +26,7 @@ from __future__ import annotations
 import math
 import sqlite3
 
+from tools import provenance
 from tools.db import utcnow, write
 
 LIVE_RUN_ID = "live"
@@ -125,6 +126,14 @@ def record_opportunity(
             f"expected one of {VALID_EDGE_BASES}"
         )
     _validate_entry_price(entry_price)
+
+    # A theory that declares LLM judgment must have recorded which model and
+    # which prompt produced it before any opportunity lands. Otherwise the
+    # theory's version number promises a decision procedure nobody wrote
+    # down, and an edge it finds cannot be reproduced.
+    provenance.require_provenance(
+        conn, theory_id, theory_version, run_id or LIVE_RUN_ID
+    )
 
     # Normalize before the dedup key is built, so the same bet written with
     # different casing lands on one row rather than several.

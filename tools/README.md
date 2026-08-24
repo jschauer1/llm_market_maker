@@ -81,6 +81,7 @@ narrow context, then promote it once there is evidence it belongs.
 | `buckets.py` | Confidence-bucket win rates → measured edge, not guessed |
 | `sizing.py` | Kalshi fee model, Kelly sizing |
 | `snapshot.py` | First-party market history capture |
+| `provenance.py` | Which model judged and with which prompt — required for any theory with an LLM in its decision path |
 | `match_market.py` | Non-Kalshi finding → Kalshi ticker shortlist |
 | `http.py` | Retrying HTTP for the public APIs |
 | `kalshi/markets.py` | Open/settled markets, live quotes, resolution rules |

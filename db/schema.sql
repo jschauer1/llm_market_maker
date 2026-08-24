@@ -21,6 +21,10 @@ CREATE TABLE IF NOT EXISTS theories (
     path        TEXT NOT NULL,
     retirement_proposed_at TEXT,
     retirement_rationale   TEXT,
+    -- 1 when any LLM sits in this theory's decision path (gate, analysis, or
+    -- final review). Theories that declare it cannot record opportunities for
+    -- a run with no judgment_runs provenance -- see tools/provenance.py.
+    uses_llm_judgment INTEGER NOT NULL DEFAULT 0,
     created_at  TEXT NOT NULL,
     updated_at  TEXT NOT NULL
 );
@@ -159,3 +163,37 @@ CREATE TABLE IF NOT EXISTS backtest_runs (
     notes             TEXT,
     created_at        TEXT NOT NULL
 );
+
+-- Provenance for every LLM judgment in a theory's decision path.
+--
+-- An edge you cannot reproduce is an anecdote. A theory that declares
+-- uses_llm_judgment must record, per run and per stage, exactly which model
+-- judged and exactly which prompt it was given -- otherwise the version
+-- number promises a decision procedure that was never written down, and two
+-- runs at the same version can silently be two different theories.
+--
+-- prompt_sha256 is required. Exactly one of prompt_path (a file in the repo,
+-- so a change shows up in git diff) or prompt_text (inline capture) must be
+-- present, so the prompt is always recoverable.
+CREATE TABLE IF NOT EXISTS judgment_runs (
+    id             INTEGER PRIMARY KEY AUTOINCREMENT,
+    run_id         TEXT NOT NULL,
+    theory_id      TEXT NOT NULL REFERENCES theories(id),
+    theory_version INTEGER NOT NULL,
+    stage          TEXT NOT NULL
+                   CHECK (stage IN ('gate','analysis','final_review','other')),
+    model          TEXT NOT NULL,
+    effort         TEXT,
+    prompt_path    TEXT,
+    prompt_sha256  TEXT NOT NULL,
+    prompt_text    TEXT,
+    web_search     INTEGER,
+    n_items        INTEGER,
+    notes          TEXT,
+    created_at     TEXT NOT NULL,
+    CHECK (prompt_path IS NOT NULL OR prompt_text IS NOT NULL),
+    UNIQUE (run_id, theory_id, theory_version, stage, model, prompt_sha256)
+);
+
+CREATE INDEX IF NOT EXISTS idx_judgment_runs_run
+    ON judgment_runs (theory_id, theory_version, run_id);

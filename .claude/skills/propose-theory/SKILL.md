@@ -84,6 +84,18 @@ Fill in `THEORY.md` completely. Write any stage-1 code in the theory folder,
 with tests. Theory-local code stays local until it earns promotion — see
 `tools/README.md`.
 
+**If the theory uses LLM judgment**, write each judging prompt as a file in
+`theories/<slug>/prompts/` and declare it:
+
+```python
+theories.set_uses_llm_judgment(conn, "<slug>", True)
+```
+
+From then on `record_opportunity` refuses rows for a run whose model and
+prompt were never recorded. Prompts on disk are diffable, reviewable, and
+reproducible; a prompt living inside a tool call is a decision procedure
+nobody wrote down.
+
 ## 6. Start at `proposed`, move to `testing` when it runs
 
 A theory is `proposed` while its procedure is still being written. Once the
