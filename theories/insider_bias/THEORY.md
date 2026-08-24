@@ -65,20 +65,19 @@ What's left to settle the theory as a whole, roughly in order of value:
    see above and Learnings.
 2. **`interpretation_value`** once both endorsed and rejected rows have
    settled: does stage 2 add edge over its own screen, or destroy it?
-3. **Fix `gate.py`'s incomplete "aggregate of many independent people"
-   pattern.** The 2026-08-24 backtest found it: of 200 screen hits, 116 are
-   "MENTION"/"SAY"/"ACT"-suffix series (`KXWCMENTION`, `KXTRUMPMENTION`,
-   `KXFIGHTMENTION`, ...) that `gate.py`'s current regex does **not** catch
-   (it only names a few specific instances like `TRUMPSAY`,
-   `MAMDANIMENTION`). Unlike the family gate.py *does* catch — see next
-   item — this broader mention family backtests **positive**
-   (`edge_net=+5.48pts`, n=116), so the fix here is not obviously "exclude
-   it"; it needs its own judgment pass to find out whether it is a genuine
-   thesis case or a distinct, still-profitable phenomenon (a public figure's
-   mention rate is a base-rate bet, not obviously insider knowledge). Either
-   way, gate.py's classification of it is currently just wrong — it thinks
-   these are `PLAUSIBLE` when many read exactly like the aggregate-of-many
-   pattern it already targets.
+3. ~~Fix `gate.py`'s incomplete "aggregate of many independent people"
+   pattern.~~ **Partially done 2026-08-24, differently than framed here.**
+   Rather than fix `gate.py` (which would change the LLM-judged path
+   mid-flight, while the 44 v2 rows are still settling), the MENTION family
+   got its own mechanical path instead: `screen.is_mention_family` +
+   `mention_bucket.py`, v3, `edge_basis='measured'` from the backtest's
+   n=116 rate. That sidesteps "is this a genuine thesis case or a distinct
+   phenomenon" rather than answering it — the mechanical path does not care
+   *why* the edge exists, only that it measured positive. The underlying
+   question (informed minority vs. base-rate quirk) is still open and still
+   worth a judgment pass; it now matters less urgently, since the edge is
+   already being captured mechanically either way. See `RUNBOOK.md`'s
+   mention-family section and idea `insider-bias-mention-family`.
 4. **A slice breakdown** by bucket, market family, days-to-close, and price
    band. If one family carries whatever edge exists, this is a narrower
    theory than it claims — a version bump and a real finding. The 2026-08-24
@@ -89,6 +88,24 @@ What's left to settle the theory as a whole, roughly in order of value:
    answered for stage 1 alone (both are positive); still open for stage 2/3.
 
 ## Version
+
+**3** (2026-08-24) — *Adds `mention_bucket.py`, a second and wholly separate
+decision path: mechanical, `edge_basis='measured'`, no LLM anywhere in it.*
+Built after the 2026-08-24 tier A backtest found that "MENTION"/"SAY"/"ACT"
+-suffix series are a real, distinct family (n=116, `calibration_edge_net=
++5.48pts`) that `gate.py`'s regex does not currently name. Rather than fold
+that into `gate.py` (which would change the LLM-judged path's decision
+procedure mid-flight, exactly what the versioning rule exists to prevent —
+the 44 v2 rows are still settling), it ships as its own path: `screen.py`
+gained `is_mention_family`, and `mention_bucket.py` screens the live board,
+reads a measured win rate from the backtest via `tools.buckets.edge_for`,
+ranks by edge, and records opportunities with no gate, no subagent, and no
+Stage 3 review. Stages 1–6 (`screen.py`'s core filters, `gate.py`,
+the prompts, Stage 3) are **unchanged** — this is why the bump is
+version-wide (`insider_bias` now has two decision procedures, and a flat
+version number has to describe both or it stops meaning anything) but not a
+rewrite of anything v2 already does. First live run found 0 candidates — not
+a defect, see `RUNBOOK.md`'s mention-family section for why.
 
 **2** (2026-08-23) — *Final recommendation must come from the main research
 model.* Stage 2 previously ended at the subagent verdict, and a candidate was
@@ -599,3 +616,21 @@ and full breakdown in Learnings below.
   standing. The general lesson, folded into Stage 3's checklist above:
   verifying the facts a subagent reports is not the same as verifying that
   those facts are what the market actually resolves on.
+- 2026-08-24 — **Built and ran the v3 mechanical MENTION-family path;
+  first live run found zero candidates, correctly.** `mention_bucket.py`
+  (see Version, above, and `RUNBOOK.md`) screens the live board for
+  `screen.is_mention_family` hits, reads the backtest's measured win rate
+  (n=116, 0.871) into `tools.buckets.edge_for`, and ranks by edge — no
+  judgment anywhere. On the 2026-08-24 board: 490 mention-family markets
+  were open, but the nearest close was 14.6 days out against
+  `screen.MAX_DAYS_AHEAD=14`, and 157 more sat in the 14–20 day range. Zero
+  is the *correct* output of the screen given that board state, not a bug —
+  confirmed by checking the actual days-to-close distribution rather than
+  assuming. Worth re-running in the next few days as that batch ages into
+  the eligible window. A user math-check ("if I put $10 into 20 mentions I
+  should make $16?") also surfaced that `calibration_edge_net` (percentage
+  points of win-rate-minus-price) is easy to mistake for a percentage ROI —
+  the actual historical `roi_all` for this slice is 6.7%, and 20 contracts
+  at the mean entry price cost about $16, not $10. Worth remembering when
+  reporting edge numbers: state points and ROI separately, never let one
+  stand in for the other.

@@ -5,11 +5,13 @@ reproducible. `THEORY.md` says *what* the theory believes; this says *how a
 run happens*. Anything here that is code is authoritative — where prose and
 `pipeline.py` disagree, the code is right and the prose is a bug.
 
-Current version: **2**. Changing any prompt file, `gate.py`, `screen.py`, or
+Current version: **3**. Changing any prompt file, `gate.py`, `screen.py`, or
 the stage sequence below is a decision-procedure change and **bumps the
-version**.
+version**. v3 (2026-08-24) added the mechanical MENTION-family path below;
+it did not change stages 1–6, which is why the 44 v2 live rows stay their
+own comparable cohort rather than needing a re-run.
 
-## The stages
+## The LLM-judged path (v1–v2, stages 1–6)
 
 | # | stage | who decides | artifact | recorded as |
 |---|---|---|---|---|
@@ -108,6 +110,47 @@ Reproduced exactly by `pipeline.run_mechanical_stages` against the same board:
 Gate breakdown: 61 aggregate-of-many-people, 47 live sport, 32 weather, 31
 crypto, 28 commodity/FX, 20 compute/collectible, 16 scheduled indicator, 7
 retail price index.
+
+## The mechanical MENTION-family path (v3, `mention_bucket.py`)
+
+No judgment, no gate, no subagent, no Stage 3 — a wholly separate,
+`edge_basis='measured'` path that runs and records without a research pass.
+See `mention_bucket.py`'s module docstring for the full reasoning, including
+the two caveats that must travel with every result it produces: the measured
+rate is bootstrapped from one backtest, not this path's own live history,
+and every candidate in the bucket carries the *same* probability (0.871) --
+ranking is by price, not by any per-market signal.
+
+```python
+from datetime import datetime, timezone
+from tools import db, board
+from theories.insider_bias import mention_bucket
+
+conn = db.connect()
+live_board = board.get_board(conn)          # force=True if freshness matters
+now = datetime.now(timezone.utc)
+
+candidates = mention_bucket.find_candidates(live_board, now=now)
+rates = mention_bucket.measured_rate(conn)   # reads the v2 backtest, not this run
+ranked = mention_bucket.rank(candidates, rates, top_n=20)
+
+if ranked:
+    run_id = f"live-{now.date()}-mention"
+    ids = mention_bucket.record(conn, ranked, run_id=run_id)
+```
+
+No CLI command for this yet — it is cheap enough to run inline, matching how
+the stages-1–4 mechanical pipeline is invoked above. Promote it to
+`tools/cli.py` once there is a second caller.
+
+**First live run, 2026-08-24: 0 candidates.** Not a bug — checked directly.
+490 mention-family markets were open on the board, but the *closest* one to
+closing was still 14.6 days out (`screen.MAX_DAYS_AHEAD=14`), and 157 more
+were sitting in the 14–20 day range. This looks like a batch of markets that
+was recently issued with long horizons, not a sign the family stopped
+existing; the near-term filter should start passing candidates within the
+next several days as those age in. Re-run rather than assume this path is
+broken.
 
 ## Known weaknesses
 

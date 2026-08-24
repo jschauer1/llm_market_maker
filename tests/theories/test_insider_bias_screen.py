@@ -69,6 +69,28 @@ def test_is_excluded_allows_non_sports_tickers():
     assert screen.is_excluded("KXCABINET-26") is False
 
 
+def test_is_mention_family_matches_mention_suffix_series():
+    assert screen.is_mention_family("KXTRUMPMENTION") is True
+    assert screen.is_mention_family("KXWCMENTION") is True
+    assert screen.is_mention_family("KXFIGHTMENTION") is True
+
+
+def test_is_mention_family_matches_say_and_act_suffixes():
+    assert screen.is_mention_family("KXTRUMPSAY") is True
+    assert screen.is_mention_family("KXTRUMPSAYMONTH") is False  # doesn't end in SAY
+    assert screen.is_mention_family("KXTRUMPACT") is True
+
+
+def test_is_mention_family_accepts_a_full_market_ticker():
+    assert screen.is_mention_family("KXTRUMPMENTION-26JUL01-MAKE") is True
+    assert screen.is_mention_family("KXTRAITORS-26-WINNER") is False
+
+
+def test_is_mention_family_rejects_unrelated_tickers():
+    assert screen.is_mention_family("KXBIGBROTHERELIMINATION") is False
+    assert screen.is_mention_family("KXRT-GIR-45") is False
+
+
 def test_screen_accepts_a_clean_candidate():
     result = screen.screen([_market()], now=NOW)
     assert len(result) == 1

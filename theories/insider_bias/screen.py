@@ -51,6 +51,30 @@ def is_excluded(ticker: str) -> bool:
     return any(ticker.startswith(prefix) for prefix in EXCLUDED_PREFIXES)
 
 
+def is_mention_family(series_ticker: str) -> bool:
+    """True for "will X mention/say/do Y" series -- a family gate.py's
+    regex does not currently name and is not on `EXCLUDED_PREFIXES`, so
+    without this check it is invisible: neither excluded nor deliberately
+    included, just whatever `PLAUSIBLE` happens to catch.
+
+    Found in the 2026-08-24 tier A stage-1 backtest
+    (`run_id=backtest-2026-08-24-stage1-90d`): 116 of 200 real screen hits
+    were this family, and it backtested positive (`calibration_edge_net=
+    +5.48pts`) -- unlike the structurally similar "aggregate of many
+    independent people" family gate.py *does* catch, which backtested
+    strongly negative (`-11.12pts`). See `mention_bucket.py` and THEORY.md
+    Status item 3: this is deliberately a separate, narrower classification
+    from `is_excluded`, not folded into it, because the measured evidence
+    points the opposite direction -- worth a bucket of its own, not a
+    rejection.
+
+    Accepts either a series ticker (`KXTRUMPMENTION`) or a full market
+    ticker (`KXTRUMPMENTION-26JUL01-MAKE`); the pattern only needs the
+    series prefix, which a market ticker always carries.
+    """
+    return "MENTION" in series_ticker or series_ticker.endswith(("SAY", "ACT"))
+
+
 def favorite(market: dict) -> tuple[str, float] | None:
     """The favored side and the price you would actually pay for it.
 

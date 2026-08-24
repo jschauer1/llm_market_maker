@@ -353,3 +353,57 @@ actual resolution rules. The `KXMVECROSSCATEGORY`-style volume trap is not
 insider_bias-specific — any future theory doing historical Kalshi analysis
 will hit the same wall; `list_settled`'s docstring and `backtest.py`'s module
 docstring both carry the account now, so it should not need rediscovering.
+
+---
+
+## 2026-08-24 — Two follow-ups from user questions: a corrected Big Brother
+## bet, and a new mechanical path for the MENTION-family edge
+
+**Did:** Two direct challenges from the user, both acted on rather than just
+answered. (1) "Isn't Big Brother all live?" — checked, and the original
+Stage 3 endorsement of `KXBIGBROTHERELIMINATION-26AUG27-DRE` had overstated
+its case: this season resolves eviction through a genuinely live "BB Block
+Buster" competition, not a pre-decided vote. Verified via web search (fair
+game for live research on an open opportunity, unlike a backtest) that the
+NO bet still holds on a narrower basis — the house's plan protects Drew
+across every branch of that live competition — and corrected the ledger's
+stored interpretation rather than leave the overstated version standing.
+Added an explicit Stage 3 checklist item: verify the resolution *mechanism*,
+not just the facts fed into it. (2) "If I put $10 into 20 mentions I should
+make $16?" — no: `calibration_edge_net` is percentage points of
+win-rate-minus-price, not a percentage ROI. Computed the real number
+(`roi_all=6.7%`; 20 contracts actually cost ~$16, not $10) and then, per the
+user's follow-up request, built the functionality to actually run this edge
+rather than just discuss it: `screen.is_mention_family` (the classifier,
+now real code with tests, not an ad hoc lambda in a scratch script) and
+`theories/insider_bias/mention_bucket.py` — a wholly separate, mechanical,
+`edge_basis='measured'` decision path with no gate, no subagent, no Stage 3.
+Bumped the theory to **v3** for it (screen/gate/prompts/Stage 3 unchanged;
+the bump is because the theory now has two decision procedures, not because
+the old one changed). Retagged the 116 mention-family backtest rows with
+`confidence='mention_family'` so `score.bucket_rates` measures it properly
+per the existing bucket infrastructure, rather than inventing a parallel one.
+
+**Learned:** Ran the new path against a freshly forced board pull (101,856
+markets). Result: **0 live candidates**, and confirmed why rather than
+assumed a bug — 490 mention-family markets are currently open, but the
+nearest close is 14.6 days out against the screen's 14-day cutoff, with 157
+more sitting in the 14–20 day range. This reads as a recently-issued batch
+with long horizons, not the family disappearing; it should start clearing
+the screen within days. Also worth remembering going forward: a
+mechanical-edge bucket like this one gives every candidate the *same*
+probability (there is no per-market signal, only the family's aggregate
+rate), so "rank by edge" is really "rank by lowest price in the qualifying
+band" — worth being explicit about that whenever this path's output gets
+reported, since "most likely to win" reads like a per-market claim this
+model cannot actually make.
+
+**Next:** Re-run `mention_bucket.py` in a few days once the 14–20-day batch
+ages into the eligible window — this is genuinely a "try again shortly," not
+a dead end. Once it has live settlements of its own, check whether its own
+measured rate holds up against the backtest's bootstrapped one (the real
+test of durability, not the 90-day retrospective window). The underlying
+"informed minority vs. base-rate quirk" question for the MENTION family is
+still open — idea `insider-bias-mention-family` — and now lower-urgency
+since the mechanical path captures the edge regardless of the answer, but
+still worth resolving for its own sake.
