@@ -23,6 +23,14 @@ A tier A backtest of a judgment theory's *screen alone* is often the best
 available evidence: uncontaminated, and it measures whether the filter selects
 markets that beat their price.
 
+**A cascade has two cutoffs, not one.** If the theory runs a cheap gate ahead
+of deep analysis, those are two different models with two different knowledge
+cutoffs. Tier B validity requires the markets to resolve after the **later**
+of the two — a cheap gate with an earlier cutoff still contaminates the run
+even when the deep model's cutoff is clean, because the gate's judgment was
+also part of the decision path. Record the later of the two cutoffs as
+`model_cutoff` and derive the tier from that single, later date.
+
 ## 2. Enforce the rules
 
 - **Web search must be off** in any backtest judgment subagent, every tier.
@@ -50,9 +58,12 @@ span hundreds of historical markets, far more than a single live scan. Use the
 same cascade the theory uses live (cheap gate, then deep analysis on
 survivors), batched tens per call, and apply the theory's own tiering if its
 `THEORY.md` names one. Replaying a year of markets through a strong model
-one-at-a-time is the most expensive possible way to get this number, and the
-gate stage is deterministic enough that using a cheap tier there costs you
-almost nothing in fidelity.
+one-at-a-time is the most expensive possible way to get this number. Using a
+cheap tier at the gate stage is assumed to cost little in fidelity, but that
+is an assumption, not a measurement, in a system whose whole thesis is that
+such claims get measured — gate/deep agreement is itself checkable (run both
+on an overlapping sample and compare verdicts), so do that before leaning on
+the assumption for a result that matters.
 
 Record a `backtest_runs` row with the tier, `uses_llm_judgment`, and the
 `model_cutoff` you used:

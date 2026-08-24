@@ -166,6 +166,11 @@ Without this, tweaking a theory silently merges two different theories into
 one track record — which destroys the long-horizon testing this project exists
 for and invites tuning until the history looks good.
 
+**The tiering split is part of that versioned procedure.** A cheap gate is
+prompts plus scan logic like anything else: turning a gate on or off, or
+changing what question it asks, changes the decision path a candidate travels
+through and must bump the version exactly like a threshold change would.
+
 ## Backtest tiers
 
 - **A** — no LLM in the decision path. Full evidence, all history.
@@ -190,7 +195,7 @@ pick. Narrow in stages:
 | Mechanical screen | thousands | no model — code |
 | Cheap gate: "plausibly fits the thesis?" | hundreds | fast/small, minimal reasoning |
 | Deep analysis: "is it true here, which bucket?" | tens | strong, high reasoning |
-| Final selection and ranking | a handful | you, this session |
+| Final selection | a handful | you, this session |
 
 That cascade is what `insider_bias` did historically — a small fast model gated
 every screened candidate to a yes/no, deduplicated so sibling strikes on one

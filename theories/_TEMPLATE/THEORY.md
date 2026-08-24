@@ -32,6 +32,9 @@ Which platforms and tools does this use?
 
 1 — changelog of what changed at each bump. Any change to the decision
 procedure bumps this, including migrating a stage-2 heuristic into stage 1.
+The tiering split counts too: turning a cheap gate on or off, or changing the
+question it asks, changes the decision path and bumps the version just like a
+threshold change would.
 
 ## Stage 1 — mechanical screen
 
@@ -93,7 +96,10 @@ path uses LLM judgment, because that determines the tier:
 
 - **Tier A** — no LLM in the decision path. Backtest over all history.
 - **Tier B** — LLM judgment, restricted to markets that resolved after the
-  model's knowledge cutoff, web search off.
+  model's knowledge cutoff, web search off. If stage 2 runs a cheap gate ahead
+  of deep analysis, that is two models with two cutoffs — use the **later** of
+  the two to decide the tier, since the earlier-cutoff model's judgment was
+  still part of the decision path.
 - **Tier C** — LLM judgment on pre-cutoff markets. Contaminated; indicative
   only, and excluded from credibility.
 

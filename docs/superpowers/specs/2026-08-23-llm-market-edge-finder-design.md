@@ -444,7 +444,7 @@ The pattern that works is a **cascade**, narrowing at each step:
 | Mechanical screen | thousands | no model at all | Is this even tradeable? (price band, spread, volume, horizon) |
 | **Cheap gate** | hundreds | fast/small subagent, minimal reasoning | Does this market *plausibly* fit the thesis? |
 | **Deep analysis** | tens | strong subagent, high reasoning | Is the thesis *actually* true here, and what confidence bucket? |
-| Final selection | a handful | the orchestrating session | Which of these do I put in front of the user, and how do I rank them? |
+| Final selection | a handful | the orchestrating session | Which of these do I put in front of the user? (Ranking itself is mechanical — see credibility shrinkage below.) |
 
 `insider_bias` is the worked example, and it is not hypothetical — the
 predecessor system ran exactly this. Its config used a small fast model as a

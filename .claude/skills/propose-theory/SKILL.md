@@ -51,6 +51,13 @@ possible into stage 1 — code is repeatable and free to run at scale. Be
 concrete about stage 2: "check whether the resolution source publishes on a
 schedule that can miss the close" is useful; "use good judgment" is not.
 
+If stage 1 is likely to leave more candidates than deep reasoning can afford,
+decide the **tiering split** now, as part of designing the theory: does stage
+2 need a cheap gate ahead of deep analysis, how many candidates does each
+tier see, and what single question does the gate answer? Write the split down
+in `THEORY.md` — `_TEMPLATE/THEORY.md`'s stage 2 section says what to state.
+A theory whose decision path is fully deterministic can skip this and say so.
+
 ## 5. Scaffold
 
 ```bash
