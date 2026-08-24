@@ -105,6 +105,17 @@ your judgment is worth anything — and they are what teaches the lower buckets
 their rates. Without them, neither the endorsed-vs-rejected comparison nor the
 bucket calibration ever becomes possible.
 
+**A cheap-gate "no" is not a `rejected` disposition.** The gate cannot assign
+a confidence bucket, so it cannot produce the edge `record_opportunity`
+requires, and `score.interpretation_value`'s `rejected` group is reserved for
+deep-stage verdicts — its docstring calls `rejected` the control group for
+*stage-2 interpretation* specifically. A candidate the gate screens out is
+either reported as a count, the same treatment unreached candidates already
+get, or — if you do want it in the ledger — recorded and left at its default
+`disposition='screened'` (never call `ledger.interpret(..., "rejected", ...)`
+on it). Only a verdict from the deep analysis stage should ever move a row to
+`rejected`.
+
 ## 6. Rank
 
 Never sort on raw claimed edge. Use credibility shrinkage:

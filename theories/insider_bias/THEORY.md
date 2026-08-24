@@ -21,13 +21,31 @@ Kalshi only (`tools/kalshi/markets.py`). No Polymarket dependency.
 
 ## Status
 
-`active` — imported with real history from `kalshi_trader`.
+`active` — imported with real history from `kalshi_trader`. This status was
+set by the migration to demonstrate the harness end-to-end, not because the
+imported history clears the promotion bar (`calibration_edge_net` > 0). It
+does not: measured now, n=29, `calibration_edge_net = -0.75` points;
+restricted to the rows the predecessor actually bet on
+(`extra_json.status` starting `BET`, excluding the declined-limit rows),
+`calibration_edge_net = -1.87`. That is already past the `n=20` review
+trigger with a negative net edge (see `CLAUDE.md`'s lifecycle rule). Because
+`find-edge` defaults to `--status active`, a session running it today will
+scan a theory whose own imported history says it currently loses after fees.
+Validating or retiring `insider_bias` — a real stage-2 backtest, or a
+decision to pause it — is a first-order task for an early session, not
+something this status label should be read as having already settled. See
+`RESEARCH_LOG.md`, 2026-08-23, for the same numbers.
 
 ## Version
 
-1 — initial port. Stage 1 is a faithful port of the original deterministic
-filter. Stage 2 replaces the OpenAI classify/pick calls with Claude/subagent
-judgment.
+1 — initial port. Stage 1 is ported from the original deterministic filter,
+with two deliberate changes: it bands the favorite-price filter on the
+**ask** rather than the **mid** (an edge measured against the mid is an edge
+against a price nobody will fill), and it drops a market outright when the
+book is one-sided instead of the original's fallback to `last_price` (a
+stale trade print is not a price you can act on either). Both are
+improvements, not incidental drift. Stage 2 replaces the OpenAI classify/pick
+calls with Claude/subagent judgment.
 
 ## Stage 1 — mechanical screen
 
@@ -61,6 +79,13 @@ one:
 | Gate | every screened candidate | fast/small, minimal reasoning | "Could a specific group already know this outcome?" — binary yes/no, nothing else |
 | Analysis | gate survivors only | strong, high reasoning | The full stage-2 assessment below, ending in a confidence bucket |
 
+Measured against a complete board (see `RESEARCH_LOG.md`, 2026-08-23): the
+screen yields several hundred candidates across roughly 275 events, not a
+handful. That is squarely the "hundreds" regime the cascade table is built
+for, so the cheap gate is the **normal path** here, not an exception to it.
+Deduplicating by `event_ticker` before gating cuts the number of gate calls
+roughly 3× (784 candidates → 276 events on the day it was measured).
+
 The gate exists so the expensive stage never reads raw board data. Batch it
 tens of candidates per call, and **deduplicate by `event_ticker` first** —
 sibling strikes on one event (different contestants in the same show, different
@@ -71,9 +96,19 @@ The gate answers only "worth a closer look." It never assigns a confidence
 bucket and never decides a bet — those come from the analysis stage, because
 that is the judgment the measured bucket rates are calibrating.
 
-When the screen returns only a handful of candidates (which is the normal case
-here — the 14-day horizon is very restrictive), skip the gate and go straight
-to analysis. The cascade is for volume, not ceremony.
+**A gate "no" is a count, not a `rejected` opportunity.** The gate cannot
+produce a bucket, so it cannot produce the edge `record_opportunity` requires,
+and `disposition='rejected'` is reserved for a deep-stage verdict — that is
+the control group `score.interpretation_value` measures stage-2 judgment
+against. Report gate rejections the same way you report candidates never
+reached at all: a count. If you want them in the ledger for bookkeeping,
+record them and leave `disposition` at its default `'screened'`; do not call
+`ledger.interpret(..., "rejected", ...)` on a gate verdict.
+
+If a particular scan genuinely returns only a handful of candidates, skipping
+the gate and going straight to analysis is fine — that is an escape hatch for
+a thin scan, not the default expectation. The cascade is for volume, and on a
+complete board there is volume.
 
 **The gating question.** Is there a specific, identifiable group of humans who
 probably already know the outcome, while the public does not? Not "could
@@ -191,7 +226,8 @@ X". Write the adapter in this folder before attempting the backtest.
 - 2026-08-23 — The imported history's `edge_basis='prior'` rows are not "it
   felt about right" placeholders — every field on this repo's convention
   says a missing basis means that, but these rows are the exception. They
-  are LLM-introspected `q` values from `kalshi_trader`'s OpenAI gpt-5
-  classifier, kept because they are the only dataset that can answer whether
+  are LLM-introspected `q` values from `kalshi_trader`'s OpenAI gpt-5 **pick
+  stage** (not the classifier/gate, which was gpt-5-mini and never produced a
+  `q` at all), kept because they are the only dataset that can answer whether
   introspected probabilities realize their claimed edge. See each row's
   `extra_json.model_prob_source` for the exact provenance.

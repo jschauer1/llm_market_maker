@@ -69,3 +69,28 @@ filter.
 backtest is still the top prerequisite. Separately, `insider_bias` is past
 its `n=20` review trigger with a negative net calibration edge; see the
 Status section of its `THEORY.md` for the numbers.
+
+---
+
+## 2026-08-23 — `insider_bias` is `active` but already past its review trigger
+
+**Did:** Documented, honestly, that `insider_bias`'s `active` status was set
+by the one-time migration to prove the harness works end-to-end — it was
+never a claim that the imported history clears the promotion bar. Measured
+now: n=29, `calibration_edge_net = -0.75` points overall; restricted to rows
+the predecessor actually bet (`extra_json.status` starting `BET`, i.e.
+excluding declined-limit rows recorded at zero edge), `calibration_edge_net
+= -1.87`. Both are negative, and n=29 is already past the `n=20` review
+trigger in `CLAUDE.md`'s lifecycle rule.
+
+**Learned:** `find-edge` defaults to `--status active`, so as things stand
+today the first session that runs it will scan a theory whose own imported
+track record says it currently loses after fees. That is not a reason to
+silently change the status mid-branch (the migration's semantics should not
+be rewritten after the fact) — it is a reason to flag it loudly here and in
+`THEORY.md` so nobody mistakes `active` for "validated."
+
+**Next:** Validating or retiring `insider_bias` is a first-order task for an
+early session: either run the stage-2 backtest (tier B/C per its `THEORY.md`)
+to see whether interpretation recovers the edge the raw screen does not show,
+or apply the lifecycle rule and move it to `paused`/`retired` if it doesn't.
