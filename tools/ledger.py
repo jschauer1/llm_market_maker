@@ -300,6 +300,13 @@ def _normalize_legs(legs: list[dict], max_payout: float) -> list[dict]:
     `basket_key` only sees the already-normalized list and would otherwise
     raise the same defect, but reported from the wrong layer with a
     confusing stack.
+
+    A repeated (kalshi_ticker, outcome) pair is refused: a basket is a set
+    of distinct positions, and the same contract twice is a size-2 position
+    in one leg, which this model has no way to represent. Left unchecked it
+    also breaks the payout arithmetic -- two identical winning legs pay $2
+    against a declared max_payout of $1 -- and `basket_key` would collapse
+    the duplicate away, so two different-cost baskets would share one header.
     """
     if not legs:
         raise ValueError(
@@ -307,6 +314,7 @@ def _normalize_legs(legs: list[dict], max_payout: float) -> list[dict]:
             "lives on the legs, so a basket with none has no Kalshi market"
         )
     out = []
+    seen: set[tuple[str, str]] = set()
     for i, leg in enumerate(legs):
         ticker = (leg.get("kalshi_ticker") or "").strip().upper()
         if not ticker:
@@ -321,6 +329,14 @@ def _normalize_legs(legs: list[dict], max_payout: float) -> list[dict]:
                 "(yes/no) it holds"
             )
         _validate_entry_price(leg.get("entry_price"))
+        if (ticker, outcome) in seen:
+            raise ValueError(
+                f"leg {i} duplicates ({ticker}, {outcome}): a basket is a "
+                "set of distinct positions, so the same contract and side "
+                "may appear only once. Twice is a size-2 position, which "
+                "this model does not represent"
+            )
+        seen.add((ticker, outcome))
         out.append({
             "kalshi_ticker": ticker,
             "outcome": outcome,
@@ -539,11 +555,22 @@ def list_opportunities(
 ) -> list[sqlite3.Row]:
     """List opportunities, optionally narrowed by theory/run_mode/disposition.
 
-    `unsettled_only=True` drops any row whose ticker already has a
-    `settlements` entry. A re-quote loop (score-theories' "find what has
-    resolved" step) only needs to check tickers that have not settled yet;
-    without this filter that loop re-quotes every opportunity ever recorded,
-    unbounded, on every run.
+    `unsettled_only=True` drops any row whose position has fully settled. A
+    re-quote loop (score-theories' "find what has resolved" step) only needs
+    to check positions that have not settled yet; without this filter that
+    loop re-quotes every opportunity ever recorded, unbounded, on every run.
+
+    A single position is settled when its own ticker has a `settlements`
+    entry. A basket is settled only when EVERY leg has one -- its header
+    ticker is the synthetic `BASKET:<hash>`, which by construction never
+    appears in `settlements`, so testing the header would report even a
+    fully resolved basket as unsettled forever. A basket whose leg rows are
+    missing or short of `leg_count` stays unsettled too, so a corrupt row
+    surfaces here rather than disappearing from the queue.
+
+    Use `tickers_awaiting_settlement` to get the tickers to actually quote:
+    a basket header's ticker is not tradeable and must never be sent to
+    Kalshi.
     """
     clauses: list[str] = []
     params: list[object] = []
@@ -558,12 +585,80 @@ def list_opportunities(
         params.append(disposition)
     if unsettled_only:
         clauses.append(
-            "kalshi_ticker NOT IN (SELECT kalshi_ticker FROM settlements)"
+            "CASE WHEN position_kind = 'basket' THEN"
+            "  (SELECT COUNT(*) FROM opportunity_legs l"
+            "    WHERE l.opportunity_id = opportunities.id"
+            "      AND l.kalshi_ticker IN"
+            "          (SELECT kalshi_ticker FROM settlements))"
+            "  < opportunities.leg_count"
+            " ELSE"
+            "  kalshi_ticker NOT IN (SELECT kalshi_ticker FROM settlements)"
+            " END"
         )
     where = f" WHERE {' AND '.join(clauses)}" if clauses else ""
     return conn.execute(
         f"SELECT * FROM opportunities{where} ORDER BY id", params
     ).fetchall()
+
+
+def tickers_awaiting_settlement(
+    conn: sqlite3.Connection,
+    theory_id: str | None = None,
+    run_mode: str | None = None,
+    disposition: str | None = None,
+) -> list[str]:
+    """The real Kalshi tickers this segment still needs a settlement for.
+
+    This is the ticker list score-theories quotes when it goes looking for
+    what has resolved, and it exists because a position's ticker and its
+    *settleable* tickers are not the same thing. A single position settles
+    on its own `kalshi_ticker`. A basket's header carries the synthetic
+    `BASKET:<hash>` -- not a market, never quotable -- while the contracts
+    that actually resolve live in `opportunity_legs`. Reading
+    `row["kalshi_ticker"]` off the header therefore sends a hash to Kalshi
+    and never asks about any leg, which is why no basket could ever settle.
+
+    Returns a sorted list of distinct tickers that have no `settlements`
+    row yet: every unsettled leg of every basket in the segment, plus the
+    ticker of every unsettled single. Legs that have already settled are
+    left out -- they have nothing left to check, which is the same reason
+    `unsettled_only` exists at all. A basket therefore drops out of this
+    list one leg at a time, and disappears entirely once its last leg
+    resolves.
+    """
+    clauses: list[str] = []
+    params: list[object] = []
+    if theory_id is not None:
+        clauses.append("o.theory_id = ?")
+        params.append(theory_id)
+    if run_mode is not None:
+        clauses.append("o.run_mode = ?")
+        params.append(run_mode)
+    if disposition is not None:
+        clauses.append("o.disposition = ?")
+        params.append(disposition)
+    segment = f" AND {' AND '.join(clauses)}" if clauses else ""
+
+    # UNION over the two shapes rather than a join with a CASE: the leg side
+    # is served by idx_opportunity_legs_ticker, and UNION already gives the
+    # distinct set a basket sharing a leg with a single would otherwise
+    # duplicate.
+    sql = (
+        "SELECT kalshi_ticker FROM ("
+        "  SELECT o.kalshi_ticker AS kalshi_ticker FROM opportunities o"
+        "   WHERE o.position_kind = 'single'" + segment +
+        "  UNION"
+        "  SELECT l.kalshi_ticker AS kalshi_ticker FROM opportunities o"
+        "   JOIN opportunity_legs l ON l.opportunity_id = o.id"
+        "   WHERE o.position_kind = 'basket'" + segment +
+        ") WHERE kalshi_ticker NOT IN"
+        "  (SELECT kalshi_ticker FROM settlements)"
+        " ORDER BY kalshi_ticker"
+    )
+    return [
+        row["kalshi_ticker"]
+        for row in conn.execute(sql, params + params).fetchall()
+    ]
 
 
 def interpret(

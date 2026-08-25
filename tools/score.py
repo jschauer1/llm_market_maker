@@ -23,6 +23,7 @@ re-run backtest from pooling into one inflated sample.
 
 from __future__ import annotations
 
+import math
 import sqlite3
 
 from tools.db import utcnow, write
@@ -121,7 +122,15 @@ def _single_leg_observations(
     conn: sqlite3.Connection, theory_id: str, theory_version: int,
     run_mode: str, disposition: str, run_id: str | None,
 ) -> list[dict]:
-    """One observation per settled single-leg position."""
+    """One observation per settled single-leg position.
+
+    It exists as its own function so that single positions and baskets can
+    be built into one common observation shape -- implied_rate, won, cost,
+    payout, fee_pts, edge_pts_net, user_action -- which `_aggregate` then
+    consumes without knowing which kind it is holding. That shared shape is
+    what lets a basket pool alongside singles as exactly one observation
+    instead of forking the aggregation into two nearly-identical copies.
+    """
     where, params = _segment_filter(
         theory_id, theory_version, run_mode, disposition, run_id
     )
@@ -208,6 +217,38 @@ def _basket_observations(
         for leg in legs:
             fee += fee_pts(leg["entry_price"])
         max_payout = header["max_payout"]
+
+        # Calibration prices a basket as all-or-nothing: `implied_rate` is
+        # cost / max_payout, which is only the market's rate for the event
+        # `won` records when a winning basket pays exactly max_payout. A
+        # basket with a payout *floor* -- calendar-arb's nesting position
+        # pays $1 in two branches and $2 in the third -- makes those two
+        # different events, and the resulting calibration_edge_net is not
+        # slightly off but inflated by an order of magnitude (a 0.95 basket
+        # paying 1.00 against max_payout 2.00 reports 50.86 points where the
+        # same economics as a single reports 4.67). How a variable-payout
+        # basket *should* be scored is a spec-level decision nobody has made
+        # yet, so refuse to emit a number rather than emit a plausible wrong
+        # one. This also catches payout > max_payout, which means the
+        # declared maximum was wrong.
+        if not (
+            math.isclose(payout, 0.0, abs_tol=1e-9)
+            or math.isclose(payout, max_payout, rel_tol=1e-9, abs_tol=1e-9)
+        ):
+            raise ValueError(
+                f"opportunity {header['id']}: basket payout {payout:.4f} is "
+                f"neither 0 nor its declared max_payout {max_payout:.4f}. "
+                "Calibration for a basket assumes an all-or-nothing payoff "
+                "-- implied_rate is cost / max_payout, so a win must pay "
+                "exactly max_payout for the realized win rate and the "
+                "price-implied rate to measure the same event. A basket "
+                "with a payout floor (a calendar-arb style position that "
+                "pays $1 in some branches and $2 in others) is not yet "
+                "supported: scoring one needs a scoring-model decision. See "
+                "docs/superpowers/specs/"
+                "2026-08-24-multi-leg-positions-design.md"
+            )
+
         cost = header["entry_price"] + fee / 100.0
 
         out.append({
@@ -423,11 +464,16 @@ def bucket_rates(
     with `compute_score`, pass `run_id` to measure a single run rather than
     every run of this theory version pooled together.
     """
+    # Baskets are excluded deliberately: a basket's header carries the
+    # synthetic BASKET:<hash> ticker, which never appears in `settlements`,
+    # so this join could only ever drop them. The predicate says so out
+    # loud rather than leaving the exclusion to be inferred from the join.
     sql = """
         SELECT o.confidence, o.outcome, o.entry_price, s.result
         FROM opportunities o
         JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker
         WHERE o.theory_id = ? AND o.theory_version = ? AND o.run_mode = ?
+          AND o.position_kind = 'single'
           AND o.confidence IS NOT NULL AND o.confidence != ''
     """
     params: list[object] = [theory_id, theory_version, run_mode]

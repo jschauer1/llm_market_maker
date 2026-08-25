@@ -399,8 +399,13 @@ def test_basket_three_leg_fee_accumulation(conn):
         {"kalshi_ticker": "KXB-26", "outcome": "no", "entry_price": 0.30},
         {"kalshi_ticker": "KXC-26", "outcome": "yes", "entry_price": 0.15},
     ])
+    # Exactly one leg wins, so payout is 1.00 = the default max_payout: with
+    # three legs any other settlement pattern lands strictly between 0 and
+    # max_payout, which scoring now refuses (see the payout-floor tests
+    # below). The fee arithmetic under test does not depend on which legs
+    # won -- fees are paid on entry either way.
     _settle(conn, [
-        ("KXA-26", "yes"), ("KXB-26", "yes"), ("KXC-26", "yes"),
+        ("KXA-26", "yes"), ("KXB-26", "yes"), ("KXC-26", "no"),
     ])
     r = score.compute_score(conn, "t1", 1)
     expected_mean_fee = fee_pts(0.20) + fee_pts(0.30) + fee_pts(0.15)
@@ -422,25 +427,10 @@ def test_record_basket_rejects_none_max_payout(conn):
         _basket(conn, max_payout=None)
 
 
-@pytest.mark.parametrize(
-    "early_result,late_result",
-    [
-        ("no", "no"),    # event never happens: NO-early wins, YES-late loses
-        ("no", "yes"),   # happens between deadlines: both win
-        ("yes", "yes"),  # happens before the early deadline: YES-late wins
-    ],
-)
-def test_nesting_valid_basket_pays_at_least_one_in_every_branch(
-    conn, early_result, late_result
-):
-    """The calendar-arb payoff matrix, as an executable property.
-
-    Legs: buy YES on the later deadline, buy NO on the earlier one. Under
-    nesting (early YES implies late YES) the impossible branch is
-    (early=yes, late=no), which is why it is absent from the parametrize
-    list rather than expected to fail.
-    """
-    ledger.record_basket(
+def _calendar_arb_basket(conn):
+    """The calendar-arb nesting position: buy YES on the later deadline,
+    buy NO on the earlier one. Cost 0.95 against a $2 joint maximum."""
+    return ledger.record_basket(
         conn, theory_id="t1", theory_version=1, edge_pts_net=4.0,
         edge_basis="model", now=TS, max_payout=2.0,
         legs=[
@@ -450,11 +440,69 @@ def test_nesting_valid_basket_pays_at_least_one_in_every_branch(
              "entry_price": 0.35},
         ],
     )
-    _settle(conn, [("KXEARLY-26", early_result), ("KXLATE-26", late_result)])
+
+
+def test_nesting_branch_where_both_legs_win_pays_the_full_max_payout(conn):
+    """The calendar-arb payoff matrix, branch 1 of 3: the event happens
+    between the two deadlines, so NO-early and YES-late both win.
+
+    Payout is exactly max_payout, which is the all-or-nothing case scoring
+    supports, so this branch scores. Under nesting (early YES implies late
+    YES) the fourth cell of the matrix, (early=yes, late=no), is impossible
+    and is therefore absent here rather than expected to fail.
+    """
+    _calendar_arb_basket(conn)
+    _settle(conn, [("KXEARLY-26", "no"), ("KXLATE-26", "yes")])
 
     obs = score._basket_observations(conn, "t1", 1, "live", "all", None)
     assert len(obs) == 1
-    assert obs[0]["payout"] >= 1.0
+    assert obs[0]["payout"] == pytest.approx(2.0)
+
+
+@pytest.mark.parametrize(
+    "early_result,late_result",
+    [
+        ("no", "no"),    # event never happens: NO-early wins, YES-late loses
+        ("yes", "yes"),  # happens before the early deadline: YES-late wins
+    ],
+)
+def test_nesting_branch_with_a_payout_floor_is_unsupported_and_raises(
+    conn, early_result, late_result
+):
+    """The calendar-arb payoff matrix, branches 2 and 3 of 3 -- and the
+    reason this feature does not yet support its own motivating example.
+
+    Exactly one leg wins in each of these branches, so the basket pays $1
+    against a declared max_payout of $2: strictly between, which is the
+    payout-floor case scoring refuses. This documents an UNSUPPORTED case
+    awaiting a scoring-model decision, not a passing feature. Calibration
+    prices a basket as all-or-nothing (implied_rate = cost / max_payout),
+    so a $1 payout here would be scored against a rate that describes a $2
+    one, inflating calibration_edge_net by roughly an order of magnitude.
+    Raising is the honest behavior until the spec says how a variable
+    payout should be scored; when it does, this test becomes the assertion
+    of whatever it decides.
+    """
+    _calendar_arb_basket(conn)
+    _settle(conn, [("KXEARLY-26", early_result), ("KXLATE-26", late_result)])
+
+    with pytest.raises(ValueError, match="max_payout"):
+        score._basket_observations(conn, "t1", 1, "live", "all", None)
+
+
+def test_payout_floor_error_names_the_numbers_and_the_spec(conn):
+    """The refusal has to be actionable: it names the position, both
+    payout figures, and where the undecided design question lives."""
+    opp_id, _ = _calendar_arb_basket(conn)
+    _settle(conn, [("KXEARLY-26", "no"), ("KXLATE-26", "no")])
+
+    with pytest.raises(ValueError) as excinfo:
+        score.compute_score(conn, "t1", 1)
+    message = str(excinfo.value)
+    assert f"opportunity {opp_id}" in message
+    assert "1.0000" in message and "2.0000" in message
+    assert "all-or-nothing" in message
+    assert "2026-08-24-multi-leg-positions-design.md" in message
 
 
 def test_a_basket_that_would_have_lost_is_visible_as_a_loss(conn):
@@ -473,3 +521,120 @@ def test_a_basket_that_would_have_lost_is_visible_as_a_loss(conn):
     assert r["n"] == 1
     assert r["win_rate"] == pytest.approx(0.0)
     assert r["roi_all"] == pytest.approx(-1.0)
+
+
+def test_basket_refuses_duplicate_legs(conn):
+    """The same contract and side twice is a size-2 position, which the
+    ledger does not represent -- and it would pay double the declared
+    maximum while `basket_key` collapsed the pair into one hash."""
+    with pytest.raises(ValueError, match="duplicates"):
+        _basket(conn, legs=[
+            {"kalshi_ticker": "KXD-26", "outcome": "yes", "entry_price": 0.20},
+            {"kalshi_ticker": "KXD-26", "outcome": "yes", "entry_price": 0.20},
+        ])
+
+
+def test_basket_refuses_duplicate_legs_after_normalization(conn):
+    """Casing and whitespace are normalized before the duplicate test, so
+    "kxd-26"/"YES" and "KXD-26 "/"yes" are the same leg."""
+    with pytest.raises(ValueError, match="duplicates"):
+        _basket(conn, legs=[
+            {"kalshi_ticker": "kxd-26", "outcome": "YES",
+             "entry_price": 0.20},
+            {"kalshi_ticker": "KXD-26 ", "outcome": " yes ",
+             "entry_price": 0.20},
+        ])
+
+
+def test_basket_allows_the_same_ticker_on_opposite_sides(conn):
+    """Only (ticker, outcome) pairs must be distinct: YES and NO on one
+    market are two different contracts and a legitimate basket."""
+    opp_id, _ = _basket(conn, legs=[
+        {"kalshi_ticker": "KXD-26", "outcome": "yes", "entry_price": 0.40},
+        {"kalshi_ticker": "KXD-26", "outcome": "no", "entry_price": 0.55},
+    ])
+    assert len(ledger.get_legs(conn, opp_id)) == 2
+
+
+def test_payout_above_max_payout_raises_rather_than_scoring(conn):
+    """The other half of the duplicate-leg guard: if a payout ever exceeds
+    the declared maximum, the declaration was wrong and scoring must say
+    so rather than book an impossible return."""
+    _basket(conn, legs=[
+        {"kalshi_ticker": "KXA-26", "outcome": "yes", "entry_price": 0.20},
+        {"kalshi_ticker": "KXB-26", "outcome": "yes", "entry_price": 0.20},
+        {"kalshi_ticker": "KXC-26", "outcome": "no", "entry_price": 0.15},
+    ])
+    # Two legs win against max_payout = 1.0.
+    _settle(conn, [("KXA-26", "yes"), ("KXB-26", "yes"), ("KXC-26", "yes")])
+    with pytest.raises(ValueError, match="max_payout"):
+        score.compute_score(conn, "t1", 1)
+
+
+def test_fully_settled_basket_is_not_unsettled(conn):
+    """The bug that made settlement unreachable: the header's synthetic
+    BASKET: ticker never appears in `settlements`, so testing it reported
+    even a resolved basket as unsettled forever."""
+    _basket(conn)
+    _settle(conn, [("KXA-26", "yes"), ("KXB-26", "yes")])
+    assert ledger.list_opportunities(conn, unsettled_only=True) == []
+
+
+def test_basket_with_one_leg_settled_is_still_unsettled(conn):
+    _basket(conn)
+    _settle(conn, [("KXA-26", "yes")])
+    rows = ledger.list_opportunities(conn, unsettled_only=True)
+    assert [r["position_kind"] for r in rows] == ["basket"]
+
+
+def test_basket_missing_its_leg_rows_stays_unsettled(conn):
+    """A corrupt basket must surface in the queue rather than vanish from
+    it: `leg_count` is the authority on how many settlements it needs."""
+    opp_id, _ = _basket(conn)
+    conn.execute(
+        "DELETE FROM opportunity_legs WHERE opportunity_id = ?", (opp_id,)
+    )
+    conn.commit()
+    _settle(conn, [("KXA-26", "yes"), ("KXB-26", "yes")])
+    assert len(ledger.list_opportunities(conn, unsettled_only=True)) == 1
+
+
+def test_tickers_awaiting_settlement_returns_legs_not_the_header(conn):
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="KXS-26",
+        outcome="yes", entry_price=0.50, edge_pts_net=6.0, now=TS,
+    )
+    _basket(conn)
+    assert ledger.tickers_awaiting_settlement(conn) == [
+        "KXA-26", "KXB-26", "KXS-26"
+    ]
+
+
+def test_tickers_awaiting_settlement_drops_what_has_settled(conn):
+    _basket(conn)
+    _settle(conn, [("KXA-26", "yes")])
+    assert ledger.tickers_awaiting_settlement(conn) == ["KXB-26"]
+    _settle(conn, [("KXB-26", "yes")])
+    assert ledger.tickers_awaiting_settlement(conn) == []
+
+
+def test_tickers_awaiting_settlement_never_returns_a_synthetic_ticker(conn):
+    _basket(conn)
+    tickers = ledger.tickers_awaiting_settlement(conn)
+    assert tickers
+    assert not any(t.startswith(ledger.BASKET_PREFIX) for t in tickers)
+
+
+def test_tickers_awaiting_settlement_honours_the_segment_filters(conn):
+    theories.register(conn, "t2", "Theory Two", "theories/t2", now=TS)
+    _basket(conn)
+    _basket(conn, theory_id="t2", legs=[
+        {"kalshi_ticker": "KXZ-26", "outcome": "yes", "entry_price": 0.40},
+        {"kalshi_ticker": "KXY-26", "outcome": "no", "entry_price": 0.55},
+    ])
+    assert ledger.tickers_awaiting_settlement(conn, theory_id="t1") == [
+        "KXA-26", "KXB-26"
+    ]
+    assert ledger.tickers_awaiting_settlement(conn, theory_id="t2") == [
+        "KXY-26", "KXZ-26"
+    ]

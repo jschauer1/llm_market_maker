@@ -11,14 +11,23 @@ description: Settle resolved opportunities and recompute calibration scores. Use
 from tools import db, ledger
 from tools.kalshi import markets
 conn = db.connect(); db.init_db(conn)
-rows = ledger.list_opportunities(conn, unsettled_only=True)  # skip what already has a settlement
-quotes = markets.quotes([r["kalshi_ticker"] for r in rows])
+tickers = ledger.tickers_awaiting_settlement(conn)  # skip what already has a settlement
+quotes = markets.quotes(tickers)
 ```
 
-`unsettled_only=True` matters: without it this re-quotes every opportunity
-ever recorded, on every run, unbounded — a ledger with 95 tickers today only
-grows. A row with a settlement already on file has nothing left to check
-here.
+`tickers_awaiting_settlement` returns only tickers with no settlement on
+file: without that filter this re-quotes every opportunity ever recorded, on
+every run, unbounded — a ledger with 95 tickers today only grows. A ticker
+with a settlement already on file has nothing left to check here.
+
+**Never read `kalshi_ticker` off an opportunity row for this.** A basket's
+header carries a synthetic `BASKET:<hash>` that is not a market — quoting it
+asks Kalshi about nothing and never asks about the legs, so no basket could
+ever settle. `tickers_awaiting_settlement` reaches through
+`opportunity_legs` for a basket and uses the header ticker for a single, so
+both kinds settle by the same loop. A basket is settled only when every leg
+is; `ledger.list_opportunities(conn, unsettled_only=True)` applies the same
+rule if you want the position rows rather than the tickers.
 
 A Kalshi market is settled when its status is `finalized` and `result` is set.
 
