@@ -161,6 +161,9 @@ def _single_leg_observations(
             "fee_pts": fee,
             "edge_pts_net": row["edge_pts_net"],
             "user_action": row["user_action"],
+            # A single position can always resolve against you -- there is
+            # no floor to fall back on -- so it is never riskless.
+            "riskless": False,
         })
     return out
 
@@ -184,7 +187,7 @@ def _basket_observations(
     )
     headers = conn.execute(
         "SELECT o.id, o.entry_price, o.edge_pts_net, o.user_action,"
-        " o.leg_count, o.max_payout FROM opportunities o"
+        " o.leg_count, o.max_payout, o.min_payout FROM opportunities o"
         + where
         + " AND o.position_kind = 'basket'",
         params,
@@ -224,55 +227,83 @@ def _basket_observations(
         for leg in legs:
             fee += fee_pts(leg["entry_price"])
         max_payout = header["max_payout"]
+        min_payout = header["min_payout"]
 
-        # Calibration prices a basket as all-or-nothing: `implied_rate` is
-        # cost / max_payout, which is only the market's rate for the event
-        # `won` records when a winning basket pays exactly max_payout. A
-        # basket with a payout *floor* -- calendar-arb's nesting position
-        # pays $1 in two branches and $2 in the third -- makes those two
-        # different events, and the resulting calibration_edge_net is not
-        # slightly off but inflated by an order of magnitude (a 0.95 basket
-        # paying 1.00 against max_payout 2.00 reports 50.86 points where the
-        # same economics as a single reports 4.67). How a variable-payout
-        # basket *should* be scored is a spec-level decision nobody has made
-        # yet, so refuse to emit a number rather than emit a plausible wrong
-        # one. This also catches payout > max_payout, which means the
-        # declared maximum was wrong.
+        # A theory declares its own floor because only it knows its payoff
+        # shape -- safe precisely because the claim is checkable here. A
+        # payout beneath the declared floor means the declaration was
+        # false, and a false floor would understate the at-risk cost and
+        # overstate the edge.
+        if payout < min_payout - 1e-9:
+            raise ValueError(
+                f"opportunity {header['id']}: settled payout {payout:.4f} is "
+                f"below its declared min_payout {min_payout:.4f}. The floor "
+                "is a claim about what the contracts guarantee and it did "
+                "not hold, so the position cannot be scored against it. Fix "
+                "the theory's declaration, not this check."
+            )
+
+        # The at-risk decomposition assumes the at-risk portion is binary:
+        # the position pays either its floor or its ceiling. A basket that
+        # can land in between (three legs of a possible three, say) has no
+        # single event `won` can name, exactly as before this generalized
+        # from {0, max_payout}. At min_payout = 0 -- every row recorded
+        # before floors existed -- this is the identical condition.
         if not (
-            math.isclose(payout, 0.0, abs_tol=1e-9)
+            math.isclose(payout, min_payout, rel_tol=1e-9, abs_tol=1e-9)
             or math.isclose(payout, max_payout, rel_tol=1e-9, abs_tol=1e-9)
         ):
             raise ValueError(
                 f"opportunity {header['id']}: basket payout {payout:.4f} is "
-                f"neither 0 nor its declared max_payout {max_payout:.4f}. "
-                "Calibration for a basket assumes an all-or-nothing payoff "
-                "-- implied_rate is cost / max_payout, so a win must pay "
-                "exactly max_payout for the realized win rate and the "
-                "price-implied rate to measure the same event. A basket "
-                "with a payout floor (a calendar-arb style position that "
-                "pays $1 in some branches and $2 in others) is not yet "
-                "supported: scoring one needs a scoring-model decision. See "
-                "docs/superpowers/specs/"
-                "2026-08-24-multi-leg-positions-design.md"
+                f"neither its min_payout {min_payout:.4f} nor its "
+                f"max_payout {max_payout:.4f}. Scoring grades the portion "
+                "of a position that is at risk, which assumes that portion "
+                "is all-or-nothing. See docs/superpowers/specs/"
+                "2026-08-24-multi-leg-positions-design.md section 3.6"
             )
 
         cost = header["entry_price"] + fee / 100.0
 
+        # A position whose cost is covered by its guaranteed floor cannot
+        # lose. Calibration is undefined for it -- a win rate over things
+        # that always win is 1.0 by construction and measures nothing --
+        # so it is flagged here and scored on return only (section 3.6.1).
+        # Riskless-ness is judged on `cost` (fee included): a fee is real
+        # cash paid, so it can turn an otherwise-covered floor into a loss.
+        riskless = cost <= min_payout
+        at_risk_payoff = max_payout - min_payout
+        if riskless or at_risk_payoff <= 0:
+            riskless = True
+            implied_rate = None
+            won = False
+        else:
+            # implied_rate is the market's rate, not the trader's cost --
+            # fee is a transaction cost, not a market price, and stays out
+            # for the same reason _single_leg_observations builds
+            # implied_rate from `price` rather than `cost`. It is
+            # normalized by header entry_price (pre-fee), matching the
+            # single-leg convention and keeping fee out of this number so
+            # `_aggregate` subtracts it exactly once, via mean_fee_pts, not
+            # twice. At min_payout = 0 this is header['entry_price'] /
+            # max_payout -- byte-identical to the pre-floor formula.
+            implied_rate = (
+                (header["entry_price"] - min_payout) / at_risk_payoff
+            )
+            won = math.isclose(payout, max_payout,
+                               rel_tol=1e-9, abs_tol=1e-9)
+
         out.append({
-            # implied_rate and fee_pts must live on the same scale, or the
-            # subtraction (calibration_edge - mean_fee_pts) in _aggregate
-            # mixes units. implied_rate is normalized by max_payout, so fee
-            # is too; at max_payout = 1.0 this divides by 1 and is exact,
-            # so single-leg pooling is unaffected. A single leg contributes
-            # implied_rate: price (see _single_leg_observations) -- this is
-            # the basket analogue of that, not of cost.
-            "implied_rate": header["entry_price"] / max_payout,
-            "won": payout > cost,
+            "implied_rate": implied_rate,
+            "won": won,
             "cost": cost,
             "payout": payout,
-            "fee_pts": fee / max_payout,
+            # Fees share implied_rate's scale, so they are normalized by
+            # the same at-risk denominator. A riskless position has no
+            # such scale; Task 4 keeps it out of the fee mean entirely.
+            "fee_pts": fee if riskless else fee / at_risk_payoff,
             "edge_pts_net": header["edge_pts_net"],
             "user_action": header["user_action"],
+            "riskless": riskless,
         })
     return out
 

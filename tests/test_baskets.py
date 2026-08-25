@@ -444,12 +444,12 @@ def test_record_basket_rejects_none_max_payout(conn):
         _basket(conn, max_payout=None)
 
 
-def _calendar_arb_basket(conn):
+def _calendar_arb_basket(conn, min_payout=0.0):
     """The calendar-arb nesting position: buy YES on the later deadline,
     buy NO on the earlier one. Cost 0.95 against a $2 joint maximum."""
     return ledger.record_basket(
         conn, theory_id="t1", theory_version=1, edge_pts_net=4.0,
-        edge_basis="model", now=TS, max_payout=2.0,
+        edge_basis="model", now=TS, max_payout=2.0, min_payout=min_payout,
         legs=[
             {"kalshi_ticker": "KXLATE-26", "outcome": "yes",
              "entry_price": 0.60},
@@ -483,35 +483,33 @@ def test_nesting_branch_where_both_legs_win_pays_the_full_max_payout(conn):
         ("yes", "yes"),  # happens before the early deadline: YES-late wins
     ],
 )
-def test_nesting_branch_with_a_payout_floor_is_unsupported_and_raises(
+def test_nesting_branch_with_a_declared_payout_floor_scores_as_riskless(
     conn, early_result, late_result
 ):
-    """The calendar-arb payoff matrix, branches 2 and 3 of 3 -- and the
-    reason this feature does not yet support its own motivating example.
+    """The calendar-arb payoff matrix, branches 2 and 3 of 3 -- now scorable
+    once the position declares the $1 it always pays as its floor, instead
+    of leaving scoring to infer a floor that was never stated.
 
     Exactly one leg wins in each of these branches, so the basket pays $1
-    against a declared max_payout of $2: strictly between, which is the
-    payout-floor case scoring refuses. This documents an UNSUPPORTED case
-    awaiting a scoring-model decision, not a passing feature. Calibration
-    prices a basket as all-or-nothing (implied_rate = cost / max_payout),
-    so a $1 payout here would be scored against a rate that describes a $2
-    one, inflating calibration_edge_net by roughly an order of magnitude.
-    Raising is the honest behavior until the spec says how a variable
-    payout should be scored; when it does, this test becomes the assertion
-    of whatever it decides.
+    against a declared max_payout of $2. Undeclared, that $1 is strictly
+    between the all-or-nothing cases scoring supports and must still raise
+    (see test_a_payout_between_floor_and_ceiling_still_raises in
+    test_at_risk_scoring.py). Declared as min_payout=1.0, the same $1 is the
+    floor rather than a forbidden in-between value: the at-risk
+    decomposition grades only the lottery above it, and cost 0.95 (plus
+    fees) is covered outright by a guaranteed $1 -- so the position is
+    riskless, not merely scorable.
     """
-    _calendar_arb_basket(conn)
+    _calendar_arb_basket(conn, min_payout=1.0)
     _settle(conn, [("KXEARLY-26", early_result), ("KXLATE-26", late_result)])
 
-    with pytest.raises(ValueError) as excinfo:
-        score._basket_observations(conn, "t1", 1, "live", "all", None)
+    obs = score._basket_observations(conn, "t1", 1, "live", "all", None)
 
-    # Assert the payout VALUE, not merely that it raised. Both floor
-    # branches pay exactly $1 against the declared $2, and a regression that
-    # changed the payout while still raising would otherwise pass here --
-    # which would hollow out the audit this test exists to be.
-    message = str(excinfo.value)
-    assert "1.0000" in message and "2.0000" in message
+    assert len(obs) == 1
+    assert obs[0]["payout"] == pytest.approx(1.0)
+    assert obs[0]["riskless"] is True
+    assert obs[0]["implied_rate"] is None
+    assert obs[0]["won"] is False
 
 
 def test_payout_floor_error_names_the_numbers_and_the_spec(conn):

@@ -81,3 +81,73 @@ def test_a_floor_equal_to_the_ceiling_is_allowed(conn):
     opp_id, _ = _basket(conn, min_payout=1.0, max_payout=1.0)
     assert ledger.get_opportunity(conn, opp_id)["min_payout"] == \
         pytest.approx(1.0)
+
+
+def _settle(conn, pairs):
+    for ticker, result in pairs:
+        score.record_settlement(conn, ticker, result, resolved_at=TS)
+
+
+def test_at_risk_rate_prices_only_the_portion_that_can_be_lost(conn):
+    # entry_price 1.55, floor 1.00, ceiling 2.00 -> a 0.55 bet on a 1.00
+    # payoff. implied_rate is the market's rate, not the trader's cost, so
+    # it is built from entry_price rather than cost -- fee is kept out of
+    # it for the same reason _single_leg_observations builds implied_rate
+    # from `price` rather than `cost`: _aggregate subtracts the fee exactly
+    # once, via mean_fee_pts, and including it here too would subtract it
+    # twice.
+    _basket(conn, legs=_legs(0.95, 0.60), min_payout=1.0, max_payout=2.0)
+    _settle(conn, [("KXLATE-26", "yes"), ("KXEARLY-26", "no")])  # pays 2.00
+    obs = score._basket_observations(conn, "t1", 1, "live", "all", None)
+    assert len(obs) == 1
+    assert obs[0]["implied_rate"] == pytest.approx((1.55 - 1.0) / (2.0 - 1.0))
+    assert obs[0]["won"] is True
+    assert obs[0]["riskless"] is False
+
+
+def test_paying_only_the_floor_is_an_at_risk_loss(conn):
+    _basket(conn, legs=_legs(0.95, 0.60), min_payout=1.0, max_payout=2.0)
+    _settle(conn, [("KXLATE-26", "yes"), ("KXEARLY-26", "yes")])  # pays 1.00
+    obs = score._basket_observations(conn, "t1", 1, "live", "all", None)
+    assert obs[0]["won"] is False
+    assert obs[0]["payout"] == pytest.approx(1.0)
+
+
+def test_a_zero_floor_reproduces_the_historical_formula(conn):
+    """The non-regression claim, asserted directly: with no declared floor
+    the at-risk rate IS entry_price/max_payout, which is what every
+    existing row was scored by (see
+    test_basket_implied_rate_is_normalized_by_max_payout in
+    test_baskets.py, which pins the same formula and is untouched by this
+    change)."""
+    _basket(conn, legs=_legs(0.40, 0.55))          # floor 0, ceiling 1
+    # Only KXLATE wins (KXEARLY's "no" outcome misses) so the basket pays
+    # exactly its declared max_payout of 1.0, satisfying the all-or-nothing
+    # guard -- unlike the first test above, this basket was never given a
+    # max_payout of 2.0, so a double-win here would overshoot it.
+    _settle(conn, [("KXLATE-26", "yes"), ("KXEARLY-26", "yes")])
+    obs = score._basket_observations(conn, "t1", 1, "live", "all", None)
+    assert obs[0]["implied_rate"] == pytest.approx(0.95 / 1.0)
+
+
+def test_a_payout_below_the_declared_floor_raises(conn):
+    """The check that makes a theory-declared floor safe: the claim is
+    verified against what actually settled."""
+    _basket(conn, legs=_legs(0.60, 0.35), min_payout=1.0, max_payout=2.0)
+    _settle(conn, [("KXLATE-26", "no"), ("KXEARLY-26", "yes")])  # pays 0.00
+    with pytest.raises(ValueError, match="below its declared min_payout"):
+        score._basket_observations(conn, "t1", 1, "live", "all", None)
+
+
+def test_a_payout_between_floor_and_ceiling_still_raises(conn):
+    """The at-risk decomposition assumes a binary at-risk portion. A
+    three-leg basket paying 1 of a possible 3 has no single `won` event."""
+    legs = [
+        {"kalshi_ticker": "KXA-26", "outcome": "yes", "entry_price": 0.30},
+        {"kalshi_ticker": "KXB-26", "outcome": "yes", "entry_price": 0.30},
+        {"kalshi_ticker": "KXC-26", "outcome": "yes", "entry_price": 0.30},
+    ]
+    _basket(conn, legs=legs, max_payout=3.0)
+    _settle(conn, [("KXA-26", "yes"), ("KXB-26", "no"), ("KXC-26", "no")])
+    with pytest.raises(ValueError, match="neither its min_payout"):
+        score._basket_observations(conn, "t1", 1, "live", "all", None)
