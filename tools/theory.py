@@ -235,7 +235,16 @@ class TheoryRun:
         The model recorded is the JUDGING model (ctx.judge_model -- the
         subagent's, when one was dispatched), never implicitly this
         process's. A mechanical theory with a prompts entry records
-        'none (deterministic)', preserving voluntary self-documentation."""
+        'none (deterministic)', preserving voluntary self-documentation.
+
+        web_search follows the same split, and for a factual reason, not a
+        cosmetic one: a run recorded as 'none (deterministic)' had no model
+        in the loop at all, so it categorically did no web search --
+        'False' is correct regardless of run_mode, live included. An LLM
+        judgment run is different: web search is off in every *backtest*
+        judgment (CLAUDE.md), so backtest still records False, but a live
+        judgment run genuinely might have used it and 'None' (unknown)
+        stays honest rather than guessing."""
         model = self.ctx.judge_model
         if self.theory.uses_llm_judgment:
             if not model:
@@ -245,9 +254,10 @@ class TheoryRun:
                     "model for a judgment it did not make would corrupt "
                     "provenance (spec 4.9)"
                 )
+            web = False if self.ctx.run_mode == "backtest" else None
         else:
             model = model or "none (deterministic)"
-        web = False if self.ctx.run_mode == "backtest" else None
+            web = False
         for stage, path in self.theory.prompts.items():
             provenance.record_judgment_run(
                 self.ctx.conn, run_id=self.ctx.run_id,

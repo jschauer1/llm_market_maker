@@ -2,7 +2,7 @@ from datetime import datetime, timezone
 
 import pytest
 
-from tools import db, theories
+from tools import db, provenance, theories
 from tools.domain import (Candidate, Edge, Leg, Market, ScoredCandidate,
                           ScreenResult, Verdict)
 from tools.theory import Theory, TheoryContext
@@ -30,6 +30,27 @@ class Mechanical(Theory):
         return [Candidate(legs=(Leg(market=m, side="yes", price=m.yes_ask),),
                           days_to_close=1.0)
                 for m in ctx.board if (m.yes_ask or 1.0) <= 0.5]
+
+    def price(self, ctx, cands, verdicts=None):
+        return [ScoredCandidate(candidate=c, edge=Edge(pts_net=5.0,
+                                                       basis="model"))
+                for c in cands]
+
+
+class MechanicalDocumented(Theory):
+    """A mechanical theory that voluntarily records its deciding artifact
+    -- the mention_family shape: uses_llm_judgment=False but prompts is
+    non-empty, so finish() records provenance anyway."""
+
+    id = "stub_mech_documented"
+    name = "Stub Mechanical Documented"
+    version = 1
+    # Any committed file works as a prompt path for a test stub; provenance
+    # hashes whatever is on disk.
+    prompts = {"other": "theories/_TEMPLATE/THEORY.md"}
+
+    def screen(self, ctx):
+        return [cand()]
 
     def price(self, ctx, cands, verdicts=None):
         return [ScoredCandidate(candidate=c, edge=Edge(pts_net=5.0,
@@ -126,4 +147,22 @@ def test_finish_requires_judge_model_for_an_llm_theory(tmp_path):
     run.apply({"KXT": Verdict(bucket="strong")})
     with pytest.raises(RuntimeError, match="judge_model"):
         run.finish()
+    conn.close()
+
+
+def test_mechanical_theory_records_web_search_false_on_live_run(tmp_path):
+    """A run recorded as 'none (deterministic)' had no model in the loop
+    at all, so it categorically did no web search -- unlike an LLM theory,
+    this does not depend on run_mode. A mechanical theory's live-run
+    provenance row must say web_search=False, never NULL."""
+    conn = db.connect(tmp_path / "t.db")
+    db.init_db(conn)
+    theories.register(conn, "stub_mech_documented", "Stub", "x", now=TS)
+    ctx = TheoryContext.build(conn=conn, board=[mkm()], now=NOW,
+                              run_mode="live")
+    MechanicalDocumented().start(ctx).finish()
+    runs = provenance.list_judgment_runs(conn, theory_id="stub_mech_documented")
+    assert len(runs) == 1
+    assert runs[0]["model"] == "none (deterministic)"
+    assert runs[0]["web_search"] == 0
     conn.close()
