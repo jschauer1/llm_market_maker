@@ -12,6 +12,11 @@ constraint · Theory version bumps: none intended
 run start-to-finish, returning one uniform result — with two required
 methods, everything else optional, and nothing that exists today lost.
 
+**And the constraint that outranks it:** the LLM is the researcher, not a
+workflow executor. Every tool stays directly callable, ad-hoc work stays
+first-class, and this contract is optional for running and mandatory only
+for recording. See section 3.3 before reading the design as a procedure.
+
 ## 1. Problem
 
 The repository has no object-oriented structure at all. Measured on
@@ -200,7 +205,61 @@ from the backlog in `docs/superpowers/specs/` could not be expressed under
 the proposed rule, the rule is too tight. Section 9's stub-theory test is
 the mechanical version of this check.
 
-### 3.3 Out of scope
+### 3.3 The LLM is the researcher; the platform serves it
+
+The most important constraint, and the one most easily lost in an
+architecture document: **this structure is scaffolding for an LLM
+researcher, not a workflow the researcher must obey.**
+
+CLAUDE.md opens by saying so — *"You are the researcher here. This repo
+gives you tools to find Kalshi markets with the largest edge — and expects
+you to come up with your own ideas about where that edge is, rather than
+waiting to be told."* An architecture that turns that researcher into a
+executor of `Theory` subclasses would defeat the project, however clean the
+class diagram looked.
+
+So the following are guarantees, not concessions:
+
+- **Every tool remains directly callable, standalone, exactly as today.**
+  Nothing becomes private, nothing is hidden behind the contract.
+  `screen.screen(board)`, `markets.quotes(tickers)`,
+  `score.bucket_rates(...)`, `ledger.list_opportunities(...)` all keep
+  working as plain function calls. The contract adds a path; it never closes
+  the existing one.
+- **"Just asking" stays cheap.** CLAUDE.md documents two modes — `go` and
+  simply asking a question — and calls both normal. Answering "how is
+  insider_judgment holding up?" must never require constructing a
+  `TheoryContext`, instantiating a `Theory`, or knowing this spec exists.
+  `python -m tools.cli` stays the front door for questions.
+- **Ad-hoc research is first-class.** Not every investigation is a theory.
+  The researcher may write throwaway analysis, probe a hunch across the
+  board, join two tools in a way nobody anticipated, or explore a dataset
+  with no intention of recording anything. There is no requirement that
+  exploration be expressed as a `Theory` subclass, and no penalty for
+  never becoming one.
+- **A theory may put the LLM wherever its thesis needs it.** The
+  `screen()` / `judgment_payload()` / `price()` shape is the common case,
+  not a mandate. A theory whose thesis requires judgment inside pricing, or
+  three judgment passes, or none, may do that — provided `edge_basis`
+  honestly reports what produced the number.
+- **The researcher may change the platform.** This architecture is itself a
+  hypothesis. If it obstructs real work, that is evidence against the
+  architecture, and revising it is in scope for any session — the same
+  standard a theory is held to.
+
+**The single non-negotiable is the ledger boundary.** Explore however you
+like; compose anything; ignore every class in this document. But when a
+finding is *recorded as evidence* — a row in the opportunities ledger, a
+claim that a theory found an edge — provenance, `edge_basis`, and the Kalshi
+ticker requirement hold without exception. That is the whole purpose of the
+structure and the only thing it insists on, because the track record is
+what makes every other claim in this repo worth anything.
+
+Put the other way: **the contract is optional for running and mandatory for
+recording.** Everything upstream of `finish()` is the researcher's to
+arrange.
+
+### 3.4 Out of scope
 
 Explicitly **out of scope**. These stay as plain functions:
 
@@ -652,7 +711,7 @@ existing call site working unchanged, so this is additive and cannot
 regress anything per section 3.1. Existing `monkeypatch` tests keep passing;
 new tests pass a fake instead.
 
-**What `TheoryContext` carries, given section 3.3 forbids gateway objects.**
+**What `TheoryContext` carries, given section 3.4 forbids gateway objects.**
 Rather than build a repository layer, the context holds the raw connection
 plus *narrowly bound callables* for the one thing theories legitimately read
 from the DB:
@@ -965,6 +1024,21 @@ test, the two stub-theory tests in section 7, and a standing rule that
 widening `Theory` to admit a legitimate theory is always preferred to
 turning that theory away.
 
+**The subtler form: the researcher cages itself.** Nothing in the code will
+stop a future session from reading this document as a procedure and
+concluding that investigation must happen through `Theory`, that a question
+needs a `TheoryContext`, or that a hunch is not worth pursuing because it is
+not yet a theory. That would cost more than any technical defect here — it
+would trade a researcher for a task-runner, which is the one thing CLAUDE.md
+opens by warning against.
+
+There is no test for this. The mitigations are placement and repetition:
+section 3.3 is stated as a constraint rather than a footnote, the header
+says it above the design summary, and the `CLAUDE.md` conventions list leads
+with it so it cannot be read without that framing. If a future session finds
+this architecture is getting in the way of real research, **the architecture
+is what is wrong**, and revising it is in scope for that session.
+
 ### 8.7 Parallel subagents amplify a bad contract
 
 Section 4.9's model multiplies whatever the contract gets wrong by the
@@ -1013,6 +1087,23 @@ parallel — parallelism is the last thing switched on, not the first.
     own data source still runs, proving the contract is a floor rather than
     a cage (section 3.2).
 
+**Researcher freedom — evidence the platform still serves the LLM
+(section 3.3):**
+
+13. Every tool remains callable standalone. `screen.screen(board)`,
+    `markets.quotes(...)`, `score.bucket_rates(...)` and
+    `ledger.list_opportunities(...)` all work as plain functions, with no
+    `Theory`, `TheoryRun`, or `TheoryContext` constructed.
+14. Answering a "just asking" question — "how is insider_judgment holding
+    up?" — requires only `python -m tools.cli`, with no knowledge that this
+    spec exists.
+15. An ad-hoc exploration that never becomes a theory is possible and
+    unpenalised: no code path requires an investigation to be expressed as a
+    `Theory` subclass.
+16. The ledger boundary still holds under all of the above — a recorded
+    opportunity carries provenance, an honest `edge_basis`, and a Kalshi
+    ticker no matter which path produced it.
+
 ## 10. Open questions
 
 1. **`no`-side candidates.** `Candidate.fav_side` is `"yes"|"no"` and
@@ -1039,6 +1130,11 @@ caller — was met; the boundary between the two is stated.
 **`CLAUDE.md`** — a short conventions section stating, in order of
 importance:
 
+- **The researcher is not bound by any of this.** Every tool stays directly
+  callable, ad-hoc exploration is first-class, and "just asking" needs none
+  of it. The contract is optional for running and mandatory only for
+  recording (section 3.3). This point goes **first**, because a conventions
+  list read without it reads as a workflow to obey.
 - A theory **inherits what to do** (`start`, `finish`) and **is handed what
   it may touch** (`TheoryContext`). Never a toolbox base class — section 4.5
   gives the repo-specific reason.
