@@ -4,6 +4,7 @@ Date: 2026-08-24
 Status: design approved, implementation not started
 Scope: `tools/domain.py` (new), `tools/theory.py` (new),
 `tools/registry.py` (new), `theories/**`, both platform clients,
+`tools/ledger.py` + `tools/score.py` (experiment-lane exclusion only),
 `tools/README.md`, `CLAUDE.md`, `.claude/skills/**`
 Behavior change: **none** — see section 3.1, non-regression is a hard
 constraint · Theory version bumps: none intended
@@ -265,6 +266,43 @@ what makes every other claim in this repo worth anything.
 Put the other way: **the contract is optional for running and mandatory for
 recording.** Everything upstream of `finish()` is the researcher's to
 arrange.
+
+### 3.3a Experimenting on a theory is built in
+
+The versioning rule makes changing a theory's procedure deliberately
+expensive — a bump orphans the accrued track record, which is the right
+price for changing what a version number means. Left alone, that rule
+would also tax the thing this project runs on: trying ideas. So the
+counterweight is designed in rather than left to workarounds.
+
+**The experiment lane.** A run whose `run_id` starts with `exp/` is an
+experiment: a real forward test that records, settles, and scores like any
+run — and that pooled scoring and pooled bucket rates **exclude**. The
+production track record cannot see it, so there is nothing an experiment
+can contaminate and no reason to hesitate before starting one.
+
+- **Trying a variant is a subclass and a run id.** Override the one method
+  under test on the existing theory class and run it with
+  `run_id="exp/<slug>"`. No registration, no version bump, no new folder,
+  no ceremony. Rows record under the parent theory's id, so the foreign
+  key holds and the lineage stays visible.
+- **An experiment is scored on demand, never by default:**
+  `compute_score(..., run_id="exp/<slug>")` and
+  `bucket_rates(..., run_id="exp/<slug>")` see exactly its rows.
+- **Promotion is the existing lifecycle.** An experiment that earns
+  evidence becomes a version bump on its parent (or a proposed sibling
+  theory), citing the `exp/` run as the evidence that justified the
+  change. One that fails gets an ideas-registry entry with a
+  `revisit_angle`, like any other dead idea.
+- **`dry_run=True` remains the tier below:** explore without recording
+  anything at all.
+
+**Glass box, not pipeline.** The contract's run state is plain,
+inspectable attributes — `run.candidates`, `run.payload`, `run.verdicts` —
+and every stage (`screen()`, `judgment_payload()`, `price()`) is an
+ordinary method callable on its own. `TheoryRun` composes conveniences; it
+gatekeeps nothing. The researcher can stop between any two stages, look,
+and decide. The single wall remains the ledger (section 3.3).
 
 ### 3.4 Out of scope
 
@@ -741,7 +779,10 @@ candidates.
 
 Studies stay plain scripts in `theories/<slug>/`, and the repo already has
 the machinery for their output: the `proposed` status and the ideas
-registry. This needs a line in the conventions, not a class.
+registry. This needs a line in the conventions, not a class. A study
+declares itself with a `STUDY.md` in its folder; discovery skips any
+folder carrying one, which is how the conventions test tells a study from
+a theory package that forgot its singleton.
 
 A study declares itself: its folder carries a `STUDY.md` where a theory
 carries a `THEORY.md`. Discovery (section 4.6) skips study folders, and
@@ -792,14 +833,20 @@ def check_drift(conn) -> list[str]       # mismatches, for a conventions test
 of truth for a theory's *status and version*; the Python class is the source
 of truth for its *procedure*. `running()` joins them.
 
-`check_drift` fails loudly on four mismatches: a DB row with no matching
-class, a class with no DB row, a `Theory.version` disagreeing with the
+`check_drift` fails loudly on four mismatches: a *scannable* DB row with no
+matching class (a `proposed` or `paused` row legitimately has no code yet),
+a class with no DB row, a `Theory.version` disagreeing with the
 row's version, and a `uses_llm_judgment` ClassVar disagreeing with the DB
 flag. The first three prevent the silent-merge failure CLAUDE.md's
 versioning rule exists to prevent — a session running v3 code while
 recording v2 rows. The fourth matters because that flag routes dispatch
 (section 4.9) and gates `finish()`'s provenance demand; drift in it would
 misroute a theory or skip a provenance write silently.
+
+Experiments never enter this check: a variant subclass exposes no `THEORY`
+singleton, so it is not discovered, and it needs no registry row of its
+own because it records under its parent's id (section 3.3a). Drift
+policing applies to the production procedure, never to trying things.
 
 ### 4.7 Existing theories become adapters first
 
@@ -1117,7 +1164,7 @@ Six phases, each independently green, each its own commit.
 | 0 | Characterization harness | `tests/characterization/` | none |
 | 1 | `tools/domain.py` (+ `Leg`, `Verdict`, `ScreenResult`, `ScanResult`, `Fetch`) + shim; `theory_facts` table; `construction` provenance stage | new file, `schema.sql`, `provenance.py`, `tests/` | none (additive) |
 | 2 | `normalize()` returns `Market`; `fetch` seam | both clients, `board.py`, `snapshot.py` | none (additive default) |
-| 3 | `Theory` / `TheoryRun` / `TheoryContext` + adapters + registry | new files, theory `__init__.py`, `pipeline.py` (one added key, section 4.7) | none |
+| 3 | `Theory` / `TheoryRun` / `TheoryContext` + adapters + registry; experiment-lane exclusion | new files, theory `__init__.py`, `pipeline.py` (one added key, section 4.7), `ledger.py` + `score.py` (`exp/` exclusion, section 3.3a) | none for existing rows (no run_id starts with `exp/`) |
 | 4 | Docs and skill rewrite | `tools/README.md`, `CLAUDE.md`, `find-edge`, `propose-theory` | none |
 | 5 | Port theory internals; delete shim | `theories/**` | none |
 
@@ -1226,6 +1273,11 @@ parameter with the current default.
   a non-board theory that ignores `ctx.board` entirely
   (`whale-follow`-like). These are the four shapes the backlog review found
   the first draft could not express; a test is how they stay expressible.
+- `tests/test_experiment_lane.py` — a subclass variant with one overridden
+  method records real rows under an `exp/` run_id with **no version bump
+  and no registration**; pooled `compute_score` and `bucket_rates` are
+  provably blind to `exp/` rows, while an explicit `run_id=` sees exactly
+  them (section 3.3a).
 
 ## 8. Risks
 
@@ -1381,15 +1433,24 @@ parallel — parallelism is the last thing switched on, not the first.
 17. The ledger boundary still holds under all of the above — a recorded
     opportunity carries provenance, an honest `edge_basis`, and a Kalshi
     ticker no matter which path produced it.
+18. **Experimenting is free by construction** (section 3.3a): a subclass
+    variant runs under an `exp/` run_id with no version bump and no
+    registration, its rows record and settle for real, and pooled scores
+    and bucket rates are provably unchanged by them. The cheapest path
+    for a new idea is trying it.
+19. The contract is glass-box: `run.candidates`, `run.payload`, and
+    `run.verdicts` are plain attributes, and every stage is individually
+    callable — the researcher can stop, inspect, and steer between any
+    two stages (section 3.3a).
 
 **Backlog fit — the check that drove these amendments:**
 
-18. All four shapes the backlog review surfaced run end to end as stubs:
+20. All four shapes the backlog review surfaced run end to end as stubs:
     basket producer, external-source fetcher, pair-store theory, and
     non-board theory (`tests/test_backlog_fit.py`).
-19. A theory can establish and reuse durable facts without bumping its
+21. A theory can establish and reuse durable facts without bumping its
     version, and a model-established fact carries `construction` provenance.
-20. Nothing in the design requires `series-bias-mining`,
+22. Nothing in the design requires `series-bias-mining`,
     `new-market-anchor`'s stage 0, or `maker-mode-execution` to become a
     `Theory` — section 4.5c says plainly that they are not one.
 
@@ -1453,6 +1514,19 @@ importance:
   (section 4.4). An LLM cannot predict an edge; it can classify.
 - The contract is a **floor, not a ceiling**: two required methods, and a
   theory may add anything else it needs (section 3.2).
+- **Experimenting on a theory is built in.** Subclass it, override the one
+  thing under test, run with `run_id="exp/<slug>"`. No version bump, no
+  registration. Experiment rows record and settle for real, but pooled
+  scores and bucket rates exclude `exp/` runs — trying ideas costs the
+  track record nothing. Score one with
+  `compute_score(..., run_id="exp/<slug>")`; promote a winner via a
+  version bump or a proposed sibling theory, citing the experiment as the
+  evidence (section 3.3a).
+- **You are the operator, not a step in the pipeline.** A `TheoryRun` is
+  glass-box — `run.candidates`, `run.payload`, `run.verdicts` are plain
+  attributes, and `screen()`, `judgment_payload()`, `price()` are callable
+  individually. The contract composes conveniences; the only wall is the
+  ledger (section 3.3a).
 - **Facts are data, not procedure** — adding a confirmed pair does not bump
   a version; changing how facts are derived does (section 4.5a).
 - **`Theory` is for things that produce bets.** A study produces theories;
@@ -1471,7 +1545,10 @@ subagents call `get_board()` without `force`, and that a judge returns
 
 **`.claude/skills/propose-theory/SKILL.md`** — scaffold a `Theory` subclass
 rather than a free-function module, and say plainly that only `screen()` and
-`price()` are required.
+`price()` are required — and that an idea which is a *tweak* of an existing
+theory should usually start life as an `exp/` variant run on a subclass
+(section 3.3a) rather than a new theory: it produces evidence with zero
+ceremony, and the evidence travels with the promotion.
 
 **`.claude/skills/go/SKILL.md` and `backtest-theory/SKILL.md`** — audited
 for stale per-theory invocation prose and updated where they describe how a

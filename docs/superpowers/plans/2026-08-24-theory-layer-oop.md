@@ -47,6 +47,7 @@ These resolve the spec's open questions and close gaps found while auditing the 
 9. **`check_drift` checks the class side unconditionally and the DB side only for `SCANNABLE_STATUSES` rows** — a `proposed` or `paused` registry row legitimately has no code yet. Current DB state (verified 2026-08-24): exactly `insider_judgment` (v3, testing, uses_llm=1) and `mention_family` (v1, testing, uses_llm=0); no legacy rows.
 10. **insider_judgment's bucket scale and priors** are lifted verbatim from `THEORY.md` ("Confidence buckets" table): `strong` 4.0, `moderate` 2.0, `weak` 0.0. Copying prose into constants is encoding, not changing — but any deviation from that table is a version-bump escalation.
 11. **Goldens are compared through a canonical projection** (`proj()` in the characterization conftest). Golden JSON never changes; `proj()` grows branches as domain types appear (dict → itself; `Market` → `asdict`; `Candidate` → the flattened legacy candidate dict; `ScoredCandidate` → flattened + `edge_pts_net`/`edge_basis`/`bucket`). The projection lives in the harness, not the code under test.
+12. **The experiment lane rides on `run_id` (spec §3.3a).** `ledger.EXPERIMENT_RUN_PREFIX = "exp/"`; pooled `compute_score` and `bucket_rates` exclude `exp/` rows via one added filter (in `_segment_filter`, which exists after the multi-leg score refactor this plan already waits for, and in `bucket_rates`). An experiment — typically a subclass with one method overridden — records under its parent theory's id, so the FK and the lineage hold with no schema change, no registry ceremony, and no version bump. Built and proven in Task 10, documented in Task 11. No existing run_id starts with `exp/` (live DB carries only `live` and `backtest-*`), so pooled numbers are bit-identical for existing data — non-regression holds.
 
 ## File Structure
 
@@ -2901,17 +2902,153 @@ git commit -m "feat: theory discovery with four-way drift check against the regi
 
 ---
 
-### Task 10: Cross-cutting proofs — parallel writes, blind leak, backlog fit (Phase 3e)
+### Task 10: The experiment lane, plus the cross-cutting proofs (Phase 3e)
 
 **Files:**
-- Create: `tests/test_parallel_writes.py`, `tests/test_backlog_fit.py`
+- Modify: `tools/ledger.py` (one constant), `tools/score.py` (`exp/` exclusion in `_segment_filter` and `bucket_rates`)
+- Create: `tests/test_experiment_lane.py`, `tests/test_parallel_writes.py`, `tests/test_backlog_fit.py`
 - Modify: `tests/theories/test_insider_judgment_theory.py` (append the leak test)
 
 **Interfaces:**
-- Consumes: everything from Tasks 1–9; `ledger.record_basket`, `ledger.get_legs`; the `theory_facts` table.
-- Produces: nothing — these are the spec §7 proofs that the claims in §4.9, §8.3, and §3.2 hold in code rather than in prose.
+- Consumes: everything from Tasks 1–9; `ledger.record_basket`, `ledger.get_legs`; the `theory_facts` table; the multi-leg plan's `score._segment_filter`.
+- Produces: `ledger.EXPERIMENT_RUN_PREFIX = "exp/"`, and the guarantee behind spec §3.3a — pooled `compute_score`/`bucket_rates` never see `exp/` runs. Plus the §7 proofs that §4.9, §8.3, and §3.2 hold in code rather than prose.
 
-- [ ] **Step 1: Write the parallel-writes test**
+**Why this task matters more than its diff size:** it is the design's concrete answer to "the LLM has complete control, and experimenting is built in." Trying a variant of a theory is a subclass and a run id — no version bump, no registration — and the exclusion below is what makes that *free* rather than reckless: an experiment can never contaminate the track record it will be judged against.
+
+- [ ] **Step 1: Write the failing experiment-lane tests**
+
+Create `tests/test_experiment_lane.py`:
+
+```python
+"""The experiment lane (spec section 3.3a): trying a variant of a theory
+is a subclass and an exp/ run id -- no version bump, no registration --
+and the production track record provably cannot see it."""
+
+import pytest
+
+from tests.test_theory import NOW, TS, Mechanical, mkm
+from tools import db, ledger, score, theories
+from tools.domain import Candidate, Leg
+from tools.theory import TheoryContext
+
+
+@pytest.fixture
+def conn(tmp_path):
+    c = db.connect(tmp_path / "t.db")
+    db.init_db(c)
+    theories.register(c, "stub_mech", "Stub Mechanical", "x", now=TS)
+    with db.write(c):
+        c.execute("UPDATE theories SET status='testing'"
+                  " WHERE id='stub_mech'")
+    yield c
+    c.close()
+
+
+def _record(conn, run_id, ticker):
+    ledger.record_opportunity(
+        conn, theory_id="stub_mech", theory_version=1, kalshi_ticker=ticker,
+        outcome="yes", entry_price=0.5, edge_pts_net=3.0, run_id=run_id,
+        confidence="strong", now=TS)
+
+
+def test_pooled_scores_exclude_experiment_runs(conn):
+    _record(conn, "live", "KXA-26")
+    _record(conn, "exp/wider-band", "KXB-26")
+    score.record_settlement(conn, "KXA-26", "yes", resolved_at=TS)
+    score.record_settlement(conn, "KXB-26", "no", resolved_at=TS)
+
+    pooled = score.compute_score(conn, "stub_mech", 1)
+    assert pooled["n"] == 1                    # the experiment's loss is
+    assert pooled["win_rate"] == 1.0           # invisible to the pool...
+
+    exp = score.compute_score(conn, "stub_mech", 1, run_id="exp/wider-band")
+    assert exp["n"] == 1                       # ...but fully scoreable
+    assert exp["win_rate"] == 0.0
+
+
+def test_pooled_bucket_rates_exclude_experiment_runs(conn):
+    _record(conn, "live", "KXA-26")
+    _record(conn, "exp/wider-band", "KXB-26")
+    score.record_settlement(conn, "KXA-26", "yes", resolved_at=TS)
+    score.record_settlement(conn, "KXB-26", "no", resolved_at=TS)
+
+    pooled = score.bucket_rates(conn, "stub_mech", 1)
+    assert pooled["strong"]["n"] == 1          # an experiment teaches no
+    assert pooled["strong"]["win_rate"] == 1.0  # production bucket its rate
+
+    exp = score.bucket_rates(conn, "stub_mech", 1, run_id="exp/wider-band")
+    assert exp["strong"]["n"] == 1
+
+
+def test_a_subclass_variant_is_all_an_experiment_takes(conn):
+    class WiderBand(Mechanical):
+        """The whole experiment: one overridden method. Same id, same
+        version, no registration -- the exp/ run id is the isolation."""
+
+        def screen(self, ctx):
+            return [Candidate(legs=(Leg(market=m, side="yes",
+                                        price=m.yes_ask),),
+                              days_to_close=1.0)
+                    for m in ctx.board if (m.yes_ask or 1.0) <= 0.9]
+
+    board = [mkm("KXV-26", yes_ask=0.7, event="KXV")]
+    # The parent's own screen (threshold 0.5) would skip this market:
+    assert Mechanical().screen(
+        TheoryContext(conn=None, board=board, now=NOW)) == []
+
+    ctx = TheoryContext.build(conn=conn, board=board, now=NOW,
+                              run_id="exp/wider-band")
+    result = WiderBand().start(ctx).finish()
+    assert len(result.opportunity_ids) == 1
+    row = ledger.get_opportunity(conn, result.opportunity_ids[0])
+    assert row["theory_id"] == "stub_mech"     # records under the parent
+    assert row["theory_version"] == 1          # no bump
+    assert row["run_id"] == "exp/wider-band"
+
+    score.record_settlement(conn, "KXV-26", "yes", resolved_at=TS)
+    assert score.compute_score(conn, "stub_mech", 1)["n"] == 0      # pooled: blind
+    assert score.compute_score(conn, "stub_mech", 1,
+                               run_id="exp/wider-band")["n"] == 1   # on demand
+```
+
+Run: `python -m pytest tests/test_experiment_lane.py -q`
+Expected: the two exclusion tests FAIL (pooled `n` comes back 2, not 1) — today pooled scoring sees every run. The variant test may already pass; that is fine — it documents the zero-ceremony path.
+
+- [ ] **Step 2: Implement the exclusion**
+
+In `tools/ledger.py`, after `LIVE_RUN_ID`:
+
+```python
+#: Run ids opening with this prefix are EXPERIMENTS (OOP spec section
+#: 3.3a): real forward-test recordings made to try a variant of a theory
+#: -- usually a subclass with one method overridden -- without bumping its
+#: version. Pooled scoring and pooled bucket rates exclude them, so an
+#: experiment can never contaminate the track record it will be compared
+#: against. Score one explicitly with run_id="exp/<slug>".
+EXPERIMENT_RUN_PREFIX = "exp/"
+```
+
+In `tools/score.py`, add `from tools.ledger import EXPERIMENT_RUN_PREFIX` (no cycle: `ledger` does not import `score`) and change `_segment_filter`'s run-id branch to:
+
+```python
+    if run_id is not None:
+        sql += " AND o.run_id = ?"
+        params.append(run_id)
+    else:
+        # Pooled scoring never sees experiments (OOP spec section 3.3a):
+        # a variant being tried must not contaminate the record it will
+        # be judged against.
+        sql += " AND o.run_id NOT LIKE ?"
+        params.append(EXPERIMENT_RUN_PREFIX + "%")
+    return sql, params
+```
+
+and apply the identical `else` branch to `bucket_rates`' own `if run_id is not None:` block. (If the multi-leg refactor landed without `_segment_filter`, put the same `NOT LIKE` clause wherever the shared pooled-WHERE is built — the tests above are the arbiter, not the function name.)
+
+Run: `python -m pytest tests/test_experiment_lane.py tests/test_score.py tests/test_baskets.py tests/test_score_characterization.py -q`
+Expected: all PASS — no existing run_id starts with `exp/`, so every pre-existing pooled number is bit-identical.
+
+- [ ] **Step 3: Write the parallel-writes test**
 
 Create `tests/test_parallel_writes.py`:
 
@@ -2963,7 +3100,7 @@ def test_concurrent_connections_each_writing_their_own_theory_all_commit(tmp_pat
     check.close()
 ```
 
-- [ ] **Step 2: Write the blind-leak test (spec §8.3)**
+- [ ] **Step 4: Write the blind-leak test (spec §8.3)**
 
 Append to `tests/theories/test_insider_judgment_theory.py`:
 
@@ -2984,7 +3121,7 @@ def test_naively_serializing_a_candidate_trips_assert_blind():
         pipeline.assert_blind([asdict(cand)])
 ```
 
-- [ ] **Step 3: Write the backlog-fit stubs (spec §7, criteria 17–19)**
+- [ ] **Step 5: Write the backlog-fit stubs (spec §7, criteria 20–22)**
 
 Create `tests/test_backlog_fit.py`:
 
@@ -3148,9 +3285,9 @@ def test_a_non_board_theory_ignores_ctx_board_entirely():
     assert result.funnel["scored"] == 1
 ```
 
-- [ ] **Step 4: Run the new tests, then everything**
+- [ ] **Step 6: Run the new tests, then everything**
 
-Run: `python -m pytest tests/test_parallel_writes.py tests/test_backlog_fit.py tests/theories/test_insider_judgment_theory.py -q`
+Run: `python -m pytest tests/test_experiment_lane.py tests/test_parallel_writes.py tests/test_backlog_fit.py tests/theories/test_insider_judgment_theory.py -q`
 Expected: PASS.
 
 Run: `python -m pytest -m "not network" -q`
@@ -3172,11 +3309,11 @@ print('mf candidates:', len(r2.candidates), 'needs_judgment:', r2.needs_judgment
 
 Expected: both counts print, `ij` needs judgment, `mf` does not, no cross-talk.
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 7: Commit**
 
 ```bash
-git add tests/test_parallel_writes.py tests/test_backlog_fit.py tests/theories/test_insider_judgment_theory.py
-git commit -m "test: parallel writes, blind-leak guard, and the four backlog shapes"
+git add tools/ledger.py tools/score.py tests/test_experiment_lane.py tests/test_parallel_writes.py tests/test_backlog_fit.py tests/theories/test_insider_judgment_theory.py
+git commit -m "feat: exp/ experiment lane; parallel-write, blind-leak, and backlog proofs"
 ```
 
 ---
@@ -3223,6 +3360,10 @@ Add to the Conventions list:
 - **`Theory` is for things that produce bets.** A study produces theories
   (mark its folder with `STUDY.md`; discovery skips it); an execution
   policy decorates candidates. Neither is a `Theory` subclass.
+- **`exp/` run ids are experiments.** Pooled `compute_score` and
+  `bucket_rates` exclude them; score one explicitly by passing its
+  `run_id`. This is what makes variant-testing free — a subclass and a
+  run id, no version bump, no registration (see CLAUDE.md).
 ```
 
 Add rows to the tool map table:
@@ -3263,6 +3404,19 @@ yours to arrange.
 - The contract is a **floor, not a ceiling**: `screen()` and `price()` are
   required, and a theory may add anything else it needs — its own methods,
   its own data sources, its own module layout.
+- **Experimenting on a theory is built in.** Subclass it, override the
+  one thing you are testing, run with `run_id="exp/<slug>"`. No version
+  bump, no registration. Experiment rows record and settle for real, but
+  pooled scores and bucket rates exclude `exp/` runs — the track record
+  cannot be contaminated, so trying ideas is free. Score one with
+  `compute_score(..., run_id="exp/<slug>")`; promote a winner via a
+  version bump or a proposed sibling theory, citing the experiment as
+  the evidence.
+- **You are the operator, not a step in the pipeline.** A `TheoryRun` is
+  glass-box — `run.candidates`, `run.payload`, `run.verdicts` are plain
+  attributes, and `screen()`, `judgment_payload()`, and `price()` are
+  callable individually. The contract composes conveniences; the only
+  wall is the ledger.
 - **Facts are data, not procedure** — adding a confirmed pair to
   `theory_facts` does not bump a version; changing how facts are derived
   does.
@@ -3363,7 +3517,7 @@ class <Name>Theory(Theory):
 THEORY = <Name>Theory()
 ```
 
-and say plainly: **only `screen()` and `price()` are required**; register the DB row with a version matching the ClassVar or `check_drift` will fail the conventions test.
+and say plainly: **only `screen()` and `price()` are required**; register the DB row with a version matching the ClassVar or `check_drift` will fail the conventions test. Add one more instruction: **when the idea is a tweak of an existing theory rather than a new thesis, start it as an `exp/` variant run on a subclass** (spec §3.3a) — it produces settling evidence with zero ceremony, and that evidence travels with the eventual promotion.
 
 - [ ] **Step 6: Audit `go` and `backtest-theory`**
 
@@ -3865,7 +4019,7 @@ for t in registry.running(c):
 grep -n "^class " tools/sizing.py tools/buckets.py tools/rank.py tools/db.py tools/cli.py
 # expected: no output
 
-# 13-14. Researcher freedom: plain functions still work, CLI answers alone
+# 14-15. Researcher freedom: plain functions still work, CLI answers alone
 python -c "
 from tests.characterization import conftest as cz
 from theories.insider_bias import screen
@@ -3874,7 +4028,7 @@ print('standalone screen:', len(screen.screen(cz.board_input(),
 "
 ```
 
-Criteria 11–12 and 17–19 are `tests/test_stub_theory.py`, `tests/test_backlog_fit.py`, and `tests/test_theory_facts.py`, already green in step 3. Criterion 9 (docs no longer contradict code) was Task 11; spot-check: `grep -rn "no base class" tools/README.md` returns only the leaf-tools phrasing.
+Criteria 11–13, 18–19, and 20–22 are `tests/test_stub_theory.py`, `tests/test_conventions.py` (the `Verdict` numeric ban), `tests/test_experiment_lane.py` (experiments free by construction; glass-box run state), `tests/test_backlog_fit.py`, and `tests/test_theory_facts.py`, already green in step 3. Criterion 9 (docs no longer contradict code) was Task 11; spot-check: `grep -rn "no base class" tools/README.md` returns only the leaf-tools phrasing.
 
 - [ ] **Step 5: Close the record**
 
@@ -3901,6 +4055,7 @@ git commit -m "refactor: delete the migration shim; theory-layer OOP complete"
 - [ ] No new class in `sizing`/`buckets`/`rank`/`db`/`cli`; theory #3 needs only `screen()`+`price()` (stub-proven); a ctx-ignoring stub runs (floor, not cage).
 - [ ] Every tool callable standalone; "just asking" still needs only `python -m tools.cli`; ad-hoc exploration unpenalised; the ledger boundary holds on every path.
 - [ ] All four backlog shapes run as stubs; facts round-trip without version bumps and carry `construction` provenance; studies and execution policies are documented as not-a-`Theory`.
+- [ ] Experimenting is free by construction: a one-method subclass variant records under an `exp/` run_id with no version bump or registration, and pooled scores and bucket rates are provably blind to its rows (`tests/test_experiment_lane.py`, spec §3.3a).
 - [ ] `Verdict` has no numeric field — enforced by `tests/test_conventions.py`, stated in `CLAUDE.md`.
 
 ## Open questions carried from the spec
