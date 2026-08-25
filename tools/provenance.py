@@ -40,7 +40,12 @@ from pathlib import Path
 
 from tools.db import REPO_ROOT, utcnow, write
 
-VALID_STAGES = ("gate", "analysis", "final_review", "other")
+#: `construction` is judgment that established a durable `theory_facts`
+#: row -- a confirmed market pairing, an implication edge -- rather than a
+#: per-run verdict. Theories whose only LLM ran at match time declare
+#: `uses_llm_judgment=False` (correctly: the per-trade path is arithmetic),
+#: so nothing else would ever record what built their fact store.
+VALID_STAGES = ("gate", "analysis", "final_review", "construction", "other")
 
 
 def prompt_sha(text: str) -> str:

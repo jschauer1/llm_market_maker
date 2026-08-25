@@ -65,6 +65,7 @@ def init_db(conn: sqlite3.Connection) -> None:
     with write(conn):
         conn.executescript(SCHEMA_PATH.read_text(encoding="utf-8"))
     _migrate_theories(conn)
+    _migrate_judgment_runs(conn)
     _add_column_if_missing(
         conn, "theories", "uses_llm_judgment", "INTEGER NOT NULL DEFAULT 0"
     )
@@ -111,6 +112,64 @@ def _dedupe_snapshots(conn: sqlite3.Connection) -> None:
         )
         # Same three columns as the unique index the schema creates next.
         conn.execute("DROP INDEX IF EXISTS idx_snapshots_market")
+
+
+def _migrate_judgment_runs(conn: sqlite3.Connection) -> None:
+    """Widen an old `judgment_runs` stage CHECK to accept 'construction'.
+
+    Databases created before construction-stage provenance existed carry
+    the old four-value CHECK baked into their DDL, and
+    `CREATE TABLE IF NOT EXISTS` will not touch an existing table. SQLite
+    cannot alter a CHECK in place, so the table is rebuilt exactly as
+    `_migrate_theories` rebuilds theories. Rows carry over unchanged --
+    every legacy stage is still valid under the new set.
+
+    The UNIQUE constraint lives inside the table DDL and comes across with
+    it; the separate index does not, because dropping the renamed table
+    takes it along, so it is recreated here.
+    """
+    row = conn.execute(
+        "SELECT sql FROM sqlite_master WHERE type='table'"
+        " AND name='judgment_runs'"
+    ).fetchone()
+    if row is None or "construction" in (row[0] or ""):
+        return
+
+    ddl = schema_statement("judgment_runs")
+    conn.commit()
+    conn.execute("PRAGMA foreign_keys = OFF")
+    conn.execute("PRAGMA legacy_alter_table = ON")
+    try:
+        conn.execute("BEGIN")
+        try:
+            conn.execute(
+                "ALTER TABLE judgment_runs RENAME TO judgment_runs_legacy"
+            )
+            conn.execute(ddl)
+            conn.execute(
+                """
+                INSERT INTO judgment_runs
+                    (id, run_id, theory_id, theory_version, stage, model,
+                     effort, prompt_path, prompt_sha256, prompt_text,
+                     web_search, n_items, notes, created_at)
+                SELECT id, run_id, theory_id, theory_version, stage, model,
+                       effort, prompt_path, prompt_sha256, prompt_text,
+                       web_search, n_items, notes, created_at
+                FROM judgment_runs_legacy
+                """
+            )
+            conn.execute("DROP TABLE judgment_runs_legacy")
+            conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_judgment_runs_run"
+                " ON judgment_runs (theory_id, theory_version, run_id)"
+            )
+            conn.commit()
+        except BaseException:
+            conn.rollback()
+            raise
+    finally:
+        conn.execute("PRAGMA legacy_alter_table = OFF")
+        conn.execute("PRAGMA foreign_keys = ON")
 
 
 def _add_column_if_missing(

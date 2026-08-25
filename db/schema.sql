@@ -204,8 +204,16 @@ CREATE TABLE IF NOT EXISTS judgment_runs (
     run_id         TEXT NOT NULL,
     theory_id      TEXT NOT NULL REFERENCES theories(id),
     theory_version INTEGER NOT NULL,
+    -- 'construction' is judgment that established a durable theory_fact --
+    -- a confirmed market pairing, an implication edge -- rather than a
+    -- per-run verdict. A theory whose only model ran at construction time
+    -- has no model in its per-trade decision path and still backtests at
+    -- tier A, but the judgment that built its fact store must stay
+    -- recoverable, so it is recorded here and pointed at by
+    -- theory_facts.provenance_id.
     stage          TEXT NOT NULL
-                   CHECK (stage IN ('gate','analysis','final_review','other')),
+                   CHECK (stage IN ('gate','analysis','final_review',
+                                    'construction','other')),
     model          TEXT NOT NULL,
     effort         TEXT,
     prompt_path    TEXT,
@@ -221,3 +229,28 @@ CREATE TABLE IF NOT EXISTS judgment_runs (
 
 CREATE INDEX IF NOT EXISTS idx_judgment_runs_run
     ON judgment_runs (theory_id, theory_version, run_id);
+
+-- Durable per-theory facts: confirmed market pairings, implication edges,
+-- per-wallet scores -- things a theory establishes once and reuses on
+-- every run. One shared table rather than five theories inventing five
+-- schemas.
+--
+-- FACTS ARE DATA, NOT PROCEDURE. Adding a confirmed pair does NOT bump the
+-- theory's version; changing how facts are *derived* (the matching prompt,
+-- the confirmation threshold, the scoring formula) does. Versioning
+-- protects the decision procedure, not the evidence it has accumulated --
+-- without that rule written down, a pair store orphans its own track
+-- record every time a pair is added.
+--
+-- provenance_id records the construction-stage judgment that established a
+-- model-proposed fact, keyed to the fact rather than to a run.
+CREATE TABLE IF NOT EXISTS theory_facts (
+    theory_id      TEXT NOT NULL REFERENCES theories(id),
+    kind           TEXT NOT NULL,      -- 'market_pair', 'implication', ...
+    key            TEXT NOT NULL,
+    value_json     TEXT NOT NULL,
+    evidence_json  TEXT,
+    established_at TEXT NOT NULL,
+    provenance_id  INTEGER REFERENCES judgment_runs(id),
+    PRIMARY KEY (theory_id, kind, key)
+);
