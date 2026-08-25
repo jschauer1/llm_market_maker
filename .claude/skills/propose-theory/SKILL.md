@@ -56,7 +56,7 @@ it can carry real evidence immediately rather than waiting out tier B's thin
 post-cutoff window. Prefer it whenever the thesis allows.
 
 Reach for LLM judgment when the thesis genuinely needs reading comprehension or
-context that no threshold captures — as `insider_bias` does, since "would a
+context that no threshold captures — as `insider_judgment` does, since "would a
 specific group already know this?" is not a number.
 
 If you do need stage 2: push as much as possible into stage 1 — code is

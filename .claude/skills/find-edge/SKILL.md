@@ -29,7 +29,7 @@ whether it was broken or just unlucky.
 Show each theory's status and standing alongside its picks, so a `testing`
 theory's candidates are never read as a demonstrated edge.
 
-Honor a user scope override ("just insider_bias", "all theories").
+Honor a user scope override ("just insider_judgment", "all theories").
 
 ## 2. Run each theory's stage 1
 
@@ -201,10 +201,10 @@ them apart:
 **Unassessed remainder** — candidates from a judgment theory that you did not
 reach within the scan budget. A count, plus the top few ordered by whatever
 the theory's stage 1 provides (a screen edge, if it computes one). Some
-theories — `insider_bias` deliberately among them — produce no screen edge at
-all; when a theory provides no ordering, fall back to an unordered list rather
-than implying a ranking that does not exist. A mechanical theory never has an
-unassessed remainder.
+theories — `insider_judgment` deliberately among them — produce no screen
+edge at all; when a theory provides no ordering, fall back to an unordered
+list rather than implying a ranking that does not exist. A mechanical
+theory never has an unassessed remainder.
 
 Always show claimed edge next to ranked edge, and always show the edge basis.
 `prior` means the number is a placeholder nobody has measured yet; `measured`

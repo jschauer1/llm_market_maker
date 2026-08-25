@@ -21,6 +21,18 @@ is why the 44 v2 live rows stay their own comparable cohort rather than
 needing a re-run, and why the version number stayed at 3 rather than
 reverting.
 
+**There are zero rows recorded at v3, and that is expected, not a gap to
+fill.** The 44 live rows in the ledger (`run_id=live-2026-08-23`, 3
+endorsed / 41 rejected) are recorded at `theory_version=2` — they travelled
+through v2's exact procedure, which is what actually ran that day. They
+stay at v2 rather than being relabeled v3, because v2 is what produced
+them; v3 exists as a version *number* (marking the mention-family
+discovery point and the parent-folder rename) without this theory's own
+procedure ever having changed since v2. The next live run of this theory's
+stages 1–6 will be the first one legitimately recorded at v3 — and since
+the procedure is unchanged, it should be directly comparable to the v2
+rows, not treated as a break in the cohort.
+
 ## The LLM-judged path (v1–v2, stages 1–6)
 
 | # | stage | who decides | artifact | recorded as |
