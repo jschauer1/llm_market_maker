@@ -9,6 +9,7 @@ theory's calibration_edge_net.
 import pytest
 
 from tools import db, ledger, score, theories
+from tools.sizing import fee_pts
 
 TS = "2026-08-23T12:00:00Z"
 
@@ -47,13 +48,15 @@ def test_four_settled_singles_produce_exact_numbers(conn):
     assert r["price_implied_rate"] == pytest.approx(0.50)
     assert r["calibration_edge"] == pytest.approx(25.0)
     assert r["mean_claimed_edge"] == pytest.approx(6.0)
-    # Fees and the net edge come from tools.sizing.fee_pts; assert the
-    # relationship rather than a hardcoded constant so the fee model stays
-    # the single source of truth.
-    assert r["calibration_edge_net"] == pytest.approx(
-        r["calibration_edge"] - r["mean_fee_pts"]
-    )
-    assert r["mean_fee_pts"] > 0
+    # mean_fee_pts is pinned to a hand-derived expression, not restated from
+    # the implementation: tools.sizing.fee_pts stays the single source of
+    # truth for the per-price fee model, but the aggregation over it -- the
+    # denominator and the per-row application -- is exactly what this test
+    # must lock, since a mixed single-leg/basket sample averaging over the
+    # wrong denominator would otherwise slip through unnoticed.
+    expected_mean_fee = (fee_pts(0.50) * 2 + fee_pts(0.80) + fee_pts(0.20)) / 4
+    assert r["mean_fee_pts"] == pytest.approx(expected_mean_fee)
+    assert r["calibration_edge_net"] == pytest.approx(25.0 - expected_mean_fee)
 
 
 def test_roi_all_uses_cost_including_fees(conn):

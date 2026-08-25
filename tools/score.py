@@ -153,14 +153,29 @@ def _aggregate(rows: list[dict]) -> dict:
         return dict(EMPTY_SCORE)
 
     n = len(rows)
-    wins = sum(1 for r in rows if r["won"])
-    total_cost = sum(r["cost"] for r in rows)
-    total_return = sum(r["payout"] for r in rows)
-    total_fee_pts = sum(r["fee_pts"] for r in rows)
-
-    taken = [r for r in rows if r["user_action"] == "taken"]
-    taken_cost = sum(r["cost"] for r in taken)
-    taken_return = sum(r["payout"] for r in taken)
+    # Deliberately a hand-rolled loop, not sum(): CPython >=3.12 gives
+    # sum() Neumaier compensated summation while += stays naive (gh-100425),
+    # so the two accumulation styles round differently in the last bit on
+    # different interpreter versions. This function's contract is exact
+    # arithmetic equivalence with the pre-refactor implementation -- which
+    # used a loop -- so it keeps the loop rather than "modernizing" it.
+    wins = 0
+    total_cost = 0.0
+    total_return = 0.0
+    total_fee_pts = 0.0
+    taken_cost = 0.0
+    taken_return = 0.0
+    has_taken = False
+    for r in rows:
+        if r["won"]:
+            wins += 1
+        total_cost += r["cost"]
+        total_return += r["payout"]
+        total_fee_pts += r["fee_pts"]
+        if r["user_action"] == "taken":
+            has_taken = True
+            taken_cost += r["cost"]
+            taken_return += r["payout"]
 
     win_rate = wins / n
     price_implied_rate = sum(r["implied_rate"] for r in rows) / n
@@ -174,7 +189,7 @@ def _aggregate(rows: list[dict]) -> dict:
     roi_all = (total_return - total_cost) / total_cost if total_cost else None
     roi_taken = (
         (taken_return - taken_cost) / taken_cost
-        if taken and taken_cost
+        if has_taken and taken_cost
         else None
     )
 
