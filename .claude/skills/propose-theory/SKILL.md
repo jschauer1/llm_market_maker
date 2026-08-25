@@ -108,10 +108,13 @@ THEORY = <Name>Theory()
 
 Only `screen()` and `price()` are required — everything else on `Theory` has
 a default. Register the DB row with a `version` matching the class's
-`version` ClassVar, or `registry.check_drift` will fail the conventions test
-that runs it. Write any stage-1 code in the theory folder, with tests.
-Theory-local code stays local until it earns promotion — see
-`tools/README.md`.
+`version` ClassVar. `tests/test_conventions.py::test_the_real_registry_has_no_drift`
+runs `registry.check_drift` against the real database on every suite run and
+fails if the two disagree — on version, or on `uses_llm_judgment` — so a
+class bumped without its DB row (or vice versa) is caught immediately rather
+than silently merging two different procedures under one theory id. Write
+any stage-1 code in the theory folder, with tests. Theory-local code stays
+local until it earns promotion — see `tools/README.md`.
 
 **When the idea is a tweak of an existing theory rather than a new thesis**,
 skip this whole scaffold and start it as an `exp/` variant instead: subclass

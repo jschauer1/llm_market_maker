@@ -249,9 +249,12 @@ them apart:
 - **Researched picks** — a judgment theory's candidates that you endorsed at
   stage 2 (`disposition='endorsed'`, `edge_basis` `measured` or `prior`).
 - **Mechanical picks** — a code-only theory's candidates
-  (`edge_basis='model'`). These stay at `disposition='screened'` because
-  nothing interpreted them, which here means *needed no interpretation*, not
-  *not yet assessed*. They are recommendable as-is. Do **not** run
+  (`uses_llm_judgment = False`). `edge_basis` is `model` for a pure
+  calculation (e.g. arbitrage) or `measured` when the theory mechanically
+  applies a backtested bucket rate (`mention_family`) — never a judge's
+  call either way. These stay at `disposition='screened'` because nothing
+  interpreted them, which here means *needed no interpretation*, not *not
+  yet assessed*. They are recommendable as-is. Do **not** run
   `ledger.interpret(..., "endorsed", ...)` on them just to make them look
   endorsed — that would pollute the endorsed-vs-rejected control group
   `score.interpretation_value` uses to measure stage-2 judgment.
