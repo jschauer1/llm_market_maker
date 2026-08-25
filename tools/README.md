@@ -1,8 +1,15 @@
 # Tools
 
-Small, single-purpose scripts. Not a framework — there is no base class to
-learn and no plugin registry. Read one tool end to end and you know how to
-write the next one.
+Small, single-purpose scripts, plus one deliberate exception. Leaf tools
+are plain functions — read one end to end and you know how to write the
+next one, and there is still no framework to learn at that layer. The
+**theory layer** (`domain.py`, `theory.py`, `registry.py`) has a base
+class, because this file's own promotion criterion — more than one real
+caller — was met: two theories with unrelated entry points, and twenty-two
+more specced. A theory inherits *what to do* (`start`, `finish`) and is
+handed *what it may touch* (`TheoryContext`); everything below that
+boundary stays plain functions, and every tool remains directly callable
+without the contract.
 
 ## Conventions
 
@@ -40,6 +47,26 @@ write the next one.
   enough settled history to measure). There is deliberately no basis meaning
   "an LLM felt it was about right." Any new tool that produces an edge
   number must say which of the three it is.
+- **Any code that fetches external data takes `fetch: Fetch | None = None`**
+  (resolved to `http.get_json` at call time). One parameter makes a theory
+  testable against a canned payload with no network and no monkeypatch —
+  the same discipline as injectable `now`, applied to transports.
+- **Facts are data, not procedure.** A theory's durable facts live in
+  `theory_facts`; adding one (a confirmed pair, an implication edge) never
+  bumps its version. Changing how facts are *derived* does. A
+  model-established fact carries `construction`-stage provenance.
+- **`Theory` is for things that produce bets.** A study produces theories
+  (mark its folder with `STUDY.md`; discovery skips it); an execution
+  policy decorates candidates. Neither is a `Theory` subclass.
+- **`exp/` run ids are experiments.** Pooled `compute_score` and
+  `bucket_rates` exclude them; score one explicitly by passing its
+  `run_id`. This is what makes variant-testing free — a subclass and a
+  run id, no version bump, no registration (see CLAUDE.md).
+- **A basket must currently pay all-or-nothing to be *scored*.** Any
+  `Candidate` shape records fine, but `score._basket_observations` raises
+  on a settled basket paying strictly between `0` and `max_payout`,
+  pending the decision in the multi-leg spec's section 10.1. Build a
+  variable-payout basket theory only after that lands.
 
 ## Writing a new tool
 
@@ -79,6 +106,9 @@ narrow context, then promote it once there is evidence it belongs.
 |---|---|
 | `cli.py` | Unified command line over everything below |
 | `db.py` | Connection, schema, UTC timestamps |
+| `domain.py` | Frozen value types: `Market`, `Candidate`, `Verdict`, `Edge`, `ScanResult` |
+| `theory.py` | The theory contract: `Theory`, `TheoryRun`, `TheoryContext` |
+| `registry.py` | Discovery; drift check between code and the DB registry |
 | `theories.py` | Theory registry, evidence-level status, versioning, retirement proposals |
 | `ideas.py` | Research memory — every hypothesis considered, and why it died |
 | `ledger.py` | `record_opportunity`, `record_basket`, interpretation, user actions |

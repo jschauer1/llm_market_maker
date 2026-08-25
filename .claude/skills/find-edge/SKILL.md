@@ -31,23 +31,38 @@ theory's candidates are never read as a demonstrated edge.
 
 Honor a user scope override ("just insider_judgment", "all theories").
 
-## 2. Run each theory's stage 1
+## 2. Run every theory through the contract
 
-Open the theory's `THEORY.md` and follow its **Stage 1 — mechanical screen**
-section. Get the board through the shared getter, which reuses the pull
-`go`'s Orient already made rather than re-walking the feed:
+No `THEORY.md` reading is needed to run stage 1. The parent session pulls
+the board once, then runs mechanical theories inline and dispatches one
+subagent per judgment theory:
 
 ```python
-from tools import board as board_tool, db
+from datetime import datetime, timezone
+
+from tools import board as board_tool, db, registry
+from tools.theory import TheoryContext
+
 conn = db.connect(); db.init_db(conn)
-board = board_tool.get_board(conn)      # cached if fresh, fetches if not
+board = board_tool.get_board(conn)          # cached if fresh; go's Orient
+                                            # makes the one force=True pull
+ctx = TheoryContext.build(conn=conn, board=board,
+                          now=datetime.now(timezone.utc), run_id="live")
+
+results = []
+for theory in registry.running(conn):
+    if theory.uses_llm_judgment:
+        dispatch(theory.id)                 # subagent; see the model below
+    else:
+        results.append(theory.start(ctx).finish())   # inline, no model
 ```
 
-**Do not pass `force=True`** and do not call `markets.list_open()` directly.
-One session makes one pull, shared by every theory; `get_board` is what makes
-that true rather than aspirational. If you need current prices for a handful
-of tickers right before recommending a bet, re-quote just those with
-`markets.quotes(tickers)` — far cheaper than any board pull.
+**Do not pass `force=True`** to `get_board` and do not call
+`markets.list_open()` directly. One session makes one pull, shared by every
+theory; `get_board` is what makes that true rather than aspirational. If you
+need current prices for a handful of tickers right before recommending a
+bet, re-quote just those with `markets.quotes(tickers)` — far cheaper than
+any board pull.
 
 The underlying walk takes no cap and always pages to exhaustion. Kalshi's
 `/events` feed is not sorted by close time, so anything less than the
@@ -55,6 +70,38 @@ complete board is a biased slice that can silently exclude almost every
 near-term market. A full walk is ~100k markets in about 13 seconds, and
 `get_board` snapshots it automatically — you never need to call
 `snapshot.save_kalshi` yourself.
+
+**Dispatch model.** The unit dispatched is a theory id, not a payload. The
+subagent instructions MUST state: the board is already pulled — call
+`get_board(conn)` **without** `force`; open your own `db.connect()`; build
+your context with `TheoryContext.build(..., judge_model="<the exact model
+you are>")`, because `finish()` stamps provenance with the judging model,
+not the parent's. Inside the subagent:
+
+```python
+from datetime import datetime, timezone
+
+from tools import board as board_tool, db, registry
+from tools.theory import TheoryContext
+
+conn = db.connect()
+ctx = TheoryContext.build(conn=conn, board=board_tool.get_board(conn),
+                          now=datetime.now(timezone.utc), run_id="live",
+                          judge_model="<the exact model you are>")
+theory = registry.discover()["<id>"]
+run = theory.start(ctx)                # cache hit: no second board pull
+# Judge run.payload against theory.prompts, then build
+# {Candidate.key: Verdict(bucket=..., rationale=...)} — a bucket from the
+# theory's declared scale plus a rationale. Never a probability; a Verdict
+# has no numeric field to put one in.
+result = run.apply(verdicts).finish()  # price + provenance + ledger
+```
+
+The subagent's durable output is the ledger rows; its final message is a
+compact summary of the ScanResult. Read the rows back with
+`ledger.list_opportunities(run_id=...)` rather than trusting the prose.
+Final cross-theory selection stays with the parent — credibility ranking
+compares theories against each other, which no single-theory agent can do.
 
 ## 3. Filter for executability
 
@@ -71,15 +118,20 @@ markets; a portfolio of correlated bets is not diversified.
 
 ## 5. Research the top candidates (stage 2)
 
-**First check whether this theory has a stage 2 at all.** A theory that
-computes its edge mechanically — arbitrage, base rates, order-book structure,
-cross-platform divergence — has an empty Stage 2 section and records
-`edge_basis="model"`. For those, there is nothing to research: its candidates
-arrive with an edge already attached, and you skip straight to ranking (§6).
-That is not a degenerate case, it is the preferred one — such theories are
-cheaper, reproducible, and backtest at tier A.
+**First check whether this theory has a stage 2 at all.** The discriminator
+is `theory.uses_llm_judgment` — a `ClassVar`, drift-checked against the DB
+by `registry.check_drift` rather than self-reported. A mechanical theory
+(`uses_llm_judgment = False`) already ran inline in step 2 —
+`theory.start(ctx).finish()` — so its candidates arrive **scored and
+already recorded**. `edge_basis` is `model` for a pure calculation (e.g.
+arbitrage) or `measured` when it mechanically applies a backtested bucket
+rate (`mention_family`); either way it was never a judge's call. There is
+nothing to research: skip straight to ranking (§6). That is not a
+degenerate case, it is the preferred one — such theories are cheaper,
+reproducible, and backtest at tier A.
 
-The rest of this section applies only when the theory's Stage 2 is non-empty.
+The rest of this section applies only to a theory with `uses_llm_judgment =
+True`, dispatched per §2's model.
 
 Within your scan budget, research the highest-ranked candidates by following
 the theory's **Stage 2** section.
@@ -92,18 +144,16 @@ where sibling strikes share a verdict. Then send only the survivors to a strong
 subagent with high reasoning effort for the real analysis. If the theory's
 `THEORY.md` names its own tiering, follow that instead.
 
-**Record what judged before you record any opportunity.** Load each stage's
-prompt from the theory's `prompts/` folder rather than composing one inline,
-and register it:
-
-```bash
-python -m tools.cli provenance record --theory <slug> --version <n>     --run <run_id> --stage analysis --model <exact model id>     --prompt-path theories/<slug>/prompts/analysis.md
-```
-
-For a theory that declares `uses_llm_judgment`, `record_opportunity` refuses
-rows for a run with no provenance, so this is not optional — and it is what
-makes an edge this scan finds reproducible rather than anecdotal. Record every
-stage that judged: `gate`, `analysis`, `final_review`.
+**Provenance is automatic through the contract.** `theory.prompts` maps each
+judging stage to a prompt file in the theory's `prompts/` folder; `run.apply
+(verdicts).finish()` records the model and prompt for every stage in that map
+before any row lands — the `# price + provenance + ledger` comment in §2 is
+literal. That is why the dispatched subagent must build its context with
+`judge_model="<the exact model you are>"`: `finish()` stamps provenance with
+`ctx.judge_model`, and for a theory that declares `uses_llm_judgment` it
+raises rather than write a row if that is unset. There is no separate manual
+`provenance record` call on this path — it is what makes an edge this scan
+finds reproducible rather than anecdotal, without you having to remember it.
 
 Batch within every tier — tens of candidates per call, never one subagent per
 candidate. The confidence bucket always comes from the deep stage; a gate
@@ -119,19 +169,27 @@ section 7.
 and resolution rules without the price; reveal it afterwards and compute edge
 mechanically. Record `judged_blind=True`.
 
-Convert the bucket to an edge using its measured track record, then record:
+Build a `Verdict` per candidate — a bucket from the theory's declared scale
+plus a rationale, never a number — and record through the contract:
 
 ```python
-from tools import buckets, ledger, score
-rates = score.bucket_rates(conn, theory_id, version)
-edge, basis = buckets.edge_for(bucket, entry_price, rates, theory_priors)
-opp_id, _ = ledger.record_opportunity(
-    conn, theory_id=..., theory_version=..., kalshi_ticker=...,
-    outcome=..., entry_price=..., edge_pts_net=edge, edge_basis=basis,
-    confidence=bucket, judged_blind=True, rationale=...,
-)
-ledger.interpret(conn, opp_id, "endorsed", "<your reasoning>")
+from tools import ledger
+from tools.domain import Verdict
+
+verdicts = {c.key: Verdict(bucket="strong", rationale="...") for c in ...}
+result = run.apply(verdicts).finish()   # theory.price() converts bucket ->
+                                         # Edge via the bucket's measured
+                                         # rate, then writes every row
+for opp_id in result.opportunity_ids:
+    ledger.interpret(conn, opp_id, "endorsed", "<your reasoning>")
 ```
+
+`theory.price()` attaches the `Edge` (mechanically, from the bucket's
+measured win rate — never from the judge) and `finish()` writes every scored
+candidate to the ledger. Disposition stays at the default `'screened'`
+unless `price()` set it, so — exactly as before the contract — the
+endorse/reject call is still yours to make afterward, now against
+`result.opportunity_ids` instead of a hand-captured `opp_id`.
 
 **Record rejections too.** They are the control group that measures whether
 your judgment is worth anything — and they are what teaches the lower buckets

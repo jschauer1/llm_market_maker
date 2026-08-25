@@ -111,6 +111,51 @@ judgment when the thesis needs it.
 makes them a free control group. That is the only way to find out whether your
 judgment adds edge, adds nothing, or destroys value.
 
+## The theory contract
+
+**The researcher is not bound by any of this.** Every tool stays directly
+callable, ad-hoc exploration is first-class, and "just asking" needs none
+of it — `python -m tools.cli` is still the front door for questions. The
+contract is optional for running and mandatory only for recording: when a
+finding lands in the ledger, provenance, an honest `edge_basis`, and a
+Kalshi ticker hold without exception. Everything upstream of `finish()` is
+yours to arrange.
+
+- A theory **inherits what to do** (`start`, `finish`) and **is handed
+  what it may touch** (`TheoryContext`). Never a toolbox base class —
+  `self.list_open()` on every theory would make the forbidden path the
+  most discoverable thing on the object.
+- `Theory` is stateless; per-run state lives on the `TheoryRun`.
+- Domain values are frozen dataclasses from `tools/domain.py`; bare dicts
+  are confined to the API and JSON boundaries.
+- `finish()` is never overridden — it is what makes the provenance and
+  ledger contract unskippable.
+- **A judge returns `Verdict`s — a bucket label and a rationale, never a
+  number.** The type has no numeric field on purpose; `tools/buckets.py`
+  turns labels into probabilities from measured rates.
+- The contract is a **floor, not a ceiling**: `screen()` and `price()` are
+  required, and a theory may add anything else it needs — its own methods,
+  its own data sources, its own module layout.
+- **Experimenting on a theory is built in.** Subclass it, override the
+  one thing you are testing, run with `run_id="exp/<slug>"`. No version
+  bump, no registration. Experiment rows record and settle for real, but
+  pooled scores and bucket rates exclude `exp/` runs — the track record
+  cannot be contaminated, so trying ideas is free. Score one with
+  `compute_score(..., run_id="exp/<slug>")`; promote a winner via a
+  version bump or a proposed sibling theory, citing the experiment as
+  the evidence.
+- **You are the operator, not a step in the pipeline.** A `TheoryRun` is
+  glass-box — `run.candidates`, `run.payload`, `run.verdicts` are plain
+  attributes, and `screen()`, `judgment_payload()`, and `price()` are
+  callable individually. The contract composes conveniences; the only
+  wall is the ledger.
+- **Facts are data, not procedure** — adding a confirmed pair to
+  `theory_facts` does not bump a version; changing how facts are derived
+  does.
+- **`Theory` is for things that produce bets.** A study produces theories
+  (`STUDY.md` marks its folder); an execution policy decorates candidates.
+- Any theory fetching external data takes `fetch: Fetch | None = None`.
+
 ## Never state a probability you introspected
 
 You are not a calibrated probability estimator. You cluster on round numbers,

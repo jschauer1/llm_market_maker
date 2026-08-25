@@ -80,21 +80,60 @@ python -m tools.cli theories register <slug> "<Name>" theories/<slug>
 python -m tools.cli ideas status <idea-slug> promoted --theory-id <slug>
 ```
 
-Fill in `THEORY.md` completely. Write any stage-1 code in the theory folder,
-with tests. Theory-local code stays local until it earns promotion — see
+Fill in `THEORY.md` completely. Then scaffold the `Theory` subclass every
+theory package must expose — this is the object `registry.discover()` finds
+and `find-edge` dispatches:
+
+```python
+# theories/<slug>/theory.py
+from tools.domain import Candidate, Edge, ScoredCandidate
+from tools.theory import Theory, TheoryContext
+
+
+class <Name>Theory(Theory):
+    id = "<slug>"
+    name = "<Name>"
+    version = 1
+    # uses_llm_judgment = True and prompts={...} only if a model judges
+
+    def screen(self, ctx: TheoryContext) -> list[Candidate]:
+        ...
+
+    def price(self, ctx, cands, verdicts=None) -> list[ScoredCandidate]:
+        ...
+
+# theories/<slug>/__init__.py
+THEORY = <Name>Theory()
+```
+
+Only `screen()` and `price()` are required — everything else on `Theory` has
+a default. Register the DB row with a `version` matching the class's
+`version` ClassVar, or `registry.check_drift` will fail the conventions test
+that runs it. Write any stage-1 code in the theory folder, with tests.
+Theory-local code stays local until it earns promotion — see
 `tools/README.md`.
 
+**When the idea is a tweak of an existing theory rather than a new thesis**,
+skip this whole scaffold and start it as an `exp/` variant instead: subclass
+the existing `Theory`, override the one thing you're testing, and run it
+with `run_id="exp/<slug>"`. No version bump, no registration — it produces
+real, settling evidence at zero ceremony, and that evidence travels with the
+eventual promotion (a version bump, or a proposed sibling theory citing the
+experiment).
+
 **If the theory uses LLM judgment**, write each judging prompt as a file in
-`theories/<slug>/prompts/` and declare it:
+`theories/<slug>/prompts/`, point the class's `prompts` ClassVar at them
+(`{"analysis": "theories/<slug>/prompts/analysis.md", ...}`), and declare it:
 
 ```python
 theories.set_uses_llm_judgment(conn, "<slug>", True)
 ```
 
-From then on `record_opportunity` refuses rows for a run whose model and
-prompt were never recorded. Prompts on disk are diffable, reviewable, and
-reproducible; a prompt living inside a tool call is a decision procedure
-nobody wrote down.
+From then on `finish()` refuses to write rows for a run whose model and
+prompt were never recorded — that check runs automatically as part of
+`run.apply(verdicts).finish()`, so there is nothing extra to call. Prompts
+on disk are diffable, reviewable, and reproducible; a prompt living inside a
+tool call is a decision procedure nobody wrote down.
 
 ## 6. Start at `proposed`, move to `testing` when it runs
 

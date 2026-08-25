@@ -9,7 +9,10 @@ description: Replay a theory against historical markets without lookahead bias, 
 
 Two facts decide it:
 
-1. Does the theory's decision path invoke LLM judgment? Read its `THEORY.md`.
+1. Does the theory's decision path invoke LLM judgment? Check
+   `theory.uses_llm_judgment` — a `ClassVar`, drift-checked against the DB
+   by `registry.check_drift`, so it cannot silently disagree with the
+   registry row. `THEORY.md` explains *why*; the class is the fact.
 2. Did the markets resolve before or after the judging model's knowledge
    cutoff?
 
@@ -33,8 +36,18 @@ also part of the decision path. Record the later of the two cutoffs as
 
 ## 2. Enforce the rules
 
+- **`TheoryContext(run_mode="backtest")` is what a replay keys on.** Build
+  the context once with `run_mode="backtest"` and a real `run_id` (not
+  `"live"`) — `TheoryContext.build(..., run_mode="backtest", run_id=...)` —
+  and it propagates everywhere that matters: `finish()` stamps every row it
+  writes with `ctx.run_mode` and `ctx.run_id` automatically, so replayed
+  rows stay separable from live ones with no per-candidate bookkeeping.
 - **Web search must be off** in any backtest judgment subagent, every tier.
-  Live search reveals historical outcomes trivially.
+  Live search reveals historical outcomes trivially. This is no longer only
+  a discipline: `run_mode="backtest"` makes `finish()` record
+  `web_search=False` for every judging stage by construction — a live run
+  records `None` (unknown) instead, because only a live run could honestly
+  have used it.
 - Use `tools/kalshi/history.py` `point_in_time` for market state. It never
   returns a candle after your `as_of_ts` — that property is the basis of a
   lookahead-free replay.
