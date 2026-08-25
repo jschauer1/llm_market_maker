@@ -25,6 +25,12 @@ write the next one.
 - **Prices are decimal dollars in [0, 1]. Edge is in percentage points.**
   Conversion happens at the API boundary; no provider's wire format escapes
   its client module.
+- **A position may have legs.** `record_opportunity` writes a single
+  position; `record_basket` writes a multi-leg one whose payoff is joint.
+  A basket's `entry_price` is its total cost and is bounded by `max_payout`,
+  not by 1.0. Scoring counts a basket once, and excludes it until every leg
+  has settled — recording an arbitrage as N independent bets makes a certain
+  payout read as a coin flip.
 - **No credentials.** Every endpoint this project uses is public. Never add
   an API key, and never send any user identifier in a header, URL, or body.
 - **Edge numbers carry a provenance tier.** Every edge is stamped with an
@@ -75,7 +81,7 @@ narrow context, then promote it once there is evidence it belongs.
 | `db.py` | Connection, schema, UTC timestamps |
 | `theories.py` | Theory registry, evidence-level status, versioning, retirement proposals |
 | `ideas.py` | Research memory — every hypothesis considered, and why it died |
-| `ledger.py` | `record_opportunity`, interpretation, user actions |
+| `ledger.py` | `record_opportunity`, `record_basket`, interpretation, user actions |
 | `score.py` | Settlements, calibration edge, ROI, interpretation value |
 | `rank.py` | Credibility-weighted ranking |
 | `buckets.py` | Confidence-bucket win rates → measured edge, not guessed |

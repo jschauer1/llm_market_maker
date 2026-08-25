@@ -346,6 +346,12 @@ no prompt. That is one more reason to prefer one.
 - Prices are decimal dollars in [0, 1]. Edge is in percentage points. Entry
   prices are the **ask** you would actually pay, never the mid. Timestamps are
   UTC ISO-8601.
+- **A basket is one position, not N bets.** Theories whose edge is a sum
+  over legs (`structural-arb`, `calendar-arb`, `implication-graph`) record
+  with `ledger.record_basket`, which writes one header plus its legs and is
+  scored as a single joint payoff. Execution risk across legs is *reported*
+  to the user, never modelled — present every leg with its own ask and tell
+  the user to verify all legs before entering.
 - **One board per session, shared by every theory.** Get it with
   `tools.board.get_board(conn)`, which returns the session's existing pull if
   it is fresh and fetches (and snapshots) if not. `go`'s Orient makes the one
