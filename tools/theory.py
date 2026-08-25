@@ -156,7 +156,17 @@ class TheoryRun:
                  screen_result: ScreenResult):
         self.theory = theory
         self.ctx = ctx
-        self.screen_result = screen_result
+        # A theory may hand back a cached or module-level ScreenResult (or
+        # reuse the same funnel/gate_removed dict across calls); this run
+        # must own its copies so a mutation here -- or a second start()
+        # against the same theory -- cannot be observed through the other.
+        # `candidates` is a tuple of frozen Candidate objects, so no copy
+        # is needed there; only the mutable dicts are re-wrapped.
+        self.screen_result = ScreenResult(
+            candidates=screen_result.candidates,
+            funnel=dict(screen_result.funnel),
+            gate_removed=dict(screen_result.gate_removed),
+        )
         self.candidates: list[Candidate] = list(screen_result.candidates)
         self.payload = theory.judgment_payload(self.candidates)
         self.verdicts: dict[str, Verdict] | None = None
