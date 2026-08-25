@@ -179,6 +179,35 @@ different ticker family.
 
 ## Learnings
 
+- 2026-08-25 — **Skeptical audit of the backtest edge (user-prompted):
+  the mechanics are clean, but the statistical case is much weaker than
+  the headline reads.** Full detail in RESEARCH_LOG.md (2026-08-25).
+  What was checked and came back clean: the replay has no lookahead
+  (entry at the daily candle's closing ask with eligibility evaluated at
+  that same timestamp; `no_ask = 1 - yes_bid` is exact on Kalshi's
+  complementary book), fees are included, event clustering is negligible
+  (113 distinct events across 116 rows), and sampled candle traces show
+  stable pre-event favorites, not post-news stale quotes. What did not
+  hold up: (1) tested against "the price was already fair," the bins are
+  individually weak — lt75 p=0.40, 75_85 p=0.17, 85plus p=0.026 — and
+  the pooled family is p=0.0395 gross, **p=0.070 after fees**, before
+  any correction for this family having been *selected* as the standout
+  slice of a 200-row backtest (115 series families in that run) with bin
+  boundaries then fit on the same rows. (2) The family is not
+  homogeneous: the positive edge is carried by World Cup sponsor-mention
+  markets (+8.3pts net, n=28 — tournament over), earnings-call mentions
+  (+6.1, n=38 — episodic), and a long tail of n=1 series (+12.7, n=24),
+  while the one persistent political sub-family (`KXTRUMPMENTION`/
+  `KXTRUMPSAY`/`KXTRUMPACT`) measured **-5.2pts net (n=26)**. (3) The
+  live preview slate (`...preview30-v2`) is 100% political-speech
+  series (TRUMPMENTION, WARSHMENTION, FEDMENTION, SECPRESSMENTION) —
+  the bootstrapped rates are being applied to precisely the
+  sub-population that measured negative. Practical upshot: do not treat
+  the bucket table as measured edge for political-speech candidates;
+  the 40 unsettled preview rows (none taken) are a free out-of-sample
+  test settling Aug 28–Sep 15, and any promotion should wait on them
+  plus a longer-window tier-A rerun with the sub-family split
+  pre-registered.
 - 2026-08-24 — **Split from `insider_bias` (renamed `insider_judgment`)
   v3.** See Origin, above, and `insider_judgment/THEORY.md` Learnings
   (2026-08-24 entries) for the full discovery history: the backtest that

@@ -749,3 +749,48 @@ returning leg 0, per tests/test_domain.py::
 test_basket_conveniences_raise_rather_than_guess. Criterion 2 and section
 10.1 of that spec -- how a variable-payout basket should be scored --
 remain open, unchanged, and are the user's call.
+
+## 2026-08-25 — mention_family edge audited on user suspicion: mechanics clean, inference weak, live slate mismatched
+
+**Did:** The user was suspicious of the mention_family edge, so this
+session audited it end to end rather than defending it. Checked the
+replay mechanics first: no lookahead found — `replay_market` enters at
+the daily candle's closing ask with `screen()` evaluated at that same
+timestamp, `no_ask = 1 - yes_bid_close` is exact on Kalshi's
+complementary book, fees are in `edge_pts_net`, and the +5.48pts
+headline re-derives from the rows exactly. Event clustering is a
+non-issue (113 distinct events in 116 rows, max 2 markets per event).
+Sampled candle traces around nine 85plus entries show stable pre-event
+favorites with real entry-day volume (e.g. 0.95 → 0.95 → settle 1.00),
+not post-news stale quotes — so the "entered after the mention already
+happened" hypothesis is rejected for the sampled rows.
+
+**Learned:** The problem is inferential, not mechanical, and it is
+three-layered. (1) *Significance:* against the null "the ask was
+already fair," exact heterogeneous-probability binomial tails give
+lt75 p=0.40, 75_85 p=0.17, 85plus p=0.026 (41/41 at mean price 0.916
+is only ~2σ), pooled family p=0.0395 gross and **p=0.070 net of
+fees** — and this family was *selected* as the best-looking slice of
+a 200-row backtest containing 115 series families, with the price-bin
+boundaries then fit on the same 116 rows. Nothing here survives a
+selection-aware read. (2) *Heterogeneity:* the family's positive edge
+decomposes into World Cup sponsor mentions (+8.3pts net, n=28 — the
+tournament is over), earnings-call mentions (+6.1, n=38 — episodic),
+and a +12.7 long tail of n=1 series (n=24), against **-5.2pts net
+(n=26)** for the persistent political slice (KXTRUMPMENTION/SAY/ACT).
+The bins average these; no bin is a homogeneous population. (3) *Live
+mismatch:* the current preview slate (…preview30-v2, 20 rows, all
+`untouched`, so no money at risk) is 100% political-speech series —
+TRUMPMENTION, WARSHMENTION, FEDMENTION, SECPRESSMENTION — i.e. the
+bootstrapped rates are currently being applied to exactly the
+sub-population that measured negative. Recorded all of this in
+THEORY.md's Learnings (2026-08-25 entry).
+
+**Next:** Treat the bucket table as a hypothesis, not a measured edge,
+for anything political-speech shaped. The 40 unsettled preview rows
+settle Aug 28–Sep 15 and are a free out-of-sample test — score them
+before any live recommendation from this theory. If the theory is to
+earn its bins back, the right move is a longer-window tier-A rerun
+with the sub-family split (sponsor/broadcast vs earnings vs political
+speech) pre-registered, and per-sub-family buckets if n allows;
+that is a decision-procedure change and would bump the version.
