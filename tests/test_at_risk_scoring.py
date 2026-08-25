@@ -11,6 +11,7 @@ import sqlite3
 import pytest
 
 from tools import db, ledger, score, theories
+from tools.sizing import fee_pts
 
 TS = "2026-08-25T12:00:00Z"
 
@@ -199,3 +200,129 @@ def test_empty_score_carries_the_riskless_keys(conn):
     r = score.compute_score(conn, "t1", 1)
     assert r["n"] == 0 and r["riskless_n"] == 0
     assert r["riskless_roi"] is None
+
+
+def _riskless_pair(conn):
+    """Two riskless baskets with deliberately different economics.
+
+    `taken` costs ~0.98 against a guaranteed 1.00 -- barely profitable.
+    `untouched` costs ~0.16 against the same guaranteed 1.00 -- wildly
+    profitable. Only `taken` is ever marked taken. If roi_taken folded
+    both in unconditionally it would land far from either position's own
+    ROI and dead center between them; if it correctly counted only
+    `taken`, it lands exactly on that position's own number. The two
+    outcomes cannot be mistaken for each other by coincidence, which is
+    the point: a fixture using identical cost/payout for both positions
+    would let a wrong implementation pass by accident.
+    """
+    taken_legs = [
+        {"kalshi_ticker": "KXT1-26", "outcome": "yes", "entry_price": 0.60},
+        {"kalshi_ticker": "KXT2-26", "outcome": "no", "entry_price": 0.35},
+    ]
+    untouched_legs = [
+        {"kalshi_ticker": "KXU1-26", "outcome": "yes", "entry_price": 0.10},
+        {"kalshi_ticker": "KXU2-26", "outcome": "no", "entry_price": 0.05},
+    ]
+    taken_id, _ = ledger.record_basket(
+        conn, theory_id="t1", theory_version=1, legs=taken_legs,
+        min_payout=1.0, max_payout=2.0, edge_pts_net=4.0,
+        edge_basis="model", now=TS)
+    untouched_id, _ = ledger.record_basket(
+        conn, theory_id="t1", theory_version=1, legs=untouched_legs,
+        min_payout=1.0, max_payout=2.0, edge_pts_net=4.0,
+        edge_basis="model", now=TS)
+    ledger.mark_user_action(conn, taken_id, "taken", size=10)
+
+    # Leg 1 of each basket settles "yes" (matches its "yes" outcome, wins);
+    # leg 2 settles "yes" too, which misses its "no" outcome and loses. Each
+    # basket pays exactly its min_payout of 1.00 -- both riskless regardless
+    # of which side actually wins, since cost is far under the floor either
+    # way.
+    _settle(conn, [
+        ("KXT1-26", "yes"), ("KXT2-26", "yes"),
+        ("KXU1-26", "yes"), ("KXU2-26", "yes"),
+    ])
+
+    # Expected costs computed independently from the legs' own numbers
+    # (not from anything score.py returns), the same way
+    # test_at_risk_rate_prices_only_the_portion_that_can_be_lost pins its
+    # implied_rate against a hand-computed figure.
+    taken_cost = 0.60 + 0.35 + (fee_pts(0.60) + fee_pts(0.35)) / 100.0
+    untouched_cost = 0.10 + 0.05 + (fee_pts(0.10) + fee_pts(0.05)) / 100.0
+    return taken_cost, untouched_cost
+
+
+def test_roi_taken_excludes_a_riskless_position_never_marked_taken(conn):
+    """The design call flagged in the task-4 report, now guarded: folding
+    every riskless position into roi_taken unconditionally would let a
+    position nobody ever placed inflate the figure that is supposed to
+    measure money actually put down. Only a riskless basket sits in this
+    theory's history, so this exercises the EMPTY_SCORE-derived branch of
+    _aggregate -- the one that had to compute roi_taken from scratch
+    rather than fold onto an existing calibrated accumulator.
+    """
+    taken_cost, untouched_cost = _riskless_pair(conn)
+    payout = 1.0  # both baskets pay exactly their min_payout; see helper.
+
+    taken_alone_roi = (payout - taken_cost) / taken_cost
+    both_folded_roi = (
+        (2 * payout - taken_cost - untouched_cost)
+        / (taken_cost + untouched_cost)
+    )
+    # If this fails, the fixture's two positions were not different enough
+    # to distinguish the correct behaviour from the wrong one.
+    assert taken_alone_roi != pytest.approx(both_folded_roi)
+
+    r = score.compute_score(conn, "t1", 1)
+    assert r["riskless_n"] == 2
+    assert r["roi_taken"] == pytest.approx(taken_alone_roi)
+    assert r["roi_taken"] != pytest.approx(both_folded_roi)
+
+    # The other half of the contract: roi_all counts BOTH riskless
+    # positions, taken or not -- money is money for that figure.
+    all_cost = taken_cost + untouched_cost
+    all_roi = (2 * payout - all_cost) / all_cost
+    assert r["roi_all"] == pytest.approx(all_roi)
+
+
+def test_roi_taken_excludes_an_untaken_riskless_position_pooled_with_a_bet(
+    conn,
+):
+    """The same guard, but for the branch where a calibrated position keeps
+    `rows` non-empty and riskless cost/payout are folded onto the existing
+    taken_cost/taken_return accumulator rather than computed from nothing.
+    A wrong unconditional fold is a risk in this branch independently of
+    the EMPTY_SCORE branch above -- a refactor could fix one and miss the
+    other.
+    """
+    bet_id, _ = ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="KXBET-26",
+        outcome="yes", entry_price=0.50, edge_pts_net=6.0, now=TS)
+    ledger.mark_user_action(conn, bet_id, "taken", size=10)
+    _settle(conn, [("KXBET-26", "yes")])  # the single position wins
+
+    taken_cost, untouched_cost = _riskless_pair(conn)
+    payout = 1.0
+
+    bet_cost = 0.50 + fee_pts(0.50) / 100.0
+    bet_payout = 1.0
+
+    taken_alone_roi = (
+        (bet_payout + payout - bet_cost - taken_cost)
+        / (bet_cost + taken_cost)
+    )
+    both_folded_roi = (
+        (bet_payout + 2 * payout - bet_cost - taken_cost - untouched_cost)
+        / (bet_cost + taken_cost + untouched_cost)
+    )
+    assert taken_alone_roi != pytest.approx(both_folded_roi)
+
+    r = score.compute_score(conn, "t1", 1)
+    assert r["n"] == 1
+    assert r["riskless_n"] == 2
+    assert r["roi_taken"] == pytest.approx(taken_alone_roi)
+    assert r["roi_taken"] != pytest.approx(both_folded_roi)
+
+    all_cost = bet_cost + taken_cost + untouched_cost
+    all_roi = (bet_payout + 2 * payout - all_cost) / all_cost
+    assert r["roi_all"] == pytest.approx(all_roi)
