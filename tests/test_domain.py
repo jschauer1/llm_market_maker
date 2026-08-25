@@ -179,3 +179,66 @@ def test_scored_candidate_defaults_to_screened():
 def test_screen_result_defaults():
     sr = ScreenResult(candidates=(single(),))
     assert sr.funnel == {} and sr.gate_removed == {}
+
+
+# --- the temporary migration shim (deleted in Phase 5) ----------------
+
+
+def test_shim_market_dict_access():
+    m = mk()
+    assert m["ticker"] == "KXT-26"
+    assert m.get("spread") == pytest.approx(0.04)
+    assert m.get("no_such_key") is None
+    assert m.get("no_such_key", 7) == 7
+    with pytest.raises(KeyError):
+        m["no_such_key"]
+
+
+def test_shim_dict_market_matches_asdict_shape():
+    """screen.py builds candidates with dict(market), which needs the
+    mapping protocol -- keys(), not just item access."""
+    m = mk()
+    assert dict(m) == asdict(m)
+
+
+def test_shim_candidate_presents_the_flattened_legacy_shape():
+    c = single()
+    assert c["fav_side"] == "yes"
+    assert c["entry_price"] == pytest.approx(0.8)
+    assert c["days_to_close"] == pytest.approx(3.0)
+    assert c["ticker"] == "KXT-26"            # market fields delegate
+    assert c.get("rules_secondary") is None   # unknown key, like a dict
+    assert set(dict(c)) == {f.name for f in fields(Market)} | {
+        "fav_side", "entry_price", "days_to_close"}
+
+
+def test_shim_polymarket_dict_access():
+    p = PolymarketMarket(platform="polymarket", market_id="0xabc",
+                         question="Will X?")
+    assert p["question"] == "Will X?"
+    assert p.get("market_id") == "0xabc"
+
+
+def test_shim_records_its_callers_when_tracking_is_on():
+    """Tracking is opt-in: resolving a stack frame on every field read
+    would tax a 100k-market screen for a temporary seam. The conventions
+    test turns it on."""
+    import tools.domain as domain
+
+    domain.SHIM_CALLERS.clear()
+    mk()["ticker"]
+    assert domain.SHIM_CALLERS == set()       # off by default
+
+    with domain.track_shim_callers():
+        mk()["ticker"]
+        mk().get("spread")
+        dict(single())
+    assert __name__ in domain.SHIM_CALLERS
+    domain.SHIM_CALLERS.clear()
+
+
+def test_slots_prevent_attribute_injection():
+    """The point of slots=True: the {**c, 'new_key': ...} pattern these
+    types replace cannot come back as attribute injection."""
+    with pytest.raises((AttributeError, TypeError)):
+        object.__setattr__(mk(), "new_key", 1)

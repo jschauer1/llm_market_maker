@@ -28,6 +28,8 @@ source, never a bet destination.
 from __future__ import annotations
 
 import math
+import sys
+from contextlib import contextmanager
 from dataclasses import dataclass, field, fields
 from typing import Protocol
 
@@ -36,6 +38,83 @@ from tools.buckets import edge_for
 VALID_EDGE_BASES = ("measured", "model", "prior")
 VALID_DISPOSITIONS = ("screened", "endorsed", "rejected")
 VALID_SIDES = ("yes", "no")
+
+
+# --------------------------------------------------------------------
+# TODO(oop-migration): everything between here and the END marker is a
+# strangler seam for one migration window and is DELETED in Phase 5.
+#
+# It lets existing dict-style call sites -- screen.py's `dict(market)`,
+# mention_bucket's c["entry_price"], snapshot's m["ticker"] -- keep
+# working while call sites convert incrementally, so no single commit has
+# to change both a type and every one of its readers.
+#
+# SHIM_CALLERS records which modules still lean on it, checked against a
+# shrinking allowlist by tests/test_conventions.py. Tracking is opt-in
+# because resolving a stack frame on every field read would tax a
+# 100k-market screen for the sake of a temporary seam.
+# --------------------------------------------------------------------
+
+#: Module names observed using dict-style access on a domain object,
+#: populated only inside `track_shim_callers()`.
+SHIM_CALLERS: set[str] = set()
+
+_TRACKING = False
+
+#: Field names per class -- fields() on every __getitem__ is too slow for
+#: a screen that runs over the whole board.
+_FIELD_NAMES: dict[type, tuple[str, ...]] = {}
+
+
+@contextmanager
+def track_shim_callers():
+    """Record the modules that use dict-style access inside this block."""
+    global _TRACKING
+    previous, _TRACKING = _TRACKING, True
+    try:
+        yield SHIM_CALLERS
+    finally:
+        _TRACKING = previous
+
+
+def _note_caller() -> None:
+    if not _TRACKING:
+        return
+    # 0 = here, 1 = the shim method, 2 = whoever actually indexed.
+    SHIM_CALLERS.add(sys._getframe(2).f_globals.get("__name__", "?"))
+
+
+def _names(cls: type) -> tuple[str, ...]:
+    cached = _FIELD_NAMES.get(cls)
+    if cached is None:
+        cached = tuple(f.name for f in fields(cls))
+        _FIELD_NAMES[cls] = cached
+    return cached
+
+
+class _MappingShim:
+    """Dict-style read access over a frozen dataclass. Temporary."""
+
+    __slots__ = ()               # keep the dataclass slots airtight
+
+    def keys(self):
+        _note_caller()
+        return _names(type(self))
+
+    def __getitem__(self, key):
+        _note_caller()
+        if key in _names(type(self)):
+            return getattr(self, key)
+        raise KeyError(key)
+
+    def get(self, key, default=None):
+        _note_caller()
+        if key in _names(type(self)):
+            return getattr(self, key)
+        return default
+
+
+# ------------------------- END migration shim -----------------------
 
 
 class Fetch(Protocol):
@@ -80,7 +159,7 @@ def _validate_price(price: object, label: str = "price") -> None:
 
 
 @dataclass(frozen=True, slots=True)
-class Market:
+class Market(_MappingShim):   # TODO(oop-migration): drop base in Phase 5
     """One Kalshi market, exactly as `kalshi.markets.normalize` shapes it.
 
     The field set mirrors that function's dict one-for-one, `last_price`
@@ -131,7 +210,7 @@ class Market:
 
 
 @dataclass(frozen=True, slots=True)
-class PolymarketMarket:
+class PolymarketMarket(_MappingShim):   # TODO(oop-migration): drop base in Phase 5
     """One Polymarket market, as `polymarket.markets.normalize` shapes it.
 
     Field names match the historical dict exactly, so snapshotting and
@@ -182,7 +261,7 @@ class Leg:
 
 
 @dataclass(frozen=True, slots=True)
-class Candidate:
+class Candidate(_MappingShim):   # TODO(oop-migration): drop base in Phase 5
     """A position: one leg normally, several when the payoff is joint.
 
     One type, no second-class path -- a single position is the one-leg
@@ -266,6 +345,29 @@ class Candidate:
         """Single-leg convenience. Raises on a basket; use .key."""
         self._single()
         return self.key
+
+    # -- TODO(oop-migration): shim overrides, deleted in Phase 5 --------
+    # A candidate's legacy dict was a market's fields FLATTENED with three
+    # extra keys, so that -- not the dataclass's own field list -- is the
+    # view existing readers expect. No annotation on _SHIM_EXTRA: an
+    # annotated class attribute would become a dataclass field.
+    _SHIM_EXTRA = ("fav_side", "entry_price", "days_to_close")
+
+    def keys(self):
+        _note_caller()
+        return _names(Market) + self._SHIM_EXTRA
+
+    def __getitem__(self, key):
+        _note_caller()
+        if key in self._SHIM_EXTRA:
+            return getattr(self, key)
+        return self._single().market[key]
+
+    def get(self, key, default=None):
+        _note_caller()
+        if key in self._SHIM_EXTRA:
+            return getattr(self, key)
+        return self._single().market.get(key, default)
 
 
 @dataclass(frozen=True, slots=True)
