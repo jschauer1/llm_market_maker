@@ -100,3 +100,148 @@ def test_basket_key_prevents_delimiter_collision():
          {"kalshi_ticker": "456", "outcome": "no"}]
     b = [{"kalshi_ticker": "123", "outcome": "yes|456:no"}]
     assert ledger.basket_key(a) != ledger.basket_key(b)
+
+
+def _legs():
+    return [
+        {"kalshi_ticker": "KXA-26", "outcome": "yes", "entry_price": 0.40},
+        {"kalshi_ticker": "KXB-26", "outcome": "no", "entry_price": 0.55},
+    ]
+
+
+def _basket(conn, **overrides):
+    kwargs = dict(
+        theory_id="t1", theory_version=1, legs=_legs(),
+        edge_pts_net=5.0, edge_basis="model", now=TS,
+    )
+    kwargs.update(overrides)
+    return ledger.record_basket(conn, **kwargs)
+
+
+def test_basket_writes_one_header_and_n_leg_rows(conn):
+    opp_id, created = _basket(conn)
+    assert created is True
+    row = ledger.get_opportunity(conn, opp_id)
+    assert row["position_kind"] == "basket"
+    assert row["leg_count"] == 2
+    assert row["outcome"] == "basket"
+    assert row["kalshi_ticker"].startswith("BASKET:")
+    assert len(ledger.get_legs(conn, opp_id)) == 2
+
+
+def test_basket_entry_price_is_the_summed_cost(conn):
+    opp_id, _ = _basket(conn)
+    row = ledger.get_opportunity(conn, opp_id)
+    assert row["entry_price"] == pytest.approx(0.95)
+
+
+def test_basket_legs_are_normalized_and_ordered(conn):
+    opp_id, _ = _basket(conn, legs=[
+        {"kalshi_ticker": " kxa-26 ", "outcome": "YES", "entry_price": 0.40},
+        {"kalshi_ticker": "KXB-26", "outcome": " No ", "entry_price": 0.55},
+    ])
+    legs = ledger.get_legs(conn, opp_id)
+    assert [l["leg_index"] for l in legs] == [0, 1]
+    assert legs[0]["kalshi_ticker"] == "KXA-26"
+    assert legs[0]["outcome"] == "yes"
+    assert legs[1]["outcome"] == "no"
+
+
+def test_resighting_a_basket_updates_rather_than_inserts(conn):
+    first, created_a = _basket(conn)
+    second, created_b = _basket(conn, now=LATER, edge_pts_net=7.0)
+    assert created_a is True and created_b is False
+    assert first == second
+    row = ledger.get_opportunity(conn, first)
+    assert row["times_seen"] == 2
+    assert row["last_seen_at"] == LATER
+    assert len(ledger.get_legs(conn, first)) == 2
+
+
+def test_resighting_with_reordered_legs_is_the_same_basket(conn):
+    first, _ = _basket(conn)
+    second, created = _basket(conn, legs=list(reversed(_legs())), now=LATER)
+    assert created is False
+    assert first == second
+
+
+def test_basket_cost_above_one_is_allowed_when_payout_allows_it(conn):
+    opp_id, _ = _basket(conn, max_payout=2.0, legs=[
+        {"kalshi_ticker": "KXA-26", "outcome": "no", "entry_price": 0.80},
+        {"kalshi_ticker": "KXB-26", "outcome": "no", "entry_price": 0.85},
+    ])
+    assert ledger.get_opportunity(conn, opp_id)["entry_price"] == pytest.approx(1.65)
+
+
+def test_basket_cost_above_max_payout_is_refused(conn):
+    with pytest.raises(ValueError, match="max_payout"):
+        _basket(conn, max_payout=1.0, legs=[
+            {"kalshi_ticker": "KXA-26", "outcome": "no", "entry_price": 0.80},
+            {"kalshi_ticker": "KXB-26", "outcome": "no", "entry_price": 0.85},
+        ])
+
+
+def test_basket_refuses_empty_legs(conn):
+    with pytest.raises(ValueError, match="at least one leg"):
+        _basket(conn, legs=[])
+
+
+def test_basket_refuses_a_leg_with_no_ticker(conn):
+    with pytest.raises(ValueError, match="kalshi_ticker"):
+        _basket(conn, legs=[
+            {"kalshi_ticker": "", "outcome": "yes", "entry_price": 0.40},
+        ])
+
+
+def test_basket_refuses_a_leg_with_no_outcome(conn):
+    with pytest.raises(ValueError, match="outcome"):
+        _basket(conn, legs=[
+            {"kalshi_ticker": "KXA-26", "outcome": "", "entry_price": 0.40},
+        ])
+
+
+def test_basket_refuses_a_leg_price_in_cents(conn):
+    with pytest.raises(ValueError, match="decimal dollars"):
+        _basket(conn, legs=[
+            {"kalshi_ticker": "KXA-26", "outcome": "yes", "entry_price": 40},
+        ])
+
+
+def test_basket_write_is_atomic_on_leg_insert_failure(tmp_path):
+    """A failure after the header write must not leave a headless row.
+
+    The header INSERT and the leg INSERTs share one `write(conn)` block, so
+    sqlite's implicit transaction has not been committed when the leg insert
+    raises -- `write`'s rollback must undo the header write too, not just
+    leave the legs missing. `sqlite3.Connection.executemany` cannot be
+    monkeypatched directly (it is a read-only C-level attribute), so this
+    forces the failure through a Connection subclass instead.
+    """
+
+    class BoomConnection(sqlite3.Connection):
+        def executemany(self, sql, params=()):
+            if "INSERT INTO opportunity_legs" in sql:
+                raise sqlite3.IntegrityError("forced failure for atomicity test")
+            return super().executemany(sql, params)
+
+    path = tmp_path / "atomic.db"
+    setup = db.connect(path)
+    db.init_db(setup)
+    theories.register(setup, "t1", "Theory One", "theories/t1", now=TS)
+    setup.close()
+
+    boom_conn = sqlite3.connect(str(path), timeout=30.0, factory=BoomConnection)
+    boom_conn.row_factory = sqlite3.Row
+    boom_conn.execute("PRAGMA foreign_keys = ON")
+    try:
+        with pytest.raises(sqlite3.IntegrityError):
+            _basket(boom_conn)
+
+        assert boom_conn.execute(
+            "SELECT COUNT(*) FROM opportunities"
+        ).fetchone()[0] == 0
+        assert boom_conn.execute(
+            "SELECT COUNT(*) FROM opportunity_legs"
+        ).fetchone()[0] == 0
+    finally:
+        boom_conn.close()

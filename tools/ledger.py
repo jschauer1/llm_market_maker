@@ -287,6 +287,211 @@ def record_opportunity(
     return row["id"], row["times_seen"] == 1
 
 
+def _normalize_legs(legs: list[dict], max_payout: float) -> list[dict]:
+    """Validate and normalize legs, returning them in a stable order.
+
+    Every leg price goes through the same [0, 1] validator single positions
+    use -- a leg is an ordinary Kalshi contract and the cents-vs-dollars
+    mistake is just as costly here. The *basket* cost is checked against
+    max_payout instead of 1.0, because a NO-basket over k outcomes can
+    legitimately cost more than a dollar while paying (k-1).
+
+    Ticker and outcome are both validated here, ahead of `basket_key` --
+    `basket_key` only sees the already-normalized list and would otherwise
+    raise the same defect, but reported from the wrong layer with a
+    confusing stack.
+    """
+    if not legs:
+        raise ValueError(
+            "a basket needs at least one leg: the tradeability guarantee "
+            "lives on the legs, so a basket with none has no Kalshi market"
+        )
+    out = []
+    for i, leg in enumerate(legs):
+        ticker = (leg.get("kalshi_ticker") or "").strip().upper()
+        if not ticker:
+            raise ValueError(
+                f"leg {i} has no kalshi_ticker: every leg must resolve to a "
+                "tradeable Kalshi market"
+            )
+        outcome = (leg.get("outcome") or "").strip().lower()
+        if not outcome:
+            raise ValueError(
+                f"leg {i} has no outcome: every leg must name the side "
+                "(yes/no) it holds"
+            )
+        _validate_entry_price(leg.get("entry_price"))
+        out.append({
+            "kalshi_ticker": ticker,
+            "outcome": outcome,
+            "entry_price": float(leg["entry_price"]),
+            "spread_at_call": leg.get("spread_at_call"),
+            "volume_at_call": leg.get("volume_at_call"),
+        })
+
+    cost = sum(leg["entry_price"] for leg in out)
+    if cost > max_payout:
+        raise ValueError(
+            f"basket cost {cost:.4f} exceeds max_payout {max_payout:.4f}; "
+            "a position that cannot profit in any branch is not an edge"
+        )
+    # Sorted so leg_index is deterministic across re-sightings, matching
+    # basket_key's ordering.
+    out.sort(key=lambda leg: (leg["kalshi_ticker"], leg["outcome"]))
+    return out
+
+
+def record_basket(
+    conn: sqlite3.Connection,
+    *,
+    theory_id: str,
+    theory_version: int,
+    legs: list[dict],
+    edge_pts_net: float,
+    max_payout: float = 1.0,
+    run_mode: str = "live",
+    run_id: str | None = None,
+    scan_id: str | None = None,
+    model_prob: float | None = None,
+    edge_pts_gross: float | None = None,
+    fee_pts: float | None = None,
+    edge_basis: str = "prior",
+    confidence: str | None = None,
+    judged_blind: bool | None = None,
+    rationale: str | None = None,
+    suggested_size: float | None = None,
+    evidence_source: str | None = None,
+    evidence_market_id: str | None = None,
+    extra_json: str | None = None,
+    now: str | None = None,
+) -> tuple[int, bool]:
+    """Record or refresh a multi-leg position. Returns (id, was_created).
+
+    The header row carries the aggregate -- `entry_price` is the basket's
+    total cost, `leg_count` is N, `max_payout` is the most it can pay -- and
+    `opportunity_legs` carries the tradeable tickers.
+    """
+    if edge_pts_net is None:
+        raise ValueError(
+            "edge_pts_net is required: it is the common currency used to "
+            "rank across theories"
+        )
+    if run_mode not in ("live", "backtest"):
+        raise ValueError(f"invalid run_mode {run_mode!r}")
+    if run_mode == "backtest" and not run_id:
+        raise ValueError("run_id is required for backtest runs")
+    if run_mode == "backtest" and run_id == LIVE_RUN_ID:
+        raise ValueError(
+            f"run_id {LIVE_RUN_ID!r} is a reserved sentinel for live scans"
+        )
+    if edge_basis not in VALID_EDGE_BASES:
+        raise ValueError(
+            f"invalid edge_basis {edge_basis!r}; "
+            f"expected one of {VALID_EDGE_BASES}"
+        )
+
+    norm = _normalize_legs(legs, max_payout)
+    provenance.require_provenance(
+        conn, theory_id, theory_version, run_id or LIVE_RUN_ID
+    )
+
+    header_ticker = basket_key(norm)
+    cost = sum(leg["entry_price"] for leg in norm)
+    resolved_run_id = run_id or LIVE_RUN_ID
+    stamp = now or utcnow()
+
+    with write(conn):
+        conn.execute(
+            """
+            INSERT INTO opportunities (
+                theory_id, theory_version, run_mode, run_id, scan_id,
+                kalshi_ticker, outcome, entry_price, position_kind,
+                leg_count, max_payout, model_prob, edge_pts_gross, fee_pts,
+                screen_edge_pts_net, edge_pts_net, edge_basis, disposition,
+                confidence, judged_blind, rationale, suggested_size,
+                evidence_source, evidence_market_id, user_action,
+                first_seen_at, last_seen_at, times_seen, extra_json
+            ) VALUES (?, ?, ?, ?, ?, ?, 'basket', ?, 'basket', ?, ?, ?, ?, ?,
+                      ?, ?, ?, 'screened', ?, ?, ?, ?, ?, ?, 'untouched',
+                      ?, ?, 1, ?)
+            ON CONFLICT (theory_id, theory_version, run_id, kalshi_ticker,
+                         outcome) DO UPDATE SET
+                last_seen_at = excluded.last_seen_at,
+                times_seen = opportunities.times_seen + 1,
+                edge_pts_net = CASE
+                    WHEN opportunities.interpreted_at IS NULL
+                        THEN excluded.edge_pts_net
+                    ELSE opportunities.edge_pts_net
+                END,
+                model_prob =
+                    COALESCE(excluded.model_prob, opportunities.model_prob),
+                edge_pts_gross = COALESCE(excluded.edge_pts_gross,
+                                          opportunities.edge_pts_gross),
+                fee_pts = COALESCE(excluded.fee_pts, opportunities.fee_pts),
+                confidence =
+                    COALESCE(excluded.confidence, opportunities.confidence),
+                rationale =
+                    COALESCE(excluded.rationale, opportunities.rationale),
+                suggested_size = COALESCE(excluded.suggested_size,
+                                          opportunities.suggested_size)
+            """,
+            (
+                theory_id, theory_version, run_mode, resolved_run_id, scan_id,
+                header_ticker, cost, len(norm), max_payout, model_prob,
+                edge_pts_gross, fee_pts, edge_pts_net, edge_pts_net,
+                edge_basis, confidence,
+                1 if judged_blind else (0 if judged_blind is not None else None),
+                rationale, suggested_size, evidence_source,
+                evidence_market_id, stamp, stamp, extra_json,
+            ),
+        )
+
+        row = conn.execute(
+            """
+            SELECT id, times_seen FROM opportunities
+            WHERE theory_id = ? AND theory_version = ? AND run_id = ?
+              AND kalshi_ticker = ? AND outcome = 'basket'
+            """,
+            (theory_id, theory_version, resolved_run_id, header_ticker),
+        ).fetchone()
+
+        # Legs are rewritten wholesale on every sighting. The basket key is
+        # derived from the legs, so a re-sighting has identical legs by
+        # construction; rewriting keeps quotes fresh without a diffing step
+        # that could leave a stale leg behind.
+        conn.execute(
+            "DELETE FROM opportunity_legs WHERE opportunity_id = ?",
+            (row["id"],),
+        )
+        conn.executemany(
+            """
+            INSERT INTO opportunity_legs (
+                opportunity_id, leg_index, kalshi_ticker, outcome,
+                entry_price, spread_at_call, volume_at_call
+            ) VALUES (?, ?, ?, ?, ?, ?, ?)
+            """,
+            [
+                (row["id"], i, leg["kalshi_ticker"], leg["outcome"],
+                 leg["entry_price"], leg["spread_at_call"],
+                 leg["volume_at_call"])
+                for i, leg in enumerate(norm)
+            ],
+        )
+
+    return row["id"], row["times_seen"] == 1
+
+
+def get_legs(
+    conn: sqlite3.Connection, opportunity_id: int
+) -> list[sqlite3.Row]:
+    """Every leg of a position, in stable order. Empty for a single."""
+    return conn.execute(
+        "SELECT * FROM opportunity_legs WHERE opportunity_id = ?"
+        " ORDER BY leg_index",
+        (opportunity_id,),
+    ).fetchall()
+
+
 def get_opportunity(
     conn: sqlite3.Connection, opportunity_id: int
 ) -> sqlite3.Row | None:
