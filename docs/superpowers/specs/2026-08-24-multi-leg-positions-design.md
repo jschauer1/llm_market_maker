@@ -1,14 +1,33 @@
 # Multi-Leg Positions — Baskets in the Ledger
 
 Date: 2026-08-24
-Status: design approved, implementation not started
-Scope: `db/schema.sql`, `tools/ledger.py`, `tools/score.py`, `tools/cli.py`
+Status: **implemented, with one blocking decision open — see below**
+Implemented on branch `feat/multi-leg-positions` (15 commits, 522 tests
+passing). Scope: `db/schema.sql`, `tools/db.py`, `tools/ledger.py`,
+`tools/score.py`, `tools/cli.py`, `.claude/skills/score-theories/SKILL.md`
 Prerequisite for:
 [theory-layer OOP](2026-08-24-theory-layer-oop-design.md) — see section 8
 
 **In one line:** three backlog theories bet on *baskets* of markets whose
 payoff is joint, and the ledger can only store one leg per row — so their
 edge would be recorded as several independent bets that it is not.
+
+---
+
+## ⛔ BLOCKING DECISION — read before building any basket theory
+
+**A basket whose payout can land strictly between $0 and its declared
+`max_payout` currently RAISES at scoring time. This is deliberate. It stays
+that way until someone decides the question in section 10.1.**
+
+`calendar-arb` is exactly such a theory, so **it cannot accrue any evidence
+today**. `structural-arb`'s NO-basket and any other all-or-nothing basket
+work normally and are unaffected.
+
+Nothing is silently wrong — the guard exists precisely so a wrong number
+can never be recorded. But do not build `calendar-arb`, and do not relax the
+guard, until section 10.1 is answered and this spec is amended. The error
+message points here by path.
 
 ## 1. Problem
 
@@ -148,15 +167,39 @@ For the arbitrage theories `E[payout]` is not a probability estimate at all
 structural claim holds. That is why they carry `edge_basis="model"`: the
 model is arithmetic.
 
+**This section is about the *claimed* edge, and that distinction is where
+the gap in section 3.5 came from.** `edge_pts_net` above is what a theory
+computes when it proposes a bet. It is a different quantity from
+`calibration_edge`, which scoring computes *afterwards* as
+`(win_rate − price_implied_rate) × 100` to measure whether the theory's
+claims came true. The claimed edge does generalize cleanly, exactly as
+described here. The *measured* one does not, because a basket has no obvious
+`price_implied_rate` — and this spec never noticed it had only specified
+one of the two. Section 3.5 documents the consequence; section 10.1 is the
+decision that resolves it.
+
 ### 3.3 Schema
 
-`opportunities` gains two columns and keeps every existing one:
+`opportunities` gains three columns and keeps every existing one:
 
 ```sql
 position_kind  TEXT NOT NULL DEFAULT 'single'
                CHECK (position_kind IN ('single','basket')),
 leg_count      INTEGER NOT NULL DEFAULT 1,
+max_payout     REAL NOT NULL DEFAULT 1.0,
 ```
+
+`max_payout` was added during planning, after this section was first
+written: a NO-basket over `k` outcomes pays `$(k−1)`, and without a declared
+maximum there is nothing to normalize `implied_rate` against. It must be a
+positive number — `record_basket` rejects `None`, non-numeric values, `bool`,
+`NaN`, zero, and negatives, because a basket that can never pay anything is
+not a position. Note that section 10.1 turns on what this column means, so a
+decision there may change how it is declared.
+
+`ALTER TABLE ADD COLUMN` cannot carry a CHECK, so a database migrated in
+place enforces `position_kind`'s domain in application code only — see
+section 10.3.
 
 New table:
 
@@ -232,6 +275,27 @@ its cost is not a win.
 The existing single-leg SQL path is unchanged. The basket path is a separate
 aggregate query unioned into the same result set, so `n`, `win_rate`, and
 `roi_all` count one basket once.
+
+**Gap found in implementation — this section was incomplete.** The four
+lines above define `payout`, `profit`, `won`, and `roi`, but never define
+`implied_rate` — the price-side quantity `calibration_edge` compares the
+realized win rate against. A single position contributes its `entry_price`,
+which *is* the market's implied probability of the event `won` measures. A
+basket has no such obvious analogue, and the spec never supplied one.
+
+The implementation chose `implied_rate = cost / max_payout`. That is
+correct **only** when the basket is all-or-nothing, because then
+`won` ⟺ `payout == max_payout` and the two quantities describe the same
+event. When a basket has a payout floor they describe different events, and
+`calibration_edge_net` inflates badly:
+
+| position | cost | pays | ROI | recorded `calibration_edge_net` |
+|---|---|---|---|---|
+| single | 0.95 | 1.00 | 4.90% | 4.67 pts |
+| basket, `max_payout=2.0` | 0.95 | 1.00 | 1.76% | **50.86 pts** |
+
+Identical economics, an order of magnitude apart, in the number every theory
+is ranked by. Section 10.1 is the decision that closes this.
 
 ## 4. What the theories get
 
@@ -354,28 +418,107 @@ unable to accrue evidence, which is most of their value.
 
 ## 9. Success criteria
 
-1. Every existing test passes, none weakened; single-leg scores on a copy of
-   the live database are identical before and after.
-2. A two-leg `calendar-arb` basket records as one position, settles jointly,
-   and satisfies the payoff property in all three outcome branches.
-3. A basket contributes exactly one observation to `n`.
-4. `Candidate.ticker` on a basket raises with a message naming the fix.
-5. A basket with a missing or unsettled leg is excluded from scoring rather
-   than scored partially.
-6. No change to `settlements`, and no new concept beyond `Leg`, two columns,
-   and one table.
+Status as implemented on `feat/multi-leg-positions`:
+
+1. ✅ Every existing test passes, none weakened; single-leg scores on a copy
+   of the live database are identical before and after. Verified twice
+   independently, once across 160 segments against real data.
+2. ⛔ **Unmet, and blocked on section 10.1.** A two-leg `calendar-arb`
+   basket records as one position and settles jointly, but only one of its
+   three branches can be *scored* — the other two pay a $1 floor against a
+   $2 maximum and raise. This is the honest state, not a defect to paper
+   over: the alternative was recording an edge inflated by an order of
+   magnitude.
+3. ✅ A basket contributes exactly one observation to `n`.
+4. ⚠️ Deferred by design. `Candidate.ticker` does not exist — `tools/
+   domain.py` belongs to the [OOP migration](2026-08-24-theory-layer-oop-design.md),
+   which runs after this and adopts the `Leg` shape defined here. The
+   equivalent guarantee is enforced at the ledger instead.
+5. ✅ A basket with a missing or unsettled leg is excluded rather than
+   scored partially, and a `leg_count` mismatch raises.
+6. ⚠️ Three columns, not two — `max_payout` was added during planning
+   because a NO-basket paying `$(k−1)` cannot be normalized without it.
+   `settlements` is unchanged as promised, and `Leg` is a plain dict until
+   the OOP migration types it.
+
+Beyond the original list, implementation added two guarantees this spec did
+not ask for and should have:
+
+7. ✅ Settlement discovery resolves a basket through its **leg** tickers.
+   The original design would have quoted the synthetic `BASKET:<hash>` to
+   Kalshi, so no basket could ever have settled.
+8. ✅ Duplicate `(ticker, outcome)` legs are refused. Without it a basket
+   could fabricate a payout above its declared maximum.
 
 ## 10. Open questions
 
+### 10.1 ⛔ BLOCKING — how is a variable-payout basket scored?
+
+**This is the decision that unblocks `calendar-arb`. Nothing else in this
+spec is waiting on anything.**
+
+**The question:** for a basket that does not pay all-or-nothing, what is
+`implied_rate` — the price-side quantity `calibration_edge` compares the
+realized win rate against? Section 3.5 documents why the current answer
+(`cost / max_payout`) is wrong for this case.
+
+Note this is **not** a bug to fix by picking whichever formula looks
+tidiest. It decides what `calibration_edge_net` *means* for a whole class of
+positions, and that number is what `rank.py` uses to weight every theory
+against every other. It is a research-design call.
+
+**Three ways it could go, none of them obviously right:**
+
+1. **Restrict baskets to all-or-nothing.** Keep the current guard
+   permanently, document that a basket must pay `0` or `max_payout`, and
+   require `calendar-arb` to be expressed differently or dropped.
+   *Cost:* loses a theory the spec's own section 1 names as motivating.
+2. **Score variable-payout baskets on ROI rather than calibration.** A
+   position with a guaranteed floor has no meaningful "win rate" — it always
+   wins. Give such baskets `edge_basis="model"`, an ROI-based track record,
+   and exclude them from `calibration_edge` entirely.
+   *Cost:* two scoring regimes; `compare-theories` must not pool them.
+3. **Redefine `implied_rate` as `cost / E[payout]`.** Requires the theory to
+   declare an expected payout, not just a maximum — which for `calendar-arb`
+   means declaring branch probabilities, which is exactly the introspected
+   number CLAUDE.md forbids unless it comes from base rates.
+   *Cost:* pushes a hard modelling problem onto every basket theory.
+
+**Until it is answered:** `_basket_observations` raises on any basket whose
+payout is neither `0` nor `max_payout`, naming the opportunity, both
+figures, and this file. `tests/test_baskets.py` pins that behavior in
+`test_nesting_branch_with_a_payout_floor_is_unsupported_and_raises` — when
+the decision lands, that test becomes the assertion of whatever it decides,
+rather than being deleted.
+
+### 10.2 Resolved during implementation
+
 1. **NO-basket payout.** `structural-arb`'s `sum(NO asks) < (k−1) − fees`
    pays `$(k−1)`, not `$1`. Section 3.5's `payout` computation handles this
-   naturally by summing per-leg payouts, but the exhaustiveness of the
-   mutually-exclusive set is an assumption the theory must verify — it is a
-   theory-level guard, not a ledger-level one. Confirmed at implementation.
-2. **Fees on a basket.** `tools/sizing.py:fee_pts` is per-contract; a basket
-   pays fees per leg. Phase 0 confirms summing per-leg fees is correct
-   against Kalshi's published fee schedule rather than assuming it.
-3. **Partial user fills.** If the user takes two legs of a three-leg basket,
-   `mark-taken` currently records one size for the position. Whether that
-   needs per-leg user actions is deferred until a real basket is taken —
+   by summing per-leg payouts. The exhaustiveness of the mutually-exclusive
+   set remains a theory-level guard, not a ledger-level one. **Note this is
+   an all-or-nothing basket, so it is unaffected by 10.1.**
+2. **Fees on a basket — RESOLVED.** Kalshi charges per contract:
+   `tools/sizing.py:fee_pts` is documented as the per-contract fee and
+   `order_fee_dollars(price, contracts)` scales by count. Summing `fee_pts`
+   per leg is correct. Implementation additionally divides the total by
+   `max_payout` so fees share `implied_rate`'s scale — if 10.1 changes that
+   scale, this divisor changes with it.
+
+### 10.3 Still deferred
+
+1. **Partial user fills.** If the user takes two legs of a three-leg basket,
+   `mark-taken` records one size for the position. Whether that needs
+   per-leg user actions is deferred until a real basket is taken —
    speculating now would build a schema nobody has needed.
+2. **`position_kind` CHECK on migrated databases.** SQLite cannot add a
+   CHECK via `ALTER TABLE`, so databases migrated in place enforce the
+   domain in application code only. Latent: `ledger` is the only writer and
+   always writes a literal. Revisit if the table is ever rebuilt.
+3. **Baskets and bucket rates.** `score.bucket_rates` now explicitly filters
+   `position_kind = 'single'`, because a basket header's ticker is synthetic
+   and never matches a settlement. Baskets therefore contribute nothing to
+   the confidence-bucket win rates `tools/buckets.py` converts into
+   probabilities. Correct today — baskets carry `edge_basis="model"`, not
+   `"measured"` — but it must be revisited if a basket theory ever wants a
+   measured bucket.
