@@ -2,7 +2,7 @@
 
 Date: 2026-08-24
 Status: backlog — not yet proposed as a theory
-Registry slug: `whale-follow` · Priority: 14 of 17 · Effort: L ·
+Registry slug: `whale-follow` · Priority: 19 of 22 · Effort: L ·
 LLM in decision path: match-time only (via the shared pair store) ·
 Backtest tier: A on the Polymarket signal; Kalshi leg measured separately
 

@@ -2,7 +2,7 @@
 
 Date: 2026-08-24
 Status: backlog — measurement study; becomes a theory only if bias found
-Registry slug: `new-market-anchor` · Priority: 12 of 17 · Effort: S ·
+Registry slug: `new-market-anchor` · Priority: 15 of 22 · Effort: S ·
 LLM in decision path: no · Backtest tier: A
 
 Part of the theory backlog

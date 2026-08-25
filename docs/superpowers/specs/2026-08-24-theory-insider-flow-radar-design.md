@@ -2,7 +2,7 @@
 
 Date: 2026-08-24
 Status: backlog — not yet proposed as a theory
-Registry slug: `insider-flow-radar` · Priority: 17 of 17 · Effort: L ·
+Registry slug: `insider-flow-radar` · Priority: 22 of 22 · Effort: L ·
 LLM in decision path: no (screening); session judgment on alerts ·
 Backtest tier: A for the detector; alert follow-through is judgment
 

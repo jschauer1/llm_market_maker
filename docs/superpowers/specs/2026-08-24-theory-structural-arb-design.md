@@ -2,7 +2,7 @@
 
 Date: 2026-08-24
 Status: backlog — not yet proposed as a theory
-Registry slug: `structural-arb` · Priority: 3 of 17 · Effort: S ·
+Registry slug: `structural-arb` · Priority: 3 of 22 · Effort: S ·
 LLM in decision path: no · Backtest tier: A
 
 Part of the theory backlog

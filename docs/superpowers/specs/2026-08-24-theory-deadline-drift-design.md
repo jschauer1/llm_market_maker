@@ -3,7 +3,7 @@
 Date: 2026-08-24
 Status: backlog — design agreed with the user in the 2026-08-24 session;
 ready for `propose-theory`
-Registry slug: `deadline-drift` · Priority: 2 of 17 · Effort: M ·
+Registry slug: `deadline-drift` · Priority: 2 of 22 · Effort: M ·
 LLM in decision path: no · Backtest tier: A
 
 Part of the theory backlog

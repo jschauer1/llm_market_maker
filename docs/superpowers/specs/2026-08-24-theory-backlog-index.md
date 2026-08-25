@@ -3,9 +3,11 @@
 Date: 2026-08-24 (superseded docs/theory-specs/, same content migrated to
 official spec format and extended after a second literature pass)
 
-Seventeen researched, implementable theory design specs, one file per
+Twenty-two researched, implementable theory design specs, one file per
 theory, each written so a fresh session (no context beyond CLAUDE.md and
-the spec) can pick it up and implement it. This index holds the shared
+the spec) can pick it up and implement it. (Rounds: 12 from the first
+literature pass, 5 from the second, 5 from the third — parlay-fade,
+weather-model-gap, calendar-arb, attention-model, metaculus-gap.) This index holds the shared
 contracts, the priority ranking, the parked ideas, and the shared
 sources; every spec links back here instead of repeating them.
 
@@ -64,16 +66,21 @@ likelihood 2/5 because the best available evidence points against them.
 | 5 | [news-drift](2026-08-24-theory-news-drift-design.md) | underreaction continuation | 4 | 4 | 2 | 10 | A | M |
 | 6 | [no-side-premium](2026-08-24-theory-no-side-premium-design.md) | YES/NO side bias (optimism tax) | 4 | 4 | 3 | 11 | A | S–M |
 | 7 | [overreaction-fade](2026-08-24-theory-overreaction-fade-design.md) | political move reversal | 4 | 4 | 3 | 11 | A | M |
-| 8 | [cross-venue-fair-value](2026-08-24-theory-cross-venue-fair-value-design.md) | cross-venue convergence | 3 | 3 | 3 | 9 | A | M |
-| 9 | [smile-smoothing](2026-08-24-theory-smile-smoothing-design.md) | ladder shape | 4 | 3 | 3 | 10 | A | M |
-| 10 | [econ-anchoring](2026-08-24-theory-econ-anchoring-design.md) | consensus anchoring on releases | 3 | 3 | 3 | 9 | A | M |
-| 11 | [settled-but-trading](2026-08-24-theory-settled-but-trading-design.md) | resolution-source staleness | 4 | 3 | 3 | 10 | A | M–L |
-| 12 | [new-market-anchor](2026-08-24-theory-new-market-anchor-design.md) | issuance mispricing (study) | 3 | 5 | 2 | 10 | A | S |
-| 13 | [maker-mode-execution](2026-08-24-theory-maker-mode-execution-design.md) | execution layer: spread capture | 5 | 4 | 3 | 12 | A | M |
-| 14 | [whale-follow](2026-08-24-theory-whale-follow-design.md) | proven-wallet mirroring | 3 | 2 | 3 | 8 | A (PM leg) | L |
-| 15 | [vol-crossing](2026-08-24-theory-vol-crossing-design.md) | barrier-option model | 3 | 3 | 2 | 8 | A | M |
-| 16 | [implication-graph](2026-08-24-theory-implication-graph-design.md) | cross-event logic | 2 | 2 | 3 | 7 | B | L |
-| 17 | [insider-flow-radar](2026-08-24-theory-insider-flow-radar-design.md) | anomalous fresh flow | 2 | 2 | 2 | 6 | A (detector) | L |
+| 8 | [parlay-fade](2026-08-24-theory-parlay-fade-design.md) | combo markup vs product-of-legs | 3 | 3 | 4 | 10 | A | M |
+| 9 | [weather-model-gap](2026-08-24-theory-weather-model-gap-design.md) | ensemble forecast vs market | 4 | 3 | 3 | 10 | A | M |
+| 10 | [cross-venue-fair-value](2026-08-24-theory-cross-venue-fair-value-design.md) | cross-venue convergence | 3 | 3 | 3 | 9 | A | M |
+| 11 | [smile-smoothing](2026-08-24-theory-smile-smoothing-design.md) | ladder shape | 4 | 3 | 3 | 10 | A | M |
+| 12 | [calendar-arb](2026-08-24-theory-calendar-arb-design.md) | date-ladder nesting logic | 3 | 4 | 3 | 10 | A | S |
+| 13 | [econ-anchoring](2026-08-24-theory-econ-anchoring-design.md) | consensus anchoring on releases | 3 | 3 | 3 | 9 | A | M |
+| 14 | [settled-but-trading](2026-08-24-theory-settled-but-trading-design.md) | resolution-source staleness | 4 | 3 | 3 | 10 | A | M–L |
+| 15 | [new-market-anchor](2026-08-24-theory-new-market-anchor-design.md) | issuance mispricing (study) | 3 | 5 | 2 | 10 | A | S |
+| 16 | [maker-mode-execution](2026-08-24-theory-maker-mode-execution-design.md) | execution layer: spread capture | 5 | 4 | 3 | 12 | A | M |
+| 17 | [attention-model](2026-08-24-theory-attention-model-design.md) | Wikipedia attention vs box office | 3 | 3 | 3 | 9 | A | M |
+| 18 | [metaculus-gap](2026-08-24-theory-metaculus-gap-design.md) | forecaster aggregate vs market | 2 | 3 | 3 | 8 | A | M |
+| 19 | [whale-follow](2026-08-24-theory-whale-follow-design.md) | proven-wallet mirroring | 3 | 2 | 3 | 8 | A (PM leg) | L |
+| 20 | [vol-crossing](2026-08-24-theory-vol-crossing-design.md) | barrier-option model | 3 | 3 | 2 | 8 | A | M |
+| 21 | [implication-graph](2026-08-24-theory-implication-graph-design.md) | cross-event logic | 2 | 2 | 3 | 7 | B | L |
+| 22 | [insider-flow-radar](2026-08-24-theory-insider-flow-radar-design.md) | anomalous fresh flow | 2 | 2 | 2 | 6 | A (detector) | L |
 
 **Where priority diverges from the composite score, sequencing is why:**
 series-bias-mining (Σ12) and maker-mode-execution (Σ12) sit below
@@ -84,7 +91,11 @@ while deadline-drift's design is already user-agreed and adds a second
 *lens* (time structure) early, which diversifies what the board scan can
 see. news-drift (Σ10, L=2) ranks 5 despite the low likelihood because its
 backtest is cheap, shared with overreaction-fade, and decisive either
-way — high information per effort, not high expected edge.
+way — high information per effort, not high expected edge. parlay-fade
+(Σ10) ranks 8 on the strength of its evidence (L=4, the highest-quality
+new measurement in the backlog) despite workflow friction; calendar-arb
+(Σ10) sits at 12 rather than beside structural-arb because its firing
+rate is even less known and its two legs span separate event pages.
 
 Paired designs: news-drift ↔ overreaction-fade share one joint
 sign-measurement (each claims only the cells measured its way);
@@ -111,6 +122,19 @@ matrix.
 - **LLM forecast-gap betting** — puts an introspected probability at the
   center of the procedure; the compliant reframing is `insider_bias`,
   which already exists. Parked as redundant, not wrong.
+- **Settlement spillover** (round 3) — when market A settles, related
+  markets (same entity, same series family) may reprice slowly; trade
+  the lag. Parked because the related-market identification is either
+  LLM-judgment (implication-graph's cost profile) or so conservative it
+  rarely fires, and the clean mechanical subset — date ladders — is
+  exactly [calendar-arb](2026-08-24-theory-calendar-arb-design.md).
+  Revisit angle: mine candlestick history for *measured* co-movement
+  pairs first, then trade only pairs with demonstrated propagation lag.
+- **Same-game parlay correlation pricing** (round 3) — pricing
+  correlated legs properly is a real modeling edge (an AMM-design
+  literature exists), but it is the hard version of
+  [parlay-fade](2026-08-24-theory-parlay-fade-design.md); parked until
+  the cross-game version has evidence.
 
 ## Shared sources
 
@@ -130,4 +154,8 @@ Papers marked **read in full** were extracted and read during the
 - [Interest-bearing positions and the long-horizon problem](https://arxiv.org/pdf/2602.21091) — capital-lockup mechanism.
 - [PredictionTalk 40-paper survey](https://predictiontalk.org/d/14-ai-parsed-40-papers-on-pm-inefficiencies-here-are-5-im-going-to-trade/) — practitioner aggregation: rebalancing-arb magnitudes, temporal-lag competition, wash-trading rates (Columbia SSRN 5714122: ~25% of PM volume; 45% sports), on-chain insider lead windows.
 - Cross-venue gap documentation: [trevorlasn.com](https://www.trevorlasn.com/blog/how-prediction-market-polymarket-kalshi-arbitrage-works), [predictionhunt](https://www.predictionhunt.com/blog/why-same-market-different-prices-kalshi-polymarket), [public arb bot](https://github.com/ImMike/polymarket-arbitrage).
+- [arXiv 2607.14430 — Prices, Probabilities, and Parlays](https://arxiv.org/abs/2607.14430) — 23M Kalshi moneyline trades; legs essentially perfectly calibrated in mid-life TTE buckets; cross-game parlays systematically overpriced vs product of legs, growing with leg count. Combo mechanics: [Sportico RFQ explainer](https://www.sportico.com/business/sports-betting/2025/kalshi-parlay-combo-rfq-explainer-1234877038/), [Penny Parlay criticism](https://www.gamblinginsider.com/news/180114/kalshi-penny-parlay-worst-bet-in-america-smallest-bettors-buying-it).
+- Weather practitioner documentation: [botforkalshi](https://www.botforkalshi.com/blog/kalshi-weather-trading-strategy), [PillarLab playbook](https://pillarlabai.com/blog/how-to-trade-temperature-markets-kalshi/) — per-station settlement, ~2°F fee cushion, 8pp entry floors, NWS bias patterns; keyless data at [api.weather.gov](https://api.weather.gov) and [Open-Meteo](https://open-meteo.com).
+- [Mestyán, Yasseri & Kertész 2013](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0071226) — Wikipedia activity predicts opening box office ~a month ahead.
+- Forecaster-aggregate evidence: [platform-comparison work](https://manifund.org/projects/comparing-forecasting-platform-accuracy), [Metaculus's own markets-vs-polls argument](https://www.metaculus.com/notebooks/17599/why-i-reject-the-comparison-of-metaculus-to-prediction-markets/).
 - Polymarket wallet-copy ecosystem: [Polycopy](https://polycopy.app/best-polymarket-traders), [copy-score backtest](https://polyloly.com/blog/polymarket-insider-tail-backtest-46-percent-roi), [wallet-selection traps](https://medium.com/@0xmega/how-to-find-the-best-polymarket-wallets-to-copy-trade-without-getting-rekt-26dd65123324).

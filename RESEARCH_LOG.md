@@ -625,3 +625,42 @@ db/opportunities.json) to the user, and pushing before that ruling would
 publish these specs plus that data further. Next session: pick from the
 top of the index table, propose-theory, build. calibration-harvest is the
 fastest to evidence; deadline-drift has the user-agreed design.
+
+## 2026-08-24 — Backlog round 3: five more specs from a third literature pass (22 total)
+
+Same process as rounds 1-2 at the user's request: hunt for edges not
+already covered, research properly, spec in official format with honest
+Assessment scores. Five new specs (registry ids 19-23, priorities 8, 9,
+12, 17, 18 of a re-ranked 22), one parked idea (id 24), all existing spec
+priority lines renumbered to "of 22".
+
+The find of the round is parlay-fade: arXiv 2607.14430 measured, on 23M
+Kalshi moneyline trades, that cross-game parlays are systematically
+overpriced relative to the product of their leg prices -- with the legs
+themselves essentially perfectly calibrated in mid-life TTE buckets,
+which removes the alternative explanation. Kalshi combos are peer-to-peer
+(RFQ plus a post-fill order book), so the fade side is accessible; the
+open question is workflow fit for a manual user, priced into its
+applicability score. Its L=4 is the highest-quality new evidence in the
+backlog.
+
+The rest: weather-model-gap (per-station NWS settlement, keyless
+Open-Meteo forecast archive enables honest as-of tier-A backtests;
+heavily tooled competition is the named risk -- the backtest must show
+edge surviving the crowded era); calendar-arb (date-ladder nesting is
+hard logic across separate event pages nobody compares -- the pure-code
+middle ground between structural-arb and implication-graph; the by-vs-in
+window trap is the concentrated risk); attention-model (Wikipedia
+pageviews predict openings a month out per Mestyan et al. 2013, and
+entertainment is Kalshi's measured-least-efficient category);
+metaculus-gap (skill-weighted forecaster aggregate as fair value, with a
+freshness gate because a stale forecast gap is lag, not edge).
+
+Settlement-spillover considered and parked with a revisit angle (mine
+measured co-movement pairs first); same-game parlay correlation parked
+as the hard version of parlay-fade. Both recorded in the index's parked
+list and the registry.
+
+Still holding the push to origin pending the user's ruling on the public
+remote. Next: same top of the table -- calibration-harvest, then
+deadline-drift -- unless the user wants another round of this.

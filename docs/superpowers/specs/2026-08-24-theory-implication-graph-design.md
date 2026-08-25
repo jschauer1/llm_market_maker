@@ -2,7 +2,7 @@
 
 Date: 2026-08-24
 Status: backlog — not yet proposed as a theory
-Registry slug: `implication-graph` · Priority: 16 of 17 · Effort: L ·
+Registry slug: `implication-graph` · Priority: 21 of 22 · Effort: L ·
 LLM in decision path: construction time only (per-trade mechanical) ·
 Backtest tier: B for the whole procedure (see section 6)
 

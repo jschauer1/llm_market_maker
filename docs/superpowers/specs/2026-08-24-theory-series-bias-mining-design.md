@@ -2,7 +2,7 @@
 
 Date: 2026-08-24
 Status: backlog — not yet proposed as a theory
-Registry slug: `series-bias-mining` · Priority: 4 of 17 · Effort: M ·
+Registry slug: `series-bias-mining` · Priority: 4 of 22 · Effort: M ·
 LLM in decision path: no · Backtest tier: A
 
 Part of the theory backlog

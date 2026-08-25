@@ -2,7 +2,7 @@
 
 Date: 2026-08-24
 Status: backlog — infrastructure spec, not a standalone theory
-Registry slug: `maker-mode-execution` · Priority: 13 of 17 · Effort: M ·
+Registry slug: `maker-mode-execution` · Priority: 16 of 22 · Effort: M ·
 LLM in decision path: no · Backtest tier: A (measurement design below)
 
 Part of the theory backlog

@@ -2,7 +2,7 @@
 
 Date: 2026-08-24
 Status: backlog — not yet proposed as a theory
-Registry slug: `settled-but-trading` · Priority: 11 of 17 · Effort: M
+Registry slug: `settled-but-trading` · Priority: 14 of 22 · Effort: M
 first family, S per additional · LLM in decision path: no ·
 Backtest tier: A
 
