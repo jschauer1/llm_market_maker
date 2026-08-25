@@ -48,9 +48,12 @@ without the contract.
   position whose fee-inclusive cost is covered by its floor
   (`cost <= min_payout`) cannot lose: it is scored on return only, reported
   as `riskless_n` / `riskless_roi`, and excluded from `n`, `win_rate`, and
-  `calibration_edge(_net)` rather than pooled with calibrated positions. A
-  settled payout outside `{min_payout, max_payout}` raises — the
-  decomposition still assumes the at-risk portion is binary.
+  `calibration_edge(_net)` rather than pooled with calibrated positions. It
+  still counts toward `roi_all` unconditionally, and toward `roi_taken` only
+  if it was actually marked taken — the money is real either way, it is just
+  never mistaken for a forecast. A settled payout outside
+  `{min_payout, max_payout}` raises — the decomposition still assumes the
+  at-risk portion is binary.
 - **No credentials.** Every endpoint this project uses is public. Never add
   an API key, and never send any user identifier in a header, URL, or body.
 - **Edge numbers carry a provenance tier.** Every edge is stamped with an

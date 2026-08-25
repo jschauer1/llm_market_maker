@@ -191,7 +191,7 @@ position_kind  TEXT NOT NULL DEFAULT 'single'
                CHECK (position_kind IN ('single','basket')),
 leg_count      INTEGER NOT NULL DEFAULT 1,
 max_payout     REAL NOT NULL DEFAULT 1.0,
-min_payout     REAL NOT NULL DEFAULT 0.0,   -- section 3.6, not yet built
+min_payout     REAL NOT NULL DEFAULT 0.0,   -- section 3.6, the at-risk floor
 ```
 
 `max_payout` was added during planning, after this section was first
@@ -201,11 +201,11 @@ positive number — `record_basket` rejects `None`, non-numeric values, `bool`,
 `NaN`, zero, and negatives, because a basket that can never pay anything is
 not a position.
 
-`min_payout` is the section 3.6 resolution and is **specified here but not
-yet implemented**. It is the position's guaranteed floor, and it is what
-lets scoring grade only the at-risk portion. The default `0.0` is what makes
-the change a pure no-op for every row that exists today: with `min_payout`
-zero, `(cost − 0) / (max_payout − 0)` is exactly the formula already in use.
+`min_payout` is the section 3.6 resolution: the position's guaranteed
+floor, and what lets scoring grade only the at-risk portion. The default
+`0.0` is what makes the change a pure no-op for every row recorded before
+floors existed: with `min_payout` zero, `(cost − 0) / (max_payout − 0)` is
+exactly the formula already in use.
 It must be a non-negative number no greater than `max_payout`. Equality is
 legal, not an error: a position that always pays exactly the same amount is
 a bond, and if it costs less than it pays it is a real (if unusual)

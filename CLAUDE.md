@@ -401,8 +401,11 @@ no prompt. That is one more reason to prefer one.
   (`cost <= min_payout`, fees included) has no meaningful win rate — one
   over positions that always win is 1.0 by construction. Those are scored
   on return and reported in their own bucket (`riskless_n`, `riskless_roi`),
-  never averaged into `calibration_edge`. When reporting a theory that
-  produces both kinds, show both, and never sum them.
+  never averaged into `calibration_edge` — though they still count toward
+  `roi_all` unconditionally and toward `roi_taken` when actually taken, so
+  the money is not lost, only kept out of the forecast numbers. When
+  reporting a theory that produces both kinds, show both, and never sum
+  them.
 - **One board per session, shared by every theory.** Get it with
   `tools.board.get_board(conn)`, which returns the session's existing pull if
   it is fresh and fetches (and snapshots) if not. `go`'s Orient makes the one
