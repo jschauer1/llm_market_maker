@@ -37,7 +37,20 @@ without the contract.
   A basket's `entry_price` is its total cost and is bounded by `max_payout`,
   not by 1.0. Scoring counts a basket once, and excludes it until every leg
   has settled — recording an arbitrage as N independent bets makes a certain
-  payout read as a coin flip.
+  payout read as a coin flip. A position also declares `min_payout`, its
+  guaranteed floor, alongside `max_payout`; both default to the
+  single-position case (`0.0` and `1.0`), which is why every row recorded
+  before floors existed scores identically. Scoring grades only the portion
+  at risk — `implied_rate = (entry_price − min_payout) /
+  (max_payout − min_payout)`, using the fee-exclusive entry price so
+  `mean_fee_pts` subtracts fees exactly once instead of folding them into
+  the rate too. `won` means the position paid its full `max_payout`. A
+  position whose fee-inclusive cost is covered by its floor
+  (`cost <= min_payout`) cannot lose: it is scored on return only, reported
+  as `riskless_n` / `riskless_roi`, and excluded from `n`, `win_rate`, and
+  `calibration_edge(_net)` rather than pooled with calibrated positions. A
+  settled payout outside `{min_payout, max_payout}` raises — the
+  decomposition still assumes the at-risk portion is binary.
 - **No credentials.** Every endpoint this project uses is public. Never add
   an API key, and never send any user identifier in a header, URL, or body.
 - **Edge numbers carry a provenance tier.** Every edge is stamped with an
@@ -62,11 +75,12 @@ without the contract.
   `bucket_rates` exclude them; score one explicitly by passing its
   `run_id`. This is what makes variant-testing free — a subclass and a
   run id, no version bump, no registration (see CLAUDE.md).
-- **A basket must currently pay all-or-nothing to be *scored*.** Any
+- **A basket must still pay floor-or-ceiling to be *scored*.** Any
   `Candidate` shape records fine, but `score._basket_observations` raises
-  on a settled basket paying strictly between `0` and `max_payout`,
-  pending the decision in the multi-leg spec's section 10.1. Build a
-  variable-payout basket theory only after that lands.
+  on a settled basket paying strictly between its `min_payout` and
+  `max_payout` — the at-risk decomposition assumes that portion is binary.
+  A basket that can genuinely land in between needs a different definition
+  of `won` for a multi-outcome position; that is not built.
 
 ## Writing a new tool
 

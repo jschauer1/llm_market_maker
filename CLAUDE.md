@@ -397,6 +397,12 @@ no prompt. That is one more reason to prefer one.
   scored as a single joint payoff. Execution risk across legs is *reported*
   to the user, never modelled — present every leg with its own ask and tell
   the user to verify all legs before entering.
+- **An arbitrage is not a forecast.** A position that cannot lose
+  (`cost <= min_payout`, fees included) has no meaningful win rate — one
+  over positions that always win is 1.0 by construction. Those are scored
+  on return and reported in their own bucket (`riskless_n`, `riskless_roi`),
+  never averaged into `calibration_edge`. When reporting a theory that
+  produces both kinds, show both, and never sum them.
 - **One board per session, shared by every theory.** Get it with
   `tools.board.get_board(conn)`, which returns the session's existing pull if
   it is fresh and fetches (and snapshots) if not. `go`'s Orient makes the one

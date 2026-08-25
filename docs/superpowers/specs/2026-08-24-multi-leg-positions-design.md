@@ -1,7 +1,7 @@
 # Multi-Leg Positions — Baskets in the Ledger
 
 Date: 2026-08-24
-Status: **implemented, with one blocking decision open — see below**
+Status: **implemented**
 Implemented on branch `feat/multi-leg-positions` (15 commits, 522 tests
 passing). Scope: `db/schema.sql`, `tools/db.py`, `tools/ledger.py`,
 `tools/score.py`, `tools/cli.py`, `.claude/skills/score-theories/SKILL.md`
@@ -14,26 +14,24 @@ edge would be recorded as several independent bets that it is not.
 
 ---
 
-## ⚠️ Scoring decision RESOLVED — design written, not yet implemented
-
-**A basket whose payout can land strictly between $0 and its declared
-`max_payout` still RAISES at scoring time.** That guard is correct and
-stays until the design below is built — it exists so a wrong number can
-never be recorded, and nothing is silently wrong today.
+## ✅ Scoring decision resolved and implemented
 
 **What changed (2026-08-25):** the question in section 10.1 has been
-answered. The position declares its payout **floor** (`min_payout`), and
-scoring grades only the portion actually at risk — see **section 3.6**.
-The rule is a strict generalization: a single position and an
-all-or-nothing basket both score exactly as they do today, so no existing
-row is re-scored. A position that cannot lose (`cost <= min_payout`, which
-is what `calendar-arb` is) is scored on **return only** and reported
-separately from calibrated positions, never pooled with them.
+answered and built. The position declares its payout **floor**
+(`min_payout`), and scoring grades only the portion actually at risk — see
+**section 3.6**. The rule is a strict generalization: a single position and
+an all-or-nothing basket both score exactly as they did before, so no
+existing row was re-scored. A position that cannot lose
+(`cost <= min_payout`, which is what `calendar-arb`'s nesting position is)
+is scored on **return only** and reported separately from calibrated
+positions, never pooled with them.
 
-**Still true until it is implemented:** `calendar-arb` cannot accrue
-evidence yet, and the guard must not be relaxed ahead of the work. What has
-changed is that the blocker is now a build task rather than an open
-research question.
+**A basket whose settled payout lands strictly between its `min_payout` and
+`max_payout` still RAISES at scoring time.** That guard is unchanged and is
+not a placeholder — the at-risk decomposition assumes the at-risk portion
+is binary, and a basket that can genuinely land in between needs a
+different definition of `won` for a multi-outcome position, not a widened
+guard (see section 9, criterion 2, and `tests/test_at_risk_scoring.py`).
 
 ## 1. Problem
 
@@ -523,14 +521,15 @@ Status as implemented on `feat/multi-leg-positions`:
 1. ✅ Every existing test passes, none weakened; single-leg scores on a copy
    of the live database are identical before and after. Verified twice
    independently, once across 160 segments against real data.
-2. ⚠️ **Unmet, no longer blocked — waiting on a build.** A two-leg
-   `calendar-arb` basket records as one position and settles jointly, but
-   only one of its three branches can be *scored*; the other two pay a $1
-   floor against a $2 maximum and raise. That guard remains the honest
-   state, not a defect to paper over — the alternative was recording an
-   edge inflated by an order of magnitude. Section 10.1 is now answered and
-   section 3.6 specifies the fix (`min_payout` plus the at-risk
-   decomposition), so what is left is implementation, not a decision.
+2. ✅ **Met.** A two-leg `calendar-arb` basket records as one position and
+   settles jointly. With its floor declared (`min_payout=$1` against
+   `max_payout=$2`), all three of its outcome branches score: two settle at
+   exactly the floor and one at exactly the ceiling, which section 3.6's
+   at-risk decomposition grades correctly instead of raising — see
+   `tests/test_at_risk_scoring.py::test_at_risk_rate_prices_only_the_portion_that_can_be_lost`
+   and `::test_paying_only_the_floor_is_an_at_risk_loss`. The guard against
+   a genuinely in-between payout stays, unchanged — see
+   `::test_a_payout_between_floor_and_ceiling_still_raises`.
 3. ✅ A basket contributes exactly one observation to `n`.
 4. ✅ Met by the [OOP migration](2026-08-24-theory-layer-oop-design.md):
    `Candidate.ticker`, `.entry_price`, `.fav_side`, `.title`, and
