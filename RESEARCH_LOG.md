@@ -572,3 +572,56 @@ pair confirmation.
 
 Nothing was implemented — the backlog is the artifact. Next session: pick
 from the top of the table, propose-theory, build.
+
+## 2026-08-24 — Backlog v2: official spec format, second literature pass, 5 new theories, honest scoring
+
+User direction, three parts in sequence this session: split the backlog
+into one spec per theory (done earlier as docs/theory-specs/), then
+"official superpowers-type specs" plus more literature hunting, then a
+scored assessment on every spec because "another fable model will review
+your specs."
+
+Migration: docs/theory-specs/ is gone; the canonical home is now
+docs/superpowers/specs/2026-08-24-theory-<slug>-design.md, matching the
+house exemplar (numbered sections: Hypothesis, Evidence, Non-goals,
+Decision procedure, Data requirements, Backtest design, Kill criteria,
+Implementation plan, Testing approach, Open risks, Sources), with
+2026-08-24-theory-backlog-index.md carrying the shared contracts, rubric,
+ranking table, parked ideas, and sources. Registry ids 2-13 repointed.
+
+Second literature pass found four load-bearing results that became five
+new specs (registry ids 14-18): Becker's wealth-transfer microstructure
+(takers -1.12%/trade vs makers +1.12%; YES underperforms NO by up to 64pp
+at equal longshot prices; entertainment 4.79-7.32pp inefficiency vs
+finance 0.17pp) -> no-side-premium and maker-mode-execution; Clinton &
+Huang 2025 ($2.4B, 2,500+ political markets, negative daily
+autocorrelation) -> overreaction-fade, designed against news-drift via a
+shared sign-measurement so the two continuation/reversal theories can
+never both claim the same cell; Campbell-Sharpe consensus anchoring
+(JFQA 2009, re-confirmed FEDS 2026) -> econ-anchoring; documented
+on-chain insider lead windows plus the Columbia wash-trading numbers
+(~25% of PM volume fake, 45% in sports) -> insider-flow-radar, and the
+wash caveat also folded into whale-follow and cross-venue-fair-value.
+Palumbo 2026 (Kalshi NFL passive LPs profitable but adversely selected --
+"underwriters, not market makers") is the maker-mode spec's central
+tension.
+
+Every spec now carries an Assessment block: applicability /
+implementability / likelihood-of-success, 1-5 ordinal with stated
+reasoning (rubric in the index; explicitly not introspected
+probabilities). Scored honestly rather than promotionally: news-drift and
+vol-crossing rate their own likelihood 2/5 because the best direct
+evidence points against them (drift measured dead net of spread at minute
+scale; Kalshi crypto measured near-calibrated short-dated). Composite
+ranking and priority order diverge in three places; the index explains
+each (sequencing and information-value, not score, break the ties).
+
+Coordination: session -cc committed my in-flight files in d419fed (git
+add -A, pre-protocol) and later added a public remote
+(github.com/jschauer1/llm_market_maker) and pushed this branch. I
+committed the follow-ups with explicit paths and did NOT push -- session
+-d3 has flagged the public-remote question (real trade data in
+db/opportunities.json) to the user, and pushing before that ruling would
+publish these specs plus that data further. Next session: pick from the
+top of the index table, propose-theory, build. calibration-harvest is the
+fastest to evidence; deadline-drift has the user-agreed design.
