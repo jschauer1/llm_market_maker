@@ -165,6 +165,65 @@ def test_resighting_with_reordered_legs_is_the_same_basket(conn):
     assert first == second
 
 
+def test_resighting_freezes_entry_price_on_header_and_legs(conn):
+    """A re-sighting at new prices must not let the ledger's own header
+    row and its legs drift onto different vintages of the same bet."""
+    first, _ = _basket(conn)
+    second, created = _basket(conn, now=LATER, legs=[
+        {"kalshi_ticker": "KXA-26", "outcome": "yes", "entry_price": 0.10},
+        {"kalshi_ticker": "KXB-26", "outcome": "no", "entry_price": 0.15},
+    ])
+    assert created is False
+    assert first == second
+
+    row = ledger.get_opportunity(conn, first)
+    assert row["entry_price"] == pytest.approx(0.95)
+
+    legs = ledger.get_legs(conn, first)
+    assert legs[0]["entry_price"] == pytest.approx(0.40)
+    assert legs[1]["entry_price"] == pytest.approx(0.55)
+
+
+def test_resighting_refreshes_leg_quote_fields(conn):
+    opp_id, _ = _basket(conn, legs=[
+        {"kalshi_ticker": "KXA-26", "outcome": "yes", "entry_price": 0.40,
+         "spread_at_call": 0.02, "volume_at_call": 100},
+        {"kalshi_ticker": "KXB-26", "outcome": "no", "entry_price": 0.55,
+         "spread_at_call": 0.03, "volume_at_call": 200},
+    ])
+    _basket(conn, now=LATER, legs=[
+        {"kalshi_ticker": "KXA-26", "outcome": "yes", "entry_price": 0.10,
+         "spread_at_call": 0.09, "volume_at_call": 900},
+        {"kalshi_ticker": "KXB-26", "outcome": "no", "entry_price": 0.15,
+         "spread_at_call": 0.08, "volume_at_call": 800},
+    ])
+    legs = ledger.get_legs(conn, opp_id)
+    assert legs[0]["spread_at_call"] == pytest.approx(0.09)
+    assert legs[0]["volume_at_call"] == pytest.approx(900)
+    assert legs[1]["spread_at_call"] == pytest.approx(0.08)
+    assert legs[1]["volume_at_call"] == pytest.approx(800)
+    # entry_price stays frozen even while the quote fields refresh.
+    assert legs[0]["entry_price"] == pytest.approx(0.40)
+    assert legs[1]["entry_price"] == pytest.approx(0.55)
+
+
+def test_resighting_keeps_header_cost_consistent_with_legs(conn):
+    """The invariant the bug broke: header entry_price (the summed cost at
+    first sighting) must still equal sum(leg entry_price) after a
+    re-sighting at different prices, not a mix of first- and latest-seen
+    values."""
+    opp_id, _ = _basket(conn)
+    _basket(conn, now=LATER, legs=[
+        {"kalshi_ticker": "KXA-26", "outcome": "yes", "entry_price": 0.10},
+        {"kalshi_ticker": "KXB-26", "outcome": "no", "entry_price": 0.15},
+    ])
+    row = ledger.get_opportunity(conn, opp_id)
+    legs = ledger.get_legs(conn, opp_id)
+    assert row["entry_price"] == pytest.approx(
+        sum(l["entry_price"] for l in legs)
+    )
+
+
 def test_basket_cost_above_one_is_allowed_when_payout_allows_it(conn):
     opp_id, _ = _basket(conn, max_payout=2.0, legs=[
         {"kalshi_ticker": "KXA-26", "outcome": "no", "entry_price": 0.80},

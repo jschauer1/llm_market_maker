@@ -370,6 +370,14 @@ def record_basket(
     The header row carries the aggregate -- `entry_price` is the basket's
     total cost, `leg_count` is N, `max_payout` is the most it can pay -- and
     `opportunity_legs` carries the tradeable tickers.
+
+    Re-sighting contract, mirroring `record_opportunity`'s single-position
+    rows: `entry_price` is frozen at first sighting on *both* the header and
+    every leg, along with each leg's `kalshi_ticker`, `outcome`, and
+    `leg_index` -- they record the entry actually available when the basket
+    was first seen and must not drift. Only `last_seen_at`, `times_seen`,
+    `edge_pts_net` (while uninterpreted), and the legs' `spread_at_call` /
+    `volume_at_call` refresh on a re-sighting.
     """
     if edge_pts_net is None:
         raise ValueError(
@@ -455,20 +463,27 @@ def record_basket(
             (theory_id, theory_version, resolved_run_id, header_ticker),
         ).fetchone()
 
-        # Legs are rewritten wholesale on every sighting. The basket key is
-        # derived from the legs, so a re-sighting has identical legs by
-        # construction; rewriting keeps quotes fresh without a diffing step
-        # that could leave a stale leg behind.
-        conn.execute(
-            "DELETE FROM opportunity_legs WHERE opportunity_id = ?",
-            (row["id"],),
-        )
+        # The leg set is identical across every sighting by construction --
+        # `header_ticker` is a hash of (ticker, outcome) pairs, so a
+        # different set of legs produces a different basket_key and lands on
+        # a different header row entirely; there is no scenario where this
+        # opportunity_id sees a changed leg set, and leg_index (sorted the
+        # same way basket_key is) is therefore stable across sightings too.
+        # The ON CONFLICT clause below leaves entry_price, kalshi_ticker, and
+        # outcome untouched on a re-sighting -- frozen at first sighting,
+        # matching the header's frozen entry_price above -- and refreshes
+        # only spread_at_call/volume_at_call, which describe current market
+        # conditions rather than the position taken. No DELETE is needed:
+        # the leg set never changes shape, so there is no stale row to clear.
         conn.executemany(
             """
             INSERT INTO opportunity_legs (
                 opportunity_id, leg_index, kalshi_ticker, outcome,
                 entry_price, spread_at_call, volume_at_call
             ) VALUES (?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT (opportunity_id, leg_index) DO UPDATE SET
+                spread_at_call = excluded.spread_at_call,
+                volume_at_call = excluded.volume_at_call
             """,
             [
                 (row["id"], i, leg["kalshi_ticker"], leg["outcome"],
