@@ -93,13 +93,18 @@ def compute_score(
     theory version pools together, so re-running a backtest over the same
     markets multiplies `n` without adding a single real bet.
     """
-    sql = """
-        SELECT o.outcome, o.entry_price, o.edge_pts_net, o.user_action,
-               s.result
-        FROM opportunities o
-        JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker
-        WHERE o.theory_id = ? AND o.theory_version = ? AND o.run_mode = ?
-    """
+    obs = _single_leg_observations(
+        conn, theory_id, theory_version, run_mode, disposition, run_id
+    )
+    return _aggregate(obs)
+
+
+def _segment_filter(
+    theory_id: str, theory_version: int, run_mode: str,
+    disposition: str, run_id: str | None,
+) -> tuple[str, list[object]]:
+    """The WHERE clause every observation query shares."""
+    sql = " WHERE o.theory_id = ? AND o.theory_version = ? AND o.run_mode = ?"
     params: list[object] = [theory_id, theory_version, run_mode]
     if disposition != "all":
         sql += " AND o.disposition = ?"
@@ -107,39 +112,58 @@ def compute_score(
     if run_id is not None:
         sql += " AND o.run_id = ?"
         params.append(run_id)
+    return sql, params
 
-    rows = conn.execute(sql, params).fetchall()
+
+def _single_leg_observations(
+    conn: sqlite3.Connection, theory_id: str, theory_version: int,
+    run_mode: str, disposition: str, run_id: str | None,
+) -> list[dict]:
+    """One observation per settled single-leg position."""
+    where, params = _segment_filter(
+        theory_id, theory_version, run_mode, disposition, run_id
+    )
+    sql = (
+        "SELECT o.outcome, o.entry_price, o.edge_pts_net, o.user_action,"
+        " s.result FROM opportunities o"
+        " JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker"
+        + where
+        + " AND o.position_kind = 'single'"
+    )
+    out = []
+    for row in conn.execute(sql, params).fetchall():
+        won = _won(row["outcome"], row["result"])
+        price = row["entry_price"]
+        fee = fee_pts(price)
+        out.append({
+            "implied_rate": price,
+            "won": won,
+            "cost": price + fee / 100.0,
+            "payout": 1.0 if won else 0.0,
+            "fee_pts": fee,
+            "edge_pts_net": row["edge_pts_net"],
+            "user_action": row["user_action"],
+        })
+    return out
+
+
+def _aggregate(rows: list[dict]) -> dict:
+    """Turn observations into the score dict. Shared by every position kind."""
     if not rows:
         return dict(EMPTY_SCORE)
 
     n = len(rows)
-    wins = 0
-    total_cost = 0.0
-    total_return = 0.0
-    total_fee_pts = 0.0
-    taken_cost = 0.0
-    taken_return = 0.0
-    has_taken = False
+    wins = sum(1 for r in rows if r["won"])
+    total_cost = sum(r["cost"] for r in rows)
+    total_return = sum(r["payout"] for r in rows)
+    total_fee_pts = sum(r["fee_pts"] for r in rows)
 
-    for row in rows:
-        won = _won(row["outcome"], row["result"])
-        price = row["entry_price"]
-        fee = fee_pts(price)
-        cost = price + fee / 100.0
-        payout = 1.0 if won else 0.0
-
-        wins += 1 if won else 0
-        total_cost += cost
-        total_return += payout
-        total_fee_pts += fee
-
-        if row["user_action"] == "taken":
-            has_taken = True
-            taken_cost += cost
-            taken_return += payout
+    taken = [r for r in rows if r["user_action"] == "taken"]
+    taken_cost = sum(r["cost"] for r in taken)
+    taken_return = sum(r["payout"] for r in taken)
 
     win_rate = wins / n
-    price_implied_rate = sum(r["entry_price"] for r in rows) / n
+    price_implied_rate = sum(r["implied_rate"] for r in rows) / n
     calibration_edge = (win_rate - price_implied_rate) * 100.0
     mean_fee_pts = total_fee_pts / n
     # Net of fees, so it is comparable with mean_claimed_edge, which is
@@ -150,7 +174,7 @@ def compute_score(
     roi_all = (total_return - total_cost) / total_cost if total_cost else None
     roi_taken = (
         (taken_return - taken_cost) / taken_cost
-        if has_taken and taken_cost
+        if taken and taken_cost
         else None
     )
 
