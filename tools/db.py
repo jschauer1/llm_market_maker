@@ -68,6 +68,17 @@ def init_db(conn: sqlite3.Connection) -> None:
     _add_column_if_missing(
         conn, "theories", "uses_llm_judgment", "INTEGER NOT NULL DEFAULT 0"
     )
+    # Additive: every pre-existing row is a single-leg position, and these
+    # defaults describe it exactly, so there is no backfill.
+    _add_column_if_missing(
+        conn, "opportunities", "position_kind", "TEXT NOT NULL DEFAULT 'single'"
+    )
+    _add_column_if_missing(
+        conn, "opportunities", "leg_count", "INTEGER NOT NULL DEFAULT 1"
+    )
+    _add_column_if_missing(
+        conn, "opportunities", "max_payout", "REAL NOT NULL DEFAULT 1.0"
+    )
 
 
 def _dedupe_snapshots(conn: sqlite3.Connection) -> None:

@@ -81,6 +81,10 @@ CREATE TABLE IF NOT EXISTS opportunities (
     kalshi_ticker       TEXT NOT NULL,
     outcome             TEXT NOT NULL,
     entry_price         REAL NOT NULL,
+    position_kind       TEXT NOT NULL DEFAULT 'single'
+                        CHECK (position_kind IN ('single','basket')),
+    leg_count           INTEGER NOT NULL DEFAULT 1,
+    max_payout          REAL NOT NULL DEFAULT 1.0,
     spread_at_call      REAL,
     volume_at_call      REAL,
     model_prob          REAL,
@@ -116,6 +120,21 @@ CREATE INDEX IF NOT EXISTS idx_opportunities_theory
 
 CREATE INDEX IF NOT EXISTS idx_opportunities_ticker
     ON opportunities (kalshi_ticker);
+
+CREATE TABLE IF NOT EXISTS opportunity_legs (
+    opportunity_id INTEGER NOT NULL REFERENCES opportunities(id)
+                   ON DELETE CASCADE,
+    leg_index      INTEGER NOT NULL,
+    kalshi_ticker  TEXT NOT NULL,
+    outcome        TEXT NOT NULL,
+    entry_price    REAL NOT NULL,
+    spread_at_call REAL,
+    volume_at_call REAL,
+    PRIMARY KEY (opportunity_id, leg_index)
+);
+
+CREATE INDEX IF NOT EXISTS idx_opportunity_legs_ticker
+    ON opportunity_legs (kalshi_ticker);
 
 CREATE TABLE IF NOT EXISTS settlements (
     kalshi_ticker TEXT PRIMARY KEY,
