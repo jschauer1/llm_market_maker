@@ -60,6 +60,7 @@ to backtest" section specifies.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import datetime, timezone
 from typing import Iterator
 
@@ -157,9 +158,10 @@ def iter_settled_survivors(
     checkpoint to disk after every series instead of holding everything in
     memory until the very end and losing it all to an interruption -- see
     module docstring point 1 on why an unscoped walk is not an option here.
-    Each survivor dict is tagged with `series_ticker` (not present on the
-    raw settled-market payload) since the caller already knows it and the
-    candlestick replay needs it.
+    Each survivor is tagged with `series_ticker` (not present on the raw
+    settled-market payload) since the caller already knows it and the
+    candlestick replay needs it. `Market` is frozen, so the tag is applied
+    by replacement rather than in place; the value is identical either way.
     """
     for series in series_list:
         ticker = series.get("ticker")
@@ -172,9 +174,7 @@ def iter_settled_survivors(
             series_ticker=ticker,
             raw_filter=is_candidate,
         )
-        for s in survivors:
-            s["series_ticker"] = ticker
-        yield ticker, survivors
+        yield ticker, [replace(s, series_ticker=ticker) for s in survivors]
 
 
 def settled_survivors(

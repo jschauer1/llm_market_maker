@@ -235,3 +235,18 @@ def test_migration_dedupes_a_legacy_database(tmp_path):
                   " captured_at, status) VALUES ('kalshi','T-0',?, 'open')",
                   (NOW,))
     c.close()
+
+
+def test_cache_and_fetch_boards_are_identical_raw_included(conn, monkeypatch):
+    """Spec section 8.1, the highest-severity risk: a cached board that
+    returned a thinner `raw` would make a theory reading an uncommon field
+    work on a forced pull and silently return None on a cached one."""
+    fetched = _board(3)
+    monkeypatch.setattr(board.kalshi_markets, "list_open", lambda: fetched)
+    first = board.get_board(conn, force=True, now=NOW)     # fetch + snapshot
+    rebuilt = board.get_board(conn, now=NOW)               # cache hit
+
+    assert rebuilt == first
+    for a, b in zip(first, rebuilt):
+        assert a.raw == b.raw      # raw is compare=False, so check it here
+        assert a.raw["junk_b"] == list(range(50))

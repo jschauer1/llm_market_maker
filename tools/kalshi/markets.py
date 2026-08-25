@@ -3,8 +3,16 @@
 Kalshi's schema changed once already — prices moved from integer cents to
 decimal-dollar strings (`yes_ask_dollars`) and sizes gained an `_fp` suffix.
 `normalize` is the seam that absorbs that: everything downstream sees one
-stable dict of floats, and a shape we do not recognize raises instead of
-quietly producing zeros.
+stable `tools.domain.Market` of floats, and a shape we do not recognize
+raises instead of quietly producing zeros.
+
+Every fetching function here takes an optional `fetch` transport,
+defaulting to `get_json` at call time. That default is resolved in the body
+rather than in the signature on purpose: binding the function object at
+import time would freeze it into the signature and silently defeat the
+`monkeypatch.setattr(markets, "get_json", ...)` this module's own tests
+use. The parameter is what lets a backtest, a replay, or a theory
+substitute a canned payload, none of which can reach for monkeypatch.
 
 Error-handling contract: list_open, list_settled, and quotes all raise on a
 single malformed row, propagating the whole page's failure. That is a
@@ -16,6 +24,9 @@ the other.
 
 from __future__ import annotations
 
+from dataclasses import replace
+
+from tools.domain import Fetch, Market
 from tools.http import get_json
 
 BASE_URL = "https://api.elections.kalshi.com/trade-api/v2"
@@ -51,7 +62,7 @@ def _price(raw: dict, key: str) -> float | None:
         ) from exc
 
 
-def normalize(raw: dict) -> dict:
+def normalize(raw: dict) -> Market:
     """Convert a raw Kalshi market into the internal shape."""
     ticker = raw.get("ticker")
     if not ticker:
@@ -71,33 +82,34 @@ def normalize(raw: dict) -> dict:
     )
     status = raw.get("status")
 
-    return {
-        "platform": "kalshi",
-        "ticker": ticker,
-        "event_ticker": raw.get("event_ticker"),
-        "series_ticker": raw.get("series_ticker"),
-        "title": raw.get("title"),
-        "yes_bid": yes_bid,
-        "yes_ask": yes_ask,
-        "no_bid": _price(raw, "no_bid_dollars"),
-        "no_ask": _price(raw, "no_ask_dollars"),
-        "mid": mid,
-        "spread": spread,
-        "last_price": _price(raw, "last_price_dollars"),
-        "volume": _price(raw, "volume_fp"),
-        "volume_24h": _price(raw, "volume_24h_fp"),
-        "open_interest": _price(raw, "open_interest_fp"),
-        "status": status,
-        "is_open": status in OPEN_STATUSES,
-        "close_time": raw.get("close_time"),
-        "open_time": raw.get("open_time"),
-        "result": raw.get("result") or None,
-        "rules_primary": raw.get("rules_primary"),
-        "raw": raw,
-    }
+    return Market(
+        platform="kalshi",
+        ticker=ticker,
+        event_ticker=raw.get("event_ticker"),
+        series_ticker=raw.get("series_ticker"),
+        title=raw.get("title"),
+        yes_bid=yes_bid,
+        yes_ask=yes_ask,
+        no_bid=_price(raw, "no_bid_dollars"),
+        no_ask=_price(raw, "no_ask_dollars"),
+        mid=mid,
+        spread=spread,
+        last_price=_price(raw, "last_price_dollars"),
+        volume=_price(raw, "volume_fp"),
+        volume_24h=_price(raw, "volume_24h_fp"),
+        open_interest=_price(raw, "open_interest_fp"),
+        status=status,
+        is_open=status in OPEN_STATUSES,
+        close_time=raw.get("close_time"),
+        open_time=raw.get("open_time"),
+        result=raw.get("result") or None,
+        rules_primary=raw.get("rules_primary"),
+        raw=raw,
+    )
 
 
-def list_open(limit: int = 200) -> list[dict]:
+def list_open(limit: int = 200, *,
+              fetch: Fetch | None = None) -> list[Market]:
     """All open markets, walked via the events endpoint to exhaustion.
 
     Events carry the series ticker, which the candlestick endpoint needs, so
@@ -115,7 +127,8 @@ def list_open(limit: int = 200) -> list[dict]:
     stops advancing (the same cursor returned twice) raises `FetchError`
     rather than looping forever.
     """
-    out: list[dict] = []
+    fetch = fetch or get_json
+    out: list[Market] = []
     seen_tickers: set[str] = set()
     cursor = ""
     pages = 0
@@ -128,23 +141,27 @@ def list_open(limit: int = 200) -> list[dict]:
         }
         if cursor:
             params["cursor"] = cursor
-        payload = get_json(f"{BASE_URL}/events", params=params)
+        payload = fetch(f"{BASE_URL}/events", params=params)
         pages += 1
 
         for event in payload.get("events", []):
             for raw in event.get("markets", []):
                 market = normalize(raw)
-                if market["ticker"] in seen_tickers:
+                if market.ticker in seen_tickers:
                     continue
-                seen_tickers.add(market["ticker"])
-                market["event_ticker"] = (
-                    market["event_ticker"] or event.get("event_ticker")
-                )
-                market["series_ticker"] = (
-                    market.get("series_ticker") or event.get("series_ticker")
-                )
-                if not market["title"]:
-                    market["title"] = event.get("title")
+                seen_tickers.add(market.ticker)
+                # A market inherits identity from its event only where its
+                # own payload left a hole. Market is frozen, so this is a
+                # replacement rather than the in-place patch it used to be.
+                patch = {}
+                if not market.event_ticker:
+                    patch["event_ticker"] = event.get("event_ticker")
+                if not market.series_ticker:
+                    patch["series_ticker"] = event.get("series_ticker")
+                if not market.title:
+                    patch["title"] = event.get("title")
+                if patch:
+                    market = replace(market, **patch)
                 out.append(market)
 
         new_cursor = payload.get("cursor") or ""
@@ -169,7 +186,8 @@ def list_settled(
     series_ticker: str | None = None,
     raw_filter=None,
     on_page=None,
-) -> list[dict]:
+    fetch: Fetch | None = None,
+) -> list[Market]:
     """Recently settled markets, with their results, walked to exhaustion.
 
     Same contract as list_open: always pages until Kalshi's cursor comes
@@ -215,7 +233,8 @@ def list_settled(
     minutes, and a caller driving a long background run wants visibility
     into that, not just a final return value.
     """
-    out: list[dict] = []
+    fetch = fetch or get_json
+    out: list[Market] = []
     seen_tickers: set[str] = set()
     cursor = ""
     pages = 0
@@ -230,7 +249,7 @@ def list_settled(
             params["series_ticker"] = series_ticker
         if cursor:
             params["cursor"] = cursor
-        payload = get_json(f"{BASE_URL}/markets", params=params)
+        payload = fetch(f"{BASE_URL}/markets", params=params)
         pages += 1
 
         for raw in payload.get("markets", []):
@@ -265,7 +284,8 @@ def list_settled(
     return out
 
 
-def quotes(tickers: list[str]) -> dict[str, dict]:
+def quotes(tickers: list[str], *,
+           fetch: Fetch | None = None) -> dict[str, Market]:
     """Live re-quote for specific tickers, keyed by ticker.
 
     A ticker absent from the returned dict was not found or not returned
@@ -273,11 +293,12 @@ def quotes(tickers: list[str]) -> dict[str, dict]:
     """
     if not tickers:
         return {}
-    payload = get_json(
+    fetch = fetch or get_json
+    payload = fetch(
         f"{BASE_URL}/markets",
         params={"tickers": ",".join(tickers), "limit": len(tickers)},
     )
     return {
-        market["ticker"]: market
+        market.ticker: market
         for market in (normalize(raw) for raw in payload.get("markets", []))
     }

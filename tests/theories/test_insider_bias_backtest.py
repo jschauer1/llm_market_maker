@@ -25,6 +25,19 @@ def _settled(**overrides):
     return base
 
 
+def _normalized(**overrides):
+    """What `markets.list_settled` actually returns -- a normalized
+    Market, not the raw wire payload `_settled` builds.
+
+    The two were interchangeable while both were dicts, so fakes here
+    returned the raw shape where the normalized one belonged. A fake that
+    returns the wrong type no longer stands in for the contract it
+    replaces, which is the useful half of the types landing.
+    """
+    from tools.kalshi import markets
+    return markets.normalize(_settled(**overrides))
+
+
 # --- is_candidate: the safe, no-network pre-filter ---------------------
 
 
@@ -247,7 +260,7 @@ def test_iter_settled_survivors_scopes_each_call_by_series(monkeypatch):
 
     def fake_list_settled(**kwargs):
         calls.append(kwargs["series_ticker"])
-        return [_settled(ticker=f"{kwargs['series_ticker']}-1")]
+        return [_normalized(ticker=f"{kwargs['series_ticker']}-1")]
 
     monkeypatch.setattr(backtest.markets, "list_settled", fake_list_settled)
     series_list = [{"ticker": "KXA"}, {"ticker": "KXB"}]
@@ -260,7 +273,7 @@ def test_iter_settled_survivors_scopes_each_call_by_series(monkeypatch):
 def test_iter_settled_survivors_tags_each_row_with_its_series(monkeypatch):
     monkeypatch.setattr(
         backtest.markets, "list_settled",
-        lambda **kwargs: [_settled(ticker="X-1")],
+        lambda **kwargs: [_normalized(ticker="X-1")],
     )
     _, survivors = next(
         backtest.iter_settled_survivors([{"ticker": "KXA"}], 0, 100)
@@ -281,7 +294,7 @@ def test_iter_settled_survivors_skips_series_with_no_ticker(monkeypatch):
 def test_settled_survivors_collects_across_all_series(monkeypatch):
     monkeypatch.setattr(
         backtest.markets, "list_settled",
-        lambda **kwargs: [_settled(ticker=f"{kwargs['series_ticker']}-1")],
+        lambda **kwargs: [_normalized(ticker=f"{kwargs['series_ticker']}-1")],
     )
     series_list = [{"ticker": "KXA"}, {"ticker": "KXB"}]
     result = backtest.settled_survivors(0, 100, series_list=series_list)
@@ -292,7 +305,7 @@ def test_settled_survivors_uses_candidate_series_by_default(monkeypatch):
     monkeypatch.setattr(backtest, "candidate_series", lambda: [{"ticker": "KXA"}])
     monkeypatch.setattr(
         backtest.markets, "list_settled",
-        lambda **kwargs: [_settled(ticker="KXA-1")],
+        lambda **kwargs: [_normalized(ticker="KXA-1")],
     )
     result = backtest.settled_survivors(0, 100)
     assert [m["ticker"] for m in result] == ["KXA-1"]

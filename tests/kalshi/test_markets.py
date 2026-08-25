@@ -293,3 +293,63 @@ def test_live_open_markets_have_expected_shape():
     assert sample["platform"] == "kalshi"
     assert sample["ticker"]
     assert sample["is_open"] is True
+
+
+# --- domain type and the fetch seam (OOP migration, phase 2) ----------
+
+
+def test_normalize_returns_a_market_with_raw_by_identity():
+    from tools.domain import Market
+    m = markets.normalize(RAW)
+    assert isinstance(m, Market)
+    assert m.raw is RAW
+    assert m.yes_ask == pytest.approx(0.93)
+    assert m.ticker == "KXOAIANTH-40-ANTH"
+    assert m.is_open is True
+
+
+def test_list_open_accepts_an_injected_fetch_without_monkeypatch():
+    """The seam that makes a theory testable against a canned payload --
+    monkeypatch works in pytest and is unavailable to a backtest harness
+    or a replay."""
+    calls = []
+
+    def fake(url, params=None, timeout=30):
+        calls.append(url)
+        return {"events": [{"event_ticker": "KXOAIANTH-40", "title": "evt",
+                            "markets": [dict(RAW)]}], "cursor": ""}
+
+    got = markets.list_open(fetch=fake)
+    assert [m.ticker for m in got] == ["KXOAIANTH-40-ANTH"]
+    assert calls and calls[0].endswith("/events")
+
+
+def test_list_open_enriches_missing_event_fields_from_the_event():
+    """Market is frozen, so enrichment replaces rather than mutates."""
+    raw = {k: v for k, v in RAW.items() if k != "event_ticker"}
+
+    def fake(url, params=None, timeout=30):
+        return {"events": [{"event_ticker": "KXFROMEVT",
+                            "series_ticker": "KXSER", "title": "evt title",
+                            "markets": [raw]}], "cursor": ""}
+
+    got = markets.list_open(fetch=fake)
+    assert got[0].event_ticker == "KXFROMEVT"
+    assert got[0].series_ticker == "KXSER"
+    assert got[0].title == RAW["title"]      # own title wins over the event's
+
+
+def test_quotes_accepts_an_injected_fetch():
+    def fake(url, params=None, timeout=30):
+        return {"markets": [dict(RAW)]}
+
+    got = markets.quotes(["KXOAIANTH-40-ANTH"], fetch=fake)
+    assert got["KXOAIANTH-40-ANTH"].yes_ask == pytest.approx(0.93)
+
+
+def test_list_settled_accepts_an_injected_fetch():
+    def fake(url, params=None, timeout=30):
+        return {"markets": [dict(RAW, status="finalized", result="yes")]}
+
+    got = markets.list_settled(fetch=fake)
+    assert [m.result for m in got] == ["yes"]
