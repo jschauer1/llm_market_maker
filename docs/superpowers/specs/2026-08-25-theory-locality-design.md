@@ -27,9 +27,12 @@ repo-level homes, and both produce worse outcomes than they promise:
 2. **Research notes.** Today a theory's findings scatter across
    `THEORY.md` Learnings, `RUNBOOK.md`, and the repo-level
    `RESEARCH_LOG.md`. Without a stated rule, session logs accumulate
-   theory internals (the log's 2026-08-25 entry is mostly theory-layer
-   detail), and theory folders have no designated place for raw working
-   notes — so they either bloat THEORY.md or evaporate.
+   one-theory internals — the 2026-08-24 tier-A backtest entry is a
+   single theory's backtest narrative living in the session log, and the
+   Big Brother follow-up entry the same — and theory folders have no
+   designated place for raw working notes, so they either bloat
+   THEORY.md or evaporate. (Cross-cutting entries like the 2026-08-25
+   OOP-migration narrative are the log doing its actual job, and stay.)
 
 Behind both is one architectural intent: it should be possible to run
 **one repo-level agent** that understands every theory from a high level
@@ -75,7 +78,8 @@ for each:
 | Opportunities, verdicts, scores, backtest runs | no | the DB via the ledger | always — this is the non-negotiable contract |
 | Ideas considered and dropped | no | the ideas registry | always — dedup across theories requires one registry |
 | Session continuity | no | `RESEARCH_LOG.md` | always — it is the only cross-session, cross-theory narrative |
-| Fixture data, canned payloads | yes | `tests/` only when a shared tool's test needs it | — |
+| Tests and test fixtures | no | `tests/theories/`, `tests/characterization/` | always — the repo runs one suite, and every theory test, golden, and fixture already lives there |
+| Research data (cached pulls, canned payloads a replay or analysis reads) | yes | — | never — it is input, not evidence; anything it *produces* lands in the DB |
 
 Two asymmetries worth naming:
 
@@ -100,8 +104,10 @@ Two asymmetries worth naming:
   propagating through `finish()` to every row; the `backtest_runs` table
   and `python -m tools.cli backtest record` with tier and model cutoff.
 - **Tier rules:** A/B/C as defined in CLAUDE.md and the `backtest-theory`
-  skill — derived from `uses_llm_judgment` and the later of the judging
-  models' cutoffs, never self-reported.
+  skill — a documented derivation rule (from `uses_llm_judgment` and the
+  later of the judging models' cutoffs) that the *session* applies; the
+  harness stores the label and validates it against the three valid
+  tiers (`record_backtest_run`), it does not derive it.
 - **Scoring:** `python -m tools.cli score report --run-mode backtest
   --run-id <id>`.
 
@@ -272,7 +278,17 @@ contract changes anywhere.
 6. **`.claude/skills/backtest-theory/SKILL.md`** — one addition: the
    replay code lives in the theory's folder (`backtest.py` by
    convention); never write or extend a shared replay engine.
-7. **`RESEARCH_LOG.md`** — this decision logged; future entries follow
+7. **`.claude/skills/go/SKILL.md`** — the "Log it" step currently says
+   "Theory-specific findings also go in that theory's `THEORY.md`
+   Learnings", which is exactly the behavior this spec replaces.
+   Reworded: theory-specific findings go in that theory's `NOTES.md`;
+   `THEORY.md` changes only when the claim, procedure, or status
+   changes; the log entry carries a pointer, not a copy.
+8. **`.claude/skills/score-theories/SKILL.md`** — same treatment: its
+   "belongs in `THEORY.md` Learnings" line becomes "belongs in that
+   theory's `NOTES.md`, distilled into `THEORY.md` if it changes the
+   theory's standing."
+9. **`RESEARCH_LOG.md`** — this decision logged; future entries follow
    the pointer rule.
 
 ## 6. Non-goals
