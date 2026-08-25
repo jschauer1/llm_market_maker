@@ -199,19 +199,30 @@ def _basket_observations(
         payout = sum(
             1.0 for leg in legs if _won(leg["outcome"], leg["result"])
         )
-        fee = sum(fee_pts(leg["entry_price"]) for leg in legs)
+        # Explicit accumulator, not sum(): this quantity feeds mean_fee_pts
+        # in _aggregate, whose contract (see the comment there) is exact
+        # equivalence under CPython's naive += rather than sum()'s
+        # compensated summation. Two terms happen to agree either way, but
+        # a 3+-leg basket would silently diverge if this were sum().
+        fee = 0.0
+        for leg in legs:
+            fee += fee_pts(leg["entry_price"])
+        max_payout = header["max_payout"]
         cost = header["entry_price"] + fee / 100.0
-        max_payout = header["max_payout"] or 1.0
 
         out.append({
-            # Normalized so a basket's implied rate is comparable with a
-            # single position's price. For max_payout = 1.0 this is the
-            # cost itself, which is what a single leg contributes.
+            # implied_rate and fee_pts must live on the same scale, or the
+            # subtraction (calibration_edge - mean_fee_pts) in _aggregate
+            # mixes units. implied_rate is normalized by max_payout, so fee
+            # is too; at max_payout = 1.0 this divides by 1 and is exact,
+            # so single-leg pooling is unaffected. A single leg contributes
+            # implied_rate: price (see _single_leg_observations) -- this is
+            # the basket analogue of that, not of cost.
             "implied_rate": header["entry_price"] / max_payout,
             "won": payout > cost,
             "cost": cost,
             "payout": payout,
-            "fee_pts": fee,
+            "fee_pts": fee / max_payout,
             "edge_pts_net": header["edge_pts_net"],
             "user_action": header["user_action"],
         })

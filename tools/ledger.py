@@ -397,6 +397,21 @@ def record_basket(
             f"invalid edge_basis {edge_basis!r}; "
             f"expected one of {VALID_EDGE_BASES}"
         )
+    if (
+        isinstance(max_payout, bool)
+        or not isinstance(max_payout, (int, float))
+        or (isinstance(max_payout, float) and math.isnan(max_payout))
+        or max_payout <= 0
+    ):
+        # `_normalize_legs` only rejects cost > max_payout, which an
+        # all-zero-price basket with max_payout=0.0 sails through (0.0 > 0.0
+        # is False). Scoring then has no honest denominator to normalize
+        # against -- a basket that can never pay anything is not a
+        # position, so refuse it here rather than let a nonsense max_payout
+        # reach the ledger and fabricate edge downstream.
+        raise ValueError(
+            f"max_payout must be a positive number, got {max_payout!r}"
+        )
 
     norm = _normalize_legs(legs, max_payout)
     provenance.require_provenance(

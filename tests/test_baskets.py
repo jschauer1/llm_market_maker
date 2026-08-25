@@ -373,3 +373,50 @@ def test_a_basket_missing_a_leg_row_raises_rather_than_scoring(conn):
     _settle(conn, [("KXA-26", "yes"), ("KXB-26", "yes")])
     with pytest.raises(ValueError, match="leg_count"):
         score.compute_score(conn, "t1", 1)
+
+
+def test_basket_mean_fee_pts_is_normalized_by_max_payout(conn):
+    # Fee review fix 1: fee_pts must live on the same /max_payout scale as
+    # implied_rate, or calibration_edge_net mixes units. Hand-derived, in
+    # the style of tests/test_score_characterization.py, rather than
+    # restated from the implementation.
+    _basket(conn, max_payout=2.0, legs=[
+        {"kalshi_ticker": "KXA-26", "outcome": "no", "entry_price": 0.80},
+        {"kalshi_ticker": "KXB-26", "outcome": "no", "entry_price": 0.85},
+    ])
+    _settle(conn, [("KXA-26", "no"), ("KXB-26", "no")])
+    r = score.compute_score(conn, "t1", 1)
+    expected_mean_fee = (fee_pts(0.80) + fee_pts(0.85)) / 2.0
+    assert r["mean_fee_pts"] == pytest.approx(expected_mean_fee)
+
+
+def test_basket_three_leg_fee_accumulation(conn):
+    # Fee review fix 3: fee accumulation must use an explicit += loop, not
+    # sum(), matching _aggregate's contract. Two-leg baskets can't tell
+    # naive and compensated summation apart; three legs can.
+    _basket(conn, legs=[
+        {"kalshi_ticker": "KXA-26", "outcome": "yes", "entry_price": 0.20},
+        {"kalshi_ticker": "KXB-26", "outcome": "no", "entry_price": 0.30},
+        {"kalshi_ticker": "KXC-26", "outcome": "yes", "entry_price": 0.15},
+    ])
+    _settle(conn, [
+        ("KXA-26", "yes"), ("KXB-26", "yes"), ("KXC-26", "yes"),
+    ])
+    r = score.compute_score(conn, "t1", 1)
+    expected_mean_fee = fee_pts(0.20) + fee_pts(0.30) + fee_pts(0.15)
+    assert r["mean_fee_pts"] == pytest.approx(expected_mean_fee)
+
+
+def test_record_basket_rejects_zero_max_payout(conn):
+    with pytest.raises(ValueError, match="max_payout"):
+        _basket(conn, max_payout=0.0)
+
+
+def test_record_basket_rejects_negative_max_payout(conn):
+    with pytest.raises(ValueError, match="max_payout"):
+        _basket(conn, max_payout=-1.0)
+
+
+def test_record_basket_rejects_none_max_payout(conn):
+    with pytest.raises(ValueError, match="max_payout"):
+        _basket(conn, max_payout=None)
