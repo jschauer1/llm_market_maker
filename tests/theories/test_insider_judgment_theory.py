@@ -104,3 +104,19 @@ def test_an_unknown_bucket_is_refused(tmp_path):
     with pytest.raises(ValueError, match="scale"):
         run.finish(dry_run=True)
     conn.close()
+
+
+def test_naively_serializing_a_candidate_trips_assert_blind():
+    """A Candidate composes a Market carrying every price field. Dumping
+    one into a judgment payload must trip the guard -- this proves the
+    refactor made the mistake easier to commit but no easier to get away
+    with (spec section 8.3)."""
+    from dataclasses import asdict
+
+    from theories.insider_bias.insider_judgment import pipeline
+    from tools.domain import Candidate, Leg
+
+    cand = Candidate(legs=(Leg(market=_tiny_board()[0], side="yes",
+                               price=0.80),), days_to_close=2.0)
+    with pytest.raises(pipeline.BlindPayloadError):
+        pipeline.assert_blind([asdict(cand)])

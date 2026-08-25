@@ -32,6 +32,15 @@ from tools import provenance
 from tools.db import utcnow, write
 
 LIVE_RUN_ID = "live"
+
+#: Run ids opening with this prefix are EXPERIMENTS (OOP spec section
+#: 3.3a): real forward-test recordings made to try a variant of a theory
+#: -- usually a subclass with one method overridden -- without bumping its
+#: version. Pooled scoring and pooled bucket rates exclude them, so an
+#: experiment can never contaminate the track record it will be compared
+#: against. Score one explicitly with run_id="exp/<slug>".
+EXPERIMENT_RUN_PREFIX = "exp/"
+
 VALID_DISPOSITIONS = ("screened", "endorsed", "rejected")
 VALID_USER_ACTIONS = ("untouched", "taken", "skipped")
 VALID_EDGE_BASES = ("measured", "prior", "model")

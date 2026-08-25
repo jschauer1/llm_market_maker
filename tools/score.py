@@ -27,6 +27,7 @@ import math
 import sqlite3
 
 from tools.db import utcnow, write
+from tools.ledger import EXPERIMENT_RUN_PREFIX
 from tools.rank import realization as _realization
 from tools.sizing import fee_pts
 
@@ -115,6 +116,12 @@ def _segment_filter(
     if run_id is not None:
         sql += " AND o.run_id = ?"
         params.append(run_id)
+    else:
+        # Pooled scoring never sees experiments (OOP spec section 3.3a):
+        # a variant being tried must not contaminate the record it will
+        # be judged against.
+        sql += " AND o.run_id NOT LIKE ?"
+        params.append(EXPERIMENT_RUN_PREFIX + "%")
     return sql, params
 
 
@@ -480,6 +487,12 @@ def bucket_rates(
     if run_id is not None:
         sql += " AND o.run_id = ?"
         params.append(run_id)
+    else:
+        # Pooled scoring never sees experiments (OOP spec section 3.3a):
+        # a variant being tried must not contaminate the record it will
+        # be judged against.
+        sql += " AND o.run_id NOT LIKE ?"
+        params.append(EXPERIMENT_RUN_PREFIX + "%")
 
     rows = conn.execute(sql, params).fetchall()
 
