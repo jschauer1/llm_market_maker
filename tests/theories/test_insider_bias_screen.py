@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 import pytest
 
 from theories.insider_bias import screen
+from tools.domain import Market
 from tools.kalshi import markets
 
 NOW = datetime(2026, 8, 23, tzinfo=timezone.utc)
@@ -34,7 +35,7 @@ def _market(**overrides):
         "rules_primary": "Resolves Yes if X is named winner.",
     }
     base.update(overrides)
-    return base
+    return Market.from_mapping(base)
 
 
 def test_favorite_is_yes_when_mid_above_half():

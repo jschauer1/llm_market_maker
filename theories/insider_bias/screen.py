@@ -36,6 +36,8 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 
+from tools.domain import Candidate, Leg, Market
+
 MIN_FAVORITE_PRICE = 0.65
 MAX_FAVORITE_PRICE = 0.97
 MAX_SPREAD = 0.07
@@ -63,21 +65,18 @@ def is_excluded(ticker: str) -> bool:
     return any(ticker.startswith(prefix) for prefix in EXCLUDED_PREFIXES)
 
 
-def favorite(market: dict) -> tuple[str, float] | None:
+def favorite(market: Market) -> tuple[str, float] | None:
     """The favored side and the price you would actually pay for it.
 
     Uses the ask, not the mid. An edge measured against the mid is an edge
     against a price nobody will fill.
     """
-    mid = market.get("mid")
-    if mid is None:
+    if market.mid is None:
         return None
-    if mid >= 0.5:
-        price = market.get("yes_ask")
-        side = "yes"
+    if market.mid >= 0.5:
+        side, price = "yes", market.yes_ask
     else:
-        price = market.get("no_ask")
-        side = "no"
+        side, price = "no", market.no_ask
     if price is None:
         return None
     return side, price
@@ -96,19 +95,18 @@ def days_until(close_time: str | None, now: datetime | None = None) -> float | N
 
 
 def screen(
-    markets: list[dict],
+    markets: list[Market],
     now: datetime | None = None,
     min_favorite_price: float = MIN_FAVORITE_PRICE,
     max_favorite_price: float = MAX_FAVORITE_PRICE,
     max_spread: float = MAX_SPREAD,
     min_volume: float = MIN_VOLUME,
     max_days_ahead: float = MAX_DAYS_AHEAD,
-) -> list[dict]:
+) -> list[Candidate]:
     """Narrow normalized Kalshi markets to tradeable-favorite candidates."""
     candidates = []
     for market in markets:
-        ticker = market.get("ticker") or ""
-        if not market.get("is_open") or is_excluded(ticker):
+        if not market.is_open or is_excluded(market.ticker):
             continue
 
         fav = favorite(market)
@@ -118,22 +116,17 @@ def screen(
         if not min_favorite_price <= entry_price <= max_favorite_price:
             continue
 
-        spread = market.get("spread")
-        if spread is None or spread > max_spread:
+        if market.spread is None or market.spread > max_spread:
+            continue
+        if market.volume is None or market.volume < min_volume:
             continue
 
-        volume = market.get("volume")
-        if volume is None or volume < min_volume:
-            continue
-
-        days = days_until(market.get("close_time"), now=now)
+        days = days_until(market.close_time, now=now)
         if days is None or days < 0 or days > max_days_ahead:
             continue
 
-        candidate = dict(market)
-        candidate["fav_side"] = side
-        candidate["entry_price"] = entry_price
-        candidate["days_to_close"] = days
-        candidates.append(candidate)
-
+        candidates.append(Candidate(
+            legs=(Leg(market=market, side=side, price=entry_price),),
+            days_to_close=days,
+        ))
     return candidates

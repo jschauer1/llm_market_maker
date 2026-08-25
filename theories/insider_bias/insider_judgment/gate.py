@@ -29,6 +29,8 @@ from __future__ import annotations
 
 import re
 
+from tools.domain import Candidate
+
 #: (label, series-ticker pattern) for families this theory's gating rules
 #: answer "no" for. Order matters only for reporting -- the categories are
 #: mutually exclusive in practice.
@@ -83,17 +85,19 @@ def is_gated_out(series_ticker: str | None) -> bool:
     return classify(series_ticker) != PLAUSIBLE
 
 
-def partition(candidates: list[dict]) -> tuple[list[dict], dict[str, int]]:
+def partition(
+    candidates: list[Candidate],
+) -> tuple[list[Candidate], dict[str, int]]:
     """Split screened candidates into survivors and a per-category count.
 
     Returns `(survivors, counts)`. `counts` includes the PLAUSIBLE bucket, so
     it always sums to `len(candidates)` — a gate that quietly drops things is
     how a scan reports 88% coverage it never had.
     """
-    survivors: list[dict] = []
+    survivors: list[Candidate] = []
     counts: dict[str, int] = {}
     for candidate in candidates:
-        label = classify(candidate.get("series_ticker"))
+        label = classify(candidate.legs[0].market.series_ticker)
         counts[label] = counts.get(label, 0) + 1
         if label == PLAUSIBLE:
             survivors.append(candidate)

@@ -30,6 +30,7 @@ from datetime import datetime, timezone
 
 from theories.insider_bias import screen
 from theories.insider_bias.insider_judgment import gate
+from tools.domain import Candidate, Market
 
 #: Fields allowed into a judgment payload. Anything not listed is dropped.
 EVENT_FIELDS = ("event_ticker", "series_ticker", "title", "close_time")
@@ -47,7 +48,7 @@ class BlindPayloadError(AssertionError):
     """A judgment payload carried price information."""
 
 
-def dedupe_by_event(candidates: list[dict]) -> list[dict]:
+def dedupe_by_event(candidates: list[Candidate]) -> list[Candidate]:
     """One representative candidate per event, order preserved.
 
     Sibling strikes on one event share a gate verdict and a thesis judgment —
@@ -56,35 +57,34 @@ def dedupe_by_event(candidates: list[dict]) -> list[dict]:
     candidates to 274 events.
     """
     seen: set[str] = set()
-    out: list[dict] = []
+    out: list[Candidate] = []
     for c in candidates:
-        key = c.get("event_ticker") or c.get("ticker")
-        if key in seen:
+        if c.key in seen:
             continue
-        seen.add(key)
+        seen.add(c.key)
         out.append(c)
     return out
 
 
-def build_blind_payload(events: list[dict],
-                        candidates: list[dict]) -> list[dict]:
+def build_blind_payload(events: list[Candidate],
+                        candidates: list[Candidate]) -> list[dict]:
     """Event-level payload for the judgment stage, with no price anywhere.
 
     Each event carries its title, resolution rules, close time and the list
     of market tickers underneath it — everything needed to judge whether a
     specific group already knows, and nothing about what it costs.
     """
-    by_event: dict[str, list[dict]] = {}
+    by_event: dict[str, list[Candidate]] = {}
     for c in candidates:
-        by_event.setdefault(c.get("event_ticker") or c.get("ticker"), []).append(c)
+        by_event.setdefault(c.key, []).append(c)
 
     payload = []
     for e in events:
-        key = e.get("event_ticker") or e.get("ticker")
-        entry = {f: e.get(f) for f in EVENT_FIELDS}
+        rep = e.legs[0].market
+        entry = {f: getattr(rep, f, None) for f in EVENT_FIELDS}
         entry["markets"] = [
-            {f: m.get(f) for f in MARKET_FIELDS}
-            for m in by_event.get(key, [])
+            {f: getattr(c.legs[0].market, f, None) for f in MARKET_FIELDS}
+            for c in by_event.get(e.key, [])
         ]
         payload.append(entry)
     assert_blind(payload)
@@ -105,12 +105,12 @@ def assert_blind(payload: list[dict]) -> None:
         )
 
 
-def run_mechanical_stages(board: list[dict],
+def run_mechanical_stages(board: list[Market],
                           now: datetime | None = None) -> dict:
     """Screen → dedupe → gate → blind payload. Returns the full funnel.
 
-    `board` is `tools.kalshi.markets.list_open()` output. The returned dict
-    is the reproducible record of what the mechanical half decided:
+    `board` is `tools.board.get_board()` output. The returned dict is the
+    reproducible record of what the mechanical half decided:
 
         {"board_markets", "screened_markets", "events", "gate_counts",
          "gated_out", "survivors", "survivor_markets", "survivor_candidates",
@@ -120,10 +120,8 @@ def run_mechanical_stages(board: list[dict],
     candidates = screen.screen(board, now=now)
     events = dedupe_by_event(candidates)
     survivors, counts = gate.partition(events)
-    survivor_keys = {s.get("event_ticker") or s.get("ticker")
-                     for s in survivors}
-    kept = [c for c in candidates
-            if (c.get("event_ticker") or c.get("ticker")) in survivor_keys]
+    survivor_keys = {s.key for s in survivors}
+    kept = [c for c in candidates if c.key in survivor_keys]
     return {
         "board_markets": len(board),
         "screened_markets": len(candidates),

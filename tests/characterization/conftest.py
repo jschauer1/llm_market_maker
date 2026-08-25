@@ -60,12 +60,12 @@ def preview_days() -> float:
 def board_input() -> list:
     """The fixture in whatever shape the current screen consumes.
 
-    Until Phase 5 the screen reads dicts, so this returns the fixture
-    as-is; Task 12 switches it to construct domain.Market objects. The
-    golden files are untouched by that switch -- proj() is what keeps them
-    comparable.
+    Task 12 switched this from raw dicts to domain.Market objects, matching
+    board.get_board()'s real return type. The golden files are untouched by
+    that switch -- proj() is what keeps them comparable.
     """
-    return load_fixture()
+    from tools.domain import Market
+    return [Market.from_mapping(m) for m in load_fixture()]
 
 
 def event_key(c) -> str:

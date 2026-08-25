@@ -11,10 +11,12 @@ from datetime import datetime, timezone
 import pytest
 
 from theories.insider_bias.insider_judgment import backtest
+from tools.domain import Market
 
 
 def _settled(**overrides):
     base = {
+        "platform": "kalshi",
         "ticker": "KXTRAITORS-26-WINNER",
         "event_ticker": "KXTRAITORS-26",
         "volume_fp": "5000.00",
@@ -135,7 +137,8 @@ def test_replay_market_finds_the_first_day_that_clears_the_screen(monkeypatch):
         lambda series, ticker, start_ts, end_ts, period_interval=1440: candles,
     )
     result = backtest.replay_market(
-        _settled(close_time="2026-08-30T00:00:00Z"), "KXTRAITORS",
+        Market.from_mapping(_settled(close_time="2026-08-30T00:00:00Z")),
+        "KXTRAITORS",
     )
     assert result is not None
     assert result["fav_side"] == "yes"
@@ -154,7 +157,8 @@ def test_replay_market_returns_none_when_never_eligible(monkeypatch):
         lambda series, ticker, start_ts, end_ts, period_interval=1440: candles,
     )
     result = backtest.replay_market(
-        _settled(close_time="2026-08-30T00:00:00Z"), "KXTRAITORS",
+        Market.from_mapping(_settled(close_time="2026-08-30T00:00:00Z")),
+        "KXTRAITORS",
     )
     assert result is None
 
@@ -172,7 +176,8 @@ def test_replay_market_skips_days_with_no_quote(monkeypatch):
         lambda series, ticker, start_ts, end_ts, period_interval=1440: candles,
     )
     result = backtest.replay_market(
-        _settled(close_time="2026-08-30T00:00:00Z"), "KXTRAITORS",
+        Market.from_mapping(_settled(close_time="2026-08-30T00:00:00Z")),
+        "KXTRAITORS",
     )
     assert result is not None
     # Volume from the no-quote day still accumulates into the running total.
@@ -188,7 +193,8 @@ def test_replay_market_no_side_candidate(monkeypatch):
         lambda series, ticker, start_ts, end_ts, period_interval=1440: candles,
     )
     result = backtest.replay_market(
-        _settled(close_time="2026-08-30T00:00:00Z"), "KXTRAITORS",
+        Market.from_mapping(_settled(close_time="2026-08-30T00:00:00Z")),
+        "KXTRAITORS",
     )
     assert result is not None
     assert result["fav_side"] == "no"
@@ -196,7 +202,9 @@ def test_replay_market_no_side_candidate(monkeypatch):
 
 
 def test_replay_market_returns_none_without_a_parseable_close_time():
-    assert backtest.replay_market(_settled(close_time=None), "KXTRAITORS") is None
+    assert backtest.replay_market(
+        Market.from_mapping(_settled(close_time=None)), "KXTRAITORS"
+    ) is None
 
 
 # --- candidate_series -----------------------------------------------

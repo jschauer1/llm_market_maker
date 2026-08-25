@@ -13,12 +13,16 @@ import pytest
 
 from theories.insider_bias.mention_family import mention_bucket
 from tools import db, score, theories
+from tools.domain import Market
 from tools.sizing import fee_pts
 
 NOW = datetime(2026, 8, 24, tzinfo=timezone.utc)
 
 
 def _market(ticker, series_ticker, **overrides):
+    # screen.screen() (which find_candidates below reuses unmodified) reads
+    # domain.Market objects natively since the OOP migration's Task 12 --
+    # see theories/insider_bias/screen.py.
     base = {
         "platform": "kalshi",
         "ticker": ticker,
@@ -31,7 +35,7 @@ def _market(ticker, series_ticker, **overrides):
         "rules_primary": "rules text",
     }
     base.update(overrides)
-    return base
+    return Market.from_mapping(base)
 
 
 def _candidate(ticker, entry_price, fav_side="yes", volume=5000.0):

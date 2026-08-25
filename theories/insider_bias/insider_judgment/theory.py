@@ -14,8 +14,7 @@ _last_funnel post-mortem, section 4.4).
 from __future__ import annotations
 
 from theories.insider_bias.insider_judgment import gate, pipeline
-from tools.domain import (Candidate, Edge, Leg, Market, ScoredCandidate,
-                          ScreenResult, Verdict)
+from tools.domain import Edge, ScoredCandidate, ScreenResult, Verdict
 from tools.theory import Theory, TheoryContext
 
 #: THEORY.md "Confidence buckets": conservative priors, standing in only
@@ -25,14 +24,6 @@ BUCKETS = tuple(PRIORS)
 
 FUNNEL_KEYS = ("board_markets", "screened_markets", "events", "gated_out",
                "survivors", "survivor_markets")
-
-
-def _to_candidate(c: dict) -> Candidate:
-    return Candidate(
-        legs=(Leg(market=Market.from_mapping(c), side=c["fav_side"],
-                  price=c["entry_price"]),),
-        days_to_close=c["days_to_close"],
-    )
 
 
 class InsiderJudgmentTheory(Theory):
@@ -50,8 +41,7 @@ class InsiderJudgmentTheory(Theory):
     def screen(self, ctx: TheoryContext) -> ScreenResult:
         funnel = pipeline.run_mechanical_stages(ctx.board, ctx.now)
         return ScreenResult(
-            candidates=tuple(_to_candidate(c)
-                             for c in funnel["survivor_candidates"]),
+            candidates=tuple(funnel["survivor_candidates"]),
             funnel={k: funnel[k] for k in FUNNEL_KEYS},
             gate_removed={k: v for k, v in funnel["gate_counts"].items()
                           if k != gate.PLAUSIBLE},

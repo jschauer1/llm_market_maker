@@ -4,6 +4,14 @@ classification bug on the 2026-08-23 run."""
 import pytest
 
 from theories.insider_bias.insider_judgment import gate
+from tools.domain import Candidate, Leg, Market
+
+
+def _candidate(series_ticker, ticker):
+    market = Market(platform="kalshi", ticker=ticker,
+                    series_ticker=series_ticker, is_open=True)
+    return Candidate(legs=(Leg(market=market, side="yes", price=0.80),),
+                     days_to_close=5.0)
 
 
 @pytest.mark.parametrize("series,expected", [
@@ -66,10 +74,10 @@ def test_unknown_family_falls_through_to_the_expensive_stage():
 
 def test_partition_splits_and_counts_everything():
     candidates = [
-        {"series_ticker": "KXBTCD", "ticker": "a"},
-        {"series_ticker": "KXBTCD", "ticker": "b"},
-        {"series_ticker": "KXWNBAGAME", "ticker": "c"},
-        {"series_ticker": "KXBIGBROTHERELIMINATION", "ticker": "d"},
+        _candidate("KXBTCD", "a"),
+        _candidate("KXBTCD", "b"),
+        _candidate("KXWNBAGAME", "c"),
+        _candidate("KXBIGBROTHERELIMINATION", "d"),
     ]
     survivors, counts = gate.partition(candidates)
     assert [c["ticker"] for c in survivors] == ["d"]

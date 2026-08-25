@@ -64,6 +64,7 @@ from dataclasses import replace
 from datetime import datetime, timezone
 from typing import Iterator
 
+from tools.domain import Market
 from tools.http import get_json
 from tools.kalshi import history, markets
 from theories.insider_bias import screen
@@ -200,7 +201,7 @@ def settled_survivors(
     return out
 
 
-def replay_market(settled: dict, series_ticker: str) -> dict | None:
+def replay_market(settled: Market, series_ticker: str) -> dict | None:
     """First day within the screen's 14-day window that clears it, or None.
 
     Walks daily candles ascending from `VOLUME_WARMUP_DAYS` before close,
@@ -209,13 +210,13 @@ def replay_market(settled: dict, series_ticker: str) -> dict | None:
     pinned to that day -- this is not a reimplementation of the screen's
     rules, it is the same function the live pipeline calls.
     """
-    close_ts = _parse_ts(settled.get("close_time"))
+    close_ts = _parse_ts(settled.close_time)
     if close_ts is None:
         return None
     start_ts = close_ts - int(VOLUME_WARMUP_DAYS * 86400)
     candles = history.candlesticks(
         series_ticker,
-        settled["ticker"],
+        settled.ticker,
         start_ts=start_ts,
         end_ts=close_ts,
         period_interval=1440,
@@ -229,31 +230,33 @@ def replay_market(settled: dict, series_ticker: str) -> dict | None:
         if yes_bid is None or yes_ask is None:
             continue
 
-        market_view = {
-            "ticker": settled["ticker"],
-            "is_open": True,
-            "mid": (yes_bid + yes_ask) / 2.0,
-            "yes_ask": yes_ask,
-            "no_ask": 1.0 - yes_bid,
-            "spread": yes_ask - yes_bid,
-            "volume": running_volume,
-            "close_time": settled.get("close_time"),
-        }
+        market_view = Market(
+            platform="kalshi",
+            ticker=settled.ticker,
+            is_open=True,
+            mid=(yes_bid + yes_ask) / 2.0,
+            yes_ask=yes_ask,
+            no_ask=1.0 - yes_bid,
+            spread=yes_ask - yes_bid,
+            volume=running_volume,
+            close_time=settled.close_time,
+            raw={},
+        )
         as_of = datetime.fromtimestamp(candle["end_ts"], tz=timezone.utc)
         hits = screen.screen([market_view], now=as_of)
         if hits:
             hit = hits[0]
             return {
-                "ticker": settled["ticker"],
-                "event_ticker": settled.get("event_ticker"),
+                "ticker": settled.ticker,
+                "event_ticker": settled.event_ticker,
                 "series_ticker": series_ticker,
                 "entry_day_ts": candle["end_ts"],
-                "fav_side": hit["fav_side"],
-                "entry_price": hit["entry_price"],
-                "spread_at_call": hit["spread"],
-                "volume_at_call": hit["volume"],
-                "days_to_close": hit["days_to_close"],
-                "result": settled.get("result"),
+                "fav_side": hit.fav_side,
+                "entry_price": hit.entry_price,
+                "spread_at_call": hit.legs[0].market.spread,
+                "volume_at_call": hit.legs[0].market.volume,
+                "days_to_close": hit.days_to_close,
+                "result": settled.result,
             }
     return None
 

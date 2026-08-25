@@ -45,22 +45,31 @@ def test_verdict_declares_no_numeric_field():
 #: deletes the shim. Test modules are exempt (they test the shim itself).
 #:
 #: This is the set actually OBSERVED with tracking on (see the test below),
-#: not a static guess at which files contain `.get(`/`[...]` syntax. Most
-#: modules that will eventually need porting -- screen.py, gate.py,
-#: mention_bucket.py, snapshot.py, match_market.py, both theory adapters'
-#: price() methods -- currently run on plain dicts (board_input() hands
-#: back dicts "until Phase 5"), so their dict-style syntax reads real dicts
-#: and never touches the shim; they show up here only once something
-#: upstream starts handing them a domain.Market/Candidate. Right now the
-#: only genuine trigger is `judgment_payload()` -> `pipeline.dedupe_by_event`
-#: / `build_blind_payload`, which run on the domain.Candidate objects
-#: `screen()` already built. `tools.domain` is not a "caller" migrating
-#: anywhere: `Candidate.get()` (defined in domain.py) delegates to
-#: `Market.get()`, and the frame that "actually indexed" is that delegating
-#: line inside domain.py itself -- an artifact of the shim's own internal
-#: plumbing, gone the moment the whole shim is deleted in Task 14.
+#: not a static guess at which files contain `.get(`/`[...]` syntax.
+#:
+#: As of Task 12: `screen.py`, `gate.py`, and `insider_judgment/pipeline.py`
+#: were ported to read Market/Candidate natively (attribute access, no more
+#: `.get()`/`[...]`), so `theories.insider_bias.insider_judgment.pipeline`
+#: DROPPED from this set -- running the whole insider_judgment pipeline
+#: (`ij.start(ctx)`) no longer touches the shim at all.
+#:
+#: `theories.insider_bias.mention_family.mention_bucket` ENTERED instead,
+#: for a reason that is the whole point of an incremental port: it calls
+#: the SAME shared `screen.screen()` insider_judgment uses (see
+#: `theories/insider_bias/screen.py`'s module docstring on the two sibling
+#: theories), and that function now returns domain.Candidate objects
+#: instead of dicts. `find_candidates()`'s `h.get("series_ticker")` /
+#: `h["ticker"]` calls (mention_bucket.py has not been ported -- that is
+#: Task 13) land on the shim for the first time as a direct consequence.
+#: This is expected and temporary, exactly as the Task 12 brief predicted.
+#:
+#: `tools.domain` is not a "caller" migrating anywhere: `Candidate.get()`
+#: (defined in domain.py) delegates to `Market.get()`, and the frame that
+#: "actually indexed" is that delegating line inside domain.py itself -- an
+#: artifact of the shim's own internal plumbing, gone the moment the whole
+#: shim is deleted in Task 14.
 SHIM_ALLOWLIST = {
-    "theories.insider_bias.insider_judgment.pipeline",
+    "theories.insider_bias.mention_family.mention_bucket",
     "tools.domain",
 }
 
