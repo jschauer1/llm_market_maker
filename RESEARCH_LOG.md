@@ -664,3 +664,29 @@ list and the registry.
 Still holding the push to origin pending the user's ruling on the public
 remote. Next: same top of the table -- calibration-harvest, then
 deadline-drift -- unless the user wants another round of this.
+
+## 2026-08-24 — Evidence folder: reading notes and a graded claims ledger for spec reviewers
+
+User asked whether the specs are referenced well enough for reviewing
+LLMs to check what was found. They were cited (inline + Sources sections
++ annotated index bibliography) but two gaps existed: the two papers
+read in full lived only in session scratchpad, and nothing distinguished
+a primary-verified number from one that arrived via a search summary.
+
+Added docs/superpowers/specs/evidence/: reading notes for Le 2026 (full
+Table 4/5 transcriptions with locators, isotonic checks, the
+half-of-variation-is-noise caveat) and Angelini & De Angelis 2026
+(0.64/0.51 coefficients, full Table 6 drift matrix, the verbatim
+"executable-style returns ... are negative" quote), plus an evidence
+ledger grading every load-bearing claim across all 22 specs A/B/C/D by
+verification status. The ledger is honest about weak spots: the
+"60-70% reversion" figure in overreaction-fade is grade D (forum
+synthesis, not found in the abstract read directly), Becker's 64pp
+YES/NO figure needs its exact conditioning verified before
+no-side-premium is built, and the FEDS 2026 claim in econ-anchoring
+must be checked against the actual paper scope. Maintenance rule
+written in: first-hand backtest measurements supersede grades;
+D-grade claims get upgraded or struck at the ledger, not silently.
+
+Index now points reviewers at the ledger first. Push to origin still
+held pending the user's public-remote ruling.

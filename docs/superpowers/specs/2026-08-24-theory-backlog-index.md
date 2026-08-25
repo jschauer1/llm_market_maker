@@ -136,10 +136,29 @@ matrix.
   [parlay-fade](2026-08-24-theory-parlay-fade-design.md); parked until
   the cross-game version has evidence.
 
+## Evidence folder — for reviewers
+
+`evidence/` holds what a reviewing model needs to check the specs'
+claims without redoing the research:
+
+- [Evidence ledger](evidence/2026-08-24-evidence-ledger.md) — **start
+  here when reviewing**: every load-bearing quantitative claim across
+  the 22 specs, mapped to its source and graded A (primary read in
+  full, transcribed with locators) / B (primary located,
+  summary-verified) / C (practitioner, directly read) / D (secondhand
+  aggregation — treat as a lead, not evidence). The ledger names the
+  claims that still need verification at implementation time.
+- [Le 2026 reading notes](evidence/2026-08-24-le-2026-calibration-notes.md) —
+  full Table 4/5 transcriptions, isotonic checks, dataset description.
+- [Angelini & De Angelis 2026 reading notes](evidence/2026-08-24-angelini-deangelis-2026-notes.md) —
+  impact coefficient, Table 6 drift matrix, the verbatim
+  executable-returns negative.
+
 ## Shared sources
 
 Papers marked **read in full** were extracted and read during the
-2026-08-24 sessions; quoted numbers come from their text.
+2026-08-24 sessions; quoted numbers come from their text and are
+transcribed with locators in `evidence/`.
 
 - [Le 2026 — Decomposing Crowd Wisdom: Domain-Specific Calibration Dynamics](https://arxiv.org/pdf/2602.19520) (**read in full**; [replication repo](https://github.com/namanhzz/prediction-market-calibration)) — 353M trades; Politics slopes 1.32–1.83 (compressed toward 50%), Weather 0.69–0.87 short-horizon (too extreme), Sports 1.74 / Crypto 1.36 at 1mo+; universal horizon component 0.99 → 1.32; price 0.75 → 0.886 realized (Politics), 0.691 (Weather); large political trades compress more (1.74 vs 1.19).
 - [Angelini & De Angelis 2026 — When Do Markets Fully Process Public Information?](https://arxiv.org/pdf/2606.07811) (**read in full**) — Kalshi NBA in-play: 0.64-for-one impact adjustment, predictable drift, worse when illiquid+salient; **not profitable net of bid–ask at minute scale**.
