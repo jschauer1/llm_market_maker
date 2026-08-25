@@ -3764,7 +3764,9 @@ In `tests/theories/test_insider_bias_screen.py`, `..._gate.py`, `..._pipeline.py
 
 - [ ] **Step 7: Shrink the shim allowlist**
 
-In `tests/test_conventions.py`, remove from `SHIM_ALLOWLIST`: `tools.board` (it never called the shim), `theories.insider_bias.screen`, `theories.insider_bias.insider_judgment.gate`, `theories.insider_bias.insider_judgment.pipeline`, `theories.insider_bias.insider_judgment.backtest`, `theories.insider_bias.insider_judgment.theory`. Remaining: `tools.snapshot`, `tools.match_market`, `theories.insider_bias.mention_family.mention_bucket`, `theories.insider_bias.mention_family.theory`.
+**Re-derive `SHIM_ALLOWLIST` empirically; do not edit it from a predicted list.** Task 9 established that the allowlist is the *observed* caller set, not a guess: run the conventions test, read what `domain.SHIM_CALLERS` actually collects under `track_shim_callers()`, and set the allowlist to exactly that. As of Task 9 the observed set is `{"theories.insider_bias.insider_judgment.pipeline", "tools.domain"}` — the original ten-entry prediction in this plan was wrong, because at that stage the theories still received plain dicts and never reached the shim.
+
+**Expect this set to GROW in this task before it shrinks in Task 13.** Step 1 switches `board_input()` to hand out `Market` objects, so modules that read candidates dict-style now hit the shim for the first time — `mention_bucket` most notably, since Task 13 has not ported it yet. That is correct and temporary. The rule is: the allowlist always equals the observed set, it must contain nothing that is not observed (a stale entry is a hole), and it must be empty by Task 14. Record in the commit message which modules entered and left.
 
 - [ ] **Step 8: Run everything**
 
@@ -3956,7 +3958,7 @@ Port each dual-platform read to attribute access with a `getattr` default, e.g.:
 
 - [ ] **Step 5: Empty the allowlist**
 
-In `tests/test_conventions.py`: `SHIM_ALLOWLIST = set()`. The conventions test now proves no production module touches the shim — which is the precondition Task 14 deletes it under.
+In `tests/test_conventions.py`, re-derive the observed caller set as in Task 12 and drive `SHIM_ALLOWLIST` to `set()`. Note the test asserts the observed set is non-empty (its guard against silently going vacuous), so emptying the allowlist and emptying the observed set must happen together: once no production module touches the shim, that non-emptiness assertion is what must be removed, and the test becomes Task 14's "the shim is gone" check. If `prod` still contains a module here, the port is incomplete — find the call site rather than widening the allowlist.
 
 - [ ] **Step 6: Run everything**
 
