@@ -234,3 +234,36 @@ def test_mechanical_theory_records_web_search_false_on_live_run(tmp_path):
     assert runs[0]["model"] == "none (deterministic)"
     assert runs[0]["web_search"] == 0
     conn.close()
+
+
+def test_a_basket_candidates_floor_reaches_the_ledger(tmp_path):
+    """finish() is the single ledger path, so a floor declared on the
+    position must survive it -- otherwise a floor basket would record as
+    all-or-nothing and be scored on the wrong event."""
+    from tools import ledger, theories
+    from tools.domain import Candidate, Edge, Leg, ScoredCandidate
+
+    class FloorBasket(Theory):
+        id, name, version = "stub_floor", "Stub Floor", 1
+
+        def screen(self, ctx):
+            legs = tuple(Leg(market=m, side="yes", price=0.5)
+                         for m in ctx.board)
+            return [Candidate(legs=legs, days_to_close=1.0,
+                              min_payout=1.0, max_payout=2.0)]
+
+        def price(self, ctx, cands, verdicts=None):
+            return [ScoredCandidate(candidate=c,
+                                    edge=Edge(pts_net=4.0, basis="model"))
+                    for c in cands]
+
+    conn = db.connect(tmp_path / "t.db")
+    db.init_db(conn)
+    theories.register(conn, "stub_floor", "Stub Floor", "x", now=TS)
+    ctx = TheoryContext.build(
+        conn=conn, board=[mkm("KXA-26"), mkm("KXB-26")], now=NOW)
+    result = FloorBasket().start(ctx).finish()
+    row = ledger.get_opportunity(conn, result.opportunity_ids[0])
+    assert row["min_payout"] == pytest.approx(1.0)
+    assert row["max_payout"] == pytest.approx(2.0)
+    conn.close()

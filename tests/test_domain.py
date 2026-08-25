@@ -92,6 +92,28 @@ def test_candidate_rejects_a_nonsense_max_payout(bad):
         Candidate(legs=(leg(),), days_to_close=1.0, max_payout=bad)
 
 
+def test_candidate_defaults_to_a_zero_floor():
+    assert single().min_payout == 0.0
+
+
+@pytest.mark.parametrize("bad", [-0.5, None, "0.0", True, float("nan")])
+def test_candidate_rejects_a_nonsense_min_payout(bad):
+    with pytest.raises(ValueError, match="min_payout"):
+        Candidate(legs=(leg(),), days_to_close=1.0, min_payout=bad)
+
+
+def test_candidate_rejects_a_floor_above_its_ceiling():
+    with pytest.raises(ValueError, match="min_payout"):
+        Candidate(legs=(leg(),), days_to_close=1.0,
+                  min_payout=2.0, max_payout=1.0)
+
+
+def test_candidate_allows_a_floor_equal_to_its_ceiling():
+    c = Candidate(legs=(leg(),), days_to_close=1.0,
+                  min_payout=1.0, max_payout=1.0)
+    assert c.min_payout == c.max_payout == 1.0
+
+
 def test_single_leg_conveniences():
     c = single()
     assert (c.ticker, c.fav_side, c.entry_price) == ("KXT-26", "yes", 0.8)

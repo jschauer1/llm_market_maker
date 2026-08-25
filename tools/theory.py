@@ -134,7 +134,8 @@ class OpportunityRecord:
                          volume_at_call=l.market.volume) for l in c.legs]
             return cls(single=None,
                        basket=dict(common, legs=legs,
-                                   max_payout=c.max_payout))
+                                   max_payout=c.max_payout,
+                                   min_payout=c.min_payout))
         leg = c.legs[0]
         return cls(basket=None,
                    single=dict(common, kalshi_ticker=leg.market.ticker,

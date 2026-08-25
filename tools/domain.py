@@ -188,12 +188,18 @@ class Candidate:
     One type, no second-class path -- a single position is the one-leg
     case. `max_payout` is the most the position can pay and is what
     scoring normalizes against; 1.0 (a single contract) for singles, and
-    for a NO-basket over k mutually exclusive outcomes, k-1.
+    for a NO-basket over k mutually exclusive outcomes, k-1. `min_payout`
+    is the guaranteed floor -- the least the position can pay regardless
+    of outcome, 0.0 (all-or-nothing) by default. Scoring grades only the
+    portion of the payout above this floor; a floor equal to the ceiling
+    is a riskless position (a bond, or an arbitrage if it costs less than
+    it pays), not an error.
     """
 
     legs: tuple[Leg, ...]
     days_to_close: float
     max_payout: float = 1.0
+    min_payout: float = 0.0
 
     def __post_init__(self) -> None:
         if not self.legs:
@@ -207,6 +213,17 @@ class Candidate:
                 or (isinstance(mp, float) and math.isnan(mp)) or mp <= 0):
             raise ValueError(
                 f"max_payout must be a positive number, got {mp!r}"
+            )
+        mn = self.min_payout
+        if (isinstance(mn, bool) or not isinstance(mn, (int, float))
+                or (isinstance(mn, float) and math.isnan(mn)) or mn < 0):
+            raise ValueError(
+                f"min_payout must be a non-negative number, got {mn!r}"
+            )
+        if mn > self.max_payout:
+            raise ValueError(
+                f"min_payout {mn!r} exceeds max_payout {self.max_payout!r}; "
+                "a position cannot guarantee more than it can pay"
             )
 
     @property
