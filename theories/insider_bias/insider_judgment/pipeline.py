@@ -113,7 +113,8 @@ def run_mechanical_stages(board: list[dict],
     is the reproducible record of what the mechanical half decided:
 
         {"board_markets", "screened_markets", "events", "gate_counts",
-         "gated_out", "survivors", "payload"}
+         "gated_out", "survivors", "survivor_markets", "survivor_candidates",
+         "payload"}
     """
     now = now or datetime.now(timezone.utc)
     candidates = screen.screen(board, now=now)
@@ -131,5 +132,6 @@ def run_mechanical_stages(board: list[dict],
         "gated_out": len(events) - len(survivors),
         "survivors": len(survivors),
         "survivor_markets": len(kept),
+        "survivor_candidates": kept,
         "payload": build_blind_payload(survivors, kept),
     }
