@@ -1,0 +1,24 @@
+{
+ "family_survivors": 163,
+ "frozen_now": "2026-08-24T22:34:54Z",
+ "full_board_size": 101856,
+ "preview_days": 365.0,
+ "rates": {
+  "mention_family_75_85": {
+   "mean_entry_price": 0.7931578947368421,
+   "n": 38,
+   "win_rate": 0.868421052631579
+  },
+  "mention_family_85plus": {
+   "mean_entry_price": 0.9158536585365855,
+   "n": 41,
+   "win_rate": 1.0
+  },
+  "mention_family_lt75": {
+   "mean_entry_price": 0.6962162162162161,
+   "n": 37,
+   "win_rate": 0.7297297297297297
+  }
+ },
+ "survivors": 799
+}
