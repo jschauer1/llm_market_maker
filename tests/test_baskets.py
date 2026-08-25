@@ -56,3 +56,28 @@ def test_position_kind_rejects_an_unknown_value(conn):
             " 'combo', ?, ?)",
             (TS, TS),
         )
+
+
+def test_basket_key_is_stable_across_leg_order():
+    a = [{"kalshi_ticker": "AAA", "outcome": "yes"},
+         {"kalshi_ticker": "BBB", "outcome": "no"}]
+    b = list(reversed(a))
+    assert ledger.basket_key(a) == ledger.basket_key(b)
+
+
+def test_basket_key_normalizes_case():
+    a = [{"kalshi_ticker": "aaa", "outcome": "YES"}]
+    b = [{"kalshi_ticker": "AAA", "outcome": "yes"}]
+    assert ledger.basket_key(a) == ledger.basket_key(b)
+
+
+def test_basket_key_differs_on_different_legs():
+    a = [{"kalshi_ticker": "AAA", "outcome": "yes"}]
+    b = [{"kalshi_ticker": "AAA", "outcome": "no"}]
+    assert ledger.basket_key(a) != ledger.basket_key(b)
+
+
+def test_basket_key_shape():
+    key = ledger.basket_key([{"kalshi_ticker": "AAA", "outcome": "yes"}])
+    assert key.startswith("BASKET:")
+    assert len(key) == len("BASKET:") + 16

@@ -23,6 +23,7 @@ then counts as two independent wins.
 
 from __future__ import annotations
 
+import hashlib
 import math
 import sqlite3
 
@@ -33,6 +34,31 @@ LIVE_RUN_ID = "live"
 VALID_DISPOSITIONS = ("screened", "endorsed", "rejected")
 VALID_USER_ACTIONS = ("untouched", "taken", "skipped")
 VALID_EDGE_BASES = ("measured", "prior", "model")
+
+#: Prefix marking a synthetic header ticker for a multi-leg position.
+BASKET_PREFIX = "BASKET:"
+
+
+def basket_key(legs: list[dict]) -> str:
+    """A stable synthetic `kalshi_ticker` for a multi-leg position.
+
+    The header row needs a ticker: the column is NOT NULL and the dedup key
+    is built from it. A basket resolves to several real tickers, so the
+    header carries a hash of them and the tradeability guarantee moves to
+    `opportunity_legs`, where every row has a real one.
+
+    Sorted and case-normalized so the same basket produces the same key on
+    every scan regardless of leg ordering. That is what preserves the
+    re-sighting rule -- a basket that stays mispriced for a week is one bet
+    seen seven times, not seven bets.
+    """
+    parts = sorted(
+        f"{(leg['kalshi_ticker'] or '').strip().upper()}:"
+        f"{(leg['outcome'] or '').strip().lower()}"
+        for leg in legs
+    )
+    digest = hashlib.sha256("|".join(parts).encode("utf-8")).hexdigest()
+    return f"{BASKET_PREFIX}{digest[:16]}"
 
 
 def _validate_entry_price(entry_price: object) -> None:
