@@ -197,13 +197,21 @@ def list_settled(
     option, for the same reason list_open has none -- a prefix of pages is
     not a representative sample.
 
-    Kalshi's settled history spans the platform's whole lifetime, so an
-    unbounded walk here can be considerably larger and slower than
-    list_open's ~60 pages against the live board -- easily hundreds of
-    thousands of rows. `min_close_ts`/`max_close_ts` (Unix seconds) bound the
-    walk to markets whose close_time falls in that window; Kalshi's API
-    honours both, but **that bound alone is not enough to make a broad
-    settled-history walk tractable**: measured 2026-08-24, a single series
+    **Kalshi archives settled markets out of its public API roughly 60
+    days after close** (measured 2026-08-25): beyond that floor `/markets`
+    returns nothing for them under any status filter — only a few
+    never-traded husks linger as `status='closed'` with empty `result` —
+    `/events?with_nested_markets` returns settled event shells with no
+    markets, and candlesticks for archived tickers come back empty. So
+    this walk serves roughly the trailing two months, the floor advancing
+    daily; history older than that is only recoverable from data captured
+    before it aged out. Within that reachable range, an unbounded walk can
+    still be considerably larger and slower than list_open's ~60 pages
+    against the live board -- easily hundreds of thousands of rows.
+    `min_close_ts`/`max_close_ts` (Unix seconds) bound the walk to markets
+    whose close_time falls in that window; Kalshi's API honours both, but
+    **that bound alone is not enough to make a broad settled-history walk
+    tractable**: measured 2026-08-24, a single series
     (`KXMVECROSSCATEGORY`, a combinatorial "shard" product) alone produces
     400,000+ settled markets *per day*, so even a 30-day window is tens of
     millions of rows before any filtering -- multiple minutes just to page
