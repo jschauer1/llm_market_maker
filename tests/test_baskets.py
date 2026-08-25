@@ -420,3 +420,56 @@ def test_record_basket_rejects_negative_max_payout(conn):
 def test_record_basket_rejects_none_max_payout(conn):
     with pytest.raises(ValueError, match="max_payout"):
         _basket(conn, max_payout=None)
+
+
+@pytest.mark.parametrize(
+    "early_result,late_result",
+    [
+        ("no", "no"),    # event never happens: NO-early wins, YES-late loses
+        ("no", "yes"),   # happens between deadlines: both win
+        ("yes", "yes"),  # happens before the early deadline: YES-late wins
+    ],
+)
+def test_nesting_valid_basket_pays_at_least_one_in_every_branch(
+    conn, early_result, late_result
+):
+    """The calendar-arb payoff matrix, as an executable property.
+
+    Legs: buy YES on the later deadline, buy NO on the earlier one. Under
+    nesting (early YES implies late YES) the impossible branch is
+    (early=yes, late=no), which is why it is absent from the parametrize
+    list rather than expected to fail.
+    """
+    ledger.record_basket(
+        conn, theory_id="t1", theory_version=1, edge_pts_net=4.0,
+        edge_basis="model", now=TS, max_payout=2.0,
+        legs=[
+            {"kalshi_ticker": "KXLATE-26", "outcome": "yes",
+             "entry_price": 0.60},
+            {"kalshi_ticker": "KXEARLY-26", "outcome": "no",
+             "entry_price": 0.35},
+        ],
+    )
+    _settle(conn, [("KXEARLY-26", early_result), ("KXLATE-26", late_result)])
+
+    obs = score._basket_observations(conn, "t1", 1, "live", "all", None)
+    assert len(obs) == 1
+    assert obs[0]["payout"] >= 1.0
+
+
+def test_a_basket_that_would_have_lost_is_visible_as_a_loss(conn):
+    """The classifier-bug detector: a mis-classified pair scores negative."""
+    ledger.record_basket(
+        conn, theory_id="t1", theory_version=1, edge_pts_net=4.0,
+        edge_basis="model", now=TS,
+        legs=[
+            {"kalshi_ticker": "KXP-26", "outcome": "yes", "entry_price": 0.60},
+            {"kalshi_ticker": "KXQ-26", "outcome": "yes", "entry_price": 0.35},
+        ],
+    )
+    # Both legs lose -- no nesting relationship held.
+    _settle(conn, [("KXP-26", "no"), ("KXQ-26", "no")])
+    r = score.compute_score(conn, "t1", 1)
+    assert r["n"] == 1
+    assert r["win_rate"] == pytest.approx(0.0)
+    assert r["roi_all"] == pytest.approx(-1.0)
