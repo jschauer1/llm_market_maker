@@ -81,3 +81,22 @@ def test_basket_key_shape():
     key = ledger.basket_key([{"kalshi_ticker": "AAA", "outcome": "yes"}])
     assert key.startswith("BASKET:")
     assert len(key) == len("BASKET:") + 16
+
+
+def test_basket_key_raises_on_missing_ticker():
+    with pytest.raises(ValueError, match="leg 0.*kalshi_ticker.*required"):
+        ledger.basket_key([{"kalshi_ticker": None, "outcome": "yes"}])
+
+
+def test_basket_key_raises_on_missing_outcome():
+    with pytest.raises(ValueError, match="leg 0.*outcome.*required"):
+        ledger.basket_key([{"kalshi_ticker": "AAA", "outcome": None}])
+
+
+def test_basket_key_prevents_delimiter_collision():
+    # Without escaping, these two would produce the same hash with string joining.
+    # With json.dumps(), they must be different.
+    a = [{"kalshi_ticker": "123", "outcome": "yes"},
+         {"kalshi_ticker": "456", "outcome": "no"}]
+    b = [{"kalshi_ticker": "123", "outcome": "yes|456:no"}]
+    assert ledger.basket_key(a) != ledger.basket_key(b)

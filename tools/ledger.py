@@ -24,6 +24,7 @@ then counts as two independent wins.
 from __future__ import annotations
 
 import hashlib
+import json
 import math
 import sqlite3
 
@@ -51,13 +52,32 @@ def basket_key(legs: list[dict]) -> str:
     every scan regardless of leg ordering. That is what preserves the
     re-sighting rule -- a basket that stays mispriced for a week is one bet
     seen seven times, not seven bets.
+
+    Raises ValueError if any leg is missing a kalshi_ticker or outcome field
+    (after stripping whitespace).
     """
-    parts = sorted(
-        f"{(leg['kalshi_ticker'] or '').strip().upper()}:"
-        f"{(leg['outcome'] or '').strip().lower()}"
-        for leg in legs
-    )
-    digest = hashlib.sha256("|".join(parts).encode("utf-8")).hexdigest()
+    normalized_pairs = []
+    for idx, leg in enumerate(legs):
+        ticker = (leg.get('kalshi_ticker') or '').strip().upper()
+        outcome = (leg.get('outcome') or '').strip().lower()
+
+        if not ticker:
+            raise ValueError(
+                f"leg {idx}: kalshi_ticker is required and must not be empty "
+                f"(after stripping)"
+            )
+        if not outcome:
+            raise ValueError(
+                f"leg {idx}: outcome is required and must not be empty "
+                f"(after stripping)"
+            )
+
+        normalized_pairs.append((ticker, outcome))
+
+    sorted_pairs = sorted(normalized_pairs)
+    digest = hashlib.sha256(
+        json.dumps(sorted_pairs, separators=(',', ':')).encode("utf-8")
+    ).hexdigest()
     return f"{BASKET_PREFIX}{digest[:16]}"
 
 
