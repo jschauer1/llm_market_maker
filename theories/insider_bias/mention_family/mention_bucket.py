@@ -1,64 +1,47 @@
-"""insider_bias v3 — the mechanical MENTION-family sub-path.
+"""mention_family — a fully mechanical theory, no LLM anywhere in it.
 
-**This is an EXTENSION of insider_bias, not a replacement of it, a revision
-of it, or a new version of its thesis.** The informed-minority hypothesis in
-THEORY.md's Hypothesis section is untouched; `gate.py`, the prompts, and
-Stage 3 are untouched; the 44 v1/v2 LLM-judged live rows are untouched and
-remain their own comparable cohort. This module adds a second, independent
-way for the insider_bias *theory folder* to produce opportunities, discovered
-as a side effect of backtesting the first path's screen -- it does not
-supersede anything already there.
+**Split out of `insider_bias` into its own theory on 2026-08-24.** It was
+born as a side effect of backtesting `insider_bias`'s stage-1 screen
+(`run_id=backtest-2026-08-24-stage1-90d` found this ticker family behaving
+very differently from the rest of the screen's output), and for a few hours
+lived inside `insider_bias` as a v3 sub-path. It moved out because it tests
+a completely different kind of claim: `insider_bias`'s thesis is "a specific
+identifiable group already knows," decided by LLM judgment; this theory's
+claim is "this ticker-pattern family, priced by its own measured historical
+win rate, beats its own price," decided by code. See THEORY.md's Hypothesis
+section for the full reasoning on why one version number couldn't honestly
+describe both. `insider_bias`'s v3 bump and its own Learnings/RUNBOOK.md
+carry the discovery history; this theory's own history starts fresh from
+that point, not from zero -- the backtest evidence moved with it (see
+`migrate_from_insider_bias.py` in this folder, run once on 2026-08-24).
 
-A second, wholly separate decision path alongside the theory's LLM-judged
-main pipeline (screen -> gate -> analysis -> final review). This one has no
-judgment stage at all: `screen.is_mention_family` identifies the family, the
-2026-08-24 tier A backtest (`run_id=backtest-2026-08-24-stage1-90d`) supplies
-measured bucket rates from real settled history, and `tools.buckets.edge_for`
-turns those into a mechanical `edge_pts_net`. `edge_basis='measured'` —
-candidates from this path arrive with an edge already attached and are
-recommendable without a research pass, per CLAUDE.md's "pipelines propose,
-judgment disposes": a theory that computes its edge mechanically needs no
-interpretation, unlike `insider_bias`'s main path, where a screen hit is
-only a candidate until Stage 3 reviews it.
+`screen.is_mention_family` used to live in `theories/insider_bias/screen.py`
+and moved here in the same split -- it is this theory's classifier now, not
+a stage of insider_bias's.
 
-Why this bumped the theory to v3 rather than folding into v2: it is a
-different decision procedure sitting *alongside* the LLM-judged path, not a
-change to it. `gate.py`, the prompts, and Stage 3 are untouched; the 44 live
-v2 rows (settling Aug 24-Sep 5) stay their own comparable cohort.
-
-**The measured rate is bootstrapped from a backtest, not this path's own
-live history — say so every time it is reported.** It held on one 90-day
-window and has never been tested going forward. Read "measured" here as
-"measured once", not "proven durable".
-
-**Price-binned buckets, not one flat rate — this was a real bug, caught and
-fixed 2026-08-24.** The first version of this module used ONE probability
-(0.871, the mention family's overall average) for every candidate regardless
-of price. That is wrong, and the backtest data says so directly: win rate
-rises sharply with price across the family --
+**Price-binned buckets, not one flat rate.** The first version of this
+mechanism (while still inside insider_bias) used ONE probability (0.871,
+the family's overall average) for every candidate regardless of price. That
+was a real bug, caught by the user's own trading experience not matching
+the model's output, and confirmed against the backtest data: win rate rises
+sharply with price across the family --
 
     below 0.75:  n=37  win_rate=0.730  edge_net=+1.87pts  (barely above the price itself)
     0.75-0.85:   n=38  win_rate=0.868  edge_net=+6.38pts
     0.85+:       n=41  win_rate=1.000  edge_net=+7.88pts
 
-Treating a $0.65 favorite as equally likely to hit as a $0.95 one (both
-"the mention family's 87.1%") overstated the cheap end's edge and
-understated the strong end's -- the first live run ranked $0.65-0.70
-candidates highest, which the data says is close to the WORST place to be
-in this family, not the best. `PRICE_BINS` below fixes this: each candidate
-is scored against ITS OWN bin's measured rate, not the family average.
+`PRICE_BINS` below scores each candidate against its OWN bin, not a family
+average.
 
 **The `mention_family_85plus` bin's 100% win rate (n=41) is a striking
 number and should be treated with real skepticism, not face value.** Zero
 losses in 41 tries is strong evidence of a high win rate, not proof of
 certainty -- the true rate is very likely below 100%, and `edge_for` will
 compute a large edge for any 0.85-0.89 candidate in this bin precisely
-because it takes the measured 1.0 at face value. This module does not apply
-any shrinkage beyond `buckets.MIN_BUCKET_N` (the same convention every other
-bucket in this repo uses -- inventing bespoke shrinkage for one bucket would
-be an inconsistent, one-off fix), so say this plainly whenever this bin's
-results are reported rather than let a future reader treat +8pts as as solid
-as the 0.75-0.85 bin's +6.38pts.
+because it takes the measured 1.0 at face value. This module applies no
+shrinkage beyond `buckets.MIN_BUCKET_N` (the same convention every bucket
+in this repo uses), so say this plainly whenever this bin's results are
+reported.
 
 **Volume is reported and used as a tiebreaker, not folded into the edge.**
 Checked directly: the backtest data does not show volume as predictive of
@@ -69,6 +52,24 @@ that the displayed price is actually fillable -- so `rank`/`rank_preview`
 sort by `(edge_pts_net, volume)` descending: edge decides the ranking,
 volume breaks ties and is always reported alongside so a human can weigh
 execution risk themselves.
+
+**Entry timing: most candidates only become eligible in the final days
+before close, and this is structural, not a chosen delay strategy.** Of the
+116 backtest hits, 36% first became screen-eligible on the literal last day
+before close; only 12 were sitting as a favorite 10+ days out. Binned by
+days-to-close at entry: `10-14d: n=12, edge_net=+10.2pts` /
+`7-10d: n=9, edge_net=-2.2pts` / `4-7d: n=17, edge_net=-3.7pts` /
+`0-4d: n=78, edge_net=+7.5pts` -- noisy and confounded (different markets
+selected by when each crossed into favorite territory, not the same market
+resampled at different entry times), but the practical upshot is real:
+running this theory's screen only far in advance will miss most of what it
+finds. It needs to run close to individual markets' close dates, ideally as
+a recurring check.
+
+**The measured rates are bootstrapped from one backtest window, not this
+theory's own live history — say so every time they are reported.** They
+held on one 90-day window and have never been tested going forward. Read
+"measured" here as "measured once", not "proven durable".
 """
 
 from __future__ import annotations
@@ -80,8 +81,8 @@ from tools import buckets, ledger, provenance, score
 from tools.sizing import fee_pts
 from theories.insider_bias import screen
 
-THEORY_ID = "insider_bias"
-LIVE_VERSION = 3
+THEORY_ID = "mention_family"
+THEORY_VERSION = 1
 
 #: (low, high, bucket_name) -- low inclusive, high exclusive except the last.
 #: Boundaries chosen from where the backtest data actually breaks, not round
@@ -92,9 +93,9 @@ PRICE_BINS: tuple[tuple[float, float, str], ...] = (
     (0.85, 0.98, "mention_family_85plus"),
 )
 
-#: Where the measured rates come from -- a specific backtest run at v2, not
-#: this path's own history. See module docstring.
-MEASURED_RATE_THEORY_VERSION = 2
+#: Where the measured rates come from -- the backtest run that discovered
+#: this family, from when it was still inside insider_bias. See module
+#: docstring and migrate_from_insider_bias.py.
 MEASURED_RATE_RUN_MODE = "backtest"
 MEASURED_RATE_RUN_ID = "backtest-2026-08-24-stage1-90d"
 
@@ -103,6 +104,16 @@ MEASURED_RATE_RUN_ID = "backtest-2026-08-24-stage1-90d"
 #: never a prior placeholder. Kept explicit so a caller passing PRIORS
 #: doesn't have to guess what happens below MIN_BUCKET_N.
 PRIORS: dict[str, float] = {name: 0.0 for _, _, name in PRICE_BINS}
+
+
+def is_mention_family(series_ticker: str) -> bool:
+    """True for "will X mention/say/do Y" series.
+
+    Accepts either a series ticker (`KXTRUMPMENTION`) or a full market
+    ticker (`KXTRUMPMENTION-26JUL01-MAKE`); the pattern only needs the
+    series prefix, which a market ticker always carries.
+    """
+    return "MENTION" in series_ticker or series_ticker.endswith(("SAY", "ACT"))
 
 
 def bucket_for_price(price: float) -> str:
@@ -126,19 +137,19 @@ def find_candidates(
 ) -> list[dict]:
     """Live board -> screen-eligible markets in the mention family.
 
-    Reuses `screen.screen()` unmodified (price band, spread, volume,
-    `is_excluded`) and narrows to one family on top -- this is not a new
-    screen, it is the existing one filtered further. `max_days_ahead`
-    defaults to the screen's own validated 14 days; pass a larger value to
-    preview what is coming (see `rank_preview` -- a wider window changes
-    what edge_basis a caller should honestly attach, so `rank`/`rank_preview`
-    are two different functions on purpose, not one function with a flag
-    that is easy to call the wrong way).
+    Reuses `theories.insider_bias.screen.screen()` unmodified (price band, spread, volume,
+    `is_excluded`) and narrows to one family on top -- this theory does not
+    define its own screen, it narrows the shared one. `max_days_ahead`
+    defaults to the validated 14 days; pass a larger value to preview what
+    is coming (see `rank_preview` -- a wider window changes what edge_basis
+    a caller should honestly attach, so `rank`/`rank_preview` are two
+    different functions on purpose, not one function with a flag that is
+    easy to call the wrong way).
     """
     hits = screen.screen(board, now=now, max_days_ahead=max_days_ahead)
     return [
         h for h in hits
-        if screen.is_mention_family(h.get("series_ticker") or h["ticker"])
+        if is_mention_family(h.get("series_ticker") or h["ticker"])
     ]
 
 
@@ -147,7 +158,7 @@ def measured_rate(conn: sqlite3.Connection) -> dict:
     keys at once (one query returns every confidence bucket recorded under
     this run, not just one)."""
     return score.bucket_rates(
-        conn, THEORY_ID, MEASURED_RATE_THEORY_VERSION,
+        conn, THEORY_ID, THEORY_VERSION,
         run_mode=MEASURED_RATE_RUN_MODE, run_id=MEASURED_RATE_RUN_ID,
     )
 
@@ -160,11 +171,10 @@ def rank(candidates: list[dict], rates: dict, top_n: int = 20) -> list[dict]:
     """Candidates with mechanical edge attached, best first.
 
     Each candidate is scored against its OWN price bin's measured rate
-    (`bucket_for_price`), not one family-wide average -- see module
-    docstring on why that was a real bug in the first version of this
-    module. Sorted by `(edge_pts_net, volume)` descending: edge decides
-    the ranking, volume only breaks ties (see module docstring on why
-    volume is not itself part of the edge).
+    (`bucket_for_price`), not one family-wide average. Sorted by
+    `(edge_pts_net, volume)` descending: edge decides the ranking, volume
+    only breaks ties (see module docstring on why volume is not itself part
+    of the edge).
     """
     scored = []
     for c in candidates:
@@ -191,13 +201,12 @@ def rank_preview(
     Always returns `edge_basis='model'`, never `'measured'`. `'measured'` is
     reserved for a bucket's own accumulated evidence (`tools/buckets.py`),
     and no market has ever settled from this wider horizon -- the backtest
-    only ever evaluated eligibility inside the 14-day window (see
-    `backtest.py` module docstring point 3). Applying a bin's 14-day rate
-    here is a modeling assumption (nothing about the mention family
-    obviously changes with days-to-close, but that is an assumption, not
-    something this specific horizon has demonstrated), so it is labeled
-    `'model'`, honest about being a calculation rather than borrowing
-    `'measured'`'s stronger claim. Same price-bin lookup and
+    only ever evaluated eligibility inside the 14-day window. Applying a
+    bin's 14-day rate here is a modeling assumption (nothing about the
+    mention family obviously changes with days-to-close, but that is an
+    assumption, not something this specific horizon has demonstrated), so
+    it is labeled `'model'`, honest about being a calculation rather than
+    borrowing `'measured'`'s stronger claim. Same price-bin lookup and
     `(edge_pts_net, volume)` sort as `rank`.
     """
     scored = []
@@ -218,19 +227,20 @@ def rank_preview(
 
 
 def record_provenance(conn: sqlite3.Connection, run_id: str) -> None:
-    """This path has no LLM anywhere in it, but the theory-level
-    `uses_llm_judgment` flag applies to every run regardless of which path
-    produced it (see `tools/provenance.py`), so every run_id still needs a
-    row -- `model='none (deterministic)'`, same convention as `gate.py`.
+    """This theory declares no LLM judgment (`uses_llm_judgment=False`), so
+    `record_opportunity` does not require this -- called anyway for the same
+    reason `gate.py` records itself despite being code: the artifact that
+    governed a decision should be recoverable, not just optional metadata.
+    `model='none (deterministic)'`, same convention as insider_bias's gate.
     """
     provenance.record_judgment_run(
         conn,
         run_id=run_id,
         theory_id=THEORY_ID,
-        theory_version=LIVE_VERSION,
+        theory_version=THEORY_VERSION,
         stage="other",
         model="none (deterministic)",
-        prompt_path="theories/insider_bias/mention_bucket.py",
+        prompt_path="theories/insider_bias/mention_family/mention_bucket.py",
         web_search=False,
     )
 
@@ -262,10 +272,7 @@ def record(
     record_provenance(conn, run_id)
     ids = []
     for c in ranked:
-        bin_rate_note = (
-            f"measured rate for bucket {c['bucket']} "
-            f"({MEASURED_RATE_RUN_ID})"
-        )
+        bin_rate_note = f"measured rate for bucket {c['bucket']} ({MEASURED_RATE_RUN_ID})"
         basis_note = (
             f"{bin_rate_note}, applied directly"
             if c["edge_basis"] == "measured"
@@ -279,7 +286,7 @@ def record(
         opp_id, _ = ledger.record_opportunity(
             conn,
             theory_id=THEORY_ID,
-            theory_version=LIVE_VERSION,
+            theory_version=THEORY_VERSION,
             kalshi_ticker=c["ticker"],
             outcome=c["fav_side"],
             entry_price=c["entry_price"],

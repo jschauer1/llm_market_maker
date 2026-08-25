@@ -28,7 +28,8 @@ import json
 import re
 from datetime import datetime, timezone
 
-from theories.insider_bias import gate, screen
+from theories.insider_bias import screen
+from theories.insider_bias.insider_judgment import gate
 
 #: Fields allowed into a judgment payload. Anything not listed is dropped.
 EVENT_FIELDS = ("event_ticker", "series_ticker", "title", "close_time")

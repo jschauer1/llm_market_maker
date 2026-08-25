@@ -3,7 +3,7 @@ classification bug on the 2026-08-23 run."""
 
 import pytest
 
-from theories.insider_bias import gate
+from theories.insider_bias.insider_judgment import gate
 
 
 @pytest.mark.parametrize("series,expected", [

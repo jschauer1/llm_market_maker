@@ -1,4 +1,4 @@
-# Insider Bias
+# Insider Judgment
 
 ## Hypothesis
 
@@ -12,23 +12,30 @@ Why it persists: the crowd cannot verify the private information, so it prices
 on public uncertainty. The edge is not a smarter forecast — it is recognizing
 which markets have an informed minority at all.
 
-Ported from `kalshi_trader`, where it ran from May to July 2026. That
-predecessor track record was deleted at the v2 bump — see Status.
+Ported from `kalshi_trader`, where it ran from May to July 2026 under the
+name `insider_bias`. That predecessor track record was deleted at the v2
+bump — see Status. Renamed `insider_bias` → `insider_judgment` on
+2026-08-24 when `theories/insider_bias/` became a shared parent folder for
+two sibling theories rather than this theory's own name — see next
+paragraph. The old name is still the package/folder path
+(`theories.insider_bias.insider_judgment`), not this theory's identity;
+`theory_id='insider_judgment'` everywhere it matters (the ledger, CLI
+commands, `provenance list --theory`).
 
-**This theory has two decision paths as of v3, and the second is an
-extension, not a replacement.** Everything above is the hypothesis the
-LLM-judged path (Stages 1–6, unchanged since v2) tests. `mention_bucket.py`
-(Version, v3) is a separate, purely mechanical path that captures a
-*different* edge — a measured historical win rate on "will X mention/say/do
-Y" markets — discovered as a side effect of backtesting the first path's
-screen. It does not test the informed-minority hypothesis above; it does not
-touch `gate.py`, the prompts, or Stage 3; and it carries its own
-`edge_basis` (`measured`/`model`, never the LLM-judged path's buckets). Read
-"insider_bias v3" as "the insider-bias *theory folder* now runs two
-instruments," not as a new or revised version of the original thesis. See
-Version and `RUNBOOK.md`'s mention-family section for exactly where the
-paths diverge and where they share infrastructure (`screen.py`'s core
-filters, the ledger, provenance).
+**A mechanical sibling theory, `mention_family`, split off from this one on
+2026-08-24 — see `theories/insider_bias/mention_family/THEORY.md` for its
+hypothesis.** It started as a v3 sub-path here (a purely mechanical, no-LLM
+edge on "will X mention/say/do Y" markets, discovered as a side effect of
+backtesting this theory's stage-1 screen) and moved into its own theory
+folder once it was clear it tested a different claim than this one: not
+"does a specific group already know," but "does this ticker family, priced
+by its own measured historical rate, beat its own price." The two theories
+share `theories/insider_bias/screen.py` (the mechanical filter both screen
+with, living at the shared parent level) but nothing else — no `gate.py`,
+no prompts, no Stage 3, no shared version number, no shared theory_id. This
+theory's own v3 bump marks the point in history where that discovery
+happened; its own decision procedure (Stages 1–6 below) is unchanged from
+v2.
 
 ## Data sources
 
@@ -62,7 +69,7 @@ v1-specific question ever needs answering.
 
 **2026-08-24 — item 1 of the "what would settle it" list below is now done.**
 A tier A backtest of the stage-1 screen alone (`theories/insider_bias/
-backtest.py`, `run_id=backtest-2026-08-24-stage1-90d`) replayed `screen.py`
+insider_judgment/backtest.py`, `run_id=backtest-2026-08-24-stage1-90d`) replayed `screen.py`
 — unchanged since v1 — against real point-in-time candlesticks over the last
 90 days: 200 real screen hits, `calibration_edge_net = +1.38pts` overall.
 That answers the exact question that kept this `under_review`: the v1
@@ -81,18 +88,17 @@ What's left to settle the theory as a whole, roughly in order of value:
 2. **`interpretation_value`** once both endorsed and rejected rows have
    settled: does stage 2 add edge over its own screen, or destroy it?
 3. ~~Fix `gate.py`'s incomplete "aggregate of many independent people"
-   pattern.~~ **Partially done 2026-08-24, differently than framed here.**
-   Rather than fix `gate.py` (which would change the LLM-judged path
-   mid-flight, while the 44 v2 rows are still settling), the MENTION family
-   got its own mechanical path instead: `screen.is_mention_family` +
-   `mention_bucket.py`, v3, `edge_basis='measured'` from the backtest's
-   n=116 rate. That sidesteps "is this a genuine thesis case or a distinct
-   phenomenon" rather than answering it — the mechanical path does not care
-   *why* the edge exists, only that it measured positive. The underlying
-   question (informed minority vs. base-rate quirk) is still open and still
-   worth a judgment pass; it now matters less urgently, since the edge is
-   already being captured mechanically either way. See `RUNBOOK.md`'s
-   mention-family section and idea `insider-bias-mention-family`.
+   pattern.~~ **Sidestepped, not answered, 2026-08-24 — and now lives in a
+   different theory.** Rather than fix `gate.py` (which would change the
+   LLM-judged path mid-flight, while the 44 v2 rows are still settling), the
+   MENTION family got its own mechanical path, `mention_family` — split
+   into its own theory the same day (see Hypothesis, above, and that
+   theory's own `THEORY.md`). That captures the edge without answering *why*
+   it exists; the informed-minority-vs-base-rate-quirk question is still
+   open, tracked by idea `insider-bias-mention-family` (now linked to
+   `mention_family`, not this theory). `gate.py`'s own regex here is
+   unchanged and still just as incomplete as it was — this item is not
+   really "done," the question it asked stopped being this theory's problem.
 4. **A slice breakdown** by bucket, market family, days-to-close, and price
    band. If one family carries whatever edge exists, this is a narrower
    theory than it claims — a version bump and a real finding. The 2026-08-24
@@ -104,33 +110,21 @@ What's left to settle the theory as a whole, roughly in order of value:
 
 ## Version
 
-**3** (2026-08-24) — *Adds `mention_bucket.py`, a second and wholly separate
-decision path: mechanical, `edge_basis='measured'`, no LLM anywhere in it.*
-Built after the 2026-08-24 tier A backtest found that "MENTION"/"SAY"/"ACT"
--suffix series are a real, distinct family (n=116, `calibration_edge_net=
-+5.48pts`) that `gate.py`'s regex does not currently name. Rather than fold
-that into `gate.py` (which would change the LLM-judged path's decision
-procedure mid-flight, exactly what the versioning rule exists to prevent —
-the 44 v2 rows are still settling), it ships as its own path: `screen.py`
-gained `is_mention_family`, and `mention_bucket.py` screens the live board,
-reads measured win rates from the backtest via `tools.buckets.edge_for`,
-ranks by edge, and records opportunities with no gate, no subagent, and no
-Stage 3 review. Stages 1–6 (`screen.py`'s core filters, `gate.py`,
-the prompts, Stage 3) are **unchanged** — this is why the bump is
-version-wide (`insider_bias` now has two decision procedures, and a flat
-version number has to describe both or it stops meaning anything) but not a
-rewrite of anything v2 already does. First live run found 0 candidates — not
-a defect, see `RUNBOOK.md`'s mention-family section for why.
-
-**Same day, same version, a real fix not a new bump:** the first cut used
-one flat win rate (0.871) for every price in the family's band. The
-backtest data shows win rate actually rises sharply with price (0.73 below
-$0.75, up to 1.00 at $0.85+), so `mention_bucket.py` now scores each
-candidate against its own price bin (`PRICE_BINS`) instead. This is a bug
-fix to v3's own implementation, not a decision-procedure change on top of
-it — the *rule* was always "use the mechanical screen plus a measured
-rate," and the rule did not change; what it measures against did. See
-Learnings for the full account of how this was caught.
+**3** (2026-08-24) — *Marks the point where the mention-family discovery
+happened; this theory's own decision procedure (Stages 1–6 below) did not
+change.* Built after the 2026-08-24 tier A backtest found that
+"MENTION"/"SAY"/"ACT"-suffix series are a real, distinct family (n=116,
+`calibration_edge_net=+5.48pts`) that `gate.py`'s regex does not currently
+name. For a few hours this lived here as a second, wholly mechanical
+decision path (`mention_bucket.py`, `edge_basis='measured'`, no LLM, no
+gate, no Stage 3) — **it has since moved out entirely into its own theory,
+`mention_family`** (see Hypothesis, above, and Learnings below for the full
+account, including a real flat-rate bug it had and fixed before the move).
+This theory kept the v3 version number rather than reverting it — there is
+no mechanism to un-bump a version, and doing so would be revisionist — but
+`screen.py`, `gate.py`, the prompts, and Stage 3 here are byte-for-byte
+what they were at v2. Read v3 as a historical marker, not a claim that this
+theory's own procedure differs from v2's.
 
 **2** (2026-08-23) — *Final recommendation must come from the main research
 model.* Stage 2 previously ended at the subagent verdict, and a candidate was
@@ -318,7 +312,7 @@ and an initial recommendation; Stage 3 decides whether it becomes a bet.
 
 ```python
 from tools import buckets, ledger, score
-rates = score.bucket_rates(conn, "insider_bias", version)
+rates = score.bucket_rates(conn, "insider_judgment", version)
 edge, basis = buckets.edge_for(bucket, entry_price, rates, PRIORS)
 opp_id, _ = ledger.record_opportunity(
     conn, ..., edge_pts_net=edge, edge_basis=basis,
@@ -429,7 +423,7 @@ Editing any of those files changes what this theory decides and **bumps the
 version**, exactly like moving a threshold.
 
 ```bash
-python -m tools.cli provenance list --theory insider_bias
+python -m tools.cli provenance list --theory insider_judgment
 ```
 
 **The gate is code by design, not by substitution** — see Stage 2 for the
@@ -475,7 +469,7 @@ The stage-1 screen alone is tier A and can be backtested over full history
 using `tools/kalshi/history.py`. That measures whether the *filter* selects
 markets that beat their price — useful on its own, and uncontaminated.
 
-**Built 2026-08-24: `theories/insider_bias/backtest.py`.** The candle→market
+**Built 2026-08-24: `theories/insider_bias/insider_judgment/backtest.py`.** The candle→market
 adapter this section used to ask for now exists (`replay_market`, reusing the
 real, unmodified `screen.screen()` against reconstructed daily candles —
 `no_ask ≈ 1 - yes_bid_close`, exactly as this section originally specified).
@@ -641,83 +635,22 @@ and full breakdown in Learnings below.
   standing. The general lesson, folded into Stage 3's checklist above:
   verifying the facts a subagent reports is not the same as verifying that
   those facts are what the market actually resolves on.
-- 2026-08-24 — **Built and ran the v3 mechanical MENTION-family path;
-  first live run found zero candidates, correctly.** `mention_bucket.py`
-  (see Version, above, and `RUNBOOK.md`) screens the live board for
-  `screen.is_mention_family` hits, reads the backtest's measured win rate
-  (n=116, 0.871) into `tools.buckets.edge_for`, and ranks by edge — no
-  judgment anywhere. On the 2026-08-24 board: 490 mention-family markets
-  were open, but the nearest close was 14.6 days out against
-  `screen.MAX_DAYS_AHEAD=14`, and 157 more sat in the 14–20 day range. Zero
-  is the *correct* output of the screen given that board state, not a bug —
-  confirmed by checking the actual days-to-close distribution rather than
-  assuming. Worth re-running in the next few days as that batch ages into
-  the eligible window. A user math-check ("if I put $10 into 20 mentions I
-  should make $16?") also surfaced that `calibration_edge_net` (percentage
-  points of win-rate-minus-price) is easy to mistake for a percentage ROI —
-  the actual historical `roi_all` for this slice is 6.7%, and 20 contracts
-  at the mean entry price cost about $16, not $10. Worth remembering when
-  reporting edge numbers: state points and ROI separately, never let one
-  stand in for the other.
-- 2026-08-24 — **The flat mention-family rate was a real bug: win rate
-  rises sharply with price, and the first ranking had it backwards.** Caught
-  because the user's own trading experience ("in many of my insider bets the
-  threshold is typically 80% or higher") didn't match a ranking that put
-  $0.65-0.70 favorites at the top. Checked the backtest data directly rather
-  than argue from intuition: it agreed with the user, sharply --
-  `below 0.75: n=37, win_rate=0.730, edge_net=+1.87pts` (barely above the
-  price itself — close to zero real edge), `0.75-0.85: n=38, win_rate=0.868,
-  edge_net=+6.38pts`, `0.85+: n=41, win_rate=1.000, edge_net=+7.88pts`. The
-  flat-rate model (one probability, 0.871, for the whole $0.65-$0.97 band)
-  systematically overstated the cheap end's edge and understated the strong
-  end's, because it ignored the market's own pricing as a signal. Fixed:
-  `mention_bucket.py` now scores every candidate against its own price bin
-  (`PRICE_BINS`, `bucket_for_price`), not a family average — the 116
-  backtest rows were retagged from flat `confidence='mention_family'` into
-  three bin-specific labels so `score.bucket_rates()` measures each
-  separately. Also added volume as a reported field and tiebreaker (checked:
-  not predictive of win rate here, unlike price, so it does not belong in
-  the edge calculation itself, only in breaking ties between equal-edge
-  candidates). The first 30-day preview run
-  (`run_id=live-2026-08-24-mention-preview30`) used the buggy flat model and
-  is marked `skipped` in the ledger with a correction note rather than left
-  looking like a live recommendation; the corrected re-run
-  (`...-preview30-v2`) is dominated by the $0.85+ bin, as the data says it
-  should be. **One more caution, not yet acted on:** the $0.85+ bin's 1.000
-  win rate (n=41, zero losses) is likely to regress somewhat with more data
-  — `edge_for` takes it at face value with no shrinkage beyond
-  `buckets.MIN_BUCKET_N`, matching this repo's one consistent convention
-  rather than inventing bucket-specific smoothing, but a future session
-  should not report `+8pts` on this bin with the same confidence as a bin
-  that actually lost a few times.
-- 2026-08-24 — **Entry timing for the mention family: most candidates only
-  become eligible in the final days, and this is a real structural fact,
-  not a chosen delay strategy.** User question: does the edge vary with how
-  many days before close the market enters `mention_bucket`'s screen? Of
-  116 mention-family hits, **36% (42) first became screen-eligible on the
-  literal last day before close**, and 30 more in the final 1-2 days — only
-  12 were sitting as a clear favorite 10+ days out. Binned by days-to-close
-  at entry: `10-14d: n=12, win_rate=0.917, edge_net=+10.2pts` /
-  `7-10d: n=9, win_rate=0.778, edge_net=-2.2pts` /
-  `4-7d: n=17, win_rate=0.765, edge_net=-3.7pts` /
-  `0-4d: n=78, win_rate=0.897, edge_net=+7.5pts`. Not a clean "edge decays
-  as information leaks into the price" curve — noisy, non-monotonic, and the
-  middle bins are worse than both ends. **Real confound: these are different
-  markets selected by when each one happened to cross into favorite
-  territory, not the same market resampled at different entry times** — a
-  market that is already a favorite 12 days out is structurally different
-  from one that resolves into a favorite hours before close. `0-4d` is both
-  the best-supported bucket (by far the largest n) and where most real
-  candidates land regardless, which is itself the finding: for most of this
-  family, there is no earlier entry to choose between. **What was NOT
-  tested and should not be assumed:** `replay_market` always enters on the
-  FIRST day a market clears the screen. Whether *delaying* entry on a
-  market that qualifies early (say, day 6) until closer to close would
-  improve or worsen its outcome is unmeasured — that needs the market's
-  full day-by-day price trajectory, not just the entry snapshot this
-  backtest recorded. Do not read "0-4 days looks best" as "wait before
-  betting an early-qualifying candidate" without that data.
-  **Operational consequence:** because most candidates only appear in the
-  final days, running `mention_bucket` once (or on a wide `max_days_ahead`
-  preview far in advance) will miss most of them — it needs to run close to
-  markets' close dates, ideally as a recurring check, not a one-off scan.
+- 2026-08-24 — **Built, ran, debugged, and then split out the mechanical
+  MENTION-family path — now `mention_family`, its own theory.** For a few
+  hours this lived here as v3's `mention_bucket.py`. In that window: first
+  live run correctly found 0 candidates (checked why — a board-state fact
+  about days-to-close, not a bug); a user math-check corrected a
+  points-vs-ROI confusion (`calibration_edge_net` is not a percentage
+  return — the real `roi_all` for this slice is 6.7%); a real bug was found
+  and fixed (one flat win rate for the whole price band, when win rate
+  actually rises sharply with price — caught because the user's own trading
+  experience didn't match the model's ranking, and the backtest data agreed
+  with the user); and an entry-timing analysis found most candidates only
+  become eligible in the final days before close, structurally, not by
+  choice. All of that detail now lives in `mention_family/THEORY.md`,
+  `mention_family/RUNBOOK.md`, and `mention_bucket.py`'s own module
+  docstring — not duplicated here to avoid two documents drifting on the
+  same facts. The evidence (116 backtest rows, both live preview runs)
+  migrated with the split rather than resetting to zero; see that theory's
+  own Learnings for what's specific to its life as an independent theory
+  going forward.

@@ -4,7 +4,7 @@ import json
 
 import pytest
 
-from theories.insider_bias import pipeline
+from theories.insider_bias.insider_judgment import pipeline
 
 
 def _cand(ticker, event, series="KXTHING", **kw):

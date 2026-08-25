@@ -1,16 +1,17 @@
-"""insider_bias v3 — the mechanical MENTION-family sub-path.
+"""mention_family — a fully mechanical theory, split out of insider_bias
+2026-08-24.
 
-find_candidates, bucket_for_price, rank, and rank_preview are pure/no-network
-and tested directly. measured_rate/record touch the database and are tested
-against a temp sqlite connection via tools.db, following this repo's
-existing convention for ledger-touching tests (see tests/test_ledger.py).
+is_mention_family, find_candidates, bucket_for_price, rank, and
+rank_preview are pure/no-network and tested directly. measured_rate/record
+touch the database and are tested against a temp sqlite connection via
+tools.db, following this repo's existing convention (see tests/test_ledger.py).
 """
 
 from datetime import datetime, timezone
 
 import pytest
 
-from theories.insider_bias import mention_bucket
+from theories.insider_bias.mention_family import mention_bucket
 from tools import db, score, theories
 from tools.sizing import fee_pts
 
@@ -46,6 +47,31 @@ RATES = {
     "mention_family_75_85": {"n": 38, "win_rate": 0.868, "mean_entry_price": 0.793},
     "mention_family_85plus": {"n": 41, "win_rate": 1.000, "mean_entry_price": 0.916},
 }
+
+
+# --- is_mention_family ---------------------------------------------------
+
+
+def test_is_mention_family_matches_mention_suffix_series():
+    assert mention_bucket.is_mention_family("KXTRUMPMENTION") is True
+    assert mention_bucket.is_mention_family("KXWCMENTION") is True
+    assert mention_bucket.is_mention_family("KXFIGHTMENTION") is True
+
+
+def test_is_mention_family_matches_say_and_act_suffixes():
+    assert mention_bucket.is_mention_family("KXTRUMPSAY") is True
+    assert mention_bucket.is_mention_family("KXTRUMPSAYMONTH") is False  # doesn't end in SAY
+    assert mention_bucket.is_mention_family("KXTRUMPACT") is True
+
+
+def test_is_mention_family_accepts_a_full_market_ticker():
+    assert mention_bucket.is_mention_family("KXTRUMPMENTION-26JUL01-MAKE") is True
+    assert mention_bucket.is_mention_family("KXTRAITORS-26-WINNER") is False
+
+
+def test_is_mention_family_rejects_unrelated_tickers():
+    assert mention_bucket.is_mention_family("KXBIGBROTHERELIMINATION") is False
+    assert mention_bucket.is_mention_family("KXRT-GIR-45") is False
 
 
 # --- find_candidates ----------------------------------------------------
@@ -187,10 +213,10 @@ def test_rank_preview_zero_edge_when_validated_bucket_has_no_history():
 def conn(tmp_path):
     c = db.connect(tmp_path / "test.db")
     db.init_db(c)
-    theories.register(c, "insider_bias", "Insider Bias", "theories/insider_bias")
-    theories.set_uses_llm_judgment(c, "insider_bias", True)
-    for _ in range(2):
-        theories.bump_version(c, "insider_bias")  # v1 -> v2 -> v3
+    theories.register(c, "mention_family", "Mention Family", "theories/insider_bias/mention_family")
+    # Deliberately NOT calling set_uses_llm_judgment -- this theory has no
+    # LLM anywhere, so it stays at the default False, and record_provenance
+    # is still called (see its docstring) even though nothing requires it.
     yield c
     c.close()
 
@@ -205,13 +231,24 @@ def test_record_writes_opportunities_with_the_candidates_own_bin(conn):
         "SELECT * FROM opportunities WHERE id = ?", (ids[0],)
     ).fetchone()
     assert row["kalshi_ticker"] == "KXTRUMPMENTION-1"
+    assert row["theory_id"] == "mention_family"
     assert row["edge_basis"] == "measured"
     assert row["confidence"] == "mention_family_75_85"
     assert row["disposition"] == "screened"
-    assert row["theory_version"] == 3
+    assert row["theory_version"] == 1
 
 
-def test_record_writes_provenance_so_the_run_is_reproducible(conn):
+def test_record_works_without_uses_llm_judgment_declared(conn):
+    # No set_uses_llm_judgment call in the fixture -- proves this theory
+    # does not need it, unlike insider_bias.
+    row = theories.get(conn, "mention_family")
+    assert row["uses_llm_judgment"] == 0
+    ranked = mention_bucket.rank([_candidate("KXTRUMPMENTION-1", 0.80)], RATES, top_n=20)
+    ids = mention_bucket.record(conn, ranked, run_id="live-test-mention")
+    assert len(ids) == 1
+
+
+def test_record_writes_provenance_anyway_for_reproducibility(conn):
     ranked = mention_bucket.rank(
         [_candidate("KXTRUMPMENTION-1", 0.80)], RATES, top_n=20
     )
@@ -221,6 +258,7 @@ def test_record_writes_provenance_so_the_run_is_reproducible(conn):
     ).fetchall()
     assert len(runs) == 1
     assert runs[0]["model"] == "none (deterministic)"
+    assert runs[0]["theory_id"] == "mention_family"
 
 
 def test_record_handles_no_candidates(conn):
@@ -255,6 +293,6 @@ def test_record_preview_never_pools_into_the_validated_bucket(conn):
         confidence_suffix="_preview_30d",
     )
     score.record_settlement(conn, "KXTRUMPMENTION-1", result="yes")
-    rates = score.bucket_rates(conn, "insider_bias", 3, run_mode="live")
+    rates = score.bucket_rates(conn, "mention_family", 1, run_mode="live")
     assert "mention_family_75_85" not in rates
     assert "mention_family_75_85_preview_30d" in rates

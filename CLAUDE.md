@@ -12,8 +12,13 @@ is the best bet available" a claim with proof behind it.
 
 ## What ships here — and what doesn't
 
-No fixed strategy ships. One reference theory (`insider_bias`, ported from an
-earlier project with its real history) exists to prove the harness works.
+No fixed strategy ships. One reference theory (`insider_judgment`, ported
+from an earlier project with its real history under the name `insider_bias`)
+exists to prove the harness works. It lives at `theories/insider_bias/
+insider_judgment/` — `theories/insider_bias/` became a shared parent folder
+once a second, mechanical sibling theory (`mention_family`) split off from
+it and needed the same underlying favorite screen; see both theories' own
+THEORY.md for why.
 Everything else is yours to propose. Two ideas that motivated this project —
 research-driven forecast-gap bets, and copying Polymarket whale activity into
 equivalent Kalshi markets — are illustrations of the *kind* of idea to
@@ -30,9 +35,12 @@ and composing the results. Every instrument you add widens the board that
 question can be asked about. A theory that fails still helps, because knowing
 which lenses are blind is what makes the surviving ones trustworthy.
 
-**Theories can be pure code, and that's often the better theory.** `insider_bias`
-needs LLM judgment only because its thesis ("does a specific group already
-know?") can't be written as a threshold. Many theses can be. Sibling-strike
+**Theories can be pure code, and that's often the better theory.**
+`insider_judgment` needs LLM judgment only because its thesis ("does a
+specific group already know?") can't be written as a threshold. Many theses
+can be — `mention_family`, discovered as a side effect of backtesting
+`insider_judgment`'s screen, is the worked example: same underlying board,
+zero judgment, `edge_basis='measured'`. Sibling-strike
 monotonicity violations, a NO-basket summing below its payout, a recurring
 series with years of base rates, a persistent Kalshi-vs-Polymarket divergence
 on a matched pair — all real edges a script decides with no model in the loop.
@@ -59,8 +67,8 @@ record.
 
 - **`go`** — an autonomous research session. Orient, choose the highest-value
   work, do it, log it, report.
-- **Just asking** — "how is insider_bias holding up?", "what's the best bet
-  right now?" Answer directly with the tools. No loop, no ceremony.
+- **Just asking** — "how is insider_judgment holding up?", "what's the best
+  bet right now?" Answer directly with the tools. No loop, no ceremony.
 
 Both are normal.
 
@@ -81,8 +89,8 @@ The aspiration is a deterministic pipeline: run it, get a bet with an edge.
 Push toward that — anything encoded in code is repeatable and scales for free.
 
 **When a theory's screen does not itself produce an edge, its output is a
-candidate set, not a recommendation.** `insider_bias` is the worked example:
-its picks are not bet as given. A human reads the output and recognizes that a
+candidate set, not a recommendation.** `insider_judgment` is the worked
+example: its picks are not bet as given. A human reads the output and recognizes that a
 reality-TV market is structurally vulnerable in a way the screen never encoded.
 The edge lives partly in the pipeline and partly in the pattern recognition
 applied to it. For such a theory, never present unresearched screen output as a
@@ -276,7 +284,7 @@ before gating — sibling strikes on one event almost always share a verdict.
 **Check whether the gate needs a model at all.** A thesis whose exclusions are
 market *families* — "any future price", "weather", "live sport" — is asking a
 ticker question, not a judgment question, and a pattern answers it for free,
-deterministically, and auditably. `insider_bias` gates this way: `gate.py`
+deterministically, and auditably. `insider_judgment` gates this way: `gate.py`
 removes 88% of its screened events with no model, and the cascade's expensive
 stage sees only what is left. A code gate also keeps one fewer model out of
 the decision path, which matters for the tier B cutoff rule.

@@ -1,3 +1,12 @@
+"""theories.insider_bias.screen — the shared favorite screen.
+
+Shared by the two sibling theories nested under theories/insider_bias/:
+insider_judgment (LLM-judged) and mention_family (mechanical). Lived
+briefly at tools/screen.py (2026-08-24) before moving back here so the
+inheritance relationship between the two theories is visible in the
+directory structure.
+"""
+
 from datetime import datetime, timezone
 
 import pytest
@@ -67,28 +76,6 @@ def test_is_excluded_matches_sports_prefixes():
 def test_is_excluded_allows_non_sports_tickers():
     assert screen.is_excluded("KXTRAITORS-26-WINNER") is False
     assert screen.is_excluded("KXCABINET-26") is False
-
-
-def test_is_mention_family_matches_mention_suffix_series():
-    assert screen.is_mention_family("KXTRUMPMENTION") is True
-    assert screen.is_mention_family("KXWCMENTION") is True
-    assert screen.is_mention_family("KXFIGHTMENTION") is True
-
-
-def test_is_mention_family_matches_say_and_act_suffixes():
-    assert screen.is_mention_family("KXTRUMPSAY") is True
-    assert screen.is_mention_family("KXTRUMPSAYMONTH") is False  # doesn't end in SAY
-    assert screen.is_mention_family("KXTRUMPACT") is True
-
-
-def test_is_mention_family_accepts_a_full_market_ticker():
-    assert screen.is_mention_family("KXTRUMPMENTION-26JUL01-MAKE") is True
-    assert screen.is_mention_family("KXTRAITORS-26-WINNER") is False
-
-
-def test_is_mention_family_rejects_unrelated_tickers():
-    assert screen.is_mention_family("KXBIGBROTHERELIMINATION") is False
-    assert screen.is_mention_family("KXRT-GIR-45") is False
 
 
 def test_screen_accepts_a_clean_candidate():
@@ -197,3 +184,10 @@ def test_normalized_kalshi_payload_survives_the_screen():
     assert len(result) == 1
     assert result[0]["fav_side"] == "yes"
     assert result[0]["entry_price"] == pytest.approx(0.80)
+
+
+def test_does_not_carry_is_mention_family():
+    # That classifier belongs to theories.insider_bias.mention_family's
+    # decision procedure, not this shared module's -- fails loudly if it
+    # leaks back in rather than silently reappearing here.
+    assert not hasattr(screen, "is_mention_family")
