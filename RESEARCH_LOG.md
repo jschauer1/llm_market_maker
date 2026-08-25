@@ -531,3 +531,44 @@ favorite filter, not one theory with an asterisk. `mention_family`'s live
 preview run (`...-preview30-v2`) and `insider_judgment`'s 44 v1/v2 rows are
 both still settling Aug 24–Sep 5 — check both when reporting on progress,
 not just one.
+
+## 2026-08-24 — A researched theory-idea backlog: 12 implementable specs in docs/theory-specs/
+
+Session pivoted from "define one novel theory" to "write out many, well
+enough that a fresh session can implement any of them cold." Brainstormed,
+then did an actual literature pass (two arXiv papers read in full via
+extracted text, plus targeted searches) before writing anything down, so
+each idea carries documented evidence for *why* the edge should exist, not
+just a hunch.
+
+The two load-bearing findings from the reading, both now cited inline where
+they matter: (1) Le 2026 (arXiv:2602.19520, 353M trades) measures Kalshi
+calibration slopes by domain x horizon — politics is compressed toward 50%
+at nearly all horizons (a 70c political contract a week out is really
+~83%), short-horizon weather is miscalibrated the *opposite* way (prices
+too extreme), and everything compresses beyond a month. Direction flips by
+cell, so any calibration-harvesting theory must carry a per-cell sign. (2)
+Angelini & De Angelis 2026 (arXiv:2606.07811) find Kalshi NBA in-play
+prices adjust only 0.64-for-one to public news with predictable drift — but
+the drift dies to bid-ask at minute scale, which repositions any news-drift
+theory to daily-scale non-sports moves and pre-registers its likeliest
+failure mode (real gross, dead net).
+
+Deliverable: docs/theory-specs/ — one spec file per theory (user asked for
+each theory as its own spec mid-session; an earlier single-file draft was
+split), each with thesis, evidence, mechanical procedure, backtest plan
+with idea-specific lookahead traps, kill criteria, and build notes, plus a
+README carrying the shared repo-contract checklist and priority table. All 12 recorded in the idea registry
+(slugs: calibration-harvest, deadline-drift, structural-arb,
+series-bias-mining, news-drift, cross-venue-fair-value, smile-smoothing,
+settled-but-trading, whale-follow, vol-crossing, new-market-anchor,
+implication-graph; registry ids 2-13). Ranked by information-per-effort:
+calibration-harvest first (mention_family math, whole board, huge n),
+deadline-drift second (design already agreed with the user this session),
+structural-arb third (near-free to run forever). Ten of twelve have no LLM
+anywhere in the decision path; implication-graph quarantines judgment at
+construction time; cross-venue-fair-value needs judgment only for one-time
+pair confirmation.
+
+Nothing was implemented — the backlog is the artifact. Next session: pick
+from the top of the table, propose-theory, build.
