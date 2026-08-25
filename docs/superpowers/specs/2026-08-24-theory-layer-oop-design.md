@@ -7,6 +7,9 @@ Scope: `tools/domain.py` (new), `tools/theory.py` (new),
 `tools/README.md`, `CLAUDE.md`, `.claude/skills/**`
 Behavior change: **none** — see section 3.1, non-regression is a hard
 constraint · Theory version bumps: none intended
+Depends on:
+[multi-leg positions](2026-08-24-multi-leg-positions-design.md) — executed
+first, because `Candidate`'s shape depends on it
 
 **In one line:** every theory becomes an object a subagent can be handed and
 run start-to-finish, returning one uniform result — with two required
@@ -159,6 +162,10 @@ Concretely, none of the following may be lost, simplified away, or deferred
 - `assert_blind` and its `BANNED_KEYS` survive unchanged.
 - Backtest paths, snapshot fidelity, and `board.get_board`'s cache
   semantics survive.
+- Single-leg scoring is bit-for-bit unchanged. Once the multi-leg spec has
+  landed, `compute_score` on a copy of the live database returns identical
+  numbers before and after this migration — the `legs` shape must cost the
+  single-leg majority nothing.
 
 **Test rule:** the existing suite passes at every phase with no test
 deleted, skipped, or weakened. A test that must change to accommodate the
@@ -318,20 +325,44 @@ divergence in section 1.2 gets resolved rather than merely documented.
 
 ```python
 @dataclass(frozen=True, slots=True)
-class Candidate:
+class Leg:
     market: Market
-    fav_side: str                 # "yes" | "no"
-    entry_price: float            # the ask actually payable, never the mid
+    side: str                     # "yes" | "no"
+    price: float                  # the ask actually payable, never the mid
+
+@dataclass(frozen=True, slots=True)
+class Candidate:
+    legs: tuple[Leg, ...]
     days_to_close: float
 
     @property
-    def ticker(self) -> str: return self.market.ticker
+    def is_basket(self) -> bool: return len(self.legs) > 1
     @property
-    def title(self) -> str | None: return self.market.title
+    def cost(self) -> float: return sum(l.price for l in self.legs)
+
+    # single-leg conveniences; each raises on a basket rather than
+    # silently returning leg 0 and dropping the rest
     @property
-    def event_key(self) -> str:
-        return self.market.event_ticker or self.market.ticker
+    def ticker(self) -> str: ...
+    @property
+    def entry_price(self) -> float: ...
+    @property
+    def title(self) -> str | None: ...
+    @property
+    def event_key(self) -> str: ...
 ```
+
+**The `legs` shape comes from the
+[multi-leg positions spec](2026-08-24-multi-leg-positions-design.md), which
+is executed before this migration.** Three backlog theories —
+`structural-arb`, `calendar-arb`, `implication-graph` — bet on baskets whose
+payoff is joint, and a single-market `Candidate` cannot express one. A
+single position is the one-leg case, so the thirteen single-leg backlog
+theories and both existing theories are unaffected in substance.
+
+Designing `Candidate` around one market and retrofitting legs afterwards
+would mean changing the type underneath two already-ported theories. That is
+the expensive order, which is why the dependency runs this way.
 
 ```python
 @dataclass(frozen=True, slots=True)
@@ -572,6 +603,100 @@ mixin is acceptable. Mixins for demonstrated shared behavior; never a base
 class holding the whole toolbox. This mirrors `tools/README.md`'s existing
 promotion rule — earn the abstraction with real callers.
 
+### 4.5a Theory-local durable state — `theory_facts`
+
+Five backlog theories keep facts established once and reused every run:
+`cross-venue-fair-value` and `metaculus-gap` keep a **pair store** of
+confirmed market pairings; `implication-graph` keeps confirmed implication
+edges; `whale-follow` and `insider-flow-radar` keep per-wallet scores and
+history.
+
+`ctx.conn` alone would let five theories invent five schemas. One shared
+table instead:
+
+```sql
+CREATE TABLE IF NOT EXISTS theory_facts (
+    theory_id      TEXT NOT NULL REFERENCES theories(id),
+    kind           TEXT NOT NULL,      -- 'market_pair', 'implication', ...
+    key            TEXT NOT NULL,
+    value_json     TEXT NOT NULL,
+    evidence_json  TEXT,
+    established_at TEXT NOT NULL,
+    provenance_id  INTEGER REFERENCES judgment_runs(id),
+    PRIMARY KEY (theory_id, kind, key)
+);
+```
+
+**The versioning rule, stated explicitly because both readings are
+defensible and a wrong guess is expensive:**
+
+> **Facts are data, not procedure.** Adding a confirmed pair does **not**
+> bump the theory's version. Changing how facts are *derived* — the matching
+> prompt, the confirmation threshold, the scoring formula — **does**.
+
+Without this written down, five theories each guess, and the pessimistic
+guess orphans a track record every time a pair is added. The rule follows
+from what versioning protects: the decision *procedure*, not the evidence
+the procedure has accumulated.
+
+### 4.5b Construction-time judgment and its provenance
+
+The same pair-store theories declare *"LLM in decision path: match-time only
+(per-trade mechanical)"*. An LLM proposes pairs once, a human confirms, and
+every subsequent trading decision is pure arithmetic. That is what earns
+them a tier A backtest despite having used a model at all.
+
+Section 4.4's contract only models **per-run** judgment
+(`judgment_payload` → `apply_verdicts`). These theories would set
+`uses_llm_judgment=False` so `finish()` does not demand per-run provenance —
+correctly, since the per-trade path has no model in it. But the
+construction-time judgment still happened, and nothing so far records it.
+That is a hole in exactly the guarantee section 1.3 exists to provide.
+
+**Change:** add `"construction"` to `provenance.VALID_STAGES` (today
+`("gate", "analysis", "final_review", "other")`), and hang `provenance_id`
+off `theory_facts` as above.
+
+A fact produced by a model then carries the model id and prompt that
+produced it, keyed to the fact rather than to a run. No new concept — the
+existing provenance machinery, pointed at the thing that was actually
+judged.
+
+### 4.5c What is not a `Theory`
+
+Three backlog entries do not produce bets, and forcing them through
+`screen() -> list[Candidate]` would distort both them and the contract.
+
+**Studies are not theories.** `series-bias-mining` mines every recurring
+series and "promotes the survivors into their own bucketed sub-theories";
+`new-market-anchor`'s stage 0 is a study that becomes a theory only if a
+bias emerges. Their output is bin tables and *theory proposals*, not
+candidates.
+
+> **`Theory` is for things that produce bets. A study produces theories.**
+
+Studies stay plain scripts in `theories/<slug>/`, and the repo already has
+the machinery for their output: the `proposed` status and the ideas
+registry. This needs a line in the conventions, not a class.
+
+**Execution policies are not theories.** `maker-mode-execution` is the
+sharper case — it is a **decorator over every other theory**, not a sibling.
+It says: rest a limit order at the bid instead of paying the ask, gaining
+1–3 points on any candidate whose edge does not decay in minutes. That
+contradicts `Leg.price`'s documented meaning ("the ask actually payable,
+never the mid") for the entire backlog at once.
+
+It is modelled as a function over a `ScoredCandidate`, never a `Theory`
+subclass, and **the taker price remains the recorded baseline**. A maker
+fill you did not get is not an edge you earned, so a maker variant is a
+*reported alternative* carrying its own fill-rate tracking — never a silent
+rewrite of what was paid. Which execution policy was assumed is recorded on
+the row.
+
+Its full design is deferred to its own spec: it is a pricing-semantics
+question that touches every theory's numbers, and it does not belong inside
+a structural refactor (section 8.4).
+
 ### 4.6 Discovery — `tools/registry.py`
 
 Each theory package exposes a singleton in its `__init__.py`:
@@ -733,9 +858,26 @@ functional injection: no new classes, no gateway layer, and `tools/score.py`
 stays the pure module it is. A theory that needs something else still has
 `ctx.conn` and section 3.2's escape hatch.
 
+**Extend the convention to external sources.** Six backlog theories fetch
+from outside Kalshi and Polymarket entirely: Coinbase candles
+(`vol-crossing`), NWS/NOAA (`settled-but-trading`, `weather-model-gap`),
+BLS/FRED (`econ-anchoring`), Wikipedia pageviews (`attention-model`), and
+Polymarket trade flow (`whale-follow`, `insider-flow-radar`). None of them
+gets a seam from the two client modules above.
+
+No code is required — only that the convention generalize:
+
+> **Any theory that fetches external data takes `fetch: Fetch = get_json`.**
+
+One sentence in `tools/README.md`, and six theories become testable against
+a canned payload with no network and no `monkeypatch`. This is the same
+"injectable `now`" discipline the repo already applies to clocks, applied to
+transports.
+
 **Phase note.** The `fetch` seam lands in Phase 2 alongside the `Market`
 return-type change, since both touch the same two client modules. It is the
-only tools-layer change this design requires.
+only tools-layer *code* change this design requires; the external-source
+convention is documentation.
 
 ### 4.9 Execution model: one subagent per judgment theory
 
@@ -869,7 +1011,7 @@ Six phases, each independently green, each its own commit.
 | # | Phase | Touches | Behavior change |
 |---|---|---|---|
 | 0 | Characterization harness | `tests/characterization/` | none |
-| 1 | `tools/domain.py` (+ `ScanResult`, `Fetch`) + shim | new file, `tests/` | none |
+| 1 | `tools/domain.py` (+ `Leg`, `ScanResult`, `Fetch`) + shim; `theory_facts` table; `construction` provenance stage | new file, `schema.sql`, `provenance.py`, `tests/` | none (additive) |
 | 2 | `normalize()` returns `Market`; `fetch` seam | both clients, `board.py`, `snapshot.py` | none (additive default) |
 | 3 | `Theory` / `TheoryRun` / `TheoryContext` + adapters + registry | new files, theory `__init__.py`, `pipeline.py` (one added key, section 4.7) | none |
 | 4 | Docs and skill rewrite | `tools/README.md`, `CLAUDE.md`, `find-edge`, `propose-theory` | none |
@@ -955,6 +1097,17 @@ parameter with the current default.
 - `tests/test_parallel_writes.py` — N concurrent connections each recording
   opportunities for a different theory all commit, verifying the section 4.9
   claim about WAL and the busy timeout rather than assuming it.
+- `tests/test_theory_facts.py` — a fact round-trips; adding one does **not**
+  change the theory's version (section 4.5a); a fact established by a model
+  carries a `construction`-stage provenance row.
+- `tests/test_backlog_fit.py` — the section 3.2 litmus test widened: a stub
+  per *shape* found in the backlog, each running end to end. A basket
+  producer (`structural-arb`-like), an external-source theory taking
+  `fetch` (`vol-crossing`-like), a pair-store theory reading
+  `theory_facts` with `uses_llm_judgment=False` (`metaculus-gap`-like), and
+  a non-board theory that ignores `ctx.board` entirely
+  (`whale-follow`-like). These are the four shapes the backlog review found
+  the first draft could not express; a test is how they stay expressible.
 
 ## 8. Risks
 
@@ -1104,6 +1257,17 @@ parallel — parallelism is the last thing switched on, not the first.
     opportunity carries provenance, an honest `edge_basis`, and a Kalshi
     ticker no matter which path produced it.
 
+**Backlog fit — the check that drove these amendments:**
+
+17. All four shapes the backlog review surfaced run end to end as stubs:
+    basket producer, external-source fetcher, pair-store theory, and
+    non-board theory (`tests/test_backlog_fit.py`).
+18. A theory can establish and reuse durable facts without bumping its
+    version, and a model-established fact carries `construction` provenance.
+19. Nothing in the design requires `series-bias-mining`,
+    `new-market-anchor`'s stage 0, or `maker-mode-execution` to become a
+    `Theory` — section 4.5c says plainly that they are not one.
+
 ## 10. Open questions
 
 1. **`no`-side candidates.** `Candidate.fav_side` is `"yes"|"no"` and
@@ -1118,6 +1282,21 @@ parallel — parallelism is the last thing switched on, not the first.
    candlesticks and does not call `normalize()`. Phase 2 must confirm it
    produces `Market` objects too, or backtests and live scans diverge in
    type. Assessed at Phase 0 and reported before Phase 2 begins.
+4. **`maker-mode-execution` needs its own spec.** Section 4.5c settles that
+   it is not a `Theory` and that the taker price stays the recorded
+   baseline. What it does *not* settle: whether a maker variant is a second
+   ledger row, a field on the existing row, or report-only output; and how
+   fill rate gets measured when the system never sees the order book after
+   the fact. Deliberately out of scope here — it changes what every
+   theory's `entry_price` means, which is too broad to decide inside a
+   structural refactor.
+5. **Continuous detectors.** `insider-flow-radar` is described as "code,
+   continuous-ish" — a detector watching Polymarket flow rather than a
+   batch screen over a board. `screen(ctx)` fits it awkwardly: it would run
+   per session and re-derive alerts each time. Workable for v1, but if more
+   streaming theories appear, a scheduled-detector shape may be needed
+   alongside `Theory`. Not designed now; recorded so the second instance is
+   recognised as a pattern rather than handled ad hoc.
 
 ## 11. Documentation changes
 
@@ -1145,6 +1324,13 @@ importance:
   ledger contract unskippable.
 - The contract is a **floor, not a ceiling**: two required methods, and a
   theory may add anything else it needs (section 3.2).
+- **Facts are data, not procedure** — adding a confirmed pair does not bump
+  a version; changing how facts are derived does (section 4.5a).
+- **`Theory` is for things that produce bets.** A study produces theories;
+  an execution policy decorates candidates. Neither is a `Theory`
+  (section 4.5c).
+- Any theory fetching external data takes `fetch: Fetch = get_json`
+  (section 4.8).
 
 **`.claude/skills/find-edge/SKILL.md`** — step 2 replaced with the section 5
 loop. The prose at line 74, "check whether this theory has a stage 2",
