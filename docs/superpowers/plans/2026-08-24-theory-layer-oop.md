@@ -18,19 +18,21 @@
 - **A `Verdict` carries no number.** The judge classifies; probabilities come from measured bucket rates (`buckets.edge_for`) or a mechanical model. No field named like a probability, confidence-percent, or edge may ever be added to `Verdict` — a conventions test enforces this.
 - **Prices are decimal dollars in [0, 1]; edge in percentage points; entry prices are the ask, never the mid; timestamps UTC ISO-8601.**
 - **No credentials, no API keys.** All endpoints are public.
+- **Do not touch the variable-payout basket guard.** `score._basket_observations` raises on a basket whose payout is neither `0` nor `max_payout`, pending a blocking research-design decision (multi-leg spec §10.1). This migration is structural: it must not relax, alter, or route around that guard, and `tests/test_baskets.py::test_nesting_branch_with_a_payout_floor_is_unsupported_and_raises` must keep passing untouched. If a task appears to need the guard changed, stop — that is the user's call, not a refactor's.
 - Run tests with `python -m pytest -m "not network" -q` (the `network` marker deselects live calls). Windows environment: invoke Python as `python`, paths with forward slashes work in Git Bash.
 - Commit after every task with the message given in that task.
 
 ## Preconditions
 
-The multi-leg positions plan (`docs/superpowers/plans/2026-08-24-multi-leg-positions.md`) executes **first** and is in progress on this branch (`feat/multi-leg-positions`; Task 1 landed as commit `36e0760`). **Do not start this plan until it is complete.** Verify:
+**Satisfied.** The multi-leg positions plan is fully implemented on this branch (`feat/multi-leg-positions`, commits `d95b82c`..`d7bc53d`), verified 2026-08-25: `522 passed, 4 deselected`. Re-confirm before starting:
 
 ```bash
-python -m pytest tests/test_baskets.py -q          # exists and passes
-python -c "from tools.ledger import record_basket, get_legs, basket_key"
+python -m pytest -m "not network" -q                # expect 522 passed
+python -c "from tools.ledger import record_basket, get_legs, basket_key, tickers_awaiting_settlement"
+python -c "from tools.score import _segment_filter, _basket_observations, _aggregate"
 ```
 
-If either fails, stop and report — this plan consumes `record_basket` in Task 6.
+If any fails, stop and report — Task 6 consumes `record_basket`, and Task 10 edits `_segment_filter`.
 
 ## Decisions locked in during planning
 
@@ -39,7 +41,7 @@ These resolve the spec's open questions and close gaps found while auditing the 
 1. **`Market` carries `last_price` and `volume_24h`** beyond the spec §4.1 field list. Forced by non-regression: `tests/kalshi/test_markets.py:29` asserts `m["last_price"]`, and `normalize()` emits both today. `Market`'s fields mirror `normalize()`'s dict keys exactly — 22 fields including `raw`.
 2. **Polymarket gets its own `PolymarketMarket` type** (spec open question 2, resolved via its sanctioned fallback: "a separate type is acceptable and better than a lossy union"). Same field names as today's dict — no renaming — so `snapshot.save_polymarket` and `match_market.py` keep working through the shim. `outcomes`/`outcome_prices` stay `list`, not `tuple`, so existing equality assertions hold.
 3. **Backtest path (spec open question 3), assessed:** `replay_market` (`theories/insider_bias/insider_judgment/backtest.py:232-241`) hand-builds a point-in-time `market_view` dict and never calls `normalize()`. Resolution: it constructs a `Market` directly in Task 12. `point_in_time`/`candlesticks` return candle dicts, not markets — out of scope, unchanged.
-4. **`Candidate` gains `max_payout: float = 1.0`.** The multi-leg spec makes `max_payout` a caller declaration on `record_basket`; a basket `Candidate` is that caller, so the declaration rides on the position. Harmless default for singles.
+4. **`Candidate` gains `max_payout: float = 1.0`, validated at construction.** The multi-leg spec makes `max_payout` a caller declaration on `record_basket`; a basket `Candidate` is that caller, so the declaration rides on the position. Harmless default for singles. `record_basket` rejects `None`, non-numeric, `bool`, `NaN`, zero, and negative values (`tools/ledger.py:441`) — `Candidate.__post_init__` mirrors that check, the same "earlier, additional line of defence" relationship `Leg.price` has with `ledger._validate_entry_price`. The ledger validator is **retained, not moved**.
 5. **`theory_facts` is schema + provenance stage only — no Python API yet.** No current theory keeps facts; the five pair-store theories are backlog. The round-trip test uses SQL. The first pair-store theory adds the helper functions (YAGNI, per `tools/README.md`'s promotion rule).
 6. **`judgment_runs` needs a table rebuild** to accept `stage='construction'`: its CHECK constraint is baked into existing databases, so Task 3 adds a `_migrate_judgment_runs` following the `_migrate_theories` pattern in `tools/db.py`.
 7. **`finish()` records provenance for any theory with a non-empty `prompts` ClassVar**, not only `uses_llm_judgment` ones — model defaults to `"none (deterministic)"` for a mechanical theory. This preserves `mention_family`'s voluntary self-documentation (its `record_provenance`) through the generic path, and correctly skips it on `dry_run`.
@@ -47,7 +49,9 @@ These resolve the spec's open questions and close gaps found while auditing the 
 9. **`check_drift` checks the class side unconditionally and the DB side only for `SCANNABLE_STATUSES` rows** — a `proposed` or `paused` registry row legitimately has no code yet. Current DB state (verified 2026-08-24): exactly `insider_judgment` (v3, testing, uses_llm=1) and `mention_family` (v1, testing, uses_llm=0); no legacy rows.
 10. **insider_judgment's bucket scale and priors** are lifted verbatim from `THEORY.md` ("Confidence buckets" table): `strong` 4.0, `moderate` 2.0, `weak` 0.0. Copying prose into constants is encoding, not changing — but any deviation from that table is a version-bump escalation.
 11. **Goldens are compared through a canonical projection** (`proj()` in the characterization conftest). Golden JSON never changes; `proj()` grows branches as domain types appear (dict → itself; `Market` → `asdict`; `Candidate` → the flattened legacy candidate dict; `ScoredCandidate` → flattened + `edge_pts_net`/`edge_basis`/`bucket`). The projection lives in the harness, not the code under test.
-12. **The experiment lane rides on `run_id` (spec §3.3a).** `ledger.EXPERIMENT_RUN_PREFIX = "exp/"`; pooled `compute_score` and `bucket_rates` exclude `exp/` rows via one added filter (in `_segment_filter`, which exists after the multi-leg score refactor this plan already waits for, and in `bucket_rates`). An experiment — typically a subclass with one method overridden — records under its parent theory's id, so the FK and the lineage hold with no schema change, no registry ceremony, and no version bump. Built and proven in Task 10, documented in Task 11. No existing run_id starts with `exp/` (live DB carries only `live` and `backtest-*`), so pooled numbers are bit-identical for existing data — non-regression holds.
+12. **This migration closes multi-leg's deferred success criterion 4.** That spec's criterion — *"`Candidate.ticker` on a basket raises with a message naming the fix"* — was marked ⚠️ *"Deferred by design: `tools/domain.py` belongs to the OOP migration, which runs after this and adopts the `Leg` shape defined here."* Task 1 delivers it (`test_basket_conveniences_raise_rather_than_guess`). When Task 14 closes the record, amend the multi-leg spec's criterion 4 from ⚠️ to ✅ citing this plan — an inherited obligation, not an optional nicety.
+13. **A `Candidate` may represent a variable-payout basket; scoring one is what is blocked.** The multi-leg guard lives in `_basket_observations`, not in the position shape, and that separation is correct: the shape of a position is not a scoring-model question. So `Candidate` imposes no all-or-nothing rule, and Task 10's basket stub is deliberately all-or-nothing so it never depends on the open decision. A theory author reading only this plan must still learn the constraint — hence the Task 11 doc bullet.
+14. **The experiment lane rides on `run_id` (spec §3.3a).** `ledger.EXPERIMENT_RUN_PREFIX = "exp/"`; pooled `compute_score` and `bucket_rates` exclude `exp/` rows via one added filter (in `_segment_filter`, which exists after the multi-leg score refactor this plan already waits for, and in `bucket_rates`). An experiment — typically a subclass with one method overridden — records under its parent theory's id, so the FK and the lineage hold with no schema change, no registry ceremony, and no version bump. Built and proven in Task 10, documented in Task 11. No existing run_id starts with `exp/` (live DB carries only `live` and `backtest-*`), so pooled numbers are bit-identical for existing data — non-regression holds.
 
 ## File Structure
 
@@ -499,6 +503,14 @@ def test_candidate_needs_a_leg():
         Candidate(legs=(), days_to_close=1.0)
 
 
+@pytest.mark.parametrize("bad", [0, -1.0, None, "1.0", True, float("nan")])
+def test_candidate_rejects_a_nonsense_max_payout(bad):
+    """Mirrors ledger.record_basket's own check (tools/ledger.py:441): a
+    basket that can never pay anything is not a position."""
+    with pytest.raises(ValueError, match="max_payout"):
+        Candidate(legs=(leg(),), days_to_close=1.0, max_payout=bad)
+
+
 def test_single_leg_conveniences():
     c = single()
     assert (c.ticker, c.fav_side, c.entry_price) == ("KXT-26", "yes", 0.8)
@@ -723,6 +735,16 @@ class Candidate:
     def __post_init__(self):
         if not self.legs:
             raise ValueError("Candidate needs at least one leg")
+        # Mirrors ledger.record_basket's check; that validator is retained,
+        # this is the earlier line. A basket that can never pay anything is
+        # not a position, and max_payout is what implied_rate normalizes
+        # against downstream.
+        mp = self.max_payout
+        if (isinstance(mp, bool) or not isinstance(mp, (int, float))
+                or (isinstance(mp, float) and math.isnan(mp)) or mp <= 0):
+            raise ValueError(
+                f"max_payout must be a positive number, got {mp!r}"
+            )
 
     @property
     def is_basket(self) -> bool:
@@ -3159,7 +3181,13 @@ def _seed(conn, tid):
 
 
 def test_a_basket_producer_records_one_position_with_legs(conn):
-    """structural-arb-like: a NO pair whose asks sum under the payout."""
+    """structural-arb-like: a NO pair whose asks sum under the payout.
+
+    Deliberately ALL-OR-NOTHING (max_payout 1.0 over a mutually exclusive
+    pair), so it never depends on the variable-payout scoring decision
+    still open as multi-leg spec section 10.1. A basket with a payout
+    floor records fine but cannot yet be scored -- that guard is not this
+    migration's to touch."""
 
     class BasketArb(Theory):
         id, name, version = "stub_basket", "Stub Basket", 1
@@ -3364,6 +3392,11 @@ Add to the Conventions list:
   `bucket_rates` exclude them; score one explicitly by passing its
   `run_id`. This is what makes variant-testing free — a subclass and a
   run id, no version bump, no registration (see CLAUDE.md).
+- **A basket must currently pay all-or-nothing to be *scored*.** Any
+  `Candidate` shape records fine, but `score._basket_observations` raises
+  on a settled basket paying strictly between `0` and `max_payout`,
+  pending the decision in the multi-leg spec's section 10.1. Build a
+  variable-payout basket theory only after that lands.
 ```
 
 Add rows to the tool map table:
@@ -4033,6 +4066,7 @@ Criteria 11–13, 18–19, and 20–22 are `tests/test_stub_theory.py`, `tests/t
 - [ ] **Step 5: Close the record**
 
 - In `docs/superpowers/specs/2026-08-24-theory-layer-oop-design.md`, change the `Status:` line to `implemented — see docs/superpowers/plans/2026-08-24-theory-layer-oop.md`.
+- In `docs/superpowers/specs/2026-08-24-multi-leg-positions-design.md`, flip success criterion 4 from ⚠️ deferred to ✅, citing `tests/test_domain.py::test_basket_conveniences_raise_rather_than_guess` — the OOP migration inherited that obligation (plan decision 12) and has now discharged it. **Leave criterion 2 and section 10.1 exactly as they are:** that decision is the user's and is untouched by this work.
 - Append to `RESEARCH_LOG.md`: date, one paragraph — theory layer landed (domain types, contract, registry, both theories adapted then ported, shim removed), no version bumps, goldens held throughout, and the `Verdict` type now enforces category-not-number at the judge boundary.
 
 - [ ] **Step 6: Commit**
@@ -4056,6 +4090,7 @@ git commit -m "refactor: delete the migration shim; theory-layer OOP complete"
 - [ ] Every tool callable standalone; "just asking" still needs only `python -m tools.cli`; ad-hoc exploration unpenalised; the ledger boundary holds on every path.
 - [ ] All four backlog shapes run as stubs; facts round-trip without version bumps and carry `construction` provenance; studies and execution policies are documented as not-a-`Theory`.
 - [ ] Experimenting is free by construction: a one-method subclass variant records under an `exp/` run_id with no version bump or registration, and pooled scores and bucket rates are provably blind to its rows (`tests/test_experiment_lane.py`, spec §3.3a).
+- [ ] The variable-payout basket guard is untouched: `git diff` shows no change to `score._basket_observations`' payout check, and `tests/test_baskets.py::test_nesting_branch_with_a_payout_floor_is_unsupported_and_raises` passes unmodified. Multi-leg spec §10.1 remains open and remains the user's call.
 - [ ] `Verdict` has no numeric field — enforced by `tests/test_conventions.py`, stated in `CLAUDE.md`.
 
 ## Open questions carried from the spec
