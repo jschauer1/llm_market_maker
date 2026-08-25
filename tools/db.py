@@ -80,6 +80,12 @@ def init_db(conn: sqlite3.Connection) -> None:
     _add_column_if_missing(
         conn, "opportunities", "max_payout", "REAL NOT NULL DEFAULT 1.0"
     )
+    # Additive: absent this column, every pre-existing row's floor is
+    # unknown, and 0.0 (no guaranteed floor) is exactly what a plain
+    # single-outcome position or an existing basket already implied.
+    _add_column_if_missing(
+        conn, "opportunities", "min_payout", "REAL NOT NULL DEFAULT 0.0"
+    )
 
 
 def _dedupe_snapshots(conn: sqlite3.Connection) -> None:

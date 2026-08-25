@@ -386,6 +386,7 @@ def record_basket(
     legs: list[dict],
     edge_pts_net: float,
     max_payout: float = 1.0,
+    min_payout: float = 0.0,
     run_mode: str = "live",
     run_id: str | None = None,
     scan_id: str | None = None,
@@ -406,15 +407,21 @@ def record_basket(
 
     The header row carries the aggregate -- `entry_price` is the basket's
     total cost, `leg_count` is N, `max_payout` is the most it can pay -- and
-    `opportunity_legs` carries the tradeable tickers.
+    `opportunity_legs` carries the tradeable tickers. `min_payout` is the
+    least it can pay -- a guaranteed floor, as for a basket with an
+    unconditional leg or an unhedgeable overlap between outcomes -- so that
+    scoring can grade only the at-risk portion above it instead of treating
+    a position that always wins as if every dollar of it were a bet (spec
+    sections 3.6 and 3.6.1).
 
     Re-sighting contract, mirroring `record_opportunity`'s single-position
     rows: `entry_price` is frozen at first sighting on *both* the header and
     every leg, along with each leg's `kalshi_ticker`, `outcome`, and
     `leg_index` -- they record the entry actually available when the basket
-    was first seen and must not drift. Only `last_seen_at`, `times_seen`,
-    `edge_pts_net` (while uninterpreted), and the legs' `spread_at_call` /
-    `volume_at_call` refresh on a re-sighting.
+    was first seen and must not drift. `min_payout` is frozen the same way,
+    for the same reason. Only `last_seen_at`, `times_seen`, `edge_pts_net`
+    (while uninterpreted), and the legs' `spread_at_call` / `volume_at_call`
+    refresh on a re-sighting.
     """
     if edge_pts_net is None:
         raise ValueError(
@@ -449,6 +456,20 @@ def record_basket(
         raise ValueError(
             f"max_payout must be a positive number, got {max_payout!r}"
         )
+    if (
+        isinstance(min_payout, bool)
+        or not isinstance(min_payout, (int, float))
+        or (isinstance(min_payout, float) and math.isnan(min_payout))
+        or min_payout < 0
+    ):
+        raise ValueError(
+            f"min_payout must be a non-negative number, got {min_payout!r}"
+        )
+    if min_payout > max_payout:
+        raise ValueError(
+            f"min_payout {min_payout!r} exceeds max_payout {max_payout!r}; "
+            "a position cannot guarantee more than it can pay"
+        )
 
     norm = _normalize_legs(legs, max_payout)
     provenance.require_provenance(
@@ -466,13 +487,14 @@ def record_basket(
             INSERT INTO opportunities (
                 theory_id, theory_version, run_mode, run_id, scan_id,
                 kalshi_ticker, outcome, entry_price, position_kind,
-                leg_count, max_payout, model_prob, edge_pts_gross, fee_pts,
-                screen_edge_pts_net, edge_pts_net, edge_basis, disposition,
-                confidence, judged_blind, rationale, suggested_size,
-                evidence_source, evidence_market_id, user_action,
-                first_seen_at, last_seen_at, times_seen, extra_json
+                leg_count, max_payout, min_payout, model_prob, edge_pts_gross,
+                fee_pts, screen_edge_pts_net, edge_pts_net, edge_basis,
+                disposition, confidence, judged_blind, rationale,
+                suggested_size, evidence_source, evidence_market_id,
+                user_action, first_seen_at, last_seen_at, times_seen,
+                extra_json
             ) VALUES (?, ?, ?, ?, ?, ?, 'basket', ?, 'basket', ?, ?, ?, ?, ?,
-                      ?, ?, ?, 'screened', ?, ?, ?, ?, ?, ?, 'untouched',
+                      ?, ?, ?, ?, 'screened', ?, ?, ?, ?, ?, ?, 'untouched',
                       ?, ?, 1, ?)
             ON CONFLICT (theory_id, theory_version, run_id, kalshi_ticker,
                          outcome) DO UPDATE SET
@@ -497,9 +519,9 @@ def record_basket(
             """,
             (
                 theory_id, theory_version, run_mode, resolved_run_id, scan_id,
-                header_ticker, cost, len(norm), max_payout, model_prob,
-                edge_pts_gross, fee_pts, edge_pts_net, edge_pts_net,
-                edge_basis, confidence,
+                header_ticker, cost, len(norm), max_payout, min_payout,
+                model_prob, edge_pts_gross, fee_pts, edge_pts_net,
+                edge_pts_net, edge_basis, confidence,
                 1 if judged_blind else (0 if judged_blind is not None else None),
                 rationale, suggested_size, evidence_source,
                 evidence_market_id, stamp, stamp, extra_json,

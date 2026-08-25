@@ -85,6 +85,14 @@ CREATE TABLE IF NOT EXISTS opportunities (
                         CHECK (position_kind IN ('single','basket')),
     leg_count           INTEGER NOT NULL DEFAULT 1,
     max_payout          REAL NOT NULL DEFAULT 1.0,
+    -- The least this position can pay. Scoring grades only the portion
+    -- above it: implied_rate = (cost - min_payout) / (max_payout -
+    -- min_payout). Default 0.0 makes that identical to the plain
+    -- cost/max_payout every existing row was scored by. Unlike
+    -- max_payout, which is only a declaration, this one is checked
+    -- against settlements -- a payout below the declared floor means the
+    -- declaration was wrong and scoring raises.
+    min_payout          REAL NOT NULL DEFAULT 0.0,
     spread_at_call      REAL,
     volume_at_call      REAL,
     model_prob          REAL,
