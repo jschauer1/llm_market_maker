@@ -8,12 +8,21 @@ opportunity.
 Gamma returns `outcomes` and `outcomePrices` as JSON-encoded STRINGS rather
 than arrays, which is the main parsing wrinkle. The API is public but
 undocumented enough that shapes may shift, so parse failures raise.
+
+Every fetching function here takes an optional `fetch` transport, defaulting
+to `get_json` at call time. That default is resolved in the body rather than
+in the signature on purpose: binding the function object at import time would
+freeze it into the signature and silently defeat the
+`monkeypatch.setattr(markets, "get_json", ...)` this module's own tests use.
+The parameter is what lets a backtest, a replay, or a theory substitute a
+canned payload, none of which can reach for monkeypatch.
 """
 
 from __future__ import annotations
 
 import json
 
+from tools.domain import Fetch, PolymarketMarket
 from tools.http import get_json
 
 GAMMA_URL = "https://gamma-api.polymarket.com/markets"
@@ -47,7 +56,7 @@ def _number(raw: dict, key: str) -> float | None:
     return float(value)
 
 
-def normalize(raw: dict) -> dict:
+def normalize(raw: dict) -> PolymarketMarket:
     """Convert a raw Gamma market into the internal shape."""
     market_id = raw.get("conditionId")
     if not market_id:
@@ -67,27 +76,28 @@ def normalize(raw: dict) -> dict:
         elif labels == list(reversed(YES_NO)):
             implied_yes = prices[1]
 
-    return {
-        "platform": "polymarket",
-        "market_id": market_id,
-        "question": raw.get("question"),
-        "slug": raw.get("slug"),
-        "outcomes": outcomes,
-        "outcome_prices": prices,
-        "implied_prob_yes": implied_yes,
-        "best_bid": _number(raw, "bestBid"),
-        "best_ask": _number(raw, "bestAsk"),
-        "volume": _number(raw, "volumeNum"),
-        "liquidity": _number(raw, "liquidityNum"),
-        "end_date": raw.get("endDate"),
-        "closed": bool(raw.get("closed")),
-        "description": raw.get("description"),
-        "raw": raw,
-    }
+    return PolymarketMarket(
+        platform="polymarket",
+        market_id=market_id,
+        question=raw.get("question"),
+        slug=raw.get("slug"),
+        outcomes=outcomes,
+        outcome_prices=prices,
+        implied_prob_yes=implied_yes,
+        best_bid=_number(raw, "bestBid"),
+        best_ask=_number(raw, "bestAsk"),
+        volume=_number(raw, "volumeNum"),
+        liquidity=_number(raw, "liquidityNum"),
+        end_date=raw.get("endDate"),
+        closed=bool(raw.get("closed")),
+        description=raw.get("description"),
+        raw=raw,
+    )
 
 
-def _fetch(params: dict) -> list[dict]:
-    payload = get_json(GAMMA_URL, params=params)
+def _fetch(params: dict, fetch: Fetch | None = None) -> list[PolymarketMarket]:
+    fetch = fetch or get_json
+    payload = fetch(GAMMA_URL, params=params)
     rows = payload if isinstance(payload, list) else payload.get("data", [])
     out = []
     for raw in rows:
@@ -105,7 +115,8 @@ def _fetch(params: dict) -> list[dict]:
     return out
 
 
-def list_open(limit: int = 100, order: str = "volumeNum") -> list[dict]:
+def list_open(limit: int = 100, order: str = "volumeNum", *,
+              fetch: Fetch | None = None) -> list[PolymarketMarket]:
     """Open markets, most-traded first by default."""
     return _fetch(
         {
@@ -113,11 +124,13 @@ def list_open(limit: int = 100, order: str = "volumeNum") -> list[dict]:
             "limit": limit,
             "order": order,
             "ascending": "false",
-        }
+        },
+        fetch=fetch,
     )
 
 
-def list_resolved(limit: int = 100) -> list[dict]:
+def list_resolved(limit: int = 100, *,
+                  fetch: Fetch | None = None) -> list[PolymarketMarket]:
     """Closed markets. Note that resolution encoding in `outcomePrices` is
     inconsistent for older markets, so treat these as signal, not truth."""
-    return _fetch({"closed": "true", "limit": limit})
+    return _fetch({"closed": "true", "limit": limit}, fetch=fetch)

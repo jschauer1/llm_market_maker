@@ -142,3 +142,26 @@ def test_live_open_markets_have_expected_shape():
     assert sample["platform"] == "polymarket"
     assert sample["market_id"].startswith("0x")
     assert sample["question"]
+
+
+def test_normalize_returns_a_polymarket_market():
+    from tools.domain import PolymarketMarket
+    raw = {"conditionId": "0xabc", "question": "Will X?",
+           "outcomes": '["Yes", "No"]', "outcomePrices": '["0.6", "0.4"]',
+           "bestBid": "0.59", "bestAsk": "0.61", "volumeNum": 1000,
+           "endDate": "2026-09-01T00:00:00Z", "closed": False}
+    m = markets.normalize(raw)
+    assert isinstance(m, PolymarketMarket)
+    assert m.market_id == "0xabc"
+    assert m["question"] == "Will X?"          # shim access
+    assert m.outcomes == ["Yes", "No"]         # stays a list
+    assert m.implied_prob_yes == pytest.approx(0.6)
+    assert m.raw is raw
+
+
+def test_fetch_seam_injects_without_monkeypatch():
+    def fake(url, params=None, timeout=30):
+        return [{"conditionId": "0x1", "question": "q",
+                 "outcomes": '["Yes","No"]', "outcomePrices": '["0.5","0.5"]'}]
+    got = markets.list_open(fetch=fake)
+    assert [m.market_id for m in got] == ["0x1"]
