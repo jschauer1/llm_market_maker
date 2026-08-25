@@ -68,7 +68,7 @@ def test_fresh_snapshot_is_reused_without_fetching(conn, monkeypatch):
     monkeypatch.setattr(board.kalshi_markets, "list_open", boom)
 
     got = board.get_board(conn, now=NOW)
-    assert [m["ticker"] for m in got] == ["T-0", "T-1", "T-2"]
+    assert [m.ticker for m in got] == ["T-0", "T-1", "T-2"]
 
 
 def test_stale_snapshot_triggers_a_fetch(conn, monkeypatch):
@@ -121,7 +121,7 @@ def test_rebuilt_board_matches_the_fetched_one(conn):
                       "yes_bid", "yes_ask", "no_bid", "no_ask", "mid",
                       "spread", "volume", "open_interest", "status",
                       "is_open", "close_time", "rules_primary"):
-            assert a[field] == b[field], field
+            assert getattr(a, field) == getattr(b, field), field
 
 
 def test_unrebuildable_snapshot_fails_loudly(conn):
@@ -152,7 +152,7 @@ def test_rebuilt_board_has_the_same_raw_as_a_fetched_one(conn):
     snapshot.save_kalshi(conn, original, now="2026-08-24T11:00:00Z")
     rebuilt = board.get_board(conn, now=NOW)
     for a, b in zip(original, rebuilt):
-        assert a["raw"] == b["raw"]
+        assert a.raw == b.raw
 
 
 def test_uncommon_fields_survive_the_cache_round_trip(conn):
@@ -164,10 +164,10 @@ def test_uncommon_fields_survive_the_cache_round_trip(conn):
     snapshot.save_kalshi(conn, [markets.normalize(raw)],
                          now="2026-08-24T11:00:00Z")
     got = board.get_board(conn, now=NOW)[0]
-    assert got["raw"]["previous_yes_bid_dollars"] == "0.75"
-    assert got["raw"]["yes_bid_size_fp"] == "1200"
-    assert got["raw"]["can_close_early"] is True
-    assert got["raw"]["early_close_condition"] == "if the event concludes early"
+    assert got.raw["previous_yes_bid_dollars"] == "0.75"
+    assert got.raw["yes_bid_size_fp"] == "1200"
+    assert got.raw["can_close_early"] is True
+    assert got.raw["early_close_condition"] == "if the event concludes early"
 
 
 # --- one row per market per capture ----------------------------------
@@ -182,7 +182,7 @@ def test_saving_twice_in_one_second_does_not_duplicate(conn):
     snapshot.save_kalshi(conn, _board(3), now=NOW)
     assert board.board_info(conn, now=NOW)["markets"] == 3
     got = board.get_board(conn, now=NOW)
-    assert len(got) == 3 == len({m["ticker"] for m in got})
+    assert len(got) == 3 == len({m.ticker for m in got})
 
 
 def test_re_saving_updates_rather_than_duplicating(conn):

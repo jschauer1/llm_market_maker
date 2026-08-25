@@ -80,7 +80,7 @@ def test_partition_splits_and_counts_everything():
         _candidate("KXBIGBROTHERELIMINATION", "d"),
     ]
     survivors, counts = gate.partition(candidates)
-    assert [c["ticker"] for c in survivors] == ["d"]
+    assert [c.ticker for c in survivors] == ["d"]
     assert counts["future price: crypto"] == 2
     assert counts["live sport / esport"] == 1
     assert counts[gate.PLAUSIBLE] == 1

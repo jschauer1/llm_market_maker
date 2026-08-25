@@ -21,16 +21,16 @@ RAW = {
 
 def test_normalize_parses_json_encoded_string_arrays():
     m = markets.normalize(RAW)
-    assert m["outcomes"] == ["Yes", "No"]
-    assert m["outcome_prices"] == [pytest.approx(0.006), pytest.approx(0.994)]
+    assert m.outcomes == ["Yes", "No"]
+    assert m.outcome_prices == [pytest.approx(0.006), pytest.approx(0.994)]
 
 
 def test_normalize_uses_condition_id_as_market_id():
-    assert markets.normalize(RAW)["market_id"] == RAW["conditionId"]
+    assert markets.normalize(RAW).market_id == RAW["conditionId"]
 
 
 def test_normalize_extracts_implied_yes_probability():
-    assert markets.normalize(RAW)["implied_prob_yes"] == pytest.approx(0.006)
+    assert markets.normalize(RAW).implied_prob_yes == pytest.approx(0.006)
 
 
 def test_normalize_handles_reversed_outcome_order():
@@ -38,7 +38,7 @@ def test_normalize_handles_reversed_outcome_order():
     # inverts the probability, so this must be exercised explicitly.
     raw = dict(RAW, outcomes='["No", "Yes"]', outcomePrices='["0.994", "0.006"]')
     m = markets.normalize(raw)
-    assert m["implied_prob_yes"] == pytest.approx(0.006)
+    assert m.implied_prob_yes == pytest.approx(0.006)
 
 
 def test_normalize_handles_non_binary_markets():
@@ -48,34 +48,34 @@ def test_normalize_handles_non_binary_markets():
         outcomePrices='["0.2", "0.3", "0.5"]',
     )
     m = markets.normalize(raw)
-    assert len(m["outcomes"]) == 3
-    assert m["implied_prob_yes"] is None, \
+    assert len(m.outcomes) == 3
+    assert m.implied_prob_yes is None, \
         "implied_prob_yes is only meaningful for a Yes/No market"
 
 
 def test_normalize_carries_numeric_fields():
     m = markets.normalize(RAW)
-    assert m["volume"] == pytest.approx(83447614.07)
-    assert m["liquidity"] == pytest.approx(19441.20)
-    assert m["best_ask"] == pytest.approx(0.007)
+    assert m.volume == pytest.approx(83447614.07)
+    assert m.liquidity == pytest.approx(19441.20)
+    assert m.best_ask == pytest.approx(0.007)
 
 
 def test_normalize_keeps_description_for_resolution_research():
-    assert "June 1, 2026" in markets.normalize(RAW)["description"]
+    assert "June 1, 2026" in markets.normalize(RAW).description
 
 
 def test_normalize_tolerates_already_parsed_lists():
     raw = dict(RAW, outcomes=["Yes", "No"], outcomePrices=["0.4", "0.6"])
     m = markets.normalize(raw)
-    assert m["outcomes"] == ["Yes", "No"]
-    assert m["implied_prob_yes"] == pytest.approx(0.4)
+    assert m.outcomes == ["Yes", "No"]
+    assert m.implied_prob_yes == pytest.approx(0.4)
 
 
 def test_normalize_tolerates_missing_prices():
     raw = {k: v for k, v in RAW.items() if k != "outcomePrices"}
     m = markets.normalize(raw)
-    assert m["outcome_prices"] == []
-    assert m["implied_prob_yes"] is None
+    assert m.outcome_prices == []
+    assert m.implied_prob_yes is None
 
 
 def test_normalize_raises_without_a_condition_id():
@@ -139,9 +139,9 @@ def test_live_open_markets_have_expected_shape():
     result = markets.list_open(limit=10)
     assert result, "Polymarket returned no open markets"
     sample = result[0]
-    assert sample["platform"] == "polymarket"
-    assert sample["market_id"].startswith("0x")
-    assert sample["question"]
+    assert sample.platform == "polymarket"
+    assert sample.market_id.startswith("0x")
+    assert sample.question
 
 
 def test_normalize_returns_a_polymarket_market():
@@ -153,7 +153,7 @@ def test_normalize_returns_a_polymarket_market():
     m = markets.normalize(raw)
     assert isinstance(m, PolymarketMarket)
     assert m.market_id == "0xabc"
-    assert m["question"] == "Will X?"          # shim access
+    assert m.question == "Will X?"
     assert m.outcomes == ["Yes", "No"]         # stays a list
     assert m.implied_prob_yes == pytest.approx(0.6)
     assert m.raw is raw

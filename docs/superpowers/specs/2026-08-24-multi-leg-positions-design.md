@@ -430,10 +430,11 @@ Status as implemented on `feat/multi-leg-positions`:
    over: the alternative was recording an edge inflated by an order of
    magnitude.
 3. ✅ A basket contributes exactly one observation to `n`.
-4. ⚠️ Deferred by design. `Candidate.ticker` does not exist — `tools/
-   domain.py` belongs to the [OOP migration](2026-08-24-theory-layer-oop-design.md),
-   which runs after this and adopts the `Leg` shape defined here. The
-   equivalent guarantee is enforced at the ledger instead.
+4. ✅ Met by the [OOP migration](2026-08-24-theory-layer-oop-design.md):
+   `Candidate.ticker`, `.entry_price`, `.fav_side`, `.title`, and
+   `.event_key` are single-leg conveniences that raise `ValueError` on a
+   basket rather than silently returning leg 0 and dropping the rest — see
+   `tests/test_domain.py::test_basket_conveniences_raise_rather_than_guess`.
 5. ✅ A basket with a missing or unsettled leg is excluded rather than
    scored partially, and a `leg_count` mismatch raises.
 6. ⚠️ Three columns, not two — `max_payout` was added during planning

@@ -30,7 +30,7 @@ def _cand(ticker, event, series="KXTHING", **kw):
 def test_dedupe_keeps_one_per_event_in_order():
     cands = [_cand("A-1", "A"), _cand("A-2", "A"), _cand("B-1", "B")]
     out = pipeline.dedupe_by_event(cands)
-    assert [c["ticker"] for c in out] == ["A-1", "B-1"]
+    assert [c.ticker for c in out] == ["A-1", "B-1"]
 
 
 def test_dedupe_falls_back_to_ticker_when_event_missing():

@@ -1,7 +1,7 @@
 # Theory-Layer OOP — Contracts and Value Types
 
 Date: 2026-08-24
-Status: design approved, implementation not started
+Status: implemented — see docs/superpowers/plans/2026-08-24-theory-layer-oop.md
 Scope: `tools/domain.py` (new), `tools/theory.py` (new),
 `tools/registry.py` (new), `theories/**`, both platform clients,
 `tools/ledger.py` + `tools/score.py` (experiment-lane exclusion only),

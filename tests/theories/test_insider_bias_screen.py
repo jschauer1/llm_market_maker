@@ -82,9 +82,9 @@ def test_is_excluded_allows_non_sports_tickers():
 def test_screen_accepts_a_clean_candidate():
     result = screen.screen([_market()], now=NOW)
     assert len(result) == 1
-    assert result[0]["fav_side"] == "yes"
-    assert result[0]["entry_price"] == pytest.approx(0.80)
-    assert result[0]["days_to_close"] == pytest.approx(7.0, abs=0.1)
+    assert result[0].fav_side == "yes"
+    assert result[0].entry_price == pytest.approx(0.80)
+    assert result[0].days_to_close == pytest.approx(7.0, abs=0.1)
 
 
 def test_screen_rejects_excluded_sports_tickers():
@@ -138,7 +138,7 @@ def test_screen_thresholds_are_overridable():
 
 def test_screen_keeps_resolution_rules_for_stage_two():
     result = screen.screen([_market()], now=NOW)
-    assert "named winner" in result[0]["rules_primary"]
+    assert "named winner" in result[0].legs[0].market.rules_primary
 
 
 def test_screen_accepts_a_clean_no_side_candidate():
@@ -149,8 +149,8 @@ def test_screen_accepts_a_clean_no_side_candidate():
     # is the one test that proves a NO candidate can reach acceptance.
     result = screen.screen([_market(mid=0.10, no_ask=0.90)], now=NOW)
     assert len(result) == 1
-    assert result[0]["fav_side"] == "no"
-    assert result[0]["entry_price"] == pytest.approx(0.90)
+    assert result[0].fav_side == "no"
+    assert result[0].entry_price == pytest.approx(0.90)
 
 
 # --- Coupling test: normalize() output must still be what screen() wants ---
@@ -183,8 +183,8 @@ def test_normalized_kalshi_payload_survives_the_screen():
     market = markets.normalize(_raw_kalshi_market())
     result = screen.screen([market], now=NOW)
     assert len(result) == 1
-    assert result[0]["fav_side"] == "yes"
-    assert result[0]["entry_price"] == pytest.approx(0.80)
+    assert result[0].fav_side == "yes"
+    assert result[0].entry_price == pytest.approx(0.80)
 
 
 def test_does_not_carry_is_mention_family():

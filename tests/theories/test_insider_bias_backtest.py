@@ -286,7 +286,7 @@ def test_iter_settled_survivors_tags_each_row_with_its_series(monkeypatch):
     _, survivors = next(
         backtest.iter_settled_survivors([{"ticker": "KXA"}], 0, 100)
     )
-    assert survivors[0]["series_ticker"] == "KXA"
+    assert survivors[0].series_ticker == "KXA"
 
 
 def test_iter_settled_survivors_skips_series_with_no_ticker(monkeypatch):
@@ -306,7 +306,7 @@ def test_settled_survivors_collects_across_all_series(monkeypatch):
     )
     series_list = [{"ticker": "KXA"}, {"ticker": "KXB"}]
     result = backtest.settled_survivors(0, 100, series_list=series_list)
-    assert sorted(m["ticker"] for m in result) == ["KXA-1", "KXB-1"]
+    assert sorted(m.ticker for m in result) == ["KXA-1", "KXB-1"]
 
 
 def test_settled_survivors_uses_candidate_series_by_default(monkeypatch):
@@ -316,4 +316,4 @@ def test_settled_survivors_uses_candidate_series_by_default(monkeypatch):
         lambda **kwargs: [_normalized(ticker="KXA-1")],
     )
     result = backtest.settled_survivors(0, 100)
-    assert [m["ticker"] for m in result] == ["KXA-1"]
+    assert [m.ticker for m in result] == ["KXA-1"]

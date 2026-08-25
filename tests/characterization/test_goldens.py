@@ -130,4 +130,4 @@ def test_normalize_preserves_the_complete_raw_payload():
     """Spec section 8.1: a thinner `raw` would make a theory reading an
     uncommon field work on a forced pull and return None on a cached one."""
     for row in cz.load_fixture()[:200]:
-        assert markets.normalize(row["raw"])["raw"] == row["raw"]
+        assert markets.normalize(row["raw"]).raw == row["raw"]

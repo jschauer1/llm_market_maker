@@ -24,54 +24,54 @@ RAW = {
 
 def test_normalize_parses_decimal_dollar_strings():
     m = markets.normalize(RAW)
-    assert m["yes_bid"] == pytest.approx(0.92)
-    assert m["yes_ask"] == pytest.approx(0.93)
-    assert m["last_price"] == pytest.approx(0.93)
+    assert m.yes_bid == pytest.approx(0.92)
+    assert m.yes_ask == pytest.approx(0.93)
+    assert m.last_price == pytest.approx(0.93)
 
 
 def test_normalize_parses_fp_sizes():
     m = markets.normalize(RAW)
-    assert m["volume"] == pytest.approx(175581.15)
-    assert m["open_interest"] == pytest.approx(40225.58)
+    assert m.volume == pytest.approx(175581.15)
+    assert m.open_interest == pytest.approx(40225.58)
 
 
 def test_normalize_derives_spread_and_mid():
     m = markets.normalize(RAW)
-    assert m["spread"] == pytest.approx(0.01)
-    assert m["mid"] == pytest.approx(0.925)
+    assert m.spread == pytest.approx(0.01)
+    assert m.mid == pytest.approx(0.925)
 
 
 def test_normalize_marks_active_markets_open():
-    assert markets.normalize(RAW)["is_open"] is True
+    assert markets.normalize(RAW).is_open is True
 
 
 def test_normalize_marks_finalized_markets_closed():
     raw = dict(RAW, status="finalized", result="yes")
     m = markets.normalize(raw)
-    assert m["is_open"] is False
-    assert m["result"] == "yes"
+    assert m.is_open is False
+    assert m.result == "yes"
 
 
 def test_normalize_turns_blank_result_into_none():
-    assert markets.normalize(RAW)["result"] is None
+    assert markets.normalize(RAW).result is None
 
 
 def test_normalize_keeps_resolution_rules():
     # Stage 2 research depends on this text; it must survive normalization.
-    assert "Anthropic" in markets.normalize(RAW)["rules_primary"]
+    assert "Anthropic" in markets.normalize(RAW).rules_primary
 
 
 def test_normalize_keeps_the_raw_payload():
-    assert markets.normalize(RAW)["raw"]["volume_fp"] == "175581.15"
+    assert markets.normalize(RAW).raw["volume_fp"] == "175581.15"
 
 
 def test_normalize_tolerates_missing_optional_fields():
     raw = {"ticker": "X", "status": "active"}
     m = markets.normalize(raw)
-    assert m["yes_bid"] is None
-    assert m["spread"] is None
-    assert m["mid"] is None
-    assert m["volume"] is None
+    assert m.yes_bid is None
+    assert m.spread is None
+    assert m.mid is None
+    assert m.volume is None
 
 
 def test_normalize_raises_without_a_ticker():
@@ -119,9 +119,9 @@ def test_list_open_paginates_and_flattens(monkeypatch):
 
     monkeypatch.setattr(markets, "get_json", fake_get)
     result = markets.list_open()
-    assert [m["ticker"] for m in result] == ["A", "B", "C"]
-    assert result[0]["series_ticker"] == "S1"
-    assert result[2]["series_ticker"] == "S2"
+    assert [m.ticker for m in result] == ["A", "B", "C"]
+    assert result[0].series_ticker == "S1"
+    assert result[2].series_ticker == "S2"
 
 
 def test_list_open_keeps_the_markets_own_series_ticker(monkeypatch):
@@ -141,7 +141,7 @@ def test_list_open_keeps_the_markets_own_series_ticker(monkeypatch):
         },
     )
     result = markets.list_open()
-    assert result[0]["series_ticker"] == "OWN"
+    assert result[0].series_ticker == "OWN"
 
 
 def test_list_open_pages_past_ten(monkeypatch):
@@ -162,7 +162,7 @@ def test_list_open_pages_past_ten(monkeypatch):
     monkeypatch.setattr(markets, "get_json", fake_get)
     result = markets.list_open()
     assert len(result) == total_pages
-    assert [m["ticker"] for m in result] == [f"T{n}" for n in range(total_pages)]
+    assert [m.ticker for m in result] == [f"T{n}" for n in range(total_pages)]
 
 
 def test_list_open_deduplicates_tickers_across_pages(monkeypatch):
@@ -189,7 +189,7 @@ def test_list_open_deduplicates_tickers_across_pages(monkeypatch):
 
     monkeypatch.setattr(markets, "get_json", fake_get)
     result = markets.list_open()
-    assert [m["ticker"] for m in result] == ["A", "B", "C"]
+    assert [m.ticker for m in result] == ["A", "B", "C"]
 
 
 def test_list_open_raises_when_the_cursor_stops_advancing(monkeypatch):
@@ -221,7 +221,7 @@ def test_list_settled_pages_to_exhaustion(monkeypatch):
     monkeypatch.setattr(markets, "get_json", fake_get)
     result = markets.list_settled()
     assert len(result) == total_pages
-    assert [m["ticker"] for m in result] == [f"T{n}" for n in range(total_pages)]
+    assert [m.ticker for m in result] == [f"T{n}" for n in range(total_pages)]
 
 
 def test_list_settled_deduplicates_tickers_across_pages(monkeypatch):
@@ -243,7 +243,7 @@ def test_list_settled_deduplicates_tickers_across_pages(monkeypatch):
 
     monkeypatch.setattr(markets, "get_json", fake_get)
     result = markets.list_settled()
-    assert [m["ticker"] for m in result] == ["A", "B", "C"]
+    assert [m.ticker for m in result] == ["A", "B", "C"]
 
 
 def test_list_settled_raises_when_the_cursor_stops_advancing(monkeypatch):
@@ -263,7 +263,7 @@ def test_quotes_maps_tickers_to_markets(monkeypatch):
     )
     result = markets.quotes(["A", "B"])
     assert set(result) == {"A", "B"}
-    assert result["A"]["yes_ask"] == pytest.approx(0.93)
+    assert result["A"].yes_ask == pytest.approx(0.93)
 
 
 def test_quotes_sends_a_limit_matching_the_ticker_count(monkeypatch):
@@ -290,9 +290,9 @@ def test_live_open_markets_have_expected_shape():
     result = markets.list_open()
     assert result, "Kalshi returned no open markets"
     sample = result[0]
-    assert sample["platform"] == "kalshi"
-    assert sample["ticker"]
-    assert sample["is_open"] is True
+    assert sample.platform == "kalshi"
+    assert sample.ticker
+    assert sample.is_open is True
 
 
 # --- domain type and the fetch seam (OOP migration, phase 2) ----------

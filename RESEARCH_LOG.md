@@ -707,3 +707,45 @@ another session's) was never touched.
 Also added docs/superpowers/plans/theories/ with a README defining the
 build side of the pipeline (spec -> propose-theory -> plan file here ->
 code in theories/<slug>/) and a build tracker table, currently empty.
+
+## 2026-08-25 — Theory-layer OOP migration complete; migration shim deleted
+
+The theory-layer OOP migration (docs/superpowers/specs/2026-08-24-theory-
+layer-oop-design.md) landed end to end: frozen domain value types
+(Market, PolymarketMarket, Leg, Candidate, Edge, Verdict, ScoredCandidate,
+ScreenResult, ScanResult) in tools/domain.py, the Theory contract and
+TheoryContext in tools/theory.py, and the running-theory registry in
+tools/registry.py. Both theories -- insider_judgment and mention_family --
+were adapted to the contract and then ported to read domain objects
+natively, with no version bump on either (insider_judgment stays v3,
+mention_family v1) and no change to any decision logic. Every
+characterization golden held unchanged throughout.
+
+This session did the final step: deleted the temporary migration shim
+(_MappingShim, SHIM_CALLERS, track_shim_callers) from tools/domain.py now
+that nothing in production code depends on dict-style access to a domain
+object -- Market, PolymarketMarket, and Candidate are no longer mappings,
+enforced by tests/test_conventions.py::test_the_migration_shim_is_gone.
+The only tests deleted anywhere in this migration were the shim's own
+(five test_shim_* cases plus the allowlist-exercise test), deleted
+together with the feature they tested; every other test conversion was a
+mechanical dict-access -> attribute-access rewrite with the asserted
+value unchanged. A mechanical grep sweep of tools/ and theories/ for
+remaining subscript/`.get()` use on domain-shaped values turned up
+nothing left to convert -- every remaining hit operates on a genuine
+plain dict (raw wire payloads, DB rows, candlesticks, ledger leg kwargs,
+JSON blind-judgment payloads), which is exactly the boundary the shim was
+never meant to cover. Full suite: 621 passed, 4 deselected, zero
+failures.
+
+The Verdict type's no-numeric-field rule (CLAUDE.md's "never state a
+probability you introspected") is now enforced structurally at the judge
+boundary, not just by convention -- an out-of-process judge has no field
+to hand a probability back through. This also discharges the multi-leg
+spec's success criterion 4 (deferred pending this migration):
+Candidate's single-leg conveniences (.ticker, .entry_price, .fav_side,
+.title, .event_key) raise ValueError on a basket rather than silently
+returning leg 0, per tests/test_domain.py::
+test_basket_conveniences_raise_rather_than_guess. Criterion 2 and section
+10.1 of that spec -- how a variable-payout basket should be scored --
+remain open, unchanged, and are the user's call.
