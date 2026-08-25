@@ -125,7 +125,8 @@ class OpportunityRecord:
             fee_pts=e.fee_pts, confidence=sc.confidence,
             judged_blind=sc.judged_blind, rationale=sc.rationale,
             run_mode=ctx.run_mode, run_id=ctx.run_id,
-            evidence_source="kalshi",
+            evidence_source=sc.evidence_source,
+            evidence_market_id=sc.evidence_market_id,
         )
         if c.is_basket:
             legs = [dict(kalshi_ticker=l.market.ticker, outcome=l.side,
@@ -204,6 +205,17 @@ class TheoryRun:
                 "verdicts were applied; silently recording unjudged screen "
                 "output would misstate edge_basis and judged_blind on every "
                 "row. Call run.apply(verdicts) first, or finish(dry_run=True)."
+            )
+        if self.theory.uses_llm_judgment and not self.theory.prompts:
+            raise RuntimeError(
+                f"{self.theory.id} declares uses_llm_judgment=True but "
+                "Theory.prompts is empty; finish() only records provenance "
+                "when prompts is non-empty (see _record_provenance), so "
+                "this theory could write ledger rows with no record of "
+                "what judged them. Declare the prompt files that governed "
+                "the judgment on Theory.prompts, e.g. "
+                "prompts = {'analysis': "
+                "'theories/<slug>/prompts/analysis.md'}."
             )
         scored = list(self.theory.price(self.ctx, self.candidates,
                                         self.verdicts))

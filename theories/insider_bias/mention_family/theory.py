@@ -7,9 +7,11 @@ outside the contract -- a wider horizon changes what edge_basis a caller
 may honestly attach, which is why they are two functions (spec 3.1).
 
 price() and mention_bucket.record() both build their rationale through
-mention_bucket._rationale_for(), so a row written through finish() is
-indistinguishable from one written through record() -- tested against the
-ledger, not assumed.
+mention_bucket._rationale_for(), so a row written through finish() agrees
+with one written through record() on every field record() writes -- tested
+against the ledger, not assumed. finish() additionally records model_prob
+(record() never passes it), so the two paths are not identical, only
+agreeing where record() has an opinion.
 """
 
 from __future__ import annotations

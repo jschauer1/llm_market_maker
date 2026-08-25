@@ -39,13 +39,13 @@ def _synthetic_board() -> list[Market]:
     (see tests/characterization/build_fixture.py's docstring on why an
     empty candidate set locks nothing).
 
-    Built as domain.Market objects, not raw dicts: screen.screen() reads a
-    market with dict(market), and a Market's mapping shim always yields
-    every declared field (missing ones as None) -- the same full field set
-    Market.from_mapping() reconstructs on the other side. A plain dict
-    missing rarely-used fields (last_price, volume_24h, ...) would compare
-    unequal against a round-tripped Market for reasons that have nothing
-    to do with the adapter's own correctness.
+    Built as domain.Market objects, not raw dicts: screen.screen() and
+    find_candidates() read a market by attribute (`market.mid`,
+    `market.ticker`, `market.spread`, ...), the same access pattern
+    tools.board.get_board() hands back in production. A plain dict would
+    not satisfy that access pattern at all, so a real Market instance --
+    built with every field screen.screen() and the price-bin bucketing
+    touch -- is the only fixture shape this path accepts.
     """
     def m(ticker: str, yes_ask: float) -> Market:
         return Market(

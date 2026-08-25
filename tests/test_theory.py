@@ -83,6 +83,27 @@ class Judged(Theory):
                 for c in cands if c.key in verdicts]
 
 
+class JudgedNoPrompts(Theory):
+    """Declares uses_llm_judgment but leaves Theory.prompts at its default
+    {} -- the shape finding I3 closes off: finish() used to skip
+    _record_provenance whenever prompts was empty, regardless of whether
+    the theory claimed LLM judgment, so a theory like this could record
+    opportunities with no provenance at all."""
+
+    id = "stub_judged_no_prompts"
+    name = "Stub Judged No Prompts"
+    version = 1
+    uses_llm_judgment = True
+
+    def screen(self, ctx):
+        return [cand()]
+
+    def price(self, ctx, cands, verdicts=None):
+        return [ScoredCandidate(candidate=c, edge=Edge(pts_net=5.0,
+                                                       basis="model"))
+                for c in cands]
+
+
 def fake_ctx(board=(), conn=None, judge_model=None):
     return TheoryContext(conn=conn, board=list(board), now=NOW,
                          judge_model=judge_model)
@@ -147,6 +168,53 @@ def test_finish_requires_judge_model_for_an_llm_theory(tmp_path):
     run.apply({"KXT": Verdict(bucket="strong")})
     with pytest.raises(RuntimeError, match="judge_model"):
         run.finish()
+    conn.close()
+
+
+def test_finish_refuses_an_llm_theory_with_no_prompts_declared():
+    """uses_llm_judgment=True with prompts={} must not slip through:
+    without this, finish() would write ledger rows for a judgment theory
+    with zero provenance, exactly the omission record_opportunity's
+    require_provenance exists to make impossible."""
+    run = JudgedNoPrompts().start(fake_ctx([mkm()]))
+    assert run.needs_judgment is False   # no judgment_payload override
+    with pytest.raises(RuntimeError, match="prompts"):
+        run.finish(dry_run=True)
+
+
+def test_a_scored_candidate_with_non_default_evidence_records_it(tmp_path):
+    """A Polymarket-sourced finding (CLAUDE.md: Polymarket is a first-class
+    research source) must keep its provenance through finish() --
+    OpportunityRecord.from_scored must not hardcode evidence_source
+    ='kalshi' or drop evidence_market_id, even though the recorded row
+    still resolves to a Kalshi ticker."""
+    conn = db.connect(tmp_path / "t.db")
+    db.init_db(conn)
+
+    class PolySourced(Theory):
+        id = "stub_poly"
+        name = "Stub Poly Sourced"
+        version = 1
+
+        def screen(self, ctx):
+            return [cand()]
+
+        def price(self, ctx, cands, verdicts=None):
+            return [ScoredCandidate(
+                candidate=c, edge=Edge(pts_net=5.0, basis="model"),
+                evidence_source="polymarket", evidence_market_id="0xabc",
+            ) for c in cands]
+
+    theories.register(conn, "stub_poly", "Stub Poly Sourced", "x", now=TS)
+    ctx = TheoryContext.build(conn=conn, board=[mkm()], now=NOW)
+    PolySourced().start(ctx).finish()
+    row = conn.execute(
+        "SELECT kalshi_ticker, evidence_source, evidence_market_id"
+        "  FROM opportunities"
+    ).fetchone()
+    assert row["kalshi_ticker"] == "KXT-26"
+    assert row["evidence_source"] == "polymarket"
+    assert row["evidence_market_id"] == "0xabc"
     conn.close()
 
 

@@ -345,6 +345,8 @@ class ScoredCandidate:
     rationale: str | None = None
     judged_blind: bool | None = None
     disposition: str = "screened"      # screened | endorsed | rejected
+    evidence_source: str = "kalshi"    # "kalshi" | "polymarket" | ...
+    evidence_market_id: str | None = None  # the non-Kalshi source id, if any
 
     def __post_init__(self) -> None:
         if self.disposition not in VALID_DISPOSITIONS:

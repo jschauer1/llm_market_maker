@@ -17,7 +17,7 @@ persists every pull, so the freshest snapshot batch *is* the cached board —
 there is nothing extra to store, invalidate, or keep in sync, and the history
 the project accrues comes for free.
 
-A rebuilt board is identical to a fetched one, `market["raw"]` included:
+A rebuilt board is identical to a fetched one, `market.raw` included:
 snapshots store the complete Kalshi payload, so a cache hit and a forced
 fetch hand back the same shape. That matters more than it sounds — a cache
 that returned a thinner `raw` would make any theory reading an uncommon field
@@ -32,6 +32,7 @@ from datetime import datetime, timezone
 
 from tools import snapshot
 from tools.db import utcnow
+from tools.domain import Market
 from tools.kalshi import markets as kalshi_markets
 
 #: How old the freshest snapshot may be before `get_board` refetches.
@@ -67,7 +68,7 @@ def board_info(conn: sqlite3.Connection, now: str | None = None) -> dict | None:
     }
 
 
-def _rebuild(conn: sqlite3.Connection, captured_at: str) -> list[dict]:
+def _rebuild(conn: sqlite3.Connection, captured_at: str) -> list[Market]:
     """Reconstruct normalized markets from a stored snapshot batch."""
     rows = conn.execute(
         """
@@ -98,7 +99,7 @@ def get_board(
     max_age_minutes: float = DEFAULT_MAX_AGE_MINUTES,
     force: bool = False,
     now: str | None = None,
-) -> list[dict]:
+) -> list[Market]:
     """The complete Kalshi board, fetching only if what is stored is stale.
 
     Every theory should call this rather than `markets.list_open()`, so one
