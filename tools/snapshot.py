@@ -50,8 +50,8 @@ _INSERT = """
 _SETTLED_STATUSES = {"finalized", "settled"}
 
 
-def _kalshi_snapshot_status(m: dict) -> str:
-    status = m.get("status")
+def _kalshi_snapshot_status(m) -> str:
+    status = m.status
     if status in kalshi_markets.OPEN_STATUSES:
         return "open"
     if status in _SETTLED_STATUSES:
@@ -80,27 +80,27 @@ def _kalshi_snapshot_status(m: dict) -> str:
 
 
 def save_kalshi(
-    conn: sqlite3.Connection, markets: list[dict], now: str | None = None
+    conn: sqlite3.Connection, markets: list, now: str | None = None
 ) -> int:
     """Persist normalized Kalshi markets. Returns rows written."""
     stamp = now or utcnow()
     rows = [
         (
             "kalshi",
-            m["ticker"],
+            m.ticker,
             stamp,
-            m.get("title"),
+            m.title,
             # This is the market MID, not an executable price — anything
             # that needs an actual entry price for a bet must use yes_ask
             # (or yes_bid for the NO side), never this column.
-            m.get("mid"),
-            m.get("yes_bid"),
-            m.get("yes_ask"),
-            m.get("volume"),
-            m.get("open_interest"),
-            m.get("close_time"),
+            m.mid,
+            m.yes_bid,
+            m.yes_ask,
+            m.volume,
+            m.open_interest,
+            m.close_time,
             _kalshi_snapshot_status(m),
-            json.dumps(m.get("raw", {}) or {}),
+            json.dumps(m.raw or {}),
         )
         for m in markets
     ]
@@ -112,24 +112,24 @@ def save_kalshi(
 
 
 def save_polymarket(
-    conn: sqlite3.Connection, markets: list[dict], now: str | None = None
+    conn: sqlite3.Connection, markets: list, now: str | None = None
 ) -> int:
     """Persist normalized Polymarket markets. Returns rows written."""
     stamp = now or utcnow()
     rows = [
         (
             "polymarket",
-            m["market_id"],
+            m.market_id,
             stamp,
-            m.get("question"),
-            m.get("implied_prob_yes"),
-            m.get("best_bid"),
-            m.get("best_ask"),
-            m.get("volume"),
+            m.question,
+            m.implied_prob_yes,
+            m.best_bid,
+            m.best_ask,
+            m.volume,
             None,
-            m.get("end_date"),
-            "settled" if m.get("closed") else "open",
-            json.dumps(m.get("raw", {})),
+            m.end_date,
+            "settled" if m.closed else "open",
+            json.dumps(m.raw),
         )
         for m in markets
     ]

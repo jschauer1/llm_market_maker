@@ -91,17 +91,17 @@ def score_pair(
     )
 
 
-def _text_of(market: dict) -> str:
-    return market.get("question") or market.get("title") or ""
+def _text_of(market) -> str:
+    return getattr(market, "question", None) or getattr(market, "title", None) or ""
 
 
-def _end_of(market: dict) -> str | None:
-    return market.get("end_date") or market.get("close_time")
+def _end_of(market) -> str | None:
+    return getattr(market, "end_date", None) or getattr(market, "close_time", None)
 
 
 def shortlist(
-    source: dict,
-    candidates: list[dict],
+    source,
+    candidates: list,
     top_n: int = 5,
     min_score: float = 0.1,
 ) -> list[dict]:
@@ -122,11 +122,11 @@ def shortlist(
             continue
         scored.append(
             {
-                "ticker": market.get("ticker"),
-                "title": market.get("title"),
+                "ticker": getattr(market, "ticker", None),
+                "title": getattr(market, "title", None),
                 "score": score,
-                "rules_primary": market.get("rules_primary"),
-                "close_time": market.get("close_time"),
+                "rules_primary": getattr(market, "rules_primary", None),
+                "close_time": getattr(market, "close_time", None),
                 "market": market,
             }
         )

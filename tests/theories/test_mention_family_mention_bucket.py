@@ -13,7 +13,7 @@ import pytest
 
 from theories.insider_bias.mention_family import mention_bucket
 from tools import db, score, theories
-from tools.domain import Market
+from tools.domain import Candidate, Leg, Market
 from tools.sizing import fee_pts
 
 NOW = datetime(2026, 8, 24, tzinfo=timezone.utc)
@@ -38,11 +38,15 @@ def _market(ticker, series_ticker, **overrides):
     return Market.from_mapping(base)
 
 
-def _candidate(ticker, entry_price, fav_side="yes", volume=5000.0):
-    return {
-        "ticker": ticker, "fav_side": fav_side, "entry_price": entry_price,
-        "spread": 0.02, "volume": volume,
-    }
+def _candidate(ticker, entry_price, fav_side="yes", volume=5000.0) -> Candidate:
+    # rank/rank_preview/record all read the typed carrier since the OOP
+    # migration's Task 13 -- see mention_bucket.py.
+    market = Market(platform="kalshi", ticker=ticker, spread=0.02,
+                    volume=volume)
+    return Candidate(
+        legs=(Leg(market=market, side=fav_side, price=entry_price),),
+        days_to_close=5.0,
+    )
 
 
 #: Mirrors the real 2026-08-24 backtest's three price bins.
@@ -87,7 +91,7 @@ def test_find_candidates_keeps_only_mention_family_screen_hits():
         _market("KXTRAITORS-1", "KXTRAITORS"),  # screen-eligible, not mention
     ]
     result = mention_bucket.find_candidates(board, now=NOW)
-    assert [c["ticker"] for c in result] == ["KXTRUMPMENTION-1"]
+    assert [c.ticker for c in result] == ["KXTRUMPMENTION-1"]
 
 
 def test_find_candidates_still_applies_the_full_screen():
@@ -109,7 +113,7 @@ def test_find_candidates_respects_default_14_day_window():
 def test_find_candidates_max_days_ahead_widens_the_window():
     board = [_market("KXTRUMPMENTION-1", "KXTRUMPMENTION", close_time="2026-09-13T00:00:00Z")]
     result = mention_bucket.find_candidates(board, now=NOW, max_days_ahead=30)
-    assert [c["ticker"] for c in result] == ["KXTRUMPMENTION-1"]
+    assert [c.ticker for c in result] == ["KXTRUMPMENTION-1"]
 
 
 # --- bucket_for_price ---------------------------------------------------
@@ -136,19 +140,19 @@ def test_rank_uses_each_candidates_own_price_bin():
     # A cheap ($0.68) and a strong ($0.90) favorite must NOT share one rate.
     candidates = [_candidate("cheap", 0.68), _candidate("strong", 0.90)]
     ranked = mention_bucket.rank(candidates, RATES, top_n=20)
-    by_ticker = {c["ticker"]: c for c in ranked}
-    assert by_ticker["cheap"]["bucket"] == "mention_family_lt75"
-    assert by_ticker["strong"]["bucket"] == "mention_family_85plus"
+    by_ticker = {c.candidate.ticker: c for c in ranked}
+    assert by_ticker["cheap"].confidence == "mention_family_lt75"
+    assert by_ticker["strong"].confidence == "mention_family_85plus"
     # The strong favorite's bin has both a higher win rate AND less edge
     # headroom lost to fees than the naive flat-rate model would have given
     # the cheap one -- this is the fix: the cheap end no longer looks best.
-    assert by_ticker["strong"]["edge_pts_net"] > by_ticker["cheap"]["edge_pts_net"]
+    assert by_ticker["strong"].edge.pts_net > by_ticker["cheap"].edge.pts_net
 
 
 def test_rank_attaches_measured_edge_basis():
     ranked = mention_bucket.rank([_candidate("A", 0.80)], RATES, top_n=20)
-    assert ranked[0]["edge_basis"] == "measured"
-    assert ranked[0]["edge_pts_net"] == pytest.approx(
+    assert ranked[0].edge.basis == "measured"
+    assert ranked[0].edge.pts_net == pytest.approx(
         (0.868 - 0.80) * 100 - fee_pts(0.80)
     )
 
@@ -162,8 +166,8 @@ def test_rank_respects_top_n():
 def test_rank_falls_back_to_prior_below_min_bucket_n():
     thin_rates = {"mention_family_75_85": {"n": 3, "win_rate": 1.0, "mean_entry_price": 0.9}}
     ranked = mention_bucket.rank([_candidate("A", 0.80)], thin_rates, top_n=20)
-    assert ranked[0]["edge_basis"] == "prior"
-    assert ranked[0]["edge_pts_net"] == pytest.approx(0.0)
+    assert ranked[0].edge.basis == "prior"
+    assert ranked[0].edge.pts_net == pytest.approx(0.0)
 
 
 def test_rank_handles_no_candidates():
@@ -177,7 +181,7 @@ def test_rank_breaks_edge_ties_by_volume():
         _candidate("liquid", 0.80, volume=9000.0),
     ]
     ranked = mention_bucket.rank(candidates, RATES, top_n=20)
-    assert [c["ticker"] for c in ranked] == ["liquid", "thin"]
+    assert [c.candidate.ticker for c in ranked] == ["liquid", "thin"]
 
 
 # --- rank_preview -----------------------------------------------------
@@ -185,12 +189,12 @@ def test_rank_breaks_edge_ties_by_volume():
 
 def test_rank_preview_always_returns_model_basis_never_measured():
     ranked = mention_bucket.rank_preview([_candidate("A", 0.80)], RATES, top_n=20)
-    assert ranked[0]["edge_basis"] == "model"
+    assert ranked[0].edge.basis == "model"
 
 
 def test_rank_preview_uses_the_bin_rate_as_a_point_estimate():
     ranked = mention_bucket.rank_preview([_candidate("A", 0.80)], RATES, top_n=20)
-    assert ranked[0]["edge_pts_net"] == pytest.approx(
+    assert ranked[0].edge.pts_net == pytest.approx(
         (0.868 - 0.80) * 100 - fee_pts(0.80)
     )
 
@@ -201,13 +205,13 @@ def test_rank_preview_orders_by_each_candidates_own_bin_edge():
     # Real per-bin lookup, not a flat rate -- computed, not assumed.
     candidates = [_candidate("A", 0.95), _candidate("B", 0.70)]
     ranked = mention_bucket.rank_preview(candidates, RATES, top_n=20)
-    assert [c["ticker"] for c in ranked] == ["A", "B"]
+    assert [c.candidate.ticker for c in ranked] == ["A", "B"]
 
 
 def test_rank_preview_zero_edge_when_validated_bucket_has_no_history():
     ranked = mention_bucket.rank_preview([_candidate("A", 0.80)], {}, top_n=20)
-    assert ranked[0]["edge_basis"] == "model"
-    assert ranked[0]["edge_pts_net"] == pytest.approx(0.0)
+    assert ranked[0].edge.basis == "model"
+    assert ranked[0].edge.pts_net == pytest.approx(0.0)
 
 
 # --- record (touches the database) -----------------------------------

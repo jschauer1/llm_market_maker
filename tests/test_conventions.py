@@ -52,26 +52,30 @@ def test_verdict_declares_no_numeric_field():
 #: `.get()`/`[...]`), so `theories.insider_bias.insider_judgment.pipeline`
 #: DROPPED from this set -- running the whole insider_judgment pipeline
 #: (`ij.start(ctx)`) no longer touches the shim at all.
+#: `theories.insider_bias.mention_family.mention_bucket` ENTERED instead
+#: for that same window, because it called the SAME shared `screen.screen()`
+#: insider_judgment uses and `find_candidates()` had not been ported yet.
 #:
-#: `theories.insider_bias.mention_family.mention_bucket` ENTERED instead,
-#: for a reason that is the whole point of an incremental port: it calls
-#: the SAME shared `screen.screen()` insider_judgment uses (see
-#: `theories/insider_bias/screen.py`'s module docstring on the two sibling
-#: theories), and that function now returns domain.Candidate objects
-#: instead of dicts. `find_candidates()`'s `h.get("series_ticker")` /
-#: `h["ticker"]` calls (mention_bucket.py has not been ported -- that is
-#: Task 13) land on the shim for the first time as a direct consequence.
-#: This is expected and temporary, exactly as the Task 12 brief predicted.
+#: As of Task 13: `mention_bucket.py` is ported (`find_candidates`, `rank`,
+#: `rank_preview`, `record`, and the shared `_rationale_for` all read
+#: `Candidate`/`ScoredCandidate` attributes now), and the adapter
+#: (`theory.py`) no longer builds dicts either. Re-running the exact probe
+#: below (`ij.start(ctx)` + `mf.screen(ctx)`) with tracking on now observes
+#: **zero** callers, `tools.domain` included -- there is no longer any
+#: `.get()`/`[...]` call anywhere in this probe's path for `Candidate.get()`
+#: to delegate through. `SHIM_ALLOWLIST` is empty for the same reason: the
+#: allowlist is always the observed set, and the observed set is now empty.
 #:
-#: `tools.domain` is not a "caller" migrating anywhere: `Candidate.get()`
-#: (defined in domain.py) delegates to `Market.get()`, and the frame that
-#: "actually indexed" is that delegating line inside domain.py itself -- an
-#: artifact of the shim's own internal plumbing, gone the moment the whole
-#: shim is deleted in Task 14.
-SHIM_ALLOWLIST = {
-    "theories.insider_bias.mention_family.mention_bucket",
-    "tools.domain",
-}
+#: This makes `test_shim_is_exercised_only_from_allowlisted_modules`'s own
+#: non-emptiness assertion FAIL -- correctly. That assertion exists as a
+#: guard against the subset check going vacuous, and it is now telling the
+#: truth: this probe enforces nothing anymore, because nothing left in it
+#: touches the shim. That is real information, not a bug in the test, and
+#: per the Task 13 brief it is NOT this task's job to delete or soften that
+#: assertion to force the suite green -- Task 14 (delete the shim entirely)
+#: is where this test is meant to transform into "the shim is gone" check.
+#: Left in place, failing, on purpose; see the Task 13 report.
+SHIM_ALLOWLIST: set[str] = set()
 
 
 def test_shim_is_exercised_only_from_allowlisted_modules():

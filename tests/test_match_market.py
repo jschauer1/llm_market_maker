@@ -1,25 +1,26 @@
 import pytest
 
 from tools import match_market
+from tools.domain import Market, PolymarketMarket
 
 
 def _kalshi(ticker, title, close_time="2026-11-03T00:00:00Z", rules="Rules."):
-    return {
-        "platform": "kalshi",
-        "ticker": ticker,
-        "title": title,
-        "close_time": close_time,
-        "rules_primary": rules,
-    }
+    return Market(
+        platform="kalshi",
+        ticker=ticker,
+        title=title,
+        close_time=close_time,
+        rules_primary=rules,
+    )
 
 
 def _poly(question, end_date="2026-11-03T00:00:00Z"):
-    return {
-        "platform": "polymarket",
-        "market_id": "0xabc",
-        "question": question,
-        "end_date": end_date,
-    }
+    return PolymarketMarket(
+        platform="polymarket",
+        market_id="0xabc",
+        question=question,
+        end_date=end_date,
+    )
 
 
 def test_tokenize_lowercases_and_splits():
@@ -155,4 +156,4 @@ def test_shortlist_returns_the_full_market_for_downstream_use():
     source = _poly("Will Anthropic IPO before 2030?")
     candidates = [_kalshi("IPO-ANTH", "Will Anthropic IPO before 2030?")]
     result = match_market.shortlist(source, candidates)
-    assert result[0]["market"]["ticker"] == "IPO-ANTH"
+    assert result[0]["market"].ticker == "IPO-ANTH"

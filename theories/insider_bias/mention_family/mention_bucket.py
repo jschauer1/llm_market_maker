@@ -78,6 +78,7 @@ import sqlite3
 from datetime import datetime
 
 from tools import buckets, ledger, provenance, score
+from tools.domain import Candidate, Edge, Market, ScoredCandidate
 from tools.sizing import fee_pts
 from theories.insider_bias import screen
 
@@ -131,10 +132,10 @@ def bucket_for_price(price: float) -> str:
 
 
 def find_candidates(
-    board: list[dict],
+    board: list[Market],
     now: datetime | None = None,
     max_days_ahead: float = screen.MAX_DAYS_AHEAD,
-) -> list[dict]:
+) -> list[Candidate]:
     """Live board -> screen-eligible markets in the mention family.
 
     Reuses `theories.insider_bias.screen.screen()` unmodified (price band, spread, volume,
@@ -149,7 +150,8 @@ def find_candidates(
     hits = screen.screen(board, now=now, max_days_ahead=max_days_ahead)
     return [
         h for h in hits
-        if is_mention_family(h.get("series_ticker") or h["ticker"])
+        if is_mention_family(h.legs[0].market.series_ticker
+                             or h.legs[0].market.ticker)
     ]
 
 
@@ -163,11 +165,12 @@ def measured_rate(conn: sqlite3.Connection) -> dict:
     )
 
 
-def _sort_key(c: dict) -> tuple[float, float]:
-    return (c["edge_pts_net"], c.get("volume") or 0.0)
+def _sort_key(sc: ScoredCandidate) -> tuple[float, float]:
+    return (sc.edge.pts_net, sc.candidate.legs[0].market.volume or 0.0)
 
 
-def rank(candidates: list[dict], rates: dict, top_n: int = 20) -> list[dict]:
+def rank(candidates: list[Candidate], rates: dict,
+         top_n: int = 20) -> list[ScoredCandidate]:
     """Candidates with mechanical edge attached, best first.
 
     Each candidate is scored against its OWN price bin's measured rate
@@ -178,23 +181,27 @@ def rank(candidates: list[dict], rates: dict, top_n: int = 20) -> list[dict]:
     """
     scored = []
     for c in candidates:
-        bucket = bucket_for_price(c["entry_price"])
+        bucket = bucket_for_price(c.entry_price)
         edge_pts_net, edge_basis = buckets.edge_for(
-            bucket, c["entry_price"], rates, PRIORS
+            bucket, c.entry_price, rates, PRIORS
         )
-        scored.append({
-            **c, "edge_pts_net": edge_pts_net, "edge_basis": edge_basis,
-            "bucket": bucket,
-        })
+        measured = rates.get(bucket) or {}
+        scored.append(ScoredCandidate(
+            candidate=c,
+            edge=Edge(pts_net=edge_pts_net, basis=edge_basis,
+                      model_prob=measured.get("win_rate")
+                      if edge_basis == "measured" else None),
+            confidence=bucket,
+        ))
     scored.sort(key=_sort_key, reverse=True)
     return scored[:top_n]
 
 
 def rank_preview(
-    candidates: list[dict],
+    candidates: list[Candidate],
     validated_rates: dict,
     top_n: int = 20,
-) -> list[dict]:
+) -> list[ScoredCandidate]:
     """Edge estimate for candidates OUTSIDE the backtest-validated 14-day
     window (find_candidates called with max_days_ahead > screen.MAX_DAYS_AHEAD).
 
@@ -211,17 +218,18 @@ def rank_preview(
     """
     scored = []
     for c in candidates:
-        bucket = bucket_for_price(c["entry_price"])
+        bucket = bucket_for_price(c.entry_price)
         measured = validated_rates.get(bucket)
         if measured and measured.get("n", 0) >= buckets.MIN_BUCKET_N:
-            gross = (measured["win_rate"] - c["entry_price"]) * 100.0
-            edge_pts_net = gross - fee_pts(c["entry_price"])
+            gross = (measured["win_rate"] - c.entry_price) * 100.0
+            edge_pts_net = gross - fee_pts(c.entry_price)
         else:
             edge_pts_net = 0.0
-        scored.append({
-            **c, "edge_pts_net": edge_pts_net, "edge_basis": "model",
-            "bucket": bucket,
-        })
+        scored.append(ScoredCandidate(
+            candidate=c,
+            edge=Edge(pts_net=edge_pts_net, basis="model"),
+            confidence=bucket,
+        ))
     scored.sort(key=_sort_key, reverse=True)
     return scored[:top_n]
 
@@ -245,9 +253,35 @@ def record_provenance(conn: sqlite3.Connection, run_id: str) -> None:
     )
 
 
+def _rationale_for(sc: ScoredCandidate) -> str:
+    """Byte-for-byte the text `record()` writes -- shared with the contract
+    adapter (`theory.py`'s `price()`) so a row written through either path
+    is indistinguishable from one written through the other."""
+    bucket, basis = sc.confidence, sc.edge.basis
+    bin_rate_note = (f"measured rate for bucket {bucket} "
+                     f"({MEASURED_RATE_RUN_ID})")
+    basis_note = (
+        f"{bin_rate_note}, applied directly"
+        if basis == "measured"
+        else (
+            f"{bin_rate_note} APPLIED AS AN EXTRAPOLATION to a "
+            f"days-to-close horizon the backtest never tested "
+            f"(>{screen.MAX_DAYS_AHEAD:.0f} days) -- a modeling "
+            f"assumption, not a measurement of this population"
+        )
+    )
+    volume = sc.candidate.legs[0].market.volume or 0
+    return (
+        f"Mechanical mention_family bucket, no judgment applied: "
+        f"{basis_note}. Volume (${volume:,.0f}) is a "
+        f"tiebreaker only, not part of the edge -- see "
+        f"mention_bucket.py module docstring."
+    )
+
+
 def record(
     conn: sqlite3.Connection,
-    ranked: list[dict],
+    ranked: list[ScoredCandidate],
     run_id: str,
     run_mode: str = "live",
     confidence_suffix: str = "",
@@ -261,7 +295,7 @@ def record(
     means the same mechanically, though the honest caveat about an untested
     horizon travels in `rationale` either way.
 
-    Each row's `confidence` is its own price bin (`c["bucket"]`, set by
+    Each row's `confidence` is its own price bin (`sc.confidence`, set by
     `rank`/`rank_preview`) plus `confidence_suffix`. Pass a suffix (e.g.
     `"_preview_30d"`) for anything from `rank_preview` so a future
     `score.bucket_rates()` call never pools an untested-horizon population
@@ -271,38 +305,23 @@ def record(
     """
     record_provenance(conn, run_id)
     ids = []
-    for c in ranked:
-        bin_rate_note = f"measured rate for bucket {c['bucket']} ({MEASURED_RATE_RUN_ID})"
-        basis_note = (
-            f"{bin_rate_note}, applied directly"
-            if c["edge_basis"] == "measured"
-            else (
-                f"{bin_rate_note} APPLIED AS AN EXTRAPOLATION to a "
-                f"days-to-close horizon the backtest never tested "
-                f"(>{screen.MAX_DAYS_AHEAD:.0f} days) -- a modeling "
-                f"assumption, not a measurement of this population"
-            )
-        )
+    for sc in ranked:
+        m = sc.candidate.legs[0].market
         opp_id, _ = ledger.record_opportunity(
             conn,
             theory_id=THEORY_ID,
             theory_version=THEORY_VERSION,
-            kalshi_ticker=c["ticker"],
-            outcome=c["fav_side"],
-            entry_price=c["entry_price"],
-            edge_pts_net=c["edge_pts_net"],
+            kalshi_ticker=sc.candidate.ticker,
+            outcome=sc.candidate.fav_side,
+            entry_price=sc.candidate.entry_price,
+            edge_pts_net=sc.edge.pts_net,
             run_mode=run_mode,
             run_id=run_id,
-            spread_at_call=c.get("spread"),
-            volume_at_call=c.get("volume"),
-            edge_basis=c["edge_basis"],
-            confidence=f"{c['bucket']}{confidence_suffix}",
-            rationale=(
-                f"Mechanical mention_family bucket, no judgment applied: "
-                f"{basis_note}. Volume (${c.get('volume', 0):,.0f}) is a "
-                f"tiebreaker only, not part of the edge -- see "
-                f"mention_bucket.py module docstring."
-            ),
+            spread_at_call=m.spread,
+            volume_at_call=m.volume,
+            edge_basis=sc.edge.basis,
+            confidence=f"{sc.confidence}{confidence_suffix}",
+            rationale=_rationale_for(sc),
             evidence_source="kalshi",
         )
         ids.append(opp_id)
