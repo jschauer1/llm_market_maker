@@ -14,20 +14,26 @@ edge would be recorded as several independent bets that it is not.
 
 ---
 
-## ⛔ BLOCKING DECISION — read before building any basket theory
+## ⚠️ Scoring decision RESOLVED — design written, not yet implemented
 
 **A basket whose payout can land strictly between $0 and its declared
-`max_payout` currently RAISES at scoring time. This is deliberate. It stays
-that way until someone decides the question in section 10.1.**
+`max_payout` still RAISES at scoring time.** That guard is correct and
+stays until the design below is built — it exists so a wrong number can
+never be recorded, and nothing is silently wrong today.
 
-`calendar-arb` is exactly such a theory, so **it cannot accrue any evidence
-today**. `structural-arb`'s NO-basket and any other all-or-nothing basket
-work normally and are unaffected.
+**What changed (2026-08-25):** the question in section 10.1 has been
+answered. The position declares its payout **floor** (`min_payout`), and
+scoring grades only the portion actually at risk — see **section 3.6**.
+The rule is a strict generalization: a single position and an
+all-or-nothing basket both score exactly as they do today, so no existing
+row is re-scored. A position that cannot lose (`cost <= min_payout`, which
+is what `calendar-arb` is) is scored on **return only** and reported
+separately from calibrated positions, never pooled with them.
 
-Nothing is silently wrong — the guard exists precisely so a wrong number
-can never be recorded. But do not build `calendar-arb`, and do not relax the
-guard, until section 10.1 is answered and this spec is amended. The error
-message points here by path.
+**Still true until it is implemented:** `calendar-arb` cannot accrue
+evidence yet, and the guard must not be relaxed ahead of the work. What has
+changed is that the blocker is now a build task rather than an open
+research question.
 
 ## 1. Problem
 
@@ -187,6 +193,7 @@ position_kind  TEXT NOT NULL DEFAULT 'single'
                CHECK (position_kind IN ('single','basket')),
 leg_count      INTEGER NOT NULL DEFAULT 1,
 max_payout     REAL NOT NULL DEFAULT 1.0,
+min_payout     REAL NOT NULL DEFAULT 0.0,   -- section 3.6, not yet built
 ```
 
 `max_payout` was added during planning, after this section was first
@@ -194,8 +201,24 @@ written: a NO-basket over `k` outcomes pays `$(k−1)`, and without a declared
 maximum there is nothing to normalize `implied_rate` against. It must be a
 positive number — `record_basket` rejects `None`, non-numeric values, `bool`,
 `NaN`, zero, and negatives, because a basket that can never pay anything is
-not a position. Note that section 10.1 turns on what this column means, so a
-decision there may change how it is declared.
+not a position.
+
+`min_payout` is the section 3.6 resolution and is **specified here but not
+yet implemented**. It is the position's guaranteed floor, and it is what
+lets scoring grade only the at-risk portion. The default `0.0` is what makes
+the change a pure no-op for every row that exists today: with `min_payout`
+zero, `(cost − 0) / (max_payout − 0)` is exactly the formula already in use.
+It must be a non-negative number no greater than `max_payout`. Equality is
+legal, not an error: a position that always pays exactly the same amount is
+a bond, and if it costs less than it pays it is a real (if unusual)
+arbitrage. It needs no special case — `cost <= min_payout` routes it to the
+riskless branch before the at-risk division can be reached, which is the
+only place a zero denominator could arise.
+
+Unlike `max_payout`, which is only a declaration, `min_payout` is
+**checked against reality at settlement**: an observed payout below the
+declared floor means the declaration was wrong, and scoring raises rather
+than absorbing it.
 
 `ALTER TABLE ADD COLUMN` cannot carry a CHECK, so a database migrated in
 place enforces `position_kind`'s domain in application code only — see
@@ -295,7 +318,84 @@ event. When a basket has a payout floor they describe different events, and
 | basket, `max_payout=2.0` | 0.95 | 1.00 | 1.76% | **50.86 pts** |
 
 Identical economics, an order of magnitude apart, in the number every theory
-is ranked by. Section 10.1 is the decision that closes this.
+is ranked by. **Section 10.1 resolved this: the position declares its
+payout floor, and scoring grades only the part that is actually at risk.**
+Section 3.6 is the resulting design.
+
+### 3.6 The at-risk decomposition — how a floor is scored
+
+**The rule:** a position declares `min_payout` alongside `max_payout`, and
+scoring grades the portion of it that is genuinely at risk.
+
+A position costing `C` that pays at least `min` and at most `max` is two
+things bundled: a guaranteed return of `min`, and a lottery on the
+difference. Strip out the guaranteed part and what remains is an ordinary
+bet:
+
+```
+at_risk_cost   = cost − min_payout
+at_risk_payoff = max_payout − min_payout
+implied_rate   = at_risk_cost / at_risk_payoff
+won            = payout == max_payout
+```
+
+**This is a strict generalization, not a change.** A single position has
+`min_payout = 0, max_payout = 1`, so `implied_rate` collapses to
+`entry_price` and `won` to "resolved my way" — today's behavior exactly. An
+all-or-nothing basket has `min_payout = 0`, so `implied_rate` collapses to
+`cost / max_payout` — the implementation's current formula, which was
+correct for that case all along. **Every existing row scores identically;
+nothing needs re-scoring.** The default `min_payout = 0.0` is what makes
+that true without touching a single existing caller.
+
+**Why the theory declares it and why that is safe.** Only the theory knows
+its own payoff structure, so only the theory can supply the floor. That
+would normally be alarming — a theory that declares both its edge and how
+to grade that edge is marking its own homework, and independent grading is
+the entire point of calibration.
+
+The distinction that makes it safe: **the theory declares a structural
+fact, not a verdict.** `min_payout` is a claim about what the contracts
+pay, and scoring already sees every leg's settlement, so it can check the
+claim against reality. If an observed payout ever falls below the declared
+floor, the declaration was wrong and scoring raises rather than absorbing
+it. The declaration is self-policing, which is precisely what a verdict
+could never be.
+
+#### 3.6.1 Riskless positions are reported, never calibrated
+
+When `cost <= min_payout` the at-risk cost is zero or negative: the
+position cannot lose. `calendar-arb`'s nesting position is exactly this —
+0.95 to acquire a guaranteed $1.00.
+
+**Calibration is undefined for such a position, and forcing it through the
+formula produces the same class of nonsense number this whole section
+exists to prevent.** There is no uncertainty to be calibrated about. A
+`win_rate` over positions that always win is 1.0 by construction and
+measures nothing; an `implied_rate` computed from a negative at-risk cost
+is not a probability at all.
+
+So a riskless position is scored on **return only** and flagged as such:
+
+```
+riskless       = cost <= min_payout          (fees included)
+implied_rate   = None                        (excluded from calibration_edge)
+roi            = (payout − cost − fees) / cost
+```
+
+**It is reported separately and never pools with calibrated positions.** A
+5% certain return and a 5-point predictive edge are different animals: one
+is a fact about arithmetic, the other a claim about the future that was
+checked. Averaging them into one `calibration_edge_net` describes neither,
+and that number is what `rank.py` weights every theory by.
+
+`compute_score` therefore returns riskless positions in their own bucket
+with their own `n` and `roi`, contributing nothing to `win_rate`,
+`price_implied_rate`, or `calibration_edge`. A theory producing both kinds
+reports both, side by side, and `compare-theories` must not sum them.
+
+That separation is the honest reading of what an arbitrage is: it is not a
+better forecast, it is not a forecast.
 
 ## 4. What the theories get
 
@@ -423,12 +523,14 @@ Status as implemented on `feat/multi-leg-positions`:
 1. ✅ Every existing test passes, none weakened; single-leg scores on a copy
    of the live database are identical before and after. Verified twice
    independently, once across 160 segments against real data.
-2. ⛔ **Unmet, and blocked on section 10.1.** A two-leg `calendar-arb`
-   basket records as one position and settles jointly, but only one of its
-   three branches can be *scored* — the other two pay a $1 floor against a
-   $2 maximum and raise. This is the honest state, not a defect to paper
-   over: the alternative was recording an edge inflated by an order of
-   magnitude.
+2. ⚠️ **Unmet, no longer blocked — waiting on a build.** A two-leg
+   `calendar-arb` basket records as one position and settles jointly, but
+   only one of its three branches can be *scored*; the other two pay a $1
+   floor against a $2 maximum and raise. That guard remains the honest
+   state, not a defect to paper over — the alternative was recording an
+   edge inflated by an order of magnitude. Section 10.1 is now answered and
+   section 3.6 specifies the fix (`min_payout` plus the at-risk
+   decomposition), so what is left is implementation, not a decision.
 3. ✅ A basket contributes exactly one observation to `n`.
 4. ✅ Met by the [OOP migration](2026-08-24-theory-layer-oop-design.md):
    `Candidate.ticker`, `.entry_price`, `.fav_side`, `.title`, and
@@ -453,44 +555,44 @@ not ask for and should have:
 
 ## 10. Open questions
 
-### 10.1 ⛔ BLOCKING — how is a variable-payout basket scored?
+### 10.1 ✅ RESOLVED (2026-08-25) — how is a variable-payout basket scored?
 
-**This is the decision that unblocks `calendar-arb`. Nothing else in this
-spec is waiting on anything.**
-
-**The question:** for a basket that does not pay all-or-nothing, what is
+**The question was:** for a basket that does not pay all-or-nothing, what is
 `implied_rate` — the price-side quantity `calibration_edge` compares the
-realized win rate against? Section 3.5 documents why the current answer
-(`cost / max_payout`) is wrong for this case.
+realized win rate against? Section 3.5 documents why the implementation's
+answer (`cost / max_payout`) is wrong for this case.
 
-Note this is **not** a bug to fix by picking whichever formula looks
-tidiest. It decides what `calibration_edge_net` *means* for a whole class of
-positions, and that number is what `rank.py` uses to weight every theory
-against every other. It is a research-design call.
+**The answer: the position declares its payout floor, and scoring grades
+only the part that is at risk.** Full design in section 3.6. In short —
+`implied_rate = (cost − min_payout) / (max_payout − min_payout)`, `won`
+means paying the full `max_payout`, and a position that cannot lose
+(`cost <= min_payout`) is scored on return only and reported separately
+from calibrated positions.
 
-**Three ways it could go, none of them obviously right:**
+**Why this over the three options originally listed.** Option 1
+(all-or-nothing only) discards a theory section 1 names as motivating.
+Option 3 (`cost / E[payout]`) requires a theory to declare branch
+probabilities, which is the introspected number CLAUDE.md forbids. Option 2
+(ROI instead of calibration) was closest and survives as the *riskless*
+branch — but applied to every floor basket it would have thrown away real
+calibration information from floor baskets that genuinely can lose.
 
-1. **Restrict baskets to all-or-nothing.** Keep the current guard
-   permanently, document that a basket must pay `0` or `max_payout`, and
-   require `calendar-arb` to be expressed differently or dropped.
-   *Cost:* loses a theory the spec's own section 1 names as motivating.
-2. **Score variable-payout baskets on ROI rather than calibration.** A
-   position with a guaranteed floor has no meaningful "win rate" — it always
-   wins. Give such baskets `edge_basis="model"`, an ROI-based track record,
-   and exclude them from `calibration_edge` entirely.
-   *Cost:* two scoring regimes; `compare-theories` must not pool them.
-3. **Redefine `implied_rate` as `cost / E[payout]`.** Requires the theory to
-   declare an expected payout, not just a maximum — which for `calendar-arb`
-   means declaring branch probabilities, which is exactly the introspected
-   number CLAUDE.md forbids unless it comes from base rates.
-   *Cost:* pushes a hard modelling problem onto every basket theory.
+The at-risk decomposition is better than all three because it is not a
+fork: it is one formula that reduces to today's behavior for every position
+that exists now, and it needs no probability estimate from anyone. The only
+thing it asks a theory for is a checkable fact about its own contracts.
 
-**Until it is answered:** `_basket_observations` raises on any basket whose
-payout is neither `0` nor `max_payout`, naming the opportunity, both
-figures, and this file. `tests/test_baskets.py` pins that behavior in
-`test_nesting_branch_with_a_payout_floor_is_unsupported_and_raises` — when
-the decision lands, that test becomes the assertion of whatever it decides,
-rather than being deleted.
+**What made this decidable at all** was separating two things the original
+framing had fused: *declaring the payoff structure* (a fact, verifiable
+against settlements) from *declaring whether the position won* (a verdict,
+which must stay with scoring). The theory supplies the first; scoring
+derives the second. Section 3.6 covers how the declaration is policed.
+
+**Until it is implemented:** the guard stands. `_basket_observations` still
+raises on any basket whose payout is neither `0` nor `max_payout`, and
+`tests/test_baskets.py::test_nesting_branch_with_a_payout_floor_is_unsupported_and_raises`
+still pins it. When the work lands, that test becomes the assertion of the
+section 3.6 behavior rather than being deleted.
 
 ### 10.2 Resolved during implementation
 
