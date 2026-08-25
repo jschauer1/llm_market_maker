@@ -340,6 +340,14 @@ class Candidate:
     @property
     def cost(self) -> float: return sum(l.price for l in self.legs)
 
+    @property
+    def key(self) -> str:
+        """Stable identity, valid for every shape: the event key
+        (event_ticker, falling back to ticker) for a single leg; the
+        sorted leg tickers joined with '+' for a basket. Verdicts are
+        routed by this key (section 4.4), and siblings deduped into one
+        judgment share it — which is how one verdict reaches them all."""
+
     # single-leg conveniences; each raises on a basket rather than
     # silently returning leg 0 and dropping the rest
     @property
@@ -380,6 +388,24 @@ class Edge:
 
 ```python
 @dataclass(frozen=True, slots=True)
+class Verdict:
+    """What an out-of-process judge may say about a candidate."""
+    bucket: str                   # a label from the theory's declared scale
+    rationale: str | None = None
+```
+
+`Verdict` deliberately declares **no numeric field**, and a conventions
+test keeps it that way. This is CLAUDE.md's "never state a probability you
+introspected" rule expressed as a type rather than as prose: the judge
+classifies against a stated definition and picks a bucket from the theory's
+declared scale, and there is no channel through which it could hand back a
+probability, a confidence percentage, or an edge instead. Numbers enter
+downstream, mechanically — `Edge.from_bucket` converts the label using the
+bucket's own realized win rate — and a mechanical theory never sees a
+`Verdict` at all.
+
+```python
+@dataclass(frozen=True, slots=True)
 class ScoredCandidate:
     candidate: Candidate
     edge: Edge
@@ -392,6 +418,23 @@ class ScoredCandidate:
 `ScoredCandidate` being a distinct type makes "an unscored candidate cannot
 reach the ledger" a fact the type system enforces, matching the repo's
 existing preference for impossible over discouraged.
+
+```python
+@dataclass(frozen=True, slots=True)
+class ScreenResult:
+    """Everything screen() produced: candidates plus the counts that
+    describe how it got them. A theory with nothing to count returns a
+    bare list[Candidate] and start() wraps it."""
+    candidates: tuple[Candidate, ...]
+    funnel: dict[str, int] = field(default_factory=dict)
+    gate_removed: dict[str, int] = field(default_factory=dict)
+```
+
+`ScreenResult` is the channel between `screen()` and the run. The funnel
+counts are locals inside today's `run_mechanical_stages`, and a stateless
+`Theory` (section 4.4) has nowhere to stash them — so they leave `screen()`
+inside its return value, travel on the `TheoryRun`, and surface in
+`ScanResult`. Nothing lives on `self`.
 
 ```python
 @dataclass(frozen=True, slots=True)
@@ -429,6 +472,7 @@ theory's surface.
   logic now in `ledger._validate_entry_price`, moved to construction time
   so it cannot be bypassed by a theory that builds its own dict.
 - `Edge.basis` in `("measured", "model", "prior")`.
+- `Verdict.bucket` non-empty.
 - `ScoredCandidate.disposition` in `("screened", "endorsed", "rejected")`.
 
 The `ledger.py` validators are **retained**, not moved. The ledger is still
@@ -437,9 +481,12 @@ earlier, additional line of defence.
 
 ### 4.2 Transitional mapping shim
 
-`Market` and `Candidate` implement `__getitem__` and `.get()` for one
-migration window, so existing `market["ticker"]` / `m.get("spread")` call
-sites keep working while call sites convert incrementally.
+`Market` and `Candidate` implement `__getitem__`, `.get()`, and `keys()`
+for one migration window, so existing `market["ticker"]` / `m.get("spread")`
+call sites keep working while call sites convert incrementally. `keys()` is
+not optional: `screen.py:133` builds each candidate with `dict(market)`,
+which requires the mapping protocol, not just item access — a shim without
+`keys()` would break the exact call site it exists to carry.
 
 This is a strangler seam, deliberately temporary. It carries a
 `# TODO(oop-migration)` marker, a test asserting it is exercised only from
@@ -459,6 +506,7 @@ class TheoryContext:
     now: datetime
     run_id: str = "live"
     run_mode: str = "live"
+    judge_model: str | None = None   # set by the dispatching parent; 4.9
 ```
 
 This is dependency injection, not inheritance, and the distinction is
@@ -485,13 +533,18 @@ class Theory(ABC):
     # ---- the two methods a new theory must write ----
 
     @abstractmethod
-    def screen(self, ctx: TheoryContext) -> list[Candidate]:
-        """Stage 1. Mechanical, no model in the decision path."""
+    def screen(self, ctx: TheoryContext) -> list[Candidate] | ScreenResult:
+        """Stage 1. Mechanical, no model in the decision path. Return a
+        bare list, or a ScreenResult when there are funnel or gate
+        counts to report; start() wraps a bare list."""
 
     @abstractmethod
-    def price(self, ctx: TheoryContext,
-              cands: list[Candidate]) -> list[ScoredCandidate]:
-        """Attach an Edge. Must set edge.basis honestly."""
+    def price(self, ctx: TheoryContext, cands: list[Candidate],
+              verdicts: dict[str, Verdict] | None = None
+              ) -> list[ScoredCandidate]:
+        """Attach an Edge. verdicts is None on a mechanical run; for a
+        judgment theory it maps Candidate.key -> Verdict. Must set
+        edge.basis honestly."""
 
     # ---- optional stage 2 ----
 
@@ -499,30 +552,21 @@ class Theory(ABC):
         """Stage 2 input, or None when the theory has no stage 2."""
         return None
 
-    def apply_verdicts(self, cands: list[Candidate],
-                       verdicts: dict[str, str]) -> list[Candidate]:
-        """Attach bucket labels returned by an out-of-process judge."""
-        raise NotImplementedError
-
-    def funnel(self) -> dict[str, int]:
-        """Theory-specific counts merged into ScanResult.funnel."""
-        return {}
-
-    def gate_removed(self) -> dict[str, int]:
-        """Per-category gate counts. {} when the theory has no gate."""
-        return {}
-
     # ---- the workflow, inherited and not overridden ----
 
     def start(self, ctx: TheoryContext) -> "TheoryRun":
-        return TheoryRun(self, ctx, self.screen(ctx))
+        result = self.screen(ctx)
+        if isinstance(result, list):
+            result = ScreenResult(candidates=tuple(result))
+        return TheoryRun(self, ctx, result)
 ```
 
 ```python
 class TheoryRun:
-    """One execution of one theory. Holds all per-run state."""
+    """One execution of one theory. Holds all per-run state: the
+    ScreenResult, the stage-2 payload, and any verdicts applied."""
 
-    def __init__(self, theory, ctx, candidates): ...
+    def __init__(self, theory, ctx, screen_result): ...
 
     @property
     def needs_judgment(self) -> bool:
@@ -532,11 +576,13 @@ class TheoryRun:
     def payload(self) -> list[dict] | None:
         """Stage 2 input; None for a mechanical theory."""
 
-    def apply(self, verdicts: dict[str, str]) -> "TheoryRun":
-        """Feed back out-of-process verdicts. Chainable."""
+    def apply(self, verdicts: dict[str, Verdict]) -> "TheoryRun":
+        """Store out-of-process verdicts on the run. Chainable. Raises
+        on a verdict key that matches no candidate's .key."""
 
     def finish(self, *, dry_run: bool = False) -> ScanResult:
-        """price -> provenance -> ledger -> ScanResult. Never overridden."""
+        """price(cands, verdicts) -> provenance -> ledger -> ScanResult.
+        Never overridden."""
 ```
 
 Design notes:
@@ -545,12 +591,30 @@ Design notes:
   session or a subagent, not a Python call. The contract therefore exposes
   a payload and accepts verdicts back, rather than pretending `judge()` can
   be executed inside a loop. This is why the pair `judgment_payload` /
-  `apply_verdicts` exists instead of a single `judge()`.
+  `TheoryRun.apply` exists instead of a single `judge()`.
+- **Verdicts travel on the run, never on the candidates.** An earlier
+  draft had an `apply_verdicts()` returning candidates with labels
+  "attached" — impossible by construction: `Candidate` is frozen with
+  `slots=True` precisely to kill the `{**c, "bucket": ...}` pattern, so
+  there is no field a label can ride on and no way to bolt one on. The run
+  stores `dict[Candidate.key, Verdict]` and `finish()` hands it to
+  `price()`, which is where a bucket label meets its measured rate and
+  becomes an `Edge`. A candidate the judge did not rule on is the theory's
+  call inside `price()` — drop it, or record it `disposition="rejected"` —
+  but it is never silently priced as if it had been judged.
+- **A verdict is a category, never a number.** The judge's entire output
+  channel is `Verdict` — a bucket label and a rationale. It cannot return
+  a probability, and `price()` cannot receive one from it. The probability
+  is computed mechanically from the bucket's realized win rate
+  (`Edge.from_bucket`), or by the theory's own model for a mechanical
+  theory. This is the load-bearing reason `price()` and stage 2 are
+  separate stages at all.
 - **`TheoryRun` exists to carry the state across that gap.** An earlier
   draft of this spec stashed the funnel on the theory instance
   (`self._last_funnel`). That is a latent bug: two theories run in one loop,
   or one theory run twice, would overwrite each other's state. `Theory`
-  stays stateless; `TheoryRun` is the per-run object.
+  stays stateless; `TheoryRun` is the per-run object, holding the
+  `ScreenResult` (candidates, funnel, gate counts) and the verdicts.
 - **`finish()` is concrete and shared.** It performs the provenance write
   (when `uses_llm_judgment`), assembles `OpportunityRecord`, calls
   `record_opportunity`, and returns a `ScanResult`. This is where the
@@ -647,7 +711,7 @@ every subsequent trading decision is pure arithmetic. That is what earns
 them a tier A backtest despite having used a model at all.
 
 Section 4.4's contract only models **per-run** judgment
-(`judgment_payload` → `apply_verdicts`). These theories would set
+(`judgment_payload` → `TheoryRun.apply`). These theories would set
 `uses_llm_judgment=False` so `finish()` does not demand per-run provenance —
 correctly, since the per-trade path has no model in it. But the
 construction-time judgment still happened, and nothing so far records it.
@@ -678,6 +742,12 @@ candidates.
 Studies stay plain scripts in `theories/<slug>/`, and the repo already has
 the machinery for their output: the `proposed` status and the ideas
 registry. This needs a line in the conventions, not a class.
+
+A study declares itself: its folder carries a `STUDY.md` where a theory
+carries a `THEORY.md`. Discovery (section 4.6) skips study folders, and
+the conventions test uses the same marker — so a study is distinguishable
+from a theory package that forgot its `THEORY` singleton, rather than
+failing the "every theory exposes `THEORY`" check it was never subject to.
 
 **Execution policies are not theories.** `maker-mode-execution` is the
 sharper case — it is a **decorator over every other theory**, not a sibling.
@@ -713,14 +783,23 @@ def running(conn) -> list[Theory]        # discovered, restricted to
 def check_drift(conn) -> list[str]       # mismatches, for a conventions test
 ```
 
+`discover()` walks for folders carrying a `THEORY.md`; a folder carrying
+`STUDY.md` instead is a study (section 4.5c) and is skipped, as is
+`_TEMPLATE`. A shared parent like `theories/insider_bias/` — code but no
+`THEORY.md` of its own — is traversed, not collected.
+
 **Separation of authority, stated explicitly:** the database is the source
 of truth for a theory's *status and version*; the Python class is the source
 of truth for its *procedure*. `running()` joins them.
 
-`check_drift` fails loudly on: a DB row with no matching class, a class with
-no DB row, and a `Theory.version` disagreeing with the row's version. Silent
-drift here would let a session run v3 code while recording v2 rows — exactly
-the silent-merge failure CLAUDE.md's versioning rule exists to prevent.
+`check_drift` fails loudly on four mismatches: a DB row with no matching
+class, a class with no DB row, a `Theory.version` disagreeing with the
+row's version, and a `uses_llm_judgment` ClassVar disagreeing with the DB
+flag. The first three prevent the silent-merge failure CLAUDE.md's
+versioning rule exists to prevent — a session running v3 code while
+recording v2 rows. The fourth matters because that flag routes dispatch
+(section 4.9) and gates `finish()`'s provenance demand; drift in it would
+misroute a theory or skip a provenance write silently.
 
 ### 4.7 Existing theories become adapters first
 
@@ -734,16 +813,21 @@ class InsiderJudgmentTheory(Theory):
     prompts = {"analysis":
                "theories/insider_bias/insider_judgment/prompts/analysis.md"}
 
-    def screen(self, ctx: TheoryContext) -> list[Candidate]:
+    def screen(self, ctx: TheoryContext) -> ScreenResult:
         funnel = pipeline.run_mechanical_stages(ctx.board, ctx.now)
-        return [to_candidate(m, funnel) for m in funnel["survivor_candidates"]]
+        return ScreenResult(
+            candidates=tuple(to_candidate(m)
+                             for m in funnel["survivor_candidates"]),
+            funnel={k: funnel[k] for k in COUNT_KEYS},
+            gate_removed=funnel["gate_counts"],
+        )
 
     def judgment_payload(self, cands):
         # rebuilt from the candidates handed in -- no instance state
         return pipeline.build_blind_payload(dedupe(cands), cands)
 
-    def gate_removed(self) -> dict[str, int]:
-        ...   # from the funnel carried on the TheoryRun, not on self
+    def price(self, ctx, cands, verdicts=None):
+        ...   # Verdict.bucket -> Edge.from_bucket via ctx.bucket_rates
 ```
 
 Note what is **not** here: no `self._last_funnel`. An earlier draft stashed
@@ -787,10 +871,10 @@ count fails. Every other golden in section 7 stays whole-value equality.
 
 `pipeline.run_mechanical_stages()`'s funnel-counts dict
 (`board_markets`, `screened_markets`, `gate_counts`, `gated_out`, ...) is
-reporting output, not candidate flow. It is preserved as a
-theory-specific method — the contract does not absorb it, because
-CLAUDE.md requires the gate to *"always report what the gate removed, by
-category"* and only this theory has a gate.
+reporting output, not candidate flow. It leaves `screen()` inside the
+`ScreenResult` — the contract does not flatten it into the candidate list,
+because CLAUDE.md requires the gate to *"always report what the gate
+removed, by category"* and only this theory has a gate.
 
 ### 4.8 Making the tools support injection
 
@@ -849,11 +933,16 @@ class TheoryContext:
     now: datetime
     run_id: str = "live"
     run_mode: str = "live"
-    bucket_rates: Callable[[str, int], dict] = ...   # bound to conn
+    judge_model: str | None = None
+    bucket_rates: Callable[[str, int], dict] | None = None
 ```
 
 `bucket_rates` is `score.bucket_rates` pre-bound to the connection, so
-`price()` reads measured rates without importing `tools.score`. This is
+`price()` reads measured rates without importing `tools.score`. A
+per-instance binding cannot be a dataclass default, so the context is
+built by a small factory — `TheoryContext.build(conn, board, now, ...)` —
+which is where the binding happens; constructing the dataclass directly
+with a fake `bucket_rates` remains the test path. This is
 functional injection: no new classes, no gateway layer, and `tools/score.py`
 stays the pure module it is. A theory that needs something else still has
 `ctx.conn` and section 3.2's escape hatch.
@@ -897,17 +986,28 @@ Four refinements, three of which are constraints the parent must honour.
 model in its decision path *by definition* — that is what earns it
 `edge_basis="model"` and a tier A backtest. Spawning an agent for it spends
 tokens and puts an LLM next to a path that must stay model-free. The
-discriminator is already in the contract:
+discriminator is the declared `uses_llm_judgment` ClassVar:
 
 ```python
-mechanical = [t for t in registry.running(conn)
-              if t.judgment_payload(t.screen(ctx)) is None]
-judgment   = [t for t in registry.running(conn) if t not in mechanical]
+mechanical = [t for t in registry.running(conn) if not t.uses_llm_judgment]
+judgment   = [t for t in registry.running(conn) if t.uses_llm_judgment]
 ```
 
-Mechanical theories run inline, in-process, at zero model cost. This makes
-CLAUDE.md's stated preference for mechanical theories show up as a
-*mechanical* fact — the cheap ones are literally cheaper to run.
+The declaration is drift-checked against the DB flag by `check_drift`
+(section 4.6), so a stale ClassVar is a failing test rather than a silent
+misroute. (An earlier draft probed `t.judgment_payload(t.screen(ctx))`,
+which ran every screen twice and would misread a judgment theory whose
+screen happened to survive nothing as mechanical.) A judgment theory with
+an empty board day still ends cleanly — `finish()` demands verdicts only
+when a payload actually exists.
+
+**The unit dispatched is a theory id, not a payload.** The subagent runs
+`start()` itself; because the board comes from the session cache, its
+screen sees identical input to anything the parent would have computed,
+and the parent never screens a judgment theory at all. Mechanical theories
+run inline, in-process, at zero model cost. This makes CLAUDE.md's stated
+preference for mechanical theories show up as a *mechanical* fact — the
+cheap ones are literally cheaper to run.
 
 **2. The board is pulled once, by the parent, before any spawn.** CLAUDE.md
 mandates one board per session shared by every theory; a complete board is
@@ -927,7 +1027,9 @@ Subagents produce candidates and buckets; the parent ranks and selects.
 **4. Provenance records the subagent's model, not the parent's.** If the
 judging happens inside a spawned agent, the model id written by
 `finish()` must be that agent's. `TheoryContext` therefore carries an
-optional `judge_model: str | None`, which the parent sets when it dispatches.
+optional `judge_model: str | None` (section 4.3), which the parent names
+in its dispatch instructions and the subagent sets when it builds its own
+context.
 Recording the parent's model for a judgment it did not make would corrupt
 exactly the reproducibility record CLAUDE.md's provenance rule exists to
 protect.
@@ -969,26 +1071,30 @@ from tools.theory import TheoryContext
 
 conn = db.connect()
 board = board_tool.get_board(conn, force=True)     # the one deliberate pull
-ctx = TheoryContext(conn=conn, board=board, now=utcnow_dt(), run_id="live")
+ctx = TheoryContext.build(conn=conn, board=board, now=utcnow_dt(),
+                          run_id="live")
 
 results: list[ScanResult] = []
 for theory in registry.running(conn):
-    run = theory.start(ctx)
-    if run.needs_judgment:
-        dispatch(theory, run.payload)              # subagent; section 4.9
+    if theory.uses_llm_judgment:
+        dispatch(theory.id)                        # subagent; section 4.9
     else:
-        results.append(run.finish())               # mechanical, inline, free
+        results.append(theory.start(ctx).finish()) # mechanical, inline, free
 ```
 
 **Inside a subagent**, handed nothing but a theory id:
 
 ```python
 theory = registry.discover()["insider_judgment"]
-ctx = TheoryContext(conn=db.connect(), board=board_tool.get_board(conn),
-                    now=..., run_id="live", judge_model="claude-opus-5")
+ctx = TheoryContext.build(conn=db.connect(),
+                          board=board_tool.get_board(conn),
+                          now=..., run_id="live",
+                          judge_model="claude-opus-5")
 run = theory.start(ctx)                # cache hit: no second board pull
 verdicts = judge(run.payload, theory.prompts["analysis"])
-result = run.apply(verdicts).finish()  # provenance + ledger, inherited
+                                       # {Candidate.key: Verdict} — labels
+                                       # and rationale, never a number
+result = run.apply(verdicts).finish()  # price + provenance + ledger
 ```
 
 Then the parent ranks across every `ScanResult` and selects — the one step
@@ -1008,10 +1114,8 @@ Six phases, each independently green, each its own commit.
 
 | # | Phase | Touches | Behavior change |
 |---|---|---|---|
-| # | Phase | Touches | Behavior change |
-|---|---|---|---|
 | 0 | Characterization harness | `tests/characterization/` | none |
-| 1 | `tools/domain.py` (+ `Leg`, `ScanResult`, `Fetch`) + shim; `theory_facts` table; `construction` provenance stage | new file, `schema.sql`, `provenance.py`, `tests/` | none (additive) |
+| 1 | `tools/domain.py` (+ `Leg`, `Verdict`, `ScreenResult`, `ScanResult`, `Fetch`) + shim; `theory_facts` table; `construction` provenance stage | new file, `schema.sql`, `provenance.py`, `tests/` | none (additive) |
 | 2 | `normalize()` returns `Market`; `fetch` seam | both clients, `board.py`, `snapshot.py` | none (additive default) |
 | 3 | `Theory` / `TheoryRun` / `TheoryContext` + adapters + registry | new files, theory `__init__.py`, `pipeline.py` (one added key, section 4.7) | none |
 | 4 | Docs and skill rewrite | `tools/README.md`, `CLAUDE.md`, `find-edge`, `propose-theory` | none |
@@ -1059,6 +1163,16 @@ script, deterministic and regenerable:
 Every golden is generated with a frozen `now` and frozen bucket rates, so
 nothing depends on wall clock or DB state.
 
+**Goldens are recorded and compared through a canonical projection.**
+Phase 2 changes `normalize()`'s return *type* from dict to `Market`, so
+literal equality across that phase is impossible by definition — the
+change the phase exists to make would fail it. Each golden is therefore
+stored as canonical JSON, and the live value is projected to the same JSON
+before comparison: a dict projects as itself, a `Market` as
+`asdict(market)` with `raw` included. The projection lives in the test
+harness, not in the code under test, and field-level equality through it
+is the pass condition at every phase.
+
 **The pass condition is equality against the golden, unchanged, at every
 phase.** A diff is not a signal to update the golden; it is a signal that
 the phase changed behavior and must either be fixed or escalated to a
@@ -1076,20 +1190,24 @@ parameter with the current default.
   `raw` passthrough identity.
 - `tests/test_theory.py` — ABC cannot be instantiated; a subclass missing
   `screen`/`price` fails; `finish()` is not overridden by any subclass;
-  `finish()` raises when `needs_judgment` and no verdicts were applied.
+  `finish()` raises when `needs_judgment` and no verdicts were applied;
+  `TheoryRun.apply` rejects a verdict key matching no candidate's `.key`.
 - `tests/test_theory_run.py` — **statelessness**: the same `Theory`
-  instance started twice yields two independent `TheoryRun`s whose funnels
-  do not alias; two theories interleaved in one loop do not corrupt each
-  other. This is the regression test for the `_last_funnel` bug section 4.4
-  describes.
+  instance started twice yields two independent `TheoryRun`s whose
+  `ScreenResult`s and verdicts do not alias; two theories interleaved in
+  one loop do not corrupt each other. This is the regression test for the
+  `_last_funnel` bug section 4.4 describes.
 - `tests/test_context.py` — a theory runs against a fake `TheoryContext`
   with a ten-market board, no live connection and no network; `fetch`
   injection substitutes a canned payload without `monkeypatch`.
-- `tests/test_registry.py` — discovery finds both theories;
-  `check_drift` detects each of its three mismatch kinds.
-- `tests/test_conventions.py` — every theory package exposes `THEORY`
-  subclassing `Theory`; the section 4.2 shim is imported only from
-  allowlisted modules.
+- `tests/test_registry.py` — discovery finds both theories and skips a
+  fixture study folder; `check_drift` detects each of its four mismatch
+  kinds.
+- `tests/test_conventions.py` — every folder carrying a `THEORY.md`
+  exposes `THEORY` subclassing `Theory`, and a folder carrying `STUDY.md`
+  is exempt (section 4.5c); `Verdict` declares no numeric field, so the
+  no-introspected-probabilities rule stays enforced by the type; the
+  section 4.2 shim is imported only from allowlisted modules.
 - `tests/test_stub_theory.py` — the section 3.2 litmus test, mechanised: a
   stub theory implementing only `screen()` and `price()` runs end to end.
   A second stub that ignores `ctx` and reaches for its own data source also
@@ -1160,9 +1278,10 @@ diff extends beyond its table row in section 6 stops and re-scopes.
 
 `slots=True` forbids attribute injection, which is the point — it prevents
 the `{**c, "new_key": ...}` pattern from surviving as `object.__setattr__`.
-It also means the section 4.2 `__getitem__` shim cannot fall back to a
-mutable `__dict__`; it must read declared fields only. Phase 1 tests cover
-this.
+It also means the section 4.2 `__getitem__`/`keys()` shim cannot fall back
+to a mutable `__dict__`; it must expose declared fields only. Phase 1
+tests cover this, including that `dict(market)` round-trips through the
+shim's `keys()`.
 
 ### 8.6 The contract becomes a cage
 
@@ -1224,8 +1343,9 @@ parallel — parallelism is the last thing switched on, not the first.
 5. `find-edge` runs both theories without opening either `THEORY.md`.
 6. A subagent handed only a theory id can run that theory start to finish
    and return a `ScanResult` (section 4.9).
-7. Mechanical theories run inline with no model spawned; `judgment_payload()
-   is None` is the only discriminator needed.
+7. Mechanical theories run inline with no model spawned; the declared
+   `uses_llm_judgment` ClassVar — drift-checked against the DB flag — is
+   the only dispatch discriminator needed.
 8. `registry.check_drift(conn)` returns empty; a conventions test enforces
    it.
 9. `tools/README.md` and `CLAUDE.md` no longer contradict the code.
@@ -1239,41 +1359,46 @@ parallel — parallelism is the last thing switched on, not the first.
 12. A stub theory that ignores `TheoryContext` entirely and reaches for its
     own data source still runs, proving the contract is a floor rather than
     a cage (section 3.2).
+13. `Verdict` carries a bucket label and an optional rationale, and
+    declares no numeric field — an out-of-process judge has no channel
+    through which to hand back a probability or an edge. CLAUDE.md's
+    "never state a probability you introspected" holds as a property of
+    the type system, enforced by a conventions test.
 
 **Researcher freedom — evidence the platform still serves the LLM
 (section 3.3):**
 
-13. Every tool remains callable standalone. `screen.screen(board)`,
+14. Every tool remains callable standalone. `screen.screen(board)`,
     `markets.quotes(...)`, `score.bucket_rates(...)` and
     `ledger.list_opportunities(...)` all work as plain functions, with no
     `Theory`, `TheoryRun`, or `TheoryContext` constructed.
-14. Answering a "just asking" question — "how is insider_judgment holding
+15. Answering a "just asking" question — "how is insider_judgment holding
     up?" — requires only `python -m tools.cli`, with no knowledge that this
     spec exists.
-15. An ad-hoc exploration that never becomes a theory is possible and
+16. An ad-hoc exploration that never becomes a theory is possible and
     unpenalised: no code path requires an investigation to be expressed as a
     `Theory` subclass.
-16. The ledger boundary still holds under all of the above — a recorded
+17. The ledger boundary still holds under all of the above — a recorded
     opportunity carries provenance, an honest `edge_basis`, and a Kalshi
     ticker no matter which path produced it.
 
 **Backlog fit — the check that drove these amendments:**
 
-17. All four shapes the backlog review surfaced run end to end as stubs:
+18. All four shapes the backlog review surfaced run end to end as stubs:
     basket producer, external-source fetcher, pair-store theory, and
     non-board theory (`tests/test_backlog_fit.py`).
-18. A theory can establish and reuse durable facts without bumping its
+19. A theory can establish and reuse durable facts without bumping its
     version, and a model-established fact carries `construction` provenance.
-19. Nothing in the design requires `series-bias-mining`,
+20. Nothing in the design requires `series-bias-mining`,
     `new-market-anchor`'s stage 0, or `maker-mode-execution` to become a
     `Theory` — section 4.5c says plainly that they are not one.
 
 ## 10. Open questions
 
-1. **`no`-side candidates.** `Candidate.fav_side` is `"yes"|"no"` and
-   `entry_price` is that side's ask. `Market.mid` is yes-denominated. Should
-   `Candidate` expose a side-aware `implied_prob`? Deferred to Phase 5;
-   neither current theory needs it.
+1. **`no`-side candidates.** `Leg.side` is `"yes"|"no"` and `Leg.price` is
+   that side's ask, while `Market.mid` is yes-denominated. Should `Leg` (or
+   single-leg `Candidate`) expose a side-aware `implied_prob`? Deferred to
+   Phase 5; neither current theory needs it.
 2. **Polymarket `Market`.** Section 4.1 unifies both platforms, but no
    theory currently screens Polymarket. Phase 2 maps `polymarket.normalize`
    onto `Market` for consistency; if the fit is poor, a separate
@@ -1322,6 +1447,10 @@ importance:
   are confined to the API and JSON boundaries.
 - `finish()` is never overridden — it is what makes the provenance and
   ledger contract unskippable.
+- **A judge returns `Verdict`s — labels and rationale, never numbers.**
+  The type declares no numeric field; probabilities come from measured
+  bucket rates or a mechanical model, downstream in `price()`
+  (section 4.4). An LLM cannot predict an edge; it can classify.
 - The contract is a **floor, not a ceiling**: two required methods, and a
   theory may add anything else it needs (section 3.2).
 - **Facts are data, not procedure** — adding a confirmed pair does not bump
@@ -1334,10 +1463,11 @@ importance:
 
 **`.claude/skills/find-edge/SKILL.md`** — step 2 replaced with the section 5
 loop. The prose at line 74, "check whether this theory has a stage 2",
-becomes `judgment_payload() is None`. A new subsection covers the section
-4.9 dispatch model, and must state explicitly that the parent pulls the
-board once before spawning and that subagents call `get_board()` without
-`force`.
+becomes a check of the theory's declared `uses_llm_judgment`. A new
+subsection covers the section 4.9 dispatch model, and must state
+explicitly that the parent pulls the board once before spawning, that
+subagents call `get_board()` without `force`, and that a judge returns
+`Verdict`s (bucket labels), never probabilities.
 
 **`.claude/skills/propose-theory/SKILL.md`** — scaffold a `Theory` subclass
 rather than a free-function module, and say plainly that only `screen()` and
