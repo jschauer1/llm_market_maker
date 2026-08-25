@@ -690,3 +690,20 @@ D-grade claims get upgraded or struck at the ledger, not silently.
 
 Index now points reviewers at the ledger first. Push to origin still
 held pending the user's public-remote ruling.
+
+## 2026-08-24 — Specs grouped into theories/ subfolder; build-plans folder added
+
+User request: group the theory specs into their own folder. All 22 spec
+files, the backlog index, and the evidence/ folder moved as a unit
+(git mv, history preserved) from docs/superpowers/specs/ to
+docs/superpowers/specs/theories/. All cross-links are relative within
+the set, so nothing broke; registry ids 2-24 repointed to the new
+paths. One correction caught by the user mid-move: the theory-*.md glob
+swept in 2026-08-24-theory-layer-oop-design.md, which is another
+session's spec about the theory LAYER's design, not a backlog theory --
+moved back untouched. An untracked multi-leg-positions spec (also
+another session's) was never touched.
+
+Also added docs/superpowers/plans/theories/ with a README defining the
+build side of the pipeline (spec -> propose-theory -> plan file here ->
+code in theories/<slug>/) and a build tracker table, currently empty.
