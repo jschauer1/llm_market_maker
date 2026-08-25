@@ -151,3 +151,51 @@ def test_a_payout_between_floor_and_ceiling_still_raises(conn):
     _settle(conn, [("KXA-26", "yes"), ("KXB-26", "no"), ("KXC-26", "no")])
     with pytest.raises(ValueError, match="neither its min_payout"):
         score._basket_observations(conn, "t1", 1, "live", "all", None)
+
+
+def test_a_riskless_position_is_reported_separately_not_calibrated(conn):
+    # cost 0.95 against a guaranteed 1.00 -- calendar-arb's shape.
+    _basket(conn, legs=_legs(0.60, 0.35), min_payout=1.0, max_payout=2.0)
+    _settle(conn, [("KXLATE-26", "yes"), ("KXEARLY-26", "yes")])  # pays 1.00
+    r = score.compute_score(conn, "t1", 1)
+
+    assert r["riskless_n"] == 1
+    assert r["riskless_roi"] > 0            # it made money, certainly
+    # ...and contributed nothing to the calibrated population:
+    assert r["n"] == 0
+    assert r["win_rate"] is None
+    assert r["calibration_edge_net"] is None
+
+
+def test_riskless_and_calibrated_positions_do_not_pool(conn):
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="KXS-26",
+        outcome="yes", entry_price=0.50, edge_pts_net=6.0, now=TS)
+    _basket(conn, legs=_legs(0.60, 0.35), min_payout=1.0, max_payout=2.0)
+    _settle(conn, [("KXS-26", "yes"), ("KXLATE-26", "yes"),
+                   ("KXEARLY-26", "yes")])
+    r = score.compute_score(conn, "t1", 1)
+
+    assert r["n"] == 1                       # the single position only
+    assert r["win_rate"] == pytest.approx(1.0)
+    assert r["riskless_n"] == 1              # the arbitrage, kept apart
+    assert r["roi_all"] is not None          # money still counts as money
+
+
+def test_no_riskless_positions_leaves_the_keys_at_their_defaults(conn):
+    # Only KXLATE wins (KXEARLY's "no" outcome misses, same settlement as
+    # test_a_zero_floor_reproduces_the_historical_formula above) so the
+    # basket pays exactly its max_payout of 1.0 -- an ordinary at-risk
+    # basket, not a riskless one.
+    _basket(conn, legs=_legs(0.40, 0.55))
+    _settle(conn, [("KXLATE-26", "yes"), ("KXEARLY-26", "yes")])
+    r = score.compute_score(conn, "t1", 1)
+    assert r["riskless_n"] == 0
+    assert r["riskless_roi"] is None
+    assert r["n"] == 1
+
+
+def test_empty_score_carries_the_riskless_keys(conn):
+    r = score.compute_score(conn, "t1", 1)
+    assert r["n"] == 0 and r["riskless_n"] == 0
+    assert r["riskless_roi"] is None

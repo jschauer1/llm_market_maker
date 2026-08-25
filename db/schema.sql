@@ -169,6 +169,8 @@ CREATE TABLE IF NOT EXISTS scores (
     realization        REAL,
     roi_all            REAL,
     roi_taken          REAL,
+    riskless_n         INTEGER NOT NULL DEFAULT 0,
+    riskless_roi       REAL,
     computed_at        TEXT NOT NULL
 );
 

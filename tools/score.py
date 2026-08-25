@@ -44,6 +44,8 @@ EMPTY_SCORE = {
     "realization": None,
     "roi_all": None,
     "roi_taken": None,
+    "riskless_n": 0,
+    "riskless_roi": None,
 }
 
 
@@ -309,9 +311,65 @@ def _basket_observations(
 
 
 def _aggregate(rows: list[dict]) -> dict:
-    """Turn observations into the score dict. Shared by every position kind."""
+    """Turn observations into the score dict. Shared by every position kind.
+
+    A riskless observation (see `_basket_observations`) is split out first,
+    before any arithmetic touches `implied_rate` -- a riskless row's
+    `implied_rate` is None, and `price_implied_rate` below sums that field
+    unconditionally, so summing before the split would raise `TypeError`.
+
+    Riskless positions contribute to `roi_all` and `roi_taken` and nothing
+    else. Those two measure money, and a covered floor is still real money
+    returned. Every other figure here -- `n`, `win_rate`,
+    `price_implied_rate`, `calibration_edge(_net)`, `mean_claimed_edge`,
+    `mean_fee_pts`, `realization` -- measures whether the theory's judgment
+    was right, and a position that cannot lose was never a bet on anything:
+    a win rate computed over positions that always win is 1.0 by
+    construction, and folding a certain return in with a predictive edge
+    would average two different animals into a number that describes
+    neither. They are reported instead as `riskless_n` and `riskless_roi`.
+    """
+    riskless = [r for r in rows if r.get("riskless")]
+    rows = [r for r in rows if not r.get("riskless")]
+
+    riskless_n = len(riskless)
+    # Hand-rolled accumulation, not sum(), for the same reason as the loop
+    # below: this function's contract is exact arithmetic equivalence with
+    # the pre-refactor implementation, and mixing accumulation styles would
+    # make the riskless and calibrated totals round differently before
+    # they are folded together.
+    riskless_cost = 0.0
+    riskless_return = 0.0
+    riskless_taken_cost = 0.0
+    riskless_taken_return = 0.0
+    riskless_has_taken = False
+    for r in riskless:
+        riskless_cost += r["cost"]
+        riskless_return += r["payout"]
+        if r["user_action"] == "taken":
+            riskless_has_taken = True
+            riskless_taken_cost += r["cost"]
+            riskless_taken_return += r["payout"]
+    riskless_roi = (
+        (riskless_return - riskless_cost) / riskless_cost
+        if riskless_cost else None
+    )
+
     if not rows:
-        return dict(EMPTY_SCORE)
+        # Nothing calibrated ran, but arbitrage still moved money -- a
+        # theory that produced only riskless positions must still report
+        # its return rather than disappearing into EMPTY_SCORE's roi_all
+        # of None.
+        result = dict(EMPTY_SCORE)
+        result["riskless_n"] = riskless_n
+        result["riskless_roi"] = riskless_roi
+        result["roi_all"] = riskless_roi
+        result["roi_taken"] = (
+            (riskless_taken_return - riskless_taken_cost) / riskless_taken_cost
+            if riskless_has_taken and riskless_taken_cost
+            else None
+        )
+        return result
 
     n = len(rows)
     # Deliberately a hand-rolled loop, not sum(): CPython >=3.12 gives
@@ -347,10 +405,19 @@ def _aggregate(rows: list[dict]) -> dict:
     calibration_edge_net = calibration_edge - mean_fee_pts
     mean_claimed_edge = sum(r["edge_pts_net"] for r in rows) / n
 
-    roi_all = (total_return - total_cost) / total_cost if total_cost else None
+    # Riskless cost and payout fold into ROI only -- the money figures --
+    # never into the counts or rates above, which is what keeps a certain
+    # arbitrage return from inflating a predictive win rate.
+    all_cost = total_cost + riskless_cost
+    all_return = total_return + riskless_return
+    all_taken_cost = taken_cost + riskless_taken_cost
+    all_taken_return = taken_return + riskless_taken_return
+    all_has_taken = has_taken or riskless_has_taken
+
+    roi_all = (all_return - all_cost) / all_cost if all_cost else None
     roi_taken = (
-        (taken_return - taken_cost) / taken_cost
-        if has_taken and taken_cost
+        (all_taken_return - all_taken_cost) / all_taken_cost
+        if all_has_taken and all_taken_cost
         else None
     )
 
@@ -365,6 +432,8 @@ def _aggregate(rows: list[dict]) -> dict:
         "realization": _realization(calibration_edge_net, mean_claimed_edge),
         "roi_all": roi_all,
         "roi_taken": roi_taken,
+        "riskless_n": riskless_n,
+        "riskless_roi": riskless_roi,
     }
 
 
@@ -384,8 +453,9 @@ def save_score(
             INSERT INTO scores (
                 theory_id, theory_version, run_mode, disposition, n, win_rate,
                 price_implied_rate, calibration_edge, calibration_edge_net,
-                mean_claimed_edge, realization, roi_all, roi_taken, computed_at
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                mean_claimed_edge, realization, roi_all, roi_taken,
+                riskless_n, riskless_roi, computed_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 theory_id,
@@ -401,6 +471,8 @@ def save_score(
                 result["realization"],
                 result["roi_all"],
                 result["roi_taken"],
+                result["riskless_n"],
+                result["riskless_roi"],
                 now or utcnow(),
             ),
         )

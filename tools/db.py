@@ -86,6 +86,15 @@ def init_db(conn: sqlite3.Connection) -> None:
     _add_column_if_missing(
         conn, "opportunities", "min_payout", "REAL NOT NULL DEFAULT 0.0"
     )
+    # Additive: no pre-existing score row ever scored a floor basket, so
+    # every one of them truly had zero riskless positions -- these defaults
+    # describe that history exactly, with no backfill needed.
+    _add_column_if_missing(
+        conn, "scores", "riskless_n", "INTEGER NOT NULL DEFAULT 0"
+    )
+    _add_column_if_missing(
+        conn, "scores", "riskless_roi", "REAL"
+    )
 
 
 def _dedupe_snapshots(conn: sqlite3.Connection) -> None:
