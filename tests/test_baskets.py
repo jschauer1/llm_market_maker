@@ -234,11 +234,28 @@ def test_basket_cost_above_one_is_allowed_when_payout_allows_it(conn):
 
 
 def test_basket_cost_above_max_payout_is_refused(conn):
-    with pytest.raises(ValueError, match="max_payout"):
+    with pytest.raises(ValueError, match="exceeds max_payout"):
         _basket(conn, max_payout=1.0, legs=[
             {"kalshi_ticker": "KXA-26", "outcome": "no", "entry_price": 0.80},
             {"kalshi_ticker": "KXB-26", "outcome": "no", "entry_price": 0.85},
         ])
+
+
+def test_basket_cost_equal_to_max_payout_is_refused_and_says_so(conn):
+    """Break-even is refused, and the message does not claim "exceeds".
+
+    0.1 + 0.2 is 0.30000000000000004, so a cost that is exactly max_payout
+    compares as greater and used to report the self-contradicting "basket
+    cost 0.3000 exceeds max_payout 0.3000". The refusal is correct -- a
+    basket whose best branch returns what it cost cannot profit, and fees
+    make it a loss -- but the reason has to be stated truthfully.
+    """
+    with pytest.raises(ValueError, match="equals max_payout") as excinfo:
+        _basket(conn, max_payout=0.3, legs=[
+            {"kalshi_ticker": "KXA-26", "outcome": "yes", "entry_price": 0.1},
+            {"kalshi_ticker": "KXB-26", "outcome": "yes", "entry_price": 0.2},
+        ])
+    assert "exceeds" not in str(excinfo.value)
 
 
 def test_basket_refuses_empty_legs(conn):
@@ -486,8 +503,15 @@ def test_nesting_branch_with_a_payout_floor_is_unsupported_and_raises(
     _calendar_arb_basket(conn)
     _settle(conn, [("KXEARLY-26", early_result), ("KXLATE-26", late_result)])
 
-    with pytest.raises(ValueError, match="max_payout"):
+    with pytest.raises(ValueError) as excinfo:
         score._basket_observations(conn, "t1", 1, "live", "all", None)
+
+    # Assert the payout VALUE, not merely that it raised. Both floor
+    # branches pay exactly $1 against the declared $2, and a regression that
+    # changed the payout while still raising would otherwise pass here --
+    # which would hollow out the audit this test exists to be.
+    message = str(excinfo.value)
+    assert "1.0000" in message and "2.0000" in message
 
 
 def test_payout_floor_error_names_the_numbers_and_the_spec(conn):

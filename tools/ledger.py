@@ -346,6 +346,18 @@ def _normalize_legs(legs: list[dict], max_payout: float) -> list[dict]:
         })
 
     cost = sum(leg["entry_price"] for leg in out)
+    # The equality case is separated out because float accumulation makes a
+    # cost that is exactly max_payout compare as greater -- 0.1 + 0.2 is
+    # 0.30000000000000004 -- which produced the self-contradicting message
+    # "basket cost 0.3000 exceeds max_payout 0.3000". Both cases are still
+    # refused: a basket whose best branch only returns what it cost cannot
+    # profit, and fees turn break-even into a loss.
+    if math.isclose(cost, max_payout, rel_tol=1e-9):
+        raise ValueError(
+            f"basket cost {cost:.4f} equals max_payout {max_payout:.4f}; "
+            "a position whose best case is break-even is not an edge -- "
+            "fees make it a loss"
+        )
     if cost > max_payout:
         raise ValueError(
             f"basket cost {cost:.4f} exceeds max_payout {max_payout:.4f}; "
