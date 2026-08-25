@@ -41,17 +41,25 @@ def test_verdict_declares_no_numeric_field():
 #: Modules still permitted to use dict-style access on domain objects.
 #: Tasks 12-13 shrink this list as call sites port; Task 14 empties it and
 #: deletes the shim. Test modules are exempt (they test the shim itself).
+#:
+#: This is the set actually OBSERVED with tracking on (see the test below),
+#: not a static guess at which files contain `.get(`/`[...]` syntax. Most
+#: modules that will eventually need porting -- screen.py, gate.py,
+#: mention_bucket.py, snapshot.py, match_market.py, both theory adapters'
+#: price() methods -- currently run on plain dicts (board_input() hands
+#: back dicts "until Phase 5"), so their dict-style syntax reads real dicts
+#: and never touches the shim; they show up here only once something
+#: upstream starts handing them a domain.Market/Candidate. Right now the
+#: only genuine trigger is `judgment_payload()` -> `pipeline.dedupe_by_event`
+#: / `build_blind_payload`, which run on the domain.Candidate objects
+#: `screen()` already built. `tools.domain` is not a "caller" migrating
+#: anywhere: `Candidate.get()` (defined in domain.py) delegates to
+#: `Market.get()`, and the frame that "actually indexed" is that delegating
+#: line inside domain.py itself -- an artifact of the shim's own internal
+#: plumbing, gone the moment the whole shim is deleted in Task 14.
 SHIM_ALLOWLIST = {
-    "tools.board",
-    "tools.snapshot",
-    "tools.match_market",
-    "theories.insider_bias.screen",
-    "theories.insider_bias.insider_judgment.gate",
     "theories.insider_bias.insider_judgment.pipeline",
-    "theories.insider_bias.insider_judgment.theory",
-    "theories.insider_bias.insider_judgment.backtest",
-    "theories.insider_bias.mention_family.mention_bucket",
-    "theories.insider_bias.mention_family.theory",
+    "tools.domain",
 }
 
 
@@ -62,10 +70,16 @@ def test_shim_is_exercised_only_from_allowlisted_modules():
     from tools.theory import TheoryContext
 
     domain.SHIM_CALLERS.clear()
-    ctx = TheoryContext(conn=None, board=cz.board_input(),
-                        now=cz.frozen_now())
-    run = ij.start(ctx)                       # exercises the whole pipeline
-    mf.screen(ctx)
+    with domain.track_shim_callers():
+        ctx = TheoryContext(conn=None, board=cz.board_input(),
+                            now=cz.frozen_now())
+        ij.start(ctx)                          # exercises the whole pipeline
+        mf.screen(ctx)
     prod = {m for m in domain.SHIM_CALLERS
             if m.startswith(("tools.", "theories."))}
+    assert prod, (
+        "no shim callers observed with tracking on -- this test enforces "
+        "nothing when prod is empty; the theory run stopped touching the "
+        "shim, or tracking is broken"
+    )
     assert prod <= SHIM_ALLOWLIST, sorted(prod - SHIM_ALLOWLIST)
