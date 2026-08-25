@@ -2,7 +2,8 @@ import sqlite3
 
 import pytest
 
-from tools import db, ledger, theories
+from tools import db, ledger, score, theories
+from tools.sizing import fee_pts
 
 TS = "2026-08-23T12:00:00Z"
 LATER = "2026-08-24T12:00:00Z"
@@ -304,3 +305,71 @@ def test_basket_write_is_atomic_on_leg_insert_failure(tmp_path):
         ).fetchone()[0] == 0
     finally:
         boom_conn.close()
+
+
+def _settle(conn, pairs):
+    for ticker, result in pairs:
+        score.record_settlement(conn, ticker, result, resolved_at=TS)
+
+
+def test_basket_with_an_unsettled_leg_is_excluded(conn):
+    _basket(conn)
+    _settle(conn, [("KXA-26", "yes")])
+    assert score.compute_score(conn, "t1", 1)["n"] == 0
+
+
+def test_fully_settled_basket_counts_once(conn):
+    _basket(conn)
+    _settle(conn, [("KXA-26", "yes"), ("KXB-26", "yes")])
+    assert score.compute_score(conn, "t1", 1)["n"] == 1
+
+
+def test_profitable_basket_scores_as_a_win(conn):
+    # legs cost 0.95; KXA yes wins ($1), KXB no loses ($0). Payout 1.00.
+    _basket(conn)
+    _settle(conn, [("KXA-26", "yes"), ("KXB-26", "yes")])
+    r = score.compute_score(conn, "t1", 1)
+    assert r["win_rate"] == pytest.approx(1.0)
+    cost = 0.95 + (fee_pts(0.40) + fee_pts(0.55)) / 100.0
+    assert r["roi_all"] == pytest.approx((1.0 - cost) / cost)
+
+
+def test_losing_basket_scores_as_a_loss(conn):
+    # Both legs lose: KXA settles no (we hold yes), KXB settles yes (we hold no).
+    _basket(conn)
+    _settle(conn, [("KXA-26", "no"), ("KXB-26", "yes")])
+    r = score.compute_score(conn, "t1", 1)
+    assert r["win_rate"] == pytest.approx(0.0)
+    assert r["roi_all"] < 0
+
+
+def test_basket_implied_rate_is_normalized_by_max_payout(conn):
+    _basket(conn, max_payout=2.0, legs=[
+        {"kalshi_ticker": "KXA-26", "outcome": "no", "entry_price": 0.80},
+        {"kalshi_ticker": "KXB-26", "outcome": "no", "entry_price": 0.85},
+    ])
+    _settle(conn, [("KXA-26", "no"), ("KXB-26", "no")])
+    r = score.compute_score(conn, "t1", 1)
+    assert r["price_implied_rate"] == pytest.approx(1.65 / 2.0)
+
+
+def test_baskets_and_singles_pool_into_one_score(conn):
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="KXS-26",
+        outcome="yes", entry_price=0.50, edge_pts_net=6.0, now=TS,
+    )
+    _basket(conn)
+    _settle(conn, [("KXS-26", "yes"), ("KXA-26", "yes"), ("KXB-26", "yes")])
+    assert score.compute_score(conn, "t1", 1)["n"] == 2
+
+
+def test_a_basket_missing_a_leg_row_raises_rather_than_scoring(conn):
+    opp_id, _ = _basket(conn)
+    conn.execute(
+        "DELETE FROM opportunity_legs WHERE opportunity_id = ? AND leg_index = 1",
+        (opp_id,),
+    )
+    conn.commit()
+    _settle(conn, [("KXA-26", "yes"), ("KXB-26", "yes")])
+    with pytest.raises(ValueError, match="leg_count"):
+        score.compute_score(conn, "t1", 1)

@@ -95,6 +95,8 @@ def compute_score(
     """
     obs = _single_leg_observations(
         conn, theory_id, theory_version, run_mode, disposition, run_id
+    ) + _basket_observations(
+        conn, theory_id, theory_version, run_mode, disposition, run_id
     )
     return _aggregate(obs)
 
@@ -143,6 +145,75 @@ def _single_leg_observations(
             "fee_pts": fee,
             "edge_pts_net": row["edge_pts_net"],
             "user_action": row["user_action"],
+        })
+    return out
+
+
+def _basket_observations(
+    conn: sqlite3.Connection, theory_id: str, theory_version: int,
+    run_mode: str, disposition: str, run_id: str | None,
+) -> list[dict]:
+    """One observation per fully-settled basket.
+
+    A basket is one position with a joint payoff, so it contributes exactly
+    one observation however many legs it has. Recording it as N rows would
+    make a riskless arbitrage -- one winning leg, one losing leg, a certain
+    $1 payout -- read as a 50% win rate.
+
+    A basket with any unsettled leg is excluded, exactly as an unsettled
+    single position is: its payoff is not yet known.
+    """
+    where, params = _segment_filter(
+        theory_id, theory_version, run_mode, disposition, run_id
+    )
+    headers = conn.execute(
+        "SELECT o.id, o.entry_price, o.edge_pts_net, o.user_action,"
+        " o.leg_count, o.max_payout FROM opportunities o"
+        + where
+        + " AND o.position_kind = 'basket'",
+        params,
+    ).fetchall()
+
+    out = []
+    for header in headers:
+        legs = conn.execute(
+            "SELECT l.kalshi_ticker, l.outcome, l.entry_price, s.result"
+            "  FROM opportunity_legs l"
+            "  LEFT JOIN settlements s ON s.kalshi_ticker = l.kalshi_ticker"
+            " WHERE l.opportunity_id = ? ORDER BY l.leg_index",
+            (header["id"],),
+        ).fetchall()
+
+        # A leg row lost between write and read would make the basket look
+        # cheaper than it was. Fail loudly rather than score a partial one.
+        if len(legs) != header["leg_count"]:
+            raise ValueError(
+                f"opportunity {header['id']} declares leg_count "
+                f"{header['leg_count']} but has {len(legs)} leg rows; "
+                "refusing to score a partial basket"
+            )
+
+        if any(leg["result"] is None for leg in legs):
+            continue
+
+        payout = sum(
+            1.0 for leg in legs if _won(leg["outcome"], leg["result"])
+        )
+        fee = sum(fee_pts(leg["entry_price"]) for leg in legs)
+        cost = header["entry_price"] + fee / 100.0
+        max_payout = header["max_payout"] or 1.0
+
+        out.append({
+            # Normalized so a basket's implied rate is comparable with a
+            # single position's price. For max_payout = 1.0 this is the
+            # cost itself, which is what a single leg contributes.
+            "implied_rate": header["entry_price"] / max_payout,
+            "won": payout > cost,
+            "cost": cost,
+            "payout": payout,
+            "fee_pts": fee,
+            "edge_pts_net": header["edge_pts_net"],
+            "user_action": header["user_action"],
         })
     return out
 
