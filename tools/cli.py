@@ -125,16 +125,20 @@ def _cmd_opportunities(args) -> int:
     conn = _connect(args)
     try:
         if args.action == "list":
-            _emit(
-                _rows(
-                    ledger.list_opportunities(
-                        conn,
-                        theory_id=args.theory,
-                        run_mode=args.run_mode,
-                        disposition=args.disposition,
-                    )
+            rows = _rows(
+                ledger.list_opportunities(
+                    conn,
+                    theory_id=args.theory,
+                    run_mode=args.run_mode,
+                    disposition=args.disposition,
                 )
             )
+            if args.with_legs:
+                for row in rows:
+                    row["legs"] = [
+                        dict(leg) for leg in ledger.get_legs(conn, row["id"])
+                    ]
+            _emit(rows)
         elif args.action == "mark-taken":
             ledger.mark_user_action(
                 conn, args.id, args.value, size=args.size,
@@ -324,6 +328,10 @@ def build_parser() -> argparse.ArgumentParser:
     olist.add_argument("--theory", default=None)
     olist.add_argument("--run-mode", dest="run_mode", default=None)
     olist.add_argument("--disposition", default=None)
+    olist.add_argument(
+        "--with-legs", dest="with_legs", action="store_true",
+        help="include each position's legs (empty for single positions)",
+    )
     mark = osub.add_parser(
         "mark-taken", help="record what the user actually did with a bet"
     )

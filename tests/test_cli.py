@@ -283,3 +283,43 @@ def test_backtest_record_stores_uses_llm_judgment_flag(dbpath, capsys):
         "--tier", "B", "--uses-llm-judgment",
     )
     assert payload["uses_llm_judgment"] == 1
+
+
+def _seed_positions(dbpath):
+    conn = db.connect(dbpath)
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="KXS-26",
+        outcome="yes", entry_price=0.50, edge_pts_net=6.0, now=TS,
+    )
+    ledger.record_basket(
+        conn, theory_id="t1", theory_version=1, edge_pts_net=5.0,
+        edge_basis="model", now=TS,
+        legs=[
+            {"kalshi_ticker": "KXA-26", "outcome": "yes",
+             "entry_price": 0.40},
+            {"kalshi_ticker": "KXB-26", "outcome": "no",
+             "entry_price": 0.55},
+        ],
+    )
+    conn.close()
+
+
+def test_opportunities_list_omits_legs_by_default(dbpath, capsys):
+    _seed_positions(dbpath)
+    code, payload = _run(capsys, "--db", dbpath, "opportunities", "list")
+    assert code == 0
+    assert len(payload) == 2
+    assert all("legs" not in row for row in payload)
+
+
+def test_opportunities_list_with_legs_includes_them(dbpath, capsys):
+    _seed_positions(dbpath)
+    code, payload = _run(
+        capsys, "--db", dbpath, "opportunities", "list", "--with-legs"
+    )
+    assert code == 0
+    basket = [r for r in payload if r["position_kind"] == "basket"][0]
+    assert len(basket["legs"]) == basket["leg_count"] == 2
+    assert all(leg["kalshi_ticker"] for leg in basket["legs"])
+    single = [r for r in payload if r["position_kind"] == "single"][0]
+    assert single["legs"] == []
