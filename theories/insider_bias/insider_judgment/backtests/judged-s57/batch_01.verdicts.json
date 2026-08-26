@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXALBUMSALES-YOUS-PURE",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "If Hits Daily Double chart data is unavailable or partially unavailable by Jun 26, 2026, all affected markets resolve No, regardless of true sales.",
+  "rationale": "Weekly album chart sales are an aggregate of millions of consumer purchases, not a decision any group makes. Labels and retailers can forecast late in the tracking week from point-of-sale data, but nobody decides the number in advance. No named group has certain knowledge of the outcome.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXART-POR26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "The hammer price at a live Sotheby's auction is set by competitive bidding in real time. The auction house knows reserves and pre-sale estimates and registered bidder interest, but no one decides or knows the final price before the gavel falls.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXART-SLE26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same structure as other live Sotheby's lots: the final sale price is determined by live bidding in the room, not by any group's advance decision. Estimates are informative but not determinative.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPVH-26JUN19",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "A polling average is an aggregate of many independent survey respondents and polling firms recomputed continuously; there is no small group that already knows the value at a future snapshot time. This is a forecasting question, not a knowledge question.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPPHOTO-26JUN21",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "The exact count of distinct days with a tagged Getty editorial photo over a week is the emergent result of many independent photographers, editors, and news events; no one, including Trump's own staff, controls or knows this count in advance. A classic rate/count question, not an insider-knowledge one.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXGROK-GROK5",
+  "insider_group": "xAI engineering and product leadership",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "xAI's own team knows its internal readiness and rollout plans for Grok 5 well before any public release, so there is a plausible informed group. However, AI-lab release timing slips routinely and version-naming/tiering decisions are often made late, so even the company may not have a firm decided date this close to the deadline.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXHAITITPS-26AUG",
+  "insider_group": "Supreme Court justices and their clerks (post-conference vote, pre-opinion release)",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Rules require a merits ruling that the TPS termination survives the APA/equal-protection challenges specifically; a dismissal, DIG, or remand without deciding that question resolves No even though it is not literally a ruling 'against' the termination — narrower than a plain reading of the title suggests.",
+  "resolution_source_risk": null,
+  "rationale": "SCOTUS cases are decided in conference well before the written opinion is released, so a small, named group (the justices and clerks) knows the outcome first. The bucket is moderate rather than strong because it is unclear whether this specific case's conference vote has already occurred as of the close date, and the resolution criterion carves out several non-merits dispositions as No.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTARIFFRATEPRC-26JUL01",
+  "insider_group": "the administration officials who set and implement tariff policy",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": "The resolved rate is a sum of multiple stacked executive-order rates (reciprocal, fentanyl duty, etc.), a more technical construction than the simple 'tariff rate' implied by the title.",
+  "resolution_source_risk": null,
+  "rationale": "The administration knows the content and effective dates of its own executive tariff orders before they are collected/published, so there is a real informed group. Moderate rather than strong because rates can change abruptly via new or rescinded orders up to the resolution date, so the exact bracket in effect on Jul 1 is not fully locked in.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXCABLEAVE-26MAY22",
+  "insider_group": "the departing official and the President's inner circle, prior to any announcement",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Explicitly excludes any action related to Tulsi Gabbard from qualifying, even though her role (Director of National Intelligence) is otherwise on the list of qualifying Cabinet-equivalent positions — a title vs. rules divergence a naive reader would miss.",
+  "resolution_source_risk": null,
+  "rationale": "Any individual resignation or firing is a decision made privately by the official and the President before any public announcement, which fits the insider thesis well. But the window spans over a month across ~20 qualifying positions, making the aggregate 'any member' framing partly a rate question about whether some departure happens at all, which tempers the bucket to moderate.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXDIAZOUT-MDC",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Whether an entrenched head of state/party leader leaves office is not necessarily a decision anyone has made yet; there is no signal of an imminent succession plan or announced intent. This is closer to an unmade-decision question than a case of private foreknowledge.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXCHATRIEUSA-26AUG",
+  "insider_group": "Supreme Court justices and their clerks (post-conference vote, pre-opinion release)",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Resolves No if the case is dismissed, found improvidently granted, or remanded without a merits Fourth Amendment ruling — narrower than the title's simple 'rules in favor of' framing.",
+  "resolution_source_risk": null,
+  "rationale": "Same structural logic as other SCOTUS markets: the justices vote in conference before the opinion is released, so a small named group knows the outcome first. Kept at moderate rather than strong since it is unconfirmed whether this case's conference vote has already happened by the close date.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-CACTO",
+  "insider_group": "the Television Academy and its accounting firm, which tabulate nomination voting before the July 8 announcement",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Emmy nominations are tabulated from closed balloting before the public announcement; a small, named tabulation group knows the full nominee list in advance. This is the strongest sub-case in the thesis's own award-show family, directly analogous to a board that has already voted.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-COM",
+  "insider_group": "the Television Academy and its accounting firm, which tabulate nomination voting before the July 8 announcement",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same as other Emmy nomination markets: the nominee list is tabulated by a small, named group ahead of the scheduled July 8 public announcement, with no fan-vote component for nominations.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-DACTO",
+  "insider_group": "the Television Academy and its accounting firm, which tabulate nomination voting before the July 8 announcement",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same as other Emmy nomination markets: nominee lists are sealed and tabulated before the scheduled announcement, so a small, named group already knows the result.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYTVMOVIE-26SEP14",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "The market closes July 8, 2026 (Emmy nomination-announcement day) but the title concerns who WINS at the ceremony on Sept 14 — final-round winner voting has not even begun by close, so no group can know the eventual winner at resolution time. Title implies a ceremony outcome the rules window cannot capture.",
+  "resolution_source_risk": "Because close time precedes both the nomination announcement and the final vote, the true winner is unknowable to anyone by the close time.",
+  "rationale": "Unlike the nomination markets, this asks about the eventual Emmy WINNER, but its close time is in early July — months before final-round Emmy voting closes ahead of the September ceremony. No group, however well-placed, could know the actual winner by the market's close, which undercuts the insider thesis entirely for this specific market design.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXWORLDCUPHALFTIME-26",
+  "insider_group": "FIFA/World Cup organizers and the named artists' management and label teams who negotiate and finalize bookings",
+  "bucket": "strong",
+  "rules_diverge_from_title": true,
+  "rules_note": "Resolution is on ANNOUNCEMENT of an anticipated performance, not on the performance actually happening — if an announced artist later withdraws, the market still resolves Yes. A naive reader of the title ('who will perform') would expect an actual-performance requirement.",
+  "resolution_source_risk": null,
+  "rationale": "Halftime-show lineups are booked and contractually finalized by organizers and artist camps well before public announcement, matching the thesis's entertainment-marketing strong case. The rule that resolution triggers on announcement alone (surviving a later withdrawal) makes this an even more mechanical insider-knowledge case than a typical booking market.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBBCHARTPOSITIONSONG-26JUL04CHO",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Billboard Hot 100 position is an aggregate of streaming and sales behavior across the whole tracking week. The market closes June 29, before the Jul 4 tracking week even begins, so not even industry mid-week trackers have data yet. No group can know the outcome at close.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFEATURE-27REA",
+  "insider_group": "Future's label, A&R, and production team, who finalize the tracklist and its featured artists before release",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Album tracklists and features are typically locked internally by the artist's team well ahead of release, and industry sourcing/leaks are common, giving a plausible informed group. Kept at moderate rather than strong because features can be added, dropped, or renegotiated late in mastering, and there is no confirmation the tracklist is already finalized as of today.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMAMDANIEO-26JUL04",
+  "insider_group": "Mayor Mamdani's office, which drafts and schedules any executive orders it intends to sign",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Rules restrict the count to NON-EMERGENCY executive orders, a qualifier absent from the plain title ('above 0 executive orders'), so an emergency order signed in the window would not count toward Yes.",
+  "resolution_source_risk": null,
+  "rationale": "Signing an executive order is entirely within the mayor's own discretion and staff would know in advance if one is planned/drafted for this window, unlike a market depending on outside actors. Moderate rather than strong because there is no specific evidence any order is currently planned for this particular week.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFTCNEXT-27",
+  "insider_group": "FTC investigative staff and leadership, ahead of any public enforcement announcement",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "FTC enforcement targets are decided internally through investigations well before any public action is announced, so agency staff constitute a plausible informed group. Kept at moderate because which specific company is 'next' is genuinely uncertain even to insiders until a decision to proceed is finalized, and no evidence here suggests Microsoft specifically is imminent.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTECHRANKLISTAICODE-26JUL06",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "LM Code Arena is a crowd-voted head-to-head leaderboard aggregating many independent users' votes. Labs may know their own model release plans, but no one can know a crowd-accumulated arena score/rank before it accumulates.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALITOANNOUNCERETIRE-26JUN",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "A Supreme Court justice's decision to retire is known only to that justice and a very small circle once made, but nothing here indicates such a decision has actually been made — retirement speculation markets are frequently just rumor-driven. Since the decision may genuinely not yet exist, this falls to weak per the 'unmade decision' warning sign.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYDSERIES-26SEP14",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Market closes July 8, 2026 (nomination day) but asks who WINS the September 14 ceremony; final winner voting has not occurred by close, so the title's implied ceremony outcome cannot be known by any group at resolution time.",
+  "resolution_source_risk": "Close time precedes the actual winner-determining vote by roughly two months, so no informed party can know the true outcome by close.",
+  "rationale": "Identical structural problem to the TV Movie market: this is phrased as a winner market but closes at the nomination announcement, months before final Emmy voting concludes. No named group — Academy, accountants, or otherwise — has decided or knows the eventual winner by the close date.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLLM1-26JUL06",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolution depends on reading the correct leaderboard view ('Remove Style Control' toggle); a judge checking the wrong view could misjudge the outcome, though this is a measurement-consistency risk rather than a timing risk.",
+  "rationale": "Top-ranked LLM on a crowd-voted arena leaderboard is an aggregate of many independent voters' head-to-head judgments, not a decision any lab or group makes. Labs know their own release plans but not the resulting crowd score.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BSGP",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "ESPYS 'Best Single-Game Performance' is historically a fan-voted category with no small tabulating committee analogous to the Emmys; the mechanism sheet flags this exact ambiguity and nothing in the payload rules indicates an early-closing ballot. Absent evidence of a sealed vote, this is treated as public-aggregate rather than insider-known.",
+  "researched": false
+ }
+]
