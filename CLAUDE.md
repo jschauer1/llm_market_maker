@@ -156,6 +156,78 @@ yours to arrange.
   (`STUDY.md` marks its folder); an execution policy decorates candidates.
 - Any theory fetching external data takes `fetch: Fetch | None = None`.
 
+## What lives in a theory, and what gets elevated
+
+**Everything starts in the theory that needs it, and elevation is earned,
+never anticipatory.** Code elevates by *caller count* — a helper moves to
+`tools/` once it has more than one real caller. Knowledge elevates by
+*audience* — a note moves up when the repo level needs it to orient. The
+two are different operations: elevating code is a **migration** (one
+implementation; delete the local copy), elevating knowledge is a
+**distillation** (the raw note stays behind as the audit trail).
+
+Stays in the theory folder: screen, pricing and pipeline code; the backtest
+replay (`backtest.py`); judging prompts (`prompts/`); the run procedure
+(`RUNBOOK.md`); raw research notes (`NOTES.md`); and any research data the
+theory reads. Always elevated: durable facts (`theory_facts`), everything
+measured (the ledger and scores), ideas considered or dropped (the idea
+registry, which exists to deduplicate *across* theories), tests and their
+fixtures (`tests/theories/`, `tests/characterization/` — the repo runs one
+suite), and cross-cutting session narrative (`RESEARCH_LOG.md`).
+
+**Backtests: the harness owns time, bookkeeping and scoring; the theory
+owns the replay.** The harness's contribution is complete, and it is small
+— point-in-time data (`tools/kalshi/history.py`, `tools/snapshot.py`), run
+identity (`run_mode="backtest"` and a real `run_id`, propagated everywhere
+by `finish()`; the `backtest_runs` table), and scoring by run id.
+Everything else is thesis-specific: which slice of history is even
+fetchable, how to reconstruct this theory's decision without lookahead, and
+which approximations that forces. Most of `insider_judgment/backtest.py`'s
+design cost is not general-purpose — it belongs to replaying *this
+screen* over Kalshi's settled-market API: one combinatorial series
+settling 400,000 markets a day that must be scoped around before any
+fetch, per-day candle volume that has to be summed into a lifetime total
+with a warm-up window, and a category pre-filter that must not leak into
+the screen under test. A theory with a different thesis inherits none of
+them, which is why that machinery is shared through the family's own
+parent package (as `theories/insider_bias/screen.py` already is) rather
+than through `tools/`.
+
+So: **there is no `tools/backtest.py` replay engine and no `backtest()`
+method on the `Theory` contract, and neither gets built.** A second
+theory-local backtest that resembles the first is *not* grounds for an
+engine — a shared replay would have to either anticipate every such quirk
+(it cannot) or paper over it silently (worse). Narrow primitives may still
+be promoted one at a time under the normal rule — `systematic_sample`, a
+checkpointed per-series iterator, a candle-walk state reconstructor — as
+plain functions in `tools/`, never as a framework that inverts control over
+the theory.
+
+**`NOTES.md` is each theory's lab notebook** — dated, append-only, raw.
+Dead ends and why they died, data-source quirks, backtest narratives,
+hunches. `THEORY.md` carries only the distilled version and changes when
+the claim, the procedure, or the status changes. `RESEARCH_LOG.md` stays
+cross-theory: when a session's work sits inside one theory, the log entry
+is a pointer to that theory's `NOTES.md` entry, not a copy of it.
+
+**Reading is open; only writing is segregated.** Any session may read any
+theory's notes, code, or prompts at any time, and connecting dots across
+theories is encouraged — `mention_family` exists because someone looked
+sideways at `insider_judgment`'s screen backtest. Nothing in this repo is
+private.
+
+This shape also supports — without requiring — a **repo-level agent** that
+understands every theory from a high level and **theory-level agents** that
+each know one theory in depth. Nothing orchestrates that today, and nothing
+needs to. What holds the option open is one rule: **any fact the repo level
+needs must surface in a shared structure** — `THEORY.md`, the database, or
+`RESEARCH_LOG.md`. A theory whose true status is discoverable only by
+reading its `NOTES.md` has broken that surface, and the fix is distillation
+upward, not a repo level that reads every notebook. Symmetrically, a theory
+folder must stay self-sufficient to run: **no imports from a sibling
+theory's folder** — shared ancestry goes through a shared parent module (as
+`theories/insider_bias/screen.py` does) or through `tools/`.
+
 ## Never state a probability you introspected
 
 You are not a calibrated probability estimator. You cluster on round numbers,
@@ -239,7 +311,9 @@ conventions and the full map. Highlights:
 
 **New code starts in the theory that needs it** and moves to `tools/` only
 once it has more than one real caller. That is a judgment call, not an
-automatic rule.
+automatic rule. See "What lives in a theory, and what gets elevated" for
+the whole rule, including what never elevates and what the harness
+deliberately does not provide.
 
 ## Theory lifecycle and versioning
 
@@ -324,6 +398,9 @@ through and must bump the version exactly like a threshold change would.
 
 Web search stays off in every backtest judgment subagent.
 
+Where the replay itself lives — and why there is no shared backtest engine
+— is under "What lives in a theory, and what gets elevated".
+
 ## Subagents — cheap gates, expensive analysis
 
 Spawn subagents for judgment: does this market fit the thesis, which candidates
@@ -403,6 +480,9 @@ no prompt. That is one more reason to prefer one.
 
 - **SQLite** (`db/market_edge.db`) is the source of truth for structured facts.
 - **`THEORY.md`** is the source of truth for a hypothesis and its procedure.
+- **`NOTES.md`** in a theory folder is that theory's raw lab notebook —
+  dated, append-only; the distilled version lives in its `THEORY.md`. Any
+  session may read any theory's notes.
 - **`RESEARCH_LOG.md`** carries continuity between sessions — read its tail
   when starting, append when finishing.
 - Prices are decimal dollars in [0, 1]. Edge is in percentage points. Entry
