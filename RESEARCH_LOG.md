@@ -794,3 +794,39 @@ earn its bins back, the right move is a longer-window tier-A rerun
 with the sub-family split (sponsor/broadcast vs earnings vs political
 speech) pre-registered, and per-sub-family buckets if n allows;
 that is a decision-procedure change and would bump the version.
+
+## 2026-08-25 — Kalshi archives settled markets after ~60 days; backward extension impossible; full-coverage rerun launched instead
+
+**Did:** Tried to extend mention_family's tier-A evidence backward
+(closes 2025-08-25 .. 2026-05-26, abutting the original window) with a
+new family-scoped driver, `theories/insider_bias/mention_family/
+backtest.py`. The walk returned zero survivors, and systematic probing
+(windows bisected, every status value, unstatused listings, nested-event
+markets, reconstructed tickers against known old events) established why:
+**Kalshi's public API archives settled markets out of existence roughly
+60 days after close.** The markets listing serves only never-traded husks
+(`status='closed'`, empty result, zeroed volume) beyond the floor; events
+keep shells back to 2025 with no markets attached; candlesticks for
+archived tickers return empty. Corrected `list_settled`'s
+whole-lifetime docstring claim in place. Two corollaries: the original
+"90-day" backtest was effectively a ~60-day one (earliest close it could
+see was 2026-06-22ish), and the floor advances daily — historical
+evidence only survives if captured before it ages out, which is the same
+lesson as the record-while-collecting convention added to CLAUDE.md and
+tools/README.md today (user-prompted, after a previous session lost a
+long collection by holding it all in memory).
+
+**Doing (pending as of this entry):** Since backward extension is dead,
+the strongest available move is **full coverage of the reachable
+window**: the original run replayed a 600-of-18,430 systematic sample;
+the new run (`run_id=backtest-2026-08-25-mention-fullcov`, tier A)
+replays *every* mention-family survivor — 11,084 across 379 series vs
+the 116 rows the price bins were fit on. This cannot test persistence
+across time (same window, same World Cup-summer regime); it tests
+whether the 116-row sample was lucky, on ~95x the markets. Persistence
+across time falls to the live preview rows settling Aug 28–Sep 15 and
+every live run after. The replay is running in the background,
+recording per series with a resumable checkpoint. When it lands:
+record the backtest_runs row, score fresh-rows-only (exclude the
+original 116 tickers) with the sub-family split from the 2026-08-25
+audit entry, update THEORY.md, and report against the audit's nulls.
