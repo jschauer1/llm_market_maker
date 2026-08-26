@@ -496,6 +496,34 @@ and full breakdown in Learnings below.
 
 ## Learnings
 
+- 2026-08-25/26 — **Two backtests at scale: screen+gate is breakeven,
+  and judgment shows its first predicted ordering.** Tier A
+  (`backtest-2026-08-25-insider-fullcov`): every non-mention survivor in
+  the API-reachable window (n=3,181 settled, 831 events) — the gate
+  discriminates (+0.71pts net kept vs −2.18 gated, ~2.9pt gap in the
+  predicted direction), but the kept slice is fair-priced once event
+  clustering is respected (t_ev −0.25); the old 84-row sample's +4.40
+  was small-sample noise, exactly like the sibling theory's +5.48. So
+  the thesis rests entirely on stage-2/3 selection. Tier B
+  (`backtest-2026-08-26-insider-judged-s200`): 200 seeded gate-plausible
+  events judged by claude-sonnet-5 through the committed analysis
+  prompt, web search off, blind payloads, per-batch as-of dates, with a
+  committed mechanism context sheet substituting for search (all
+  artifacts under `backtests/judged-s200/`). Result: **buckets order
+  outcomes as the thesis predicts** — strong +5.09pts net (n=111 rows /
+  24 events, row-level p=0.044), moderate +0.85, weak −0.79; event-level
+  means +2.88 / −0.56 / −2.26. Two sharper cells, both post-hoc and both
+  echoing the session's optimism-tax finding: strong-NO +8.59 (n=83,
+  p=0.006) vs strong-YES −5.30; and events flagged
+  `rules_diverge_from_title` scored +1.97 with the strongest clustered
+  stat of the day (t_ev +2.90, 26 events) — the "read the rules, not
+  the title" claim finally has a measurement. Honest limits: 24 strong
+  events is thin, clustered support for the bucket ordering itself is
+  weak (t_ev +0.66), and the sharp cells came from slicing. Status
+  stays `testing`; what this earns is a pre-registered live tracking
+  plan — strong (and strong-NO specifically) as the buckets that must
+  repeat live before any promotion, with the divergence flag recorded
+  on every live row.
 - 2026-08-23 — Ported from `kalshi_trader`. The reality-TV weighting is
   recorded here as a stage-2 heuristic rather than encoded, because it has not
   yet been measured against the endorsed/rejected split. Migrate it into

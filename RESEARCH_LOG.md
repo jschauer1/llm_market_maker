@@ -961,3 +961,40 @@ only so a future session knows it was seen.
 **Next:** Ingest and commit each judged batch as it lands; score bucket
 calibration + interpretation value vs the screen+gate baseline; then the
 final write-up. Backfill of pre-cache raw data is running in parallel.
+
+## 2026-08-26 — Tier-B judged sample complete: judgment orders outcomes; strong-NO and the rules-divergence flag are the standouts
+
+**Did:** All 8 batches of the judged-s200 replay ran to completion under
+the save-as-you-spend protocol — every batch's payload committed before
+dispatch, every verdicts file written by the judging subagent itself,
+ingested to the ledger and committed before the next dispatch (commits
+df97b9b..1a4c490). 200 events / 704 market rows judged by
+claude-sonnet-5 (web search off, blind payloads, per-batch as-of dates,
+committed mechanism sheet in lieu of search). Run row recorded tier B.
+Scored against the same-sample screen+gate baseline.
+
+**Learned:** Bucket totals 24 strong / 66 moderate / 110 weak. The
+buckets order outcomes exactly as the thesis predicts: strong +5.09pts
+net (n=111 rows, p_fair=0.044), moderate +0.85, weak -0.79, over a
+baseline of +0.67 — the first time any judgment layer in this repo has
+produced its predicted ordering on settled data. Event-level means are
+monotone too (+2.88 / -0.56 / -2.26). The concentrated cells: strong-NO
++8.59 net (n=83, p=0.006) against strong-YES -5.30 — the optimism-tax
+asymmetry's third independent appearance today — and events flagged
+rules_diverge_from_title scored +1.97 with t_ev=+2.90 (26 events), the
+strongest event-clustered statistic of the session: reading rules
+against titles measurably pays. Limits stated plainly: 24 strong events,
+bucket-ordering clustered support weak (t_ev +0.66), sharp cells are
+post-hoc slices. The judges also produced qualitative value the code
+path cannot: e.g. catching that the Emmy winner markets close on
+NOMINATION day (before final voting concludes), gutting the
+"tabulators already know" logic for that family.
+
+**Next:** Pre-registered live plan for insider_judgment (status stays
+testing): track strong — and strong-NO as its own view — plus the
+divergence flag on every live row; promotion requires the ordering to
+repeat on live settlements. The judged-run bucket rates are usable as
+bootstraps with the in-sample caveat attached. Backfill continues in
+background (~9.6k candle windows cached so far); when done, the entire
+reachable window's raw data is durable and every variant re-test is
+offline.
