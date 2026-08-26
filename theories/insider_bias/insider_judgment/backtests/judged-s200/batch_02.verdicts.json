@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXEBOLACOUNTRY-JUL26",
+  "insider_group": "National/WHO health ministries and labs in each named country, but only once a case is already confirmed internally",
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Relies on 'official' reporting; a real case very near the close could occur but not be officially confirmed/reported before Jul 1",
+  "rationale": "Health ministries would know of a confirmed case before it is publicly reported, but across these nine low-incidence countries there is no indication any case is already known internally. Absent a known outbreak, this is a surveillance/hazard question, not a case where a specific group already holds an unannounced answer.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFDAAPPROVE-CYT",
+  "insider_group": "FDA review division and the drug sponsor, who know the internal review status and any target action date",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "FDA decisions are made internally before public announcement, and the sponsor typically knows PDUFA-style timelines, but nothing in the payload confirms a decision has already been reached within this window. The group is specific and real, so moderate rather than weak or strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXGPT-OPENB",
+  "insider_group": "OpenAI's product/release team, who control the internal roadmap and versioning",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": "Rules allow a release limited to a high-cost subscription tier to still count as 'released', which is broader than a casual reading of 'release' might assume.",
+  "resolution_source_risk": null,
+  "rationale": "OpenAI knows its own release plans, but naming and exact timing are marketing decisions made late and slip routinely. No evidence a GPT-5.6 release is imminent or already decided, so moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXHFHOUSING-27",
+  "insider_group": "Congressional leadership and whip counts tracking the already-existing House-amended bill",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title says 'before election day' but the actual close times traded here are mid-July 2026, well before any November election day — the title's framing does not match the real deadlines.",
+  "resolution_source_risk": null,
+  "rationale": "A specific bill has already passed the House in amended form per the rules text, so this is not purely hypothetical; congressional leadership has real advance insight via whip counts into whether Senate passage and signature complete in time. Still short of a done deal, so moderate not strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXKXSPOTIFYNUM1GLB-26JUL01-TAY",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Resolves on Spotify's daily chart, an aggregate of millions of listeners' behavior; Spotify sees it first but has made no decision. This is the thesis's explicit NO-ish case — no group 'knows' an answer, they only observe a running public tally.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLEAVEHOUSE-26APR",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "No indication either House member has already decided to resign or faces an imminent forced departure. Absent a specific pending event, this is an open-ended hazard-rate question over the window rather than a fact some group already holds.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMEDIARELEASEADDTRAILER-26",
+  "insider_group": "Marvel Studios/Disney marketing team, who set trailer release windows on an internal marketing calendar",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Rules explicitly exclude teaser trailers, TV spots, and promotional clips from counting — a viewer going only by the title 'official trailer' could easily miss that teasers do not qualify.",
+  "resolution_source_risk": null,
+  "rationale": "Studio marketing teams plan trailer drops well ahead of release, giving a real informed group, but exact timing is a marketing call that can slip, and nothing here confirms a date is locked in. Moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNATLGUARDDC-26-DC",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Deployment depends on a discretionary decision that, per the payload, has not evidently been made — a contingent political/operational call rather than an already-made decision sitting unannounced in a small group's hands, closer to a rate question over the window.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSPOTIFYNUM1USA-26JUL01-DRA",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same Spotify daily-chart aggregate-behavior structure as other chart markets in this batch; the platform observes but does not decide the outcome, and no specific group already knows June's day count.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSPOTIFYNUM1USA-26JUL01-TAY",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same reasoning as the other Spotify daily-chart markets: aggregate listener behavior, not a decision any identifiable group holds in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSTARMERCABLEAVE-26MAY",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Rules clarify that a lateral cabinet reshuffle (staying in Cabinet but leaving the named role) still counts as 'leaving' the role — broader than a naive reading of the title suggests.",
+  "resolution_source_risk": null,
+  "rationale": "Cabinet reshuffles are ultimately decided by the PM and a small circle before announcement, which could make this moderate if a reshuffle were known to be pending. But nothing in the payload indicates one has actually been decided for any of these six ministers, so this reads as an open hazard-rate question rather than an already-made-but-unannounced call.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSULYOKOUT-26MAY",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same 'leave office' structure as other political-departure markets in this batch: absent evidence of an already-made resignation or removal decision, this is a rate question over the window, not knowledge already held by a specific group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPMONTHLY-26JUN",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Resolves on Spotify's own monthly-listener snapshot at a fixed timestamp, an aggregate of public consumer behavior; Spotify sees the number first but did not decide it, matching the thesis's explicit weak case for aggregated audience metrics.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPMEET-26JUN",
+  "insider_group": "White House and counterpart scheduling staff, who set official meeting calendars in advance",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Some qualifying encounters (pull-asides, corridor conversations) must be 'documented' to count, so an undocumented brief encounter would not resolve YES even if it happened.",
+  "rationale": "Official diplomatic and political meetings are typically scheduled with real lead time known to scheduling staff on both sides, but many of the ten named pairings here have no confirmed meeting on the books, and informal/spontaneous encounters (partly excluded by the rules anyway) cannot be known in advance. Moderate reflects a real but diffuse informed group across many sub-markets.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXANTIWEPTAX-27JAN01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Requires a state to actually enact an unusual 100% clawback tax; no state legislature is known to be on the verge of finalizing such a specific and unusual bill, so this depends on a decision that has not been made yet.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEPSTEIN-26JUL01",
+  "insider_group": "The Trump Administration/DOJ, who would know internally whether any previously-unreleased pre-Administration Epstein-related documents are queued for release",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "The administration is the actor that would release these documents, so it knows its own plans before any release happens — a real, specific, if undisclosed, decision-maker. But this has been a long-running, contentious political question with no clear signal a release decision has actually been finalized, so moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFDAANNOUNCE-BPC",
+  "insider_group": "FDA's compounding/bulk drug substances review staff",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Reclassification decisions follow an internal FDA review process the agency knows before announcing, matching the general FDA-approval pattern, but nothing here confirms the decision has already been reached, so moderate.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFRONTIER-FRON",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title implies resolving on any AI solving 'at least 1' Frontier Math Open Problem, but the rules clarify one problem is already solved as of issuance and further solves of that same problem do not count — only a genuinely new/additional solve counts. A careless reading of the title could overstate how close this already is to YES.",
+  "resolution_source_risk": null,
+  "rationale": "By construction this resolves on an open research problem being solved; nobody, including the labs working on it, knows in advance whether or when a specific unsolved problem will be cracked. No identifiable group already holds the answer.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXRANKLISTSONGSPOTGLOBAL-26JUL01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same Spotify daily-chart aggregate-behavior pattern as other chart markets in this batch — an outcome of millions of listeners' streaming choices, not a decision any specific group has already made.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXRANKLISTSONGSPOTUSA-26JUL01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same reasoning as the Global-chart equivalent: aggregate consumer streaming behavior with no informed decision-maker.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTARIFFRATECAN-26JUL01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Asks what the in-effect general tariff rate will be on a future date; while the administration sets tariff policy, active trade policy remains fluid and subject to further changes before the deadline, so this reads closer to a forecast of evolving public policy than a fact some group already holds privately.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSCOTUSLAST-26",
+  "insider_group": "Supreme Court justices and their clerks, who decide cases in conference and draft opinions well before public release",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Opinions must be 'released to the public' per the specific definition given (not merely leaked); a completed-but-unreleased opinion held past Jun 29 would not satisfy the market even though the Court already knows the outcome.",
+  "rationale": "Case outcomes are decided in conference and opinions drafted well ahead of the public release date, so the Court's own personnel already know the substance of the last opinion before the public does — the strongest, most textbook fit for the thesis in this batch. The end-of-June term timing also aligns with the Court's well-known historical pattern of clearing its docket by late June.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPSONG-26JUL04",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Billboard's tracking week for a Jul 4-dated chart falls after today's judging date, so even the industry mid-week tracking projections that let insiders forecast late in a tracking week do not yet exist — nobody, including labels, has data to know this outcome yet.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMRELEASEDATE-NEWKEN",
+  "insider_group": "Kendrick Lamar's label/management team, who control and know the release calendar in advance",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Release dates are typically known to the artist's team and label well ahead of public announcement, per the standard pattern for album releases, but plans can and do slip, and nothing here confirms a release is already locked in for this window. Moderate, not strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSWIFTKELCEWEDDINGLOCATION-30",
+  "insider_group": "Taylor Swift, Travis Kelce, and their close wedding-planning circle, if a location has already been chosen",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Rules describe a resolution horizon out to Jan 1, 2030 ('No Wedding Reported' otherwise), but this particular market instance closes Jul 4, 2026 — a much nearer deadline than the rules' stated backstop, suggesting this is one snapshot of a recurring/rolling series rather than the final word on the couple's wedding.",
+  "resolution_source_risk": "Depends on a Source Agency publicly reporting the location of the first ceremony; a private/unreported ceremony could delay resolution past the close even if the location is already fixed.",
+  "rationale": "Wedding location is a highly personal decision that, once made, is known only to the couple and a very small planning circle before any public report — a textbook small-group-already-knows case if a decision exists. But there is no confirmation in the payload that a location has actually been chosen this early, so moderate rather than strong.",
+  "researched": false
+ }
+]
