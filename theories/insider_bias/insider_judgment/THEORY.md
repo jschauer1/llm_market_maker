@@ -496,6 +496,26 @@ and full breakdown in Learnings below.
 
 ## Learnings
 
+- 2026-08-26 — **Full-population judgment coverage; the pre-registered
+  NO-side rule replicated out of sample.** All 457 gate-plausible events
+  from the tier-A walk are now judged (runs `...judged-s200`, `-s200b`,
+  `-s57`; 1,561 market rows). The bet rule pre-registered after s200 —
+  strong-or-moderate verdict, NO-side favorite, first-qualifying entry —
+  scored **+4.92pts net (p=0.0008, 312 rows / 85 events) on the 257
+  events judged after pre-registration**, vs +5.34 (p=0.0018) on the
+  round that generated it; pooled +5.10, p<0.0001, win rate 0.922 at
+  mean ask 0.863. Moderate-NO replicated stronger (+5.13, p=0.003);
+  strong-NO in direction but weaker (+4.29, p=0.096). The NO bucket
+  ladder is monotone and significant on the full population (+6.50 /
+  +4.52 / −1.96); every YES cell stays flat-to-negative — judgment adds
+  selection only on the NO side, consistent with the optimism-tax
+  mechanism and with strong-YES's bleed tracing to sealed-tabulation
+  award families (see 2026-08-26 log). Timing: uniform 3-2d late entry
+  underperforms first-qualifying entry on the full set (+2.32 vs
+  +5.10); only strong-NO tolerates late entry. Promotion still requires
+  live settlements; the proposed v4 procedure (NO-side-only betting
+  rule, dtc + divergence flag recorded per row, award families gated)
+  awaits the user's ratification.
 - 2026-08-25/26 — **Two backtests at scale: screen+gate is breakeven,
   and judgment shows its first predicted ordering.** Tier A
   (`backtest-2026-08-25-insider-fullcov`): every non-mention survivor in
