@@ -189,9 +189,9 @@ settling 400,000 markets a day that must be scoped around before any
 fetch, per-day candle volume that has to be summed into a lifetime total
 with a warm-up window, and a category pre-filter that must not leak into
 the screen under test. A theory with a different thesis inherits none of
-them, which is why that machinery is shared through the family's own
-parent package (as `theories/insider_bias/screen.py` already is) rather
-than through `tools/`.
+these quirks — which is why machinery like this belongs in the family's
+own parent package, where `theories/insider_bias/screen.py` already
+sits, rather than in `tools/`.
 
 So: **there is no `tools/backtest.py` replay engine and no `backtest()`
 method on the `Theory` contract, and neither gets built.** A second
