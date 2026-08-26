@@ -68,8 +68,10 @@ outside the repo, and `migrate_kalshi_trader.py` can regenerate them if a
 v1-specific question ever needs answering.
 
 **2026-08-24 — item 1 of the "what would settle it" list below is now done.**
-A tier A backtest of the stage-1 screen alone (`theories/insider_bias/
-insider_judgment/backtest.py`, `run_id=backtest-2026-08-24-stage1-90d`) replayed `screen.py`
+A tier A backtest of the stage-1 screen alone (then
+`insider_judgment/backtest.py`, since 2026-08-25
+`theories/insider_bias/replay.py`;
+`run_id=backtest-2026-08-24-stage1-90d`) replayed `screen.py`
 — unchanged since v1 — against real point-in-time candlesticks over the last
 90 days: 200 real screen hits, `calibration_edge_net = +1.38pts` overall.
 That answers the exact question that kept this `under_review`: the v1
@@ -109,6 +111,17 @@ What's left to settle the theory as a whole, roughly in order of value:
    answered for stage 1 alone (both are positive); still open for stage 2/3.
 
 ## Version
+
+**No version bump — 2026-08-25 module move.** The tier A replay of the
+shared stage-1 screen moved from `insider_judgment/backtest.py` to
+`theories/insider_bias/replay.py`, and the `is_mention_family` ticker
+classifier from `mention_family/mention_bucket.py` to
+`theories/insider_bias/families.py` — both into the shared parent, beside
+the `screen.py` they serve. No decision logic changed and neither theory's
+version bumps: both call the same functions with the same arguments and
+get the same results. The move restores the rule that a theory folder
+never imports a sibling theory's folder, now enforced by
+`tests/test_conventions.py::test_no_theory_imports_a_sibling_theory`.
 
 **3** (2026-08-24) — *Marks the point where the mention-family discovery
 happened; this theory's own decision procedure (Stages 1–6 below) did not
@@ -469,7 +482,8 @@ The stage-1 screen alone is tier A and can be backtested over full history
 using `tools/kalshi/history.py`. That measures whether the *filter* selects
 markets that beat their price — useful on its own, and uncontaminated.
 
-**Built 2026-08-24: `theories/insider_bias/insider_judgment/backtest.py`.** The candle→market
+**Built 2026-08-24** (as `insider_judgment/backtest.py`; moved to the
+shared parent as `theories/insider_bias/replay.py` on 2026-08-25)**.** The candle→market
 adapter this section used to ask for now exists (`replay_market`, reusing the
 real, unmodified `screen.screen()` against reconstructed daily candles —
 `no_ask ≈ 1 - yes_bid_close`, exactly as this section originally specified).

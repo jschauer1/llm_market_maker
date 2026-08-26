@@ -15,9 +15,12 @@ carry the discovery history; this theory's own history starts fresh from
 that point, not from zero -- the backtest evidence moved with it (see
 `migrate_from_insider_bias.py` in this folder, run once on 2026-08-24).
 
-`screen.is_mention_family` used to live in `theories/insider_bias/screen.py`
-and moved here in the same split -- it is this theory's classifier now, not
-a stage of insider_bias's.
+`is_mention_family` lives in `theories/insider_bias/families.py`, the
+shared parent, because `insider_judgment`'s full-coverage backtest depends
+on it too (to define its complement population). It is imported here so
+`mention_bucket.is_mention_family` still resolves for this theory's own
+code and tests. It does not live in `screen.py`: the 2026-08-24 theory
+split established it is not a stage of insider_bias's screen.
 
 **Price-binned buckets, not one flat rate.** The first version of this
 mechanism (while still inside insider_bias) used ONE probability (0.871,
@@ -81,6 +84,7 @@ from tools import buckets, ledger, provenance, score
 from tools.domain import Candidate, Edge, Market, ScoredCandidate
 from tools.sizing import fee_pts
 from theories.insider_bias import screen
+from theories.insider_bias.families import is_mention_family
 
 THEORY_ID = "mention_family"
 THEORY_VERSION = 1
@@ -105,16 +109,6 @@ MEASURED_RATE_RUN_ID = "backtest-2026-08-24-stage1-90d"
 #: never a prior placeholder. Kept explicit so a caller passing PRIORS
 #: doesn't have to guess what happens below MIN_BUCKET_N.
 PRIORS: dict[str, float] = {name: 0.0 for _, _, name in PRICE_BINS}
-
-
-def is_mention_family(series_ticker: str) -> bool:
-    """True for "will X mention/say/do Y" series.
-
-    Accepts either a series ticker (`KXTRUMPMENTION`) or a full market
-    ticker (`KXTRUMPMENTION-26JUL01-MAKE`); the pattern only needs the
-    series prefix, which a market ticker always carries.
-    """
-    return "MENTION" in series_ticker or series_ticker.endswith(("SAY", "ACT"))
 
 
 def bucket_for_price(price: float) -> str:

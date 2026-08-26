@@ -39,9 +39,9 @@ without the contract.
   markets out of its public API ~60 days after close (see
   `kalshi/markets.py::list_settled`) — so rows lost to a crash may no
   longer exist upstream by the time the run is repeated. The worked
-  examples: `iter_settled_survivors` in `theories/insider_bias/
-  insider_judgment/backtest.py` is a generator *precisely so* the driver
-  can checkpoint after every series, and `theories/insider_bias/
+  examples: `iter_settled_survivors` in
+  `theories/insider_bias/replay.py` is a generator *precisely so* the
+  driver can checkpoint after every series, and `theories/insider_bias/
   mention_family/backtest.py` records hits and saves its checkpoint file
   per series, skipping completed series on resume. The rule covers
   **token spend the same as network time**: LLM usage can cut out at any
@@ -116,8 +116,8 @@ without the contract.
   (point-in-time truth), the `run_mode`/`run_id` plumbing through
   `theory.finish()`, the `backtest_runs` table, and `score.py` are the
   whole shared contribution. **There is no `tools/backtest.py` replay
-  engine, and none gets built** — `insider_judgment/backtest.py` shows why:
-  most of its design handles quirks (a combinatorial series settling
+  engine, and none gets built** — `theories/insider_bias/replay.py` shows
+  why: most of its design handles quirks (a combinatorial series settling
   400,000 markets a day, per-day candle volume that must be summed into a
   lifetime total, a fetch-scoping filter that must not leak into the screen
   under test) belonging to replaying *this* screen over Kalshi's

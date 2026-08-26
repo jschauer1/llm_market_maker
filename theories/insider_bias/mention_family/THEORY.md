@@ -77,6 +77,17 @@ confirm the price-binned model, not on the backtest alone.
 
 ## Version
 
+**No version bump — 2026-08-25 module move.** The tier A replay of the
+shared stage-1 screen moved from `insider_judgment/backtest.py` to
+`theories/insider_bias/replay.py`, and the `is_mention_family` ticker
+classifier from `mention_family/mention_bucket.py` to
+`theories/insider_bias/families.py` — both into the shared parent, beside
+the `screen.py` they serve. No decision logic changed and neither theory's
+version bumps: both call the same functions with the same arguments and
+get the same results. The move restores the rule that a theory folder
+never imports a sibling theory's folder, now enforced by
+`tests/test_conventions.py::test_no_theory_imports_a_sibling_theory`.
+
 **1** (2026-08-24) — initial split, `theory_id='mention_family'`. Procedure:
 `theories.insider_bias.screen.screen()` (shared with `insider_judgment`) →
 `is_mention_family` narrows to this ticker family → each candidate is
@@ -110,7 +121,8 @@ stops meaning the same thing in both places.
 
 ## Stage 2 — the mention-family filter and price-binned edge
 
-`mention_bucket.is_mention_family(series_ticker)` narrows stage-1 hits to
+`is_mention_family(series_ticker)` — defined in the shared parent's
+`families.py`, imported by `mention_bucket` — narrows stage-1 hits to
 series whose ticker contains `MENTION` or ends in `SAY`/`ACT`. Everything
 past this point is mechanical — see `mention_bucket.py`'s module docstring
 for the full reasoning behind every design choice below; this section is
@@ -189,9 +201,9 @@ own accumulated history. Say so every time it is quoted; see
 ## How to backtest
 
 **Tier A** — no LLM anywhere in the decision path. Rerunning the original
-90-day backtest (`theories/insider_bias/insider_judgment/backtest.py`,
-which lives with the sibling theory since it tests that theory's shared
-stage-1 screen — this theory's evidence rode along as a byproduct) over a
+90-day backtest (`theories/insider_bias/replay.py`, which lives in the
+shared parent since it replays the stage-1 screen both theories share —
+this theory's evidence rode along as a byproduct) over a
 longer window, or a more recent one, would extend this theory's own
 evidence directly. That infrastructure (the `KXMVECROSSCATEGORY` volume
 trap, the series-scoped fetch, `candidate_series()`) is documented in that

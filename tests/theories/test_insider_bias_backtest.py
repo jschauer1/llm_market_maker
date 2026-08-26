@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 
 import pytest
 
-from theories.insider_bias.insider_judgment import backtest
+from theories.insider_bias import replay as backtest
 from tools.domain import Market
 
 

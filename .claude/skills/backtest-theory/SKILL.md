@@ -36,16 +36,19 @@ also part of the decision path. Record the later of the two cutoffs as
 
 ## 2. Enforce the rules
 
-- **The replay code lives in the theory's folder**, as `backtest.py` by
-  convention — `theories/insider_bias/insider_judgment/backtest.py` is the
-  worked example. The harness gives you point-in-time data, run identity,
-  tiers and scoring; reconstructing *this* theory's decision at a past
-  moment is thesis-specific and stays local. **Never write or extend a
-  shared replay engine** (`tools/backtest.py`), and never add a
-  `backtest()` method to the `Theory` contract. A backtest is a driver
-  script that builds a backtest-mode context and calls the same `screen()`
-  and `price()` the live path calls — replaying a reimplementation of the
-  screen is a backtest of nothing.
+- **The replay code lives with the theory**, as `backtest.py` in its
+  folder by convention — `theories/insider_bias/mention_family/backtest.py`
+  is the worked example. When sibling theories replay the *same* screen,
+  the shared half moves up to their shared parent, never to `tools/`:
+  `theories/insider_bias/replay.py` is that case. The harness gives you
+  point-in-time data, run identity, tiers and scoring; reconstructing a
+  theory's decision at a past moment is thesis-specific and stays on the
+  theory side. **Never write or extend a shared replay engine**
+  (`tools/backtest.py`), and never add a `backtest()` method to the
+  `Theory` contract. A backtest is a driver script that builds a
+  backtest-mode context and calls the same `screen()` and `price()` the
+  live path calls — replaying a reimplementation of the screen is a
+  backtest of nothing.
 - **`TheoryContext(run_mode="backtest")` is what a replay keys on.** Build
   the context once with `run_mode="backtest"` and a real `run_id` (not
   `"live"`) — `TheoryContext.build(..., run_mode="backtest", run_id=...)` —

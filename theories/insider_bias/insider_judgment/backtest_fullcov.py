@@ -30,7 +30,8 @@ What this measures, and what it cannot:
 Mention-family series are excluded entirely: they are the sibling
 theory's population, already covered at full depth by
 `backtest-2026-08-25-mention-fullcov`, and their rows live under that
-theory. `is_mention_family` is the same classifier both theories share.
+theory. `is_mention_family`, from the shared parent's `families.py`, is
+the same classifier both theories share.
 
 Run:
     python -m theories.insider_bias.insider_judgment.backtest_fullcov enumerate
@@ -55,9 +56,9 @@ from pathlib import Path
 from tools import db, ledger, provenance, score
 from tools.kalshi import cache as history_cache
 from tools.kalshi import history
-from theories.insider_bias.insider_judgment import backtest as sibling
+from theories.insider_bias import replay as sibling
 from theories.insider_bias.insider_judgment import gate
-from theories.insider_bias.mention_family.mention_bucket import is_mention_family
+from theories.insider_bias.families import is_mention_family
 
 THEORY_ID = "insider_judgment"
 THEORY_VERSION = 3

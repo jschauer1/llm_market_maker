@@ -4,11 +4,15 @@ overrides the workflow, a Verdict can never grow a number, the migration
 shim is gone for good, and the actually-running registry has no drift
 between code and DB."""
 
+import ast
 import pytest
 from dataclasses import fields
+from pathlib import Path
 
 from tools import db, domain, registry
 from tools.theory import Theory, TheoryRun
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_every_theory_package_exposes_a_conforming_singleton():
@@ -78,4 +82,61 @@ def test_the_real_registry_has_no_drift():
         "the real theory registry has drifted between code and DB -- "
         "a run recorded under this state would be recorded under the "
         "wrong procedure identity:\n" + "\n".join(problems)
+    )
+
+
+def _absolute_module(path: Path, node: ast.ImportFrom) -> str:
+    """The module an ImportFrom names, resolved if it is relative.
+
+    `from ..mention_family import x` inside insider_judgment reaches a
+    sibling exactly as an absolute import would; resolving it here means
+    the rule cannot be dodged by writing the import the other way.
+    """
+    if not node.level:
+        return node.module or ""
+    parts = list(path.relative_to(ROOT).with_suffix("").parts)
+    base = parts[:-1]                      # the file's own package
+    for _ in range(node.level - 1):
+        base = base[:-1]
+    return ".".join(base + ([node.module] if node.module else []))
+
+
+def _imported_modules(path: Path) -> list[str]:
+    tree = ast.parse(path.read_text(encoding="utf-8"))
+    names: list[str] = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            names.extend(alias.name for alias in node.names)
+        elif isinstance(node, ast.ImportFrom):
+            names.append(_absolute_module(path, node))
+    return names
+
+
+def test_no_theory_imports_a_sibling_theory():
+    """A theory folder stays self-sufficient to run.
+
+    Shared ancestry goes through a shared parent module -- for the
+    insider_bias family, screen.py / replay.py / families.py -- or through
+    tools/. Never through a sibling theory's folder, which would make
+    understanding one theory require reading two. Parsed with ast, so
+    checking this imports nothing.
+    """
+    packages = {
+        type(theory).__module__.rsplit(".", 1)[0]
+        for theory in registry.discover().values()
+    }
+    problems = []
+    for pkg in sorted(packages):
+        pkg_dir = ROOT.joinpath(*pkg.split("."))
+        siblings = packages - {pkg}
+        for path in sorted(pkg_dir.rglob("*.py")):
+            for name in _imported_modules(path):
+                for other in siblings:
+                    if name == other or name.startswith(other + "."):
+                        rel = path.relative_to(ROOT).as_posix()
+                        problems.append(f"{rel} imports {name}")
+    assert problems == [], (
+        "a theory imports a sibling theory's folder -- route shared code "
+        "through a shared parent module or tools/ instead:\n"
+        + "\n".join(problems)
     )

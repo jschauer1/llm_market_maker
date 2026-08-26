@@ -37,7 +37,7 @@ from datetime import datetime
 from pathlib import Path
 
 from theories.insider_bias import screen
-from theories.insider_bias.insider_judgment.backtest import systematic_sample
+from theories.insider_bias.replay import systematic_sample
 from theories.insider_bias.mention_family import mention_bucket
 from tools import board as board_tool, db
 

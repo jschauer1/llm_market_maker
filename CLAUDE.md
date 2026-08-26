@@ -167,7 +167,8 @@ implementation; delete the local copy), elevating knowledge is a
 **distillation** (the raw note stays behind as the audit trail).
 
 Stays in the theory folder: screen, pricing and pipeline code; the backtest
-replay (`backtest.py`); judging prompts (`prompts/`); the run procedure
+replay (`backtest.py`, or the family's shared parent when siblings replay
+one screen — never `tools/`); judging prompts (`prompts/`); the run procedure
 (`RUNBOOK.md`); raw research notes (`NOTES.md`); and any research data the
 theory reads. Always elevated: durable facts (`theory_facts`), everything
 measured (the ledger and scores), ideas considered or dropped (the idea
@@ -182,9 +183,9 @@ identity (`run_mode="backtest"` and a real `run_id`, propagated everywhere
 by `finish()`; the `backtest_runs` table), and scoring by run id.
 Everything else is thesis-specific: which slice of history is even
 fetchable, how to reconstruct this theory's decision without lookahead, and
-which approximations that forces. Most of `insider_judgment/backtest.py`'s
-design cost is not general-purpose — it belongs to replaying *this
-screen* over Kalshi's settled-market API: one combinatorial series
+which approximations that forces. Most of `theories/insider_bias/replay.py`'s
+design cost is not general-purpose — it belongs to replaying *this screen*
+over Kalshi's settled-market API: one combinatorial series
 settling 400,000 markets a day that must be scoped around before any
 fetch, per-day candle volume that has to be summed into a lifetime total
 with a warm-up window, and a category pre-filter that must not leak into
@@ -225,8 +226,10 @@ needs must surface in a shared structure** — `THEORY.md`, the database, or
 reading its `NOTES.md` has broken that surface, and the fix is distillation
 upward, not a repo level that reads every notebook. Symmetrically, a theory
 folder must stay self-sufficient to run: **no imports from a sibling
-theory's folder** — shared ancestry goes through a shared parent module (as
-`theories/insider_bias/screen.py` does) or through `tools/`.
+theory's folder** — shared ancestry goes through a shared parent module
+(`theories/insider_bias/` holds `screen.py`, `replay.py` and `families.py`
+for exactly this reason) or through `tools/`. Enforced by
+`tests/test_conventions.py::test_no_theory_imports_a_sibling_theory`.
 
 ## Never state a probability you introspected
 

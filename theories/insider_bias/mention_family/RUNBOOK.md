@@ -6,8 +6,9 @@ no web search, nothing to dispatch. One function call chain, safe to run
 inline.
 
 Current version: **1**. Changing `PRICE_BINS`, the mention-family pattern
-in `mention_bucket.is_mention_family`, or the volume-tiebreak logic is a
-decision-procedure change and bumps the version.
+in `is_mention_family` (in the shared parent's `families.py` since
+2026-08-25, imported by `mention_bucket`), or the volume-tiebreak logic is
+a decision-procedure change and bumps the version.
 
 ## Standard run — inside the validated 14-day window
 

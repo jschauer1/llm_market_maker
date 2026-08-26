@@ -1,4 +1,9 @@
-"""insider_bias — tier A backtest of the stage-1 screen alone.
+"""insider_bias — tier A replay of the shared stage-1 screen.
+
+Lives in the shared parent because the screen it replays (`screen.py`) is
+shared by every theory in this family, not owned by one leaf. Moved here
+from `insider_judgment/backtest.py` on 2026-08-25 with no change to any
+logic.
 
 THEORY.md's Status section names this the single most useful evidence this
 theory could get right now: v2 sits at n=0 with every claimed edge a `prior`

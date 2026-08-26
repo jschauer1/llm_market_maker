@@ -30,8 +30,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from tools.kalshi import cache as history_cache
-from theories.insider_bias.insider_judgment import backtest as sibling
-from theories.insider_bias.mention_family.mention_bucket import is_mention_family
+from theories.insider_bias import replay as sibling
+from theories.insider_bias.families import is_mention_family
 
 WINDOW_MIN_CLOSE = int(datetime(2026, 5, 26, tzinfo=timezone.utc).timestamp())
 WINDOW_MAX_CLOSE = int(

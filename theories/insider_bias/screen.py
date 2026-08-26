@@ -25,7 +25,7 @@ top-level module.
 `KXMVECROSSCATEGORY`, which alone settles 400,000+ markets per day and would
 otherwise flood any settled-history walk (see
 `tools/kalshi/markets.py::list_settled`'s docstring, and
-`insider_judgment/backtest.py`'s module docstring for the full account of
+`replay.py`'s module docstring for the full account of
 how that was discovered). Known trade-off: excluding by whole league is
 cheap and safe against the live-score majority, at the cost of dropping
 league-adjacent non-game markets (call-ups, retirements, franchise

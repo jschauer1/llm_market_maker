@@ -35,12 +35,12 @@ Sep 15, and every live run after).
 Two deliberate design choices:
 
 1. **Same population definition as the original run, narrowed by family.**
-   Series come from the sibling machinery's `candidate_series()` (same
+   Series come from the shared parent's `candidate_series()` (same
    `NO_CATEGORIES` / `is_excluded` / recency filters the original run
    used), then narrowed to `is_mention_family`. The eligible-series rule
    stays identical, so a difference in results means different markets,
    not a different population rule.
-2. **Same replay, byte for byte.** Hits come from the sibling's
+2. **Same replay, byte for byte.** Hits come from the shared parent's
    `replay_market()` unmodified — same screen, same daily-candle entry at
    the closing ask, same volume warm-up. This module only orchestrates,
    instruments, and records. The one liberty taken is a read-through cache
@@ -75,7 +75,7 @@ from pathlib import Path
 from tools import db, ledger, score
 from tools.kalshi import history
 from theories.insider_bias import screen
-from theories.insider_bias.insider_judgment import backtest as sibling
+from theories.insider_bias import replay as sibling
 from theories.insider_bias.mention_family.mention_bucket import (
     THEORY_ID,
     THEORY_VERSION,
@@ -104,7 +104,7 @@ SERIES_RECENCY_DAYS = 450.0
 
 RATIONALE = (
     "Tier A mention-family full-coverage backtest: same shared stage-1 "
-    "screen replayed by the sibling machinery's replay_market() over EVERY "
+    "screen replayed by the shared parent's replay_market() over EVERY "
     "settled mention-family survivor in the API-reachable close window "
     "(~2026-06-22 .. 2026-08-24; older markets are archived out of "
     "Kalshi's API), where the original run replayed a 600-of-18,430 "
