@@ -99,8 +99,11 @@ Append to `RESEARCH_LOG.md`:
 **Next:** what is worth picking up next session.
 ```
 
-Theory-specific findings also go in that theory's `THEORY.md` Learnings.
-This log is what makes a year of sessions accumulate instead of repeat.
+Keep this log cross-cutting. Theory-specific findings go in that theory's
+`NOTES.md` — dated, raw, append-only — and the log entry points at them
+rather than repeating them; `THEORY.md` changes only when the claim, the
+procedure, or the status changes. This log is what makes a year of sessions
+accumulate instead of repeat.
 
 ## 4. Report for a human
 

@@ -122,7 +122,9 @@ question below is answerable from data already on disk.
    neither.
 
 Report what you found either way. "n=29, inside the noise, no slice tested
-yet" is a real result and belongs in `THEORY.md` Learnings.
+yet" is a real result and belongs in that theory's `NOTES.md` — distilled
+into `THEORY.md` only if it changes the theory's standing: a status change,
+a version bump, or a claim you can no longer make.
 
 ## 6. Retirement is the user's call
 
