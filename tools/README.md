@@ -99,6 +99,31 @@ without the contract.
   `max_payout` — the at-risk decomposition assumes that portion is binary.
   A basket that can genuinely land in between needs a different definition
   of `won` for a multi-outcome position; that is not built.
+- **For a backtest, this layer owns time, bookkeeping and scoring; the
+  theory owns the replay.** `kalshi/history.py` and `snapshot.py`
+  (point-in-time truth), the `run_mode`/`run_id` plumbing through
+  `theory.finish()`, the `backtest_runs` table, and `score.py` are the
+  whole shared contribution. **There is no `tools/backtest.py` replay
+  engine, and none gets built** — `insider_judgment/backtest.py` shows why:
+  most of its design handles quirks (a combinatorial series settling
+  400,000 markets a day, per-day candle volume that must be summed into a
+  lifetime total, a fetch-scoping filter that must not leak into the screen
+  under test) belonging to replaying *this* screen over Kalshi's
+  settled-market API — a theory with a different thesis inherits none of
+  them. A shared engine would have to either anticipate every such quirk or
+  paper over it silently, and a second theory-local backtest resembling the
+  first is not evidence that it could. Narrow primitives still promote one
+  at a time under the rule below — `systematic_sample`, a checkpointed
+  per-series iterator, a candle-walk state reconstructor — as plain
+  functions, never as a framework that inverts control over the theory.
+- **Code elevates by caller count; knowledge elevates by audience.** The
+  promotion rule below moves a helper into `tools/` when a second theory
+  really calls it. A research note moves instead into whatever the *repo
+  level* reads: `THEORY.md` if it changes the theory's claims, the database
+  if it is a fact or a result, `RESEARCH_LOG.md` if it is session
+  narrative. Raw notes (a theory's `NOTES.md`) never move at all — they get
+  summarized, and the raw entry stays as the audit trail. See CLAUDE.md,
+  "What lives in a theory, and what gets elevated".
 
 ## Writing a new tool
 
