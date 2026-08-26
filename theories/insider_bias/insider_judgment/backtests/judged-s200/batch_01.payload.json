@@ -1,0 +1,741 @@
+[
+ {
+  "event_ticker": "KXALBUMSALES-YOUS-ACT",
+  "series_ticker": "KXALBUMSALES",
+  "title": "Will you seem pretty sad for a girl so in love have at least 475,000 Activity (Combined Sales) on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love?",
+  "close_time": "2026-06-19T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMSALES-YOUS-ACT-475000",
+    "title": "Will you seem pretty sad for a girl so in love have at least 475,000 Activity (Combined Sales) on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love?",
+    "rules_primary": "If you seem pretty sad for a girl so in love by Olivia Rodrigo has at least 475,000 Activity (Combined Sales) on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love, then the market resolves to Yes.",
+    "rules_secondary": "If the market specifies \"Pure Album Sales\", this event will specifically encompass the number listed under the \"Albums\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIf the market specifies \"Activity (Combined Sales)\", this event will specifically encompass the number listed under the \"Activity\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIMPORTANT INFORMATION: If data is unavailable or partially unavailable by Jun 26, 2026, then all affected markets resolve to No.\n\n \nHits Daily Double recently adjusted the release timing of its weekly Top 50 Album Chart, publishing the chart with a Thursday date instead of the previously-used Friday date. Given the changed schedule of release from Friday to Thursday, Kalshi will resolve future markets using the chart dated Thursday as the Contract Underlying, pursuant to Rule 7.2(a).",
+    "close_time": "2026-06-19T03:59:00Z"
+   },
+   {
+    "ticker": "KXALBUMSALES-YOUS-ACT-450000",
+    "title": "Will you seem pretty sad for a girl so in love have at least 450,000 Activity (Combined Sales) on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love?",
+    "rules_primary": "If you seem pretty sad for a girl so in love by Olivia Rodrigo has at least 450,000 Activity (Combined Sales) on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love, then the market resolves to Yes.",
+    "rules_secondary": "If the market specifies \"Pure Album Sales\", this event will specifically encompass the number listed under the \"Albums\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIf the market specifies \"Activity (Combined Sales)\", this event will specifically encompass the number listed under the \"Activity\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIMPORTANT INFORMATION: If data is unavailable or partially unavailable by Jun 26, 2026, then all affected markets resolve to No.\n\n \nHits Daily Double recently adjusted the release timing of its weekly Top 50 Album Chart, publishing the chart with a Thursday date instead of the previously-used Friday date. Given the changed schedule of release from Friday to Thursday, Kalshi will resolve future markets using the chart dated Thursday as the Contract Underlying, pursuant to Rule 7.2(a).",
+    "close_time": "2026-06-19T03:59:00Z"
+   },
+   {
+    "ticker": "KXALBUMSALES-YOUS-ACT-425000",
+    "title": "Will you seem pretty sad for a girl so in love have at least 425,000 Activity (Combined Sales) on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love?",
+    "rules_primary": "If you seem pretty sad for a girl so in love by Olivia Rodrigo has at least 425,000 Activity (Combined Sales) on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love, then the market resolves to Yes.",
+    "rules_secondary": "If the market specifies \"Pure Album Sales\", this event will specifically encompass the number listed under the \"Albums\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIf the market specifies \"Activity (Combined Sales)\", this event will specifically encompass the number listed under the \"Activity\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIMPORTANT INFORMATION: If data is unavailable or partially unavailable by Jun 26, 2026, then all affected markets resolve to No.\n\n \nHits Daily Double recently adjusted the release timing of its weekly Top 50 Album Chart, publishing the chart with a Thursday date instead of the previously-used Friday date. Given the changed schedule of release from Friday to Thursday, Kalshi will resolve future markets using the chart dated Thursday as the Contract Underlying, pursuant to Rule 7.2(a).",
+    "close_time": "2026-06-19T03:59:00Z"
+   },
+   {
+    "ticker": "KXALBUMSALES-YOUS-ACT-400000",
+    "title": "Will you seem pretty sad for a girl so in love have at least 400,000 Activity (Combined Sales) on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love?",
+    "rules_primary": "If you seem pretty sad for a girl so in love by Olivia Rodrigo has at least 400,000 Activity (Combined Sales) on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love, then the market resolves to Yes.",
+    "rules_secondary": "If the market specifies \"Pure Album Sales\", this event will specifically encompass the number listed under the \"Albums\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIf the market specifies \"Activity (Combined Sales)\", this event will specifically encompass the number listed under the \"Activity\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIMPORTANT INFORMATION: If data is unavailable or partially unavailable by Jun 26, 2026, then all affected markets resolve to No.\n\n \nHits Daily Double recently adjusted the release timing of its weekly Top 50 Album Chart, publishing the chart with a Thursday date instead of the previously-used Friday date. Given the changed schedule of release from Friday to Thursday, Kalshi will resolve future markets using the chart dated Thursday as the Contract Underlying, pursuant to Rule 7.2(a).",
+    "close_time": "2026-06-19T03:59:00Z"
+   },
+   {
+    "ticker": "KXALBUMSALES-YOUS-ACT-350000",
+    "title": "Will you seem pretty sad for a girl so in love have at least 350,000 Activity (Combined Sales) on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love?",
+    "rules_primary": "If you seem pretty sad for a girl so in love by Olivia Rodrigo has at least 350,000 Activity (Combined Sales) on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love, then the market resolves to Yes.",
+    "rules_secondary": "If the market specifies \"Pure Album Sales\", this event will specifically encompass the number listed under the \"Albums\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIf the market specifies \"Activity (Combined Sales)\", this event will specifically encompass the number listed under the \"Activity\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIMPORTANT INFORMATION: If data is unavailable or partially unavailable by Jun 26, 2026, then all affected markets resolve to No.\n\n \nHits Daily Double recently adjusted the release timing of its weekly Top 50 Album Chart, publishing the chart with a Thursday date instead of the previously-used Friday date. Given the changed schedule of release from Friday to Thursday, Kalshi will resolve future markets using the chart dated Thursday as the Contract Underlying, pursuant to Rule 7.2(a).",
+    "close_time": "2026-06-19T03:59:00Z"
+   },
+   {
+    "ticker": "KXALBUMSALES-YOUS-ACT-300000",
+    "title": "Will you seem pretty sad for a girl so in love have at least 300,000 Activity (Combined Sales) on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love?",
+    "rules_primary": "If you seem pretty sad for a girl so in love by Olivia Rodrigo has at least 300,000 Activity (Combined Sales) on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love, then the market resolves to Yes.",
+    "rules_secondary": "If the market specifies \"Pure Album Sales\", this event will specifically encompass the number listed under the \"Albums\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIf the market specifies \"Activity (Combined Sales)\", this event will specifically encompass the number listed under the \"Activity\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIMPORTANT INFORMATION: If data is unavailable or partially unavailable by Jun 26, 2026, then all affected markets resolve to No.\n\n \nHits Daily Double recently adjusted the release timing of its weekly Top 50 Album Chart, publishing the chart with a Thursday date instead of the previously-used Friday date. Given the changed schedule of release from Friday to Thursday, Kalshi will resolve future markets using the chart dated Thursday as the Contract Underlying, pursuant to Rule 7.2(a).",
+    "close_time": "2026-06-19T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXPULTEDNI-26JUL01",
+  "series_ticker": "KXPULTEDNI",
+  "title": "Will Bill Pulte formally hold the role of Acting Director of National Intelligence before July 7, 2026?",
+  "close_time": "2026-06-19T14:11:28Z",
+  "markets": [
+   {
+    "ticker": "KXPULTEDNI-26JUL01-07",
+    "title": "Will Bill Pulte formally hold the role of Acting Director of National Intelligence before July 7, 2026?",
+    "rules_primary": "If Bill Pulte formally holds the role of Acting Director of National Intelligence before July 7, 2026, then the market resolves to Yes.",
+    "rules_secondary": "For the purposes of this Contract, \"the Bill Pulte formally holds the Acting Director of National Intelligence\" means that the Bill Pulte has assumed the Acting Director of National Intelligence in an official capacity\u2014whether by appointment, election, succession, confirmation, designation, or an acting/interim assignment\u2014and has performed or is recognized to perform the duties or responsibilities of that role, unless otherwise specified by the Exchange.",
+    "close_time": "2026-06-19T14:11:28Z"
+   },
+   {
+    "ticker": "KXPULTEDNI-26JUL01",
+    "title": "Will Bill Pulte formally hold the role of Acting Director of National Intelligence before July 1, 2026?",
+    "rules_primary": "If Bill Pulte formally holds the role of Acting Director of National Intelligence before July 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "For the purposes of this Contract, \"the Bill Pulte formally holds the Acting Director of National Intelligence\" means that the Bill Pulte has assumed the Acting Director of National Intelligence in an official capacity\u2014whether by appointment, election, succession, confirmation, designation, or an acting/interim assignment\u2014and has performed or is recognized to perform the duties or responsibilities of that role, unless otherwise specified by the Exchange.",
+    "close_time": "2026-06-19T14:11:22Z"
+   },
+   {
+    "ticker": "KXPULTEDNI-26JUL01-0620",
+    "title": "Will Bill Pulte formally hold the role of Acting Director of National Intelligence before June 20, 2026?",
+    "rules_primary": "If Bill Pulte formally holds the role of Acting Director of National Intelligence before June 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "For the purposes of this Contract, \"the Bill Pulte formally holds the Acting Director of National Intelligence\" means that the Bill Pulte has assumed the Acting Director of National Intelligence in an official capacity\u2014whether by appointment, election, succession, confirmation, designation, or an acting/interim assignment\u2014and has performed or is recognized to perform the duties or responsibilities of that role, unless otherwise specified by the Exchange.",
+    "close_time": "2026-06-19T14:11:14Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLIUSACASAAMOR-26",
+  "series_ticker": "KXLIUSACASAAMOR",
+  "title": "Will Casa Amor happen in Love Island USA S8?",
+  "close_time": "2026-06-22T17:35:00Z",
+  "markets": [
+   {
+    "ticker": "KXLIUSACASAAMOR-26-AUG31",
+    "title": "Will Casa Amor happen in Love Island USA S8?",
+    "rules_primary": "If it is reported that Casa Amor occurs during Love Island USA Season 8 before Aug 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-22T17:35:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXCRITICALITY-26AUG",
+  "series_ticker": "KXCRITICALITY",
+  "title": "Which nuclear power companies will achieve criticality before Aug 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXCRITICALITY-26AUG-RADIANT",
+    "title": "Which nuclear power companies will achieve criticality before Aug 2026?",
+    "rules_primary": "If Radiant Industries achieves criticality before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXCRITICALITY-26AUG-OKLO",
+    "title": "Which nuclear power companies will achieve criticality before Aug 2026?",
+    "rules_primary": "If Oklo achieves criticality before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXCRITICALITY-26AUG-LAST",
+    "title": "Which nuclear power companies will achieve criticality before Aug 2026?",
+    "rules_primary": "If Last Energy achieves criticality before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXCRITICALITY-26AUG-ATOMIC",
+    "title": "Which nuclear power companies will achieve criticality before Aug 2026?",
+    "rules_primary": "If Atomic Alchemy achieves criticality before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXCRITICALITY-26AUG-AALO",
+    "title": "Which nuclear power companies will achieve criticality before Aug 2026?",
+    "rules_primary": "If Aalo Atomics achieves criticality before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-06T15:54:09Z"
+   },
+   {
+    "ticker": "KXCRITICALITY-26AUG-ANTARES",
+    "title": "Which nuclear power companies will achieve criticality before Aug 2026?",
+    "rules_primary": "If Antares Nuclear achieves criticality before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-23T15:15:44Z"
+   },
+   {
+    "ticker": "KXCRITICALITY-26AUG-VALAR",
+    "title": "Which nuclear power companies will achieve criticality before Aug 2026?",
+    "rules_primary": "If Valar Atomics achieves criticality before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-23T15:15:30Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXART-PETI26",
+  "series_ticker": "KXART",
+  "title": "Will the lot sold price of the Petite danseuse de quatorze ans by Edgar Degas on Sotheby's be above $30000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+  "close_time": "2026-06-25T01:45:36Z",
+  "markets": [
+   {
+    "ticker": "KXART-PETI26-30000000",
+    "title": "Will the lot sold price of the Petite danseuse de quatorze ans by Edgar Degas on Sotheby's be above $30000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Petite danseuse de quatorze ans by Edgar Degas on Sotheby's is above $30M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:45:36Z"
+   },
+   {
+    "ticker": "KXART-PETI26-28000000",
+    "title": "Will the lot sold price of the Petite danseuse de quatorze ans by Edgar Degas on Sotheby's be above $28000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Petite danseuse de quatorze ans by Edgar Degas on Sotheby's is above $28M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:45:36Z"
+   },
+   {
+    "ticker": "KXART-PETI26-26000000",
+    "title": "Will the lot sold price of the Petite danseuse de quatorze ans by Edgar Degas on Sotheby's be above $26000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Petite danseuse de quatorze ans by Edgar Degas on Sotheby's is above $26M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:45:36Z"
+   },
+   {
+    "ticker": "KXART-PETI26-24000000",
+    "title": "Will the lot sold price of the Petite danseuse de quatorze ans by Edgar Degas on Sotheby's be above $24000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Petite danseuse de quatorze ans by Edgar Degas on Sotheby's is above $24M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:45:36Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXART-PORT26",
+  "series_ticker": "KXART",
+  "title": "Will the lot sold price of the Portrait de Paul Hugot by Gustave Caillebotte on Sotheby's be above $6200000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+  "close_time": "2026-06-25T01:48:07Z",
+  "markets": [
+   {
+    "ticker": "KXART-PORT26-6200000",
+    "title": "Will the lot sold price of the Portrait de Paul Hugot by Gustave Caillebotte on Sotheby's be above $6200000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Portrait de Paul Hugot by Gustave Caillebotte on Sotheby's is above $6.2M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:48:07Z"
+   },
+   {
+    "ticker": "KXART-PORT26-6000000",
+    "title": "Will the lot sold price of the Portrait de Paul Hugot by Gustave Caillebotte on Sotheby's be above $6000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Portrait de Paul Hugot by Gustave Caillebotte on Sotheby's is above $6M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:48:07Z"
+   },
+   {
+    "ticker": "KXART-PORT26-5800000",
+    "title": "Will the lot sold price of the Portrait de Paul Hugot by Gustave Caillebotte on Sotheby's be above $5800000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Portrait de Paul Hugot by Gustave Caillebotte on Sotheby's is above $5.8M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:48:07Z"
+   },
+   {
+    "ticker": "KXART-PORT26-5600000",
+    "title": "Will the lot sold price of the Portrait de Paul Hugot by Gustave Caillebotte on Sotheby's be above $5600000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Portrait de Paul Hugot by Gustave Caillebotte on Sotheby's is above $5.6M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:48:07Z"
+   },
+   {
+    "ticker": "KXART-PORT26-5200000",
+    "title": "Will the lot sold price of the Portrait de Paul Hugot by Gustave Caillebotte on Sotheby's be above $5200000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Portrait de Paul Hugot by Gustave Caillebotte on Sotheby's is above $5.2M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:48:07Z"
+   },
+   {
+    "ticker": "KXART-PORT26-5000000",
+    "title": "Will the lot sold price of the Portrait de Paul Hugot by Gustave Caillebotte on Sotheby's be above $5000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Portrait de Paul Hugot by Gustave Caillebotte on Sotheby's is above $5M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:48:07Z"
+   },
+   {
+    "ticker": "KXART-PORT26-4600000",
+    "title": "Will the lot sold price of the Portrait de Paul Hugot by Gustave Caillebotte on Sotheby's be above $4600000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Portrait de Paul Hugot by Gustave Caillebotte on Sotheby's is above $4.6M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:48:07Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXART-TWO26",
+  "series_ticker": "KXART",
+  "title": "Will the lot sold price of the Two Studies for Self-Portrait by Francis Bacon on Sotheby's be above $14000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+  "close_time": "2026-06-25T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXART-TWO26-14000000",
+    "title": "Will the lot sold price of the Two Studies for Self-Portrait by Francis Bacon on Sotheby's be above $14000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Two Studies for Self-Portrait by Francis Bacon on Sotheby's is above $14M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T14:00:00Z"
+   },
+   {
+    "ticker": "KXART-TWO26-12000000",
+    "title": "Will the lot sold price of the Two Studies for Self-Portrait by Francis Bacon on Sotheby's be above $12000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Two Studies for Self-Portrait by Francis Bacon on Sotheby's is above $12M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T14:00:00Z"
+   },
+   {
+    "ticker": "KXART-TWO26-10000000",
+    "title": "Will the lot sold price of the Two Studies for Self-Portrait by Francis Bacon on Sotheby's be above $10000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Two Studies for Self-Portrait by Francis Bacon on Sotheby's is above $10M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:50:25Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMILANFW-26JUN30",
+  "series_ticker": "KXMILANFW",
+  "title": "Will Tom Brady be a runway model at any official Milan Fashion Week event?",
+  "close_time": "2026-06-24T22:29:39Z",
+  "markets": [
+   {
+    "ticker": "KXMILANFW-26JUN30",
+    "title": "Will Tom Brady be a runway model at any official Milan Fashion Week event?",
+    "rules_primary": "If Tom Brady is a runway model at any official 2026 Milan Fashion Week event, then the market resolves to Yes.",
+    "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.",
+    "close_time": "2026-06-24T22:29:39Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXPOTUSTWEETS-26JUL01",
+  "series_ticker": "KXPOTUSTWEETS",
+  "title": "How many Donald Trump posts on X the week ending on Jul 1, 2026?",
+  "close_time": "2026-06-22T18:26:58Z",
+  "markets": [
+   {
+    "ticker": "KXPOTUSTWEETS-26JUL01-0",
+    "title": "How many Donald Trump posts on X the week ending on Jul 1, 2026?",
+    "rules_primary": "If realDonaldTrump posts, quote posts, and reposts on X above 0 times (not including replies) after Issuance and before July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This will be determined by using the X API; deleted posts will be included if they are posted long enough to be picked up by it, which is called every five minutes. It will include all posts except replies.",
+    "close_time": "2026-06-22T18:26:58Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXRANKLIST1SONG-26JUN27",
+  "series_ticker": "KXRANKLIST1SONG",
+  "title": "Will drop dead be #1 on the Billboard Hot 100 in June 2026?",
+  "close_time": "2026-06-24T14:00:46Z",
+  "markets": [
+   {
+    "ticker": "KXRANKLIST1SONG-26JUN27-DRO",
+    "title": "Will drop dead be #1 on the Billboard Hot 100 in June 2026?",
+    "rules_primary": "If drop dead is #1 on the Billboard Hot 100 in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only Billboard charts dated between June 06, 2026, and June 27, 2026, inclusive, will be considered for this market. These are the first and last eligible chart dates for June 2026.\n\nThis market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-24T14:00:46Z"
+   },
+   {
+    "ticker": "KXRANKLIST1SONG-26JUN27-CUR",
+    "title": "Will the cure be #1 on the Billboard Hot 100 in June 2026?",
+    "rules_primary": "If the cure is #1 on the Billboard Hot 100 in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only Billboard charts dated between June 06, 2026, and June 27, 2026, inclusive, will be considered for this market. These are the first and last eligible chart dates for June 2026.\n\nThis market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-24T14:00:46Z"
+   },
+   {
+    "ticker": "KXRANKLIST1SONG-26JUN27-CHO",
+    "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 in June 2026?",
+    "rules_primary": "If Choosin' Texas is #1 on the Billboard Hot 100 in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only Billboard charts dated between June 06, 2026, and June 27, 2026, inclusive, will be considered for this market. These are the first and last eligible chart dates for June 2026.\n\nThis market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-24T14:00:46Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPSONG-26JUN27",
+  "series_ticker": "KXTOPSONG",
+  "title": "Will stupid song be #1 on the Billboard Hot 100 during the week of Jun 27, 2026",
+  "close_time": "2026-06-22T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPSONG-26JUN27-STU",
+    "title": "Will stupid song be #1 on the Billboard Hot 100 during the week of Jun 27, 2026",
+    "rules_primary": "If stupid song is #1 on the Billboard Hot 100  chart for the Week of Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-22T03:59:00Z"
+   },
+   {
+    "ticker": "KXTOPSONG-26JUN27-IKN",
+    "title": "Will I Knew It, I Knew You be #1 on the Billboard Hot 100 during the week of Jun 27, 2026",
+    "rules_primary": "If I Knew It, I Knew You is #1 on the Billboard Hot 100  chart for the Week of Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-22T03:59:00Z"
+   },
+   {
+    "ticker": "KXTOPSONG-26JUN27-CHO",
+    "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 during the week of Jun 27, 2026",
+    "rules_primary": "If Choosin' Texas is #1 on the Billboard Hot 100  chart for the Week of Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-22T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMOSTSTREAMED-26JUN19",
+  "series_ticker": "KXMOSTSTREAMED",
+  "title": "Most streamed song on ''you seem pretty sad for a girl so in love' by Olivia Rodrigo excluding the songs 'drop dead' and 'the cure' ' by Jun 19, 2026?",
+  "close_time": "2026-06-19T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXMOSTSTREAMED-26JUN19-STU",
+    "title": "Most streamed song on ''you seem pretty sad for a girl so in love' by Olivia Rodrigo excluding the songs 'drop dead' and 'the cure' ' by Jun 19, 2026?",
+    "rules_primary": "If 'stupid song' has the highest total stream count of any song on 'you seem pretty sad for a girl so in love' by Olivia Rodrigo EXCLUDING the songs 'drop dead' and 'the cure' on Spotify by Jun 19, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Total stream count will be determined using the Spotify desktop app at 10 AM ET, based on the exact number displayed at that time. Any updates or changes after 10 AM ET will NOT be considered.",
+    "close_time": "2026-06-19T14:00:00Z"
+   },
+   {
+    "ticker": "KXMOSTSTREAMED-26JUN19-EXP",
+    "title": "Most streamed song on ''you seem pretty sad for a girl so in love' by Olivia Rodrigo excluding the songs 'drop dead' and 'the cure' ' by Jun 19, 2026?",
+    "rules_primary": "If 'expectations' has the highest total stream count of any song on 'you seem pretty sad for a girl so in love' by Olivia Rodrigo EXCLUDING the songs 'drop dead' and 'the cure' on Spotify by Jun 19, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Total stream count will be determined using the Spotify desktop app at 10 AM ET, based on the exact number displayed at that time. Any updates or changes after 10 AM ET will NOT be considered.",
+    "close_time": "2026-06-19T14:00:00Z"
+   },
+   {
+    "ticker": "KXMOSTSTREAMED-26JUN19-BEG",
+    "title": "Most streamed song on ''you seem pretty sad for a girl so in love' by Olivia Rodrigo excluding the songs 'drop dead' and 'the cure' ' by Jun 19, 2026?",
+    "rules_primary": "If 'begged' has the highest total stream count of any song on 'you seem pretty sad for a girl so in love' by Olivia Rodrigo EXCLUDING the songs 'drop dead' and 'the cure' on Spotify by Jun 19, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Total stream count will be determined using the Spotify desktop app at 10 AM ET, based on the exact number displayed at that time. Any updates or changes after 10 AM ET will NOT be considered.",
+    "close_time": "2026-06-19T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMOSTSTREAMED-WIT26JUN19",
+  "series_ticker": "KXMOSTSTREAMED",
+  "title": "Most streamed song on ''Withness' by ANOTR excluding the songs 'Like it,' 'Talk To You,' 'Hold On, Let Go,' 'Sound of You'' by Jun 19, 2026?",
+  "close_time": "2026-06-19T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXMOSTSTREAMED-WIT26JUN19-ITS",
+    "title": "Most streamed song on ''Withness' by ANOTR excluding the songs 'Like it,' 'Talk To You,' 'Hold On, Let Go,' 'Sound of You'' by Jun 19, 2026?",
+    "rules_primary": "If 'It's So Nice' has the highest total stream count of any song on 'Withness' by ANOTR EXCLUDING the songs 'Like it,' 'Talk To You,' 'Hold On, Let Go,' and 'Sound of You' on Spotify by Jun 19, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Total stream count will be determined using the Spotify desktop app at 10 AM ET, based on the exact number displayed at that time. Any updates or changes after 10 AM ET will NOT be considered.",
+    "close_time": "2026-06-19T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTECHRANKLISTAICODE-26JUN20",
+  "series_ticker": "KXTECHRANKLISTAICODE",
+  "title": "Top Coding AI this week?",
+  "close_time": "2026-06-20T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTECHRANKLISTAICODE-26JUN20-CLAU",
+    "title": "Top Coding AI this week?",
+    "rules_primary": "If Claude is the #1 model on LM Code Arena Leaderboard on Jun 20, 2026 at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "If two models are tied under Rank, then the model with the highest Arena Score will resolve to Yes. If two models are still tied after that, then the model with the most votes will resolve to Yes. If two models are still tied after that, the model that was released earlier will resolve to Yes.",
+    "close_time": "2026-06-20T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLIUSAELIMINATIONW-26JUN19",
+  "series_ticker": "KXLIUSAELIMINATIONW",
+  "title": "Will Zach be eliminated from Love Island USA Season 8 before Jun 20, 2026?",
+  "close_time": "2026-06-20T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN19-ZAC",
+    "title": "Will Zach be eliminated from Love Island USA Season 8 before Jun 20, 2026?",
+    "rules_primary": "If Zach is officially eliminated from Love Island USA: Season 8 Before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-20T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN19-SIN",
+    "title": "Will Sincere be eliminated from Love Island USA Season 8 before Jun 20, 2026?",
+    "rules_primary": "If Sincere is officially eliminated from Love Island USA: Season 8 Before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-20T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN19-MEL",
+    "title": "Will Melanie be eliminated from Love Island USA Season 8 before Jun 20, 2026?",
+    "rules_primary": "If Melanie is officially eliminated from Love Island USA: Season 8 Before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-20T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN19-KEN",
+    "title": "Will Kenzie be eliminated from Love Island USA Season 8 before Jun 20, 2026?",
+    "rules_primary": "If Kenzie is officially eliminated from Love Island USA: Season 8 Before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-20T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN19-KCC",
+    "title": "Will KC be eliminated from Love Island USA Season 8 before Jun 20, 2026?",
+    "rules_primary": "If KC is officially eliminated from Love Island USA: Season 8 Before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-20T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN19-KAY",
+    "title": "Will Kayda be eliminated from Love Island USA Season 8 before Jun 20, 2026?",
+    "rules_primary": "If Kayda is officially eliminated from Love Island USA: Season 8 Before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-20T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN19-JEN",
+    "title": "Will Jen be eliminated from Love Island USA Season 8 before Jun 20, 2026?",
+    "rules_primary": "If Jen is officially eliminated from Love Island USA: Season 8 Before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-20T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN19-COR",
+    "title": "Will Corbin be eliminated from Love Island USA Season 8 before Jun 20, 2026?",
+    "rules_primary": "If Corbin is officially eliminated from Love Island USA: Season 8 Before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-20T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN19-BRY",
+    "title": "Will Bryce be eliminated from Love Island USA Season 8 before Jun 20, 2026?",
+    "rules_primary": "If Bryce is officially eliminated from Love Island USA: Season 8 Before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-20T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN19-ANI",
+    "title": "Will Aniya be eliminated from Love Island USA Season 8 before Jun 20, 2026?",
+    "rules_primary": "If Aniya is officially eliminated from Love Island USA: Season 8 Before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-20T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN19-SOL",
+    "title": "Will Sol be eliminated from Love Island USA Season 8 before Jun 20, 2026?",
+    "rules_primary": "If Sol is officially eliminated from Love Island USA: Season 8 Before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-19T16:37:01Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN19-GAB",
+    "title": "Will Gabriel be eliminated from Love Island USA Season 8 before Jun 20, 2026?",
+    "rules_primary": "If Gabriel is officially eliminated from Love Island USA: Season 8 Before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-19T16:36:48Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBET-26-FAS",
+  "series_ticker": "KXBET",
+  "title": "Will ZENDAYA win Fashion Vanguard Award at 26th BET Awards?",
+  "close_time": "2026-06-29T18:01:22Z",
+  "markets": [
+   {
+    "ticker": "KXBET-26-FAS-ZEN",
+    "title": "Will ZENDAYA win Fashion Vanguard Award at 26th BET Awards?",
+    "rules_primary": "If ZENDAYA wins the Fashion Vanguard Award at the 26th BET Awards, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-29T18:01:22Z"
+   },
+   {
+    "ticker": "KXBET-26-FAS-TEY",
+    "title": "Will TEYANA TAYLOR win Fashion Vanguard Award at 26th BET Awards?",
+    "rules_primary": "If TEYANA TAYLOR wins the Fashion Vanguard Award at the 26th BET Awards, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-29T18:01:22Z"
+   },
+   {
+    "ticker": "KXBET-26-FAS-BEY",
+    "title": "Will BEYONC\u00c9 win Fashion Vanguard  award at 26th BET Awards?",
+    "rules_primary": "If BEYONC\u00c9 wins the Fashion Vanguard Award at the 26th BET Awards, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-29T18:01:22Z"
+   },
+   {
+    "ticker": "KXBET-26-FAS-ASA",
+    "title": "Will A$AP ROCKY win Fashion Vanguard Award at 26th BET Awards?",
+    "rules_primary": "If A$AP ROCKY wins the Fashion Vanguard Award at the 26th BET Awards, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-29T18:01:22Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFABLERESTORE-27",
+  "series_ticker": "KXFABLERESTORE",
+  "title": "Will it be reported by any of the Source Agencies that general access to Fable 5 is restored for US customers before Jul 31, 2026?",
+  "close_time": "2026-07-01T14:22:17Z",
+  "markets": [
+   {
+    "ticker": "KXFABLERESTORE-27-26JUL31",
+    "title": "Will it be reported by any of the Source Agencies that general access to Fable 5 is restored for US customers before Jul 31, 2026?",
+    "rules_primary": "If general access to Fable 5 is restored for US customers  after Issuance and before Jul 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-01T14:22:17Z"
+   },
+   {
+    "ticker": "KXFABLERESTORE-27-26JUL24",
+    "title": "Will it be reported by any of the Source Agencies that general access to Fable 5 is restored for US customers before Jul 24, 2026?",
+    "rules_primary": "If general access to Fable 5 is restored for US customers  after Issuance and before Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-01T14:22:17Z"
+   },
+   {
+    "ticker": "KXFABLERESTORE-27-26JUL17",
+    "title": "Will it be reported by any of the Source Agencies that general access to Fable 5 is restored for US customers before Jul 17, 2026?",
+    "rules_primary": "If general access to Fable 5 is restored for US customers  after Issuance and before Jul 17, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-01T14:22:17Z"
+   },
+   {
+    "ticker": "KXFABLERESTORE-27-26JUL10",
+    "title": "Will it be reported by any of the Source Agencies that general access to Fable 5 is restored for US customers before Jul 10, 2026?",
+    "rules_primary": "If general access to Fable 5 is restored for US customers  after Issuance and before Jul 10, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-01T14:22:17Z"
+   },
+   {
+    "ticker": "KXFABLERESTORE-27-26JUL03",
+    "title": "Will it be reported by any of the Source Agencies that general access to Fable 5 is restored for US customers before Jul 3, 2026?",
+    "rules_primary": "If general access to Fable 5 is restored for US customers  after Issuance and before Jul 3, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-01T14:22:17Z"
+   },
+   {
+    "ticker": "KXFABLERESTORE-27-26JUL01",
+    "title": "Will it be reported by any of the Source Agencies that general access to Fable 5 is restored for US customers before Jul 1, 2026?",
+    "rules_primary": "If general access to Fable 5 is restored for US customers  after Issuance and before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXFABLERESTORE-27-26JUN27",
+    "title": "Will it be reported by any of the Source Agencies that general access to Fable 5 is restored for US customers before Jun 27, 2026?",
+    "rules_primary": "If general access to Fable 5 is restored for US customers  after Issuance and before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXFABLERESTORE-27-26JUN20",
+    "title": "Will it be reported by any of the Source Agencies that general access to Fable 5 is restored for US customers before Jun 20, 2026?",
+    "rules_primary": "If general access to Fable 5 is restored for US customers  after Issuance and before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-06-20T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLLM1-26JUN20",
+  "series_ticker": "KXLLM1",
+  "title": "Best AI in Jun 2026?",
+  "close_time": "2026-06-20T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXLLM1-26JUN20-ANTH",
+    "title": "Best AI in Jun 2026?",
+    "rules_primary": "If Anthropic has the top-ranked LLM on Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If two models are tied under Rank (UB), then the model with the highest Arena Score will win. If two models are still tied after that, then the model with the most votes will win. If two models are still tied after that, the model that was released earlier will win. Important information: When checking the source for this market, check the 'Remove Style Control' toggle.",
+    "close_time": "2026-06-20T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPSLAUGHTERVOTE-26",
+  "series_ticker": "KXTRUMPSLAUGHTERVOTE",
+  "title": "Will exactly 6 justices vote for the petitioner in Trump v. Slaughter?",
+  "close_time": "2026-06-29T14:35:39Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPSLAUGHTERVOTE-26-6",
+    "title": "Will exactly 6 justices vote for the petitioner in Trump v. Slaughter?",
+    "rules_primary": "If exactly 6 justices vote in favor of the petitioner in Trump v. Slaughter, then the market resolves to Yes.",
+    "rules_secondary": "A justice is counted as voting in favor of the petitioner only if, according to the Court's final action, that justice supported a judgment that grants some or all relief requested by the petitioner. The number of votes for the petitioner is the number of justices who concurred in a judgment of the Court in favor of the petitioner, or dissented from the judgment against the petitioner. A justice must participate in the case and take a position aligned with granting relief to the petitioner for their vote to count.\n\nIf the petitioner prevails in the Court's final judgment, count all justices who joined the majority opinion, wrote or joined concurring opinions, or concurred in the judgment only. A justice who concurs in part and dissents in part will count only if the concurring portion includes a vote to grant the petitioner some relief. If the petitioner loses in the Court's final judgment, count all justices who dissented from the judgment and whose dissent, if adopted, would have granted some or all of the relief the petitioner sought. If a dissenting justice objects only to procedural aspects (e.g., they would have dismissed the case), and their position would not have resulted in granting relief to the petitioner, they are not counted. If the Court affirms in part and reverses in part, count any justice whose vote, opinion, or dissent supports any portion of the judgment that grants relief to the petitioner (e.g., reversal of a lower court ruling adverse to the petitioner).\n\nIf no majority opinion exists but a judgment is issued, count all justices who concurred in the judgment in favor of the petitioner, regardless of whether they joined the plurality, and count no justice who concurred in the judgment against the petitioner; apply the same principle to dissenters if the petitioner loses. For per curiam opinions, unless otherwise noted, treat unsigned per curiam opinions as representing all participating justices; if any justices issue a dissent or note non-participation, subtract them from the total to calculate votes for the petitioner. If an emergency order is the final disposition of the case, apply the same rules as a per curiam: if the petitioner wins, count all participating justices minus dissents; if the petitioner loses, count all dissenters (those who would have granted relief).\n\nIf the case is dismissed as improvidently granted (DIG), dismissed for mootness, vacated and remanded without decision, withdrawn or settled, or otherwise concluded without a final merits judgment, then the contract resolves as 0 votes for the petitioner. Even if justices issue separate opinions expressing support for the petitioner, they do not count unless a final judgment is issued. Justices who are recused or who do not participate are excluded from the total count. Only the final votes recorded in the Supreme Court's official slip opinion, summary disposition, or order will be used; leaked drafts or reported internal shifts are not relevant to resolution.",
+    "close_time": "2026-06-29T14:35:39Z"
+   },
+   {
+    "ticker": "KXTRUMPSLAUGHTERVOTE-26-5",
+    "title": "Will exactly 5 justices vote for the petitioner in Trump v. Slaughter?",
+    "rules_primary": "If exactly 5 justices vote in favor of the petitioner in Trump v. Slaughter, then the market resolves to Yes.",
+    "rules_secondary": "A justice is counted as voting in favor of the petitioner only if, according to the Court's final action, that justice supported a judgment that grants some or all relief requested by the petitioner. The number of votes for the petitioner is the number of justices who concurred in a judgment of the Court in favor of the petitioner, or dissented from the judgment against the petitioner. A justice must participate in the case and take a position aligned with granting relief to the petitioner for their vote to count.\n\nIf the petitioner prevails in the Court's final judgment, count all justices who joined the majority opinion, wrote or joined concurring opinions, or concurred in the judgment only. A justice who concurs in part and dissents in part will count only if the concurring portion includes a vote to grant the petitioner some relief. If the petitioner loses in the Court's final judgment, count all justices who dissented from the judgment and whose dissent, if adopted, would have granted some or all of the relief the petitioner sought. If a dissenting justice objects only to procedural aspects (e.g., they would have dismissed the case), and their position would not have resulted in granting relief to the petitioner, they are not counted. If the Court affirms in part and reverses in part, count any justice whose vote, opinion, or dissent supports any portion of the judgment that grants relief to the petitioner (e.g., reversal of a lower court ruling adverse to the petitioner).\n\nIf no majority opinion exists but a judgment is issued, count all justices who concurred in the judgment in favor of the petitioner, regardless of whether they joined the plurality, and count no justice who concurred in the judgment against the petitioner; apply the same principle to dissenters if the petitioner loses. For per curiam opinions, unless otherwise noted, treat unsigned per curiam opinions as representing all participating justices; if any justices issue a dissent or note non-participation, subtract them from the total to calculate votes for the petitioner. If an emergency order is the final disposition of the case, apply the same rules as a per curiam: if the petitioner wins, count all participating justices minus dissents; if the petitioner loses, count all dissenters (those who would have granted relief).\n\nIf the case is dismissed as improvidently granted (DIG), dismissed for mootness, vacated and remanded without decision, withdrawn or settled, or otherwise concluded without a final merits judgment, then the contract resolves as 0 votes for the petitioner. Even if justices issue separate opinions expressing support for the petitioner, they do not count unless a final judgment is issued. Justices who are recused or who do not participate are excluded from the total count. Only the final votes recorded in the Supreme Court's official slip opinion, summary disposition, or order will be used; leaked drafts or reported internal shifts are not relevant to resolution.",
+    "close_time": "2026-06-29T14:35:39Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPTIME-26JUN20",
+  "series_ticker": "KXTRUMPTIME",
+  "title": "Will Trump post on Truth Social between 5:00 AM and 5:59 AM ET this week?",
+  "close_time": "2026-06-20T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPTIME-26JUN20-H5",
+    "title": "Will Trump post on Truth Social between 5:00 AM and 5:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 5:00 AM to 5:59 AM ET on any day from Jun 14, 2026 through Jun 20, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-06-20T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPVSLAUGHTER",
+  "series_ticker": "KXTRUMPVSLAUGHTER",
+  "title": "Will the Supreme Court rule in favor of Trump in Trump v. Slaughter",
+  "close_time": "2026-06-29T14:34:42Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPVSLAUGHTER",
+    "title": "Will the Supreme Court rule in favor of Trump in Trump v. Slaughter",
+    "rules_primary": "If the Supreme Court, in Trump v. Slaughter, rules to overturn\u00a0Humphrey's Executor v. United States, then the market resolves to Yes.",
+    "rules_secondary": "The Payout Criterion for the Contract encompasses the Expiration Values that the Supreme Court of the United States has issued a decision overruling or substantially limiting Humphrey's Executor v. United States (1935) such that the President may remove FTC commissioners at will, after Issuance and before the August 1, 2027. The market resolves to No if the Supreme Court affirms that for-cause removal protections for FTC commissioners remain constitutional. If the case is dismissed, settled, or otherwise disposed of without a merits decision before August 1, 2027, the market also resolves to No.",
+    "close_time": "2026-06-29T14:34:42Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXWATSONRNC",
+  "series_ticker": "KXWATSONRNC",
+  "title": "Will SCOTUS bar counting mail ballots received after Election Day?",
+  "close_time": "2026-06-29T14:21:54Z",
+  "markets": [
+   {
+    "ticker": "KXWATSONRNC",
+    "title": "Will SCOTUS bar counting mail ballots received after Election Day?",
+    "rules_primary": "If the Supreme Court, in Watson v. Republican National Committee, rules before Aug 1, 2026 that the federal election-day statutes preempt a state law that allows ballots cast by federal Election Day to be received (and counted) after Election Day, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-29T14:21:54Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KX14AMENDCASE-26",
+  "series_ticker": "KX14AMENDCASE",
+  "title": "Will Trump's birthright citizenship order come into effect?",
+  "close_time": "2026-06-30T14:38:07Z",
+  "markets": [
+   {
+    "ticker": "KX14AMENDCASE-26-AUG",
+    "title": "Will Trump's birthright citizenship order come into effect?",
+    "rules_primary": "If Trump's Executive Order ending birthright citizenship comes into effect for any period after Issuance and before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "\"Into effect\" means that there are no federal courts prohibiting the order from going into effect. If the Executive Order is withdrawn, then the market immediately resolves to No. If the Supreme Court rules that the order is not constitutional, then the market immediately resolves to No (and the reverse if they rule that the order is constitutional).",
+    "close_time": "2026-06-30T14:38:07Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBEEFTARIFF-26MAY",
+  "series_ticker": "KXBEEFTARIFF",
+  "title": "Will Donald Trump issue any executive action on lowering tariffs on beef imports (incl. suspension of tariff-rate quotas) before Jul 1, 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXBEEFTARIFF-26MAY-JUL01",
+    "title": "Will Donald Trump issue any executive action on lowering tariffs on beef imports (incl. suspension of tariff-rate quotas) before Jul 1, 2026?",
+    "rules_primary": "If Donald Trump has taken any executive action lowering tariffs on beef imports (incl. suspension of tariff-rate quotas) before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The qualifying action must be of the specific type designated (executive order, presidential memorandum, proclamation, directive, determination, or finding), be signed by the President personally during the specified time period, and explicitly address the topic in the document's operative provisions, title, or official White House summary. Actions must have legal or policy effect - ceremonial proclamations without policy impact do not qualify unless specifically included. Actions that only incidentally mention the topic, statements without formal action, actions by cabinet members, legislative proposals without executive action, and signing statements do not qualify. The action must be publicly announced or documented by a Source Agency before expiration.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXDJTATTACKWARSH-27",
+  "series_ticker": "KXDJTATTACKWARSH",
+  "title": "Will Trump publicly criticize Kevin Warsh before Jul 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXDJTATTACKWARSH-27-JUL",
+    "title": "Will Trump publicly criticize Kevin Warsh before Jul 2026?",
+    "rules_primary": "If Donald Trump publicly criticizes Kevin Warsh before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "For purposes of this Contract, \"publicly criticize\" means Donald Trump must:\n\nMake a statement that explicitly expresses disapproval, negative judgment, or unfavorable assessment of Kevin Warsh\nThe criticism must be directed at Kevin Warsh by name, title, or clear contextual reference that a reasonable observer would understand refers to Kevin Warsh in a clear and unambiguous manner\nThe statement must be negative in substance, not merely mentioning Kevin Warsh in a neutral or positive context\n\nCriticism must be made by Trump personally, not through official statements that don't quote him directly.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ }
+]

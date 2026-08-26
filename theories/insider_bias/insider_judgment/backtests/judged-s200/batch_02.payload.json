@@ -1,0 +1,853 @@
+[
+ {
+  "event_ticker": "KXEBOLACOUNTRY-JUL26",
+  "series_ticker": "KXEBOLACOUNTRY",
+  "title": "Will a human case of Ebola disease in Zambia be reported before Jul 1, 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXEBOLACOUNTRY-JUL26-ZAMB",
+    "title": "Will a human case of Ebola disease in Zambia be reported before Jul 1, 2026?",
+    "rules_primary": "If a confirmed human case of Ebola disease in Zambia is officially reported before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in Zambia \u2014 a citizen of Zambia diagnosed elsewhere does not count. Imported cases diagnosed within Zambia do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jul 1, 2026 do not qualify even if infection occurred earlier.",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXEBOLACOUNTRY-JUL26-USA",
+    "title": "Will a human case of Ebola disease in United States be reported before Jul 1, 2026?",
+    "rules_primary": "If a confirmed human case of Ebola disease in United States is officially reported before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in United States \u2014 a citizen of United States diagnosed elsewhere does not count. Imported cases diagnosed within United States do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jul 1, 2026 do not qualify even if infection occurred earlier.",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXEBOLACOUNTRY-JUL26-SUD",
+    "title": "Will a human case of Ebola disease in South Sudan be reported before Jul 1, 2026?",
+    "rules_primary": "If a confirmed human case of Ebola disease in South Sudan is officially reported before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in South Sudan \u2014 a citizen of South Sudan diagnosed elsewhere does not count. Imported cases diagnosed within South Sudan do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jul 1, 2026 do not qualify even if infection occurred earlier.",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXEBOLACOUNTRY-JUL26-RWA",
+    "title": "Will a human case of Ebola disease in Rwanda be reported before Jul 1, 2026?",
+    "rules_primary": "If a confirmed human case of Ebola disease in Rwanda is officially reported before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in Rwanda \u2014 a citizen of Rwanda diagnosed elsewhere does not count. Imported cases diagnosed within Rwanda do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jul 1, 2026 do not qualify even if infection occurred earlier.",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXEBOLACOUNTRY-JUL26-RCON",
+    "title": "Will a human case of Ebola disease in Republic of the Congo be reported before Jul 1, 2026?",
+    "rules_primary": "If a confirmed human case of Ebola disease in Republic of the Congo is officially reported before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in Republic of the Congo \u2014 a citizen of Republic of the Congo diagnosed elsewhere does not count. Imported cases diagnosed within Republic of the Congo do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jul 1, 2026 do not qualify even if infection occurred earlier.",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXEBOLACOUNTRY-JUL26-KEN",
+    "title": "Will a human case of Ebola disease in Kenya be reported before Jul 1, 2026?",
+    "rules_primary": "If a confirmed human case of Ebola disease in Kenya is officially reported before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in Kenya \u2014 a citizen of Kenya diagnosed elsewhere does not count. Imported cases diagnosed within Kenya do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jul 1, 2026 do not qualify even if infection occurred earlier.",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXEBOLACOUNTRY-JUL26-IND",
+    "title": "Will a human case of Ebola disease in India be reported before Jul 1, 2026?",
+    "rules_primary": "If a confirmed human case of Ebola disease in India is officially reported before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in India \u2014 a citizen of India diagnosed elsewhere does not count. Imported cases diagnosed within India do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jul 1, 2026 do not qualify even if infection occurred earlier.",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXEBOLACOUNTRY-JUL26-BUR",
+    "title": "Will a human case of Ebola disease in Burundi be reported before Jul 1, 2026?",
+    "rules_primary": "If a confirmed human case of Ebola disease in Burundi is officially reported before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in Burundi \u2014 a citizen of Burundi diagnosed elsewhere does not count. Imported cases diagnosed within Burundi do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jul 1, 2026 do not qualify even if infection occurred earlier.",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXEBOLACOUNTRY-JUL26-ANG",
+    "title": "Will a human case of Ebola disease in Angola be reported before Jul 1, 2026?",
+    "rules_primary": "If a confirmed human case of Ebola disease in Angola is officially reported before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only confirmed cases qualify; suspected, probable, or presumptive cases do not. Animal cases do not qualify. The case must be confirmed in Angola \u2014 a citizen of Angola diagnosed elsewhere does not count. Imported cases diagnosed within Angola do count. Resolution is based on the date of official confirmation, not symptom onset. Cases confirmed after Jul 1, 2026 do not qualify even if infection occurred earlier.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFDAAPPROVE-CYT",
+  "series_ticker": "KXFDAAPPROVE",
+  "title": "Will the FDA approve cytisinicline for smoking cessation before Jul 1, 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXFDAAPPROVE-CYT-26JUL01",
+    "title": "Will the FDA approve cytisinicline for smoking cessation before Jul 1, 2026?",
+    "rules_primary": "If the FDA approves cytisinicline for smoking cessation for marketing before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "An approval is defined as:\n\nFor new drugs: FDA issuance of an approval letter for a New Drug Application (NDA) or Biologics License Application (BLA)\nFor already-marketed drugs seeking new indications: FDA approval of a supplemental NDA (sNDA) or supplemental BLA (sBLA) for the specific indication referenced\nFor generic drugs: FDA approval of an Abbreviated New Drug Application (ANDA)\nFor biosimilars: FDA approval of a 351(k) application\n\nThe following constitute approvals that trigger the Payout Criterion:\n\nStandard approval (traditional approval based on clinical benefit)\nAccelerated approval (based on surrogate endpoints)\nApproval with Risk Evaluation and Mitigation Strategy (REMS)\nApproval with restricted distribution or indication limitations, except compassionate use/expanded access programs\n\nThe following do NOT constitute approvals:\n\nComplete Response Letters (CRLs) indicating the application cannot be approved in its current form\nApprovable letters that require additional actions before approval\nTentative approvals pending patent or exclusivity expiration\nFDA requests for additional information or studies\nExtension of Prescription Drug User Fee Amendments dates\nApproval for compassionate use or expanded access programs only\nEmergency Use Authorization (EUA) without full approval\nApproval only for export or for use outside the United States\n\nIf the FDA issues a Complete Response Letter before Jul 1, 2026, the market will resolve to No unless the FDA subsequently approves cytisinicline for smoking cessation after addressing the CRL concerns and before Jul 1, 2026.\n\nIf the FDA convenes an Advisory Committee that votes against approval but the FDA approves cytisinicline for smoking cessation anyway before Jul 1, 2026, the market will resolve to Yes.\n\nIf cytisinicline for smoking cessation receives accelerated approval that is later withdrawn before Jul 1, 2026, the market will resolve based on whether the initial accelerated approval occurred after Issuance (Yes), regardless of the subsequent withdrawal.\n\nIf the drug sponsor withdraws the application before FDA action and before Jul 1, 2026, the market will resolve to No immediately.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXGPT-OPENB",
+  "series_ticker": "KXGPT",
+  "title": "Will OpenAI release GPT-5.6 before Jul 31, 2026?",
+  "close_time": "2026-07-09T18:36:23Z",
+  "markets": [
+   {
+    "ticker": "KXGPT-OPENB-26JUL31",
+    "title": "Will OpenAI release GPT-5.6 before Jul 31, 2026?",
+    "rules_primary": "If OpenAI releases A model called GPT-5.6 or greater before Jul 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-09T18:36:23Z"
+   },
+   {
+    "ticker": "KXGPT-OPENB-26JUL15",
+    "title": "Will OpenAI release GPT-5.6 before Jul 15, 2026?",
+    "rules_primary": "If OpenAI releases A model called GPT-5.6 or greater before Jul 15, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-09T18:36:11Z"
+   },
+   {
+    "ticker": "KXGPT-OPENB-26JUL10",
+    "title": "Will OpenAI release GPT-5.6 before Jul 10, 2026?",
+    "rules_primary": "If OpenAI releases A model called GPT-5.6 or greater before Jul 10, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-09T18:36:03Z"
+   },
+   {
+    "ticker": "KXGPT-OPEN-26JUL09",
+    "title": "Will OpenAI release GPT-5.6 before Jul 9, 2026?",
+    "rules_primary": "If OpenAI releases A model called GPT-5.6 or greater before Jul 9, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-09T03:59:00Z"
+   },
+   {
+    "ticker": "KXGPT-OPEN-26JUL07",
+    "title": "Will OpenAI release GPT-5.6 before Jul 7, 2026?",
+    "rules_primary": "If OpenAI releases A model called GPT-5.6 or greater before Jul 7, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-07T03:59:00Z"
+   },
+   {
+    "ticker": "KXGPT-OPENB-26JUL03",
+    "title": "Will OpenAI release GPT-5.6 before Jul 3, 2026?",
+    "rules_primary": "If OpenAI releases A model called GPT-5.6 or greater before Jul 3, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-03T03:59:00Z"
+   },
+   {
+    "ticker": "KXGPT-OPENB-26JUN30",
+    "title": "Will OpenAI release GPT-5.6 before Jun 30, 2026?",
+    "rules_primary": "If OpenAI releases A model called GPT-5.6 or greater before Jun 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-06-30T03:59:00Z"
+   },
+   {
+    "ticker": "KXGPT-OPENB-26JUN26",
+    "title": "Will OpenAI release GPT-5.6 before Jun 26, 2026?",
+    "rules_primary": "If OpenAI releases A model called GPT-5.6 or greater before Jun 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-06-26T03:59:00Z"
+   },
+   {
+    "ticker": "KXGPT-OPENB-26JUN19",
+    "title": "Will OpenAI release GPT-5.6 before Jun 19, 2026?",
+    "rules_primary": "If OpenAI releases A model called GPT-5.6 or greater before Jun 19, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-06-19T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXHFHOUSING-27",
+  "series_ticker": "KXHFHOUSING",
+  "title": "Will a bill become law taxing or banning hedge funds from owning homes before election day?",
+  "close_time": "2026-07-14T14:15:28Z",
+  "markets": [
+   {
+    "ticker": "KXHFHOUSING-27-AUG26",
+    "title": "Will a bill become law taxing or banning hedge funds from owning homes before election day?",
+    "rules_primary": "If a bill becomes law that imposes an excise tax on investment firm ownership of single-family homes (including if the tax is only imposed on newly bought homes) or bans investment firms from owning single-family homes outright (or which bans buying new homes) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "An example of such a bill is here. Such legislation can have an assets under management or net value requirement for the funds and still be included within the Payout Criterion (e.g. it only applies to funds with assets under management of at least $50 million). Such legislation may also only tax certain assets, e.g. only second and third homes but not first owned by a firm.\n\nClarification: A bill satisfies the Payout Criterion if it establishes a baseline prohibition or tax on institutional investors buying single-family homes, regardless of specific statutory carve-outs, asset exemptions, or firm-size thresholds. For example, the May 14 House-amended version of the 21st Century ROAD to Housing Act qualifies because it explicitly bans these purchases, and the inclusion of various transaction exceptions (such as build-to-rent programs) does not disqualify it.",
+    "close_time": "2026-07-14T14:15:28Z"
+   },
+   {
+    "ticker": "KXHFHOUSING-27-26JUL16",
+    "title": "Will a bill become law taxing or banning hedge funds from owning homes before election day?",
+    "rules_primary": "If a bill becomes law that imposes an excise tax on investment firm ownership of single-family homes (including if the tax is only imposed on newly bought homes) or bans investment firms from owning single-family homes outright (or which bans buying new homes) before Jul 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "An example of such a bill is here. Such legislation can have an assets under management or net value requirement for the funds and still be included within the Payout Criterion (e.g. it only applies to funds with assets under management of at least $50 million). Such legislation may also only tax certain assets, e.g. only second and third homes but not first owned by a firm.\n\nClarification: A bill satisfies the Payout Criterion if it establishes a baseline prohibition or tax on institutional investors buying single-family homes, regardless of specific statutory carve-outs, asset exemptions, or firm-size thresholds. For example, the May 14 House-amended version of the 21st Century ROAD to Housing Act qualifies because it explicitly bans these purchases, and the inclusion of various transaction exceptions (such as build-to-rent programs) does not disqualify it.",
+    "close_time": "2026-07-14T14:15:22Z"
+   },
+   {
+    "ticker": "KXHFHOUSING-27-26JUL07",
+    "title": "Will a bill become law taxing or banning hedge funds from owning homes before election day?",
+    "rules_primary": "If a bill becomes law that imposes an excise tax on investment firm ownership of single-family homes (including if the tax is only imposed on newly bought homes) or bans investment firms from owning single-family homes outright (or which bans buying new homes) before Jul 7, 2026, then the market resolves to Yes.",
+    "rules_secondary": "An example of such a bill is here. Such legislation can have an assets under management or net value requirement for the funds and still be included within the Payout Criterion (e.g. it only applies to funds with assets under management of at least $50 million). Such legislation may also only tax certain assets, e.g. only second and third homes but not first owned by a firm.\n\nClarification: A bill satisfies the Payout Criterion if it establishes a baseline prohibition or tax on institutional investors buying single-family homes, regardless of specific statutory carve-outs, asset exemptions, or firm-size thresholds. For example, the May 14 House-amended version of the 21st Century ROAD to Housing Act qualifies because it explicitly bans these purchases, and the inclusion of various transaction exceptions (such as build-to-rent programs) does not disqualify it.",
+    "close_time": "2026-07-07T03:59:00Z"
+   },
+   {
+    "ticker": "KXHFHOUSING-27-JUL4",
+    "title": "Will a bill become law taxing or banning hedge funds from owning homes before election day?",
+    "rules_primary": "If a bill becomes law that imposes an excise tax on investment firm ownership of single-family homes (including if the tax is only imposed on newly bought homes) or bans investment firms from owning single-family homes outright (or which bans buying new homes) before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "An example of such a bill is here. Such legislation can have an assets under management or net value requirement for the funds and still be included within the Payout Criterion (e.g. it only applies to funds with assets under management of at least $50 million). Such legislation may also only tax certain assets, e.g. only second and third homes but not first owned by a firm.\n\nClarification: A bill satisfies the Payout Criterion if it establishes a baseline prohibition or tax on institutional investors buying single-family homes, regardless of specific statutory carve-outs, asset exemptions, or firm-size thresholds. For example, the May 14 House-amended version of the 21st Century ROAD to Housing Act qualifies because it explicitly bans these purchases, and the inclusion of various transaction exceptions (such as build-to-rent programs) does not disqualify it.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXHFHOUSING-27-JUL26",
+    "title": "Will a bill become law taxing or banning hedge funds from owning homes before election day?",
+    "rules_primary": "If a bill becomes law that imposes an excise tax on investment firm ownership of single-family homes (including if the tax is only imposed on newly bought homes) or bans investment firms from owning single-family homes outright (or which bans buying new homes) before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "An example of such a bill is here. Such legislation can have an assets under management or net value requirement for the funds and still be included within the Payout Criterion (e.g. it only applies to funds with assets under management of at least $50 million). Such legislation may also only tax certain assets, e.g. only second and third homes but not first owned by a firm.\n\nClarification: A bill satisfies the Payout Criterion if it establishes a baseline prohibition or tax on institutional investors buying single-family homes, regardless of specific statutory carve-outs, asset exemptions, or firm-size thresholds. For example, the May 14 House-amended version of the 21st Century ROAD to Housing Act qualifies because it explicitly bans these purchases, and the inclusion of various transaction exceptions (such as build-to-rent programs) does not disqualify it.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXKXSPOTIFYNUM1GLB-26JUL01-TAY",
+  "series_ticker": "KXKXSPOTIFYNUM1GLB",
+  "title": "Will Taylor Swift be #1 on Spotify's Daily Top Songs Global chart for at least 6 chart days in June 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXKXSPOTIFYNUM1GLB-26JUL01-TAY-6",
+    "title": "Will Taylor Swift be #1 on Spotify's Daily Top Songs Global chart for at least 6 chart days in June 2026?",
+    "rules_primary": "If  Taylor Swift is #1 on the Spotify Daily Top Songs Global for \nat least 6\n chart days in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXKXSPOTIFYNUM1GLB-26JUL01-TAY-3",
+    "title": "Will Taylor Swift be #1 on Spotify's Daily Top Songs Global chart for at least 3 chart days in June 2026?",
+    "rules_primary": "If  Taylor Swift is #1 on the Spotify Daily Top Songs Global for \nat least 3\n chart days in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLEAVEHOUSE-26APR",
+  "series_ticker": "KXLEAVEHOUSE",
+  "title": "Will Chuck Edwards be out as U.S. House member before July 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXLEAVEHOUSE-26MAY-CEDW",
+    "title": "Will Chuck Edwards be out as U.S. House member before July 2026?",
+    "rules_primary": "If Chuck Edwards leaves as U.S. House member before July 2026, then the market resolves to Yes.",
+    "rules_secondary": "Chuck Edwards must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role. If the role otherwise ceases to exist with no plausible successor, the contract may resolve to \"No.\"\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXLEAVEHOUSE-26APR-CMIL",
+    "title": "Will Cory Mills be out as House member before July 2026?",
+    "rules_primary": "If Cory Mills leaves as House member before July 2026, then the market resolves to Yes.",
+    "rules_secondary": "Cory Mills must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role. If the role otherwise ceases to exist with no plausible successor, the contract may resolve to \"No.\"\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMEDIARELEASEADDTRAILER-26",
+  "series_ticker": "KXMEDIARELEASEADDTRAILER",
+  "title": "Will the official trailer for Avengers: Doomsday be released Worldwide before Sep 1, 2026?",
+  "close_time": "2026-07-20T14:54:43Z",
+  "markets": [
+   {
+    "ticker": "KXMEDIARELEASEADDTRAILER--26SEP01",
+    "title": "Will the official trailer for Avengers: Doomsday be released Worldwide before Sep 1, 2026?",
+    "rules_primary": "If the official trailer for Avengers: Doomsday has been publicly released Worldwide through official channels Before Sep 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "For purposes of this market, an \u201cOfficial Trailer\u201d refers to the primary trailer released by the studio and labeled as an official trailer, intended as the main worldwide marketing trailer and typically featuring extended footage and clearer story elements. Teaser trailers, short preview clips, TV spots, or promotional videos labeled as \u201cteaser\u201d do not qualify. This market resolves only upon the release of an official trailer for Avengers: Doomsday.. The media must be made available to the general public through at least one official distribution channel, including theatrical release, streaming availability, physical media (DVD, Blu-ray), or authorized digital purchase/download. The release must be accessible without special invitations or industry credentials in at least one major metropolitan area if the geography refers to a country. Private screenings, film festivals, leaked content, and torrent availability do not qualify. Trailers and soundtracks do not satisfy the criterion unless the full media is released. Different versions or formats of the same base content (theatrical, director's cut, extended edition) are considered the same media if the core content is substantially identical. Foreign language titles are considered the same media unless otherwise specified.",
+    "close_time": "2026-07-20T14:54:43Z"
+   },
+   {
+    "ticker": "KXMEDIARELEASEADDTRAILER-26-AUG01-AUG",
+    "title": "Will the official trailer for Avengers: Doomsday be released Worldwide before Aug 1, 2026?",
+    "rules_primary": "If the official trailer for Avengers: Doomsday has been publicly released Worldwide through official channels Before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "For purposes of this market, an \u201cOfficial Trailer\u201d refers to the primary trailer released by the studio and labeled as an official trailer, intended as the main worldwide marketing trailer and typically featuring extended footage and clearer story elements. Teaser trailers, short preview clips, TV spots, or promotional videos labeled as \u201cteaser\u201d do not qualify. This market resolves only upon the release of an official trailer for Avengers: Doomsday.. The media must be made available to the general public through at least one official distribution channel, including theatrical release, streaming availability, physical media (DVD, Blu-ray), or authorized digital purchase/download. The release must be accessible without special invitations or industry credentials in at least one major metropolitan area if the geography refers to a country. Private screenings, film festivals, leaked content, and torrent availability do not qualify. Trailers and soundtracks do not satisfy the criterion unless the full media is released. Different versions or formats of the same base content (theatrical, director's cut, extended edition) are considered the same media if the core content is substantially identical. Foreign language titles are considered the same media unless otherwise specified.",
+    "close_time": "2026-07-20T14:54:35Z"
+   },
+   {
+    "ticker": "KXMEDIARELEASEADDTRAILER-JUL26",
+    "title": "Will the official trailer for Avengers: Doomsday be released Worldwide before Jul 1, 2026?",
+    "rules_primary": "If the official trailer for Avengers: Doomsday has been publicly released Worldwide through official channels Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "For purposes of this market, an \u201cOfficial Trailer\u201d refers to the primary trailer released by the studio and labeled as an official trailer, intended as the main worldwide marketing trailer and typically featuring extended footage and clearer story elements. Teaser trailers, short preview clips, TV spots, or promotional videos labeled as \u201cteaser\u201d do not qualify. This market resolves only upon the release of an official trailer for Avengers: Doomsday.. The media must be made available to the general public through at least one official distribution channel, including theatrical release, streaming availability, physical media (DVD, Blu-ray), or authorized digital purchase/download. The release must be accessible without special invitations or industry credentials in at least one major metropolitan area if the geography refers to a country. Private screenings, film festivals, leaked content, and torrent availability do not qualify. Trailers and soundtracks do not satisfy the criterion unless the full media is released. Different versions or formats of the same base content (theatrical, director's cut, extended edition) are considered the same media if the core content is substantially identical. Foreign language titles are considered the same media unless otherwise specified.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXNATLGUARDDC-26-DC",
+  "series_ticker": "KXNATLGUARDDC",
+  "title": "Will the National Guard be deployed to Washington, D.C. before Sep 1, 2026?",
+  "close_time": "2026-06-24T19:14:57Z",
+  "markets": [
+   {
+    "ticker": "KXNATLGUARDDC-26-DC-SEP01",
+    "title": "Will the National Guard be deployed to Washington, D.C. before Sep 1, 2026?",
+    "rules_primary": "If the National Guard is deployed to Washington, D.C. after Issuance and before Sep 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Deployment means National Guard members arrive in Washington, D.C. on official deployment orders, under State Active Duty (SAD), Title 32, or Title 10 activation, for operational missions (not routine training), with actual presence in Washington, D.C., not merely assigned or in transit.\n\nThe following constitutes deployment and resolves YES:\n\nGovernor activates Guard with deployment to Washington, D.C.\nGuard units arrive in Washington, D.C. on emergency orders\nFederal activation placing Guard in Washington, D.C.\nInter-state Emergency Management Assistance Compact (EMAC) deployment to Washington, D.C.\nPre-positioned Guard units activated for operations in Washington, D.C.\nAny number of Guard members (even one) officially deployed\n\nThe following does NOT constitute deployment and resolves NO:\n\nDeployment announcements without actual arrival\nGuard placed on standby/alert status only\nUnits staged outside Washington, D.C. without entering\nTraining exercises or routine drills\nGuard members traveling through Washington, D.C. to another destination\nPlanning/assessment teams without follow-on deployment\nOff-duty Guard members acting as civilians\nGuard at permanent facilities (armories) not on deployment orders\nRecruitment or community relations activities\nCanceled deployments that never materialize\n\nSpecial provisions:\n\nAt least one Guard member must physically arrive in Washington, D.C..\nDeployment must be for operational purposes, not training.\nIf deployment is announced then canceled before arrival, resolves NO.\nPresence for transit only doesn't count.\nRe-deployment of already-present units to new locations within Washington, D.C. counts only if they were not previously on deployment orders.\nBoth Army National Guard and Air National Guard deployments count.\nFederal military (non-Guard) deployments do not count.",
+    "close_time": "2026-06-24T19:14:57Z"
+   },
+   {
+    "ticker": "KXNATLGUARDDC-26-DC-JAN01",
+    "title": "Will the National Guard be deployed to Washington, D.C. before Jan 1, 2027?",
+    "rules_primary": "If the National Guard is deployed to Washington, D.C. after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Deployment means National Guard members arrive in Washington, D.C. on official deployment orders, under State Active Duty (SAD), Title 32, or Title 10 activation, for operational missions (not routine training), with actual presence in Washington, D.C., not merely assigned or in transit.\n\nThe following constitutes deployment and resolves YES:\n\nGovernor activates Guard with deployment to Washington, D.C.\nGuard units arrive in Washington, D.C. on emergency orders\nFederal activation placing Guard in Washington, D.C.\nInter-state Emergency Management Assistance Compact (EMAC) deployment to Washington, D.C.\nPre-positioned Guard units activated for operations in Washington, D.C.\nAny number of Guard members (even one) officially deployed\n\nThe following does NOT constitute deployment and resolves NO:\n\nDeployment announcements without actual arrival\nGuard placed on standby/alert status only\nUnits staged outside Washington, D.C. without entering\nTraining exercises or routine drills\nGuard members traveling through Washington, D.C. to another destination\nPlanning/assessment teams without follow-on deployment\nOff-duty Guard members acting as civilians\nGuard at permanent facilities (armories) not on deployment orders\nRecruitment or community relations activities\nCanceled deployments that never materialize\n\nSpecial provisions:\n\nAt least one Guard member must physically arrive in Washington, D.C..\nDeployment must be for operational purposes, not training.\nIf deployment is announced then canceled before arrival, resolves NO.\nPresence for transit only doesn't count.\nRe-deployment of already-present units to new locations within Washington, D.C. counts only if they were not previously on deployment orders.\nBoth Army National Guard and Air National Guard deployments count.\nFederal military (non-Guard) deployments do not count.",
+    "close_time": "2026-06-24T19:14:57Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSPOTIFYNUM1USA-26JUL01-DRA",
+  "series_ticker": "KXSPOTIFYNUM1USA",
+  "title": "Will Drake be #1 on Spotify's Daily Top Songs USA chart for at least 15 chart days in June 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXSPOTIFYNUM1USA-26JUL01-DRA-15",
+    "title": "Will Drake be #1 on Spotify's Daily Top Songs USA chart for at least 15 chart days in June 2026?",
+    "rules_primary": "If  Drake is #1 on the Spotify Daily Top Songs USA for \nat least 15\n chart days in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXSPOTIFYNUM1USA-26JUL01-DRA-12",
+    "title": "Will Drake be #1 on Spotify's Daily Top Songs USA chart for at least 12 chart days in June 2026?",
+    "rules_primary": "If  Drake is #1 on the Spotify Daily Top Songs USA for \nat least 12\n chart days in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSPOTIFYNUM1USA-26JUL01-TAY",
+  "series_ticker": "KXSPOTIFYNUM1USA",
+  "title": "Will Taylor Swift be #1 on Spotify's Daily Top Songs USA chart for at least 6 chart days in June 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXSPOTIFYNUM1USA-26JUL01-TAY-6",
+    "title": "Will Taylor Swift be #1 on Spotify's Daily Top Songs USA chart for at least 6 chart days in June 2026?",
+    "rules_primary": "If  Taylor Swift is #1 on the Spotify Daily Top Songs USA for \nat least 6\n chart days in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXSPOTIFYNUM1USA-26JUL01-TAY-3",
+    "title": "Will Taylor Swift be #1 on Spotify's Daily Top Songs USA chart for at least 3 chart days in June 2026?",
+    "rules_primary": "If  Taylor Swift is #1 on the Spotify Daily Top Songs USA for \nat least 3\n chart days in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSTARMERCABLEAVE-26MAY",
+  "series_ticker": "KXSTARMERCABLEAVE",
+  "title": "Will Shabana Mahmood be out as Home Secretary before July 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXSTARMERCABLEAVE-26MAY-SMAH",
+    "title": "Will Shabana Mahmood be out as Home Secretary before July 2026?",
+    "rules_primary": "If Shabana Mahmood leaves as Home Secretary before July 2026, then the market resolves to Yes.",
+    "rules_secondary": "Shabana Mahmood must have an actual departure date and vacate the role within the time period.\n\nNote: A Cabinet reshuffle in which the individual ceases to hold the specified role but remains a member of the Cabinet still qualifies as leaving the role\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role. If the role otherwise ceases to exist with no plausible successor, the contract may resolve to \"No.\"\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXSTARMERCABLEAVE-26MAY-RREE",
+    "title": "Will Rachel Reeves be out as Chancellor before July 2026?",
+    "rules_primary": "If Rachel Reeves leaves as Chancellor before July 2026, then the market resolves to Yes.",
+    "rules_secondary": "Rachel Reeves must have an actual departure date and vacate the role within the time period.\n\nNote: A Cabinet reshuffle in which the individual ceases to hold the specified role but remains a member of the Cabinet still qualifies as leaving the role\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role. If the role otherwise ceases to exist with no plausible successor, the contract may resolve to \"No.\"\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXSTARMERCABLEAVE-26MAY-PMCF",
+    "title": "Will Pat McFadden be out as Work and Pensions Secretary before July 2026?",
+    "rules_primary": "If Pat McFadden leaves as Work and Pensions Secretary before July 2026, then the market resolves to Yes.",
+    "rules_secondary": "Pat McFadden must have an actual departure date and vacate the role within the time period.\n\nNote: A Cabinet reshuffle in which the individual ceases to hold the specified role but remains a member of the Cabinet still qualifies as leaving the role\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role. If the role otherwise ceases to exist with no plausible successor, the contract may resolve to \"No.\"\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXSTARMERCABLEAVE-26MAY-JREY",
+    "title": "Will Jonathan Reynolds be out as Chief Whip before July 2026?",
+    "rules_primary": "If Jonathan Reynolds leaves as Chief Whip before July 2026, then the market resolves to Yes.",
+    "rules_secondary": "Jonathan Reynolds must have an actual departure date and vacate the role within the time period.\n\nNote: A Cabinet reshuffle in which the individual ceases to hold the specified role but remains a member of the Cabinet still qualifies as leaving the role\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role. If the role otherwise ceases to exist with no plausible successor, the contract may resolve to \"No.\"\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXSTARMERCABLEAVE-26MAY-EMIL",
+    "title": "Will Ed Miliband be out as Energy Secretary before July 2026?",
+    "rules_primary": "If Ed Miliband leaves as Energy Secretary before July 2026, then the market resolves to Yes.",
+    "rules_secondary": "Ed Miliband must have an actual departure date and vacate the role within the time period.\n\nNote: A Cabinet reshuffle in which the individual ceases to hold the specified role but remains a member of the Cabinet still qualifies as leaving the role\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role. If the role otherwise ceases to exist with no plausible successor, the contract may resolve to \"No.\"\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXSTARMERCABLEAVE-26MAY-DLAM",
+    "title": "Will David Lammy be out as Deputy PM before July 2026?",
+    "rules_primary": "If David Lammy leaves as Deputy PM before July 2026, then the market resolves to Yes.",
+    "rules_secondary": "David Lammy must have an actual departure date and vacate the role within the time period.\n\nNote: A Cabinet reshuffle in which the individual ceases to hold the specified role but remains a member of the Cabinet still qualifies as leaving the role\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role. If the role otherwise ceases to exist with no plausible successor, the contract may resolve to \"No.\"\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSULYOKOUT-26MAY",
+  "series_ticker": "KXSULYOKOUT",
+  "title": "Will Tamas Sulyok be out as President of Hungary before Aug 1, 2026?",
+  "close_time": "2026-07-20T14:33:51Z",
+  "markets": [
+   {
+    "ticker": "KXSULYOKOUT-26MAY-AUG01",
+    "title": "Will Tamas Sulyok be out as President of Hungary before Aug 1, 2026?",
+    "rules_primary": "If Tamas Sulyok leaves as President of Hungary before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Tamas Sulyok must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-07-20T14:33:51Z"
+   },
+   {
+    "ticker": "KXSULYOKOUT-26MAY-JUL01",
+    "title": "Will Tamas Sulyok be out as President of Hungary before Jul 1, 2026?",
+    "rules_primary": "If Tamas Sulyok leaves as President of Hungary before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Tamas Sulyok must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPMONTHLY-26JUN",
+  "series_ticker": "KXTOPMONTHLY",
+  "title": "Artist with the most monthly Spotify listeners at the end of Jun 2026?",
+  "close_time": "2026-06-30T15:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPMONTHLY-26JUN-DRA",
+    "title": "Artist with the most monthly Spotify listeners at the end of Jun 2026?",
+    "rules_primary": "If the artist with the most monthly listeners on Spotify on Jun 30, 2026 at 12:00 PM ET is Drake, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-30T15:59:00Z"
+   },
+   {
+    "ticker": "KXTOPMONTHLY-26JUN-BRU",
+    "title": "Artist with the most monthly Spotify listeners at the end of Jun 2026?",
+    "rules_primary": "If the artist with the most monthly listeners on Spotify on Jun 30, 2026 at 12:00 PM ET is Bruno Mars, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-30T15:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPMEET-26JUN",
+  "series_ticker": "KXTRUMPMEET",
+  "title": "Donald Trump and Zohran Mamdani meet before Jul 1, 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPMEET-26JUN-ZMAM",
+    "title": "Donald Trump and Zohran Mamdani meet before Jul 1, 2026?",
+    "rules_primary": "If Donald Trump and Zohran Mamdani meet (including phone calls) before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUN-XJIN",
+    "title": "Donald Trump and Xi Jinping meet before Jul 1, 2026?",
+    "rules_primary": "If Donald Trump and Xi Jinping meet (including phone calls) before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUN-RERD",
+    "title": "Donald Trump and Recep Tayyip Erdo\u011fan meet before Jul 1, 2026?",
+    "rules_primary": "If Donald Trump and Recep Tayyip Erdo\u011fan meet (including phone calls) before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUN-RDES",
+    "title": "Donald Trump and Ron DeSantis meet before Jul 1, 2026?",
+    "rules_primary": "If Donald Trump and Ron DeSantis meet (including phone calls) before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUN-MCM",
+    "title": "Donald Trump and Mar\u00eda Corina Machado meet before Jul 1, 2026?",
+    "rules_primary": "If Donald Trump and Mar\u00eda Corina Machado meet (including phone calls) before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUN-MBS",
+    "title": "Donald Trump and Mohammed bin Salman meet before Jul 1, 2026?",
+    "rules_primary": "If Donald Trump and Mohammed bin Salman meet (including phone calls) before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUN-JHUA",
+    "title": "Donald Trump and Jensen Huang meet before Jul 1, 2026?",
+    "rules_primary": "If Donald Trump and Jensen Huang meet (including phone calls) before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUN-CSCH",
+    "title": "Donald Trump and Chuck Schumer meet before Jul 1, 2026?",
+    "rules_primary": "If Donald Trump and Chuck Schumer meet (including phone calls) before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUN-DROD",
+    "title": "Donald Trump and Delcy Rodriguez meet before Jul 1, 2026?",
+    "rules_primary": "If Donald Trump and Delcy Rodriguez meet (including phone calls) before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-06-26T22:40:57Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUN-JTHU",
+    "title": "Donald Trump and John Thune meet before Jul 1, 2026?",
+    "rules_primary": "If Donald Trump and John Thune meet (including phone calls) before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-06-24T18:39:39Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXANTIWEPTAX-27JAN01",
+  "series_ticker": "KXANTIWEPTAX",
+  "title": "Will any state enact a 100% tax on Anti-Weaponization Fund payouts?",
+  "close_time": "2026-07-02T01:11:44Z",
+  "markets": [
+   {
+    "ticker": "KXANTIWEPTAX-27JAN01",
+    "title": "Will any state enact a 100% tax on Anti-Weaponization Fund payouts?",
+    "rules_primary": "If legislation imposing a state tax, levy, or clawback at an effective rate of 100% on payments, distributions, or compensation received by that state's residents or taxpayers from the federal Anti-Weaponization Fund has become law in any state before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law.\n\nStandard legislation requiring executive approval: final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods\nLegislation not requiring executive approval: final passage and completion of required waiting periods\nConstitutional amendments: passage with required supermajorities and completion of ratification processes\nExecutive orders: official signature, publication in official government records, and legal effectiveness\n\nThe following do NOT constitute enactment:\n\nLegislative passage without completed executive action\nPassage by only some required bodies\nProvisional passage\nNon-binding resolutions\nDraft orders\n\nEnactment occurs when all requirements are completed, regardless of pending judicial challenges.",
+    "close_time": "2026-07-02T01:11:44Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEPSTEIN-26JUL01",
+  "series_ticker": "KXEPSTEIN",
+  "title": "Will Trump release any documents about Epstein's associates before Jul 1, 2026?",
+  "close_time": "2026-07-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXEPSTEIN-26JUL01",
+    "title": "Will Trump release any documents about Epstein's associates before Jul 1, 2026?",
+    "rules_primary": "If the Trump Administration has released, after Issuance and before Jul 1, 2026, previously unreleased (but created prior to the start of his Administration) documents related to or discussing Jeffrey Epstein\u2019s connections, or associates, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFDAANNOUNCE-BPC",
+  "series_ticker": "KXFDAANNOUNCE",
+  "title": "When will FDA announce Reclassification of BPC-157 to Category 1 of the Bulk Drug Substances List?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXFDAANNOUNCE-BPC-26JUL01",
+    "title": "When will FDA announce Reclassification of BPC-157 to Category 1 of the Bulk Drug Substances List?",
+    "rules_primary": "If the FDA announces Reclassification of BPC-157 to Category 1 of the Bulk Drug Substances List before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The Payout Criterion is satisfied by placement of BPC-157 in either Category 1 or Category 1 Bulk Drug Substances Under Evaluation on the 503A Bulk Drug Substances list, as either designation restores compounding eligibility. \nRemoval from Category 2 alone, without placement in Category 1, does not satisfy the Payout Criterion.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFRONTIER-FRON",
+  "series_ticker": "KXFRONTIER",
+  "title": "When will any AI solves at least 1 Frontier Math: Open Problems?",
+  "close_time": "2026-07-27T20:56:33Z",
+  "markets": [
+   {
+    "ticker": "KXFRONTIER-FRON-27JAN01",
+    "title": "When will any AI solves at least 1 Frontier Math: Open Problems?",
+    "rules_primary": "If any AI solves at least 1 Frontier Math: Open Problems after issuance and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "At the time of issuance, one FrontierMath: Open Problem has been solved by AI (a Ramsey-style problem on hypergraphs); for the purpose of this market, additional AI models subsequently solving the same problem will not count.",
+    "close_time": "2026-07-27T20:56:33Z"
+   },
+   {
+    "ticker": "KXFRONTIER-FRON-26SEP01",
+    "title": "When will any AI solves at least 1 Frontier Math: Open Problems?",
+    "rules_primary": "If any AI solves at least 1 Frontier Math: Open Problems after issuance and before Sep 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "At the time of issuance, one FrontierMath: Open Problem has been solved by AI (a Ramsey-style problem on hypergraphs); for the purpose of this market, additional AI models subsequently solving the same problem will not count.",
+    "close_time": "2026-07-27T20:56:33Z"
+   },
+   {
+    "ticker": "KXFRONTIER-FRON-26NOV01",
+    "title": "When will any AI solves at least 1 Frontier Math: Open Problems?",
+    "rules_primary": "If any AI solves at least 1 Frontier Math: Open Problems after issuance and before Nov 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "At the time of issuance, one FrontierMath: Open Problem has been solved by AI (a Ramsey-style problem on hypergraphs); for the purpose of this market, additional AI models subsequently solving the same problem will not count.",
+    "close_time": "2026-07-27T20:56:33Z"
+   },
+   {
+    "ticker": "KXFRONTIER-FRON-26DEC01",
+    "title": "When will any AI solves at least 1 Frontier Math: Open Problems?",
+    "rules_primary": "If any AI solves at least 1 Frontier Math: Open Problems after issuance and before Dec 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "At the time of issuance, one FrontierMath: Open Problem has been solved by AI (a Ramsey-style problem on hypergraphs); for the purpose of this market, additional AI models subsequently solving the same problem will not count.",
+    "close_time": "2026-07-27T20:56:33Z"
+   },
+   {
+    "ticker": "KXFRONTIER-FRON-26AUG01",
+    "title": "When will any AI solves at least 1 Frontier Math: Open Problems?",
+    "rules_primary": "If any AI solves at least 1 Frontier Math: Open Problems after issuance and before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "At the time of issuance, one FrontierMath: Open Problem has been solved by AI (a Ramsey-style problem on hypergraphs); for the purpose of this market, additional AI models subsequently solving the same problem will not count.",
+    "close_time": "2026-07-27T20:56:33Z"
+   },
+   {
+    "ticker": "KXFRONTIER-FRON-26JUL01",
+    "title": "When will any AI solves at least 1 Frontier Math: Open Problems?",
+    "rules_primary": "If any AI solves at least 1 Frontier Math: Open Problems after issuance and before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "At the time of issuance, one FrontierMath: Open Problem has been solved by AI (a Ramsey-style problem on hypergraphs); for the purpose of this market, additional AI models subsequently solving the same problem will not count.",
+    "close_time": "2026-07-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXRANKLISTSONGSPOTGLOBAL-26JUL01",
+  "series_ticker": "KXRANKLISTSONGSPOTGLOBAL",
+  "title": "Will The Weeknd be #1 on the Any Spotify Daily Top Songs Global chart in June 2026?",
+  "close_time": "2026-07-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXRANKLISTSONGSPOTGLOBAL-26JUL01-WEE",
+    "title": "Will The Weeknd be #1 on the Any Spotify Daily Top Songs Global chart in June 2026?",
+    "rules_primary": "If The Weeknd is #1 on Any Spotify Daily Top Songs Global chart in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTGLOBAL-26JUL01-NIC",
+    "title": "Will Nicki Minaj be #1 on the Any Spotify Daily Top Songs Global chart in June 2026?",
+    "rules_primary": "If Nicki Minaj is #1 on Any Spotify Daily Top Songs Global chart in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTGLOBAL-26JUL01-JUS",
+    "title": "Will Justin Bieber be #1 on the Any Spotify Daily Top Songs Global chart in June 2026?",
+    "rules_primary": "If Justin Bieber is #1 on Any Spotify Daily Top Songs Global chart in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTGLOBAL-26JUL01-DRA",
+    "title": "Will Drake be #1 on the Any Spotify Daily Top Songs Global chart in June 2026?",
+    "rules_primary": "If Drake is #1 on Any Spotify Daily Top Songs Global chart in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTGLOBAL-26JUL01-BTS",
+    "title": "Will BTS be #1 on the Any Spotify Daily Top Songs Global chart in June 2026?",
+    "rules_primary": "If BTS is #1 on Any Spotify Daily Top Songs Global chart in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXRANKLISTSONGSPOTUSA-26JUL01",
+  "series_ticker": "KXRANKLISTSONGSPOTUSA",
+  "title": "Will Kanye West / Ye be #1 on the Any Spotify Daily Top Songs USA chart in June 2026?",
+  "close_time": "2026-07-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26JUL01-YE",
+    "title": "Will Kanye West / Ye be #1 on the Any Spotify Daily Top Songs USA chart in June 2026?",
+    "rules_primary": "If Kanye West / Ye is #1 on Any Spotify Daily Top Songs USA chart in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26JUL01-OLI",
+    "title": "Will Olivia Dean be #1 on the Any Spotify Daily Top Songs USA chart in June 2026?",
+    "rules_primary": "If Olivia Dean is #1 on Any Spotify Daily Top Songs USA chart in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26JUL01-MOR",
+    "title": "Will Morgan Wallen be #1 on the Any Spotify Daily Top Songs USA chart in June 2026?",
+    "rules_primary": "If Morgan Wallen is #1 on Any Spotify Daily Top Songs USA chart in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26JUL01-MIC",
+    "title": "Will Michael Jackson be #1 on the Any Spotify Daily Top Songs USA chart in June 2026?",
+    "rules_primary": "If Michael Jackson is #1 on Any Spotify Daily Top Songs USA chart in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26JUL01-KEN",
+    "title": "Will Kendrick Lamar be #1 on the Any Spotify Daily Top Songs USA chart in June 2026?",
+    "rules_primary": "If Kendrick Lamar is #1 on Any Spotify Daily Top Songs USA chart in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26JUL01-JUS",
+    "title": "Will Justin Bieber be #1 on the Any Spotify Daily Top Songs USA chart in June 2026?",
+    "rules_primary": "If Justin Bieber is #1 on Any Spotify Daily Top Songs USA chart in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26JUL01-JCO",
+    "title": "Will J. Cole be #1 on the Any Spotify Daily Top Songs USA chart in June 2026?",
+    "rules_primary": "If J. Cole is #1 on Any Spotify Daily Top Songs USA chart in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26JUL01-FUT",
+    "title": "Will Future be #1 on the Any Spotify Daily Top Songs USA chart in June 2026?",
+    "rules_primary": "If Future is #1 on Any Spotify Daily Top Songs USA chart in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26JUL01-DRA",
+    "title": "Will Drake be #1 on the Any Spotify Daily Top Songs USA chart in June 2026?",
+    "rules_primary": "If Drake is #1 on Any Spotify Daily Top Songs USA chart in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26JUL01-BRU",
+    "title": "Will Bruno Mars be #1 on the Any Spotify Daily Top Songs USA chart in June 2026?",
+    "rules_primary": "If Bruno Mars is #1 on Any Spotify Daily Top Songs USA chart in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26JUL01-ALE",
+    "title": "Will Alex Warren be #1 on the Any Spotify Daily Top Songs USA chart in June 2026?",
+    "rules_primary": "If Alex Warren is #1 on Any Spotify Daily Top Songs USA chart in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26JUL01-MAL",
+    "title": "Will Malcolm Todd be #1 on the Any Spotify Daily Top Songs USA chart in June 2026?",
+    "rules_primary": "If Malcolm Todd is #1 on Any Spotify Daily Top Songs USA chart in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T00:11:21Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTARIFFRATECAN-26JUL01",
+  "series_ticker": "KXTARIFFRATECAN",
+  "title": "Will the tariff rate on Canada imports be below 10% on Jul 1, 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTARIFFRATECAN-26JUL01-5",
+    "title": "Will the tariff rate on Canada imports be below 10% on Jul 1, 2026?",
+    "rules_primary": "If the general import tariff rate on imports from Canada into the United States on Jul 1, 2026 is below 10%, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the general import tariff rate that is actually in effect (i.e., being collected) on the specified date. This includes both universal tariffs on all U.S. imports and country-specific tariffs on the specified country. Only tariffs that are currently active and being collected count - announced but not implemented tariffs, paused tariffs, or suspended tariffs do not qualify. The tariff rate refers to the general baseline rate, not including product-specific duties or exemptions. If multiple general rates apply, the general import tariff rate is the sum of all applicable general rates in effect.\n\nExamples (for &lt;date&gt; = Jan 1, 2026):\n\n  \nIndia: 25% Reciprocal Tariff (EO 14326) + 25% Russian Oil Penalty (EO 14329) = 50%\n\n  \nChina: 10% Reciprocal Tariff (EO 14358) + 10% Fentanyl Duty (EO 14357) = 20%\n\n   \nEuropean Union: 15% Reciprocal Tariff &quot;Floor&quot; (EO 14326)\n\n  \nFalkland Islands: 10% Reciprocal Tariff (EO 14326)",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSCOTUSLAST-26",
+  "series_ticker": "KXSCOTUSLAST",
+  "title": "Will the Supreme Court of the United States release its last opinion or dispositive order in any matter argued during October Term 2025 before Jun 29, 2026?",
+  "close_time": "2026-06-29T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXSCOTUSLAST-26-JUN29",
+    "title": "Will the Supreme Court of the United States release its last opinion or dispositive order in any matter argued during October Term 2025 before Jun 29, 2026?",
+    "rules_primary": "If the Supreme Court of the United States has released its last opinion or dispositive order in any matter argued during October Term 2025 to the public before Jun 29, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Released to the public means the document is made freely accessible to the general public without restriction, can be viewed, downloaded, or accessed by the public (paywalls and similar restrictions still count as public), and the release is intentional by the entity (not a leak or hack). Publishing the full document on a publicly accessible website, making it available through a public records request portal, including it as an attachment to a public filing, distributing to media outlets who publish it in full, or posting on publicly accessible social media platforms all constitute release to the public. Merely describing or summarizing the document's contents, publishing excerpts or portions, showing the document briefly on screen, releasing a redacted version when the unredacted version is specified, or leaking without authorization do NOT constitute release to the public.",
+    "close_time": "2026-06-29T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPSONG-26JUL04",
+  "series_ticker": "KXTOPSONG",
+  "title": "Will I Knew It, I Knew You be #1 on the Billboard Hot 100 during the week of Jul 4, 2026",
+  "close_time": "2026-06-29T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPSONG-26JUL04-IKN",
+    "title": "Will I Knew It, I Knew You be #1 on the Billboard Hot 100 during the week of Jul 4, 2026",
+    "rules_primary": "If I Knew It, I Knew You is #1 on the Billboard Hot 100  chart for the Week of Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-29T03:59:00Z"
+   },
+   {
+    "ticker": "KXTOPSONG-26JUL04-CHO",
+    "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 during the week of Jul 4, 2026",
+    "rules_primary": "If Choosin' Texas is #1 on the Billboard Hot 100  chart for the Week of Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-29T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMRELEASEDATE-NEWKEN",
+  "series_ticker": "KXALBUMRELEASEDATE",
+  "title": "Will Kendrick Lamar release a new album before Aug 1, 2026?",
+  "close_time": "2026-08-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMRELEASEDATE-NEWKEN-26AUG01",
+    "title": "Will Kendrick Lamar release a new album before Aug 1, 2026?",
+    "rules_primary": "If Kendrick Lamar releases a new album before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMRELEASEDATE-NEWKEN-26JUL01",
+    "title": "Will Kendrick Lamar release a new album before Jul 1, 2026?",
+    "rules_primary": "If Kendrick Lamar releases a new album before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSWIFTKELCEWEDDINGLOCATION-30",
+  "series_ticker": "KXSWIFTKELCEWEDDINGLOCATION",
+  "title": "Where will Taylor Swift and Travis Kelce\u2019s Wedding occur?",
+  "close_time": "2026-07-04T01:08:22Z",
+  "markets": [
+   {
+    "ticker": "KXSWIFTKELCEWEDDINGLOCATION-30-TEN",
+    "title": "Where will Taylor Swift and Travis Kelce\u2019s Wedding occur?",
+    "rules_primary": "If Taylor Swift and Travis Kelce\u2019s Wedding happens in Tennessee before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "If Taylor Swift and Travis Kelce do not marry before Jan 1, 2030, the market will resolve to No Wedding Reported.\nIf multiple wedding ceremonies occur in different locations (for example, a civil and a symbolic ceremony), only the first wedding ceremony to occur and be publicly reported by a Source Agency will govern this market.",
+    "close_time": "2026-07-04T01:08:22Z"
+   },
+   {
+    "ticker": "KXSWIFTKELCEWEDDINGLOCATION-30-PEN",
+    "title": "Where will Taylor Swift and Travis Kelce\u2019s Wedding occur?",
+    "rules_primary": "If Taylor Swift and Travis Kelce\u2019s Wedding happens in Pennsylvania before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "If Taylor Swift and Travis Kelce do not marry before Jan 1, 2030, the market will resolve to No Wedding Reported.\nIf multiple wedding ceremonies occur in different locations (for example, a civil and a symbolic ceremony), only the first wedding ceremony to occur and be publicly reported by a Source Agency will govern this market.",
+    "close_time": "2026-07-04T01:08:13Z"
+   },
+   {
+    "ticker": "KXSWIFTKELCEWEDDINGLOCATION-30-RHO",
+    "title": "Where will Taylor Swift and Travis Kelce\u2019s Wedding occur?",
+    "rules_primary": "If Taylor Swift and Travis Kelce\u2019s Wedding happens in Rhode Island before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "If Taylor Swift and Travis Kelce do not marry before Jan 1, 2030, the market will resolve to No Wedding Reported.\nIf multiple wedding ceremonies occur in different locations (for example, a civil and a symbolic ceremony), only the first wedding ceremony to occur and be publicly reported by a Source Agency will govern this market.",
+    "close_time": "2026-07-04T01:08:05Z"
+   },
+   {
+    "ticker": "KXSWIFTKELCEWEDDINGLOCATION-30-NEW",
+    "title": "Where will Taylor Swift and Travis Kelce\u2019s Wedding occur?",
+    "rules_primary": "If Taylor Swift and Travis Kelce\u2019s Wedding happens in New York before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "If Taylor Swift and Travis Kelce do not marry before Jan 1, 2030, the market will resolve to No Wedding Reported.\nIf multiple wedding ceremonies occur in different locations (for example, a civil and a symbolic ceremony), only the first wedding ceremony to occur and be publicly reported by a Source Agency will govern this market.",
+    "close_time": "2026-07-04T01:07:30Z"
+   }
+  ]
+ }
+]

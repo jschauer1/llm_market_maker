@@ -1,0 +1,552 @@
+[
+ {
+  "event_ticker": "KXADJOURNRECESS-26AUG",
+  "series_ticker": "KXADJOURNRECESS",
+  "title": "Will the Senate vote on any motion, resolution, or order whose adoption would begin or provide for the Senate\u2019s scheduled August 2026 break, including through pro forma sessions?",
+  "close_time": "2026-08-10T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXADJOURNRECESS-26AUG-AUG10",
+    "title": "Will the Senate vote on any motion, resolution, or order whose adoption would begin or provide for the Senate\u2019s scheduled August 2026 break, including through pro forma sessions?",
+    "rules_primary": "If the Senate has conducted any recorded vote on any motion, resolution, or order whose adoption would begin or provide for the Senate\u2019s scheduled August 2026 break, including through pro forma sessions after Issuance and before Aug 10, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This includes:\nRoll call votes\nRecorded votes\nYea-and-nay votes\nElectronic votes (in the House)\nDivision/standing votes\n\nThe following do NOT satisfy the Payout Criterion:\nVoice votes where individual member positions are not recorded\nUnanimous consent agreements without a recorded vote\nVotes in committee, unless the bill/motion specifically refers to a committee vote\nProcedural determinations by the presiding officer\nDeemed passage without an actual vote\n\nFor clarity:\nA vote on cloture regarding the bill/motion, including cloture on a motion to proceed to the bill/motion, DOES satisfy the Payout Criterion\nA vote on the rule governing debate of the bill/motion DOES satisfy the Payout Criterion if the bill/motion specifically refers to that rule\nA vote on a motion to proceed to the bill/motion DOES satisfy the Payout Criterion\nA vote on final passage DOES satisfy the Payout Criterion\nA vote on an amendment to the bill/motion does NOT satisfy the Payout Criterion unless the bill/motion specifically refers to that amendment",
+    "close_time": "2026-08-10T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMLABELSHARE-W3026AUG06",
+  "series_ticker": "KXMLABELSHARE",
+  "title": "Will UMG's market share be above 56% on the Hits Daily Double: Hits Top 50 chart week ending Aug 6, 2026?",
+  "close_time": "2026-08-07T21:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXMLABELSHARE-W3026AUG06-UMG",
+    "title": "Will UMG's market share be above 56% on the Hits Daily Double: Hits Top 50 chart week ending Aug 6, 2026?",
+    "rules_primary": "If UMG's market share is above 56% on the Hits Daily Double: Hits Top 50 chart week ending Aug 6, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Market share percentages are shown on the Hits Daily Double: Hits Top 50 chart page for each week. The chart dated Thursday is usually published on Friday.\n\nThis market and these products have not been endorsed by UMG and Hits Daily Double. Any references to UMG and Hits Daily Double or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between UMG and Hits Daily Double and Kalshi.",
+    "close_time": "2026-08-07T21:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPSHOW-26AUG06",
+  "series_ticker": "KXTOPSHOW",
+  "title": "Will The Idaho Murders: College Nightmare (S1) be #1 on the Luminate Top 50 TV shows ranked by hours?",
+  "close_time": "2026-08-08T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPSHOW-26AUG06-THEIDAH11",
+    "title": "Will The Idaho Murders: College Nightmare (S1) be #1 on the Luminate Top 50 TV shows ranked by hours?",
+    "rules_primary": "If The Idaho Murders: College Nightmare (S1) is ranked #1  on the Luminate Top 50 TV shows ranked by hours watched for the July 31 - August 06, 2026 tracking week, then the market resolves to Yes.",
+    "rules_secondary": "Data for these Contracts will resolve on the Saturday following the July 31 - August 06, 2026 tracking week time frame.",
+    "close_time": "2026-08-08T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPNOMNUM-26AUG09",
+  "series_ticker": "KXTRUMPNOMNUM",
+  "title": "Will there be at least 5 presidential nominations sent to the Senate in the week of Aug 9, 2026?",
+  "close_time": "2026-08-16T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPNOMNUM-26AUG09-T5",
+    "title": "Will there be at least 5 presidential nominations sent to the Senate in the week of Aug 9, 2026?",
+    "rules_primary": "If Donald Trump has sent at least 5 nominations to the U.S. Senate from Aug 9, 2026 through Aug 15, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Aug 16, 2026), then the market resolves to Yes.",
+    "rules_secondary": "The market solely resolves to the publication dates visibly displayed on the \"Presidential Actions\" tab at whitehouse.gov at 10:00 AM ET on Aug 16, 2026. The week runs from Aug 9, 2026 through Aug 15, 2026. If a person receives multiple qualifying nominations within the period, they will each count separately. For example, Trump's March 4 nomination of Kevin Warsh is considered two nominations.",
+    "close_time": "2026-08-16T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPNOMNUM-26AUG09-T1",
+    "title": "Will there be at least 1 presidential nominations sent to the Senate in the week of Aug 9, 2026?",
+    "rules_primary": "If Donald Trump has sent at least 1 nominations to the U.S. Senate from Aug 9, 2026 through Aug 15, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Aug 16, 2026), then the market resolves to Yes.",
+    "rules_secondary": "The market solely resolves to the publication dates visibly displayed on the \"Presidential Actions\" tab at whitehouse.gov at 10:00 AM ET on Aug 16, 2026. The week runs from Aug 9, 2026 through Aug 15, 2026. If a person receives multiple qualifying nominations within the period, they will each count separately. For example, Trump's March 4 nomination of Kevin Warsh is considered two nominations.",
+    "close_time": "2026-08-16T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMAMDANIEO-26AUG15",
+  "series_ticker": "KXMAMDANIEO",
+  "title": "Will Mamdani sign above 0 executive orders between Aug 9, 2026 and Aug 15, 2026?",
+  "close_time": "2026-08-16T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXMAMDANIEO-26AUG15-T0",
+    "title": "Will Mamdani sign above 0 executive orders between Aug 9, 2026 and Aug 15, 2026?",
+    "rules_primary": "If the number of non-emergency executive orders signed by Zohran Mamdani is above 0 from Aug 9, 2026 to Aug 15, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-16T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSPEECHAI-26AUG14",
+  "series_ticker": "KXSPEECHAI",
+  "title": "Top Text to Speech AI this week?",
+  "close_time": "2026-08-14T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXSPEECHAI-26AUG14-ALIB",
+    "title": "Top Text to Speech AI this week?",
+    "rules_primary": "If Alibaba is the #1 model on Artificial Analysis Speech Arena Leaderboard on Aug 14, 2026 at 10:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-14T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPUSAGEAI-26AUG10",
+  "series_ticker": "KXTOPUSAGEAI",
+  "title": "Most popular AI this week?",
+  "close_time": "2026-08-17T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPUSAGEAI-26AUG10-XIAO",
+    "title": "Most popular AI this week?",
+    "rules_primary": "If Xiaomi is the Highest usage model company model on OpenRouter Top Model by weekly usage on week of Aug 10, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week of Aug 10, 2026. The \"Highest usage model company\" refers to the model author company of the single model with the greatest weekly token volume as displayed on the OpenRouter Top Models chart, not the company with the greatest aggregate token volume across all of its models.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXTOPUSAGEAI-26AUG10-TENC",
+    "title": "Most popular AI this week?",
+    "rules_primary": "If Tencent is the Highest usage model company model on OpenRouter Top Model by weekly usage on week of Aug 10, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week of Aug 10, 2026. The \"Highest usage model company\" refers to the model author company of the single model with the greatest weekly token volume as displayed on the OpenRouter Top Models chart, not the company with the greatest aggregate token volume across all of its models.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXANTHSHARE-ANTH",
+  "series_ticker": "KXANTHSHARE",
+  "title": "Anthropic market share this week?",
+  "close_time": "2026-08-17T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXANTHSHARE-ANTH-5",
+    "title": "Anthropic market share this week?",
+    "rules_primary": "If Anthropic scores above 5% on OpenRouter Market Share by model author week ending Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week ending week ending Aug 16, 2026.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXANTHSHARE-ANTH-4.5",
+    "title": "Anthropic market share this week?",
+    "rules_primary": "If Anthropic scores above 4.5% on OpenRouter Market Share by model author week ending Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week ending week ending Aug 16, 2026.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXANTHSHARE-ANTH-4",
+    "title": "Anthropic market share this week?",
+    "rules_primary": "If Anthropic scores above 4% on OpenRouter Market Share by model author week ending Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week ending week ending Aug 16, 2026.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXANTHSHARE-ANTH-3.5",
+    "title": "Anthropic market share this week?",
+    "rules_primary": "If Anthropic scores above 3.5% on OpenRouter Market Share by model author week ending Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week ending week ending Aug 16, 2026.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXGOOGSHARE-GOOG",
+  "series_ticker": "KXGOOGSHARE",
+  "title": "Google market share this week?",
+  "close_time": "2026-08-17T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXGOOGSHARE-GOOG-27",
+    "title": "Google market share this week?",
+    "rules_primary": "If Google scores above 27% on OpenRouter Market Share by model author week ending Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week ending week ending Aug 16, 2026.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXGOOGSHARE-GOOG-26",
+    "title": "Google market share this week?",
+    "rules_primary": "If Google scores above 26% on OpenRouter Market Share by model author week ending Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week ending week ending Aug 16, 2026.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXGOOGSHARE-GOOG-25",
+    "title": "Google market share this week?",
+    "rules_primary": "If Google scores above 25% on OpenRouter Market Share by model author week ending Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week ending week ending Aug 16, 2026.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXGOOGSHARE-GOOG-24",
+    "title": "Google market share this week?",
+    "rules_primary": "If Google scores above 24% on OpenRouter Market Share by model author week ending Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week ending week ending Aug 16, 2026.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXOPENSHARE-OPEN",
+  "series_ticker": "KXOPENSHARE",
+  "title": "OpenAI market share this week?",
+  "close_time": "2026-08-17T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXOPENSHARE-OPEN-17.5",
+    "title": "OpenAI market share this week?",
+    "rules_primary": "If OpenAI scores above 17.5% on OpenRouter Market Share by model author week ending Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week ending week ending Aug 16, 2026.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXOPENSHARE-OPEN-17",
+    "title": "OpenAI market share this week?",
+    "rules_primary": "If OpenAI scores above 17% on OpenRouter Market Share by model author week ending Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week ending week ending Aug 16, 2026.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXOPENSHARE-OPEN-16.5",
+    "title": "OpenAI market share this week?",
+    "rules_primary": "If OpenAI scores above 16.5% on OpenRouter Market Share by model author week ending Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week ending week ending Aug 16, 2026.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXOPENSHARE-OPEN-16",
+    "title": "OpenAI market share this week?",
+    "rules_primary": "If OpenAI scores above 16% on OpenRouter Market Share by model author week ending Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week ending week ending Aug 16, 2026.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXOPENSHARE-OPEN-15.5",
+    "title": "OpenAI market share this week?",
+    "rules_primary": "If OpenAI scores above 15.5% on OpenRouter Market Share by model author week ending Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week ending week ending Aug 16, 2026.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXOPENSHARE-OPEN-15",
+    "title": "OpenAI market share this week?",
+    "rules_primary": "If OpenAI scores above 15% on OpenRouter Market Share by model author week ending Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week ending week ending Aug 16, 2026.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXRANKLISTSONGTOP10-26AUG22",
+  "series_ticker": "KXRANKLISTSONGTOP10",
+  "title": "Will Risk It All be Top 10 on the Billboard Hot 100 during the week of Aug 22, 2026",
+  "close_time": "2026-08-17T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXRANKLISTSONGTOP10-26AUG22-RIS",
+    "title": "Will Risk It All be Top 10 on the Billboard Hot 100 during the week of Aug 22, 2026",
+    "rules_primary": "If Risk It All is Top 10 on the Billboard Hot 100  chart for the Week of Aug 22, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGTOP10-26AUG22-MAN",
+    "title": "Will Man I Need be Top 10 on the Billboard Hot 100 during the week of Aug 22, 2026",
+    "rules_primary": "If Man I Need is Top 10 on the Billboard Hot 100  chart for the Week of Aug 22, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGTOP10-26AUG22-BEH",
+    "title": "Will BE HER be Top 10 on the Billboard Hot 100 during the week of Aug 22, 2026",
+    "rules_primary": "If BE HER is Top 10 on the Billboard Hot 100  chart for the Week of Aug 22, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-17T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXUAPFILES-26AUG10",
+  "series_ticker": "KXUAPFILES",
+  "title": "Will Trump release new UFO files before Aug 21, 2026?",
+  "close_time": "2026-08-21T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXUAPFILES-26AUG10-26AUG21",
+    "title": "Will Trump release new UFO files before Aug 21, 2026?",
+    "rules_primary": "If the federal government has released, after Issuance and before Aug 21, 2026, previously unreleased documents, audio files, or video files regarding Unidentified Aerial Phenomena (\u201cUAP\u201d), then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-21T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPSONG-26AUG29",
+  "series_ticker": "KXTOPSONG",
+  "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 during the week of Aug 29, 2026",
+  "close_time": "2026-08-24T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPSONG-26AUG29-CHO",
+    "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 during the week of Aug 29, 2026",
+    "rules_primary": "If Choosin' Texas is #1 on the Billboard Hot 100  chart for the Week of Aug 29, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-24T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXACTBLUETOP-26AUG21",
+  "series_ticker": "KXACTBLUETOP",
+  "title": "Will James Talarico be the top ActBlue fundraiser on Aug 21 at 10:00 AM ET?",
+  "close_time": "2026-08-21T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXACTBLUETOP-26AUG21-JTAL",
+    "title": "Will James Talarico be the top ActBlue fundraiser on Aug 21 at 10:00 AM ET?",
+    "rules_primary": "If James Talarico is the top ActBlue fundraiser on Aug 21 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Fundraiser rankings are determined by the \u201cTop fundraisers from this week\u201d list displayed on ActBlue\u2019s official directory page. The leftmost candidate is considered the top fundraiser.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with ActBlue. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-21T13:59:00Z"
+   },
+   {
+    "ticker": "KXACTBLUETOP-26AUG21-JOSS",
+    "title": "Will Jon Ossoff be the top ActBlue fundraiser on Aug 21 at 10:00 AM ET?",
+    "rules_primary": "If Jon Ossoff is the top ActBlue fundraiser on Aug 21 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Fundraiser rankings are determined by the \u201cTop fundraisers from this week\u201d list displayed on ActBlue\u2019s official directory page. The leftmost candidate is considered the top fundraiser.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with ActBlue. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-21T13:59:00Z"
+   },
+   {
+    "ticker": "KXACTBLUETOP-26AUG21-AELS",
+    "title": "Will Abdul El-Sayed be the top ActBlue fundraiser on Aug 21 at 10:00 AM ET?",
+    "rules_primary": "If Abdul El-Sayed is the top ActBlue fundraiser on Aug 21 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Fundraiser rankings are determined by the \u201cTop fundraisers from this week\u201d list displayed on ActBlue\u2019s official directory page. The leftmost candidate is considered the top fundraiser.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with ActBlue. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-21T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXYTTOPSONGGW-26AUG20",
+  "series_ticker": "KXYTTOPSONGGW",
+  "title": "Will ICONIC BY MISTAKE rank #1 on YouTube's Weekly Top Songs Global Chart dated Aug 14",
+  "close_time": "2026-08-21T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXYTTOPSONGGW-26AUG20-ICO",
+    "title": "Will ICONIC BY MISTAKE rank #1 on YouTube's Weekly Top Songs Global Chart dated Aug 14 - Aug 20, 2026?",
+    "rules_primary": "If ICONIC BY MISTAKE is ranked #1 on YouTube's Weekly Top Songs Global Chart dated Aug 14 - Aug 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by YouTube. Any references to YouTube or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between YouTube and Kalshi.",
+    "close_time": "2026-08-21T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMAMDANIEO-26AUG22",
+  "series_ticker": "KXMAMDANIEO",
+  "title": "Will Mamdani sign above 0 executive orders between Aug 16, 2026 and Aug 22, 2026?",
+  "close_time": "2026-08-23T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXMAMDANIEO-26AUG22-T0",
+    "title": "Will Mamdani sign above 0 executive orders between Aug 16, 2026 and Aug 22, 2026?",
+    "rules_primary": "If the number of non-emergency executive orders signed by Zohran Mamdani is above 0 from Aug 16, 2026 to Aug 22, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-23T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPNOMNUM-26AUG16",
+  "series_ticker": "KXTRUMPNOMNUM",
+  "title": "Will there be at least 5 presidential nominations sent to the Senate in the week of Aug 16, 2026?",
+  "close_time": "2026-08-23T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPNOMNUM-26AUG16-T5",
+    "title": "Will there be at least 5 presidential nominations sent to the Senate in the week of Aug 16, 2026?",
+    "rules_primary": "If Donald Trump has sent at least 5 nominations to the U.S. Senate from Aug 16, 2026 through Aug 22, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Aug 23, 2026), then the market resolves to Yes.",
+    "rules_secondary": "The market solely resolves to the publication dates visibly displayed on the \"Presidential Actions\" tab at whitehouse.gov at 10:00 AM ET on Aug 23, 2026. The week runs from Aug 16, 2026 through Aug 22, 2026. If a person receives multiple qualifying nominations within the period, they will each count separately. For example, Trump's March 4 nomination of Kevin Warsh is considered two nominations.",
+    "close_time": "2026-08-23T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPNOMNUM-26AUG16-T1",
+    "title": "Will there be at least 1 presidential nominations sent to the Senate in the week of Aug 16, 2026?",
+    "rules_primary": "If Donald Trump has sent at least 1 nominations to the U.S. Senate from Aug 16, 2026 through Aug 22, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Aug 23, 2026), then the market resolves to Yes.",
+    "rules_secondary": "The market solely resolves to the publication dates visibly displayed on the \"Presidential Actions\" tab at whitehouse.gov at 10:00 AM ET on Aug 23, 2026. The week runs from Aug 16, 2026 through Aug 22, 2026. If a person receives multiple qualifying nominations within the period, they will each count separately. For example, Trump's March 4 nomination of Kevin Warsh is considered two nominations.",
+    "close_time": "2026-08-23T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMLABELSHARE-W3026AUG20",
+  "series_ticker": "KXMLABELSHARE",
+  "title": "Will UMG's market share be above 68% on the Hits Daily Double: Hits Top 50 chart week ending Aug 20, 2026?",
+  "close_time": "2026-08-21T21:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXMLABELSHARE-W3026AUG20-UMG",
+    "title": "Will UMG's market share be above 68% on the Hits Daily Double: Hits Top 50 chart week ending Aug 20, 2026?",
+    "rules_primary": "If UMG's market share is above 68% on the Hits Daily Double: Hits Top 50 chart's week ending Aug 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Market share percentages are shown on the Hits Daily Double: Hits Top 50 chart page for each week. The chart dated Thursday is usually published on Friday.\n\nThis market and these products have not been endorsed by UMG and Hits Daily Double. Any references to UMG and Hits Daily Double or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between UMG and Hits Daily Double and Kalshi.",
+    "close_time": "2026-08-21T21:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTECHRANKLISTAICODE-26AUG24",
+  "series_ticker": "KXTECHRANKLISTAICODE",
+  "title": "Top Coding AI this week?",
+  "close_time": "2026-08-24T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTECHRANKLISTAICODE-26AUG24-KIMI",
+    "title": "Top Coding AI this week?",
+    "rules_primary": "If Kimi is the #1 model on LM Code Arena Leaderboard on Aug 24, 2026 at 10:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T14:00:00Z"
+   },
+   {
+    "ticker": "KXTECHRANKLISTAICODE-26AUG24-CLAU",
+    "title": "Top Coding AI this week?",
+    "rules_primary": "If Claude is the #1 model on LM Code Arena Leaderboard on Aug 24, 2026 at 10:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXXIAOMISHARE-26AUG17",
+  "series_ticker": "KXXIAOMISHARE",
+  "title": "Xiaomi market share this week?",
+  "close_time": "2026-08-24T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXXIAOMISHARE-26AUG17-4.0",
+    "title": "Xiaomi market share this week?",
+    "rules_primary": "If Xiaomi scores above 4.0% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXXIAOMISHARE-26AUG17-3.5",
+    "title": "Xiaomi market share this week?",
+    "rules_primary": "If Xiaomi scores above 3.5% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXXIAOMISHARE-26AUG17-2.5",
+    "title": "Xiaomi market share this week?",
+    "rules_primary": "If Xiaomi scores above 2.5% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXXIAOMISHARE-26AUG17-2.0",
+    "title": "Xiaomi market share this week?",
+    "rules_primary": "If Xiaomi scores above 2.0% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBABASHARE-26AUG17",
+  "series_ticker": "KXBABASHARE",
+  "title": "Qwen market share this week?",
+  "close_time": "2026-08-24T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXBABASHARE-26AUG17-5.8",
+    "title": "Qwen market share this week?",
+    "rules_primary": "If Qwen scores above 5.8% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBALLROOMHALT-26",
+  "series_ticker": "KXBALLROOMHALT",
+  "title": "Will it be reported by any of the Source Agencies that above-ground physical construction of the White House State Ballroom has been halted by an effective court order or other binding legal restriction before Aug 22, 2026?",
+  "close_time": "2026-08-22T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXBALLROOMHALT-26",
+    "title": "Will it be reported by any of the Source Agencies that above-ground physical construction of the White House State Ballroom has been halted by an effective court order or other binding legal restriction before Aug 22, 2026?",
+    "rules_primary": "If above-ground physical construction of the White House State Ballroom has been halted by an effective court order or other binding legal restriction after Issuance and before Aug 22, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-08-22T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPUSAGEAI-26AUG17",
+  "series_ticker": "KXTOPUSAGEAI",
+  "title": "Most popular AI this week?",
+  "close_time": "2026-08-24T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPUSAGEAI-26AUG17-XIAO",
+    "title": "Most popular AI this week?",
+    "rules_primary": "If Xiaomi is the Highest usage model company model on OpenRouter Top Model by weekly usage on week of Aug 17, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week of Aug 17, 2026. The \"Highest usage model company\" refers to the model author company of the single model with the greatest weekly token volume as displayed on the OpenRouter Top Models chart, not the company with the greatest aggregate token volume across all of its models.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXTOPUSAGEAI-26AUG17-TENC",
+    "title": "Most popular AI this week?",
+    "rules_primary": "If Tencent is the Highest usage model company model on OpenRouter Top Model by weekly usage on week of Aug 17, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week of Aug 17, 2026. The \"Highest usage model company\" refers to the model author company of the single model with the greatest weekly token volume as displayed on the OpenRouter Top Models chart, not the company with the greatest aggregate token volume across all of its models.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXTOPUSAGEAI-26AUG17-DEEP",
+    "title": "Most popular AI this week?",
+    "rules_primary": "If DeepSeek is the Highest usage model company model on OpenRouter Top Model by weekly usage on week of Aug 17, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week of Aug 17, 2026. The \"Highest usage model company\" refers to the model author company of the single model with the greatest weekly token volume as displayed on the OpenRouter Top Models chart, not the company with the greatest aggregate token volume across all of its models.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXVIDEOAI-26AUG21",
+  "series_ticker": "KXVIDEOAI",
+  "title": "Top Text to Video AI this week?",
+  "close_time": "2026-08-21T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXVIDEOAI-26AUG21-GOOG",
+    "title": "Top Text to Video AI this week?",
+    "rules_primary": "If Google is the #1 model on Artificial Analysis Text to Video Leaderboard (With Audio) on Aug 21, 2026 at 10:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-21T14:00:00Z"
+   },
+   {
+    "ticker": "KXVIDEOAI-26AUG21-ALIB",
+    "title": "Top Text to Video AI this week?",
+    "rules_primary": "If Alibaba is the #1 model on Artificial Analysis Text to Video Leaderboard (With Audio) on Aug 21, 2026 at 10:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-21T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPRALLIES-26NOV03",
+  "series_ticker": "KXTRUMPRALLIES",
+  "title": "Will the number of Trump rallies be above 15 from January 1 to November 3, 2026?",
+  "close_time": "2026-08-24T15:00:18Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPRALLIES-26NOV03-A15",
+    "title": "Will the number of Trump rallies be above 15 from January 1 to November 3, 2026?",
+    "rules_primary": "If the number of Trump rallies is above 15 from January 1 to November 3, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A Trump rally is a public, in-person political event organized around a rally-style address by Donald J. Trump, typically preceded by guest speakers, held at a large venue, and open to attendees via free registration. Examples in 2026 include the rallies on 1/27 (Clive, IA), 2/19 (Rome, GA), 2/27 (Corpus Christi, TX), 3/11 (Hebron, KY), 4/17 (Phoenix, AZ), 5/1 (The Villages, FL), and 5/22 (Suffern, NY). \n\nAs of 5/27/26, the count is 7.",
+    "close_time": "2026-08-24T15:00:18Z"
+   }
+  ]
+ }
+]

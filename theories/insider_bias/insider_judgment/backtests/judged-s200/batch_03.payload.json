@@ -1,0 +1,1000 @@
+[
+ {
+  "event_ticker": "KXCHOPPEDCASTAWAYS-26DEC31",
+  "series_ticker": "KXCHOPPEDCASTAWAYS",
+  "title": "Will Paulette Tejada win Chopped Castaways: Season 1?",
+  "close_time": "2026-07-04T16:02:58Z",
+  "markets": [
+   {
+    "ticker": "KXCHOPPEDCASTAWAYS-26DEC31-PAU",
+    "title": "Will Paulette Tejada win Chopped Castaways: Season 1?",
+    "rules_primary": "If Paulette Tejada is officially declared the winner of Chopped Castaways: Season 1 before Dec 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts.",
+    "close_time": "2026-07-04T16:02:58Z"
+   },
+   {
+    "ticker": "KXCHOPPEDCASTAWAYS-26DEC31-JEA",
+    "title": "Will Jean-Paul Bourgeois win Chopped Castaways: Season 1?",
+    "rules_primary": "If Jean-Paul Bourgeois is officially declared the winner of Chopped Castaways: Season 1 before Dec 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts.",
+    "close_time": "2026-07-04T16:02:58Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPTIME-26JUN27",
+  "series_ticker": "KXTRUMPTIME",
+  "title": "Will Trump post on Truth Social between 4:00 AM and 4:59 AM ET this week?",
+  "close_time": "2026-06-27T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPTIME-26JUN27-H4",
+    "title": "Will Trump post on Truth Social between 4:00 AM and 4:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 4:00 AM to 4:59 AM ET on any day from Jun 21, 2026 through Jun 27, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-06-27T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPTIME-26JUN27-H3",
+    "title": "Will Trump post on Truth Social between 3:00 AM and 3:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 3:00 AM to 3:59 AM ET on any day from Jun 21, 2026 through Jun 27, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-06-27T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPTIME-26JUN27-H1",
+    "title": "Will Trump post on Truth Social between 1:00 AM and 1:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 1:00 AM to 1:59 AM ET on any day from Jun 21, 2026 through Jun 27, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-06-27T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPTIME-26JUN27-H5",
+    "title": "Will Trump post on Truth Social between 5:00 AM and 5:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 5:00 AM to 5:59 AM ET on any day from Jun 21, 2026 through Jun 27, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-06-25T14:59:31Z"
+   },
+   {
+    "ticker": "KXTRUMPTIME-26JUN27-H2",
+    "title": "Will Trump post on Truth Social between 2:00 AM and 2:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 2:00 AM to 2:59 AM ET on any day from Jun 21, 2026 through Jun 27, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-06-25T14:59:25Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPVH-26JUN26",
+  "series_ticker": "KXTRUMPVH",
+  "title": "Will Donald Trump's VoteHub approval polling average be above 40.0% at 10:00 AM ET on Jun 26, 2026?",
+  "close_time": "2026-06-26T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPVH-26JUN26-T40.0",
+    "title": "Will Donald Trump's VoteHub approval polling average be above 40.0% at 10:00 AM ET on Jun 26, 2026?",
+    "rules_primary": "If Donald Trump's VoteHub approval polling average is above 40.0% at 10:00 AM ET on Jun 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-26T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLIUKELIMINATIONW-26JUN26",
+  "series_ticker": "KXLIUKELIMINATIONW",
+  "title": "Will Tina be eliminated from Love Island UK S13 before Jun 27, 2026?",
+  "close_time": "2026-06-27T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUN26-TIN",
+    "title": "Will Tina be eliminated from Love Island UK S13 before Jun 27, 2026?",
+    "rules_primary": "If Tina is officially eliminated from Love Island UK: Season 13 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUN26-SIM",
+    "title": "Will Simba be eliminated from Love Island UK S13 before Jun 27, 2026?",
+    "rules_primary": "If Simba is officially eliminated from Love Island UK: Season 13 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUN26-SEA",
+    "title": "Will Sean be eliminated from Love Island UK S13 before Jun 27, 2026?",
+    "rules_primary": "If Sean is officially eliminated from Love Island UK: Season 13 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUN26-LOL",
+    "title": "Will Lola be eliminated from Love Island UK S13 before Jun 27, 2026?",
+    "rules_primary": "If Lola is officially eliminated from Love Island UK: Season 13 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUN26-KAV",
+    "title": "Will Kavan be eliminated from Love Island UK S13 before Jun 27, 2026?",
+    "rules_primary": "If Kavan is officially eliminated from Love Island UK: Season 13 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUN26-JAS",
+    "title": "Will Jasmine be eliminated from Love Island UK S13 before Jun 27, 2026?",
+    "rules_primary": "If Jasmine is officially eliminated from Love Island UK: Season 13 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUN26-TOM",
+    "title": "Will Tommy be eliminated from Love Island UK S13 before Jun 27, 2026?",
+    "rules_primary": "If Tommy is officially eliminated from Love Island UK: Season 13 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-26T11:50:36Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTAYLORSWIFTWEDDING-30JAN01",
+  "series_ticker": "KXTAYLORSWIFTWEDDING",
+  "title": "Will Danielle Haim be a Bridesmaid for the wedding of Travis Kelce and Taylor Swift?",
+  "close_time": "2026-07-05T20:32:34Z",
+  "markets": [
+   {
+    "ticker": "KXTAYLORSWIFTWEDDING-30JAN01-DAN",
+    "title": "Will Danielle Haim be a Bridesmaid for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Danielle Haim served as a Bridesmaid at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:32:34Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDING-30JAN01-ZOE",
+    "title": "Will Zo\u00eb Kravitz be a Bridesmaid for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Zo\u00eb Kravitz served as a Bridesmaid at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:32:33Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDING-30JAN01-SOP",
+    "title": "Will Sophie Turner be a Bridesmaid for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Sophie Turner served as a Bridesmaid at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:32:33Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDING-30JAN01-SEL",
+    "title": "Will Selena Gomez be a Bridesmaid for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Selena Gomez served as a Bridesmaid at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:32:33Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDING-30JAN01-SAB",
+    "title": "Will Sabrina Carpenter be a Bridesmaid for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Sabrina Carpenter served as a Bridesmaid at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:32:33Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDING-30JAN01-LAN",
+    "title": "Will Lana Del Rey be a Bridesmaid for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Lana Del Rey served as a Bridesmaid at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:32:33Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDING-30JAN01-ICE",
+    "title": "Will Ice Spice be a Bridesmaid for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Ice Spice served as a Bridesmaid at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:32:33Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDING-30JAN01-EST",
+    "title": "Will Este Haim be a Bridesmaid for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Este Haim served as a Bridesmaid at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:32:33Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDING-30JAN01-EMM",
+    "title": "Will Emma Stone be a Bridesmaid for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Emma Stone served as a Bridesmaid at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:32:33Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDING-30JAN01-CAR",
+    "title": "Will Cara Delevingne be a Bridesmaid for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Cara Delevingne served as a Bridesmaid at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:32:33Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDING-30JAN01-BRI",
+    "title": "Will Brittany Mahomes be a Bridesmaid for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Brittany Mahomes served as a Bridesmaid at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:32:33Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDING-30JAN01-BLA",
+    "title": "Will Blake Lively be a Bridesmaid for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Blake Lively served as a Bridesmaid at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:32:33Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDING-30JAN01-ASH",
+    "title": "Will Ashley Avignone be a Bridesmaid for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Ashley Avignone served as a Bridesmaid at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:32:33Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDING-30JAN01-ALA",
+    "title": "Will Alana Haim be a Bridesmaid for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Alana Haim served as a Bridesmaid at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:32:33Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDING-30JAN01-ABI",
+    "title": "Will Abigail Anderson (Berard) be a Bridesmaid for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Abigail Anderson (Berard) served as a Bridesmaid at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:32:33Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPAPOLOGY-26",
+  "series_ticker": "KXTRUMPAPOLOGY",
+  "title": "Will Donald Trump apologize for any statement, action, or conduct personally made or taken by Donald Trump before Jul 1, 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPAPOLOGY-26-JUL01",
+    "title": "Will Donald Trump apologize for any statement, action, or conduct personally made or taken by Donald Trump before Jul 1, 2026?",
+    "rules_primary": "If Donald Trump issues a public apology for any of his own statements, actions, or conduct before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The apology must specifically reference the topic either directly by name/description or with clear contextual connection. Qualifying apologies include explicit statements using words like \"apologize,\" \"sorry,\" \"regret,\" or \"I was wrong\" related specifically to the topic, public acknowledgment of fault or error, or retraction of previous statements coupled with expression of wrongdoing. The apology must be in a public forum (social media, press conference, interview, official statement). Conditional apologies (\"I would be sorry if...\"), sarcastic or clearly insincere statements, private apologies that are reported but not confirmed publicly, statements of regret without accepting responsibility, and clarifications without expressions of remorse do not qualify. If the person apologizes and then retracts before the deadline, the market still resolves to Yes based on the initial apology.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPCOUNTRIES-27JAN01",
+  "series_ticker": "KXTRUMPCOUNTRIES",
+  "title": "Will Donald Trump visit Turkey before Jan 1, 2027?",
+  "close_time": "2026-07-07T16:28:32Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPCOUNTRIES-27JAN01-TUR",
+    "title": "Will Donald Trump visit Turkey before Jan 1, 2027?",
+    "rules_primary": "If Donald Trump has physically travelled to and been present within the geographic boundaries of Turkey after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Physical presence within the geographic boundaries of the area is required. Flying over without landing, layovers during which the person remains in the airplane or airport, virtual or remote appearances, future visit plans, or (unless explicitly specified) presence in adjacent international waters or solely within embassy or consulate grounds do NOT constitute a visit. International airports are considered within the boundaries of their host jurisdiction. A visit that began before the specified time period and is ongoing as of its start does not count; however, if the person departs and re-enters the area during the time period, the re-entry constitutes a new visit and does count.",
+    "close_time": "2026-07-07T16:28:32Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBET-26-ALB",
+  "series_ticker": "KXBET",
+  "title": "Will LET GOD SORT EM OUT win Album of the Year award at 26th BET Awards?",
+  "close_time": "2026-06-29T17:06:35Z",
+  "markets": [
+   {
+    "ticker": "KXBET-26-ALB-LET",
+    "title": "Will LET GOD SORT EM OUT win Album of the Year award at 26th BET Awards?",
+    "rules_primary": "If LET GOD SORT EM OUT wins the Album of the Year at the 26th BET Awards, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-29T17:06:35Z"
+   },
+   {
+    "ticker": "KXBET-26-ALB-AMI",
+    "title": "Will AM I THE DRAMA? win Album of the Year award at 26th BET Awards?",
+    "rules_primary": "If AM I THE DRAMA? wins the Album of the Year at the 26th BET Awards, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-29T17:06:35Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBET-26-VID",
+  "series_ticker": "KXBET",
+  "title": "Will LUTHER win Video of the Year award at 26th BET Awards?",
+  "close_time": "2026-06-29T17:07:09Z",
+  "markets": [
+   {
+    "ticker": "KXBET-26-VID-LUT",
+    "title": "Will LUTHER win Video of the Year award at 26th BET Awards?",
+    "rules_primary": "If LUTHER wins the Video of the Year at the 26th BET Awards, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-29T17:07:09Z"
+   },
+   {
+    "ticker": "KXBET-26-VID-BUR",
+    "title": "Will BURNING BLUE win Video of the Year award at 26th BET Awards?",
+    "rules_primary": "If BURNING BLUE wins the Video of the Year at the 26th BET Awards, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-29T17:07:09Z"
+   },
+   {
+    "ticker": "KXBET-26-VID-ANX",
+    "title": "Will ANXIETY win Video of the Year award at 26th BET Awards?",
+    "rules_primary": "If ANXIETY wins the Video of the Year at the 26th BET Awards, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-29T17:07:09Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYDSACTO-26SEP14",
+  "series_ticker": "KXEMMYDSACTO",
+  "title": "Will Colman Domingo win Drama Supporting Actor at the Emmy Awards?",
+  "close_time": "2026-07-08T18:21:36Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYDSACTO-26SEP14-COL",
+    "title": "Will Colman Domingo win Drama Supporting Actor at the Emmy Awards?",
+    "rules_primary": "If Colman Domingo has won Outstanding Supporting Actor In A Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by the Emmys. Any references to the Emmys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T18:21:36Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-CACTR",
+  "series_ticker": "KXEMMYNOMS",
+  "title": "Will Kristen Wiig be on the list of nominees for Comedy Actress at the 78th Emmy Awards?",
+  "close_time": "2026-07-08T17:20:14Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYNOMS-26-CACTR-KRIS",
+    "title": "Will Kristen Wiig be on the list of nominees for Comedy Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Kristen Wiig is on the list of nominees for Outstanding Lead Actress In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026\nThis market and these products have not been endorsed by the Emmys. Any references to the Emms, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T17:20:14Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-CACTR-KRI",
+    "title": "Will Kristen Bell be on the list of nominees for Comedy Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Kristen Bell is on the list of nominees for Outstanding Lead Actress In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026\nThis market and these products have not been endorsed by the Emmys. Any references to the Emms, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T17:20:14Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-CACTR-AYO",
+    "title": "Will Ayo Edebiri be on the list of nominees for Comedy Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Ayo Edebiri is on the list of nominees for Outstanding Lead Actress In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026\nThis market and these products have not been endorsed by the Emmys. Any references to the Emms, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T17:19:30Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-CSACTR",
+  "series_ticker": "KXEMMYNOMS",
+  "title": "Will Liza Colon-Zayas be on the list of nominees for Comedy Supporting Actress at the 78th Emmy Awards?",
+  "close_time": "2026-07-08T17:47:53Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYNOMS-26-CSACTR-LIZ",
+    "title": "Will Liza Colon-Zayas be on the list of nominees for Comedy Supporting Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Liza Colon-Zayas is on the list of nominees for Outstanding Supporting Actress In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:47:53Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-CSACTR-DAN",
+    "title": "Will Danielle Deadwyler be on the list of nominees for Comedy Supporting Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Danielle Deadwyler is on the list of nominees for Outstanding Supporting Actress In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:47:52Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-CSACTR-CAR",
+    "title": "Will Carol Burnett be on the list of nominees for Comedy Supporting Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Carol Burnett is on the list of nominees for Outstanding Supporting Actress In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:47:52Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-CSACTR-ASH",
+    "title": "Will Ashley Padilla be on the list of nominees for Comedy Supporting Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Ashley Padilla is on the list of nominees for Outstanding Supporting Actress In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:47:52Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-CSACTR-ALL",
+    "title": "Will Allison Janney be on the list of nominees for Comedy Supporting Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Allison Janney is on the list of nominees for Outstanding Supporting Actress In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:47:52Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-CSACTR-KAT",
+    "title": "Will Kate O'Flynn be on the list of nominees for Comedy Supporting Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Kate O'Flynn is on the list of nominees for Outstanding Supporting Actress In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:46:57Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-DSACTO",
+  "series_ticker": "KXEMMYNOMS",
+  "title": "Will Kit Harington be on the list of nominees for Drama Supporting Actor at the 78th Emmy Awards?",
+  "close_time": "2026-07-08T19:11:17Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYNOMS-26-DSACTO-KIT",
+    "title": "Will Kit Harington be on the list of nominees for Drama Supporting Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Kit Harington is on the list of nominees for Outstanding Supporting Actor In A Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:11:17Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-DSACTO-JAM",
+    "title": "Will James Marsden be on the list of nominees for Drama Supporting Actor at the 78th Emmy Awards?",
+    "rules_primary": "If James Marsden is on the list of nominees for Outstanding Supporting Actor In A Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:11:17Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-DSACTO-JACO",
+    "title": "Will Jacob Elordi be on the list of nominees for Drama Supporting Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Jacob Elordi is on the list of nominees for Outstanding Supporting Actor In A Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:11:17Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-DSACTO-DEX",
+    "title": "Will Dexter Sol Ansell be on the list of nominees for Drama Supporting Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Dexter Sol Ansell is on the list of nominees for Outstanding Supporting Actor In A Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:11:17Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-DSACTO-COL",
+    "title": "Will Colman Domingo be on the list of nominees for Drama Supporting Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Colman Domingo is on the list of nominees for Outstanding Supporting Actor In A Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:11:17Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-DSACTO-JAC",
+    "title": "Will Jack Lowden be on the list of nominees for Drama Supporting Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Jack Lowden is on the list of nominees for Outstanding Supporting Actor In A Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:10:45Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLIUKELIMINATION-26JUN25",
+  "series_ticker": "KXLIUKELIMINATION",
+  "title": "Will Yasmine be eliminated from Love Island UK before Jun 26, 2026?",
+  "close_time": "2026-06-26T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXLIUKELIMINATION-26JUN25-YAS",
+    "title": "Will Yasmine be eliminated from Love Island UK before Jun 26, 2026?",
+    "rules_primary": "If Yasmine is officially eliminated from Love Island UK S13 before Jun 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-26T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATION-26JUN25-SIM",
+    "title": "Will Simba be eliminated from Love Island UK before Jun 26, 2026?",
+    "rules_primary": "If Simba is officially eliminated from Love Island UK S13 before Jun 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-26T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATION-26JUN25-SEA",
+    "title": "Will Sean be eliminated from Love Island UK before Jun 26, 2026?",
+    "rules_primary": "If Sean is officially eliminated from Love Island UK S13 before Jun 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-26T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATION-26JUN25-SAMR",
+    "title": "Will Samraj be eliminated from Love Island UK before Jun 26, 2026?",
+    "rules_primary": "If Samraj is officially eliminated from Love Island UK S13 before Jun 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-26T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATION-26JUN25-PRI",
+    "title": "Will Priya be eliminated from Love Island UK before Jun 26, 2026?",
+    "rules_primary": "If Priya is officially eliminated from Love Island UK S13 before Jun 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-26T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATION-26JUN25-NON",
+    "title": "Will NONE be eliminated from Love Island UK before Jun 26, 2026?",
+    "rules_primary": "If NONE is officially eliminated from Love Island UK S13 before Jun 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-26T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATION-26JUN25-MIC",
+    "title": "Will Mica be eliminated from Love Island UK before Jun 26, 2026?",
+    "rules_primary": "If Mica is officially eliminated from Love Island UK S13 before Jun 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-26T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATION-26JUN25-LOR",
+    "title": "Will Lorenzo be eliminated from Love Island UK before Jun 26, 2026?",
+    "rules_primary": "If Lorenzo is officially eliminated from Love Island UK S13 before Jun 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-26T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATION-26JUN25-KAV",
+    "title": "Will Kavan be eliminated from Love Island UK before Jun 26, 2026?",
+    "rules_primary": "If Kavan is officially eliminated from Love Island UK S13 before Jun 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-26T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATION-26JUN25-JAS",
+    "title": "Will Jasmine be eliminated from Love Island UK before Jun 26, 2026?",
+    "rules_primary": "If Jasmine is officially eliminated from Love Island UK S13 before Jun 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-26T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATION-26JUN25-FIN",
+    "title": "Will Finley be eliminated from Love Island UK before Jun 26, 2026?",
+    "rules_primary": "If Finley is officially eliminated from Love Island UK S13 before Jun 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-26T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATION-26JUN25-ELL",
+    "title": "Will Ellie be eliminated from Love Island UK before Jun 26, 2026?",
+    "rules_primary": "If Ellie is officially eliminated from Love Island UK S13 before Jun 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-26T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATION-26JUN25-ANG",
+    "title": "Will Angelista be eliminated from Love Island UK before Jun 26, 2026?",
+    "rules_primary": "If Angelista is officially eliminated from Love Island UK S13 before Jun 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-26T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPALBUMRECORD-YOU-OLI",
+  "series_ticker": "KXTOPALBUMRECORD",
+  "title": "How many straight weeks will 'you seem pretty sad for a girl so in love' be #1?",
+  "close_time": "2026-07-07T14:45:16Z",
+  "markets": [
+   {
+    "ticker": "KXTOPALBUMRECORD-YOU-OLI-4",
+    "title": "How many straight weeks will 'you seem pretty sad for a girl so in love' be #1?",
+    "rules_primary": "If you seem pretty sad for a girl so in love by Olivia Rodrigo has had the #1 spot on the Billboard 200 for more than 4 consecutive weeks, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi. If this event occurs, or the streak ends, the market will close the following 10am ET. This market specifically encompasses the first streak you seem pretty sad for a girl so in love holds.",
+    "close_time": "2026-07-07T14:45:16Z"
+   },
+   {
+    "ticker": "KXTOPALBUMRECORD-YOU-OLI-3",
+    "title": "How many straight weeks will 'you seem pretty sad for a girl so in love' be #1?",
+    "rules_primary": "If you seem pretty sad for a girl so in love by Olivia Rodrigo has had the #1 spot on the Billboard 200 for more than 3 consecutive weeks, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi. If this event occurs, or the streak ends, the market will close the following 10am ET. This market specifically encompasses the first streak you seem pretty sad for a girl so in love holds.",
+    "close_time": "2026-07-07T14:45:16Z"
+   },
+   {
+    "ticker": "KXTOPALBUMRECORD-YOU-OLI-2",
+    "title": "How many straight weeks will 'you seem pretty sad for a girl so in love' be #1?",
+    "rules_primary": "If you seem pretty sad for a girl so in love by Olivia Rodrigo has had the #1 spot on the Billboard 200 for more than 2 consecutive weeks, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi. If this event occurs, or the streak ends, the market will close the following 10am ET. This market specifically encompasses the first streak you seem pretty sad for a girl so in love holds.",
+    "close_time": "2026-07-07T14:45:16Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-LACTR",
+  "series_ticker": "KXEMMYNOMS",
+  "title": "Will Tessa Thompson be on the list of nominees for Movie/Limited Actress at the 78th Emmy Awards?",
+  "close_time": "2026-07-08T19:17:24Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYNOMS-26-LACTR-TES",
+    "title": "Will Tessa Thompson be on the list of nominees for Movie/Limited Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Tessa Thompson is on the list of nominees for Outstanding Lead Actress In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:17:24Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LACTR-RAB",
+    "title": "Will Robin Wright be on the list of nominees for Movie/Limited Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Robin Wright is on the list of nominees for Outstanding Lead Actress In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:17:24Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LACTR-KER",
+    "title": "Will Kerry Washington be on the list of nominees for Movie/Limited Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Kerry Washington is on the list of nominees for Outstanding Lead Actress In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:17:24Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-LSACTO",
+  "series_ticker": "KXEMMYNOMS",
+  "title": "Will Jonathan Banks be on the list of nominees for Movie/Limited Supporting Actor at the 78th Emmy Awards?",
+  "close_time": "2026-07-08T17:44:29Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYNOMS-26-LSACTO-JON",
+    "title": "Will Jonathan Banks be on the list of nominees for Movie/Limited Supporting Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Jonathan Banks is on the list of nominees for Outstanding Supporting Actor In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:44:29Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LSACTO-JAK",
+    "title": "Will Jake Lacy be on the list of nominees for Movie/Limited Supporting Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Jake Lacy is on the list of nominees for Outstanding Supporting Actor In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:44:29Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LSACTO-RIC",
+    "title": "Will Richard Jenkins be on the list of nominees for Movie/Limited Supporting Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Richard Jenkins is on the list of nominees for Outstanding Supporting Actor In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:43:33Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LSACTO-DAV",
+    "title": "Will David Harbour be on the list of nominees for Movie/Limited Supporting Actor at the 78th Emmy Awards?",
+    "rules_primary": "If David Harbour is on the list of nominees for Outstanding Supporting Actor In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:43:17Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXGTAPREORDERS-26",
+  "series_ticker": "KXGTAPREORDERS",
+  "title": "Will it be reported by Take-Two Interactive that Grand Theft Auto VI has surpassed 7.5 million preorders before July 4, 2026?",
+  "close_time": "2026-07-04T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXGTAPREORDERS-26-7.5MIL",
+    "title": "Will it be reported by Take-Two Interactive that Grand Theft Auto VI has surpassed 7.5 million preorders before July 4, 2026?",
+    "rules_primary": "If Grand Theft Auto VI has surpassed 7.5 million preorders before July 4, 2026 as reported by Take-Two Interactive, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from Take-Two Interactive qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXGTAPREORDERS-26-5MIL",
+    "title": "Will it be reported by Take-Two Interactive that Grand Theft Auto VI has surpassed 5 million preorders before July 4th?",
+    "rules_primary": "If Grand Theft Auto VI has surpassed 5 million preorders before July 4, 2026 as reported by Take-Two Interactive, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from Take-Two Interactive qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXGTAPREORDERS-26-25MIL",
+    "title": "Will it be reported by Take-Two Interactive that Grand Theft Auto VI has surpassed 25 million preorders before July 4, 2026?",
+    "rules_primary": "If Grand Theft Auto VI has surpassed 25 million preorders before July 4, 2026 as reported by Take-Two Interactive, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from Take-Two Interactive qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXGTAPREORDERS-26-20MIL",
+    "title": "Will it be reported by Take-Two Interactive that Grand Theft Auto VI has surpassed 20 million preorders before July 4, 2026?",
+    "rules_primary": "If Grand Theft Auto VI has surpassed 20 million preorders before July 4, 2026 as reported by Take-Two Interactive, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from Take-Two Interactive qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXGTAPREORDERS-26-17.5MIL",
+    "title": "Will it be reported by Take-Two Interactive that Grand Theft Auto VI has surpassed 17.5 million preorders before July 4, 2026?",
+    "rules_primary": "If Grand Theft Auto VI has surpassed 17.5 million preorders before July 4, 2026 as reported by Take-Two Interactive, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from Take-Two Interactive qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXGTAPREORDERS-26-15MIL",
+    "title": "Will it be reported by Take-Two Interactive that Grand Theft Auto VI has surpassed 15 million preorders before July 4, 2026?",
+    "rules_primary": "If Grand Theft Auto VI has surpassed 15 million preorders before July 4, 2026 as reported by Take-Two Interactive, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from Take-Two Interactive qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXGTAPREORDERS-26-12.5MIL",
+    "title": "Will it be reported by Take-Two Interactive that Grand Theft Auto VI has surpassed 12.5 million preorders before July 4, 2026?",
+    "rules_primary": "If Grand Theft Auto VI has surpassed 12.5 million preorders before July 4, 2026 as reported by Take-Two Interactive, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from Take-Two Interactive qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXGTAPREORDERS-26-10MIL",
+    "title": "Will it be reported by Take-Two Interactive that Grand Theft Auto VI has surpassed 10 million preorders before July 4, 2026?",
+    "rules_primary": "If Grand Theft Auto VI has surpassed 10 million preorders before July 4, 2026 as reported by Take-Two Interactive, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from Take-Two Interactive qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-04T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPALBUM-26JUL11",
+  "series_ticker": "KXTOPALBUM",
+  "title": "Will you seem pretty sad for a girl so in love be #1 on the Billboard 200 during the week of Jul 11, 2026",
+  "close_time": "2026-07-06T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPALBUM-26JUL11-YOU",
+    "title": "Will you seem pretty sad for a girl so in love be #1 on the Billboard 200 during the week of Jul 11, 2026",
+    "rules_primary": "If you seem pretty sad for a girl so in love is #1 on the Billboard 200  chart for the Week of Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-07-06T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYLIMITEDACTO-26SEP14",
+  "series_ticker": "KXEMMYLIMITEDACTO",
+  "title": "Will Jamie Bell win Movie/Limited Actor at the Emmy Awards?",
+  "close_time": "2026-07-08T18:48:04Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYLIMITEDACTO-26SEP14-JAM",
+    "title": "Will Jamie Bell win Movie/Limited Actor at the Emmy Awards?",
+    "rules_primary": "If Jamie Bell has won Outstanding Lead Actor In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by the Emmys. Any references to the Emmys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T18:48:04Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXARENASCORE-GPT56",
+  "series_ticker": "KXARENASCORE",
+  "title": "GPT 5.6 debut arena score?",
+  "close_time": "2026-07-10T20:38:12Z",
+  "markets": [
+   {
+    "ticker": "KXARENASCORE-GPT56-1510",
+    "title": "GPT 5.6 debut arena score?",
+    "rules_primary": "If A model called GPT-5.6 or greater scores above 1510 on Arena AI Text Score (Remove Style Control) Before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Any ChatGPT model added to the leaderboard labeled as \"GPT-5.6 or greater\" will qualify. If multiple qualifying models are added, the highest scoring model will be used for resolution. Models added following the initial qualifying model will not count.",
+    "close_time": "2026-07-10T20:38:12Z"
+   },
+   {
+    "ticker": "KXARENASCORE-GPT56-1505",
+    "title": "GPT 5.6 debut arena score?",
+    "rules_primary": "If A model called GPT-5.6 or greater scores above 1505 on Arena AI Text Score (Remove Style Control) Before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Any ChatGPT model added to the leaderboard labeled as \"GPT-5.6 or greater\" will qualify. If multiple qualifying models are added, the highest scoring model will be used for resolution. Models added following the initial qualifying model will not count.",
+    "close_time": "2026-07-10T20:38:12Z"
+   },
+   {
+    "ticker": "KXARENASCORE-GPT56-1500",
+    "title": "GPT 5.6 debut arena score?",
+    "rules_primary": "If A model called GPT-5.6 or greater scores above 1500 on Arena AI Text Score (Remove Style Control) Before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Any ChatGPT model added to the leaderboard labeled as \"GPT-5.6 or greater\" will qualify. If multiple qualifying models are added, the highest scoring model will be used for resolution. Models added following the initial qualifying model will not count.",
+    "close_time": "2026-07-10T20:38:12Z"
+   },
+   {
+    "ticker": "KXARENASCORE-GPT56-1495",
+    "title": "GPT 5.6 debut arena score?",
+    "rules_primary": "If A model called GPT-5.6 or greater scores above 1495 on Arena AI Text Score (Remove Style Control) Before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Any ChatGPT model added to the leaderboard labeled as \"GPT-5.6 or greater\" will qualify. If multiple qualifying models are added, the highest scoring model will be used for resolution. Models added following the initial qualifying model will not count.",
+    "close_time": "2026-07-10T20:38:12Z"
+   },
+   {
+    "ticker": "KXARENASCORE-GPT56-1490",
+    "title": "GPT 5.6 debut arena score?",
+    "rules_primary": "If A model called GPT-5.6 or greater scores above 1490 on Arena AI Text Score (Remove Style Control) Before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Any ChatGPT model added to the leaderboard labeled as \"GPT-5.6 or greater\" will qualify. If multiple qualifying models are added, the highest scoring model will be used for resolution. Models added following the initial qualifying model will not count.",
+    "close_time": "2026-07-10T20:38:12Z"
+   },
+   {
+    "ticker": "KXARENASCORE-GPT56-1485",
+    "title": "GPT 5.6 debut arena score?",
+    "rules_primary": "If A model called GPT-5.6 or greater scores above 1485 on Arena AI Text Score (Remove Style Control) Before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Any ChatGPT model added to the leaderboard labeled as \"GPT-5.6 or greater\" will qualify. If multiple qualifying models are added, the highest scoring model will be used for resolution. Models added following the initial qualifying model will not count.",
+    "close_time": "2026-07-10T20:38:12Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLIUSAELIMINATION-26JUN28",
+  "series_ticker": "KXLIUSAELIMINATION",
+  "title": "Will NONE be eliminated from Love Island USA before Jun 29, 2026?",
+  "close_time": "2026-06-29T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXLIUSAELIMINATION-26JUN28-NON",
+    "title": "Will NONE be eliminated from Love Island USA before Jun 29, 2026?",
+    "rules_primary": "If NONE is officially eliminated from Love Island USA S8 Before Jun 29, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-29T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSONGRELEASEDATE-26SEL",
+  "series_ticker": "KXSONGRELEASEDATE",
+  "title": "Will Selena Gomez release a new song before Oct 1, 2026?",
+  "close_time": "2026-07-31T15:54:35Z",
+  "markets": [
+   {
+    "ticker": "KXSONGRELEASEDATE-26SEL-OCT01",
+    "title": "Will Selena Gomez release a new song before Oct 1, 2026?",
+    "rules_primary": "If Selena Gomez releases a new song before Oct 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-31T15:54:35Z"
+   },
+   {
+    "ticker": "KXSONGRELEASEDATE-26SEL-DEC01",
+    "title": "Will Selena Gomez release a new song before Dec 1, 2026?",
+    "rules_primary": "If Selena Gomez releases a new song before Dec 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-31T15:54:35Z"
+   },
+   {
+    "ticker": "KXSONGRELEASEDATE-26SEL-JUL01",
+    "title": "Will Selena Gomez release a new song before Jul 1, 2026?",
+    "rules_primary": "If Selena Gomez releases a new song before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXWHITEPARTY-26JUL31",
+  "series_ticker": "KXWHITEPARTY",
+  "title": "Will Timoth\u00e9e Chalamet attend Michael Rubin's annual White Party 2026 in 2026?",
+  "close_time": "2026-07-04T01:25:12Z",
+  "markets": [
+   {
+    "ticker": "KXWHITEPARTY-26JUL31-TIM",
+    "title": "Will Timoth\u00e9e Chalamet attend Michael Rubin's annual White Party 2026 in 2026?",
+    "rules_primary": "If Timoth\u00e9e Chalamet attends Michael Rubin's annual White Party 2026, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-04T01:25:12Z"
+   },
+   {
+    "ticker": "KXWHITEPARTY-26JUL31-LEB",
+    "title": "Will LeBron James attend Michael Rubin's annual White Party 2026 in 2026?",
+    "rules_primary": "If LeBron James attends Michael Rubin's annual White Party 2026, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-04T01:25:12Z"
+   },
+   {
+    "ticker": "KXWHITEPARTY-26JUL31-KYL",
+    "title": "Will Kylie Jenner attend Michael Rubin's annual White Party 2026 in 2026?",
+    "rules_primary": "If Kylie Jenner attends Michael Rubin's annual White Party 2026, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-04T01:25:12Z"
+   },
+   {
+    "ticker": "KXWHITEPARTY-26JUL31-KIM",
+    "title": "Will Kim Kardashian attend Michael Rubin's annual White Party 2026 in 2026?",
+    "rules_primary": "If Kim Kardashian attends Michael Rubin's annual White Party 2026, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-04T01:25:12Z"
+   },
+   {
+    "ticker": "KXWHITEPARTY-26JUL31-KEV",
+    "title": "Will Kevin Hart attend Michael Rubin's annual White Party 2026 in 2026?",
+    "rules_primary": "If Kevin Hart attends Michael Rubin's annual White Party 2026, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-04T01:25:12Z"
+   },
+   {
+    "ticker": "KXWHITEPARTY-26JUL31-JUS",
+    "title": "Will Justin Bieber attend Michael Rubin's annual White Party 2026 in 2026?",
+    "rules_primary": "If Justin Bieber attends Michael Rubin's annual White Party 2026, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-04T01:25:12Z"
+   },
+   {
+    "ticker": "KXWHITEPARTY-26JUL31-DRA",
+    "title": "Will Drake attend Michael Rubin's annual White Party 2026 in 2026?",
+    "rules_primary": "If Drake attends Michael Rubin's annual White Party 2026, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-04T01:25:12Z"
+   },
+   {
+    "ticker": "KXWHITEPARTY-26JUL31-BEY",
+    "title": "Will Beyonc\u00e9 attend Michael Rubin's annual White Party 2026 in 2026?",
+    "rules_primary": "If Beyonc\u00e9 attends Michael Rubin's annual White Party 2026, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-04T01:25:12Z"
+   },
+   {
+    "ticker": "KXWHITEPARTY-26JUL31-AAR",
+    "title": "Will Aaron Judge attend Michael Rubin's annual White Party 2026 in 2026?",
+    "rules_primary": "If Aaron Judge attends Michael Rubin's annual White Party 2026, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-04T01:25:12Z"
+   },
+   {
+    "ticker": "KXWHITEPARTY-26JUL31-LEO",
+    "title": "Will Leonardo DiCaprio attend Michael Rubin's annual White Party 2026 in 2026?",
+    "rules_primary": "If Leonardo DiCaprio attends Michael Rubin's annual White Party 2026, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-03T15:12:07Z"
+   },
+   {
+    "ticker": "KXWHITEPARTY-26JUL31-ALI",
+    "title": "Will Alix Earle attend Michael Rubin's annual White Party 2026 in 2026?",
+    "rules_primary": "If Alix Earle attends Michael Rubin's annual White Party 2026, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-02T18:39:50Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLOVEISLANDUSARANK-26AUG31R3",
+  "series_ticker": "KXLOVEISLANDUSARANK",
+  "title": "Will Tierra and KC finish 3 Place in Love Island USA Season 8?",
+  "close_time": "2026-07-13T02:40:33Z",
+  "markets": [
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31R3-TIKC",
+    "title": "Will Tierra and KC finish 3 Place in Love Island USA Season 8?",
+    "rules_primary": "If Tierra and KC finish 3rd in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:40:33Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31R3-PACO",
+    "title": "Will Parmida and Corbin finish 3 Place in Love Island USA Season 8?",
+    "rules_primary": "If Parmida and Corbin finish 3rd in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:40:33Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31R3-MESI",
+    "title": "Will Melanie and Sincere finish 3rd in Love Island USA Season 8?",
+    "rules_primary": "If Melanie and Sincere finish 3rd in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:40:33Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31R3-KEDY",
+    "title": "Will Kenzie and Dylan finish 3 Place in Love Island USA Season 8?",
+    "rules_primary": "If Kenzie and Dylan finish 3rd in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:40:33Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31R3-KAZA",
+    "title": "Will Kayda and Zach finish 3 Place in Love Island USA Season 8?",
+    "rules_primary": "If Kayda and Zach finish 3rd in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:40:33Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31R3-JACA",
+    "title": "Will Jaiden and Caleb finish 3 Place in Love Island USA Season 8?",
+    "rules_primary": "If Jaiden and Caleb finish 3rd in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:40:33Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31R3-ANCAR",
+    "title": "Will Aniya and Carl finish 3 Place in Love Island USA Season 8?",
+    "rules_primary": "If Aniya and Carl finish 3rd in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:40:33Z"
+   }
+  ]
+ }
+]

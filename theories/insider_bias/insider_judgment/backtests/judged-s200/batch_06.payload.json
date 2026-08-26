@@ -1,0 +1,531 @@
+[
+ {
+  "event_ticker": "KXCDCCONF-27JAN01",
+  "series_ticker": "KXCDCCONF",
+  "title": "Will Erica Schwartz be confirmed as CDC director before Jan 1, 2027?",
+  "close_time": "2026-08-05T19:48:52Z",
+  "markets": [
+   {
+    "ticker": "KXCDCCONF-27JAN01-JAN01",
+    "title": "Will Erica Schwartz be confirmed as CDC director before Jan 1, 2027?",
+    "rules_primary": "If the U.S. Senate confirms Erica Schwartz to the position of CDC director before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A confirmation is defined as a successful Senate confirmation vote where the nominee receives the constitutionally required majority. This includes confirmation by recorded roll call vote, voice vote, or unanimous consent. Nomination without Senate action, committee approval alone, recess appointments, acting appointments, withdrawn nominations, failed votes, and procedural votes that do not result in final confirmation do not satisfy the Payout Criterion. Confirmation to a different position than the one specified does not count.",
+    "close_time": "2026-08-05T19:48:52Z"
+   },
+   {
+    "ticker": "KXCDCCONF-27JAN01-AUG01",
+    "title": "Will Erica Schwartz be confirmed as CDC director before Aug 1, 2026?",
+    "rules_primary": "If the U.S. Senate confirms Erica Schwartz to the position of CDC director before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A confirmation is defined as a successful Senate confirmation vote where the nominee receives the constitutionally required majority. This includes confirmation by recorded roll call vote, voice vote, or unanimous consent. Nomination without Senate action, committee approval alone, recess appointments, acting appointments, withdrawn nominations, failed votes, and procedural votes that do not result in final confirmation do not satisfy the Payout Criterion. Confirmation to a different position than the one specified does not count.",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXCRUDEEXPORTBAN-27",
+  "series_ticker": "KXCRUDEEXPORTBAN",
+  "title": "Will it be reported by any of the Source Agencies that the United States has imposed a ban on exports of crude oil that has gone into effect before Aug 1, 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXCRUDEEXPORTBAN-26-AUG26",
+    "title": "Will it be reported by any of the Source Agencies that the United States has imposed a ban on exports of crude oil that has gone into effect before Aug 1, 2026?",
+    "rules_primary": "If the United States has imposed a ban on exports of crude oil that has gone into effect  after Issuance and before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLLM1-26JUL31",
+  "series_ticker": "KXLLM1",
+  "title": "Best AI in Jul 2026?",
+  "close_time": "2026-07-31T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXLLM1-26JUL31-GOOG",
+    "title": "Best AI in Jul 2026?",
+    "rules_primary": "If Google has the top-ranked LLM on Jul 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If two models are tied under Rank (UB), then the model with the highest Arena Score will win. If two models are still tied after that, then the model with the most votes will win. If two models are still tied after that, the model that was released earlier will win.",
+    "close_time": "2026-07-31T14:00:00Z"
+   },
+   {
+    "ticker": "KXLLM1-26JUL31-A",
+    "title": "Best AI in Jul 2026?",
+    "rules_primary": "If Anthropic has the top-ranked LLM on Jul 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If two models are tied under Rank (UB), then the model with the highest Arena Score will win. If two models are still tied after that, then the model with the most votes will win. If two models are still tied after that, the model that was released earlier will win.",
+    "close_time": "2026-07-31T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBIDENTAPES-26",
+  "series_ticker": "KXBIDENTAPES",
+  "title": "Will the Department of Justice (DOJ) release audio recordings of interviews conducted between Joe Biden and ghostwriter Marc Zwonitzer before Oct 1, 2026?",
+  "close_time": "2026-07-28T14:30:52Z",
+  "markets": [
+   {
+    "ticker": "KXBIDENTAPES-26-OCT01",
+    "title": "Will the Department of Justice (DOJ) release audio recordings of interviews conducted between Joe Biden and ghostwriter Marc Zwonitzer before Oct 1, 2026?",
+    "rules_primary": "If the Department of Justice (DOJ) has released audio recordings of interviews conducted between Joe Biden and ghostwriter Marc Zwonitzer to the public before Oct 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Released to the public means the document is made freely accessible to the general public without restriction, can be viewed, downloaded, or accessed by the public (paywalls and similar restrictions still count as public), and the release is intentional by the entity (not a leak or hack). Publishing the full document on a publicly accessible website, making it available through a public records request portal, including it as an attachment to a public filing, distributing to media outlets who publish it in full, or posting on publicly accessible social media platforms all constitute release to the public. Merely describing or summarizing the document's contents, publishing excerpts or portions, showing the document briefly on screen, releasing a redacted version when the unredacted version is specified, or leaking without authorization do NOT constitute release to the public.",
+    "close_time": "2026-07-28T14:30:52Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFETTERMANSWITCH-26MAY",
+  "series_ticker": "KXFETTERMANSWITCH",
+  "title": "Will John Fetterman leave the Democratic party before Aug 1, 2026?",
+  "close_time": "2026-08-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXFETTERMANSWITCH-26MAY-AUG01",
+    "title": "Will John Fetterman leave the Democratic party before Aug 1, 2026?",
+    "rules_primary": "If John Fetterman announces they are leaving party (or are no longer caucusing with them in the Senate) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLAGODAYS-26JUL",
+  "series_ticker": "KXLAGODAYS",
+  "title": "Will Trump make 1 trips to Mar-a-Lago as President in Jul 2026?",
+  "close_time": "2026-08-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXLAGODAYS-26JUL-1",
+    "title": "Will Trump make 1 trips to Mar-a-Lago as President in Jul 2026?",
+    "rules_primary": "If Trump makes exactly 1 trips to Mar-a-Lago in Jul 2026, then the market resolves to Yes.",
+    "rules_secondary": "A single visit begins when the President arrives in Mar-a-Lago and ends when the President has returned to the White House. A visit need not end to be included \u2013 i.e. if Jul 2026 ends with the President still there, that visit counts for the purposes of the count. If the President is in Mar-a-Lago at the beginning of Jul 2026, that will count as a visit.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXLAGODAYS-26JUL-0",
+    "title": "Will Trump make 0 trips to Mar-a-Lago as President in Jul 2026?",
+    "rules_primary": "If Trump makes exactly 0 trips to Mar-a-Lago in Jul 2026, then the market resolves to Yes.",
+    "rules_secondary": "A single visit begins when the President arrives in Mar-a-Lago and ends when the President has returned to the White House. A visit need not end to be included \u2013 i.e. if Jul 2026 ends with the President still there, that visit counts for the purposes of the count. If the President is in Mar-a-Lago at the beginning of Jul 2026, that will count as a visit.",
+    "close_time": "2026-08-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLAUNCHCOUNTM-JUL",
+  "series_ticker": "KXLAUNCHCOUNTM",
+  "title": "How many launches will all U.S.-licensed commercial launch providers cumulatively have in Jul 2026?",
+  "close_time": "2026-08-01T22:00:25Z",
+  "markets": [
+   {
+    "ticker": "KXLAUNCHCOUNTM-JUL-18",
+    "title": "How many launches will all U.S.-licensed commercial launch providers cumulatively have in Jul 2026?",
+    "rules_primary": "If all U.S.-licensed commercial launch providers cumulatively have Above 18 launches in Jul 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T22:00:25Z"
+   },
+   {
+    "ticker": "KXLAUNCHCOUNTM-JUL-17",
+    "title": "How many launches will all U.S.-licensed commercial launch providers cumulatively have in Jul 2026?",
+    "rules_primary": "If all U.S.-licensed commercial launch providers cumulatively have Above 17 launches in Jul 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T22:00:25Z"
+   },
+   {
+    "ticker": "KXLAUNCHCOUNTM-JUL-16",
+    "title": "How many launches will all U.S.-licensed commercial launch providers cumulatively have in Jul 2026?",
+    "rules_primary": "If all U.S.-licensed commercial launch providers cumulatively have Above 16 launches in Jul 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T22:00:25Z"
+   },
+   {
+    "ticker": "KXLAUNCHCOUNTM-JUL-15",
+    "title": "How many launches will all U.S.-licensed commercial launch providers cumulatively have in Jul 2026?",
+    "rules_primary": "If all U.S.-licensed commercial launch providers cumulatively have Above 15 launches in Jul 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T22:00:25Z"
+   },
+   {
+    "ticker": "KXLAUNCHCOUNTM-JUL-14",
+    "title": "How many launches will all U.S.-licensed commercial launch providers cumulatively have in Jul 2026?",
+    "rules_primary": "If all U.S.-licensed commercial launch providers cumulatively have Above 14 launches in Jul 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T22:00:25Z"
+   },
+   {
+    "ticker": "KXLAUNCHCOUNTM-JUL-13",
+    "title": "How many launches will all U.S.-licensed commercial launch providers cumulatively have in Jul 2026?",
+    "rules_primary": "If all U.S.-licensed commercial launch providers cumulatively have Above 13 launches in Jul 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T22:00:25Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSPOTIFYNUM1USA-26AUG01-ARI",
+  "series_ticker": "KXSPOTIFYNUM1USA",
+  "title": "Will Ariana Grande be #1 on Spotify's Daily Top Songs USA chart for at least 3 chart days in July 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXSPOTIFYNUM1USA-26AUG01-ARI-3",
+    "title": "Will Ariana Grande be #1 on Spotify's Daily Top Songs USA chart for at least 3 chart days in July 2026?",
+    "rules_primary": "If  Ariana Grande is #1 on the Spotify Daily Top Songs USA chart for at least 3 chart days in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPTIME-26JUL25",
+  "series_ticker": "KXTRUMPTIME",
+  "title": "Will Trump post on Truth Social between 3:00 AM and 3:59 AM ET this week?",
+  "close_time": "2026-07-25T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPTIME-26JUL25-H3",
+    "title": "Will Trump post on Truth Social between 3:00 AM and 3:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 3:00 AM to 3:59 AM ET on any day from Jul 19, 2026 through Jul 25, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-07-25T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMVS-DAU26JUL31",
+  "series_ticker": "KXALBUMVS",
+  "title": "Will Daughter From Hell have more first week Album Equivalent Units, within the first week of release tracking week, than Music, Fashion, Film on Luminate during the within the first week of release?",
+  "close_time": "2026-08-02T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMVS-DAU26JUL31-DAU",
+    "title": "Will Daughter From Hell have more first week Album Equivalent Units, within the first week of release tracking week, than Music, Fashion, Film on Luminate during the within the first week of release?",
+    "rules_primary": "If Daughter From Hell has more USA First week Album Equivalent Units on Luminate than Music, Fashion, Film within the first week of release, then the market resolves to Yes.",
+    "rules_secondary": "\"First week\" refers to the album's initial Luminate tracking week following release, which generally spans from Friday through the following Thursday after release. This market will close on the Sunday following the release Music, Fashion, Film.\n\nData for these Contracts will be based on the within the first week of release tracking week. Such data may be published up to approximately 48 hours after the end of the period.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-08-02T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFEATURE-26MUS",
+  "series_ticker": "KXFEATURE",
+  "title": "Will Clairo be featured on Music, Fashion, Film by Charli xcx?",
+  "close_time": "2026-07-27T13:50:34Z",
+  "markets": [
+   {
+    "ticker": "KXFEATURE-26MUS-CLA",
+    "title": "Will Clairo be featured on Music, Fashion, Film by Charli xcx?",
+    "rules_primary": "If Clairo is featured on the album Music, Fashion, Film by Charli xcx before Jul 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-27T13:50:34Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMAMDANIEO-26JUL25",
+  "series_ticker": "KXMAMDANIEO",
+  "title": "Will Mamdani sign above 0 executive orders between Jul 19, 2026 and Jul 25, 2026?",
+  "close_time": "2026-07-20T21:34:17Z",
+  "markets": [
+   {
+    "ticker": "KXMAMDANIEO-26JUL25-T0",
+    "title": "Will Mamdani sign above 0 executive orders between Jul 19, 2026 and Jul 25, 2026?",
+    "rules_primary": "If the number of non-emergency executive orders signed by Zohran Mamdani is above 0 from Jul 19, 2026 to Jul 25, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-20T21:34:17Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPVH-26JUL24",
+  "series_ticker": "KXTRUMPVH",
+  "title": "Will Donald Trump's VoteHub approval polling average be above 40.5% at 10:00 AM ET on Jul 24, 2026?",
+  "close_time": "2026-07-24T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPVH-26JUL24-T40.5",
+    "title": "Will Donald Trump's VoteHub approval polling average be above 40.5% at 10:00 AM ET on Jul 24, 2026?",
+    "rules_primary": "If Donald Trump's VoteHub approval polling average is above 40.5% at 10:00 AM ET on Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-24T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBLANCHEJUDICIARY-27",
+  "series_ticker": "KXBLANCHEJUDICIARY",
+  "title": "Will it be reported by any of the Source Agencies that the Senate Judiciary Committee reports Todd Blanche's nomination to be U.S. Attorney General to the full Senate before Jan 1, 2027?",
+  "close_time": "2026-08-04T15:07:49Z",
+  "markets": [
+   {
+    "ticker": "KXBLANCHEJUDICIARY-27-27JAN01",
+    "title": "Will it be reported by any of the Source Agencies that the Senate Judiciary Committee reports Todd Blanche's nomination to be U.S. Attorney General to the full Senate before Jan 1, 2027?",
+    "rules_primary": "If the Senate Judiciary Committee reports Todd Blanche's nomination to be U.S. Attorney General to the full Senate  after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-08-04T15:07:49Z"
+   },
+   {
+    "ticker": "KXBLANCHEJUDICIARY-27-26SEP01",
+    "title": "Will it be reported by any of the Source Agencies that the Senate Judiciary Committee reports Todd Blanche's nomination to be U.S. Attorney General to the full Senate before Sep 1, 2026?",
+    "rules_primary": "If the Senate Judiciary Committee reports Todd Blanche's nomination to be U.S. Attorney General to the full Senate  after Issuance and before Sep 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-08-04T15:07:49Z"
+   },
+   {
+    "ticker": "KXBLANCHEJUDICIARY-27-26OCT01",
+    "title": "Will it be reported by any of the Source Agencies that the Senate Judiciary Committee reports Todd Blanche's nomination to be U.S. Attorney General to the full Senate before Oct 1, 2026?",
+    "rules_primary": "If the Senate Judiciary Committee reports Todd Blanche's nomination to be U.S. Attorney General to the full Senate  after Issuance and before Oct 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-08-04T15:07:49Z"
+   },
+   {
+    "ticker": "KXBLANCHEJUDICIARY-27-26AUG01",
+    "title": "Will it be reported by any of the Source Agencies that the Senate Judiciary Committee reports Todd Blanche's nomination to be U.S. Attorney General to the full Senate before Aug 1, 2026?",
+    "rules_primary": "If the Senate Judiciary Committee reports Todd Blanche's nomination to be U.S. Attorney General to the full Senate  after Issuance and before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTECHRANKLISTAICODE-26JUL27",
+  "series_ticker": "KXTECHRANKLISTAICODE",
+  "title": "Top Coding AI this week?",
+  "close_time": "2026-07-27T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTECHRANKLISTAICODE-26JUL27-KIMI",
+    "title": "Top Coding AI this week?",
+    "rules_primary": "If Kimi is the #1 model on LM Code Arena Leaderboard on Jul 27, 2026 at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.",
+    "close_time": "2026-07-27T14:00:00Z"
+   },
+   {
+    "ticker": "KXTECHRANKLISTAICODE-26JUL27-CLAU",
+    "title": "Top Coding AI this week?",
+    "rules_primary": "If Claude is the #1 model on LM Code Arena Leaderboard on Jul 27, 2026 at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.",
+    "close_time": "2026-07-27T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPPHOTO-26JUL26",
+  "series_ticker": "KXTRUMPPHOTO",
+  "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 6 between Jul 20, 2026 and Jul 26, 2026?",
+  "close_time": "2026-07-27T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPPHOTO-26JUL26-6",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 6 between Jul 20, 2026 and Jul 26, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jul 20, 2026 and Jul 26, 2026 is exactly 6, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market. Conversely, if a photo is correctly tagged as depicting Donald Trump but its metadata date does not reflect the actual date the photo was taken (in local time), Kalshi reserves the right to include that photo based on the actual date.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-07-27T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPPHOTO-26JUL26-4",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 4 between Jul 20, 2026 and Jul 26, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jul 20, 2026 and Jul 26, 2026 is exactly 4, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market. Conversely, if a photo is correctly tagged as depicting Donald Trump but its metadata date does not reflect the actual date the photo was taken (in local time), Kalshi reserves the right to include that photo based on the actual date.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-07-27T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBURNHAMJUL-26AUG01",
+  "series_ticker": "KXBURNHAMJUL",
+  "title": "Will Government of the UK report that Liz Kendall is officially listed or confirmed as serving as a full Cabinet minister under Andy Burnham?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXBURNHAMJUL-26AUG01-LKEN",
+    "title": "Will Government of the UK report that Liz Kendall is officially listed or confirmed as serving as a full Cabinet minister under Andy Burnham?",
+    "rules_primary": "If Liz Kendall is officially listed or confirmed as serving as a full Cabinet minister under Andy Burnham before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Continued service qualifies only if an official UK Government source identifies the listed individual as a Cabinet minister under Burnham before Aug 1, 2026. Temporary/caretaker service and non-Cabinet roles, including ministers who merely attend Cabinet, do not qualify.",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXBURNHAMJUL-26AUG01-DLAM",
+    "title": "Will Government of the UK report that David Lammy is officially listed or confirmed as serving as a full Cabinet minister under Andy Burnham?",
+    "rules_primary": "If David Lammy is officially listed or confirmed as serving as a full Cabinet minister under Andy Burnham before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Continued service qualifies only if an official UK Government source identifies the listed individual as a Cabinet minister under Burnham before Aug 1, 2026. Temporary/caretaker service and non-Cabinet roles, including ministers who merely attend Cabinet, do not qualify.",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEPSTEIN-26AUG01",
+  "series_ticker": "KXEPSTEIN",
+  "title": "Will Trump release any documents about Epstein's associates before Aug 1, 2026?",
+  "close_time": "2026-08-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXEPSTEIN-26AUG01",
+    "title": "Will Trump release any documents about Epstein's associates before Aug 1, 2026?",
+    "rules_primary": "If the Trump Administration has released, after Issuance and before Aug 1, 2026, previously unreleased (but created prior to the start of his Administration) documents related to or discussing Jeffrey Epstein\u2019s connections, or associates, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMC-HAL",
+  "series_ticker": "KXMC",
+  "title": "Halo: Campaign Evolved Metacritic score?",
+  "close_time": "2026-08-04T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXMC-HAL-90",
+    "title": "Halo: Campaign Evolved Metacritic score?",
+    "rules_primary": "If the Metascore for Halo: Campaign Evolved is Above 90 seven days after release at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Important Information: If no platform is specified, then the value used will be the first one listed on the\nMetacritic site on the page for Halo: Campaign Evolved.\n\nThis market and these products have not been endorsed by metacritic. Any references to metacritic, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between metacritic and Kalshi.",
+    "close_time": "2026-08-04T14:00:00Z"
+   },
+   {
+    "ticker": "KXMC-HAL-85",
+    "title": "Halo: Campaign Evolved Metacritic score?",
+    "rules_primary": "If the Metascore for Halo: Campaign Evolved is Above 85 seven days after release at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Important Information: If no platform is specified, then the value used will be the first one listed on the\nMetacritic site on the page for Halo: Campaign Evolved.\n\nThis market and these products have not been endorsed by metacritic. Any references to metacritic, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between metacritic and Kalshi.",
+    "close_time": "2026-08-04T14:00:00Z"
+   },
+   {
+    "ticker": "KXMC-HAL-80",
+    "title": "Halo: Campaign Evolved Metacritic score?",
+    "rules_primary": "If the Metascore for Halo: Campaign Evolved is Above 80 seven days after release at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Important Information: If no platform is specified, then the value used will be the first one listed on the\nMetacritic site on the page for Halo: Campaign Evolved.\n\nThis market and these products have not been endorsed by metacritic. Any references to metacritic, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between metacritic and Kalshi.",
+    "close_time": "2026-08-04T14:00:00Z"
+   },
+   {
+    "ticker": "KXMC-HAL-70",
+    "title": "Halo: Campaign Evolved Metacritic score?",
+    "rules_primary": "If the Metascore for Halo: Campaign Evolved is Above 70 seven days after release at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Important Information: If no platform is specified, then the value used will be the first one listed on the\nMetacritic site on the page for Halo: Campaign Evolved.\n\nThis market and these products have not been endorsed by metacritic. Any references to metacritic, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between metacritic and Kalshi.",
+    "close_time": "2026-08-04T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXWEEKSNUM1-26AUG29-CHO",
+  "series_ticker": "KXWEEKSNUM1",
+  "title": "Will Choosin' Texas by Ella Langley spend 4 weeks at #1 on the Billboard Hot 100 in August 2026?",
+  "close_time": "2026-08-18T15:14:52Z",
+  "markets": [
+   {
+    "ticker": "KXWEEKSNUM1-26AUG29-CHO-4",
+    "title": "Will Choosin' Texas by Ella Langley spend 4 weeks at #1 on the Billboard Hot 100 in August 2026?",
+    "rules_primary": "If Choosin' Texas by Ella Langley spends at least 4 week(s) at the #1 position on the Billboard Hot 100 in August 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only Billboard charts dated between August 01, 2026, and August 29, 2026, inclusive, will be considered for this market. These are the first and last eligible chart dates for August 2026.\n\nThis market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-18T15:14:52Z"
+   },
+   {
+    "ticker": "KXWEEKSNUM1-26AUG29-CHO-3",
+    "title": "Will Choosin' Texas by Ella Langley spend 3 weeks at #1 on the Billboard Hot 100 in August 2026?",
+    "rules_primary": "If Choosin' Texas by Ella Langley spends at least 3 week(s) at the #1 position on the Billboard Hot 100 in August 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only Billboard charts dated between August 01, 2026, and August 29, 2026, inclusive, will be considered for this market. These are the first and last eligible chart dates for August 2026.\n\nThis market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-11T17:49:58Z"
+   },
+   {
+    "ticker": "KXWEEKSNUM1-26AUG29-CHO-2",
+    "title": "Will Choosin' Texas by Ella Langley spend 2 weeks at #1 on the Billboard Hot 100 in August 2026?",
+    "rules_primary": "If Choosin' Texas by Ella Langley spends at least 2 week(s) at the #1 position on the Billboard Hot 100 in August 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only Billboard charts dated between August 01, 2026, and August 29, 2026, inclusive, will be considered for this market. These are the first and last eligible chart dates for August 2026.\n\nThis market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-04T14:10:10Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KX20SONG-26DEC26",
+  "series_ticker": "KX20SONG",
+  "title": "Will Lil Baby have a top 20 song this year?",
+  "close_time": "2026-07-28T18:29:49Z",
+  "markets": [
+   {
+    "ticker": "KX20SONG-26DEC26-BAB",
+    "title": "Will Lil Baby have a top 20 song this year?",
+    "rules_primary": "If Lil Baby has a top 20 single on the Billboard Hot 100 by the Billboard issue for Dec 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-07-28T18:29:49Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXAISONG-27",
+  "series_ticker": "KXAISONG",
+  "title": "Will an AI generated song be on the Billboard Hot 100?",
+  "close_time": "2026-08-07T19:14:32Z",
+  "markets": [
+   {
+    "ticker": "KXAISONG-27",
+    "title": "Will an AI generated song be on the Billboard Hot 100?",
+    "rules_primary": "If there is a song on the Billboard Hot 100 that is at least partially AI-generated before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-07T19:14:32Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMLENGTH-26DEC30-PET",
+  "series_ticker": "KXALBUMLENGTH",
+  "title": "How long will Ariana Grande's album 'petal' be?",
+  "close_time": "2026-07-31T15:04:25Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMLENGTH-26DEC30-PET-40",
+    "title": "How long will Ariana Grande's album 'petal' be?",
+    "rules_primary": "If Ariana Grande's album 'petal' is at least 40 minutes, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-31T15:04:25Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPVH-26JUL31",
+  "series_ticker": "KXTRUMPVH",
+  "title": "Will Donald Trump's VoteHub approval polling average be above 39.5% at 10:00 AM ET on Jul 31, 2026?",
+  "close_time": "2026-07-31T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPVH-26JUL31-T39.5",
+    "title": "Will Donald Trump's VoteHub approval polling average be above 39.5% at 10:00 AM ET on Jul 31, 2026?",
+    "rules_primary": "If Donald Trump's VoteHub approval polling average is above 39.5% at 10:00 AM ET on Jul 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-31T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBLANCHECOUNT-27",
+  "series_ticker": "KXBLANCHECOUNT",
+  "title": "How many Senators vote to confirm as Attorney General?",
+  "close_time": "2026-08-08T12:58:23Z",
+  "markets": [
+   {
+    "ticker": "KXBLANCHECOUNT-27-T52",
+    "title": "How many Senators vote to confirm as Attorney General?",
+    "rules_primary": "If the number of Senators voting Yea for the nomination of Todd Blanche to Attorney General after Issuance and before Jan 1, 2027 is above 52, then the market resolves to Yes.",
+    "rules_secondary": "If no vote has occurred before Jan 1, 2027, then any market not including \u201czero\u201d within its count (e.g. \u201cBetween 50 and 64\u201d) resolves to No, and any market including \u201czero\u201d (e.g. \u201cBelow 50\u201d) resolves to Yes. If the vote count is not specified but the nominee is confirmed, any market including \u201c100\u201d (e.g. \u201cBetween 65 and 100\u201d) will resolve to Yes, and any market not including \u201c100\u201d (e.g. \u201cBelow 65\u201d) will resolve to No. Any vote cast by the Vice President on the nomination shall not be considered for purposes of this market. Once the market has expired, a request by any Senator to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Senate.gov or any other official source.",
+    "close_time": "2026-08-08T12:58:23Z"
+   },
+   {
+    "ticker": "KXBLANCHECOUNT-27-T51",
+    "title": "How many Senators vote to confirm as Attorney General?",
+    "rules_primary": "If the number of Senators voting Yea for the nomination of Todd Blanche to Attorney General after Issuance and before Jan 1, 2027 is above 51, then the market resolves to Yes.",
+    "rules_secondary": "If no vote has occurred before Jan 1, 2027, then any market not including \u201czero\u201d within its count (e.g. \u201cBetween 50 and 64\u201d) resolves to No, and any market including \u201czero\u201d (e.g. \u201cBelow 50\u201d) resolves to Yes. If the vote count is not specified but the nominee is confirmed, any market including \u201c100\u201d (e.g. \u201cBetween 65 and 100\u201d) will resolve to Yes, and any market not including \u201c100\u201d (e.g. \u201cBelow 65\u201d) will resolve to No. Any vote cast by the Vice President on the nomination shall not be considered for purposes of this market. Once the market has expired, a request by any Senator to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Senate.gov or any other official source.",
+    "close_time": "2026-08-08T12:58:23Z"
+   },
+   {
+    "ticker": "KXBLANCHECOUNT-27-T50",
+    "title": "How many Senators vote to confirm as Attorney General?",
+    "rules_primary": "If the number of Senators voting Yea for the nomination of Todd Blanche to Attorney General after Issuance and before Jan 1, 2027 is above 50, then the market resolves to Yes.",
+    "rules_secondary": "If no vote has occurred before Jan 1, 2027, then any market not including \u201czero\u201d within its count (e.g. \u201cBetween 50 and 64\u201d) resolves to No, and any market including \u201czero\u201d (e.g. \u201cBelow 50\u201d) resolves to Yes. If the vote count is not specified but the nominee is confirmed, any market including \u201c100\u201d (e.g. \u201cBetween 65 and 100\u201d) will resolve to Yes, and any market not including \u201c100\u201d (e.g. \u201cBelow 65\u201d) will resolve to No. Any vote cast by the Vice President on the nomination shall not be considered for purposes of this market. Once the market has expired, a request by any Senator to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Senate.gov or any other official source.",
+    "close_time": "2026-08-08T12:58:23Z"
+   },
+   {
+    "ticker": "KXBLANCHECOUNT-27-T49",
+    "title": "How many Senators vote to confirm as Attorney General?",
+    "rules_primary": "If the number of Senators voting Yea for the nomination of Todd Blanche to Attorney General after Issuance and before Jan 1, 2027 is above 49, then the market resolves to Yes.",
+    "rules_secondary": "If no vote has occurred before Jan 1, 2027, then any market not including \u201czero\u201d within its count (e.g. \u201cBetween 50 and 64\u201d) resolves to No, and any market including \u201czero\u201d (e.g. \u201cBelow 50\u201d) resolves to Yes. If the vote count is not specified but the nominee is confirmed, any market including \u201c100\u201d (e.g. \u201cBetween 65 and 100\u201d) will resolve to Yes, and any market not including \u201c100\u201d (e.g. \u201cBelow 65\u201d) will resolve to No. Any vote cast by the Vice President on the nomination shall not be considered for purposes of this market. Once the market has expired, a request by any Senator to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Senate.gov or any other official source.",
+    "close_time": "2026-08-08T12:57:56Z"
+   }
+  ]
+ }
+]

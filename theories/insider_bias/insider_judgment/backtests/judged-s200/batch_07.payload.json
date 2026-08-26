@@ -1,0 +1,818 @@
+[
+ {
+  "event_ticker": "KXNEXTAG-29",
+  "series_ticker": "KXNEXTAG",
+  "title": "Who will be Trump's next Attorney General?",
+  "close_time": "2026-08-08T23:48:24Z",
+  "markets": [
+   {
+    "ticker": "KXNEXTAG-29-TBLA",
+    "title": "Who will be Trump's next Attorney General?",
+    "rules_primary": "If the first new person to be Attorney General is Todd Blanche before Jan 20, 2029, then the market resolves to Yes.",
+    "rules_secondary": "Acting and Interim holders of the office are not included in the Payout Criterion. Persons confirmed by the Senate to be that position, or appointed via a \u201crecess appointment\u201d are included, even if that recess appointment is later struck down as illegal.",
+    "close_time": "2026-08-08T23:48:24Z"
+   },
+   {
+    "ticker": "KXNEXTAG-29-RDES",
+    "title": "Who will be Trump's next Attorney General?",
+    "rules_primary": "If the first new person to be Attorney General is Ron DeSantis before Jan 20, 2029, then the market resolves to Yes.",
+    "rules_secondary": "Acting and Interim holders of the office are not included in the Payout Criterion. Persons confirmed by the Senate to be that position, or appointed via a \u201crecess appointment\u201d are included, even if that recess appointment is later struck down as illegal.",
+    "close_time": "2026-08-08T23:48:24Z"
+   },
+   {
+    "ticker": "KXNEXTAG-29-NOONE",
+    "title": "Who will be Trump's next Attorney General?",
+    "rules_primary": "If the first new person to be Attorney General is no one before Jan 20, 2029, then the market resolves to Yes.",
+    "rules_secondary": "Acting and Interim holders of the office are not included in the Payout Criterion. Persons confirmed by the Senate to be that position, or appointed via a \u201crecess appointment\u201d are included, even if that recess appointment is later struck down as illegal.",
+    "close_time": "2026-08-08T23:48:24Z"
+   },
+   {
+    "ticker": "KXNEXTAG-29-LZEL",
+    "title": "Who will be Trump's next Attorney General?",
+    "rules_primary": "If the first new person to be Attorney General is Lee Zeldin before Jan 20, 2029, then the market resolves to Yes.",
+    "rules_secondary": "Acting and Interim holders of the office are not included in the Payout Criterion. Persons confirmed by the Senate to be that position, or appointed via a \u201crecess appointment\u201d are included, even if that recess appointment is later struck down as illegal.",
+    "close_time": "2026-08-08T23:48:24Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPTIME-26AUG01",
+  "series_ticker": "KXTRUMPTIME",
+  "title": "Will Trump post on Truth Social between 4:00 AM and 4:59 AM ET this week?",
+  "close_time": "2026-08-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPTIME-26AUG01-H4",
+    "title": "Will Trump post on Truth Social between 4:00 AM and 4:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 4:00 AM to 4:59 AM ET on any day from Jul 26, 2026 through Aug 1, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPTIME-26AUG01-H3",
+    "title": "Will Trump post on Truth Social between 3:00 AM and 3:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 3:00 AM to 3:59 AM ET on any day from Jul 26, 2026 through Aug 1, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPTIME-26AUG01-H2",
+    "title": "Will Trump post on Truth Social between 2:00 AM and 2:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 2:00 AM to 2:59 AM ET on any day from Jul 26, 2026 through Aug 1, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPTIME-26AUG01-H5",
+    "title": "Will Trump post on Truth Social between 5:00 AM and 5:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 5:00 AM to 5:59 AM ET on any day from Jul 26, 2026 through Aug 1, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-07-27T18:10:33Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXVOTEBLANCHE-27",
+  "series_ticker": "KXVOTEBLANCHE",
+  "title": "Will Tommy Tuberville vote for Todd Blanche?",
+  "close_time": "2026-08-08T12:57:10Z",
+  "markets": [
+   {
+    "ticker": "KXVOTEBLANCHE-27-TTUB",
+    "title": "Will Tommy Tuberville vote for Todd Blanche?",
+    "rules_primary": "If Tommy Tuberville votes Yea for Todd Blanche for Attorney General before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Should such a vote result in the rejection of the Nominee via a procedure that does not result in the recording of a tally of votes, or should a withdrawal of the nominee's nomination be formally communicated to the United States Senate, this market shall resolve to No. Should a vote result in the confirmation of the Nominee via a procedure that does not result in the recording of a tally of votes, this market shall resolve to Yes. Should more than one Senate confirmation vote on the confirmation of the Nominee to the Office be held, the outcome of the first such vote will be used to resolve this market. If the nominee is withdrawn (or intent to nominate a nominee is withdrawn by the President or President-elect), then the market will resolve to No. \n\nThe outcomes of committee votes, hearings, or reports, cloture votes and other procedural votes will have no impact on the resolution of this market. Once the vote has been closed and the correct result of the vote has been announced, a request by Tommy Tuberville to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website senate.gov or any other official source.",
+    "close_time": "2026-08-08T12:57:10Z"
+   },
+   {
+    "ticker": "KXVOTEBLANCHE-27-JTHU",
+    "title": "Will John Thune vote for Todd Blanche?",
+    "rules_primary": "If John Thune votes Yea for Todd Blanche for Attorney General before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Should such a vote result in the rejection of the Nominee via a procedure that does not result in the recording of a tally of votes, or should a withdrawal of the nominee's nomination be formally communicated to the United States Senate, this market shall resolve to No. Should a vote result in the confirmation of the Nominee via a procedure that does not result in the recording of a tally of votes, this market shall resolve to Yes. Should more than one Senate confirmation vote on the confirmation of the Nominee to the Office be held, the outcome of the first such vote will be used to resolve this market. If the nominee is withdrawn (or intent to nominate a nominee is withdrawn by the President or President-elect), then the market will resolve to No. \n\nThe outcomes of committee votes, hearings, or reports, cloture votes and other procedural votes will have no impact on the resolution of this market. Once the vote has been closed and the correct result of the vote has been announced, a request by John Thune to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website senate.gov or any other official source.",
+    "close_time": "2026-08-08T12:57:10Z"
+   },
+   {
+    "ticker": "KXVOTEBLANCHE-27-JHUS",
+    "title": "Will Jon Husted vote for Todd Blanche?",
+    "rules_primary": "If Jon Husted votes Yea for Todd Blanche for Attorney General before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Should such a vote result in the rejection of the Nominee via a procedure that does not result in the recording of a tally of votes, or should a withdrawal of the nominee's nomination be formally communicated to the United States Senate, this market shall resolve to No. Should a vote result in the confirmation of the Nominee via a procedure that does not result in the recording of a tally of votes, this market shall resolve to Yes. Should more than one Senate confirmation vote on the confirmation of the Nominee to the Office be held, the outcome of the first such vote will be used to resolve this market. If the nominee is withdrawn (or intent to nominate a nominee is withdrawn by the President or President-elect), then the market will resolve to No. \n\nThe outcomes of committee votes, hearings, or reports, cloture votes and other procedural votes will have no impact on the resolution of this market. Once the vote has been closed and the correct result of the vote has been announced, a request by Jon Husted to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website senate.gov or any other official source.",
+    "close_time": "2026-08-08T12:57:10Z"
+   },
+   {
+    "ticker": "KXVOTEBLANCHE-27-JCUR",
+    "title": "Will John Curtis vote for Todd Blanche?",
+    "rules_primary": "If John Curtis votes Yea for Todd Blanche for Attorney General before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Should such a vote result in the rejection of the Nominee via a procedure that does not result in the recording of a tally of votes, or should a withdrawal of the nominee's nomination be formally communicated to the United States Senate, this market shall resolve to No. Should a vote result in the confirmation of the Nominee via a procedure that does not result in the recording of a tally of votes, this market shall resolve to Yes. Should more than one Senate confirmation vote on the confirmation of the Nominee to the Office be held, the outcome of the first such vote will be used to resolve this market. If the nominee is withdrawn (or intent to nominate a nominee is withdrawn by the President or President-elect), then the market will resolve to No. \n\nThe outcomes of committee votes, hearings, or reports, cloture votes and other procedural votes will have no impact on the resolution of this market. Once the vote has been closed and the correct result of the vote has been announced, a request by John Curtis to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website senate.gov or any other official source.",
+    "close_time": "2026-08-08T12:57:10Z"
+   },
+   {
+    "ticker": "KXVOTEBLANCHE-27-JCOR",
+    "title": "Will John Cornyn vote for Todd Blanche?",
+    "rules_primary": "If John Cornyn votes Yea for Todd Blanche for Attorney General before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Should such a vote result in the rejection of the Nominee via a procedure that does not result in the recording of a tally of votes, or should a withdrawal of the nominee's nomination be formally communicated to the United States Senate, this market shall resolve to No. Should a vote result in the confirmation of the Nominee via a procedure that does not result in the recording of a tally of votes, this market shall resolve to Yes. Should more than one Senate confirmation vote on the confirmation of the Nominee to the Office be held, the outcome of the first such vote will be used to resolve this market. If the nominee is withdrawn (or intent to nominate a nominee is withdrawn by the President or President-elect), then the market will resolve to No. \n\nThe outcomes of committee votes, hearings, or reports, cloture votes and other procedural votes will have no impact on the resolution of this market. Once the vote has been closed and the correct result of the vote has been announced, a request by John Cornyn to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website senate.gov or any other official source.",
+    "close_time": "2026-08-08T12:57:10Z"
+   },
+   {
+    "ticker": "KXVOTEBLANCHE-27-TTIL",
+    "title": "Will Thom Tillis vote for Todd Blanche?",
+    "rules_primary": "If Thom Tillis votes Yea for Todd Blanche for Attorney General before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Should such a vote result in the rejection of the Nominee via a procedure that does not result in the recording of a tally of votes, or should a withdrawal of the nominee's nomination be formally communicated to the United States Senate, this market shall resolve to No. Should a vote result in the confirmation of the Nominee via a procedure that does not result in the recording of a tally of votes, this market shall resolve to Yes. Should more than one Senate confirmation vote on the confirmation of the Nominee to the Office be held, the outcome of the first such vote will be used to resolve this market. If the nominee is withdrawn (or intent to nominate a nominee is withdrawn by the President or President-elect), then the market will resolve to No. \n\nThe outcomes of committee votes, hearings, or reports, cloture votes and other procedural votes will have no impact on the resolution of this market. Once the vote has been closed and the correct result of the vote has been announced, a request by Thom Tillis to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website senate.gov or any other official source.",
+    "close_time": "2026-08-08T12:57:09Z"
+   },
+   {
+    "ticker": "KXVOTEBLANCHE-27-RPAU",
+    "title": "Will Rand Paul vote for Todd Blanche?",
+    "rules_primary": "If Rand Paul votes Yea for Todd Blanche for Attorney General before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Should such a vote result in the rejection of the Nominee via a procedure that does not result in the recording of a tally of votes, or should a withdrawal of the nominee's nomination be formally communicated to the United States Senate, this market shall resolve to No. Should a vote result in the confirmation of the Nominee via a procedure that does not result in the recording of a tally of votes, this market shall resolve to Yes. Should more than one Senate confirmation vote on the confirmation of the Nominee to the Office be held, the outcome of the first such vote will be used to resolve this market. If the nominee is withdrawn (or intent to nominate a nominee is withdrawn by the President or President-elect), then the market will resolve to No. \n\nThe outcomes of committee votes, hearings, or reports, cloture votes and other procedural votes will have no impact on the resolution of this market. Once the vote has been closed and the correct result of the vote has been announced, a request by Rand Paul to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website senate.gov or any other official source.",
+    "close_time": "2026-08-08T12:57:09Z"
+   },
+   {
+    "ticker": "KXVOTEBLANCHE-27-BCAS",
+    "title": "Will Bill Cassidy vote for Todd Blanche?",
+    "rules_primary": "If Bill Cassidy votes Yea for Todd Blanche for Attorney General before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Should such a vote result in the rejection of the Nominee via a procedure that does not result in the recording of a tally of votes, or should a withdrawal of the nominee's nomination be formally communicated to the United States Senate, this market shall resolve to No. Should a vote result in the confirmation of the Nominee via a procedure that does not result in the recording of a tally of votes, this market shall resolve to Yes. Should more than one Senate confirmation vote on the confirmation of the Nominee to the Office be held, the outcome of the first such vote will be used to resolve this market. If the nominee is withdrawn (or intent to nominate a nominee is withdrawn by the President or President-elect), then the market will resolve to No. \n\nThe outcomes of committee votes, hearings, or reports, cloture votes and other procedural votes will have no impact on the resolution of this market. Once the vote has been closed and the correct result of the vote has been announced, a request by Bill Cassidy to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website senate.gov or any other official source.",
+    "close_time": "2026-08-08T12:57:09Z"
+   },
+   {
+    "ticker": "KXVOTEBLANCHE-27-SCOL",
+    "title": "Will Susan Collins vote for Todd Blanche?",
+    "rules_primary": "If Susan Collins votes Yea for Todd Blanche for Attorney General before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Should such a vote result in the rejection of the Nominee via a procedure that does not result in the recording of a tally of votes, or should a withdrawal of the nominee's nomination be formally communicated to the United States Senate, this market shall resolve to No. Should a vote result in the confirmation of the Nominee via a procedure that does not result in the recording of a tally of votes, this market shall resolve to Yes. Should more than one Senate confirmation vote on the confirmation of the Nominee to the Office be held, the outcome of the first such vote will be used to resolve this market. If the nominee is withdrawn (or intent to nominate a nominee is withdrawn by the President or President-elect), then the market will resolve to No. \n\nThe outcomes of committee votes, hearings, or reports, cloture votes and other procedural votes will have no impact on the resolution of this market. Once the vote has been closed and the correct result of the vote has been announced, a request by Susan Collins to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website senate.gov or any other official source.",
+    "close_time": "2026-08-08T12:57:04Z"
+   },
+   {
+    "ticker": "KXVOTEBLANCHE-27-MMCC",
+    "title": "Will Mitch McConnell vote for Todd Blanche?",
+    "rules_primary": "If Mitch McConnell votes Yea for Todd Blanche for Attorney General before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Should such a vote result in the rejection of the Nominee via a procedure that does not result in the recording of a tally of votes, or should a withdrawal of the nominee's nomination be formally communicated to the United States Senate, this market shall resolve to No. Should a vote result in the confirmation of the Nominee via a procedure that does not result in the recording of a tally of votes, this market shall resolve to Yes. Should more than one Senate confirmation vote on the confirmation of the Nominee to the Office be held, the outcome of the first such vote will be used to resolve this market. If the nominee is withdrawn (or intent to nominate a nominee is withdrawn by the President or President-elect), then the market will resolve to No. \n\nThe outcomes of committee votes, hearings, or reports, cloture votes and other procedural votes will have no impact on the resolution of this market. Once the vote has been closed and the correct result of the vote has been announced, a request by Mitch McConnell to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website senate.gov or any other official source.",
+    "close_time": "2026-08-08T12:57:04Z"
+   },
+   {
+    "ticker": "KXVOTEBLANCHE-27-LMUR",
+    "title": "Will Lisa Murkowski vote for Todd Blanche?",
+    "rules_primary": "If Lisa Murkowski votes Yea for Todd Blanche for Attorney General before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Should such a vote result in the rejection of the Nominee via a procedure that does not result in the recording of a tally of votes, or should a withdrawal of the nominee's nomination be formally communicated to the United States Senate, this market shall resolve to No. Should a vote result in the confirmation of the Nominee via a procedure that does not result in the recording of a tally of votes, this market shall resolve to Yes. Should more than one Senate confirmation vote on the confirmation of the Nominee to the Office be held, the outcome of the first such vote will be used to resolve this market. If the nominee is withdrawn (or intent to nominate a nominee is withdrawn by the President or President-elect), then the market will resolve to No. \n\nThe outcomes of committee votes, hearings, or reports, cloture votes and other procedural votes will have no impact on the resolution of this market. Once the vote has been closed and the correct result of the vote has been announced, a request by Lisa Murkowski to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website senate.gov or any other official source.",
+    "close_time": "2026-08-08T12:57:04Z"
+   },
+   {
+    "ticker": "KXVOTEBLANCHE-27-JFET",
+    "title": "Will John Fetterman vote for Todd Blanche?",
+    "rules_primary": "If John Fetterman votes Yea for Todd Blanche for Attorney General before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Should such a vote result in the rejection of the Nominee via a procedure that does not result in the recording of a tally of votes, or should a withdrawal of the nominee's nomination be formally communicated to the United States Senate, this market shall resolve to No. Should a vote result in the confirmation of the Nominee via a procedure that does not result in the recording of a tally of votes, this market shall resolve to Yes. Should more than one Senate confirmation vote on the confirmation of the Nominee to the Office be held, the outcome of the first such vote will be used to resolve this market. If the nominee is withdrawn (or intent to nominate a nominee is withdrawn by the President or President-elect), then the market will resolve to No. \n\nThe outcomes of committee votes, hearings, or reports, cloture votes and other procedural votes will have no impact on the resolution of this market. Once the vote has been closed and the correct result of the vote has been announced, a request by John Fetterman to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website senate.gov or any other official source.",
+    "close_time": "2026-08-08T12:57:04Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXVOTESAVEAMERICA-26MAR",
+  "series_ticker": "KXVOTESAVEAMERICA",
+  "title": "Will the Senate vote on the SAVE America Act?",
+  "close_time": "2026-08-08T13:03:26Z",
+  "markets": [
+   {
+    "ticker": "KXVOTESAVEAMERICA-26APR-AUG08",
+    "title": "Will the Senate vote on the SAVE America Act?",
+    "rules_primary": "If Senate has conducted any recorded vote on the SAVE America Act after Issuance and before Aug 8, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This includes:\nRoll call votes\nRecorded votes\nYea-and-nay votes\nElectronic votes (in the House)\nDivision/standing votes\n\nThe following do NOT satisfy the Payout Criterion:\nVoice votes where individual member positions are not recorded\nUnanimous consent agreements without a recorded vote\nVotes in committee, unless the bill/motion specifically refers to a committee vote\nProcedural determinations by the presiding officer\nDeemed passage without an actual vote\n\nFor clarity:\nA vote on cloture regarding the bill/motion, including cloture on a motion to proceed to the bill/motion, DOES satisfy the Payout Criterion\nA vote on the rule governing debate of the bill/motion DOES satisfy the Payout Criterion if the bill/motion specifically refers to that rule\nA vote on a motion to proceed to the bill/motion DOES satisfy the Payout Criterion\nA vote on final passage DOES satisfy the Payout Criterion\nA vote on an amendment to the bill/motion does NOT satisfy the Payout Criterion unless the bill/motion specifically refers to that amendment",
+    "close_time": "2026-08-08T13:03:26Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXARENASCORE-OPUS49",
+  "series_ticker": "KXARENASCORE",
+  "title": "next Claude Opus debut score?",
+  "close_time": "2026-07-27T11:15:12Z",
+  "markets": [
+   {
+    "ticker": "KXARENASCORE-OPUS49-1500",
+    "title": "next Claude Opus debut score?",
+    "rules_primary": "If A model called Opus 4.9 or greater scores Above 1500 on Arena AI Text Score (Remove Style Control) Before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "If multiple qualifying models are added, the highest scoring model will be used for resolution. Models added following the initial qualifying model will not count.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-27T11:15:12Z"
+   },
+   {
+    "ticker": "KXARENASCORE-OPUS49-1470",
+    "title": "next Claude Opus debut score?",
+    "rules_primary": "If A model called Opus 4.9 or greater scores Above 1470 on Arena AI Text Score (Remove Style Control) Before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "If multiple qualifying models are added, the highest scoring model will be used for resolution. Models added following the initial qualifying model will not count.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-27T11:15:12Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMAMDANIEO-26AUG01",
+  "series_ticker": "KXMAMDANIEO",
+  "title": "Will Mamdani sign above 0 executive orders between Jul 26, 2026 and Aug 1, 2026?",
+  "close_time": "2026-08-02T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXMAMDANIEO-26AUG01-T0",
+    "title": "Will Mamdani sign above 0 executive orders between Jul 26, 2026 and Aug 1, 2026?",
+    "rules_primary": "If the number of non-emergency executive orders signed by Zohran Mamdani is above 0 from Jul 26, 2026 to Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-02T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMARTINDNCOUT-26MAY",
+  "series_ticker": "KXMARTINDNCOUT",
+  "title": "Will Ken Martin be out as chair of the Democratic National Committee before Aug 1, 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXMARTINDNCOUT-26MAY-AUG01",
+    "title": "Will Ken Martin be out as chair of the Democratic National Committee before Aug 1, 2026?",
+    "rules_primary": "If Ken Martin leaves as chair of the Democratic National Committee before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Ken Martin must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSENATEADJOURN-27",
+  "series_ticker": "KXSENATEADJOURN",
+  "title": "Will it be reported by U.S. Senate that the U.S. Senate adjourns from substantive floor business for its August 2026 recess before Aug 11, 2026?",
+  "close_time": "2026-08-08T13:00:41Z",
+  "markets": [
+   {
+    "ticker": "KXSENATEADJOURN-27-26AUG11",
+    "title": "Will it be reported by U.S. Senate that the U.S. Senate adjourns from substantive floor business for its August 2026 recess before Aug 11, 2026?",
+    "rules_primary": "If the U.S. Senate adjourns from substantive floor business for its August 2026 recess  after Issuance and before Aug 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from U.S. Senate qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-08-08T13:00:41Z"
+   },
+   {
+    "ticker": "KXSENATEADJOURN-27-26AUG09",
+    "title": "Will it be reported by U.S. Senate that the U.S. Senate adjourns from substantive floor business for its August 2026 recess before Aug 9, 2026?",
+    "rules_primary": "If the U.S. Senate adjourns from substantive floor business for its August 2026 recess  after Issuance and before Aug 9, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from U.S. Senate qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-08-08T13:00:41Z"
+   },
+   {
+    "ticker": "KXSENATEADJOURN-27-26AUG08",
+    "title": "Will it be reported by U.S. Senate that the U.S. Senate adjourns from substantive floor business for its August 2026 recess before Aug 8, 2026?",
+    "rules_primary": "If the U.S. Senate adjourns from substantive floor business for its August 2026 recess  after Issuance and before Aug 8, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from U.S. Senate qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-08-08T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXJAPANFOODTAX-27JAN01",
+  "series_ticker": "KXJAPANFOODTAX",
+  "title": "Will Japan announce any reduction, suspension, or elimination of the current 8% food consumption tax before Jan 1, 2027?",
+  "close_time": "2026-08-10T14:41:37Z",
+  "markets": [
+   {
+    "ticker": "KXJAPANFOODTAX-27JAN01",
+    "title": "Will Japan announce any reduction, suspension, or elimination of the current 8% food consumption tax before Jan 1, 2027?",
+    "rules_primary": "If Japan has agreed to or announced any reduction, suspension, or elimination of the current national 8% food consumption tax before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "An agreement or announcement qualifies if it involves formal signing of treaties, parliamentary approval with binding effect, official ratification, formal commitment by the head of state/government with constitutional authority, official statements by authorized ministers, official press releases, formal declarations during government proceedings, or official statements to international bodies. Phased implementation announcements and multi-party agreements where the country is a signatory qualify. Preliminary discussions, conditional agreements contingent on circumstances, opposition party statements, leaked documents, think-tank recommendations, campaign promises, general aspirations without specific commitment, draft legislation without approval, and regional actions (unless specified) do NOT qualify. Retraction of previously announced commitments also does not satisfy the criterion.",
+    "close_time": "2026-08-10T14:41:37Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPNOMNUM-26JUL26",
+  "series_ticker": "KXTRUMPNOMNUM",
+  "title": "Will there be at least 2 presidential nominations sent to the Senate in the week of Jul 26, 2026?",
+  "close_time": "2026-08-02T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPNOMNUM-26JUL26-T2",
+    "title": "Will there be at least 2 presidential nominations sent to the Senate in the week of Jul 26, 2026?",
+    "rules_primary": "If Donald Trump has sent at least 2 nominations to the U.S. Senate from Jul 26, 2026 through Aug 1, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Aug 2, 2026), then the market resolves to Yes.",
+    "rules_secondary": "The market solely resolves to the publication dates visibly displayed on the \"Presidential Actions\" tab at whitehouse.gov at 10:00 AM ET on Aug 2, 2026. The week runs from Jul 26, 2026 through Aug 1, 2026. If a person receives multiple qualifying nominations within the period, they will each count separately. For example, Trump's March 4 nomination of Kevin Warsh is considered two nominations.",
+    "close_time": "2026-08-02T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBLANCHEWITHDRAW-28JAN01",
+  "series_ticker": "KXBLANCHEWITHDRAW",
+  "title": "Will Todd Blanche's nomination be withdrawn before Sep 1, 2026?",
+  "close_time": "2026-08-10T18:32:34Z",
+  "markets": [
+   {
+    "ticker": "KXBLANCHEWITHDRAW-28JAN01-SEP01",
+    "title": "Will Todd Blanche's nomination be withdrawn before Sep 1, 2026?",
+    "rules_primary": "If Todd Blanche is no longer being nominated for Attorney General before Sep 1, 2026, either because they withdrew from consideration, because Donald Trump announced his intention to nominate someone else in their place, or because Donald Trump announces he is nominating them for another position instead, then the market resolves to Yes.",
+    "rules_secondary": "A formal withdrawal of Blanche\u2019s nomination by Donald Trump counts, even if temporary, Blanche remains acting Attorney General, or he is later renominated. Statements merely contemplating or conditionally threatening a future withdrawal do not count.",
+    "close_time": "2026-08-10T18:32:34Z"
+   },
+   {
+    "ticker": "KXBLANCHEWITHDRAW-28JAN01-OCT01",
+    "title": "Will Todd Blanche's nomination be withdrawn before Oct 1, 2026?",
+    "rules_primary": "If Todd Blanche is no longer being nominated for Attorney General before Oct 1, 2026, either because they withdrew from consideration, because Donald Trump announced his intention to nominate someone else in their place, or because Donald Trump announces he is nominating them for another position instead, then the market resolves to Yes.",
+    "rules_secondary": "A formal withdrawal of Blanche\u2019s nomination by Donald Trump counts, even if temporary, Blanche remains acting Attorney General, or he is later renominated. Statements merely contemplating or conditionally threatening a future withdrawal do not count.",
+    "close_time": "2026-08-10T18:32:34Z"
+   },
+   {
+    "ticker": "KXBLANCHEWITHDRAW-28JAN01-JAN01",
+    "title": "Will Todd Blanche's nomination be withdrawn before Jan 1, 2027?",
+    "rules_primary": "If Todd Blanche is no longer being nominated for Attorney General before Jan 1, 2027, either because they withdrew from consideration, because Donald Trump announced his intention to nominate someone else in their place, or because Donald Trump announces he is nominating them for another position instead, then the market resolves to Yes.",
+    "rules_secondary": "A formal withdrawal of Blanche\u2019s nomination by Donald Trump counts, even if temporary, Blanche remains acting Attorney General, or he is later renominated. Statements merely contemplating or conditionally threatening a future withdrawal do not count.",
+    "close_time": "2026-08-10T18:32:34Z"
+   },
+   {
+    "ticker": "KXBLANCHEWITHDRAW-28JAN01-AUG05",
+    "title": "Will Todd Blanche's nomination be withdrawn before Aug 5, 2026?",
+    "rules_primary": "If Todd Blanche is no longer being nominated for Attorney General before Aug 5, 2026, either because they withdrew from consideration, because Donald Trump announced his intention to nominate someone else in their place, or because Donald Trump announces he is nominating them for another position instead, then the market resolves to Yes.",
+    "rules_secondary": "A formal withdrawal of Blanche\u2019s nomination by Donald Trump counts, even if temporary, Blanche remains acting Attorney General, or he is later renominated. Statements merely contemplating or conditionally threatening a future withdrawal do not count.",
+    "close_time": "2026-08-05T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPSTATES-27JAN01",
+  "series_ticker": "KXTRUMPSTATES",
+  "title": "Will Donald Trump visit South Carolina before Jan 1, 2027?",
+  "close_time": "2026-08-22T00:48:18Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPSTATES-27JAN01-SC",
+    "title": "Will Donald Trump visit South Carolina before Jan 1, 2027?",
+    "rules_primary": "If Donald Trump has physically travelled to and been present within the geographic boundaries of South Carolina after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Physical presence within the geographic boundaries of the area is required. Flying over without landing, layovers during which the person remains in the airplane or airport, virtual or remote appearances, future visit plans, or (unless explicitly specified) presence in adjacent international waters or solely within embassy or consulate grounds do NOT constitute a visit. International airports are considered within the boundaries of their host jurisdiction. A visit that began before the specified time period and is ongoing as of its start does not count; however, if the person departs and re-enters the area during the time period, the re-entry constitutes a new visit and does count.",
+    "close_time": "2026-08-22T00:48:18Z"
+   },
+   {
+    "ticker": "KXTRUMPSTATES-27JAN01-CA",
+    "title": "Will Donald Trump visit California before Jan 1, 2027?",
+    "rules_primary": "If Donald Trump has physically travelled to and been present within the geographic boundaries of California after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Physical presence within the geographic boundaries of the area is required. Flying over without landing, layovers during which the person remains in the airplane or airport, virtual or remote appearances, future visit plans, or (unless explicitly specified) presence in adjacent international waters or solely within embassy or consulate grounds do NOT constitute a visit. International airports are considered within the boundaries of their host jurisdiction. A visit that began before the specified time period and is ongoing as of its start does not count; however, if the person departs and re-enters the area during the time period, the re-entry constitutes a new visit and does count.",
+    "close_time": "2026-08-05T12:16:47Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBIGBROTHERELIMINATION-26AUG06",
+  "series_ticker": "KXBIGBROTHERELIMINATION",
+  "title": "Will Taylor Brown be eliminated from Big Brother Season 28 before Aug 7, 2026?",
+  "close_time": "2026-08-07T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG06-TAY",
+    "title": "Will Taylor Brown be eliminated from Big Brother Season 28 before Aug 7, 2026?",
+    "rules_primary": "If Taylor Brown is officially eliminated from Big Brother Season 28 Before Aug 7, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-07T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG06-MEL",
+    "title": "Will Melody Morris be eliminated from Big Brother Season 28 before Aug 7, 2026?",
+    "rules_primary": "If Melody Morris is officially eliminated from Big Brother Season 28 Before Aug 7, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-07T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG06-MAL",
+    "title": "Will Mallory Aurichio be eliminated from Big Brother Season 28 before Aug 7, 2026?",
+    "rules_primary": "If Mallory Aurichio is officially eliminated from Big Brother Season 28 Before Aug 7, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-07T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG06-LYR",
+    "title": "Will Lyric Medeiros be eliminated from Big Brother Season 28 before Aug 7, 2026?",
+    "rules_primary": "If Lyric Medeiros is officially eliminated from Big Brother Season 28 Before Aug 7, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-07T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG06-LAT",
+    "title": "Will LaTrice Verrett be eliminated from Big Brother Season 28 before Aug 7, 2026?",
+    "rules_primary": "If LaTrice Verrett is officially eliminated from Big Brother Season 28 Before Aug 7, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-07T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG06-DRE",
+    "title": "Will Drew Campbell be eliminated from Big Brother Season 28 before Aug 7, 2026?",
+    "rules_primary": "If Drew Campbell is officially eliminated from Big Brother Season 28 Before Aug 7, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-07T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG06-BAR",
+    "title": "Will Barrett Pfeiffer be eliminated from Big Brother Season 28 before Aug 7, 2026?",
+    "rules_primary": "If Barrett Pfeiffer is officially eliminated from Big Brother Season 28 Before Aug 7, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-07T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXGROK-GROK46",
+  "series_ticker": "KXGROK",
+  "title": "Will SpaceXAI release Grok 4.6 before Aug 15, 2026?",
+  "close_time": "2026-08-12T15:55:00Z",
+  "markets": [
+   {
+    "ticker": "KXGROK-GROK46-26AUG15",
+    "title": "Will SpaceXAI release Grok 4.6 before Aug 15, 2026?",
+    "rules_primary": "If SpaceXAI releases Grok 4.6 before Aug 15, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-08-12T15:55:00Z"
+   },
+   {
+    "ticker": "KXGROK-GROK46-26AUG13",
+    "title": "Will SpaceXAI release Grok 4.6 before Aug 13, 2026?",
+    "rules_primary": "If SpaceXAI releases Grok 4.6 before Aug 13, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-08-12T15:55:00Z"
+   },
+   {
+    "ticker": "KXGROK-GROK46-26AUG11",
+    "title": "Will SpaceXAI release Grok 4.6 before Aug 11, 2026?",
+    "rules_primary": "If SpaceXAI releases Grok 4.6 before Aug 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-08-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXGROK-GROK46-26AUG10",
+    "title": "Will SpaceXAI release Grok 4.6 before Aug 10, 2026?",
+    "rules_primary": "If SpaceXAI releases Grok 4.6 before Aug 10, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-08-10T03:59:00Z"
+   },
+   {
+    "ticker": "KXGROK-GROK46-26AUG09",
+    "title": "Will SpaceXAI release Grok 4.6 before Aug 9, 2026?",
+    "rules_primary": "If SpaceXAI releases Grok 4.6 before Aug 9, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-08-09T03:59:00Z"
+   },
+   {
+    "ticker": "KXGROK-GROK46-26AUG08",
+    "title": "Will SpaceXAI release Grok 4.6 before Aug 8, 2026?",
+    "rules_primary": "If SpaceXAI releases Grok 4.6 before Aug 8, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-08-08T03:59:00Z"
+   },
+   {
+    "ticker": "KXGROK-GROK46-26AUG07",
+    "title": "Will SpaceXAI release Grok 4.6 before Aug 7, 2026?",
+    "rules_primary": "If SpaceXAI releases Grok 4.6 before Aug 7, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-08-07T03:59:00Z"
+   },
+   {
+    "ticker": "KXGROK-GROK46-26AUG06",
+    "title": "Will SpaceXAI release Grok 4.6 before Aug 6, 2026?",
+    "rules_primary": "If SpaceXAI releases Grok 4.6 before Aug 6, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-08-06T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXCLAYTONDNI-27JAN01",
+  "series_ticker": "KXCLAYTONDNI",
+  "title": "Will Jay Clayton formally hold the role of Director of National Intelligence Before Aug 7, 2026?",
+  "close_time": "2026-08-03T16:45:30Z",
+  "markets": [
+   {
+    "ticker": "KXCLAYTONDNI-27JAN01-0807",
+    "title": "Will Jay Clayton formally hold the role of Director of National Intelligence Before Aug 7, 2026?",
+    "rules_primary": "If Jay Clayton formally holds the role of Director of National Intelligence before Aug 7, 2026, then the market resolves to Yes.",
+    "rules_secondary": "For the purposes of this Contract, \"Jay Clayton formally holds the role of Director of National Intelligence\" means that Jay Clayton has assumed the role of Director of National Intelligence in an official capacity\u2014whether by appointment, election, succession, confirmation, designation, or an acting/interim assignment\u2014and has performed or is recognized to perform the duties or responsibilities of that role, unless otherwise specified by the Exchange.",
+    "close_time": "2026-08-03T16:45:30Z"
+   },
+   {
+    "ticker": "KXCLAYTONDNI-27JAN01-0805",
+    "title": "Will Jay Clayton formally hold the role of Director of National Intelligence Before Aug 5, 2026?",
+    "rules_primary": "If Jay Clayton formally holds the role of Director of National Intelligence before Aug 5, 2026, then the market resolves to Yes.",
+    "rules_secondary": "For the purposes of this Contract, \"Jay Clayton formally holds the role of Director of National Intelligence\" means that Jay Clayton has assumed the role of Director of National Intelligence in an official capacity\u2014whether by appointment, election, succession, confirmation, designation, or an acting/interim assignment\u2014and has performed or is recognized to perform the duties or responsibilities of that role, unless otherwise specified by the Exchange.",
+    "close_time": "2026-08-03T16:45:30Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMC-MAR",
+  "series_ticker": "KXMC",
+  "title": "Marvel Tokon: Fighting Souls Metacritic score?",
+  "close_time": "2026-08-13T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXMC-MAR-90",
+    "title": "Marvel Tokon: Fighting Souls Metacritic score?",
+    "rules_primary": "If the Metascore for Marvel Tokon: Fighting Souls is Above 90 seven days after release at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Important Information: If no platform is specified, then the value used will be the first one listed on the\nMetacritic site on the page for Marvel Tokon: Fighting Souls.\n\nThis market and these products have not been endorsed by metacritic. Any references to metacritic, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between metacritic and Kalshi.",
+    "close_time": "2026-08-13T14:00:00Z"
+   },
+   {
+    "ticker": "KXMC-MAR-85",
+    "title": "Marvel Tokon: Fighting Souls Metacritic score?",
+    "rules_primary": "If the Metascore for Marvel Tokon: Fighting Souls is Above 85 seven days after release at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Important Information: If no platform is specified, then the value used will be the first one listed on the\nMetacritic site on the page for Marvel Tokon: Fighting Souls.\n\nThis market and these products have not been endorsed by metacritic. Any references to metacritic, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between metacritic and Kalshi.",
+    "close_time": "2026-08-13T14:00:00Z"
+   },
+   {
+    "ticker": "KXMC-MAR-80",
+    "title": "Marvel Tokon: Fighting Souls Metacritic score?",
+    "rules_primary": "If the Metascore for Marvel Tokon: Fighting Souls is Above 80 seven days after release at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Important Information: If no platform is specified, then the value used will be the first one listed on the\nMetacritic site on the page for Marvel Tokon: Fighting Souls.\n\nThis market and these products have not been endorsed by metacritic. Any references to metacritic, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between metacritic and Kalshi.",
+    "close_time": "2026-08-13T14:00:00Z"
+   },
+   {
+    "ticker": "KXMC-MAR-75",
+    "title": "Marvel Tokon: Fighting Souls Metacritic score?",
+    "rules_primary": "If the Metascore for Marvel Tokon: Fighting Souls is Above 75 seven days after release at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Important Information: If no platform is specified, then the value used will be the first one listed on the\nMetacritic site on the page for Marvel Tokon: Fighting Souls.\n\nThis market and these products have not been endorsed by metacritic. Any references to metacritic, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between metacritic and Kalshi.",
+    "close_time": "2026-08-13T14:00:00Z"
+   },
+   {
+    "ticker": "KXMC-MAR-70",
+    "title": "Marvel Tokon: Fighting Souls Metacritic score?",
+    "rules_primary": "If the Metascore for Marvel Tokon: Fighting Souls is Above 70 seven days after release at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Important Information: If no platform is specified, then the value used will be the first one listed on the\nMetacritic site on the page for Marvel Tokon: Fighting Souls.\n\nThis market and these products have not been endorsed by metacritic. Any references to metacritic, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between metacritic and Kalshi.",
+    "close_time": "2026-08-13T14:00:00Z"
+   },
+   {
+    "ticker": "KXMC-MAR-65",
+    "title": "Marvel Tokon: Fighting Souls Metacritic score?",
+    "rules_primary": "If the Metascore for Marvel Tokon: Fighting Souls is Above 65 seven days after release at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Important Information: If no platform is specified, then the value used will be the first one listed on the\nMetacritic site on the page for Marvel Tokon: Fighting Souls.\n\nThis market and these products have not been endorsed by metacritic. Any references to metacritic, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between metacritic and Kalshi.",
+    "close_time": "2026-08-13T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXNEWTARIFFS-26AUG",
+  "series_ticker": "KXNEWTARIFFS",
+  "title": "Will Donald Trump issue any executive action on imposing new or increased tariffs on any country, provided the action specifies an effective date (even if such date occurs after expiration) during in Aug 2026?",
+  "close_time": "2026-08-11T14:13:26Z",
+  "markets": [
+   {
+    "ticker": "KXNEWTARIFFS-26AUG-SEP01",
+    "title": "Will Donald Trump issue any executive action on imposing new or increased tariffs on any country, provided the action specifies an effective date (even if such date occurs after expiration) during in Aug 2026?",
+    "rules_primary": "If Donald Trump has taken any executive action imposing new or increased tariffs on any country, provided the action specifies an effective date (even if such date occurs after expiration) in Aug 2026, then the market resolves to Yes.",
+    "rules_secondary": "The qualifying action must be of the specific type designated (executive order, presidential memorandum, proclamation, directive, determination, or finding), be signed by the President personally during the specified time period, and explicitly address the topic in the document's operative provisions, title, or official White House summary. Actions must have legal or policy effect - ceremonial proclamations without policy impact do not qualify unless specifically included. Actions that only incidentally mention the topic, statements without formal action, actions by cabinet members, legislative proposals without executive action, and signing statements do not qualify. The action must be publicly announced or documented by a Source Agency before expiration.",
+    "close_time": "2026-08-11T14:13:26Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPSONG-26AUG15",
+  "series_ticker": "KXTOPSONG",
+  "title": "Will petal be #1 on the Billboard Hot 100 during the week of Aug 15, 2026",
+  "close_time": "2026-08-10T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPSONG-26AUG15-PET",
+    "title": "Will petal be #1 on the Billboard Hot 100 during the week of Aug 15, 2026",
+    "rules_primary": "If petal is #1 on the Billboard Hot 100  chart for the Week of Aug 15, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-10T03:59:00Z"
+   },
+   {
+    "ticker": "KXTOPSONG-26AUG15-HAT",
+    "title": "Will hate that i made you love me be #1 on the Billboard Hot 100 during the week of Aug 15, 2026",
+    "rules_primary": "If hate that i made you love me is #1 on the Billboard Hot 100  chart for the Week of Aug 15, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-10T03:59:00Z"
+   },
+   {
+    "ticker": "KXTOPSONG-26AUG15-CHO",
+    "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 during the week of Aug 15, 2026",
+    "rules_primary": "If Choosin' Texas is #1 on the Billboard Hot 100  chart for the Week of Aug 15, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-10T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPMEET-26AUG",
+  "series_ticker": "KXTRUMPMEET",
+  "title": "Donald Trump and Mark Carney meet before Sep 1, 2026?",
+  "close_time": "2026-08-19T21:31:32Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPMEET-26AUG-MCAR",
+    "title": "Donald Trump and Mark Carney meet before Sep 1, 2026?",
+    "rules_primary": "If Donald Trump and Mark Carney meet (including phone calls) before Sep 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-08-19T21:31:32Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26AUG-SPRA",
+    "title": "Donald Trump and Spencer Pratt meet before Sep 1, 2026?",
+    "rules_primary": "If Donald Trump and Spencer Pratt meet (including phone calls) before Sep 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-08-06T23:01:52Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26AUG-MBS",
+    "title": "Donald Trump and Mohammed bin Salman meet before Sep 1, 2026?",
+    "rules_primary": "If Donald Trump and Mohammed bin Salman meet (including phone calls) before Sep 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-08-04T14:15:52Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXISRNORMCOUNT-27DEC31",
+  "series_ticker": "KXISRNORMCOUNT",
+  "title": "Will the number of distinct countries with which Israel has agreed to normalize relations under a ratified agreement be at least 1 after Issuance and before 2028?",
+  "close_time": "2026-08-18T00:14:34Z",
+  "markets": [
+   {
+    "ticker": "KXISRNORMCOUNT-27DEC31-AL1",
+    "title": "Will the number of distinct countries with which Israel has agreed to normalize relations under a ratified agreement be at least 1 after Issuance and before 2028?",
+    "rules_primary": "If the number of distinct countries with which Israel has agreed to normalize relations under a ratified agreement is at least 1 after Issuance and before 2028, then the market resolves to Yes.",
+    "rules_secondary": "Examples of qualifying agreements include the agreements signed in 2020 and 2021 between Israel and Bahrain, the United Arab Emirates, and Morocco. \n\nEach country may be counted only once. Countries that have normalized relations with Israel as of Issuance do not qualify. A country whose relations with Israel existed previously but are not in effect as of Issuance may qualify.",
+    "close_time": "2026-08-18T00:14:34Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMC-BIG",
+  "series_ticker": "KXMC",
+  "title": "Big Walk Metacritic score?",
+  "close_time": "2026-08-11T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXMC-BIG-95",
+    "title": "Big Walk Metacritic score?",
+    "rules_primary": "If the Metascore for Big Walk is Above 95 seven days after release at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Important Information: If no platform is specified, then the value used will be the first one listed on the\nMetacritic site on the page for Big Walk.\n\nThis market and these products have not been endorsed by metacritic. Any references to metacritic, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between metacritic and Kalshi.",
+    "close_time": "2026-08-11T14:00:00Z"
+   },
+   {
+    "ticker": "KXMC-BIG-90",
+    "title": "Big Walk Metacritic score?",
+    "rules_primary": "If the Metascore for Big Walk is Above 90 seven days after release at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Important Information: If no platform is specified, then the value used will be the first one listed on the\nMetacritic site on the page for Big Walk.\n\nThis market and these products have not been endorsed by metacritic. Any references to metacritic, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between metacritic and Kalshi.",
+    "close_time": "2026-08-11T14:00:00Z"
+   },
+   {
+    "ticker": "KXMC-BIG-85",
+    "title": "Big Walk Metacritic score?",
+    "rules_primary": "If the Metascore for Big Walk is Above 85 seven days after release at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Important Information: If no platform is specified, then the value used will be the first one listed on the\nMetacritic site on the page for Big Walk.\n\nThis market and these products have not been endorsed by metacritic. Any references to metacritic, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between metacritic and Kalshi.",
+    "close_time": "2026-08-11T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFEATURETRIPPIERED-27",
+  "series_ticker": "KXFEATURETRIPPIERED",
+  "title": "Will Swae Lee be featured on Trippie Red's next album?",
+  "close_time": "2026-08-14T15:03:12Z",
+  "markets": [
+   {
+    "ticker": "KXFEATURETRIPPIERED-27-SWA",
+    "title": "Will Swae Lee be featured on Trippie Red's next album?",
+    "rules_primary": "If Swae Lee is featured on Trippie Red's next album before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T15:03:12Z"
+   },
+   {
+    "ticker": "KXFEATURETRIPPIERED-27-GLO",
+    "title": "Will GloRilla be featured on Trippie Red's next album?",
+    "rules_primary": "If GloRilla is featured on Trippie Red's next album before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T15:03:12Z"
+   },
+   {
+    "ticker": "KXFEATURETRIPPIERED-27-CHR",
+    "title": "Will Chris Brown be featured on Trippie Red's next album?",
+    "rules_primary": "If Chris Brown is featured on Trippie Red's next album before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T15:03:12Z"
+   },
+   {
+    "ticker": "KXFEATURETRIPPIERED-27-YEA",
+    "title": "Will Yeat be featured on Trippie Red's next album?",
+    "rules_primary": "If Yeat is featured on Trippie Red's next album before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T15:03:11Z"
+   },
+   {
+    "ticker": "KXFEATURETRIPPIERED-27-PLA",
+    "title": "Will Playboi Carti be featured on Trippie Red's next album?",
+    "rules_primary": "If Playboi Carti is featured on Trippie Red's next album before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T15:03:11Z"
+   },
+   {
+    "ticker": "KXFEATURETRIPPIERED-27-DRA",
+    "title": "Will Drake be featured on Trippie Red's next album?",
+    "rules_primary": "If Drake is featured on Trippie Red's next album before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T15:03:11Z"
+   },
+   {
+    "ticker": "KXFEATURETRIPPIERED-27-WAY",
+    "title": "Will Lil Wayne be featured on Trippie Red's next album?",
+    "rules_primary": "If Lil Wayne is featured on Trippie Red's next album before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T15:01:55Z"
+   },
+   {
+    "ticker": "KXFEATURETRIPPIERED-27-SKI",
+    "title": "Will Ski Mask The Slump God be featured on Trippie Red's next album?",
+    "rules_primary": "If Ski Mask The Slump God is featured on Trippie Red's next album before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T15:01:55Z"
+   },
+   {
+    "ticker": "KXFEATURETRIPPIERED-27-SEX",
+    "title": "Will Sexyy Red be featured on Trippie Red's next album?",
+    "rules_primary": "If Sexyy Red is featured on Trippie Red's next album before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T15:01:55Z"
+   },
+   {
+    "ticker": "KXFEATURETRIPPIERED-27-REM",
+    "title": "Will Rema be featured on Trippie Red's next album?",
+    "rules_primary": "If Rema is featured on Trippie Red's next album before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T15:01:55Z"
+   },
+   {
+    "ticker": "KXFEATURETRIPPIERED-27-QUA",
+    "title": "Will Quavo be featured on Trippie Red's next album?",
+    "rules_primary": "If Quavo is featured on Trippie Red's next album before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T15:01:55Z"
+   },
+   {
+    "ticker": "KXFEATURETRIPPIERED-27-PAR",
+    "title": "Will PARTYNEXTDOOR be featured on Trippie Red's next album?",
+    "rules_primary": "If PARTYNEXTDOOR is featured on Trippie Red's next album before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T15:01:55Z"
+   },
+   {
+    "ticker": "KXFEATURETRIPPIERED-27-KOD",
+    "title": "Will Kodak Black be featured on Trippie Red's next album?",
+    "rules_primary": "If Kodak Black is featured on Trippie Red's next album before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T15:01:55Z"
+   },
+   {
+    "ticker": "KXFEATURETRIPPIERED-27-BIG",
+    "title": "Will BigXThaPlug be featured on Trippie Red's next album?",
+    "rules_primary": "If BigXThaPlug is featured on Trippie Red's next album before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T15:01:55Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTECHRANKLISTAICODE-26AUG10",
+  "series_ticker": "KXTECHRANKLISTAICODE",
+  "title": "Top Coding AI this week?",
+  "close_time": "2026-08-10T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTECHRANKLISTAICODE-26AUG10-CLAU",
+    "title": "Top Coding AI this week?",
+    "rules_primary": "If Claude is the #1 model on LM Code Arena Leaderboard on Aug 10, 2026 at 10:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-10T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXYTTOPVIDEO2D-26AUG05",
+  "series_ticker": "KXYTTOPVIDEO2D",
+  "title": "Will petal rank #2 on YouTube Charts\u2019 Daily Top Music Videos chart dated Aug 5, 2026?",
+  "close_time": "2026-08-06T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXYTTOPVIDEO2D-26AUG05-PET",
+    "title": "Will petal rank #2 on YouTube Charts\u2019 Daily Top Music Videos chart dated Aug 5, 2026?",
+    "rules_primary": "If petal ranks #2 on YouTube Charts\u2019 Daily Top Music Videos United States chart dated Aug 5, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by YouTube. Any references to YouTube or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between YouTube and Kalshi.",
+    "close_time": "2026-08-06T03:59:00Z"
+   },
+   {
+    "ticker": "KXYTTOPVIDEO2D-26AUG05-DAI",
+    "title": "Will Dai Dai rank #2 on YouTube Charts\u2019 Daily Top Music Videos chart dated Aug 5, 2026?",
+    "rules_primary": "If Dai Dai ranks #2 on YouTube Charts\u2019 Daily Top Music Videos United States chart dated Aug 5, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by YouTube. Any references to YouTube or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between YouTube and Kalshi.",
+    "close_time": "2026-08-06T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPSONG-26AUG22",
+  "series_ticker": "KXTOPSONG",
+  "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 during the week of Aug 22, 2026",
+  "close_time": "2026-08-17T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPSONG-26AUG22-CHO",
+    "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 during the week of Aug 22, 2026",
+    "rules_primary": "If Choosin' Texas is #1 on the Billboard Hot 100  chart for the Week of Aug 22, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-17T03:59:00Z"
+   }
+  ]
+ }
+]
