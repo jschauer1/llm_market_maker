@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXALBUMEQUIV-YOU26JUN18",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves the Sunday right after the tracking week from Luminate data; scheduled promptly, low miss risk.",
+  "rationale": "Album Equivalent Units aggregate millions of individual streams and purchases across a full tracking week; no single group decides this number. Labels see mid-week industry tracking projections and can forecast late in the week, but that is sharpening a forecast, not knowing a already-decided outcome.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPUREALBUMS-YOU26JUN18",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves the Sunday right after the tracking week from Luminate data; scheduled promptly, low miss risk.",
+  "rationale": "Pure album sales aggregate many individual consumer purchases over a tracking week; nobody 'decides' this figure. Labels can see mid-week sales trend data and forecast, but the final number is an aggregate of independent buyer behavior, not private knowledge held by a specific group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXRT-DEA",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Score captured Monday 10am ET after wide release; the aggregate can still shift as late reviews post right up to that moment.",
+  "rationale": "Rotten Tomatoes Tomatometer aggregates many individual critic reviews posted under staggered embargo, analogous to the Metacritic case in the mechanism sheet -- no single group knows the final aggregated percentage in advance. The studio may have a qualitative sense from early reactions but not the exact number.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXAPRPOTUS-26JUN19",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "RCP's rolling average can shift right up to the 11am ET capture; low miss risk given it's a routine recurring feed.",
+  "rationale": "Presidential approval rating is an aggregate of many independent polls; nobody decides or privately knows this number in advance -- it's a rate/aggregation question, not a knowledge question.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPSAYMONTH-26JUL01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title only says 'before Jul 1, 2026' with no stated start; rules text actually opens the counting window on June 1 at 8am ET, which a title-only reading would miss. Separately, several sub-markets (PELO, PALE, FAT, AMER) list close times on June 29 rather than the event's nominal July 1 close.",
+  "resolution_source_risk": "Depends on Source Agencies quoting Trump directly or his own social posts; an off-the-cuff remark not covered by media could be missed before close.",
+  "rationale": "These are markets on Trump's spontaneous word choice in public remarks -- nobody, including his own staff, knows in advance which off-the-cuff phrases ('Goat', 'Kimmel', 'Epstein Island') he will or won't say. This is a decision that has not been made yet in any meaningful sense.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBILLSCOUNT-26JUN",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "The monthly count depends on Congress passing bills throughout the month and the President's signing schedule -- an ongoing multi-actor legislative process, not a decision already made and sealed by a small identifiable group. Each signing is public as it happens.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNJGOLFVISITCOUNT-26JUN",
+  "insider_group": "White House travel/advance staff and Secret Service know near-term schedule a few days out",
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "This is a full-month tally; while close staff and Secret Service know his travel plans a few days ahead, nobody knows the whole month's total this far in advance -- it is a rate question that unfolds day by day, and each visit is publicly reported by the press pool once it occurs anyway.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPARDONSTRUMP-26JUN",
+  "insider_group": "White House Counsel / Pardon Attorney know each grant when made",
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Clemency grants are typically publicized individually as issued rather than held as a sealed batch, so there is little private-knowledge edge over the public tally, and the monthly bucket total is not fixed until the month plays out.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPOKEMON-26JUNGENGAREX",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Falls back to last available value if no fresh Collectr data exists by the deadline -- a disclosed edge case, not a hidden risk.",
+  "rationale": "Collectible card price is an aggregate of many sellers' listed asks on a marketplace tracker; no single actor sets or privately knows this number in advance. This is explicitly one of the gated-out posted-price-index families.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSPACEXCOUNT-26JUN",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Rules explicitly note the market can be delayed if FAA source data lags -- a real, disclosed resolution-timing risk.",
+  "rationale": "SpaceX launches are individually public, webcast events; SpaceX knows its own manifest ahead of time but schedules slip constantly, and by the close at month's end the count is now public record rather than privately held knowledge. Explicitly named in the gated-out crowd-aggregate-tracker family.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPSAYTRUMP-26JUL01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title says 'before Jul 1, 2026' with no start date shown; rules text opens the counting window on April 1, 2026 at noon ET, a much wider window than the title implies.",
+  "resolution_source_risk": "Depends on Source Agencies quoting Trump directly or his own social posts; a real but unreported remark could be missed.",
+  "rationale": "Spontaneous word-choice markets ('Trump Tower', 'Mount Trump', 'Fort Trump') -- nobody, including Trump's own staff, knows in advance what off-the-cuff phrases he will say.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXA100W-26JUN19",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves to No on all non-null strikes if no Ornn data is available by the deadline -- disclosed, not a hidden risk.",
+  "rationale": "GPU compute rental price is a posted-price index aggregating many vendors' listed rates; no single group sets or privately knows the number in advance. Explicitly named in the gated-out posted-price-index family.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMEQUIV-YOU26JUN25",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves the Sunday right after the tracking week from Luminate data; scheduled promptly, low miss risk.",
+  "rationale": "Same mechanism as the other Album Equivalent Units market in this batch: an aggregate of millions of streams/purchases, forecastable late in the week by industry insiders but not decided or privately known by any specific group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPNUMSTATES-26JUL01",
+  "insider_group": "White House advance/travel staff know near-term itinerary",
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "A whole-month tally of distinct states visited; staff know upcoming trips only days ahead, not the full month's itinerary in advance, and each trip is publicly reported as it happens -- a rate question, not a knowledge question.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXAPRPOTUS-26JUN26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "RCP's rolling average can shift right up to the 11am ET capture; low miss risk given it's a routine recurring feed.",
+  "rationale": "Same as the other RealClearPolitics approval-rating market: an aggregate of many independent polls that nobody privately decides or knows in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBILLBOARDRUNNERUPSONG-26JUL04",
+  "insider_group": "record labels / chart-watchers with mid-week tracking data",
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Billboard Hot 100 position is an aggregate of streaming and sales behavior across millions of listeners over a tracking week; labels can forecast from mid-week data but nobody decides the chart position outright.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXRT-YOUN",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Score captured Monday 10am ET after wide release; can still shift as late reviews post.",
+  "rationale": "Same mechanism as the other Rotten Tomatoes markets: an aggregate of many independent critic reviews under staggered embargo, with no single group knowing the final score in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPMODEL-26JUN29",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Arena-style leaderboard rank is a crowd-voted aggregate across many independent users; labs know their own release plans but cannot know a crowd score before it accumulates, per the mechanism sheet's explicit guidance on this family.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXHORMUZWEEKLY-26JUN28",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves no earlier than the Tuesday after the period once complete IMF PortWatch data is available -- a disclosed lag, not a hidden one.",
+  "rationale": "Weekly Strait of Hormuz transit-call totals are a crowd-aggregate of many independent ships' movements, tracked and published by IMF PortWatch on a schedule; no single actor decides or privately knows the total in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXHORMUZNORM-26MAR17",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same mechanism as the weekly Hormuz market: a moving average of many independent ships' transit activity, published by a third-party tracker, decided by nobody.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUN29",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Netflix's published weekly viewership chart is an aggregate of millions of individual streams; Netflix itself sees the raw number first but this is a crowd-aggregate tracker family, explicitly named as gated-out in the mechanism sheet (KXNETFLIX*).",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXB200W-26JUL03",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves to No on all non-null strikes if no Ornn data is available by the deadline -- disclosed, not a hidden risk.",
+  "rationale": "GPU compute rental price is a posted-price index aggregating many vendors' listed rates; explicitly named in the gated-out posted-price-index family, decided by no single group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPUREALBUMS-XPE26JUL09",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves the Sunday right after the tracking week from Luminate data; scheduled promptly, low miss risk.",
+  "rationale": "Same mechanism as the other pure-album-sales markets: an aggregate of many independent buyers' purchases over a tracking week, forecastable late in the week by industry insiders but not privately decided by anyone.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXRT-INV",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Score captured Monday 10am ET after wide release; can still shift as late reviews post.",
+  "rationale": "Same mechanism as the other Rotten Tomatoes markets in this batch: an aggregate of many independent critic reviews with no single group knowing the final score in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMEQUIV-CON26JUL09B",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves the Sunday right after the tracking week from Luminate data; scheduled promptly, low miss risk.",
+  "rationale": "Same mechanism as the other Album Equivalent Units markets: an aggregate of millions of streams/purchases over a tracking week, forecastable late in the week by industry insiders but decided by no one.",
+  "researched": false
+ }
+]
