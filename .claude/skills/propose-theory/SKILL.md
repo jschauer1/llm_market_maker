@@ -76,13 +76,17 @@ A theory whose decision path is fully deterministic can skip this and say so.
 ```bash
 mkdir -p theories/<slug>
 cp theories/_TEMPLATE/THEORY.md theories/<slug>/THEORY.md
+cp theories/_TEMPLATE/NOTES.md theories/<slug>/NOTES.md
 python -m tools.cli theories register <slug> "<Name>" theories/<slug>
 python -m tools.cli ideas status <idea-slug> promoted --theory-id <slug>
 ```
 
-Fill in `THEORY.md` completely. Then scaffold the `Theory` subclass every
-theory package must expose — this is the object `registry.discover()` finds
-and `find-edge` dispatches:
+Fill in `THEORY.md` completely. `NOTES.md` is the theory's lab
+notebook — dated, raw, append-only — for dead ends, data quirks, and
+hunches not yet worth a version bump; a note only moves into `THEORY.md`
+once it changes what the theory claims or does. Then scaffold the
+`Theory` subclass every theory package must expose — this is the object
+`registry.discover()` finds and `find-edge` dispatches:
 
 ```python
 # theories/<slug>/theory.py
