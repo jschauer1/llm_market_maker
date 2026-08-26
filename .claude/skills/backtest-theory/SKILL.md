@@ -77,6 +77,15 @@ See the convention in `tools/README.md`; `theories/insider_bias/
 mention_family/backtest.py` is the worked example (per-series recording
 plus a `--checkpoint` file).
 
+The same rule governs **judgment stages, because usage can cut out at
+any moment**: write every batch's input payload to disk before any model
+runs, have each judgment subagent write its verdicts to a file itself,
+and ingest + record each batch before dispatching the next — never hold
+verdicts only in conversation context. However far the run got must be
+scoreable by a future session that never saw this one.
+`theories/insider_bias/insider_judgment/backtest_judged.py` is the
+worked example.
+
 **Backtests are the highest-volume judgment in this system** — a replay can
 span hundreds of historical markets, far more than a single live scan. Use the
 same cascade the theory uses live (cheap gate, then deep analysis on
