@@ -1,0 +1,1070 @@
+[
+ {
+  "event_ticker": "KXTRUMPSUPREMELEADER-27JAN01",
+  "series_ticker": "KXTRUMPSUPREMELEADER",
+  "title": "Will Donald Trump meet in person the Supreme Leader of Iran before Jul 1, 2026?",
+  "close_time": "2026-07-01T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPSUPREMELEADER-27JAN01-JUL01",
+    "title": "Will Donald Trump meet in person the Supreme Leader of Iran before Jul 1, 2026?",
+    "rules_primary": "If Donald Trump and the Supreme Leader of Iran meet in person after Issuance and before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTVSEASONRELEASEOUTBANKS",
+  "series_ticker": "KXTVSEASONRELEASEOUTBANKS",
+  "title": "When will Outer Banks Season 5 be released?",
+  "close_time": "2026-07-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTVSEASONRELEASEOUTBANKS-26-JUL",
+    "title": "When will Outer Banks Season 5 be released?",
+    "rules_primary": "If it has been announced that Outer Banks Season 5 will release before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXZELENSKYPUTIN-29",
+  "series_ticker": "KXZELENSKYPUTIN",
+  "title": "Volodymyr Zelenskyy and Vladimir Putin meet before Jul 1, 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXZELENSKYPUTIN-29-26JUL",
+    "title": "Volodymyr Zelenskyy and Vladimir Putin meet before Jul 1, 2026?",
+    "rules_primary": "If Volodymyr Zelenskyy and Vladimir Putin  meet (including phone calls) before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "For the purposes of this market, a meeting must be direct and in real time. In-person encounters where both parties are physically present in the same location will count. Virtual meetings or calls where both parties speak directly to each other will also count. However, simply being present at the same event without direct interaction will not count. Exchanging written correspondences, communicating through intermediaries, or other asynchronous communication will not count. Cancelled meetings and near-misses will not count.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFRAGRANCE-27JPG",
+  "series_ticker": "KXFRAGRANCE",
+  "title": "Will the price of Jean Paul Gaultier Le Male Elixir be above $100 in 2026?",
+  "close_time": "2026-07-03T15:24:30Z",
+  "markets": [
+   {
+    "ticker": "KXFRAGRANCE-27JPG-100",
+    "title": "Will the price of Jean Paul Gaultier Le Male Elixir be above $100 in 2026?",
+    "rules_primary": "If the market price of Jean Paul Gaultier Le Male Elixir (4.2 oz EDP) on Jomashop is above $100 in 2026, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the market price displayed on Jomashop, which may include discounts, promotions, or sale pricing. \n\nPrices are in USD, rounded to two decimal places, and exclude duties, taxes, and additional fees. If no data is available, the last known value will be used. \n\nIf no prior value exists, all markets resolve to No. Revisions after initial publication will not affect resolution. Outcome verified from Jomashop.",
+    "close_time": "2026-07-03T15:24:30Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLIUSAELIMINATIONW-26JUN26B",
+  "series_ticker": "KXLIUSAELIMINATIONW",
+  "title": "Will Tierra be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+  "close_time": "2026-06-27T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26-TIE",
+    "title": "Will Tierra be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Tierra is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26-SYD",
+    "title": "Will Sydney be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Sydney is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26-RON",
+    "title": "Will Ronnie be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Ronnie is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26-PAR",
+    "title": "Will Parmida be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Parmida is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26-JAI",
+    "title": "Will Jaiden be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Jaiden is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26-GAL",
+    "title": "Will Gal be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Gal is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26-DYL",
+    "title": "Will Dylan be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Dylan is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26-COR",
+    "title": "Will Corey be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Corey is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26-CHA",
+    "title": "Will Chay be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Chay is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26-CAR",
+    "title": "Will Carl be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Carl is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26B-ZAC",
+    "title": "Will Zach be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Zach is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26B-SIN",
+    "title": "Will Sincere be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Sincere is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26B-MEL",
+    "title": "Will Melanie be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Melanie is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26B-KEN",
+    "title": "Will Kenzie be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Kenzie is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26B-KCC",
+    "title": "Will KC be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If KC is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26B-KAY",
+    "title": "Will Kayda be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Kayda is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26B-JEN",
+    "title": "Will Jen be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Jen is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26B-COR",
+    "title": "Will Corbin be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Corbin is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26B-CAL",
+    "title": "Will Caleb be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Caleb is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26B-BRY",
+    "title": "Will Bryce be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Bryce is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26B-ANI",
+    "title": "Will Aniya be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Aniya is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26-AMO",
+    "title": "Will Amora be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Amora is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUN26-ALA",
+    "title": "Will Alannah be eliminated from Love Island USA Season 8 before Jun 27, 2026?",
+    "rules_primary": "If Alannah is officially eliminated from Love Island USA: Season 8 Before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-26T14:47:01Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC31",
+  "series_ticker": "KXTAYLORSWIFTWEDDINGATTEND",
+  "title": "Will Margaret Qualley attend Taylor Swift and Travis Kelce's Wedding?",
+  "close_time": "2026-07-06T18:54:45Z",
+  "markets": [
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC-MAR",
+    "title": "Will Margaret Qualley attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Margaret Qualley attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-06T18:54:45Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC31-LAN",
+    "title": "Will Lana Del Rey attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Lana Del Rey attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-06T00:17:23Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC31-PHO",
+    "title": "Will Phoebe Bridgers attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Phoebe Bridgers attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T15:41:44Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC-LOR",
+    "title": "Will Lorde attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Lorde attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T15:16:53Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC-JUS",
+    "title": "Will Justin Trudeau attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Justin Trudeau attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T15:16:31Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC-KAT",
+    "title": "Will Katy Perry attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Katy Perry attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T15:16:26Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC-FLO",
+    "title": "Wil Florence Welchl attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Florence Welch attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T15:16:14Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC31-JAR",
+    "title": "Will Jared Goff attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Jared Goff attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T15:16:06Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC-HAR",
+    "title": "Will Harry Styles attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Harry Styles attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T15:12:39Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC31-SAB",
+    "title": "Will Sabrina Carpenter attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Sabrina Carpenter attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T15:11:49Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC-BEN",
+    "title": "Will Benny Blanco attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Benny Blanco attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T15:09:23Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC-JAS",
+    "title": "Will Jason Kelce attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Jason Kelce attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T15:07:02Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC31-MAX",
+    "title": "Will Max Martin attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Max Martin attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T15:01:17Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC31-JAC",
+    "title": "Will Jack Antonoff attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Jack Antonoff attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T15:00:20Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC31-PAT",
+    "title": "Will Patrick Mahomes attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Patrick Mahomes attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T14:56:39Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC31-BRI",
+    "title": "Will Brittany Mahomes attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Brittany Mahomes attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T14:56:33Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC31-GRA",
+    "title": "Will Gracie Abrams attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Gracie Abrams attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T14:50:41Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC31-ALA",
+    "title": "Will Alana Haim attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Alana Haim attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T14:50:18Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC31-DAN",
+    "title": "Will Danielle Haim attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Danielle Haim attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T14:50:09Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC31-EST",
+    "title": "Will Este Haim attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Este Haim attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T14:50:03Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC31-SEL",
+    "title": "Will Selena Gomez attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Selena Gomez attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T14:45:45Z"
+   },
+   {
+    "ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC31-BLA",
+    "title": "Will Blake Lively attend Taylor Swift and Travis Kelce's Wedding?",
+    "rules_primary": "If Blake Lively attended Taylor Swift and Travis Kelce's Wedding, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Virtual attendance counts as attendance unless the event is explicitly in-person only. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-05T14:45:18Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRAVISKELCEWEDDING-30JAN01",
+  "series_ticker": "KXTRAVISKELCEWEDDING",
+  "title": "Will Patrick Mahomes be a Groomsman for the wedding of Travis Kelce and Taylor Swift?",
+  "close_time": "2026-07-05T20:23:48Z",
+  "markets": [
+   {
+    "ticker": "KXTRAVISKELCEWEDDING-30JAN01-PAT",
+    "title": "Will Patrick Mahomes be a Groomsman for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Patrick Mahomes served as Groomsman at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:23:48Z"
+   },
+   {
+    "ticker": "KXTRAVISKELCEWEDDING-30JAN01-AUS",
+    "title": "Will Austin Swift be a Groomsman for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Austin Swift served as Groomsman at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:23:48Z"
+   },
+   {
+    "ticker": "KXTRAVISKELCEWEDDING-30JAN01-ARI",
+    "title": "Will Aric Jones be a Groomsman for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Aric Jones served as Groomsman at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:23:48Z"
+   },
+   {
+    "ticker": "KXTRAVISKELCEWEDDING-30JAN01-JAS",
+    "title": "Will Jason Kelce be a Groomsman for the wedding of Travis Kelce and Taylor Swift?",
+    "rules_primary": "If Jason Kelce served as Groomsman at the wedding ceremony of Travis Kelce and Taylor Swift that occurred before Jan 1, 2030, then the market resolves to Yes.",
+    "rules_secondary": "The person must serve in the specified role at the actual wedding ceremony, not merely at the rehearsal, reception, or other wedding events. If the person is listed in the wedding program or announced as having the role but does not attend or participate, the market resolves to No. If the person serves as a substitute or replacement in the role during the ceremony itself, the market resolves to Yes. If the couple has multiple ceremonies (religious and civil), the person must serve in the role in at least one ceremony. If the wedding is cancelled or indefinitely postponed beyond the date, the market resolves to No for all strikes. If the couple has only a legal marriage without any ceremony involving a wedding party, the market resolves to No. Resolution is based on official wedding announcements, wedding programs, ceremony materials, and reporting from major media outlets including The New York Times, People Magazine, Vogue, official social media accounts, and verified photography or videography from the wedding.",
+    "close_time": "2026-07-05T20:23:41Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMARRIAGESWIFTKELCE-26",
+  "series_ticker": "KXMARRIAGESWIFTKELCE",
+  "title": "Will Taylor Swift and Travis Kelce be married in 2026?",
+  "close_time": "2026-07-07T02:14:57Z",
+  "markets": [
+   {
+    "ticker": "KXMARRIAGESWIFTKELCE-26",
+    "title": "Will Taylor Swift and Travis Kelce be married in 2026?",
+    "rules_primary": "If Taylor Swift and Travis Kelce are married before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-07T02:14:57Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPPHOTO-26JUN28",
+  "series_ticker": "KXTRUMPPHOTO",
+  "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 7 between Jun 22, 2026 and Jun 28, 2026?",
+  "close_time": "2026-06-29T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPPHOTO-26JUN28-7",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 7 between Jun 22, 2026 and Jun 28, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jun 22, 2026 and Jun 28, 2026 is exactly 7, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-06-29T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPPHOTO-26JUN28-6",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 6 between Jun 22, 2026 and Jun 28, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jun 22, 2026 and Jun 28, 2026 is exactly 6, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-06-29T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPPHOTO-26JUN28-5",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 5 between Jun 22, 2026 and Jun 28, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jun 22, 2026 and Jun 28, 2026 is exactly 5, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-06-29T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPPHOTO-26JUN28-4",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 4 between Jun 22, 2026 and Jun 28, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jun 22, 2026 and Jun 28, 2026 is exactly 4, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-06-29T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXRANKLIST1SONG-26JUL25",
+  "series_ticker": "KXRANKLIST1SONG",
+  "title": "Will Choosin' Texas be 1 on the Billboard Hot 100 in July 2026?",
+  "close_time": "2026-06-30T20:43:25Z",
+  "markets": [
+   {
+    "ticker": "KXRANKLIST1SONG-26JUL25-CHO",
+    "title": "Will Choosin' Texas be 1 on the Billboard Hot 100 in July 2026?",
+    "rules_primary": "If Choosin' Texas is the #1 song on the Billboard Hot 100 in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only Billboard charts dated between July 04, 2026, and July 25, 2026, inclusive, will be considered for this market. These are the first and last eligible chart dates for July 2026.\n\nThis market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-30T20:43:25Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOP10BBSPOTS-26JUL04-OLI",
+  "series_ticker": "KXTOP10BBSPOTS",
+  "title": "How many spots on the Billboard Hot 100's top 10 will Olivia Rodrigo hold for the week of Jul 4, 2026?",
+  "close_time": "2026-06-30T18:26:37Z",
+  "markets": [
+   {
+    "ticker": "KXTOP10BBSPOTS-26JUL04-OLI-3",
+    "title": "How many spots on the Billboard Hot 100's top 10 will Olivia Rodrigo hold for the week of Jul 4, 2026?",
+    "rules_primary": "If Olivia Rodrigo has exactly 3 songs in the top 10 of the Billboard Hot 100 chart dated Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-30T18:26:37Z"
+   },
+   {
+    "ticker": "KXTOP10BBSPOTS-26JUL04-OLI-2",
+    "title": "How many spots on the Billboard Hot 100's top 10 will Olivia Rodrigo hold for the week of Jul 4, 2026?",
+    "rules_primary": "If Olivia Rodrigo has exactly 2 songs in the top 10 of the Billboard Hot 100 chart dated Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-30T18:26:37Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPMEETING-27JAN01",
+  "series_ticker": "KXTRUMPMEETING",
+  "title": "Will Donald Trump meet in person Claudia Sheinbaum before Jan 1, 2027?",
+  "close_time": "2026-07-19T23:12:33Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPMEETING-27JAN01-NCSHE",
+    "title": "Will Donald Trump meet in person Claudia Sheinbaum before Jan 1, 2027?",
+    "rules_primary": "If Donald Trump and Claudia Sheinbaum meet in person after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A qualifying meeting must satisfy the following: both persons must be present (physically or virtually, as specified by &lt;meet&gt;) and engage in communication or interaction\u2014mere presence in the same location without interaction does not constitute a meeting unless otherwise specified. The meeting must be confirmed by at least one Source Agency through official statement, press release, credible media report, or other documented evidence. The meeting must occur at any point during the time period; for meetings that span across the boundary of the time period, any portion of the meeting occurring within the time period is sufficient. Coincidental encounters without purposeful engagement (e.g., passing in a hallway without acknowledgment) do not count. Communication via intermediaries, written letters, or social media do not count unless specified.",
+    "close_time": "2026-07-19T23:12:33Z"
+   },
+   {
+    "ticker": "KXTRUMPMEETING-27JAN01-NAALS",
+    "title": "Will Donald Trump meet in person Ahmed al-Sharaa before Jan 1, 2027?",
+    "rules_primary": "If Donald Trump and Ahmed al-Sharaa meet in person after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A qualifying meeting must satisfy the following: both persons must be present (physically or virtually, as specified by &lt;meet&gt;) and engage in communication or interaction\u2014mere presence in the same location without interaction does not constitute a meeting unless otherwise specified. The meeting must be confirmed by at least one Source Agency through official statement, press release, credible media report, or other documented evidence. The meeting must occur at any point during the time period; for meetings that span across the boundary of the time period, any portion of the meeting occurring within the time period is sufficient. Coincidental encounters without purposeful engagement (e.g., passing in a hallway without acknowledgment) do not count. Communication via intermediaries, written letters, or social media do not count unless specified.",
+    "close_time": "2026-07-08T15:20:59Z"
+   },
+   {
+    "ticker": "KXTRUMPMEETING-27JAN01-RERD",
+    "title": "Will Donald Trump meet in person Recep Tayyip Erdo\u011fan before Jan 1, 2027?",
+    "rules_primary": "If Donald Trump and Recep Tayyip Erdo\u011fan meet in person after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A qualifying meeting must satisfy the following: both persons must be present (physically or virtually, as specified by &lt;meet&gt;) and engage in communication or interaction\u2014mere presence in the same location without interaction does not constitute a meeting unless otherwise specified. The meeting must be confirmed by at least one Source Agency through official statement, press release, credible media report, or other documented evidence. The meeting must occur at any point during the time period; for meetings that span across the boundary of the time period, any portion of the meeting occurring within the time period is sufficient. Coincidental encounters without purposeful engagement (e.g., passing in a hallway without acknowledgment) do not count. Communication via intermediaries, written letters, or social media do not count unless specified.",
+    "close_time": "2026-07-07T16:49:08Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPPASSPORT-26",
+  "series_ticker": "KXTRUMPPASSPORT",
+  "title": "Will it be reported that the United States Department of State issues one or more United States passports to U.S. citizens where the passport contains an image or visual representation of Donald Trump\u2019s face before Jul 20, 2026?",
+  "close_time": "2026-07-07T17:11:54Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPPASSPORT-26-JUL20",
+    "title": "Will it be reported that the United States Department of State issues one or more United States passports to U.S. citizens where the passport contains an image or visual representation of Donald Trump\u2019s face before Jul 20, 2026?",
+    "rules_primary": "If the United States Department of State issues one or more United States passports to U.S. citizens where the passport contains an image or visual representation of Donald Trump\u2019s face  after May 04 02:00 PM ET and before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-07T17:11:54Z"
+   },
+   {
+    "ticker": "KXTRUMPPASSPORT-26-JAN01",
+    "title": "Will it be reported that the United States Department of State issues one or more United States passports to U.S. citizens where the passport contains an image or visual representation of Donald Trump\u2019s face before Jan 1, 2027?",
+    "rules_primary": "If the United States Department of State issues one or more United States passports to U.S. citizens where the passport contains an image or visual representation of Donald Trump\u2019s face  after May 04 02:00 PM ET and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-07T17:11:54Z"
+   },
+   {
+    "ticker": "KXTRUMPPASSPORT-26-AUG01",
+    "title": "Will it be reported that the United States Department of State issues one or more United States passports to U.S. citizens where the passport contains an image or visual representation of Donald Trump\u2019s face before Aug 1, 2026?",
+    "rules_primary": "If the United States Department of State issues one or more United States passports to U.S. citizens where the passport contains an image or visual representation of Donald Trump\u2019s face  after May 04 02:00 PM ET and before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-07T17:11:54Z"
+   },
+   {
+    "ticker": "KXTRUMPPASSPORT-26-JUL04",
+    "title": "Will it be reported that the United States Department of State issues one or more United States passports to U.S. citizens where the passport contains an image or visual representation of Donald Trump\u2019s face before Jul 4, 2026?",
+    "rules_primary": "If the United States Department of State issues one or more United States passports to U.S. citizens where the passport contains an image or visual representation of Donald Trump\u2019s face  after May 04 02:00 PM ET and before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-04T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-CSACTO",
+  "series_ticker": "KXEMMYNOMS",
+  "title": "Will Jeff Hiller be on the list of nominees for Comedy Supporting Actor at the 78th Emmy Awards?",
+  "close_time": "2026-07-08T17:53:22Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYNOMS-26-CSACTO-JEF",
+    "title": "Will Jeff Hiller be on the list of nominees for Comedy Supporting Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Jeff Hiller is on the list of nominees for Outstanding Supporting Actor In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:53:22Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-CSACTO-EBO",
+    "title": "Will Ebon Moss-Bachrach be on the list of nominees for Comedy Supporting Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Ebon Moss-Bachrach is on the list of nominees for Outstanding Supporting Actor In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:53:22Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-CSACTO-BEN",
+    "title": "Will Ben Kingsley be on the list of nominees for Comedy Supporting Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Ben Kingsley is on the list of nominees for Outstanding Supporting Actor In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:53:22Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-CSACTO-TYL",
+    "title": "Will Tyler James Williams be on the list of nominees for Comedy Supporting Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Tyler James Williams is on the list of nominees for Outstanding Supporting Actor In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:51:03Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-CSACTO-STE",
+    "title": "Will Stephen Root be on the list of nominees for Comedy Supporting Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Stephen Root is on the list of nominees for Outstanding Supporting Actor In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:50:40Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-DS",
+  "series_ticker": "KXEMMYNOMS",
+  "title": "Will Euphoria be on the list of nominees for Drama Series at the 78th Emmy Awards?",
+  "close_time": "2026-07-08T18:01:42Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYNOMS-26-DS-EUP",
+    "title": "Will Euphoria be on the list of nominees for Drama Series at the 78th Emmy Awards?",
+    "rules_primary": "If Euphoria is on the list of nominees for Outstanding Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T18:01:42Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-DS-TES",
+    "title": "Will The Testaments be on the list of nominees for Drama Series at the 78th Emmy Awards?",
+    "rules_primary": "If The Testaments is on the list of nominees for Outstanding Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T18:01:41Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-DS-STR",
+    "title": "Will Stranger Things be on the list of nominees for Drama Series at the 78th Emmy Awards?",
+    "rules_primary": "If Stranger Things is on the list of nominees for Outstanding Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T18:01:41Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-DS-IND",
+    "title": "Will Industry be on the list of nominees for Drama Series at the 78th Emmy Awards?",
+    "rules_primary": "If Industry is on the list of nominees for Outstanding Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T18:01:41Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-DS-KNI",
+    "title": "Will A Knight of the Seven Kingdoms be on the list of nominees for Drama Series at the 78th Emmy Awards?",
+    "rules_primary": "If A Knight of the Seven Kingdoms is on the list of nominees for Outstanding Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T18:00:25Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-LACT",
+  "series_ticker": "KXEMMYNOMS",
+  "title": "Will Paul Anthony Kelly be on the list of nominees for Movie/Limited Actor at the 78th Emmy Awards?",
+  "close_time": "2026-07-08T17:59:08Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYNOMS-26-LACT-PAU",
+    "title": "Will Paul Anthony Kelly be on the list of nominees for Movie/Limited Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Paul Anthony Kelly is on the list of nominees for Outstanding Lead Actor In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:59:08Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LACT-MIC",
+    "title": "Will Michael Shannon be on the list of nominees for Movie/Limited Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Michael Shannon is on the list of nominees for Outstanding Lead Actor In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:59:08Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LACT-JAM",
+    "title": "Will Jamie Bell be on the list of nominees for Movie/Limited Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Jamie Bell is on the list of nominees for Outstanding Lead Actor In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:59:08Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LACT-CHA",
+    "title": "Will Charlie Hunnam be on the list of nominees for Movie/Limited Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Charlie Hunnam is on the list of nominees for Outstanding Lead Actor In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:58:33Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LACT-JAS",
+    "title": "Will Jason Bateman be on the list of nominees for Movie/Limited Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Jason Bateman is on the list of nominees for Outstanding Lead Actor In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:58:18Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LACT-RIZ",
+    "title": "Will Riz Ahmed be on the list of nominees for Movie/Limited Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Riz Ahmed is on the list of nominees for Outstanding Lead Actor In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:58:04Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-LS",
+  "series_ticker": "KXEMMYNOMS",
+  "title": "Will Half Man be on the list of nominees for Limited Series at the 78th Emmy Awards?",
+  "close_time": "2026-07-08T19:12:43Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYNOMS-26-LS-HAL",
+    "title": "Will Half Man be on the list of nominees for Limited Series at the 78th Emmy Awards?",
+    "rules_primary": "If Half Man is on the list of nominees for Outstanding Limited Or Anthology Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:12:43Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LS-DEA",
+    "title": "Will Death by Lightning be on the list of nominees for Limited Series at the 78th Emmy Awards?",
+    "rules_primary": "If Death by Lightning is on the list of nominees for Outstanding Limited Or Anthology Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:12:43Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LS-BLA",
+    "title": "Will Black Rabbit be on the list of nominees for Limited Series at the 78th Emmy Awards?",
+    "rules_primary": "If Black Rabbit is on the list of nominees for Outstanding Limited Or Anthology Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:12:43Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LS-DTF",
+    "title": "Will DTF St. Louis be on the list of nominees for Limited Series at the 78th Emmy Awards?",
+    "rules_primary": "If DTF St. Louis is on the list of nominees for Outstanding Limited Or Anthology Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:12:21Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-LSACTR",
+  "series_ticker": "KXEMMYNOMS",
+  "title": "Will Naomi Watts be on the list of nominees for Movie/Limited Supporting Actress at the 78th Emmy Awards?",
+  "close_time": "2026-07-08T17:57:27Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYNOMS-26-LSACTR-NAO",
+    "title": "Will Naomi Watts be on the list of nominees for Movie/Limited Supporting Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Naomi Watts is on the list of nominees for Outstanding Supporting Actress In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:57:27Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LSACTR-GRA",
+    "title": "Will Grace Gummer be on the list of nominees for Movie/Limited Supporting Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Grace Gummer is on the list of nominees for Outstanding Supporting Actress In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:57:27Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LSACTR-BRI",
+    "title": "Will Brittany Snow be on the list of nominees for Movie/Limited Supporting Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Brittany Snow is on the list of nominees for Outstanding Supporting Actress In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:57:27Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LSACTR-CON",
+    "title": "Will Constance Zimmer be on the list of nominees for Movie/Limited Supporting Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Constance Zimmer is on the list of nominees for Outstanding Supporting Actress In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:57:14Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LSACTR-YUH",
+    "title": "Will Yuh-Jung Youn be on the list of nominees for Movie/Limited Supporting Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Yuh-Jung Youn is on the list of nominees for Outstanding Supporting Actress In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:57:02Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LSACTR-LAU",
+    "title": "Will Laurie Metcalf be on the list of nominees for Movie/Limited Supporting Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Laurie Metcalf is on the list of nominees for Outstanding Supporting Actress In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:56:47Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-LSACTR-DAK",
+    "title": "Will Dakota Fanning be on the list of nominees for Movie/Limited Supporting Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Dakota Fanning is on the list of nominees for Outstanding Supporting Actress In A Limited Or Anthology Series Or Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T17:56:33Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-TVM",
+  "series_ticker": "KXEMMYNOMS",
+  "title": "Will Swiped be on the list of nominees for TV Movie at the 78th Emmy Awards?",
+  "close_time": "2026-07-08T19:15:33Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYNOMS-26-TVM-SWI",
+    "title": "Will Swiped be on the list of nominees for TV Movie at the 78th Emmy Awards?",
+    "rules_primary": "If Swiped is on the list of nominees for Outstanding Television Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:15:33Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-TVM-MIK",
+    "title": "Will Mike & Nick & Nick & Alice be on the list of nominees for TV Movie at the 78th Emmy Awards?",
+    "rules_primary": "If Mike & Nick & Nick & Alice is on the list of nominees for Outstanding Television Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:15:33Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-TVM-MIS",
+    "title": "Will Miss You, Love You be on the list of nominees for TV Movie at the 78th Emmy Awards?",
+    "rules_primary": "If Miss You, Love You is on the list of nominees for Outstanding Television Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:14:47Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEVENTOCCURCLTR-27",
+  "series_ticker": "KXEVENTOCCURCLTR",
+  "title": "Will Taylor Swift get married at MSG this year?",
+  "close_time": "2026-07-04T00:53:28Z",
+  "markets": [
+   {
+    "ticker": "KXEVENTOCCURCLTR-27-JAN01",
+    "title": "Will Taylor Swift get married at MSG this year?",
+    "rules_primary": "If it is reported that Taylor Swift got married at Madison Square Garden and it's confirmed by any of the Source Agencies after Issuance and Before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-04T00:53:28Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-DSACTR",
+  "series_ticker": "KXEMMYNOMS",
+  "title": "Will Emilia Jones be on the list of nominees for Drama Supporting Actress at the 78th Emmy Awards?",
+  "close_time": "2026-07-08T19:09:32Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYNOMS-26-DSACTR-EMI",
+    "title": "Will Emilia Jones be on the list of nominees for Drama Supporting Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Emilia Jones is on the list of nominees for Outstanding Supporting Actress In A Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:09:32Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-DSACTR-KAR",
+    "title": "Will Karolina Wydra be on the list of nominees for Drama Supporting Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Karolina Wydra is on the list of nominees for Outstanding Supporting Actress In A Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:09:25Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-DSACTR-SEP",
+    "title": "Will Sepideh Moafi be on the list of nominees for Drama Supporting Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Sepideh Moafi is on the list of nominees for Outstanding Supporting Actress In A Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:09:06Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-DSACTR-ALL",
+    "title": "Will Allison Janney be on the list of nominees for Drama Supporting Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Allison Janney is on the list of nominees for Outstanding Supporting Actress In A Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:08:43Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXRANKLISTSONGSPOTUSA-26AUG01",
+  "series_ticker": "KXRANKLISTSONGSPOTUSA",
+  "title": "Will The Weeknd be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+  "close_time": "2026-08-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26AUG01-WEE",
+    "title": "Will The Weeknd be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+    "rules_primary": "If The Weeknd is #1 on Any Spotify Daily Top Songs USA chart in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26AUG01-TAY",
+    "title": "Will Taylor Swift be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+    "rules_primary": "If Taylor Swift is #1 on Any Spotify Daily Top Songs USA chart in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26AUG01-SHA",
+    "title": "Will Shakira be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+    "rules_primary": "If Shakira is #1 on Any Spotify Daily Top Songs USA chart in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26AUG01-OLII",
+    "title": "Will Olivia Rodrigo be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+    "rules_primary": "If Olivia Rodrigo is #1 on Any Spotify Daily Top Songs USA chart in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26AUG01-NIC",
+    "title": "Will Nicki Minaj be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+    "rules_primary": "If Nicki Minaj is #1 on Any Spotify Daily Top Songs USA chart in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26AUG01-MAL",
+    "title": "Will Malcolm Todd be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+    "rules_primary": "If Malcolm Todd is #1 on Any Spotify Daily Top Songs USA chart in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26AUG01-MAD",
+    "title": "Will Madonna be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+    "rules_primary": "If Madonna is #1 on Any Spotify Daily Top Songs USA chart in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26AUG01-KEN",
+    "title": "Will Kendrick Lamar be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+    "rules_primary": "If Kendrick Lamar is #1 on Any Spotify Daily Top Songs USA chart in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26AUG01-JUS",
+    "title": "Will Justin Bieber be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+    "rules_primary": "If Justin Bieber is #1 on Any Spotify Daily Top Songs USA chart in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26AUG01-GRA",
+    "title": "Will Gracie Abrams be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+    "rules_primary": "If Gracie Abrams is #1 on Any Spotify Daily Top Songs USA chart in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26AUG01-DRA",
+    "title": "Will Drake be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+    "rules_primary": "If Drake is #1 on Any Spotify Daily Top Songs USA chart in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26AUG01-CHA",
+    "title": "Will Charli xcx be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+    "rules_primary": "If Charli xcx is #1 on Any Spotify Daily Top Songs USA chart in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26AUG01-BTS",
+    "title": "Will BTS be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+    "rules_primary": "If BTS is #1 on Any Spotify Daily Top Songs USA chart in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26AUG01-ARI",
+    "title": "Will Ariana Grande be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+    "rules_primary": "If Ariana Grande is #1 on Any Spotify Daily Top Songs USA chart in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26AUG01-ALE",
+    "title": "Will Alex Warren be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+    "rules_primary": "If Alex Warren is #1 on Any Spotify Daily Top Songs USA chart in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26AUG01-MOR",
+    "title": "Will Morgan Wallen be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+    "rules_primary": "If Morgan Wallen is #1 on Any Spotify Daily Top Songs USA chart in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-07-26T22:31:46Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26AUG01-TOB",
+    "title": "Will Toby Keith be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+    "rules_primary": "If Toby Keith is #1 on Any Spotify Daily Top Songs USA chart in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-07-09T00:06:17Z"
+   },
+   {
+    "ticker": "KXRANKLISTSONGSPOTUSA-26AUG01-ELL",
+    "title": "Will Ella Langley be #1 on the Any Spotify Daily Top Songs USA chart in July 2026?",
+    "rules_primary": "If Ella Langley is #1 on Any Spotify Daily Top Songs USA chart in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-07-03T15:44:23Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXHOSTRNCCONV-26",
+  "series_ticker": "KXHOSTRNCCONV",
+  "title": "Which city will host the 2026 RNC midterm convention?",
+  "close_time": "2026-07-02T14:41:27Z",
+  "markets": [
+   {
+    "ticker": "KXHOSTRNCCONV-26-DALL",
+    "title": "Which city will host the 2026 RNC midterm convention?",
+    "rules_primary": "If Dallas hosts the 2026 RNC midterm convention, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-02T14:41:27Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYLSERIES-26SEP14",
+  "series_ticker": "KXEMMYLSERIES",
+  "title": "Will Half Man win Limited Series  at the Emmy Awards?",
+  "close_time": "2026-07-08T18:24:12Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYLSERIES-26SEP14-HAL",
+    "title": "Will Half Man win Limited Series  at the Emmy Awards?",
+    "rules_primary": "If Half Man has won Outstanding Limited Or Anthology Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by the Emmys. Any references to the Emmys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T18:24:12Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPVH-26JUL03",
+  "series_ticker": "KXTRUMPVH",
+  "title": "Will Donald Trump's VoteHub approval polling average be above 39.4% at 10:00 AM ET on Jul 3, 2026?",
+  "close_time": "2026-07-03T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPVH-26JUL03-T39.4",
+    "title": "Will Donald Trump's VoteHub approval polling average be above 39.4% at 10:00 AM ET on Jul 3, 2026?",
+    "rules_primary": "If Donald Trump's VoteHub approval polling average is above 39.4% at 10:00 AM ET on Jul 3, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-03T13:59:00Z"
+   }
+  ]
+ }
+]
