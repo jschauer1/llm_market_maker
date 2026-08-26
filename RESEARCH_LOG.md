@@ -1045,3 +1045,44 @@ now tested, and delaying hurts everywhere except strong-NO. (Ignore the
 repriced weak-YES +5.9 — no mechanism, third noise-shaped YES cell.)
 Practical rule that survives: enter moderate-NO at first qualification;
 strong-NO may be entered any time including late.
+
+## 2026-08-26 — FULL POPULATION JUDGED: the pre-registered NO-side rule REPLICATED out of sample
+
+**Did:** Completed judgment coverage of the entire gate-plausible
+population from the tier-A walk: s200 (200 events) + s200b (200) + s57
+(57) = 457 events / 1,561 market rows, every batch payload committed
+before dispatch, every verdicts file ingested and committed as it
+landed (through bbadf13), one batch recovered intact from a usage-cutoff
+orphan. Also repriced the uniform 3-2-days-before-close entry over the
+full set from the candle cache, and the backfill finished its walk
+(~17k candle windows / ~18k payloads durable).
+
+**Learned — the headline:** The bet rule pre-registered from s200
+(strong-or-moderate judgment, NO side, first-qualifying entry)
+**replicated on the 257 events judged after pre-registration: +4.92pts
+net, p_fair=0.0008 (312 rows / 85 events), vs +5.34, p=0.0018 on the
+original round.** Pooled: +5.10pts, p<0.0001, n=551 rows / 162 events,
+win rate 0.922 at mean ask 0.863; excluding the award family: +5.45.
+Sub-cells: moderate-NO replicated STRONGER (+3.61 -> +5.13, p=0.003);
+strong-NO replicated in direction but weaker (+8.59 -> +4.29, p=0.096
+-- partial regression toward the mean, as expected for the flashiest
+cell). The rules-divergence flag repeated its direction (+1.97 ->
++2.17) without reaching significance. Full-population bucket x side:
+NO ladder monotone and significant (strong +6.50 p=0.0017 / moderate
++4.52 p=0.0006 / weak -1.96), YES side flat-to-negative everywhere
+(strong -4.98, moderate -3.19, weak +0.36) -- the optimism-tax
+asymmetry held through every expansion. Timing at full coverage:
+uniform 3-2d late entry still underperforms first-qualifying entry
+(+2.32 p=0.06 vs +5.10), confirming the moderate edge is an
+early-entry edge; strong-NO alone tolerates late entry.
+
+**Next:** This is the strongest evidence any theory in this repo has
+produced: tier B, pre-registered, out-of-sample replicated, mechanism-
+backed (optimism tax + insider-NO), n=162 events. Still backtest, still
+one summer, still sibling-correlated within events — the promotion bar
+remains live settlements. Proposed live procedure for the user to
+ratify (a v4 version bump): judge as today; bet only strong/moderate
+NO favorites at first qualification; record dtc and the divergence
+flag on every row; sealed-tabulation award families as a new gate
+NO-rule candidate. Bucket rates for pricing: use the pooled judged-run
+rates with the in-sample caveat until live rows accumulate.
