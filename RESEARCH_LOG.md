@@ -1020,3 +1020,28 @@ sealed-small-body-decision NO-rule for the gate (version bump) and
 letting live rows decide. Contamination note: strong-YES losing at all
 is itself evidence the blinding held — a leaky judge wins its confident
 bucket, never loses it.
+
+## 2026-08-26 — Uniform "enter 3-2 days before close" repriced from the candle cache: waiting KILLS the moderate edge, only strong-NO survives late entry
+
+User-directed focus: what if we only bet 3-2 days before close?
+`reprice_entry_window.py` replays a UNIFORM late-entry strategy from the
+durable candle cache (fixed snapshot nearest close-2.5d, unmodified
+screen conditions, favorite at that snapshot's ask) over all 1,081
+judged rows — distinguishing "chose to enter late" from the earlier,
+confounded "first qualified late" filter. Result: only 444 rows are
+even biddable at 3-2d (414 fail the price band there, 100 lack a candle
+in the window, 69 spread, 37 volume, 17 awaiting cache backfill).
+The bet rule (str+mod NO) at uniform late entry: +1.81pts, p=0.18 —
+versus +5.13 at first-qualifying entry. The culprit is convergence:
+moderate-NO's mean ask at 3-2d is 0.895 vs 0.861 at first
+qualification, and its edge collapses to +0.29. **The moderate edge is
+substantially an early-entry edge — catch the favorite when it first
+crosses the screen, not after the market has drifted toward
+certainty.** The exception: strong-NO holds +8.29 late (n=32/19ev,
+p=0.10), consistent with the first-qualifying-entry late slice (+12.2).
+The earlier "late entries did well" table was selection, not a timing
+rule — the confound the mention_family docstring flagged as untested is
+now tested, and delaying hurts everywhere except strong-NO. (Ignore the
+repriced weak-YES +5.9 — no mechanism, third noise-shaped YES cell.)
+Practical rule that survives: enter moderate-NO at first qualification;
+strong-NO may be entered any time including late.
