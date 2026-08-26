@@ -29,6 +29,21 @@ without the contract.
 - **Fail loudly.** A required field that is missing or unparseable raises.
   Never let a schema change turn silently into `0.0` — a wrong number is far
   worse than an exception, because it looks like an answer.
+- **Long collections record as they go.** Anything that fetches for more
+  than a minute — a settled-history walk, a multi-series candle replay, a
+  paged crawl — writes its results incrementally (per series, per page,
+  per market) to the DB or a checkpoint file it resumes from, so an
+  interruption costs seconds of work, not the run. Never accumulate an
+  hour of fetches in memory with a single write at the end. This is not
+  only about wasted time: source data expires — Kalshi archives settled
+  markets out of its public API ~60 days after close (see
+  `kalshi/markets.py::list_settled`) — so rows lost to a crash may no
+  longer exist upstream by the time the run is repeated. The worked
+  examples: `iter_settled_survivors` in `theories/insider_bias/
+  insider_judgment/backtest.py` is a generator *precisely so* the driver
+  can checkpoint after every series, and `theories/insider_bias/
+  mention_family/backtest.py` records hits and saves its checkpoint file
+  per series, skipping completed series on resume.
 - **Prices are decimal dollars in [0, 1]. Edge is in percentage points.**
   Conversion happens at the API boundary; no provider's wire format escapes
   its client module.

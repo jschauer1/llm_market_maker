@@ -66,6 +66,17 @@ Record every replayed decision with `run_mode="backtest"` and a real `run_id`
 (a uuid, not `"live"`), so dedup is per-run and results stay separable from
 live. Record rejections as well as endorsements.
 
+**Record while you collect — never batch an entire walk into one write at
+the end.** A replay that fetches for more than a minute writes each finished
+unit (a series, a page, a batch of markets) to the ledger or a resumable
+checkpoint file before starting the next, and on restart skips what is
+already recorded. An interruption then costs seconds, not the run — and
+with Kalshi archiving settled markets out of its public API ~60 days after
+close, rows lost to a crash may not exist upstream anymore when you re-run.
+See the convention in `tools/README.md`; `theories/insider_bias/
+mention_family/backtest.py` is the worked example (per-series recording
+plus a `--checkpoint` file).
+
 **Backtests are the highest-volume judgment in this system** — a replay can
 span hundreds of historical markets, far more than a single live scan. Use the
 same cascade the theory uses live (cheap gate, then deep analysis on
