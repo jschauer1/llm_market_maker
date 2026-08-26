@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXTRUMPPHOTO-26JUL05",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Getty tagging can mistag or omit photos; Kalshi has discretion to disregard mistagged ones, which could shift the exact-day count either way.",
+  "rationale": "Distinct-day photo counts aggregate many independent wire photographers' output over a week, not a decision any group makes or knows in advance. The close time (Jul 6) already precedes 'today' (Jul 7), so the count is now a matter of public record on Getty rather than privileged prior knowledge. No named insider group has an edge over anyone who can simply browse Getty.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXART-TYR26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Sotheby's must post the 'Lot Sold' figure promptly after the live sale; low risk it misses the close given the auction (Jul 14) is well before the market's close_time.",
+  "rationale": "Per the auction family note, Sotheby's knows reserves and registered bidder interest ahead of time, but the hammer price itself is set live by competitive bidding in the room and is not known to anyone beforehand. No specific group already knows the final sale price.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPMEET-26JUL",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "'Meet' is defined to include phone/video calls (not just in-person) while explicitly excluding scheduled-but-cancelled meetings and mere co-attendance at the same event -- broader and narrower than the title implies simultaneously.",
+  "resolution_source_risk": "An actual encounter could occur but go undocumented by a qualifying 'Source Agency' before close, especially for informal or unannounced contacts.",
+  "rationale": "The named counterparts range from foreign heads of state with plausible scheduled diplomacy to US domestic politicians (Newsom, Schumer, Jeffries, DeSantis, Mamdani) with no indication of any planned meeting. The roughly month-long window for most sub-markets makes this mostly a rate question ('will they cross paths') rather than a sealed decision a small group already knows, so no single insider group applies across the event.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXAGENCIES-26",
+  "insider_group": "DOGE/administration officials who have already executed the agency cuts internally",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Resolution leans on a Federal Register agency count that Kalshi's own clarification says is inaccurate ('the value of 441... has not been properly updated'), with defunct agencies manually excluded from the final tally -- the counting methodology is murkier than the simple title implies.",
+  "resolution_source_risk": "The stated reference source (Federal Register list) is flagged by Kalshi itself as not properly updated, so the published count may not reflect the actual cut count Kalshi intends to use.",
+  "rationale": "The administration/DOGE knows how many agencies it has actually eliminated before any public tally catches up, so a real informed group exists. The bucket is capped at moderate because the resolution mechanism itself is acknowledged to be ambiguous (inaccurate reference list, manual defunct-agency exclusions), so even insiders can't be fully certain how Kalshi will count it. Close time (Jul 4) already precedes 'today'.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BAWS",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, if online fan voting closes before this award is announced on air",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "If ESPYS voting stays open through the live broadcast for this category (common for some fan-vote awards), there may be no informed group at all before the on-air reveal, unlike a sealed ballot.",
+  "rationale": "ESPYS awards are fan-voted online rather than decided by a small board; the mechanism sheet flags that some fan-voted categories keep polling open until or during the show. Per-award close times across this batch are staggered to match each category's likely live on-air reveal rather than clustered well before broadcast, consistent with a live announcement rather than an early-sealed result. A small ESPN tabulation team would know the tally once/if voting closes, but nothing in the rules confirms that has happened before broadcast.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BBA",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, if online fan voting closes before this award is announced on air",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "If ESPYS voting stays open through the live broadcast for this category, there may be no informed group at all before the on-air reveal, unlike a sealed ballot.",
+  "rationale": "Same reasoning as the sibling ESPYS markets: fan-voted award, staggered per-category close times consistent with a live reveal, small production/tabulation team would know first only if voting has already closed, which the rules text does not confirm.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BCA",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, if online fan voting closes before this award is announced on air",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "If ESPYS voting stays open through the live broadcast for this category, there may be no informed group at all before the on-air reveal, unlike a sealed ballot.",
+  "rationale": "Same reasoning as the sibling ESPYS markets: fan-voted award, staggered per-category close times consistent with a live reveal, small production/tabulation team would know first only if voting has already closed, which the rules text does not confirm.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BCAMS",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, if online fan voting closes before this award is announced on air",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "If ESPYS voting stays open through the live broadcast for this category, there may be no informed group at all before the on-air reveal, unlike a sealed ballot.",
+  "rationale": "Same reasoning as the sibling ESPYS markets: fan-voted award, staggered per-category close times consistent with a live reveal, small production/tabulation team would know first only if voting has already closed, which the rules text does not confirm.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BCAWS",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, if online fan voting closes before this award is announced on air",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "If ESPYS voting stays open through the live broadcast for this category, there may be no informed group at all before the on-air reveal, unlike a sealed ballot.",
+  "rationale": "Same reasoning as the sibling ESPYS markets: fan-voted award, staggered per-category close times consistent with a live reveal, small production/tabulation team would know first only if voting has already closed, which the rules text does not confirm.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BG",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, if online fan voting closes before this award is announced on air",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "If ESPYS voting stays open through the live broadcast for this category, there may be no informed group at all before the on-air reveal, unlike a sealed ballot.",
+  "rationale": "Same reasoning as the sibling ESPYS markets: fan-voted award, staggered per-category close times consistent with a live reveal, small production/tabulation team would know first only if voting has already closed, which the rules text does not confirm.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BNBAP",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, if online fan voting closes before this award is announced on air",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "If ESPYS voting stays open through the live broadcast for this category, there may be no informed group at all before the on-air reveal, unlike a sealed ballot.",
+  "rationale": "Same reasoning as the sibling ESPYS markets: fan-voted award, staggered per-category close times consistent with a live reveal, small production/tabulation team would know first only if voting has already closed, which the rules text does not confirm.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BRBP",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, if online fan voting closes before this award is announced on air",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "If ESPYS voting stays open through the live broadcast for this category, there may be no informed group at all before the on-air reveal, unlike a sealed ballot.",
+  "rationale": "Same reasoning as the sibling ESPYS markets: fan-voted award, staggered per-category close times consistent with a live reveal, small production/tabulation team would know first only if voting has already closed, which the rules text does not confirm.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BSP",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, if online fan voting closes before this award is announced on air",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "If ESPYS voting stays open through the live broadcast for this category, there may be no informed group at all before the on-air reveal, unlike a sealed ballot.",
+  "rationale": "Same reasoning as the sibling ESPYS markets: fan-voted award, staggered per-category close times consistent with a live reveal, small production/tabulation team would know first only if voting has already closed, which the rules text does not confirm. Only one candidate market (Messi) is present in this batch, which does not change the resolution mechanism.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BT",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, if online fan voting closes before this award is announced on air",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "If ESPYS voting stays open through the live broadcast for this category, there may be no informed group at all before the on-air reveal, unlike a sealed ballot.",
+  "rationale": "Same reasoning as the sibling ESPYS markets: fan-voted award, staggered per-category close times consistent with a live reveal, small production/tabulation team would know first only if voting has already closed, which the rules text does not confirm.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BWNBAP",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, if online fan voting closes before this award is announced on air",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "If ESPYS voting stays open through the live broadcast for this category, there may be no informed group at all before the on-air reveal, unlike a sealed ballot.",
+  "rationale": "Same reasoning as the sibling ESPYS markets: fan-voted award, staggered per-category close times consistent with a live reveal, small production/tabulation team would know first only if voting has already closed, which the rules text does not confirm.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFOLLOWERCOUNTCLAV-27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "If the account goes private and follower counts become invisible, the market resolves to No outright (not to last-known-count) -- a specific downside case the plain title doesn't convey.",
+  "resolution_source_risk": "If the account is permanently suspended/deleted, resolution falls back to 'last fair price' rather than the true count; a private account before the deadline resolves No regardless of the real follower number.",
+  "rationale": "Follower counts are a real-time, publicly displayed aggregate on the platform itself -- Kick may see it first by microseconds, but there's no meaningfully private 'insider' knowledge here since anyone, including the market's own traders, can check the same public counter. This is aggregate audience behavior, not a decision any specific group has already made.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BNHLP",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, if online fan voting closes before this award is announced on air",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "If ESPYS voting stays open through the live broadcast for this category, there may be no informed group at all before the on-air reveal, unlike a sealed ballot.",
+  "rationale": "Same reasoning as the sibling ESPYS markets: fan-voted award, staggered per-category close times consistent with a live reveal, small production/tabulation team would know first only if voting has already closed, which the rules text does not confirm.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLIUSAELIMINATIONW-26JUL10",
+  "insider_group": "Love Island USA production and villa cast, who know intermediate vulnerability/coupling states ahead of the broadcast reveal",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "'Eliminated' is defined broadly to include voluntary withdrawal, disqualification, and producer removal, but explicitly excludes being runner-up in the finale and temporary/medical holds -- a naive reading of 'eliminated' from the title wouldn't capture these carve-outs.",
+  "resolution_source_risk": "Requires an official declaration via broadcast/website/verified social media/press release before close; a same-episode reversal or a producer-only removal that isn't clearly documented in time could complicate resolution.",
+  "rationale": "Love Island airs roughly a day behind the actual villa events, so production and cast already know who was voted out before the public sees the episode -- but final elimination in the covered window still partly rests on a near-live public app vote, keeping this short of 'strong.' The event closes Jul 11, days after 'today' (Jul 7), so the outcome isn't yet fixed for the full window.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPATTEND",
+  "insider_group": "White House scheduling office / Secret Service advance team planning presidential travel",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Relies on 'Source Agency' reporting (including the President's own social media posts) at the event; low risk of missing the close given the World Cup Final is a major, heavily covered event.",
+  "rationale": "Presidential attendance at a marquee scheduled event like a World Cup Final is the kind of travel decision the White House/Secret Service would be planning and know about well ahead of any public confirmation, but head-of-state travel plans remain genuinely subject to late changes, so this doesn't reach 'strong.' Nothing in the payload confirms attendance has already been decided and locked.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPTIME-26JUL11",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Whether Trump posts in a specific overnight hour window is spontaneous individual behavior; there is no group (besides Trump himself, who isn't an identifiable 'group' sharing foreknowledge) that already knows the outcome. This is squarely a base-rate question, not a knowledge question.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXWCFIRSTSONG-26JUL20",
+  "insider_group": "FIFA World Cup Final halftime show production crew, choreographers, and the performers (Madonna, Shakira, BTS) themselves, per the rehearsed running order",
+  "bucket": "strong",
+  "rules_diverge_from_title": true,
+  "rules_note": "'First song' explicitly excludes anthems, the FIFA anthem, walk-on/entrance music, and any songs performed by other artists (e.g., a guest opener) before the named trio -- the resolving 'first song' can differ substantially from the literal first song heard during the segment.",
+  "resolution_source_risk": "Requires confirmation via official setlist archives, livestream recordings, or post-event press materials; since close_time is the same evening as the live show, there is some risk official confirmation sources lag the close.",
+  "rationale": "Halftime show setlists for major broadcasts are rehearsed and locked well in advance and known to a large but specific production/performer group, per the mechanism sheet's live-performance note -- this is the strongest sub-case the thesis names. The elaborate exclusion rules (anthems, other-artist openers) mean insiders with the actual rehearsed running order have a real edge over a public reading of the plain title.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLLM1-26JUL13",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Resolution requires reading the leaderboard with the 'Remove Style Control' toggle enabled -- the default (style-controlled) view could show a different ranking than the one that actually resolves the market.",
+  "resolution_source_risk": "The specified toggle state is easy to check incorrectly; also the ranking can keep shifting up to close_time itself since it's a live crowd-vote aggregate.",
+  "rationale": "Per the AI-leaderboard family note, Arena-style rankings aggregate many independent voters in real time; labs know their own release plans but can't know a crowd score before it accumulates, and the snapshot date (Jul 13) is still in the future relative to 'today' (Jul 7). No specific group already knows the answer.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNEXTCHANCELLOR-27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Nothing in the payload indicates the current Chancellor has resigned, been dismissed, or that a reshuffle is already underway -- this reads as a speculative succession question rather than an already-made-but-unannounced appointment decision. Per the thesis, an unmade decision can't be known by any group, however small.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXRNCCASH-26JUN30",
+  "insider_group": "RNC's own finance/accounting staff and treasurer, who track cash-on-hand internally ahead of the public FEC filing",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "FEC filings can be submitted right up to or occasionally after a nominal deadline; if the filing is delayed past close_time (Jul 20, ~20 days after the 'as of' date), the public number may not be available exactly when needed, even though the RNC's own figure was already fixed on June 30.",
+  "rationale": "This is a finance-disclosure market: the organization's own books already show its exact cash-on-hand as of the snapshot date, well before any public filing catches up -- a specific, named internal group (RNC finance staff/treasurer) has already-locked knowledge of the true figure while the public waits on the filing.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPPHOTO-26JUL12",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Getty tagging can mistag or omit photos; Kalshi has discretion to disregard mistagged ones, which could shift the exact-day count either way.",
+  "rationale": "Same as the other Getty-photo-count market: this counts independent wire photographers' output over a week (Jul 6-12), which is still an open, ongoing window as of 'today' (Jul 7) -- nobody, including Getty or Kalshi, yet knows the final tally, and no group's private knowledge would beat simply counting photos once the week ends.",
+  "researched": false
+ }
+]
