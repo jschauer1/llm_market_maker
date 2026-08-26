@@ -1086,3 +1086,34 @@ NO favorites at first qualification; record dtc and the divergence
 flag on every row; sealed-tabulation award families as a new gate
 NO-rule candidate. Bucket rates for pricing: use the pooled judged-run
 rates with the in-sample caveat until live rows accumulate.
+
+## 2026-08-26 — Gate validation: 100 gated-out events judged, 99 weak / 1 moderate / 0 strong; the session's autonomous arc is complete
+
+**Did:** Closed the last open question the backtest data could answer:
+does the code gate throw away markets the judge would bet? 100 randomly
+sampled gated-out events (exp/2026-08-26-insider-judged-gated100 — exp/
+so it can never pool into the theory's track record), same protocol as
+every s-series run. Verdict: **99 weak, 1 moderate, 0 strong.** The
+regex gate and the LLM judge — built independently, one reading ticker
+families, one reasoning about who-already-knows — agree essentially
+perfectly on what carries no insider thesis. The gate's cheap "no" is
+validated at the judgment layer; the tier-A +4.56 curiosity in the
+GPU-ladder family was price-band luck, not a missed insider signal. The
+single moderate (KXEOWEEK, an already-elapsed EO-count window with
+publication-lag risk) is a defensible edge case, not a systematic
+false negative.
+
+**Session summary (2026-08-25/26, autonomous):** mention_family audited,
+full-coverage-retested (n=3,441), found edgeless, retirement proposed;
+Kalshi's ~60-day archival discovered and the durable history cache built
+(~17k candle windows banked ahead of the clock); insider_judgment's
+screen+gate measured at population scale (breakeven kept-slice, gate
+separation real); the ENTIRE gate-plausible population judged across
+three tier-B runs (457 events / 1,561 rows) with the pre-registered
+NO-side rule REPLICATING out of sample (+4.92, p=0.0008; pooled +5.10,
+p<0.0001); the timing question answered mechanically (moderate edge is
+early-entry; strong-NO tolerates late); the strong-YES bleed traced to
+sealed-tabulation award families; and the gate validated. Every batch,
+verdict, run row, and finding committed as it happened; one batch
+recovered intact from a usage cutoff. Awaiting the user: mention_family
+retirement ruling, and ratification of the proposed v4 live procedure.
