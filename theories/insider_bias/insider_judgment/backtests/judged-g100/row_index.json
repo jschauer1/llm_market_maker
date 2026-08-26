@@ -1,0 +1,5482 @@
+{
+ "KXA100MON-26JUL31": [
+  {
+   "ticker": "KXA100MON-26JUL31-1.120",
+   "outcome": "no",
+   "entry_price": 0.92,
+   "spread_at_call": 0.020000000000000004,
+   "volume_at_call": 558.0,
+   "series_ticker": "KXA100MON",
+   "event_ticker": "KXA100MON-26JUL31",
+   "entry_day_iso": "2026-07-22T04:00:00+00:00",
+   "days_to_close_at_entry": 9.999988425925926
+  },
+  {
+   "ticker": "KXA100MON-26JUL31-1.070",
+   "outcome": "no",
+   "entry_price": 0.6799999999999999,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 706.0,
+   "series_ticker": "KXA100MON",
+   "event_ticker": "KXA100MON-26JUL31",
+   "entry_day_iso": "2026-07-30T04:00:00+00:00",
+   "days_to_close_at_entry": 1.999988425925926
+  },
+  {
+   "ticker": "KXA100MON-26JUL31-1.020",
+   "outcome": "yes",
+   "entry_price": 0.75,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 740.01,
+   "series_ticker": "KXA100MON",
+   "event_ticker": "KXA100MON-26JUL31",
+   "entry_day_iso": "2026-07-27T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999988425925926
+  },
+  {
+   "ticker": "KXA100MON-26JUL31-0.970",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 634.8,
+   "series_ticker": "KXA100MON",
+   "event_ticker": "KXA100MON-26JUL31",
+   "entry_day_iso": "2026-07-30T04:00:00+00:00",
+   "days_to_close_at_entry": 1.999988425925926
+  },
+  {
+   "ticker": "KXA100MON-26JUL31-0.920",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.029999999999999916,
+   "volume_at_call": 910.02,
+   "series_ticker": "KXA100MON",
+   "event_ticker": "KXA100MON-26JUL31",
+   "entry_day_iso": "2026-07-21T04:00:00+00:00",
+   "days_to_close_at_entry": 10.999988425925926
+  }
+ ],
+ "KXA100W-26JUL31": [
+  {
+   "ticker": "KXA100W-26JUL31-1.06",
+   "outcome": "no",
+   "entry_price": 0.77,
+   "spread_at_call": 0.009999999999999981,
+   "volume_at_call": 535.24,
+   "series_ticker": "KXA100W",
+   "event_ticker": "KXA100W-26JUL31",
+   "entry_day_iso": "2026-07-29T04:00:00+00:00",
+   "days_to_close_at_entry": 2.7083333333333335
+  }
+ ],
+ "KXA100W-26JUN19": [
+  {
+   "ticker": "KXA100W-26JUN19-1.09",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.06,
+   "volume_at_call": 1068.26,
+   "series_ticker": "KXA100W",
+   "event_ticker": "KXA100W-26JUN19",
+   "entry_day_iso": "2026-06-19T04:00:00+00:00",
+   "days_to_close_at_entry": 0.7083333333333334
+  }
+ ],
+ "KXALBUMEQUIV-CAR26JUL16": [
+  {
+   "ticker": "KXALBUMEQUIV-CAR26JUL16-5K",
+   "outcome": "no",
+   "entry_price": 0.8,
+   "spread_at_call": 0.06,
+   "volume_at_call": 1117.08,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-CAR26JUL16",
+   "entry_day_iso": "2026-07-12T04:00:00+00:00",
+   "days_to_close_at_entry": 7.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-CAR26JUL16-35K",
+   "outcome": "no",
+   "entry_price": 0.85,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 560.4300000000001,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-CAR26JUL16",
+   "entry_day_iso": "2026-07-09T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-CAR26JUL16-30K",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.04000000000000001,
+   "volume_at_call": 2373.95,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-CAR26JUL16",
+   "entry_day_iso": "2026-07-11T04:00:00+00:00",
+   "days_to_close_at_entry": 8.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-CAR26JUL16-25K",
+   "outcome": "no",
+   "entry_price": 0.91,
+   "spread_at_call": 0.05000000000000002,
+   "volume_at_call": 906.8700000000001,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-CAR26JUL16",
+   "entry_day_iso": "2026-07-11T04:00:00+00:00",
+   "days_to_close_at_entry": 8.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-CAR26JUL16-20K",
+   "outcome": "no",
+   "entry_price": 0.88,
+   "spread_at_call": 0.07,
+   "volume_at_call": 2292.78,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-CAR26JUL16",
+   "entry_day_iso": "2026-07-11T04:00:00+00:00",
+   "days_to_close_at_entry": 8.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-CAR26JUL16-15K",
+   "outcome": "no",
+   "entry_price": 0.81,
+   "spread_at_call": 0.07,
+   "volume_at_call": 1914.3799999999999,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-CAR26JUL16",
+   "entry_day_iso": "2026-07-11T04:00:00+00:00",
+   "days_to_close_at_entry": 8.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-CAR26JUL16-10K",
+   "outcome": "no",
+   "entry_price": 0.89,
+   "spread_at_call": 0.05,
+   "volume_at_call": 514.95,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-CAR26JUL16",
+   "entry_day_iso": "2026-07-12T04:00:00+00:00",
+   "days_to_close_at_entry": 7.416666666666667
+  }
+ ],
+ "KXALBUMEQUIV-CON26JUL09B": [
+  {
+   "ticker": "KXALBUMEQUIV-CON26JUL09B-62.8K",
+   "outcome": "yes",
+   "entry_price": 0.81,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 927.13,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-CON26JUL09B",
+   "entry_day_iso": "2026-07-01T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  }
+ ],
+ "KXALBUMEQUIV-DAU26JUL23": [
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-95K",
+   "outcome": "no",
+   "entry_price": 0.72,
+   "spread_at_call": 0.06,
+   "volume_at_call": 864.0300000000001,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23",
+   "entry_day_iso": "2026-07-19T04:00:00+00:00",
+   "days_to_close_at_entry": 7.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-90K",
+   "outcome": "no",
+   "entry_price": 0.8200000000000001,
+   "spread_at_call": 0.06,
+   "volume_at_call": 2701.75,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23",
+   "entry_day_iso": "2026-07-22T04:00:00+00:00",
+   "days_to_close_at_entry": 4.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-85K",
+   "outcome": "yes",
+   "entry_price": 0.69,
+   "spread_at_call": 0.029999999999999916,
+   "volume_at_call": 721.5600000000002,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-80K",
+   "outcome": "yes",
+   "entry_price": 0.79,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 1198.18,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-75K",
+   "outcome": "yes",
+   "entry_price": 0.84,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 854.28,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-70K",
+   "outcome": "yes",
+   "entry_price": 0.83,
+   "spread_at_call": 0.019999999999999907,
+   "volume_at_call": 644.27,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-60K",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.06999999999999995,
+   "volume_at_call": 844.04,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23",
+   "entry_day_iso": "2026-07-16T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-55K",
+   "outcome": "yes",
+   "entry_price": 0.96,
+   "spread_at_call": 0.04999999999999993,
+   "volume_at_call": 639.04,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-125K",
+   "outcome": "no",
+   "entry_price": 0.74,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 3485.42,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-120K",
+   "outcome": "no",
+   "entry_price": 0.72,
+   "spread_at_call": 0.009999999999999953,
+   "volume_at_call": 3304.6900000000005,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-115K",
+   "outcome": "no",
+   "entry_price": 0.7,
+   "spread_at_call": 0.06,
+   "volume_at_call": 1438.8100000000002,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23",
+   "entry_day_iso": "2026-07-16T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-110K",
+   "outcome": "no",
+   "entry_price": 0.7,
+   "spread_at_call": 0.07,
+   "volume_at_call": 868.79,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23",
+   "entry_day_iso": "2026-07-16T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-105K",
+   "outcome": "no",
+   "entry_price": 0.85,
+   "spread_at_call": 0.03,
+   "volume_at_call": 611.4200000000001,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23",
+   "entry_day_iso": "2026-07-21T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-100K",
+   "outcome": "no",
+   "entry_price": 0.83,
+   "spread_at_call": 0.009999999999999981,
+   "volume_at_call": 3616.15,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23",
+   "entry_day_iso": "2026-07-18T04:00:00+00:00",
+   "days_to_close_at_entry": 8.416666666666666
+  }
+ ],
+ "KXALBUMEQUIV-DAU26JUL23B": [
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23B-90K",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1726.79,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+   "entry_day_iso": "2026-07-13T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23B-150K",
+   "outcome": "yes",
+   "entry_price": 0.71,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 3215.44,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+   "entry_day_iso": "2026-07-13T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23B-140K",
+   "outcome": "yes",
+   "entry_price": 0.76,
+   "spread_at_call": 0.040000000000000036,
+   "volume_at_call": 1566.3899999999999,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+   "entry_day_iso": "2026-07-13T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23B-130K",
+   "outcome": "yes",
+   "entry_price": 0.86,
+   "spread_at_call": 0.04999999999999993,
+   "volume_at_call": 1515.01,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+   "entry_day_iso": "2026-07-13T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23B-125K",
+   "outcome": "no",
+   "entry_price": 0.86,
+   "spread_at_call": 0.01999999999999999,
+   "volume_at_call": 1324.38,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+   "entry_day_iso": "2026-07-24T04:00:00+00:00",
+   "days_to_close_at_entry": 2.4166666666666665
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23B-120K",
+   "outcome": "yes",
+   "entry_price": 0.89,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 1260.8999999999999,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+   "entry_day_iso": "2026-07-13T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23B-110K",
+   "outcome": "yes",
+   "entry_price": 0.92,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1306.9199999999998,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+   "entry_day_iso": "2026-07-13T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23B-100K",
+   "outcome": "yes",
+   "entry_price": 0.94,
+   "spread_at_call": 0.009999999999999898,
+   "volume_at_call": 1313.93,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+   "entry_day_iso": "2026-07-13T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-250K",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.020000000000000004,
+   "volume_at_call": 508.46000000000004,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+   "entry_day_iso": "2026-07-15T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-210K",
+   "outcome": "no",
+   "entry_price": 0.84,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 849.68,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+   "entry_day_iso": "2026-07-13T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-190K",
+   "outcome": "no",
+   "entry_price": 0.7,
+   "spread_at_call": 0.04999999999999999,
+   "volume_at_call": 5583.64,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+   "entry_day_iso": "2026-07-13T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-170K",
+   "outcome": "no",
+   "entry_price": 0.65,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 11901.91,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+   "entry_day_iso": "2026-07-18T04:00:00+00:00",
+   "days_to_close_at_entry": 8.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-135K",
+   "outcome": "no",
+   "entry_price": 0.8,
+   "spread_at_call": 0.009999999999999981,
+   "volume_at_call": 3934.5499999999997,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+   "entry_day_iso": "2026-07-22T04:00:00+00:00",
+   "days_to_close_at_entry": 4.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-127K",
+   "outcome": "no",
+   "entry_price": 0.92,
+   "spread_at_call": 0.009999999999999995,
+   "volume_at_call": 815.2700000000001,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+   "entry_day_iso": "2026-07-24T04:00:00+00:00",
+   "days_to_close_at_entry": 2.4166666666666665
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-122K",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 5669.52,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+   "entry_day_iso": "2026-07-25T04:00:00+00:00",
+   "days_to_close_at_entry": 1.4166666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-DAU26JUL23-121K",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 2279.09,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+   "entry_day_iso": "2026-07-25T04:00:00+00:00",
+   "days_to_close_at_entry": 1.4166666666666667
+  }
+ ],
+ "KXALBUMEQUIV-HER26AUG20": [
+  {
+   "ticker": "KXALBUMEQUIV-HER26AUG20-2K",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.04000000000000001,
+   "volume_at_call": 1437.81,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-HER26AUG20",
+   "entry_day_iso": "2026-08-20T04:00:00+00:00",
+   "days_to_close_at_entry": 3.4166666666666665
+  },
+  {
+   "ticker": "KXALBUMEQUIV-HER26AUG20-25K",
+   "outcome": "no",
+   "entry_price": 0.87,
+   "spread_at_call": 0.04000000000000001,
+   "volume_at_call": 951.8399999999999,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-HER26AUG20",
+   "entry_day_iso": "2026-08-13T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  }
+ ],
+ "KXALBUMEQUIV-LOS26AUG20": [
+  {
+   "ticker": "KXALBUMEQUIV-LOS26AUG20-90K",
+   "outcome": "no",
+   "entry_price": 0.78,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 4292.58,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+   "entry_day_iso": "2026-08-10T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LOS26AUG20-80K",
+   "outcome": "yes",
+   "entry_price": 0.84,
+   "spread_at_call": 0.039999999999999925,
+   "volume_at_call": 13815.71,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+   "entry_day_iso": "2026-08-16T04:00:00+00:00",
+   "days_to_close_at_entry": 7.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LOS26AUG20-70K",
+   "outcome": "yes",
+   "entry_price": 0.69,
+   "spread_at_call": 0.019999999999999907,
+   "volume_at_call": 11886.940000000002,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+   "entry_day_iso": "2026-08-12T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LOS26AUG20-60K",
+   "outcome": "yes",
+   "entry_price": 0.7,
+   "spread_at_call": 0.029999999999999916,
+   "volume_at_call": 10973.050000000001,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+   "entry_day_iso": "2026-08-10T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LOS26AUG20-55K",
+   "outcome": "yes",
+   "entry_price": 0.74,
+   "spread_at_call": 0.040000000000000036,
+   "volume_at_call": 4672.0,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+   "entry_day_iso": "2026-08-10T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LOS26AUG20-50K",
+   "outcome": "yes",
+   "entry_price": 0.83,
+   "spread_at_call": 0.04999999999999993,
+   "volume_at_call": 6026.410000000001,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+   "entry_day_iso": "2026-08-10T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LOS26AUG20-45K",
+   "outcome": "yes",
+   "entry_price": 0.86,
+   "spread_at_call": 0.040000000000000036,
+   "volume_at_call": 6188.51,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+   "entry_day_iso": "2026-08-10T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LOS26AUG20-40K",
+   "outcome": "yes",
+   "entry_price": 0.89,
+   "spread_at_call": 0.040000000000000036,
+   "volume_at_call": 4500.109999999999,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+   "entry_day_iso": "2026-08-10T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LOS26AUG20-35K",
+   "outcome": "yes",
+   "entry_price": 0.93,
+   "spread_at_call": 0.050000000000000044,
+   "volume_at_call": 4094.64,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+   "entry_day_iso": "2026-08-10T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LOS26AUG20-30K",
+   "outcome": "yes",
+   "entry_price": 0.96,
+   "spread_at_call": 0.039999999999999925,
+   "volume_at_call": 4057.0899999999997,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+   "entry_day_iso": "2026-08-10T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LOS26AUG20-27K",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.039999999999999925,
+   "volume_at_call": 2741.5600000000004,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+   "entry_day_iso": "2026-08-10T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LOS26AUG20-24K",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.039999999999999925,
+   "volume_at_call": 1689.39,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+   "entry_day_iso": "2026-08-10T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LOS26AUG20-21K",
+   "outcome": "yes",
+   "entry_price": 0.96,
+   "spread_at_call": 0.039999999999999925,
+   "volume_at_call": 859.23,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+   "entry_day_iso": "2026-08-10T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LOS26AUG20-130K",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 1346.05,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+   "entry_day_iso": "2026-08-19T04:00:00+00:00",
+   "days_to_close_at_entry": 4.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LOS26AUG20-120K",
+   "outcome": "no",
+   "entry_price": 0.92,
+   "spread_at_call": 0.020000000000000004,
+   "volume_at_call": 3443.3100000000004,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+   "entry_day_iso": "2026-08-10T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LOS26AUG20-115K",
+   "outcome": "no",
+   "entry_price": 0.71,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1762.33,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+   "entry_day_iso": "2026-08-21T04:00:00+00:00",
+   "days_to_close_at_entry": 2.4166666666666665
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LOS26AUG20-110K",
+   "outcome": "no",
+   "entry_price": 0.9,
+   "spread_at_call": 0.01999999999999999,
+   "volume_at_call": 1997.99,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+   "entry_day_iso": "2026-08-10T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LOS26AUG20-100K",
+   "outcome": "no",
+   "entry_price": 0.87,
+   "spread_at_call": 0.06,
+   "volume_at_call": 3944.94,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+   "entry_day_iso": "2026-08-10T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  }
+ ],
+ "KXALBUMEQUIV-MUS26JUL30": [
+  {
+   "ticker": "KXALBUMEQUIV-MUS26JUL30-90K",
+   "outcome": "no",
+   "entry_price": 0.71,
+   "spread_at_call": 0.040000000000000036,
+   "volume_at_call": 1619.92,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-MUS26JUL30",
+   "entry_day_iso": "2026-07-24T04:00:00+00:00",
+   "days_to_close_at_entry": 9.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-MUS26JUL30-85K",
+   "outcome": "no",
+   "entry_price": 0.88,
+   "spread_at_call": 0.06,
+   "volume_at_call": 1827.54,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-MUS26JUL30",
+   "entry_day_iso": "2026-07-27T04:00:00+00:00",
+   "days_to_close_at_entry": 6.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-MUS26JUL30-80K",
+   "outcome": "no",
+   "entry_price": 0.76,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 5441.68,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-MUS26JUL30",
+   "entry_day_iso": "2026-07-26T04:00:00+00:00",
+   "days_to_close_at_entry": 7.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-MUS26JUL30-75K",
+   "outcome": "yes",
+   "entry_price": 0.69,
+   "spread_at_call": 0.029999999999999916,
+   "volume_at_call": 3433.77,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-MUS26JUL30",
+   "entry_day_iso": "2026-07-20T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-MUS26JUL30-70K",
+   "outcome": "yes",
+   "entry_price": 0.89,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 28094.92,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-MUS26JUL30",
+   "entry_day_iso": "2026-07-29T04:00:00+00:00",
+   "days_to_close_at_entry": 4.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-MUS26JUL30-65K",
+   "outcome": "yes",
+   "entry_price": 0.82,
+   "spread_at_call": 0.039999999999999925,
+   "volume_at_call": 1170.66,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-MUS26JUL30",
+   "entry_day_iso": "2026-07-26T04:00:00+00:00",
+   "days_to_close_at_entry": 7.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-MUS26JUL30-60K",
+   "outcome": "yes",
+   "entry_price": 0.96,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 733.44,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-MUS26JUL30",
+   "entry_day_iso": "2026-07-26T04:00:00+00:00",
+   "days_to_close_at_entry": 7.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-MUS26JUL30-55K",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 579.32,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-MUS26JUL30",
+   "entry_day_iso": "2026-07-26T04:00:00+00:00",
+   "days_to_close_at_entry": 7.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-MUS26JUL30-50K",
+   "outcome": "yes",
+   "entry_price": 0.94,
+   "spread_at_call": 0.009999999999999898,
+   "volume_at_call": 1376.2,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-MUS26JUL30",
+   "entry_day_iso": "2026-07-20T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-MUS26JUL30-150K",
+   "outcome": "no",
+   "entry_price": 0.96,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 631.81,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-MUS26JUL30",
+   "entry_day_iso": "2026-07-23T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-MUS26JUL30-125K",
+   "outcome": "no",
+   "entry_price": 0.86,
+   "spread_at_call": 0.04999999999999999,
+   "volume_at_call": 1043.8200000000002,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-MUS26JUL30",
+   "entry_day_iso": "2026-07-20T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-MUS26JUL30-100K",
+   "outcome": "no",
+   "entry_price": 0.6799999999999999,
+   "spread_at_call": 0.03999999999999998,
+   "volume_at_call": 3811.6599999999994,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-MUS26JUL30",
+   "entry_day_iso": "2026-07-20T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  }
+ ],
+ "KXALBUMEQUIV-REA26JUL30": [
+  {
+   "ticker": "KXALBUMEQUIV-REA26JUL30-50K",
+   "outcome": "no",
+   "entry_price": 0.9299999999999999,
+   "spread_at_call": 0.03,
+   "volume_at_call": 664.09,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-REA26JUL30",
+   "entry_day_iso": "2026-07-24T04:00:00+00:00",
+   "days_to_close_at_entry": 9.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-REA26JUL30-45K",
+   "outcome": "no",
+   "entry_price": 0.86,
+   "spread_at_call": 0.03999999999999998,
+   "volume_at_call": 651.1,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-REA26JUL30",
+   "entry_day_iso": "2026-07-23T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-REA26JUL30-40K",
+   "outcome": "no",
+   "entry_price": 0.75,
+   "spread_at_call": 0.03999999999999998,
+   "volume_at_call": 517.64,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-REA26JUL30",
+   "entry_day_iso": "2026-07-23T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-REA26JUL30-35K",
+   "outcome": "no",
+   "entry_price": 0.6599999999999999,
+   "spread_at_call": 0.06999999999999995,
+   "volume_at_call": 516.72,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-REA26JUL30",
+   "entry_day_iso": "2026-07-24T04:00:00+00:00",
+   "days_to_close_at_entry": 9.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-REA26JUL30-30K",
+   "outcome": "no",
+   "entry_price": 0.71,
+   "spread_at_call": 0.06,
+   "volume_at_call": 2680.63,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-REA26JUL30",
+   "entry_day_iso": "2026-07-27T04:00:00+00:00",
+   "days_to_close_at_entry": 6.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-REA26JUL30-25K",
+   "outcome": "yes",
+   "entry_price": 0.9,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 741.94,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-REA26JUL30",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-REA26JUL30-20K",
+   "outcome": "yes",
+   "entry_price": 0.9,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 665.95,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-REA26JUL30",
+   "entry_day_iso": "2026-07-23T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-REA26JUL30-15K",
+   "outcome": "yes",
+   "entry_price": 0.93,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 697.06,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-REA26JUL30",
+   "entry_day_iso": "2026-07-22T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  }
+ ],
+ "KXALBUMEQUIV-SET26JUL23": [
+  {
+   "ticker": "KXALBUMEQUIV-SET26JUL23-50K",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 519.03,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-SET26JUL23",
+   "entry_day_iso": "2026-07-15T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-SET26JUL23-30K",
+   "outcome": "no",
+   "entry_price": 0.75,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 770.4100000000001,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-SET26JUL23",
+   "entry_day_iso": "2026-07-13T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-SET26JUL23-20K",
+   "outcome": "no",
+   "entry_price": 0.65,
+   "spread_at_call": 0.050000000000000044,
+   "volume_at_call": 3473.12,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-SET26JUL23",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-SET26JUL23-17K",
+   "outcome": "yes",
+   "entry_price": 0.9,
+   "spread_at_call": 0.06000000000000005,
+   "volume_at_call": 4443.41,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-SET26JUL23",
+   "entry_day_iso": "2026-07-22T04:00:00+00:00",
+   "days_to_close_at_entry": 4.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-SET26JUL23-15K",
+   "outcome": "yes",
+   "entry_price": 0.92,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 778.88,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-SET26JUL23",
+   "entry_day_iso": "2026-07-21T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-SET26JUL23-10K",
+   "outcome": "yes",
+   "entry_price": 0.67,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 6299.75,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-SET26JUL23",
+   "entry_day_iso": "2026-07-13T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  }
+ ],
+ "KXALBUMEQUIV-THI26AUG13": [
+  {
+   "ticker": "KXALBUMEQUIV-THI26AUG13-400K",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.009999999999999995,
+   "volume_at_call": 819.63,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-THI26AUG13",
+   "entry_day_iso": "2026-08-06T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-THI26AUG13-375K",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 7981.71,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-THI26AUG13",
+   "entry_day_iso": "2026-08-12T04:00:00+00:00",
+   "days_to_close_at_entry": 4.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-THI26AUG13-350K",
+   "outcome": "no",
+   "entry_price": 0.85,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 503.0,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-THI26AUG13",
+   "entry_day_iso": "2026-08-04T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-THI26AUG13-325K",
+   "outcome": "no",
+   "entry_price": 0.75,
+   "spread_at_call": 0.04999999999999999,
+   "volume_at_call": 509.79999999999995,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-THI26AUG13",
+   "entry_day_iso": "2026-08-08T04:00:00+00:00",
+   "days_to_close_at_entry": 8.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-THI26AUG13-300K",
+   "outcome": "no",
+   "entry_price": 0.6799999999999999,
+   "spread_at_call": 0.06,
+   "volume_at_call": 535.5,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-THI26AUG13",
+   "entry_day_iso": "2026-08-03T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-THI26AUG13-275K",
+   "outcome": "yes",
+   "entry_price": 0.7,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 3353.3999999999996,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-THI26AUG13",
+   "entry_day_iso": "2026-08-07T04:00:00+00:00",
+   "days_to_close_at_entry": 9.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-THI26AUG13-250K",
+   "outcome": "yes",
+   "entry_price": 0.77,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 2447.55,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-THI26AUG13",
+   "entry_day_iso": "2026-08-03T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-THI26AUG13-225K",
+   "outcome": "yes",
+   "entry_price": 0.85,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 2249.48,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-THI26AUG13",
+   "entry_day_iso": "2026-08-03T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-THI26AUG13-200K",
+   "outcome": "yes",
+   "entry_price": 0.93,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 625.5799999999999,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-THI26AUG13",
+   "entry_day_iso": "2026-08-03T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-THI26AUG13-175K",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 2341.7300000000005,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-THI26AUG13",
+   "entry_day_iso": "2026-08-03T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-THI26AUG13-150K",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1991.48,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-THI26AUG13",
+   "entry_day_iso": "2026-08-03T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  }
+ ],
+ "KXALBUMEQUIV-WILD26AUG20B": [
+  {
+   "ticker": "KXALBUMEQUIV-WILD26AUG20B-54.4K",
+   "outcome": "yes",
+   "entry_price": 0.92,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 3279.03,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-WILD26AUG20B",
+   "entry_day_iso": "2026-08-11T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  }
+ ],
+ "KXALBUMEQUIV-YOU26JUN18": [
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN18-600K",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 1855.66,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN18",
+   "entry_day_iso": "2026-06-09T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN18-550K",
+   "outcome": "no",
+   "entry_price": 0.96,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 4257.98,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN18",
+   "entry_day_iso": "2026-06-09T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN18-500K",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.020000000000000004,
+   "volume_at_call": 1740.57,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN18",
+   "entry_day_iso": "2026-06-09T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN18-490K",
+   "outcome": "no",
+   "entry_price": 0.96,
+   "spread_at_call": 0.049999999999999996,
+   "volume_at_call": 1501.75,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN18",
+   "entry_day_iso": "2026-06-16T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN18-480K",
+   "outcome": "no",
+   "entry_price": 0.84,
+   "spread_at_call": 0.04999999999999999,
+   "volume_at_call": 3984.6,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN18",
+   "entry_day_iso": "2026-06-16T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN18-475K",
+   "outcome": "yes",
+   "entry_price": 0.88,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 9020.45,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN18",
+   "entry_day_iso": "2026-06-20T04:00:00+00:00",
+   "days_to_close_at_entry": 1.4166666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN18-470K",
+   "outcome": "no",
+   "entry_price": 0.65,
+   "spread_at_call": 0.050000000000000044,
+   "volume_at_call": 1583.11,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN18",
+   "entry_day_iso": "2026-06-16T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN18-460K",
+   "outcome": "yes",
+   "entry_price": 0.74,
+   "spread_at_call": 0.05999999999999994,
+   "volume_at_call": 942.83,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN18",
+   "entry_day_iso": "2026-06-16T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN18-450K",
+   "outcome": "no",
+   "entry_price": 0.86,
+   "spread_at_call": 0.03999999999999998,
+   "volume_at_call": 4397.6,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN18",
+   "entry_day_iso": "2026-06-08T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN18-440K",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.04999999999999993,
+   "volume_at_call": 950.57,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN18",
+   "entry_day_iso": "2026-06-17T04:00:00+00:00",
+   "days_to_close_at_entry": 4.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN18-400K",
+   "outcome": "yes",
+   "entry_price": 0.9,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 60521.28,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN18",
+   "entry_day_iso": "2026-06-15T04:00:00+00:00",
+   "days_to_close_at_entry": 6.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN18-350K",
+   "outcome": "yes",
+   "entry_price": 0.69,
+   "spread_at_call": 0.029999999999999916,
+   "volume_at_call": 1353.68,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN18",
+   "entry_day_iso": "2026-06-09T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN18-300K",
+   "outcome": "yes",
+   "entry_price": 0.92,
+   "spread_at_call": 0.040000000000000036,
+   "volume_at_call": 1578.05,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN18",
+   "entry_day_iso": "2026-06-09T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN18-250K",
+   "outcome": "yes",
+   "entry_price": 0.96,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 555.12,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN18",
+   "entry_day_iso": "2026-06-10T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  }
+ ],
+ "KXALBUMEQUIV-YOU26JUN25": [
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN25-220K",
+   "outcome": "no",
+   "entry_price": 0.92,
+   "spread_at_call": 0.06000000000000001,
+   "volume_at_call": 1219.3000000000002,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN25",
+   "entry_day_iso": "2026-06-22T04:00:00+00:00",
+   "days_to_close_at_entry": 6.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN25-200K",
+   "outcome": "no",
+   "entry_price": 0.77,
+   "spread_at_call": 0.04000000000000001,
+   "volume_at_call": 668.68,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN25",
+   "entry_day_iso": "2026-06-19T04:00:00+00:00",
+   "days_to_close_at_entry": 9.416666666666666
+  },
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN25-180K",
+   "outcome": "yes",
+   "entry_price": 0.67,
+   "spread_at_call": 0.06000000000000005,
+   "volume_at_call": 1004.87,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN25",
+   "entry_day_iso": "2026-06-22T04:00:00+00:00",
+   "days_to_close_at_entry": 6.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN25-160K",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.039999999999999925,
+   "volume_at_call": 799.0,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN25",
+   "entry_day_iso": "2026-06-23T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  },
+  {
+   "ticker": "KXALBUMEQUIV-YOU26JUN25-140K",
+   "outcome": "yes",
+   "entry_price": 0.74,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1190.26,
+   "series_ticker": "KXALBUMEQUIV",
+   "event_ticker": "KXALBUMEQUIV-YOU26JUN25",
+   "entry_day_iso": "2026-06-19T04:00:00+00:00",
+   "days_to_close_at_entry": 9.416666666666666
+  }
+ ],
+ "KXAPRPOTUS-26JUL10": [
+  {
+   "ticker": "KXAPRPOTUS-26JUL10-41.3",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.009999999999999995,
+   "volume_at_call": 1282.44,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUL10",
+   "entry_day_iso": "2026-07-04T04:00:00+00:00",
+   "days_to_close_at_entry": 6.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUL10-41.2",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.009999999999999995,
+   "volume_at_call": 1165.72,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUL10",
+   "entry_day_iso": "2026-07-05T04:00:00+00:00",
+   "days_to_close_at_entry": 5.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUL10-40.9",
+   "outcome": "no",
+   "entry_price": 0.87,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 743.96,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUL10",
+   "entry_day_iso": "2026-07-04T04:00:00+00:00",
+   "days_to_close_at_entry": 6.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUL10-40.6",
+   "outcome": "no",
+   "entry_price": 0.74,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1542.96,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUL10",
+   "entry_day_iso": "2026-07-04T04:00:00+00:00",
+   "days_to_close_at_entry": 6.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUL10-40.3",
+   "outcome": "no",
+   "entry_price": 0.71,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1375.67,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUL10",
+   "entry_day_iso": "2026-07-04T04:00:00+00:00",
+   "days_to_close_at_entry": 6.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUL10-40.0",
+   "outcome": "no",
+   "entry_price": 0.88,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1711.55,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUL10",
+   "entry_day_iso": "2026-07-04T04:00:00+00:00",
+   "days_to_close_at_entry": 6.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUL10-39.7",
+   "outcome": "no",
+   "entry_price": 0.96,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 790.34,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUL10",
+   "entry_day_iso": "2026-07-04T04:00:00+00:00",
+   "days_to_close_at_entry": 6.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUL10-39.6",
+   "outcome": "no",
+   "entry_price": 0.92,
+   "spread_at_call": 0.009999999999999995,
+   "volume_at_call": 3359.15,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUL10",
+   "entry_day_iso": "2026-07-04T04:00:00+00:00",
+   "days_to_close_at_entry": 6.458333333333333
+  }
+ ],
+ "KXAPRPOTUS-26JUN19": [
+  {
+   "ticker": "KXAPRPOTUS-26JUN19-40.7",
+   "outcome": "no",
+   "entry_price": 0.85,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1297.48,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUN19",
+   "entry_day_iso": "2026-06-14T04:00:00+00:00",
+   "days_to_close_at_entry": 5.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUN19-40.6",
+   "outcome": "no",
+   "entry_price": 0.83,
+   "spread_at_call": 0.06,
+   "volume_at_call": 654.1,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUN19",
+   "entry_day_iso": "2026-06-13T04:00:00+00:00",
+   "days_to_close_at_entry": 6.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUN19-40.3",
+   "outcome": "no",
+   "entry_price": 0.77,
+   "spread_at_call": 0.009999999999999981,
+   "volume_at_call": 1627.8200000000002,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUN19",
+   "entry_day_iso": "2026-06-14T04:00:00+00:00",
+   "days_to_close_at_entry": 5.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUN19-40.0",
+   "outcome": "no",
+   "entry_price": 0.73,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1740.3,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUN19",
+   "entry_day_iso": "2026-06-14T04:00:00+00:00",
+   "days_to_close_at_entry": 5.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUN19-39.7",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1000.78,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUN19",
+   "entry_day_iso": "2026-06-14T04:00:00+00:00",
+   "days_to_close_at_entry": 5.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUN19-39.4",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 509.0,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUN19",
+   "entry_day_iso": "2026-06-13T04:00:00+00:00",
+   "days_to_close_at_entry": 6.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUN19-39.1",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.009999999999999995,
+   "volume_at_call": 681.47,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUN19",
+   "entry_day_iso": "2026-06-14T04:00:00+00:00",
+   "days_to_close_at_entry": 5.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUN19-39.0",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.009999999999999995,
+   "volume_at_call": 1009.89,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUN19",
+   "entry_day_iso": "2026-06-13T04:00:00+00:00",
+   "days_to_close_at_entry": 6.458333333333333
+  }
+ ],
+ "KXAPRPOTUS-26JUN26": [
+  {
+   "ticker": "KXAPRPOTUS-26JUN26-41.3",
+   "outcome": "no",
+   "entry_price": 0.96,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 899.0,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUN26",
+   "entry_day_iso": "2026-06-20T04:00:00+00:00",
+   "days_to_close_at_entry": 6.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUN26-41.2",
+   "outcome": "no",
+   "entry_price": 0.85,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 654.73,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUN26",
+   "entry_day_iso": "2026-06-20T04:00:00+00:00",
+   "days_to_close_at_entry": 6.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUN26-40.9",
+   "outcome": "no",
+   "entry_price": 0.86,
+   "spread_at_call": 0.009999999999999981,
+   "volume_at_call": 1283.8600000000001,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUN26",
+   "entry_day_iso": "2026-06-21T04:00:00+00:00",
+   "days_to_close_at_entry": 5.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUN26-40.6",
+   "outcome": "no",
+   "entry_price": 0.76,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 998.74,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUN26",
+   "entry_day_iso": "2026-06-20T04:00:00+00:00",
+   "days_to_close_at_entry": 6.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUN26-40.3",
+   "outcome": "no",
+   "entry_price": 0.74,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 829.75,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUN26",
+   "entry_day_iso": "2026-06-20T04:00:00+00:00",
+   "days_to_close_at_entry": 6.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUN26-40.0",
+   "outcome": "no",
+   "entry_price": 0.86,
+   "spread_at_call": 0.009999999999999981,
+   "volume_at_call": 733.29,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUN26",
+   "entry_day_iso": "2026-06-20T04:00:00+00:00",
+   "days_to_close_at_entry": 6.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUN26-39.7",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.009999999999999995,
+   "volume_at_call": 3131.83,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUN26",
+   "entry_day_iso": "2026-06-21T04:00:00+00:00",
+   "days_to_close_at_entry": 5.458333333333333
+  },
+  {
+   "ticker": "KXAPRPOTUS-26JUN26-39.6",
+   "outcome": "no",
+   "entry_price": 0.96,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 3620.74,
+   "series_ticker": "KXAPRPOTUS",
+   "event_ticker": "KXAPRPOTUS-26JUN26",
+   "entry_day_iso": "2026-06-20T04:00:00+00:00",
+   "days_to_close_at_entry": 6.458333333333333
+  }
+ ],
+ "KXB200W-26JUL03": [
+  {
+   "ticker": "KXB200W-26JUL03-4.5",
+   "outcome": "no",
+   "entry_price": 0.6799999999999999,
+   "spread_at_call": 0.07,
+   "volume_at_call": 605.0,
+   "series_ticker": "KXB200W",
+   "event_ticker": "KXB200W-26JUL03",
+   "entry_day_iso": "2026-06-29T04:00:00+00:00",
+   "days_to_close_at_entry": 4.708333333333333
+  }
+ ],
+ "KXBILLBOARDRUNNERUPSONG-26AUG15": [
+  {
+   "ticker": "KXBILLBOARDRUNNERUPSONG-26AUG15-PET",
+   "outcome": "no",
+   "entry_price": 0.79,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1879.77,
+   "series_ticker": "KXBILLBOARDRUNNERUPSONG",
+   "event_ticker": "KXBILLBOARDRUNNERUPSONG-26AUG15",
+   "entry_day_iso": "2026-08-05T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  },
+  {
+   "ticker": "KXBILLBOARDRUNNERUPSONG-26AUG15-HAT",
+   "outcome": "yes",
+   "entry_price": 0.84,
+   "spread_at_call": 0.029999999999999916,
+   "volume_at_call": 638.6,
+   "series_ticker": "KXBILLBOARDRUNNERUPSONG",
+   "event_ticker": "KXBILLBOARDRUNNERUPSONG-26AUG15",
+   "entry_day_iso": "2026-08-04T04:00:00+00:00",
+   "days_to_close_at_entry": 5.999305555555556
+  },
+  {
+   "ticker": "KXBILLBOARDRUNNERUPSONG-26AUG15-CHO",
+   "outcome": "no",
+   "entry_price": 0.8200000000000001,
+   "spread_at_call": 0.03,
+   "volume_at_call": 622.51,
+   "series_ticker": "KXBILLBOARDRUNNERUPSONG",
+   "event_ticker": "KXBILLBOARDRUNNERUPSONG-26AUG15",
+   "entry_day_iso": "2026-08-05T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  }
+ ],
+ "KXBILLBOARDRUNNERUPSONG-26JUL04": [
+  {
+   "ticker": "KXBILLBOARDRUNNERUPSONG-26JUL04-IKN",
+   "outcome": "yes",
+   "entry_price": 0.84,
+   "spread_at_call": 0.04999999999999993,
+   "volume_at_call": 2571.1600000000003,
+   "series_ticker": "KXBILLBOARDRUNNERUPSONG",
+   "event_ticker": "KXBILLBOARDRUNNERUPSONG-26JUL04",
+   "entry_day_iso": "2026-06-25T04:00:00+00:00",
+   "days_to_close_at_entry": 3.9993055555555554
+  },
+  {
+   "ticker": "KXBILLBOARDRUNNERUPSONG-26JUL04-CHO",
+   "outcome": "yes",
+   "entry_price": 0.85,
+   "spread_at_call": 0.06999999999999995,
+   "volume_at_call": 2271.32,
+   "series_ticker": "KXBILLBOARDRUNNERUPSONG",
+   "event_ticker": "KXBILLBOARDRUNNERUPSONG-26JUL04",
+   "entry_day_iso": "2026-06-22T04:00:00+00:00",
+   "days_to_close_at_entry": 6.999305555555556
+  }
+ ],
+ "KXBILLSCOUNT-26JUN": [
+  {
+   "ticker": "KXBILLSCOUNT-26JUN-7.0",
+   "outcome": "no",
+   "entry_price": 0.91,
+   "spread_at_call": 0.05000000000000002,
+   "volume_at_call": 750.0,
+   "series_ticker": "KXBILLSCOUNT",
+   "event_ticker": "KXBILLSCOUNT-26JUN",
+   "entry_day_iso": "2026-06-23T04:00:00+00:00",
+   "days_to_close_at_entry": 8.416666666666666
+  },
+  {
+   "ticker": "KXBILLSCOUNT-26JUN-6.0",
+   "outcome": "no",
+   "entry_price": 0.6699999999999999,
+   "spread_at_call": 0.019999999999999962,
+   "volume_at_call": 4658.83,
+   "series_ticker": "KXBILLSCOUNT",
+   "event_ticker": "KXBILLSCOUNT-26JUN",
+   "entry_day_iso": "2026-06-27T04:00:00+00:00",
+   "days_to_close_at_entry": 4.416666666666667
+  },
+  {
+   "ticker": "KXBILLSCOUNT-26JUN-5.0",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.04000000000000001,
+   "volume_at_call": 2337.82,
+   "series_ticker": "KXBILLSCOUNT",
+   "event_ticker": "KXBILLSCOUNT-26JUN",
+   "entry_day_iso": "2026-06-24T04:00:00+00:00",
+   "days_to_close_at_entry": 7.416666666666667
+  },
+  {
+   "ticker": "KXBILLSCOUNT-26JUN-4.0",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.05,
+   "volume_at_call": 612.2,
+   "series_ticker": "KXBILLSCOUNT",
+   "event_ticker": "KXBILLSCOUNT-26JUN",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  }
+ ],
+ "KXCHINAAI-26AUG10": [
+  {
+   "ticker": "KXCHINAAI-26AUG10-ZAI",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 783.2,
+   "series_ticker": "KXCHINAAI",
+   "event_ticker": "KXCHINAAI-26AUG10",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXCHINAAI-26AUG10-MOON",
+   "outcome": "no",
+   "entry_price": 0.71,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 1206.02,
+   "series_ticker": "KXCHINAAI",
+   "event_ticker": "KXCHINAAI-26AUG10",
+   "entry_day_iso": "2026-07-29T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXCHINAAI-26AUG10-DEEP",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.03,
+   "volume_at_call": 2978.99,
+   "series_ticker": "KXCHINAAI",
+   "event_ticker": "KXCHINAAI-26AUG10",
+   "entry_day_iso": "2026-08-01T04:00:00+00:00",
+   "days_to_close_at_entry": 9.416666666666666
+  },
+  {
+   "ticker": "KXCHINAAI-26AUG10-ALIB",
+   "outcome": "yes",
+   "entry_price": 0.65,
+   "spread_at_call": 0.050000000000000044,
+   "volume_at_call": 1170.65,
+   "series_ticker": "KXCHINAAI",
+   "event_ticker": "KXCHINAAI-26AUG10",
+   "entry_day_iso": "2026-07-30T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  }
+ ],
+ "KXCHINAAI-26JUL27": [
+  {
+   "ticker": "KXCHINAAI-26JUL27-MOON",
+   "outcome": "no",
+   "entry_price": 0.78,
+   "spread_at_call": 0.01999999999999999,
+   "volume_at_call": 3203.12,
+   "series_ticker": "KXCHINAAI",
+   "event_ticker": "KXCHINAAI-26JUL27",
+   "entry_day_iso": "2026-07-22T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  },
+  {
+   "ticker": "KXCHINAAI-26JUL27-ALIB",
+   "outcome": "yes",
+   "entry_price": 0.79,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 3577.15,
+   "series_ticker": "KXCHINAAI",
+   "event_ticker": "KXCHINAAI-26JUL27",
+   "entry_day_iso": "2026-07-22T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  }
+ ],
+ "KXCHINAAI-26JUL31": [
+  {
+   "ticker": "KXCHINAAI-26JUL31-MOON",
+   "outcome": "no",
+   "entry_price": 0.76,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 718.55,
+   "series_ticker": "KXCHINAAI",
+   "event_ticker": "KXCHINAAI-26JUL31",
+   "entry_day_iso": "2026-07-24T04:00:00+00:00",
+   "days_to_close_at_entry": 7.416666666666667
+  },
+  {
+   "ticker": "KXCHINAAI-26JUL31-ALIB",
+   "outcome": "yes",
+   "entry_price": 0.7,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1150.74,
+   "series_ticker": "KXCHINAAI",
+   "event_ticker": "KXCHINAAI-26JUL31",
+   "entry_day_iso": "2026-07-22T04:00:00+00:00",
+   "days_to_close_at_entry": 9.416666666666666
+  }
+ ],
+ "KXEOWEEK-26AUG01": [
+  {
+   "ticker": "KXEOWEEK-26AUG01-2",
+   "outcome": "no",
+   "entry_price": 0.77,
+   "spread_at_call": 0.009999999999999981,
+   "volume_at_call": 616.04,
+   "series_ticker": "KXEOWEEK",
+   "event_ticker": "KXEOWEEK-26AUG01",
+   "entry_day_iso": "2026-07-27T04:00:00+00:00",
+   "days_to_close_at_entry": 11.828622685185184
+  },
+  {
+   "ticker": "KXEOWEEK-26AUG01-1",
+   "outcome": "no",
+   "entry_price": 0.6599999999999999,
+   "spread_at_call": 0.019999999999999962,
+   "volume_at_call": 1926.14,
+   "series_ticker": "KXEOWEEK",
+   "event_ticker": "KXEOWEEK-26AUG01",
+   "entry_day_iso": "2026-07-29T04:00:00+00:00",
+   "days_to_close_at_entry": 9.828622685185184
+  },
+  {
+   "ticker": "KXEOWEEK-26AUG01-0",
+   "outcome": "yes",
+   "entry_price": 0.69,
+   "spread_at_call": 0.009999999999999898,
+   "volume_at_call": 2216.63,
+   "series_ticker": "KXEOWEEK",
+   "event_ticker": "KXEOWEEK-26AUG01",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 10.828622685185184
+  }
+ ],
+ "KXH100W-26AUG14": [
+  {
+   "ticker": "KXH100W-26AUG14-2.68",
+   "outcome": "yes",
+   "entry_price": 0.82,
+   "spread_at_call": 0.009999999999999898,
+   "volume_at_call": 5398.77,
+   "series_ticker": "KXH100W",
+   "event_ticker": "KXH100W-26AUG14",
+   "entry_day_iso": "2026-08-14T04:00:00+00:00",
+   "days_to_close_at_entry": 0.7083333333333334
+  }
+ ],
+ "KXH100W-26AUG21": [
+  {
+   "ticker": "KXH100W-26AUG21-2.79",
+   "outcome": "no",
+   "entry_price": 0.76,
+   "spread_at_call": 0.04999999999999999,
+   "volume_at_call": 952.0,
+   "series_ticker": "KXH100W",
+   "event_ticker": "KXH100W-26AUG21",
+   "entry_day_iso": "2026-08-16T04:00:00+00:00",
+   "days_to_close_at_entry": 5.708333333333333
+  }
+ ],
+ "KXH100W-26JUL17": [
+  {
+   "ticker": "KXH100W-26JUL17-2.52",
+   "outcome": "yes",
+   "entry_price": 0.77,
+   "spread_at_call": 0.040000000000000036,
+   "volume_at_call": 651.86,
+   "series_ticker": "KXH100W",
+   "event_ticker": "KXH100W-26JUL17",
+   "entry_day_iso": "2026-07-13T04:00:00+00:00",
+   "days_to_close_at_entry": 4.708333333333333
+  }
+ ],
+ "KXH200W-26JUL24": [
+  {
+   "ticker": "KXH200W-26JUL24-4.79",
+   "outcome": "yes",
+   "entry_price": 0.73,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 834.0,
+   "series_ticker": "KXH200W",
+   "event_ticker": "KXH200W-26JUL24",
+   "entry_day_iso": "2026-07-21T04:00:00+00:00",
+   "days_to_close_at_entry": 3.7083333333333335
+  }
+ ],
+ "KXHORMUZMAX-26AUG16": [
+  {
+   "ticker": "KXHORMUZMAX-26AUG16-AUG13",
+   "outcome": "no",
+   "entry_price": 0.85,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 800.7,
+   "series_ticker": "KXHORMUZMAX",
+   "event_ticker": "KXHORMUZMAX-26AUG16",
+   "entry_day_iso": "2026-08-15T04:00:00+00:00",
+   "days_to_close_at_entry": 3.375
+  },
+  {
+   "ticker": "KXHORMUZMAX-26AUG16-AUG11",
+   "outcome": "no",
+   "entry_price": 0.77,
+   "spread_at_call": 0.04000000000000001,
+   "volume_at_call": 621.56,
+   "series_ticker": "KXHORMUZMAX",
+   "event_ticker": "KXHORMUZMAX-26AUG16",
+   "entry_day_iso": "2026-08-14T04:00:00+00:00",
+   "days_to_close_at_entry": 4.375
+  }
+ ],
+ "KXHORMUZMAX-26JUL19": [
+  {
+   "ticker": "KXHORMUZMAX-26JUL19-JUL19",
+   "outcome": "no",
+   "entry_price": 0.92,
+   "spread_at_call": 0.03,
+   "volume_at_call": 779.77,
+   "series_ticker": "KXHORMUZMAX",
+   "event_ticker": "KXHORMUZMAX-26JUL19",
+   "entry_day_iso": "2026-07-17T04:00:00+00:00",
+   "days_to_close_at_entry": 4.375
+  },
+  {
+   "ticker": "KXHORMUZMAX-26JUL19-JUL15",
+   "outcome": "no",
+   "entry_price": 0.9299999999999999,
+   "spread_at_call": 0.01999999999999999,
+   "volume_at_call": 1503.66,
+   "series_ticker": "KXHORMUZMAX",
+   "event_ticker": "KXHORMUZMAX-26JUL19",
+   "entry_day_iso": "2026-07-16T04:00:00+00:00",
+   "days_to_close_at_entry": 5.375
+  },
+  {
+   "ticker": "KXHORMUZMAX-26JUL19-JUL14",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.039999999999999994,
+   "volume_at_call": 588.5,
+   "series_ticker": "KXHORMUZMAX",
+   "event_ticker": "KXHORMUZMAX-26JUL19",
+   "entry_day_iso": "2026-07-15T04:00:00+00:00",
+   "days_to_close_at_entry": 6.375
+  },
+  {
+   "ticker": "KXHORMUZMAX-26JUL19-JUL13",
+   "outcome": "no",
+   "entry_price": 0.79,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1055.45,
+   "series_ticker": "KXHORMUZMAX",
+   "event_ticker": "KXHORMUZMAX-26JUL19",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 7.375
+  }
+ ],
+ "KXHORMUZNORM-26MAR17": [
+  {
+   "ticker": "KXHORMUZNORM-26MAR17-B260701",
+   "outcome": "no",
+   "entry_price": 0.966,
+   "spread_at_call": 0.0010000000000000009,
+   "volume_at_call": 5656985.620000001,
+   "series_ticker": "KXHORMUZNORM",
+   "event_ticker": "KXHORMUZNORM-26MAR17",
+   "entry_day_iso": "2026-06-26T04:00:00+00:00",
+   "days_to_close_at_entry": 11.415972222222223
+  }
+ ],
+ "KXHORMUZWEEKLY-26AUG02": [
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG02-T70",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1845.76,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG02",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 7.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG02-T65",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.03,
+   "volume_at_call": 543.44,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG02",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 7.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG02-T60",
+   "outcome": "no",
+   "entry_price": 0.92,
+   "spread_at_call": 0.05,
+   "volume_at_call": 1169.28,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG02",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 7.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG02-T55",
+   "outcome": "no",
+   "entry_price": 0.6699999999999999,
+   "spread_at_call": 0.06,
+   "volume_at_call": 3188.6,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG02",
+   "entry_day_iso": "2026-07-29T04:00:00+00:00",
+   "days_to_close_at_entry": 6.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG02-T50",
+   "outcome": "no",
+   "entry_price": 0.88,
+   "spread_at_call": 0.05000000000000002,
+   "volume_at_call": 1149.69,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG02",
+   "entry_day_iso": "2026-07-27T04:00:00+00:00",
+   "days_to_close_at_entry": 8.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG02-T45",
+   "outcome": "yes",
+   "entry_price": 0.65,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 3814.3599999999997,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG02",
+   "entry_day_iso": "2026-07-29T04:00:00+00:00",
+   "days_to_close_at_entry": 6.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG02-T40",
+   "outcome": "yes",
+   "entry_price": 0.78,
+   "spread_at_call": 0.06000000000000005,
+   "volume_at_call": 4851.42,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG02",
+   "entry_day_iso": "2026-07-29T04:00:00+00:00",
+   "days_to_close_at_entry": 6.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG02-T35",
+   "outcome": "yes",
+   "entry_price": 0.78,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 4715.62,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG02",
+   "entry_day_iso": "2026-07-29T04:00:00+00:00",
+   "days_to_close_at_entry": 6.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG02-T30",
+   "outcome": "yes",
+   "entry_price": 0.68,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1346.65,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG02",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 7.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG02-T25",
+   "outcome": "yes",
+   "entry_price": 0.88,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 1574.12,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG02",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 7.375
+  }
+ ],
+ "KXHORMUZWEEKLY-26AUG09": [
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG09-T80",
+   "outcome": "no",
+   "entry_price": 0.65,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1745.89,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG09",
+   "entry_day_iso": "2026-08-04T04:00:00+00:00",
+   "days_to_close_at_entry": 7.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG09-T75",
+   "outcome": "no",
+   "entry_price": 0.9,
+   "spread_at_call": 0.03,
+   "volume_at_call": 2916.17,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG09",
+   "entry_day_iso": "2026-08-05T04:00:00+00:00",
+   "days_to_close_at_entry": 6.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG09-T70",
+   "outcome": "no",
+   "entry_price": 0.84,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1482.18,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG09",
+   "entry_day_iso": "2026-08-05T04:00:00+00:00",
+   "days_to_close_at_entry": 6.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG09-T65",
+   "outcome": "no",
+   "entry_price": 0.84,
+   "spread_at_call": 0.04000000000000001,
+   "volume_at_call": 1840.6699999999998,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG09",
+   "entry_day_iso": "2026-08-05T04:00:00+00:00",
+   "days_to_close_at_entry": 6.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG09-T60",
+   "outcome": "no",
+   "entry_price": 0.8200000000000001,
+   "spread_at_call": 0.05000000000000002,
+   "volume_at_call": 3994.65,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG09",
+   "entry_day_iso": "2026-08-05T04:00:00+00:00",
+   "days_to_close_at_entry": 6.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG09-T55",
+   "outcome": "yes",
+   "entry_price": 0.74,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 2000.24,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG09",
+   "entry_day_iso": "2026-08-04T04:00:00+00:00",
+   "days_to_close_at_entry": 7.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG09-T50",
+   "outcome": "yes",
+   "entry_price": 0.82,
+   "spread_at_call": 0.029999999999999916,
+   "volume_at_call": 984.0699999999999,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG09",
+   "entry_day_iso": "2026-08-04T04:00:00+00:00",
+   "days_to_close_at_entry": 7.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG09-T45",
+   "outcome": "no",
+   "entry_price": 0.7,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 3003.9,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG09",
+   "entry_day_iso": "2026-08-06T04:00:00+00:00",
+   "days_to_close_at_entry": 5.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG09-T40",
+   "outcome": "no",
+   "entry_price": 0.72,
+   "spread_at_call": 0.02999999999999997,
+   "volume_at_call": 7939.55,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG09",
+   "entry_day_iso": "2026-08-08T04:00:00+00:00",
+   "days_to_close_at_entry": 3.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG09-T35",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.039999999999999925,
+   "volume_at_call": 1041.37,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG09",
+   "entry_day_iso": "2026-08-04T04:00:00+00:00",
+   "days_to_close_at_entry": 7.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG09-T30",
+   "outcome": "yes",
+   "entry_price": 0.69,
+   "spread_at_call": 0.019999999999999907,
+   "volume_at_call": 952.28,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG09",
+   "entry_day_iso": "2026-08-05T04:00:00+00:00",
+   "days_to_close_at_entry": 6.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG09-T25",
+   "outcome": "yes",
+   "entry_price": 0.83,
+   "spread_at_call": 0.029999999999999916,
+   "volume_at_call": 709.74,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG09",
+   "entry_day_iso": "2026-08-05T04:00:00+00:00",
+   "days_to_close_at_entry": 6.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG09-T20",
+   "outcome": "yes",
+   "entry_price": 0.88,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 718.15,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG09",
+   "entry_day_iso": "2026-08-05T04:00:00+00:00",
+   "days_to_close_at_entry": 6.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26AUG09-T15",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 913.24,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26AUG09",
+   "entry_day_iso": "2026-08-07T04:00:00+00:00",
+   "days_to_close_at_entry": 4.375
+  }
+ ],
+ "KXHORMUZWEEKLY-26JUL12": [
+  {
+   "ticker": "KXHORMUZWEEKLY-26JUL12-T225",
+   "outcome": "no",
+   "entry_price": 0.81,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 550.95,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26JUL12",
+   "entry_day_iso": "2026-07-07T04:00:00+00:00",
+   "days_to_close_at_entry": 7.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26JUL12-T200",
+   "outcome": "no",
+   "entry_price": 0.84,
+   "spread_at_call": 0.01999999999999999,
+   "volume_at_call": 14761.18,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26JUL12",
+   "entry_day_iso": "2026-07-08T04:00:00+00:00",
+   "days_to_close_at_entry": 6.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26JUL12-T175",
+   "outcome": "no",
+   "entry_price": 0.69,
+   "spread_at_call": 0.03999999999999998,
+   "volume_at_call": 19768.07,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26JUL12",
+   "entry_day_iso": "2026-07-08T04:00:00+00:00",
+   "days_to_close_at_entry": 6.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26JUL12-T150",
+   "outcome": "yes",
+   "entry_price": 0.81,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 615.38,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26JUL12",
+   "entry_day_iso": "2026-07-07T04:00:00+00:00",
+   "days_to_close_at_entry": 7.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26JUL12-T125",
+   "outcome": "yes",
+   "entry_price": 0.8,
+   "spread_at_call": 0.050000000000000044,
+   "volume_at_call": 9924.89,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26JUL12",
+   "entry_day_iso": "2026-07-09T04:00:00+00:00",
+   "days_to_close_at_entry": 5.375
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26JUL12-T100",
+   "outcome": "yes",
+   "entry_price": 0.96,
+   "spread_at_call": 0.039999999999999925,
+   "volume_at_call": 3648.82,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26JUL12",
+   "entry_day_iso": "2026-07-08T04:00:00+00:00",
+   "days_to_close_at_entry": 6.375
+  }
+ ],
+ "KXHORMUZWEEKLY-26JUN28": [
+  {
+   "ticker": "KXHORMUZWEEKLY-26JUN28-T90",
+   "outcome": "yes",
+   "entry_price": 0.76,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1181.4,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26JUN28",
+   "entry_day_iso": "2026-06-24T04:00:00+00:00",
+   "days_to_close_at_entry": 7.45943287037037
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26JUN28-T80",
+   "outcome": "yes",
+   "entry_price": 0.89,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1012.71,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26JUN28",
+   "entry_day_iso": "2026-06-24T04:00:00+00:00",
+   "days_to_close_at_entry": 7.45943287037037
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26JUN28-T70",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 2470.76,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26JUN28",
+   "entry_day_iso": "2026-06-24T04:00:00+00:00",
+   "days_to_close_at_entry": 7.45943287037037
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26JUN28-T250",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.03,
+   "volume_at_call": 1928.74,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26JUN28",
+   "entry_day_iso": "2026-06-27T04:00:00+00:00",
+   "days_to_close_at_entry": 4.45943287037037
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26JUN28-T225",
+   "outcome": "no",
+   "entry_price": 0.73,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 5341.99,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26JUN28",
+   "entry_day_iso": "2026-06-28T04:00:00+00:00",
+   "days_to_close_at_entry": 3.4594328703703705
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26JUN28-T200",
+   "outcome": "no",
+   "entry_price": 0.6599999999999999,
+   "spread_at_call": 0.02999999999999997,
+   "volume_at_call": 5846.429999999999,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26JUN28",
+   "entry_day_iso": "2026-06-26T04:00:00+00:00",
+   "days_to_close_at_entry": 5.45943287037037
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26JUN28-T175",
+   "outcome": "no",
+   "entry_price": 0.81,
+   "spread_at_call": 0.01999999999999999,
+   "volume_at_call": 1022.21,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26JUN28",
+   "entry_day_iso": "2026-06-25T04:00:00+00:00",
+   "days_to_close_at_entry": 6.45943287037037
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26JUN28-T150",
+   "outcome": "no",
+   "entry_price": 0.71,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1232.79,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26JUN28",
+   "entry_day_iso": "2026-06-24T04:00:00+00:00",
+   "days_to_close_at_entry": 7.45943287037037
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26JUN28-T125",
+   "outcome": "yes",
+   "entry_price": 0.8,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 3587.04,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26JUN28",
+   "entry_day_iso": "2026-06-25T04:00:00+00:00",
+   "days_to_close_at_entry": 6.45943287037037
+  },
+  {
+   "ticker": "KXHORMUZWEEKLY-26JUN28-T100",
+   "outcome": "yes",
+   "entry_price": 0.68,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 3173.15,
+   "series_ticker": "KXHORMUZWEEKLY",
+   "event_ticker": "KXHORMUZWEEKLY-26JUN28",
+   "entry_day_iso": "2026-06-24T04:00:00+00:00",
+   "days_to_close_at_entry": 7.45943287037037
+  }
+ ],
+ "KXLAUNCHES-26JUL": [
+  {
+   "ticker": "KXLAUNCHES-26JUL-18",
+   "outcome": "no",
+   "entry_price": 0.96,
+   "spread_at_call": 0.060000000000000005,
+   "volume_at_call": 3123.0600000000004,
+   "series_ticker": "KXLAUNCHES",
+   "event_ticker": "KXLAUNCHES-26JUL",
+   "entry_day_iso": "2026-07-19T04:00:00+00:00",
+   "days_to_close_at_entry": 13.751504629629629
+  },
+  {
+   "ticker": "KXLAUNCHES-26JUL-17",
+   "outcome": "no",
+   "entry_price": 0.85,
+   "spread_at_call": 0.05000000000000002,
+   "volume_at_call": 5041.869999999999,
+   "series_ticker": "KXLAUNCHES",
+   "event_ticker": "KXLAUNCHES-26JUL",
+   "entry_day_iso": "2026-07-19T04:00:00+00:00",
+   "days_to_close_at_entry": 13.751504629629629
+  },
+  {
+   "ticker": "KXLAUNCHES-26JUL-16",
+   "outcome": "no",
+   "entry_price": 0.65,
+   "spread_at_call": 0.06,
+   "volume_at_call": 3254.940000000001,
+   "series_ticker": "KXLAUNCHES",
+   "event_ticker": "KXLAUNCHES-26JUL",
+   "entry_day_iso": "2026-07-20T04:00:00+00:00",
+   "days_to_close_at_entry": 12.751504629629629
+  },
+  {
+   "ticker": "KXLAUNCHES-26JUL-15",
+   "outcome": "yes",
+   "entry_price": 0.78,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 2927.32,
+   "series_ticker": "KXLAUNCHES",
+   "event_ticker": "KXLAUNCHES-26JUL",
+   "entry_day_iso": "2026-07-19T04:00:00+00:00",
+   "days_to_close_at_entry": 13.751504629629629
+  },
+  {
+   "ticker": "KXLAUNCHES-26JUL-14",
+   "outcome": "yes",
+   "entry_price": 0.96,
+   "spread_at_call": 0.05999999999999994,
+   "volume_at_call": 3517.11,
+   "series_ticker": "KXLAUNCHES",
+   "event_ticker": "KXLAUNCHES-26JUL",
+   "entry_day_iso": "2026-07-19T04:00:00+00:00",
+   "days_to_close_at_entry": 13.751504629629629
+  },
+  {
+   "ticker": "KXLAUNCHES-26JUL-13",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.04999999999999993,
+   "volume_at_call": 1376.8899999999999,
+   "series_ticker": "KXLAUNCHES",
+   "event_ticker": "KXLAUNCHES-26JUL",
+   "entry_day_iso": "2026-07-21T04:00:00+00:00",
+   "days_to_close_at_entry": 11.751504629629629
+  }
+ ],
+ "KXNETFLIXRANKMOVIE-26AUG03": [
+  {
+   "ticker": "KXNETFLIXRANKMOVIE-26AUG03-ATO",
+   "outcome": "no",
+   "entry_price": 0.9,
+   "spread_at_call": 0.03,
+   "volume_at_call": 9258.43,
+   "series_ticker": "KXNETFLIXRANKMOVIE",
+   "event_ticker": "KXNETFLIXRANKMOVIE-26AUG03",
+   "entry_day_iso": "2026-07-30T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  },
+  {
+   "ticker": "KXNETFLIXRANKMOVIE-26AUG03-72H",
+   "outcome": "yes",
+   "entry_price": 0.91,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 19859.31,
+   "series_ticker": "KXNETFLIXRANKMOVIE",
+   "event_ticker": "KXNETFLIXRANKMOVIE-26AUG03",
+   "entry_day_iso": "2026-07-30T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  }
+ ],
+ "KXNETFLIXRANKMOVIE-26AUG17": [
+  {
+   "ticker": "KXNETFLIXRANKMOVIE-26AUG17-THE",
+   "outcome": "yes",
+   "entry_price": 0.86,
+   "spread_at_call": 0.040000000000000036,
+   "volume_at_call": 3090.57,
+   "series_ticker": "KXNETFLIXRANKMOVIE",
+   "event_ticker": "KXNETFLIXRANKMOVIE-26AUG17",
+   "entry_day_iso": "2026-08-12T04:00:00+00:00",
+   "days_to_close_at_entry": 5.999305555555556
+  }
+ ],
+ "KXNETFLIXRANKMOVIE-26JUL27": [
+  {
+   "ticker": "KXNETFLIXRANKMOVIE-26JUL27-DES",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 13598.5,
+   "series_ticker": "KXNETFLIXRANKMOVIE",
+   "event_ticker": "KXNETFLIXRANKMOVIE-26JUL27",
+   "entry_day_iso": "2026-07-23T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  },
+  {
+   "ticker": "KXNETFLIXRANKMOVIE-26JUL27-ATOX",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.020000000000000004,
+   "volume_at_call": 1484.43,
+   "series_ticker": "KXNETFLIXRANKMOVIE",
+   "event_ticker": "KXNETFLIXRANKMOVIE-26JUL27",
+   "entry_day_iso": "2026-07-23T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  },
+  {
+   "ticker": "KXNETFLIXRANKMOVIE-26JUL27-72H",
+   "outcome": "yes",
+   "entry_price": 0.79,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 3824.73,
+   "series_ticker": "KXNETFLIXRANKMOVIE",
+   "event_ticker": "KXNETFLIXRANKMOVIE-26JUL27",
+   "entry_day_iso": "2026-07-23T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  }
+ ],
+ "KXNETFLIXRANKMOVIEGLOBAL-26JUL06": [
+  {
+   "ticker": "KXNETFLIXRANKMOVIEGLOBAL-26JUL06-VOI",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.020000000000000004,
+   "volume_at_call": 4960.32,
+   "series_ticker": "KXNETFLIXRANKMOVIEGLOBAL",
+   "event_ticker": "KXNETFLIXRANKMOVIEGLOBAL-26JUL06",
+   "entry_day_iso": "2026-07-02T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  },
+  {
+   "ticker": "KXNETFLIXRANKMOVIEGLOBAL-26JUL06-LIT",
+   "outcome": "no",
+   "entry_price": 0.92,
+   "spread_at_call": 0.020000000000000004,
+   "volume_at_call": 11328.54,
+   "series_ticker": "KXNETFLIXRANKMOVIEGLOBAL",
+   "event_ticker": "KXNETFLIXRANKMOVIEGLOBAL-26JUL06",
+   "entry_day_iso": "2026-07-02T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  }
+ ],
+ "KXNETFLIXRANKMOVIEGLOBAL2-26AUG10": [
+  {
+   "ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26AUG10-LAS",
+   "outcome": "no",
+   "entry_price": 0.96,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 1216.27,
+   "series_ticker": "KXNETFLIXRANKMOVIEGLOBAL2",
+   "event_ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26AUG10",
+   "entry_day_iso": "2026-08-08T04:00:00+00:00",
+   "days_to_close_at_entry": 2.9993055555555554
+  },
+  {
+   "ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26AUG10-72H",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 2411.19,
+   "series_ticker": "KXNETFLIXRANKMOVIEGLOBAL2",
+   "event_ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26AUG10",
+   "entry_day_iso": "2026-08-08T04:00:00+00:00",
+   "days_to_close_at_entry": 2.9993055555555554
+  }
+ ],
+ "KXNETFLIXRANKMOVIEGLOBAL2-26JUL20": [
+  {
+   "ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26JUL20-VOI",
+   "outcome": "no",
+   "entry_price": 0.78,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1566.27,
+   "series_ticker": "KXNETFLIXRANKMOVIEGLOBAL2",
+   "event_ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26JUL20",
+   "entry_day_iso": "2026-07-16T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  },
+  {
+   "ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26JUL20-ENO",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 602.58,
+   "series_ticker": "KXNETFLIXRANKMOVIEGLOBAL2",
+   "event_ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26JUL20",
+   "entry_day_iso": "2026-07-16T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  }
+ ],
+ "KXNETFLIXRANKMOVIEGLOBAL2-26JUL27": [
+  {
+   "ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26JUL27-SHI",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 600.9300000000001,
+   "series_ticker": "KXNETFLIXRANKMOVIEGLOBAL2",
+   "event_ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26JUL27",
+   "entry_day_iso": "2026-07-24T04:00:00+00:00",
+   "days_to_close_at_entry": 3.9993055555555554
+  },
+  {
+   "ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26JUL27-ATO",
+   "outcome": "no",
+   "entry_price": 0.75,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 1796.3700000000001,
+   "series_ticker": "KXNETFLIXRANKMOVIEGLOBAL2",
+   "event_ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26JUL27",
+   "entry_day_iso": "2026-07-25T04:00:00+00:00",
+   "days_to_close_at_entry": 2.9993055555555554
+  },
+  {
+   "ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26JUL27-72H",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.020000000000000004,
+   "volume_at_call": 2080.08,
+   "series_ticker": "KXNETFLIXRANKMOVIEGLOBAL2",
+   "event_ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26JUL27",
+   "entry_day_iso": "2026-07-26T04:00:00+00:00",
+   "days_to_close_at_entry": 1.9993055555555554
+  }
+ ],
+ "KXNETFLIXRANKMOVIERUNNERUP-26AUG10": [
+  {
+   "ticker": "KXNETFLIXRANKMOVIERUNNERUP-26AUG10-TER",
+   "outcome": "no",
+   "entry_price": 0.91,
+   "spread_at_call": 0.04000000000000001,
+   "volume_at_call": 645.1,
+   "series_ticker": "KXNETFLIXRANKMOVIERUNNERUP",
+   "event_ticker": "KXNETFLIXRANKMOVIERUNNERUP-26AUG10",
+   "entry_day_iso": "2026-08-06T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  },
+  {
+   "ticker": "KXNETFLIXRANKMOVIERUNNERUP-26AUG10-72H",
+   "outcome": "yes",
+   "entry_price": 0.66,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 980.35,
+   "series_ticker": "KXNETFLIXRANKMOVIERUNNERUP",
+   "event_ticker": "KXNETFLIXRANKMOVIERUNNERUP-26AUG10",
+   "entry_day_iso": "2026-08-06T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  }
+ ],
+ "KXNETFLIXRANKSHOW-26AUG17": [
+  {
+   "ticker": "KXNETFLIXRANKSHOW-26AUG17-TIR",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 21132.350000000002,
+   "series_ticker": "KXNETFLIXRANKSHOW",
+   "event_ticker": "KXNETFLIXRANKSHOW-26AUG17",
+   "entry_day_iso": "2026-08-15T04:00:00+00:00",
+   "days_to_close_at_entry": 2.9993055555555554
+  },
+  {
+   "ticker": "KXNETFLIXRANKSHOW-26AUG17-MYL",
+   "outcome": "no",
+   "entry_price": 0.83,
+   "spread_at_call": 0.01999999999999999,
+   "volume_at_call": 12561.38,
+   "series_ticker": "KXNETFLIXRANKSHOW",
+   "event_ticker": "KXNETFLIXRANKSHOW-26AUG17",
+   "entry_day_iso": "2026-08-13T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  },
+  {
+   "ticker": "KXNETFLIXRANKSHOW-26AUG17-MRB",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 1112.09,
+   "series_ticker": "KXNETFLIXRANKSHOW",
+   "event_ticker": "KXNETFLIXRANKSHOW-26AUG17",
+   "entry_day_iso": "2026-08-14T04:00:00+00:00",
+   "days_to_close_at_entry": 3.9993055555555554
+  }
+ ],
+ "KXNETFLIXRANKSHOWGLOBAL-26AUG10": [
+  {
+   "ticker": "KXNETFLIXRANKSHOWGLOBAL-26AUG10-THE",
+   "outcome": "yes",
+   "entry_price": 0.92,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1015.66,
+   "series_ticker": "KXNETFLIXRANKSHOWGLOBAL",
+   "event_ticker": "KXNETFLIXRANKSHOWGLOBAL-26AUG10",
+   "entry_day_iso": "2026-08-06T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  }
+ ],
+ "KXNETFLIXRANKSHOWGLOBAL-26JUL27": [
+  {
+   "ticker": "KXNETFLIXRANKSHOWGLOBAL-26JUL27-THE",
+   "outcome": "no",
+   "entry_price": 0.84,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 3730.83,
+   "series_ticker": "KXNETFLIXRANKSHOWGLOBAL",
+   "event_ticker": "KXNETFLIXRANKSHOWGLOBAL-26JUL27",
+   "entry_day_iso": "2026-07-24T04:00:00+00:00",
+   "days_to_close_at_entry": 3.9993055555555554
+  },
+  {
+   "ticker": "KXNETFLIXRANKSHOWGLOBAL-26JUL27-IWI",
+   "outcome": "no",
+   "entry_price": 0.79,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 1844.0100000000002,
+   "series_ticker": "KXNETFLIXRANKSHOWGLOBAL",
+   "event_ticker": "KXNETFLIXRANKSHOWGLOBAL-26JUL27",
+   "entry_day_iso": "2026-07-24T04:00:00+00:00",
+   "days_to_close_at_entry": 3.9993055555555554
+  }
+ ],
+ "KXNETFLIXRANKSHOWGLOBAL2-26AUG10": [
+  {
+   "ticker": "KXNETFLIXRANKSHOWGLOBAL2-26AUG10-THEB",
+   "outcome": "yes",
+   "entry_price": 0.74,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 940.0,
+   "series_ticker": "KXNETFLIXRANKSHOWGLOBAL2",
+   "event_ticker": "KXNETFLIXRANKSHOWGLOBAL2-26AUG10",
+   "entry_day_iso": "2026-08-05T04:00:00+00:00",
+   "days_to_close_at_entry": 5.999305555555556
+  },
+  {
+   "ticker": "KXNETFLIXRANKSHOWGLOBAL2-26AUG10-THE",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.04000000000000001,
+   "volume_at_call": 1035.24,
+   "series_ticker": "KXNETFLIXRANKSHOWGLOBAL2",
+   "event_ticker": "KXNETFLIXRANKSHOWGLOBAL2-26AUG10",
+   "entry_day_iso": "2026-08-06T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  }
+ ],
+ "KXNETFLIXRANKSHOWRUNNERUP-26AUG17": [
+  {
+   "ticker": "KXNETFLIXRANKSHOWRUNNERUP-26AUG17-TIR",
+   "outcome": "yes",
+   "entry_price": 0.86,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 11856.21,
+   "series_ticker": "KXNETFLIXRANKSHOWRUNNERUP",
+   "event_ticker": "KXNETFLIXRANKSHOWRUNNERUP-26AUG17",
+   "entry_day_iso": "2026-08-15T04:00:00+00:00",
+   "days_to_close_at_entry": 2.9993055555555554
+  },
+  {
+   "ticker": "KXNETFLIXRANKSHOWRUNNERUP-26AUG17-THE",
+   "outcome": "no",
+   "entry_price": 0.87,
+   "spread_at_call": 0.04999999999999999,
+   "volume_at_call": 765.37,
+   "series_ticker": "KXNETFLIXRANKSHOWRUNNERUP",
+   "event_ticker": "KXNETFLIXRANKSHOWRUNNERUP-26AUG17",
+   "entry_day_iso": "2026-08-13T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  },
+  {
+   "ticker": "KXNETFLIXRANKSHOWRUNNERUP-26AUG17-MYL",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 5422.74,
+   "series_ticker": "KXNETFLIXRANKSHOWRUNNERUP",
+   "event_ticker": "KXNETFLIXRANKSHOWRUNNERUP-26AUG17",
+   "entry_day_iso": "2026-08-14T04:00:00+00:00",
+   "days_to_close_at_entry": 3.9993055555555554
+  },
+  {
+   "ticker": "KXNETFLIXRANKSHOWRUNNERUP-26AUG17-CON",
+   "outcome": "no",
+   "entry_price": 0.96,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 1236.11,
+   "series_ticker": "KXNETFLIXRANKSHOWRUNNERUP",
+   "event_ticker": "KXNETFLIXRANKSHOWRUNNERUP-26AUG17",
+   "entry_day_iso": "2026-08-14T04:00:00+00:00",
+   "days_to_close_at_entry": 3.9993055555555554
+  }
+ ],
+ "KXNETFLIXTOPVIEWSMOVIE-26JUL13": [
+  {
+   "ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL13-9",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 12648.54,
+   "series_ticker": "KXNETFLIXTOPVIEWSMOVIE",
+   "event_ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL13",
+   "entry_day_iso": "2026-07-10T04:00:00+00:00",
+   "days_to_close_at_entry": 3.9993055555555554
+  },
+  {
+   "ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL13-21",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.03,
+   "volume_at_call": 819.8399999999999,
+   "series_ticker": "KXNETFLIXTOPVIEWSMOVIE",
+   "event_ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL13",
+   "entry_day_iso": "2026-07-09T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  },
+  {
+   "ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL13-18",
+   "outcome": "no",
+   "entry_price": 0.92,
+   "spread_at_call": 0.020000000000000004,
+   "volume_at_call": 584.11,
+   "series_ticker": "KXNETFLIXTOPVIEWSMOVIE",
+   "event_ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL13",
+   "entry_day_iso": "2026-07-09T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  },
+  {
+   "ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL13-15",
+   "outcome": "no",
+   "entry_price": 0.9,
+   "spread_at_call": 0.01999999999999999,
+   "volume_at_call": 6983.6,
+   "series_ticker": "KXNETFLIXTOPVIEWSMOVIE",
+   "event_ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL13",
+   "entry_day_iso": "2026-07-11T04:00:00+00:00",
+   "days_to_close_at_entry": 2.9993055555555554
+  },
+  {
+   "ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL13-12",
+   "outcome": "yes",
+   "entry_price": 0.81,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 2190.26,
+   "series_ticker": "KXNETFLIXTOPVIEWSMOVIE",
+   "event_ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL13",
+   "entry_day_iso": "2026-07-09T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  }
+ ],
+ "KXNETFLIXTOPVIEWSMOVIE-26JUL20": [
+  {
+   "ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL20-9",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 2576.28,
+   "series_ticker": "KXNETFLIXTOPVIEWSMOVIE",
+   "event_ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL20",
+   "entry_day_iso": "2026-07-18T04:00:00+00:00",
+   "days_to_close_at_entry": 2.9993055555555554
+  },
+  {
+   "ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL20-15",
+   "outcome": "no",
+   "entry_price": 0.91,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1024.76,
+   "series_ticker": "KXNETFLIXTOPVIEWSMOVIE",
+   "event_ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL20",
+   "entry_day_iso": "2026-07-18T04:00:00+00:00",
+   "days_to_close_at_entry": 2.9993055555555554
+  },
+  {
+   "ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL20-12",
+   "outcome": "yes",
+   "entry_price": 0.68,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1533.22,
+   "series_ticker": "KXNETFLIXTOPVIEWSMOVIE",
+   "event_ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL20",
+   "entry_day_iso": "2026-07-18T04:00:00+00:00",
+   "days_to_close_at_entry": 2.9993055555555554
+  }
+ ],
+ "KXNETFLIXTOPVIEWSMOVIE-26JUN29": [
+  {
+   "ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUN29-25",
+   "outcome": "yes",
+   "entry_price": 0.89,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 604.74,
+   "series_ticker": "KXNETFLIXTOPVIEWSMOVIE",
+   "event_ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUN29",
+   "entry_day_iso": "2026-06-27T04:00:00+00:00",
+   "days_to_close_at_entry": 2.9993055555555554
+  }
+ ],
+ "KXNETFLIXTOPVIEWSTV-26AUG03": [
+  {
+   "ticker": "KXNETFLIXTOPVIEWSTV-26AUG03-9",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 4598.03,
+   "series_ticker": "KXNETFLIXTOPVIEWSTV",
+   "event_ticker": "KXNETFLIXTOPVIEWSTV-26AUG03",
+   "entry_day_iso": "2026-07-30T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  },
+  {
+   "ticker": "KXNETFLIXTOPVIEWSTV-26AUG03-25",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 3700.01,
+   "series_ticker": "KXNETFLIXTOPVIEWSTV",
+   "event_ticker": "KXNETFLIXTOPVIEWSTV-26AUG03",
+   "entry_day_iso": "2026-07-30T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  },
+  {
+   "ticker": "KXNETFLIXTOPVIEWSTV-26AUG03-21",
+   "outcome": "no",
+   "entry_price": 0.86,
+   "spread_at_call": 0.009999999999999981,
+   "volume_at_call": 5566.450000000001,
+   "series_ticker": "KXNETFLIXTOPVIEWSTV",
+   "event_ticker": "KXNETFLIXTOPVIEWSTV-26AUG03",
+   "entry_day_iso": "2026-07-31T04:00:00+00:00",
+   "days_to_close_at_entry": 3.9993055555555554
+  },
+  {
+   "ticker": "KXNETFLIXTOPVIEWSTV-26AUG03-18",
+   "outcome": "no",
+   "entry_price": 0.84,
+   "spread_at_call": 0.04000000000000001,
+   "volume_at_call": 3238.53,
+   "series_ticker": "KXNETFLIXTOPVIEWSTV",
+   "event_ticker": "KXNETFLIXTOPVIEWSTV-26AUG03",
+   "entry_day_iso": "2026-07-30T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  },
+  {
+   "ticker": "KXNETFLIXTOPVIEWSTV-26AUG03-15",
+   "outcome": "yes",
+   "entry_price": 0.93,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 5324.530000000001,
+   "series_ticker": "KXNETFLIXTOPVIEWSTV",
+   "event_ticker": "KXNETFLIXTOPVIEWSTV-26AUG03",
+   "entry_day_iso": "2026-07-31T04:00:00+00:00",
+   "days_to_close_at_entry": 3.9993055555555554
+  },
+  {
+   "ticker": "KXNETFLIXTOPVIEWSTV-26AUG03-12",
+   "outcome": "yes",
+   "entry_price": 0.69,
+   "spread_at_call": 0.009999999999999898,
+   "volume_at_call": 3382.57,
+   "series_ticker": "KXNETFLIXTOPVIEWSTV",
+   "event_ticker": "KXNETFLIXTOPVIEWSTV-26AUG03",
+   "entry_day_iso": "2026-07-30T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  }
+ ],
+ "KXNETFLIXTOPVIEWSTV-26AUG17": [
+  {
+   "ticker": "KXNETFLIXTOPVIEWSTV-26AUG17-9",
+   "outcome": "yes",
+   "entry_price": 0.81,
+   "spread_at_call": 0.040000000000000036,
+   "volume_at_call": 722.86,
+   "series_ticker": "KXNETFLIXTOPVIEWSTV",
+   "event_ticker": "KXNETFLIXTOPVIEWSTV-26AUG17",
+   "entry_day_iso": "2026-08-14T04:00:00+00:00",
+   "days_to_close_at_entry": 3.9993055555555554
+  },
+  {
+   "ticker": "KXNETFLIXTOPVIEWSTV-26AUG17-18",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.009999999999999995,
+   "volume_at_call": 1223.48,
+   "series_ticker": "KXNETFLIXTOPVIEWSTV",
+   "event_ticker": "KXNETFLIXTOPVIEWSTV-26AUG17",
+   "entry_day_iso": "2026-08-13T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  },
+  {
+   "ticker": "KXNETFLIXTOPVIEWSTV-26AUG17-15",
+   "outcome": "no",
+   "entry_price": 0.86,
+   "spread_at_call": 0.009999999999999981,
+   "volume_at_call": 1747.26,
+   "series_ticker": "KXNETFLIXTOPVIEWSTV",
+   "event_ticker": "KXNETFLIXTOPVIEWSTV-26AUG17",
+   "entry_day_iso": "2026-08-13T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  },
+  {
+   "ticker": "KXNETFLIXTOPVIEWSTV-26AUG17-12",
+   "outcome": "no",
+   "entry_price": 0.76,
+   "spread_at_call": 0.040000000000000036,
+   "volume_at_call": 1591.97,
+   "series_ticker": "KXNETFLIXTOPVIEWSTV",
+   "event_ticker": "KXNETFLIXTOPVIEWSTV-26AUG17",
+   "entry_day_iso": "2026-08-13T04:00:00+00:00",
+   "days_to_close_at_entry": 4.999305555555556
+  }
+ ],
+ "KXNJGOLFVISITCOUNT-26JUN": [
+  {
+   "ticker": "KXNJGOLFVISITCOUNT-26JUN-3",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 577.0,
+   "series_ticker": "KXNJGOLFVISITCOUNT",
+   "event_ticker": "KXNJGOLFVISITCOUNT-26JUN",
+   "entry_day_iso": "2026-06-19T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXNJGOLFVISITCOUNT-26JUN-1",
+   "outcome": "yes",
+   "entry_price": 0.69,
+   "spread_at_call": 0.009999999999999898,
+   "volume_at_call": 3158.5099999999998,
+   "series_ticker": "KXNJGOLFVISITCOUNT",
+   "event_ticker": "KXNJGOLFVISITCOUNT-26JUN",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  }
+ ],
+ "KXNYTHEAD-26JUL": [
+  {
+   "ticker": "KXNYTHEAD-26JUL-T3",
+   "outcome": "no",
+   "entry_price": 0.9299999999999999,
+   "spread_at_call": 0.04999999999999999,
+   "volume_at_call": 3057.01,
+   "series_ticker": "KXNYTHEAD",
+   "event_ticker": "KXNYTHEAD-26JUL",
+   "entry_day_iso": "2026-07-19T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXNYTHEAD-26JUL-T2",
+   "outcome": "no",
+   "entry_price": 0.77,
+   "spread_at_call": 0.04000000000000001,
+   "volume_at_call": 4664.8,
+   "series_ticker": "KXNYTHEAD",
+   "event_ticker": "KXNYTHEAD-26JUL",
+   "entry_day_iso": "2026-07-19T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  }
+ ],
+ "KXOPENINTAI-26AUG21": [
+  {
+   "ticker": "KXOPENINTAI-26AUG21-KIMI",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.06999999999999995,
+   "volume_at_call": 1296.25,
+   "series_ticker": "KXOPENINTAI",
+   "event_ticker": "KXOPENINTAI-26AUG21",
+   "entry_day_iso": "2026-08-16T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  }
+ ],
+ "KXPANAMAWEEKLY-26AUG09": [
+  {
+   "ticker": "KXPANAMAWEEKLY-26AUG09-T225",
+   "outcome": "no",
+   "entry_price": 0.77,
+   "spread_at_call": 0.05999999999999997,
+   "volume_at_call": 693.49,
+   "series_ticker": "KXPANAMAWEEKLY",
+   "event_ticker": "KXPANAMAWEEKLY-26AUG09",
+   "entry_day_iso": "2026-08-09T04:00:00+00:00",
+   "days_to_close_at_entry": 2.375
+  },
+  {
+   "ticker": "KXPANAMAWEEKLY-26AUG09-T200",
+   "outcome": "yes",
+   "entry_price": 0.76,
+   "spread_at_call": 0.040000000000000036,
+   "volume_at_call": 537.47,
+   "series_ticker": "KXPANAMAWEEKLY",
+   "event_ticker": "KXPANAMAWEEKLY-26AUG09",
+   "entry_day_iso": "2026-08-06T04:00:00+00:00",
+   "days_to_close_at_entry": 5.375
+  }
+ ],
+ "KXPARDONSTRUMP-26JUL": [
+  {
+   "ticker": "KXPARDONSTRUMP-26JUL-62",
+   "outcome": "no",
+   "entry_price": 0.72,
+   "spread_at_call": 0.009999999999999953,
+   "volume_at_call": 3365.8700000000003,
+   "series_ticker": "KXPARDONSTRUMP",
+   "event_ticker": "KXPARDONSTRUMP-26JUL",
+   "entry_day_iso": "2026-07-19T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXPARDONSTRUMP-26JUL-17",
+   "outcome": "yes",
+   "entry_price": 0.73,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 7832.290000000001,
+   "series_ticker": "KXPARDONSTRUMP",
+   "event_ticker": "KXPARDONSTRUMP-26JUL",
+   "entry_day_iso": "2026-07-19T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXPARDONSTRUMP-26JUL-0",
+   "outcome": "no",
+   "entry_price": 0.87,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 613.55,
+   "series_ticker": "KXPARDONSTRUMP",
+   "event_ticker": "KXPARDONSTRUMP-26JUL",
+   "entry_day_iso": "2026-07-03T04:00:00+00:00",
+   "days_to_close_at_entry": 2.608923611111111
+  }
+ ],
+ "KXPARDONSTRUMP-26JUN": [
+  {
+   "ticker": "KXPARDONSTRUMP-26JUN-62",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.03,
+   "volume_at_call": 1192.0700000000002,
+   "series_ticker": "KXPARDONSTRUMP",
+   "event_ticker": "KXPARDONSTRUMP-26JUN",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXPARDONSTRUMP-26JUN-6",
+   "outcome": "no",
+   "entry_price": 0.9299999999999999,
+   "spread_at_call": 0.039999999999999994,
+   "volume_at_call": 1260.34,
+   "series_ticker": "KXPARDONSTRUMP",
+   "event_ticker": "KXPARDONSTRUMP-26JUN",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXPARDONSTRUMP-26JUN-2",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.04000000000000001,
+   "volume_at_call": 932.9,
+   "series_ticker": "KXPARDONSTRUMP",
+   "event_ticker": "KXPARDONSTRUMP-26JUN",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXPARDONSTRUMP-26JUN-174",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 2050.18,
+   "series_ticker": "KXPARDONSTRUMP",
+   "event_ticker": "KXPARDONSTRUMP-26JUN",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXPARDONSTRUMP-26JUN-124",
+   "outcome": "no",
+   "entry_price": 0.92,
+   "spread_at_call": 0.009999999999999995,
+   "volume_at_call": 9688.26,
+   "series_ticker": "KXPARDONSTRUMP",
+   "event_ticker": "KXPARDONSTRUMP-26JUN",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXPARDONSTRUMP-26JUN-1",
+   "outcome": "yes",
+   "entry_price": 0.65,
+   "spread_at_call": 0.06000000000000005,
+   "volume_at_call": 3274.42,
+   "series_ticker": "KXPARDONSTRUMP",
+   "event_ticker": "KXPARDONSTRUMP-26JUN",
+   "entry_day_iso": "2026-06-24T04:00:00+00:00",
+   "days_to_close_at_entry": 7.416666666666667
+  }
+ ],
+ "KXPOKEMON-26JULGENCOSHO": [
+  {
+   "ticker": "KXPOKEMON-26JULGENCOSHO-125.59",
+   "outcome": "no",
+   "entry_price": 0.87,
+   "spread_at_call": 0.04999999999999999,
+   "volume_at_call": 894.97,
+   "series_ticker": "KXPOKEMON",
+   "event_ticker": "KXPOKEMON-26JULGENCOSHO",
+   "entry_day_iso": "2026-07-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.999305555555555
+  }
+ ],
+ "KXPOKEMON-26JULMEGDRAEX": [
+  {
+   "ticker": "KXPOKEMON-26JULMEGDRAEX-795.01",
+   "outcome": "no",
+   "entry_price": 0.83,
+   "spread_at_call": 0.06999999999999998,
+   "volume_at_call": 2995.12,
+   "series_ticker": "KXPOKEMON",
+   "event_ticker": "KXPOKEMON-26JULMEGDRAEX",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 3.9993055555555554
+  }
+ ],
+ "KXPOKEMON-26JULPERORDBO": [
+  {
+   "ticker": "KXPOKEMON-26JULPERORDBO-222.7",
+   "outcome": "no",
+   "entry_price": 0.89,
+   "spread_at_call": 0.06000000000000001,
+   "volume_at_call": 1486.9499999999998,
+   "series_ticker": "KXPOKEMON",
+   "event_ticker": "KXPOKEMON-26JULPERORDBO",
+   "entry_day_iso": "2026-07-21T04:00:00+00:00",
+   "days_to_close_at_entry": 10.999305555555555
+  }
+ ],
+ "KXPOKEMON-26JULPERORDPO": [
+  {
+   "ticker": "KXPOKEMON-26JULPERORDPO-134.96",
+   "outcome": "no",
+   "entry_price": 0.69,
+   "spread_at_call": 0.06,
+   "volume_at_call": 1375.85,
+   "series_ticker": "KXPOKEMON",
+   "event_ticker": "KXPOKEMON-26JULPERORDPO",
+   "entry_day_iso": "2026-07-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.999305555555555
+  }
+ ],
+ "KXPOKEMON-26JUNGENGAREX": [
+  {
+   "ticker": "KXPOKEMON-26JUNGENGAREX-1360.59",
+   "outcome": "no",
+   "entry_price": 0.73,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1133.53,
+   "series_ticker": "KXPOKEMON",
+   "event_ticker": "KXPOKEMON-26JUNGENGAREX",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  }
+ ],
+ "KXPUREALBUMS-CHU26AUG13": [
+  {
+   "ticker": "KXPUREALBUMS-CHU26AUG13-6K",
+   "outcome": "yes",
+   "entry_price": 0.94,
+   "spread_at_call": 0.05999999999999994,
+   "volume_at_call": 791.0,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-CHU26AUG13",
+   "entry_day_iso": "2026-08-07T04:00:00+00:00",
+   "days_to_close_at_entry": 9.416666666666666
+  },
+  {
+   "ticker": "KXPUREALBUMS-CHU26AUG13-27K",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.06,
+   "volume_at_call": 696.54,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-CHU26AUG13",
+   "entry_day_iso": "2026-08-11T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  },
+  {
+   "ticker": "KXPUREALBUMS-CHU26AUG13-24K",
+   "outcome": "no",
+   "entry_price": 0.83,
+   "spread_at_call": 0.01999999999999999,
+   "volume_at_call": 1865.1100000000001,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-CHU26AUG13",
+   "entry_day_iso": "2026-08-12T04:00:00+00:00",
+   "days_to_close_at_entry": 4.416666666666667
+  },
+  {
+   "ticker": "KXPUREALBUMS-CHU26AUG13-21K",
+   "outcome": "yes",
+   "entry_price": 0.84,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 1368.48,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-CHU26AUG13",
+   "entry_day_iso": "2026-08-12T04:00:00+00:00",
+   "days_to_close_at_entry": 4.416666666666667
+  },
+  {
+   "ticker": "KXPUREALBUMS-CHU26AUG13-18K",
+   "outcome": "yes",
+   "entry_price": 0.91,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 737.02,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-CHU26AUG13",
+   "entry_day_iso": "2026-08-11T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  }
+ ],
+ "KXPUREALBUMS-NOM26AUG13": [
+  {
+   "ticker": "KXPUREALBUMS-NOM26AUG13-9K",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.03,
+   "volume_at_call": 517.0,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-NOM26AUG13",
+   "entry_day_iso": "2026-08-10T04:00:00+00:00",
+   "days_to_close_at_entry": 6.416666666666667
+  },
+  {
+   "ticker": "KXPUREALBUMS-NOM26AUG13-6K",
+   "outcome": "no",
+   "entry_price": 0.91,
+   "spread_at_call": 0.04000000000000001,
+   "volume_at_call": 580.0,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-NOM26AUG13",
+   "entry_day_iso": "2026-08-08T04:00:00+00:00",
+   "days_to_close_at_entry": 8.416666666666666
+  },
+  {
+   "ticker": "KXPUREALBUMS-NOM26AUG13-5K",
+   "outcome": "no",
+   "entry_price": 0.9,
+   "spread_at_call": 0.03,
+   "volume_at_call": 566.0,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-NOM26AUG13",
+   "entry_day_iso": "2026-08-08T04:00:00+00:00",
+   "days_to_close_at_entry": 8.416666666666666
+  },
+  {
+   "ticker": "KXPUREALBUMS-NOM26AUG13-4K",
+   "outcome": "no",
+   "entry_price": 0.86,
+   "spread_at_call": 0.01999999999999999,
+   "volume_at_call": 790.8399999999999,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-NOM26AUG13",
+   "entry_day_iso": "2026-08-04T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXPUREALBUMS-NOM26AUG13-3K",
+   "outcome": "no",
+   "entry_price": 0.69,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 821.63,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-NOM26AUG13",
+   "entry_day_iso": "2026-08-07T04:00:00+00:00",
+   "days_to_close_at_entry": 9.416666666666666
+  },
+  {
+   "ticker": "KXPUREALBUMS-NOM26AUG13-2K",
+   "outcome": "no",
+   "entry_price": 0.7,
+   "spread_at_call": 0.040000000000000036,
+   "volume_at_call": 913.39,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-NOM26AUG13",
+   "entry_day_iso": "2026-08-06T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  },
+  {
+   "ticker": "KXPUREALBUMS-NOM26AUG13-1K",
+   "outcome": "yes",
+   "entry_price": 0.9,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 1691.06,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-NOM26AUG13",
+   "entry_day_iso": "2026-08-04T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  }
+ ],
+ "KXPUREALBUMS-THI26AUG13": [
+  {
+   "ticker": "KXPUREALBUMS-THI26AUG13-350K",
+   "outcome": "no",
+   "entry_price": 0.91,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1520.21,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-THI26AUG13",
+   "entry_day_iso": "2026-08-12T04:00:00+00:00",
+   "days_to_close_at_entry": 4.416666666666667
+  },
+  {
+   "ticker": "KXPUREALBUMS-THI26AUG13-300K",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 5669.29,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-THI26AUG13",
+   "entry_day_iso": "2026-08-12T04:00:00+00:00",
+   "days_to_close_at_entry": 4.416666666666667
+  },
+  {
+   "ticker": "KXPUREALBUMS-THI26AUG13-250K",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 2329.62,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-THI26AUG13",
+   "entry_day_iso": "2026-08-11T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  }
+ ],
+ "KXPUREALBUMS-WILD26AUG20": [
+  {
+   "ticker": "KXPUREALBUMS-WILD26AUG20-90K",
+   "outcome": "no",
+   "entry_price": 0.65,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 785.47,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-WILD26AUG20",
+   "entry_day_iso": "2026-08-13T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  },
+  {
+   "ticker": "KXPUREALBUMS-WILD26AUG20-60K",
+   "outcome": "yes",
+   "entry_price": 0.79,
+   "spread_at_call": 0.050000000000000044,
+   "volume_at_call": 717.85,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-WILD26AUG20",
+   "entry_day_iso": "2026-08-10T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXPUREALBUMS-WILD26AUG20-50K",
+   "outcome": "yes",
+   "entry_price": 0.85,
+   "spread_at_call": 0.039999999999999925,
+   "volume_at_call": 1734.03,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-WILD26AUG20",
+   "entry_day_iso": "2026-08-10T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXPUREALBUMS-WILD26AUG20-140K",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.06999999999999995,
+   "volume_at_call": 822.0,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-WILD26AUG20",
+   "entry_day_iso": "2026-08-20T04:00:00+00:00",
+   "days_to_close_at_entry": 3.4166666666666665
+  },
+  {
+   "ticker": "KXPUREALBUMS-WILD26AUG20-100K",
+   "outcome": "no",
+   "entry_price": 0.77,
+   "spread_at_call": 0.04000000000000001,
+   "volume_at_call": 1902.96,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-WILD26AUG20",
+   "entry_day_iso": "2026-08-12T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  }
+ ],
+ "KXPUREALBUMS-XPE26JUL09": [
+  {
+   "ticker": "KXPUREALBUMS-XPE26JUL09-9K",
+   "outcome": "no",
+   "entry_price": 0.85,
+   "spread_at_call": 0.05000000000000002,
+   "volume_at_call": 5545.749999999999,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-XPE26JUL09",
+   "entry_day_iso": "2026-06-29T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXPUREALBUMS-XPE26JUL09-6K",
+   "outcome": "no",
+   "entry_price": 0.8,
+   "spread_at_call": 0.06,
+   "volume_at_call": 3926.2599999999998,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-XPE26JUL09",
+   "entry_day_iso": "2026-06-29T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXPUREALBUMS-XPE26JUL09-3K",
+   "outcome": "no",
+   "entry_price": 0.7,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 13128.35,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-XPE26JUL09",
+   "entry_day_iso": "2026-07-02T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  },
+  {
+   "ticker": "KXPUREALBUMS-XPE26JUL09-30K",
+   "outcome": "no",
+   "entry_price": 0.96,
+   "spread_at_call": 0.030000000000000006,
+   "volume_at_call": 1339.39,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-XPE26JUL09",
+   "entry_day_iso": "2026-06-30T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXPUREALBUMS-XPE26JUL09-15K",
+   "outcome": "no",
+   "entry_price": 0.9299999999999999,
+   "spread_at_call": 0.039999999999999994,
+   "volume_at_call": 1022.94,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-XPE26JUL09",
+   "entry_day_iso": "2026-06-29T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXPUREALBUMS-XPE26JUL09-12K",
+   "outcome": "no",
+   "entry_price": 0.91,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 2095.19,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-XPE26JUL09",
+   "entry_day_iso": "2026-06-29T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  }
+ ],
+ "KXPUREALBUMS-YOU26JUN18": [
+  {
+   "ticker": "KXPUREALBUMS-YOU26JUN18-250K",
+   "outcome": "no",
+   "entry_price": 0.75,
+   "spread_at_call": 0.04999999999999999,
+   "volume_at_call": 2640.75,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-YOU26JUN18",
+   "entry_day_iso": "2026-06-16T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  },
+  {
+   "ticker": "KXPUREALBUMS-YOU26JUN18-150K",
+   "outcome": "yes",
+   "entry_price": 0.84,
+   "spread_at_call": 0.04999999999999993,
+   "volume_at_call": 622.33,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-YOU26JUN18",
+   "entry_day_iso": "2026-06-09T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXPUREALBUMS-YOU26JUN18-130K",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.05999999999999994,
+   "volume_at_call": 749.3900000000001,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-YOU26JUN18",
+   "entry_day_iso": "2026-06-12T04:00:00+00:00",
+   "days_to_close_at_entry": 9.416666666666666
+  },
+  {
+   "ticker": "KXPUREALBUMS-YOU26JUN18-110K",
+   "outcome": "yes",
+   "entry_price": 0.96,
+   "spread_at_call": 0.04999999999999993,
+   "volume_at_call": 500.0,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-YOU26JUN18",
+   "entry_day_iso": "2026-06-10T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  },
+  {
+   "ticker": "KXPUREALBUMS-YOU26JUN18-100K",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 635.03,
+   "series_ticker": "KXPUREALBUMS",
+   "event_ticker": "KXPUREALBUMS-YOU26JUN18",
+   "entry_day_iso": "2026-06-10T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  }
+ ],
+ "KXRT-DEA": [
+  {
+   "ticker": "KXRT-DEA-90",
+   "outcome": "no",
+   "entry_price": 0.71,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 6024.79,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-DEA",
+   "entry_day_iso": "2026-06-10T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXRT-DEA-85",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.020000000000000004,
+   "volume_at_call": 15392.089999999998,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-DEA",
+   "entry_day_iso": "2026-06-13T04:00:00+00:00",
+   "days_to_close_at_entry": 9.416666666666666
+  },
+  {
+   "ticker": "KXRT-DEA-80",
+   "outcome": "yes",
+   "entry_price": 0.83,
+   "spread_at_call": 0.06999999999999995,
+   "volume_at_call": 2942.55,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-DEA",
+   "entry_day_iso": "2026-06-09T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-DEA-75",
+   "outcome": "yes",
+   "entry_price": 0.89,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 2447.9900000000002,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-DEA",
+   "entry_day_iso": "2026-06-09T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-DEA-72",
+   "outcome": "no",
+   "entry_price": 0.9299999999999999,
+   "spread_at_call": 0.009999999999999995,
+   "volume_at_call": 11725.69,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-DEA",
+   "entry_day_iso": "2026-06-19T04:00:00+00:00",
+   "days_to_close_at_entry": 3.4166666666666665
+  },
+  {
+   "ticker": "KXRT-DEA-70",
+   "outcome": "yes",
+   "entry_price": 0.93,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 863.54,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-DEA",
+   "entry_day_iso": "2026-06-10T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXRT-DEA-68",
+   "outcome": "yes",
+   "entry_price": 0.96,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 22344.170000000002,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-DEA",
+   "entry_day_iso": "2026-06-22T04:00:00+00:00",
+   "days_to_close_at_entry": 0.4166666666666667
+  },
+  {
+   "ticker": "KXRT-DEA-65",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.039999999999999925,
+   "volume_at_call": 668.5899999999999,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-DEA",
+   "entry_day_iso": "2026-06-10T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXRT-DEA-60",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.039999999999999925,
+   "volume_at_call": 1701.81,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-DEA",
+   "entry_day_iso": "2026-06-09T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-DEA-55",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.06999999999999995,
+   "volume_at_call": 776.93,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-DEA",
+   "entry_day_iso": "2026-06-09T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  }
+ ],
+ "KXRT-INS": [
+  {
+   "ticker": "KXRT-INS-80",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 3103.12,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-INS",
+   "entry_day_iso": "2026-08-11T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-INS-70",
+   "outcome": "no",
+   "entry_price": 0.9299999999999999,
+   "spread_at_call": 0.01999999999999999,
+   "volume_at_call": 1933.8700000000001,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-INS",
+   "entry_day_iso": "2026-08-11T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-INS-65",
+   "outcome": "no",
+   "entry_price": 0.89,
+   "spread_at_call": 0.020000000000000004,
+   "volume_at_call": 2246.02,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-INS",
+   "entry_day_iso": "2026-08-11T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-INS-60",
+   "outcome": "no",
+   "entry_price": 0.83,
+   "spread_at_call": 0.01999999999999999,
+   "volume_at_call": 2209.88,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-INS",
+   "entry_day_iso": "2026-08-11T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-INS-55",
+   "outcome": "no",
+   "entry_price": 0.74,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 2212.5899999999997,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-INS",
+   "entry_day_iso": "2026-08-11T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-INS-50",
+   "outcome": "no",
+   "entry_price": 0.6799999999999999,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 3404.65,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-INS",
+   "entry_day_iso": "2026-08-11T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-INS-45",
+   "outcome": "no",
+   "entry_price": 0.65,
+   "spread_at_call": 0.050000000000000044,
+   "volume_at_call": 3755.8599999999997,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-INS",
+   "entry_day_iso": "2026-08-17T04:00:00+00:00",
+   "days_to_close_at_entry": 7.416666666666667
+  },
+  {
+   "ticker": "KXRT-INS-35",
+   "outcome": "yes",
+   "entry_price": 0.67,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 1951.58,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-INS",
+   "entry_day_iso": "2026-08-13T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  },
+  {
+   "ticker": "KXRT-INS-75",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.04000000000000001,
+   "volume_at_call": 1761.0299999999997,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-INS",
+   "entry_day_iso": "2026-08-10T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  }
+ ],
+ "KXRT-INV": [
+  {
+   "ticker": "KXRT-INV-95",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 19622.350000000002,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-INV",
+   "entry_day_iso": "2026-06-30T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-INV-94",
+   "outcome": "no",
+   "entry_price": 0.92,
+   "spread_at_call": 0.009999999999999995,
+   "volume_at_call": 3678.51,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-INV",
+   "entry_day_iso": "2026-06-30T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-INV-93",
+   "outcome": "yes",
+   "entry_price": 0.66,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 8633.84,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-INV",
+   "entry_day_iso": "2026-07-03T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  },
+  {
+   "ticker": "KXRT-INV-92",
+   "outcome": "yes",
+   "entry_price": 0.65,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 7580.18,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-INV",
+   "entry_day_iso": "2026-06-30T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-INV-91",
+   "outcome": "yes",
+   "entry_price": 0.82,
+   "spread_at_call": 0.009999999999999898,
+   "volume_at_call": 5531.7699999999995,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-INV",
+   "entry_day_iso": "2026-06-30T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-INV-90",
+   "outcome": "yes",
+   "entry_price": 0.92,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 67274.51,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-INV",
+   "entry_day_iso": "2026-06-30T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  }
+ ],
+ "KXRT-ODY": [
+  {
+   "ticker": "KXRT-ODY-97",
+   "outcome": "no",
+   "entry_price": 0.9299999999999999,
+   "spread_at_call": 0.03,
+   "volume_at_call": 3831.91,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-ODY",
+   "entry_day_iso": "2026-07-08T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXRT-ODY-96",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 53344.33,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-ODY",
+   "entry_day_iso": "2026-07-16T04:00:00+00:00",
+   "days_to_close_at_entry": 4.416666666666667
+  },
+  {
+   "ticker": "KXRT-ODY-95",
+   "outcome": "no",
+   "entry_price": 0.79,
+   "spread_at_call": 0.060000000000000026,
+   "volume_at_call": 5959.5,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-ODY",
+   "entry_day_iso": "2026-07-10T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  },
+  {
+   "ticker": "KXRT-ODY-94",
+   "outcome": "yes",
+   "entry_price": 0.9,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 154655.33000000002,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-ODY",
+   "entry_day_iso": "2026-07-17T04:00:00+00:00",
+   "days_to_close_at_entry": 3.4166666666666665
+  },
+  {
+   "ticker": "KXRT-ODY-93",
+   "outcome": "yes",
+   "entry_price": 0.85,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 77273.87,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-ODY",
+   "entry_day_iso": "2026-07-16T04:00:00+00:00",
+   "days_to_close_at_entry": 4.416666666666667
+  },
+  {
+   "ticker": "KXRT-ODY-92",
+   "outcome": "yes",
+   "entry_price": 0.7,
+   "spread_at_call": 0.029999999999999916,
+   "volume_at_call": 46215.44,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-ODY",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 6.416666666666667
+  },
+  {
+   "ticker": "KXRT-ODY-91",
+   "outcome": "yes",
+   "entry_price": 0.8,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 2036.84,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-ODY",
+   "entry_day_iso": "2026-07-15T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  },
+  {
+   "ticker": "KXRT-ODY-90",
+   "outcome": "yes",
+   "entry_price": 0.72,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 61128.94,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-ODY",
+   "entry_day_iso": "2026-07-07T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-ODY-87",
+   "outcome": "yes",
+   "entry_price": 0.8,
+   "spread_at_call": 0.050000000000000044,
+   "volume_at_call": 5118.66,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-ODY",
+   "entry_day_iso": "2026-07-09T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  },
+  {
+   "ticker": "KXRT-ODY-85",
+   "outcome": "yes",
+   "entry_price": 0.89,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 38746.810000000005,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-ODY",
+   "entry_day_iso": "2026-07-07T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-ODY-80",
+   "outcome": "yes",
+   "entry_price": 0.94,
+   "spread_at_call": 0.009999999999999898,
+   "volume_at_call": 42004.729999999996,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-ODY",
+   "entry_day_iso": "2026-07-07T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-ODY-75",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 12758.16,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-ODY",
+   "entry_day_iso": "2026-07-09T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  }
+ ],
+ "KXRT-PIN": [
+  {
+   "ticker": "KXRT-PIN-90",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.009999999999999995,
+   "volume_at_call": 6229.47,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-PIN",
+   "entry_day_iso": "2026-07-21T04:00:00+00:00",
+   "days_to_close_at_entry": 6.416666666666667
+  },
+  {
+   "ticker": "KXRT-PIN-85",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.020000000000000004,
+   "volume_at_call": 3002.89,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-PIN",
+   "entry_day_iso": "2026-07-19T04:00:00+00:00",
+   "days_to_close_at_entry": 8.416666666666666
+  },
+  {
+   "ticker": "KXRT-PIN-80",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.03,
+   "volume_at_call": 6724.370000000001,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-PIN",
+   "entry_day_iso": "2026-07-15T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXRT-PIN-75",
+   "outcome": "no",
+   "entry_price": 0.96,
+   "spread_at_call": 0.019999999999999997,
+   "volume_at_call": 5124.55,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-PIN",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-PIN-70",
+   "outcome": "no",
+   "entry_price": 0.88,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 9778.269999999999,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-PIN",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-PIN-65",
+   "outcome": "no",
+   "entry_price": 0.79,
+   "spread_at_call": 0.03,
+   "volume_at_call": 5378.95,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-PIN",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-PIN-60",
+   "outcome": "no",
+   "entry_price": 0.71,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 8982.949999999999,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-PIN",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-PIN-55",
+   "outcome": "yes",
+   "entry_price": 0.68,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 9941.419999999998,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-PIN",
+   "entry_day_iso": "2026-07-19T04:00:00+00:00",
+   "days_to_close_at_entry": 8.416666666666666
+  },
+  {
+   "ticker": "KXRT-PIN-50",
+   "outcome": "yes",
+   "entry_price": 0.76,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 10855.160000000002,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-PIN",
+   "entry_day_iso": "2026-07-18T04:00:00+00:00",
+   "days_to_close_at_entry": 9.416666666666666
+  },
+  {
+   "ticker": "KXRT-PIN-45",
+   "outcome": "yes",
+   "entry_price": 0.65,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 9640.24,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-PIN",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-PIN-40",
+   "outcome": "yes",
+   "entry_price": 0.82,
+   "spread_at_call": 0.009999999999999898,
+   "volume_at_call": 799.44,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-PIN",
+   "entry_day_iso": "2026-07-16T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  },
+  {
+   "ticker": "KXRT-PIN-35",
+   "outcome": "yes",
+   "entry_price": 0.88,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 1263.97,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-PIN",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-PIN-30",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.04999999999999993,
+   "volume_at_call": 933.5,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-PIN",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-PIN-25",
+   "outcome": "yes",
+   "entry_price": 0.96,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 812.4300000000001,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-PIN",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  }
+ ],
+ "KXRT-SUPER": [
+  {
+   "ticker": "KXRT-SUPER-75",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 1251.7599999999998,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-SUPER",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-SUPER-70",
+   "outcome": "no",
+   "entry_price": 0.96,
+   "spread_at_call": 0.010000000000000002,
+   "volume_at_call": 978.6200000000001,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-SUPER",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-SUPER-65",
+   "outcome": "no",
+   "entry_price": 0.9299999999999999,
+   "spread_at_call": 0.01999999999999999,
+   "volume_at_call": 1529.5700000000002,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-SUPER",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-SUPER-60",
+   "outcome": "no",
+   "entry_price": 0.91,
+   "spread_at_call": 0.03,
+   "volume_at_call": 2891.8500000000004,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-SUPER",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-SUPER-55",
+   "outcome": "no",
+   "entry_price": 0.86,
+   "spread_at_call": 0.01999999999999999,
+   "volume_at_call": 2564.15,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-SUPER",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-SUPER-50",
+   "outcome": "no",
+   "entry_price": 0.8200000000000001,
+   "spread_at_call": 0.03,
+   "volume_at_call": 4069.830000000001,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-SUPER",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-SUPER-45",
+   "outcome": "no",
+   "entry_price": 0.74,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 9680.410000000002,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-SUPER",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-SUPER-40",
+   "outcome": "no",
+   "entry_price": 0.75,
+   "spread_at_call": 0.04999999999999999,
+   "volume_at_call": 784.52,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-SUPER",
+   "entry_day_iso": "2026-08-03T04:00:00+00:00",
+   "days_to_close_at_entry": 7.416666666666667
+  },
+  {
+   "ticker": "KXRT-SUPER-35",
+   "outcome": "no",
+   "entry_price": 0.6699999999999999,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 653.3700000000001,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-SUPER",
+   "entry_day_iso": "2026-08-05T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  },
+  {
+   "ticker": "KXRT-SUPER-30",
+   "outcome": "yes",
+   "entry_price": 0.75,
+   "spread_at_call": 0.050000000000000044,
+   "volume_at_call": 3414.6499999999996,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-SUPER",
+   "entry_day_iso": "2026-08-06T04:00:00+00:00",
+   "days_to_close_at_entry": 4.416666666666667
+  },
+  {
+   "ticker": "KXRT-SUPER-25",
+   "outcome": "yes",
+   "entry_price": 0.89,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 3568.71,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-SUPER",
+   "entry_day_iso": "2026-08-06T04:00:00+00:00",
+   "days_to_close_at_entry": 4.416666666666667
+  },
+  {
+   "ticker": "KXRT-SUPER-20",
+   "outcome": "yes",
+   "entry_price": 0.68,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1047.76,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-SUPER",
+   "entry_day_iso": "2026-07-31T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  }
+ ],
+ "KXRT-YOUN": [
+  {
+   "ticker": "KXRT-YOUN-90",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.009999999999999995,
+   "volume_at_call": 11859.76,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-YOUN",
+   "entry_day_iso": "2026-06-23T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-YOUN-85",
+   "outcome": "no",
+   "entry_price": 0.87,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 8607.97,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-YOUN",
+   "entry_day_iso": "2026-06-23T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-YOUN-80",
+   "outcome": "no",
+   "entry_price": 0.71,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 4997.51,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-YOUN",
+   "entry_day_iso": "2026-06-23T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-YOUN-75",
+   "outcome": "no",
+   "entry_price": 0.84,
+   "spread_at_call": 0.04000000000000001,
+   "volume_at_call": 10359.07,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-YOUN",
+   "entry_day_iso": "2026-06-27T04:00:00+00:00",
+   "days_to_close_at_entry": 9.416666666666666
+  },
+  {
+   "ticker": "KXRT-YOUN-70",
+   "outcome": "yes",
+   "entry_price": 0.74,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 4674.85,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-YOUN",
+   "entry_day_iso": "2026-06-23T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-YOUN-65",
+   "outcome": "yes",
+   "entry_price": 0.84,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 2776.06,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-YOUN",
+   "entry_day_iso": "2026-06-23T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-YOUN-60",
+   "outcome": "yes",
+   "entry_price": 0.92,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 3366.92,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-YOUN",
+   "entry_day_iso": "2026-06-23T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXRT-YOUN-55",
+   "outcome": "yes",
+   "entry_price": 0.91,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 3324.24,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-YOUN",
+   "entry_day_iso": "2026-06-24T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXRT-YOUN-50",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.039999999999999925,
+   "volume_at_call": 3372.3599999999997,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-YOUN",
+   "entry_day_iso": "2026-06-25T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  },
+  {
+   "ticker": "KXRT-YOUN-45",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 3975.5899999999997,
+   "series_ticker": "KXRT",
+   "event_ticker": "KXRT-YOUN",
+   "entry_day_iso": "2026-06-25T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  }
+ ],
+ "KXRTX5090W-26JUL31": [
+  {
+   "ticker": "KXRTX5090W-26JUL31-0.49",
+   "outcome": "no",
+   "entry_price": 0.71,
+   "spread_at_call": 0.040000000000000036,
+   "volume_at_call": 1431.1,
+   "series_ticker": "KXRTX5090W",
+   "event_ticker": "KXRTX5090W-26JUL31",
+   "entry_day_iso": "2026-07-29T04:00:00+00:00",
+   "days_to_close_at_entry": 2.7083333333333335
+  }
+ ],
+ "KXSPACEXCOUNT-26JUN": [
+  {
+   "ticker": "KXSPACEXCOUNT-26JUN-16",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.009999999999999995,
+   "volume_at_call": 65744.06,
+   "series_ticker": "KXSPACEXCOUNT",
+   "event_ticker": "KXSPACEXCOUNT-26JUN",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXSPACEXCOUNT-26JUN-15",
+   "outcome": "no",
+   "entry_price": 0.92,
+   "spread_at_call": 0.009999999999999995,
+   "volume_at_call": 127691.41000000002,
+   "series_ticker": "KXSPACEXCOUNT",
+   "event_ticker": "KXSPACEXCOUNT-26JUN",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXSPACEXCOUNT-26JUN-14",
+   "outcome": "no",
+   "entry_price": 0.83,
+   "spread_at_call": 0.03,
+   "volume_at_call": 119249.56999999998,
+   "series_ticker": "KXSPACEXCOUNT",
+   "event_ticker": "KXSPACEXCOUNT-26JUN",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXSPACEXCOUNT-26JUN-13",
+   "outcome": "yes",
+   "entry_price": 0.69,
+   "spread_at_call": 0.019999999999999907,
+   "volume_at_call": 72176.18999999999,
+   "series_ticker": "KXSPACEXCOUNT",
+   "event_ticker": "KXSPACEXCOUNT-26JUN",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXSPACEXCOUNT-26JUN-12",
+   "outcome": "yes",
+   "entry_price": 0.9,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 48710.890000000014,
+   "series_ticker": "KXSPACEXCOUNT",
+   "event_ticker": "KXSPACEXCOUNT-26JUN",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXSPACEXCOUNT-26JUN-11",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.019999999999999907,
+   "volume_at_call": 35318.14,
+   "series_ticker": "KXSPACEXCOUNT",
+   "event_ticker": "KXSPACEXCOUNT-26JUN",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  }
+ ],
+ "KXSUEZWEEKLY-26AUG02": [
+  {
+   "ticker": "KXSUEZWEEKLY-26AUG02-T300",
+   "outcome": "no",
+   "entry_price": 0.8,
+   "spread_at_call": 0.009999999999999981,
+   "volume_at_call": 700.5,
+   "series_ticker": "KXSUEZWEEKLY",
+   "event_ticker": "KXSUEZWEEKLY-26AUG02",
+   "entry_day_iso": "2026-07-30T04:00:00+00:00",
+   "days_to_close_at_entry": 5.375
+  }
+ ],
+ "KXTOPMODEL-26AUG03": [
+  {
+   "ticker": "KXTOPMODEL-26AUG03-OPUS5M",
+   "outcome": "yes",
+   "entry_price": 0.97,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 3128.2,
+   "series_ticker": "KXTOPMODEL",
+   "event_ticker": "KXTOPMODEL-26AUG03",
+   "entry_day_iso": "2026-08-02T04:00:00+00:00",
+   "days_to_close_at_entry": 1.4166666666666667
+  },
+  {
+   "ticker": "KXTOPMODEL-26AUG03-CLAUT",
+   "outcome": "no",
+   "entry_price": 0.96,
+   "spread_at_call": 0.030000000000000006,
+   "volume_at_call": 954.93,
+   "series_ticker": "KXTOPMODEL",
+   "event_ticker": "KXTOPMODEL-26AUG03",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 6.416666666666667
+  },
+  {
+   "ticker": "KXTOPMODEL-26AUG03-CLAU5",
+   "outcome": "no",
+   "entry_price": 0.87,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 8897.02,
+   "series_ticker": "KXTOPMODEL",
+   "event_ticker": "KXTOPMODEL-26AUG03",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 6.416666666666667
+  }
+ ],
+ "KXTOPMODEL-26JUL13": [
+  {
+   "ticker": "KXTOPMODEL-26JUL13-CLAUT",
+   "outcome": "yes",
+   "entry_price": 0.94,
+   "spread_at_call": 0.009999999999999898,
+   "volume_at_call": 5288.2,
+   "series_ticker": "KXTOPMODEL",
+   "event_ticker": "KXTOPMODEL-26JUL13",
+   "entry_day_iso": "2026-07-07T04:00:00+00:00",
+   "days_to_close_at_entry": 6.416666666666667
+  },
+  {
+   "ticker": "KXTOPMODEL-26JUL13-CLAUF",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 3101.39,
+   "series_ticker": "KXTOPMODEL",
+   "event_ticker": "KXTOPMODEL-26JUL13",
+   "entry_day_iso": "2026-07-07T04:00:00+00:00",
+   "days_to_close_at_entry": 6.416666666666667
+  }
+ ],
+ "KXTOPMODEL-26JUN29": [
+  {
+   "ticker": "KXTOPMODEL-26JUN29-CLAUT",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 542.09,
+   "series_ticker": "KXTOPMODEL",
+   "event_ticker": "KXTOPMODEL-26JUN29",
+   "entry_day_iso": "2026-06-23T04:00:00+00:00",
+   "days_to_close_at_entry": 6.416666666666667
+  },
+  {
+   "ticker": "KXTOPMODEL-26JUN29-CLAUF",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.03,
+   "volume_at_call": 725.14,
+   "series_ticker": "KXTOPMODEL",
+   "event_ticker": "KXTOPMODEL-26JUN29",
+   "entry_day_iso": "2026-06-23T04:00:00+00:00",
+   "days_to_close_at_entry": 6.416666666666667
+  }
+ ],
+ "KXTRUMPENDORSEMENTS-26AUG01": [
+  {
+   "ticker": "KXTRUMPENDORSEMENTS-26AUG01-A5",
+   "outcome": "yes",
+   "entry_price": 0.85,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 569.38,
+   "series_ticker": "KXTRUMPENDORSEMENTS",
+   "event_ticker": "KXTRUMPENDORSEMENTS-26AUG01",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  },
+  {
+   "ticker": "KXTRUMPENDORSEMENTS-26AUG01-A3",
+   "outcome": "yes",
+   "entry_price": 0.96,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 957.0,
+   "series_ticker": "KXTRUMPENDORSEMENTS",
+   "event_ticker": "KXTRUMPENDORSEMENTS-26AUG01",
+   "entry_day_iso": "2026-07-27T04:00:00+00:00",
+   "days_to_close_at_entry": 6.416666666666667
+  },
+  {
+   "ticker": "KXTRUMPENDORSEMENTS-26AUG01-A25",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.020000000000000004,
+   "volume_at_call": 4146.3099999999995,
+   "series_ticker": "KXTRUMPENDORSEMENTS",
+   "event_ticker": "KXTRUMPENDORSEMENTS-26AUG01",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  },
+  {
+   "ticker": "KXTRUMPENDORSEMENTS-26AUG01-A20",
+   "outcome": "no",
+   "entry_price": 0.92,
+   "spread_at_call": 0.03,
+   "volume_at_call": 1843.26,
+   "series_ticker": "KXTRUMPENDORSEMENTS",
+   "event_ticker": "KXTRUMPENDORSEMENTS-26AUG01",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  },
+  {
+   "ticker": "KXTRUMPENDORSEMENTS-26AUG01-A15",
+   "outcome": "no",
+   "entry_price": 0.78,
+   "spread_at_call": 0.01999999999999999,
+   "volume_at_call": 1295.84,
+   "series_ticker": "KXTRUMPENDORSEMENTS",
+   "event_ticker": "KXTRUMPENDORSEMENTS-26AUG01",
+   "entry_day_iso": "2026-07-28T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  },
+  {
+   "ticker": "KXTRUMPENDORSEMENTS-26AUG01-A10",
+   "outcome": "no",
+   "entry_price": 0.91,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 2857.9399999999996,
+   "series_ticker": "KXTRUMPENDORSEMENTS",
+   "event_ticker": "KXTRUMPENDORSEMENTS-26AUG01",
+   "entry_day_iso": "2026-07-31T04:00:00+00:00",
+   "days_to_close_at_entry": 2.4166666666666665
+  }
+ ],
+ "KXTRUMPENDORSEMENTS-26AUG21": [
+  {
+   "ticker": "KXTRUMPENDORSEMENTS-26AUG21-A50",
+   "outcome": "no",
+   "entry_price": 0.77,
+   "spread_at_call": 0.05000000000000002,
+   "volume_at_call": 2274.14,
+   "series_ticker": "KXTRUMPENDORSEMENTS",
+   "event_ticker": "KXTRUMPENDORSEMENTS-26AUG21",
+   "entry_day_iso": "2026-08-18T04:00:00+00:00",
+   "days_to_close_at_entry": 4.416666666666667
+  },
+  {
+   "ticker": "KXTRUMPENDORSEMENTS-26AUG21-A5",
+   "outcome": "yes",
+   "entry_price": 0.91,
+   "spread_at_call": 0.040000000000000036,
+   "volume_at_call": 997.99,
+   "series_ticker": "KXTRUMPENDORSEMENTS",
+   "event_ticker": "KXTRUMPENDORSEMENTS-26AUG21",
+   "entry_day_iso": "2026-08-17T04:00:00+00:00",
+   "days_to_close_at_entry": 5.416666666666667
+  }
+ ],
+ "KXTRUMPNUMSTATES-26JUL01": [
+  {
+   "ticker": "KXTRUMPNUMSTATES-26JUL01-E6",
+   "outcome": "yes",
+   "entry_price": 0.65,
+   "spread_at_call": 0.050000000000000044,
+   "volume_at_call": 783.3,
+   "series_ticker": "KXTRUMPNUMSTATES",
+   "event_ticker": "KXTRUMPNUMSTATES-26JUL01",
+   "entry_day_iso": "2026-06-24T04:00:00+00:00",
+   "days_to_close_at_entry": 7.415972222222222
+  },
+  {
+   "ticker": "KXTRUMPNUMSTATES-26JUL01-E5",
+   "outcome": "no",
+   "entry_price": 0.85,
+   "spread_at_call": 0.06,
+   "volume_at_call": 693.28,
+   "series_ticker": "KXTRUMPNUMSTATES",
+   "event_ticker": "KXTRUMPNUMSTATES-26JUL01",
+   "entry_day_iso": "2026-06-19T04:00:00+00:00",
+   "days_to_close_at_entry": 12.415972222222223
+  }
+ ],
+ "KXTRUMPSAYCOMPANY-26AUG01": [
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26AUG01-TSLA",
+   "outcome": "no",
+   "entry_price": 0.76,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1313.2399999999998,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26AUG01",
+   "entry_day_iso": "2026-07-19T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26AUG01-RGTI",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.039999999999999994,
+   "volume_at_call": 4975.240000000002,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26AUG01",
+   "entry_day_iso": "2026-07-22T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26AUG01-PFE",
+   "outcome": "no",
+   "entry_price": 0.84,
+   "spread_at_call": 0.04999999999999999,
+   "volume_at_call": 547.08,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26AUG01",
+   "entry_day_iso": "2026-07-19T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26AUG01-MICR",
+   "outcome": "no",
+   "entry_price": 0.6699999999999999,
+   "spread_at_call": 0.06,
+   "volume_at_call": 1196.7600000000002,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26AUG01",
+   "entry_day_iso": "2026-07-19T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26AUG01-EXXO",
+   "outcome": "no",
+   "entry_price": 0.83,
+   "spread_at_call": 0.03999999999999998,
+   "volume_at_call": 549.92,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26AUG01",
+   "entry_day_iso": "2026-07-19T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26AUG01-DOOR",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 974.6699999999998,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26AUG01",
+   "entry_day_iso": "2026-07-19T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26AUG01-CHAT",
+   "outcome": "no",
+   "entry_price": 0.71,
+   "spread_at_call": 0.07,
+   "volume_at_call": 1023.9000000000001,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26AUG01",
+   "entry_day_iso": "2026-07-22T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26AUG01-ANTH",
+   "outcome": "no",
+   "entry_price": 0.6799999999999999,
+   "spread_at_call": 0.02999999999999997,
+   "volume_at_call": 1531.62,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26AUG01",
+   "entry_day_iso": "2026-07-21T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26AUG01-ABNB",
+   "outcome": "no",
+   "entry_price": 0.9299999999999999,
+   "spread_at_call": 0.03,
+   "volume_at_call": 1964.7999999999997,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26AUG01",
+   "entry_day_iso": "2026-07-19T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26AUG01-DE",
+   "outcome": "yes",
+   "entry_price": 0.7,
+   "spread_at_call": 0.029999999999999916,
+   "volume_at_call": 5984.58,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26AUG01",
+   "entry_day_iso": "2026-07-16T04:00:00+00:00",
+   "days_to_close_at_entry": 13.73829861111111
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26AUG01-GOOG",
+   "outcome": "no",
+   "entry_price": 0.6699999999999999,
+   "spread_at_call": 0.019999999999999962,
+   "volume_at_call": 55604.39,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26AUG01",
+   "entry_day_iso": "2026-07-22T04:00:00+00:00",
+   "days_to_close_at_entry": 5.661701388888889
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26AUG01-FOX",
+   "outcome": "no",
+   "entry_price": 0.73,
+   "spread_at_call": 0.07,
+   "volume_at_call": 9214.18,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26AUG01",
+   "entry_day_iso": "2026-07-14T04:00:00+00:00",
+   "days_to_close_at_entry": 13.6615625
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26AUG01-META",
+   "outcome": "no",
+   "entry_price": 0.65,
+   "spread_at_call": 0.030000000000000027,
+   "volume_at_call": 500.8999999999999,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26AUG01",
+   "entry_day_iso": "2026-07-12T04:00:00+00:00",
+   "days_to_close_at_entry": 8.67449074074074
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26AUG01-CNN",
+   "outcome": "yes",
+   "entry_price": 0.95,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 703.23,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26AUG01",
+   "entry_day_iso": "2026-07-07T04:00:00+00:00",
+   "days_to_close_at_entry": 5.942881944444444
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26AUG01-AAPL",
+   "outcome": "yes",
+   "entry_price": 0.83,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 740.01,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26AUG01",
+   "entry_day_iso": "2026-07-09T04:00:00+00:00",
+   "days_to_close_at_entry": 3.9428819444444443
+  }
+ ],
+ "KXTRUMPSAYCOMPANY-26SEP01": [
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26SEP01-PFE",
+   "outcome": "no",
+   "entry_price": 0.6699999999999999,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1720.81,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26SEP01",
+   "entry_day_iso": "2026-08-11T04:00:00+00:00",
+   "days_to_close_at_entry": 13.45193287037037
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26SEP01-NEW",
+   "outcome": "yes",
+   "entry_price": 0.94,
+   "spread_at_call": 0.009999999999999898,
+   "volume_at_call": 7363.06,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26SEP01",
+   "entry_day_iso": "2026-08-11T04:00:00+00:00",
+   "days_to_close_at_entry": 13.45193287037037
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26SEP01-TOYO",
+   "outcome": "yes",
+   "entry_price": 0.96,
+   "spread_at_call": 0.05999999999999994,
+   "volume_at_call": 1250.1599999999999,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26SEP01",
+   "entry_day_iso": "2026-08-03T04:00:00+00:00",
+   "days_to_close_at_entry": 7.9253125
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26SEP01-GENE",
+   "outcome": "yes",
+   "entry_price": 0.85,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 650.24,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26SEP01",
+   "entry_day_iso": "2026-08-02T04:00:00+00:00",
+   "days_to_close_at_entry": 8.9253125
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26SEP01-MU",
+   "outcome": "yes",
+   "entry_price": 0.66,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 952.0899999999999,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26SEP01",
+   "entry_day_iso": "2026-08-04T04:00:00+00:00",
+   "days_to_close_at_entry": 6.925300925925926
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26SEP01-DELL",
+   "outcome": "yes",
+   "entry_price": 0.84,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 646.8,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26SEP01",
+   "entry_day_iso": "2026-08-02T04:00:00+00:00",
+   "days_to_close_at_entry": 8.925300925925926
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26SEP01-CNN",
+   "outcome": "yes",
+   "entry_price": 0.96,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 646.6,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26SEP01",
+   "entry_day_iso": "2026-08-02T04:00:00+00:00",
+   "days_to_close_at_entry": 8.925300925925926
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26SEP01-BOEI",
+   "outcome": "yes",
+   "entry_price": 0.9,
+   "spread_at_call": 0.040000000000000036,
+   "volume_at_call": 579.62,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26SEP01",
+   "entry_day_iso": "2026-08-03T04:00:00+00:00",
+   "days_to_close_at_entry": 7.925300925925926
+  },
+  {
+   "ticker": "KXTRUMPSAYCOMPANY-26SEP01-AAPL",
+   "outcome": "yes",
+   "entry_price": 0.91,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1540.53,
+   "series_ticker": "KXTRUMPSAYCOMPANY",
+   "event_ticker": "KXTRUMPSAYCOMPANY-26SEP01",
+   "entry_day_iso": "2026-08-05T04:00:00+00:00",
+   "days_to_close_at_entry": 5.925300925925926
+  }
+ ],
+ "KXTRUMPSAYMONTH-26JUL01": [
+  {
+   "ticker": "KXTRUMPSAYMONTH-26JUL01-UFO",
+   "outcome": "no",
+   "entry_price": 0.79,
+   "spread_at_call": 0.020000000000000018,
+   "volume_at_call": 6956.029999999999,
+   "series_ticker": "KXTRUMPSAYMONTH",
+   "event_ticker": "KXTRUMPSAYMONTH-26JUL01",
+   "entry_day_iso": "2026-06-23T04:00:00+00:00",
+   "days_to_close_at_entry": 8.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYMONTH-26JUL01-NINE",
+   "outcome": "no",
+   "entry_price": 0.71,
+   "spread_at_call": 0.050000000000000044,
+   "volume_at_call": 2777.8300000000004,
+   "series_ticker": "KXTRUMPSAYMONTH",
+   "event_ticker": "KXTRUMPSAYMONTH-26JUL01",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYMONTH-26JUL01-MOSC",
+   "outcome": "no",
+   "entry_price": 0.77,
+   "spread_at_call": 0.03,
+   "volume_at_call": 5024.749999999999,
+   "series_ticker": "KXTRUMPSAYMONTH",
+   "event_ticker": "KXTRUMPSAYMONTH-26JUL01",
+   "entry_day_iso": "2026-06-20T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYMONTH-26JUL01-MAKE",
+   "outcome": "no",
+   "entry_price": 0.84,
+   "spread_at_call": 0.04999999999999999,
+   "volume_at_call": 4838.2699999999995,
+   "series_ticker": "KXTRUMPSAYMONTH",
+   "event_ticker": "KXTRUMPSAYMONTH-26JUL01",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYMONTH-26JUL01-KIMM",
+   "outcome": "no",
+   "entry_price": 0.74,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 2081.0499999999997,
+   "series_ticker": "KXTRUMPSAYMONTH",
+   "event_ticker": "KXTRUMPSAYMONTH-26JUL01",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYMONTH-26JUL01-GOAT",
+   "outcome": "no",
+   "entry_price": 0.9,
+   "spread_at_call": 0.03,
+   "volume_at_call": 1900.6000000000001,
+   "series_ticker": "KXTRUMPSAYMONTH",
+   "event_ticker": "KXTRUMPSAYMONTH-26JUL01",
+   "entry_day_iso": "2026-06-20T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYMONTH-26JUL01-EPSTI",
+   "outcome": "no",
+   "entry_price": 0.96,
+   "spread_at_call": 0.019999999999999997,
+   "volume_at_call": 5831.350000000001,
+   "series_ticker": "KXTRUMPSAYMONTH",
+   "event_ticker": "KXTRUMPSAYMONTH-26JUL01",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYMONTH-26JUL01-CRYP",
+   "outcome": "no",
+   "entry_price": 0.6599999999999999,
+   "spread_at_call": 0.06999999999999995,
+   "volume_at_call": 2630.65,
+   "series_ticker": "KXTRUMPSAYMONTH",
+   "event_ticker": "KXTRUMPSAYMONTH-26JUL01",
+   "entry_day_iso": "2026-06-21T04:00:00+00:00",
+   "days_to_close_at_entry": 10.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYMONTH-26JUL01-AUTI",
+   "outcome": "no",
+   "entry_price": 0.78,
+   "spread_at_call": 0.01999999999999999,
+   "volume_at_call": 5217.31,
+   "series_ticker": "KXTRUMPSAYMONTH",
+   "event_ticker": "KXTRUMPSAYMONTH-26JUL01",
+   "entry_day_iso": "2026-06-23T04:00:00+00:00",
+   "days_to_close_at_entry": 8.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYMONTH-26JUL01-PELO",
+   "outcome": "no",
+   "entry_price": 0.69,
+   "spread_at_call": 0.06,
+   "volume_at_call": 1398.22,
+   "series_ticker": "KXTRUMPSAYMONTH",
+   "event_ticker": "KXTRUMPSAYMONTH-26JUL01",
+   "entry_day_iso": "2026-06-16T04:00:00+00:00",
+   "days_to_close_at_entry": 13.572141203703703
+  },
+  {
+   "ticker": "KXTRUMPSAYMONTH-26JUL01-PALE",
+   "outcome": "no",
+   "entry_price": 0.78,
+   "spread_at_call": 0.060000000000000026,
+   "volume_at_call": 2227.8399999999997,
+   "series_ticker": "KXTRUMPSAYMONTH",
+   "event_ticker": "KXTRUMPSAYMONTH-26JUL01",
+   "entry_day_iso": "2026-06-21T04:00:00+00:00",
+   "days_to_close_at_entry": 8.571956018518518
+  },
+  {
+   "ticker": "KXTRUMPSAYMONTH-26JUL01-FAT",
+   "outcome": "no",
+   "entry_price": 0.6599999999999999,
+   "spread_at_call": 0.04999999999999999,
+   "volume_at_call": 2585.35,
+   "series_ticker": "KXTRUMPSAYMONTH",
+   "event_ticker": "KXTRUMPSAYMONTH-26JUL01",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 11.571805555555555
+  },
+  {
+   "ticker": "KXTRUMPSAYMONTH-26JUL01-AMER",
+   "outcome": "yes",
+   "entry_price": 0.65,
+   "spread_at_call": 0.040000000000000036,
+   "volume_at_call": 3718.7299999999996,
+   "series_ticker": "KXTRUMPSAYMONTH",
+   "event_ticker": "KXTRUMPSAYMONTH-26JUL01",
+   "entry_day_iso": "2026-06-16T04:00:00+00:00",
+   "days_to_close_at_entry": 13.571631944444444
+  }
+ ],
+ "KXTRUMPSAYTRUMP-26JUL01": [
+  {
+   "ticker": "KXTRUMPSAYTRUMP-26JUL01-UNIV",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.039999999999999994,
+   "volume_at_call": 2142.11,
+   "series_ticker": "KXTRUMPSAYTRUMP",
+   "event_ticker": "KXTRUMPSAYTRUMP-26JUL01",
+   "entry_day_iso": "2026-06-19T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYTRUMP-26JUL01-TOWE",
+   "outcome": "no",
+   "entry_price": 0.91,
+   "spread_at_call": 0.03,
+   "volume_at_call": 1452.82,
+   "series_ticker": "KXTRUMPSAYTRUMP",
+   "event_ticker": "KXTRUMPSAYTRUMP-26JUL01",
+   "entry_day_iso": "2026-06-23T04:00:00+00:00",
+   "days_to_close_at_entry": 8.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYTRUMP-26JUL01-MOUN",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.07,
+   "volume_at_call": 530.8500000000001,
+   "series_ticker": "KXTRUMPSAYTRUMP",
+   "event_ticker": "KXTRUMPSAYTRUMP-26JUL01",
+   "entry_day_iso": "2026-06-19T04:00:00+00:00",
+   "days_to_close_at_entry": 12.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYTRUMP-26JUL01-FORT",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.07,
+   "volume_at_call": 783.19,
+   "series_ticker": "KXTRUMPSAYTRUMP",
+   "event_ticker": "KXTRUMPSAYTRUMP-26JUL01",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYTRUMP-26JUL01-DOLL",
+   "outcome": "no",
+   "entry_price": 0.91,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 5941.19,
+   "series_ticker": "KXTRUMPSAYTRUMP",
+   "event_ticker": "KXTRUMPSAYTRUMP-26JUL01",
+   "entry_day_iso": "2026-06-20T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYTRUMP-26JUL01-ARC",
+   "outcome": "no",
+   "entry_price": 0.95,
+   "spread_at_call": 0.039999999999999994,
+   "volume_at_call": 2837.5499999999993,
+   "series_ticker": "KXTRUMPSAYTRUMP",
+   "event_ticker": "KXTRUMPSAYTRUMP-26JUL01",
+   "entry_day_iso": "2026-06-20T04:00:00+00:00",
+   "days_to_close_at_entry": 11.416666666666666
+  },
+  {
+   "ticker": "KXTRUMPSAYTRUMP-26JUL01-AIRP",
+   "outcome": "no",
+   "entry_price": 0.94,
+   "spread_at_call": 0.06,
+   "volume_at_call": 1650.3000000000004,
+   "series_ticker": "KXTRUMPSAYTRUMP",
+   "event_ticker": "KXTRUMPSAYTRUMP-26JUL01",
+   "entry_day_iso": "2026-06-18T04:00:00+00:00",
+   "days_to_close_at_entry": 13.416666666666666
+  }
+ ],
+ "KXYTVIEWSHIGH-ARI26SEP": [
+  {
+   "ticker": "KXYTVIEWSHIGH-ARI26SEP-18.0M",
+   "outcome": "yes",
+   "entry_price": 0.86,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 699.1,
+   "series_ticker": "KXYTVIEWSHIGH",
+   "event_ticker": "KXYTVIEWSHIGH-ARI26SEP",
+   "entry_day_iso": "2026-07-30T04:00:00+00:00",
+   "days_to_close_at_entry": 4.833854166666667
+  },
+  {
+   "ticker": "KXYTVIEWSHIGH-ARI26SEP-17.0M",
+   "outcome": "yes",
+   "entry_price": 0.92,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1291.2,
+   "series_ticker": "KXYTVIEWSHIGH",
+   "event_ticker": "KXYTVIEWSHIGH-ARI26SEP",
+   "entry_day_iso": "2026-07-30T04:00:00+00:00",
+   "days_to_close_at_entry": 4.833668981481481
+  },
+  {
+   "ticker": "KXYTVIEWSHIGH-ARI26SEP-16.0M",
+   "outcome": "yes",
+   "entry_price": 0.96,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 900.24,
+   "series_ticker": "KXYTVIEWSHIGH",
+   "event_ticker": "KXYTVIEWSHIGH-ARI26SEP",
+   "entry_day_iso": "2026-07-30T04:00:00+00:00",
+   "days_to_close_at_entry": 4.83349537037037
+  },
+  {
+   "ticker": "KXYTVIEWSHIGH-ARI26SEP-15.0M",
+   "outcome": "yes",
+   "entry_price": 0.96,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 812.73,
+   "series_ticker": "KXYTVIEWSHIGH",
+   "event_ticker": "KXYTVIEWSHIGH-ARI26SEP",
+   "entry_day_iso": "2026-07-30T04:00:00+00:00",
+   "days_to_close_at_entry": 4.833240740740741
+  }
+ ],
+ "KXYTVIEWSHIGH-BAD26SEP": [
+  {
+   "ticker": "KXYTVIEWSHIGH-BAD26SEP-29.0M",
+   "outcome": "yes",
+   "entry_price": 0.88,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 890.01,
+   "series_ticker": "KXYTVIEWSHIGH",
+   "event_ticker": "KXYTVIEWSHIGH-BAD26SEP",
+   "entry_day_iso": "2026-07-30T04:00:00+00:00",
+   "days_to_close_at_entry": 4.835555555555556
+  }
+ ],
+ "KXYTVIEWSHIGH-YOU26SEP": [
+  {
+   "ticker": "KXYTVIEWSHIGH-YOU26SEP-7.0M",
+   "outcome": "yes",
+   "entry_price": 0.76,
+   "spread_at_call": 0.040000000000000036,
+   "volume_at_call": 1822.02,
+   "series_ticker": "KXYTVIEWSHIGH",
+   "event_ticker": "KXYTVIEWSHIGH-YOU26SEP",
+   "entry_day_iso": "2026-07-29T04:00:00+00:00",
+   "days_to_close_at_entry": 5.840462962962963
+  }
+ ],
+ "KXYTVIEWSW-BAD26AUG09": [
+  {
+   "ticker": "KXYTVIEWSW-BAD26AUG09-31.0M",
+   "outcome": "no",
+   "entry_price": 0.78,
+   "spread_at_call": 0.03,
+   "volume_at_call": 801.09,
+   "series_ticker": "KXYTVIEWSW",
+   "event_ticker": "KXYTVIEWSW-BAD26AUG09",
+   "entry_day_iso": "2026-08-07T04:00:00+00:00",
+   "days_to_close_at_entry": 4.407430555555556
+  },
+  {
+   "ticker": "KXYTVIEWSW-BAD26AUG09-29.0M",
+   "outcome": "yes",
+   "entry_price": 0.96,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 2489.95,
+   "series_ticker": "KXYTVIEWSW",
+   "event_ticker": "KXYTVIEWSW-BAD26AUG09",
+   "entry_day_iso": "2026-08-05T04:00:00+00:00",
+   "days_to_close_at_entry": 6.407280092592592
+  }
+ ],
+ "KXYTVIEWSW-DRA26AUG09": [
+  {
+   "ticker": "KXYTVIEWSW-DRA26AUG09-13.0M",
+   "outcome": "no",
+   "entry_price": 0.89,
+   "spread_at_call": 0.06999999999999999,
+   "volume_at_call": 515.0,
+   "series_ticker": "KXYTVIEWSW",
+   "event_ticker": "KXYTVIEWSW-DRA26AUG09",
+   "entry_day_iso": "2026-08-04T04:00:00+00:00",
+   "days_to_close_at_entry": 7.407835648148148
+  },
+  {
+   "ticker": "KXYTVIEWSW-DRA26AUG09-12.75M",
+   "outcome": "no",
+   "entry_price": 0.74,
+   "spread_at_call": 0.02999999999999997,
+   "volume_at_call": 779.05,
+   "series_ticker": "KXYTVIEWSW",
+   "event_ticker": "KXYTVIEWSW-DRA26AUG09",
+   "entry_day_iso": "2026-08-05T04:00:00+00:00",
+   "days_to_close_at_entry": 6.407835648148148
+  },
+  {
+   "ticker": "KXYTVIEWSW-DRA26AUG09-12.5M",
+   "outcome": "yes",
+   "entry_price": 0.8,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 3375.54,
+   "series_ticker": "KXYTVIEWSW",
+   "event_ticker": "KXYTVIEWSW-DRA26AUG09",
+   "entry_day_iso": "2026-08-07T04:00:00+00:00",
+   "days_to_close_at_entry": 4.407835648148148
+  },
+  {
+   "ticker": "KXYTVIEWSW-DRA26AUG09-12.25M",
+   "outcome": "yes",
+   "entry_price": 0.71,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 777.86,
+   "series_ticker": "KXYTVIEWSW",
+   "event_ticker": "KXYTVIEWSW-DRA26AUG09",
+   "entry_day_iso": "2026-08-05T04:00:00+00:00",
+   "days_to_close_at_entry": 6.407835648148148
+  },
+  {
+   "ticker": "KXYTVIEWSW-DRA26AUG09-12.0M",
+   "outcome": "yes",
+   "entry_price": 0.87,
+   "spread_at_call": 0.010000000000000009,
+   "volume_at_call": 1226.9099999999999,
+   "series_ticker": "KXYTVIEWSW",
+   "event_ticker": "KXYTVIEWSW-DRA26AUG09",
+   "entry_day_iso": "2026-08-05T04:00:00+00:00",
+   "days_to_close_at_entry": 6.407835648148148
+  }
+ ],
+ "KXYTVIEWSW-JUS26AUG16": [
+  {
+   "ticker": "KXYTVIEWSW-JUS26AUG16-16.0M",
+   "outcome": "no",
+   "entry_price": 0.97,
+   "spread_at_call": 0.05,
+   "volume_at_call": 6748.09,
+   "series_ticker": "KXYTVIEWSW",
+   "event_ticker": "KXYTVIEWSW-JUS26AUG16",
+   "entry_day_iso": "2026-08-14T04:00:00+00:00",
+   "days_to_close_at_entry": 4.416666666666667
+  }
+ ]
+}

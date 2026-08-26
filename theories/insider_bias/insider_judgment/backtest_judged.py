@@ -71,7 +71,17 @@ VARIANTS = {
     # pool, completing 100% judgment coverage of the gate-plausible
     # population in backtest-2026-08-25-insider-fullcov.
     "s57": ("backtest-2026-08-26-insider-judged-s57", 20260828),
+    # g100: a GATE-VALIDATION experiment, not a bet-rule run — samples the
+    # GATED-OUT population to measure the gate's false-negative rate (does
+    # judgment find conviction in what the gate discards?). exp/ run id on
+    # purpose: pooled scores and bucket_rates exclude it by convention, so
+    # a different population can never leak into the theory's track record.
+    "g100": ("exp/2026-08-26-insider-judged-gated100", 20260829),
 }
+
+#: Which side of the gate each variant samples, and how many events.
+VARIANT_POOL = {"g100": "gated"}  # default: "plausible"
+VARIANT_SIZE = {"g100": 100}      # default: SAMPLE_EVENTS
 
 BUCKETS = ("strong", "moderate", "weak")
 
@@ -106,12 +116,15 @@ def _source_rows(conn: sqlite3.Connection) -> list[sqlite3.Row]:
 
 
 def sample(conn: sqlite3.Connection, run_id: str, seed: int, root: Path,
-           excluded: set[str]) -> None:
+           excluded: set[str], pool: str = "plausible",
+           n_events: int = SAMPLE_EVENTS) -> None:
     """Draw the event sample and write manifest + per-batch payloads."""
     by_event: dict[str, list[dict]] = defaultdict(list)
     for r in _source_rows(conn):
         x = json.loads(r["extra_json"])
-        if x.get("gate_would_reject"):
+        if pool == "plausible" and x.get("gate_would_reject"):
+            continue
+        if pool == "gated" and not x.get("gate_would_reject"):
             continue
         if x["event_ticker"] in excluded:
             continue
@@ -127,8 +140,8 @@ def sample(conn: sqlite3.Connection, run_id: str, seed: int, root: Path,
         })
     events = sorted(by_event)
     rng = random.Random(seed)
-    chosen = sorted(rng.sample(events, min(SAMPLE_EVENTS, len(events))))
-    print(f"gate-plausible events after exclusions: {len(events)} "
+    chosen = sorted(rng.sample(events, min(n_events, len(events))))
+    print(f"{pool} events after exclusions: {len(events)} "
           f"({len(excluded)} excluded); sampled: {len(chosen)}")
 
     cache_conn = history_cache.connect()
@@ -276,7 +289,9 @@ def main() -> None:
                 m = json.loads(mpath.read_text(encoding="utf-8"))
                 for b in m["batches"]:
                     excluded.update(b["events"])
-            sample(conn, run_id, seed, root, excluded)
+            sample(conn, run_id, seed, root, excluded,
+                   pool=VARIANT_POOL.get(args.variant, "plausible"),
+                   n_events=VARIANT_SIZE.get(args.variant, SAMPLE_EVENTS))
         else:
             if args.batch is None:
                 parser.error("--batch is required for ingest")
