@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXGABBARDOUT-26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Whether Gabbard has decided to leave/be removed as DNI is a decision no evidence here suggests has already been made; a small circle would know if it had, but the payload gives nothing pointing to an imminent, already-made departure. Genuinely undecided as of today.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMDEBUT-26JUN27-YOU",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Billboard publishes the chart days after the tracking week closes; possible the chart isn't published before market close.",
+  "rationale": "Billboard #1 is an aggregate of millions of listeners' behavior over a tracking week that has not fully elapsed by close. Labels can forecast from mid-week data but nobody has decided or fully observed the outcome yet.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFESTIVALEVENTPACHNYC-26JUN22",
+  "insider_group": "Pacha New York venue operators/promoters, who control their own opening-weekend calendar",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Rules explicitly exclude preview/soft-open programming ('UNLOCKED'/'UNBLOCKED') from counting as Opening Weekend, narrower than a plain reading of the title.",
+  "resolution_source_risk": "Depends on 'Source Agencies' designating an event as official Opening Weekend; ambiguous edge cases possible.",
+  "rationale": "Venue promoters set and know their own launch schedule well in advance, but entertainment openings slip routinely and the rules carve out several event types that would otherwise look like an opening.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLEADERSOUT-27JAN01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Resolves YES on an official *announcement of intent* to leave, not only an actual departure -- broader than the title's 'leave' implies.",
+  "resolution_source_risk": null,
+  "rationale": "Whether Vucic or Starmer will resign/be removed within a ~6.5 month window is a decision no evidence suggests has already been made; long open-ended window compounds this into a rate question rather than a knowledge question.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLEAVESTARMER",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Same as KXLEADERSOUT: an official announcement of intent to leave satisfies the criterion even without actual departure.",
+  "resolution_source_risk": null,
+  "rationale": "Multiple deadline variants (Jun23 through Oct1) on whether Starmer resigns; nothing in the payload indicates a resignation decision has already been made by any small circle. Undecided political outcome, not private knowledge.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOP10BBSPOTS-26JUN27-OLI",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Close time falls mid-tracking-week; final chart position is published after close.",
+  "rationale": "Aggregate Billboard Hot 100 chart behavior of millions of streamers/buyers; industry can forecast from mid-week tracking but the number is not decided or fully known by anyone before the week closes.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPALBUMRECORD-ICE-DRA",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Only the album's *first* consecutive #1 streak counts; a later return to #1 after losing the spot would not extend this market, which the title doesn't convey.",
+  "resolution_source_risk": null,
+  "rationale": "Billboard 200 chart-topping streaks aggregate consumer behavior across weeks; nobody decides this in advance, only forecasts it from tracking data.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXART-BILD26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Lot could be withdrawn or auction postponed before the sale.",
+  "rationale": "Live auction hammer price is set by in-room bidding at sale time; Sotheby's knows estimates and registered interest but not the final price -- nobody has decided this number in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXART-DAN26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Lot could be withdrawn or auction postponed before the sale.",
+  "rationale": "Same auction mechanism as other KXART events: live bidding determines price, informative pre-sale estimates exist but the outcome is not known by anyone beforehand.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXART-HOM26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Lot could be withdrawn or auction postponed before the sale.",
+  "rationale": "Live auction hammer price determined by room bidding at sale time; no group knows the final price in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXART-LYD26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Lot could be withdrawn or auction postponed before the sale.",
+  "rationale": "Live auction hammer price determined by room bidding at sale time; no group knows the final price in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXART-WOM26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Lot could be withdrawn or auction postponed before the sale.",
+  "rationale": "Live auction hammer price determined by room bidding at sale time; no group knows the final price in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXGTAPRICE",
+  "insider_group": "Rockstar Games / Take-Two Interactive leadership, who would already know their internal pricing plan before public announcement",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "No stated resolution mechanism if a price has not been publicly announced by close; real risk the market closes before any official price exists.",
+  "rationale": "Pricing follows internal marketing calendars known to the publisher in advance, but plans can and do change late, and there is no confirmation a price has been set or announced yet as of today.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXRANKLIST1ALBUM-26JUN27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Billboard 200 #1 across a run of chart weeks is aggregate consumer behavior; forecastable from mid-week tracking by industry but not decided or fully known by any group in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFISAEXTEND-26MAY",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Requires actual floor passage in both chambers plus presidential signature; leadership whip counts give a picture but not a decided outcome, and nothing in the payload indicates a vote or deal is already locked in for the near-term deadlines.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMONSANTODURNELL-26AUG",
+  "insider_group": "The Supreme Court justices and their clerks, who vote in conference and draft the opinion well before it is publicly released",
+  "bucket": "strong",
+  "rules_diverge_from_title": true,
+  "rules_note": "Resolves YES only on the specific FIFRA-preemption holding described; a ruling for Monsanto on other grounds, a DIG, settlement, or non-merits disposition all resolve No despite the title's broader 'rule in favor of Monsanto' framing.",
+  "resolution_source_risk": "Opinion could be released after the Aug 1 close if the Court takes longer than expected.",
+  "rationale": "SCOTUS decides cases in conference shortly after argument, months before the opinion is released publicly -- only the justices and clerks know the outcome in the interim, a textbook case of a small named group already knowing.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNYCRENTFREEZE-25",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Indexation to inflation counts as an increase, not a freeze, even at an effectively low nominal rate; also requires the final official vote, not the published preliminary range.",
+  "resolution_source_risk": "Board could fail to reach quorum or not vote in time, defaulting to No.",
+  "rationale": "Preliminary ranges are telegraphed publicly (not private insider info), and per the family mechanism the final vote happens live at a public meeting -- an undecided outcome until the vote itself, not private foreknowledge.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXCLAYTONCONF-26JUN11",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Confirmation requires an actual Senate floor vote; leadership whip counts give a good but imperfect picture, and nothing indicates the vote has already happened or is a foregone conclusion within the near-term deadlines.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMAMDANIEO-26JUN20",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Classifying an order as 'non-emergency' could require judgment calls not obviously public immediately.",
+  "rationale": "Executive orders are signed and announced essentially simultaneously -- there is no meaningful lag during which an inner circle privately knows the count while the public doesn't, so this is a real-time tracking question, not an insider-knowledge one.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLIUKELIMINATIONW-26JUN19",
+  "insider_group": "Love Island UK production and villa cast, who know intermediate standings (couplings, who is vulnerable) before broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Show airs roughly a day behind the villa; a late-window elimination could occur after taping but the episode not air/be declared official before close.",
+  "rationale": "Near-live format means production and cast know intermediate states ahead of broadcast, but final eliminations often hinge on a live public app vote taken shortly before the episode, so the outcome isn't fully settled the way a pre-taped show's would be.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXANTHROPICRESCIND-26JUN",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Whether DoD/White House will reverse the designation is a discretionary policy decision; nothing in the payload suggests such a reversal has already been decided internally -- genuinely undecided as of today.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFDAAPPROVE-CAM",
+  "insider_group": "FDA review division and the sponsor company, who know an approval decision once made, before the public announcement",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Detailed carve-outs: a CRL doesn't preclude a later Yes if cured before the deadline; an accelerated approval that is later withdrawn still counts as Yes based on the initial grant; EUA-only or export-only approval does not count.",
+  "resolution_source_risk": "PDUFA target date not given here; approval timelines routinely slip past a stated deadline.",
+  "rationale": "FDA approvals are decided internally and communicated to the sponsor before public announcement, a solid insider-knowledge mechanism, but no PDUFA date is given in the payload to confirm the decision is imminent or already made.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFDAAPPROVE-GED",
+  "insider_group": "FDA review division and the sponsor company, who know an approval decision once made, before the public announcement",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Same carve-outs as KXFDAAPPROVE-CAM: CRL doesn't preclude later Yes, accelerated-then-withdrawn approval still counts Yes, EUA/export-only doesn't count.",
+  "resolution_source_risk": "PDUFA target date not given; three separate deadlines (Jul1/Aug1/Jan2027) with no indication which is closest to an actual FDA action date.",
+  "rationale": "Same FDA mechanism as camizestrant: decision made and communicated internally before public release, but no PDUFA date given to establish the decision is imminent.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXGPT-OPEN",
+  "insider_group": "OpenAI leadership/engineering, who know their internal release roadmap",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Release confined to a high-cost subscription tier still counts as Yes, a detail not obvious from the title alone but not a strong divergence.",
+  "rationale": "AI labs know their release readiness internally ahead of time, but per general knowledge, exact version naming ('GPT-6' specifically) is a late marketing decision and timing slips routinely, so even insiders may not have a fixed answer yet.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXGTATRAILER-26MAY",
+  "insider_group": "Rockstar Games marketing team, who control their own trailer release calendar",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Trailer timing follows an internal marketing calendar the company controls and knows in advance, but nothing here confirms a specific trailer is finished and scheduled versus still just planned, so the company may know its roadmap without yet having decided.",
+  "researched": false
+ }
+]
