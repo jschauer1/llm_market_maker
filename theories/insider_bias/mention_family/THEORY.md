@@ -49,6 +49,20 @@ Kalshi only, via the same client the sibling theory uses
 
 ## Status
 
+`under_review` — set 2026-08-25 (`authorized_by=claude`), with a
+**standing retirement proposal** filed the same day. The tier A
+full-coverage backtest (`backtest-2026-08-25-mention-fullcov`: every
+mention-family survivor in the API-reachable window, n=3,441 settled,
+vs the n=116 sample the bins were fit on) measures
+`calibration_edge=-0.49` gross, `calibration_edge_net=-1.53`,
+`roi_all=-1.9%`. Every price bin is at or below zero net; every
+sub-family is ~zero or negative on fresh rows. The bootstrap's +5.48pts
+was sampling luck in a ~3% systematic sample of the same window. Do not
+recommend bets from this theory; the user rules on retirement.
+
+The paragraph below records what Status said before that run, for the
+history of how the evidence developed:
+
 `testing` — set 2026-08-24 (`authorized_by=claude`). The backtest evidence
 technically clears the letter of "testing → active needs a tier A/B
 backtest with positive calibration_edge_net" (n=116, `calibration_edge_net=
@@ -139,6 +153,14 @@ research pass, per CLAUDE.md's "pipelines propose, judgment disposes."
 
 ## Confidence buckets
 
+**INVALIDATED 2026-08-25 — do not price candidates from this table.** The
+full-coverage rerun (see Status and Learnings) measured these same bins at
+n=1,132/1,003/1,190 on fresh rows: win rates 0.678/0.785/0.913 against
+mean prices 0.694/0.796/0.909 — every bin at or below zero net edge. The
+rates below came from a ~3% sample of the same window and were sampling
+luck. The table is kept so the record of what was believed, and why, stays
+legible:
+
 Not LLM-judged confidence labels (`strong`/`moderate`/`weak`, as in
 `insider_judgment`) — these are price bins, and their rates are measured
 directly from the 2026-08-24 backtest, not asserted priors:
@@ -179,6 +201,33 @@ different ticker family.
 
 ## Learnings
 
+- 2026-08-25 — **Full-coverage rerun killed the edge; retirement
+  proposed.** `backtest-2026-08-25-mention-fullcov` (tier A) replayed
+  every mention-family survivor in the API-reachable close window —
+  11,084 survivors across 379 series, 3,441 screen hits, all settled —
+  where the original evidence was a 600-of-18,430 systematic sample that
+  yielded this family's 116 rows. Result: win rate 0.797 vs mean price
+  0.802, `calibration_edge_net=-1.53pts`, gross calibration edge already
+  negative (-0.49), ROI -1.9%. Fresh rows only (excluding the original
+  116): -1.78 net. The 85plus bin at full coverage is n=1,190,
+  win rate 0.913 vs price 0.909 — *perfectly calibrated*, confirming the
+  audit's suspicion that 41/41 was luck; the lt75 and 75_85 bins are
+  negative outright. All four sub-families land at ~zero or negative on
+  fresh rows (worldcup -0.94, earnings -3.82, trump +0.05, other -1.48),
+  so the bootstrap's positive sub-families (worldcup +8.3, earnings
+  +6.1) were also luck, not structure. Per-series means at n≤25 scatter
+  from +22 to -45pts — mean-zero noise, and no positive slice was
+  pre-registered. Conclusion: the family is priced essentially fairly
+  and a favorite-buyer loses the fee. Status moved to `under_review`
+  and a retirement proposal filed for the user to rule on. The first
+  live out-of-sample settlement (KXTRUMPMENTION-26AUG24B-IRAN, no
+  @0.89, resolved yes) also lost. Separately: the window the rerun
+  *wanted* (back to 2025) is unreachable — Kalshi archives settled
+  markets out of its public API ~60 days after close (2,103 of the
+  11,084 survivors already returned no candles) — so full coverage of
+  the reachable window was the strongest evidence obtainable, and any
+  future series-level follow-up must snapshot settled markets before
+  they age out.
 - 2026-08-25 — **Skeptical audit of the backtest edge (user-prompted):
   the mechanics are clean, but the statistical case is much weaker than
   the headline reads.** Full detail in RESEARCH_LOG.md (2026-08-25).

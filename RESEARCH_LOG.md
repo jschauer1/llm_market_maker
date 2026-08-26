@@ -830,3 +830,51 @@ recording per series with a resumable checkpoint. When it lands:
 record the backtest_runs row, score fresh-rows-only (exclude the
 original 116 tickers) with the sub-family split from the 2026-08-25
 audit entry, update THEORY.md, and report against the audit's nulls.
+
+## 2026-08-25 — Full-coverage rerun: mention_family has no edge; under_review, retirement proposed
+
+**Did:** The full-coverage replay finished: 379 series, 11,084 survivors,
+3,441 screen hits, all settled and recorded under
+`run_id=backtest-2026-08-25-mention-fullcov` (tier A, run row recorded).
+2,103 survivors returned no candles — markets already past Kalshi's
+archival floor — so effective coverage is closes ~2026-06-22..2026-08-24,
+the same window as the original sampled run by construction.
+
+**Learned:** The edge does not exist. Win rate 0.797 vs mean price 0.802:
+`calibration_edge=-0.49` gross, `-1.53` net, `roi_all=-1.9%` (repo scorer
+and independent script agree). Fresh rows only (excluding the 116 the
+bins were fit on): -1.78 net. The 85plus bin lands at n=1,190, win rate
+0.913 vs price 0.909 — perfectly calibrated; its bootstrap 41/41 was
+sampling luck, exactly as the morning audit suspected. lt75 and 75_85
+are negative outright. Every sub-family is ~zero or negative on fresh
+rows — including worldcup (-0.94) and earnings (-3.82), the two that
+carried the bootstrap — so the audit's "the positive slices are
+seasonal" concern resolves even more sharply: they were not seasonal
+edges, they were noise. Per-series means at small n scatter +22..-45pts,
+mean-zero. The market prices this family fairly; buying favorites loses
+the fee. The first live out-of-sample settlement agreed
+(KXTRUMPMENTION-26AUG24B-IRAN, no @0.89 → yes, lost; settled in the
+ledger). Status set to `under_review`, retirement proposal filed with
+the full diagnosis (n, gross-vs-net, inversion, slices, version mixing,
+regime change all ruled out). The user rules on retirement.
+
+Method note for future theories: a ~3% systematic sample (116 rows)
+produced +5.48pts net with an all-positive bin table on the same window
+where full coverage measures -1.53. Small backtest samples of a
+screen's own selection are not weak evidence of the sample's claim —
+they can be *confidently wrong*. Prefer full coverage of a scoped
+population wherever the fetch allows it, and treat any sampled result
+as unconfirmed until it survives the full walk. Also: one live test
+run (pytest with network marks) caught Polymarket's `filterAmount`
+returning a $9,200 trade under a $10,000 floor —
+`test_live_whale_trades_are_actually_large`, the canary built for
+exactly this drift; logged here for a future session, deliberately not
+chased today.
+
+**Next:** The user rules on retirement (proposal on file). The 39
+remaining preview rows still settle Aug 28–Sep 15 and will be scored,
+but no recommendations come from this theory. If anything survives
+here, it is a *new*, pre-registered, per-series question (is any single
+recurring mention series persistently mispriced?) — which requires
+snapshotting settled markets before Kalshi's ~60-day archival eats
+them, per the record-while-collecting convention.
