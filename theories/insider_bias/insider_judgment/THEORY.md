@@ -496,6 +496,15 @@ and full breakdown in Learnings below.
 
 ## Learnings
 
+- 2026-08-26 — **The campaign's authoritative summary lives in
+  `backtests/RESULTS.md`** — read it before quoting any number from the
+  entries below. It carries the corrected statistics (Holm over the
+  pre-registered family: the bet rule and moderate-NO survive,
+  strong-NO alone and the divergence flag do not; event-clustered
+  significance ≈ p=0.01, not the row-level p<0.0001), the attribution
+  ladder, the timing verdict, the gate validation (99/100 weak), and
+  the contamination audit (clean; the batch-as-of wrinkle bounded, rule
+  holds at +4.65 on the clean subset).
 - 2026-08-26 — **Full-population judgment coverage; the pre-registered
   NO-side rule replicated out of sample.** All 457 gate-plausible events
   from the tier-A walk are now judged (runs `...judged-s200`, `-s200b`,
