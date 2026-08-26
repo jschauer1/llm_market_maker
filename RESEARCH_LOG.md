@@ -926,3 +926,47 @@ the first population; 0.85-0.90 as a secondary bucket), bootstrap rates
 from the fullcov run, and require live settlements to confirm before
 any size. The forward test is nearly free — the screen already sees
 these markets daily.
+
+---
+
+## 2026-08-25 — Theory locality: backtests and research notes live in the
+## theory, and reads stay open
+
+Spec: `docs/superpowers/specs/2026-08-25-theory-locality-design.md`.
+Plan: `docs/superpowers/plans/2026-08-25-theory-locality.md`.
+
+**Did:** Wrote down what lives in a theory and what gets elevated, in the
+places a future session actually reads: `CLAUDE.md` gained a "What lives in
+a theory, and what gets elevated" section, `tools/README.md` two
+conventions, `theories/_TEMPLATE/` a `NOTES.md` and a rewritten Learnings
+section, and three skills (`backtest-theory`, `go`, `score-theories`) the
+corrections that stop them teaching the old behavior. `insider_judgment`
+and `mention_family` each got a seeded `NOTES.md`; no existing note was
+migrated.
+
+**Learned:** Two of the three headline decisions were already argued from
+evidence in this repo rather than from taste. The case against a shared
+backtest engine is `insider_judgment/backtest.py` itself: most of its
+design budget went to quirks — a combinatorial series settling 400,000
+markets a day, per-day candle volume needing a warm-up sum, a fetch-scoping
+category filter that must not leak into the screen under test — that no
+second theory shares, so a generic engine would either anticipate all of
+them or paper over them silently. A review pass also caught that two skills
+still instructed the behavior the spec replaces, which would have broken
+the convention on the very next `go` session in good faith; documents that
+steer future sessions are load-bearing, and a spec that changes conventions
+has to grep for every place the old one is taught. Writing the spec also
+surfaced that the repo currently crosses the theory-folder boundary in
+both directions: `theories/insider_bias/mention_family/backtest.py`
+imports `insider_judgment`'s replay, and
+`theories/insider_bias/insider_judgment/backtest_fullcov.py` imports
+`mention_family`'s `mention_bucket` — both deliberately, to reuse
+machinery byte-for-byte. The spec's remedy (route shared ancestry through
+the family's parent package) is real but was deferred rather than
+applied, because it touches another session's in-flight work, so success
+criterion 4 stays verified by inspection for now.
+
+**Next:** The convention is forward-only, so the first real test is the next
+session that researches inside one theory — its findings belong in that
+theory's `NOTES.md`, with a pointer from here, not a copy. Nothing about
+theory standing, ranking, or the live board changed.
