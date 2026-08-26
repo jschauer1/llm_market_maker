@@ -6,6 +6,7 @@ between code and DB."""
 
 import ast
 import pytest
+import sys
 from dataclasses import fields
 from pathlib import Path
 
@@ -102,14 +103,39 @@ def _absolute_module(path: Path, node: ast.ImportFrom) -> str:
 
 
 def _imported_modules(path: Path) -> list[str]:
+    """Every module path a file imports, however it spells the import.
+
+    An ImportFrom contributes its module AND module.name per alias: the
+    sibling-reaching `from theories.insider_bias import mention_family`
+    names the sibling in the alias, not the module, and that spelling is
+    one word away from the legitimate `... import screen` this tree
+    already uses.
+    """
     tree = ast.parse(path.read_text(encoding="utf-8"))
     names: list[str] = []
     for node in ast.walk(tree):
         if isinstance(node, ast.Import):
             names.extend(alias.name for alias in node.names)
         elif isinstance(node, ast.ImportFrom):
-            names.append(_absolute_module(path, node))
+            module = _absolute_module(path, node)
+            names.append(module)
+            names.extend(f"{module}.{alias.name}" for alias in node.names)
     return names
+
+
+def _theory_package(cls: type) -> str:
+    """The package a theory class belongs to.
+
+    A class defined in the package's own `__init__.py` already has the
+    package as its `__module__`; one defined in `theory.py` needs the last
+    segment dropped. Getting this wrong silently widens or narrows the set
+    of packages treated as siblings.
+    """
+    module = sys.modules[cls.__module__]
+    filename = Path(getattr(module, "__file__", "") or "").name
+    if filename == "__init__.py":
+        return cls.__module__
+    return cls.__module__.rsplit(".", 1)[0]
 
 
 def test_no_theory_imports_a_sibling_theory():
@@ -122,7 +148,7 @@ def test_no_theory_imports_a_sibling_theory():
     checking this imports nothing.
     """
     packages = {
-        type(theory).__module__.rsplit(".", 1)[0]
+        _theory_package(type(theory))
         for theory in registry.discover().values()
     }
     problems = []

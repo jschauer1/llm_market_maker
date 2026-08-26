@@ -139,7 +139,10 @@ path uses LLM judgment, because that determines the tier:
 - **Tier C** — LLM judgment on pre-cutoff markets. Contaminated; indicative
   only, and excluded from credibility.
 
-**The replay lives in this folder**, as `backtest.py` by convention. The
+**The replay lives in this folder**, as `backtest.py` by convention — or,
+if this theory shares a screen with a sibling and the replay is shared with
+it, in their shared parent package rather than in either folder (see
+`theories/insider_bias/replay.py`). Never in `tools/`. The
 harness supplies point-in-time data (`tools/kalshi/history.py`,
 `tools/snapshot.py`), run bookkeeping (`run_mode="backtest"` plus a real
 `run_id`, and the `backtest_runs` table), and scoring — and nothing else.

@@ -19,7 +19,10 @@ where it was written, and none of it was migrated:
 - **`RESEARCH_LOG.md`** — the session narratives: the 2026-08-24 tier A
   backtest of the stage-1 screen, including the 47-minute false start that
   preceded it, and the 2026-08-24 Big Brother / mention-family follow-ups.
-- **`backtest.py`'s module docstring** — the three constraints that shape
+- **`theories/insider_bias/replay.py`'s module docstring** (this was
+  `insider_judgment/backtest.py` until 2026-08-25; do not confuse it with
+  the `backtest_fullcov.py` / `backtest_judged.py` drivers still in this
+  folder) — the three constraints that shape
   the replay: combinatorial-series fetch scoping, the category pre-filter's
   status as a fetch-scoping decision rather than a change to the screen
   under test, and per-day versus cumulative candle volume.

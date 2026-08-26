@@ -929,8 +929,7 @@ these markets daily.
 
 ---
 
-## 2026-08-25 — Theory locality: backtests and research notes live in the
-## theory, and reads stay open
+## 2026-08-25 — Theory locality: backtests and notes live in the theory, and reads stay open
 
 Spec: `docs/superpowers/specs/2026-08-25-theory-locality-design.md`.
 Plan: `docs/superpowers/plans/2026-08-25-theory-locality.md`.
@@ -953,7 +952,8 @@ either theory — guarded now by
 
 **Learned:** Two of the three headline decisions were already argued from
 evidence in this repo rather than from taste. The case against a shared
-backtest engine is `insider_judgment/backtest.py` itself: most of its
+backtest engine is that replay itself (`insider_judgment/backtest.py`
+then, `theories/insider_bias/replay.py` now): most of its
 design budget went to quirks — a combinatorial series settling 400,000
 markets a day, per-day candle volume needing a warm-up sum, a fetch-scoping
 category filter that must not leak into the screen under test — that
