@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXNETFLIXRANKMOVIEGLOBAL-26JUL06",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Netflix publishes its own Top 10 chart on a fixed weekly schedule (Tuesdays); low risk of missing the close.",
+  "rationale": "Netflix's weekly Top 10 aggregates millions of subscribers' viewing behavior; no group decides which title is #1 in advance. This is a crowd-aggregate tracker family explicitly gated out of the insider thesis.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPARDONSTRUMP-26JUL",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title says 'pardoned' but rules also count commutations and reprieves, a broader definition. Also, the '0 pardons' sub-market closes Jul 5, 2026 -- weeks before the other two strikes in the same event, which close Aug 1.",
+  "resolution_source_risk": "Depends on Kalshi's own tally of official clemency actions; low risk of missing the close since it is an official government record, but the final monthly count is not fixed until month-end.",
+  "rationale": "The President and White House counsel know about each pardon as it is granted, but the market asks for a cumulative count across the entire month, most of which (as of Jul 21) has not yet happened. This is a rate/count question over an open window, not a single already-made decision.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXAPRPOTUS-26JUL10",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "RealClearPolitics aggregates public polls; low risk it fails to publish by the stated determination time.",
+  "rationale": "Approval rating is an aggregate of many independent pollsters and respondents; no single group decides or knows the RCP average before it is computed from published polls.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXHORMUZWEEKLY-26JUL12",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves 'no earlier than Tuesday 9am... once complete data is available' -- IMF PortWatch data can lag, creating some risk the count isn't finalized by close.",
+  "rationale": "Transit-call counts aggregate the independent movements of many vessels tracked by a third-party data provider; no single actor decides or knows the weekly total in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXRT-ODY",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Rotten Tomatoes tabulates critic reviews continuously; some risk the score isn't fully settled if reviews trickle in late relative to the Monday 10am determination.",
+  "rationale": "The Tomatometer aggregates many independent critics' reviews; no single group knows the final score before critics file, though individual critics under embargo know their own verdict. This RT/critic-aggregator family is explicitly gated out of the thesis.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPMODEL-26JUL13",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "Rules specify a tie-break cascade (Arena Score, then votes, then release date) and require checking the 'Remove Style Control' toggle -- operational detail not implied by the plain title, but not a change to what the market fundamentally asks.",
+  "resolution_source_risk": "Depends on the Arena leaderboard being live and stable at the 10am ET check; low but nonzero risk of a source outage.",
+  "rationale": "Arena-style leaderboards aggregate votes from many independent users; AI labs know their own release plans but cannot know a crowd-voted score before it accumulates.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPSAYCOMPANY-26AUG01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Rules explicitly exclude official acts (executive orders, signed bills) from counting -- only public statements, quoted remarks, and personal social-media posts count. Also, several sub-markets within the event have close times far earlier than the event's own Aug 1 close (e.g. CNN and AAPL close Jul 13; META closes Jul 20), inconsistent with the stated title window.",
+  "resolution_source_risk": "Depends on Source Agencies publishing/quoting Trump's remarks; generally low risk of missing coverage for a public figure, but plural/possessive attribution nuances could be disputed.",
+  "rationale": "What Trump says publicly is largely spontaneous; no specific group knows in advance which company names he will mention. Any early close on individual sub-markets likely reflects the phrase already having been said, not a knowable future decision.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMEQUIV-CAR26JUL16",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Luminate tracking data is compiled after the tracking week closes; low risk of missing the Sunday resolution given the process is routine.",
+  "rationale": "Album Equivalent Units aggregate streaming and sales activity from many independent consumers, compiled by a third-party data provider; no group decides or knows the total before the tracking week completes. Explicitly a gated-out crowd-aggregate family.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL13",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Same as other Netflix chart markets -- published on a fixed weekly schedule, low risk of missing the close.",
+  "rationale": "Netflix view counts aggregate millions of independent viewers; nobody decides the number in advance, though Netflix itself sees it first internally.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "Some individual market tickers in this event drop the 'B' suffix used in the event ticker (e.g. KXALBUMEQUIV-DAU26JUL23-250K) -- a naming inconsistency, not a resolution-mechanics divergence.",
+  "resolution_source_risk": "Same Luminate reporting-lag risk as other Album Equivalent Units markets.",
+  "rationale": "Same mechanism as other Album Equivalent Units markets -- aggregate consumer behavior, no insider group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMEQUIV-SET26JUL23",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Same Luminate reporting-lag risk as other Album Equivalent Units markets.",
+  "rationale": "Same mechanism as other Album Equivalent Units markets -- aggregate consumer behavior, no insider group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXH100W-26JUL17",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title frames this as 'price up in next week?' (implying a relative/directional move), but the rules resolve on an absolute threshold ('above 2.52' on the close date), not a comparison to a prior price.",
+  "resolution_source_risk": "Resolves off a single named tracker (Ornn dashboard); rules state that if no data is available by expiration, non-'no data' strikes resolve No -- real risk if the source goes dark.",
+  "rationale": "GPU compute pricing aggregates many sellers' posted rates on a tracker; no single group sets or knows the resolved value in advance. Gated-out posted-price-index family.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMEQUIV-DAU26JUL23",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Same Luminate reporting-lag risk as other Album Equivalent Units / Pure Album Sales markets.",
+  "rationale": "Same mechanism as other Luminate-tracked markets -- aggregate consumer purchases, no insider group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXHORMUZMAX-26JUL19",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Same IMF PortWatch lag risk as the weekly Hormuz transit market; ties split 1/N.",
+  "rationale": "Which day has the most transit calls is an aggregate outcome of many independent vessel movements; no group decides or knows this in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXRT-PIN",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Same critic-aggregation timing risk as other Rotten Tomatoes markets.",
+  "rationale": "Same mechanism as KXRT-ODY -- Tomatometer aggregates many critics, gated-out family, no insider group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26JUL20",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Same Netflix weekly-chart timing as other Netflix rank markets.",
+  "rationale": "Same mechanism as KXNETFLIXRANKMOVIEGLOBAL -- aggregate viewer behavior, no insider group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL20",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Same Netflix weekly-chart timing as other Netflix view-count markets.",
+  "rationale": "Same mechanism as KXNETFLIXTOPVIEWSMOVIE-26JUL13 -- aggregate viewer behavior, no insider group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPOKEMON-26JULGENCOSHO",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves off a single tracker (Collectr); rules say a missing value falls back to the last available price, or No if none exists -- some risk if the listing is thin or stale.",
+  "rationale": "Collectible card 'ungraded price' aggregates many sellers' listed asks on a marketplace tracker; no single group sets or knows the final resolved price. Gated-out posted-price-index family.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPOKEMON-26JULPERORDPO",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Same Collectr tracker risk as the other Pokemon price markets.",
+  "rationale": "Same mechanism as KXPOKEMON-26JULGENCOSHO -- aggregate marketplace pricing, no insider group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLAUNCHES-26JUL",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Depends on the FAA Commercial Space Data list being updated promptly after month-end; some lag risk given multiple independent operators report to it.",
+  "rationale": "The monthly launch count aggregates schedules from many independent commercial operators; while each operator knows its own plans, nobody has full advance knowledge of the combined total, and most of the month's launches (as of Jul 21) have not yet occurred. Explicitly a gated-out crowd-aggregate family.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNYTHEAD-26JUL",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title says 'full-width' headlines; rules operationalize this narrowly as a 'banner headline' (standalone, centered, surrounded only by whitespace) per the NYT Store's Front Page Reprint archive -- a specific technical definition that could diverge from a layperson's reading of the title.",
+  "resolution_source_risk": "Relies on a retail archive product (NYT Store reprints) rather than a live feed; could plausibly lag the actual print date.",
+  "rationale": "Each day's NYT front-page layout is a discrete editorial decision known to a small editorial team before publication, but the monthly count (at least 3 in July) depends on decisions across the whole month, most of which haven't been made yet as of Jul 21. Explicitly a gated-out family.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMEQUIV-MUS26JUL30",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Same Luminate reporting-lag risk as other Album Equivalent Units markets.",
+  "rationale": "Same mechanism as other Album Equivalent Units markets -- aggregate consumer behavior, no insider group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXA100MON-26JUL31",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Same Ornn-dashboard risk as other compute-price markets -- no-data periods resolve non-'no data' strikes to No.",
+  "rationale": "Same mechanism as KXH100W -- GPU compute pricing aggregates many sellers, gated-out posted-price-index family, no insider group. Unlike the H100/H200 'price up' markets, this title already frames the question as an absolute threshold, matching the rules.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXH200W-26JUL24",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title frames this as 'price up in next week?' (implying a relative/directional move), but the rules resolve on an absolute threshold ('above 4.79'), not a comparison to a prior price -- same pattern as KXH100W.",
+  "resolution_source_risk": "Same Ornn-dashboard risk as other compute-price markets.",
+  "rationale": "Same mechanism as KXH100W -- GPU compute pricing aggregates many sellers, gated-out posted-price-index family, no insider group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPOKEMON-26JULPERORDBO",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Same Collectr tracker risk as the other Pokemon price markets.",
+  "rationale": "Same mechanism as the other Pokemon price-index markets -- aggregate marketplace pricing, no insider group.",
+  "researched": false
+ }
+]
