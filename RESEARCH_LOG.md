@@ -998,3 +998,25 @@ bootstraps with the in-sample caveat attached. Backfill continues in
 background (~9.6k candle windows cached so far); when done, the entire
 reachable window's raw data is durable and every variant re-test is
 offline.
+
+## 2026-08-26 — Strong-YES autopsy: the bleed was sealed-tabulation award markets; excluding them repairs YES to breakeven, NO-rule strengthens
+
+User challenged the methodology on strong-YES's -7c. Autopsy: the losses
+cluster in Emmy-nomination/BET/award strikes — events where the judge is
+arguably RIGHT that a small body already knows (tabulators), but the
+knowledge is SEALED and never leaks into price before close, so buying
+the public's favorite at the ask pays the crowd's guess plus spread. The
+thesis needs leakable knowledge, not just knowledge — prompt-refinement
+candidate for a future version ("does the group's knowledge plausibly
+escape before close?"), which would be a version bump. Excluding the
+award family (KXEMMY*/KXESPYS/KXBET/KXFIELDS pattern; 135 rows / 40
+events, own net +1.6) symmetrically from all cells: strong-YES -7.0 →
++0.6 (n=24, breakeven, not negative); strong-NO +6.8 → +11.0 (luck
+0.2%, but only 16 events); moderate-YES worsens to -6.9 (the YES
+problem is not award-specific); bet rule (str+mod NO) +5.1 → +5.9,
+luck-odds ~0 either way. Post-hoc caveat recorded: exclusion chosen
+after seeing the losers; legitimate path is pre-registering a
+sealed-small-body-decision NO-rule for the gate (version bump) and
+letting live rows decide. Contamination note: strong-YES losing at all
+is itself evidence the blinding held — a leaky judge wins its confident
+bucket, never loses it.
