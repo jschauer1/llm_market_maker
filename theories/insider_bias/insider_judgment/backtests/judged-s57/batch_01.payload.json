@@ -1,0 +1,1035 @@
+[
+ {
+  "event_ticker": "KXALBUMSALES-YOUS-PURE",
+  "series_ticker": "KXALBUMSALES",
+  "title": "Will you seem pretty sad for a girl so in love have at least 350,000 Pure Album Sales on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love?",
+  "close_time": "2026-06-19T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMSALES-YOUS-PURE-350000",
+    "title": "Will you seem pretty sad for a girl so in love have at least 350,000 Pure Album Sales on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love?",
+    "rules_primary": "If you seem pretty sad for a girl so in love by Olivia Rodrigo has at least 350,000 Pure Album Sales on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love, then the market resolves to Yes.",
+    "rules_secondary": "If the market specifies \"Pure Album Sales\", this event will specifically encompass the number listed under the \"Albums\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIf the market specifies \"Activity (Combined Sales)\", this event will specifically encompass the number listed under the \"Activity\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIMPORTANT INFORMATION: If data is unavailable or partially unavailable by Jun 26, 2026, then all affected markets resolve to No.\n\n \nHits Daily Double recently adjusted the release timing of its weekly Top 50 Album Chart, publishing the chart with a Thursday date instead of the previously-used Friday date. Given the changed schedule of release from Friday to Thursday, Kalshi will resolve future markets using the chart dated Thursday as the Contract Underlying, pursuant to Rule 7.2(a).",
+    "close_time": "2026-06-19T03:59:00Z"
+   },
+   {
+    "ticker": "KXALBUMSALES-YOUS-PURE-300000",
+    "title": "Will you seem pretty sad for a girl so in love have at least 300,000 Pure Album Sales on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love?",
+    "rules_primary": "If you seem pretty sad for a girl so in love by Olivia Rodrigo has at least 300,000 Pure Album Sales on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love, then the market resolves to Yes.",
+    "rules_secondary": "If the market specifies \"Pure Album Sales\", this event will specifically encompass the number listed under the \"Albums\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIf the market specifies \"Activity (Combined Sales)\", this event will specifically encompass the number listed under the \"Activity\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIMPORTANT INFORMATION: If data is unavailable or partially unavailable by Jun 26, 2026, then all affected markets resolve to No.\n\n \nHits Daily Double recently adjusted the release timing of its weekly Top 50 Album Chart, publishing the chart with a Thursday date instead of the previously-used Friday date. Given the changed schedule of release from Friday to Thursday, Kalshi will resolve future markets using the chart dated Thursday as the Contract Underlying, pursuant to Rule 7.2(a).",
+    "close_time": "2026-06-19T03:59:00Z"
+   },
+   {
+    "ticker": "KXALBUMSALES-YOUS-PURE-250000",
+    "title": "Will you seem pretty sad for a girl so in love have at least 250,000 Pure Album Sales on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love?",
+    "rules_primary": "If you seem pretty sad for a girl so in love by Olivia Rodrigo has at least 250,000 Pure Album Sales on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love, then the market resolves to Yes.",
+    "rules_secondary": "If the market specifies \"Pure Album Sales\", this event will specifically encompass the number listed under the \"Albums\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIf the market specifies \"Activity (Combined Sales)\", this event will specifically encompass the number listed under the \"Activity\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIMPORTANT INFORMATION: If data is unavailable or partially unavailable by Jun 26, 2026, then all affected markets resolve to No.\n\n \nHits Daily Double recently adjusted the release timing of its weekly Top 50 Album Chart, publishing the chart with a Thursday date instead of the previously-used Friday date. Given the changed schedule of release from Friday to Thursday, Kalshi will resolve future markets using the chart dated Thursday as the Contract Underlying, pursuant to Rule 7.2(a).",
+    "close_time": "2026-06-19T03:59:00Z"
+   },
+   {
+    "ticker": "KXALBUMSALES-YOUS-PURE-225000",
+    "title": "Will you seem pretty sad for a girl so in love have at least 225,000 Pure Album Sales on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love?",
+    "rules_primary": "If you seem pretty sad for a girl so in love by Olivia Rodrigo has at least 225,000 Pure Album Sales on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love, then the market resolves to Yes.",
+    "rules_secondary": "If the market specifies \"Pure Album Sales\", this event will specifically encompass the number listed under the \"Albums\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIf the market specifies \"Activity (Combined Sales)\", this event will specifically encompass the number listed under the \"Activity\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIMPORTANT INFORMATION: If data is unavailable or partially unavailable by Jun 26, 2026, then all affected markets resolve to No.\n\n \nHits Daily Double recently adjusted the release timing of its weekly Top 50 Album Chart, publishing the chart with a Thursday date instead of the previously-used Friday date. Given the changed schedule of release from Friday to Thursday, Kalshi will resolve future markets using the chart dated Thursday as the Contract Underlying, pursuant to Rule 7.2(a).",
+    "close_time": "2026-06-19T03:59:00Z"
+   },
+   {
+    "ticker": "KXALBUMSALES-YOUS-PURE-200000",
+    "title": "Will you seem pretty sad for a girl so in love have at least 200,000 Pure Album Sales on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love?",
+    "rules_primary": "If you seem pretty sad for a girl so in love by Olivia Rodrigo has at least 200,000 Pure Album Sales on the Hits Daily Double Top 50 Chart for the week immediately following the wide release of you seem pretty sad for a girl so in love, then the market resolves to Yes.",
+    "rules_secondary": "If the market specifies \"Pure Album Sales\", this event will specifically encompass the number listed under the \"Albums\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIf the market specifies \"Activity (Combined Sales)\", this event will specifically encompass the number listed under the \"Activity\" column on the Hits Daily Double Top 50 chart for the relevant week. \n\nIMPORTANT INFORMATION: If data is unavailable or partially unavailable by Jun 26, 2026, then all affected markets resolve to No.\n\n \nHits Daily Double recently adjusted the release timing of its weekly Top 50 Album Chart, publishing the chart with a Thursday date instead of the previously-used Friday date. Given the changed schedule of release from Friday to Thursday, Kalshi will resolve future markets using the chart dated Thursday as the Contract Underlying, pursuant to Rule 7.2(a).",
+    "close_time": "2026-06-19T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXART-POR26",
+  "series_ticker": "KXART",
+  "title": "Will the lot sold price of the Portrait du gar\u00e7on en bleu by Cha\u00efm Soutine on Sotheby's be above $3600000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+  "close_time": "2026-06-25T01:47:22Z",
+  "markets": [
+   {
+    "ticker": "KXART-POR26-3600000",
+    "title": "Will the lot sold price of the Portrait du gar\u00e7on en bleu by Cha\u00efm Soutine on Sotheby's be above $3600000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Portrait du gar\u00e7on en bleu by Cha\u00efm Soutine on Sotheby's is above $3.6M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:47:22Z"
+   },
+   {
+    "ticker": "KXART-POR26-3400000",
+    "title": "Will the lot sold price of the Portrait du gar\u00e7on en bleu by Cha\u00efm Soutine on Sotheby's be above $3400000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Portrait du gar\u00e7on en bleu by Cha\u00efm Soutine on Sotheby's is above $3.4M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:47:22Z"
+   },
+   {
+    "ticker": "KXART-POR26-3200000",
+    "title": "Will the lot sold price of the Portrait du gar\u00e7on en bleu by Cha\u00efm Soutine on Sotheby's be above $3200000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Portrait du gar\u00e7on en bleu by Cha\u00efm Soutine on Sotheby's is above $3.2M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:47:22Z"
+   },
+   {
+    "ticker": "KXART-POR26-3000000",
+    "title": "Will the lot sold price of the Portrait du gar\u00e7on en bleu by Cha\u00efm Soutine on Sotheby's be above $3000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Portrait du gar\u00e7on en bleu by Cha\u00efm Soutine on Sotheby's is above $3M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:47:22Z"
+   },
+   {
+    "ticker": "KXART-POR26-2600000",
+    "title": "Will the lot sold price of the Portrait du gar\u00e7on en bleu by Cha\u00efm Soutine on Sotheby's be above $2600000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Portrait du gar\u00e7on en bleu by Cha\u00efm Soutine on Sotheby's is above $2.6M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:47:22Z"
+   },
+   {
+    "ticker": "KXART-POR26-2200000",
+    "title": "Will the lot sold price of the Portrait du gar\u00e7on en bleu by Cha\u00efm Soutine on Sotheby's be above $2200000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Portrait du gar\u00e7on en bleu by Cha\u00efm Soutine on Sotheby's is above $2.2M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:47:22Z"
+   },
+   {
+    "ticker": "KXART-POR26-2000000",
+    "title": "Will the lot sold price of the Portrait du gar\u00e7on en bleu by Cha\u00efm Soutine on Sotheby's be above $2000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Portrait du gar\u00e7on en bleu by Cha\u00efm Soutine on Sotheby's is above $2M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:47:22Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXART-SLE26",
+  "series_ticker": "KXART",
+  "title": "Will the lot sold price of the Sleeping by the Lion Carpet by Lucian Freud on Sotheby's be above $36000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+  "close_time": "2026-06-25T01:52:35Z",
+  "markets": [
+   {
+    "ticker": "KXART-SLE26-36000000",
+    "title": "Will the lot sold price of the Sleeping by the Lion Carpet by Lucian Freud on Sotheby's be above $36000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Sleeping by the Lion Carpet by Lucian Freud on Sotheby's is above $36M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:52:35Z"
+   },
+   {
+    "ticker": "KXART-SLE26-34000000",
+    "title": "Will the lot sold price of the Sleeping by the Lion Carpet by Lucian Freud on Sotheby's be above $34000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Sleeping by the Lion Carpet by Lucian Freud on Sotheby's is above $34M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:52:35Z"
+   },
+   {
+    "ticker": "KXART-SLE26-32000000",
+    "title": "Will the lot sold price of the Sleeping by the Lion Carpet by Lucian Freud on Sotheby's be above $32000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Sleeping by the Lion Carpet by Lucian Freud on Sotheby's is above $32M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:52:35Z"
+   },
+   {
+    "ticker": "KXART-SLE26-30000000",
+    "title": "Will the lot sold price of the Sleeping by the Lion Carpet by Lucian Freud on Sotheby's be above $30000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Sleeping by the Lion Carpet by Lucian Freud on Sotheby's is above $30M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:52:35Z"
+   },
+   {
+    "ticker": "KXART-SLE26-26000000",
+    "title": "Will the lot sold price of the Sleeping by the Lion Carpet by Lucian Freud on Sotheby's be above $26000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Sleeping by the Lion Carpet by Lucian Freud on Sotheby's is above $26M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:52:35Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPVH-26JUN19",
+  "series_ticker": "KXTRUMPVH",
+  "title": "Will Donald Trump's VoteHub approval polling average be above 39.9% at 10:00 AM ET on Jun 19, 2026?",
+  "close_time": "2026-06-19T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPVH-26JUN19-T39.9",
+    "title": "Will Donald Trump's VoteHub approval polling average be above 39.9% at 10:00 AM ET on Jun 19, 2026?",
+    "rules_primary": "If Donald Trump's VoteHub approval polling average is above 39.9% at 10:00 AM ET on Jun 19, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-19T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPPHOTO-26JUN21",
+  "series_ticker": "KXTRUMPPHOTO",
+  "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 7 between Jun 15, 2026 and Jun 21, 2026?",
+  "close_time": "2026-06-22T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPPHOTO-26JUN21-7",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 7 between Jun 15, 2026 and Jun 21, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jun 15, 2026 and Jun 21, 2026 is exactly 7, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-06-22T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPPHOTO-26JUN21-6",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 6 between Jun 15, 2026 and Jun 21, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jun 15, 2026 and Jun 21, 2026 is exactly 6, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-06-22T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPPHOTO-26JUN21-5",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 5 between Jun 15, 2026 and Jun 21, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jun 15, 2026 and Jun 21, 2026 is exactly 5, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-06-22T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPPHOTO-26JUN21-4",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 4 between Jun 15, 2026 and Jun 21, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jun 15, 2026 and Jun 21, 2026 is exactly 4, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-06-22T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXGROK-GROK5",
+  "series_ticker": "KXGROK",
+  "title": "Will xAI release Grok 5 before Jul 1, 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXGROK-GROK5-26JUL01",
+    "title": "Will xAI release Grok 5 before Jul 1, 2026?",
+    "rules_primary": "If xAI releases Grok 5 before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXHAITITPS-26AUG",
+  "series_ticker": "KXHAITITPS",
+  "title": "Will the Supreme Court rule in favor of Donald J. Trump in Trump v. Miot",
+  "close_time": "2026-06-25T15:04:50Z",
+  "markets": [
+   {
+    "ticker": "KXHAITITPS-26AUG",
+    "title": "Will the Supreme Court rule in favor of Donald J. Trump in Trump v. Miot",
+    "rules_primary": "If the Supreme Court, in Trump v. Miot, rules that the Secretary of Homeland Security may terminate Haiti\u2019s Temporary Protected Status designation notwithstanding respondents\u2019 APA and equal-protection challenges, then the market resolves to Yes.",
+    "rules_secondary": "The Payout Criterion for the Contract encompasses the Expiration Values that the Supreme Court has issued a decision holding that the Secretary of Homeland Security\u2019s termination of Haiti\u2019s Temporary Protected Status designation is not barred by respondents\u2019 Administrative Procedure Act or equal-protection challenges, either because those APA claims are unreviewable under 8 U.S.C. \u00a7 1254a(b)(5)(A) or because the APA and equal-protection claims fail on the merits. The market resolves to No if the Court dismisses the case, DIGs the writ, remands without deciding whether the Haiti TPS termination may lawfully take effect against those challenges, or otherwise disposes of the case without a merits ruling sufficient to uphold the termination.",
+    "close_time": "2026-06-25T15:04:50Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTARIFFRATEPRC-26JUL01",
+  "series_ticker": "KXTARIFFRATEPRC",
+  "title": "Will the tariff rate on China imports be between 20% and 29.99% on Jul 1, 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTARIFFRATEPRC-26JUL01-24",
+    "title": "Will the tariff rate on China imports be between 20% and 29.99% on Jul 1, 2026?",
+    "rules_primary": "If the general import tariff rate on imports from China into the United States on Jul 1, 2026 is between 20 to 29.99%, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the general import tariff rate that is actually in effect (i.e., being collected) on the specified date. This includes both universal tariffs on all U.S. imports and country-specific tariffs on the specified country. Only tariffs that are currently active and being collected count - announced but not implemented tariffs, paused tariffs, or suspended tariffs do not qualify. The tariff rate refers to the general baseline rate, not including product-specific duties or exemptions. If multiple general rates apply, the general import tariff rate is the sum of all applicable general rates in effect.\n\nExamples (for &lt;date&gt; = Jan 1, 2026):\n\n  \nIndia: 25% Reciprocal Tariff (EO 14326) + 25% Russian Oil Penalty (EO 14329) = 50%\n\n  \nChina: 10% Reciprocal Tariff (EO 14358) + 10% Fentanyl Duty (EO 14357) = 20%\n\n   \nEuropean Union: 15% Reciprocal Tariff &quot;Floor&quot; (EO 14326)\n\n  \nFalkland Islands: 10% Reciprocal Tariff (EO 14326)",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTARIFFRATEPRC-26JUL01-14",
+    "title": "Will the tariff rate on China imports be between 10% and 19.99% on Jul 1, 2026?",
+    "rules_primary": "If the general import tariff rate on imports from China into the United States on Jul 1, 2026 is between 10 to 19.99%, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the general import tariff rate that is actually in effect (i.e., being collected) on the specified date. This includes both universal tariffs on all U.S. imports and country-specific tariffs on the specified country. Only tariffs that are currently active and being collected count - announced but not implemented tariffs, paused tariffs, or suspended tariffs do not qualify. The tariff rate refers to the general baseline rate, not including product-specific duties or exemptions. If multiple general rates apply, the general import tariff rate is the sum of all applicable general rates in effect.\n\nExamples (for &lt;date&gt; = Jan 1, 2026):\n\n  \nIndia: 25% Reciprocal Tariff (EO 14326) + 25% Russian Oil Penalty (EO 14329) = 50%\n\n  \nChina: 10% Reciprocal Tariff (EO 14358) + 10% Fentanyl Duty (EO 14357) = 20%\n\n   \nEuropean Union: 15% Reciprocal Tariff &quot;Floor&quot; (EO 14326)\n\n  \nFalkland Islands: 10% Reciprocal Tariff (EO 14326)",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXCABLEAVE-26MAY22",
+  "series_ticker": "KXCABLEAVE",
+  "title": "Will any member of Trump's Cabinet leave before Jul 2026?",
+  "close_time": "2026-07-01T14:58:18Z",
+  "markets": [
+   {
+    "ticker": "KXCABLEAVE-26MAY22-26JUL",
+    "title": "Will any member of Trump's Cabinet leave before Jul 2026?",
+    "rules_primary": "If any member of Trump's Cabinet leaves their office, or announces they will leave their office, from before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Any action related to Tulsi Gabbard will not qualify.\n\nThe President announcing that a member of the Cabinet will leave the Cabinet also qualifies.\n\nFor purposes of this Contract, the Cabinet includes the heads of the 15 government agencies in the Cabinet as of Issuance, as well the Administrator of the EPA, the President\u2019s Chief of Staff, Director of National Intelligence, Director of OMB, Director of CIA, United States Trade Representative, Ambassador to the UN, Chair of the Council of Economic Advisers, Administrator of the SBA, and Director of OSTP. Acting roles are not included. Leaving office as a result of death is not encompassed by the Payout Criterion.",
+    "close_time": "2026-07-01T14:58:18Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXDIAZOUT-MDC",
+  "series_ticker": "KXDIAZOUT",
+  "title": "Will Miguel D\u00edaz-Canel leave office before 2026-08-01T14:00:00.000Z?",
+  "close_time": "2026-08-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXDIAZOUT-MDC-26AUG01",
+    "title": "Will Miguel D\u00edaz-Canel leave office before 2026-08-01T14:00:00.000Z?",
+    "rules_primary": "If Miguel D\u00edaz-Canel leaves office before August 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "An announcement that the Miguel D\u00edaz-Canel will leave the office within the next year is also encompassed by the Payout Criterion. If Miguel D\u00edaz-Canel leaves solely because they have died, the associated market will resolve and the Exchange will determine the payouts to the holders of long and short positions based upon the last traded price (prior to the death). If a last traded price is not available or is not logically consistent, or if the Exchange determines at its sole discretion that the last traded prices prior to death do not represent a fair settlement value, the Outcome Review Committee will be responsible for making a binding determination of fair allocation.\n\nClarification (05/23/26): To clarify, Miguel D\u00edaz-Canel currently holds two positions relevant to this market: First Secretary of the Communist Party of Cuba and President of Cuba. For purposes of this contract, departure from either position will satisfy the Payout Criterion.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXDIAZOUT-MDC-26JUL01",
+    "title": "Will Miguel D\u00edaz-Canel leave office before 2026-07-01T14:00:00.000Z?",
+    "rules_primary": "If Miguel D\u00edaz-Canel leaves office before July 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "An announcement that the Miguel D\u00edaz-Canel will leave the office within the next year is also encompassed by the Payout Criterion. If Miguel D\u00edaz-Canel leaves solely because they have died, the associated market will resolve and the Exchange will determine the payouts to the holders of long and short positions based upon the last traded price (prior to the death). If a last traded price is not available or is not logically consistent, or if the Exchange determines at its sole discretion that the last traded prices prior to death do not represent a fair settlement value, the Outcome Review Committee will be responsible for making a binding determination of fair allocation.\n\nClarification (05/23/26): To clarify, Miguel D\u00edaz-Canel currently holds two positions relevant to this market: First Secretary of the Communist Party of Cuba and President of Cuba. For purposes of this contract, departure from either position will satisfy the Payout Criterion.",
+    "close_time": "2026-07-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXCHATRIEUSA-26AUG",
+  "series_ticker": "KXCHATRIEUSA",
+  "title": "Will the Supreme Court rule in favor of Okello T. Chatrie in Chatrie v. United States",
+  "close_time": "2026-06-29T17:53:47Z",
+  "markets": [
+   {
+    "ticker": "KXCHATRIEUSA-26AUG",
+    "title": "Will the Supreme Court rule in favor of Okello T. Chatrie in Chatrie v. United States",
+    "rules_primary": "If the Supreme Court, in Chatrie v. United States, rules the execution of the geofence warrant violated the Fourth Amendment, then the market resolves to Yes.",
+    "rules_secondary": "The Payout Criterion for the Contract encompasses the Expiration Values that the Supreme Court of the United States has ruled that the execution of the geofence warrant violated the Fourth Amendment, after Issuance and before August 1, 2026. The market resolves to No if the Court rules that the execution of the geofence warrant did not violate the Fourth Amendment. If the case is dismissed, found improvidently granted, or remanded without a merits ruling on whether execution of the geofence warrant violated the Fourth Amendment, the market resolves to No.",
+    "close_time": "2026-06-29T17:53:47Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-CACTO",
+  "series_ticker": "KXEMMYNOMS",
+  "title": "Will Steve Martin be on the list of nominees for Comedy Actor at the 78th Emmy Awards?",
+  "close_time": "2026-07-08T17:42:07Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYNOMS-26-CACTO-STE",
+    "title": "Will Steve Martin be on the list of nominees for Comedy Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Steve Martin is on the list of nominees for Outstanding Lead Actor In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026\n\nThis market and these products have not been endorsed by the Emmys. Any references to the Emms, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T17:42:07Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-CACTO-JER",
+    "title": "Will Jeremy Allen White be on the list of nominees for Comedy Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Jeremy Allen White is on the list of nominees for Outstanding Lead Actor In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026\n\nThis market and these products have not been endorsed by the Emmys. Any references to the Emms, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T17:42:07Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-CACTO-ETH",
+    "title": "Will Ethan Hawke be on the list of nominees for Comedy Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Ethan Hawke is on the list of nominees for Outstanding Lead Actor In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026\n\nThis market and these products have not been endorsed by the Emmys. Any references to the Emms, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T17:42:07Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-CACTO-ADA",
+    "title": "Will Adam Brody be on the list of nominees for Comedy Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Adam Brody is on the list of nominees for Outstanding Lead Actor In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026\n\nThis market and these products have not been endorsed by the Emmys. Any references to the Emms, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T17:42:07Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-CACTO-MAR",
+    "title": "Will Martin Short be on the list of nominees for Comedy Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Martin Short is on the list of nominees for Outstanding Lead Actor In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026\n\nThis market and these products have not been endorsed by the Emmys. Any references to the Emms, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T17:41:53Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-CACTO-JAS",
+    "title": "Will Jason Segel be on the list of nominees for Comedy Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Jason Segel is on the list of nominees for Outstanding Lead Actor In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026\n\nThis market and these products have not been endorsed by the Emmys. Any references to the Emms, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T17:41:39Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-CACTO-MAT",
+    "title": "Will Matthew Rhys be on the list of nominees for Comedy Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Matthew Rhys is on the list of nominees for Outstanding Lead Actor In A Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026\n\nThis market and these products have not been endorsed by the Emmys. Any references to the Emms, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T17:41:29Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-COM",
+  "series_ticker": "KXEMMYNOMS",
+  "title": "Will Rooster be on the list of nominees for Comedy Series at the 78th Emmy Awards?",
+  "close_time": "2026-07-08T17:14:35Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYNOMS-26-COM-ROO",
+    "title": "Will Rooster be on the list of nominees for Comedy Series at the 78th Emmy Awards?",
+    "rules_primary": "If Rooster is on the list of nominees for Outstanding Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026\n\nThis market and these products have not been endorsed by the Emmys. Any references to the Emms, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T17:14:35Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-COM-COM",
+    "title": "Will The Comeback be on the list of nominees for Comedy Series at the 78th Emmy Awards?",
+    "rules_primary": "If The Comeback is on the list of nominees for Outstanding Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026\n\nThis market and these products have not been endorsed by the Emmys. Any references to the Emms, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T17:14:35Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-COM-WID",
+    "title": "Will Widow's Bay be on the list of nominees for Comedy Series at the 78th Emmy Awards?",
+    "rules_primary": "If Widow's Bay is on the list of nominees for Outstanding Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026\n\nThis market and these products have not been endorsed by the Emmys. Any references to the Emms, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T17:14:26Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-COM-ONL",
+    "title": "Will Only Murders in the Building be on the list of nominees for Comedy Series at the 78th Emmy Awards?",
+    "rules_primary": "If Only Murders in the Building is on the list of nominees for Outstanding Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026\n\nThis market and these products have not been endorsed by the Emmys. Any references to the Emms, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T17:13:51Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-COM-NOB",
+    "title": "Will Nobody Wants This be on the list of nominees for Comedy Series at the 78th Emmy Awards?",
+    "rules_primary": "If Nobody Wants This is on the list of nominees for Outstanding Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026\n\nThis market and these products have not been endorsed by the Emmys. Any references to the Emms, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T17:13:41Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-COM-MAR",
+    "title": "Will Margo's Got Money Troubles be on the list of nominees for Comedy Series at the 78th Emmy Awards?",
+    "rules_primary": "If Margo's Got Money Troubles is on the list of nominees for Outstanding Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026\n\nThis market and these products have not been endorsed by the Emmys. Any references to the Emms, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T17:13:25Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-COM-BEAR",
+    "title": "Will The Bear be on the list of nominees for Comedy Series at the 78th Emmy Awards?",
+    "rules_primary": "If The Bear is on the list of nominees for Outstanding Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026\n\nThis market and these products have not been endorsed by the Emmys. Any references to the Emms, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T17:13:03Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-COM-ABB",
+    "title": "Will Abbott Elementary be on the list of nominees for Comedy Series at the 78th Emmy Awards?",
+    "rules_primary": "If Abbott Elementary is on the list of nominees for Outstanding Comedy Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026\n\nThis market and these products have not been endorsed by the Emmys. Any references to the Emms, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T17:12:51Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-DACTO",
+  "series_ticker": "KXEMMYNOMS",
+  "title": "Will Peter Claffey be on the list of nominees for Drama Actor at the 78th Emmy Awards?",
+  "close_time": "2026-07-08T19:07:47Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYNOMS-26-DACTO-PET",
+    "title": "Will Peter Claffey be on the list of nominees for Drama Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Peter Claffey is on the list of nominees for Outstanding Lead Actor In A Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:07:47Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-DACTO-JON",
+    "title": "Will Jon Hamm be on the list of nominees for Drama Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Jon Hamm is on the list of nominees for Outstanding Lead Actor In A Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:07:47Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-DACTO-BIL",
+    "title": "Will Billy Bob Thornton be on the list of nominees for Drama Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Billy Bob Thornton is on the list of nominees for Outstanding Lead Actor In A Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:07:47Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-DACTO-STE",
+    "title": "Will Sterling K. Brown be on the list of nominees for Drama Actor at the 78th Emmy Awards?",
+    "rules_primary": "If Sterling K. Brown is on the list of nominees for Outstanding Lead Actor In A Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:06:48Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYTVMOVIE-26SEP14",
+  "series_ticker": "KXEMMYTVMOVIE",
+  "title": "Will Swiped win TV Movie at the Emmy Awards?",
+  "close_time": "2026-07-08T18:31:16Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYTVMOVIE-26SEP14-SWI",
+    "title": "Will Swiped win TV Movie at the Emmy Awards?",
+    "rules_primary": "If Swiped has won Outstanding Movie at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by the Emmys. Any references to the Emmys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T18:31:16Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXWORLDCUPHALFTIME-26",
+  "series_ticker": "KXWORLDCUPHALFTIME",
+  "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+  "close_time": "2026-07-19T20:59:23Z",
+  "markets": [
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-KAT",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Katy Perry performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nKaty Perry appears on stage or in the official broadcast or stream; AND\n\nKaty Perry actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Katy Perry's official representatives.\n\nNote: This Contract may resolve on the announcement of Katy Perry\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Katy Perry later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Katy Perry is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Katy Perry performs at least one full verse, chorus, or musical segment.\n\nA medley in which Katy Perry is present and actively performing, even if Katy Perry's portion is partial.\n\nA performance in which Katy Perry performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Katy Perry is the performing DJ operating equipment live, regardless of whether Katy Perry sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Katy Perry by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:59:23Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-ELL",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Ella Langley performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nElla Langley appears on stage or in the official broadcast or stream; AND\n\nElla Langley actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Ella Langley's official representatives.\n\nNote: This Contract may resolve on the announcement of Ella Langley\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Ella Langley later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Ella Langley is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Ella Langley performs at least one full verse, chorus, or musical segment.\n\nA medley in which Ella Langley is present and actively performing, even if Ella Langley's portion is partial.\n\nA performance in which Ella Langley performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Ella Langley is the performing DJ operating equipment live, regardless of whether Ella Langley sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Ella Langley by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:58:20Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-KATS",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If KATSEYE performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nKATSEYE appears on stage or in the official broadcast or stream; AND\n\nKATSEYE actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or KATSEYE's official representatives.\n\nNote: This Contract may resolve on the announcement of KATSEYE\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced KATSEYE later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which KATSEYE is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which KATSEYE performs at least one full verse, chorus, or musical segment.\n\nA medley in which KATSEYE is present and actively performing, even if KATSEYE's portion is partial.\n\nA performance in which KATSEYE performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which KATSEYE is the performing DJ operating equipment live, regardless of whether KATSEYE sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to KATSEYE by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:58:05Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-SAB",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Sabrina Carpenter performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nSabrina Carpenter appears on stage or in the official broadcast or stream; AND\n\nSabrina Carpenter actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Sabrina Carpenter's official representatives.\n\nNote: This Contract may resolve on the announcement of Sabrina Carpenter\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Sabrina Carpenter later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Sabrina Carpenter is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Sabrina Carpenter performs at least one full verse, chorus, or musical segment.\n\nA medley in which Sabrina Carpenter is present and actively performing, even if Sabrina Carpenter's portion is partial.\n\nA performance in which Sabrina Carpenter performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Sabrina Carpenter is the performing DJ operating equipment live, regardless of whether Sabrina Carpenter sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Sabrina Carpenter by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:57:35Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-YAC",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Lil Yachty performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nLil Yachty appears on stage or in the official broadcast or stream; AND\n\nLil Yachty actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Lil Yachty's official representatives.\n\nNote: This Contract may resolve on the announcement of Lil Yachty\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Lil Yachty later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Lil Yachty is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Lil Yachty performs at least one full verse, chorus, or musical segment.\n\nA medley in which Lil Yachty is present and actively performing, even if Lil Yachty's portion is partial.\n\nA performance in which Lil Yachty performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Lil Yachty is the performing DJ operating equipment live, regardless of whether Lil Yachty sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Lil Yachty by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:56:16Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-ROS",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If ROSAL\u00cdA performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nROSAL\u00cdA appears on stage or in the official broadcast or stream; AND\n\nROSAL\u00cdA actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or ROSAL\u00cdA's official representatives.\n\nNote: This Contract may resolve on the announcement of ROSAL\u00cdA\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced ROSAL\u00cdA later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which ROSAL\u00cdA is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which ROSAL\u00cdA performs at least one full verse, chorus, or musical segment.\n\nA medley in which ROSAL\u00cdA is present and actively performing, even if ROSAL\u00cdA's portion is partial.\n\nA performance in which ROSAL\u00cdA performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which ROSAL\u00cdA is the performing DJ operating equipment live, regardless of whether ROSAL\u00cdA sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to ROSAL\u00cdA by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:56:07Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-XCX",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Charli xcx performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nCharli xcx appears on stage or in the official broadcast or stream; AND\n\nCharli xcx actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Charli xcx's official representatives.\n\nNote: This Contract may resolve on the announcement of Charli xcx\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Charli xcx later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Charli xcx is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Charli xcx performs at least one full verse, chorus, or musical segment.\n\nA medley in which Charli xcx is present and actively performing, even if Charli xcx's portion is partial.\n\nA performance in which Charli xcx performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Charli xcx is the performing DJ operating equipment live, regardless of whether Charli xcx sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Charli xcx by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:54:08Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-OAS",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Oasis performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nOasis appears on stage or in the official broadcast or stream; AND\n\nOasis actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Oasis's official representatives.\n\nNote: This Contract may resolve on the announcement of Oasis\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Oasis later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Oasis is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Oasis performs at least one full verse, chorus, or musical segment.\n\nA medley in which Oasis is present and actively performing, even if Oasis's portion is partial.\n\nA performance in which Oasis performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Oasis is the performing DJ operating equipment live, regardless of whether Oasis sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Oasis by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:49:34Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-SWA",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Swae Lee performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nSwae Lee appears on stage or in the official broadcast or stream; AND\n\nSwae Lee actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Swae Lee's official representatives.\n\nNote: This Contract may resolve on the announcement of Swae Lee\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Swae Lee later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Swae Lee is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Swae Lee performs at least one full verse, chorus, or musical segment.\n\nA medley in which Swae Lee is present and actively performing, even if Swae Lee's portion is partial.\n\nA performance in which Swae Lee performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Swae Lee is the performing DJ operating equipment live, regardless of whether Swae Lee sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Swae Lee by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:47:57Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-RUA",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Rauw Alejandro performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nRauw Alejandro appears on stage or in the official broadcast or stream; AND\n\nRauw Alejandro actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Rauw Alejandro's official representatives.\n\nNote: This Contract may resolve on the announcement of Rauw Alejandro\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Rauw Alejandro later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Rauw Alejandro is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Rauw Alejandro performs at least one full verse, chorus, or musical segment.\n\nA medley in which Rauw Alejandro is present and actively performing, even if Rauw Alejandro's portion is partial.\n\nA performance in which Rauw Alejandro performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Rauw Alejandro is the performing DJ operating equipment live, regardless of whether Rauw Alejandro sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Rauw Alejandro by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:45:49Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-NIC",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Nicki Minaj performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nNicki Minaj appears on stage or in the official broadcast or stream; AND\n\nNicki Minaj actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Nicki Minaj's official representatives.\n\nNote: This Contract may resolve on the announcement of Nicki Minaj\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Nicki Minaj later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Nicki Minaj is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Nicki Minaj performs at least one full verse, chorus, or musical segment.\n\nA medley in which Nicki Minaj is present and actively performing, even if Nicki Minaj's portion is partial.\n\nA performance in which Nicki Minaj performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Nicki Minaj is the performing DJ operating equipment live, regardless of whether Nicki Minaj sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Nicki Minaj by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:45:38Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-BRU",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Bruno Mars performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nBruno Mars appears on stage or in the official broadcast or stream; AND\n\nBruno Mars actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Bruno Mars's official representatives.\n\nNote: This Contract may resolve on the announcement of Bruno Mars\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Bruno Mars later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Bruno Mars is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Bruno Mars performs at least one full verse, chorus, or musical segment.\n\nA medley in which Bruno Mars is present and actively performing, even if Bruno Mars's portion is partial.\n\nA performance in which Bruno Mars performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Bruno Mars is the performing DJ operating equipment live, regardless of whether Bruno Mars sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Bruno Mars by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:45:31Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-FUT",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Future performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nFuture appears on stage or in the official broadcast or stream; AND\n\nFuture actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Future's official representatives.\n\nNote: This Contract may resolve on the announcement of Future\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Future later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Future is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Future performs at least one full verse, chorus, or musical segment.\n\nA medley in which Future is present and actively performing, even if Future's portion is partial.\n\nA performance in which Future performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Future is the performing DJ operating equipment live, regardless of whether Future sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Future by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:45:27Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-POS",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Post Malone performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nPost Malone appears on stage or in the official broadcast or stream; AND\n\nPost Malone actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Post Malone's official representatives.\n\nNote: This Contract may resolve on the announcement of Post Malone\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Post Malone later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Post Malone is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Post Malone performs at least one full verse, chorus, or musical segment.\n\nA medley in which Post Malone is present and actively performing, even if Post Malone's portion is partial.\n\nA performance in which Post Malone performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Post Malone is the performing DJ operating equipment live, regardless of whether Post Malone sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Post Malone by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:45:16Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-BIL",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Billie Eilish performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nBillie Eilish appears on stage or in the official broadcast or stream; AND\n\nBillie Eilish actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Billie Eilish's official representatives.\n\nNote: This Contract may resolve on the announcement of Billie Eilish\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Billie Eilish later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Billie Eilish is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Billie Eilish performs at least one full verse, chorus, or musical segment.\n\nA medley in which Billie Eilish is present and actively performing, even if Billie Eilish's portion is partial.\n\nA performance in which Billie Eilish performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Billie Eilish is the performing DJ operating equipment live, regardless of whether Billie Eilish sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Billie Eilish by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:45:12Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-TRA",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Travis Scott performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nTravis Scott appears on stage or in the official broadcast or stream; AND\n\nTravis Scott actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Travis Scott's official representatives.\n\nNote: This Contract may resolve on the announcement of Travis Scott\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Travis Scott later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Travis Scott is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Travis Scott performs at least one full verse, chorus, or musical segment.\n\nA medley in which Travis Scott is present and actively performing, even if Travis Scott's portion is partial.\n\nA performance in which Travis Scott performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Travis Scott is the performing DJ operating equipment live, regardless of whether Travis Scott sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Travis Scott by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:45:09Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-WEE",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If The Weeknd performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nThe Weeknd appears on stage or in the official broadcast or stream; AND\n\nThe Weeknd actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or The Weeknd's official representatives.\n\nNote: This Contract may resolve on the announcement of The Weeknd\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced The Weeknd later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which The Weeknd is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which The Weeknd performs at least one full verse, chorus, or musical segment.\n\nA medley in which The Weeknd is present and actively performing, even if The Weeknd's portion is partial.\n\nA performance in which The Weeknd performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which The Weeknd is the performing DJ operating equipment live, regardless of whether The Weeknd sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to The Weeknd by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:44:58Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-BAD",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Bad Bunny performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nBad Bunny appears on stage or in the official broadcast or stream; AND\n\nBad Bunny actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Bad Bunny's official representatives.\n\nNote: This Contract may resolve on the announcement of Bad Bunny\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Bad Bunny later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Bad Bunny is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Bad Bunny performs at least one full verse, chorus, or musical segment.\n\nA medley in which Bad Bunny is present and actively performing, even if Bad Bunny's portion is partial.\n\nA performance in which Bad Bunny performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Bad Bunny is the performing DJ operating equipment live, regardless of whether Bad Bunny sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Bad Bunny by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:44:52Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-TAY",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Taylor Swift performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nTaylor Swift appears on stage or in the official broadcast or stream; AND\n\nTaylor Swift actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Taylor Swift's official representatives.\n\nNote: This Contract may resolve on the announcement of Taylor Swift\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Taylor Swift later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Taylor Swift is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Taylor Swift performs at least one full verse, chorus, or musical segment.\n\nA medley in which Taylor Swift is present and actively performing, even if Taylor Swift's portion is partial.\n\nA performance in which Taylor Swift performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Taylor Swift is the performing DJ operating equipment live, regardless of whether Taylor Swift sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Taylor Swift by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:44:43Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-MEG",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Megan Thee Stallion performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nMegan Thee Stallion appears on stage or in the official broadcast or stream; AND\n\nMegan Thee Stallion actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Megan Thee Stallion's official representatives.\n\nNote: This Contract may resolve on the announcement of Megan Thee Stallion\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Megan Thee Stallion later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Megan Thee Stallion is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Megan Thee Stallion performs at least one full verse, chorus, or musical segment.\n\nA medley in which Megan Thee Stallion is present and actively performing, even if Megan Thee Stallion's portion is partial.\n\nA performance in which Megan Thee Stallion performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Megan Thee Stallion is the performing DJ operating equipment live, regardless of whether Megan Thee Stallion sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Megan Thee Stallion by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:44:41Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-LAD",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Lady Gaga performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nLady Gaga appears on stage or in the official broadcast or stream; AND\n\nLady Gaga actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Lady Gaga's official representatives.\n\nNote: This Contract may resolve on the announcement of Lady Gaga\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Lady Gaga later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Lady Gaga is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Lady Gaga performs at least one full verse, chorus, or musical segment.\n\nA medley in which Lady Gaga is present and actively performing, even if Lady Gaga's portion is partial.\n\nA performance in which Lady Gaga performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Lady Gaga is the performing DJ operating equipment live, regardless of whether Lady Gaga sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Lady Gaga by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:44:41Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-KID",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If The Kid LAROI performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nThe Kid LAROI appears on stage or in the official broadcast or stream; AND\n\nThe Kid LAROI actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or The Kid LAROI's official representatives.\n\nNote: This Contract may resolve on the announcement of The Kid LAROI\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced The Kid LAROI later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which The Kid LAROI is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which The Kid LAROI performs at least one full verse, chorus, or musical segment.\n\nA medley in which The Kid LAROI is present and actively performing, even if The Kid LAROI's portion is partial.\n\nA performance in which The Kid LAROI performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which The Kid LAROI is the performing DJ operating equipment live, regardless of whether The Kid LAROI sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to The Kid LAROI by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:44:41Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-TIM",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Justin Timberlake performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nJustin Timberlake appears on stage or in the official broadcast or stream; AND\n\nJustin Timberlake actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Justin Timberlake's official representatives.\n\nNote: This Contract may resolve on the announcement of Justin Timberlake\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Justin Timberlake later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Justin Timberlake is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Justin Timberlake performs at least one full verse, chorus, or musical segment.\n\nA medley in which Justin Timberlake is present and actively performing, even if Justin Timberlake's portion is partial.\n\nA performance in which Justin Timberlake performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Justin Timberlake is the performing DJ operating equipment live, regardless of whether Justin Timberlake sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Justin Timberlake by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:44:40Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-JAY",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If JAY-Z performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nJAY-Z appears on stage or in the official broadcast or stream; AND\n\nJAY-Z actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or JAY-Z's official representatives.\n\nNote: This Contract may resolve on the announcement of JAY-Z\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced JAY-Z later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which JAY-Z is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which JAY-Z performs at least one full verse, chorus, or musical segment.\n\nA medley in which JAY-Z is present and actively performing, even if JAY-Z's portion is partial.\n\nA performance in which JAY-Z performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which JAY-Z is the performing DJ operating equipment live, regardless of whether JAY-Z sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to JAY-Z by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:44:40Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-DUA",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Dua Lipa performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nDua Lipa appears on stage or in the official broadcast or stream; AND\n\nDua Lipa actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Dua Lipa's official representatives.\n\nNote: This Contract may resolve on the announcement of Dua Lipa\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Dua Lipa later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Dua Lipa is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Dua Lipa performs at least one full verse, chorus, or musical segment.\n\nA medley in which Dua Lipa is present and actively performing, even if Dua Lipa's portion is partial.\n\nA performance in which Dua Lipa performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Dua Lipa is the performing DJ operating equipment live, regardless of whether Dua Lipa sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Dua Lipa by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:44:40Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-RIH",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Rihanna performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nRihanna appears on stage or in the official broadcast or stream; AND\n\nRihanna actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Rihanna's official representatives.\n\nNote: This Contract may resolve on the announcement of Rihanna\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Rihanna later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Rihanna is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Rihanna performs at least one full verse, chorus, or musical segment.\n\nA medley in which Rihanna is present and actively performing, even if Rihanna's portion is partial.\n\nA performance in which Rihanna performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Rihanna is the performing DJ operating equipment live, regardless of whether Rihanna sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Rihanna by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:44:39Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-KAR",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If KAROL G performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nKAROL G appears on stage or in the official broadcast or stream; AND\n\nKAROL G actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or KAROL G's official representatives.\n\nNote: This Contract may resolve on the announcement of KAROL G\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced KAROL G later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which KAROL G is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which KAROL G performs at least one full verse, chorus, or musical segment.\n\nA medley in which KAROL G is present and actively performing, even if KAROL G's portion is partial.\n\nA performance in which KAROL G performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which KAROL G is the performing DJ operating equipment live, regardless of whether KAROL G sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to KAROL G by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:44:39Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-JBA",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If J Balvin performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nJ Balvin appears on stage or in the official broadcast or stream; AND\n\nJ Balvin actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or J Balvin's official representatives.\n\nNote: This Contract may resolve on the announcement of J Balvin\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced J Balvin later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which J Balvin is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which J Balvin performs at least one full verse, chorus, or musical segment.\n\nA medley in which J Balvin is present and actively performing, even if J Balvin's portion is partial.\n\nA performance in which J Balvin performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which J Balvin is the performing DJ operating equipment live, regardless of whether J Balvin sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to J Balvin by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:44:39Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-ED",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Ed Sheeran performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nEd Sheeran appears on stage or in the official broadcast or stream; AND\n\nEd Sheeran actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Ed Sheeran's official representatives.\n\nNote: This Contract may resolve on the announcement of Ed Sheeran\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Ed Sheeran later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Ed Sheeran is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Ed Sheeran performs at least one full verse, chorus, or musical segment.\n\nA medley in which Ed Sheeran is present and actively performing, even if Ed Sheeran's portion is partial.\n\nA performance in which Ed Sheeran performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Ed Sheeran is the performing DJ operating equipment live, regardless of whether Ed Sheeran sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Ed Sheeran by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:44:39Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-DRA",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Drake performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nDrake appears on stage or in the official broadcast or stream; AND\n\nDrake actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Drake's official representatives.\n\nNote: This Contract may resolve on the announcement of Drake\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Drake later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Drake is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Drake performs at least one full verse, chorus, or musical segment.\n\nA medley in which Drake is present and actively performing, even if Drake's portion is partial.\n\nA performance in which Drake performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Drake is the performing DJ operating equipment live, regardless of whether Drake sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Drake by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-19T20:44:20Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-COL",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Coldplay performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nColdplay appears on stage or in the official broadcast or stream; AND\n\nColdplay actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Coldplay's official representatives.\n\nNote: This Contract may resolve on the announcement of Coldplay\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Coldplay later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Coldplay is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Coldplay performs at least one full verse, chorus, or musical segment.\n\nA medley in which Coldplay is present and actively performing, even if Coldplay's portion is partial.\n\nA performance in which Coldplay performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Coldplay is the performing DJ operating equipment live, regardless of whether Coldplay sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Coldplay by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-08T20:14:50Z"
+   },
+   {
+    "ticker": "KXWORLDCUPHALFTIME-26-JUS",
+    "title": "Who will perform at the 2026 FIFA World Cup final halftime show?",
+    "rules_primary": "If Justin Bieber performs (or it is announced that they will perform at) at the 2026 FIFA World Cup final halftime show during the official event timeframe, then the market resolves to Yes.",
+    "rules_secondary": "Additional clarification(s):\n\nJustin Bieber appears on stage or in the official broadcast or stream; AND\n\nJustin Bieber actively and perceptibly contributes to a musical performance by singing (including audible lead or backing vocals), rapping, playing a musical instrument, DJ-ing, or conducting a live band; AND\n\nIs either a scheduled performer, a guest appearance during another artist's set, or is formally announced as a performer by official event organizers or Justin Bieber's official representatives.\n\nNote: This Contract may resolve on the announcement of Justin Bieber\u2019s anticipated performance at the 2026 FIFA World Cup final halftime show. If an announced Justin Bieber later withdraws from the 2026 FIFA World Cup final halftime show, this will not affect the resolution of the Contract.\n\nThe following constitutes a performance and IS encompassed by the Payout Criterion:\n\nA full solo performance of one or more songs.\n\nA collaborative or joint performance in which Justin Bieber is physically present and actively contributes musically.\n\nA guest appearance during another artist's set in which Justin Bieber performs at least one full verse, chorus, or musical segment.\n\nA medley in which Justin Bieber is present and actively performing, even if Justin Bieber's portion is partial.\n\nA performance in which Justin Bieber performs entirely via an officially produced and sanctioned satellite feed, video link, or holographic display that is presented as part of the official live event program, provided that the performance is real-time or was produced specifically for and presented exclusively within the 2026 FIFA World Cup final halftime show.\n\nA DJ set in which Justin Bieber is the performing DJ operating equipment live, regardless of whether Justin Bieber sings.\n\nA pre-recorded performance segment presented as part of the official event program, provided it is attributed to Justin Bieber by the official event organizers and presented as a performance (rather than a tribute, retrospective, or archival clip).\n\nA performance that begins within the official event timeframe but extends beyond it due to scheduling overrun, provided the performance commenced during the official timeframe.\n\nA performance at a rescheduled version of the 2026 FIFA World Cup final halftime show where the reschedule occurs within one year of the original event date, pursuant to the postponement provisions below.",
+    "close_time": "2026-07-08T20:14:02Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBBCHARTPOSITIONSONG-26JUL04CHO",
+  "series_ticker": "KXBBCHARTPOSITIONSONG",
+  "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 during the week of Jul 4, 2026",
+  "close_time": "2026-06-29T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXBBCHARTPOSITIONSONG-26JUL04CHO-1",
+    "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 during the week of Jul 4, 2026",
+    "rules_primary": "If Choosin' Texas by Ella Langley is ranked #1 on the Billboard Hot 100  chart for the Week of Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-29T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFEATURE-27REA",
+  "series_ticker": "KXFEATURE",
+  "title": "Will Kanye West / Ye be featured on 'The Real Me' by Future?",
+  "close_time": "2026-07-11T18:41:55Z",
+  "markets": [
+   {
+    "ticker": "KXFEATURE-27REA-YE",
+    "title": "Will Kanye West / Ye be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Kanye West / Ye is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Kanye West / Ye is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:55Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-KEN",
+    "title": "Will Kendrick Lamar be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Kendrick Lamar is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Kendrick Lamar is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:55Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-WEE",
+    "title": "Will The Weeknd be featured on 'The Real Me' by Future?",
+    "rules_primary": "If The Weeknd is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  The Weeknd is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:54Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-SZA",
+    "title": "Will SZA be featured on 'The Real Me' by Future?",
+    "rules_primary": "If SZA is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  SZA is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:54Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-YOU",
+    "title": "Will Young Thug be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Young Thug is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Young Thug is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-YEA",
+    "title": "Will Yeat be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Yeat is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Yeat is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-UZI",
+    "title": "Will Lil Uzi Vert be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Lil Uzi Vert is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Lil Uzi Vert is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-TYD",
+    "title": "Will Ty Dolla $ign be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Ty Dolla $ign is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Ty Dolla $ign is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-TRA",
+    "title": "Will Travis Scott be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Travis Scott is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Travis Scott is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-SEX",
+    "title": "Will Sexyy Red be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Sexyy Red is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Sexyy Red is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-PLA",
+    "title": "Will Playboi Carti be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Playboi Carti is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Playboi Carti is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-NAV",
+    "title": "Will Nav be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Nav is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Nav is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-MET",
+    "title": "Will Metro Boomin be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Metro Boomin is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Metro Boomin is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-MEE",
+    "title": "Will Meek Mill be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Meek Mill is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Meek Mill is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-LIL",
+    "title": "Will Lil Baby be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Lil Baby is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Lil Baby is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-LAT",
+    "title": "Will Latto be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Latto is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Latto is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-KOD",
+    "title": "Will Kodak Black be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Kodak Black is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Kodak Black is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-JCO",
+    "title": "Will J. Cole be featured on 'The Real Me' by Future?",
+    "rules_primary": "If J. Cole is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  J. Cole is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-GUN",
+    "title": "Will Gunna be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Gunna is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Gunna is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-DRA",
+    "title": "Will Drake be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Drake is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Drake is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-DON",
+    "title": "Will Don Toliver be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Don Toliver is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Don Toliver is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-DOE",
+    "title": "Will Doechii be featured on 'The Real Me' by Future?",
+    "rules_primary": "If Doechii is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Doechii is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-ASA",
+    "title": "Will A$AP Rocky be featured on 'The Real Me' by Future?",
+    "rules_primary": "If A$AP Rocky is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  A$AP Rocky is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   },
+   {
+    "ticker": "KXFEATURE-27REA-21S",
+    "title": "Will 21 Savage be featured on 'The Real Me' by Future?",
+    "rules_primary": "If 21 Savage is featured on the album 'The Real Me' by Future before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  21 Savage is listed\nunder the song name on 'The Real Me' by Future, listed in the song title on 'The Real Me' by Future including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on 'The Real Me' by Future, in each case as reported by a Source Agency. 'The Real Me' by Future must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-11T18:41:53Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMAMDANIEO-26JUL04",
+  "series_ticker": "KXMAMDANIEO",
+  "title": "Will Mamdani sign above 0 executive orders between Jun 28, 2026 and Jul 4, 2026?",
+  "close_time": "2026-07-05T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXMAMDANIEO-26JUL04-T0",
+    "title": "Will Mamdani sign above 0 executive orders between Jun 28, 2026 and Jul 4, 2026?",
+    "rules_primary": "If the number of non-emergency executive orders signed by Zohran Mamdani is above 0 from Jun 28, 2026 to Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-05T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFTCNEXT-27",
+  "series_ticker": "KXFTCNEXT",
+  "title": "Who will the FTC go after next?",
+  "close_time": "2026-07-13T16:30:29Z",
+  "markets": [
+   {
+    "ticker": "KXFTCNEXT-27-MFST",
+    "title": "Who will the FTC go after next?",
+    "rules_primary": "If the next company to be the subject of a new FTC enforcement action is Microsoft, then the market resolves to Yes.",
+    "rules_secondary": "In all cases, the action must represent the first public announcement of an enforcement action on that particular matter or against that company. If the FTC takes multiple enforcement steps as part of the same matter, only the first public step counts as \u201cnew.\u201d",
+    "close_time": "2026-07-13T16:30:29Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTECHRANKLISTAICODE-26JUL06",
+  "series_ticker": "KXTECHRANKLISTAICODE",
+  "title": "Top Coding AI this week?",
+  "close_time": "2026-07-06T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTECHRANKLISTAICODE-26JUL06-CLAU",
+    "title": "Top Coding AI this week?",
+    "rules_primary": "If Claude is the #1 model on LM Code Arena Leaderboard on Jul 6, 2026 at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "If two models are tied under Rank, then the model with the highest Arena Score will resolve to Yes. If two models are still tied after that, then the model with the most votes will resolve to Yes. If two models are still tied after that, the model that was released earlier will resolve to Yes.",
+    "close_time": "2026-07-06T14:00:00Z"
+   },
+   {
+    "ticker": "KXTECHRANKLISTAICODE-26JUL06-CHAT",
+    "title": "Top Coding AI this week?",
+    "rules_primary": "If ChatGPT is the #1 model on LM Code Arena Leaderboard on Jul 6, 2026 at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "If two models are tied under Rank, then the model with the highest Arena Score will resolve to Yes. If two models are still tied after that, then the model with the most votes will resolve to Yes. If two models are still tied after that, the model that was released earlier will resolve to Yes.",
+    "close_time": "2026-07-06T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALITOANNOUNCERETIRE-26JUN",
+  "series_ticker": "KXALITOANNOUNCERETIRE",
+  "title": "Will Samuel Alito announce their departure as Supreme Court justice before Jul 6, 2026?",
+  "close_time": "2026-07-06T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXALITOANNOUNCERETIRE-26JUN-JUL06",
+    "title": "Will Samuel Alito announce their departure as Supreme Court justice before Jul 6, 2026?",
+    "rules_primary": "If Samuel Alito retires as Supreme Court justice before Jul 6, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market resolves based on when the departure is publicly announced or officially communicated, regardless of the effective date.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-07-06T03:59:00Z"
+   },
+   {
+    "ticker": "KXALITOANNOUNCERETIRE-26JUN-JUL04",
+    "title": "Will Samuel Alito announce their departure as Supreme Court justice before Jul 4, 2026?",
+    "rules_primary": "If Samuel Alito retires as Supreme Court justice before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market resolves based on when the departure is publicly announced or officially communicated, regardless of the effective date.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-07-04T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXEMMYDSERIES-26SEP14",
+  "series_ticker": "KXEMMYDSERIES",
+  "title": "Will Industry win Drama Series at the Emmy Awards?",
+  "close_time": "2026-07-08T18:12:27Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYDSERIES-26SEP14-IND",
+    "title": "Will Industry win Drama Series at the Emmy Awards?",
+    "rules_primary": "If Industry has won Outstanding Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by the Emmys. Any references to the Emmys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Emmys and Kalshi.",
+    "close_time": "2026-07-08T18:12:27Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLLM1-26JUL06",
+  "series_ticker": "KXLLM1",
+  "title": "Best AI in Jul 2026?",
+  "close_time": "2026-07-06T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXLLM1-26JUL06-OPEN",
+    "title": "Best AI in Jul 2026?",
+    "rules_primary": "If OpenAI has the top-ranked LLM on Jul 6, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If two models are tied under Rank (UB), then the model with the highest Arena Score will win. If two models are still tied after that, then the model with the most votes will win. If two models are still tied after that, the model that was released earlier will win. Important information: When checking the source for this market, check the 'Remove Style Control' toggle.",
+    "close_time": "2026-07-06T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BSGP",
+  "series_ticker": "KXESPYS",
+  "title": "Will Tyce Armstrong win Best Single-Game Performance award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T07:46:13Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BSGP-TYC",
+    "title": "Will Tyce Armstrong win Best Single-Game Performance award at the 2026 ESPYS?",
+    "rules_primary": "If Tyce Armstrong wins Best Single-Game Performance at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:46:13Z"
+   },
+   {
+    "ticker": "KXESPYS-26BSGP-SHO",
+    "title": "Will Shohei Ohtani win Best Single-Game Performance award at the 2026 ESPYS?",
+    "rules_primary": "If Shohei Ohtani wins Best Single-Game Performance at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:46:13Z"
+   },
+   {
+    "ticker": "KXESPYS-26BSGP-HAN",
+    "title": "Will Hannah Hidalgo win Best Single-Game Performance award at the 2026 ESPYS?",
+    "rules_primary": "If Hannah Hidalgo wins Best Single-Game Performance at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:46:13Z"
+   },
+   {
+    "ticker": "KXESPYS-26BSGP-BAM",
+    "title": "Will Bam Adebayo win Best Single-Game Performance award at the 2026 ESPYS?",
+    "rules_primary": "If Bam Adebayo wins Best Single-Game Performance at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:46:13Z"
+   }
+  ]
+ }
+]

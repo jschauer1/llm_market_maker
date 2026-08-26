@@ -1,0 +1,212 @@
+[
+ {
+  "event_ticker": "KXEUROVISIONHOST-27",
+  "series_ticker": "KXEUROVISIONHOST",
+  "title": "Which city will host Eurovision 2027?",
+  "close_time": "2026-08-19T14:44:40Z",
+  "markets": [
+   {
+    "ticker": "KXEUROVISIONHOST-27-SOF",
+    "title": "Which city will host Eurovision 2027?",
+    "rules_primary": "If Sofia hosts Eurovision 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-19T14:44:40Z"
+   },
+   {
+    "ticker": "KXEUROVISIONHOST-27-BUR",
+    "title": "Which city will host Eurovision 2027?",
+    "rules_primary": "If Burgas hosts Eurovision 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-19T14:44:38Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXPRESSSECANNOUNCE-26AUG",
+  "series_ticker": "KXPRESSSECANNOUNCE",
+  "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Aug 21, 2026?",
+  "close_time": "2026-08-21T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXPRESSSECANNOUNCE-26AUG-AUG21",
+    "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Aug 21, 2026?",
+    "rules_primary": "If Donald Trump has made any announcement (e.g., Truth Social post) naming the next White House Press Secretary (including acting/interim) before Aug 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-21T03:59:00Z"
+   },
+   {
+    "ticker": "KXPRESSSECANNOUNCE-26AUG-AUG18",
+    "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Aug 18, 2026?",
+    "rules_primary": "If Donald Trump has made any announcement (e.g., Truth Social post) naming the next White House Press Secretary (including acting/interim) before Aug 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-18T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBIGBROTHERELIMINATION-26AUG20",
+  "series_ticker": "KXBIGBROTHERELIMINATION",
+  "title": "Will Taylor Brown be eliminated from Big Brother Season 28 before Aug 21, 2026?",
+  "close_time": "2026-08-21T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG20-TAY",
+    "title": "Will Taylor Brown be eliminated from Big Brother Season 28 before Aug 21, 2026?",
+    "rules_primary": "If Taylor Brown is officially eliminated from Big Brother Season 28 Before Aug 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-21T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG20-MEL",
+    "title": "Will Melody Morris be eliminated from Big Brother Season 28 before Aug 21, 2026?",
+    "rules_primary": "If Melody Morris is officially eliminated from Big Brother Season 28 Before Aug 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-21T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG20-MAL",
+    "title": "Will Mallory Aurichio be eliminated from Big Brother Season 28 before Aug 21, 2026?",
+    "rules_primary": "If Mallory Aurichio is officially eliminated from Big Brother Season 28 Before Aug 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-21T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG20-LAT",
+    "title": "Will LaTrice Verrett be eliminated from Big Brother Season 28 before Aug 21, 2026?",
+    "rules_primary": "If LaTrice Verrett is officially eliminated from Big Brother Season 28 Before Aug 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-21T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG20-KAM",
+    "title": "Will Kamu Kirk be eliminated from Big Brother Season 28 before Aug 21, 2026?",
+    "rules_primary": "If Kamu Kirk is officially eliminated from Big Brother Season 28 Before Aug 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-21T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG20-HAL",
+    "title": "Will Haley Thogmartin be eliminated from Big Brother Season 28 before Aug 21, 2026?",
+    "rules_primary": "If Haley Thogmartin is officially eliminated from Big Brother Season 28 Before Aug 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-21T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG20-DRE",
+    "title": "Will Drew Campbell be eliminated from Big Brother Season 28 before Aug 21, 2026?",
+    "rules_primary": "If Drew Campbell is officially eliminated from Big Brother Season 28 Before Aug 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-21T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG20-DEE",
+    "title": "Will Dee Valladares be eliminated from Big Brother Season 28 before Aug 21, 2026?",
+    "rules_primary": "If Dee Valladares is officially eliminated from Big Brother Season 28 Before Aug 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-21T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG20-BAR",
+    "title": "Will Barrett Pfeiffer be eliminated from Big Brother Season 28 before Aug 21, 2026?",
+    "rules_primary": "If Barrett Pfeiffer is officially eliminated from Big Brother Season 28 Before Aug 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-21T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG20-ANG",
+    "title": "Will Angela Murray be eliminated from Big Brother Season 28 before Aug 21, 2026?",
+    "rules_primary": "If Angela Murray is officially eliminated from Big Brother Season 28 Before Aug 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-21T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXYTDAILYTOPVIDEOG-26AUG17",
+  "series_ticker": "KXYTDAILYTOPVIDEOG",
+  "title": "Will Dai Dai rank #1 on YouTube Charts\u2019 Daily Top Music Videos Global chart dated Aug 17, 2026?",
+  "close_time": "2026-08-18T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXYTDAILYTOPVIDEOG-26AUG17-DAI",
+    "title": "Will Dai Dai rank #1 on YouTube Charts\u2019 Daily Top Music Videos Global chart dated Aug 17, 2026?",
+    "rules_primary": "If Dai Dai ranks #1 on YouTube Charts\u2019 Daily Top Music Videos - Global chart dated Aug 17, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by YouTube. Any references to YouTube or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between YouTube and Kalshi.",
+    "close_time": "2026-08-18T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXAGTELIMINATION-26AUG20B",
+  "series_ticker": "KXAGTELIMINATION",
+  "title": "Will James and Marina be eliminated from America's Got Talent Season 21 before Aug 20, 2026?",
+  "close_time": "2026-08-20T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXAGTELIMINATION-26AUG20B-JAM",
+    "title": "Will James and Marina be eliminated from America's Got Talent Season 21 before Aug 20, 2026?",
+    "rules_primary": "If James and Marina is officially eliminated from America's Got Talent Season 21 before Aug 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-20T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXANTHSHARE-26AUG17",
+  "series_ticker": "KXANTHSHARE",
+  "title": "Anthropic market share this week?",
+  "close_time": "2026-08-24T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXANTHSHARE-26AUG17-4.5",
+    "title": "Anthropic market share this week?",
+    "rules_primary": "If Anthropic scores above 4.5% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXANTHSHARE-26AUG17-4.0",
+    "title": "Anthropic market share this week?",
+    "rules_primary": "If Anthropic scores above 4.0% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXANTHSHARE-26AUG17-3.0",
+    "title": "Anthropic market share this week?",
+    "rules_primary": "If Anthropic scores above 3.0% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXOPENSHARE-26AUG17",
+  "series_ticker": "KXOPENSHARE",
+  "title": "OpenAI market share this week?",
+  "close_time": "2026-08-24T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXOPENSHARE-26AUG17-20",
+    "title": "OpenAI market share this week?",
+    "rules_primary": "If OpenAI scores above 20% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXOPENSHARE-26AUG17-19",
+    "title": "OpenAI market share this week?",
+    "rules_primary": "If OpenAI scores above 19% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXOPENSHARE-26AUG17-17",
+    "title": "OpenAI market share this week?",
+    "rules_primary": "If OpenAI scores above 17% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   }
+  ]
+ }
+]

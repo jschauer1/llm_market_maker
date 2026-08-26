@@ -1,0 +1,727 @@
+[
+ {
+  "event_ticker": "KXESPYS-26BUFCF",
+  "series_ticker": "KXESPYS",
+  "title": "Will Terence Crawford win Best Fighter award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T14:04:29Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BUFCF-TER",
+    "title": "Will Terence Crawford win Best Fighter award at the 2026 ESPYS?",
+    "rules_primary": "If Terence Crawford wins Best Fighter at the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:04:29Z"
+   },
+   {
+    "ticker": "KXESPYS-26BUFCF-JUS",
+    "title": "Will Justin Gaethje win Best Fighter award at the 2026 ESPYS?",
+    "rules_primary": "If Justin Gaethje wins Best Fighter at the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:04:29Z"
+   },
+   {
+    "ticker": "KXESPYS-26BUFCF-CLA",
+    "title": "Will Claressa Shields win Best Fighter award at the 2026 ESPYS?",
+    "rules_primary": "If Claressa Shields wins Best Fighter at the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:04:29Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPSONG-26JUL18",
+  "series_ticker": "KXTOPSONG",
+  "title": "Will I Knew It, I Knew You be #1 on the Billboard Hot 100 during the week of Jul 18, 2026",
+  "close_time": "2026-07-13T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPSONG-26JUL18-IKN",
+    "title": "Will I Knew It, I Knew You be #1 on the Billboard Hot 100 during the week of Jul 18, 2026",
+    "rules_primary": "If I Knew It, I Knew You is #1 on the Billboard Hot 100  chart for the Week of Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-07-13T03:59:00Z"
+   },
+   {
+    "ticker": "KXTOPSONG-26JUL18-CHO",
+    "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 during the week of Jul 18, 2026",
+    "rules_primary": "If Choosin' Texas is #1 on the Billboard Hot 100  chart for the Week of Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-07-13T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMAMDANIEO-26JUL11",
+  "series_ticker": "KXMAMDANIEO",
+  "title": "Will Mamdani sign above 0 executive orders between Jul 5, 2026 and Jul 11, 2026?",
+  "close_time": "2026-07-12T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXMAMDANIEO-26JUL11-T0",
+    "title": "Will Mamdani sign above 0 executive orders between Jul 5, 2026 and Jul 11, 2026?",
+    "rules_primary": "If the number of non-emergency executive orders signed by Zohran Mamdani is above 0 from Jul 5, 2026 to Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-12T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTECHRANKLISTAICODE-26JUL13",
+  "series_ticker": "KXTECHRANKLISTAICODE",
+  "title": "Top Coding AI this week?",
+  "close_time": "2026-07-13T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTECHRANKLISTAICODE-26JUL13-CLAU",
+    "title": "Top Coding AI this week?",
+    "rules_primary": "If Claude is the #1 model on LM Code Arena Leaderboard on Jul 13, 2026 at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.",
+    "close_time": "2026-07-13T14:00:00Z"
+   },
+   {
+    "ticker": "KXTECHRANKLISTAICODE-26JUL13-CHAT",
+    "title": "Top Coding AI this week?",
+    "rules_primary": "If ChatGPT is the #1 model on LM Code Arena Leaderboard on Jul 13, 2026 at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.",
+    "close_time": "2026-07-13T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXWCVIEWERSHIP-27JAN01",
+  "series_ticker": "KXWCVIEWERSHIP",
+  "title": "Will the 2026 FIFA World Cup Final have above 60000000 Total Viewers (P2+) on Nielsen?",
+  "close_time": "2026-07-24T17:19:50Z",
+  "markets": [
+   {
+    "ticker": "KXWCVIEWERSHIP-27JAN01-60.0M",
+    "title": "Will the 2026 FIFA World Cup Final have above 60000000 Total Viewers (P2+) on Nielsen?",
+    "rules_primary": "If the 2026 FIFA World Cup Final has above 60.0M United States Total Viewers (P2+), then the market resolves to Yes.",
+    "rules_secondary": "The data used to resolve the market is the Total Viewers P2+ according to Nielsen.\n\nIf no Total Viewers (P2+) data for the 2026 FIFA World Cup Final is available from Nielsen by the Expiration Date, all markets will resolve to No.",
+    "close_time": "2026-07-24T17:19:50Z"
+   },
+   {
+    "ticker": "KXWCVIEWERSHIP-27JAN01-57.0M",
+    "title": "Will the 2026 FIFA World Cup Final have above 57000000 Total Viewers (P2+) on Nielsen?",
+    "rules_primary": "If the 2026 FIFA World Cup Final has above 57.0M United States Total Viewers (P2+), then the market resolves to Yes.",
+    "rules_secondary": "The data used to resolve the market is the Total Viewers P2+ according to Nielsen.\n\nIf no Total Viewers (P2+) data for the 2026 FIFA World Cup Final is available from Nielsen by the Expiration Date, all markets will resolve to No.",
+    "close_time": "2026-07-24T17:19:50Z"
+   },
+   {
+    "ticker": "KXWCVIEWERSHIP-27JAN01-55.0M",
+    "title": "Will the 2026 FIFA World Cup Final have above 55000000 Total Viewers (P2+) on Nielsen?",
+    "rules_primary": "If the 2026 FIFA World Cup Final has above 55.0M United States Total Viewers (P2+), then the market resolves to Yes.",
+    "rules_secondary": "The data used to resolve the market is the Total Viewers P2+ according to Nielsen.\n\nIf no Total Viewers (P2+) data for the 2026 FIFA World Cup Final is available from Nielsen by the Expiration Date, all markets will resolve to No.",
+    "close_time": "2026-07-24T17:19:50Z"
+   },
+   {
+    "ticker": "KXWCVIEWERSHIP-27JAN01-53.0M",
+    "title": "Will the 2026 FIFA World Cup Final have above 53000000 Total Viewers (P2+) on Nielsen?",
+    "rules_primary": "If the 2026 FIFA World Cup Final has above 53.0M United States Total Viewers (P2+), then the market resolves to Yes.",
+    "rules_secondary": "The data used to resolve the market is the Total Viewers P2+ according to Nielsen.\n\nIf no Total Viewers (P2+) data for the 2026 FIFA World Cup Final is available from Nielsen by the Expiration Date, all markets will resolve to No.",
+    "close_time": "2026-07-24T17:19:50Z"
+   },
+   {
+    "ticker": "KXWCVIEWERSHIP-27JAN01-50.0M",
+    "title": "Will the 2026 FIFA World Cup Final have above 50000000 Total Viewers (P2+) on Nielsen?",
+    "rules_primary": "If the 2026 FIFA World Cup Final has above 50.0M United States Total Viewers (P2+), then the market resolves to Yes.",
+    "rules_secondary": "The data used to resolve the market is the Total Viewers P2+ according to Nielsen.\n\nIf no Total Viewers (P2+) data for the 2026 FIFA World Cup Final is available from Nielsen by the Expiration Date, all markets will resolve to No.",
+    "close_time": "2026-07-24T17:19:50Z"
+   },
+   {
+    "ticker": "KXWCVIEWERSHIP-27JAN01-45.0M",
+    "title": "Will the 2026 FIFA World Cup Final have above 45000000 Total Viewers (P2+) on Nielsen?",
+    "rules_primary": "If the 2026 FIFA World Cup Final has above 45.0M United States Total Viewers (P2+), then the market resolves to Yes.",
+    "rules_secondary": "The data used to resolve the market is the Total Viewers P2+ according to Nielsen.\n\nIf no Total Viewers (P2+) data for the 2026 FIFA World Cup Final is available from Nielsen by the Expiration Date, all markets will resolve to No.",
+    "close_time": "2026-07-24T17:19:50Z"
+   },
+   {
+    "ticker": "KXWCVIEWERSHIP-27JAN01-42.0M",
+    "title": "Will the 2026 FIFA World Cup Final have above 42000000 Total Viewers (P2+) on Nielsen?",
+    "rules_primary": "If the 2026 FIFA World Cup Final has above 42.0M United States Total Viewers (P2+), then the market resolves to Yes.",
+    "rules_secondary": "The data used to resolve the market is the Total Viewers P2+ according to Nielsen.\n\nIf no Total Viewers (P2+) data for the 2026 FIFA World Cup Final is available from Nielsen by the Expiration Date, all markets will resolve to No.",
+    "close_time": "2026-07-24T17:19:50Z"
+   },
+   {
+    "ticker": "KXWCVIEWERSHIP-27JAN01-40.0M",
+    "title": "Will the 2026 FIFA World Cup Final have above 40000000 Total Viewers (P2+) on Nielsen?",
+    "rules_primary": "If the 2026 FIFA World Cup Final has above 40.0M United States Total Viewers (P2+), then the market resolves to Yes.",
+    "rules_secondary": "The data used to resolve the market is the Total Viewers P2+ according to Nielsen.\n\nIf no Total Viewers (P2+) data for the 2026 FIFA World Cup Final is available from Nielsen by the Expiration Date, all markets will resolve to No.",
+    "close_time": "2026-07-24T17:19:50Z"
+   },
+   {
+    "ticker": "KXWCVIEWERSHIP-27JAN01-38.0M",
+    "title": "Will the 2026 FIFA World Cup Final have above 38000000 Total Viewers (P2+) on Nielsen?",
+    "rules_primary": "If the 2026 FIFA World Cup Final has above 38.0M United States Total Viewers (P2+), then the market resolves to Yes.",
+    "rules_secondary": "The data used to resolve the market is the Total Viewers P2+ according to Nielsen.\n\nIf no Total Viewers (P2+) data for the 2026 FIFA World Cup Final is available from Nielsen by the Expiration Date, all markets will resolve to No.",
+    "close_time": "2026-07-24T17:19:50Z"
+   },
+   {
+    "ticker": "KXWCVIEWERSHIP-27JAN01-36.0M",
+    "title": "Will the 2026 FIFA World Cup Final have above 36000000 Total Viewers (P2+) on Nielsen?",
+    "rules_primary": "If the 2026 FIFA World Cup Final has above 36.0M United States Total Viewers (P2+), then the market resolves to Yes.",
+    "rules_secondary": "The data used to resolve the market is the Total Viewers P2+ according to Nielsen.\n\nIf no Total Viewers (P2+) data for the 2026 FIFA World Cup Final is available from Nielsen by the Expiration Date, all markets will resolve to No.",
+    "close_time": "2026-07-24T17:19:50Z"
+   },
+   {
+    "ticker": "KXWCVIEWERSHIP-27JAN01-34.0M",
+    "title": "Will the 2026 FIFA World Cup Final have above 34000000 Total Viewers (P2+) on Nielsen?",
+    "rules_primary": "If the 2026 FIFA World Cup Final has above 34.0M United States Total Viewers (P2+), then the market resolves to Yes.",
+    "rules_secondary": "The data used to resolve the market is the Total Viewers P2+ according to Nielsen.\n\nIf no Total Viewers (P2+) data for the 2026 FIFA World Cup Final is available from Nielsen by the Expiration Date, all markets will resolve to No.",
+    "close_time": "2026-07-24T17:19:50Z"
+   },
+   {
+    "ticker": "KXWCVIEWERSHIP-27JAN01-32.0M",
+    "title": "Will the 2026 FIFA World Cup Final have above 32000000 Total Viewers (P2+) on Nielsen?",
+    "rules_primary": "If the 2026 FIFA World Cup Final has above 32.0M United States Total Viewers (P2+), then the market resolves to Yes.",
+    "rules_secondary": "The data used to resolve the market is the Total Viewers P2+ according to Nielsen.\n\nIf no Total Viewers (P2+) data for the 2026 FIFA World Cup Final is available from Nielsen by the Expiration Date, all markets will resolve to No.",
+    "close_time": "2026-07-24T17:19:50Z"
+   },
+   {
+    "ticker": "KXWCVIEWERSHIP-27JAN01-30.0M",
+    "title": "Will the 2026 FIFA World Cup Final have above 30000000 Total Viewers (P2+) on Nielsen?",
+    "rules_primary": "If the 2026 FIFA World Cup Final has above 30.0M United States Total Viewers (P2+), then the market resolves to Yes.",
+    "rules_secondary": "The data used to resolve the market is the Total Viewers P2+ according to Nielsen.\n\nIf no Total Viewers (P2+) data for the 2026 FIFA World Cup Final is available from Nielsen by the Expiration Date, all markets will resolve to No.",
+    "close_time": "2026-07-24T17:19:50Z"
+   },
+   {
+    "ticker": "KXWCVIEWERSHIP-27JAN01-28.0M",
+    "title": "Will the 2026 FIFA World Cup Final have above 28000000 Total Viewers (P2+) on Nielsen?",
+    "rules_primary": "If the 2026 FIFA World Cup Final has above 28.0M United States Total Viewers (P2+), then the market resolves to Yes.",
+    "rules_secondary": "The data used to resolve the market is the Total Viewers P2+ according to Nielsen.\n\nIf no Total Viewers (P2+) data for the 2026 FIFA World Cup Final is available from Nielsen by the Expiration Date, all markets will resolve to No.",
+    "close_time": "2026-07-24T17:19:50Z"
+   },
+   {
+    "ticker": "KXWCVIEWERSHIP-27JAN01-26.0M",
+    "title": "Will the 2026 FIFA World Cup Final have above 26000000 Total Viewers (P2+) on Nielsen?",
+    "rules_primary": "If the 2026 FIFA World Cup Final has above 26.0M United States Total Viewers (P2+), then the market resolves to Yes.",
+    "rules_secondary": "The data used to resolve the market is the Total Viewers P2+ according to Nielsen.\n\nIf no Total Viewers (P2+) data for the 2026 FIFA World Cup Final is available from Nielsen by the Expiration Date, all markets will resolve to No.",
+    "close_time": "2026-07-24T17:19:50Z"
+   },
+   {
+    "ticker": "KXWCVIEWERSHIP-27JAN01-24.0M",
+    "title": "Will the 2026 FIFA World Cup Final have above 24000000 Total Viewers (P2+) on Nielsen?",
+    "rules_primary": "If the 2026 FIFA World Cup Final has above 24.0M United States Total Viewers (P2+), then the market resolves to Yes.",
+    "rules_secondary": "The data used to resolve the market is the Total Viewers P2+ according to Nielsen.\n\nIf no Total Viewers (P2+) data for the 2026 FIFA World Cup Final is available from Nielsen by the Expiration Date, all markets will resolve to No.",
+    "close_time": "2026-07-24T17:19:50Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXNEWDEAL-AUG01",
+  "series_ticker": "KXNEWDEAL",
+  "title": "When will Trump announce a new trade deal?",
+  "close_time": "2026-07-21T16:19:06Z",
+  "markets": [
+   {
+    "ticker": "KXNEWDEAL-AUG01",
+    "title": "When will Trump announce a new trade deal?",
+    "rules_primary": "If the President announces a new trade deal before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "For the purposes of this Contract, an announcement must satisfy ALL of the following criteria:\n\nMade through official channels including White House press conferences, official White House statements, presidential speeches, official presidential social media accounts, or official presidential appearances\nExplicitly describes the arrangement as a \"trade deal,\" \"trade agreement,\" \"trade memorandum,\" \"trade pact,\" or uses substantially similar language indicating a formal trade arrangement\nInvolves at least one foreign country, territory, or international trade bloc\n\nPreliminary agreements, frameworks, or agreements in principle do count as long as they are presented as a new trade-related agreement. It also includes modifications or re-negotiated versions of previous agreements. New arrangements include, but are not limited to:\n\nAgreements with a country, territory, or trade bloc with which the United States does not currently have a comprehensive trade agreement\nAgreements that cover trade sectors, industries, or product categories not previously covered by existing U.S. trade agreements with the same partner(s)\nAn agreement that establishes fundamentally different trade mechanisms, dispute resolution procedures, or regulatory frameworks compared to existing agreements with the same partner(s)\n\nThe following qualify as announcements that trigger the Payout Criterion:\n\nA new bilateral trade agreement between the U.S. and another country\nA new multilateral trade agreement involving the U.S. and multiple countries\nTrade memoranda of understanding that establish new trade frameworks\nSector-specific trade deals (e.g., agricultural, technology, energy trade agreements)\nTrade arrangements that are announced as \"agreements in principle\" or \"framework agreements\"\n\nThe following do NOT trigger the Payout Criterion:\n\nInformal statements, leaks, or \"sources say\" reports without official presidential announcement\nAnnouncements of trade negotiations beginning, trade talks being scheduled, or intentions to pursue trade deals\nTariff announcements, trade sanctions, or trade enforcement actions that do not establish new bilateral or multilateral trade frameworks\nCongressional approval or ratification of previously announced deals\nAnnouncements of trade visits, delegations, or diplomatic meetings without announcing an actual deal\nAnnouncements regarding domestic trade policy changes that do not involve foreign partners",
+    "close_time": "2026-07-21T16:19:06Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXWCFIRSTSONG-BTS26JUL20",
+  "series_ticker": "KXWCFIRSTSONG",
+  "title": "Will SWIM be the first song performed by BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+  "close_time": "2026-07-19T20:17:16Z",
+  "markets": [
+   {
+    "ticker": "KXWCFIRSTSONG-BTS26JUL20-SWI",
+    "title": "Will SWIM be the first song performed by BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''SWIM'' as performed  by BTS (any member of BTS) (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by BTS (any member of BTS). If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by BTS (any member of BTS), walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by BTS (any member of BTS).\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:17:16Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-BTS26JUL20-HOO",
+    "title": "Will Hooligan be the first song performed by BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Hooligan'' as performed  by BTS (any member of BTS) (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by BTS (any member of BTS). If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by BTS (any member of BTS), walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by BTS (any member of BTS).\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:17:16Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-BTS26JUL20-FAK",
+    "title": "Will FAKE LOVE be the first song performed by BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''FAKE LOVE'' as performed  by BTS (any member of BTS) (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by BTS (any member of BTS). If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by BTS (any member of BTS), walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by BTS (any member of BTS).\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:17:16Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-BTS26JUL20-DYN",
+    "title": "Will Dynamite be the first song performed by BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Dynamite'' as performed  by BTS (any member of BTS) (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by BTS (any member of BTS). If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by BTS (any member of BTS), walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by BTS (any member of BTS).\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:17:16Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-BTS26JUL20-BOD",
+    "title": "Will Body to Body be the first song performed by BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Body to Body'' as performed  by BTS (any member of BTS) (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by BTS (any member of BTS). If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by BTS (any member of BTS), walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by BTS (any member of BTS).\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:17:16Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-BTS26JUL20-2.0",
+    "title": "Will 2.0 be the first song performed by BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''2.0'' as performed  by BTS (any member of BTS) (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by BTS (any member of BTS). If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by BTS (any member of BTS), walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by BTS (any member of BTS).\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:17:16Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPSONG-26AUG01",
+  "series_ticker": "KXTOPSONG",
+  "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 during the week of Aug 1, 2026",
+  "close_time": "2026-07-27T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPSONG-26AUG01-CHO",
+    "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 during the week of Aug 1, 2026",
+    "rules_primary": "If Choosin' Texas is #1 on the Billboard Hot 100  chart for the Week of Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-07-27T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXACTBLUETOP-26JUL24",
+  "series_ticker": "KXACTBLUETOP",
+  "title": "Will Troy Jackson be the top ActBlue fundraiser on July 24 at 10:00 AM ET?",
+  "close_time": "2026-07-24T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXACTBLUETOP-26JUL24-TJAC",
+    "title": "Will Troy Jackson be the top ActBlue fundraiser on July 24 at 10:00 AM ET?",
+    "rules_primary": "If Troy Jackson is the top ActBlue fundraiser on July 24 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Fundraiser rankings are determined by the \u201cTop fundraisers from this week\u201d list displayed on ActBlue\u2019s official directory page. The leftmost candidate is considered the top fundraiser.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with ActBlue. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-24T13:59:00Z"
+   },
+   {
+    "ticker": "KXACTBLUETOP-26JUL24-JTAL",
+    "title": "Will James Talarico be the top ActBlue fundraiser on July 24 at 10:00 AM ET?",
+    "rules_primary": "If James Talarico is the top ActBlue fundraiser on July 24 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Fundraiser rankings are determined by the \u201cTop fundraisers from this week\u201d list displayed on ActBlue\u2019s official directory page. The leftmost candidate is considered the top fundraiser.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with ActBlue. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-24T13:59:00Z"
+   },
+   {
+    "ticker": "KXACTBLUETOP-26JUL24-JOSS",
+    "title": "Will Jon Ossoff be the top ActBlue fundraiser on July 24 at 10:00 AM ET?",
+    "rules_primary": "If Jon Ossoff is the top ActBlue fundraiser on July 24 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Fundraiser rankings are determined by the \u201cTop fundraisers from this week\u201d list displayed on ActBlue\u2019s official directory page. The leftmost candidate is considered the top fundraiser.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with ActBlue. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-24T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFEATURE-26PET",
+  "series_ticker": "KXFEATURE",
+  "title": "Will The Weeknd be featured on Ariana Grande's album titled 'petal'?",
+  "close_time": "2026-07-31T15:08:56Z",
+  "markets": [
+   {
+    "ticker": "KXFEATURE-26PET-WEE",
+    "title": "Will The Weeknd be featured on Ariana Grande's album titled 'petal'?",
+    "rules_primary": "If The Weeknd is featured on Ariana Grande's album titled 'petal' before Dec 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-31T15:08:56Z"
+   },
+   {
+    "ticker": "KXFEATURE-26PET-VIC",
+    "title": "Will Victoria Mon\u00e9t be featured on Ariana Grande's album titled 'petal'?",
+    "rules_primary": "If Victoria Mon\u00e9t is featured on Ariana Grande's album titled 'petal' before Dec 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-31T15:08:56Z"
+   },
+   {
+    "ticker": "KXFEATURE-26PET-TYL",
+    "title": "Will Tyla be featured on Ariana Grande's album titled 'petal'?",
+    "rules_primary": "If Tyla is featured on Ariana Grande's album titled 'petal' before Dec 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-31T15:08:56Z"
+   },
+   {
+    "ticker": "KXFEATURE-26PET-SZA",
+    "title": "Will SZA be featured on Ariana Grande's album titled 'petal'?",
+    "rules_primary": "If SZA is featured on Ariana Grande's album titled 'petal' before Dec 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-31T15:08:56Z"
+   },
+   {
+    "ticker": "KXFEATURE-26PET-PHA",
+    "title": "Will Pharrell Williams be featured on Ariana Grande's album titled 'petal'?",
+    "rules_primary": "If Pharrell Williams is featured on Ariana Grande's album titled 'petal' before Dec 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-31T15:08:56Z"
+   },
+   {
+    "ticker": "KXFEATURE-26PET-OLI",
+    "title": "Will Olivia Rodrigo be featured on Ariana Grande's album titled 'petal'?",
+    "rules_primary": "If Olivia Rodrigo is featured on Ariana Grande's album titled 'petal' before Dec 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-31T15:08:56Z"
+   },
+   {
+    "ticker": "KXFEATURE-26PET-JUS",
+    "title": "Will Justin Bieber be featured on Ariana Grande's album titled 'petal'?",
+    "rules_primary": "If Justin Bieber is featured on Ariana Grande's album titled 'petal' before Dec 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-31T15:08:56Z"
+   },
+   {
+    "ticker": "KXFEATURE-26PET-DOJ",
+    "title": "Will Doja Cat be featured on Ariana Grande's album titled 'petal'?",
+    "rules_primary": "If Doja Cat is featured on Ariana Grande's album titled 'petal' before Dec 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-31T15:08:56Z"
+   },
+   {
+    "ticker": "KXFEATURE-26PET-BRE",
+    "title": "Will Brent Faiyaz be featured on Ariana Grande's album titled 'petal'?",
+    "rules_primary": "If Brent Faiyaz is featured on Ariana Grande's album titled 'petal' before Dec 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-31T15:08:56Z"
+   },
+   {
+    "ticker": "KXFEATURE-26PET-BIL",
+    "title": "Will Billie Eilish be featured on Ariana Grande's album titled 'petal'?",
+    "rules_primary": "If Billie Eilish is featured on Ariana Grande's album titled 'petal' before Dec 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-31T15:08:56Z"
+   },
+   {
+    "ticker": "KXFEATURE-26PET-BAD",
+    "title": "Will Bad Bunny be featured on Ariana Grande's album titled 'petal'?",
+    "rules_primary": "If Bad Bunny is featured on Ariana Grande's album titled 'petal' before Dec 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-31T15:08:56Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXKXSPOTIFYNUM1GLB-26AUG01-OLI",
+  "series_ticker": "KXKXSPOTIFYNUM1GLB",
+  "title": "Will Olivia Rodrigo be #1 on Spotify's Daily Top Songs Global chart for at least 3 chart days in July 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXKXSPOTIFYNUM1GLB-26AUG01-OLI-3",
+    "title": "Will Olivia Rodrigo be #1 on Spotify's Daily Top Songs Global chart for at least 3 chart days in July 2026?",
+    "rules_primary": "If  Olivia Rodrigo is #1 on the Spotify Daily Top Songs Global chart for at least 3 chart days in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLEAVECONGRESS-26JUL",
+  "series_ticker": "KXLEAVECONGRESS",
+  "title": "Will any member of Congress be out as any member of Congress in Jul 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXLEAVECONGRESS-26JUL",
+    "title": "Will any member of Congress be out as any member of Congress in Jul 2026?",
+    "rules_primary": "If any member of Congress resigns or is expelled in Jul 2026, then the market resolves to Yes.",
+    "rules_secondary": "any member of Congress must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMRELEASEDATEARIANA-NEW",
+  "series_ticker": "KXALBUMRELEASEDATEARIANA",
+  "title": "Will Ariana Grande release new album before Aug 1, 2026?",
+  "close_time": "2026-07-31T15:14:04Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMRELEASEDATEARIANA-NEW-AUG01-26",
+    "title": "Will Ariana Grande release new album before Aug 1, 2026?",
+    "rules_primary": "If Ariana Grande releases a new album before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-31T15:14:04Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMRELEASEDATETRIPPIE",
+  "series_ticker": "KXALBUMRELEASEDATETRIPPIE",
+  "title": "Will Trippie Redd release a new album before Oct 1, 2026?",
+  "close_time": "2026-08-14T15:44:12Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMRELEASEDATETRIPPIE--26OCT01",
+    "title": "Will Trippie Redd release a new album before Oct 1, 2026?",
+    "rules_primary": "If Trippie Redd releases a new album before Oct 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T15:44:12Z"
+   },
+   {
+    "ticker": "KXALBUMRELEASEDATETRIPPIE--26SEP01",
+    "title": "Will Trippie Redd release a new album before Sep 1, 2026?",
+    "rules_primary": "If Trippie Redd releases a new album before Sep 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T15:44:04Z"
+   },
+   {
+    "ticker": "KXALBUMRELEASEDATETRIPPIE-AUG01-26",
+    "title": "Will Trippie Redd release a new album before Aug 1, 2026?",
+    "rules_primary": "If Trippie Redd releases a new album before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFRAGRANCE-26DIO",
+  "series_ticker": "KXFRAGRANCE",
+  "title": "Will the price of Dior Sauvage be above $210.00 in July 2026?",
+  "close_time": "2026-08-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXFRAGRANCE-26DIO-210.00",
+    "title": "Will the price of Dior Sauvage be above $210.00 in July 2026?",
+    "rules_primary": "If the market price of Dior Sauvage (3.4 oz) on Jomashop is above $210.00 in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the market price displayed on Jomashop, which may include discounts, promotions, or sale pricing. \n\nPrices are in USD, rounded to two decimal places, and exclude duties, taxes, and additional fees. If no data is available, the last known value will be used. \n\nIf no prior value exists, all markets resolve to No. Revisions after initial publication will not affect resolution. Outcome verified from Jomashop.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXFRAGRANCE-26DIO-200.00",
+    "title": "Will the price of Dior Sauvage be above $200.00 in July 2026?",
+    "rules_primary": "If the market price of Dior Sauvage (3.4 oz) on Jomashop is above $200.00 in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the market price displayed on Jomashop, which may include discounts, promotions, or sale pricing. \n\nPrices are in USD, rounded to two decimal places, and exclude duties, taxes, and additional fees. If no data is available, the last known value will be used. \n\nIf no prior value exists, all markets resolve to No. Revisions after initial publication will not affect resolution. Outcome verified from Jomashop.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXFRAGRANCE-26DIO-190.00",
+    "title": "Will the price of Dior Sauvage be above $190.00 in July 2026?",
+    "rules_primary": "If the market price of Dior Sauvage (3.4 oz) on Jomashop is above $190.00 in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the market price displayed on Jomashop, which may include discounts, promotions, or sale pricing. \n\nPrices are in USD, rounded to two decimal places, and exclude duties, taxes, and additional fees. If no data is available, the last known value will be used. \n\nIf no prior value exists, all markets resolve to No. Revisions after initial publication will not affect resolution. Outcome verified from Jomashop.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXFRAGRANCE-26DIO-180.00",
+    "title": "Will the price of Dior Sauvage be above $180.00 in July 2026?",
+    "rules_primary": "If the market price of Dior Sauvage (3.4 oz) on Jomashop is above $180.00 in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the market price displayed on Jomashop, which may include discounts, promotions, or sale pricing. \n\nPrices are in USD, rounded to two decimal places, and exclude duties, taxes, and additional fees. If no data is available, the last known value will be used. \n\nIf no prior value exists, all markets resolve to No. Revisions after initial publication will not affect resolution. Outcome verified from Jomashop.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXFRAGRANCE-26DIO-170.00",
+    "title": "Will the price of Dior Sauvage be above $170.00 in July 2026?",
+    "rules_primary": "If the market price of Dior Sauvage (3.4 oz) on Jomashop is above $170.00 in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the market price displayed on Jomashop, which may include discounts, promotions, or sale pricing. \n\nPrices are in USD, rounded to two decimal places, and exclude duties, taxes, and additional fees. If no data is available, the last known value will be used. \n\nIf no prior value exists, all markets resolve to No. Revisions after initial publication will not affect resolution. Outcome verified from Jomashop.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXFRAGRANCE-26DIO-160.00",
+    "title": "Will the price of Dior Sauvage be above $160.00 in July 2026?",
+    "rules_primary": "If the market price of Dior Sauvage (3.4 oz) on Jomashop is above $160.00 in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the market price displayed on Jomashop, which may include discounts, promotions, or sale pricing. \n\nPrices are in USD, rounded to two decimal places, and exclude duties, taxes, and additional fees. If no data is available, the last known value will be used. \n\nIf no prior value exists, all markets resolve to No. Revisions after initial publication will not affect resolution. Outcome verified from Jomashop.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXFRAGRANCE-26DIO-150.00",
+    "title": "Will the price of Dior Sauvage be above $150.00 in July 2026?",
+    "rules_primary": "If the market price of Dior Sauvage (3.4 oz) on Jomashop is above $150.00 in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the market price displayed on Jomashop, which may include discounts, promotions, or sale pricing. \n\nPrices are in USD, rounded to two decimal places, and exclude duties, taxes, and additional fees. If no data is available, the last known value will be used. \n\nIf no prior value exists, all markets resolve to No. Revisions after initial publication will not affect resolution. Outcome verified from Jomashop.",
+    "close_time": "2026-08-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFRAGRANCE-26YSL",
+  "series_ticker": "KXFRAGRANCE",
+  "title": "Will the price of YSL Y be above $130.00 in July 2026?",
+  "close_time": "2026-08-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXFRAGRANCE-26YSL-130.00",
+    "title": "Will the price of YSL Y be above $130.00 in July 2026?",
+    "rules_primary": "If the market price of YSL Y (3.3 oz) on Jomashop is above $130.00 in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the market price displayed on Jomashop, which may include discounts, promotions, or sale pricing. \n\nPrices are in USD, rounded to two decimal places, and exclude duties, taxes, and additional fees. If no data is available, the last known value will be used. \n\nIf no prior value exists, all markets resolve to No. Revisions after initial publication will not affect resolution. Outcome verified from Jomashop.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXFRAGRANCE-26YSL-100.00",
+    "title": "Will the price of YSL Y be above $100.00 in July 2026?",
+    "rules_primary": "If the market price of YSL Y (3.3 oz) on Jomashop is above $100.00 in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the market price displayed on Jomashop, which may include discounts, promotions, or sale pricing. \n\nPrices are in USD, rounded to two decimal places, and exclude duties, taxes, and additional fees. If no data is available, the last known value will be used. \n\nIf no prior value exists, all markets resolve to No. Revisions after initial publication will not affect resolution. Outcome verified from Jomashop.",
+    "close_time": "2026-08-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXAIPAUSE-27",
+  "series_ticker": "KXAIPAUSE",
+  "title": "Will any of the major AI companies pause research before 2027?",
+  "close_time": "2026-08-06T00:10:10Z",
+  "markets": [
+   {
+    "ticker": "KXAIPAUSE-27",
+    "title": "Will any of the major AI companies pause research before 2027?",
+    "rules_primary": "If any of xAI, DeepMind, Anthropic, OpenAI pause any AI research training or development for safety reasons before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-06T00:10:10Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPAPPROVALBELOW-26DEC31",
+  "series_ticker": "KXTRUMPAPPROVALBELOW",
+  "title": "Will Donald Trump's approval rating on approval rating be below 38% during Dec 2025 to Dec 2026 according to VoteHub?",
+  "close_time": "2026-08-05T15:52:16Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPAPPROVALBELOW-26DEC31-38",
+    "title": "Will Donald Trump's approval rating on approval rating be below 38% during Dec 2025 to Dec 2026 according to VoteHub?",
+    "rules_primary": "If Donald Trump's approval rating during Dec 11, 2025 to Dec 31, 2026 as reported by VoteHub is below 38%, then the market resolves to Yes.",
+    "rules_secondary": "In order to fulfill the Payout Criterion, the threshold need only be met once during the period.",
+    "close_time": "2026-08-05T15:52:16Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTECHRANKLISTAICODE-26AUG03",
+  "series_ticker": "KXTECHRANKLISTAICODE",
+  "title": "Top Coding AI this week?",
+  "close_time": "2026-08-03T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTECHRANKLISTAICODE-26AUG03-KIMI",
+    "title": "Top Coding AI this week?",
+    "rules_primary": "If Kimi is the #1 model on LM Code Arena Leaderboard on Aug 3, 2026 at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-03T14:00:00Z"
+   },
+   {
+    "ticker": "KXTECHRANKLISTAICODE-26AUG03-CLAU",
+    "title": "Top Coding AI this week?",
+    "rules_primary": "If Claude is the #1 model on LM Code Arena Leaderboard on Aug 3, 2026 at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-03T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMCDONALDCONF-26JUN17",
+  "series_ticker": "KXMCDONALDCONF",
+  "title": "Will James McDonald be confirmed as U.S. Attorney for the Southern District of New York before Aug 8, 2026?",
+  "close_time": "2026-08-08T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXMCDONALDCONF-26JUN17-AUG08",
+    "title": "Will James McDonald be confirmed as U.S. Attorney for the Southern District of New York before Aug 8, 2026?",
+    "rules_primary": "If James McDonald is the first person confirmed as U.S. Attorney for the Southern District of New York before Aug 8, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If a nomination is withdrawn before the deadline, that market immediately resolves to No.",
+    "close_time": "2026-08-08T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXYTPODW-26AUG02",
+  "series_ticker": "KXYTPODW",
+  "title": "Will Rotten Mango rank #1 on YouTube's Weekly Top Podcast Shows USA chart dated July 27, 2026",
+  "close_time": "2026-08-03T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXYTPODW-26AUG02-ROT",
+    "title": "Will Rotten Mango rank #1 on YouTube's Weekly Top Podcast Shows USA chart dated July 27, 2026 - August 02, 2026?",
+    "rules_primary": "If Rotten Mango is ranked #1 on YouTube's Weekly Top Podcast Shows USA chart dated July 27, 2026 - August 02, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by YouTube. Any references to YouTube or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between YouTube and Kalshi.",
+    "close_time": "2026-08-03T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMAMDANIEO-26AUG08",
+  "series_ticker": "KXMAMDANIEO",
+  "title": "Will Mamdani sign above 0 executive orders between Aug 2, 2026 and Aug 8, 2026?",
+  "close_time": "2026-08-09T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXMAMDANIEO-26AUG08-T0",
+    "title": "Will Mamdani sign above 0 executive orders between Aug 2, 2026 and Aug 8, 2026?",
+    "rules_primary": "If the number of non-emergency executive orders signed by Zohran Mamdani is above 0 from Aug 2, 2026 to Aug 8, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-09T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXGPT-ASTRA",
+  "series_ticker": "KXGPT",
+  "title": "Will OpenAI release Astra before Aug 21, 2026?",
+  "close_time": "2026-08-21T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXGPT-ASTRA-26AUG21",
+    "title": "Will OpenAI release Astra before Aug 21, 2026?",
+    "rules_primary": "If OpenAI releases Astra before Aug 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.\n\nOn August 1, 2026, OpenAI publicly disclosed \"Astra,\" an internal model described by OpenAI as its next major frontier system, citing results including the resolution of ten previously open mathematics problems - https://openai.com/index/ten-advances-in-mathematics/ \n\nQualifying Release: The Payout Criterion is satisfied if OpenAI releases a model that either (a) is publicly named \"Astra\" (including numbered, lettered, or suffixed variants such as \"Astra 1,\" \"Astra 6,\" or \"GPT-6 Astra\"), or (b) is confirmed by OpenAI, or by a consensus of credible reporting, to share the same underlying model \u2014 including the same base architecture, weights, or training run \u2014 as the model referenced in OpenAI's August 1, 2026 disclosure, regardless of the commercial name, safety configuration, or access tier under which it is ultimately released. A separately-branded release that is derived from or built on the same underlying model as the disclosed Astra model satisfies this clause even if OpenAI markets it as a distinct product (e.g., a safety-restricted variant or a differently-priced tier), provided the shared underlying model is confirmed by OpenAI or by a consensus of credible reporting.",
+    "close_time": "2026-08-21T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBIGBROTHERELIMINATION-26AUG13",
+  "series_ticker": "KXBIGBROTHERELIMINATION",
+  "title": "Will Kamu Kirk be eliminated from Big Brother Season 28 before Aug 14, 2026?",
+  "close_time": "2026-08-14T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG13-KAM",
+    "title": "Will Kamu Kirk be eliminated from Big Brother Season 28 before Aug 14, 2026?",
+    "rules_primary": "If Kamu Kirk is officially eliminated from Big Brother Season 28 Before Aug 14, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-14T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG13-DRE",
+    "title": "Will Drew Campbell be eliminated from Big Brother Season 28 before Aug 14, 2026?",
+    "rules_primary": "If Drew Campbell is officially eliminated from Big Brother Season 28 Before Aug 14, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-14T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG13-CHU",
+    "title": "Will Chuk Anyanwu be eliminated from Big Brother Season 28 before Aug 14, 2026?",
+    "rules_primary": "If Chuk Anyanwu is officially eliminated from Big Brother Season 28 Before Aug 14, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-14T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26AUG13-BAR",
+    "title": "Will Barrett Pfeiffer be eliminated from Big Brother Season 28 before Aug 14, 2026?",
+    "rules_primary": "If Barrett Pfeiffer is officially eliminated from Big Brother Season 28 Before Aug 14, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+    "close_time": "2026-08-14T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXACTBLUETOP-26AUG14",
+  "series_ticker": "KXACTBLUETOP",
+  "title": "Will James Talarico be the top ActBlue fundraiser on Aug 14 at 10:00 AM ET?",
+  "close_time": "2026-08-14T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXACTBLUETOP-26AUG14-JTAL",
+    "title": "Will James Talarico be the top ActBlue fundraiser on Aug 14 at 10:00 AM ET?",
+    "rules_primary": "If James Talarico is the top ActBlue fundraiser on Aug 14 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T13:59:00Z"
+   },
+   {
+    "ticker": "KXACTBLUETOP-26AUG14-AELS",
+    "title": "Will Abdul El-Sayed be the top ActBlue fundraiser on Aug 14 at 10:00 AM ET?",
+    "rules_primary": "If Abdul El-Sayed is the top ActBlue fundraiser on Aug 14 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T13:59:00Z"
+   }
+  ]
+ }
+]

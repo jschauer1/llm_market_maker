@@ -67,6 +67,10 @@ BATCH_SIZE = 25
 VARIANTS = {
     "s200": ("backtest-2026-08-26-insider-judged-s200", 20260826),
     "s200b": ("backtest-2026-08-26-insider-judged-s200b", 20260827),
+    # s57: the remainder — with s200 and s200b excluded this drains the
+    # pool, completing 100% judgment coverage of the gate-plausible
+    # population in backtest-2026-08-25-insider-fullcov.
+    "s57": ("backtest-2026-08-26-insider-judged-s57", 20260828),
 }
 
 BUCKETS = ("strong", "moderate", "weak")
