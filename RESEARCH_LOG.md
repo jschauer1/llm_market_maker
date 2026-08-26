@@ -1117,3 +1117,19 @@ sealed-tabulation award families; and the gate validated. Every batch,
 verdict, run row, and finding committed as it happened; one batch
 recovered intact from a usage cutoff. Awaiting the user: mention_family
 retirement ruling, and ratification of the proposed v4 live procedure.
+
+## 2026-08-26 — Formal multiplicity pass (user-prompted): Holm + event clustering
+
+Holm-Bonferroni over the pre-registered family (m=4, replication data
+only): bet rule p=0.0008 vs 0.0125 SURVIVES; moderate-NO p=0.0030 vs
+0.0167 SURVIVES; strong-NO p=0.0961 fails; divergence flag fails. The
+sterner event-clustered one-sided t (one observation per event, killing
+sibling-strike inflation): bet rule +5.21/event, t=2.26, p~0.012 on the
+85 replication events; +3.87, t=2.29, p~0.011 pooled over 162. So the
+defensible statistical claim after full correction: THE BET RULE AND
+MODERATE-NO ARE SIGNIFICANT; strong-NO alone and the divergence flag
+are directionally supported but unproven, and the exploratory scans
+(e.g. mention NO>=0.90 at p=0.0084 across ~50 cells vs Holm ~0.001)
+never survived formal correction — which is why they were sent to
+forward tests rather than believed. Report language downgraded
+accordingly: the edge is established at ~p=0.01 clustered, not p<0.0001.
