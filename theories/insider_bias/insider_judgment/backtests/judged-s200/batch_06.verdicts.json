@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXCDCCONF-27JAN01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Low — Senate.gov records confirmation votes immediately.",
+  "rationale": "This resolves on a future Senate confirmation vote that has not happened. Senate leadership has a whip-count sense of pass/fail odds, but that is a forecast of an unmade decision, not knowledge of one already made. No named group already knows the outcome.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXCRUDEEXPORTBAN-27",
+  "insider_group": "U.S. government / executive branch (if a ban has been imposed)",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Real — resolves only on Source Agency reporting; an action taken near close could go unreported in time, and republished wire content only counts under specific conditions.",
+  "rationale": "This is a 'reported by source agencies' market: if the U.S. government imposed and implemented such a ban, the executive branch would know before any report exists, creating a real reporting-lag edge. But there is no indication in the payload that this unusual policy action has actually occurred, so the group's knowledge is conditional rather than confirmed.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLLM1-26JUL31",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Low — Arena leaderboard is continuously published.",
+  "rationale": "Resolves on a crowd-voted Arena leaderboard ranking at a deadline. Labs know their own release plans but cannot know an aggregated crowd score before it accumulates from many independent voters — a textbook NO-ish aggregate-behavior market.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBIDENTAPES-26",
+  "insider_group": "Department of Justice",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Moderate — release must be intentional and public per strict criteria (excerpts, on-screen display, or leaks don't count); a technical release could occur without satisfying the rule.",
+  "rationale": "Explicitly a 'reported by source agencies' family market: DOJ would know before any public release occurs, and the rules carefully define what counts as 'released.' No evidence in the payload that DOJ has already decided on a release timeline, so this stays moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFETTERMANSWITCH-26MAY",
+  "insider_group": "Fetterman and his close staff/circle",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "A party switch is a personal decision known first to a small circle before any public announcement, per the mechanism sheet's own framing of this market. However, nothing in the payload indicates such a decision has actually been made, so this is plausible-insider rather than confirmed-insider knowledge.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLAGODAYS-26JUL",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Low — presidential travel is heavily press-pooled and reported same-day.",
+  "rationale": "Trip counts for a sitting president are routine behavior: staff have some schedule foreknowledge but trips are often spontaneous, and any trips taken are quickly public via press pool reporting rather than staying private. No durable informational edge over the public.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLAUNCHCOUNTM-JUL",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Low — FAA/company launch data is tracked and published near-real-time.",
+  "rationale": "A cumulative count aggregated across many independent U.S.-licensed launch providers. No single group decides or privately knows the total in advance; it is publicly trackable as launches occur, structurally a rate/aggregation question, not a knowledge question.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSPOTIFYNUM1USA-26AUG01-ARI",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Low — Spotify daily charts publish on schedule.",
+  "rationale": "Spotify's daily chart is a published aggregate of consumer streaming behavior. The platform sees the data first but nobody 'decides' it — it is the emergent outcome of millions of independent listeners, squarely NO-ish per the thesis.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPTIME-26JUL25",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Low — Truth Social posts are public immediately.",
+  "rationale": "Whether a specific individual posts during a narrow overnight hour window across a week is spontaneous personal behavior with no identifiable group holding advance knowledge of it. Posts are public the instant they occur, so there's no informational lag to exploit either.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMVS-DAU26JUL31",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Real — Luminate data 'may be published up to approximately 48 hours after' the tracking week ends, which is tight against the stated close time.",
+  "rationale": "First-week chart unit comparisons aggregate millions of individual purchases/streams via Luminate; nobody decides the number, though labels can forecast late in the tracking week from mid-week data. That forecasting ability falls short of genuine advance knowledge, keeping this NO-ish.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFEATURE-26MUS",
+  "insider_group": "Charli xcx's label/production team",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Low — tracklist/features become public at or before release, well ahead of the close.",
+  "rationale": "Close is essentially tomorrow relative to the as-of date, meaning the album is very likely already mastered and its final credits locked. Tracklists and features are known to the artist's team, label, and often press/supply chain well before public announcement — a concrete, named, already-decided fact.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMAMDANIEO-26JUL25",
+  "insider_group": "Mayor's office/administration",
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "The event and market titles describe a full Jul 19–25, 2026 window, but the market's close_time (2026-07-20T21:34:17Z) falls only one day into that window — far short of the window's end. This close/title mismatch limits how much confidence any insider-knowledge read can carry, since the market may settle before most of the stated window has elapsed.",
+  "resolution_source_risk": null,
+  "rationale": "Executive orders are decisions a small administration group makes and schedules before announcing, which is structurally favorable. But 'above 0 in a window' is a rate/count question that could go either way at any point, and the anomalously early close time relative to the stated window undercuts confidence in reading this as settled insider knowledge.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPVH-26JUL24",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Low — VoteHub publishes its polling average on a running basis.",
+  "rationale": "A polling average is an aggregate of many independent polls and respondents; no group decides or privately knows the number in advance of publication. Classic NO-ish aggregate-behavior market.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBLANCHEJUDICIARY-27",
+  "insider_group": "Senate Judiciary Committee chair/leadership",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Real — resolves only on Source Agency reporting, and reports referencing only prior publications or unofficial republication don't qualify.",
+  "rationale": "Committee markup/reporting schedules are set by committee leadership, who have real advance knowledge of their own scheduling plans — more knowable than a floor vote outcome. Still a scheduling decision that can slip, and the market's own reporting-lag risk keeps this at moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTECHRANKLISTAICODE-26JUL27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Low — leaderboard state is published continuously.",
+  "rationale": "An Arena-style crowd-voted coding leaderboard aggregates independent user votes; labs know release plans but not the crowd score in advance. NO-ish by the thesis's own AI-leaderboard guidance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPPHOTO-26JUL26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Low — Getty tags and publishes editorial photos promptly.",
+  "rationale": "Photographed-days counts depend on public appearances captured by press photographers and tagged on a public platform; there is no small group with private advance knowledge of the exact day-count outcome, and any photos taken are visible essentially immediately.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBURNHAMJUL-26AUG01",
+  "insider_group": "Prime Minister's office / Cabinet Office (UK)",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Moderate — depends on an 'official UK Government source' identifying the minister; government listings can lag actual appointment decisions.",
+  "rationale": "Cabinet appointments and continued-service status are decisions/facts known internally to the Prime Minister's office before formal public confirmation, matching the thesis's explicit cabinet-appointment category. The underlying political premise (Burnham as PM, and each individual's status) isn't independently confirmable from the payload, keeping this at moderate.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEPSTEIN-26AUG01",
+  "insider_group": "Trump Administration",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Real — this is a discretionary release the Administration controls the timing of; a decision made near the close could still miss the deadline if not executed in time.",
+  "rationale": "Explicitly a 'reported by source agencies'-style market: the Administration would know before any release happens whether and when it plans to release documents. No evidence in the payload that a release decision has already been made, so moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMC-HAL",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Some — score is read exactly seven days post-release, and an incomplete critic sample at that exact timestamp could shift the number afterward.",
+  "rationale": "Metacritic scores aggregate many individual critics' embargoed reviews; per the mechanism sheet, no single group knows the final average in advance of publication. Structurally NO-ish.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXWEEKSNUM1-26AUG29-CHO",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Low — Billboard charts publish on a fixed weekly schedule ahead of each threshold's close.",
+  "rationale": "Billboard Hot 100 chart position is an aggregate of nationwide listener/purchase behavior over a full tracking week; nobody decides the number, only industry mid-week projections offer a forecast edge, which falls short of genuine insider knowledge.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KX20SONG-26DEC26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Low — Billboard chart is published weekly on schedule.",
+  "rationale": "Whether an artist has any top-20 Hot 100 single by year-end depends on aggregate listener behavior across many weeks; no group decides this outcome in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXAISONG-27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Low — Billboard chart is published weekly on schedule.",
+  "rationale": "Resolves on Billboard Hot 100 chart composition, an aggregate of nationwide consumer behavior; no small group decides which songs chart. Classic NO-ish aggregate-behavior market.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMLENGTH-26DEC30-PET",
+  "insider_group": "Ariana Grande's label/production team",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Low — album runtime becomes public and fixed at release, before the close.",
+  "rationale": "Close is only days away relative to the as-of date, implying the album is very likely mastered with a locked tracklist and runtime already known internally to the artist's team and label — a concrete, decided fact rather than a forecast.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPVH-26JUL31",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Low — VoteHub publishes its polling average on a running basis.",
+  "rationale": "Same structural category as the other VoteHub market: a published aggregate of independent polls with no group deciding or privately knowing the number in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBLANCHECOUNT-27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Low — Senate.gov records the roll-call tally immediately once a vote occurs.",
+  "rationale": "This asks for an exact roll-call vote count, which the mechanism sheet flags as explicitly less knowable in advance than a simple pass/fail outcome, and the vote itself has not yet occurred. No group can know an unmade decision's exact tally.",
+  "researched": false
+ }
+]
