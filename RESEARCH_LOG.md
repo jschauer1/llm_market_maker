@@ -942,29 +942,46 @@ conventions, `theories/_TEMPLATE/` a `NOTES.md` and a rewritten Learnings
 section, and three skills (`backtest-theory`, `go`, `score-theories`) the
 corrections that stop them teaching the old behavior. `insider_judgment`
 and `mention_family` each got a seeded `NOTES.md`; no existing note was
-migrated.
+migrated. Then made the one rule that is mechanically checkable actually
+mechanical: the shared replay moved from `insider_judgment/backtest.py` to
+`theories/insider_bias/replay.py` and the `is_mention_family` classifier
+from `mention_family/mention_bucket.py` to
+`theories/insider_bias/families.py`, both into the family's shared parent,
+with every importer repointed, no logic changed and no version bump on
+either theory — guarded now by
+`tests/test_conventions.py::test_no_theory_imports_a_sibling_theory`.
 
 **Learned:** Two of the three headline decisions were already argued from
 evidence in this repo rather than from taste. The case against a shared
 backtest engine is `insider_judgment/backtest.py` itself: most of its
 design budget went to quirks — a combinatorial series settling 400,000
 markets a day, per-day candle volume needing a warm-up sum, a fetch-scoping
-category filter that must not leak into the screen under test — that no
-second theory shares, so a generic engine would either anticipate all of
+category filter that must not leak into the screen under test — that
+belong to replaying *this* screen over Kalshi's settled-market API, not to
+backtesting in general, so a generic engine would either anticipate all of
 them or paper over them silently. A review pass also caught that two skills
 still instructed the behavior the spec replaces, which would have broken
 the convention on the very next `go` session in good faith; documents that
 steer future sessions are load-bearing, and a spec that changes conventions
-has to grep for every place the old one is taught. Writing the spec also
-surfaced that the repo currently crosses the theory-folder boundary in
-both directions: `theories/insider_bias/mention_family/backtest.py`
-imports `insider_judgment`'s replay, and
-`theories/insider_bias/insider_judgment/backtest_fullcov.py` imports
-`mention_family`'s `mention_bucket` — both deliberately, to reuse
-machinery byte-for-byte. The spec's remedy (route shared ancestry through
-the family's parent package) is real but was deferred rather than
-applied, because it touches another session's in-flight work, so success
-criterion 4 stays verified by inspection for now.
+has to grep for every place the old one is taught.
+
+The sharpest lesson came from testing the rule instead of asserting it. A
+probe of the proposed guard test found the repo crossing the theory-folder
+boundary in *both* directions, and both crossings were deliberate and
+well-argued: `mention_family/backtest.py` reused `insider_judgment`'s
+replay byte-for-byte because two windows are only comparable if the
+population rules and the replay are identical, and
+`insider_judgment/backtest_fullcov.py` reused `is_mention_family` to
+define its own complement population ("every NON-mention survivor"). So
+the rule was never really "stop sharing" — it is "share through the
+parent, not sideways", and the code was one refactor short of it, not
+wrong in spirit. The classifier is the interesting case: it *originally*
+lived in `screen.py` and was moved into `mention_family` by the
+2026-08-24 split, guarded by a test asserting `screen` does not carry it.
+That made the obvious destination the wrong one, so it went to a new
+`families.py` in the parent instead — shared ancestry without becoming a
+stage of the screen again. A rule nobody has run against real code is a
+hypothesis; running it found the design.
 
 **Next:** The convention is forward-only, so the first real test is the next
 session that researches inside one theory — its findings belong in that
