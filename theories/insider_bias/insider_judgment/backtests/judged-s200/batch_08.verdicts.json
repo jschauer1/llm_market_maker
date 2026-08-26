@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXADJOURNRECESS-26AUG",
+  "insider_group": "Senate majority leadership, who set the floor schedule",
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title asks broadly whether the Senate will 'vote' to begin the August break; rules require a specific RECORDED vote (roll call/yea-nay/electronic/division) and explicitly exclude voice votes and unanimous-consent agreements -- the Senate's typical, and often preferred, mechanism for beginning a recess. The market can resolve NO even if the Senate does in fact adjourn for the break as scheduled.",
+  "resolution_source_risk": null,
+  "rationale": "Senate leadership controls the floor calendar and has real advance insight into whether a recess-related motion will get floor time, but whether it specifically gets a RECORDED vote (as opposed to the routine unanimous-consent path the rules exclude) is not a settled fact anyone has already decided. That gap between the plain-language title and the narrow recorded-vote requirement is a genuine trap that undercuts the informed group's usefulness here.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMLABELSHARE-W3026AUG06",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "The chart dated Thursday Aug 6 is usually published the following Friday, close to the Aug 7 21:00Z close time -- a timing risk to confirm, not a miss risk.",
+  "rationale": "UMG's market share is an aggregate computed from a full week of streaming/sales data across many independent listener and buyer decisions; nobody holds a finished number in advance the way a vote-counter or production crew would. Label teams may have rough mid-week projections but the exact published percentage is not known to anyone before the chart compiles.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPSHOW-26AUG06",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Data resolves the Saturday after the tracking week; if Luminate's publication slips, settlement could be delayed.",
+  "rationale": "TV viewership hours are aggregated by Luminate across the full slate of platforms and reflect many independent viewers' behavior, not a decision anyone makes. A single platform might see its own internal numbers first, but the ranking against competing shows on other platforms isn't knowable to any one insider group before the aggregator compiles it.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPNOMNUM-26AUG09",
+  "insider_group": "White House Presidential Personnel Office / Counsel's Office, who prepare and queue nominations before transmittal to the Senate",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves solely on the whitehouse.gov Presidential Actions page as checked at a specific time; a nomination sent but not promptly posted could be missed at the check.",
+  "rationale": "Individual nomination decisions are finalized inside the administration before public transmittal, so the White House knows about each one before it's sent. But this market asks for a COUNT threshold across a full week, and the week's total isn't fixed at any single point in advance -- it's a pace/rate question, not a single already-known fact.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMAMDANIEO-26AUG15",
+  "insider_group": "Mayor Mamdani's office/staff, who draft and finalize executive orders before signing",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Executive orders are drafted and internally finalized before signing, so staff know an EO is imminent shortly before it happens. But the bar is just >0 orders across an entire week, and whether any EO happens to be ready during this specific week is closer to a rate question over an open window than a decision already made.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSPEECHAI-26AUG14",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Resolves on a public leaderboard aggregating many independent users' evaluations. Alibaba's own team knows its model's capabilities and release plans but cannot know the crowd-aggregated leaderboard rank before it accumulates against every competing lab's models.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPUSAGEAI-26AUG10",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "OpenRouter usage share aggregates many independent developers' API calls across all providers. No company controls or can foresee its competitors' relative usage, so no specific group already knows the outcome.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXANTHSHARE-ANTH",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same OpenRouter market-share aggregator family: Anthropic can see its own usage in real time but the relevant number is its share against every other provider's usage, which no one party can know in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXGOOGSHARE-GOOG",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same OpenRouter market-share family as the other provider-share markets in this batch -- an aggregate across independent usage and every competing provider, not a fact any single group has already decided.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXOPENSHARE-OPEN",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same reasoning as the other OpenRouter market-share markets in this batch -- aggregate usage across independent developers and every competing provider, not something OpenAI alone could already know.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXRANKLISTSONGTOP10-26AUG22",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Close time (Aug 17) is well before the nominal 'week of Aug 22' the chart describes, reflecting Billboard's practice of dating charts roughly ten days ahead of the tracking period -- a normal quirk of Billboard's dating convention, not a rules trap, but worth knowing the chart is compiled from data collected before close.",
+  "rationale": "Billboard Hot 100 placement aggregates a full tracking week of streaming, sales, and airplay across millions of listeners. Labels can build informed mid-week projections, but nobody has already decided or fully observed the finished ranking before the chart compiles.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXUAPFILES-26AUG10",
+  "insider_group": "The releasing agency (DoD/DNI or equivalent) and administration officials who control the release decision and timing",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Releasing previously unreleased UAP documents is a discretionary action controlled by a small group inside government, who would know internally if a release is being prepared -- similar to other administration-action markets. But such releases are often reactive to external pressure rather than fully pre-planned, so specific timing within this window is not a settled fact the way an already-voted award or signed deal would be.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPSONG-26AUG29",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same Billboard Hot 100 aggregate-chart reasoning as the other Billboard markets in this batch -- the #1 position depends on millions of independent streaming/sales/airplay decisions, not a fact any specific group has already settled.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXACTBLUETOP-26AUG21",
+  "insider_group": "ActBlue's own platform operators and the individual campaigns' finance staff, who see live running totals before the public directory snapshot",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves on a specific public directory page at a specific timestamp; if that page updates on a delay relative to campaigns' internal live totals, the snapshot could diverge from what insiders actually see.",
+  "rationale": "ActBlue and the campaigns see their own real-time fundraising totals continuously, ahead of the public directory page's snapshot at the exact resolution time -- exactly the finance-disclosure lag this thesis targets. Not a full 'strong' case because the edge is a continuous live-data lag rather than a discrete already-made decision, and the public page may itself be close to live.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXYTTOPSONGGW-26AUG20",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "YouTube's Weekly Top Songs Global chart aggregates views across a huge independent global audience. YouTube sees the raw numbers first, but that's platform telemetry, not a decision -- nobody has decided in advance which song outranks every competing song's independent viewership.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMAMDANIEO-26AUG22",
+  "insider_group": "Mayor Mamdani's office/staff, who draft and finalize executive orders before signing",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same reasoning as the prior week's Mamdani executive-order market: staff would know shortly before an EO is signed, but whether one happens to be ready within this particular week is a rate question over an open window rather than an already-settled fact.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPNOMNUM-26AUG16",
+  "insider_group": "White House Presidential Personnel Office / Counsel's Office, who prepare and queue nominations before transmittal to the Senate",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves solely on the whitehouse.gov Presidential Actions page as checked at a specific time; a same-day nomination could be missed if the page lags.",
+  "rationale": "Same reasoning as the prior week's nomination-count market: the administration knows about individual nominations before transmittal, but the full week's count is a rate question, not a single fact already decided in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMLABELSHARE-W3026AUG20",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "The chart dated Thursday Aug 20 is usually published the following Friday, close to but potentially after the Aug 21 21:00Z close time.",
+  "rationale": "Same reasoning as the earlier UMG market-share market in this batch -- an aggregate computed from a full week of streaming/sales data, not a fact any specific group has already decided.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTECHRANKLISTAICODE-26AUG24",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "LM Code Arena is a crowd-voted head-to-head leaderboard; Kimi's and Claude's own labs know their models' capabilities but cannot know the aggregated crowd ranking against every competitor before it accumulates.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXXIAOMISHARE-26AUG17",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same OpenRouter market-share aggregate reasoning as the other provider-share markets in this batch.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBABASHARE-26AUG17",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same OpenRouter market-share aggregate reasoning as the other provider-share markets in this batch.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBALLROOMHALT-26",
+  "insider_group": "The court and the parties/counsel in the underlying litigation, who know of a ruling as soon as it's issued",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolution requires original reporting from a defined list of Source Agencies, not merely that a qualifying court order exists -- a real halt could occur but go unreported by a qualifying outlet before the Aug 22 close, or reporting could lag the actual ruling.",
+  "rationale": "If a court issues a binding order halting construction, the litigants and court know before any media outlet reports it -- a concrete, if narrow, informed group. The rules' requirement that a qualifying Source Agency actually publish original reporting (not a wire republish or a stale reference) adds real lag risk between the underlying legal fact and market-resolvable confirmation, keeping this at moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPUSAGEAI-26AUG17",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same OpenRouter usage-aggregate reasoning as the other 'most popular AI' market in this batch.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXVIDEOAI-26AUG21",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same Arena-style crowd leaderboard reasoning as the other AI-leaderboard markets in this batch -- Google and Alibaba know their own models but not the aggregated crowd ranking in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPRALLIES-26NOV03",
+  "insider_group": "Trump campaign/advance staff, who schedule rallies weeks ahead",
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title and rules frame this as counting rallies 'from January 1 to November 3, 2026,' but the market's close_time is Aug 24, 2026 -- over two months before the stated window ends. How a count keyed to a Nov 3 endpoint resolves at an Aug 24 close is unclear from the payload and should be confirmed before trusting the market's assumed resolution logic.",
+  "resolution_source_risk": null,
+  "rationale": "Campaign advance staff plan and announce rallies days to weeks ahead, so there is real foreknowledge of near-term scheduled events. But the market counts rallies over a nearly year-long window against a fixed threshold, which is a rate question no group can already know the total for, and the apparent mismatch between the stated Nov 3 window and the actual Aug 24 close is an unresolved red flag.",
+  "researched": false
+ }
+]
