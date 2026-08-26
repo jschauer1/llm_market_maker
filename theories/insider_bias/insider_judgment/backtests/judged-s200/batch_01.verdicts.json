@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXALBUMSALES-YOUS-ACT",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "Chart now publishes Thursday instead of Friday; Kalshi resolves on the Thursday-dated chart. All affected markets resolve No if chart data is unavailable or partial by Jun 26, 2026.",
+  "resolution_source_risk": "Resolves No outright if Hits Daily Double data is unavailable or partial by Jun 26, 2026 — a real miss-the-close risk for a niche trade chart.",
+  "rationale": "This resolves on aggregate first-week sales/streaming activity from a trade chart, reflecting the buying behavior of many independent consumers rather than a decision any group has made. Industry insiders can forecast trending numbers late in the tracking week, but nobody decides the final tally. No specific group already knows the outcome; this is a forecasting question, not a knowledge question.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPULTEDNI-26JUL01",
+  "insider_group": "White House personnel/administration officials who would make and internally communicate any decision to install Pulte in an acting DNI role before it is announced",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Formal appointments to acting roles are decisions a small executive-branch group makes and often executes before public confirmation, which is the classic insider-knowledge pattern. Nothing in the payload indicates such a decision has already been made as of the judgment date, so this looks more speculative than confirmed, capping confidence at moderate.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLIUSACASAAMOR-26",
+  "insider_group": "Love Island USA production/casting, who design the season format and, because the show airs roughly a day behind filming, already know upcoming episode content before broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves on it being 'reported' that Casa Amor occurs; near-live production lag means production knows before the public does, but a format change could still occur.",
+  "rationale": "Casa Amor is a near-fixture format beat and, since episodes air only about a day behind filming, production and the cast already know whether it is happening well before the public broadcast that triggers resolution. It is not a live audience vote, so this is closer to a known-format decision than a genuinely open outcome, but it is not unconditionally guaranteed every season.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXCRITICALITY-26AUG",
+  "insider_group": "the operating company and its regulator, who track each reactor's testing and licensing schedule internally",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Criticality is an engineering/regulatory milestone whose internal schedule is known to the operating company and its regulator well before a public announcement, similar to other scheduled technical milestones. But these timelines slip often and criticality is a physical outcome rather than a discretionary decision already made, so this stops short of strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXART-PETI26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "This resolves on a live auction hammer price set by bidding in the room. The auction house has informative pre-sale knowledge (reserve, estimate, registered interest) but nobody, including the house, knows the final price before the gavel falls. No specific group already knows the answer.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXART-PORT26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same live-auction mechanism as the other Sotheby's markets in this batch: reserves and estimates are known beforehand, but the hammer price is set live and is not decided by anyone in advance. No specific group already knows the answer.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXART-TWO26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same live-auction mechanism as the other Sotheby's markets in this batch: reserves and estimates are known beforehand, but the hammer price is set live and is not decided by anyone in advance. No specific group already knows the answer.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMILANFW-26JUN30",
+  "insider_group": "Milan Fashion Week show producers/casting directors, who finalize runway lineups in advance, and Tom Brady's own representatives if a booking exists",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Rules require Brady to actually appear and perform the runway-model role; being listed in an official lineup without performing does not satisfy the criterion, and rumored/unofficial announcements or canceled appearances don't count either. A plain reading of the title undersells this execution risk.",
+  "resolution_source_risk": null,
+  "rationale": "If Brady has already been booked for a specific show, casting/producers and his own team would know before the event airs, fitting the insider-knowledge thesis. But the rules explicitly exclude being listed without performing and exclude rumors, and the payload gives no evidence a booking is already confirmed.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPOTUSTWEETS-26JUL01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Determined via the X API polled every 5 minutes; deleted posts still count if picked up in time, so a very late post near the boundary could theoretically be missed.",
+  "rationale": "This resolves on whether an individual posts at all in a week, which is spontaneous personal behavior, not something any group already knows in advance. Given established posting frequency this is a near-certain outcome by base rate, but base-rate predictability is a forecasting edge, not an insider-knowledge edge.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXRANKLIST1SONG-26JUN27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Billboard Hot 100 position aggregates a full tracking week of streaming, airplay, and sales across millions of listeners. Industry insiders can see mid-week trending data and forecast, but no single group decides or already knows the final chart position before it is compiled and published.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPSONG-26JUN27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same Billboard Hot 100 mechanism as the other chart markets in this batch: an aggregate of millions of listeners' behavior over a tracking week, not a decision any group has already made. No specific group already knows the answer.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMOSTSTREAMED-26JUN19",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Determined from a single snapshot of the Spotify desktop app at 10 AM ET; any change after that moment does not count, a mechanical detail rather than a knowledge edge.",
+  "rationale": "This resolves on which song has the highest cumulative Spotify stream count at a specific snapshot time, an aggregate of consumer listening behavior. The platform sees the running counts first, but that is a public, checkable number rather than a decision any group has made.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMOSTSTREAMED-WIT26JUN19",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Determined from a single snapshot of the Spotify desktop app at 10 AM ET; any change after that moment does not count, a mechanical detail rather than a knowledge edge.",
+  "rationale": "Same Spotify stream-count mechanism as the other 'most streamed' market in this batch: a public aggregate of listening behavior, not a decision any specific group has already made.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTECHRANKLISTAICODE-26JUN20",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "This resolves on a crowd-voted arena leaderboard, aggregating many independent users' head-to-head votes. Labs know their own release plans and internal benchmark results, but cannot know the crowd-voted rank before it accumulates, so no group already knows the outcome.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLIUSAELIMINATIONW-26JUN19",
+  "insider_group": "Love Island USA production and the cast in the villa, who know real-time eliminations before the roughly one-day-delayed broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Elimination excludes temporary suspensions, medical holds, being a finale runner-up, and eliminations reversed within the same episode, narrower than a plain reading of 'eliminated' would suggest.",
+  "resolution_source_risk": null,
+  "rationale": "Love Island airs roughly a day behind filming, so production and other contestants know who has actually been eliminated before the public broadcast that triggers resolution. Elimination itself often depends on a public app vote taken shortly before an episode, so for markets near the edge of the window the underlying vote may not yet have happened as of the judgment date, capping this at moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBET-26-FAS",
+  "insider_group": "BET Awards producers, if Fashion Vanguard is a producer-selected honor rather than a fan-voted category",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Major award winners are typically decided by a small tabulation/production group before broadcast, per the standard award-show pattern, but some categories remain fan-voted until near air time. The payload gives no rules detail on how Fashion Vanguard specifically is selected, so this cannot be pushed to strong without confirming it is not an open public vote.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFABLERESTORE-27",
+  "insider_group": "the company operating Fable 5's service and its internal status/ops team, who would know the moment access is restored, before any outlet reports it",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Only counts if reported by a qualifying Source Agency, and republished wire content only counts if hosted on the outlet's own platform with clear attribution; an actual restoration could occur without qualifying coverage landing before a given close time, especially the earliest-dated legs.",
+  "rationale": "This is a company's own operational status (service access restored), which the operating company knows the instant it happens, well before any news outlet reports it, the clearest form of the insider-knowledge thesis here. The main risk is entirely about reporting lag/qualification, not about whether someone already knows the underlying fact.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLLM1-26JUN20",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "Resolution reads the leaderboard with the 'Remove Style Control' toggle on, a specific, easy-to-miss configuration detail.",
+  "resolution_source_risk": null,
+  "rationale": "Same as the other arena-leaderboard market in this batch: it aggregates independent crowd votes rather than reflecting a decision made by any identifiable group. Labs know their own release plans but not the resulting crowd-voted rank in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPSLAUGHTERVOTE-26",
+  "insider_group": "the Supreme Court justices and their law clerks, who vote in conference and know the outcome well before an opinion is released",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": "The rules text is a long, detailed counting protocol for edge cases (DIGs, per curiam opinions, partial concurrences, recusals) that goes well beyond the simple 'exactly N justices' framing of the title; worth reading closely before betting a specific split.",
+  "resolution_source_risk": null,
+  "rationale": "Supreme Court outcomes are decided in conference well before the opinion publishes, so the justices and their clerks already know the vote well ahead of announcement, especially this close to end-of-term opinion releases. The exact vote-split framing is highly specific, but the underlying fact of who voted which way is already fixed and known internally, not something still to be decided.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPTIME-26JUN20",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Whether an individual posts in a specific overnight hour window is spontaneous personal behavior with no identifiable group already knowing the answer in advance. This is a base-rate forecasting question, not a knowledge-asymmetry one.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPVSLAUGHTER",
+  "insider_group": "the Supreme Court justices and their clerks",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same underlying case and mechanism as the vote-count markets above: the merits outcome is decided in conference before the opinion is released, so a small, specific group already knows the answer well ahead of announcement, particularly this close to end-of-term opinion releases.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXWATSONRNC",
+  "insider_group": "the Supreme Court justices and their clerks, if the case has already been argued and conferenced by the close date",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "This fits the same SCOTUS-conference-vote pattern as the other Supreme Court markets in this batch, where a small group knows the outcome before publication. Unlike Trump v. Slaughter, there is no clear signal here that oral argument has already taken place by the judgment date, so confidence is capped at moderate pending that structural fact.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KX14AMENDCASE-26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "'Come into effect' is defined narrowly as 'no federal court currently blocking it' rather than an affirmative implementation event, and resolves immediately No on withdrawal or an adverse constitutional ruling.",
+  "resolution_source_risk": null,
+  "rationale": "Whether an executive order is 'in effect' here is the emergent status of multiple ongoing, independent court proceedings across jurisdictions, not a fact any single small group has already decided and is sitting on. This is closer to a live, unresolved legal question than a sealed-but-undisclosed decision.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBEEFTARIFF-26MAY",
+  "insider_group": "the President and administration trade/agriculture staff, who would draft and internally clear any executive action before it is signed and announced",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": "Qualifying action must be a specific document type, personally signed, and substantively address beef tariffs; statements, cabinet-member actions, and mere mentions don't count, a meaningfully narrower bar than the plain title suggests.",
+  "resolution_source_risk": null,
+  "rationale": "Executive actions are decided and drafted internally by the administration before signing, matching the thesis's classic small-group-decision-awaiting-announcement pattern. Nothing in the payload indicates any such action is already drafted or imminent, so this stays at moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXDJTATTACKWARSH-27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Whether an individual makes a spontaneous critical public remark about another person is not a fact any group already knows in advance; it depends on an unmade, spontaneous decision, which the thesis explicitly warns against treating as insider knowledge.",
+  "researched": false
+ }
+]
