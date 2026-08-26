@@ -36,6 +36,16 @@ also part of the decision path. Record the later of the two cutoffs as
 
 ## 2. Enforce the rules
 
+- **The replay code lives in the theory's folder**, as `backtest.py` by
+  convention — `theories/insider_bias/insider_judgment/backtest.py` is the
+  worked example. The harness gives you point-in-time data, run identity,
+  tiers and scoring; reconstructing *this* theory's decision at a past
+  moment is thesis-specific and stays local. **Never write or extend a
+  shared replay engine** (`tools/backtest.py`), and never add a
+  `backtest()` method to the `Theory` contract. A backtest is a driver
+  script that builds a backtest-mode context and calls the same `screen()`
+  and `price()` the live path calls — replaying a reimplementation of the
+  screen is a backtest of nothing.
 - **`TheoryContext(run_mode="backtest")` is what a replay keys on.** Build
   the context once with `run_mode="backtest"` and a real `run_id` (not
   `"live"`) — `TheoryContext.build(..., run_mode="backtest", run_id=...)` —
@@ -110,3 +120,11 @@ same markets pools into every prior run of this theory version and multiplies
 Report the tier alongside every number. Tier C results are **excluded from
 credibility** — never present them as evidence of edge, only as a sanity check
 on the screening stage.
+
+Backtest **results** live in the database: rows tagged
+`run_mode="backtest"` plus the `backtest_runs` row. Backtest **narrative**
+— what you tried, what broke, why the window is the window, which
+approximations the reconstruction accepts and in which direction they bias
+— goes in that theory's `NOTES.md`, and reaches `THEORY.md` only if the
+result changes what the theory claims. The biases belong in `THEORY.md`'s
+"How to backtest" section too, since they are part of the procedure.
