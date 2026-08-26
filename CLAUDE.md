@@ -401,6 +401,23 @@ no prompt. That is one more reason to prefer one.
 
 ## Data conventions
 
+**The governing principle: save as much as you can, while you can.**
+Every rule in this section is an instance of it. Data in this domain is
+perishable — markets close, Kalshi archives its settled history after ~60
+days, model usage cuts out mid-run, sessions die — so anything fetched,
+computed, judged, or decided that is not on disk at the moment it exists
+is a candidate for permanent loss, discovered exactly when it is needed.
+When in doubt, persist: raw payloads over distillates, incremental writes
+over one final write, durable stores over session memory, and the context
+that produced a result alongside the result. Storage is the cheapest
+input this project consumes; everything else — network time, token
+spend, a market that no longer trades — is expensive or impossible to
+buy back. The test: a future session that never saw this one should be
+able to reconstruct any result from disk, and ask questions of old data
+that nobody thought to ask when it was captured. The rules below are
+examples, not the boundary — a new situation that smells like "we could
+keep this, but it's a hassle" resolves to keeping it.
+
 - **SQLite** (`db/market_edge.db`) is the source of truth for structured facts.
 - **`THEORY.md`** is the source of truth for a hypothesis and its procedure.
 - **`RESEARCH_LOG.md`** carries continuity between sessions — read its tail
