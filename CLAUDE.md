@@ -272,6 +272,23 @@ short: is n big enough to reject zero, is the edge positive gross and negative
 net, does `interpretation_value` blame stage 2, does one slice work, is it
 inverted, what tier is the evidence, did the version change mid-track.
 
+**A dead headline number is not a dead dataset — mine it before moving
+on.** When a theory's aggregate fails, that is the *beginning* of the
+analysis, not the end: slice the settled rows by side, price band, timing,
+sub-family, volume, and any structure the thesis implies, with honest
+p-values, event-clustered checks, and multiple-comparison awareness,
+before concluding nothing is there. The mention_family full-coverage run
+is the worked example twice over: its aggregate was dead (-1.53pts net,
+n=3,441), and the slicing pass still surfaced a real, mechanism-backed
+asymmetry (YES favorites overpriced everywhere; NO favorites at 0.90+
+underpriced, +2.25 net, stable across every partition) that fed an
+existing backlog idea (`no-side-premium`). The pairing discipline is
+what keeps this honest in both directions: a pattern found post-hoc is a
+*hypothesis to pre-register* for a forward test or an out-of-sample
+walk, never an edge to bet on the same data that suggested it — and a
+pattern that fails its first small sample is *unconfirmed*, not
+disproven, until a full-coverage or adequately powered pass has been run.
+
 **Only the user retires a theory.** You diagnose, then put it in front of
 them:
 

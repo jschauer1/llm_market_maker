@@ -201,6 +201,29 @@ different ticker family.
 
 ## Learnings
 
+- 2026-08-25 — **Pattern-mining the dead aggregate found one survivor:
+  the NO side at high prices (user-prompted: "don't give up on a pattern
+  because of initial bad results").** Full slicing of the 3,441
+  full-coverage rows — timing, fine price bins, side x price, volume,
+  spread, sub-family, per-series z — answered the open questions
+  directly: the bootstrap's 0-4d timing edge is dead at scale (-0.95
+  net, n=2,418; every timing bin negative, the 10-14d bin's +10.2
+  re-measures at -3.1); price 0.80+ as such is dead (-0.51, n=1,767);
+  the old 85plus bin is *perfectly calibrated* at scale (+0.11 net,
+  n=1,231); no single series is distinguishable from luck (z-variance
+  1.19 across 96 series). What survived every stress: **NO favorites at
+  ask ≥0.90** — +2.25pts net (n=450, 213 events, p_fair=0.0084),
+  positive in all four sub-families, both window halves, both timing
+  slices, and still +1.86 excluding the ended World Cup series — while
+  YES favorites are overpriced in every band (-1.7 to -4.2 net). The
+  spread makes the mirror trade (fading YES with NO longshots)
+  negative, so the bias is only harvestable on the NO-favorite side.
+  Found post-hoc in a ~50-cell scan (event-clustered t only +1.4), so
+  it is a pre-registerable hypothesis, not a demonstrated edge; it is
+  recorded on backlog idea `no-side-premium` (whose Becker-based
+  mechanism predicted exactly this asymmetry) rather than as a revival
+  of this theory, whose both-sides price-bin procedure stays dead as
+  measured. The retirement proposal stands unchanged.
 - 2026-08-25 — **Full-coverage rerun killed the edge; retirement
   proposed.** `backtest-2026-08-25-mention-fullcov` (tier A) replayed
   every mention-family survivor in the API-reachable close window —
