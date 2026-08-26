@@ -425,16 +425,6 @@ no prompt. That is one more reason to prefer one.
   of its public API ~60 days after close, so data lost mid-run may be
   unrecoverable upstream by the time you re-run. Full convention and worked
   examples in `tools/README.md`.
-- **Waiting is work time.** While a long-running job (a replay, a settled
-  walk, a large fetch) grinds in the background, pick up small,
-  self-contained work around it — log entries, docs, settling and scoring
-  other theories' rows, idea-registry hygiene — rather than idling until
-  it finishes. Just don't interfere with the thing you are waiting on:
-  leave its theory's code, its run's rows, its checkpoint, and the shared
-  board alone while it runs, and don't start a second API-heavy job that
-  competes with it for rate limits. Prefer closable tasks over opening a
-  second deep investigation, and note what is pending before switching so
-  the handback is clean when the job lands.
 
 ## Getting started
 
