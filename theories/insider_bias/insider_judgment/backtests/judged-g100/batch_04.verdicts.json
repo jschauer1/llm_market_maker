@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXPUREALBUMS-NOM26AUG13",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Luminate reports on schedule the Sunday after the tracking week; low miss risk.",
+  "rationale": "Pure Album Sales aggregate the independent purchases of many consumers over a tracking week. Labels and chart-watchers can forecast from mid-week tracking data, but nobody has already decided or definitively knows the final tally before Luminate tabulates it. No named group holds the answer in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXYTVIEWSW-DRA26AUG09",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "YouTube Charts publishes continuously; low miss risk, though 'at any point' peak values can be volatile near close.",
+  "rationale": "Daily view counts are an aggregate of millions of independent viewers' behavior on a public, continuously-updating chart. YouTube itself sees the number first but has not 'decided' anything, and no closed group has private knowledge the public lacks before the chart updates.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNETFLIXRANKSHOWGLOBAL2-26AUG10",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Netflix charts publish on a fixed Tuesday schedule; low miss risk.",
+  "rationale": "Netflix Top 10 rank is a published aggregate of subscriber viewing hours across many independent households. Netflix computes and holds the number briefly before the Tuesday publish, but that is a data-processing lag, not a decision a small identifiable group made and could leak.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXYTVIEWSW-BAD26AUG09",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "YouTube Charts publishes continuously; low miss risk.",
+  "rationale": "Same mechanism as other YouTube daily-views markets: an aggregate of many independent viewers' behavior on a public tracker. No specific group has already decided or privately knows the peak daily figure before the chart shows it.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNETFLIXRANKMOVIERUNNERUP-26AUG10",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Netflix charts publish on a fixed Tuesday schedule; low miss risk.",
+  "rationale": "Same Netflix Top 10 mechanism as the global-show markets: an aggregate viewing-hours ranking published on schedule. No named group holds a made decision about the outcome ahead of the public chart.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNETFLIXRANKSHOWGLOBAL-26AUG10",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Netflix charts publish on a fixed Tuesday schedule; low miss risk.",
+  "rationale": "Identical mechanism to the other Netflix rank markets in this batch: a published aggregate of subscriber behavior, not a decision made in advance by any identifiable group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPANAMAWEEKLY-26AUG09",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves no earlier than the Tuesday after the period once IMF PortWatch data is complete; possible reporting lag but not a source that skips reporting.",
+  "rationale": "Total weekly transit calls are the sum of many independent shippers' voyages, published by IMF PortWatch as an aggregate tracker. While the canal authority observes each transit as it happens, nobody 'decides' the weekly total in advance the way a board votes or a company sets a release date.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPUREALBUMS-CHU26AUG13",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Luminate reports on schedule; low miss risk.",
+  "rationale": "Same Pure Album Sales mechanism as the KAROL G market: an aggregate of independent consumer purchases, forecastable late in the tracking week but not known in advance by any specific group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26AUG10",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Netflix charts publish on a fixed Tuesday schedule; low miss risk.",
+  "rationale": "Same Netflix Top 10 aggregate mechanism as the other rank markets in this batch. No small group has already made or knows the resolving decision ahead of the public chart.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves off Luminate's API at a fixed time; low miss risk.",
+  "rationale": "Album Equivalent Units combine sales and streaming activity from many independent consumers, aggregated by Luminate. This is the same 'nobody decides the number' mechanism as the chart/streaming family generally -- forecastable from partial data, not privately known in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPUREALBUMS-WILD26AUG20",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Luminate reports on schedule; low miss risk.",
+  "rationale": "Same Pure Album Sales aggregate-consumer-behavior mechanism as the other album-sales markets in this batch. No identifiable group has already decided or definitively knows the tally.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXRT-INS",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Determined the Monday after wide release; embargo-lifted reviews should be public by then, so low miss risk, but a delayed release could push the tally.",
+  "rationale": "A Tomatometer score aggregates many individual critics' reviews published under embargo near release. No single group (studio, RT, or critics collectively) knows the final averaged score before reviews post publicly, and the market closes essentially at the moment of resolution, leaving little private-knowledge window.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMEQUIV-WILD26AUG20B",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves off Luminate's API at a fixed time; low miss risk.",
+  "rationale": "Same Album Equivalent Units aggregate-consumer mechanism as the Phoebe Bridgers market. No specific group already knows the outcome before Luminate publishes it.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPUREALBUMS-THI26AUG13",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Luminate reports on schedule; low miss risk.",
+  "rationale": "Same Pure Album Sales mechanism as the rest of this batch's album-sales markets -- an aggregate of independent buyer behavior, not a decision any group has already made.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNETFLIXRANKMOVIE-26AUG17",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Netflix charts publish on a fixed Tuesday schedule; low miss risk.",
+  "rationale": "Same Netflix Top 10 aggregate-viewing mechanism as the other rank markets. No named group holds private knowledge of the outcome ahead of the public chart.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMEQUIV-HER26AUG20",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves off Luminate's API at a fixed time; low miss risk.",
+  "rationale": "Same Album Equivalent Units aggregate-consumer mechanism as other Luminate markets in this batch. No specific group already knows the tally before publication.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNETFLIXRANKSHOW-26AUG17",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Netflix charts publish on a fixed Tuesday schedule; low miss risk.",
+  "rationale": "Same Netflix Top 10 aggregate-viewing mechanism as the rest of the Netflix markets in this batch. No small identifiable group has already decided or privately knows the outcome.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNETFLIXRANKSHOWRUNNERUP-26AUG17",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Netflix charts publish on a fixed Tuesday schedule; low miss risk.",
+  "rationale": "Same Netflix Top 10 aggregate-viewing mechanism as the rest of this batch's Netflix markets. No group has private foreknowledge of the ranking.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNETFLIXTOPVIEWSTV-26AUG17",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "Title says simply 'the #1 Show on Netflix'; rules restrict this specifically to the Global 'Shows | English' chart, which need not be the same title as Netflix's overall global #1 show. A trader reading only the title could misjudge which chart determines the outcome.",
+  "resolution_source_risk": "Netflix charts publish on a fixed Tuesday schedule; low miss risk.",
+  "rationale": "View-count thresholds for the #1 show are an aggregate of subscriber viewing across a specific Netflix chart, published on schedule. Nobody decides this number in advance; it is a measured outcome of independent viewer behavior.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXH100W-26AUG14",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "If Ornn reports no data by the expiration date, all non-'No data' strikes resolve No -- a real source-miss risk.",
+  "rationale": "The title asks whether price is 'up,' but the rule is actually an absolute-level test (value above a fixed dollar threshold), not a comparison to a prior price -- worth flagging even though it doesn't change the bucket. Either way, the resolved value is a posted-price index aggregating many vendors' list prices; a vendor knows its own price change before the tracker updates, but no single group sets or knows the aggregated index value in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXHORMUZMAX-26AUG16",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves no earlier than the Tuesday after the period once IMF PortWatch data is complete; possible reporting lag.",
+  "rationale": "Which day has the most transit calls is decided by the independent movements of many vessels, aggregated and published by IMF PortWatch. No small group has already decided or definitively knows the winning day ahead of the published data.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXYTVIEWSW-JUS26AUG16",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "YouTube Charts publishes continuously; low miss risk.",
+  "rationale": "Same YouTube daily-views aggregate-viewer mechanism as the other artist markets in this batch. No specific group has private knowledge of the peak figure ahead of the public chart.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXH100W-26AUG21",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "If Ornn reports no data by the expiration date, all non-'No data' strikes resolve No -- a real source-miss risk.",
+  "rationale": "Same H100 SXM posted-price index mechanism as the prior week's market: an aggregate of many vendors' list prices with an absolute-threshold rule despite the 'up' framing in the title. No single group sets or knows the resolved index value in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXOPENINTAI-26AUG21",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Depends on Artificial Analysis publishing its index update on schedule; ties resolve by the publisher's own method.",
+  "rationale": "Top-ranked open-source model on a third-party benchmark index is a computed, publicly-checkable score, not a decision any lab or the index publisher has privately made and is sitting on. Any 'insider' knowledge (a lab's own unreleased roadmap) only helps forecast, it does not reveal the current published ranking ahead of time.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPENDORSEMENTS-26AUG21",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Endorsements are counted directly from public Truth Social posts; low miss risk, though borderline wording calls require judgment.",
+  "rationale": "The final weekly count depends on how many people Trump chooses to endorse over days that, as of the judgment date, have not all occurred yet -- a spontaneous, not-yet-made decision rather than a private fact already known to a small circle. Each individual post is also immediately public the moment it happens, so there is no meaningful private-knowledge window even for the already-elapsed portion of the week.",
+  "researched": false
+ }
+]
