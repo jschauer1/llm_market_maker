@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXTOPMOVIE-26AUG06",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Luminate's Top 50 movies-by-hours ranking aggregates streaming behavior from millions of viewers over a full tracking week; no single group decides the #1 slot in advance. Streamers may see internal dashboards ahead of the Saturday publication, which helps forecasting but is not settled knowledge of the final published rank.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXYTDAILYTOPVIDEOG-26AUG05",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "YouTube's daily chart is a published aggregate of platform-wide viewing data; YouTube sees raw counts first but does not 'decide' the ranking, and no outside group has advance knowledge of the final published #1 before it accrues.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXYTTOPSONGW-26AUG06",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same mechanism as YouTube's daily chart, aggregated weekly: an aggregate of consumer listening behavior with no decision-maker who already knows the outcome, only forecastable late in the week from partial data.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFDANOM-29",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title implies a near-term nomination question; rules actually give an open window of 'after Issuance and before Jan 20, 2029' — a multi-year horizon not evident from the title.",
+  "resolution_source_risk": null,
+  "rationale": "Who Trump nominates for FDA commissioner is a discretionary personnel decision the administration controls, and the rules give it up to roughly three years to happen. With no evidence a choice has already been made, this is a live unmade decision, not a sealed-but-unannounced fact, and the long open window makes it more a rate question than a knowledge question.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPVH-26AUG07",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "VoteHub's approval average is a published aggregate computed from many independent pollsters' data; it is not decided by anyone, only assembled from survey inputs as they arrive.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXCANTARIFFSEFFECT-26",
+  "insider_group": "U.S. executive branch / customs agencies enforcing the July 20, 2026 Section 338 proclamations",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Real risk: resolution requires a qualifying report from a named Source Agency landing before the Aug 20, 2026 03:59 UTC close. Even if the tariffs took effect exactly as scheduled on Aug 19, the market could resolve No purely because no qualifying outlet reported it in time, or because reprinted wire content doesn't meet the sourcing bar.",
+  "rationale": "The tariffs' effective date was already fixed by proclamations issued a month earlier, so the executive branch already knows its own scheduled timeline — closer to an already-made decision than genuine uncertainty. The bucket is capped at moderate rather than strong because resolution hinges on media reporting landing within a tight window, a real source-timing risk this market's own rules call out.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPNOMNUM-26AUG02",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Rules specify that one person can count as multiple 'nominations' if renominated multiple times in the window (the Kevin Warsh example) — not obvious from a title that reads like a simple headcount of people nominated.",
+  "resolution_source_risk": null,
+  "rationale": "Individual nominations are decisions the administration schedules, but whether the cumulative count over a full week clears a 2 or 3 threshold is a rolling tally that builds up day by day — a rate question over a multi-day window rather than a single fact already decided and sitting unannounced.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXUAPFILES-26JUL23",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Whether the federal government releases new UAP files by a given date is a discretionary decision with no evidence any release has already been prepared or scheduled; nothing here suggests the decision has already been made, only that it might be made before the deadline.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPTIME-26AUG15",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Whether Trump posts during a specific overnight hour on any day of a week is spontaneous individual behavior nobody has decided in advance; this is a rate/count question spread across a wide window, the archetypal case the thesis says to treat as NO-ish.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXYTTOPVIDEOG2D-26AUG10",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same YouTube daily-chart mechanism as other events in this batch: an aggregate of platform-wide viewing behavior with no group that already knows the final published rank.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMDEBUT-26AUG29-LOS",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Billboard 200 debut position is decided by aggregated first-week sales/streams from the public. Labels get mid-week tracking data that lets them forecast well late in the week, but per the thesis that is a forecasting edge from partial data, not advance knowledge of a decision already made.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXVIDEOAI-26AUG14",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Artificial Analysis' leaderboard aggregates many benchmark/usage signals; Google knows its own model release plans but not a rival's accumulated leaderboard standing in advance, so no single group already knows the week's #1.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXYTDAILYTOPVIDEOG-26AUG11",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same YouTube daily-chart aggregate mechanism as the other instances of this family in this batch.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXDEEPSHARE-DEEP",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "OpenRouter market share by model author aggregates usage across many independent API customers; the platform sees running totals but no group decides the final weekly percentage ahead of publication.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMLABELSHARE-W3126AUG13",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Some risk: the rules note the Thursday-dated chart is 'usually' published on Friday, and close time is Friday 21:00 UTC, so a late publication could in principle land after or right at the close.",
+  "rationale": "Hits Daily Double's market-share chart aggregates sales/streams across many releases from many labels; no single group decides UMG's percentage in advance, though the publication-timing note is worth flagging as a minor resolution-source risk.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXYTTOPVIDEOG2D-26AUG12",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same YouTube daily-chart aggregate mechanism as the other instances of this family in this batch.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTECHRANKLISTAICODE-26AUG17",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "LM Code Arena is a crowd-voted head-to-head leaderboard; Anthropic knows its own release plans but not the accumulated crowd-vote standing before it is computed, so no group already knows the week's #1.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPVH-26AUG14",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same VoteHub polling-average mechanism as the other instance of this family: a published aggregate of many pollsters, decided by nobody.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMVS-LOS26AUG21",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Some risk: rules state Luminate data 'may be published up to approximately 48 hours after' the tracking week ends, which could land close to the Aug 23 14:00 UTC close depending on exactly when the tracking week is defined to end.",
+  "rationale": "Both albums' first-week Album Equivalent Units are aggregated consumer purchase/streaming data; labels can forecast from mid-week tracking, but that is a forecasting edge from partial public data, not advance knowledge of a decision anyone has made.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXYTTOPSONGW-26AUG20",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same YouTube weekly-chart aggregate mechanism as the other instance of this family.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMDEBUT-26AUG29-WIL",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same Billboard 200 debut mechanism as the other instance of this family: aggregated public sales/streams, forecastable late but not decided by anyone in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXGOOGSHARE-26AUG17",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same OpenRouter usage-share aggregate mechanism as the DeepSeek/Tencent share markets in this batch: aggregated consumer API usage, not a group's decision.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTENCENTSHARE-26AUG17",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same OpenRouter usage-share aggregate mechanism as the other model-share markets in this batch.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXDEEPSHARE-26AUG17",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same OpenRouter usage-share aggregate mechanism as the other DeepSeek-share market in this batch (different tracking week).",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXRTCOMPARE-INS26AUG24",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Rotten Tomatoes' Tomatometer aggregates many individual critic reviews published on a staggered schedule; no single group knows the final All-Critics score in advance, though studios may have early counts that let them forecast direction, which is not the same as already knowing the outcome.",
+  "researched": false
+ }
+]
