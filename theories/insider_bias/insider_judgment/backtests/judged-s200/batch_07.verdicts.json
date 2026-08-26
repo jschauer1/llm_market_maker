@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXNEXTAG-29",
+  "insider_group": "Trump/White House personnel office (already knows who they intend to nominate); Senate GOP leadership whip count on confirmation odds",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "The administration already knows its own nomination intent (a companion event, KXVOTEBLANCHE, shows a confirmation vote scheduled for the same close window), but 'who becomes AG' still depends on an actual Senate floor vote that had not occurred as of Aug 6. Leadership whip counts give a good but imperfect picture, so this sits between a pure knowledge case and a pure forecast.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPTIME-26AUG01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Whether Trump posts on Truth Social during one specific hour is spontaneous individual behavior with no identifiable group that knows the answer in advance, per the mechanism sheet's treatment of individual-behavior markets. Close staff have only weak, partial foreknowledge of posting habits, not a decision anyone has made.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXVOTEBLANCHE-27",
+  "insider_group": "Senate GOP leadership / whip operation tracking each senator's expected vote",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Individual senators' confirmation votes are, per the mechanism sheet, tracked by leadership whip counts that give a good but imperfect advance picture -- some senators (party-line leadership) are near-certain, others (cross-party or maverick votes like Fetterman) are genuinely undecided until the roll call. No single named group has full certainty, so this lands as moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXVOTESAVEAMERICA-26MAR",
+  "insider_group": "Senate majority leadership, who control the floor calendar",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title asks broadly 'will the Senate vote', but the rules narrow this to specific recorded-vote types (roll call, cloture, motion to proceed, final passage, referenced rule/amendment votes) and explicitly exclude voice votes, unanimous consent, and most committee/amendment votes -- a scheduling technicality that could trip up a title-only reading.",
+  "resolution_source_risk": null,
+  "rationale": "Floor scheduling is set by Senate leadership, who typically know their calendar well in advance of a close only two days out, making this more knowable than a typical vote-outcome market. But leadership's control is of scheduling, not certainty, and floor plans can slip.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXARENASCORE-OPUS49",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Per the mechanism sheet, Arena-style leaderboard scores aggregate many independent crowd voters; Anthropic may know its own release timeline but cannot know the crowd-voted score before it accumulates post-release. No group has already-decided knowledge of the number itself.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMAMDANIEO-26AUG01",
+  "insider_group": "Mayor Mamdani's own office/staff, who execute and internally log his executive orders",
+  "bucket": "strong",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title says 'executive orders' generally, but the rule narrows the count to 'non-emergency' executive orders only -- a title reader could miss that emergency orders don't count toward the threshold.",
+  "resolution_source_risk": null,
+  "rationale": "The measurement window (Jul 26-Aug 1) had already fully elapsed as of the 'today' date of Aug 6, so this is a fact about the past, not the future: Mamdani's own office already knows definitively whether any non-emergency order was signed that week, exactly analogous to the sheet's 'corporate layoffs are decided by leadership before any announcement' pattern for an executive's own actions.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMARTINDNCOUT-26MAY",
+  "insider_group": "Ken Martin and the DNC's officers/executive committee",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title implies a departure event ('be out'), but the rules clarify that natural expiration of a term without renewal also counts as 'leaving' -- broader than a simple ouster/resignation reading.",
+  "resolution_source_risk": null,
+  "rationale": "A chair's departure is, per the mechanism sheet's treatment of personal/political departures, 'a personal decision known first to a small circle.' No specific evidence here indicates a departure is imminent or already decided, so this is a plausible-but-unconfirmed informed group rather than a certainty.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSENATEADJOURN-27",
+  "insider_group": "Senate majority leadership, who set the recess calendar",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Only reporting attributable to the U.S. Senate itself qualifies (wire-service republishes must be hosted and clearly attributed on the outlet's own platform); if the Senate adjourns without a matching self-report before close, the market could miss even though the underlying fact occurred.",
+  "rationale": "August recess timing is normally fixed well in advance on the congressional calendar, giving leadership real foreknowledge, but the strict 'reported by the Senate itself' resolution mechanism adds a real chance the fact and the market outcome diverge.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXJAPANFOODTAX-27JAN01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title says 'announce', but the rules exclude a long list of things a casual reader might count as an announcement -- preliminary discussions, conditional agreements, opposition statements, leaked documents, draft legislation, and campaign promises all do not qualify.",
+  "resolution_source_risk": null,
+  "rationale": "This is a prospective fiscal policy decision with no evidence in the payload that Japan's government has already decided or committed to a tax change; per the thesis, an unmade government decision has no informed group who already knows the answer.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPNOMNUM-26JUL26",
+  "insider_group": "White House personnel office, which knows the nominations it has already submitted",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolution is solely by a snapshot of the whitehouse.gov 'Presidential Actions' page at a fixed time (10:00 AM ET Aug 2); if a nomination was sent but the page lags or omits it by that check time, the market could resolve against the true underlying fact.",
+  "rationale": "The measurement week (Jul 26-Aug 1) had already elapsed as of Aug 6, so the count of nominations actually sent is already a fixed fact the administration's own personnel office knows with certainty -- this is the sheet's 'decisions a small group makes and schedules before announcing' pattern applied to an already-completed action.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBLANCHEWITHDRAW-28JAN01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Rules broaden 'withdrawn' beyond a literal reading to also include Trump announcing intent to nominate Blanche for a different position instead -- a title reader might expect only a formal Senate withdrawal to count.",
+  "resolution_source_risk": null,
+  "rationale": "Nothing in the payload suggests a withdrawal is under active consideration; if anything the companion confirmation-vote event (KXVOTEBLANCHE) suggests the nomination is proceeding, not being pulled. Absent a specific signal, this is an unmade decision with no concrete informed group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPSTATES-27JAN01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "A presidential travel market with a window running through the end of 2026 is the sheet's 'window is long and could happen at any point' rate-question pattern, not a knowledge question; travel schedules also shift often enough that even close staff's foreknowledge is unreliable this far out.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBIGBROTHERELIMINATION-26AUG06",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Per the mechanism sheet, Big Brother US eviction votes are cast live and the outcome is genuinely undecided until airtime, even though other house events are pre-taped and known to production -- this market resolves on the live eviction itself, not a taped segment.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXGROK-GROK46",
+  "insider_group": "xAI's engineering and release team",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Per the mechanism sheet, AI-lab release timing is known internally ahead of time but 'slips routinely,' and this event stacks several staggered daily close dates -- a pattern the sheet flags as more knowable than a chart/aggregate metric but still genuinely uncertain in timing.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXCLAYTONDNI-27JAN01",
+  "insider_group": "White House / administration personnel handling the DNI appointment",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title says 'formally hold the role', which could read as requiring Senate confirmation, but the rules explicitly count acting/interim assignment as satisfying the criterion -- a much lower and more unilaterally-controlled bar than full confirmation.",
+  "resolution_source_risk": null,
+  "rationale": "Because acting/interim assignment counts, the administration can effectively decide this outcome unilaterally and would know its own plans, but the very short window (1-2 days from 'today') and lack of confirming detail in the payload keep this short of strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMC-MAR",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Score is measured exactly seven days after release and defaults to 'the first platform listed' if unspecified, which is a source ambiguity but not a title divergence.",
+  "rationale": "Per the mechanism sheet, Metacritic scores aggregate many critics' embargoed reviews and no single group knows the final average before publication, so no informed group already knows the answer.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNEWTARIFFS-26AUG",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Rules require the action be signed personally by the President, of specific formal types, and explicitly address tariffs in the operative text/title/official summary -- cabinet-level actions, incidental mentions, and signing statements are excluded, narrower than a title-only reading of 'any executive action.'",
+  "resolution_source_risk": null,
+  "rationale": "There is no indication in the payload that a specific tariff action has already been decided for August; this is a prospective policy decision that has not yet been made, matching the thesis's 'unmade decision' exclusion rather than an insider-knowledge case.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPSONG-26AUG15",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Billboard Hot 100 position is an aggregate of a full tracking week of consumer listening/sales behavior; per the mechanism sheet, industry insiders can forecast from mid-week tracking but nobody decides the number, so this is a public-uncertainty market, not an insider-knowledge one.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPMEET-26AUG",
+  "insider_group": "White House/State Department schedulers for the diplomatic counterparts (Carney, MBS); much weaker for Spencer Pratt",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title just says 'meet', but the rules define a much broader qualifying set than an in-person encounter -- phone calls and virtual video calls both count as meetings.",
+  "resolution_source_risk": null,
+  "rationale": "Formal diplomatic contacts (a Canadian PM, a Saudi head of state) are often scheduled well ahead and known to protocol staff, but a Spencer Pratt meeting is closer to spontaneous celebrity happenstance with no real informed group, and cancellations/near-misses explicitly don't count -- the event mixes a stronger and a much weaker sub-case, landing at moderate overall.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXISRNORMCOUNT-27DEC31",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "This is a multi-year-window diplomatic negotiation outcome with no payload evidence that any deal is imminent; the sheet's 'long window, could happen any time' rate-question warning applies directly, and normalization requires a ratified agreement that has not occurred.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMC-BIG",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same structural case as other Metacritic markets: the score is an aggregate of many independently embargoed critic reviews that no single group controls or knows in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFEATURETRIPPIERED-27",
+  "insider_group": "Trippie Redd's label/A&R team assembling the tracklist",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Per the mechanism sheet, album features and tracklists are known to the artist's team and label in advance and leaks are common, but 'plans do change late, so knowledge is real but not immutable' -- with 14 separate named-feature markets under one event and no confirming leak evidence in the payload, moderate rather than strong is the calibrated read.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTECHRANKLISTAICODE-26AUG10",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "This resolves on the LM Code Arena leaderboard, a crowd-voted aggregate; per the mechanism sheet, labs know their own release plans but cannot know a crowd-voted rank before it accumulates, so no group already knows this answer.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXYTTOPVIDEO2D-26AUG05",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "YouTube Charts rankings are an aggregate of consumer viewing behavior; per the mechanism sheet's treatment of platform-published aggregates, the platform sees the data first but it reflects nobody's decision, so this is not an insider-knowledge case even though the chart date has technically already passed 'today'.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPSONG-26AUG22",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same structural case as the other Billboard Hot 100 markets in this batch: an aggregate of a full tracking week of consumer behavior, forecastable by industry insiders via mid-week tracking but not known/decided by any single group in advance.",
+  "researched": false
+ }
+]
