@@ -434,14 +434,20 @@ no prompt. That is one more reason to prefer one.
   is identical to a freshly fetched one and any field Kalshi sends stays
   available to a future theory. ~200 MB per pull is the price of not deciding
   today which questions tomorrow may ask.
-- **Record while you collect.** Any collection running longer than a minute
-  writes incrementally — per series, per page, per market — to the DB or a
-  resumable checkpoint, never memory-only with one write at the end. An
-  interrupted run resumes; it never restarts from zero. This is doubly
-  binding because source data expires: Kalshi archives settled markets out
-  of its public API ~60 days after close, so data lost mid-run may be
-  unrecoverable upstream by the time you re-run. Full convention and worked
-  examples in `tools/README.md`.
+- **Record while you collect — and while you spend.** Any collection
+  running longer than a minute writes incrementally — per series, per page,
+  per market — to the DB or a resumable checkpoint, never memory-only with
+  one write at the end. An interrupted run resumes; it never restarts from
+  zero. This is doubly binding because source data expires: Kalshi archives
+  settled markets out of its public API ~60 days after close, so data lost
+  mid-run may be unrecoverable upstream by the time you re-run. The same
+  rule governs **token spend**: model usage can cut out at any moment, so
+  work that consumes it is structured in batches whose results persist
+  before the next batch is dispatched — inputs written to disk before any
+  spend, each subagent writing its own output to a file, ingestion
+  runnable by a future session that never saw this one. However far a run
+  got is analyzable; nothing judged is ever re-judged because a session
+  died. Full convention and worked examples in `tools/README.md`.
 
 ## Getting started
 
