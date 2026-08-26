@@ -139,6 +139,23 @@ path uses LLM judgment, because that determines the tier:
 - **Tier C** — LLM judgment on pre-cutoff markets. Contaminated; indicative
   only, and excluded from credibility.
 
+**The replay lives in this folder**, as `backtest.py` by convention. The
+harness supplies point-in-time data (`tools/kalshi/history.py`,
+`tools/snapshot.py`), run bookkeeping (`run_mode="backtest"` plus a real
+`run_id`, and the `backtest_runs` table), and scoring — and nothing else.
+Reconstructing *this* theory's decision at a past moment, over whatever
+slice of history is actually fetchable, accepting whatever approximations
+that forces, is thesis-specific work that belongs here. Two rules make the
+result mean something: call the same functions the live path calls (a
+backtest of a reimplemented screen is a backtest of nothing), and state the
+reconstruction's known biases in this section, because a replay whose
+biases are not written down produces a number nobody can caveat.
+
 ## Learnings
 
-Running journal — what worked, what did not, what surprised you.
+The **distilled** record: what this theory now knows that changes what it
+claims or how it runs. Not a journal — raw working notes (dead ends, data
+quirks, backtest narratives, hunches not yet worth a version bump) go in
+`NOTES.md` in this folder, and graduate into this section only when they
+change the theory's claims, procedure, or status. Summarize and point at
+the `NOTES.md` entry; do not copy it.
