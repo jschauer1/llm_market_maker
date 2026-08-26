@@ -53,6 +53,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from tools import db, ledger, provenance, score
+from tools.kalshi import cache as history_cache
 from tools.kalshi import history
 from theories.insider_bias.insider_judgment import backtest as sibling
 from theories.insider_bias.insider_judgment import gate
@@ -99,15 +100,26 @@ def candidate_series(now: datetime | None = None) -> list[dict]:
 
 
 class _CandleCache:
-    """Read-through cache over history.candlesticks (same as the sibling
-    driver): lets a None replay be diagnosed without a second fetch."""
+    """Intercepts history.candlesticks for two jobs at once: keeps the last
+    fetch visible so a None replay can be diagnosed without a second call
+    (same as the sibling driver), and — since 2026-08-25 — writes every
+    fetch through to the durable history cache (`tools/kalshi/cache.py`),
+    so a variant re-test never has to re-walk the network and the raw data
+    survives Kalshi's ~60-day archival."""
 
-    def __init__(self) -> None:
+    def __init__(self, cache_conn: sqlite3.Connection) -> None:
         self._real = history.candlesticks
+        self._cache_conn = cache_conn
         self.last: list[dict] | None = None
 
-    def __call__(self, *args, **kwargs) -> list[dict]:
-        self.last = self._real(*args, **kwargs)
+    def __call__(self, series_ticker, ticker, start_ts, end_ts,
+                 period_interval=1440) -> list[dict]:
+        self.last = history_cache.cached_candlesticks(
+            self._cache_conn, series_ticker, ticker,
+            start_ts=start_ts, end_ts=end_ts,
+            period_interval=period_interval,
+            fetch_candles=self._real,
+        )
         return self.last
 
     def install(self) -> None:
@@ -249,7 +261,8 @@ def main() -> None:
     state = load_checkpoint(args.checkpoint)
     conn = db.connect()
     record_run_provenance(conn)
-    cache = _CandleCache()
+    cache_conn = history_cache.connect()
+    cache = _CandleCache(cache_conn)
     cache.install()
     try:
         for ticker, survivors in sibling.iter_settled_survivors(
@@ -257,6 +270,9 @@ def main() -> None:
         ):
             if ticker in state["series"]:
                 continue
+            # Raw listing payloads first, so they are saved even if the
+            # replay of this series is interrupted partway.
+            history_cache.store_settled_markets(cache_conn, survivors)
             outcome = replay_series(ticker, survivors, cache)
             record_hits(conn, outcome["hits"])
             state["series"][ticker] = outcome
@@ -270,6 +286,7 @@ def main() -> None:
             )
     finally:
         cache.uninstall()
+        cache_conn.close()
         conn.close()
 
     done = state["series"].values()
