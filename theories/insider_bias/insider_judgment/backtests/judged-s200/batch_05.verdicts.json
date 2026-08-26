@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXBBCHARTPOSITIONSONG-26JUL18IKN",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Close time (Jul 13) sits close to Billboard's usual publication cadence for a chart dated Jul 18; low risk but tight.",
+  "rationale": "Billboard Hot 100 position is an aggregate of millions of listeners' streaming/sales/airplay behavior, not a decision any single group makes. Mid-week industry tracking lets labels forecast late in the week, but the mechanism sheet is explicit that this is forecasting, not knowledge. No named group has already 'decided' the chart position.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXHBUDGETRES-26JUN",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Whether and when a budget resolution passes the House depends on a floor vote that, per the payload, has not yet occurred. Leadership whip counts give an informed guess, not knowledge of an already-made decision, and exact pass/fail timing across three deadlines (Aug 1 / Oct 1 / Jan 1) is genuinely undetermined until the vote happens.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXROBOTAXIAREA-26DEC",
+  "insider_group": "Tesla's robotaxi operations/regulatory team (knows current FL deployment status)",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title implies a simple 'is robotaxi offered to the public' question, but the rules exclude safety-monitor rides, teleoperator-controlled vehicles, beta/invite-only access, and free promotional rides -- all patterns consistent with how Tesla's robotaxi service has actually been rolled out elsewhere. A naive YES on 'Tesla launched in FL' could still resolve No under these criteria.",
+  "resolution_source_risk": null,
+  "rationale": "Tesla knows its own operational status (whether it has launched fare-charging, driver-free service in Florida) better than the public does, which is a real informational edge. Lowered from strong because the resolution criteria are narrow and technical, so even Tesla insiders' casual sense of 'we launched' may not map onto what the contract actually requires.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPLATNERTWEET-26JUL08",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Whether a specific person posts on X on a specific day is spontaneous individual behavior. No identifiable group has already decided or knows the outcome in advance; even the poster's own staff can't reliably predict day-to-day posting.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXART-DER26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolution depends on Sotheby's website posting the 'Lot Sold' amount before close; a delayed posting could leave the outcome unresolved at close.",
+  "rationale": "Per the mechanism sheet, live/timed auction hammer prices are set by bidding at sale time; the auction house knows reserves and registered interest beforehand but not the final price. No group has already decided this number, so the thesis does not apply strongly here.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFIELDS-26",
+  "insider_group": "IMU Fields Medal Committee (small body that selects winners well before the public ICM announcement)",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "The mechanism sheet states the Fields Medal is decided by a small IMU committee long before the public announcement at the ICM. This is a textbook named, small, already-decided group with the outcome sealed well ahead of the close time (ICM 2026 announcement window).",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPSONG-26JUL25",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same music-chart family as KXBBCHARTPOSITIONSONG: the #1 spot is an aggregate of consumer streaming/sales/airplay behavior, not a group's decision. Industry insiders can forecast from mid-week tracking data but do not know the outcome outright.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMDEBUT-26AUG01-DAU",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Billboard 200 album debut position aggregates sales/streams from millions of consumers over a tracking week. Labels see mid-week projections and can forecast, but per the mechanism sheet this is forecasting rather than a decision any group has already made.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSONGRELEASEDATE-26KAT",
+  "insider_group": "KATSEYE's label/management team (would know internal release-schedule plans)",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Per the mechanism sheet, release dates are known to an artist's team and label in advance, and leaks are common -- a plausible informed group exists. Kept at moderate rather than strong because there is no confirmation a specific release has actually been scheduled inside this ~2-week window; plans can also change late.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXWCATTEND-26JUL20",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Celebrity attendance at a one-off public event is closer to spontaneous individual behavior/travel decisions than to a small group's already-made and undisclosed decision. Publicists or teams may have some foreknowledge of plans, but attendance to a global event like this can change up to the last minute, and no source here confirms any specific commitment.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLIUKCOUPLE-26AUG31",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Per the mechanism sheet, Love Island UK's final ranking is decided by a public vote revealed live/near-live; production and the villa know intermediate couplings but not the eventual winner ahead of the vote closing. This is a live-vote outcome, not a pre-decided one.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLIUKWINNERS-26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same Love Island UK winner mechanism as KXLIUKCOUPLE: the winner is determined by a public vote near/at broadcast, genuinely undecided until close to the reveal. No small group has already sealed this outcome.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLOVEISLANDUKRANK-26AUG31R2",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Runner-up placement is decided by the same live/near-live public vote as the winner. No named group knows the final ranking in advance; production's foreknowledge is limited to intermediate couplings, not the finale vote outcome.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLOVEISLANDUKRANK-26AUG31R3",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Third-place placement is likewise decided by the live/near-live public vote at the finale. Same reasoning as the other Love Island UK ranking markets: genuinely undecided in advance of the vote closing.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMAMDANIEO-26JUL18",
+  "insider_group": "Mamdani's own mayoral staff/administration (already knows current week's EO signings)",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "The measurement window (Jul 12-18) ends on 'today,' so by the time this is judged the underlying fact -- whether any non-emergency executive order was signed this week -- has already happened or not; Mamdani's own staff already knows the count. Executive orders are also flagged in the mechanism sheet as decisions a small group makes and schedules before announcing.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXCLAYTONCOUNT-27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "This asks about exact Senate roll-call vote-count thresholds, which the mechanism sheet specifically flags as less knowable than a simple pass/fail even to leadership with good whip counts. No vote has occurred yet per the payload, so the exact tally is not something any group currently knows.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXCOMPANYLAYOFF-27JAN01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "While the mechanism sheet notes corporate layoffs are decided by leadership before any announcement, this market spans a long remaining window (through Jan 1, 2027) with no confirmation a decision has already been made at either company. That makes it a rate/base-rate question about whether a layoff will occur at some point, not a case where a small group has already decided and just hasn't announced.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXDNCCASH-26JUN30",
+  "insider_group": "DNC's own finance/treasury staff (June 30 balance is already a fixed historical fact internally)",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves on a public snapshot/filing; if FEC filing or disclosure is delayed past close, this could be a risk, though monthly filings are typically due mid-following-month.",
+  "rationale": "The reporting date (June 30, 2026) has already passed as of 'today' (Jul 18), so the DNC's own accounting staff already knows the exact cash-on-hand figure -- it is a fixed past fact awaiting public disclosure, not a future outcome. The mechanism sheet confirms organizations see their own numbers before the public snapshot.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMARRIAGEBEAST-26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Whether a couple marries within a long remaining window (through end of 2026) is a personal decision with no public confirmation of a scheduled date. Close family/planners would know if and when a wedding is set, but nothing here indicates a decision has actually been made, and the long window makes this more of a rate question.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNEXTODNI-29",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "The administration's nomination of Jay Clayton is already public (it is the subject of a separate confirmation-count market in this same batch), so there is no private insider edge left on 'who was nominated.' What remains uncertain -- whether he is actually confirmed as the first new DNI -- depends on a Senate vote that has not yet occurred.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXRANKLIST1SONG-26AUG29",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same Billboard Hot 100 #1 mechanism as the other chart-position markets in this batch: an aggregate of consumer behavior across a full August tracking window, not a group's decision. Industry mid-week forecasting exists but does not equal advance knowledge.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXWCFINALSONGS-26JUL20",
+  "insider_group": "World Cup Final halftime show production, performers, and crew (rehearsed setlist)",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "The mechanism sheet explicitly covers this family: halftime show setlists are rehearsed and known to production, performers, and crew well before the live broadcast. A large group with real advance knowledge of the planned song list is a strong case, even though the show itself airs live.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXWCFIRSTSONG-MAD26JUL20",
+  "insider_group": "Halftime show production and Madonna's team (rehearsed setlist order)",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Directly named in the mechanism sheet (KXWCFIRSTSONG): setlists and performance order are rehearsed and known to production and performers ahead of the live show. Knowing the planned opening song is a concrete, specific-group edge, not a forecast.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXACTBLUETOP-26JUL31",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Unlike the DNC cash market, this resolves off ActBlue's live public directory page, which anyone (not just an internal group) can already see in real time. There is no private-knowledge gap to exploit here -- predicting who leads on Jul 31 is a forecasting/momentum question about many independent donors' aggregate behavior, which the thesis explicitly treats as NO-ish.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBOLOJANOUT-26JUL",
+  "insider_group": "Bolojan and his closest political circle (would know first of any resignation decision)",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "The mechanism sheet notes a foreign PM's resignation is a personal decision known first to a small circle -- a plausible informed group exists. Kept at moderate rather than strong because nothing in the payload indicates such a decision has actually been made; this is a live political-stability question with a reasonably short (~2 week) window.",
+  "researched": false
+ }
+]

@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXCHOPPEDCASTAWAYS-26DEC31",
+  "insider_group": "Production crew and cast of Chopped Castaways: Season 1, who filmed the finale and know the outcome before broadcast",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Cooking competitions like Chopped are fully pre-taped, typically months ahead of air. With the close time only days out (Jul 4, 2026), the season is very likely already filmed and the winner already known to production and cast. Rules track the title closely (official finale declaration governs), so no gap between what's asked and what's judged.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPTIME-26JUN27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "This resolves on whether Trump posts within a specific overnight hour window across a week - a spontaneous personal-behavior count, not a fact any outside group holds in advance. Even his own staff would not reliably know his posting minute-to-minute. No identifiable informed group exists beyond the tautological subject himself.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPVH-26JUN26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "A polling-average threshold aggregates many independent pollsters' data; no single group decides or definitively knows the average before VoteHub computes and publishes it. This is a forecasting question, not an insider-knowledge one.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLIUKELIMINATIONW-26JUN26",
+  "insider_group": "Love Island UK production and villa cast, who see episode content roughly a day ahead of the near-live UK broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Love Island UK airs roughly a day behind the villa, so production and cast have some foreknowledge of vulnerable couples and eliminations before broadcast, but final eliminations often hinge on a public vote close to air, so the group's knowledge is real but incomplete. Rules match the title (multiple ways to count as eliminated, but genuinely contingent on the vote).",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTAYLORSWIFTWEDDING-30JAN01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Depends entirely on official wedding announcements/programs or major-media reporting, none of which can exist while no wedding is confirmed as scheduled.",
+  "rationale": "No wedding has been confirmed or scheduled as of the input date, so there is no concrete decision yet for any group to know - this depends on a discretionary choice (whether to marry, who is in the wedding party) that has not been made. The far-future close date (before 2030) underscores this is speculative rather than knowledge-based.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPAPOLOGY-26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Whether Trump issues a qualifying public apology before a deadline is a spontaneous personal-behavior question with detailed qualifying criteria (must be sincere, must reference the topic specifically). No outside group can know this in advance since it depends on an undetermined future choice.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPCOUNTRIES-27JAN01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Presidential travel is sometimes scheduled by the administration in advance, but no Turkey visit is indicated as already planned here, and the window runs six months to the end of 2026 - a long open window where the event could happen at any point is a rate question, not a knowledge one.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBET-26-ALB",
+  "insider_group": "BET Awards ballot tabulators and production team, who know the winner from closed voting before the live broadcast",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Major award-show winners are typically decided via ballots that close before the ceremony, with a small tabulation/production group knowing results in advance of the live broadcast; close time matches the ceremony date itself. Rules are a bare match to the title with no secondary text, so no divergence.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBET-26-VID",
+  "insider_group": "BET Awards ballot tabulators and production team, who know the winner from closed voting before the live broadcast",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same award-show mechanism as the Album of the Year event in this batch: ballots close before the televised ceremony, and a small tabulation/production group knows the winner beforehand. Close time matches the live ceremony date; rules are a bare match to the title.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYDSACTO-26SEP14",
+  "insider_group": "Emmy ballot tabulators/accountants, who would know the winner before the September ceremony broadcast - but only after final-round voting concludes",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Close time (Jul 8, 2026) matches Emmy nomination-announcement day, not the actual ceremony implied by the ticker suffix (Sept 14). Final-round Emmy voting for winners typically doesn't conclude until well after nominations, so if this close time is accurate, trading may end before anyone - even tabulators - has decided the winner, undercutting the insider-knowledge edge for this specific market.",
+  "resolution_source_risk": "If close truly precedes final-round voting, no group has yet decided or known the outcome by that point.",
+  "rationale": "Award-winner markets are normally a strong case (ballots close before the ceremony and a small group knows early), but this market's close time coincides with the nomination date rather than the ceremony, which is suspicious and would mean the outcome isn't decided by anyone at close. Downgraded to moderate pending clarification of whether this close time is accurate.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-CACTR",
+  "insider_group": "Television Academy and its nomination-tabulating accountants, who compile the nominee list before the Jul 8 public announcement",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Nomination lists are tabulated in advance of the announcement by the Academy and its accountants - a small, named, already-informed group. Rules explicitly state the announcement date (Jul 8, 2026), matching close time exactly, so there is no gap between when the list is fixed and when the market closes.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-CSACTR",
+  "insider_group": "Television Academy and its nomination-tabulating accountants, who compile the nominee list before the Jul 8 public announcement",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Nomination lists are tabulated in advance of the announcement by the Academy and its accountants - a small, named, already-informed group. Rules explicitly state the announcement date (Jul 8, 2026), matching close time exactly, so there is no gap between when the list is fixed and when the market closes.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-DSACTO",
+  "insider_group": "Television Academy and its nomination-tabulating accountants, who compile the nominee list before the Jul 8 public announcement",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Nomination lists are tabulated in advance of the announcement by the Academy and its accountants - a small, named, already-informed group. Rules explicitly state the announcement date (Jul 8, 2026), matching close time exactly, so there is no gap between when the list is fixed and when the market closes.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLIUKELIMINATION-26JUN25",
+  "insider_group": "Love Island UK production and villa cast, who see episode content roughly a day ahead of the near-live UK broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Love Island UK airs roughly a day behind the villa, so production and cast have some foreknowledge of vulnerable couples and eliminations before broadcast, but final eliminations often hinge on a public vote close to air, so the group's knowledge is real but incomplete.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPALBUMRECORD-YOU-OLI",
+  "insider_group": "Record labels and Billboard chart-tracking services (e.g. Luminate) with mid-week sales/streaming projections",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Billboard's number-one determination is an aggregate of millions of listeners' behavior that nobody decides, so knowledge is genuinely partial, especially for weeks not yet tracked.",
+  "rationale": "Billboard charts aggregate a full tracking week of consumer behavior; industry mid-week tracking data gives labels and chart-watchers a real informational edge close to publication, but nobody has decided or fully knows the number this far out, especially for a multi-week streak requiring future weeks. This keeps it below strong despite the informational edge.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-LACTR",
+  "insider_group": "Television Academy and its nomination-tabulating accountants, who compile the nominee list before the Jul 8 public announcement",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Nomination lists are tabulated in advance of the announcement by the Academy and its accountants - a small, named, already-informed group. Rules explicitly state the announcement date (Jul 8, 2026), matching close time exactly, so there is no gap between when the list is fixed and when the market closes.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-LSACTO",
+  "insider_group": "Television Academy and its nomination-tabulating accountants, who compile the nominee list before the Jul 8 public announcement",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Nomination lists are tabulated in advance of the announcement by the Academy and its accountants - a small, named, already-informed group. Rules explicitly state the announcement date (Jul 8, 2026), matching close time exactly, so there is no gap between when the list is fixed and when the market closes.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXGTAPREORDERS-26",
+  "insider_group": "Take-Two Interactive's internal sales/reporting team, who track real-time preorder totals",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolution requires an affirmative public report specifically from Take-Two before the close; even if the true preorder count exceeds a threshold internally, the market resolves No unless Take-Two chooses to publish that specific figure in time.",
+  "rationale": "Take-Two knows its own real preorder numbers continuously and with certainty - a textbook informed insider - but the market only resolves Yes if it chooses to publicly report a matching threshold before the close date, and companies don't disclose granular sales metrics on any predictable schedule. That publication-dependency is the classic warning sign that lowers this from strong to moderate.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPALBUM-26JUL11",
+  "insider_group": "Record labels and Billboard chart-tracking services with mid-week sales/streaming projections",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same Billboard-aggregation mechanism as the related streak market in this batch: the relevant tracking week is largely complete by the close date, giving labels and trackers a real mid-week read, but the outcome is the aggregate behavior of millions of listeners rather than a decision, so it stays moderate rather than strong per the family guidance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYLIMITEDACTO-26SEP14",
+  "insider_group": "Emmy ballot tabulators/accountants, who would know the winner before the September ceremony broadcast - but only after final-round voting concludes",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Close time (Jul 8, 2026) again matches Emmy nomination-announcement day rather than the actual ceremony implied by the ticker suffix (Sept 14). Same concern as the Drama Supporting Actor market in this batch: final winner voting likely hasn't concluded by this close time.",
+  "resolution_source_risk": "If close truly precedes final-round voting, no group has yet decided or known the outcome by that point.",
+  "rationale": "Same structural issue as the other Emmy 'win' market in this batch: award-winner categories are normally strong, but this specific market's close time lines up with the nomination announcement, not the ceremony, raising doubt about whether anyone (even tabulators) has decided the outcome by close.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXARENASCORE-GPT56",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Arena-style leaderboard scores are crowd-voted aggregates that accumulate over time from many independent users; even the lab releasing the model cannot know its eventual arena score before voting accumulates. No group has this knowledge in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLIUSAELIMINATION-26JUN28",
+  "insider_group": "Love Island USA production and cast, who see episode content roughly a day ahead of the near-live US broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Love Island USA airs near-live, so production and cast typically know whether a given episode includes an elimination before it broadcasts, giving a real if imperfect edge on a 'will none be eliminated' question. Final outcomes can still hinge on live-adjacent public votes, keeping this below strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSONGRELEASEDATE-26SEL",
+  "insider_group": "Selena Gomez's label and management team, who control and know planned release scheduling",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Release dates are generally known to the artist's team and label well in advance of public announcement, per the family pattern for this genre, and the rules track the title directly with three simple date thresholds. The main caveat is that release plans can slip, a real but secondary risk rather than a structural gap in knowledge.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXWHITEPARTY-26JUL31",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Celebrity attendance at a single party is closer to spontaneous individual behavior than a settled fact - invitations or RSVPs may exist informally with organizers, but actual last-minute attendance is notoriously unreliable and not confirmed by any single already-decided group. No named group can be said to already know who will show up.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLOVEISLANDUSARANK-26AUG31R3",
+  "insider_group": "Love Island USA production and villa cast, with near-final visibility into remaining couples ahead of the live-vote finale reveal",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Final placement combines a public vote revealed live/near-live with production's advance visibility into which couples remain intact heading into the finale. That gives a real partial edge, but the actual 3rd-place order is only settled by the vote reveal itself, keeping this below strong.",
+  "researched": false
+ }
+]

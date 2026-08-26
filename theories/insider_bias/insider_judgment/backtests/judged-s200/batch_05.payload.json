@@ -1,0 +1,1098 @@
+[
+ {
+  "event_ticker": "KXBBCHARTPOSITIONSONG-26JUL18IKN",
+  "series_ticker": "KXBBCHARTPOSITIONSONG",
+  "title": "Will I Knew It, I Knew You be #2 on the Billboard Hot 100 during the week of Jul 18, 2026",
+  "close_time": "2026-07-13T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXBBCHARTPOSITIONSONG-26JUL18IKN-2",
+    "title": "Will I Knew It, I Knew You be #2 on the Billboard Hot 100 during the week of Jul 18, 2026",
+    "rules_primary": "If I Knew It, I Knew You by Taylor Swift is ranked #2 on the Billboard Hot 100  chart for the Week of Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-07-13T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXHBUDGETRES-26JUN",
+  "series_ticker": "KXHBUDGETRES",
+  "title": "Will a budget resolution passed the House before Jan 1, 2027?",
+  "close_time": "2026-07-22T22:17:07Z",
+  "markets": [
+   {
+    "ticker": "KXHBUDGETRES-26JUN-27JAN01",
+    "title": "Will a budget resolution passed the House before Jan 1, 2027?",
+    "rules_primary": "If a budget resolution has passed the House after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+    "close_time": "2026-07-22T22:17:07Z"
+   },
+   {
+    "ticker": "KXHBUDGETRES-26JUN-26OCT01",
+    "title": "Will a budget resolution passed the House before Oct 1, 2026?",
+    "rules_primary": "If a budget resolution has passed the House after Issuance and before Oct 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+    "close_time": "2026-07-22T22:17:07Z"
+   },
+   {
+    "ticker": "KXHBUDGETRES-26JUN-26AUG01",
+    "title": "Will a budget resolution passed the House before Aug 1, 2026?",
+    "rules_primary": "If a budget resolution has passed the House after Issuance and before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+    "close_time": "2026-07-22T22:17:07Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXROBOTAXIAREA-26DEC",
+  "series_ticker": "KXROBOTAXIAREA",
+  "title": "Will Tesla robotaxi be offered to the general public in Florida before Jan 1, 2027?",
+  "close_time": "2026-07-22T20:25:49Z",
+  "markets": [
+   {
+    "ticker": "KXROBOTAXIAREA-26DEC-FL",
+    "title": "Will Tesla robotaxi be offered to the general public in Florida before Jan 1, 2027?",
+    "rules_primary": "If Tesla robotaxi service is offered to the general public in Florida before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "For \"offered to\": Tesla has launched a robotaxi service in Florida that satisfies ALL of the following criteria:\n\nThe service allows members of the general public to request rides through a publicly accessible application or platform (not limited to Tesla employees, beta testers, or invite-only participants)\nThe vehicles operate without any human driver or safety monitor physically present in the driver's seat who is actively controlling the vehicle during normal operation\nThe service charges fares or fees for rides (free promotional rides alone do not qualify)\n\nFor \"removed from\": Tesla has discontinued, suspended, or withdrawn a previously operational robotaxi service in Florida that met all the \"offered to\" criteria above, where:\n\nThe service is no longer accepting new ride requests from the general public for any period of time as a result of a decision by Tesla to suspend operations in the area, and such suspension is not explicitly characterized as temporary (e.g., due to weather, maintenance, or system upgrades). The Payout Criterion is not satisfied by short-term service interruptions that are clearly communicated as temporary or expected to resume.\n\nThe following do NOT satisfy the Payout Criterion:\n\nIf a government orders Tesla to cease ongoing services but they do not comply, then the market does not resolve to Yes\nServices limited to Tesla employees, contractors, or their guests\nBeta tests, pilot programs, or demonstrations\nServices requiring special invitations, access codes, or pre-approval to use\nVehicles with human safety drivers, monitors, or operators in any seat of the vehicle who can take control\nTemporary suspensions due to weather or technical issues\nServices operating only with remote human teleoperators controlling each vehicle continuously\nTest fleets that are not charging fares to the general public\nAnnouncements of future launches without actual operational service",
+    "close_time": "2026-07-22T20:25:49Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXPLATNERTWEET-26JUL08",
+  "series_ticker": "KXPLATNERTWEET",
+  "title": "Will Graham Platner tweet on Jul 10, 2026?",
+  "close_time": "2026-07-10T20:53:23Z",
+  "markets": [
+   {
+    "ticker": "KXPLATNERTWEET-26JUL08-JUL10",
+    "title": "Will Graham Platner tweet on Jul 10, 2026?",
+    "rules_primary": "If the number of posts on X by @grahamformaine on Jul 10, 2026 is at least 1, then the market resolves to Yes.",
+    "rules_secondary": "Dates are evaluated in Eastern Time. Only main feed posts, quote posts, and reposts count. Deleted posts are included if they are posted long enough to be picked up by the X API.",
+    "close_time": "2026-07-10T20:53:23Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXART-DER26",
+  "series_ticker": "KXART",
+  "title": "Will the lot sold price of the Derek Jeter 'The Dive' New York Yankees 2004 Regular Season and Postseason Game Worn and Signed Jersey | Matched to 74 Games | 150th Home Run on Sotheby's be above $800000 during the live auction beginning July 01, 2026 at 10:00 EDT?",
+  "close_time": "2026-07-21T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXART-DER26-800000",
+    "title": "Will the lot sold price of the Derek Jeter 'The Dive' New York Yankees 2004 Regular Season and Postseason Game Worn and Signed Jersey | Matched to 74 Games | 150th Home Run on Sotheby's be above $800000 during the live auction beginning July 01, 2026 at 10:00 EDT?",
+    "rules_primary": "If the lot sold price of the Derek Jeter 'The Dive' New York Yankees 2004 Regular Season and Postseason Game Worn and Signed Jersey | Matched to 74 Games | 150th Home Run on Sotheby's is above $800K during the live auction beginning July 01, 2026 at 10:00 EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.\n\nThis market and these products have not been endorsed by Sotheby\u2019s. Any references to Sotheby\u2019s, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Sotheby\u2019s and Kalshi.",
+    "close_time": "2026-07-21T14:00:00Z"
+   },
+   {
+    "ticker": "KXART-DER26-1100000",
+    "title": "Will the lot sold price of the Derek Jeter 'The Dive' New York Yankees 2004 Regular Season and Postseason Game Worn and Signed Jersey | Matched to 74 Games | 150th Home Run on Sotheby's be above $1100000 during the live auction beginning July 01, 2026 at 10:00 EDT?",
+    "rules_primary": "If the lot sold price of the Derek Jeter 'The Dive' New York Yankees 2004 Regular Season and Postseason Game Worn and Signed Jersey | Matched to 74 Games | 150th Home Run on Sotheby's is above $1.1M during the live auction beginning July 01, 2026 at 10:00 EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.\n\nThis market and these products have not been endorsed by Sotheby\u2019s. Any references to Sotheby\u2019s, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Sotheby\u2019s and Kalshi.",
+    "close_time": "2026-07-21T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFIELDS-26",
+  "series_ticker": "KXFIELDS",
+  "title": "Who will win the Fields Medal in 2026?",
+  "close_time": "2026-07-23T17:38:19Z",
+  "markets": [
+   {
+    "ticker": "KXFIELDS-26-YDEN",
+    "title": "Who will win the Fields Medal in 2026?",
+    "rules_primary": "If Yu Deng wins the Fields Medal in 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-23T17:38:19Z"
+   },
+   {
+    "ticker": "KXFIELDS-26-JTSI",
+    "title": "Who will win the Fields Medal in 2026?",
+    "rules_primary": "If Jacob Tsimerman wins the Fields Medal in 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-23T17:38:13Z"
+   },
+   {
+    "ticker": "KXFIELDS-26-HWAN",
+    "title": "Who will win the Fields Medal in 2026?",
+    "rules_primary": "If Hong Wang wins the Fields Medal in 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-23T17:38:06Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPSONG-26JUL25",
+  "series_ticker": "KXTOPSONG",
+  "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 during the week of Jul 25, 2026",
+  "close_time": "2026-07-20T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPSONG-26JUL25-CHO",
+    "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 during the week of Jul 25, 2026",
+    "rules_primary": "If Choosin' Texas is #1 on the Billboard Hot 100  chart for the Week of Jul 25, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-07-20T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMDEBUT-26AUG01-DAU",
+  "series_ticker": "KXALBUMDEBUT",
+  "title": "Will Gracie Abrams's 'Daughter From Hell ' debut at #1",
+  "close_time": "2026-07-27T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMDEBUT-26AUG01-DAU",
+    "title": "Will Gracie Abrams's 'Daughter From Hell ' debut at #1",
+    "rules_primary": "If Daughter From Hell  is the #1 album on the Billboard 200 chart for the week of August 01, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-07-27T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSONGRELEASEDATE-26KAT",
+  "series_ticker": "KXSONGRELEASEDATE",
+  "title": "Will KATSEYE release a new song before Aug 1, 2026?",
+  "close_time": "2026-07-26T22:33:53Z",
+  "markets": [
+   {
+    "ticker": "KXSONGRELEASEDATE-26KAT-AUG01",
+    "title": "Will KATSEYE release a new song before Aug 1, 2026?",
+    "rules_primary": "If KATSEYE releases a new song after issuance and before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-26T22:33:53Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXWCATTEND-26JUL20",
+  "series_ticker": "KXWCATTEND",
+  "title": "Will Brad Pitt attend 2026 FIFA World Cup Final in 2026?",
+  "close_time": "2026-07-20T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXWCATTEND-26JUL20-BRA",
+    "title": "Will Brad Pitt attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Brad Pitt attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T14:00:00Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-TIM",
+    "title": "Will Timoth\u00e9e Chalamet attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Timoth\u00e9e Chalamet attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T04:30:23Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-JAY",
+    "title": "Will Jay-Z attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Jay-Z attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T04:30:13Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-LEO",
+    "title": "Will Leonardo DiCaprio attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Leonardo DiCaprio attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T04:27:58Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-WIL",
+    "title": "Will Will Smith attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Will Smith attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T04:25:45Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-PAR",
+    "title": "Will Paris Hilton attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Paris Hilton attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T04:23:14Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-KEN",
+    "title": "Will Kendall Jenner attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Kendall Jenner attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T04:21:31Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-ZEN",
+    "title": "Will Zendaya attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Zendaya attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T04:20:36Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-TOMH",
+    "title": "Will Tom Holland attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Tom Holland attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T04:15:09Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-VIC",
+    "title": "Will Victoria Beckham attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Victoria Beckham attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T04:14:45Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-TRA",
+    "title": "Will Travis Scott attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Travis Scott attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T04:13:02Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-RYA",
+    "title": "Will Ryan Reynolds attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Ryan Reynolds attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T04:11:11Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-KIM",
+    "title": "Will Kim Kardashian attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Kim Kardashian attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T04:09:57Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-LEB",
+    "title": "Will LeBron James attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If LeBron James attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T04:06:34Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-TRAV",
+    "title": "Will Travis Kelce attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Travis Kelce attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T04:06:09Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-TIG",
+    "title": "Will Tiger Woods attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Tiger Woods attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T04:03:46Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-DRA",
+    "title": "Will Drake attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Drake attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T03:48:52Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-TAY",
+    "title": "Will Taylor Swift attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Taylor Swift attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T03:48:06Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-TBRA",
+    "title": "Will Tom Brady attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Tom Brady attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T03:45:11Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-JAX",
+    "title": "Will Jaxson Dart attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Jaxson Dart attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T03:37:51Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-RIH",
+    "title": "Will Rihanna attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Rihanna attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T03:36:14Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-MEL",
+    "title": "Will Melania Trump attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Melania Trump attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-19T19:50:15Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-KYL",
+    "title": "Will Kylie Jenner attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Kylie Jenner attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-19T19:49:43Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-TOM",
+    "title": "Will Tom Cruise attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If Tom Cruise attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-19T19:48:52Z"
+   },
+   {
+    "ticker": "KXWCATTEND-26JUL20-DAV",
+    "title": "Will David Beckham attend 2026 FIFA World Cup Final in 2026?",
+    "rules_primary": "If David Beckham attends the 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-19T19:48:44Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLIUKCOUPLE-26AUG31",
+  "series_ticker": "KXLIUKCOUPLE",
+  "title": "Will Yasmine and Tommy S win Love Island UK Season 13?",
+  "close_time": "2026-07-27T22:34:07Z",
+  "markets": [
+   {
+    "ticker": "KXLIUKCOUPLE-26AUG31-YATMS",
+    "title": "Will Yasmine and Tommy S win Love Island UK Season 13?",
+    "rules_primary": "If Yasmine and Tommy S are officially declared the winner of Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.\n\nThe winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:34:07Z"
+   },
+   {
+    "ticker": "KXLIUKCOUPLE-26AUG31-JULO",
+    "title": "Will Julia and Lorenzo win Love Island UK Season 13?",
+    "rules_primary": "If Julia and Lorenzo are officially declared the winner of Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.\n\nThe winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:34:07Z"
+   },
+   {
+    "ticker": "KXLIUKCOUPLE-26AUG31-JAKA",
+    "title": "Will Jasmine and Kavan win Love Island UK Season 13?",
+    "rules_primary": "If Jasmine and Kavan are officially declared the winner of Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.\n\nThe winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:34:07Z"
+   },
+   {
+    "ticker": "KXLIUKCOUPLE-26AUG31-ELFI",
+    "title": "Will Ellie and Finley win Love Island UK Season 13?",
+    "rules_primary": "If Ellie and Finley are officially declared the winner of Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.\n\nThe winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:34:07Z"
+   },
+   {
+    "ticker": "KXLIUKCOUPLE-26AUG31-ANSI",
+    "title": "Will Angelista and Simba win Love Island UK Season 13?",
+    "rules_primary": "If Angelista and Simba are officially declared the winner of Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.\n\nThe winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:34:07Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLIUKWINNERS-26",
+  "series_ticker": "KXLIUKWINNERS",
+  "title": "Will Finley win Love Island UK Season 13?",
+  "close_time": "2026-07-27T22:35:09Z",
+  "markets": [
+   {
+    "ticker": "KXLIUKWINNERS-26-FIN",
+    "title": "Will Finley win Love Island UK Season 13?",
+    "rules_primary": "If Finley is officially declared the winner of Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:35:09Z"
+   },
+   {
+    "ticker": "KXLIUKWINNERS-26-YAS",
+    "title": "Will Yasmine win Love Island UK Season 13?",
+    "rules_primary": "If Yasmine is officially declared the winner of Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:35:08Z"
+   },
+   {
+    "ticker": "KXLIUKWINNERS-26-PRI",
+    "title": "Will Priya win Love Island UK Season 13?",
+    "rules_primary": "If Priya is officially declared the winner of Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:35:08Z"
+   },
+   {
+    "ticker": "KXLIUKWINNERS-26-TOM",
+    "title": "Will Tommy win Love Island UK Season 13?",
+    "rules_primary": "If Tommy S is officially declared the winner of Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:35:07Z"
+   },
+   {
+    "ticker": "KXLIUKWINNERS-26-KAV",
+    "title": "Will Kavan win Love Island UK Season 13?",
+    "rules_primary": "If Kavan is officially declared the winner of Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:35:07Z"
+   },
+   {
+    "ticker": "KXLIUKWINNERS-26-JAS",
+    "title": "Will Jasmine win Love Island UK Season 13?",
+    "rules_primary": "If Jasmine is officially declared the winner of Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:35:07Z"
+   },
+   {
+    "ticker": "KXLIUKWINNERS-26-ELL",
+    "title": "Will Ellie win Love Island UK Season 13?",
+    "rules_primary": "If Ellie is officially declared the winner of Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:35:07Z"
+   },
+   {
+    "ticker": "KXLIUKWINNERS-26-ANG",
+    "title": "Will Angelista win Love Island UK Season 13?",
+    "rules_primary": "If Angelista is officially declared the winner of Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:35:07Z"
+   },
+   {
+    "ticker": "KXLIUKWINNERS-26-LOR",
+    "title": "Will Lorenzo win Love Island UK Season 13?",
+    "rules_primary": "If Lorenzo is officially declared the winner of Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:35:00Z"
+   },
+   {
+    "ticker": "KXLIUKWINNERS-26-JUL",
+    "title": "Will Julia win Love Island UK Season 13?",
+    "rules_primary": "If Julia is officially declared the winner of Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:35:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLOVEISLANDUKRANK-26AUG31R2",
+  "series_ticker": "KXLOVEISLANDUKRANK",
+  "title": "Will Yasmine and Tommy S finish 2 Place in Love Island UK Season 13?",
+  "close_time": "2026-07-27T22:34:35Z",
+  "markets": [
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31R2-YATMS",
+    "title": "Will Yasmine and Tommy S finish 2 Place in Love Island UK Season 13?",
+    "rules_primary": "If Yasmine and Tommy S finish 2nd in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:34:35Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31R2-JULO",
+    "title": "Will Julia and Lorenzo finish 2 Place in Love Island UK Season 13?",
+    "rules_primary": "If Julia and Lorenzo finish 2nd in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:34:35Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31R2-JALO",
+    "title": "Will Jasmine and Lorenzo finish 2nd in Love Island UK Season 13?",
+    "rules_primary": "If Jasmine and Lorenzo finish 2nd in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:34:35Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31R2-JAKA",
+    "title": "Will Jasmine and Kavan finish 2 Place in Love Island UK Season 13?",
+    "rules_primary": "If Jasmine and Kavan finish 2nd in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:34:35Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31R2-ELFI",
+    "title": "Will Ellie and Finley finish 2 Place in Love Island UK Season 13?",
+    "rules_primary": "If Ellie and Finley finish 2nd in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:34:35Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31R2-ANSI",
+    "title": "Will Angelista and Simba finish 2 Place in Love Island UK Season 13?",
+    "rules_primary": "If Angelista and Simba finish 2nd in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-27T22:34:35Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLOVEISLANDUKRANK-26AUG31R3",
+  "series_ticker": "KXLOVEISLANDUKRANK",
+  "title": "Will Yasmine and Tommy S finish 3 Place in Love Island UK Season 13?",
+  "close_time": "2026-07-27T22:33:27Z",
+  "markets": [
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31R3-YATMS",
+    "title": "Will Yasmine and Tommy S finish 3 Place in Love Island UK Season 13?",
+    "rules_primary": "If Yasmine and Tommy S finish 3rd in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-27T22:33:27Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31R3-MISA",
+    "title": "Will Mica and Samraj finish 3rd in Love Island UK Season 13?",
+    "rules_primary": "If Mica and Samraj finish 3rd in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-27T22:33:27Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31R3-JULO",
+    "title": "Will Julia and Lorenzo finish 3 Place in Love Island UK Season 13?",
+    "rules_primary": "If Julia and Lorenzo finish 3rd in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-27T22:33:27Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31R3-JAKA",
+    "title": "Will Jasmine and Kavan finish 3 Place in Love Island UK Season 13?",
+    "rules_primary": "If Jasmine and Kavan finish 3rd in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-27T22:33:27Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31R3-ELFI",
+    "title": "Will Ellie and Finley finish 3 Place in Love Island UK Season 13?",
+    "rules_primary": "If Ellie and Finley finish 3rd in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-27T22:33:27Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31R3-ANSI",
+    "title": "Will Angelista and Simba finish 3 Place in Love Island UK Season 13?",
+    "rules_primary": "If Angelista and Simba finish 3rd in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-27T22:33:27Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMAMDANIEO-26JUL18",
+  "series_ticker": "KXMAMDANIEO",
+  "title": "Will Mamdani sign above 0 executive orders between Jul 12, 2026 and Jul 18, 2026?",
+  "close_time": "2026-07-19T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXMAMDANIEO-26JUL18-T0",
+    "title": "Will Mamdani sign above 0 executive orders between Jul 12, 2026 and Jul 18, 2026?",
+    "rules_primary": "If the number of non-emergency executive orders signed by Zohran Mamdani is above 0 from Jul 12, 2026 to Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-19T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXCLAYTONCOUNT-27",
+  "series_ticker": "KXCLAYTONCOUNT",
+  "title": "How many Senators vote to confirm as Director of National Intelligence?",
+  "close_time": "2026-07-28T23:52:10Z",
+  "markets": [
+   {
+    "ticker": "KXCLAYTONCOUNT-27-T60",
+    "title": "How many Senators vote to confirm as Director of National Intelligence?",
+    "rules_primary": "If the number of Senators voting Yea for the nomination of Jay Clayton to Director of National Intelligence after Issuance and before Jan 1, 2027 is above 60, then the market resolves to Yes.",
+    "rules_secondary": "If no vote has occurred before Jan 1, 2027, then any market not including \u201czero\u201d within its count (e.g. \u201cBetween 50 and 64\u201d) resolves to No, and any market including \u201czero\u201d (e.g. \u201cBelow 50\u201d) resolves to Yes. If the vote count is not specified but the nominee is confirmed, any market including \u201c100\u201d (e.g. \u201cBetween 65 and 100\u201d) will resolve to Yes, and any market not including \u201c100\u201d (e.g. \u201cBelow 65\u201d) will resolve to No. Any vote cast by the Vice President on the nomination shall not be considered for purposes of this market. Once the market has expired, a request by any Senator to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Senate.gov or any other official source.",
+    "close_time": "2026-07-28T23:52:10Z"
+   },
+   {
+    "ticker": "KXCLAYTONCOUNT-27-T58",
+    "title": "How many Senators vote to confirm as Director of National Intelligence?",
+    "rules_primary": "If the number of Senators voting Yea for the nomination of Jay Clayton to Director of National Intelligence after Issuance and before Jan 1, 2027 is above 58, then the market resolves to Yes.",
+    "rules_secondary": "If no vote has occurred before Jan 1, 2027, then any market not including \u201czero\u201d within its count (e.g. \u201cBetween 50 and 64\u201d) resolves to No, and any market including \u201czero\u201d (e.g. \u201cBelow 50\u201d) resolves to Yes. If the vote count is not specified but the nominee is confirmed, any market including \u201c100\u201d (e.g. \u201cBetween 65 and 100\u201d) will resolve to Yes, and any market not including \u201c100\u201d (e.g. \u201cBelow 65\u201d) will resolve to No. Any vote cast by the Vice President on the nomination shall not be considered for purposes of this market. Once the market has expired, a request by any Senator to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Senate.gov or any other official source.",
+    "close_time": "2026-07-28T23:52:10Z"
+   },
+   {
+    "ticker": "KXCLAYTONCOUNT-27-T57",
+    "title": "How many Senators vote to confirm as Director of National Intelligence?",
+    "rules_primary": "If the number of Senators voting Yea for the nomination of Jay Clayton to Director of National Intelligence after Issuance and before Jan 1, 2027 is above 57, then the market resolves to Yes.",
+    "rules_secondary": "If no vote has occurred before Jan 1, 2027, then any market not including \u201czero\u201d within its count (e.g. \u201cBetween 50 and 64\u201d) resolves to No, and any market including \u201czero\u201d (e.g. \u201cBelow 50\u201d) resolves to Yes. If the vote count is not specified but the nominee is confirmed, any market including \u201c100\u201d (e.g. \u201cBetween 65 and 100\u201d) will resolve to Yes, and any market not including \u201c100\u201d (e.g. \u201cBelow 65\u201d) will resolve to No. Any vote cast by the Vice President on the nomination shall not be considered for purposes of this market. Once the market has expired, a request by any Senator to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Senate.gov or any other official source.",
+    "close_time": "2026-07-28T23:52:10Z"
+   },
+   {
+    "ticker": "KXCLAYTONCOUNT-27-T53",
+    "title": "How many Senators vote to confirm as Director of National Intelligence?",
+    "rules_primary": "If the number of Senators voting Yea for the nomination of Jay Clayton to Director of National Intelligence after Issuance and before Jan 1, 2027 is above 53, then the market resolves to Yes.",
+    "rules_secondary": "If no vote has occurred before Jan 1, 2027, then any market not including \u201czero\u201d within its count (e.g. \u201cBetween 50 and 64\u201d) resolves to No, and any market including \u201czero\u201d (e.g. \u201cBelow 50\u201d) resolves to Yes. If the vote count is not specified but the nominee is confirmed, any market including \u201c100\u201d (e.g. \u201cBetween 65 and 100\u201d) will resolve to Yes, and any market not including \u201c100\u201d (e.g. \u201cBelow 65\u201d) will resolve to No. Any vote cast by the Vice President on the nomination shall not be considered for purposes of this market. Once the market has expired, a request by any Senator to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Senate.gov or any other official source.",
+    "close_time": "2026-07-28T23:52:10Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXCOMPANYLAYOFF-27JAN01",
+  "series_ticker": "KXCOMPANYLAYOFF",
+  "title": "Will TikTok issue layoffs this year?",
+  "close_time": "2026-08-17T13:28:53Z",
+  "markets": [
+   {
+    "ticker": "KXCOMPANYLAYOFF-27JAN01-TIKT",
+    "title": "Will TikTok issue layoffs this year?",
+    "rules_primary": "If  TikTok announces, implements, or acknowledges a layoff after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-17T13:28:53Z"
+   },
+   {
+    "ticker": "KXCOMPANYLAYOFF-27JAN01-MSFT",
+    "title": "Will Microsoft issue layoffs this year?",
+    "rules_primary": "If  Microsoft announces, implements, or acknowledges a layoff after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-28T13:35:26Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXDNCCASH-26JUN30",
+  "series_ticker": "KXDNCCASH",
+  "title": "Will the Democratic National Committee's cash on hand be above 20000000 as of June 30, 2026?",
+  "close_time": "2026-07-20T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXDNCCASH-26JUN30-A20000000",
+    "title": "Will the Democratic National Committee's cash on hand be above 20000000 as of June 30, 2026?",
+    "rules_primary": "If the Democratic National Committee's cash on hand is above 20 million dollars as of June 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-20T13:59:00Z"
+   },
+   {
+    "ticker": "KXDNCCASH-26JUN30-A18000000",
+    "title": "Will the Democratic National Committee's cash on hand be above 18000000 as of June 30, 2026?",
+    "rules_primary": "If the Democratic National Committee's cash on hand is above 18 million dollars as of June 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-20T13:59:00Z"
+   },
+   {
+    "ticker": "KXDNCCASH-26JUN30-A16000000",
+    "title": "Will the Democratic National Committee's cash on hand be above 16000000 as of June 30, 2026?",
+    "rules_primary": "If the Democratic National Committee's cash on hand is above 16 million dollars as of June 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-20T13:59:00Z"
+   },
+   {
+    "ticker": "KXDNCCASH-26JUN30-A14000000",
+    "title": "Will the Democratic National Committee's cash on hand be above 14000000 as of June 30, 2026?",
+    "rules_primary": "If the Democratic National Committee's cash on hand is above 14 million dollars as of June 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-20T13:59:00Z"
+   },
+   {
+    "ticker": "KXDNCCASH-26JUN30-A12000000",
+    "title": "Will the Democratic National Committee's cash on hand be above 12000000 as of June 30, 2026?",
+    "rules_primary": "If the Democratic National Committee's cash on hand is above 12 million dollars as of June 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-20T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMARRIAGEBEAST-26",
+  "series_ticker": "KXMARRIAGEBEAST",
+  "title": "Will James Donaldson aka MrBeast and Thea Booysen be married in 2026?",
+  "close_time": "2026-07-29T22:35:07Z",
+  "markets": [
+   {
+    "ticker": "KXMARRIAGEBEAST-26",
+    "title": "Will James Donaldson aka MrBeast and Thea Booysen be married in 2026?",
+    "rules_primary": "If James Donaldson aka MrBeast and Thea Booysen are married before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-29T22:35:07Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXNEXTODNI-29",
+  "series_ticker": "KXNEXTODNI",
+  "title": "Who will be Trump's next Director of National Intelligence?",
+  "close_time": "2026-07-29T14:29:42Z",
+  "markets": [
+   {
+    "ticker": "KXNEXTODNI-29-JC",
+    "title": "Who will be Trump's next Director of National Intelligence?",
+    "rules_primary": "If the first new person to be Director of National Intelligence is Jay Clayton before Jan 20, 2029, then the market resolves to Yes.",
+    "rules_secondary": "Acting and Interim holders of the office are not included in the Payout Criterion. Persons confirmed by the Senate to be that position, or appointed via a \u201crecess appointment\u201d are included, even if that recess appointment is later struck down as illegal.",
+    "close_time": "2026-07-29T14:29:42Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXRANKLIST1SONG-26AUG29",
+  "series_ticker": "KXRANKLIST1SONG",
+  "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 in August 2026?",
+  "close_time": "2026-07-28T21:53:07Z",
+  "markets": [
+   {
+    "ticker": "KXRANKLIST1SONG-26AUG29-CHO",
+    "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 in August 2026?",
+    "rules_primary": "If Choosin' Texas is the #1 song on the Billboard Hot 100 in August 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only Billboard charts dated between August 01, 2026, and August 29, 2026, inclusive, will be considered for this market. These are the first and last eligible chart dates for August 2026.\n\nThis market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-07-28T21:53:07Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXWCFINALSONGS-26JUL20",
+  "series_ticker": "KXWCFINALSONGS",
+  "title": "Will Any Halftime Performer perform YUKON at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+  "close_time": "2026-07-19T20:31:44Z",
+  "markets": [
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-YUK",
+    "title": "Will Any Halftime Performer perform YUKON at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'YUKON' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:44Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-IFE",
+    "title": "Will Any Halftime Performer perform I feel So Free at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'I feel So Free' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:44Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-ZOO",
+    "title": "Will Any Halftime Performer perform Zoo at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Zoo' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:43Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-YEL",
+    "title": "Will Any Halftime Performer perform Yellow at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Yellow' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:43Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-VOG",
+    "title": "Will Any Halftime Performer perform Vogue at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Vogue' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:43Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-SKY",
+    "title": "Will Any Halftime Performer perform A Sky Full of Stars at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'A Sky Full of Stars' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:43Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-LOVE",
+    "title": "Will Any Halftime Performer perform Love Yourself at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Love Yourself' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:43Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-FYA",
+    "title": "Will Any Halftime Performer perform FYA at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'FYA' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:43Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-CLO",
+    "title": "Will Any Halftime Performer perform Clocks at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Clocks' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:43Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-STA",
+    "title": "Will Any Halftime Performer perform STAY at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'STAY' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:42Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-FIX",
+    "title": "Will Any Halftime Performer perform Fix You at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Fix You' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:42Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-DAIS",
+    "title": "Will Any Halftime Performer perform DAISIES at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'DAISIES' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:42Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-ADV",
+    "title": "Will Any Halftime Performer perform Adventure of a Lifetime at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Adventure of a Lifetime' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:42Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-WHE",
+    "title": "Will Any Halftime Performer perform Whenever, Wherever at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Whenever, Wherever' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:41Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-WAK",
+    "title": "Will Any Halftime Performer perform Waka Waka (This Time for Africa) at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Waka Waka (This Time for Africa)' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:41Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-VIV",
+    "title": "Will Any Halftime Performer perform Viva La Vida at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Viva La Vida' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:41Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-SWI",
+    "title": "Will Any Halftime Performer perform SWIM at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'SWIM' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:41Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-SOR",
+    "title": "Will Any Halftime Performer perform Sorry at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Sorry' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:41Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-NOR",
+    "title": "Will Any Halftime Performer perform NORMAL at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'NORMAL' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:41Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-LOV",
+    "title": "Will Any Halftime Performer perform Love Sensation at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Love Sensation' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:41Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-LIKE",
+    "title": "Will Any Halftime Performer perform Like a Prayer at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Like a Prayer' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:41Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-LAT",
+    "title": "Will Any Halftime Performer perform La Tortura at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'La Tortura' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:41Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-LAI",
+    "title": "Will Any Halftime Performer perform La Isla Bonita at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'La Isla Bonita' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:41Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-HUN",
+    "title": "Will Any Halftime Performer perform Hung Up at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Hung Up' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:41Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-HOO",
+    "title": "Will Any Halftime Performer perform Hooligan at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Hooligan' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:41Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-HIP",
+    "title": "Will Any Halftime Performer perform Hips Don't Lie at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Hips Don't Lie' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:41Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-BUT",
+    "title": "Will Any Halftime Performer perform Butter at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Butter' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:41Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-BRI",
+    "title": "Will Any Halftime Performer perform Bring Your Love at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Bring Your Love' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:41Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-BOD",
+    "title": "Will Any Halftime Performer perform Body to Body at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Body to Body' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:41Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-BEA",
+    "title": "Will Any Halftime Performer perform Beauty And A Beat at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Beauty And A Beat' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:41Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-BAB",
+    "title": "Will Any Halftime Performer perform Baby at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Baby' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:31:41Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-DYN",
+    "title": "Will Any Halftime Performer perform Dynamite at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Dynamite' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:29:33Z"
+   },
+   {
+    "ticker": "KXWCFINALSONGS-26JUL20-DAI",
+    "title": "Will Any Halftime Performer perform Dai Dai at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If Any Halftime Performer performs 'Dai Dai' at the 2026 FIFA World Cup Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium before Jul 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A performance requires the performer to be physically present on stage and either sing, rap, or vocalize recognizable lyrics or melody from the song live, or play an instrument performing the recognizable melody, riff, or musical structure of the song live. Pre-recorded audio or video playback without simultaneous live contribution does not qualify. Medleys, mashups, and partial performances count as Yes. Guest appearances count if the specified performer actively participates in performing the song. If the event is postponed to a date before the deadline, the market remains open for the rescheduled event. If the event is cancelled entirely, rescheduled after the deadline, or the performer withdraws, the market resolves to No. Soundchecks and rehearsals do not count.",
+    "close_time": "2026-07-19T20:28:26Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXWCFIRSTSONG-MAD26JUL20",
+  "series_ticker": "KXWCFIRSTSONG",
+  "title": "Will Vogue be the first song performed by Madonna during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+  "close_time": "2026-07-19T20:13:29Z",
+  "markets": [
+   {
+    "ticker": "KXWCFIRSTSONG-MAD26JUL20-VOG",
+    "title": "Will Vogue be the first song performed by Madonna during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Madonna during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Vogue'' as performed  by Madonna (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Madonna. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Madonna, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Madonna.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:13:29Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-MAD26JUL20-VIV",
+    "title": "Will Viva La Vida be the first song performed by Madonna during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the First song performed by Madonna during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Viva La Vida'' as performed  by Madonna (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Madonna. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Madonna, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Madonna.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:13:29Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-MAD26JUL20-LOV",
+    "title": "Will Love Sensation be the first song performed by Madonna during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Madonna during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Love Sensation'' as performed  by Madonna (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Madonna. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Madonna, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Madonna.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:13:29Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-MAD26JUL20-LIK",
+    "title": "Will Like a Prayer be the first song performed by Madonna during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Madonna during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Like a Prayer'' as performed  by Madonna (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Madonna. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Madonna, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Madonna.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:13:29Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-MAD26JUL20-INT",
+    "title": "Will Into the Groove be the first song performed by Madonna during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Madonna during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Into the Groove'' as performed  by Madonna (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Madonna. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Madonna, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Madonna.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:13:29Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-MAD26JUL20-HUN",
+    "title": "Will Hung Up be the first song performed by Madonna during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Madonna during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Hung Up'' as performed  by Madonna (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Madonna. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Madonna, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Madonna.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:13:29Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-MAD26JUL20-DAI",
+    "title": "Will Dai Dai be the first song performed by Madonna during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the First song performed by Madonna during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Dai Dai'' as performed  by Madonna (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Madonna. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Madonna, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Madonna.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:13:29Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-MAD26JUL20-BRI",
+    "title": "Will Bring Your Love be the first song performed by Madonna during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Madonna during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Bring Your Love'' as performed  by Madonna (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Madonna. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Madonna, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Madonna.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:13:29Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXACTBLUETOP-26JUL31",
+  "series_ticker": "KXACTBLUETOP",
+  "title": "Will Troy Jackson be the top ActBlue fundraiser on July 31 at 10:00 AM ET?",
+  "close_time": "2026-07-31T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXACTBLUETOP-26JUL31-TJAC",
+    "title": "Will Troy Jackson be the top ActBlue fundraiser on July 31 at 10:00 AM ET?",
+    "rules_primary": "If Troy Jackson is the top ActBlue fundraiser on July 31 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The resolution will be based on the top fundraiser shown at https://secure.actblue.com/directory on July 31 at 10:00 AM ET. The leftmost shown candidate will be considered the top fundraiser. If the top fundraiser is none of the listed options, all markets will resolve to No.",
+    "close_time": "2026-07-31T13:59:00Z"
+   },
+   {
+    "ticker": "KXACTBLUETOP-26JUL31-SBRO",
+    "title": "Will Sherrod Brown be the top ActBlue fundraiser on July 31 at 10:00 AM ET?",
+    "rules_primary": "If Sherrod Brown is the top ActBlue fundraiser on July 31 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The resolution will be based on the top fundraiser shown at https://secure.actblue.com/directory on July 31 at 10:00 AM ET. The leftmost shown candidate will be considered the top fundraiser. If the top fundraiser is none of the listed options, all markets will resolve to No.",
+    "close_time": "2026-07-31T13:59:00Z"
+   },
+   {
+    "ticker": "KXACTBLUETOP-26JUL31-JTAL",
+    "title": "Will James Talarico be the top ActBlue fundraiser on July 31 at 10:00 AM ET?",
+    "rules_primary": "If James Talarico is the top ActBlue fundraiser on July 31 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The resolution will be based on the top fundraiser shown at https://secure.actblue.com/directory on July 31 at 10:00 AM ET. The leftmost shown candidate will be considered the top fundraiser. If the top fundraiser is none of the listed options, all markets will resolve to No.",
+    "close_time": "2026-07-31T13:59:00Z"
+   },
+   {
+    "ticker": "KXACTBLUETOP-26JUL31-JOSS",
+    "title": "Will Jon Ossoff be the top ActBlue fundraiser on July 31 at 10:00 AM ET?",
+    "rules_primary": "If Jon Ossoff is the top ActBlue fundraiser on July 31 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The resolution will be based on the top fundraiser shown at https://secure.actblue.com/directory on July 31 at 10:00 AM ET. The leftmost shown candidate will be considered the top fundraiser. If the top fundraiser is none of the listed options, all markets will resolve to No.",
+    "close_time": "2026-07-31T13:59:00Z"
+   },
+   {
+    "ticker": "KXACTBLUETOP-26JUL31-AELS",
+    "title": "Will Abdul El-Sayed be the top ActBlue fundraiser on July 31 at 10:00 AM ET?",
+    "rules_primary": "If Abdul El-Sayed is the top ActBlue fundraiser on July 31 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The resolution will be based on the top fundraiser shown at https://secure.actblue.com/directory on July 31 at 10:00 AM ET. The leftmost shown candidate will be considered the top fundraiser. If the top fundraiser is none of the listed options, all markets will resolve to No.",
+    "close_time": "2026-07-31T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBOLOJANOUT-26JUL",
+  "series_ticker": "KXBOLOJANOUT",
+  "title": "Will Ilie Bolojan be out as Prime Minister of Romania before Aug 1, 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXBOLOJANOUT-26JUL-AUG01",
+    "title": "Will Ilie Bolojan be out as Prime Minister of Romania before Aug 1, 2026?",
+    "rules_primary": "If Ilie Bolojan leaves as Prime Minister of Romania before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Ilie Bolojan must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ }
+]

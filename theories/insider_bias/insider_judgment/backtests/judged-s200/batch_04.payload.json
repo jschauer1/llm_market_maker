@@ -1,0 +1,951 @@
+[
+ {
+  "event_ticker": "KXTRUMPPHOTO-26JUL05",
+  "series_ticker": "KXTRUMPPHOTO",
+  "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 7 between Jun 29, 2026 and Jul 5, 2026?",
+  "close_time": "2026-07-06T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPPHOTO-26JUL05-7",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 7 between Jun 29, 2026 and Jul 5, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jun 29, 2026 and Jul 5, 2026 is exactly 7, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-07-06T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPPHOTO-26JUL05-5",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 5 between Jun 29, 2026 and Jul 5, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jun 29, 2026 and Jul 5, 2026 is exactly 5, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-07-06T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPPHOTO-26JUL05-4",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 4 between Jun 29, 2026 and Jul 5, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jun 29, 2026 and Jul 5, 2026 is exactly 4, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-07-06T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXART-TYR26",
+  "series_ticker": "KXART",
+  "title": "Will the lot sold price of the Tyrannosaurus Rex",
+  "close_time": "2026-07-14T15:51:36Z",
+  "markets": [
+   {
+    "ticker": "KXART-TYR26-30000000",
+    "title": "Will the lot sold price of the Tyrannosaurus Rex - \"Gus\" - A Mounted Tyrannosaurus Rex Skeleton on Sotheby's be above $30000000 during the live auction beginning July 14, 2026 at 10:00AM?",
+    "rules_primary": "If the lot sold price of the Tyrannosaurus Rex - \"Gus\" - A Mounted Tyrannosaurus Rex Skeleton on Sotheby's is above $30M during the live auction beginning July 14, 2026 at 10:00AM, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.\n\nThis market and these products have not been endorsed by Sotheby\u2019s. Any references to Sotheby\u2019s, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Sotheby\u2019s and Kalshi.",
+    "close_time": "2026-07-14T15:51:36Z"
+   },
+   {
+    "ticker": "KXART-TYR26-29000000",
+    "title": "Will the lot sold price of the Tyrannosaurus Rex - \"Gus\" - A Mounted Tyrannosaurus Rex Skeleton on Sotheby's be above $29000000 during the live auction beginning July 14, 2026 at 10:00AM?",
+    "rules_primary": "If the lot sold price of the Tyrannosaurus Rex - \"Gus\" - A Mounted Tyrannosaurus Rex Skeleton on Sotheby's is above $29M during the live auction beginning July 14, 2026 at 10:00AM, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.\n\nThis market and these products have not been endorsed by Sotheby\u2019s. Any references to Sotheby\u2019s, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Sotheby\u2019s and Kalshi.",
+    "close_time": "2026-07-14T15:51:36Z"
+   },
+   {
+    "ticker": "KXART-TYR26-28000000",
+    "title": "Will the lot sold price of the Tyrannosaurus Rex - \"Gus\" - A Mounted Tyrannosaurus Rex Skeleton on Sotheby's be above $28000000 during the live auction beginning July 14, 2026 at 10:00AM?",
+    "rules_primary": "If the lot sold price of the Tyrannosaurus Rex - \"Gus\" - A Mounted Tyrannosaurus Rex Skeleton on Sotheby's is above $28M during the live auction beginning July 14, 2026 at 10:00AM, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.\n\nThis market and these products have not been endorsed by Sotheby\u2019s. Any references to Sotheby\u2019s, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Sotheby\u2019s and Kalshi.",
+    "close_time": "2026-07-14T15:51:36Z"
+   },
+   {
+    "ticker": "KXART-TYR26-27000000",
+    "title": "Will the lot sold price of the Tyrannosaurus Rex - \"Gus\" - A Mounted Tyrannosaurus Rex Skeleton on Sotheby's be above $27000000 during the live auction beginning July 14, 2026 at 10:00AM?",
+    "rules_primary": "If the lot sold price of the Tyrannosaurus Rex - \"Gus\" - A Mounted Tyrannosaurus Rex Skeleton on Sotheby's is above $27M during the live auction beginning July 14, 2026 at 10:00AM, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.\n\nThis market and these products have not been endorsed by Sotheby\u2019s. Any references to Sotheby\u2019s, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Sotheby\u2019s and Kalshi.",
+    "close_time": "2026-07-14T15:51:36Z"
+   },
+   {
+    "ticker": "KXART-TYR26-26000000",
+    "title": "Will the lot sold price of the Tyrannosaurus Rex - \"Gus\" - A Mounted Tyrannosaurus Rex Skeleton on Sotheby's be above $26000000 during the live auction beginning July 14, 2026 at 10:00AM?",
+    "rules_primary": "If the lot sold price of the Tyrannosaurus Rex - \"Gus\" - A Mounted Tyrannosaurus Rex Skeleton on Sotheby's is above $26M during the live auction beginning July 14, 2026 at 10:00AM, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.\n\nThis market and these products have not been endorsed by Sotheby\u2019s. Any references to Sotheby\u2019s, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Sotheby\u2019s and Kalshi.",
+    "close_time": "2026-07-14T15:51:36Z"
+   },
+   {
+    "ticker": "KXART-TYR26-25000000",
+    "title": "Will the lot sold price of the Tyrannosaurus Rex - \"Gus\" - A Mounted Tyrannosaurus Rex Skeleton on Sotheby's be above $25000000 during the live auction beginning July 14, 2026 at 10:00AM?",
+    "rules_primary": "If the lot sold price of the Tyrannosaurus Rex - \"Gus\" - A Mounted Tyrannosaurus Rex Skeleton on Sotheby's is above $25M during the live auction beginning July 14, 2026 at 10:00AM, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.\n\nThis market and these products have not been endorsed by Sotheby\u2019s. Any references to Sotheby\u2019s, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Sotheby\u2019s and Kalshi.",
+    "close_time": "2026-07-14T15:51:36Z"
+   },
+   {
+    "ticker": "KXART-TYR26-24000000",
+    "title": "Will the lot sold price of the Tyrannosaurus Rex - \"Gus\" - A Mounted Tyrannosaurus Rex Skeleton on Sotheby's be above $24000000 during the live auction beginning July 14, 2026 at 10:00AM?",
+    "rules_primary": "If the lot sold price of the Tyrannosaurus Rex - \"Gus\" - A Mounted Tyrannosaurus Rex Skeleton on Sotheby's is above $24M during the live auction beginning July 14, 2026 at 10:00AM, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.\n\nThis market and these products have not been endorsed by Sotheby\u2019s. Any references to Sotheby\u2019s, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Sotheby\u2019s and Kalshi.",
+    "close_time": "2026-07-14T15:51:36Z"
+   },
+   {
+    "ticker": "KXART-TYR26-23000000",
+    "title": "Will the lot sold price of the Tyrannosaurus Rex - \"Gus\" - A Mounted Tyrannosaurus Rex Skeleton on Sotheby's be above $23000000 during the live auction beginning July 14, 2026 at 10:00AM?",
+    "rules_primary": "If the lot sold price of the Tyrannosaurus Rex - \"Gus\" - A Mounted Tyrannosaurus Rex Skeleton on Sotheby's is above $23M during the live auction beginning July 14, 2026 at 10:00AM, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.\n\nThis market and these products have not been endorsed by Sotheby\u2019s. Any references to Sotheby\u2019s, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Sotheby\u2019s and Kalshi.",
+    "close_time": "2026-07-14T15:51:36Z"
+   },
+   {
+    "ticker": "KXART-TYR26-22000000",
+    "title": "Will the lot sold price of the Tyrannosaurus Rex - \"Gus\" - A Mounted Tyrannosaurus Rex Skeleton on Sotheby's be above $22000000 during the live auction beginning July 14, 2026 at 10:00AM?",
+    "rules_primary": "If the lot sold price of the Tyrannosaurus Rex - \"Gus\" - A Mounted Tyrannosaurus Rex Skeleton on Sotheby's is above $22M during the live auction beginning July 14, 2026 at 10:00AM, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.\n\nThis market and these products have not been endorsed by Sotheby\u2019s. Any references to Sotheby\u2019s, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Sotheby\u2019s and Kalshi.",
+    "close_time": "2026-07-14T15:51:36Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPMEET-26JUL",
+  "series_ticker": "KXTRUMPMEET",
+  "title": "Donald Trump and Zohran Mamdani meet before Aug 1, 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPMEET-26JUL-ZMAM",
+    "title": "Donald Trump and Zohran Mamdani meet before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and Zohran Mamdani meet (including phone calls) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUL-XJIN",
+    "title": "Donald Trump and Xi Jinping meet before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and Xi Jinping meet (including phone calls) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUL-STAK",
+    "title": "Donald Trump and Sanae Takaichi meet before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and Sanae Takaichi meet (including phone calls) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUL-RPAH",
+    "title": "Donald Trump and Reza Pahlavi meet before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and Reza Pahlavi meet (including phone calls) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUL-RDES",
+    "title": "Donald Trump and Ron DeSantis meet before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and Ron DeSantis meet (including phone calls) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUL-NMOD",
+    "title": "Donald Trump and Narendra Modi meet before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and Narendra Modi meet (including phone calls) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUL-MCM",
+    "title": "Donald Trump and Mar\u00eda Corina Machado meet before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and Mar\u00eda Corina Machado meet (including phone calls) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUL-HJEF",
+    "title": "Donald Trump and Hakeem Jeffries meet before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and Hakeem Jeffries meet (including phone calls) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUL-GNEW",
+    "title": "Donald Trump and Gavin Newsom meet before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and Gavin Newsom meet (including phone calls) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUL-DROD",
+    "title": "Donald Trump and Delcy Rodriguez meet before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and Delcy Rodriguez meet (including phone calls) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUL-CSCH",
+    "title": "Donald Trump and Chuck Schumer meet before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and Chuck Schumer meet (including phone calls) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUL-JHUA",
+    "title": "Donald Trump and Jensen Huang meet before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and Jensen Huang meet (including phone calls) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-07-29T20:46:15Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUL-MBS",
+    "title": "Donald Trump and Mohammed bin Salman meet before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and Mohammed bin Salman meet (including phone calls) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-07-13T01:29:51Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUL-KSTA",
+    "title": "Donald Trump and Keir Starmer meet before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and Keir Starmer meet (including phone calls) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-07-08T15:47:20Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUL-MCAR",
+    "title": "Donald Trump and Mark Carney meet before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and Mark Carney meet (including phone calls) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-07-08T15:16:37Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUL-RERD",
+    "title": "Donald Trump and Recep Tayyip Erdo\u011fan meet before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and Recep Tayyip Erdo\u011fan meet (including phone calls) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-07-07T16:49:36Z"
+   },
+   {
+    "ticker": "KXTRUMPMEET-26JUL-VZEL",
+    "title": "Donald Trump and Volodymyr Zelenskyy meet before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and Volodymyr Zelenskyy meet (including phone calls) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A meeting is defined as any of the following:\n\nAn in-person encounter where both parties are physically present in the same location\nA virtual meeting via video conference where both parties can see and hear each other in real-time\nA phone call where both parties speak directly to each other\nAny combination of the above where the parties interact directly in real-time\n\nThe following qualify as meetings (though this list is not exhaustive):\n\nFormal bilateral meetings, summits, or conferences\nInformal encounters at multilateral events if documented by Source Agencies\nWorking dinners, lunches, or other meal meetings\nPull-aside meetings or corridor conversations if documented\nHome visits or meetings at non-official locations\n\nThe following do NOT qualify as meetings:\n\nBeing present at the same event without direct interaction\nExchanging written correspondence\nCommunication through intermediaries without direct contact\nPre-recorded messages or asynchronous communication\nMeetings cancelled after being scheduled\nNear-misses where parties were scheduled to meet but did not",
+    "close_time": "2026-07-04T20:44:36Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXAGENCIES-26",
+  "series_ticker": "KXAGENCIES",
+  "title": "Will DOGE cut at least 5 agencies?",
+  "close_time": "2026-07-04T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXAGENCIES-26-5",
+    "title": "Will DOGE cut at least 5 agencies?",
+    "rules_primary": "If there are more than 5 fewer federal agencies (as of Jan 16, 2025) on July 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Clarification (6/13/25 at 3:15am ET): he market resolves based on the count of the reduction in federal agencies. The value of \"441\" agencies on the Federal Register has not been properly updated. While we will reference the Federal Register's list, we will exclude defunct agencies from our final count.",
+    "close_time": "2026-07-04T14:00:00Z"
+   },
+   {
+    "ticker": "KXAGENCIES-26-20",
+    "title": "Will DOGE cut at least 20 agencies?",
+    "rules_primary": "If there are more than 20 fewer federal agencies (as of Jan 16, 2025) on Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Clarification (6/13/25 at 3:15am ET): he market resolves based on the count of the reduction in federal agencies. The value of \"441\" agencies on the Federal Register has not been properly updated. While we will reference the Federal Register's list, we will exclude defunct agencies from our final count.",
+    "close_time": "2026-07-04T14:00:00Z"
+   },
+   {
+    "ticker": "KXAGENCIES-26-10",
+    "title": "Will DOGE cut at least 10 agencies?",
+    "rules_primary": "If there are more than 10 fewer federal agencies (as of Jan 16, 2025) on July 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Clarification (6/13/25 at 3:15am ET): he market resolves based on the count of the reduction in federal agencies. The value of \"441\" agencies on the Federal Register has not been properly updated. While we will reference the Federal Register's list, we will exclude defunct agencies from our final count.",
+    "close_time": "2026-07-04T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BAWS",
+  "series_ticker": "KXESPYS",
+  "title": "Will Nelly Korda win Best Athlete, Women\u2019s Sports award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T07:36:18Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BAWS-NEL",
+    "title": "Will Nelly Korda win Best Athlete, Women\u2019s Sports award at the 2026 ESPYS?",
+    "rules_primary": "If Nelly Korda wins Best Athlete, Women\u2019s Sports at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:36:18Z"
+   },
+   {
+    "ticker": "KXESPYS-26BAWS-MIK",
+    "title": "Will Mikaela Shiffrin win Best Athlete, Women\u2019s Sports award at the 2026 ESPYS?",
+    "rules_primary": "If Mikaela Shiffrin wins Best Athlete, Women\u2019s Sports at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:36:18Z"
+   },
+   {
+    "ticker": "KXESPYS-26BAWS-HIL",
+    "title": "Will Hilary Knight win Best Athlete, Women\u2019s Sports award at the 2026 ESPYS?",
+    "rules_primary": "If Hilary Knight wins Best Athlete, Women\u2019s Sports at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:36:18Z"
+   },
+   {
+    "ticker": "KXESPYS-26BAWS-AJA",
+    "title": "Will A\u2019ja Wilson win Best Athlete, Women\u2019s Sports award at the 2026 ESPYS?",
+    "rules_primary": "If A\u2019ja Wilson wins Best Athlete, Women\u2019s Sports at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:36:18Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BBA",
+  "series_ticker": "KXESPYS",
+  "title": "Will Macklin Celebrini win Best Breakthrough Athlete award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T07:37:45Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BBA-MAC",
+    "title": "Will Macklin Celebrini win Best Breakthrough Athlete award at the 2026 ESPYS?",
+    "rules_primary": "If Macklin Celebrini wins Best Breakthrough Athlete at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:37:45Z"
+   },
+   {
+    "ticker": "KXESPYS-26BBA-FER",
+    "title": "Will Fernando Mendoza win Best Breakthrough Athlete award at the 2026 ESPYS?",
+    "rules_primary": "If Fernando Mendoza wins Best Breakthrough Athlete at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:37:45Z"
+   },
+   {
+    "ticker": "KXESPYS-26BBA-DRA",
+    "title": "Will Drake Maye win Best Breakthrough Athlete award at the 2026 ESPYS?",
+    "rules_primary": "If Drake Maye wins Best Breakthrough Athlete at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:37:45Z"
+   },
+   {
+    "ticker": "KXESPYS-26BBA-ALY",
+    "title": "Will Alysa Liu win Best Breakthrough Athlete award at the 2026 ESPYS?",
+    "rules_primary": "If Alysa Liu wins Best Breakthrough Athlete at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:37:45Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BCA",
+  "series_ticker": "KXESPYS",
+  "title": "Will Savy King win Best Comeback Athlete award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T07:43:12Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BCA-SAV",
+    "title": "Will Savy King win Best Comeback Athlete award at the 2026 ESPYS?",
+    "rules_primary": "If Savy King wins Best Comeback Athlete at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:43:12Z"
+   },
+   {
+    "ticker": "KXESPYS-26BCA-KYN",
+    "title": "Will Kyndal Stowers win Best Comeback Athlete award at the 2026 ESPYS?",
+    "rules_primary": "If Kyndal Stowers wins Best Comeback Athlete at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:43:12Z"
+   },
+   {
+    "ticker": "KXESPYS-26BCA-CHR",
+    "title": "Will Christian McCaffrey win Best Comeback Athlete award at the 2026 ESPYS?",
+    "rules_primary": "If Christian McCaffrey wins Best Comeback Athlete at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:43:12Z"
+   },
+   {
+    "ticker": "KXESPYS-26BCA-ANT",
+    "title": "Will Anthony Kim win Best Comeback Athlete award at the 2026 ESPYS?",
+    "rules_primary": "If Anthony Kim wins Best Comeback Athlete at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:43:12Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BCAMS",
+  "series_ticker": "KXESPYS",
+  "title": "Will Fernando Mendoza win Best College Athlete, Men\u2019s Sports award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T07:47:50Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BCAMS-FER",
+    "title": "Will Fernando Mendoza win Best College Athlete, Men\u2019s Sports award at the 2026 ESPYS?",
+    "rules_primary": "If Fernando Mendoza wins Best College Athlete, Men\u2019s Sports at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:47:50Z"
+   },
+   {
+    "ticker": "KXESPYS-26BCAMS-CAM",
+    "title": "Will Cameron Boozer win Best College Athlete, Men\u2019s Sports award at the 2026 ESPYS?",
+    "rules_primary": "If Cameron Boozer wins Best College Athlete, Men\u2019s Sports at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:47:50Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BCAWS",
+  "series_ticker": "KXESPYS",
+  "title": "Will Olivia Babcock win Best College Athlete, Women\u2019s Sports award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T07:48:42Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BCAWS-OLI",
+    "title": "Will Olivia Babcock win Best College Athlete, Women\u2019s Sports award at the 2026 ESPYS?",
+    "rules_primary": "If Olivia Babcock wins Best College Athlete, Women\u2019s Sports at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:48:42Z"
+   },
+   {
+    "ticker": "KXESPYS-26BCAWS-MAD",
+    "title": "Will Madison Taylor win Best College Athlete, Women\u2019s Sports award at the 2026 ESPYS?",
+    "rules_primary": "If Madison Taylor wins Best College Athlete, Women\u2019s Sports at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:48:42Z"
+   },
+   {
+    "ticker": "KXESPYS-26BCAWS-LAU",
+    "title": "Will Lauren Betts win Best College Athlete, Women\u2019s Sports award at the 2026 ESPYS?",
+    "rules_primary": "If Lauren Betts wins Best College Athlete, Women\u2019s Sports at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:48:42Z"
+   },
+   {
+    "ticker": "KXESPYS-26BCAWS-FAI",
+    "title": "Will Faith Torrez win Best College Athlete, Women\u2019s Sports award at the 2026 ESPYS?",
+    "rules_primary": "If Faith Torrez wins Best College Athlete, Women\u2019s Sports at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:48:42Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BG",
+  "series_ticker": "KXESPYS",
+  "title": "Will Scottie Scheffler win Best Golfer award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T14:05:25Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BG-SCO",
+    "title": "Will Scottie Scheffler win Best Golfer award at the 2026 ESPYS?",
+    "rules_primary": "If Scottie Scheffler wins Best Golfer at the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:05:25Z"
+   },
+   {
+    "ticker": "KXESPYS-26BG-ROR",
+    "title": "Will Rory McIlroy win Best Golfer award at the 2026 ESPYS?",
+    "rules_primary": "If Rory McIlroy wins Best Golfer at the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:05:25Z"
+   },
+   {
+    "ticker": "KXESPYS-26BG-NEL",
+    "title": "Will Nelly Korda win Best Golfer award at the 2026 ESPYS?",
+    "rules_primary": "If Nelly Korda wins Best Golfer at the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:05:25Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BNBAP",
+  "series_ticker": "KXESPYS",
+  "title": "Will Victor Wembanyama win Best NBA Player award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T07:56:36Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BNBAP-VIC",
+    "title": "Will Victor Wembanyama win Best NBA Player award at the 2026 ESPYS?",
+    "rules_primary": "If Victor Wembanyama wins Best NBA Player at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.",
+    "close_time": "2026-07-16T07:56:36Z"
+   },
+   {
+    "ticker": "KXESPYS-26BNBAP-SHA",
+    "title": "Will Shai Gilgeous-Alexander win Best NBA Player award at the 2026 ESPYS?",
+    "rules_primary": "If Shai Gilgeous-Alexander wins Best NBA Player at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.",
+    "close_time": "2026-07-16T07:56:36Z"
+   },
+   {
+    "ticker": "KXESPYS-26BNBAP-JAL",
+    "title": "Will Jalen Brunson win Best NBA Player award at the 2026 ESPYS?",
+    "rules_primary": "If Jalen Brunson wins Best NBA Player at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.",
+    "close_time": "2026-07-16T07:56:36Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BRBP",
+  "series_ticker": "KXESPYS",
+  "title": "Will Sabastian Sawe win Best Record-Breaking Performance award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T07:41:15Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BRBP-SAB",
+    "title": "Will Sabastian Sawe win Best Record-Breaking Performance award at the 2026 ESPYS?",
+    "rules_primary": "If Sabastian Sawe wins Best Record-Breaking Performance at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:41:15Z"
+   },
+   {
+    "ticker": "KXESPYS-26BRBP-MYL",
+    "title": "Will Myles Garrett win Best Record-Breaking Performance award at the 2026 ESPYS?",
+    "rules_primary": "If Myles Garrett wins Best Record-Breaking Performance at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:41:15Z"
+   },
+   {
+    "ticker": "KXESPYS-26BRBP-MEG",
+    "title": "Will Megan Grant win Best Record-Breaking Performance award at the 2026 ESPYS?",
+    "rules_primary": "If Megan Grant wins Best Record-Breaking Performance at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:41:15Z"
+   },
+   {
+    "ticker": "KXESPYS-26BRBP-JOH",
+    "title": "Will Johannes H\u00f8sflot Kl\u00e6bo win Best Record-Breaking Performance award at the 2026 ESPYS?",
+    "rules_primary": "If Johannes H\u00f8sflot Kl\u00e6bo wins Best Record-Breaking Performance at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:41:15Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BSP",
+  "series_ticker": "KXESPYS",
+  "title": "Will Lionel Messi win Best Soccer Player award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T14:05:05Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BSP-LIO",
+    "title": "Will Lionel Messi win Best Soccer Player award at the 2026 ESPYS?",
+    "rules_primary": "If Lionel Messi wins Best Soccer Player at the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:05:05Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BT",
+  "series_ticker": "KXESPYS",
+  "title": "Will Seattle Seahawks win Best Team award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T07:45:11Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BT-SEA",
+    "title": "Will Seattle Seahawks win Best Team award at the 2026 ESPYS?",
+    "rules_primary": "If Seattle Seahawks wins Best Team at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.",
+    "close_time": "2026-07-16T07:45:11Z"
+   },
+   {
+    "ticker": "KXESPYS-26BT-NEW",
+    "title": "Will New York Knicks win Best Team award at the 2026 ESPYS?",
+    "rules_primary": "If New York Knicks wins Best Team at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.",
+    "close_time": "2026-07-16T07:45:11Z"
+   },
+   {
+    "ticker": "KXESPYS-26BT-IND",
+    "title": "Will Indiana Hoosiers win Best Team award at the 2026 ESPYS?",
+    "rules_primary": "If Indiana Hoosiers wins Best Team at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.",
+    "close_time": "2026-07-16T07:45:11Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BWNBAP",
+  "series_ticker": "KXESPYS",
+  "title": "Will Napheesa Collier win Best WNBA Player award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T14:03:37Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BWNBAP-NAP",
+    "title": "Will Napheesa Collier win Best WNBA Player award at the 2026 ESPYS?",
+    "rules_primary": "If Napheesa Collier wins Best Pro Woman's Basketball Player at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:03:37Z"
+   },
+   {
+    "ticker": "KXESPYS-26BWNBAP-AJA",
+    "title": "Will A\u2019ja Wilson win Best WNBA Player award at the 2026 ESPYS?",
+    "rules_primary": "If A\u2019ja Wilson wins Best Pro Woman's Basketball Player at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:03:37Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFOLLOWERCOUNTCLAV-27",
+  "series_ticker": "KXFOLLOWERCOUNTCLAV",
+  "title": "Will clavicular have At least 400000 Followers before Jan 1, 2027?",
+  "close_time": "2026-07-13T19:25:14Z",
+  "markets": [
+   {
+    "ticker": "KXFOLLOWERCOUNTCLAV-27-400000",
+    "title": "Will clavicular have At least 400000 Followers before Jan 1, 2027?",
+    "rules_primary": "If clavicular has At least 400000 Followers on Kick before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "The follower count is determined by the publicly displayed count on the account's profile page. If the platform displays abbreviated numbers (e.g., \"1.2M\"), the most precise available count will be used. The count is assessed at 11:59 PM ET before the target date. If the account is permanently suspended or deleted, the market resolves to last fair price. If the account becomes private and follower counts are invisible, the market resolves to No. Temporary suspensions that are lifted before the target date do not affect resolution if follower counts become visible again.",
+    "close_time": "2026-07-13T19:25:14Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BNHLP",
+  "series_ticker": "KXESPYS",
+  "title": "Will Nikita Kucherov win Best NHL Player award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T14:06:46Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BNHLP-NIK",
+    "title": "Will Nikita Kucherov win Best NHL Player award at the 2026 ESPYS?",
+    "rules_primary": "If Nikita Kucherov wins Best NHL Player at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:06:46Z"
+   },
+   {
+    "ticker": "KXESPYS-26BNHLP-MAC",
+    "title": "Will Macklin Celebrini win Best NHL Player award at the 2026 ESPYS?",
+    "rules_primary": "If Macklin Celebrini wins Best NHL Player at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:06:46Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLIUSAELIMINATIONW-26JUL10",
+  "series_ticker": "KXLIUSAELIMINATIONW",
+  "title": "Will Zach be eliminated from Love Island USA Season 8 before Jul 11, 2026?",
+  "close_time": "2026-07-11T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL10-ZAC",
+    "title": "Will Zach be eliminated from Love Island USA Season 8 before Jul 11, 2026?",
+    "rules_primary": "If Zach is officially eliminated from Love Island USA: Season 8 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL10-TIE",
+    "title": "Will Tierra be eliminated from Love Island USA Season 8 before Jul 11, 2026?",
+    "rules_primary": "If Tierra is officially eliminated from Love Island USA: Season 8 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL10-SIN",
+    "title": "Will Sincere be eliminated from Love Island USA Season 8 before Jul 11, 2026?",
+    "rules_primary": "If Sincere is officially eliminated from Love Island USA: Season 8 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL10-MEL",
+    "title": "Will Melanie be eliminated from Love Island USA Season 8 before Jul 11, 2026?",
+    "rules_primary": "If Melanie is officially eliminated from Love Island USA: Season 8 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL10-KEN",
+    "title": "Will Kenzie be eliminated from Love Island USA Season 8 before Jul 11, 2026?",
+    "rules_primary": "If Kenzie is officially eliminated from Love Island USA: Season 8 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL10-KCC",
+    "title": "Will KC be eliminated from Love Island USA Season 8 before Jul 11, 2026?",
+    "rules_primary": "If KC is officially eliminated from Love Island USA: Season 8 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL10-KAY",
+    "title": "Will Kayda be eliminated from Love Island USA Season 8 before Jul 11, 2026?",
+    "rules_primary": "If Kayda is officially eliminated from Love Island USA: Season 8 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL10-DYL",
+    "title": "Will Dylan be eliminated from Love Island USA Season 8 before Jul 11, 2026?",
+    "rules_primary": "If Dylan is officially eliminated from Love Island USA: Season 8 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL10-CAR",
+    "title": "Will Carl be eliminated from Love Island USA Season 8 before Jul 11, 2026?",
+    "rules_primary": "If Carl is officially eliminated from Love Island USA: Season 8 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL10-ANI",
+    "title": "Will Aniya be eliminated from Love Island USA Season 8 before Jul 11, 2026?",
+    "rules_primary": "If Aniya is officially eliminated from Love Island USA: Season 8 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPATTEND",
+  "series_ticker": "KXTRUMPATTEND",
+  "title": "Will Donald J. Trump attend The 2026 FIFA World Cup Final?",
+  "close_time": "2026-07-19T19:06:04Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPATTEND",
+    "title": "Will Donald J. Trump attend The 2026 FIFA World Cup Final?",
+    "rules_primary": "If Donald J. Trump attends The 2026 FIFA World Cup Final, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance. Kalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the F\u00e9d\u00e9ration Internationale de Football Association (FIFA) or the World Cup. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-19T19:06:04Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPTIME-26JUL11",
+  "series_ticker": "KXTRUMPTIME",
+  "title": "Will Trump post on Truth Social between 5:00 AM and 5:59 AM ET this week?",
+  "close_time": "2026-07-11T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPTIME-26JUL11-H5",
+    "title": "Will Trump post on Truth Social between 5:00 AM and 5:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 5:00 AM to 5:59 AM ET on any day from Jul 5, 2026 through Jul 11, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-07-11T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPTIME-26JUL11-H4",
+    "title": "Will Trump post on Truth Social between 4:00 AM and 4:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 4:00 AM to 4:59 AM ET on any day from Jul 5, 2026 through Jul 11, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-07-11T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPTIME-26JUL11-H3",
+    "title": "Will Trump post on Truth Social between 3:00 AM and 3:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 3:00 AM to 3:59 AM ET on any day from Jul 5, 2026 through Jul 11, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-07-11T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXWCFIRSTSONG-26JUL20",
+  "series_ticker": "KXWCFIRSTSONG",
+  "title": "Will Waka Waka (This Time for Africa) be the first song performed by any of Madonna, Shakira, or BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+  "close_time": "2026-07-19T20:09:35Z",
+  "markets": [
+   {
+    "ticker": "KXWCFIRSTSONG-26JUL20-WAK",
+    "title": "Will Waka Waka (This Time for Africa) be the first song performed by any of Madonna, Shakira, or BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by any of Madonna, Shakira, or BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium is the song ''Waka Waka (This Time for Africa)'' as performed  by any of Madonna, Shakira, or BTS (any member of BTS) (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "CLARIFICATION: This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show by Madonna, Shakira, or BTS (any member of BTS). If none of the songs listed in this event is the first qualifying song performed, all markets in this event will resolve to No.\n\nWhen determining the first qualifying song, the following are disregarded regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other tournament anthems, official tournament songs not performed by Madonna, Shakira, or BTS (any member of BTS), walk-on or entrance music, interstitial or transition music, and any background or venue music not performed by Madonna, Shakira, or BTS (any member of BTS).\n\nIf another artist (e.g., Justin Bieber) performs one or more songs before Madonna, Shakira, or BTS (any member of BTS), those performances are disregarded. The market instead resolves based on the first qualifying song reasonably begun by Madonna, Shakira, or BTS (any member of BTS), whether performed in full, in part, in a medley, or in a mashup.\n\nA song performed jointly by another artist and Madonna, Shakira, or BTS (any member of BTS) is a qualifying song if Madonna, Shakira, or the BTS member performs the song (i.e., its recognizable melody or lyrics are sung, at least reasonably begun). Merely appearing on stage\u2014such as dancing, speaking, or being introduced during another artist's song\u2014does not make that song a qualifying song.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:09:35Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-26JUL20-VOG",
+    "title": "Will Vogue be the first song performed by any of Madonna, Shakira, or BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by any of Madonna, Shakira, or BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium is the song ''Vogue'' as performed  by any of Madonna, Shakira, or BTS (any member of BTS) (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "CLARIFICATION: This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show by Madonna, Shakira, or BTS (any member of BTS). If none of the songs listed in this event is the first qualifying song performed, all markets in this event will resolve to No.\n\nWhen determining the first qualifying song, the following are disregarded regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other tournament anthems, official tournament songs not performed by Madonna, Shakira, or BTS (any member of BTS), walk-on or entrance music, interstitial or transition music, and any background or venue music not performed by Madonna, Shakira, or BTS (any member of BTS).\n\nIf another artist (e.g., Justin Bieber) performs one or more songs before Madonna, Shakira, or BTS (any member of BTS), those performances are disregarded. The market instead resolves based on the first qualifying song reasonably begun by Madonna, Shakira, or BTS (any member of BTS), whether performed in full, in part, in a medley, or in a mashup.\n\nA song performed jointly by another artist and Madonna, Shakira, or BTS (any member of BTS) is a qualifying song if Madonna, Shakira, or the BTS member performs the song (i.e., its recognizable melody or lyrics are sung, at least reasonably begun). Merely appearing on stage\u2014such as dancing, speaking, or being introduced during another artist's song\u2014does not make that song a qualifying song.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:09:35Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-26JUL20-SWI",
+    "title": "Will SWIM be the first song performed by any of Madonna, Shakira, or BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by any of Madonna, Shakira, or BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium is the song ''SWIM'' as performed  by any of Madonna, Shakira, or BTS (any member of BTS) (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "CLARIFICATION: This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show by Madonna, Shakira, or BTS (any member of BTS). If none of the songs listed in this event is the first qualifying song performed, all markets in this event will resolve to No.\n\nWhen determining the first qualifying song, the following are disregarded regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other tournament anthems, official tournament songs not performed by Madonna, Shakira, or BTS (any member of BTS), walk-on or entrance music, interstitial or transition music, and any background or venue music not performed by Madonna, Shakira, or BTS (any member of BTS).\n\nIf another artist (e.g., Justin Bieber) performs one or more songs before Madonna, Shakira, or BTS (any member of BTS), those performances are disregarded. The market instead resolves based on the first qualifying song reasonably begun by Madonna, Shakira, or BTS (any member of BTS), whether performed in full, in part, in a medley, or in a mashup.\n\nA song performed jointly by another artist and Madonna, Shakira, or BTS (any member of BTS) is a qualifying song if Madonna, Shakira, or the BTS member performs the song (i.e., its recognizable melody or lyrics are sung, at least reasonably begun). Merely appearing on stage\u2014such as dancing, speaking, or being introduced during another artist's song\u2014does not make that song a qualifying song.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:09:35Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-26JUL20-INTO",
+    "title": "Will Into the Groove be the first song performed by any of Madonna, Shakira, or BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by any of Madonna, Shakira, or BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium is the song ''Into the Groove'' as performed  by any of Madonna, Shakira, or BTS (any member of BTS) (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "CLARIFICATION: This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show by Madonna, Shakira, or BTS (any member of BTS). If none of the songs listed in this event is the first qualifying song performed, all markets in this event will resolve to No.\n\nWhen determining the first qualifying song, the following are disregarded regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other tournament anthems, official tournament songs not performed by Madonna, Shakira, or BTS (any member of BTS), walk-on or entrance music, interstitial or transition music, and any background or venue music not performed by Madonna, Shakira, or BTS (any member of BTS).\n\nIf another artist (e.g., Justin Bieber) performs one or more songs before Madonna, Shakira, or BTS (any member of BTS), those performances are disregarded. The market instead resolves based on the first qualifying song reasonably begun by Madonna, Shakira, or BTS (any member of BTS), whether performed in full, in part, in a medley, or in a mashup.\n\nA song performed jointly by another artist and Madonna, Shakira, or BTS (any member of BTS) is a qualifying song if Madonna, Shakira, or the BTS member performs the song (i.e., its recognizable melody or lyrics are sung, at least reasonably begun). Merely appearing on stage\u2014such as dancing, speaking, or being introduced during another artist's song\u2014does not make that song a qualifying song.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:09:35Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-26JUL20-HUN",
+    "title": "Will Hung Up be the first song performed by any of Madonna, Shakira, or BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by any of Madonna, Shakira, or BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium is the song ''Hung Up'' as performed  by any of Madonna, Shakira, or BTS (any member of BTS) (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "CLARIFICATION: This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show by Madonna, Shakira, or BTS (any member of BTS). If none of the songs listed in this event is the first qualifying song performed, all markets in this event will resolve to No.\n\nWhen determining the first qualifying song, the following are disregarded regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other tournament anthems, official tournament songs not performed by Madonna, Shakira, or BTS (any member of BTS), walk-on or entrance music, interstitial or transition music, and any background or venue music not performed by Madonna, Shakira, or BTS (any member of BTS).\n\nIf another artist (e.g., Justin Bieber) performs one or more songs before Madonna, Shakira, or BTS (any member of BTS), those performances are disregarded. The market instead resolves based on the first qualifying song reasonably begun by Madonna, Shakira, or BTS (any member of BTS), whether performed in full, in part, in a medley, or in a mashup.\n\nA song performed jointly by another artist and Madonna, Shakira, or BTS (any member of BTS) is a qualifying song if Madonna, Shakira, or the BTS member performs the song (i.e., its recognizable melody or lyrics are sung, at least reasonably begun). Merely appearing on stage\u2014such as dancing, speaking, or being introduced during another artist's song\u2014does not make that song a qualifying song.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:09:35Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-26JUL20-DYN",
+    "title": "Will Dynamite be the first song performed by any of Madonna, Shakira, or BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by any of Madonna, Shakira, or BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium is the song ''Dynamite'' as performed  by any of Madonna, Shakira, or BTS (any member of BTS) (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "CLARIFICATION: This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show by Madonna, Shakira, or BTS (any member of BTS). If none of the songs listed in this event is the first qualifying song performed, all markets in this event will resolve to No.\n\nWhen determining the first qualifying song, the following are disregarded regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other tournament anthems, official tournament songs not performed by Madonna, Shakira, or BTS (any member of BTS), walk-on or entrance music, interstitial or transition music, and any background or venue music not performed by Madonna, Shakira, or BTS (any member of BTS).\n\nIf another artist (e.g., Justin Bieber) performs one or more songs before Madonna, Shakira, or BTS (any member of BTS), those performances are disregarded. The market instead resolves based on the first qualifying song reasonably begun by Madonna, Shakira, or BTS (any member of BTS), whether performed in full, in part, in a medley, or in a mashup.\n\nA song performed jointly by another artist and Madonna, Shakira, or BTS (any member of BTS) is a qualifying song if Madonna, Shakira, or the BTS member performs the song (i.e., its recognizable melody or lyrics are sung, at least reasonably begun). Merely appearing on stage\u2014such as dancing, speaking, or being introduced during another artist's song\u2014does not make that song a qualifying song.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:09:35Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-26JUL20-DAI",
+    "title": "Will Dai Dai be the first song performed by any of Madonna, Shakira, or BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by any of Madonna, Shakira, or BTS (any member of BTS) during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at New York New Jersey Stadium is the song ''Dai Dai'' as performed  by any of Madonna, Shakira, or BTS (any member of BTS) (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "CLARIFICATION: This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show by Madonna, Shakira, or BTS (any member of BTS). If none of the songs listed in this event is the first qualifying song performed, all markets in this event will resolve to No.\n\nWhen determining the first qualifying song, the following are disregarded regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other tournament anthems, official tournament songs not performed by Madonna, Shakira, or BTS (any member of BTS), walk-on or entrance music, interstitial or transition music, and any background or venue music not performed by Madonna, Shakira, or BTS (any member of BTS).\n\nIf another artist (e.g., Justin Bieber) performs one or more songs before Madonna, Shakira, or BTS (any member of BTS), those performances are disregarded. The market instead resolves based on the first qualifying song reasonably begun by Madonna, Shakira, or BTS (any member of BTS), whether performed in full, in part, in a medley, or in a mashup.\n\nA song performed jointly by another artist and Madonna, Shakira, or BTS (any member of BTS) is a qualifying song if Madonna, Shakira, or the BTS member performs the song (i.e., its recognizable melody or lyrics are sung, at least reasonably begun). Merely appearing on stage\u2014such as dancing, speaking, or being introduced during another artist's song\u2014does not make that song a qualifying song.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:09:35Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLLM1-26JUL13",
+  "series_ticker": "KXLLM1",
+  "title": "Best AI in Jul 2026?",
+  "close_time": "2026-07-13T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXLLM1-26JUL13-OPEN",
+    "title": "Best AI in Jul 2026?",
+    "rules_primary": "If OpenAI has the top-ranked LLM on Jul 13, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If two models are tied under Rank (UB), then the model with the highest Arena Score will win. If two models are still tied after that, then the model with the most votes will win. If two models are still tied after that, the model that was released earlier will win. Important information: When checking the source for this market, check the 'Remove Style Control' toggle.",
+    "close_time": "2026-07-13T14:00:00Z"
+   },
+   {
+    "ticker": "KXLLM1-26JUL13-ANTH",
+    "title": "Best AI in Jul 2026?",
+    "rules_primary": "If Anthropic has the top-ranked LLM on Jul 13, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If two models are tied under Rank (UB), then the model with the highest Arena Score will win. If two models are still tied after that, then the model with the most votes will win. If two models are still tied after that, the model that was released earlier will win. Important information: When checking the source for this market, check the 'Remove Style Control' toggle.",
+    "close_time": "2026-07-13T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXNEXTCHANCELLOR-27",
+  "series_ticker": "KXNEXTCHANCELLOR",
+  "title": "Will Yvette Cooper be the next Chancellor of the Exchequer?",
+  "close_time": "2026-07-21T03:16:30Z",
+  "markets": [
+   {
+    "ticker": "KXNEXTCHANCELLOR-27-YCOO",
+    "title": "Will Yvette Cooper be the next Chancellor of the Exchequer?",
+    "rules_primary": "If Yvette Cooper formally holds the position of Chancellor of the Exchequer before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+    "rules_secondary": "For the purposes of this Contract, \"formally holds Chancellor of the Exchequer\" means that an individual, company, or group has assumed Chancellor of the Exchequer in an official capacity\u2014whether by appointment, election, succession, confirmation, designation, or acting/interim assignment\u2014and has performed or is recognized to perform the duties or responsibilities of that role for any length of time after Issuance.",
+    "close_time": "2026-07-21T03:16:30Z"
+   },
+   {
+    "ticker": "KXNEXTCHANCELLOR-27-WSTR",
+    "title": "Will Wes Streeting be the next Chancellor of the Exchequer?",
+    "rules_primary": "If Wes Streeting formally holds the position of Chancellor of the Exchequer before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+    "rules_secondary": "For the purposes of this Contract, \"formally holds Chancellor of the Exchequer\" means that an individual, company, or group has assumed Chancellor of the Exchequer in an official capacity\u2014whether by appointment, election, succession, confirmation, designation, or acting/interim assignment\u2014and has performed or is recognized to perform the duties or responsibilities of that role for any length of time after Issuance.",
+    "close_time": "2026-07-21T03:16:30Z"
+   },
+   {
+    "ticker": "KXNEXTCHANCELLOR-27-SMAH",
+    "title": "Will Shabana Mahmood be the next Chancellor of the Exchequer?",
+    "rules_primary": "If Shabana Mahmood formally holds the position of Chancellor of the Exchequer before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+    "rules_secondary": "For the purposes of this Contract, \"formally holds Chancellor of the Exchequer\" means that an individual, company, or group has assumed Chancellor of the Exchequer in an official capacity\u2014whether by appointment, election, succession, confirmation, designation, or acting/interim assignment\u2014and has performed or is recognized to perform the duties or responsibilities of that role for any length of time after Issuance.",
+    "close_time": "2026-07-21T03:16:30Z"
+   },
+   {
+    "ticker": "KXNEXTCHANCELLOR-27-PCMF",
+    "title": "Will Pat McFadden be the next Chancellor of the Exchequer?",
+    "rules_primary": "If Pat McFadden formally holds the position of Chancellor of the Exchequer before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+    "rules_secondary": "For the purposes of this Contract, \"formally holds Chancellor of the Exchequer\" means that an individual, company, or group has assumed Chancellor of the Exchequer in an official capacity\u2014whether by appointment, election, succession, confirmation, designation, or acting/interim assignment\u2014and has performed or is recognized to perform the duties or responsibilities of that role for any length of time after Issuance.",
+    "close_time": "2026-07-21T03:16:30Z"
+   },
+   {
+    "ticker": "KXNEXTCHANCELLOR-27-EMIL",
+    "title": "Will Ed Miliband be the next Chancellor of the Exchequer?",
+    "rules_primary": "If Ed Miliband formally holds the position of Chancellor of the Exchequer before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+    "rules_secondary": "For the purposes of this Contract, \"formally holds Chancellor of the Exchequer\" means that an individual, company, or group has assumed Chancellor of the Exchequer in an official capacity\u2014whether by appointment, election, succession, confirmation, designation, or acting/interim assignment\u2014and has performed or is recognized to perform the duties or responsibilities of that role for any length of time after Issuance.",
+    "close_time": "2026-07-21T03:16:30Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXRNCCASH-26JUN30",
+  "series_ticker": "KXRNCCASH",
+  "title": "Will the Republican National Committee's cash on hand be above 145000000 as of June 30, 2026?",
+  "close_time": "2026-07-20T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXRNCCASH-26JUN30-A145000000",
+    "title": "Will the Republican National Committee's cash on hand be above 145000000 as of June 30, 2026?",
+    "rules_primary": "If the Republican National Committee's cash on hand is above 145 million dollars as of June 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-20T13:59:00Z"
+   },
+   {
+    "ticker": "KXRNCCASH-26JUN30-A140000000",
+    "title": "Will the Republican National Committee's cash on hand be above 140000000 as of June 30, 2026?",
+    "rules_primary": "If the Republican National Committee's cash on hand is above 140 million dollars as of June 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-20T13:59:00Z"
+   },
+   {
+    "ticker": "KXRNCCASH-26JUN30-A135000000",
+    "title": "Will the Republican National Committee's cash on hand be above 135000000 as of June 30, 2026?",
+    "rules_primary": "If the Republican National Committee's cash on hand is above 135 million dollars as of June 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-20T13:59:00Z"
+   },
+   {
+    "ticker": "KXRNCCASH-26JUN30-A125000000",
+    "title": "Will the Republican National Committee's cash on hand be above 125000000 as of June 30, 2026?",
+    "rules_primary": "If the Republican National Committee's cash on hand is above 125 million dollars as of June 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-20T13:59:00Z"
+   },
+   {
+    "ticker": "KXRNCCASH-26JUN30-A120000000",
+    "title": "Will the Republican National Committee's cash on hand be above 120000000 as of June 30, 2026?",
+    "rules_primary": "If the Republican National Committee's cash on hand is above 120 million dollars as of June 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-20T13:59:00Z"
+   },
+   {
+    "ticker": "KXRNCCASH-26JUN30-A115000000",
+    "title": "Will the Republican National Committee's cash on hand be above 115000000 as of June 30, 2026?",
+    "rules_primary": "If the Republican National Committee's cash on hand is above 115 million dollars as of June 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-20T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPPHOTO-26JUL12",
+  "series_ticker": "KXTRUMPPHOTO",
+  "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 7 between Jul 6, 2026 and Jul 12, 2026?",
+  "close_time": "2026-07-13T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPPHOTO-26JUL12-7",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 7 between Jul 6, 2026 and Jul 12, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jul 6, 2026 and Jul 12, 2026 is exactly 7, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-07-13T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPPHOTO-26JUL12-6",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 6 between Jul 6, 2026 and Jul 12, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jul 6, 2026 and Jul 12, 2026 is exactly 6, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-07-13T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPPHOTO-26JUL12-5",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 5 between Jul 6, 2026 and Jul 12, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jul 6, 2026 and Jul 12, 2026 is exactly 5, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-07-13T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPPHOTO-26JUL12-4",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 4 between Jul 6, 2026 and Jul 12, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jul 6, 2026 and Jul 12, 2026 is exactly 4, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-07-13T14:00:00Z"
+   }
+  ]
+ }
+]

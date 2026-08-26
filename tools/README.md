@@ -43,7 +43,19 @@ without the contract.
   insider_judgment/backtest.py` is a generator *precisely so* the driver
   can checkpoint after every series, and `theories/insider_bias/
   mention_family/backtest.py` records hits and saves its checkpoint file
-  per series, skipping completed series on resume.
+  per series, skipping completed series on resume. The rule covers
+  **token spend the same as network time**: LLM usage can cut out at any
+  moment, so judgment work is batched, each batch's inputs are written to
+  disk before any model runs, each subagent writes its own verdicts to a
+  file, and every batch is ingested and committed before the next one is
+  dispatched — a future session that never saw this one can ingest a
+  stranded verdicts file and score however far the run got.
+  `theories/insider_bias/insider_judgment/backtest_judged.py` is the
+  worked example (sample → per-batch payload files → dispatch →
+  per-batch idempotent ingest → score-what-landed). Raw fetched payloads
+  worth keeping go through `tools/kalshi/cache.py`
+  (`db/history_cache.db`) so a variant re-test never re-walks the
+  network.
 - **Prices are decimal dollars in [0, 1]. Edge is in percentage points.**
   Conversion happens at the API boundary; no provider's wire format escapes
   its client module.

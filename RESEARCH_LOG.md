@@ -970,3 +970,40 @@ criterion 4 stays verified by inspection for now.
 session that researches inside one theory — its findings belong in that
 theory's `NOTES.md`, with a pointer from here, not a copy. Nothing about
 theory standing, ranking, or the live board changed.
+
+
+## 2026-08-25 — insider_judgment tier-A full coverage: the gate separates, but what it keeps is only breakeven; judged sample launched
+
+**Did:** The non-mention full-coverage walk finished: 5,583 series,
+7,948 survivors, 3,195 screen hits (3,181 with usable settlements, 831
+events, 325 series), all recorded under
+`run_id=backtest-2026-08-25-insider-fullcov` (tier A, run row recorded)
+with deterministic gate tags on every row and every raw payload/candle
+banked in the history cache as fetched. Then scored it, updated idea 14
+with the replication result, and launched the tier-B judged sample
+(batches 1-2 of 8 dispatched to Sonnet subagents; save-before-spend
+artifacts committed first in cfed04a).
+
+**Learned:** (1) *The gate discriminates, at scale and in the right
+direction*: gate-plausible +0.71pts net (n=1,561) vs gated-out -2.18
+(n=1,620) — a ~2.9pt gap. But (2) *what the gate keeps is roughly
+fair-priced, not profitable*: the +0.71 is nominally p=0.04 by rows but
+event-clustered t is -0.25 (1,561 rows on only 456 events), and the
+84-row sample's +4.40 headline does not survive — same lesson as
+mention's +5.48: small samples of this screen are confidently wrong.
+So screen+gate alone earns nothing; the theory's remaining case rests
+entirely on judgment adding selection within the plausible pool, which
+is precisely what the judged sample measures. (3) The no-side-premium
+asymmetry partially echoes on this disjoint population (YES 0.80-0.90
+significantly overpriced; NO beats YES below \$0.90) but the mention
+run's NO>=0.90 cell does not strongly replicate (+1.04, p=0.09) and the
+band structure moves — durable claim downgraded to side-level, recorded
+on idea 14. (4) Curiosity, not a claim: the gated "future price:
+compute/collectible" family scored +4.56 (n=152, p=0.038, but t_ev
++0.12) — GPU/collectible price ladders; post-hoc, cluster-weak, noted
+only so a future session knows it was seen.
+
+**Next:** Ingest and commit each judged batch as it lands; score bucket
+calibration + interpretation value vs the screen+gate baseline; then the
+final write-up. Backfill of pre-cache raw data is running in parallel.
+

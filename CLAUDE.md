@@ -478,6 +478,23 @@ no prompt. That is one more reason to prefer one.
 
 ## Data conventions
 
+**The governing principle: save as much as you can, while you can.**
+Every rule in this section is an instance of it. Data in this domain is
+perishable — markets close, Kalshi archives its settled history after ~60
+days, model usage cuts out mid-run, sessions die — so anything fetched,
+computed, judged, or decided that is not on disk at the moment it exists
+is a candidate for permanent loss, discovered exactly when it is needed.
+When in doubt, persist: raw payloads over distillates, incremental writes
+over one final write, durable stores over session memory, and the context
+that produced a result alongside the result. Storage is the cheapest
+input this project consumes; everything else — network time, token
+spend, a market that no longer trades — is expensive or impossible to
+buy back. The test: a future session that never saw this one should be
+able to reconstruct any result from disk, and ask questions of old data
+that nobody thought to ask when it was captured. The rules below are
+examples, not the boundary — a new situation that smells like "we could
+keep this, but it's a hassle" resolves to keeping it.
+
 - **SQLite** (`db/market_edge.db`) is the source of truth for structured facts.
 - **`THEORY.md`** is the source of truth for a hypothesis and its procedure.
 - **`NOTES.md`** in a theory folder is that theory's raw lab notebook —
@@ -514,14 +531,20 @@ no prompt. That is one more reason to prefer one.
   is identical to a freshly fetched one and any field Kalshi sends stays
   available to a future theory. ~200 MB per pull is the price of not deciding
   today which questions tomorrow may ask.
-- **Record while you collect.** Any collection running longer than a minute
-  writes incrementally — per series, per page, per market — to the DB or a
-  resumable checkpoint, never memory-only with one write at the end. An
-  interrupted run resumes; it never restarts from zero. This is doubly
-  binding because source data expires: Kalshi archives settled markets out
-  of its public API ~60 days after close, so data lost mid-run may be
-  unrecoverable upstream by the time you re-run. Full convention and worked
-  examples in `tools/README.md`.
+- **Record while you collect — and while you spend.** Any collection
+  running longer than a minute writes incrementally — per series, per page,
+  per market — to the DB or a resumable checkpoint, never memory-only with
+  one write at the end. An interrupted run resumes; it never restarts from
+  zero. This is doubly binding because source data expires: Kalshi archives
+  settled markets out of its public API ~60 days after close, so data lost
+  mid-run may be unrecoverable upstream by the time you re-run. The same
+  rule governs **token spend**: model usage can cut out at any moment, so
+  work that consumes it is structured in batches whose results persist
+  before the next batch is dispatched — inputs written to disk before any
+  spend, each subagent writing its own output to a file, ingestion
+  runnable by a future session that never saw this one. However far a run
+  got is analyzable; nothing judged is ever re-judged because a session
+  died. Full convention and worked examples in `tools/README.md`.
 
 ## Getting started
 
