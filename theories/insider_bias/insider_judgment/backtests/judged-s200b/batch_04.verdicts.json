@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXEMMYNOMS-26-DACTR",
+  "insider_group": "Television Academy nominating-round vote tabulators/accountants who have already tallied the Drama Actress nomination ballots ahead of the Jul 8 announcement",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Emmy nominations are decided by a ballot that closes weeks before the announcement, and a small accounting/tabulation team already has the finalized nominee list before it is read live. Today (Jul 5) is only 3 days before the Jul 8 announcement, so the list is almost certainly already locked internally. This is the closest analogue to the 'board that has already voted' strong case.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXGEMINI-GEMI35P",
+  "insider_group": "Google DeepMind's release engineering and product leadership, who track internal readiness and target ship windows for the next Gemini model before any public date is confirmed",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Google's team knows its own roadmap and testing status better than the public, but naming ('Gemini 3.5 Pro' specifically) and exact ship date are marketing calls made late, and AI-lab release timing slips routinely. This is the textbook 'company knows its roadmap but may not have decided' moderate case, spread across a 7-week ladder of dates.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLIUSACOUPLE-26AUG31",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "The winning couple is determined by a public vote revealed live at the finale, not decided by production in advance -- per the mechanism sheet, Love Island USA's final ranking 'combines a public vote revealed live.' No group can already know an outcome that depends on a vote not yet cast.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLIUSAELIMINATIONW-26JUL03",
+  "insider_group": "Love Island USA production crew and villa cast, who witness/know each week's outcome roughly a day before the near-live broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "The show airs roughly a day behind the villa, so production and cast know most of an episode's events before it airs and before the market closes. This is softer than a fully pre-taped show because weekly eliminations often hinge on a public app vote taken shortly before the episode, so the exact eliminated contestant isn't fully locked until close to air.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLIUSAWINNERS-26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same underlying competition as the couple-winner market: the individual winner is set by a live public vote at the finale, a decision that has not yet been made and that production does not control. No specific insider group can know an outcome that depends on a vote not yet cast.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLOVEISLANDUSARANK-26AUG31R2",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Second-place finish is set by the same live, public-vote-driven finale ranking as the winner markets. There is no small group that already knows the final order before that live vote is cast.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPSONG-26JUL11",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Billboard's Hot 100 is an aggregate of millions of listeners' streaming/sales behavior over a tracking week that, as of the Jul 6 close, has barely started. Labels can forecast from partial mid-week data, but per the mechanism sheet 'nobody decides the number' -- this is the aggregate-behavior NO-ish case almost by definition.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPUFC-26JUL",
+  "insider_group": "Trump's entourage/Secret Service detail and UFC/event organizers coordinating his security and appearance logistics",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Public-figure appearance plans are typically known to a small circle (entourage, hosts, security) hours to days ahead, matching the mechanism sheet's personal-attendance family. It is not 'strong' because such plans are explicitly changeable up to the moment.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLOVEISLANDUSARANK-26AUG31RTOP3",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Top-3 status is decided in the same live-vote finale as the other ranking/winner markets for this season -- an outcome not yet decided by anyone, insider or otherwise.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSUMMERHOUSECAST-27",
+  "insider_group": "Bravo/production casting team, who would know their season-11 cast list before any public announcement",
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Casting decisions are normally locked by production before being announced, which would argue for moderate, but this market's resolution window runs all the way to Jan 1, 2027 -- nearly 6 months past the Jul 14 close -- with nothing in the payload indicating casting is already finalized. That long an open window makes this closer to a rate question ('will they eventually be cast') than a 'someone already knows' question.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXUSADATACENTERS-26DEC31",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Data Center Map's listing could lag real-world buildout, but that cuts against there being confident insider knowledge, not for it.",
+  "rationale": "This resolves on a third-party aggregator's running count of data centers built by many independent companies -- an aggregate-behavior/trend outcome, not a decision any single group has already made. Nobody 'knows' the count that will exist on a future date; it can only be forecast from growth trend.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPDOLLAR-26",
+  "insider_group": "US Mint/Treasury officials and the design review committee, who would know internally once a final coin design is selected",
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Government design decisions are typically made internally before public announcement, which is the moderate template, but the resolution window runs to Jan 1, 2027 (~5.5 months past the Jul 15 close) with nothing here confirming a design has actually been finalized yet. Given the long open window, this reads as 'has a decision been made at all' rather than 'a known-but-unannounced decision,' a warning sign for lowering the bucket.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPTIME-26JUL04",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "This is exactly the mechanism sheet's individual-behavior family: Trump's specific hour-by-hour posting pattern is 'genuinely spontaneous,' with no group holding advance knowledge of a particular early-morning post. It is also a repeated-window rate question (multiple days x specific hour) rather than a single already-decided fact.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BAMS",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, once fan voting for the category closes ahead of the live broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Per the mechanism sheet, major award winners are often decided by ballots/votes that close before the ceremony, with a small tabulation group knowing the result first -- but ESPYS categories are largely fan-voted online, and some such categories stay open until near or during the show, so it's uncertain whether voting has closed by market close. That uncertainty keeps this at moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BAWAD",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, once fan voting for the category closes ahead of the live broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same reasoning as the other ESPYS categories: a tabulation group likely knows the winner once fan voting closes, but ESPYS voting windows sometimes run close to or during the show itself, so this stays moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BCP",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, once fan voting for the category closes ahead of the live broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same reasoning as the other ESPYS categories: a tabulation group likely knows the winner once fan voting closes, but ESPYS voting windows sometimes run close to or during the show itself, so this stays moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BD",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, once fan voting for the category closes ahead of the live broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same reasoning as the other ESPYS categories: a tabulation group likely knows the winner once fan voting closes, but ESPYS voting windows sometimes run close to or during the show itself, so this stays moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BMP",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, once fan voting for the category closes ahead of the live broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title calls the category 'Best MLB Player' but rules_primary resolves on the official award name 'Best Pro Baseball Player' -- same award, just different naming; not a substantive resolution risk but worth flagging as a title/rules mismatch.",
+  "resolution_source_risk": null,
+  "rationale": "Same reasoning as the other ESPYS categories: a tabulation group likely knows the winner once fan voting closes, but ESPYS voting windows sometimes run close to or during the show itself, so this stays moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BNP",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, once fan voting for the category closes ahead of the live broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title calls the category 'Best NFL Player' but rules_primary resolves on the official award name 'Best Pro Football Player' -- same award, just different naming; not a substantive resolution risk but worth flagging as a title/rules mismatch.",
+  "resolution_source_risk": null,
+  "rationale": "Same reasoning as the other ESPYS categories: a tabulation group likely knows the winner once fan voting closes, but ESPYS voting windows sometimes run close to or during the show itself, so this stays moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BP",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, once fan voting for the category closes ahead of the live broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "The nominated plays already happened last season; the only open question is which wins the fan vote. Same tabulation-group logic as the other ESPYS categories keeps this at moderate rather than strong, since voting may not be fully closed by market close.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXESPYS-26BTP",
+  "insider_group": "ESPN/ESPYS production and vote-tabulation staff, once fan voting for the category closes ahead of the live broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same reasoning as the other ESPYS categories: a tabulation group likely knows the winner once fan voting closes, but ESPYS voting windows sometimes run close to or during the show itself, so this stays moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSPACEXSTARSHIP-13",
+  "insider_group": "SpaceX's launch and flight-readiness team plus FAA licensing officials, who track real vehicle/pad status and target windows before public NET-date announcements",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Rules state that if FAA source-agency data is delayed, the market expires only after the data updates (Kalshi Rule 6.3b) -- a real chance the resolution source lags the nominal close.",
+  "rationale": "SpaceX and the FAA know Starship's technical/regulatory readiness ahead of the public, matching the 'roadmap known, not yet decided' moderate template -- but Starship launch dates are famous for slipping, and much of what SpaceX knows is also publicized in near-real time, narrowing the edge over the public. Several later-dated sub-markets (Aug/Sep deadlines) share an identical Jul 25 close time, which most likely reflects the ladder closing early once an actual launch attempt resolves it, not a rules trap.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFEATURE-26DAU",
+  "insider_group": "The lead artist's team, label, and collaborators, who would know a locked tracklist/feature list before the album's public release",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Album tracklists and features are known to the artist's camp and label ahead of release and leak often, per the mechanism sheet -- but nothing in the payload confirms this album's tracklist is finalized yet, and plans do change late, so this stays at moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFEATURE-26SET",
+  "insider_group": "The lead artist's team and label, who would know SET IN STONE's finalized feature list before release",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Rules require the feature to appear specifically on the Spotify version of the album -- a feature present only on another platform/version doesn't count. This is a real trap the title doesn't convey.",
+  "resolution_source_risk": "If the Spotify release differs from other versions of the album, a genuine feature could still resolve No.",
+  "rationale": "Same release/feature mechanism as the other feature market -- artist/label insiders would know the real tracklist before release, and leaks are common in hip-hop. Kept at moderate rather than strong since the payload gives no confirmation the album is finished, and the Spotify-only clause adds real resolution risk independent of what insiders know.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLIUSAELIMINATION-26JUL05",
+  "insider_group": "Love Island USA production crew and villa cast, who know the outcome roughly a day before near-live broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same reasoning as the weekly elimination-ladder event: near-live taping lag gives production and cast real lead time on this single contestant's fate, tempered by the show's use of public app votes close to air.",
+  "researched": false
+ }
+]
