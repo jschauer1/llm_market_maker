@@ -57,6 +57,12 @@ def recent(
     if taker_only:
         params["takerOnly"] = "true"
     if min_usd is not None:
+        # filterAmount alone filters on SHARE COUNT, not dollars — a
+        # $8,175 trade (10k+ shares at $0.82) sailed through a "$10k"
+        # filter on 2026-08-26 and failed the live-contract test.
+        # filterType=CASH makes it USD notional, which is what min_usd
+        # promises.
+        params["filterType"] = "CASH"
         params["filterAmount"] = min_usd
 
     payload = get_json(f"{DATA_URL}/trades", params=params)
