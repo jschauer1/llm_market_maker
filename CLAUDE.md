@@ -169,8 +169,10 @@ implementation; delete the local copy), elevating knowledge is a
 Stays in the theory folder: screen, pricing and pipeline code; the backtest
 replay (`backtest.py`, or the family's shared parent when siblings replay
 one screen — never `tools/`); judging prompts (`prompts/`); the run procedure
-(`RUNBOOK.md`); raw research notes (`NOTES.md`); and any research data the
-theory reads. Always elevated: durable facts (`theory_facts`), everything
+(`RUNBOOK.md`); raw research notes (`NOTES.md`); a campaign's own inputs and
+write-up (`backtests/<run-id>/`, holding the payloads, verdict files and a
+`RESULTS.md` whose numbers stay regenerable from the ledger); and any
+research data the theory reads. Always elevated: durable facts (`theory_facts`), everything
 measured (the ledger and scores), ideas considered or dropped (the idea
 registry, which exists to deduplicate *across* theories), tests and their
 fixtures (`tests/theories/`, `tests/characterization/` — the repo runs one
@@ -228,8 +230,10 @@ upward, not a repo level that reads every notebook. Symmetrically, a theory
 folder must stay self-sufficient to run: **no imports from a sibling
 theory's folder** — shared ancestry goes through a shared parent module
 (`theories/insider_bias/` holds `screen.py`, `replay.py` and `families.py`
-for exactly this reason) or through `tools/`. Enforced by
-`tests/test_conventions.py::test_no_theory_imports_a_sibling_theory`.
+for exactly this reason; its `README.md` says what may join them) or
+through `tools/`. Enforced by
+`tests/test_conventions.py::test_no_theory_imports_a_sibling_theory`. A
+family folder is not a theory: it has no `THEORY.md` and records no bets.
 
 ## Never state a probability you introspected
 
@@ -478,6 +482,16 @@ every stage that judged: `gate`, `analysis`, `final_review`.
 
 A fully mechanical theory declares nothing and records nothing, because it has
 no prompt. That is one more reason to prefer one.
+
+**Moving a prompt or a judging module breaks the record unless you repoint
+it.** A `judgment_runs` row names the file that judged; rename or relocate
+that file and the row becomes a dangling pointer, invisible until someone
+tries to reproduce a result. When you move one, update the affected rows'
+`prompt_path` and say in their `notes` where it used to live — and, if the
+content changed too, the `git show <rev>:<path>` that retrieves the exact
+version that ran, since `prompt_sha256` stays the authority on *what* ran.
+`tests/test_conventions.py::test_every_recorded_prompt_path_still_resolves`
+fails at the commit that breaks a path rather than months later.
 
 ## Data conventions
 

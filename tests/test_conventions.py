@@ -166,3 +166,45 @@ def test_no_theory_imports_a_sibling_theory():
         "through a shared parent module or tools/ instead:\n"
         + "\n".join(problems)
     )
+
+def test_every_recorded_prompt_path_still_resolves():
+    """Provenance survives a refactor, or it was never provenance.
+
+    A judgment_runs row says which prompt judged a set of rows. Moving or
+    renaming that file silently turns the row into a dangling pointer, and
+    the loss is invisible until someone tries to reproduce a result -- by
+    which time the move is buried in history. This catches it at the commit
+    that moves the file.
+
+    prompt_sha256 remains the authority on WHAT ran: a path may legitimately
+    point at a file whose content has since changed, and each such row's
+    notes carry the git command that retrieves the exact version. This test
+    only asserts the pointer still lands somewhere real.
+
+    Read-only against the working database, and skipped where there is none
+    (a fresh clone, or CI) rather than creating one as a side effect.
+    """
+    if not db.DEFAULT_DB_PATH.exists():
+        pytest.skip(
+            f"{db.DEFAULT_DB_PATH} does not exist -- no recorded provenance "
+            "to check in this environment"
+        )
+    conn = db.connect(db.DEFAULT_DB_PATH)
+    try:
+        rows = list(conn.execute(
+            "SELECT run_id, stage, prompt_path FROM judgment_runs "
+            "WHERE prompt_path IS NOT NULL"
+        ))
+    finally:
+        conn.close()
+    missing = [
+        f"{r['run_id']} ({r['stage']}) -> {r['prompt_path']}"
+        for r in rows if not (ROOT / r["prompt_path"]).exists()
+    ]
+    assert missing == [], (
+        "a recorded prompt path no longer resolves -- the run it judged is "
+        "no longer reproducible from the ledger alone. Repoint the row to "
+        "the file's new home and record the original path (and, if the "
+        "content also changed, the git command that retrieves the version "
+        "that ran) in its notes:\n" + "\n".join(missing)
+    )
