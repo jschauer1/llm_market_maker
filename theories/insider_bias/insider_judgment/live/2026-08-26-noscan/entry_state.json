@@ -1,0 +1,752 @@
+{
+ "KXACTBLUETOP-26AUG28-JOSS": {
+  "price": 0.85,
+  "dtc": 1.53,
+  "spread": 0.020000000000000018,
+  "volume": 4323.28
+ },
+ "KXAKDROPOUTAUG-26-DSULJR": {
+  "price": 0.9,
+  "dtc": 5.11,
+  "spread": 0.009999999999999995,
+  "volume": 1273.6
+ },
+ "KXALBUMRELEASEDATE-NEWKEN-26SEP01": {
+  "price": 0.95,
+  "dtc": 5.53,
+  "spread": 0.06,
+  "volume": 3869.02
+ },
+ "KXALBUMRELEASEDATE-NEWMIL-26SEP01": {
+  "price": 0.97,
+  "dtc": 5.53,
+  "spread": 0.03,
+  "volume": 2867.35
+ },
+ "KXAMZNCC-26SEP07-T107": {
+  "price": 0.97,
+  "dtc": 11.05,
+  "spread": 0.06,
+  "volume": 6390.6
+ },
+ "KXAMZNCC-26SEP07-T108": {
+  "price": 0.97,
+  "dtc": 11.05,
+  "spread": 0.05,
+  "volume": 6099.59
+ },
+ "KXARGNACBBTTS-26AUG26CACMOR-BTTS": {
+  "price": 0.81,
+  "dtc": 2.22,
+  "spread": 0.04999999999999999,
+  "volume": 1035.13
+ },
+ "KXARGNACBGAME-26AUG26CACMOR-MOR": {
+  "price": 0.73,
+  "dtc": 2.22,
+  "spread": 0.04999999999999999,
+  "volume": 23210.71
+ },
+ "KXARGNACBSPREAD-26AUG26CACMOR-MOR2": {
+  "price": 0.94,
+  "dtc": 2.22,
+  "spread": 0.07,
+  "volume": 1081.34
+ },
+ "KXARGNACBTOTAL-26AUG26CACMOR-3": {
+  "price": 0.9,
+  "dtc": 2.22,
+  "spread": 0.06,
+  "volume": 2116.82
+ },
+ "KXBIGBROTHERELIMINATION-26AUG27-DRE": {
+  "price": 0.86,
+  "dtc": 1.11,
+  "spread": 0.009999999999999981,
+  "volume": 46308.41
+ },
+ "KXBIGBROTHERELIMINATION-26AUG27-TAY": {
+  "price": 0.65,
+  "dtc": 1.11,
+  "spread": 0.010000000000000009,
+  "volume": 25772.12
+ },
+ "KXBOLOJANOUT-26JUL-SEP01": {
+  "price": 0.91,
+  "dtc": 5.11,
+  "spread": 0.010000000000000009,
+  "volume": 1270.43
+ },
+ "KXBOLPDIVGAME-26AUG26BLOCDT-CDT": {
+  "price": 0.85,
+  "dtc": 2.22,
+  "spread": 0.020000000000000018,
+  "volume": 4500.11
+ },
+ "KXBOLPDIVGAME-26AUG26BLOCDT-TIE": {
+  "price": 0.77,
+  "dtc": 2.22,
+  "spread": 0.01999999999999999,
+  "volume": 4294.12
+ },
+ "KXBOLPDIVGAME-26AUG27BOLABB-TIE": {
+  "price": 0.94,
+  "dtc": 3.22,
+  "spread": 0.020000000000000004,
+  "volume": 1472.04
+ },
+ "KXCABLEAVE-26MAY22-26SEP": {
+  "price": 0.91,
+  "dtc": 6.11,
+  "spread": 0.05000000000000002,
+  "volume": 1393.08
+ },
+ "KXCANUSDEAL-26-26SEP01": {
+  "price": 0.97,
+  "dtc": 5.11,
+  "spread": 0.03,
+  "volume": 660.12
+ },
+ "KXCFILCC-26SEP07-T102": {
+  "price": 0.92,
+  "dtc": 11.05,
+  "spread": 0.05,
+  "volume": 655.0
+ },
+ "KXCFILCC-26SEP07-T104": {
+  "price": 0.95,
+  "dtc": 11.05,
+  "spread": 0.06,
+  "volume": 870.56
+ },
+ "KXCFILCC-26SEP07-T105": {
+  "price": 0.97,
+  "dtc": 11.05,
+  "spread": 0.07,
+  "volume": 580.72
+ },
+ "KXCFILCC-26SEP07-T106": {
+  "price": 0.97,
+  "dtc": 11.05,
+  "spread": 0.07,
+  "volume": 522.0
+ },
+ "KXCFILCC-26SEP07-T107": {
+  "price": 0.97,
+  "dtc": 11.05,
+  "spread": 0.04000000000000001,
+  "volume": 676.12
+ },
+ "KXCFILCC-26SEP07-T108": {
+  "price": 0.97,
+  "dtc": 11.05,
+  "spread": 0.04000000000000001,
+  "volume": 634.0
+ },
+ "KXCHLLDPGAME-26AUG31UCOHF-OHF": {
+  "price": 0.8,
+  "dtc": 7.23,
+  "spread": 0.01999999999999999,
+  "volume": 690.0
+ },
+ "KXCHNSLGAME-26AUG28DALBJG-DAL": {
+  "price": 0.7,
+  "dtc": 3.68,
+  "spread": 0.010000000000000009,
+  "volume": 894.78
+ },
+ "KXCMGCC-26SEP07-T100.5": {
+  "price": 0.96,
+  "dtc": 11.05,
+  "spread": 0.060000000000000005,
+  "volume": 1395.27
+ },
+ "KXCMGCC-26SEP07-T101": {
+  "price": 0.96,
+  "dtc": 11.05,
+  "spread": 0.04,
+  "volume": 950.34
+ },
+ "KXCMGCC-26SEP07-T101.5": {
+  "price": 0.96,
+  "dtc": 11.05,
+  "spread": 0.04,
+  "volume": 1059.85
+ },
+ "KXCMGCC-26SEP07-T102": {
+  "price": 0.97,
+  "dtc": 11.05,
+  "spread": 0.04000000000000001,
+  "volume": 626.34
+ },
+ "KXCMGCC-26SEP07-T102.5": {
+  "price": 0.97,
+  "dtc": 11.05,
+  "spread": 0.03,
+  "volume": 1159.26
+ },
+ "KXCMGCC-26SEP07-T103": {
+  "price": 0.97,
+  "dtc": 11.05,
+  "spread": 0.03,
+  "volume": 617.0
+ },
+ "KXCMGCC-26SEP07-T103.5": {
+  "price": 0.97,
+  "dtc": 11.05,
+  "spread": 0.03,
+  "volume": 909.0
+ },
+ "KXCMGCC-26SEP07-T99": {
+  "price": 0.9,
+  "dtc": 11.05,
+  "spread": 0.03,
+  "volume": 3662.86
+ },
+ "KXCOSTCC-26SEP07-T96": {
+  "price": 0.88,
+  "dtc": 11.05,
+  "spread": 0.05000000000000002,
+  "volume": 1379.97
+ },
+ "KXCOSTFT-26SEP07-T96": {
+  "price": 0.78,
+  "dtc": 11.05,
+  "spread": 0.05000000000000002,
+  "volume": 1435.74
+ },
+ "KXCOSTFT-26SEP07-T98": {
+  "price": 0.95,
+  "dtc": 11.05,
+  "spread": 0.039999999999999994,
+  "volume": 699.49
+ },
+ "KXCOSTFT-26SEP07-T99": {
+  "price": 0.97,
+  "dtc": 11.05,
+  "spread": 0.04000000000000001,
+  "volume": 546.05
+ },
+ "KXCOUNTYCHAMPMATCH-26AUG270600GLODUR-GLO": {
+  "price": 0.87,
+  "dtc": 6.37,
+  "spread": 0.01999999999999999,
+  "volume": 2601.56
+ },
+ "KXCPLMATCH-26AUG261900STLTKR-TKR": {
+  "price": 0.7,
+  "dtc": 2.07,
+  "spread": 0.020000000000000018,
+  "volume": 909940.66
+ },
+ "KXDASHAPP-26SEP07-T104": {
+  "price": 0.95,
+  "dtc": 11.05,
+  "spread": 0.039999999999999994,
+  "volume": 3453.51
+ },
+ "KXDIESELD-26AUG27-T5.625": {
+  "price": 0.76,
+  "dtc": 0.2,
+  "spread": 0.040000000000000036,
+  "volume": 1149.34
+ },
+ "KXDISNEYAPP-26SEP07-T132": {
+  "price": 0.88,
+  "dtc": 11.05,
+  "spread": 0.05000000000000002,
+  "volume": 501.0
+ },
+ "KXDKSCC-26SEP07-T90": {
+  "price": 0.93,
+  "dtc": 11.05,
+  "spread": 0.06,
+  "volume": 950.01
+ },
+ "KXDKSCC-26SEP07-T92": {
+  "price": 0.93,
+  "dtc": 11.05,
+  "spread": 0.039999999999999994,
+  "volume": 762.01
+ },
+ "KXDKSCC-26SEP07-T94": {
+  "price": 0.97,
+  "dtc": 11.05,
+  "spread": 0.06,
+  "volume": 635.77
+ },
+ "KXEGYPLGAME-26AUG27MODGHA-GHA": {
+  "price": 0.79,
+  "dtc": 2.78,
+  "spread": 0.010000000000000009,
+  "volume": 505.97
+ },
+ "KXELITESERIENGAME-26AUG29VIKAFK-AFK": {
+  "price": 0.9,
+  "dtc": 4.87,
+  "spread": 0.009999999999999995,
+  "volume": 520.6
+ },
+ "KXESPNAPP-26SEP07-T45": {
+  "price": 0.94,
+  "dtc": 11.05,
+  "spread": 0.07,
+  "volume": 1416.21
+ },
+ "KXESPNAPP-26SEP07-T50": {
+  "price": 0.94,
+  "dtc": 11.05,
+  "spread": 0.03,
+  "volume": 2834.21
+ },
+ "KXEURUSDAW-26AUG28-1.1730": {
+  "price": 0.93,
+  "dtc": 1.82,
+  "spread": 0.06,
+  "volume": 983.3
+ },
+ "KXEURUSDAW-26AUG28-1.1770": {
+  "price": 0.97,
+  "dtc": 1.82,
+  "spread": 0.03,
+  "volume": 924.5
+ },
+ "KXFANDUELAPP-26SEP07-T60": {
+  "price": 0.94,
+  "dtc": 11.05,
+  "spread": 0.05,
+  "volume": 4974.91
+ },
+ "KXFANDUELAPP-26SEP07-T80": {
+  "price": 0.95,
+  "dtc": 11.05,
+  "spread": 0.03,
+  "volume": 3413.05
+ },
+ "KXFIBAGAME-26AUG270830CODAGO-COD": {
+  "price": 0.83,
+  "dtc": 2.47,
+  "spread": 0.009999999999999981,
+  "volume": 3066.65
+ },
+ "KXFIBAGAME-26AUG271200CHNQAT-QAT": {
+  "price": 0.82,
+  "dtc": 2.62,
+  "spread": 0.010000000000000009,
+  "volume": 2202.0
+ },
+ "KXFIBAGAME-26AUG272140CANPAN-PAN": {
+  "price": 0.96,
+  "dtc": 3.02,
+  "spread": 0.010000000000000002,
+  "volume": 608.91
+ },
+ "KXGEMINI-GEMI35P-26AUG31": {
+  "price": 0.94,
+  "dtc": 4.11,
+  "spread": 0.03,
+  "volume": 147726.74
+ },
+ "KXGEMINI-NEXTPRO-26SEP01": {
+  "price": 0.97,
+  "dtc": 5.11,
+  "spread": 0.010000000000000002,
+  "volume": 2480.0
+ },
+ "KXGROK-GROK47-26AUG28": {
+  "price": 0.97,
+  "dtc": 1.11,
+  "spread": 0.010000000000000002,
+  "volume": 6939.48
+ },
+ "KXGROK-GROK47-26AUG31": {
+  "price": 0.97,
+  "dtc": 4.11,
+  "spread": 0.05,
+  "volume": 9951.83
+ },
+ "KXGROK-GROK47-26SEP04": {
+  "price": 0.73,
+  "dtc": 8.11,
+  "spread": 0.04999999999999999,
+  "volume": 8184.15
+ },
+ "KXGRUBHUBAPP-26SEP07-T133": {
+  "price": 0.7,
+  "dtc": 11.05,
+  "spread": 0.04999999999999999,
+  "volume": 888.0
+ },
+ "KXGTATRAILER-26SEP": {
+  "price": 0.75,
+  "dtc": 5.11,
+  "spread": 0.010000000000000009,
+  "volume": 183504.67
+ },
+ "KXHDCC-26SEP07-T95": {
+  "price": 0.95,
+  "dtc": 11.05,
+  "spread": 0.06,
+  "volume": 735.25
+ },
+ "KXHDCC-26SEP07-T96": {
+  "price": 0.95,
+  "dtc": 11.05,
+  "spread": 0.06,
+  "volume": 1325.52
+ },
+ "KXHEARNCHARGE-26AUG12-26SEP01": {
+  "price": 0.96,
+  "dtc": 5.11,
+  "spread": 0.04,
+  "volume": 2698.46
+ },
+ "KXKBOSPREAD-26AUG270530NCDLG-LG3": {
+  "price": 0.72,
+  "dtc": 2.34,
+  "spread": 0.009999999999999953,
+  "volume": 1548.02
+ },
+ "KXKLEAGUEGAME-26AUG30POHGAW-POH": {
+  "price": 0.78,
+  "dtc": 5.64,
+  "spread": 0.010000000000000009,
+  "volume": 1500.0
+ },
+ "KXKYHAMRECORD-26": {
+  "price": 0.68,
+  "dtc": 5.11,
+  "spread": 0.010000000000000009,
+  "volume": 3605.64
+ },
+ "KXLOWCC-26SEP07-T100": {
+  "price": 0.96,
+  "dtc": 11.05,
+  "spread": 0.049999999999999996,
+  "volume": 1280.0
+ },
+ "KXLOWCC-26SEP07-T102": {
+  "price": 0.96,
+  "dtc": 11.05,
+  "spread": 0.04,
+  "volume": 718.0
+ },
+ "KXLOWCC-26SEP07-T97": {
+  "price": 0.91,
+  "dtc": 11.05,
+  "spread": 0.05000000000000002,
+  "volume": 835.0
+ },
+ "KXLOWCC-26SEP07-T98": {
+  "price": 0.92,
+  "dtc": 11.05,
+  "spread": 0.039999999999999994,
+  "volume": 707.14
+ },
+ "KXLOWCC-26SEP07-T99": {
+  "price": 0.96,
+  "dtc": 11.05,
+  "spread": 0.060000000000000005,
+  "volume": 2122.0
+ },
+ "KXLUKEOUT-26JUL-26SEP01": {
+  "price": 0.93,
+  "dtc": 5.11,
+  "spread": 0.04999999999999999,
+  "volume": 3581.49
+ },
+ "KXLULUCC-26SEP07-T88": {
+  "price": 0.96,
+  "dtc": 11.05,
+  "spread": 0.049999999999999996,
+  "volume": 1629.6
+ },
+ "KXMAMDANIEO-26AUG29-T0": {
+  "price": 0.93,
+  "dtc": 3.53,
+  "spread": 0.009999999999999995,
+  "volume": 9121.64
+ },
+ "KXMCDFT-26SEP07-T103": {
+  "price": 0.91,
+  "dtc": 11.05,
+  "spread": 0.010000000000000009,
+  "volume": 856.37
+ },
+ "KXMCDFT-26SEP07-T104": {
+  "price": 0.96,
+  "dtc": 11.05,
+  "spread": 0.07,
+  "volume": 1170.55
+ },
+ "KXNEWDRUGAPPLICATIONCMPS-360-26SEP01": {
+  "price": 0.91,
+  "dtc": 5.53,
+  "spread": 0.020000000000000004,
+  "volume": 5949.18
+ },
+ "KXNEWDRUGAPPNTLA-LONV-26SEP01": {
+  "price": 0.88,
+  "dtc": 5.53,
+  "spread": 0.05000000000000002,
+  "volume": 1301.21
+ },
+ "KXPAGENW-26AUG31-T320": {
+  "price": 0.96,
+  "dtc": 4.91,
+  "spread": 0.07,
+  "volume": 1294.0
+ },
+ "KXPEPSIPOS-26SEP07-T-2": {
+  "price": 0.94,
+  "dtc": 11.05,
+  "spread": 0.03,
+  "volume": 1025.09
+ },
+ "KXPRESSSECANNOUNCE-26AUG-AUG28": {
+  "price": 0.97,
+  "dtc": 1.11,
+  "spread": 0.010000000000000002,
+  "volume": 17037.65
+ },
+ "KXPRESSSECANNOUNCE-26AUG-SEP01": {
+  "price": 0.94,
+  "dtc": 5.11,
+  "spread": 0.03,
+  "volume": 29011.73
+ },
+ "KXSAGDPQOQ-26SEP08-T0.6": {
+  "price": 0.85,
+  "dtc": 12.34,
+  "spread": 0.06,
+  "volume": 1024.0
+ },
+ "KXSEPHORACC-26SEP07-T107": {
+  "price": 0.9,
+  "dtc": 11.05,
+  "spread": 0.04999999999999999,
+  "volume": 905.0
+ },
+ "KXSGFT-26SEP07-T111": {
+  "price": 0.93,
+  "dtc": 11.05,
+  "spread": 0.04999999999999999,
+  "volume": 1817.0
+ },
+ "KXSGFT-26SEP07-T112": {
+  "price": 0.93,
+  "dtc": 11.05,
+  "spread": 0.06,
+  "volume": 1758.01
+ },
+ "KXSGFT-26SEP07-T113": {
+  "price": 0.94,
+  "dtc": 11.05,
+  "spread": 0.04000000000000001,
+  "volume": 758.33
+ },
+ "KXSGFT-26SEP07-T114": {
+  "price": 0.94,
+  "dtc": 11.05,
+  "spread": 0.04000000000000001,
+  "volume": 721.0
+ },
+ "KXSGFT-26SEP07-T115": {
+  "price": 0.97,
+  "dtc": 11.05,
+  "spread": 0.05,
+  "volume": 752.03
+ },
+ "KXSLGREECEGAME-26AUG31LEVPAN-LEV": {
+  "price": 0.82,
+  "dtc": 6.89,
+  "spread": 0.010000000000000009,
+  "volume": 508.98
+ },
+ "KXSONGRELEASEDATEPC-26-SEP01": {
+  "price": 0.96,
+  "dtc": 5.53,
+  "spread": 0.010000000000000002,
+  "volume": 23650.24
+ },
+ "KXSTEALTHSHARE-26AUG24-10.5": {
+  "price": 0.95,
+  "dtc": 4.11,
+  "spread": 0.06999999999999999,
+  "volume": 4452.0
+ },
+ "KXSTEALTHSHARE-26AUG24-12.0": {
+  "price": 0.97,
+  "dtc": 4.11,
+  "spread": 0.03,
+  "volume": 4026.0
+ },
+ "KXSWISSLEAGUEGAME-26AUG29YBFCB-FCB": {
+  "price": 0.81,
+  "dtc": 4.97,
+  "spread": 0.010000000000000009,
+  "volume": 1047.0
+ },
+ "KXT20MATCH-26AUG262330KINNEP-NEP": {
+  "price": 0.7,
+  "dtc": 2.26,
+  "spread": 0.07,
+  "volume": 706.91
+ },
+ "KXT20MATCH-26AUG280800SANAM-NAM": {
+  "price": 0.8,
+  "dtc": 3.62,
+  "spread": 0.009999999999999981,
+  "volume": 1572.0
+ },
+ "KXTEMUCC-26SEP07-T114": {
+  "price": 0.95,
+  "dtc": 11.05,
+  "spread": 0.06999999999999999,
+  "volume": 3274.42
+ },
+ "KXTGTFT-26SEP07-T95": {
+  "price": 0.84,
+  "dtc": 11.05,
+  "spread": 0.06,
+  "volume": 699.25
+ },
+ "KXTORNADO-26AUG-125": {
+  "price": 0.97,
+  "dtc": 5.11,
+  "spread": 0.07,
+  "volume": 1518.69
+ },
+ "KXTRUMPMEET-26AUG-ABUR": {
+  "price": 0.89,
+  "dtc": 5.11,
+  "spread": 0.030000000000000013,
+  "volume": 3585.28
+ },
+ "KXTRUMPMEET-26AUG-HJEF": {
+  "price": 0.96,
+  "dtc": 5.11,
+  "spread": 0.049999999999999996,
+  "volume": 1127.77
+ },
+ "KXTRUMPMEET-26AUG-VPUT": {
+  "price": 0.83,
+  "dtc": 5.11,
+  "spread": 0.04999999999999999,
+  "volume": 6343.47
+ },
+ "KXTRUMPMEET-26AUG-VZEL": {
+  "price": 0.76,
+  "dtc": 5.11,
+  "spread": 0.010000000000000009,
+  "volume": 5279.63
+ },
+ "KXTRUMPMEET-26AUG-XJIN": {
+  "price": 0.92,
+  "dtc": 5.11,
+  "spread": 0.03,
+  "volume": 2225.47
+ },
+ "KXTRUMPNOMNUM-26AUG23-T1": {
+  "price": 0.96,
+  "dtc": 3.53,
+  "spread": 0.030000000000000006,
+  "volume": 2883.95
+ },
+ "KXTRYFIRECOOK-27JAN01-26SEP01": {
+  "price": 0.83,
+  "dtc": 5.53,
+  "spread": 0.04999999999999999,
+  "volume": 4963.86
+ },
+ "KXUAPFILES-26AUG10-26SEP04": {
+  "price": 0.83,
+  "dtc": 8.53,
+  "spread": 0.04999999999999999,
+  "volume": 2326.28
+ },
+ "KXUSLSPREAD-26AUG26PASPIT-PAS2": {
+  "price": 0.85,
+  "dtc": 2.24,
+  "spread": 0.07,
+  "volume": 2343.57
+ },
+ "KXUSLSPREAD-26AUG26PASPIT-PIT2": {
+  "price": 0.96,
+  "dtc": 2.24,
+  "spread": 0.07,
+  "volume": 574.94
+ },
+ "KXUSLTOTAL-26AUG26NEWLEX-5": {
+  "price": 0.85,
+  "dtc": 2.26,
+  "spread": 0.010000000000000009,
+  "volume": 962.78
+ },
+ "KXUSLTOTAL-26AUG26PASPIT-4": {
+  "price": 0.83,
+  "dtc": 2.24,
+  "spread": 0.06999999999999998,
+  "volume": 635.6
+ },
+ "KXVIDEOLENGTH-26AUG27-GTA-30": {
+  "price": 0.85,
+  "dtc": 1.11,
+  "spread": 0.03,
+  "volume": 46715.52
+ },
+ "KXVIDEOLENGTH-26AUG27-GTA-45": {
+  "price": 0.94,
+  "dtc": 1.11,
+  "spread": 0.010000000000000009,
+  "volume": 16966.02
+ },
+ "KXWENCC-26SEP07-T85": {
+  "price": 0.93,
+  "dtc": 11.05,
+  "spread": 0.06,
+  "volume": 4593.41
+ },
+ "KXWENCC-26SEP07-T85.5": {
+  "price": 0.94,
+  "dtc": 11.05,
+  "spread": 0.06,
+  "volume": 2649.44
+ },
+ "KXWENCC-26SEP07-T86": {
+  "price": 0.96,
+  "dtc": 11.05,
+  "spread": 0.07,
+  "volume": 706.68
+ },
+ "KXWENCC-26SEP07-T86.5": {
+  "price": 0.96,
+  "dtc": 11.05,
+  "spread": 0.060000000000000005,
+  "volume": 982.55
+ },
+ "KXWENCC-26SEP07-T87": {
+  "price": 0.96,
+  "dtc": 11.05,
+  "spread": 0.04,
+  "volume": 1528.0
+ },
+ "KXWENCC-26SEP07-T87.5": {
+  "price": 0.96,
+  "dtc": 11.05,
+  "spread": 0.04,
+  "volume": 2268.6
+ },
+ "KXWENCC-26SEP07-T88": {
+  "price": 0.96,
+  "dtc": 11.05,
+  "spread": 0.04,
+  "volume": 767.66
+ },
+ "KXWENCC-26SEP07-T88.5": {
+  "price": 0.96,
+  "dtc": 11.05,
+  "spread": 0.030000000000000006,
+  "volume": 1633.0
+ }
+}
