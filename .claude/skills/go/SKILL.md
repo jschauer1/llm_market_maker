@@ -88,13 +88,75 @@ The local-state queries are mechanical and cost almost nothing; the board
 fetch above is the expensive part of this step, and still required. Do all
 of it before deciding anything.
 
-## 2. Choose where the value is
+## 2. Update the theories (always)
 
-This is the judgment call that makes the session worth running. The standing
-menu:
+**This is the part of `go` that is not a choice.** The user must be able to
+say `go`, walk away, and come back knowing every running theory saw today's
+board. A session that skipped straight to something more interesting and
+left the theories un-run has failed at its one standing obligation, however
+good the thing it did instead was.
 
-- **Settle and score** what has resolved (`score-theories`).
-- **Hunt for live edge** with the active theories (`find-edge`).
+Two halves, in order:
+
+1. **See how they are doing.** Settle what resolved and recompute scores
+   (`score-theories`). This is what turns yesterday's recommendations into
+   evidence, and it is what tells you whether anything's standing changed.
+2. **Re-run each of them against today's data.** Every theory whose status
+   is `testing`, `active`, or `under_review` gets run — `under_review`
+   included, because pulling a theory you suspect is broken is how you
+   guarantee you never find out whether it was broken or merely unlucky.
+   Record what each produces, including rejections.
+
+Both halves are on the *whole running set*, not on whichever theory is
+currently interesting.
+
+**Skip it only when it is already done today.** The check is per theory,
+not per session:
+
+```python
+from tools import db
+conn = db.connect()
+for r in conn.execute(
+    "SELECT theory_id, MAX(DATE(last_seen_at)) AS last_day "
+    "FROM opportunities WHERE run_mode = 'live' GROUP BY theory_id"
+):
+    print(dict(r))
+```
+
+Compare that against `theories list --running`: a running theory missing
+from the result, or carrying an older date, has not been updated today. If
+every running theory is current, say so in one line and go straight to §3 —
+re-running a theory twice against the same board produces nothing but
+duplicate rows and wasted time.
+
+**One caveat that check cannot cover: a scan that legitimately found
+nothing writes no rows, so it is indistinguishable from a scan that never
+happened.** Until that is fixed, close the gap in prose — when a theory
+runs and produces no candidates, say so explicitly in the session log
+("`mention_family`: ran, 0 candidates"). A future session reading only the
+ledger cannot tell the difference, and will either redo your work or
+wrongly assume it was done.
+
+**Then stop.** Updating the theories is the floor, not the session. Once
+they are current, the rest of the time is yours.
+
+## 3. Then choose where the value is
+
+The theories are current; this is where the session earns more than its
+floor. The standing menu, roughly highest-leverage first:
+
+- **Research a queued or freshly-screened candidate** into a real
+  recommendation (`find-edge`) — §2 ran the theories; this is the deeper
+  pass on what they surfaced.
+- **Build a queued theory.** Twenty-two researched, implementable specs sit
+  in
+  [docs/superpowers/specs/theories/](../../../docs/superpowers/specs/theories/)
+  — start at the backlog index — and **none has been built yet**. Every
+  instrument added widens the board the "what is the best bet right now?"
+  question can be asked about, and a mechanical one carries evidence
+  immediately (tier A, `edge_basis='model'`, no judgment to wait on). Check
+  `ideas search "<slug>"` first in case the idea has since been killed or
+  parked, then `propose-theory`.
 - **Backtest** a theory running on claims rather than evidence
   (`backtest-theory`).
 - **Propose a new theory** (`propose-theory`) — from a market pattern you
@@ -109,13 +171,10 @@ menu:
   board. Its numbers are bad and nobody knows why yet; the checklist in
   `score-theories` §5 turns that into an answer. The outcome is usually a
   narrower version, not a burial.
-- **Sweep every running theory at once** — when several theories have
-  settled rows, put one subagent on each rather than walking them serially.
-  See "Working theories in parallel" below for what to delegate and what to
-  keep in code.
 
-**Prefer work that changes a decision.** If nothing settled since yesterday,
-re-scoring is busywork — go hunt. If every active theory is unproven, another
+**Prefer work that changes a decision.** §2 already ran the theories, so a
+second scan of the same board is not an option — the question is what the
+board cannot tell you yet. If every active theory is unproven, another
 scan adds unproven suggestions while a backtest adds evidence. If the same
 theory has been scanned three sessions running with nothing settled yet, the
 marginal value is in a *new* theory, not a fourth scan of the old one.
@@ -126,52 +185,36 @@ A short session is fine. "Nothing settled, no theory needs backtesting, I
 researched two candidates and rejected both, here's why" is a good outcome.
 Do not manufacture work.
 
-## 2a. Working theories in parallel
+## 3a. How much to delegate
 
-As the board grows past two or three theories, "how is everything doing?"
-stops fitting in one session's head. Split it the way the repo is already
-laid out: you hold the repo level — what each theory claims, what it has
-demonstrated, which is worth acting on — and a subagent per theory holds
-the depth.
+**Your call, every time.** Reading the numbers and doing the work yourself
+is a perfectly good session. Subagents are available when the work is
+genuinely wide — several theories to diagnose at once, a batch of
+candidates to judge — and they are not a target to hit.
 
-**Get the numbers from code, not from a model.** `score report <id>`,
-`compare-theories`, and `bucket_rates` already print exact figures.
-Dispatching a subagent to read numbers a command prints is the expensive
-way to get an answer that was never in doubt, and it can get them subtly
-wrong. Pull the numbers yourself first; they are what tell you which
-theories are even worth a deeper look.
+Two things are worth knowing whichever way you go:
 
-**Delegate the part that is actually analysis.** Once a theory looks
-broken or ambiguous, the `score-theories` §5 diagnosis is real work —
-slice the settled rows by side, price band, days-to-close, sub-family and
-`theory_version`, with honest p-values, event-clustered checks and
-multiple-comparison awareness. That is one subagent per theory, run
-concurrently, each given: its theory's folder, the numbers you already
-pulled, and the §5 checklist. It is also the shape the repo is built for
-— a theory folder is self-sufficient, so a theory-level agent needs only
-that folder plus `tools/`.
+**Numbers come from code, not from a model.** `score report <id>`,
+`compare-theories` and `bucket_rates` print exact figures. Asking a model
+to read numbers a command already prints is the expensive way to get an
+answer that was never in doubt, and it can get them subtly wrong.
 
-**Each subagent writes its own findings to disk before reporting.** A
-per-theory diagnosis goes in that theory's `NOTES.md` as a dated entry —
-raw, including what it ruled out and the slices that showed nothing.
-Anything that changes what the theory *claims* is distilled into
-`THEORY.md`; the session log gets a pointer, not a copy.
+**If you do delegate, the findings go to disk before they reach you.** A
+per-theory diagnosis belongs in that theory's `NOTES.md` as a dated entry,
+including what it ruled out and the slices that showed nothing; anything
+that changes what the theory *claims* is distilled into `THEORY.md`, and
+the session log gets a pointer rather than a copy. Reasoning that exists
+only in a subagent's reply dies with the session that read it.
 
-**Where that reasoning is recorded is not a free choice.** A diagnosis
-subagent is *not* in any theory's decision path, so it does **not** get a
-`judgment_runs` row — provenance records what judged a bet, and filing
-analysis there pollutes it and muddies the backtest tier rules. Its
-reasoning belongs in `NOTES.md`. Provenance is for LLM steps inside a
-theory's own procedure — a gate, an analysis stage, a final review — and
-those are recorded with the model and the exact prompt file, as always.
+**Where that reasoning is recorded is not a free choice.** A subagent
+diagnosing performance is *not* in any theory's decision path, so it does
+**not** get a `judgment_runs` row — provenance records what judged a bet,
+and filing analysis there pollutes it and muddies the backtest tier rules.
+Provenance is for LLM steps inside a theory's own procedure — a gate, an
+analysis stage, a final review — recorded with the model and the exact
+prompt file, as always.
 
-A parallel sweep is worth it when several theories have new settled rows
-or one is genuinely puzzling. With two theories on the board and nothing
-newly settled, just read the numbers — the cascade exists to avoid
-expense, not to generate it.
-
-
-## 3. Log it
+## 4. Log it
 
 Append to `RESEARCH_LOG.md`:
 
@@ -189,11 +232,17 @@ rather than repeating them; `THEORY.md` changes only when the claim, the
 procedure, or the status changes. This log is what makes a year of sessions
 accumulate instead of repeat.
 
-## 4. Report for a human
+## 5. Report for a human
 
-End with what the user needs: bets worth placing now, anything that changed
-about a theory's standing, anything needing their judgment. Not a transcript
-of tool calls.
+**Open with the standing obligation:** which theories were updated today,
+what each produced (including "ran, nothing"), and anything that settled.
+One or two lines. The user's baseline expectation from `go` is that this
+happened, so it is the first thing they should be able to confirm — not
+something they have to go and check.
+
+Then what they need: bets worth placing now, anything that changed about a
+theory's standing, anything needing their judgment. Not a transcript of
+tool calls.
 
 **Any theory awaiting a retirement ruling goes here explicitly** — the
 rationale, the numbers behind it, and what you ruled out. That is a decision
@@ -229,6 +278,15 @@ a request to mark "whatever you did" gets acted on far less often than
   report. The tooling refuses to let you retire a theory yourself.
 - Never retire a theory without recording why it failed against its idea.
 - Search the idea registry before proposing anything new.
+- **Updating the running theories is not optional and not a menu item.** If
+  something blocks it — an API down, a theory erroring — say so plainly in
+  the report rather than quietly doing other work instead. A session that
+  did something clever while the theories went another day without seeing
+  the board has traded the user's standing expectation for its own
+  preference.
+- **A theory that ran and found nothing must say so in the log.** The
+  ledger records candidates, not scans, so "no rows" and "never ran" look
+  identical to the next session.
 - **A subagent's findings go to disk before they reach you.** Per-theory
   analysis lands in that theory's `NOTES.md`; only a subagent inside a
   theory's own decision path gets a `judgment_runs` row. Reasoning that
