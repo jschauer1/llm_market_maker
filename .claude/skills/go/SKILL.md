@@ -140,10 +140,12 @@ wrongly assume it was done.
 **Then stop.** Updating the theories is the floor, not the session. Once
 they are current, the rest of the time is yours.
 
-## 3. Then choose where the value is
+## 3. Then work the value list — item by item
 
 The theories are current; this is where the session earns more than its
-floor. The standing menu, roughly highest-leverage first:
+floor. **This step is a loop, not a single pick**: choose the top item,
+do it, report it (§5), then come back to this menu and choose the next.
+The standing menu, roughly highest-leverage first:
 
 - **Research a queued or freshly-screened candidate** into a real
   recommendation (`find-edge`) — §2 ran the theories; this is the deeper
@@ -182,11 +184,26 @@ scan adds unproven suggestions while a backtest adds evidence. If the same
 theory has been scanned three sessions running with nothing settled yet, the
 marginal value is in a *new* theory, not a fourth scan of the old one.
 
-State which you picked and why in one line, so the user can redirect cheaply.
+State which you picked and why in one line, so the user can redirect
+cheaply — then, when the item is done and reported, **pick up the next
+one**. The user's standing preference (2026-08-27) is explicit: do a
+high-value thing, write the report, then start another high-value thing
+without waiting to be asked. One item is a busy day's floor, not the
+target.
 
-A short session is fine. "Nothing settled, no theory needs backtesting, I
-researched two candidates and rejected both, here's why" is a good outcome.
-Do not manufacture work.
+The loop has exactly two exits:
+
+- **Nothing left that changes a decision.** Every remaining menu item
+  would be busywork — a re-scan of a board already scanned, a backtest
+  nobody would act on. Say so and end; an empty menu honestly reported
+  beats a padded one. Do not manufacture work.
+- **Blocked on input only the user can give** — a retirement ruling, a
+  scope call, an ambiguous redirect. Name exactly what you need, then
+  end.
+
+Ending for any other reason — "one thing is done", "the report is
+written", "the session feels long" — is the failure mode this loop
+exists to prevent: a report is a checkpoint, never a finish line.
 
 ## 3a. How much to delegate
 
@@ -236,6 +253,14 @@ procedure, or the status changes. This log is what makes a year of sessions
 accumulate instead of repeat.
 
 ## 5. Report for a human
+
+**A report lands after every §3 item, not once at the end.** Write it as
+visible text the moment the item is done, then head back to the §3 menu
+— the report is the checkpoint where the user can redirect; the work
+continuing is the default, not something they must request. The first
+report of the session opens with the standing obligation below; later
+ones need only what their item found. The session's last report carries
+the cumulative queue picture and the mark-taken asks.
 
 **Open with the standing obligation:** which theories were updated today,
 what each produced (including "ran, nothing"), and anything that settled.
@@ -290,6 +315,10 @@ a request to mark "whatever you did" gets acted on far less often than
 - **A theory that ran and found nothing must say so in the log.** The
   ledger records candidates, not scans, so "no rows" and "never ran" look
   identical to the next session.
+- **A report is a checkpoint, never a finish line.** After reporting an
+  item, return to the §3 menu and take the next one; the only two ways
+  a session ends are the §3 exits (nothing decision-changing left, or
+  blocked on the user).
 - **A subagent's findings go to disk before they reach you.** Per-theory
   analysis lands in that theory's `NOTES.md`; only a subagent inside a
   theory's own decision path gets a `judgment_runs` row. Reasoning that
