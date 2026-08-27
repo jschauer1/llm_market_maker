@@ -1,0 +1,496 @@
+[
+ {
+  "event_ticker": "KXHEGSETHANNOUNCEOUT-26APR",
+  "series_ticker": "KXHEGSETHANNOUNCEOUT",
+  "title": "Will Pete Hegseth announce their departure as Secretary of Defense before Jul 1, 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXHEGSETHANNOUNCEOUT-26APR-JUL01",
+    "title": "Will Pete Hegseth announce their departure as Secretary of Defense before Jul 1, 2026?",
+    "rules_primary": "If Pete Hegseth leaves (or announces he will leave) as Secretary of Defense before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market resolves based on when the departure is publicly announced or officially communicated, regardless of the effective date.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXHEGSETHOUT-26APR",
+  "series_ticker": "KXHEGSETHOUT",
+  "title": "Will Pete Hegseth be out as Secretary of Defense before Jul 1, 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXHEGSETHOUT-26APR-JUL01",
+    "title": "Will Pete Hegseth be out as Secretary of Defense before Jul 1, 2026?",
+    "rules_primary": "If Pete Hegseth leaves as Secretary of Defense before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Pete Hegseth must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXKASHANNOUNCEOUT-26APR",
+  "series_ticker": "KXKASHANNOUNCEOUT",
+  "title": "Will Kash Patel announce their departure as FBI Director before Jul 1, 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXKASHANNOUNCEOUT-26APR-JUL01",
+    "title": "Will Kash Patel announce their departure as FBI Director before Jul 1, 2026?",
+    "rules_primary": "If Kash Patel leaves (or announces he will leave) as FBI Director before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market resolves based on when the departure is publicly announced or officially communicated, regardless of the effective date.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXKASHOUT-26APR",
+  "series_ticker": "KXKASHOUT",
+  "title": "Will Kash Patel leaves as FBI Director before Aug 1, 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXKASHOUT-26APR-AUG01",
+    "title": "Will Kash Patel leaves as FBI Director before Aug 1, 2026?",
+    "rules_primary": "If Kash Patel leaves as FBI Director before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Kash Patel must have an actual departure date and vacate the role within the time period. \n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXKASHOUT-26APR-JUL01",
+    "title": "Will Kash Patel leaves as FBI Director before Jul 1, 2026?",
+    "rules_primary": "If Kash Patel leaves as FBI Director before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Kash Patel must have an actual departure date and vacate the role within the time period. \n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXKNESSET-27",
+  "series_ticker": "KXKNESSET",
+  "title": "Will the Israeli parliament be dissolved before Sep 1, 2026?",
+  "close_time": "2026-07-17T17:28:46Z",
+  "markets": [
+   {
+    "ticker": "KXKNESSET-27-SEP01",
+    "title": "Will the Israeli parliament be dissolved before Sep 1, 2026?",
+    "rules_primary": "If the Israeli Knesset is dissolved before Sep 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-17T17:28:46Z"
+   },
+   {
+    "ticker": "KXKNESSET-27-AUG01",
+    "title": "Will the Israeli parliament be dissolved before Aug 1, 2026?",
+    "rules_primary": "If the Israeli Knesset is dissolved before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-17T17:28:46Z"
+   },
+   {
+    "ticker": "KXKNESSET-26-JUL15",
+    "title": "Will the Israeli parliament be dissolved before Jul 15, 2026?",
+    "rules_primary": "If the Israeli Knesset is dissolved before Jul 15, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-15T14:00:00Z"
+   },
+   {
+    "ticker": "KXKNESSET-27-JUN30",
+    "title": "Will the Israeli parliament be dissolved before Jun 30, 2026?",
+    "rules_primary": "If the Israeli Knesset is dissolved before Jun 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-30T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXKXSPOTIFYNUM1GLB-26JUL01-ARI",
+  "series_ticker": "KXKXSPOTIFYNUM1GLB",
+  "title": "Will Ariana Grande be #1 on Spotify's Daily Top Songs Global chart for at least 15 chart days in June 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXKXSPOTIFYNUM1GLB-26JUL01-ARI-15",
+    "title": "Will Ariana Grande be #1 on Spotify's Daily Top Songs Global chart for at least 15 chart days in June 2026?",
+    "rules_primary": "If  Ariana Grande is #1 on the Spotify Daily Top Songs Global for at least 15 chart days in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXKXSPOTIFYNUM1GLB-26JUL01-ARI-12",
+    "title": "Will Ariana Grande be #1 on Spotify's Daily Top Songs Global chart for at least 12 chart days in June 2026?",
+    "rules_primary": "If  Ariana Grande is #1 on the Spotify Daily Top Songs Global for at least 12 chart days in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXKXSPOTIFYNUM1GLB-26JUL01-OLI",
+  "series_ticker": "KXKXSPOTIFYNUM1GLB",
+  "title": "Will Olivia Rodrigo be #1 on Spotify's Daily Top Songs Global chart for at least 9 chart days in June 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXKXSPOTIFYNUM1GLB-26JUL01-OLI-9",
+    "title": "Will Olivia Rodrigo be #1 on Spotify's Daily Top Songs Global chart for at least 9 chart days in June 2026?",
+    "rules_primary": "If  Olivia Rodrigo is #1 on the Spotify Daily Top Songs Global for \nat least 9\n chart days in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXKXSPOTIFYNUM1GLB-26JUL01-OLI-15",
+    "title": "Will Olivia Rodrigo be #1 on Spotify's Daily Top Songs Global chart for at least 15 chart days in June 2026?",
+    "rules_primary": "If  Olivia Rodrigo is #1 on the Spotify Daily Top Songs Global for \nat least 15\n chart days in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXKXSPOTIFYNUM1GLB-26JUL01-OLI-12",
+    "title": "Will Olivia Rodrigo be #1 on Spotify's Daily Top Songs Global chart for at least 12 chart days in June 2026?",
+    "rules_primary": "If  Olivia Rodrigo is #1 on the Spotify Daily Top Songs Global for \nat least 12\n chart days in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLEAVECONGRESS-26JUN",
+  "series_ticker": "KXLEAVECONGRESS",
+  "title": "Will any member of Congress be out as any member of Congress in June 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXLEAVECONGRESS-26JUN",
+    "title": "Will any member of Congress be out as any member of Congress in June 2026?",
+    "rules_primary": "If any member of Congress resigns or is expelled in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "any member of Congress must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role. If the role otherwise ceases to exist with no plausible successor, the contract may resolve to \"No.\"\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLLM1-26JUN30",
+  "series_ticker": "KXLLM1",
+  "title": "Best AI in Jun 2026?",
+  "close_time": "2026-06-30T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXLLM1-26JUN30-OAI",
+    "title": "Best AI in Jun 2026?",
+    "rules_primary": "If OpenAI has the top-ranked LLM on Jun 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If two models are tied under Rank (UB), then the model with the highest Arena Score will win. If two models are still tied after that, then the model with the most votes will win. If two models are still tied after that, the model that was released earlier will win.",
+    "close_time": "2026-06-30T14:00:00Z"
+   },
+   {
+    "ticker": "KXLLM1-26JUN30-GOOG",
+    "title": "Best AI in Jun 2026?",
+    "rules_primary": "If Google has the top-ranked LLM on Jun 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If two models are tied under Rank (UB), then the model with the highest Arena Score will win. If two models are still tied after that, then the model with the most votes will win. If two models are still tied after that, the model that was released earlier will win.",
+    "close_time": "2026-06-30T14:00:00Z"
+   },
+   {
+    "ticker": "KXLLM1-26JUN30-A",
+    "title": "Best AI in Jun 2026?",
+    "rules_primary": "If Anthropic has the top-ranked LLM on Jun 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If two models are tied under Rank (UB), then the model with the highest Arena Score will win. If two models are still tied after that, then the model with the most votes will win. If two models are still tied after that, the model that was released earlier will win.",
+    "close_time": "2026-06-30T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXNRSCFEC-26AUG",
+  "series_ticker": "KXNRSCFEC",
+  "title": "Will the Supreme Court rule in favor of National Republican Senatorial Committee in NRSC v. FEC",
+  "close_time": "2026-06-30T14:31:38Z",
+  "markets": [
+   {
+    "ticker": "KXNRSCFEC-26AUG",
+    "title": "Will the Supreme Court rule in favor of National Republican Senatorial Committee in NRSC v. FEC",
+    "rules_primary": "If the Supreme Court, in NRSC v. FEC, rules the federal limits on coordinated party expenditures violate the First Amendment, either facially or as applied to party coordinated communications, then the market resolves to Yes.",
+    "rules_secondary": "The Payout Criterion for the Contract encompasses the Expiration Values that the Supreme Court of the United States has ruled that the limits on coordinated party expenditures in 52 U.S.C. \u00a7 30116 violate the First Amendment, either on their face or as applied to party spending in connection with \u201cparty coordinated communications\u201d as defined in 11 C.F.R. \u00a7 109.37, after Issuance and before August 1, 2026. The market resolves to No if the Court upholds those limits against the First Amendment challenge. If the case is dismissed, found improvidently granted, or remanded without a merits ruling on whether those limits violate the First Amendment, the market resolves to No.",
+    "close_time": "2026-06-30T14:31:38Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSPOTIFYARTISTW-26JUN18",
+  "series_ticker": "KXSPOTIFYARTISTW",
+  "title": "Top Artist on Weekly Top Artists USA on Jun 18, 2026?",
+  "close_time": "2026-06-19T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXSPOTIFYARTISTW-26JUN18-OLI",
+    "title": "Top Artist on Weekly Top Artists USA on Jun 18, 2026?",
+    "rules_primary": "If Olivia Rodrigo is #1 on the Weekly Top Artists USA chart on the chart dated Jun 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-06-19T03:59:00Z"
+   },
+   {
+    "ticker": "KXSPOTIFYARTISTW-26JUN18-DRA",
+    "title": "Top Artist on Weekly Top Artists USA on Jun 18, 2026?",
+    "rules_primary": "If Drake is #1 on the Weekly Top Artists USA chart on the chart dated Jun 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-06-19T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSPOTIFYNUM1USA-26JUL01-OLI",
+  "series_ticker": "KXSPOTIFYNUM1USA",
+  "title": "Will Olivia Rodrigo be #1 on Spotify's Daily Top Songs USA chart for at least 9 chart days in June 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXSPOTIFYNUM1USA-26JUL01-OLI-9",
+    "title": "Will Olivia Rodrigo be #1 on Spotify's Daily Top Songs USA chart for at least 9 chart days in June 2026?",
+    "rules_primary": "If  Olivia Rodrigo is #1 on the Spotify Daily Top Songs USA for \nat least 9\n chart days in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXSPOTIFYNUM1USA-26JUL01-OLI-6",
+    "title": "Will Olivia Rodrigo be #1 on Spotify's Daily Top Songs USA chart for at least 6 chart days in June 2026?",
+    "rules_primary": "If  Olivia Rodrigo is #1 on the Spotify Daily Top Songs USA for \nat least 6\n chart days in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXSPOTIFYNUM1USA-26JUL01-OLI-15",
+    "title": "Will Olivia Rodrigo be #1 on Spotify's Daily Top Songs USA chart for at least 15 chart days in June 2026?",
+    "rules_primary": "If  Olivia Rodrigo is #1 on the Spotify Daily Top Songs USA for \nat least 15\n chart days in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTARIFFRATEEU-26JUL01",
+  "series_ticker": "KXTARIFFRATEEU",
+  "title": "Will the tariff rate on the European Union imports be between 10% and 19.99% on Jul 1, 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTARIFFRATEEU-26JUL01-14",
+    "title": "Will the tariff rate on the European Union imports be between 10% and 19.99% on Jul 1, 2026?",
+    "rules_primary": "If the general import tariff rate on imports from the European Union into the United States on Jul 1, 2026 is between 10 to 19.99%, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the general import tariff rate that is actually in effect (i.e., being collected) on the specified date. This includes both universal tariffs on all U.S. imports and country-specific tariffs on the specified country. Only tariffs that are currently active and being collected count - announced but not implemented tariffs, paused tariffs, or suspended tariffs do not qualify. The tariff rate refers to the general baseline rate, not including product-specific duties or exemptions. If multiple general rates apply, the general import tariff rate is the sum of all applicable general rates in effect.\n\nExamples (for &lt;date&gt; = Jan 1, 2026):\n\n  \nIndia: 25% Reciprocal Tariff (EO 14326) + 25% Russian Oil Penalty (EO 14329) = 50%\n\n  \nChina: 10% Reciprocal Tariff (EO 14358) + 10% Fentanyl Duty (EO 14357) = 20%\n\n   \nEuropean Union: 15% Reciprocal Tariff &quot;Floor&quot; (EO 14326)\n\n  \nFalkland Islands: 10% Reciprocal Tariff (EO 14326)",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTARIFFRATEINDIA-26JUL01",
+  "series_ticker": "KXTARIFFRATEINDIA",
+  "title": "Will the tariff rate on India imports be below 10% on Jul 1, 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTARIFFRATEINDIA-26JUL01-5",
+    "title": "Will the tariff rate on India imports be below 10% on Jul 1, 2026?",
+    "rules_primary": "If the general import tariff rate on imports from India into the United States on Jul 1, 2026 is below 10%, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the general import tariff rate that is actually in effect (i.e., being collected) on the specified date. This includes both universal tariffs on all U.S. imports and country-specific tariffs on the specified country. Only tariffs that are currently active and being collected count - announced but not implemented tariffs, paused tariffs, or suspended tariffs do not qualify. The tariff rate refers to the general baseline rate, not including product-specific duties or exemptions. If multiple general rates apply, the general import tariff rate is the sum of all applicable general rates in effect.\n\nExamples (for &lt;date&gt; = Jan 1, 2026):\n\n  \nIndia: 25% Reciprocal Tariff (EO 14326) + 25% Russian Oil Penalty (EO 14329) = 50%\n\n  \nChina: 10% Reciprocal Tariff (EO 14358) + 10% Fentanyl Duty (EO 14357) = 20%\n\n   \nEuropean Union: 15% Reciprocal Tariff &quot;Floor&quot; (EO 14326)\n\n  \nFalkland Islands: 10% Reciprocal Tariff (EO 14326)",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPUAP-26MAY",
+  "series_ticker": "KXTRUMPUAP",
+  "title": "Will President Trump issue any executive action on declassifying or releasing records related to unidentified anomalous phenomena (UAP) or UFOs before Aug 1, 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPUAP-26MAY-AUG01",
+    "title": "Will President Trump issue any executive action on declassifying or releasing records related to unidentified anomalous phenomena (UAP) or UFOs before Aug 1, 2026?",
+    "rules_primary": "If President Trump has taken any executive action declassifying or releasing records related to unidentified anomalous phenomena (UAP) or UFOs before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The qualifying action must be of the specific type designated (executive order, presidential memorandum, proclamation, directive, determination, or finding), be signed by the President personally during the specified time period, and explicitly address the topic in the document's operative provisions, title, or official White House summary. Actions must have legal or policy effect - ceremonial proclamations without policy impact do not qualify unless specifically included. Actions that only incidentally mention the topic, statements without formal action, actions by cabinet members, legislative proposals without executive action, and signing statements do not qualify. The action must be publicly announced or documented by a Source Agency before expiration.",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXTRUMPUAP-26MAY-JUL01",
+    "title": "Will President Trump issue any executive action on declassifying or releasing records related to unidentified anomalous phenomena (UAP) or UFOs before Jul 1, 2026?",
+    "rules_primary": "If President Trump has taken any executive action declassifying or releasing records related to unidentified anomalous phenomena (UAP) or UFOs before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The qualifying action must be of the specific type designated (executive order, presidential memorandum, proclamation, directive, determination, or finding), be signed by the President personally during the specified time period, and explicitly address the topic in the document's operative provisions, title, or official White House summary. Actions must have legal or policy effect - ceremonial proclamations without policy impact do not qualify unless specifically included. Actions that only incidentally mention the topic, statements without formal action, actions by cabinet members, legislative proposals without executive action, and signing statements do not qualify. The action must be publicly announced or documented by a Source Agency before expiration.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXWOLFORDLOPEZ-26AUG",
+  "series_ticker": "KXWOLFORDLOPEZ",
+  "title": "Will the Supreme Court rule in favor of Jason Wolford in Wolford v. Lopez",
+  "close_time": "2026-06-25T15:04:28Z",
+  "markets": [
+   {
+    "ticker": "KXWOLFORDLOPEZ-26AUG",
+    "title": "Will the Supreme Court rule in favor of Jason Wolford in Wolford v. Lopez",
+    "rules_primary": "If the Supreme Court, in Wolford v. Lopez, rules Hawaii may not presumptively prohibit licensed concealed-carry permit holders from carrying handguns on private property open to the public unless the property owner affirmatively gives express permission, then the market resolves to Yes.",
+    "rules_secondary": "The Payout Criterion for the Contract encompasses the Expiration Values that the Supreme Court has ruled that Hawaii may not presumptively prohibit licensed concealed-carry permit holders from carrying handguns on private property open to the public unless the property owner affirmatively gives express permission to the handgun carrier, after Issuance and before Aug 1, 2026. The market resolves to No if the Court upholds Hawaii\u2019s presumptive prohibition, or if the case is dismissed, DIG\u2019d, remanded, or otherwise disposed of without a merits ruling on whether Hawaii may impose that express-permission requirement.",
+    "close_time": "2026-06-25T15:04:28Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXAISPIKE-26B",
+  "series_ticker": "KXAISPIKE",
+  "title": "Will any AI model have a score of at least 1525 before Jul 1, 2026",
+  "close_time": "2026-07-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXAISPIKE-26B-1525",
+    "title": "Will any AI model have a score of at least 1525 before Jul 1, 2026",
+    "rules_primary": "If an AI model has a score of at least 1525 before Jul 1, 2026 on the LMSYS leaderboard, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMRELEASEDATE-REAFUT",
+  "series_ticker": "KXALBUMRELEASEDATE",
+  "title": "Will Future release The Real Me before Jul 1, 2026?",
+  "close_time": "2026-07-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMRELEASEDATE-REAFUT-26JUL01",
+    "title": "Will Future release The Real Me before Jul 1, 2026?",
+    "rules_primary": "If Future releases a The Real Me before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLAGODAYS-26JUN",
+  "series_ticker": "KXLAGODAYS",
+  "title": "Will Trump make 1 trips to Mar-a-Lago as President in Jun 2026?",
+  "close_time": "2026-07-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXLAGODAYS-26JUN-1",
+    "title": "Will Trump make 1 trips to Mar-a-Lago as President in Jun 2026?",
+    "rules_primary": "If Trump makes exactly 1 trips to Mar-a-Lago in Jun 2026 as President, then the market resolves to Yes.",
+    "rules_secondary": "A single visit begins when the President arrives in Mar-a-Lago and ends when the President has returned to the White House. A visit need not end to be included \u2013 i.e. if Jun 2026 ends with the President still there, that visit counts for the purposes of the count. If the President is in Mar-a-Lago at the beginning of Jun 2026, that will count as a visit.",
+    "close_time": "2026-07-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXLAGODAYS-26JUN-0",
+    "title": "Will Trump make 0 trips to Mar-a-Lago as President in Jun 2026?",
+    "rules_primary": "If Trump makes exactly 0 trips to Mar-a-Lago in Jun 2026 as President, then the market resolves to Yes.",
+    "rules_secondary": "A single visit begins when the President arrives in Mar-a-Lago and ends when the President has returned to the White House. A visit need not end to be included \u2013 i.e. if Jun 2026 ends with the President still there, that visit counts for the purposes of the count. If the President is in Mar-a-Lago at the beginning of Jun 2026, that will count as a visit.",
+    "close_time": "2026-07-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXPRATTCONCEDE-27JAN01",
+  "series_ticker": "KXPRATTCONCEDE",
+  "title": "Will Spencer Pratt concede defeat in the the 2026 Los Angeles mayoral primary before Jul 1, 2026?",
+  "close_time": "2026-07-01T14:58:35Z",
+  "markets": [
+   {
+    "ticker": "KXPRATTCONCEDE-27JAN01-JUL01",
+    "title": "Will Spencer Pratt concede defeat in the the 2026 Los Angeles mayoral primary before Jul 1, 2026?",
+    "rules_primary": "If Spencer Pratt has made a statement conceding defeat in the 2026 Los Angeles mayoral primary before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A concession requires the candidate to explicitly acknowledge defeat, loss, or that their opponent has won the race. Qualifying statements include \"concede,\" \"congratulate [opponent] on their victory,\" \"accept the results,\" \"will not be [office holder],\" or other unambiguous acknowledgments of defeat. Suspending or ending a campaign without acknowledging defeat, conditional statements, or conceding only partial results do not qualify. If a candidate makes a concession statement and then retracts it before the deadline, the market still resolves to Yes. Death or incapacitation resolves the market to the last fair traded price.",
+    "close_time": "2026-07-01T14:58:35Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSONGRELEASEDATEPC-26",
+  "series_ticker": "KXSONGRELEASEDATEPC",
+  "title": "Will Playboi Carti release a new song before Jul 1, 2026?",
+  "close_time": "2026-07-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXSONGRELEASEDATEPC-26-JUL01",
+    "title": "Will Playboi Carti release a new song before Jul 1, 2026?",
+    "rules_primary": "If Playboi Carti releases a new song Before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSPOTIFYNUM1USA-26JUL01-ELL",
+  "series_ticker": "KXSPOTIFYNUM1USA",
+  "title": "Will Ella Langley be #1 on Spotify's Daily Top Songs USA chart for at least 9 chart days in June 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXSPOTIFYNUM1USA-26JUL01-ELL-9",
+    "title": "Will Ella Langley be #1 on Spotify's Daily Top Songs USA chart for at least 9 chart days in June 2026?",
+    "rules_primary": "If  Ella Langley is #1 on the Spotify Daily Top Songs USA for at least 9 chart days in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXSPOTIFYNUM1USA-26JUL01-ELL-12",
+    "title": "Will Ella Langley be #1 on Spotify's Daily Top Songs USA chart for at least 12 chart days in June 2026?",
+    "rules_primary": "If  Ella Langley is #1 on the Spotify Daily Top Songs USA for at least 12 chart days in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSPOTIFYW-26JUN18",
+  "series_ticker": "KXSPOTIFYW",
+  "title": "Top Song on Weekly Top Songs USA on Jun 18, 2026?",
+  "close_time": "2026-06-19T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXSPOTIFYW-26JUN18-THE",
+    "title": "Top Song on Weekly Top Songs USA on Jun 18, 2026?",
+    "rules_primary": "If the cure is #1 on the Weekly Top Songs USA chart on the chart dated Jun 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-06-19T03:59:00Z"
+   },
+   {
+    "ticker": "KXSPOTIFYW-26JUN18-CHO",
+    "title": "Top Song on Weekly Top Songs USA on Jun 18, 2026?",
+    "rules_primary": "If Choosin' Texas is #1 on the Weekly Top Songs USA chart on the chart dated Jun 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-06-19T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSTOCKBANHOUSE",
+  "series_ticker": "KXSTOCKBANHOUSE",
+  "title": "Will legislation that prohibits members of Congress from purchasing stocks, even if it allows for purchasing stocks via a blind trust or the purchase of \u201cdiversified assets\u201d (such as ETFs or mutual funds) passed the House before Jan 1, 2027?",
+  "close_time": "2026-07-27T18:17:32Z",
+  "markets": [
+   {
+    "ticker": "KXSTOCKBANHOUSE-27JAN01",
+    "title": "Will legislation that prohibits members of Congress from purchasing stocks, even if it allows for purchasing stocks via a blind trust or the purchase of \u201cdiversified assets\u201d (such as ETFs or mutual funds) passed the House before Jan 1, 2027?",
+    "rules_primary": "If a Congressional stock trading ban has passed the House after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "A Congressional stock trading ban can still allow members of Congress to place their stocks in a blind trust or to invest in \"diversified assets\" (e.g. ETFs) and still resolve to Yes.",
+    "close_time": "2026-07-27T18:17:32Z"
+   },
+   {
+    "ticker": "KXSTOCKBANHOUSE-26JUL01",
+    "title": "Will legislation that prohibits members of Congress from purchasing stocks, even if it allows for purchasing stocks via a blind trust or the purchase of \u201cdiversified assets\u201d (such as ETFs or mutual funds) passed the House before Jul 1, 2026?",
+    "rules_primary": "If a Congressional stock trading ban has passed the House after Issuance and before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A Congressional stock trading ban can still allow members of Congress to place their stocks in a blind trust or to invest in \"diversified assets\" (e.g. ETFs) and still resolve to Yes.",
+    "close_time": "2026-07-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRANSGENDERSPORTSBAN",
+  "series_ticker": "KXTRANSGENDERSPORTSBAN",
+  "title": "Will the Supreme Court uphold transgender sports bans?",
+  "close_time": "2026-06-30T14:12:52Z",
+  "markets": [
+   {
+    "ticker": "KXTRANSGENDERSPORTSBAN",
+    "title": "Will the Supreme Court uphold transgender sports bans?",
+    "rules_primary": "If the Supreme Court, in West Virginia v. B.P.J. or Little v. Hecox, rules to uphold state laws restricting transgender athletes in sports, then the market resolves to Yes.",
+    "rules_secondary": "The Payout Criterion for the Contract encompasses the Expiration Values that the Supreme Court of the United States has issued a decision in West Virginia v. B.P.J. or Little v. Hecox holding that the Equal Protection Clause or Title IX does not prohibit states from designating sports teams based on biological sex, after Issuance and before January 1, 2027. The market resolves to No if the Supreme Court affirms that such restrictions are unconstitutional or unlawful. If the cases are dismissed, settled, or otherwise disposed of without a merits decision regarding the validity of such laws before January 1, 2027, the market also resolves to No.",
+    "close_time": "2026-06-30T14:12:52Z"
+   }
+  ]
+ }
+]

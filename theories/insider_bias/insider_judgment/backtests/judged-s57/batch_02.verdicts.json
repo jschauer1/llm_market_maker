@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXESPYS-26BUFCF",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "ESPYS 'Best Fighter' is historically a fan-voted category with polling open near the show, not a small ballot-tabulation group as with juried award categories. The payload gives no evidence of a sealed panel decision, so no specific named group can be said to already know the winner. Resembles an aggregate public-vote outcome more than an insider-decided one.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPSONG-26JUL18",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Close time (Jul 13) is before the Jul 18 tracking week even begins, so the chart position the market resolves on does not exist yet at close; nobody, insider or public, can know it.",
+  "rationale": "Billboard Hot 100 position is an aggregate of millions of listeners' behavior across a future tracking week, decided by nobody. Here the market closes before that week starts, so there is no possible informed group with foreknowledge -- this is a pure forecast, not a knowledge gap.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMAMDANIEO-26JUL11",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "The count window (Jul 5-11) fully elapses before the market's close (Jul 12), and executive orders are official public actions the instant they are signed -- there is no lag during which a private circle knows but the public does not. Any insider edge would have evaporated well before close.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTECHRANKLISTAICODE-26JUL13",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "LM Arena's coding leaderboard is a crowd-voted aggregate; labs know their own release plans but cannot know a crowd-derived rank before it accumulates. No small group has this answer ahead of the public leaderboard update.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXWCVIEWERSHIP-27JAN01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Final airs ~Jul 19 but market closes Jul 24; Nielsen P2+ totals must be finalized and published in that ~5-day window or all threshold markets resolve No by rule.",
+  "rationale": "Total viewership is an aggregate measurement of millions of viewers computed by Nielsen after the fact -- no group decides or knows it in advance, only measures it afterward. The only structural risk is Nielsen's publication timing versus the close, not private foreknowledge.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNEWDEAL-AUG01",
+  "insider_group": "White House/USTR negotiators, who would know when a deal is finalized before it is formally announced",
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "The rules narrow 'trade deal' with an extensive inclusion/exclusion list -- notably tariff announcements, sanctions, and enforcement actions explicitly do NOT count even though a casual reader of the title might expect them to, and the announcement must use explicit 'trade deal/agreement/pact' language through official channels.",
+  "resolution_source_risk": null,
+  "rationale": "An administration that has actually finished negotiating a deal would know before announcing it, which is the insider mechanism -- but nothing in the payload indicates a deal is imminent or substantially done, so this reads as an open-ended 'will X happen in this window' rate question rather than a decision already made and awaiting only announcement. The unusually detailed qualifying/non-qualifying criteria are also a real trap for a title-only reading.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXWCFIRSTSONG-BTS26JUL20",
+  "insider_group": "BTS members, tour/production crew, and FIFA World Cup halftime-show producers who rehearse and lock the setlist before the live broadcast",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Halftime-show setlists are rehearsed and known to production and performers well before airtime, per the mechanism sheet's live-performance guidance -- this is the closest live-event analog to a pre-taped show. A large crew plus an active leak-prone fan/press ecosystem around major halftime shows makes premature leaks plausible too.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPSONG-26AUG01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Close time (Jul 27) precedes the Aug 1 tracking week, same structural gap as the other Hot 100 market in this batch.",
+  "rationale": "Same chart-aggregate mechanism as KXTOPSONG-26JUL18: an outcome of millions of listeners' future behavior, decided by nobody, with the market closing before the relevant tracking week even runs.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXACTBLUETOP-26JUL24",
+  "insider_group": "ActBlue, which sees the full live fundraising ranking across campaigns continuously before any fixed public snapshot",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Per the fundraising/disclosure mechanism, the platform sees its own aggregated numbers continuously ahead of any single published snapshot, giving a real (if narrow) foreknowledge edge. It is capped at moderate because the ActBlue directory page itself updates live and publicly, so the informational lead time over the public is short, not a sealed decision.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFEATURE-26PET",
+  "insider_group": "Ariana Grande's label/production team, who would know the actual collaborator list before public tracklist release",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Feature credits on an unreleased album are known to the artist's team and label in advance, and leaks are common in this space, which argues for a real informed group. Held at moderate rather than strong because plans change late in production, the window runs through year-end, and none of the eleven specific pairings offered here are confirmed as already-locked in the payload.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXKXSPOTIFYNUM1GLB-26AUG01-OLI",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Spotify's Daily Top Songs Global chart is a published aggregate of consumer streaming, updated daily and publicly visible throughout the whole July window before the Aug 1 close -- so by close time this is compiled from already-public daily data, not private insider knowledge.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLEAVECONGRESS-26JUL",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "While any single resignation is privately decided by that member before announcement, this market asks whether ANY of 535 members leaves across a full month -- a broad base-rate/count question, not one identifiable group sitting on a single known answer. Classic long-window rate question.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMRELEASEDATEARIANA-NEW",
+  "insider_group": "Ariana Grande's label/team, who set and know the internal target release date before public announcement",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Release dates are known to the artist's team and label in advance of public confirmation, and the album already has a confirmed title ('petal') implying active planning. Kept at moderate rather than strong because release-date plans routinely slip and no external confirmation of a locked date appears in the payload.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMRELEASEDATETRIPPIE",
+  "insider_group": "Trippie Redd's label/team, who would know an internally planned release date in advance",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same release-date mechanism as the Ariana Grande market: a real informed group exists, but this artist is notorious for slipping self-announced release dates, and the ladder of three separate deadline markets suggests genuine uncertainty about timing rather than a settled internal date.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFRAGRANCE-26DIO",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Rules state if no Jomashop data is available, the last known value is used, or the market resolves No if no prior value exists -- a minor mechanical risk, not an insider one.",
+  "rationale": "The resolution source is a live, continuously public retail price on Jomashop's own website; whoever sets that price reveals it simultaneously to everyone. There is no group with a private lead-time advantage over the public here.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFRAGRANCE-26YSL",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same mechanism as the Dior Sauvage market: a live public retail price with no private-knowledge gap between any pricing group and the public.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXAIPAUSE-27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "This asks whether any of four labs makes a rare, currently-undecided safety-pause decision at any point before 2027 -- a long open window with no indication any such decision is imminent or has been made. Nobody can know an unmade decision, however small the hypothetical circle.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPAPPROVALBELOW-26DEC31",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "VoteHub approval rating is a polling aggregate over a roughly year-long window, needing to be hit only once -- a pure aggregate/base-rate question with no decision-maker or informed group who knows the answer in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTECHRANKLISTAICODE-26AUG03",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same LM Arena crowd-voted leaderboard mechanism as the Jul 13 market in this batch: an aggregate nobody decides or can know ahead of accumulation.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMCDONALDCONF-26JUN17",
+  "insider_group": "Senate leadership/whip organization, who track vote counts ahead of the floor vote",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": "Rules add that if the nomination is withdrawn before the deadline the market immediately resolves No, and that McDonald must be the FIRST person confirmed to the post -- both meaningful mechanics beyond the plain title.",
+  "resolution_source_risk": null,
+  "rationale": "Confirmation leadership typically has a good advance whip count on whether a nominee will pass, which is real foreknowledge of the pass/fail outcome ahead of the floor vote. Capped at moderate per the mechanism sheet's own caveat that exact outcomes (and here, withdrawal risk) are less knowable than a simple whip count implies.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXYTPODW-26AUG02",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "YouTube's weekly podcast chart is a published aggregate of listener behavior across a tracking week; nobody decides it, though it may be forecastable late in the window from public partial data.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMAMDANIEO-26AUG08",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Identical structure to the Jul 11 Mamdani EO market: the count window (Aug 2-8) elapses before the market closes (Aug 9), and executive orders are public the instant they are signed, so no private-knowledge gap survives to close.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXGPT-ASTRA",
+  "insider_group": "OpenAI's release/product team, who know the internal readiness and target timing of the already-disclosed Astra model",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": "The rules' 'Qualifying Release' clause is much broader than the title implies: it triggers on release of ANY model confirmed to share Astra's underlying architecture/weights/training run, regardless of the commercial name or access tier it ships under -- a naive title reading ('is something literally named Astra released') would miss many qualifying scenarios.",
+  "resolution_source_risk": null,
+  "rationale": "OpenAI already publicly disclosed the existence and some capabilities of Astra as of Aug 1, 2026 per the rules text itself, meaning internal staff have real, substantive foreknowledge of the model's readiness beyond a generic 'labs know their roadmap' claim. Held at moderate because AI-lab release timing 'slips routinely' per the mechanism sheet and no confirmed ship date is evident.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBIGBROTHERELIMINATION-26AUG13",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Per the mechanism sheet, Big Brother US eviction votes are cast live on broadcast and the outcome is genuinely undecided until airtime, unlike the taped competition segments earlier in the episode. Nothing in the payload indicates this particular window resolves on an already-taped result rather than the live vote.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXACTBLUETOP-26AUG14",
+  "insider_group": "ActBlue, which sees the full live fundraising ranking across campaigns continuously before any fixed public snapshot",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same mechanism as the Jul 24 ActBlue market in this batch: the platform sees aggregated totals continuously ahead of the public snapshot, a real but narrow foreknowledge edge given the page itself updates live and publicly.",
+  "researched": false
+ }
+]

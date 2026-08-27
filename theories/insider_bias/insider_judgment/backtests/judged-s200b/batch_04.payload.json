@@ -1,0 +1,1119 @@
+[
+ {
+  "event_ticker": "KXEMMYNOMS-26-DACTR",
+  "series_ticker": "KXEMMYNOMS",
+  "title": "Will Myha'la be on the list of nominees for Drama Actress at the 78th Emmy Awards?",
+  "close_time": "2026-07-08T19:06:23Z",
+  "markets": [
+   {
+    "ticker": "KXEMMYNOMS-26-DACTR-MYH",
+    "title": "Will Myha'la be on the list of nominees for Drama Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Myha'la is on the list of nominees for Outstanding Lead Actress In A Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:06:23Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-DACTR-JEN",
+    "title": "Will Jennifer Aniston be on the list of nominees for Drama Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Jennifer Aniston is on the list of nominees for Outstanding Lead Actress In A Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:06:23Z"
+   },
+   {
+    "ticker": "KXEMMYNOMS-26-DACTR-CHA",
+    "title": "Will Chase Infiniti be on the list of nominees for Drama Actress at the 78th Emmy Awards?",
+    "rules_primary": "If Chase Infiniti is on the list of nominees for Outstanding Lead Actress In A Drama Series at the 78th Emmy Awards, then the market resolves to Yes.",
+    "rules_secondary": "The 78th Primetime Emmy Award nominations will be announced Wednesday, July 8, 2026",
+    "close_time": "2026-07-08T19:05:37Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXGEMINI-GEMI35P",
+  "series_ticker": "KXGEMINI",
+  "title": "Will Google release Gemini 3.5 Pro before Aug 21, 2026?",
+  "close_time": "2026-08-21T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXGEMINI-GEMI35P-26AUG21",
+    "title": "Will Google release Gemini 3.5 Pro before Aug 21, 2026?",
+    "rules_primary": "If Google releases A model called Gemini 3.5 Pro or greater before Aug 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-08-21T03:59:00Z"
+   },
+   {
+    "ticker": "KXGEMINI-GEMI35P-26AUG16",
+    "title": "Will Google release Gemini 3.5 Pro before Aug 16, 2026?",
+    "rules_primary": "If Google releases A model called Gemini 3.5 Pro or greater before Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-08-16T03:59:00Z"
+   },
+   {
+    "ticker": "KXGEMINI-GEMI35P-26AUG07",
+    "title": "Will Google release Gemini 3.5 Pro before Aug 7, 2026?",
+    "rules_primary": "If Google releases A model called Gemini 3.5 Pro or greater before Aug 7, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-08-07T03:59:00Z"
+   },
+   {
+    "ticker": "KXGEMINI-GEMI35P-26JUL31",
+    "title": "Will Google release Gemini 3.5 Pro before Jul 31, 2026?",
+    "rules_primary": "If Google releases A model called Gemini 3.5 Pro or greater before Jul 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-31T03:59:00Z"
+   },
+   {
+    "ticker": "KXGEMINI-GEMI35P-26JUL24",
+    "title": "Will Google release Gemini 3.5 Pro before Jul 24, 2026?",
+    "rules_primary": "If Google releases A model called Gemini 3.5 Pro or greater before Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXGEMINI-GEMI35P-26JUL17",
+    "title": "Will Google release Gemini 3.5 Pro before Jul 17, 2026?",
+    "rules_primary": "If Google releases A model called Gemini 3.5 Pro or greater before Jul 17, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXGEMINI-GEMI35P-26JUL10",
+    "title": "Will Google release Gemini 3.5 Pro before Jul 10, 2026?",
+    "rules_primary": "If Google releases A model called Gemini 3.5 Pro or greater before Jul 10, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-10T03:59:00Z"
+   },
+   {
+    "ticker": "KXGEMINI-GEMI35P-26JUL03",
+    "title": "Will Google release Gemini 3.5 Pro before Jul 3, 2026?",
+    "rules_primary": "If Google releases A model called Gemini 3.5 Pro or greater before Jul 3, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-02T12:03:37Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLIUSACOUPLE-26AUG31",
+  "series_ticker": "KXLIUSACOUPLE",
+  "title": "Will Trinity and Bryce win Love Island USA Season 8?",
+  "close_time": "2026-07-13T02:46:31Z",
+  "markets": [
+   {
+    "ticker": "KXLIUSACOUPLE-26AUG31-TRBR",
+    "title": "Will Trinity and Bryce win Love Island USA Season 8?",
+    "rules_primary": "If Trinity and Bryce are officially declared the winner of Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "The winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:46:31Z"
+   },
+   {
+    "ticker": "KXLIUSACOUPLE-26AUG31-TIKC",
+    "title": "Will Tierra and KC win Love Island USA Season 8?",
+    "rules_primary": "If Tierra and KC are officially declared the winner of Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "The winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:46:31Z"
+   },
+   {
+    "ticker": "KXLIUSACOUPLE-26AUG31-MESI",
+    "title": "Will Melanie and Sincere win Love Island USA Season 8?",
+    "rules_primary": "If Melanie and Sincere are officially declared the winner of Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "The winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:46:31Z"
+   },
+   {
+    "ticker": "KXLIUSACOUPLE-26AUG31-KAZA",
+    "title": "Will Kayda and Zach win Love Island USA Season 8?",
+    "rules_primary": "If Kayda and Zach are officially declared the winner of Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "The winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:46:31Z"
+   },
+   {
+    "ticker": "KXLIUSACOUPLE-26AUG31-ANCAR",
+    "title": "Will Aniya and Carl win Love Island USA Season 8?",
+    "rules_primary": "If Aniya and Carl are officially declared the winner of Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "The winner must be officially announced in the finale or via official channels immediately following. Multiple joint winners each resolve to Yes with split payouts ($1 divided by number of winners). If no winner is declared, all markets resolve to No. Winners who decline the award still count unless acceptance was a condition of victory. Disqualifications or withdrawals before the finale resolve to No. Later title stripping doesn't affect resolution - the original finale announcement governs. Fan favorite or other secondary awards don't count as winning. For couples/teams competitions, being part of the winning unit counts.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:46:31Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLIUSAELIMINATIONW-26JUL03",
+  "series_ticker": "KXLIUSAELIMINATIONW",
+  "title": "Will Zach be eliminated from Love Island USA Season 8 before Jul 4, 2026?",
+  "close_time": "2026-07-04T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL03-ZAC",
+    "title": "Will Zach be eliminated from Love Island USA Season 8 before Jul 4, 2026?",
+    "rules_primary": "If Zach is officially eliminated from Love Island USA: Season 8 Before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL03-TIE",
+    "title": "Will Tierra be eliminated from Love Island USA Season 8 before Jul 4, 2026?",
+    "rules_primary": "If Tierra is officially eliminated from Love Island USA: Season 8 Before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL03-SIN",
+    "title": "Will Sincere be eliminated from Love Island USA Season 8 before Jul 4, 2026?",
+    "rules_primary": "If Sincere is officially eliminated from Love Island USA: Season 8 Before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL03-PAR",
+    "title": "Will Parmida be eliminated from Love Island USA Season 8 before Jul 4, 2026?",
+    "rules_primary": "If Parmida is officially eliminated from Love Island USA: Season 8 Before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL03-MEL",
+    "title": "Will Melanie be eliminated from Love Island USA Season 8 before Jul 4, 2026?",
+    "rules_primary": "If Melanie is officially eliminated from Love Island USA: Season 8 Before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL03-KEN",
+    "title": "Will Kenzie be eliminated from Love Island USA Season 8 before Jul 4, 2026?",
+    "rules_primary": "If Kenzie is officially eliminated from Love Island USA: Season 8 Before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL03-KCC",
+    "title": "Will KC be eliminated from Love Island USA Season 8 before Jul 4, 2026?",
+    "rules_primary": "If KC is officially eliminated from Love Island USA: Season 8 Before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL03-JEN",
+    "title": "Will Jen be eliminated from Love Island USA Season 8 before Jul 4, 2026?",
+    "rules_primary": "If Jen is officially eliminated from Love Island USA: Season 8 Before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL03-JAI",
+    "title": "Will Jaiden be eliminated from Love Island USA Season 8 before Jul 4, 2026?",
+    "rules_primary": "If Jaiden is officially eliminated from Love Island USA: Season 8 Before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL03-GAL",
+    "title": "Will Gal be eliminated from Love Island USA Season 8 before Jul 4, 2026?",
+    "rules_primary": "If Gal is officially eliminated from Love Island USA: Season 8 Before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL03-DYL",
+    "title": "Will Dylan be eliminated from Love Island USA Season 8 before Jul 4, 2026?",
+    "rules_primary": "If Dylan is officially eliminated from Love Island USA: Season 8 Before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL03-COR",
+    "title": "Will Corbin be eliminated from Love Island USA Season 8 before Jul 4, 2026?",
+    "rules_primary": "If Corbin is officially eliminated from Love Island USA: Season 8 Before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL03-CAR",
+    "title": "Will Carl be eliminated from Love Island USA Season 8 before Jul 4, 2026?",
+    "rules_primary": "If Carl is officially eliminated from Love Island USA: Season 8 Before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL03-CAL",
+    "title": "Will Caleb be eliminated from Love Island USA Season 8 before Jul 4, 2026?",
+    "rules_primary": "If Caleb is officially eliminated from Love Island USA: Season 8 Before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL03-ANI",
+    "title": "Will Aniya be eliminated from Love Island USA Season 8 before Jul 4, 2026?",
+    "rules_primary": "If Aniya is officially eliminated from Love Island USA: Season 8 Before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-04T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATIONW-26JUL03-AMO",
+    "title": "Will Amora be eliminated from Love Island USA Season 8 before Jul 4, 2026?",
+    "rules_primary": "If Amora is officially eliminated from Love Island USA: Season 8 Before Jul 4, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-04T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLIUSAWINNERS-26",
+  "series_ticker": "KXLIUSAWINNERS",
+  "title": "Will Zach win Love Island USA Season 8?",
+  "close_time": "2026-07-13T02:44:45Z",
+  "markets": [
+   {
+    "ticker": "KXLIUSAWINNERS-26-ZAC",
+    "title": "Will Zach win Love Island USA Season 8?",
+    "rules_primary": "If Zach is officially declared the winner of Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:44:45Z"
+   },
+   {
+    "ticker": "KXLIUSAWINNERS-26-TIE",
+    "title": "Will Tierra win Love Island USA Season 8?",
+    "rules_primary": "If Tierra is officially declared the winner of Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:44:45Z"
+   },
+   {
+    "ticker": "KXLIUSAWINNERS-26-SIN",
+    "title": "Will Sincere win Love Island USA Season 8?",
+    "rules_primary": "If Sincere is officially declared the winner of Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:44:45Z"
+   },
+   {
+    "ticker": "KXLIUSAWINNERS-26-MEL",
+    "title": "Will Melanie win Love Island USA Season 8?",
+    "rules_primary": "If Melanie is officially declared the winner of Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:44:45Z"
+   },
+   {
+    "ticker": "KXLIUSAWINNERS-26-KEN",
+    "title": "Will Kenzie win Love Island USA Season 8?",
+    "rules_primary": "If Kenzie is officially declared the winner of Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:44:45Z"
+   },
+   {
+    "ticker": "KXLIUSAWINNERS-26-KCC",
+    "title": "Will KC win Love Island USA Season 8?",
+    "rules_primary": "If KC is officially declared the winner of Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:44:45Z"
+   },
+   {
+    "ticker": "KXLIUSAWINNERS-26-KAY",
+    "title": "Will Kayda win Love Island USA Season 8?",
+    "rules_primary": "If Kayda is officially declared the winner of Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:44:45Z"
+   },
+   {
+    "ticker": "KXLIUSAWINNERS-26-COR",
+    "title": "Will Corbin win Love Island USA Season 8?",
+    "rules_primary": "If Corbin is officially declared the winner of Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:44:45Z"
+   },
+   {
+    "ticker": "KXLIUSAWINNERS-26-CAR",
+    "title": "Will Carl win Love Island USA Season 8?",
+    "rules_primary": "If Carl is officially declared the winner of Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:44:45Z"
+   },
+   {
+    "ticker": "KXLIUSAWINNERS-26-ANI",
+    "title": "Will Aniya win Love Island USA Season 8?",
+    "rules_primary": "If Aniya is officially declared the winner of Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:44:45Z"
+   },
+   {
+    "ticker": "KXLIUSAWINNERS-26-",
+    "title": "Will Caleb win Love Island USA Season 8?",
+    "rules_primary": "If Caleb is officially declared the winner of Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:44:45Z"
+   },
+   {
+    "ticker": "KXLIUSAWINNERS-26-TRI",
+    "title": "Will Trinity win Love Island USA Season 8?",
+    "rules_primary": "If Trinity is officially declared the winner of Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:44:35Z"
+   },
+   {
+    "ticker": "KXLIUSAWINNERS-26-BRY",
+    "title": "Will Bryce win Love Island USA Season 8?",
+    "rules_primary": "If Bryce is officially declared the winner of Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "The competitor must be officially announced as the winner of the competition's final installment (season finale, grand final, or equivalent) by the official broadcaster, production company, or through official channels. If multiple competitors are declared joint winners or tied winners, all such competitors resolve to Yes. If a competitor is disqualified, removed, or voluntarily withdraws before the final announcement and is not declared an official winner, the market resolves to No. If a winner is later stripped of the title or disqualified after the finale announcement, the original declaration governs resolution. If the competition is canceled or concluded without an official winner announcement, the market resolves to No. Secondary titles such as \"fan favorite,\" \"Miss Congeniality,\" or \"America's Choice\" do not qualify as winning unless explicitly specified. For team-based competitions, if the strike is for a team, any individual still on that team at competition end who wins will also resolve their individual market to Yes. If a prospective winner declines the trophy or award, they are only NOT considered winners if the official announcement was conditional on their acceptance.\n\nThis market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:44:17Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLOVEISLANDUSARANK-26AUG31R2",
+  "series_ticker": "KXLOVEISLANDUSARANK",
+  "title": "Will Trinity and Bryce finish 2nd in Love Island USA Season 8?",
+  "close_time": "2026-07-13T02:43:55Z",
+  "markets": [
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31R2-TRBR",
+    "title": "Will Trinity and Bryce finish 2nd in Love Island USA Season 8?",
+    "rules_primary": "If Trinity and Bryce finish 2nd in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:43:55Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31R2-TIKC",
+    "title": "Will Tierra and KC finish 2 Place in Love Island USA Season 8?",
+    "rules_primary": "If Tierra and KC finish 2nd in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:43:55Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31R2-PACO",
+    "title": "Will Parmida and Corbin finish 2 Place in Love Island USA Season 8?",
+    "rules_primary": "If Parmida and Corbin finish 2nd in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:43:55Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31R2-MESI",
+    "title": "Will Melanie and Sincere finish 2nd in Love Island USA Season 8?",
+    "rules_primary": "If Melanie and Sincere finish 2nd in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:43:55Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31R2-KAZA",
+    "title": "Will Kayda and Zach finish 2 Place in Love Island USA Season 8?",
+    "rules_primary": "If Kayda and Zach finish 2nd in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:43:55Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31R2-JACA",
+    "title": "Will Jaiden and Caleb finish 2 Place in Love Island USA Season 8?",
+    "rules_primary": "If Jaiden and Caleb finish 2nd in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:43:55Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31R2-ANCAR",
+    "title": "Will Aniya and Carl finish 2 Place in Love Island USA Season 8?",
+    "rules_primary": "If Aniya and Carl finish 2nd in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T02:43:55Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPSONG-26JUL11",
+  "series_ticker": "KXTOPSONG",
+  "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 during the week of Jul 11, 2026",
+  "close_time": "2026-07-06T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPSONG-26JUL11-CHO",
+    "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 during the week of Jul 11, 2026",
+    "rules_primary": "If Choosin' Texas is #1 on the Billboard Hot 100  chart for the Week of Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-07-06T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPUFC-26JUL",
+  "series_ticker": "KXTRUMPUFC",
+  "title": "Will Donald Trump attend UFC 329?",
+  "close_time": "2026-07-12T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPUFC-26JUL-DJT",
+    "title": "Will Donald Trump attend UFC 329?",
+    "rules_primary": "If Donald Trump attends UFC 329, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance. Kalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Ultimate Fighting Championship (UFC) or TKO Group Holdings. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-12T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLOVEISLANDUSARANK-26AUG31RTOP3",
+  "series_ticker": "KXLOVEISLANDUSARANK",
+  "title": "Will Tierra and KC finish in the Top 3 Couples in Love Island USA Season 8?",
+  "close_time": "2026-07-13T13:41:29Z",
+  "markets": [
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31RTOP3-TIKC",
+    "title": "Will Tierra and KC finish in the Top 3 Couples in Love Island USA Season 8?",
+    "rules_primary": "If Tierra and KC finish Top 3 in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T13:41:29Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31RTOP3-KEDY",
+    "title": "Will Kenzie and Dylan finish in the Top 3 Couples in Love Island USA Season 8?",
+    "rules_primary": "If Kenzie and Dylan finish Top 3 in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T13:41:29Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31RTOP3-KACA",
+    "title": "Will Kayda and Caleb finish in the Top 3 Couples in Love Island USA Season 8?",
+    "rules_primary": "If Kayda and Caleb finish Top 3 in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T13:41:29Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31RTOP3-MECA",
+    "title": "Will Melanie and Caleb finish in the Top 3 Couples in Love Island USA Season 8?",
+    "rules_primary": "If Melanie and Caleb finish Top 3 in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T13:41:28Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31RTOP3-KAZA",
+    "title": "Will Kayda and Zach finish in the Top 3 Couples in Love Island USA Season 8?",
+    "rules_primary": "If Kayda and Zach finish Top 3 in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T13:41:28Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31RTOP3-TRBR",
+    "title": "Will Trinity and Bryce finish in the Top 3 Couples in Love Island USA Season 8?",
+    "rules_primary": "If Trinity and Bryce finish Top 3 in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T13:40:43Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31RTOP3-MESI",
+    "title": "Will Melanie and Sincere finish in the Top 3 Couples in Love Island USA Season 8?",
+    "rules_primary": "If Melanie and Sincere finish Top 3 in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T13:40:21Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUSARANK-26AUG31RTOP3-ANCAR",
+    "title": "Will Aniya and Carl finish in the Top 3 Couples in Love Island USA Season 8?",
+    "rules_primary": "If Aniya and Carl finish Top 3 in Love Island USA Season 8, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-13T13:40:02Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSUMMERHOUSECAST-27",
+  "series_ticker": "KXSUMMERHOUSECAST",
+  "title": "Will Bailey Taylor be cast in Summer House: Season 11?",
+  "close_time": "2026-07-14T02:20:35Z",
+  "markets": [
+   {
+    "ticker": "KXSUMMERHOUSECAST-27-BAI",
+    "title": "Will Bailey Taylor be cast in Summer House: Season 11?",
+    "rules_primary": "If Bailey Taylor is cast in Summer House: Season 11 before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by bravo. Any references to bravo, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between bravo and Kalshi.",
+    "close_time": "2026-07-14T02:20:35Z"
+   },
+   {
+    "ticker": "KXSUMMERHOUSECAST-27-KJD",
+    "title": "Will KJ Dillard be cast in Summer House: Season 11?",
+    "rules_primary": "If KJ Dillard is cast in Summer House: Season 11 before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by bravo. Any references to bravo, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between bravo and Kalshi.",
+    "close_time": "2026-07-14T02:20:05Z"
+   },
+   {
+    "ticker": "KXSUMMERHOUSECAST-27-MIA",
+    "title": "Will Mia Calabrese be cast in Summer House: Season 11?",
+    "rules_primary": "If Mia Calabrese is cast in Summer House: Season 11 before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by bravo. Any references to bravo, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between bravo and Kalshi.",
+    "close_time": "2026-07-14T02:19:49Z"
+   },
+   {
+    "ticker": "KXSUMMERHOUSECAST-27-JES",
+    "title": "Will Jesse Solomon be cast in Summer House: Season 11?",
+    "rules_primary": "If Jesse Solomon is cast in Summer House: Season 11 before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by bravo. Any references to bravo, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between bravo and Kalshi.",
+    "close_time": "2026-07-14T02:19:32Z"
+   },
+   {
+    "ticker": "KXSUMMERHOUSECAST-27-CIA",
+    "title": "Will Ciara Miller be cast in Summer House: Season 11?",
+    "rules_primary": "If Ciara Miller is cast in Summer House: Season 11 before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by bravo. Any references to bravo, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between bravo and Kalshi.",
+    "close_time": "2026-07-14T02:19:17Z"
+   },
+   {
+    "ticker": "KXSUMMERHOUSECAST-27-KYL",
+    "title": "Will Kyle Cooke be cast in Summer House: Season 11?",
+    "rules_primary": "If Kyle Cooke is cast in Summer House: Season 11 before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by bravo. Any references to bravo, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between bravo and Kalshi.",
+    "close_time": "2026-07-14T02:19:02Z"
+   },
+   {
+    "ticker": "KXSUMMERHOUSECAST-27-LIN",
+    "title": "Will Lindsay Hubbard be cast in Summer House: Season 11?",
+    "rules_primary": "If Lindsay Hubbard is cast in Summer House: Season 11 before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by bravo. Any references to bravo, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between bravo and Kalshi.",
+    "close_time": "2026-07-14T02:18:48Z"
+   },
+   {
+    "ticker": "KXSUMMERHOUSECAST-27-CAR",
+    "title": "Will Carl Radke be cast in Summer House: Season 11?",
+    "rules_primary": "If Carl Radke is cast in Summer House: Season 11 before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by bravo. Any references to bravo, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between bravo and Kalshi.",
+    "close_time": "2026-07-14T02:18:35Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXUSADATACENTERS-26DEC31",
+  "series_ticker": "KXUSADATACENTERS",
+  "title": "Will the United States have at least 4,700 data centers listed in 2026?",
+  "close_time": "2026-08-01T18:14:38Z",
+  "markets": [
+   {
+    "ticker": "KXUSADATACENTERS-26DEC31-T4700",
+    "title": "Will the United States have at least 4,700 data centers listed in 2026?",
+    "rules_primary": "If the number of data centers listed by Data Center Map in the United States before the end of 2026 is at least 4,700, then the market resolves to Yes.",
+    "rules_secondary": "The count as of June 1, 2026 is 4313.",
+    "close_time": "2026-08-01T18:14:38Z"
+   },
+   {
+    "ticker": "KXUSADATACENTERS-26DEC31-T4600",
+    "title": "Will the United States have at least 4,600 data centers listed in 2026?",
+    "rules_primary": "If the number of data centers listed by Data Center Map in the United States before the end of 2026 is at least 4,600, then the market resolves to Yes.",
+    "rules_secondary": "The count as of June 1, 2026 is 4313.",
+    "close_time": "2026-07-23T20:47:06Z"
+   },
+   {
+    "ticker": "KXUSADATACENTERS-26DEC31-T4500",
+    "title": "Will the United States have at least 4,500 data centers listed in 2026?",
+    "rules_primary": "If the number of data centers listed by Data Center Map in the United States before the end of 2026 is at least 4,500, then the market resolves to Yes.",
+    "rules_secondary": "The count as of June 1, 2026 is 4313.",
+    "close_time": "2026-07-13T21:19:44Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPDOLLAR-26",
+  "series_ticker": "KXTRUMPDOLLAR",
+  "title": "Will the United States Mint or the Department of the Treasury announce the official selection of a final design for a $1 coin featuring Donald Trump in 2026?",
+  "close_time": "2026-07-15T21:11:15Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPDOLLAR-26",
+    "title": "Will the United States Mint or the Department of the Treasury announce the official selection of a final design for a $1 coin featuring Donald Trump in 2026?",
+    "rules_primary": "If the United States Mint or the Department of the Treasury announces the official selection of a final design for a $1 coin featuring Donald Trump before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-15T21:11:15Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPTIME-26JUL04",
+  "series_ticker": "KXTRUMPTIME",
+  "title": "Will Trump post on Truth Social between 5:00 AM and 5:59 AM ET this week?",
+  "close_time": "2026-07-04T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPTIME-26JUL04-H5",
+    "title": "Will Trump post on Truth Social between 5:00 AM and 5:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 5:00 AM to 5:59 AM ET on any day from Jun 28, 2026 through Jul 4, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-07-04T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPTIME-26JUL04-H2",
+    "title": "Will Trump post on Truth Social between 2:00 AM and 2:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 2:00 AM to 2:59 AM ET on any day from Jun 28, 2026 through Jul 4, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-07-04T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPTIME-26JUL04-H1",
+    "title": "Will Trump post on Truth Social between 1:00 AM and 1:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 1:00 AM to 1:59 AM ET on any day from Jun 28, 2026 through Jul 4, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-07-04T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BAMS",
+  "series_ticker": "KXESPYS",
+  "title": "Will Shohei Ohtani win Best Athlete, Men's Sports award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T07:35:21Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BAMS-SHO",
+    "title": "Will Shohei Ohtani win Best Athlete, Men's Sports award at the 2026 ESPYS?",
+    "rules_primary": "If Shohei Ohtani wins Best Athlete, Men's Sports at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:35:21Z"
+   },
+   {
+    "ticker": "KXESPYS-26BAMS-MAT",
+    "title": "Will Matthew Stafford win Best Athlete, Men's Sports award at the 2026 ESPYS?",
+    "rules_primary": "If Matthew Stafford wins Best Athlete, Men's Sports at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:35:21Z"
+   },
+   {
+    "ticker": "KXESPYS-26BAMS-LIO",
+    "title": "Will Lionel Messi win Best Athlete, Men's Sports award at the 2026 ESPYS?",
+    "rules_primary": "If Lionel Messi wins Best Athlete, Men's Sports at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:35:21Z"
+   },
+   {
+    "ticker": "KXESPYS-26BAMS-JAL",
+    "title": "Will Jalen Brunson win Best Athlete, Men's Sports award at the 2026 ESPYS?",
+    "rules_primary": "If Jalen Brunson wins Best Athlete, Men's Sports at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:35:21Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BAWAD",
+  "series_ticker": "KXESPYS",
+  "title": "Will Susannah Scaroni win Best Athlete With A Disability award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T15:09:09Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BAWAD-SUS",
+    "title": "Will Susannah Scaroni win Best Athlete With A Disability award at the 2026 ESPYS?",
+    "rules_primary": "If Susannah Scaroni wins Best Athlete With A Disability at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T15:09:09Z"
+   },
+   {
+    "ticker": "KXESPYS-26BAWAD-OSK",
+    "title": "Will Oksana Masters win Best Athlete With A Disability award at the 2026 ESPYS?",
+    "rules_primary": "If Oksana Masters wins Best Athlete With A Disability at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T15:09:09Z"
+   },
+   {
+    "ticker": "KXESPYS-26BAWAD-DEC",
+    "title": "Will Declan Farmer win Best Athlete With A Disability award at the 2026 ESPYS?",
+    "rules_primary": "If Declan Farmer wins Best Athlete With A Disability at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T15:09:09Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BCP",
+  "series_ticker": "KXESPYS",
+  "title": "Will Jalen Brunson win Best Championship Performance award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T07:42:13Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BCP-JAL",
+    "title": "Will Jalen Brunson win Best Championship Performance award at the 2026 ESPYS?",
+    "rules_primary": "If Jalen Brunson wins Best Championship Performance at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:42:13Z"
+   },
+   {
+    "ticker": "KXESPYS-26BCP-CON",
+    "title": "Will Connor Hellebuyck win Best Championship Performance award at the 2026 ESPYS?",
+    "rules_primary": "If Connor Hellebuyck wins Best Championship Performance at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:42:13Z"
+   },
+   {
+    "ticker": "KXESPYS-26BCP-AER",
+    "title": "Will Aerin Frankel win Best Championship Performance award at the 2026 ESPYS?",
+    "rules_primary": "If Aerin Frankel wins Best Championship Performance at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:42:13Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BD",
+  "series_ticker": "KXESPYS",
+  "title": "Will Lando Norris win Best Driver award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T14:04:01Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BD-LAN",
+    "title": "Will Lando Norris win Best Driver award at the 2026 ESPYS?",
+    "rules_primary": "If Lando Norris wins Best Driver at the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:04:01Z"
+   },
+   {
+    "ticker": "KXESPYS-26BD-KIM",
+    "title": "Will Kimi Antonelli win Best Driver award at the 2026 ESPYS?",
+    "rules_primary": "If Kimi Antonelli wins Best Driver at the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:04:01Z"
+   },
+   {
+    "ticker": "KXESPYS-26BD-ALE",
+    "title": "Will Alex Palou win Best Driver award at the 2026 ESPYS?",
+    "rules_primary": "If Alex Palou wins Best Driver at the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:04:01Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BMP",
+  "series_ticker": "KXESPYS",
+  "title": "Will Shohei Ohtani win Best MLB Player award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T14:17:26Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BMP-SHO",
+    "title": "Will Shohei Ohtani win Best MLB Player award at the 2026 ESPYS?",
+    "rules_primary": "If Shohei Ohtani wins Best Pro Baseball Player at the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:17:26Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BNP",
+  "series_ticker": "KXESPYS",
+  "title": "Will Myles Garrett win Best NFL Player award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T07:51:08Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BNP-MYL",
+    "title": "Will Myles Garrett win Best NFL Player award at the 2026 ESPYS?",
+    "rules_primary": "If Myles Garrett wins Best Pro Football Player at the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:51:08Z"
+   },
+   {
+    "ticker": "KXESPYS-26BNP-JAX",
+    "title": "Will Jaxon Smith-Njigba win Best NFL Player award at the 2026 ESPYS?",
+    "rules_primary": "If Jaxon Smith-Njigba wins Best Pro Football Player at the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:51:08Z"
+   },
+   {
+    "ticker": "KXESPYS-26BNP-DRA",
+    "title": "Will Drake Maye win Best NFL Player award at the 2026 ESPYS?",
+    "rules_primary": "If Drake Maye wins Best Pro Football Player at the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:51:08Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BP",
+  "series_ticker": "KXESPYS",
+  "title": "Will UConn stuns Duke with Braylon Mullins\u2019 buzzer-beating 3 win Best Play award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T07:44:01Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BP-UCO",
+    "title": "Will UConn stuns Duke with Braylon Mullins\u2019 buzzer-beating 3 win Best Play award at the 2026 ESPYS?",
+    "rules_primary": "If UConn stuns Duke with Braylon Mullins\u2019 buzzer-beating 3 wins Best Play at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:44:01Z"
+   },
+   {
+    "ticker": "KXESPYS-26BP-OGA",
+    "title": "Will OG Anunoby\u2019s Tip-In win Best Play award at the 2026 ESPYS?",
+    "rules_primary": "If OG Anunoby\u2019s Tip-In wins Best Play at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:44:01Z"
+   },
+   {
+    "ticker": "KXESPYS-26BP-GOLD",
+    "title": "Will Golden Goal for Gold! (Men's) win Best Play award at the 2026 ESPYS?",
+    "rules_primary": "If Golden Goal for Gold! (Men's) wins Best Play at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:44:01Z"
+   },
+   {
+    "ticker": "KXESPYS-26BP-CAL",
+    "title": "Will Caleb Williams Game Tying TD vs. Rams win Best Play award at the 2026 ESPYS?",
+    "rules_primary": "If Caleb Williams Game Tying TD vs. Rams wins Best Play at the the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T07:44:01Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXESPYS-26BTP",
+  "series_ticker": "KXESPYS",
+  "title": "Will Jannik Sinner win Best Tennis Player award at the 2026 ESPYS?",
+  "close_time": "2026-07-16T14:05:49Z",
+  "markets": [
+   {
+    "ticker": "KXESPYS-26BTP-JAN",
+    "title": "Will Jannik Sinner win Best Tennis Player award at the 2026 ESPYS?",
+    "rules_primary": "If Jannik Sinner wins Best Tennis Player at the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:05:49Z"
+   },
+   {
+    "ticker": "KXESPYS-26BTP-ELE",
+    "title": "Will Elena Rybakina win Best Tennis Player award at the 2026 ESPYS?",
+    "rules_primary": "If Elena Rybakina wins Best Tennis Player at the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:05:49Z"
+   },
+   {
+    "ticker": "KXESPYS-26BTP-CAR",
+    "title": "Will Carlos Alcaraz win Best Tennis Player award at the 2026 ESPYS?",
+    "rules_primary": "If Carlos Alcaraz wins Best Tennis Player at the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:05:49Z"
+   },
+   {
+    "ticker": "KXESPYS-26BTP-ARY",
+    "title": "Will Aryna Sabalenka win Best Tennis Player award at the 2026 ESPYS?",
+    "rules_primary": "If Aryna Sabalenka wins Best Tennis Player at the 2026 ESPYS, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by The Espys. Any references to The Espys, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between The Espys and Kalshi.\n",
+    "close_time": "2026-07-16T14:05:49Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSPACEXSTARSHIP-13",
+  "series_ticker": "KXSPACEXSTARSHIP",
+  "title": "Will SpaceX launch another Starship by Sep 16, 2026?",
+  "close_time": "2026-07-25T00:04:30Z",
+  "markets": [
+   {
+    "ticker": "KXSPACEXSTARSHIP-13-26SEP16",
+    "title": "Will SpaceX launch another Starship by Sep 16, 2026?",
+    "rules_primary": "If SpaceX launches Starship flight test number 13 before September 17, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If source agency data from FAA is delayed due to a data delay, then the market will expire following data updating in accordance with Kalshi Rule 6.3b.",
+    "close_time": "2026-07-25T00:04:30Z"
+   },
+   {
+    "ticker": "KXSPACEXSTARSHIP-13-26JUL31",
+    "title": "Will SpaceX launch another Starship by Jul 31, 2026?",
+    "rules_primary": "If SpaceX launches Starship flight test number 13 before August 01, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If source agency data from FAA is delayed due to a data delay, then the market will expire following data updating in accordance with Kalshi Rule 6.3b.",
+    "close_time": "2026-07-25T00:04:30Z"
+   },
+   {
+    "ticker": "KXSPACEXSTARSHIP-13-26JUL25",
+    "title": "Will SpaceX launch another Starship by Jul 25, 2026?",
+    "rules_primary": "If SpaceX launches Starship flight test number 13 before July 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If source agency data from FAA is delayed due to a data delay, then the market will expire following data updating in accordance with Kalshi Rule 6.3b.",
+    "close_time": "2026-07-25T00:04:30Z"
+   },
+   {
+    "ticker": "KXSPACEXSTARSHIP-13-26JUL24",
+    "title": "Will SpaceX launch another Starship by Jul 24, 2026?",
+    "rules_primary": "If SpaceX launches Starship flight test number 13 before July 25, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If source agency data from FAA is delayed due to a data delay, then the market will expire following data updating in accordance with Kalshi Rule 6.3b.",
+    "close_time": "2026-07-25T00:04:30Z"
+   },
+   {
+    "ticker": "KXSPACEXSTARSHIP-13-26AUG31",
+    "title": "Will SpaceX launch another Starship by Aug 31, 2026?",
+    "rules_primary": "If SpaceX launches Starship flight test number 13 before September 01, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If source agency data from FAA is delayed due to a data delay, then the market will expire following data updating in accordance with Kalshi Rule 6.3b.",
+    "close_time": "2026-07-25T00:04:30Z"
+   },
+   {
+    "ticker": "KXSPACEXSTARSHIP-13-26AUG16",
+    "title": "Will SpaceX launch another Starship by Aug 16, 2026?",
+    "rules_primary": "If SpaceX launches Starship flight test number 13 before August 17, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If source agency data from FAA is delayed due to a data delay, then the market will expire following data updating in accordance with Kalshi Rule 6.3b.",
+    "close_time": "2026-07-25T00:04:30Z"
+   },
+   {
+    "ticker": "KXSPACEXSTARSHIP-13-26JUL23",
+    "title": "Will SpaceX launch another Starship by Jul 23, 2026?",
+    "rules_primary": "If SpaceX launches Starship flight test number 13 before July 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If source agency data from FAA is delayed due to a data delay, then the market will expire following data updating in accordance with Kalshi Rule 6.3b.",
+    "close_time": "2026-07-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXSPACEXSTARSHIP-13-26JUL20",
+    "title": "Will SpaceX launch another Starship by Jul 20, 2026?",
+    "rules_primary": "If SpaceX launches Starship flight test number 13 before July 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If source agency data from FAA is delayed due to a data delay, then the market will expire following data updating in accordance with Kalshi Rule 6.3b.",
+    "close_time": "2026-07-21T03:59:00Z"
+   },
+   {
+    "ticker": "KXSPACEXSTARSHIP-13-26JUL17",
+    "title": "Will SpaceX launch another Starship by Jul 17, 2026?",
+    "rules_primary": "If SpaceX launches Starship flight test number 13 before July 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If source agency data from FAA is delayed due to a data delay, then the market will expire following data updating in accordance with Kalshi Rule 6.3b.",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXSPACEXSTARSHIP-13-26JUL16",
+    "title": "Will SpaceX launch another Starship by Jul 16, 2026?",
+    "rules_primary": "If SpaceX launches Starship flight test number 13 before July 17, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If source agency data from FAA is delayed due to a data delay, then the market will expire following data updating in accordance with Kalshi Rule 6.3b.",
+    "close_time": "2026-07-17T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFEATURE-26DAU",
+  "series_ticker": "KXFEATURE",
+  "title": "Will Taylor Swift be featured on 'Daughter from Hell'?",
+  "close_time": "2026-07-18T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXFEATURE-26DAU-TAY",
+    "title": "Will Taylor Swift be featured on 'Daughter from Hell'?",
+    "rules_primary": "If Taylor Swift is featured on the album 'Daughter from Hell' before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXFEATURE-26DAU-SAB",
+    "title": "Will Sabrina Carpenter be featured on 'Daughter from Hell'?",
+    "rules_primary": "If Sabrina Carpenter is featured on the album 'Daughter from Hell' before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXFEATURE-26DAU-RAC",
+    "title": "Will Rachel Chinouriri be featured on 'Daughter from Hell'?",
+    "rules_primary": "If Rachel Chinouriri is featured on the album 'Daughter from Hell' before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXFEATURE-26DAU-OLI",
+    "title": "Will Olivia Rodrigo be featured on 'Daughter from Hell'?",
+    "rules_primary": "If Olivia Rodrigo is featured on the album 'Daughter from Hell' before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXFEATURE-26DAU-NOA",
+    "title": "Will Noah Kahan be featured on 'Daughter from Hell'?",
+    "rules_primary": "If Noah Kahan is featured on the album 'Daughter from Hell' before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXFEATURE-26DAU-MAI",
+    "title": "Will Maisie Peters be featured on 'Daughter from Hell'?",
+    "rules_primary": "If Maisie Peters is featured on the album 'Daughter from Hell' before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXFEATURE-26DAU-JAP",
+    "title": "Will The Japanese House be featured on 'Daughter from Hell'?",
+    "rules_primary": "If The Japanese House is featured on the album 'Daughter from Hell' before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXFEATURE-26DAU-HOL",
+    "title": "Will Holly Humberstone be featured on 'Daughter from Hell'?",
+    "rules_primary": "If Holly Humberstone is featured on the album 'Daughter from Hell' before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXFEATURE-26DAU-BON",
+    "title": "Will Bon Iver be featured on 'Daughter from Hell'?",
+    "rules_primary": "If Bon Iver is featured on the album 'Daughter from Hell' before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-18T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFEATURE-26SET",
+  "series_ticker": "KXFEATURE",
+  "title": "Will Nas be featured on SET IN STONE?",
+  "close_time": "2026-07-17T15:41:52Z",
+  "markets": [
+   {
+    "ticker": "KXFEATURE-26SET-NAS",
+    "title": "Will Nas be featured on SET IN STONE?",
+    "rules_primary": "If Nas is featured on the album SET IN STONE before Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Nas is listed\nunder the song name on SET IN STONE, listed in the song title on SET IN STONE including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on SET IN STONE, in each case as reported by a Source Agency. SET IN STONE must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-17T15:41:52Z"
+   },
+   {
+    "ticker": "KXFEATURE-26SET-MEE",
+    "title": "Will Meek Mill be featured on SET IN STONE?",
+    "rules_primary": "If Meek Mill is featured on the album SET IN STONE before Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Meek Mill is listed\nunder the song name on SET IN STONE, listed in the song title on SET IN STONE including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on SET IN STONE, in each case as reported by a Source Agency. SET IN STONE must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-17T15:41:52Z"
+   },
+   {
+    "ticker": "KXFEATURE-26SET-LIL",
+    "title": "Will Lil Wayne be featured on SET IN STONE?",
+    "rules_primary": "If Lil Wayne is featured on the album SET IN STONE before Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Lil Wayne is listed\nunder the song name on SET IN STONE, listed in the song title on SET IN STONE including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on SET IN STONE, in each case as reported by a Source Agency. SET IN STONE must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-17T15:41:52Z"
+   },
+   {
+    "ticker": "KXFEATURE-26SET-KAN",
+    "title": "Will Kanye West be featured on SET IN STONE?",
+    "rules_primary": "If Kanye West is featured on the album SET IN STONE before Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Kanye West is listed\nunder the song name on SET IN STONE, listed in the song title on SET IN STONE including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on SET IN STONE, in each case as reported by a Source Agency. SET IN STONE must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-17T15:41:52Z"
+   },
+   {
+    "ticker": "KXFEATURE-26SET-JAY",
+    "title": "Will Jay-Z be featured on SET IN STONE?",
+    "rules_primary": "If Jay-Z is featured on the album SET IN STONE before Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Jay-Z is listed\nunder the song name on SET IN STONE, listed in the song title on SET IN STONE including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on SET IN STONE, in each case as reported by a Source Agency. SET IN STONE must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-17T15:41:52Z"
+   },
+   {
+    "ticker": "KXFEATURE-26SET-DRA",
+    "title": "Will Drake be featured on SET IN STONE?",
+    "rules_primary": "If Drake is featured on the album SET IN STONE before Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Drake is listed\nunder the song name on SET IN STONE, listed in the song title on SET IN STONE including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on SET IN STONE, in each case as reported by a Source Agency. SET IN STONE must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-17T15:41:52Z"
+   },
+   {
+    "ticker": "KXFEATURE-26SET-DJK",
+    "title": "Will DJ Khaled be featured on SET IN STONE?",
+    "rules_primary": "If DJ Khaled is featured on the album SET IN STONE before Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  DJ Khaled is listed\nunder the song name on SET IN STONE, listed in the song title on SET IN STONE including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on SET IN STONE, in each case as reported by a Source Agency. SET IN STONE must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-17T15:41:52Z"
+   },
+   {
+    "ticker": "KXFEATURE-26SET-21S",
+    "title": "Will 21 Savage be featured on SET IN STONE?",
+    "rules_primary": "If 21 Savage is featured on the album SET IN STONE before Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  21 Savage is listed\nunder the song name on SET IN STONE, listed in the song title on SET IN STONE including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on SET IN STONE, in each case as reported by a Source Agency. SET IN STONE must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-17T15:41:52Z"
+   },
+   {
+    "ticker": "KXFEATURE-26SET-JEE",
+    "title": "Will Jeezy be featured on SET IN STONE?",
+    "rules_primary": "If Jeezy is featured on the album SET IN STONE before Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A feature is included only if  Jeezy is listed\nunder the song name on SET IN STONE, listed in the song title on SET IN STONE including in phrases such as \u201cfeat.\u201d, \u201cft.\u201d, \u201cfeaturing\u201d,\nor \u201cwith\u201d, or listed as a performer on a song on SET IN STONE, in each case as reported by a Source Agency. SET IN STONE must be on\nSpotify to be considered by the Payout Criterion; that version on Spotify is the one that will be considered (e.g. if a feature is\navailable on some other service or platform, then that is not included). Revisions to the Underlying made after Expiration\nwill not be accounted for in determining the Expiration Value.",
+    "close_time": "2026-07-17T15:39:17Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLIUSAELIMINATION-26JUL05",
+  "series_ticker": "KXLIUSAELIMINATION",
+  "title": "Will Kenzie be eliminated from Love Island USA before Jul 6, 2026?",
+  "close_time": "2026-07-06T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXLIUSAELIMINATION-26JUL05-KEN",
+    "title": "Will Kenzie be eliminated from Love Island USA before Jul 6, 2026?",
+    "rules_primary": "If Kenzie is officially eliminated from Love Island USA S8 Before Jul 6, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-06T03:59:00Z"
+   }
+  ]
+ }
+]

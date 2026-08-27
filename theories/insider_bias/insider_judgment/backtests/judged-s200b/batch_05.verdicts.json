@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXTOUR-27",
+  "insider_group": "Kanye West's own management/touring team, if a tour is actually being planned",
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Ye's management would know first if a tour is being planned, but nothing indicates one has actually been decided or booked yet. Announcing a tour is a spontaneous business decision that could happen at any point in a long window, making this a rate question rather than an already-decided-but-unannounced fact.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPVH-26JUL10",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "VoteHub's average is a mechanical aggregate of public polls; no delay risk beyond the platform's own calculation.",
+  "rationale": "This resolves on a computed aggregate of public polling data, not a fact any specific group has decided or privately knows in advance. It's the same 'scheduled indicator' pattern as an economic data release, with no insider edge.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXWCATTENDSWIFT-26JUL20",
+  "insider_group": "Taylor Swift's entourage/security and match-day organizers who would know her travel plans",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Confirmed via Source Agency report or her own social media; brief appearances count, but unannounced plan changes are possible before close.",
+  "rationale": "Swift's own entourage and event hosts would have advance knowledge of attendance plans, but per the mechanism sheet such personal plans stay changeable up to the moment rather than being a fixed, already-made decision. That keeps this plausible-but-not-concrete.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KX1ALBUM-26DEC",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Billboard #1 album status is the aggregate outcome of millions of consumers' purchases/streams over a tracking week; no single group decides it. With months remaining for all four artists, this is a rate/forecast question, not insider knowledge.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLIUKELIMINATIONW-26JUL10",
+  "insider_group": "Love Island UK production and villa cast, who see intermediate vulnerability/coupling states ahead of broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Declaration must come via official broadcast/verified channels; near-live format limits lag, but the final vote itself is revealed live, not pre-known.",
+  "rationale": "Love Island UK airs near-live and eliminations often hinge on a public vote shortly before the episode, though production and the villa know who is vulnerable ahead of broadcast. That's a real but partial edge, not a settled outcome.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPERSONPUBLIC-26AUG01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Being 'seen in public' over a full month is an extremely broad behavioral question with no single decision or announcement behind it. Staff may know a day's schedule, but the market covers any qualifying sighting across four weeks — a rate question, not a knowledge one.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPALBUM-26JUL18",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same mechanism as other Billboard #1 markets: aggregate consumer behavior over a tracking week decides it, not any group's decision. Close falls early in the tracking week, before most of the determining data even exists.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPWORLDCUP-26-DJT",
+  "insider_group": "Trump's own staff/Secret Service advance team who plan his public schedule",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Presidential travel plans are known in advance to close staff and security who plan logistics days ahead, but attendance remains changeable and isn't a fixed, already-made commitment the way a signed deal would be.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBILLS",
+  "insider_group": "Congressional leadership and relevant committees, who hold an advance whip count on this bill",
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "rules_secondary contains clarifications about an unrelated FISA Section 702 reauthorization market (KXBILLS-FISA) and East Wing ballroom construction funding, neither of which relates to the housing-supply legislation named in this event's title — likely boilerplate copied across the KXBILLS series that could confuse resolution.",
+  "resolution_source_risk": null,
+  "rationale": "Whether this specific housing bill becomes law by 2027 depends on floor votes that haven't happened yet; leadership has a whip count but the outcome is a decision not yet made. The stray FISA/ballroom clauses are a red flag for careless series-wide boilerplate rather than an insider edge.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXROADOUTCOME-26",
+  "insider_group": "Trump and White House counsel, who control the decision to sign, veto, or let the ROAD to Housing Act lapse",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Requires a Source Agency to report the action before today's close; if the decision comes very late in the window, reporting could lag the close.",
+  "rationale": "The choice to sign or veto is made by the President and a small circle before any public action, matching the 'reported by source agencies' family where the actor knows before any report exists. With the window closing today, it's unclear whether the decision is already finalized, and reporting lag is a real risk, keeping this at moderate.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXWCSONG-26JUL25",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Billboard Hot 100 chart position is an aggregate of streaming/sales/radio data; nobody decides it, though industry trackers can forecast late in a tracking week. No specific group already knows the answer today.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXWHVISIT-27",
+  "insider_group": "White House protocol office and the Lebanese presidency's scheduling staff",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Diplomatic visits require both sides' small circles to agree on a date, known internally before any public announcement — but per the mechanism sheet such plans also frequently shift or collapse, and nothing here indicates a visit is currently scheduled.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXART-AAR26",
+  "insider_group": "Sotheby's auction house staff, who see reserves, estimates, and registered bidder interest beforehand",
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Outcome depends on the 'Lot Sold' figure posted to Sotheby's website after live bidding closes; posting delay could matter if it lands near this market's own close.",
+  "rationale": "Auction houses have informative but non-decisive advance knowledge (reserves, estimates, registered interest), but per the mechanism sheet the actual hammer price is set live by bidders in the room and isn't known to anyone in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLIUSAELIMINATION-26JUL09",
+  "insider_group": "Love Island USA production, who observe villa dynamics and vulnerable couples ahead of broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same mechanism as Love Island UK: production and the villa have partial foreknowledge of who is vulnerable, but eliminations combine a public vote revealed close to or during broadcast, so the outcome isn't fully settled in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMEDIAGUESTFALLON-27",
+  "insider_group": "Tonight Show booking producers and the guest's publicist, who arrange appearances in advance",
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Talk-show bookings are arranged by producers and publicists ahead of taping, giving real advance knowledge close to air, but the window here runs nearly six months with no indication either guest currently has a booking — a rate question over many possible future tapings rather than a known, already-arranged appearance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXDATACENTERMORATORIUM-27JAN01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "This resolves on whether any of 50 states enacts a moratorium by year-end 2027 — a broad, undetermined legislative outcome with no single decision-maker or informed group, and no indication any state has already completed enactment.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOP10BBSPOTS-26JUL25-FUT",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Billboard Hot 100 top-10 placement is an aggregate chart outcome from consumer streaming/sales behavior; no group decides it in advance, though labels can forecast late in the tracking week.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBIGBROTHERELIMINATION-26JUL16",
+  "insider_group": "Big Brother production, who know nominees and taped house events ahead of the live eviction",
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Per the mechanism sheet, Big Brother eviction votes are cast live and the outcome is genuinely undecided until airtime, even though production knows nominees and taped house events beforehand. That live, undecided element keeps this below Love Island's moderate rating.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNEWTARIFFS-26JUL",
+  "insider_group": "The administration/USTR, who set tariff content and effective dates before publication",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Requires the action to be publicly announced/documented by a Source Agency before the window expires; a signed-but-unpublicized action late in the month could miss the deadline.",
+  "rationale": "Tariff executive actions are decided and drafted internally by the administration before any public announcement, matching the mechanism sheet's trade/tariff guidance. Whether any such action lands within the remaining weeks of July isn't yet certain, keeping this at moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNEXTUKFOREIGNSEC-27JAN01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Cabinet reshuffles are decided by the PM's small circle, but nothing here suggests one is imminent or underway. Replacing the current Foreign Secretary is a decision that, absent contrary evidence, has not yet been made within this long window to Jan 2027.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLIUKELIMINATIONW-26JUL17",
+  "insider_group": "Love Island UK production and villa cast, who see intermediate vulnerability/coupling states ahead of broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Identical mechanism to the other Love Island UK weekly elimination event: production and the villa have partial advance visibility into vulnerable couples, but the public vote that finalizes each elimination is revealed live, keeping this at moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXG7LEADEROUT-45JAN01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "The far-dated ticker suffix (45JAN01) suggests this market may stay open tracking 'first to leave' well beyond this window's close, so the resolving event may not occur near the stated close_time.",
+  "rationale": "Which of seven independent heads of government leaves office first depends on unrelated political processes (elections, health, scandal, resignation) across seven countries — no single group has privileged knowledge spanning all of them.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLOVEISLANDUKRANK-26AUG31RTOP3",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Final couple rankings are decided by a public vote at the finale (implied late August), which hasn't happened yet. Production may sense audience favorites from editing choices, but the deciding vote is future and public, not a fact already known to any insider group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPMA-28JANZYN",
+  "insider_group": "Philip Morris International's own finance/operations team, who track Zyn shipment volumes continuously",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "PMI sees its own shipment data in real time long before public quarterly disclosure, similar to the fundraising-dashboard mechanism — but the market asks about the full-year 2026 total, which isn't final until the year completes, so even the company doesn't yet know the final answer with certainty.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTECHRANKLISTAICODE-26JUL20",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "The LM Code Arena Leaderboard ranking is a crowd-voted aggregate accumulated from many independent users. Labs know their own release plans but cannot know a crowd-sourced leaderboard score in advance, per the mechanism sheet's AI leaderboard guidance.",
+  "researched": false
+ }
+]

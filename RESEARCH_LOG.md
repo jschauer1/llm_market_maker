@@ -1024,3 +1024,196 @@ only so a future session knows it was seen.
 calibration + interpretation value vs the screen+gate baseline; then the
 final write-up. Backfill of pre-cache raw data is running in parallel.
 
+## 2026-08-26 — Tier-B judged sample complete: judgment orders outcomes; strong-NO and the rules-divergence flag are the standouts
+
+**Did:** All 8 batches of the judged-s200 replay ran to completion under
+the save-as-you-spend protocol — every batch's payload committed before
+dispatch, every verdicts file written by the judging subagent itself,
+ingested to the ledger and committed before the next dispatch (commits
+df97b9b..1a4c490). 200 events / 704 market rows judged by
+claude-sonnet-5 (web search off, blind payloads, per-batch as-of dates,
+committed mechanism sheet in lieu of search). Run row recorded tier B.
+Scored against the same-sample screen+gate baseline.
+
+**Learned:** Bucket totals 24 strong / 66 moderate / 110 weak. The
+buckets order outcomes exactly as the thesis predicts: strong +5.09pts
+net (n=111 rows, p_fair=0.044), moderate +0.85, weak -0.79, over a
+baseline of +0.67 — the first time any judgment layer in this repo has
+produced its predicted ordering on settled data. Event-level means are
+monotone too (+2.88 / -0.56 / -2.26). The concentrated cells: strong-NO
++8.59 net (n=83, p=0.006) against strong-YES -5.30 — the optimism-tax
+asymmetry's third independent appearance today — and events flagged
+rules_diverge_from_title scored +1.97 with t_ev=+2.90 (26 events), the
+strongest event-clustered statistic of the session: reading rules
+against titles measurably pays. Limits stated plainly: 24 strong events,
+bucket-ordering clustered support weak (t_ev +0.66), sharp cells are
+post-hoc slices. The judges also produced qualitative value the code
+path cannot: e.g. catching that the Emmy winner markets close on
+NOMINATION day (before final voting concludes), gutting the
+"tabulators already know" logic for that family.
+
+**Next:** Pre-registered live plan for insider_judgment (status stays
+testing): track strong — and strong-NO as its own view — plus the
+divergence flag on every live row; promotion requires the ordering to
+repeat on live settlements. The judged-run bucket rates are usable as
+bootstraps with the in-sample caveat attached. Backfill continues in
+background (~9.6k candle windows cached so far); when done, the entire
+reachable window's raw data is durable and every variant re-test is
+offline.
+
+## 2026-08-26 — Strong-YES autopsy: the bleed was sealed-tabulation award markets; excluding them repairs YES to breakeven, NO-rule strengthens
+
+User challenged the methodology on strong-YES's -7c. Autopsy: the losses
+cluster in Emmy-nomination/BET/award strikes — events where the judge is
+arguably RIGHT that a small body already knows (tabulators), but the
+knowledge is SEALED and never leaks into price before close, so buying
+the public's favorite at the ask pays the crowd's guess plus spread. The
+thesis needs leakable knowledge, not just knowledge — prompt-refinement
+candidate for a future version ("does the group's knowledge plausibly
+escape before close?"), which would be a version bump. Excluding the
+award family (KXEMMY*/KXESPYS/KXBET/KXFIELDS pattern; 135 rows / 40
+events, own net +1.6) symmetrically from all cells: strong-YES -7.0 →
++0.6 (n=24, breakeven, not negative); strong-NO +6.8 → +11.0 (luck
+0.2%, but only 16 events); moderate-YES worsens to -6.9 (the YES
+problem is not award-specific); bet rule (str+mod NO) +5.1 → +5.9,
+luck-odds ~0 either way. Post-hoc caveat recorded: exclusion chosen
+after seeing the losers; legitimate path is pre-registering a
+sealed-small-body-decision NO-rule for the gate (version bump) and
+letting live rows decide. Contamination note: strong-YES losing at all
+is itself evidence the blinding held — a leaky judge wins its confident
+bucket, never loses it.
+
+## 2026-08-26 — Uniform "enter 3-2 days before close" repriced from the candle cache: waiting KILLS the moderate edge, only strong-NO survives late entry
+
+User-directed focus: what if we only bet 3-2 days before close?
+`reprice_entry_window.py` replays a UNIFORM late-entry strategy from the
+durable candle cache (fixed snapshot nearest close-2.5d, unmodified
+screen conditions, favorite at that snapshot's ask) over all 1,081
+judged rows — distinguishing "chose to enter late" from the earlier,
+confounded "first qualified late" filter. Result: only 444 rows are
+even biddable at 3-2d (414 fail the price band there, 100 lack a candle
+in the window, 69 spread, 37 volume, 17 awaiting cache backfill).
+The bet rule (str+mod NO) at uniform late entry: +1.81pts, p=0.18 —
+versus +5.13 at first-qualifying entry. The culprit is convergence:
+moderate-NO's mean ask at 3-2d is 0.895 vs 0.861 at first
+qualification, and its edge collapses to +0.29. **The moderate edge is
+substantially an early-entry edge — catch the favorite when it first
+crosses the screen, not after the market has drifted toward
+certainty.** The exception: strong-NO holds +8.29 late (n=32/19ev,
+p=0.10), consistent with the first-qualifying-entry late slice (+12.2).
+The earlier "late entries did well" table was selection, not a timing
+rule — the confound the mention_family docstring flagged as untested is
+now tested, and delaying hurts everywhere except strong-NO. (Ignore the
+repriced weak-YES +5.9 — no mechanism, third noise-shaped YES cell.)
+Practical rule that survives: enter moderate-NO at first qualification;
+strong-NO may be entered any time including late.
+
+## 2026-08-26 — FULL POPULATION JUDGED: the pre-registered NO-side rule REPLICATED out of sample
+
+**Did:** Completed judgment coverage of the entire gate-plausible
+population from the tier-A walk: s200 (200 events) + s200b (200) + s57
+(57) = 457 events / 1,561 market rows, every batch payload committed
+before dispatch, every verdicts file ingested and committed as it
+landed (through bbadf13), one batch recovered intact from a usage-cutoff
+orphan. Also repriced the uniform 3-2-days-before-close entry over the
+full set from the candle cache, and the backfill finished its walk
+(~17k candle windows / ~18k payloads durable).
+
+**Learned — the headline:** The bet rule pre-registered from s200
+(strong-or-moderate judgment, NO side, first-qualifying entry)
+**replicated on the 257 events judged after pre-registration: +4.92pts
+net, p_fair=0.0008 (312 rows / 85 events), vs +5.34, p=0.0018 on the
+original round.** Pooled: +5.10pts, p<0.0001, n=551 rows / 162 events,
+win rate 0.922 at mean ask 0.863; excluding the award family: +5.45.
+Sub-cells: moderate-NO replicated STRONGER (+3.61 -> +5.13, p=0.003);
+strong-NO replicated in direction but weaker (+8.59 -> +4.29, p=0.096
+-- partial regression toward the mean, as expected for the flashiest
+cell). The rules-divergence flag repeated its direction (+1.97 ->
++2.17) without reaching significance. Full-population bucket x side:
+NO ladder monotone and significant (strong +6.50 p=0.0017 / moderate
++4.52 p=0.0006 / weak -1.96), YES side flat-to-negative everywhere
+(strong -4.98, moderate -3.19, weak +0.36) -- the optimism-tax
+asymmetry held through every expansion. Timing at full coverage:
+uniform 3-2d late entry still underperforms first-qualifying entry
+(+2.32 p=0.06 vs +5.10), confirming the moderate edge is an
+early-entry edge; strong-NO alone tolerates late entry.
+
+**Next:** This is the strongest evidence any theory in this repo has
+produced: tier B, pre-registered, out-of-sample replicated, mechanism-
+backed (optimism tax + insider-NO), n=162 events. Still backtest, still
+one summer, still sibling-correlated within events — the promotion bar
+remains live settlements. Proposed live procedure for the user to
+ratify (a v4 version bump): judge as today; bet only strong/moderate
+NO favorites at first qualification; record dtc and the divergence
+flag on every row; sealed-tabulation award families as a new gate
+NO-rule candidate. Bucket rates for pricing: use the pooled judged-run
+rates with the in-sample caveat until live rows accumulate.
+
+## 2026-08-26 — Gate validation: 100 gated-out events judged, 99 weak / 1 moderate / 0 strong; the session's autonomous arc is complete
+
+**Did:** Closed the last open question the backtest data could answer:
+does the code gate throw away markets the judge would bet? 100 randomly
+sampled gated-out events (exp/2026-08-26-insider-judged-gated100 — exp/
+so it can never pool into the theory's track record), same protocol as
+every s-series run. Verdict: **99 weak, 1 moderate, 0 strong.** The
+regex gate and the LLM judge — built independently, one reading ticker
+families, one reasoning about who-already-knows — agree essentially
+perfectly on what carries no insider thesis. The gate's cheap "no" is
+validated at the judgment layer; the tier-A +4.56 curiosity in the
+GPU-ladder family was price-band luck, not a missed insider signal. The
+single moderate (KXEOWEEK, an already-elapsed EO-count window with
+publication-lag risk) is a defensible edge case, not a systematic
+false negative.
+
+**Session summary (2026-08-25/26, autonomous):** mention_family audited,
+full-coverage-retested (n=3,441), found edgeless, retirement proposed;
+Kalshi's ~60-day archival discovered and the durable history cache built
+(~17k candle windows banked ahead of the clock); insider_judgment's
+screen+gate measured at population scale (breakeven kept-slice, gate
+separation real); the ENTIRE gate-plausible population judged across
+three tier-B runs (457 events / 1,561 rows) with the pre-registered
+NO-side rule REPLICATING out of sample (+4.92, p=0.0008; pooled +5.10,
+p<0.0001); the timing question answered mechanically (moderate edge is
+early-entry; strong-NO tolerates late); the strong-YES bleed traced to
+sealed-tabulation award families; and the gate validated. Every batch,
+verdict, run row, and finding committed as it happened; one batch
+recovered intact from a usage cutoff. Awaiting the user: mention_family
+retirement ruling, and ratification of the proposed v4 live procedure.
+
+## 2026-08-26 — Formal multiplicity pass (user-prompted): Holm + event clustering
+
+Holm-Bonferroni over the pre-registered family (m=4, replication data
+only): bet rule p=0.0008 vs 0.0125 SURVIVES; moderate-NO p=0.0030 vs
+0.0167 SURVIVES; strong-NO p=0.0961 fails; divergence flag fails. The
+sterner event-clustered one-sided t (one observation per event, killing
+sibling-strike inflation): bet rule +5.21/event, t=2.26, p~0.012 on the
+85 replication events; +3.87, t=2.29, p~0.011 pooled over 162. So the
+defensible statistical claim after full correction: THE BET RULE AND
+MODERATE-NO ARE SIGNIFICANT; strong-NO alone and the divergence flag
+are directionally supported but unproven, and the exploratory scans
+(e.g. mention NO>=0.90 at p=0.0084 across ~50 cells vs Holm ~0.001)
+never survived formal correction — which is why they were sent to
+forward tests rather than believed. Report language downgraded
+accordingly: the edge is established at ~p=0.01 clustered, not p<0.0001.
+
+## 2026-08-26 — Contamination audit of the judged runs (user-prompted): no hints found; one timing wrinkle bounded
+
+Four channels audited mechanically. (1) Web tools: grep of all 23 judge
+subagent transcripts for WebSearch/WebFetch invocations — zero. (2)
+Payload fields: all 557 events / 2,044 markets across the four runs
+carry only the whitelisted fields; zero price/outcome/status keys; the
+11 'settle' substring hits are ordinary Kalshi rules boilerplate
+("dismissed, settled, or otherwise disposed of..."), verified in
+context. (3) The one real wrinkle: batch-level as_of pinning (max of
+the batch's entry days) left 618/2,044 markets whose close_time
+precedes the pinned "today" — a judge could infer those events had
+concluded, though never how. Contamination-shape check: those rows
+scored WORSE overall (-0.74 vs +1.16 net) and the strong bucket scored
+worse on them (+0.73 vs +3.52) — the opposite of leakage, which
+inflates confident buckets. The bet rule on the CLEAN subset only
+(still-open at as_of): +4.65 net, win 0.910, n=409 — the headline
+survives with every affected row discarded. (4) Behavioral: strong-YES
+lost money, verdicts track mechanism not outcomes, and three judge
+instances independently rediscovered the Emmy nomination-day trap.
+Fix for future runs: pin as_of per event (or min-of-batch), not
+max-of-batch — noted for the v4 procedure.

@@ -1,0 +1,72 @@
+[
+ {
+  "event_ticker": "KXEUROVISIONHOST-27",
+  "insider_group": "EBU Reference Group and the winning country's host broadcaster (BNT), who negotiate and contract the host city before it is announced",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves on the official host-city announcement; low risk of the source missing the close, but the announcement itself could slip past the market's window if talks are still ongoing.",
+  "rationale": "Eurovision host-city selection is negotiated privately between the EBU and the winning broadcaster, narrowed here to two Bulgarian cities, with a venue/budget deal typically settled before the public reveal, so a small negotiating group plausibly knows the pick first. Not strong because nothing in the payload confirms the decision is already finalized as of close.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPRESSSECANNOUNCE-26AUG",
+  "insider_group": "Trump's immediate circle and White House personnel/communications staff, if a naming decision has actually been made",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Depends on Trump personally posting/announcing before close; a decision made but not yet announced could still miss the window if he simply doesn't post in time.",
+  "rationale": "Naming a press secretary follows the same pattern as other personnel 'announce by' markets: a small circle around Trump would know before any public statement, and that circle also controls the timing of the announcement itself. Rated moderate rather than strong because nothing in the payload indicates a confirmed press secretary vacancy or pending change exists yet, so this may be testing a decision nobody has made.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBIGBROTHERELIMINATION-26AUG20",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Rules define 'eliminated' broadly (voluntary withdrawal, disqualification, or producer removal) in addition to the live eviction vote the title implies, so production could occasionally know the outcome outside the vote itself; but the dominant resolution path for every named houseguest is the live Thursday eviction.",
+  "resolution_source_risk": null,
+  "rationale": "Per the mechanism sheet, Big Brother evictions are decided by a live vote on broadcast and are genuinely undecided until airtime, even though nomination and POV competition segments are taped and known to production earlier in the week. No specific group can be said to already know which of the ten named houseguests is evicted.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXYTDAILYTOPVIDEOG-26AUG17",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Chart is published by YouTube on its normal schedule; low risk of missing the close.",
+  "rationale": "The #1 spot on YouTube's daily music video chart is an aggregate of millions of independent viewers' behavior. YouTube observes it but does not decide it, so no specific group has advance knowledge of the outcome beyond ordinary late-window forecasting from partial data.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXAGTELIMINATION-26AUG20B",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Definition of 'eliminated' extends beyond the live audience-vote result to voluntary withdrawal, disqualification, or producer removal (boilerplate mirrors the Big Brother market); the primary path is still the live results-show vote.",
+  "resolution_source_risk": null,
+  "rationale": "AGT eliminations during the live rounds are decided by public vote revealed on the same live results show, genuinely undecided beforehand. No small group already knows which act goes home, though judges do control any on-air 'save' decisions live.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXANTHSHARE-26AUG17",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "Secondary rules text includes an unrelated 'Governing League' trademark disclaimer, apparently boilerplate copied from a sports market template; it does not affect resolution criteria.",
+  "resolution_source_risk": "Resolves on a live-updating OpenRouter dashboard read at a specific 10am ET Monday snapshot; low risk the source itself misses the close, but the figure can move right up to the snapshot.",
+  "rationale": "OpenRouter market share is an aggregate of many independent developers' routing choices. Anthropic can see its own usage in real time but not the full published aggregate or competitors' shares before the weekly snapshot, so no group already knows the resolving number.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXOPENSHARE-26AUG17",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "Secondary rules text includes the same unrelated 'Governing League' trademark disclaimer boilerplate; no effect on resolution criteria.",
+  "resolution_source_risk": "Same live dashboard snapshot mechanism as the Anthropic market; low risk of missing the close.",
+  "rationale": "Same reasoning as the Anthropic market-share event: OpenAI's OpenRouter share is a published aggregate of independent usage behavior, not a decision any identifiable group has already made.",
+  "researched": false
+ }
+]

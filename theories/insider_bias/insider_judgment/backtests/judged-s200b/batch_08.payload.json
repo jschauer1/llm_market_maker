@@ -1,0 +1,524 @@
+[
+ {
+  "event_ticker": "KXTOPMOVIE-26AUG06",
+  "series_ticker": "KXTOPMOVIE",
+  "title": "Will Masters of the Universe be #1 on the Luminate Top 50 moviews ranked by hours?",
+  "close_time": "2026-08-08T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPMOVIE-26AUG06-MASTERS",
+    "title": "Will Masters of the Universe be #1 on the Luminate Top 50 moviews ranked by hours?",
+    "rules_primary": "If Masters of the Universe is ranked #1 on the Luminate Top 50 movies ranked by hours watched for the July 31 - August 06, 2026 tracking week, then the market resolves to Yes.",
+    "rules_secondary": "Data for these Contracts will resolve on the Saturday following the July 31 - August 06, 2026 tracking week time frame.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-08-08T14:00:00Z"
+   },
+   {
+    "ticker": "KXTOPMOVIE-26AUG06-AVATARA",
+    "title": "Will Avatar Aang: The Last Airbender be #1 on the Luminate Top 50 moviews ranked by hours?",
+    "rules_primary": "If Avatar Aang: The Last Airbender is ranked #1 on the Luminate Top 50 movies ranked by hours watched for the July 31 - August 06, 2026 tracking week, then the market resolves to Yes.",
+    "rules_secondary": "Data for these Contracts will resolve on the Saturday following the July 31 - August 06, 2026 tracking week time frame.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-08-08T14:00:00Z"
+   },
+   {
+    "ticker": "KXTOPMOVIE-26AUG06-72HOURS",
+    "title": "Will 72 Hours be #1 on the Luminate Top 50 moviews ranked by hours?",
+    "rules_primary": "If 72 Hours is ranked #1 on the Luminate Top 50 movies ranked by hours watched for the July 31 - August 06, 2026 tracking week, then the market resolves to Yes.",
+    "rules_secondary": "Data for these Contracts will resolve on the Saturday following the July 31 - August 06, 2026 tracking week time frame.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-08-08T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXYTDAILYTOPVIDEOG-26AUG05",
+  "series_ticker": "KXYTDAILYTOPVIDEOG",
+  "title": "Will Dai Dai rank #1 on YouTube Charts\u2019 Daily Top Music Videos Global chart dated Aug 5, 2026?",
+  "close_time": "2026-08-06T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXYTDAILYTOPVIDEOG-26AUG05-DAI",
+    "title": "Will Dai Dai rank #1 on YouTube Charts\u2019 Daily Top Music Videos Global chart dated Aug 5, 2026?",
+    "rules_primary": "If Dai Dai ranks #1 on YouTube Charts\u2019 Daily Top Music Videos - Global chart dated Aug 5, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by YouTube. Any references to YouTube or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between YouTube and Kalshi.",
+    "close_time": "2026-08-06T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXYTTOPSONGW-26AUG06",
+  "series_ticker": "KXYTTOPSONGW",
+  "title": "Will Dai Dai rank #1 on YouTube's Weekly Top Songs Chart dated Jul 31",
+  "close_time": "2026-08-07T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXYTTOPSONGW-26AUG06-DAI",
+    "title": "Will Dai Dai rank #1 on YouTube's Weekly Top Songs Chart dated Jul 31 - Aug 6, 2026?",
+    "rules_primary": "If Dai Dai is ranked #1 on YouTube's Weekly Top Songs United States Chart dated Jul 31 - Aug 6, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by YouTube. Any references to YouTube or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between YouTube and Kalshi.",
+    "close_time": "2026-08-07T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFDANOM-29",
+  "series_ticker": "KXFDANOM",
+  "title": "Will Trump nominate Kyle Diamantas as FDA commissioner?",
+  "close_time": "2026-08-19T20:48:21Z",
+  "markets": [
+   {
+    "ticker": "KXFDANOM-29-KDIA",
+    "title": "Will Trump nominate Kyle Diamantas as FDA commissioner?",
+    "rules_primary": "If Kyle Diamantas is nominated for FDA commissioner after Issuance and before Jan 20, 2029. then the market resolves to Yes.",
+    "rules_secondary": "Only the first official nomination made after Issuance will be considered.",
+    "close_time": "2026-08-19T20:48:21Z"
+   },
+   {
+    "ticker": "KXFDANOM-29-HOVE",
+    "title": "Will Trump nominate Heidi Overton as FDA commissioner?",
+    "rules_primary": "If Heidi Overton is nominated for FDA commissioner after Issuance and before Jan 20, 2029. then the market resolves to Yes.",
+    "rules_secondary": "Only the first official nomination made after Issuance will be considered.",
+    "close_time": "2026-08-19T20:48:21Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPVH-26AUG07",
+  "series_ticker": "KXTRUMPVH",
+  "title": "Will Donald Trump's VoteHub approval polling average be above 38.1% at 10:00 AM ET on Aug 7, 2026?",
+  "close_time": "2026-08-07T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPVH-26AUG07-T38.1",
+    "title": "Will Donald Trump's VoteHub approval polling average be above 38.1% at 10:00 AM ET on Aug 7, 2026?",
+    "rules_primary": "If Donald Trump's VoteHub approval polling average is above 38.1% at 10:00 AM ET on Aug 7, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-07T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXCANTARIFFSEFFECT-26",
+  "series_ticker": "KXCANTARIFFSEFFECT",
+  "title": "Will it be reported by any of the Source Agencies that the additional 50% tariffs established by President Donald Trump\u2019s three July 20, 2026 Section 338 proclamations begin applying to covered Canadian goods on August 19, 2026 before Aug 20, 2026?",
+  "close_time": "2026-08-20T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXCANTARIFFSEFFECT-26",
+    "title": "Will it be reported by any of the Source Agencies that the additional 50% tariffs established by President Donald Trump\u2019s three July 20, 2026 Section 338 proclamations begin applying to covered Canadian goods on August 19, 2026 before Aug 20, 2026?",
+    "rules_primary": "If the additional 50% tariffs established by President Donald Trump\u2019s three July 20, 2026 Section 338 proclamations begin applying to covered Canadian goods on August 19, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-08-20T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPNOMNUM-26AUG02",
+  "series_ticker": "KXTRUMPNOMNUM",
+  "title": "Will there be at least 3 presidential nominations sent to the Senate in the week of Aug 2, 2026?",
+  "close_time": "2026-08-09T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPNOMNUM-26AUG02-T3",
+    "title": "Will there be at least 3 presidential nominations sent to the Senate in the week of Aug 2, 2026?",
+    "rules_primary": "If Donald Trump has sent at least 3 nominations to the U.S. Senate from Aug 2, 2026 through Aug 8, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Aug 9, 2026), then the market resolves to Yes.",
+    "rules_secondary": "The market solely resolves to the publication dates visibly displayed on the \"Presidential Actions\" tab at whitehouse.gov at 10:00 AM ET on Aug 9, 2026. The week runs from Aug 2, 2026 through Aug 8, 2026. If a person receives multiple qualifying nominations within the period, they will each count separately. For example, Trump's March 4 nomination of Kevin Warsh is considered two nominations.",
+    "close_time": "2026-08-09T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPNOMNUM-26AUG02-T2",
+    "title": "Will there be at least 2 presidential nominations sent to the Senate in the week of Aug 2, 2026?",
+    "rules_primary": "If Donald Trump has sent at least 2 nominations to the U.S. Senate from Aug 2, 2026 through Aug 8, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Aug 9, 2026), then the market resolves to Yes.",
+    "rules_secondary": "The market solely resolves to the publication dates visibly displayed on the \"Presidential Actions\" tab at whitehouse.gov at 10:00 AM ET on Aug 9, 2026. The week runs from Aug 2, 2026 through Aug 8, 2026. If a person receives multiple qualifying nominations within the period, they will each count separately. For example, Trump's March 4 nomination of Kevin Warsh is considered two nominations.",
+    "close_time": "2026-08-09T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXUAPFILES-26JUL23",
+  "series_ticker": "KXUAPFILES",
+  "title": "Will Trump release new UFO files before Aug 17, 2026?",
+  "close_time": "2026-08-07T18:16:34Z",
+  "markets": [
+   {
+    "ticker": "KXUAPFILES-26JUL23-26AUG17",
+    "title": "Will Trump release new UFO files before Aug 17, 2026?",
+    "rules_primary": "If the federal government has released, after Issuance and before Aug 17, 2026, previously unreleased documents, audio files, or video files regarding Unidentified Aerial Phenomena (\u201cUAP\u201d), then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-07T18:16:34Z"
+   },
+   {
+    "ticker": "KXUAPFILES-26JUL23-26AUG10",
+    "title": "Will Trump release new UFO files before Aug 10, 2026?",
+    "rules_primary": "If the federal government has released, after Issuance and before Aug 10, 2026, previously unreleased documents, audio files, or video files regarding Unidentified Aerial Phenomena (\u201cUAP\u201d), then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-07T18:16:34Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPTIME-26AUG15",
+  "series_ticker": "KXTRUMPTIME",
+  "title": "Will Trump post on Truth Social between 5:00 AM and 5:59 AM ET this week?",
+  "close_time": "2026-08-15T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPTIME-26AUG15-H5",
+    "title": "Will Trump post on Truth Social between 5:00 AM and 5:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 5:00 AM to 5:59 AM ET on any day from Aug 9, 2026 through Aug 15, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-08-15T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPTIME-26AUG15-H4",
+    "title": "Will Trump post on Truth Social between 4:00 AM and 4:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 4:00 AM to 4:59 AM ET on any day from Aug 9, 2026 through Aug 15, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-08-15T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPTIME-26AUG15-H3",
+    "title": "Will Trump post on Truth Social between 3:00 AM and 3:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 3:00 AM to 3:59 AM ET on any day from Aug 9, 2026 through Aug 15, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-08-15T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPTIME-26AUG15-H2",
+    "title": "Will Trump post on Truth Social between 2:00 AM and 2:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 2:00 AM to 2:59 AM ET on any day from Aug 9, 2026 through Aug 15, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-08-15T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPTIME-26AUG15-H1",
+    "title": "Will Trump post on Truth Social between 1:00 AM and 1:59 AM ET this week?",
+    "rules_primary": "If the number of Trump Truth Social posts is above 0 during 1:00 AM to 1:59 AM ET on any day from Aug 9, 2026 through Aug 15, 2026, inclusive, then the market resolves to Yes.",
+    "rules_secondary": "Each hour interval is inclusive: \"1:00 AM to 1:59 AM\" means 1:00:00 AM through 1:59:59 AM. Deleted posts qualify for the purposes of this market.",
+    "close_time": "2026-08-15T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXYTTOPVIDEOG2D-26AUG10",
+  "series_ticker": "KXYTTOPVIDEOG2D",
+  "title": "Will KALYANI (Remix) rank #2 on YouTube Charts\u2019 Daily Top Music Videos Global chart dated Aug 10, 2026?",
+  "close_time": "2026-08-11T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXYTTOPVIDEOG2D-26AUG10-KAL",
+    "title": "Will KALYANI (Remix) rank #2 on YouTube Charts\u2019 Daily Top Music Videos Global chart dated Aug 10, 2026?",
+    "rules_primary": "If KALYANI (Remix) ranks #2 on YouTube Charts\u2019 Daily Top Music Videos Global chart dated Aug 10, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by YouTube. Any references to YouTube or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between YouTube and Kalshi.",
+    "close_time": "2026-08-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXYTTOPVIDEOG2D-26AUG10-GOL",
+    "title": "Will Golden rank #2 on YouTube Charts\u2019 Daily Top Music Videos Global chart dated Aug 10, 2026?",
+    "rules_primary": "If Golden ranks #2 on YouTube Charts\u2019 Daily Top Music Videos Global chart dated Aug 10, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by YouTube. Any references to YouTube or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between YouTube and Kalshi.",
+    "close_time": "2026-08-11T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMDEBUT-26AUG29-LOS",
+  "series_ticker": "KXALBUMDEBUT",
+  "title": "Will Phoebe Bridgers's 'Lost Weekend' debut at #1",
+  "close_time": "2026-08-24T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMDEBUT-26AUG29-LOS",
+    "title": "Will Phoebe Bridgers's 'Lost Weekend' debut at #1",
+    "rules_primary": "If Lost Weekend is the #1 album on the Billboard 200 chart for the week of August 29, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-24T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXVIDEOAI-26AUG14",
+  "series_ticker": "KXVIDEOAI",
+  "title": "Top Text to Video AI this week?",
+  "close_time": "2026-08-14T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXVIDEOAI-26AUG14-GOOG",
+    "title": "Top Text to Video AI this week?",
+    "rules_primary": "If Google is the #1 model on Artificial Analysis Text to Video Leaderboard (With Audio) on Aug 14, 2026 at 10:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-14T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXYTDAILYTOPVIDEOG-26AUG11",
+  "series_ticker": "KXYTDAILYTOPVIDEOG",
+  "title": "Will Dai Dai rank #1 on YouTube Charts\u2019 Daily Top Music Videos Global chart dated Aug 11, 2026?",
+  "close_time": "2026-08-12T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXYTDAILYTOPVIDEOG-26AUG11-DAI",
+    "title": "Will Dai Dai rank #1 on YouTube Charts\u2019 Daily Top Music Videos Global chart dated Aug 11, 2026?",
+    "rules_primary": "If Dai Dai ranks #1 on YouTube Charts\u2019 Daily Top Music Videos - Global chart dated Aug 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by YouTube. Any references to YouTube or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between YouTube and Kalshi.",
+    "close_time": "2026-08-12T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXDEEPSHARE-DEEP",
+  "series_ticker": "KXDEEPSHARE",
+  "title": "DeepSeek market share this week?",
+  "close_time": "2026-08-17T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXDEEPSHARE-DEEP-28",
+    "title": "DeepSeek market share this week?",
+    "rules_primary": "If DeepSeek scores above 28% on OpenRouter Market Share by model author week ending Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week ending week ending Aug 16, 2026.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXDEEPSHARE-DEEP-26",
+    "title": "DeepSeek market share this week?",
+    "rules_primary": "If DeepSeek scores above 26% on OpenRouter Market Share by model author week ending Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week ending week ending Aug 16, 2026.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXDEEPSHARE-DEEP-24",
+    "title": "DeepSeek market share this week?",
+    "rules_primary": "If DeepSeek scores above 24% on OpenRouter Market Share by model author week ending Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week ending week ending Aug 16, 2026.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXDEEPSHARE-DEEP-22",
+    "title": "DeepSeek market share this week?",
+    "rules_primary": "If DeepSeek scores above 22% on OpenRouter Market Share by model author week ending Aug 16, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on the updated values for the week ending week ending Aug 16, 2026.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMLABELSHARE-W3126AUG13",
+  "series_ticker": "KXMLABELSHARE",
+  "title": "Will UMG's market share be above 66% on the Hits Daily Double: Hits Top 50 chart week ending Aug 13, 2026?",
+  "close_time": "2026-08-14T21:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXMLABELSHARE-W3126AUG13-UMG",
+    "title": "Will UMG's market share be above 66% on the Hits Daily Double: Hits Top 50 chart week ending Aug 13, 2026?",
+    "rules_primary": "If UMG's market share is above 66% on the Hits Daily Double: Hits Top 50 chart's week ending Aug 13, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Market share percentages are shown on the Hits Daily Double: Hits Top 50 chart page for each week. The chart dated Thursday is usually published on Friday.\n\nMarket share percentages are shown on the Hits Daily Double: Hits Top 50 chart page for each week. The chart dated Thursday is usually published on Friday.\n\nThis market and these products have not been endorsed by UMG and Hits Daily Double. Any references to UMG and Hits Daily Double or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between UMG and Hits Daily Double and Kalshi.",
+    "close_time": "2026-08-14T21:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXYTTOPVIDEOG2D-26AUG12",
+  "series_ticker": "KXYTTOPVIDEOG2D",
+  "title": "Will Sheesha rank #2 on YouTube Charts\u2019 Daily Top Music Videos Global chart dated Aug 12, 2026?",
+  "close_time": "2026-08-13T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXYTTOPVIDEOG2D-26AUG12-SHE",
+    "title": "Will Sheesha rank #2 on YouTube Charts\u2019 Daily Top Music Videos Global chart dated Aug 12, 2026?",
+    "rules_primary": "If Sheesha ranks #2 on YouTube Charts\u2019 Daily Top Music Videos Global chart dated Aug 12, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by YouTube. Any references to YouTube or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between YouTube and Kalshi.",
+    "close_time": "2026-08-13T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTECHRANKLISTAICODE-26AUG17",
+  "series_ticker": "KXTECHRANKLISTAICODE",
+  "title": "Top Coding AI this week?",
+  "close_time": "2026-08-17T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTECHRANKLISTAICODE-26AUG17-CLAU",
+    "title": "Top Coding AI this week?",
+    "rules_primary": "If Claude is the #1 model on LM Code Arena Leaderboard on Aug 17, 2026 at 10:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-17T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPVH-26AUG14",
+  "series_ticker": "KXTRUMPVH",
+  "title": "Will Donald Trump's VoteHub approval polling average be above 38.6% at 10:00 AM ET on Aug 14, 2026?",
+  "close_time": "2026-08-14T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPVH-26AUG14-T38.6",
+    "title": "Will Donald Trump's VoteHub approval polling average be above 38.6% at 10:00 AM ET on Aug 14, 2026?",
+    "rules_primary": "If Donald Trump's VoteHub approval polling average is above 38.6% at 10:00 AM ET on Aug 14, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-14T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMVS-LOS26AUG21",
+  "series_ticker": "KXALBUMVS",
+  "title": "Will Lost Weekend by Phoebe Bridgers have more first week Album Equivalent Units, within the first week of release tracking week, than WILD by KATSEYE on Luminate during the within the first week of release?",
+  "close_time": "2026-08-23T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMVS-LOS26AUG21-LOS",
+    "title": "Will Lost Weekend by Phoebe Bridgers have more first week Album Equivalent Units, within the first week of release tracking week, than WILD by KATSEYE on Luminate during the within the first week of release?",
+    "rules_primary": "If Lost Weekend by Phoebe Bridgers has more USA  First week Album Equivalent Units on Luminate than WILD by KATSEYE within the first week of release, then the market resolves to Yes.",
+    "rules_secondary": "Data for these Contracts will be based on the within the first week of release tracking week. Such data may be published up to approximately 48 hours after the end of the period.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-08-23T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXYTTOPSONGW-26AUG20",
+  "series_ticker": "KXYTTOPSONGW",
+  "title": "Will Sunflower rank #1 on YouTube's Weekly Top Songs Chart dated Aug 14",
+  "close_time": "2026-08-21T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXYTTOPSONGW-26AUG20-SUN",
+    "title": "Will Sunflower rank #1 on YouTube's Weekly Top Songs Chart dated Aug 14 - Aug 20, 2026?",
+    "rules_primary": "If Sunflower is ranked #1 on YouTube's Weekly Top Songs United States Chart dated Aug 14 - Aug 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by YouTube. Any references to YouTube or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between YouTube and Kalshi.",
+    "close_time": "2026-08-21T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMDEBUT-26AUG29-WIL",
+  "series_ticker": "KXALBUMDEBUT",
+  "title": "Will KATSEYE's 'WILD' debut at #1",
+  "close_time": "2026-08-24T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMDEBUT-26AUG29-WIL",
+    "title": "Will KATSEYE's 'WILD' debut at #1",
+    "rules_primary": "If WILD is the #1 album on the Billboard 200 chart for the week of August 29, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-24T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXGOOGSHARE-26AUG17",
+  "series_ticker": "KXGOOGSHARE",
+  "title": "Gemini market share this week?",
+  "close_time": "2026-08-24T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXGOOGSHARE-26AUG17-24",
+    "title": "Gemini market share this week?",
+    "rules_primary": "If Google scores above 24% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXGOOGSHARE-26AUG17-23",
+    "title": "Gemini market share this week?",
+    "rules_primary": "If Google scores above 23% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXGOOGSHARE-26AUG17-22",
+    "title": "Gemini market share this week?",
+    "rules_primary": "If Google scores above 22% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTENCENTSHARE-26AUG17",
+  "series_ticker": "KXTENCENTSHARE",
+  "title": "Tencent market share this week?",
+  "close_time": "2026-08-24T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTENCENTSHARE-26AUG17-4.0",
+    "title": "Tencent market share this week?",
+    "rules_primary": "If Tencent scores above 4.0% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXTENCENTSHARE-26AUG17-3.5",
+    "title": "Tencent market share this week?",
+    "rules_primary": "If Tencent scores above 3.5% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXTENCENTSHARE-26AUG17-3.0",
+    "title": "Tencent market share this week?",
+    "rules_primary": "If Tencent scores above 3.0% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXTENCENTSHARE-26AUG17-2.5",
+    "title": "Tencent market share this week?",
+    "rules_primary": "If Tencent scores above 2.5% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXDEEPSHARE-26AUG17",
+  "series_ticker": "KXDEEPSHARE",
+  "title": "DeepSeek market share this week?",
+  "close_time": "2026-08-24T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXDEEPSHARE-26AUG17-27",
+    "title": "DeepSeek market share this week?",
+    "rules_primary": "If DeepSeek scores above 27% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXDEEPSHARE-26AUG17-25",
+    "title": "DeepSeek market share this week?",
+    "rules_primary": "If DeepSeek scores above 25% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXDEEPSHARE-26AUG17-23",
+    "title": "DeepSeek market share this week?",
+    "rules_primary": "If DeepSeek scores above 23% on OpenRouter Market Share by model author week of Aug 17, 2026 , then the market resolves to Yes.",
+    "rules_secondary": "This event will resolve based on 10:00AM ET Monday updated values for the week of Aug 17, 2026 .\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-24T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXRTCOMPARE-INS26AUG24",
+  "series_ticker": "KXRTCOMPARE",
+  "title": "Will Mutiny have the highest Rotten Tomatoes score among Insidious: Out of the Further and Mutiny on Aug 24, 2026 at 10:00 AM ET?",
+  "close_time": "2026-08-24T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXRTCOMPARE-INS26AUG24-MUT",
+    "title": "Will Mutiny have the highest Rotten Tomatoes score among Insidious: Out of the Further and Mutiny on Aug 24, 2026 at 10:00 AM ET?",
+    "rules_primary": "If Mutiny has the highest Rotten Tomatoes score among Insidious: Out of the Further and Mutiny on Aug 24, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "This event specifically references the Rotten Tomatoes\u2019 Tomatometer \u201cAll Critics\u201d Tomatometer score. If two or more movies are tied for the highest Rotten Tomatoes score, each movie will resolve to Yes.\n\nThis market and these products have not been endorsed by Rotten Tomatoes. Any references to Rotten Tomatoes or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Rotten Tomatoes and Kalshi.",
+    "close_time": "2026-08-24T14:00:00Z"
+   },
+   {
+    "ticker": "KXRTCOMPARE-INS26AUG24-INS",
+    "title": "Will Insidious: Out of the Further have the highest Rotten Tomatoes score among Insidious: Out of the Further and Mutiny on Aug 24, 2026 at 10:00 AM ET?",
+    "rules_primary": "If Insidious: Out of the Further has the highest Rotten Tomatoes score among Insidious: Out of the Further and Mutiny on Aug 24, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "This event specifically references the Rotten Tomatoes\u2019 Tomatometer \u201cAll Critics\u201d Tomatometer score. If two or more movies are tied for the highest Rotten Tomatoes score, each movie will resolve to Yes.\n\nThis market and these products have not been endorsed by Rotten Tomatoes. Any references to Rotten Tomatoes or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Rotten Tomatoes and Kalshi.",
+    "close_time": "2026-08-24T14:00:00Z"
+   }
+  ]
+ }
+]

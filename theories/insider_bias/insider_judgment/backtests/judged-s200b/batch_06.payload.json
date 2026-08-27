@@ -1,0 +1,741 @@
+[
+ {
+  "event_ticker": "KXTRUMPPHOTO-26JUL19",
+  "series_ticker": "KXTRUMPPHOTO",
+  "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 7 between Jul 13, 2026 and Jul 19, 2026?",
+  "close_time": "2026-07-20T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPPHOTO-26JUL19-7",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 7 between Jul 13, 2026 and Jul 19, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jul 13, 2026 and Jul 19, 2026 is exactly 7, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market. Conversely, if a photo is correctly tagged as depicting Donald Trump but its metadata date does not reflect the actual date the photo was taken (in local time), Kalshi reserves the right to include that photo based on the actual date.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-07-20T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPPHOTO-26JUL19-6",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 6 between Jul 13, 2026 and Jul 19, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jul 13, 2026 and Jul 19, 2026 is exactly 6, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market. Conversely, if a photo is correctly tagged as depicting Donald Trump but its metadata date does not reflect the actual date the photo was taken (in local time), Kalshi reserves the right to include that photo based on the actual date.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-07-20T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPPHOTO-26JUL19-5",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 5 between Jul 13, 2026 and Jul 19, 2026?",
+    "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Jul 13, 2026 and Jul 19, 2026 is exactly 5, then the market resolves to Yes.",
+    "rules_secondary": "If a tagged photo does not actually depict Donald Trump, or is materially mis-tagged (for example, with the wrong date), Kalshi reserves the right to disregard that photo when resolving the market. Conversely, if a photo is correctly tagged as depicting Donald Trump but its metadata date does not reflect the actual date the photo was taken (in local time), Kalshi reserves the right to include that photo based on the actual date.\n\nExample of a date with no qualifying photos: April 4, 2026",
+    "close_time": "2026-07-20T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPBIBIMEET-26AUG01",
+  "series_ticker": "KXTRUMPBIBIMEET",
+  "title": "Will Donald Trump meet in person Benjamin Netanyahu before Aug 1, 2026?",
+  "close_time": "2026-07-28T16:40:25Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPBIBIMEET-26AUG01-AUG01",
+    "title": "Will Donald Trump meet in person Benjamin Netanyahu before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and Benjamin Netanyahu meet in person after Issuance and before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-28T16:40:25Z"
+   },
+   {
+    "ticker": "KXTRUMPBIBIMEET-26AUG01-JUL21",
+    "title": "Will Donald Trump meet in person Benjamin Netanyahu before Jul 21, 2026?",
+    "rules_primary": "If Donald Trump and Benjamin Netanyahu meet in person after Issuance and before Jul 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-21T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXREHEARBIRTHRIGHT-27",
+  "series_ticker": "KXREHEARBIRTHRIGHT",
+  "title": "Will it be reported by any of the Source Agencies that the Supreme Court of the United States grants a petition for rehearing in Trump v. Barbara before Jan 1, 2027?",
+  "close_time": "2026-07-29T14:26:06Z",
+  "markets": [
+   {
+    "ticker": "KXREHEARBIRTHRIGHT-27",
+    "title": "Will it be reported by any of the Source Agencies that the Supreme Court of the United States grants a petition for rehearing in Trump v. Barbara before Jan 1, 2027?",
+    "rules_primary": "If the Supreme Court of the United States grants a petition for rehearing in Trump v. Barbara  after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "If no petition for rehearing is filed by the applicable filing deadline, this market resolves No.\n\nOnly reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-29T14:26:06Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXWCFIRSTSONG-JUS26JUL20",
+  "series_ticker": "KXWCFIRSTSONG",
+  "title": "Will Yukon be the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+  "close_time": "2026-07-19T20:27:55Z",
+  "markets": [
+   {
+    "ticker": "KXWCFIRSTSONG-JUS26JUL20-YUK",
+    "title": "Will Yukon be the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Yukon'' as performed  by Justin Bieber (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Justin Bieber. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Justin Bieber, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Justin Bieber.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:27:55Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-JUS26JUL20-WHE",
+    "title": "Will Where Are \u00dc Now be the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Where Are \u00dc Now'' as performed  by Justin Bieber (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Justin Bieber. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Justin Bieber, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Justin Bieber.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:27:55Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-JUS26JUL20-STA",
+    "title": "Will STAY be the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''STAY'' as performed  by Justin Bieber (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Justin Bieber. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Justin Bieber, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Justin Bieber.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:27:55Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-JUS26JUL20-SOR",
+    "title": "Will Sorry be the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Sorry'' as performed  by Justin Bieber (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Justin Bieber. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Justin Bieber, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Justin Bieber.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:27:55Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-JUS26JUL20-LOV",
+    "title": "Will Love Yourself be the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Love Yourself'' as performed  by Justin Bieber (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Justin Bieber. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Justin Bieber, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Justin Bieber.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:27:55Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-JUS26JUL20-DES",
+    "title": "Will Despacito be the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Despacito'' as performed  by Justin Bieber (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Justin Bieber. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Justin Bieber, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Justin Bieber.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:27:55Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-JUS26JUL20-DAID",
+    "title": "Will Dai Dai be the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the First song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Dai Dai'' as performed  by Justin Bieber (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Justin Bieber. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Justin Bieber, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Justin Bieber.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:27:55Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-JUS26JUL20-DAI",
+    "title": "Will Daisies be the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Daisies'' as performed  by Justin Bieber (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Justin Bieber. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Justin Bieber, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Justin Bieber.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:27:55Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-JUS26JUL20-BEA",
+    "title": "Will Beauty And A Beat be the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Beauty And A Beat'' as performed  by Justin Bieber (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Justin Bieber. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Justin Bieber, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Justin Bieber.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:27:55Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-JUS26JUL20-BAB",
+    "title": "Will Baby be the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Justin Bieber during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Baby'' as performed  by Justin Bieber (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Justin Bieber. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Justin Bieber, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Justin Bieber.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:27:55Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFABLEDISABLED-27",
+  "series_ticker": "KXFABLEDISABLED",
+  "title": "Will it be reported by any of the Source Agencies that general access to Fable 5 is disabled for US customers before Jul 31, 2026?",
+  "close_time": "2026-07-31T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXFABLEDISABLED-27-26JUL31",
+    "title": "Will it be reported by any of the Source Agencies that general access to Fable 5 is disabled for US customers before Jul 31, 2026?",
+    "rules_primary": "If general access to Fable 5 is disabled for US customers  after Issuance and before Jul 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-31T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXWCFIRSTSONG-SHA26JUL20",
+  "series_ticker": "KXWCFIRSTSONG",
+  "title": "Will Whenever, Wherever be the first song performed by Shakira during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+  "close_time": "2026-07-19T20:13:26Z",
+  "markets": [
+   {
+    "ticker": "KXWCFIRSTSONG-SHA26JUL20-WHE",
+    "title": "Will Whenever, Wherever be the first song performed by Shakira during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Shakira during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Whenever, Wherever'' as performed  by Shakira (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Shakira. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Shakira, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Shakira.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:13:26Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-SHA26JUL20-WAK",
+    "title": "Will Waka Waka (This Time for Africa) be the first song performed by Shakira during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Shakira during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Waka Waka (This Time for Africa)'' as performed  by Shakira (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Shakira. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Shakira, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Shakira.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:13:26Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-SHA26JUL20-HIP",
+    "title": "Will Hips Don't Lie be the first song performed by Shakira during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Shakira during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Hips Don't Lie'' as performed  by Shakira (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Shakira. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Shakira, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Shakira.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:13:26Z"
+   },
+   {
+    "ticker": "KXWCFIRSTSONG-SHA26JUL20-DAI",
+    "title": "Will Dai Dai be the first song performed by Shakira during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium?",
+    "rules_primary": "If the first song performed by Shakira during the FIFA World Cup 2026 Final Halftime Show scheduled for July 19, 2026 at the New York New Jersey Stadium is the song ''Dai Dai'' as performed  by Shakira (i.e., its recognizable melody or lyrics sung), whether performed in full, in part, in a medley, or in a mashup, provided it is at least reasonably begun, then the market resolves to Yes.",
+    "rules_secondary": "This market pertains to the first qualifying song performed during the FIFA World Cup 2026 Final Halftime Show performed by Shakira. If none of the songs listed in this event are the first qualifying song, all markets in this event will resolve to No.\n\nCLARIFICATION: For purposes of this Contract, the following are not eligible to be the first song and are disregarded when determining the first song, regardless of when they occur: national anthems, the FIFA Anthem (\"DNA\") or other governing-body or tournament anthems, official tournament songs not performed by Shakira, walk-on or entrance music, interstitial or transition music, and any background, or venue music not performed by Shakira.\n\nThe performance must be confirmed by official sources including setlist archives, official tour programs, livestream recordings, or post-event press materials issued by the artist or event organizers. Full or partial live performances count as performed if the song is at least reasonably begun. Medleys count each song as performed in the order they appear. Interludes, band instrumentals while the singer talks, rehearsals, sound checks, and unconfirmed performances do not qualify. If multiple performances occur within the time period, the ordering is determined within that specific time period. Encores continue the count from the main set unless the contract explicitly specifies otherwise (e.g., \"first song of encore\").",
+    "close_time": "2026-07-19T20:13:26Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXAGCONF-26",
+  "series_ticker": "KXAGCONF",
+  "title": "Will Trump's first announced Attorney General pick be confirmed as Attorney General before Sep 1, 2026?",
+  "close_time": "2026-08-08T12:59:14Z",
+  "markets": [
+   {
+    "ticker": "KXAGCONF-26JUN05-SEP01",
+    "title": "Will Trump's first announced Attorney General pick be confirmed as Attorney General before Sep 1, 2026?",
+    "rules_primary": "If Trump's first announced Attorney General pick is the first person confirmed as Attorney General before Sep 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If a nomination is withdrawn before the deadline, that market immediately resolves to No.",
+    "close_time": "2026-08-08T12:59:14Z"
+   },
+   {
+    "ticker": "KXAGCONF-26JUN05-OCT01",
+    "title": "Will Trump's first announced Attorney General pick be confirmed as Attorney General before Oct 1, 2026?",
+    "rules_primary": "If Trump's first announced Attorney General pick is the first person confirmed as Attorney General before Oct 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If a nomination is withdrawn before the deadline, that market immediately resolves to No.",
+    "close_time": "2026-08-08T12:59:14Z"
+   },
+   {
+    "ticker": "KXAGCONF-26JUN05-NOV01",
+    "title": "Will Trump's first announced Attorney General pick be confirmed as Attorney General before Nov 1, 2026?",
+    "rules_primary": "If Trump's first announced Attorney General pick is the first person confirmed as Attorney General before Nov 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If a nomination is withdrawn before the deadline, that market immediately resolves to No.",
+    "close_time": "2026-08-08T12:59:14Z"
+   },
+   {
+    "ticker": "KXAGCONF-26JUN05-JAN01",
+    "title": "Will Trump's first announced Attorney General pick be confirmed as Attorney General before Jan 1, 2027?",
+    "rules_primary": "If Trump's first announced Attorney General pick is the first person confirmed as Attorney General before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "If a nomination is withdrawn before the deadline, that market immediately resolves to No.",
+    "close_time": "2026-08-08T12:59:14Z"
+   },
+   {
+    "ticker": "KXAGCONF-26-AUG01",
+    "title": "Will Trump's first announced Attorney General pick be confirmed as Attorney General before Aug 1, 2026?",
+    "rules_primary": "If Trump's first announced Attorney General pick is the first person confirmed as Attorney General before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If a nomination is withdrawn before the deadline, that market immediately resolves to No.",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMRELEASEDATEUZI-NEWUZI",
+  "series_ticker": "KXALBUMRELEASEDATEUZI",
+  "title": "Will Lil Uzi Vert release a new album on Jul 31, 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMRELEASEDATEUZI-NEWUZI-26JUL31",
+    "title": "Will Lil Uzi Vert release a new album on Jul 31, 2026?",
+    "rules_primary": "If Lil Uzi Vert releases a new album on Jul 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBIGBROTHERELIMINATION-26JUL23",
+  "series_ticker": "KXBIGBROTHERELIMINATION",
+  "title": "Will Rome Seymour be eliminated from Big Brother Season 28 before Jul 24, 2026?",
+  "close_time": "2026-07-24T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26JUL23-ROM",
+    "title": "Will Rome Seymour be eliminated from Big Brother Season 28 before Jul 24, 2026?",
+    "rules_primary": "If Rome Seymour is officially eliminated from Big Brother Season 28 Before Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26JUL23-MEL",
+    "title": "Will Melody Morris be eliminated from Big Brother Season 28 before Jul 24, 2026?",
+    "rules_primary": "If Melody Morris is officially eliminated from Big Brother Season 28 Before Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26JUL23-LYR",
+    "title": "Will Lyric Medeiros be eliminated from Big Brother Season 28 before Jul 24, 2026?",
+    "rules_primary": "If Lyric Medeiros is officially eliminated from Big Brother Season 28 Before Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26JUL23-LAT",
+    "title": "Will LaTrice Verrett be eliminated from Big Brother Season 28 before Jul 24, 2026?",
+    "rules_primary": "If LaTrice Verrett is officially eliminated from Big Brother Season 28 Before Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26JUL23-JAS",
+    "title": "Will Jason De Puy be eliminated from Big Brother Season 28 before Jul 24, 2026?",
+    "rules_primary": "If Jason De Puy is officially eliminated from Big Brother Season 28 Before Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-24T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXCLAUDE-NXTMYTH",
+  "series_ticker": "KXCLAUDE",
+  "title": "Will Anthropic release next Mythos-Class model before Aug 1, 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXCLAUDE-NXTMYTH-26AUG01",
+    "title": "Will Anthropic release next Mythos-Class model before Aug 1, 2026?",
+    "rules_primary": "If Anthropic releases a model under Anthropic's Mythos tier \u2014 including models branded \"Mythos\" or \"Fable\" - excluding Claude Fable 5 (released June 9, 2026) before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXCLAUDE-OPUS",
+  "series_ticker": "KXCLAUDE",
+  "title": "Will Anthropic release next Claude Opus model before Jul 31, 2026?",
+  "close_time": "2026-07-24T17:14:43Z",
+  "markets": [
+   {
+    "ticker": "KXCLAUDE-OPUS-26JUL31",
+    "title": "Will Anthropic release next Claude Opus model before Jul 31, 2026?",
+    "rules_primary": "If Anthropic releases Claude Opus refers to any Anthropic model officially named \"Opus\" (e.g., Claude Opus 4.9, Claude Opus 5.0, Opus 5). before Jul 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-24T17:14:43Z"
+   },
+   {
+    "ticker": "KXCLAUDE-OPUS-26JUL27",
+    "title": "Will Anthropic release next Claude Opus model before Jul 27, 2026?",
+    "rules_primary": "If Anthropic releases Claude Opus refers to any Anthropic model officially named \"Opus\" (e.g., Claude Opus 4.9, Claude Opus 5.0, Opus 5). before Jul 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-24T17:14:43Z"
+   },
+   {
+    "ticker": "KXCLAUDE-OPUS-26AUG14",
+    "title": "Will Anthropic release next Claude Opus model before Aug 14, 2026?",
+    "rules_primary": "If Anthropic releases Claude Opus refers to any Anthropic model officially named \"Opus\" (e.g., Claude Opus 4.9, Claude Opus 5.0, Opus 5). before Aug 14, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-24T17:14:43Z"
+   },
+   {
+    "ticker": "KXCLAUDE-OPUS-26JUL24",
+    "title": "Will Anthropic release next Claude Opus model before Jul 24, 2026?",
+    "rules_primary": "If Anthropic releases Claude Opus refers to any Anthropic model officially named \"Opus\" (e.g., Claude Opus 4.9, Claude Opus 5.0, Opus 5). before Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXCLAUDE-OPUS-26JUL22",
+    "title": "Will Anthropic release next Claude Opus model before Jul 22, 2026?",
+    "rules_primary": "If Anthropic releases Claude Opus refers to any Anthropic model officially named \"Opus\" (e.g., Claude Opus 4.9, Claude Opus 5.0, Opus 5). before Jul 22, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-22T03:59:00Z"
+   },
+   {
+    "ticker": "KXCLAUDE-OPUS-26JUL21",
+    "title": "Will Anthropic release next Claude Opus model before Jul 21, 2026?",
+    "rules_primary": "If Anthropic releases Claude Opus refers to any Anthropic model officially named \"Opus\" (e.g., Claude Opus 4.9, Claude Opus 5.0, Opus 5). before Jul 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-21T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXJUDGECOUNT-26JUL",
+  "series_ticker": "KXJUDGECOUNT",
+  "title": "Will at least 10 judges be confirmed in Jul 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXJUDGECOUNT-26JUL-9",
+    "title": "Will at least 10 judges be confirmed in Jul 2026?",
+    "rules_primary": "If above 9 federal judges are confirmed in Jul 2026, then the market resolves to Yes.",
+    "rules_secondary": "The positions that are eligible for inclusion are:\n\nSupreme Court justices\nCourt of Federal Claims judges\nU.S. Court of Appeals judges\nU.S. District Court (including territorial courts) judges\n\nJudges for the following courts are NOT included:\n\nU.S. Court of International Trade\nU.S. Tax Court\nU.S. Court of Appeals for Veterans Claims\nU.S. Court of Appeals for the Armed Forces\nU.S. Court of Military Commission Review\nDistrict of Columbia local courts (D.C. Court of Appeals and Superior Court of the District of Columbia)",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXJUDGECOUNT-26JUL-8",
+    "title": "Will at least 9 judges be confirmed in Jul 2026?",
+    "rules_primary": "If above 8 federal judges are confirmed in Jul 2026, then the market resolves to Yes.",
+    "rules_secondary": "The positions that are eligible for inclusion are:\n\nSupreme Court justices\nCourt of Federal Claims judges\nU.S. Court of Appeals judges\nU.S. District Court (including territorial courts) judges\n\nJudges for the following courts are NOT included:\n\nU.S. Court of International Trade\nU.S. Tax Court\nU.S. Court of Appeals for Veterans Claims\nU.S. Court of Appeals for the Armed Forces\nU.S. Court of Military Commission Review\nDistrict of Columbia local courts (D.C. Court of Appeals and Superior Court of the District of Columbia)",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXJUDGECOUNT-26JUL-7",
+    "title": "Will at least 8 judges be confirmed in Jul 2026?",
+    "rules_primary": "If above 7 federal judges are confirmed in Jul 2026, then the market resolves to Yes.",
+    "rules_secondary": "The positions that are eligible for inclusion are:\n\nSupreme Court justices\nCourt of Federal Claims judges\nU.S. Court of Appeals judges\nU.S. District Court (including territorial courts) judges\n\nJudges for the following courts are NOT included:\n\nU.S. Court of International Trade\nU.S. Tax Court\nU.S. Court of Appeals for Veterans Claims\nU.S. Court of Appeals for the Armed Forces\nU.S. Court of Military Commission Review\nDistrict of Columbia local courts (D.C. Court of Appeals and Superior Court of the District of Columbia)",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXJUDGECOUNT-26JUL-6",
+    "title": "Will at least 7 judges be confirmed in Jul 2026?",
+    "rules_primary": "If above 6 federal judges are confirmed in Jul 2026, then the market resolves to Yes.",
+    "rules_secondary": "The positions that are eligible for inclusion are:\n\nSupreme Court justices\nCourt of Federal Claims judges\nU.S. Court of Appeals judges\nU.S. District Court (including territorial courts) judges\n\nJudges for the following courts are NOT included:\n\nU.S. Court of International Trade\nU.S. Tax Court\nU.S. Court of Appeals for Veterans Claims\nU.S. Court of Appeals for the Armed Forces\nU.S. Court of Military Commission Review\nDistrict of Columbia local courts (D.C. Court of Appeals and Superior Court of the District of Columbia)",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXJUDGECOUNT-26JUL-5",
+    "title": "Will at least 6 judges be confirmed in Jul 2026?",
+    "rules_primary": "If above 5 federal judges are confirmed in Jul 2026, then the market resolves to Yes.",
+    "rules_secondary": "The positions that are eligible for inclusion are:\n\nSupreme Court justices\nCourt of Federal Claims judges\nU.S. Court of Appeals judges\nU.S. District Court (including territorial courts) judges\n\nJudges for the following courts are NOT included:\n\nU.S. Court of International Trade\nU.S. Tax Court\nU.S. Court of Appeals for Veterans Claims\nU.S. Court of Appeals for the Armed Forces\nU.S. Court of Military Commission Review\nDistrict of Columbia local courts (D.C. Court of Appeals and Superior Court of the District of Columbia)",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXJUDGECOUNT-26JUL-4",
+    "title": "Will at least 5 judges be confirmed in Jul 2026?",
+    "rules_primary": "If above 4 federal judges are confirmed in Jul 2026, then the market resolves to Yes.",
+    "rules_secondary": "The positions that are eligible for inclusion are:\n\nSupreme Court justices\nCourt of Federal Claims judges\nU.S. Court of Appeals judges\nU.S. District Court (including territorial courts) judges\n\nJudges for the following courts are NOT included:\n\nU.S. Court of International Trade\nU.S. Tax Court\nU.S. Court of Appeals for Veterans Claims\nU.S. Court of Appeals for the Armed Forces\nU.S. Court of Military Commission Review\nDistrict of Columbia local courts (D.C. Court of Appeals and Superior Court of the District of Columbia)",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLABORSECCONF-26",
+  "series_ticker": "KXLABORSECCONF",
+  "title": "Will Trump's first announced Labor Secretary pick be confirmed as Secretary of Labor before Aug 1, 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXLABORSECCONF-26-AUG01",
+    "title": "Will Trump's first announced Labor Secretary pick be confirmed as Secretary of Labor before Aug 1, 2026?",
+    "rules_primary": "If Trump's first announced Labor Secretary pick is the first person confirmed as Secretary of Labor before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If a nomination is withdrawn before the deadline, that market immediately resolves to No.",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMEDIARELEASESPIDERMAN",
+  "series_ticker": "KXMEDIARELEASESPIDERMAN",
+  "title": "Will the official trailer for Spider-Man: Beyond the Spider-Verse be released Worldwide before Aug 1, 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXMEDIARELEASESPIDERMAN-AUG26",
+    "title": "Will the official trailer for Spider-Man: Beyond the Spider-Verse be released Worldwide before Aug 1, 2026?",
+    "rules_primary": "If the official trailer for Spider-Man: Beyond the Spider-Verse has been publicly released Worldwide through official channels before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The media must be made available to the general public through at least one official distribution channel, including theatrical release, streaming availability, physical media (DVD, Blu-ray), or authorized digital purchase/download. The release must be accessible without special invitations or industry credentials in at least one major metropolitan area if the geography refers to a country. Private screenings, film festivals, leaked content, and torrent availability do not qualify. Trailers and soundtracks do not satisfy the criterion unless the full media is released. Different versions or formats of the same base content (theatrical, director's cut, extended edition) are considered the same media if the core content is substantially identical. Foreign language titles are considered the same media unless otherwise specified.",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXPERFORMROLEJEANGREY",
+  "series_ticker": "KXPERFORMROLEJEANGREY",
+  "title": "Will Sadie Sink perform as Jean Grey in The first Marvel Studios live-action film in the Marvel Cinematic Universe to feature Jean Grey?",
+  "close_time": "2026-07-31T15:45:33Z",
+  "markets": [
+   {
+    "ticker": "KXPERFORMROLEJEANGREY-SAD",
+    "title": "Will Sadie Sink perform as Jean Grey in The first Marvel Studios live-action film in the Marvel Cinematic Universe to feature Jean Grey?",
+    "rules_primary": "If Sadie Sink performs/ is announced as Jean Grey in The first Marvel Studios live-action film in the Marvel Cinematic Universe to feature Jean Grey, then the market resolves to Yes.",
+    "rules_secondary": "For the purposes of this Contract, Sadie Sink satisfies the Payout Criterion if either:\n\nOfficial Announcement:\nSadie Sink is officially announced, confirmed, or publicly credited as cast to perform Jean Grey in The first Marvel Studios live-action film in the Marvel Cinematic Universe to feature Jean Grey, regardless of whether the performance ultimately occurs; OR\n\nActual Performance:\nSadie Sink appears on stage, on screen, or in recorded content as Jean Grey in any official performance, showing, or release of The first Marvel Studios live-action film in the Marvel Cinematic Universe to feature Jean Grey.\n\nAdditional clarification(s):\n\nIf The first Marvel Studios live-action film in the Marvel Cinematic Universe to feature Jean Grey is entirely cancelled or abandoned before any official performance or release occurs, but Sadie Sink was officially announced in Jean Grey, the Contract will resolve to \u201cYes.\u201d\n\nIf multiple people are announced for Jean Grey (e.g., alternating cast, dual casting), and Sadie Sink is among them, the Contract will resolve to \u201cYes.\u201d b\n\nThe Contract may resolve to \u201cNo\u201d prior to the Expiration Date if:\n(a) The first Marvel Studios live-action film in the Marvel Cinematic Universe to feature Jean Grey is cancelled or completes its run without Sadie Sink being announced or performing in Jean Grey, or\n(b) another person is officially announced as the sole exclusive performer for Jean Grey.",
+    "close_time": "2026-07-31T15:45:33Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXROLEATEVENTLOLLA-26DEC31",
+  "series_ticker": "KXROLEATEVENTLOLLA",
+  "title": "Will Lorde be a Headliner at Lollapalooza Chicago 2026?",
+  "close_time": "2026-07-31T15:10:05Z",
+  "markets": [
+   {
+    "ticker": "KXROLEATEVENTLOLLA-26DEC31-LOR",
+    "title": "Will Lorde be a Headliner at Lollapalooza Chicago 2026?",
+    "rules_primary": "If Lorde is the Headliner at Lollapalooza Chicago 2026, then the market resolves to Yes.",
+    "rules_secondary": "To fulfill the Payout Criterion, the specified person must actually appear and carry out the specified role at the event. Being listed in the official lineup without actually performing does not qualify. Joint performances where the person shares the role with another performer do count. The performance qualifies even if delayed, shortened, or modified in format. Pre-recorded content does not qualify unless explicitly designated by organizers as fulfilling the role. Rumored or unofficial announcements, canceled appearances, and performances in different roles than specified do not satisfy the criterion.",
+    "close_time": "2026-07-31T15:10:05Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPMONTHLY-26JUL",
+  "series_ticker": "KXTOPMONTHLY",
+  "title": "Artist with the most monthly Spotify listeners at the end of Jul 2026?",
+  "close_time": "2026-07-31T15:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPMONTHLY-26JUL-JUS",
+    "title": "Artist with the most monthly Spotify listeners at the end of Jul 2026?",
+    "rules_primary": "If the artist with the most monthly listeners on Spotify on Jul 31, 2026 at 12:00 PM ET is Justin Bieber, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-07-31T15:59:00Z"
+   },
+   {
+    "ticker": "KXTOPMONTHLY-26JUL-BRU",
+    "title": "Artist with the most monthly Spotify listeners at the end of Jul 2026?",
+    "rules_primary": "If the artist with the most monthly listeners on Spotify on Jul 31, 2026 at 12:00 PM ET is Bruno Mars, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Spotify. Any references to Spotify, Spotify charts, streaming data, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Spotify and Kalshi.",
+    "close_time": "2026-07-31T15:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMRELEASEDATEUZI",
+  "series_ticker": "KXALBUMRELEASEDATEUZI",
+  "title": "Will Lil Uzi Vert release a new album before Oct 1, 2026?",
+  "close_time": "2026-08-01T14:18:06Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMRELEASEDATEUZI-OCT01-26",
+    "title": "Will Lil Uzi Vert release a new album before Oct 1, 2026?",
+    "rules_primary": "If Lil Uzi Vert releases a new album before Oct 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T14:18:06Z"
+   },
+   {
+    "ticker": "KXALBUMRELEASEDATEUZI--26SEP01",
+    "title": "Will Lil Uzi Vert release a new album before Sep 1, 2026?",
+    "rules_primary": "If Lil Uzi Vert releases a new album before Sep 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T14:18:06Z"
+   },
+   {
+    "ticker": "KXALBUMRELEASEDATEUZI-AUG01-26",
+    "title": "Will Lil Uzi Vert release a new album before Aug 1, 2026?",
+    "rules_primary": "If Lil Uzi Vert releases a new album before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXGALLEGOOUT-26APR",
+  "series_ticker": "KXGALLEGOOUT",
+  "title": "Will Ruben Gallego be out as Senator before Aug 1, 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXGALLEGOOUT-26AUG01",
+    "title": "Will Ruben Gallego be out as Senator before Aug 1, 2026?",
+    "rules_primary": "If Ruben Gallego leaves as Senator before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Ruben Gallego must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXKXSPOTIFYNUM1GLB-26AUG01-ARI",
+  "series_ticker": "KXKXSPOTIFYNUM1GLB",
+  "title": "Will Ariana Grande be #1 on Spotify's Daily Top Songs Global chart for at least 6 chart days in July 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXKXSPOTIFYNUM1GLB-26AUG01-ARI-6",
+    "title": "Will Ariana Grande be #1 on Spotify's Daily Top Songs Global chart for at least 6 chart days in July 2026?",
+    "rules_primary": "If  Ariana Grande is #1 on the Spotify Daily Top Songs Global chart for at least 6 chart days in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXKXSPOTIFYNUM1GLB-26AUG01-ARI-12",
+    "title": "Will Ariana Grande be #1 on Spotify's Daily Top Songs Global chart for at least 12 chart days in July 2026?",
+    "rules_primary": "If  Ariana Grande is #1 on the Spotify Daily Top Songs Global chart for at least 12 chart days in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMACHADOVENEZUELA-26JUN29",
+  "series_ticker": "KXMACHADOVENEZUELA",
+  "title": "Will Mar\u00eda Corina Machado visit Venezuela before Aug 1, 2026?",
+  "close_time": "2026-08-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXMACHADOVENEZUELA-26JUN29-AUG01",
+    "title": "Will Mar\u00eda Corina Machado visit Venezuela before Aug 1, 2026?",
+    "rules_primary": "If Mar\u00eda Corina Machado has physically travelled to and been present within the geographic boundaries of Venezuela before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Physical presence within the geographic boundaries of the area is required. Flying over without landing, layovers during which the person remains in the airplane or airport, virtual or remote appearances, future visit plans, or (unless explicitly specified) presence in adjacent international waters or solely within embassy or consulate grounds do NOT constitute a visit. International airports are considered within the boundaries of their host jurisdiction. A visit that began before the specified time period and is ongoing as of its start does not count; however, if the person departs and re-enters the area during the time period, the re-entry constitutes a new visit and does count.",
+    "close_time": "2026-08-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRYFIRECOOK-27JAN01",
+  "series_ticker": "KXTRYFIRECOOK",
+  "title": "Will the President try to fire the Lisa Cook as member of the Board of Governors of the Federal Reserve System before Aug 14, 2026?",
+  "close_time": "2026-08-14T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRYFIRECOOK-27JAN01-26AUG14",
+    "title": "Will the President try to fire the Lisa Cook as member of the Board of Governors of the Federal Reserve System before Aug 14, 2026?",
+    "rules_primary": "If the President of the United States has tried to fire Lisa Cook as member of the Board of Governors of the Federal Reserve System before Aug 14, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A \"try to fire\" includes any of the following:\n\nThe President signs an executive order, memorandum, or other official document stating termination;\nDirects any Cabinet member or senior official to terminate the person;\nPublicly states (in a speech, interview, press conference, or verified social media) that he has fired or decided to fire the person;\nThe White House officially announces termination;\nSends written communication to the person informing them of termination;\nInitiates formal legal proceedings for removal\n\nThe following do NOT qualify:\n\nStatements that the person \"should\" resign or be fired;\nExpressions of dissatisfaction;\nAsking or pressuring for voluntary resignation;\nStating the President is \"looking into\" whether he can fire the person;\nStatements by other officials unless directed by the President;\nUnsent letters ordering termination\n\nThis market resolves on the President's attempt to fire, not on whether such attempt is legally valid, successful, or results in the person leaving office.",
+    "close_time": "2026-08-14T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRYFIRECOOK-27JAN01-26AUG01",
+    "title": "Will the President try to fire the Lisa Cook as member of the Board of Governors of the Federal Reserve System before Aug 1, 2026?",
+    "rules_primary": "If the President of the United States has tried to fire Lisa Cook as member of the Board of Governors of the Federal Reserve System before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A \"try to fire\" includes any of the following:\n\nThe President signs an executive order, memorandum, or other official document stating termination;\nDirects any Cabinet member or senior official to terminate the person;\nPublicly states (in a speech, interview, press conference, or verified social media) that he has fired or decided to fire the person;\nThe White House officially announces termination;\nSends written communication to the person informing them of termination;\nInitiates formal legal proceedings for removal\n\nThe following do NOT qualify:\n\nStatements that the person \"should\" resign or be fired;\nExpressions of dissatisfaction;\nAsking or pressuring for voluntary resignation;\nStating the President is \"looking into\" whether he can fire the person;\nStatements by other officials unless directed by the President;\nUnsent letters ordering termination\n\nThis market resolves on the President's attempt to fire, not on whether such attempt is legally valid, successful, or results in the person leaving office.",
+    "close_time": "2026-08-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLIUKELIMINATIONW-26JUL31",
+  "series_ticker": "KXLIUKELIMINATIONW",
+  "title": "Will Simba be eliminated from Love Island UK S13 before Aug 1, 2026?",
+  "close_time": "2026-07-27T22:29:38Z",
+  "markets": [
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL31-SIM",
+    "title": "Will Simba be eliminated from Love Island UK S13 before Aug 1, 2026?",
+    "rules_primary": "If Simba is officially eliminated from Love Island UK: Season 13 Before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-27T22:29:38Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL31-LOR",
+    "title": "Will Lorenzo be eliminated from Love Island UK S13 before Aug 1, 2026?",
+    "rules_primary": "If Lorenzo is officially eliminated from Love Island UK: Season 13 Before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-27T22:29:38Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL31-KAV",
+    "title": "Will Kavan be eliminated from Love Island UK S13 before Aug 1, 2026?",
+    "rules_primary": "If Kavan is officially eliminated from Love Island UK: Season 13 Before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-27T22:29:38Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL31-JUL",
+    "title": "Will Julia be eliminated from Love Island UK S13 before Aug 1, 2026?",
+    "rules_primary": "If Julia is officially eliminated from Love Island UK: Season 13 Before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-27T22:29:38Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL31-JAS",
+    "title": "Will Jasmine be eliminated from Love Island UK S13 before Aug 1, 2026?",
+    "rules_primary": "If Jasmine is officially eliminated from Love Island UK: Season 13 Before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-27T22:29:38Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL31-ANG",
+    "title": "Will Angelista be eliminated from Love Island UK S13 before Aug 1, 2026?",
+    "rules_primary": "If Angelista is officially eliminated from Love Island UK: Season 13 Before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-27T22:29:38Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL31-YAS",
+    "title": "Will Yasmine be eliminated from Love Island UK S13 before Aug 1, 2026?",
+    "rules_primary": "If Yasmine is officially eliminated from Love Island UK: Season 13 Before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-27T22:29:33Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL31-TOM",
+    "title": "Will Tommy be eliminated from Love Island UK S13 before Aug 1, 2026?",
+    "rules_primary": "If Tommy S is officially eliminated from Love Island UK: Season 13 Before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-27T22:29:33Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL31-MIC",
+    "title": "Will Mica be eliminated from Love Island UK S13 before Aug 1, 2026?",
+    "rules_primary": "If Mica is officially eliminated from Love Island UK: Season 13 Before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-27T14:21:24Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL31-SAMR",
+    "title": "Will Samraj be eliminated from Love Island UK S13 before Aug 1, 2026?",
+    "rules_primary": "If Samraj is officially eliminated from Love Island UK: Season 13 Before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-27T14:21:14Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL31-AID",
+    "title": "Will Aidan be eliminated from Love Island UK S13 before Aug 1, 2026?",
+    "rules_primary": "If Aidan is officially eliminated from Love Island UK: Season 13 Before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-26T13:30:36Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL31-PRI",
+    "title": "Will Priya be eliminated from Love Island UK S13 before Aug 1, 2026?",
+    "rules_primary": "If Priya is officially eliminated from Love Island UK: Season 13 Before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-26T13:30:24Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMEDIACOVEREAFC-26",
+  "series_ticker": "KXMEDIACOVEREAFC",
+  "title": "Will Ousmane Demb\u00e9l\u00e9 be on the cover of the EA FC 27 Standard Edition?",
+  "close_time": "2026-07-22T18:43:13Z",
+  "markets": [
+   {
+    "ticker": "KXMEDIACOVEREAFC-26-OUS",
+    "title": "Will Ousmane Demb\u00e9l\u00e9 be on the cover of the EA FC 27 Standard Edition?",
+    "rules_primary": "If it is announced that Ousmane Demb\u00e9l\u00e9 is on the cover of the EA FC 27 Standard Edition, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-22T18:43:13Z"
+   },
+   {
+    "ticker": "KXMEDIACOVEREAFC-26-LIO",
+    "title": "Will Lionel Messi be on the cover of the EA FC 27 Standard Edition?",
+    "rules_primary": "If it is announced that Lionel Messi is on the cover of the EA FC 27 Standard Edition, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-22T18:43:13Z"
+   },
+   {
+    "ticker": "KXMEDIACOVEREAFC-26-LAM",
+    "title": "Will Lamine Yamal be on the cover of the EA FC 27 Standard Edition?",
+    "rules_primary": "If it is announced that Lamine Yamal is on the cover of the EA FC 27 Standard Edition, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-22T18:43:13Z"
+   },
+   {
+    "ticker": "KXMEDIACOVEREAFC-26-CRI",
+    "title": "Will Cristiano Ronaldo be on the cover of the EA FC 27 Standard Edition?",
+    "rules_primary": "If it is announced that Cristiano Ronaldo is on the cover of the EA FC 27 Standard Edition, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-22T18:43:13Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPNOMNUM-26JUL19",
+  "series_ticker": "KXTRUMPNOMNUM",
+  "title": "Will there be at least 9 presidential nominations sent to the Senate in the week of Jul 19, 2026?",
+  "close_time": "2026-07-26T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPNOMNUM-26JUL19-T9",
+    "title": "Will there be at least 9 presidential nominations sent to the Senate in the week of Jul 19, 2026?",
+    "rules_primary": "If Donald Trump has sent at least 9 nominations to the U.S. Senate from Jul 19, 2026 through Jul 25, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Jul 26, 2026), then the market resolves to Yes.",
+    "rules_secondary": "The market solely resolves to the publication dates visibly displayed on the \"Presidential Actions\" tab at whitehouse.gov at 10:00 AM ET on Jul 26, 2026. The week runs from Jul 19, 2026 through Jul 25, 2026. If a person receives multiple qualifying nominations within the period, they will each count separately. For example, Trump's March 4 nomination of Kevin Warsh is considered two nominations.",
+    "close_time": "2026-07-26T14:00:00Z"
+   }
+  ]
+ }
+]

@@ -55,15 +55,40 @@ from theories.insider_bias.insider_judgment import pipeline
 THEORY_ID = "insider_judgment"
 THEORY_VERSION = 3
 SOURCE_RUN_ID = "backtest-2026-08-25-insider-fullcov"
-RUN_ID = "backtest-2026-08-26-insider-judged-s200"
 
 SAMPLE_EVENTS = 200
 BATCH_SIZE = 25
-SEED = 20260826
 
-ROOT = Path(__file__).parent / "backtests" / "judged-s200"
+#: Per-variant config: (run_id, seed). A second sample (`s200b`) replays
+#: the identical procedure on fresh events — pass earlier variants'
+#: manifests via --exclude-events-from so the samples never overlap, which
+#: is what makes round two a true replication (its pre-registered cells
+#: carry full weight, no post-hoc discount).
+VARIANTS = {
+    "s200": ("backtest-2026-08-26-insider-judged-s200", 20260826),
+    "s200b": ("backtest-2026-08-26-insider-judged-s200b", 20260827),
+    # s57: the remainder — with s200 and s200b excluded this drains the
+    # pool, completing 100% judgment coverage of the gate-plausible
+    # population in backtest-2026-08-25-insider-fullcov.
+    "s57": ("backtest-2026-08-26-insider-judged-s57", 20260828),
+    # g100: a GATE-VALIDATION experiment, not a bet-rule run — samples the
+    # GATED-OUT population to measure the gate's false-negative rate (does
+    # judgment find conviction in what the gate discards?). exp/ run id on
+    # purpose: pooled scores and bucket_rates exclude it by convention, so
+    # a different population can never leak into the theory's track record.
+    "g100": ("exp/2026-08-26-insider-judged-gated100", 20260829),
+}
+
+#: Which side of the gate each variant samples, and how many events.
+VARIANT_POOL = {"g100": "gated"}  # default: "plausible"
+VARIANT_SIZE = {"g100": 100}      # default: SAMPLE_EVENTS
 
 BUCKETS = ("strong", "moderate", "weak")
+
+
+def variant_paths(variant: str) -> tuple[str, int, Path]:
+    run_id, seed = VARIANTS[variant]
+    return run_id, seed, Path(__file__).parent / "backtests" / f"judged-{variant}"
 
 
 def _market_payload(cache_conn: sqlite3.Connection, ticker: str) -> dict:
@@ -90,12 +115,18 @@ def _source_rows(conn: sqlite3.Connection) -> list[sqlite3.Row]:
     ).fetchall()
 
 
-def sample(conn: sqlite3.Connection) -> None:
+def sample(conn: sqlite3.Connection, run_id: str, seed: int, root: Path,
+           excluded: set[str], pool: str = "plausible",
+           n_events: int = SAMPLE_EVENTS) -> None:
     """Draw the event sample and write manifest + per-batch payloads."""
     by_event: dict[str, list[dict]] = defaultdict(list)
     for r in _source_rows(conn):
         x = json.loads(r["extra_json"])
-        if x.get("gate_would_reject"):
+        if pool == "plausible" and x.get("gate_would_reject"):
+            continue
+        if pool == "gated" and not x.get("gate_would_reject"):
+            continue
+        if x["event_ticker"] in excluded:
             continue
         by_event[x["event_ticker"]].append({
             "ticker": r["kalshi_ticker"], "outcome": r["outcome"],
@@ -108,9 +139,10 @@ def sample(conn: sqlite3.Connection) -> None:
             "days_to_close_at_entry": x["days_to_close_at_entry"],
         })
     events = sorted(by_event)
-    rng = random.Random(SEED)
-    chosen = sorted(rng.sample(events, min(SAMPLE_EVENTS, len(events))))
-    print(f"gate-plausible events: {len(events)}; sampled: {len(chosen)}")
+    rng = random.Random(seed)
+    chosen = sorted(rng.sample(events, min(n_events, len(events))))
+    print(f"{pool} events after exclusions: {len(events)} "
+          f"({len(excluded)} excluded); sampled: {len(chosen)}")
 
     cache_conn = history_cache.connect()
     entries = []
@@ -141,8 +173,8 @@ def sample(conn: sqlite3.Connection) -> None:
 
     # Batch by as_of so each subagent call carries one honest {today}.
     entries.sort(key=lambda e: (e["as_of"], e["event_ticker"]))
-    ROOT.mkdir(parents=True, exist_ok=True)
-    manifest = {"run_id": RUN_ID, "source_run": SOURCE_RUN_ID, "seed": SEED,
+    root.mkdir(parents=True, exist_ok=True)
+    manifest = {"run_id": run_id, "source_run": SOURCE_RUN_ID, "seed": seed,
                 "sampled_events": len(entries), "batches": []}
     for i in range(0, len(entries), BATCH_SIZE):
         batch = entries[i:i + BATCH_SIZE]
@@ -151,7 +183,7 @@ def sample(conn: sqlite3.Connection) -> None:
                     ("event_ticker", "series_ticker", "title", "close_time",
                      "markets")} for e in batch]
         pipeline.assert_blind(payload)
-        ppath = ROOT / f"batch_{bid:02d}.payload.json"
+        ppath = root / f"batch_{bid:02d}.payload.json"
         ppath.write_text(json.dumps(payload, indent=1), encoding="utf-8")
         manifest["batches"].append({
             "batch": bid, "n_events": len(batch),
@@ -161,20 +193,21 @@ def sample(conn: sqlite3.Connection) -> None:
             "verdicts": f"batch_{bid:02d}.verdicts.json",
             "events": [e["event_ticker"] for e in batch],
         })
-    (ROOT / "manifest.json").write_text(
+    (root / "manifest.json").write_text(
         json.dumps(manifest, indent=1), encoding="utf-8")
-    (ROOT / "row_index.json").write_text(json.dumps(
+    (root / "row_index.json").write_text(json.dumps(
         {ev: by_event[ev] for ev in chosen}, indent=1), encoding="utf-8")
-    print(f"wrote {len(manifest['batches'])} batch payloads to {ROOT}")
+    print(f"wrote {len(manifest['batches'])} batch payloads to {root}")
 
 
-def ingest(conn: sqlite3.Connection, batch: int, model: str | None) -> None:
+def ingest(conn: sqlite3.Connection, batch: int, model: str | None,
+           run_id: str, root: Path) -> None:
     """Record one batch's verdicts. Idempotent; safe to re-run."""
-    manifest = json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))
+    manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
     row_index = json.loads(
-        (ROOT / "row_index.json").read_text(encoding="utf-8"))
+        (root / "row_index.json").read_text(encoding="utf-8"))
     spec = next(b for b in manifest["batches"] if b["batch"] == batch)
-    vpath = ROOT / spec["verdicts"]
+    vpath = root / spec["verdicts"]
     verdicts = {v["event_ticker"]: v
                 for v in json.loads(vpath.read_text(encoding="utf-8"))}
     missing = [e for e in spec["events"] if e not in verdicts]
@@ -183,7 +216,7 @@ def ingest(conn: sqlite3.Connection, batch: int, model: str | None) -> None:
 
     if model:
         provenance.record_judgment_run(
-            conn, run_id=RUN_ID, theory_id=THEORY_ID,
+            conn, run_id=run_id, theory_id=THEORY_ID,
             theory_version=THEORY_VERSION, stage="analysis", model=model,
             prompt_path="theories/insider_bias/insider_judgment/prompts/analysis.md",
             web_search=False,
@@ -198,7 +231,7 @@ def ingest(conn: sqlite3.Connection, batch: int, model: str | None) -> None:
                 conn, theory_id=THEORY_ID, theory_version=THEORY_VERSION,
                 kalshi_ticker=r["ticker"], outcome=r["outcome"],
                 entry_price=r["entry_price"], edge_pts_net=0.0,
-                run_mode="backtest", run_id=RUN_ID,
+                run_mode="backtest", run_id=run_id,
                 spread_at_call=r["spread_at_call"],
                 volume_at_call=r["volume_at_call"],
                 edge_basis="prior", confidence=v["bucket"],
@@ -207,7 +240,7 @@ def ingest(conn: sqlite3.Connection, batch: int, model: str | None) -> None:
                            f"{v.get('insider_group')!r}: {v.get('rationale')}"),
                 evidence_source="kalshi",
                 extra_json=json.dumps({
-                    "backtest_run": RUN_ID, "source_run": SOURCE_RUN_ID,
+                    "backtest_run": run_id, "source_run": SOURCE_RUN_ID,
                     "batch": batch,
                     "event_ticker": ev,
                     "series_ticker": r["series_ticker"],
@@ -220,13 +253,13 @@ def ingest(conn: sqlite3.Connection, batch: int, model: str | None) -> None:
             )
             written += 1
     print(f"batch {batch}: {len(spec['events'])} events, "
-          f"{written} rows recorded under {RUN_ID}")
+          f"{written} rows recorded under {run_id}")
 
 
-def status() -> None:
-    manifest = json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))
+def status(root: Path) -> None:
+    manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
     for b in manifest["batches"]:
-        have = (ROOT / b["verdicts"]).exists()
+        have = (root / b["verdicts"]).exists()
         print(f"batch {b['batch']:02d}: events={b['n_events']:3d} "
               f"as_of={b['as_of']} verdicts={'YES' if have else 'no'}")
 
@@ -234,21 +267,35 @@ def status() -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("mode", choices=["sample", "ingest", "status"])
+    parser.add_argument("--variant", choices=sorted(VARIANTS),
+                        default="s200")
     parser.add_argument("--batch", type=int, default=None)
     parser.add_argument("--model", default=None,
                         help="judging model id; required on first ingest")
+    parser.add_argument("--exclude-events-from", type=Path, action="append",
+                        default=[],
+                        help="manifest.json of an earlier sample whose "
+                             "events must not be re-drawn (repeatable)")
     args = parser.parse_args()
+    run_id, seed, root = variant_paths(args.variant)
     if args.mode == "status":
-        status()
+        status(root)
         return
     conn = db.connect()
     try:
         if args.mode == "sample":
-            sample(conn)
+            excluded: set[str] = set()
+            for mpath in args.exclude_events_from:
+                m = json.loads(mpath.read_text(encoding="utf-8"))
+                for b in m["batches"]:
+                    excluded.update(b["events"])
+            sample(conn, run_id, seed, root, excluded,
+                   pool=VARIANT_POOL.get(args.variant, "plausible"),
+                   n_events=VARIANT_SIZE.get(args.variant, SAMPLE_EVENTS))
         else:
             if args.batch is None:
                 parser.error("--batch is required for ingest")
-            ingest(conn, args.batch, args.model)
+            ingest(conn, args.batch, args.model, run_id, root)
     finally:
         conn.close()
 

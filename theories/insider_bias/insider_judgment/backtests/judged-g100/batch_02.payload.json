@@ -1,0 +1,1245 @@
+[
+ {
+  "event_ticker": "KXNETFLIXRANKMOVIEGLOBAL-26JUL06",
+  "series_ticker": "KXNETFLIXRANKMOVIEGLOBAL",
+  "title": "Top Global Netflix Movie on Jul 6, 2026?",
+  "close_time": "2026-07-07T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXNETFLIXRANKMOVIEGLOBAL-26JUL06-VOI",
+    "title": "Top Global Netflix Movie on Jul 6, 2026?",
+    "rules_primary": "If Voicemails for Isabelle is #1 on the Netflix Top 10 Global Movie on the chart published on Jul 7, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The Netflix charts are updated on Tuesday. Therefore, the market will close at 11:59 PM ET the day before. The chart published on Jul 7, 2026 will be for the week ending the previous Sunday.",
+    "close_time": "2026-07-07T03:59:00Z"
+   },
+   {
+    "ticker": "KXNETFLIXRANKMOVIEGLOBAL-26JUL06-LIT",
+    "title": "Top Global Netflix Movie on Jul 6, 2026?",
+    "rules_primary": "If Little Brother is #1 on the Netflix Top 10 Global Movie on the chart published on Jul 7, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The Netflix charts are updated on Tuesday. Therefore, the market will close at 11:59 PM ET the day before. The chart published on Jul 7, 2026 will be for the week ending the previous Sunday.",
+    "close_time": "2026-07-07T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXPARDONSTRUMP-26JUL",
+  "series_ticker": "KXPARDONSTRUMP",
+  "title": "Will between 25 and 99 people be pardoned in July 2026?",
+  "close_time": "2026-08-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXPARDONSTRUMP-26JUL-62",
+    "title": "Will between 25 and 99 people be pardoned in July 2026?",
+    "rules_primary": "If the President pardons, commutes the sentence of, or gives reprieve to between 25 and 99 persons in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXPARDONSTRUMP-26JUL-17",
+    "title": "Will between 10 and 24 people be pardoned in July 2026?",
+    "rules_primary": "If the President pardons, commutes the sentence of, or gives reprieve to between 10 and 24 persons in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXPARDONSTRUMP-26JUL-0",
+    "title": "Will exactly 0 people be pardoned in July 2026?",
+    "rules_primary": "If the President pardons, commutes the sentence of, or gives reprieve to exactly 0 persons in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-05T18:36:51Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXAPRPOTUS-26JUL10",
+  "series_ticker": "KXAPRPOTUS",
+  "title": "Will the President's approval rating be above 41.3 according to RealClearPolitics?",
+  "close_time": "2026-07-10T15:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXAPRPOTUS-26JUL10-41.3",
+    "title": "Will the President's approval rating be above 41.3 according to RealClearPolitics?",
+    "rules_primary": "If the President's approval rating is above 41.3% at 11:00 AM ET on July 10, 2026 according to RealClearPolitics, then the market resolves to Yes.",
+    "rules_secondary": "The market will determine at 11:00 AM ET on July 10, 2026.",
+    "close_time": "2026-07-10T15:00:00Z"
+   },
+   {
+    "ticker": "KXAPRPOTUS-26JUL10-41.2",
+    "title": "Will the President's approval rating be between 41.1 and 41.3 according to RealClearPolitics?",
+    "rules_primary": "If the President's approval rating is between 41.1 and 41.3% at 11:00 AM ET on July 10, 2026 according to RealClearPolitics, then the market resolves to Yes.",
+    "rules_secondary": "The market will determine at 11:00 AM ET on July 10, 2026.",
+    "close_time": "2026-07-10T15:00:00Z"
+   },
+   {
+    "ticker": "KXAPRPOTUS-26JUL10-40.9",
+    "title": "Will the President's approval rating be between 40.8 and 41.0 according to RealClearPolitics?",
+    "rules_primary": "If the President's approval rating is between 40.8 and 41.0% at 11:00 AM ET on July 10, 2026 according to RealClearPolitics, then the market resolves to Yes.",
+    "rules_secondary": "The market will determine at 11:00 AM ET on July 10, 2026.",
+    "close_time": "2026-07-10T15:00:00Z"
+   },
+   {
+    "ticker": "KXAPRPOTUS-26JUL10-40.6",
+    "title": "Will the President's approval rating be between 40.5 and 40.7 according to RealClearPolitics?",
+    "rules_primary": "If the President's approval rating is between 40.5 and 40.7% at 11:00 AM ET on July 10, 2026 according to RealClearPolitics, then the market resolves to Yes.",
+    "rules_secondary": "The market will determine at 11:00 AM ET on July 10, 2026.",
+    "close_time": "2026-07-10T15:00:00Z"
+   },
+   {
+    "ticker": "KXAPRPOTUS-26JUL10-40.3",
+    "title": "Will the President's approval rating be between 40.2 and 40.4 according to RealClearPolitics?",
+    "rules_primary": "If the President's approval rating is between 40.2 and 40.4% at 11:00 AM ET on July 10, 2026 according to RealClearPolitics, then the market resolves to Yes.",
+    "rules_secondary": "The market will determine at 11:00 AM ET on July 10, 2026.",
+    "close_time": "2026-07-10T15:00:00Z"
+   },
+   {
+    "ticker": "KXAPRPOTUS-26JUL10-40.0",
+    "title": "Will the President's approval rating be between 39.9 and 40.1 according to RealClearPolitics?",
+    "rules_primary": "If the President's approval rating is between 39.9 and 40.1% at 11:00 AM ET on July 10, 2026 according to RealClearPolitics, then the market resolves to Yes.",
+    "rules_secondary": "The market will determine at 11:00 AM ET on July 10, 2026.",
+    "close_time": "2026-07-10T15:00:00Z"
+   },
+   {
+    "ticker": "KXAPRPOTUS-26JUL10-39.7",
+    "title": "Will the President's approval rating be between 39.6 and 39.8 according to RealClearPolitics?",
+    "rules_primary": "If the President's approval rating is between 39.6 and 39.8% at 11:00 AM ET on July 10, 2026 according to RealClearPolitics, then the market resolves to Yes.",
+    "rules_secondary": "The market will determine at 11:00 AM ET on July 10, 2026.",
+    "close_time": "2026-07-10T15:00:00Z"
+   },
+   {
+    "ticker": "KXAPRPOTUS-26JUL10-39.6",
+    "title": "Will the President's approval rating be below 39.6 according to RealClearPolitics?",
+    "rules_primary": "If the President's approval rating is below 39.6% at 11:00 AM ET on July 10, 2026 according to RealClearPolitics, then the market resolves to Yes.",
+    "rules_secondary": "The market will determine at 11:00 AM ET on July 10, 2026.",
+    "close_time": "2026-07-10T15:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXHORMUZWEEKLY-26JUL12",
+  "series_ticker": "KXHORMUZWEEKLY",
+  "title": "Will there be more than 225 transit calls through the Strait of Hormuz from Jul 6, 2026 to Jul 12, 2026?",
+  "close_time": "2026-07-14T13:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXHORMUZWEEKLY-26JUL12-T225",
+    "title": "Will there be more than 225 transit calls through the Strait of Hormuz from Jul 6, 2026 to Jul 12, 2026?",
+    "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 225 from Jul 6, 2026 to Jul 12, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The total is calculated by summing daily counts from Jul 6, 2026 to Jul 12, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.",
+    "close_time": "2026-07-14T13:00:00Z"
+   },
+   {
+    "ticker": "KXHORMUZWEEKLY-26JUL12-T200",
+    "title": "Will there be more than 200 transit calls through the Strait of Hormuz from Jul 6, 2026 to Jul 12, 2026?",
+    "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 200 from Jul 6, 2026 to Jul 12, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The total is calculated by summing daily counts from Jul 6, 2026 to Jul 12, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.",
+    "close_time": "2026-07-14T13:00:00Z"
+   },
+   {
+    "ticker": "KXHORMUZWEEKLY-26JUL12-T175",
+    "title": "Will there be more than 175 transit calls through the Strait of Hormuz from Jul 6, 2026 to Jul 12, 2026?",
+    "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 175 from Jul 6, 2026 to Jul 12, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The total is calculated by summing daily counts from Jul 6, 2026 to Jul 12, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.",
+    "close_time": "2026-07-14T13:00:00Z"
+   },
+   {
+    "ticker": "KXHORMUZWEEKLY-26JUL12-T150",
+    "title": "Will there be more than 150 transit calls through the Strait of Hormuz from Jul 6, 2026 to Jul 12, 2026?",
+    "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 150 from Jul 6, 2026 to Jul 12, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The total is calculated by summing daily counts from Jul 6, 2026 to Jul 12, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.",
+    "close_time": "2026-07-14T13:00:00Z"
+   },
+   {
+    "ticker": "KXHORMUZWEEKLY-26JUL12-T125",
+    "title": "Will there be more than 125 transit calls through the Strait of Hormuz from Jul 6, 2026 to Jul 12, 2026?",
+    "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 125 from Jul 6, 2026 to Jul 12, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The total is calculated by summing daily counts from Jul 6, 2026 to Jul 12, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.",
+    "close_time": "2026-07-14T13:00:00Z"
+   },
+   {
+    "ticker": "KXHORMUZWEEKLY-26JUL12-T100",
+    "title": "Will there be more than 100 transit calls through the Strait of Hormuz from Jul 6, 2026 to Jul 12, 2026?",
+    "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 100 from Jul 6, 2026 to Jul 12, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The total is calculated by summing daily counts from Jul 6, 2026 to Jul 12, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.",
+    "close_time": "2026-07-14T13:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXRT-ODY",
+  "series_ticker": "KXRT",
+  "title": "The Odyssey Rotten Tomatoes score?",
+  "close_time": "2026-07-20T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXRT-ODY-97",
+    "title": "The Odyssey Rotten Tomatoes score?",
+    "rules_primary": "If The Odyssey has a Tomatometer score of above 97 on Jul 20, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-20T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-ODY-96",
+    "title": "The Odyssey Rotten Tomatoes score?",
+    "rules_primary": "If The Odyssey has a Tomatometer score of above 96 on Jul 20, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-20T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-ODY-95",
+    "title": "The Odyssey Rotten Tomatoes score?",
+    "rules_primary": "If The Odyssey has a Tomatometer score of above 95 on Jul 20, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-20T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-ODY-94",
+    "title": "The Odyssey Rotten Tomatoes score?",
+    "rules_primary": "If The Odyssey has a Tomatometer score of above 94 on Jul 20, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-20T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-ODY-93",
+    "title": "The Odyssey Rotten Tomatoes score?",
+    "rules_primary": "If The Odyssey has a Tomatometer score of above 93 on Jul 20, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-20T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-ODY-92",
+    "title": "The Odyssey Rotten Tomatoes score?",
+    "rules_primary": "If The Odyssey has a Tomatometer score of above 92 on Jul 20, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-20T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-ODY-91",
+    "title": "The Odyssey Rotten Tomatoes score?",
+    "rules_primary": "If The Odyssey has a Tomatometer score of above 91 on Jul 20, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-20T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-ODY-90",
+    "title": "The Odyssey Rotten Tomatoes score?",
+    "rules_primary": "If The Odyssey has a Tomatometer score of above 90 on the Monday after wide release at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-20T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-ODY-87",
+    "title": "The Odyssey Rotten Tomatoes score?",
+    "rules_primary": "If The Odyssey has a Tomatometer score of above 87 on Jul 20, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-20T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-ODY-85",
+    "title": "The Odyssey Rotten Tomatoes score?",
+    "rules_primary": "If The Odyssey has a Tomatometer score of above 85 on the Monday after wide release at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-20T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-ODY-80",
+    "title": "The Odyssey Rotten Tomatoes score?",
+    "rules_primary": "If The Odyssey has a Tomatometer score of above 80 on the Monday after wide release at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-20T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-ODY-75",
+    "title": "The Odyssey Rotten Tomatoes score?",
+    "rules_primary": "If The Odyssey has a Tomatometer score of above 75 on the Monday after wide release at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-20T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPMODEL-26JUL13",
+  "series_ticker": "KXTOPMODEL",
+  "title": "What will be the top AI model this month?",
+  "close_time": "2026-07-13T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPMODEL-26JUL13-CLAUT",
+    "title": "What will be the top AI model this month?",
+    "rules_primary": "If claude-opus-4-6-thinking is the top-ranked AI model on Jul 13, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "If two models are tied under Rank (UB), then the model with the highest Arena Score will win. If two models are still tied after that, then the model with the most votes will win. If two models are still tied after that, the model that was released earlier will win. Important information: When checking the source for this market, check the 'Remove Style Control' toggle.",
+    "close_time": "2026-07-13T14:00:00Z"
+   },
+   {
+    "ticker": "KXTOPMODEL-26JUL13-CLAUF",
+    "title": "What will be the top AI model this month?",
+    "rules_primary": "If claude-fable-5 is the top-ranked AI model on Jul 13, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "If two models are tied under Rank (UB), then the model with the highest Arena Score will win. If two models are still tied after that, then the model with the most votes will win. If two models are still tied after that, the model that was released earlier will win. Important information: When checking the source for this market, check the 'Remove Style Control' toggle.",
+    "close_time": "2026-07-13T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPSAYCOMPANY-26AUG01",
+  "series_ticker": "KXTRUMPSAYCOMPANY",
+  "title": "Will Trump say \"Tesla / TSLA\" before Aug 1, 2026?",
+  "close_time": "2026-08-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPSAYCOMPANY-26AUG01-TSLA",
+    "title": "Will Trump say \"Tesla / TSLA\" before Aug 1, 2026?",
+    "rules_primary": "If Tesla / TSLA, or a plural or possessive form of Tesla / TSLA, is stated by Donald Trump before Aug 1, 2026 at 12:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "The word or phrase must be stated by President Donald Trump in public statements, direct quotes published by Source Agencies, or written public statements on his personal social media accounts (Twitter/Truth Social). Official acts like Executive Orders or bills signed do not count. The exact phrase/word, or a plural or possessive form of the phrase/word, must be used. Grammatical/tense inflections are otherwise not included. \nFor phrases with slashes like \"Doge/Dogecoin,\" either word satisfies the criterion. If the word must be said a minimum number of times, all instances must occur after market issuance.\nPlease see full rules for more details.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPSAYCOMPANY-26AUG01-RGTI",
+    "title": "Will Trump say \"Rigetti / RGTI\" before Aug 1, 2026?",
+    "rules_primary": "If Rigetti / RGTI, or a plural or possessive form of Rigetti / RGTI, is stated by Donald Trump before Aug 1, 2026 at 12:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "The word or phrase must be stated by President Donald Trump in public statements, direct quotes published by Source Agencies, or written public statements on his personal social media accounts (Twitter/Truth Social). Official acts like Executive Orders or bills signed do not count. The exact phrase/word, or a plural or possessive form of the phrase/word, must be used. Grammatical/tense inflections are otherwise not included. \nFor phrases with slashes like \"Doge/Dogecoin,\" either word satisfies the criterion. If the word must be said a minimum number of times, all instances must occur after market issuance.\nPlease see full rules for more details.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPSAYCOMPANY-26AUG01-PFE",
+    "title": "Will Trump say \"Pfizer / PFE\" before Aug 1, 2026?",
+    "rules_primary": "If Pfizer / PFE, or a plural or possessive form of Pfizer / PFE, is stated by Donald Trump before Aug 1, 2026 at 12:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "The word or phrase must be stated by President Donald Trump in public statements, direct quotes published by Source Agencies, or written public statements on his personal social media accounts (Twitter/Truth Social). Official acts like Executive Orders or bills signed do not count. The exact phrase/word, or a plural or possessive form of the phrase/word, must be used. Grammatical/tense inflections are otherwise not included. \nFor phrases with slashes like \"Doge/Dogecoin,\" either word satisfies the criterion. If the word must be said a minimum number of times, all instances must occur after market issuance.\nPlease see full rules for more details.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPSAYCOMPANY-26AUG01-MICR",
+    "title": "Will Trump say \"Microsoft / MSFT\" before Aug 1, 2026?",
+    "rules_primary": "If Microsoft / MSFT, or a plural or possessive form of Microsoft / MSFT, is stated by Donald Trump before Aug 1, 2026 at 12:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "The word or phrase must be stated by President Donald Trump in public statements, direct quotes published by Source Agencies, or written public statements on his personal social media accounts (Twitter/Truth Social). Official acts like Executive Orders or bills signed do not count. The exact phrase/word, or a plural or possessive form of the phrase/word, must be used. Grammatical/tense inflections are otherwise not included. \nFor phrases with slashes like \"Doge/Dogecoin,\" either word satisfies the criterion. If the word must be said a minimum number of times, all instances must occur after market issuance.\nPlease see full rules for more details.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPSAYCOMPANY-26AUG01-EXXO",
+    "title": "Will Trump say \"ExxonMobil / XOM\" before Aug 1, 2026?",
+    "rules_primary": "If ExxonMobil / XOM, or a plural or possessive form of ExxonMobil / XOM, is stated by Donald Trump before Aug 1, 2026 at 12:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "The word or phrase must be stated by President Donald Trump in public statements, direct quotes published by Source Agencies, or written public statements on his personal social media accounts (Twitter/Truth Social). Official acts like Executive Orders or bills signed do not count. The exact phrase/word, or a plural or possessive form of the phrase/word, must be used. Grammatical/tense inflections are otherwise not included. \nFor phrases with slashes like \"Doge/Dogecoin,\" either word satisfies the criterion. If the word must be said a minimum number of times, all instances must occur after market issuance.\nPlease see full rules for more details.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPSAYCOMPANY-26AUG01-DOOR",
+    "title": "Will Trump say \"DoorDash / DASH\" before Aug 1, 2026?",
+    "rules_primary": "If DoorDash / DASH, or a plural or possessive form of DoorDash / DASH, is stated by Donald Trump before Aug 1, 2026 at 12:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "The word or phrase must be stated by President Donald Trump in public statements, direct quotes published by Source Agencies, or written public statements on his personal social media accounts (Twitter/Truth Social). Official acts like Executive Orders or bills signed do not count. The exact phrase/word, or a plural or possessive form of the phrase/word, must be used. Grammatical/tense inflections are otherwise not included. \nFor phrases with slashes like \"Doge/Dogecoin,\" either word satisfies the criterion. If the word must be said a minimum number of times, all instances must occur after market issuance.\nPlease see full rules for more details.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPSAYCOMPANY-26AUG01-CHAT",
+    "title": "Will Trump say \"ChatGPT / OpenAI\" before Aug 1, 2026?",
+    "rules_primary": "If ChatGPT / OpenAI, or a plural or possessive form of ChatGPT / OpenAI, is stated by Donald Trump before Aug 1, 2026 at 12:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "The word or phrase must be stated by President Donald Trump in public statements, direct quotes published by Source Agencies, or written public statements on his personal social media accounts (Twitter/Truth Social). Official acts like Executive Orders or bills signed do not count. The exact phrase/word, or a plural or possessive form of the phrase/word, must be used. Grammatical/tense inflections are otherwise not included. \nFor phrases with slashes like \"Doge/Dogecoin,\" either word satisfies the criterion. If the word must be said a minimum number of times, all instances must occur after market issuance.\nPlease see full rules for more details.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPSAYCOMPANY-26AUG01-ANTH",
+    "title": "Will Trump say \"Anthropic / Claude\" before Aug 1, 2026?",
+    "rules_primary": "If Anthropic / Claude, or a plural or possessive form of Anthropic / Claude, is stated by Donald Trump before Aug 1, 2026 at 12:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "The word or phrase must be stated by President Donald Trump in public statements, direct quotes published by Source Agencies, or written public statements on his personal social media accounts (Twitter/Truth Social). Official acts like Executive Orders or bills signed do not count. The exact phrase/word, or a plural or possessive form of the phrase/word, must be used. Grammatical/tense inflections are otherwise not included. \nFor phrases with slashes like \"Doge/Dogecoin,\" either word satisfies the criterion. If the word must be said a minimum number of times, all instances must occur after market issuance.\nPlease see full rules for more details.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPSAYCOMPANY-26AUG01-ABNB",
+    "title": "Will Trump say \"Airbnb / ABNB\" before Aug 1, 2026?",
+    "rules_primary": "If Airbnb / ABNB, or a plural or possessive form of Airbnb / ABNB, is stated by Donald Trump before Aug 1, 2026 at 12:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "The word or phrase must be stated by President Donald Trump in public statements, direct quotes published by Source Agencies, or written public statements on his personal social media accounts (Twitter/Truth Social). Official acts like Executive Orders or bills signed do not count. The exact phrase/word, or a plural or possessive form of the phrase/word, must be used. Grammatical/tense inflections are otherwise not included. \nFor phrases with slashes like \"Doge/Dogecoin,\" either word satisfies the criterion. If the word must be said a minimum number of times, all instances must occur after market issuance.\nPlease see full rules for more details.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXTRUMPSAYCOMPANY-26AUG01-DE",
+    "title": "Will Trump say \"Deere / DE\" before Aug 1, 2026?",
+    "rules_primary": "If Deere / DE, or a plural or possessive form of Deere / DE, is stated by Donald Trump before Aug 1, 2026 at 12:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "The word or phrase must be stated by President Donald Trump in public statements, direct quotes published by Source Agencies, or written public statements on his personal social media accounts (Twitter/Truth Social). Official acts like Executive Orders or bills signed do not count. The exact phrase/word, or a plural or possessive form of the phrase/word, must be used. Grammatical/tense inflections are otherwise not included. \nFor phrases with slashes like \"Doge/Dogecoin,\" either word satisfies the criterion. If the word must be said a minimum number of times, all instances must occur after market issuance.\nPlease see full rules for more details.",
+    "close_time": "2026-07-29T21:43:09Z"
+   },
+   {
+    "ticker": "KXTRUMPSAYCOMPANY-26AUG01-GOOG",
+    "title": "Will Trump say \"Google / GOOG / GOOGL\" before Aug 1, 2026?",
+    "rules_primary": "If Google / GOOG / GOOGL, or a plural or possessive form of Google / GOOG / GOOGL, is stated by Donald Trump before Aug 1, 2026 at 12:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "The word or phrase must be stated by President Donald Trump in public statements, direct quotes published by Source Agencies, or written public statements on his personal social media accounts (Twitter/Truth Social). Official acts like Executive Orders or bills signed do not count. The exact phrase/word, or a plural or possessive form of the phrase/word, must be used. Grammatical/tense inflections are otherwise not included. \nFor phrases with slashes like \"Doge/Dogecoin,\" either word satisfies the criterion. If the word must be said a minimum number of times, all instances must occur after market issuance.\nPlease see full rules for more details.",
+    "close_time": "2026-07-27T19:52:51Z"
+   },
+   {
+    "ticker": "KXTRUMPSAYCOMPANY-26AUG01-FOX",
+    "title": "Will Trump say \"Fox News\" before Aug 1, 2026?",
+    "rules_primary": "If Fox News, or a plural or possessive form of Fox News, is stated by Donald Trump before Aug 1, 2026 at 12:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "The word or phrase must be stated by President Donald Trump in public statements, direct quotes published by Source Agencies, or written public statements on his personal social media accounts (Twitter/Truth Social). Official acts like Executive Orders or bills signed do not count. The exact phrase/word, or a plural or possessive form of the phrase/word, must be used. Grammatical/tense inflections are otherwise not included. \nFor phrases with slashes like \"Doge/Dogecoin,\" either word satisfies the criterion. If the word must be said a minimum number of times, all instances must occur after market issuance.\nPlease see full rules for more details.",
+    "close_time": "2026-07-27T19:52:39Z"
+   },
+   {
+    "ticker": "KXTRUMPSAYCOMPANY-26AUG01-META",
+    "title": "Will Trump say \"Meta\" before Aug 1, 2026?",
+    "rules_primary": "If Meta, or a plural or possessive form of Meta, is stated by Donald Trump before Aug 1, 2026 at 12:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "The word or phrase must be stated by President Donald Trump in public statements, direct quotes published by Source Agencies, or written public statements on his personal social media accounts (Twitter/Truth Social). Official acts like Executive Orders or bills signed do not count. The exact phrase/word, or a plural or possessive form of the phrase/word, must be used. Grammatical/tense inflections are otherwise not included. \nFor phrases with slashes like \"Doge/Dogecoin,\" either word satisfies the criterion. If the word must be said a minimum number of times, all instances must occur after market issuance.\nPlease see full rules for more details.",
+    "close_time": "2026-07-20T20:11:16Z"
+   },
+   {
+    "ticker": "KXTRUMPSAYCOMPANY-26AUG01-CNN",
+    "title": "Will Trump say \"CNN\" before Aug 1, 2026?",
+    "rules_primary": "If CNN, or a plural or possessive form of CNN, is stated by Donald Trump before Aug 1, 2026 at 12:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "The word or phrase must be stated by President Donald Trump in public statements, direct quotes published by Source Agencies, or written public statements on his personal social media accounts (Twitter/Truth Social). Official acts like Executive Orders or bills signed do not count. The exact phrase/word, or a plural or possessive form of the phrase/word, must be used. Grammatical/tense inflections are otherwise not included. \nFor phrases with slashes like \"Doge/Dogecoin,\" either word satisfies the criterion. If the word must be said a minimum number of times, all instances must occur after market issuance.\nPlease see full rules for more details.",
+    "close_time": "2026-07-13T02:37:45Z"
+   },
+   {
+    "ticker": "KXTRUMPSAYCOMPANY-26AUG01-AAPL",
+    "title": "Will Trump say \"Apple / AAPL\" before Aug 1, 2026?",
+    "rules_primary": "If Apple / AAPL, or a plural or possessive form of Apple / AAPL, is stated by Donald Trump before Aug 1, 2026 at 12:00am ET, then the market resolves to Yes.",
+    "rules_secondary": "The word or phrase must be stated by President Donald Trump in public statements, direct quotes published by Source Agencies, or written public statements on his personal social media accounts (Twitter/Truth Social). Official acts like Executive Orders or bills signed do not count. The exact phrase/word, or a plural or possessive form of the phrase/word, must be used. Grammatical/tense inflections are otherwise not included. \nFor phrases with slashes like \"Doge/Dogecoin,\" either word satisfies the criterion. If the word must be said a minimum number of times, all instances must occur after market issuance.\nPlease see full rules for more details.",
+    "close_time": "2026-07-13T02:37:45Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMEQUIV-CAR26JUL16",
+  "series_ticker": "KXALBUMEQUIV",
+  "title": "Will cartunez by Ken Carson have above 5000 Album Equivalent Units during the July 10, 2026 -July 16, 2026 tracking week?",
+  "close_time": "2026-07-19T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMEQUIV-CAR26JUL16-5K",
+    "title": "Will cartunez by Ken Carson have above 5000 Album Equivalent Units during the July 10, 2026 -July 16, 2026 tracking week?",
+    "rules_primary": "If cartunez by Ken Carson has above 5K Album Equivalent Units during the July 10, 2026 -July 16, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 10, 2026 -July 16, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-07-19T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-CAR26JUL16-35K",
+    "title": "Will cartunez by Ken Carson have above 35000 Album Equivalent Units during the July 10, 2026 -July 16, 2026 tracking week?",
+    "rules_primary": "If cartunez by Ken Carson has above 35K Album Equivalent Units during the July 10, 2026 -July 16, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 10, 2026 -July 16, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-07-19T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-CAR26JUL16-30K",
+    "title": "Will cartunez by Ken Carson have above 30000 Album Equivalent Units during the July 10, 2026 -July 16, 2026 tracking week?",
+    "rules_primary": "If cartunez by Ken Carson has above 30K Album Equivalent Units during the July 10, 2026 -July 16, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 10, 2026 -July 16, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-07-19T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-CAR26JUL16-25K",
+    "title": "Will cartunez by Ken Carson have above 25000 Album Equivalent Units during the July 10, 2026 -July 16, 2026 tracking week?",
+    "rules_primary": "If cartunez by Ken Carson has above 25K Album Equivalent Units during the July 10, 2026 -July 16, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 10, 2026 -July 16, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-07-19T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-CAR26JUL16-20K",
+    "title": "Will cartunez by Ken Carson have above 20000 Album Equivalent Units during the July 10, 2026 -July 16, 2026 tracking week?",
+    "rules_primary": "If cartunez by Ken Carson has above 20K Album Equivalent Units during the July 10, 2026 -July 16, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 10, 2026 -July 16, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-07-19T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-CAR26JUL16-15K",
+    "title": "Will cartunez by Ken Carson have above 15000 Album Equivalent Units during the July 10, 2026 -July 16, 2026 tracking week?",
+    "rules_primary": "If cartunez by Ken Carson has above 15K Album Equivalent Units during the July 10, 2026 -July 16, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 10, 2026 -July 16, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-07-19T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-CAR26JUL16-10K",
+    "title": "Will cartunez by Ken Carson have above 10000 Album Equivalent Units during the July 10, 2026 -July 16, 2026 tracking week?",
+    "rules_primary": "If cartunez by Ken Carson has above 10K Album Equivalent Units during the July 10, 2026 -July 16, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 10, 2026 -July 16, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-07-19T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL13",
+  "series_ticker": "KXNETFLIXTOPVIEWSMOVIE",
+  "title": "Will the #1 Movie on Netflix have at least 9 million views?",
+  "close_time": "2026-07-14T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL13-9",
+    "title": "Will the #1 Movie on Netflix have at least 9 million views?",
+    "rules_primary": "If the #1 Movie on Netflix has at least 9 million views on the chart published on Jul 14, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market specifically encompasses the number of \u201cViews\u201d (not hours viewed) of\nthe top Movie ranked on Netflix\u2019s weekly charts for Global \"Movies  | English\"  chart.\n\nThe Netflix charts are updated on Tuesday. Therefore, the market will close at 11:59 PM ET the day before. The chart published on Jul 14, 2026 will be for the week ending the previous Sunday.\n\nThis market and these products have not been endorsed by Netflix. Any references to Netflix, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Netflix and Kalshi.\n\nThis market and these products have not been endorsed by Netflix. Any references to Netflix, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Netflix and Kalshi.",
+    "close_time": "2026-07-14T03:59:00Z"
+   },
+   {
+    "ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL13-21",
+    "title": "Will the #1 Movie on Netflix have at least 21 million views?",
+    "rules_primary": "If the #1 Movie on Netflix has at least 21 million views on the chart published on Jul 14, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market specifically encompasses the number of \u201cViews\u201d (not hours viewed) of\nthe top Movie ranked on Netflix\u2019s weekly charts for Global \"Movies  | English\"  chart.\n\nThe Netflix charts are updated on Tuesday. Therefore, the market will close at 11:59 PM ET the day before. The chart published on Jul 14, 2026 will be for the week ending the previous Sunday.\n\nThis market and these products have not been endorsed by Netflix. Any references to Netflix, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Netflix and Kalshi.\n\nThis market and these products have not been endorsed by Netflix. Any references to Netflix, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Netflix and Kalshi.",
+    "close_time": "2026-07-14T03:59:00Z"
+   },
+   {
+    "ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL13-18",
+    "title": "Will the #1 Movie on Netflix have at least 18 million views?",
+    "rules_primary": "If the #1 Movie on Netflix has at least 18 million views on the chart published on Jul 14, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market specifically encompasses the number of \u201cViews\u201d (not hours viewed) of\nthe top Movie ranked on Netflix\u2019s weekly charts for Global \"Movies  | English\"  chart.\n\nThe Netflix charts are updated on Tuesday. Therefore, the market will close at 11:59 PM ET the day before. The chart published on Jul 14, 2026 will be for the week ending the previous Sunday.\n\nThis market and these products have not been endorsed by Netflix. Any references to Netflix, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Netflix and Kalshi.\n\nThis market and these products have not been endorsed by Netflix. Any references to Netflix, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Netflix and Kalshi.",
+    "close_time": "2026-07-14T03:59:00Z"
+   },
+   {
+    "ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL13-15",
+    "title": "Will the #1 Movie on Netflix have at least 15 million views?",
+    "rules_primary": "If the #1 Movie on Netflix has at least 15 million views on the chart published on Jul 14, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market specifically encompasses the number of \u201cViews\u201d (not hours viewed) of\nthe top Movie ranked on Netflix\u2019s weekly charts for Global \"Movies  | English\"  chart.\n\nThe Netflix charts are updated on Tuesday. Therefore, the market will close at 11:59 PM ET the day before. The chart published on Jul 14, 2026 will be for the week ending the previous Sunday.\n\nThis market and these products have not been endorsed by Netflix. Any references to Netflix, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Netflix and Kalshi.\n\nThis market and these products have not been endorsed by Netflix. Any references to Netflix, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Netflix and Kalshi.",
+    "close_time": "2026-07-14T03:59:00Z"
+   },
+   {
+    "ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL13-12",
+    "title": "Will the #1 Movie on Netflix have at least 12 million views?",
+    "rules_primary": "If the #1 Movie on Netflix has at least 12 million views on the chart published on Jul 14, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market specifically encompasses the number of \u201cViews\u201d (not hours viewed) of\nthe top Movie ranked on Netflix\u2019s weekly charts for Global \"Movies  | English\"  chart.\n\nThe Netflix charts are updated on Tuesday. Therefore, the market will close at 11:59 PM ET the day before. The chart published on Jul 14, 2026 will be for the week ending the previous Sunday.\n\nThis market and these products have not been endorsed by Netflix. Any references to Netflix, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Netflix and Kalshi.\n\nThis market and these products have not been endorsed by Netflix. Any references to Netflix, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Netflix and Kalshi.",
+    "close_time": "2026-07-14T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+  "series_ticker": "KXALBUMEQUIV",
+  "title": "Will Daughter From Hell by Gracie Abrams have above 90000 Album Equivalent Units during the July 17, 2026",
+  "close_time": "2026-07-26T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23B-90K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 90000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 90K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23B-150K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 150000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 150K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23B-140K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 140000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 140K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23B-130K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 130000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 130K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23B-125K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 125000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 125K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23B-120K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 120000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 120K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23B-110K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 110000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 110K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23B-100K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 100000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 100K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-250K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 250000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 250K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-210K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 210000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 210K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-190K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 190000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 190K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-170K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 170000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 170K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-135K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 135000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 135K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-127K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 127000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 127K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-122K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 122000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 122K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-121K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 121000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 121K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMEQUIV-SET26JUL23",
+  "series_ticker": "KXALBUMEQUIV",
+  "title": "Will SET IN STONE by Rick Ross have above 50000 Album Equivalent Units during the July 17, 2026",
+  "close_time": "2026-07-26T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMEQUIV-SET26JUL23-50K",
+    "title": "Will SET IN STONE by Rick Ross have above 50000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If SET IN STONE by Rick Ross has above 50K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-SET26JUL23-30K",
+    "title": "Will SET IN STONE by Rick Ross have above 30000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If SET IN STONE by Rick Ross has above 30K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-SET26JUL23-20K",
+    "title": "Will SET IN STONE by Rick Ross have above 20000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If SET IN STONE by Rick Ross has above 20K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-SET26JUL23-17K",
+    "title": "Will SET IN STONE by Rick Ross have above 17000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If SET IN STONE by Rick Ross has above 17K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-SET26JUL23-15K",
+    "title": "Will SET IN STONE by Rick Ross have above 15000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If SET IN STONE by Rick Ross has above 15K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-SET26JUL23-10K",
+    "title": "Will SET IN STONE by Rick Ross have above 10000 Album Equivalent Units during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If SET IN STONE by Rick Ross has above 10K Album Equivalent Units during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-07-26T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXH100W-26JUL17",
+  "series_ticker": "KXH100W",
+  "title": "H100 SXM price up in next week?",
+  "close_time": "2026-07-17T21:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXH100W-26JUL17-2.52",
+    "title": "H100 SXM price up in next week?",
+    "rules_primary": "If the value of H100 SXM compute per hour is above 2.52 on Jul 17, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the value of H100 SXM compute per hour as reported by Ornn (https://dashboard.ornnai.com/). Revisions to the underlying made after expiration will not be accounted for. The \"USD\" iteration of the index will be used unless explicitly stated otherwise. If no data is available for the time period by the Expiration Date, all strikes excluding \"No data\" or \"None\" resolve to No. Values are rounded to two decimal places unless otherwise specified.",
+    "close_time": "2026-07-17T21:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMEQUIV-DAU26JUL23",
+  "series_ticker": "KXALBUMEQUIV",
+  "title": "Will Daughter From Hell by Gracie Abrams have above 95000 Pure Album Sales during the July 17, 2026",
+  "close_time": "2026-07-26T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-95K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 95000 Pure Album Sales during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 95K Pure Album Sales during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-90K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 90000 Pure Album Sales during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 90K Pure Album Sales during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-85K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 85000 Pure Album Sales during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 85K Pure Album Sales during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-80K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 80000 Pure Album Sales during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 80K Pure Album Sales during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-75K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 75000 Pure Album Sales during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 75K Pure Album Sales during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-70K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 70000 Pure Album Sales during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 70K Pure Album Sales during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-60K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 60000 Pure Album Sales during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 60K Pure Album Sales during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-55K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 55000 Pure Album Sales during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 55K Pure Album Sales during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-125K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 125000 Pure Album Sales during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 125K Pure Album Sales during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-120K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 120000 Pure Album Sales during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 120K Pure Album Sales during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-115K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 115000 Pure Album Sales during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 115K Pure Album Sales during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-110K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 110000 Pure Album Sales during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 110K Pure Album Sales during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-105K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 105000 Pure Album Sales during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 105K Pure Album Sales during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-100K",
+    "title": "Will Daughter From Hell by Gracie Abrams have above 100000 Pure Album Sales during the July 17, 2026 - July 23, 2026 tracking week?",
+    "rules_primary": "If Daughter From Hell by Gracie Abrams has above 100K Pure Album Sales during the July 17, 2026 - July 23, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 17, 2026 - July 23, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-07-26T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXHORMUZMAX-26JUL19",
+  "series_ticker": "KXHORMUZMAX",
+  "title": "Will July 19 be the day with the most transit calls through the Strait of Hormuz (7/13",
+  "close_time": "2026-07-21T13:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXHORMUZMAX-26JUL19-JUL19",
+    "title": "Will July 19 be the day with the most transit calls through the Strait of Hormuz (7/13 - 7/19)?",
+    "rules_primary": "If Jul 19, 2026 is the date with the highest number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch in the listed week, then the market resolves to Yes.",
+    "rules_secondary": "Daily counts will be evaluated from Jul 13, 2026 to Jul 19, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available. If multiple days tie for the highest number of transit calls, the market for each tied day will resolve to 1/N, where N is the number of tied days.",
+    "close_time": "2026-07-21T13:00:00Z"
+   },
+   {
+    "ticker": "KXHORMUZMAX-26JUL19-JUL15",
+    "title": "Will July 15 be the day with the most transit calls through the Strait of Hormuz (7/13 - 7/19)?",
+    "rules_primary": "If Jul 15, 2026 is the date with the highest number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch in the listed week, then the market resolves to Yes.",
+    "rules_secondary": "Daily counts will be evaluated from Jul 13, 2026 to Jul 19, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available. If multiple days tie for the highest number of transit calls, the market for each tied day will resolve to 1/N, where N is the number of tied days.",
+    "close_time": "2026-07-21T13:00:00Z"
+   },
+   {
+    "ticker": "KXHORMUZMAX-26JUL19-JUL14",
+    "title": "Will July 14 be the day with the most transit calls through the Strait of Hormuz (7/13 - 7/19)?",
+    "rules_primary": "If Jul 14, 2026 is the date with the highest number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch in the listed week, then the market resolves to Yes.",
+    "rules_secondary": "Daily counts will be evaluated from Jul 13, 2026 to Jul 19, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available. If multiple days tie for the highest number of transit calls, the market for each tied day will resolve to 1/N, where N is the number of tied days.",
+    "close_time": "2026-07-21T13:00:00Z"
+   },
+   {
+    "ticker": "KXHORMUZMAX-26JUL19-JUL13",
+    "title": "Will July 13 be the day with the most transit calls through the Strait of Hormuz (7/13 - 7/19)?",
+    "rules_primary": "If Jul 13, 2026 is the date with the highest number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch in the listed week, then the market resolves to Yes.",
+    "rules_secondary": "Daily counts will be evaluated from Jul 13, 2026 to Jul 19, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available. If multiple days tie for the highest number of transit calls, the market for each tied day will resolve to 1/N, where N is the number of tied days.",
+    "close_time": "2026-07-21T13:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXRT-PIN",
+  "series_ticker": "KXRT",
+  "title": "Pinocchio Unstrung Rotten Tomatoes score?",
+  "close_time": "2026-07-27T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXRT-PIN-90",
+    "title": "Pinocchio Unstrung Rotten Tomatoes score?",
+    "rules_primary": "If Pinocchio Unstrung has a Tomatometer score of above 90 on Jul 27, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-27T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-PIN-85",
+    "title": "Pinocchio Unstrung Rotten Tomatoes score?",
+    "rules_primary": "If Pinocchio Unstrung has a Tomatometer score of above 85 on Jul 27, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-27T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-PIN-80",
+    "title": "Pinocchio Unstrung Rotten Tomatoes score?",
+    "rules_primary": "If Pinocchio Unstrung has a Tomatometer score of above 80 on Jul 27, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-27T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-PIN-75",
+    "title": "Pinocchio Unstrung Rotten Tomatoes score?",
+    "rules_primary": "If Pinocchio Unstrung has a Tomatometer score of above 75 on Jul 27, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-27T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-PIN-70",
+    "title": "Pinocchio Unstrung Rotten Tomatoes score?",
+    "rules_primary": "If Pinocchio Unstrung has a Tomatometer score of above 70 on Jul 27, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-27T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-PIN-65",
+    "title": "Pinocchio Unstrung Rotten Tomatoes score?",
+    "rules_primary": "If Pinocchio Unstrung has a Tomatometer score of above 65 on Jul 27, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-27T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-PIN-60",
+    "title": "Pinocchio Unstrung Rotten Tomatoes score?",
+    "rules_primary": "If Pinocchio Unstrung has a Tomatometer score of above 60 on Jul 27, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-27T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-PIN-55",
+    "title": "Pinocchio Unstrung Rotten Tomatoes score?",
+    "rules_primary": "If Pinocchio Unstrung has a Tomatometer score of above 55 on Jul 27, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-27T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-PIN-50",
+    "title": "Pinocchio Unstrung Rotten Tomatoes score?",
+    "rules_primary": "If Pinocchio Unstrung has a Tomatometer score of above 50 on Jul 27, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-27T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-PIN-45",
+    "title": "Pinocchio Unstrung Rotten Tomatoes score?",
+    "rules_primary": "If Pinocchio Unstrung has a Tomatometer score of above 45 on Jul 27, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-27T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-PIN-40",
+    "title": "Pinocchio Unstrung Rotten Tomatoes score?",
+    "rules_primary": "If Pinocchio Unstrung has a Tomatometer score of above 40 on Jul 27, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-27T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-PIN-35",
+    "title": "Pinocchio Unstrung Rotten Tomatoes score?",
+    "rules_primary": "If Pinocchio Unstrung has a Tomatometer score of above 35 on Jul 27, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-27T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-PIN-30",
+    "title": "Pinocchio Unstrung Rotten Tomatoes score?",
+    "rules_primary": "If Pinocchio Unstrung has a Tomatometer score of above 30 on Jul 27, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-27T14:00:00Z"
+   },
+   {
+    "ticker": "KXRT-PIN-25",
+    "title": "Pinocchio Unstrung Rotten Tomatoes score?",
+    "rules_primary": "If Pinocchio Unstrung has a Tomatometer score of above 25 on Jul 27, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "The \"Fresh!\" and \"Certified Fresh!\" subtitles are meant for illustrative purposes only. The Tomatometer score must be above the strike value to resolve as YES (for example, a score of 75 would resolve \"Above 75\" as No.) The market will be determined the Monday after wide release at 10:00 AM ET.",
+    "close_time": "2026-07-27T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26JUL20",
+  "series_ticker": "KXNETFLIXRANKMOVIEGLOBAL2",
+  "title": "#2 Global Netflix Movie on Jul 20, 2026?",
+  "close_time": "2026-07-21T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26JUL20-VOI",
+    "title": "#2 Global Netflix Movie on Jul 20, 2026?",
+    "rules_primary": "If Voicemails for Isabelle is #2 on the Netflix Top 10 Global Movie on the chart published on Jul 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The Netflix charts are updated on Tuesday. Therefore, the market will close at 11:59 PM ET the day before. The chart published on Jul 21, 2026 will be for the week ending the previous Sunday.\n\nThis market and these products have not been endorsed by Netflix. Any references to Netflix, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Netflix and Kalshi.",
+    "close_time": "2026-07-21T03:59:00Z"
+   },
+   {
+    "ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26JUL20-ENO",
+    "title": "#2 Global Netflix Movie on Jul 20, 2026?",
+    "rules_primary": "If Enola Holmes 3 is #2 on the Netflix Top 10 Global Movie on the chart published on Jul 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The Netflix charts are updated on Tuesday. Therefore, the market will close at 11:59 PM ET the day before. The chart published on Jul 21, 2026 will be for the week ending the previous Sunday.\n\nThis market and these products have not been endorsed by Netflix. Any references to Netflix, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Netflix and Kalshi.",
+    "close_time": "2026-07-21T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL20",
+  "series_ticker": "KXNETFLIXTOPVIEWSMOVIE",
+  "title": "Will the #1 Movie on Netflix have at least 9 million views?",
+  "close_time": "2026-07-21T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL20-9",
+    "title": "Will the #1 Movie on Netflix have at least 9 million views?",
+    "rules_primary": "If the #1 Movie on Netflix has at least 9 million views on the chart published on Jul 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market specifically encompasses the number of \u201cViews\u201d (not hours viewed) of\nthe top Movie ranked on Netflix\u2019s weekly charts for Global \"Movies  | English\"  chart.\n\nThe Netflix charts are updated on Tuesday. Therefore, the market will close at 11:59 PM ET the day before. The chart published on Jul 21, 2026 will be for the week ending the previous Sunday.\n\nThis market and these products have not been endorsed by Netflix. Any references to Netflix, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Netflix and Kalshi.",
+    "close_time": "2026-07-21T03:59:00Z"
+   },
+   {
+    "ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL20-15",
+    "title": "Will the #1 Movie on Netflix have at least 15 million views?",
+    "rules_primary": "If the #1 Movie on Netflix has at least 15 million views on the chart published on Jul 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market specifically encompasses the number of \u201cViews\u201d (not hours viewed) of\nthe top Movie ranked on Netflix\u2019s weekly charts for Global \"Movies  | English\"  chart.\n\nThe Netflix charts are updated on Tuesday. Therefore, the market will close at 11:59 PM ET the day before. The chart published on Jul 21, 2026 will be for the week ending the previous Sunday.\n\nThis market and these products have not been endorsed by Netflix. Any references to Netflix, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Netflix and Kalshi.",
+    "close_time": "2026-07-21T03:59:00Z"
+   },
+   {
+    "ticker": "KXNETFLIXTOPVIEWSMOVIE-26JUL20-12",
+    "title": "Will the #1 Movie on Netflix have at least 12 million views?",
+    "rules_primary": "If the #1 Movie on Netflix has at least 12 million views on the chart published on Jul 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market specifically encompasses the number of \u201cViews\u201d (not hours viewed) of\nthe top Movie ranked on Netflix\u2019s weekly charts for Global \"Movies  | English\"  chart.\n\nThe Netflix charts are updated on Tuesday. Therefore, the market will close at 11:59 PM ET the day before. The chart published on Jul 21, 2026 will be for the week ending the previous Sunday.\n\nThis market and these products have not been endorsed by Netflix. Any references to Netflix, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Netflix and Kalshi.",
+    "close_time": "2026-07-21T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXPOKEMON-26JULGENCOSHO",
+  "series_ticker": "KXPOKEMON",
+  "title": "Will Ungraded Price of the Gengar (Cosmos Holo) (EB Games Exclusive) on Collectr be above $125.59 on 2026-07-31T23:59:00-04:00?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXPOKEMON-26JULGENCOSHO-125.59",
+    "title": "Will Ungraded Price of the Gengar (Cosmos Holo) (EB Games Exclusive) on Collectr be above $125.59 on 2026-07-31T23:59:00-04:00?",
+    "rules_primary": "If the Ungraded Price of the Gengar (Cosmos Holo) (EB Games Exclusive) on Collectr is above $125.59 on 07/31/2026, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the first non-preliminary value published by the platform after the time period concludes. The value must match the exact textual label specified for the price type. If no data is available by the Expiration Date, the last available value will be used. If no prior value exists, all markets resolve to No. Prices are assumed to be in USD and rounded to two decimal places. Unless otherwise specified, prices exclude duties, taxes, and additional fees. Any revisions or corrections published after the initial value will not affect market resolution.",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXPOKEMON-26JULPERORDPO",
+  "series_ticker": "KXPOKEMON",
+  "title": "Will Ungraded Price of the Perfect Order Pokemon Center Elite Trainer Box on Collectr be above $134.96 on 2026-07-31T23:59:00-04:00?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXPOKEMON-26JULPERORDPO-134.96",
+    "title": "Will Ungraded Price of the Perfect Order Pokemon Center Elite Trainer Box on Collectr be above $134.96 on 2026-07-31T23:59:00-04:00?",
+    "rules_primary": "If the Ungraded Price of the Perfect Order Pokemon Center Elite Trainer Box on Collectr is above $134.96 on 2026-07-31T23:59:00-04:00, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the first non-preliminary value published by the platform after the time period concludes. The value must match the exact textual label specified for the price type. If no data is available by the Expiration Date, the last available value will be used. If no prior value exists, all markets resolve to No. Prices are assumed to be in USD and rounded to two decimal places. Unless otherwise specified, prices exclude duties, taxes, and additional fees. Any revisions or corrections published after the initial value will not affect market resolution.",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLAUNCHES-26JUL",
+  "series_ticker": "KXLAUNCHES",
+  "title": "How many launches will all U.S.-licensed commercial operators combined have in July 2026?",
+  "close_time": "2026-08-01T22:02:10Z",
+  "markets": [
+   {
+    "ticker": "KXLAUNCHES-26JUL-18",
+    "title": "How many launches will all U.S.-licensed commercial operators combined have in July 2026?",
+    "rules_primary": "If all U.S.-licensed commercial operators combined have Above 18 launches in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "For the purpose of this market, qualifying commercial space launches will be based on the documented count from the FAA Commercial Space Data list during the time period.",
+    "close_time": "2026-08-01T22:02:10Z"
+   },
+   {
+    "ticker": "KXLAUNCHES-26JUL-17",
+    "title": "How many launches will all U.S.-licensed commercial operators combined have in July 2026?",
+    "rules_primary": "If all U.S.-licensed commercial operators combined have Above 17 launches in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "For the purpose of this market, qualifying commercial space launches will be based on the documented count from the FAA Commercial Space Data list during the time period.",
+    "close_time": "2026-08-01T22:02:10Z"
+   },
+   {
+    "ticker": "KXLAUNCHES-26JUL-16",
+    "title": "How many launches will all U.S.-licensed commercial operators combined have in July 2026?",
+    "rules_primary": "If all U.S.-licensed commercial operators combined have Above 16 launches in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "For the purpose of this market, qualifying commercial space launches will be based on the documented count from the FAA Commercial Space Data list during the time period.",
+    "close_time": "2026-08-01T22:02:10Z"
+   },
+   {
+    "ticker": "KXLAUNCHES-26JUL-15",
+    "title": "How many launches will all U.S.-licensed commercial operators combined have in July 2026?",
+    "rules_primary": "If all U.S.-licensed commercial operators combined have Above 15 launches in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "For the purpose of this market, qualifying commercial space launches will be based on the documented count from the FAA Commercial Space Data list during the time period.",
+    "close_time": "2026-08-01T22:02:10Z"
+   },
+   {
+    "ticker": "KXLAUNCHES-26JUL-14",
+    "title": "How many launches will all U.S.-licensed commercial operators combined have in July 2026?",
+    "rules_primary": "If all U.S.-licensed commercial operators combined have Above 14 launches in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "For the purpose of this market, qualifying commercial space launches will be based on the documented count from the FAA Commercial Space Data list during the time period.",
+    "close_time": "2026-08-01T22:02:10Z"
+   },
+   {
+    "ticker": "KXLAUNCHES-26JUL-13",
+    "title": "How many launches will all U.S.-licensed commercial operators combined have in July 2026?",
+    "rules_primary": "If all U.S.-licensed commercial operators combined have Above 13 launches in July 2026, then the market resolves to Yes.",
+    "rules_secondary": "For the purpose of this market, qualifying commercial space launches will be based on the documented count from the FAA Commercial Space Data list during the time period.",
+    "close_time": "2026-08-01T22:02:10Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXNYTHEAD-26JUL",
+  "series_ticker": "KXNYTHEAD",
+  "title": "Will the number of full-width New York Times front page headlines be at least 3 in Jul 2026?",
+  "close_time": "2026-08-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXNYTHEAD-26JUL-T3",
+    "title": "Will the number of full-width New York Times front page headlines be at least 3 in Jul 2026?",
+    "rules_primary": "If the number of New York Times front page banner headlines is at least 3 in Jul 2026, then the market resolves to Yes.",
+    "rules_secondary": "\"Banner headline\" refers to a standalone centered headline surrounded only by whitespace. This market resolves based on the front page displayed in the NYT Store's 'Front Page Reprint' section.\n\nPast examples:\u00a0Jan 5, 2026; Jan 4, 2026; Nov 5, 2025; May 31, 2024; Jun 24, 2016",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXNYTHEAD-26JUL-T2",
+    "title": "Will the number of full-width New York Times front page headlines be at least 2 in Jul 2026?",
+    "rules_primary": "If the number of New York Times front page banner headlines is at least 2 in Jul 2026, then the market resolves to Yes.",
+    "rules_secondary": "\"Banner headline\" refers to a standalone centered headline surrounded only by whitespace. This market resolves based on the front page displayed in the NYT Store's 'Front Page Reprint' section.\n\nPast examples:\u00a0Jan 5, 2026; Jan 4, 2026; Nov 5, 2025; May 31, 2024; Jun 24, 2016",
+    "close_time": "2026-08-01T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMEQUIV-MUS26JUL30",
+  "series_ticker": "KXALBUMEQUIV",
+  "title": "Will Music, Fashion, Film by Charli xcx have above 90000 Album Equivalent Units during the July 24, 2026",
+  "close_time": "2026-08-02T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMEQUIV-MUS26JUL30-90K",
+    "title": "Will Music, Fashion, Film by Charli xcx have above 90000 Album Equivalent Units during the July 24, 2026 - July 30, 2026 tracking week?",
+    "rules_primary": "If Music, Fashion, Film by Charli xcx has above 90K Album Equivalent Units during the July 24, 2026 - July 30, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 24, 2026 - July 30, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-08-02T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-MUS26JUL30-85K",
+    "title": "Will Music, Fashion, Film by Charli xcx have above 85000 Album Equivalent Units during the July 24, 2026 - July 30, 2026 tracking week?",
+    "rules_primary": "If Music, Fashion, Film by Charli xcx has above 85K Album Equivalent Units during the July 24, 2026 - July 30, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 24, 2026 - July 30, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-08-02T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-MUS26JUL30-80K",
+    "title": "Will Music, Fashion, Film by Charli xcx have above 80000 Album Equivalent Units during the July 24, 2026 - July 30, 2026 tracking week?",
+    "rules_primary": "If Music, Fashion, Film by Charli xcx has above 80K Album Equivalent Units during the July 24, 2026 - July 30, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 24, 2026 - July 30, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-08-02T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-MUS26JUL30-75K",
+    "title": "Will Music, Fashion, Film by Charli xcx have above 75000 Album Equivalent Units during the July 24, 2026 - July 30, 2026 tracking week?",
+    "rules_primary": "If Music, Fashion, Film by Charli xcx has above 75K Album Equivalent Units during the July 24, 2026 - July 30, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 24, 2026 - July 30, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-08-02T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-MUS26JUL30-70K",
+    "title": "Will Music, Fashion, Film by Charli xcx have above 70000 Album Equivalent Units during the July 24, 2026 - July 30, 2026 tracking week?",
+    "rules_primary": "If Music, Fashion, Film by Charli xcx has above 70K Album Equivalent Units during the July 24, 2026 - July 30, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 24, 2026 - July 30, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-08-02T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-MUS26JUL30-65K",
+    "title": "Will Music, Fashion, Film by Charli xcx have above 65000 Album Equivalent Units during the July 24, 2026 - July 30, 2026 tracking week?",
+    "rules_primary": "If Music, Fashion, Film by Charli xcx has above 65K Album Equivalent Units during the July 24, 2026 - July 30, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 24, 2026 - July 30, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-08-02T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-MUS26JUL30-60K",
+    "title": "Will Music, Fashion, Film by Charli xcx have above 60000 Album Equivalent Units during the July 24, 2026 - July 30, 2026 tracking week?",
+    "rules_primary": "If Music, Fashion, Film by Charli xcx has above 60K Album Equivalent Units during the July 24, 2026 - July 30, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 24, 2026 - July 30, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-08-02T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-MUS26JUL30-55K",
+    "title": "Will Music, Fashion, Film by Charli xcx have above 55000 Album Equivalent Units during the July 24, 2026 - July 30, 2026 tracking week?",
+    "rules_primary": "If Music, Fashion, Film by Charli xcx has above 55K Album Equivalent Units during the July 24, 2026 - July 30, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 24, 2026 - July 30, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.",
+    "close_time": "2026-08-02T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-MUS26JUL30-50K",
+    "title": "Will Music, Fashion, Film by Charli xcx have above 50000 Album Equivalent Units during the July 24, 2026 - July 30, 2026 tracking week?",
+    "rules_primary": "If Music, Fashion, Film by Charli xcx has above 50K Album Equivalent Units during the July 24, 2026 - July 30, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 24, 2026 - July 30, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-08-02T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-MUS26JUL30-150K",
+    "title": "Will Music, Fashion, Film by Charli xcx have above 150000 Album Equivalent Units during the July 24, 2026 - July 30, 2026 tracking week?",
+    "rules_primary": "If Music, Fashion, Film by Charli xcx has above 150K Album Equivalent Units during the July 24, 2026 - July 30, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 24, 2026 - July 30, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-08-02T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-MUS26JUL30-125K",
+    "title": "Will Music, Fashion, Film by Charli xcx have above 125000 Album Equivalent Units during the July 24, 2026 - July 30, 2026 tracking week?",
+    "rules_primary": "If Music, Fashion, Film by Charli xcx has above 125K Album Equivalent Units during the July 24, 2026 - July 30, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 24, 2026 - July 30, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-08-02T14:00:00Z"
+   },
+   {
+    "ticker": "KXALBUMEQUIV-MUS26JUL30-100K",
+    "title": "Will Music, Fashion, Film by Charli xcx have above 100000 Album Equivalent Units during the July 24, 2026 - July 30, 2026 tracking week?",
+    "rules_primary": "If Music, Fashion, Film by Charli xcx has above 100K Album Equivalent Units during the July 24, 2026 - July 30, 2026, tracking week, then the market resolves to Yes.",
+    "rules_secondary": "IMPORTANT INFORMATION: This market pertains to the U.S. and will resolve on the Sunday immediately following the July 24, 2026 - July 30, 2026 tracking week.\n\nLuminate Data, LLC is a neutral provider of market metrics which does not endorse, verify or participate in any way in the outcomes of any prediction market.\n\n",
+    "close_time": "2026-08-02T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXA100MON-26JUL31",
+  "series_ticker": "KXA100MON",
+  "title": "Will the A100 SXM4 compute per hour price be above $1.12 on Jul 31?",
+  "close_time": "2026-08-01T03:59:59Z",
+  "markets": [
+   {
+    "ticker": "KXA100MON-26JUL31-1.120",
+    "title": "Will the A100 SXM4 compute per hour price be above $1.12 on Jul 31?",
+    "rules_primary": "If the value of A100 SXM4 compute per hour is above $1.12 on Jul 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the value of A100 SXM4 compute per hour as reported by Ornn (https://dashboard.ornnai.com/). Revisions to the underlying made after expiration will not be accounted for. The \"USD\" iteration of the index will be used unless explicitly stated otherwise. If no data is available for the time period by the Expiration Date, all strikes excluding \"No data\" or \"None\" resolve to No. Values are rounded to two decimal places unless otherwise specified.",
+    "close_time": "2026-08-01T03:59:59Z"
+   },
+   {
+    "ticker": "KXA100MON-26JUL31-1.070",
+    "title": "Will the A100 SXM4 compute per hour price be above $1.07 on Jul 31?",
+    "rules_primary": "If the value of A100 SXM4 compute per hour is above $1.07 on Jul 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the value of A100 SXM4 compute per hour as reported by Ornn (https://dashboard.ornnai.com/). Revisions to the underlying made after expiration will not be accounted for. The \"USD\" iteration of the index will be used unless explicitly stated otherwise. If no data is available for the time period by the Expiration Date, all strikes excluding \"No data\" or \"None\" resolve to No. Values are rounded to two decimal places unless otherwise specified.",
+    "close_time": "2026-08-01T03:59:59Z"
+   },
+   {
+    "ticker": "KXA100MON-26JUL31-1.020",
+    "title": "Will the A100 SXM4 compute per hour price be above $1.02 on Jul 31?",
+    "rules_primary": "If the value of A100 SXM4 compute per hour is above $1.02 on Jul 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the value of A100 SXM4 compute per hour as reported by Ornn (https://dashboard.ornnai.com/). Revisions to the underlying made after expiration will not be accounted for. The \"USD\" iteration of the index will be used unless explicitly stated otherwise. If no data is available for the time period by the Expiration Date, all strikes excluding \"No data\" or \"None\" resolve to No. Values are rounded to two decimal places unless otherwise specified.",
+    "close_time": "2026-08-01T03:59:59Z"
+   },
+   {
+    "ticker": "KXA100MON-26JUL31-0.970",
+    "title": "Will the A100 SXM4 compute per hour price be above $0.97 on Jul 31?",
+    "rules_primary": "If the value of A100 SXM4 compute per hour is above $0.97 on Jul 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the value of A100 SXM4 compute per hour as reported by Ornn (https://dashboard.ornnai.com/). Revisions to the underlying made after expiration will not be accounted for. The \"USD\" iteration of the index will be used unless explicitly stated otherwise. If no data is available for the time period by the Expiration Date, all strikes excluding \"No data\" or \"None\" resolve to No. Values are rounded to two decimal places unless otherwise specified.",
+    "close_time": "2026-08-01T03:59:59Z"
+   },
+   {
+    "ticker": "KXA100MON-26JUL31-0.920",
+    "title": "Will the A100 SXM4 compute per hour price be above $0.92 on Jul 31?",
+    "rules_primary": "If the value of A100 SXM4 compute per hour is above $0.92 on Jul 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the value of A100 SXM4 compute per hour as reported by Ornn (https://dashboard.ornnai.com/). Revisions to the underlying made after expiration will not be accounted for. The \"USD\" iteration of the index will be used unless explicitly stated otherwise. If no data is available for the time period by the Expiration Date, all strikes excluding \"No data\" or \"None\" resolve to No. Values are rounded to two decimal places unless otherwise specified.",
+    "close_time": "2026-08-01T03:59:59Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXH200W-26JUL24",
+  "series_ticker": "KXH200W",
+  "title": "H200 price up in next week?",
+  "close_time": "2026-07-24T21:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXH200W-26JUL24-4.79",
+    "title": "H200 price up in next week?",
+    "rules_primary": "If the value of H200 compute per hour is above 4.79 on Jul 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the value of H200 compute per hour as reported by Ornn (https://dashboard.ornnai.com/). Revisions to the underlying made after expiration will not be accounted for. The \"USD\" iteration of the index will be used unless explicitly stated otherwise. If no data is available for the time period by the Expiration Date, all strikes excluding \"No data\" or \"None\" resolve to No. Values are rounded to two decimal places unless otherwise specified.",
+    "close_time": "2026-07-24T21:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXPOKEMON-26JULPERORDBO",
+  "series_ticker": "KXPOKEMON",
+  "title": "Will Ungraded Price of the Perfect Order Booster Box on Collectr be above $222.7 on 2026-07-31T23:59:00-04:00?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXPOKEMON-26JULPERORDBO-222.7",
+    "title": "Will Ungraded Price of the Perfect Order Booster Box on Collectr be above $222.7 on 2026-07-31T23:59:00-04:00?",
+    "rules_primary": "If the Ungraded Price of the Perfect Order Booster Box on Collectr is above $222.7 on 2026-07-31T23:59:00-04:00, then the market resolves to Yes.",
+    "rules_secondary": "The market resolves based on the first non-preliminary value published by the platform after the time period concludes. The value must match the exact textual label specified for the price type. If no data is available by the Expiration Date, the last available value will be used. If no prior value exists, all markets resolve to No. Prices are assumed to be in USD and rounded to two decimal places. Unless otherwise specified, prices exclude duties, taxes, and additional fees. Any revisions or corrections published after the initial value will not affect market resolution.",
+    "close_time": "2026-08-01T03:59:00Z"
+   }
+  ]
+ }
+]

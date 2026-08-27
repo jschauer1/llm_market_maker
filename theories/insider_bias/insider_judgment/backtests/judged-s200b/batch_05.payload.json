@@ -1,0 +1,811 @@
+[
+ {
+  "event_ticker": "KXTOUR-27",
+  "series_ticker": "KXTOUR",
+  "title": "Will Kanye West / Ye announce a new tour this year?",
+  "close_time": "2026-07-14T17:19:27Z",
+  "markets": [
+   {
+    "ticker": "KXTOUR-27-KAN",
+    "title": "Will Kanye West / Ye announce a new tour this year?",
+    "rules_primary": "If Kanye West / Ye announces a new tour before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-14T17:19:27Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPVH-26JUL10",
+  "series_ticker": "KXTRUMPVH",
+  "title": "Will Donald Trump's VoteHub approval polling average be above 40.2% at 10:00 AM ET on Jul 10, 2026?",
+  "close_time": "2026-07-10T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPVH-26JUL10-T40.2",
+    "title": "Will Donald Trump's VoteHub approval polling average be above 40.2% at 10:00 AM ET on Jul 10, 2026?",
+    "rules_primary": "If Donald Trump's VoteHub approval polling average is above 40.2% at 10:00 AM ET on Jul 10, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-10T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXWCATTENDSWIFT-26JUL20",
+  "series_ticker": "KXWCATTENDSWIFT",
+  "title": "Will Taylor Swift attend any 2026 Men's FIFA World Cup match in 2026?",
+  "close_time": "2026-07-20T03:08:08Z",
+  "markets": [
+   {
+    "ticker": "KXWCATTENDSWIFT-26JUL20-TAY",
+    "title": "Will Taylor Swift attend any 2026 Men's FIFA World Cup match in 2026?",
+    "rules_primary": "If Taylor Swift attends any 2026 Men's FIFA World Cup match, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-20T03:08:08Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KX1ALBUM-26DEC",
+  "series_ticker": "KX1ALBUM",
+  "title": "Will Stray Kids have a #1 album this year?",
+  "close_time": "2026-08-19T14:46:15Z",
+  "markets": [
+   {
+    "ticker": "KX1ALBUM-26DEC-STR",
+    "title": "Will Stray Kids have a #1 album this year?",
+    "rules_primary": "If Stray Kids has a #1 album on the Billboard 200 by Dec 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi. For the purposes of this market, the last Billboard chart that will be included is the one published for Dec 26, 2026.",
+    "close_time": "2026-08-19T14:46:15Z"
+   },
+   {
+    "ticker": "KX1ALBUM-26DEC-GRA",
+    "title": "Will Gracie Abrams have a #1 album this year?",
+    "rules_primary": "If Gracie Abrams has a #1 album on the Billboard 200 by Dec 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi. For the purposes of this market, the last Billboard chart that will be included is the one published for Dec 26, 2026.",
+    "close_time": "2026-07-27T13:56:09Z"
+   },
+   {
+    "ticker": "KX1ALBUM-26DEC-FUT",
+    "title": "Will Future have a #1 album this year?",
+    "rules_primary": "If Future has a #1 album on the Billboard 200 by Dec 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi. For the purposes of this market, the last Billboard chart that will be included is the one published for Dec 26, 2026.",
+    "close_time": "2026-07-21T22:11:27Z"
+   },
+   {
+    "ticker": "KX1ALBUM-26DEC-MAD",
+    "title": "Will Madonna have a #1 album this year?",
+    "rules_primary": "If Madonna has a #1 album on the Billboard 200 by Dec 26, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi. For the purposes of this market, the last Billboard chart that will be included is the one published for Dec 26, 2026.",
+    "close_time": "2026-07-15T14:28:19Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLIUKELIMINATIONW-26JUL10",
+  "series_ticker": "KXLIUKELIMINATIONW",
+  "title": "Will Yasmine be eliminated from Love Island UK S13 before Jul 11, 2026?",
+  "close_time": "2026-07-11T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL10-YAS",
+    "title": "Will Yasmine be eliminated from Love Island UK S13 before Jul 11, 2026?",
+    "rules_primary": "If Yasmine is officially eliminated from Love Island UK: Season 13 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL10-TOM",
+    "title": "Will Tommy be eliminated from Love Island UK S13 before Jul 11, 2026?",
+    "rules_primary": "If Tommy is officially eliminated from Love Island UK: Season 13 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL10-SIM",
+    "title": "Will Simba be eliminated from Love Island UK S13 before Jul 11, 2026?",
+    "rules_primary": "If Simba is officially eliminated from Love Island UK: Season 13 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL10-SEA",
+    "title": "Will Sean be eliminated from Love Island UK S13 before Jul 11, 2026?",
+    "rules_primary": "If Sean is officially eliminated from Love Island UK: Season 13 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL10-PRI",
+    "title": "Will Priya be eliminated from Love Island UK S13 before Jul 11, 2026?",
+    "rules_primary": "If Priya is officially eliminated from Love Island UK: Season 13 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL10-MIC",
+    "title": "Will Mica be eliminated from Love Island UK S13 before Jul 11, 2026?",
+    "rules_primary": "If Mica is officially eliminated from Love Island UK: Season 13 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL10-MART",
+    "title": "Will Martha be eliminated from Love Island UK S13 before Jul 11, 2026?",
+    "rules_primary": "If Martha is officially eliminated from Love Island UK: Season 13 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL10-LOL",
+    "title": "Will Lola be eliminated from Love Island UK S13 before Jul 11, 2026?",
+    "rules_primary": "If Lola is officially eliminated from Love Island UK: Season 13 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL10-KAV",
+    "title": "Will Kavan be eliminated from Love Island UK S13 before Jul 11, 2026?",
+    "rules_primary": "If Kavan is officially eliminated from Love Island UK: Season 13 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL10-JUL",
+    "title": "Will Julia be eliminated from Love Island UK S13 before Jul 11, 2026?",
+    "rules_primary": "If Julia is officially eliminated from Love Island UK: Season 13 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL10-JOR",
+    "title": "Will Jordon be eliminated from Love Island UK S13 before Jul 11, 2026?",
+    "rules_primary": "If Jordon is officially eliminated from Love Island UK: Season 13 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL10-JAS",
+    "title": "Will Jasmine be eliminated from Love Island UK S13 before Jul 11, 2026?",
+    "rules_primary": "If Jasmine is officially eliminated from Love Island UK: Season 13 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL10-ANG",
+    "title": "Will Angelista be eliminated from Love Island UK S13 before Jul 11, 2026?",
+    "rules_primary": "If Angelista is officially eliminated from Love Island UK: Season 13 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL10-AID",
+    "title": "Will Aidan be eliminated from Love Island UK S13 before Jul 11, 2026?",
+    "rules_primary": "If Aidan is officially eliminated from Love Island UK: Season 13 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-11T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL10-MAR",
+    "title": "Will Mara be eliminated from Love Island UK S13 before Jul 11, 2026?",
+    "rules_primary": "If Mara is officially eliminated from Love Island UK: Season 13 Before Jul 11, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-08T17:21:04Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXPERSONPUBLIC-26AUG01",
+  "series_ticker": "KXPERSONPUBLIC",
+  "title": "Will Barack Obama be seen in public before Aug 1, 2026?",
+  "close_time": "2026-07-24T16:36:05Z",
+  "markets": [
+   {
+    "ticker": "KXPERSONPUBLIC-26AUG01-BOBA",
+    "title": "Will Barack Obama be seen in public before Aug 1, 2026?",
+    "rules_primary": "If Barack Obama has been seen in public starting 10:00 AM Jul 1, 2026 and before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "All of the following criteria must be met:\n\nPhysical Presence: Barack Obama is physically present (not virtual/holographic) and alive\nConsciousness: Barack Obama appears conscious and aware (not unconscious, comatose, or incapacitated)\nPublic Setting: The sighting occurs in one of the following:\n   A public space accessible to the general public (streets, parks, shops, restaurants)\n   A ticketed public event (concerts, sports events, conferences)\n   An official public appearance (government events, ceremonies, press conferences)\n   A semi-public venue where public access is normal (hotels, airports, train stations)\n\nThe following do NOT satisfy the Payout Criterion:\n\nPre-recorded or archival footage presented as current\nPrivate events closed to the general public (private parties, closed meetings)\nMedical facilities, private residences, or restricted areas\nVirtual appearances (video calls, holograms, avatars)\nBody doubles or impersonators\nCorpses, funeral viewings, or posthumous footage\n\nExamples that WOULD resolve to Yes:\n\nBarack Obama attends a movie premiere and is photographed on the red carpet by multiple Source Agencies\nBarack Obama gives a live press conference covered by news media\nBarack Obama attends a sporting event and is shown on the stadium's video screens\n\nExamples that would NOT resolve to Yes:\n\nPre-recorded video message\nPrivate party footage leaked online\nSomeone claiming to be Barack Obama but without Source Agency confirmation\nBarack Obama appearing via video link from home",
+    "close_time": "2026-07-24T16:36:05Z"
+   },
+   {
+    "ticker": "KXPERSONPUBLIC-26AUG01-HCLI",
+    "title": "Will Hillary Clinton be seen in public before Aug 1, 2026?",
+    "rules_primary": "If Hillary Clinton has been seen in public starting 10:00 AM Jul 1, 2026 and before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "All of the following criteria must be met:\n\nPhysical Presence: Hillary Clinton is physically present (not virtual/holographic) and alive\nConsciousness: Hillary Clinton appears conscious and aware (not unconscious, comatose, or incapacitated)\nPublic Setting: The sighting occurs in one of the following:\n   A public space accessible to the general public (streets, parks, shops, restaurants)\n   A ticketed public event (concerts, sports events, conferences)\n   An official public appearance (government events, ceremonies, press conferences)\n   A semi-public venue where public access is normal (hotels, airports, train stations)\n\nThe following do NOT satisfy the Payout Criterion:\n\nPre-recorded or archival footage presented as current\nPrivate events closed to the general public (private parties, closed meetings)\nMedical facilities, private residences, or restricted areas\nVirtual appearances (video calls, holograms, avatars)\nBody doubles or impersonators\nCorpses, funeral viewings, or posthumous footage\n\nExamples that WOULD resolve to Yes:\n\nHillary Clinton attends a movie premiere and is photographed on the red carpet by multiple Source Agencies\nHillary Clinton gives a live press conference covered by news media\nHillary Clinton attends a sporting event and is shown on the stadium's video screens\n\nExamples that would NOT resolve to Yes:\n\nPre-recorded video message\nPrivate party footage leaked online\nSomeone claiming to be Hillary Clinton but without Source Agency confirmation\nHillary Clinton appearing via video link from home",
+    "close_time": "2026-07-20T14:32:08Z"
+   },
+   {
+    "ticker": "KXPERSONPUBLIC-26AUG01-GBUS",
+    "title": "Will George Bush be seen in public before Aug 1, 2026?",
+    "rules_primary": "If George Bush has been seen in public starting 10:00 AM Jul 1, 2026 and before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "All of the following criteria must be met:\n\nPhysical Presence: George Bush is physically present (not virtual/holographic) and alive\nConsciousness: George Bush appears conscious and aware (not unconscious, comatose, or incapacitated)\nPublic Setting: The sighting occurs in one of the following:\n   A public space accessible to the general public (streets, parks, shops, restaurants)\n   A ticketed public event (concerts, sports events, conferences)\n   An official public appearance (government events, ceremonies, press conferences)\n   A semi-public venue where public access is normal (hotels, airports, train stations)\n\nThe following do NOT satisfy the Payout Criterion:\n\nPre-recorded or archival footage presented as current\nPrivate events closed to the general public (private parties, closed meetings)\nMedical facilities, private residences, or restricted areas\nVirtual appearances (video calls, holograms, avatars)\nBody doubles or impersonators\nCorpses, funeral viewings, or posthumous footage\n\nExamples that WOULD resolve to Yes:\n\nGeorge Bush attends a movie premiere and is photographed on the red carpet by multiple Source Agencies\nGeorge Bush gives a live press conference covered by news media\nGeorge Bush attends a sporting event and is shown on the stadium's video screens\n\nExamples that would NOT resolve to Yes:\n\nPre-recorded video message\nPrivate party footage leaked online\nSomeone claiming to be George Bush but without Source Agency confirmation\nGeorge Bush appearing via video link from home",
+    "close_time": "2026-07-07T23:52:53Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPALBUM-26JUL18",
+  "series_ticker": "KXTOPALBUM",
+  "title": "Will you seem pretty sad for a girl so in love be #1 on the Billboard 200 during the week of Jul 18, 2026",
+  "close_time": "2026-07-13T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPALBUM-26JUL18-YOU",
+    "title": "Will you seem pretty sad for a girl so in love be #1 on the Billboard 200 during the week of Jul 18, 2026",
+    "rules_primary": "If you seem pretty sad for a girl so in love is #1 on the Billboard 200  chart for the Week of Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-07-13T03:59:00Z"
+   },
+   {
+    "ticker": "KXTOPALBUM-26JUL18-CON",
+    "title": "Will CONFESSIONS II be #1 on the Billboard 200 during the week of Jul 18, 2026",
+    "rules_primary": "If CONFESSIONS II is #1 on the Billboard 200  chart for the Week of Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-07-13T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPWORLDCUP-26-DJT",
+  "series_ticker": "KXTRUMPWORLDCUP",
+  "title": "How many 2026 FIFA World Cup matches will Donald Trump attend this season?",
+  "close_time": "2026-07-20T04:02:37Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPWORLDCUP-26-DJT-2",
+    "title": "How many 2026 FIFA World Cup matches will Donald Trump attend this season?",
+    "rules_primary": "If Donald Trump attends at least 2 2026 FIFA World Cup matches, then the market resolves to Yes.",
+    "rules_secondary": "Kalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the F\u00e9d\u00e9ration Internationale de Football Association (FIFA) or the World Cup. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-20T04:02:37Z"
+   },
+   {
+    "ticker": "KXTRUMPWORLDCUP-26-DJT-1",
+    "title": "How many 2026 FIFA World Cup matches will Donald Trump attend this season?",
+    "rules_primary": "If Donald Trump attends at least 1 2026 FIFA World Cup matches, then the market resolves to Yes.",
+    "rules_secondary": "Kalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the F\u00e9d\u00e9ration Internationale de Football Association (FIFA) or the World Cup. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-20T04:01:49Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBILLS",
+  "series_ticker": "KXBILLS",
+  "title": "Will legislation that would revise federal housing programs to increase housing supply and affordability by expanding federal financing and grant authority for affordable housing and streamlining federal requirements that delay housing development become law before Jan 1, 2027?",
+  "close_time": "2026-07-14T14:16:06Z",
+  "markets": [
+   {
+    "ticker": "KXBILLS-HOUS",
+    "title": "Will legislation that would revise federal housing programs to increase housing supply and affordability by expanding federal financing and grant authority for affordable housing and streamlining federal requirements that delay housing development become law before Jan 1, 2027?",
+    "rules_primary": "If legislation that would revise federal housing programs to increase housing supply and affordability by expanding federal financing and grant authority for affordable housing and streamlining federal requirements that delay housing development has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Clarification: 'FISA Section 702 reauthorization (2 years)' (KXBILLS-FISA) resolves to Yes only if FISA Section 702 is reauthorized for exactly two years, as in the provided example (Public Law 118-49). A reauthorization for any other duration would not qualify.\n\nClarification: To be clear, legislation that appropriates funds for security adjustments and upgrades relating to the East Wing Modernization Project, a project that includes the construction of a presidential ballroom, constitutes legislation that \"authorizes funding for construction of a presidential ballroom,\" even if the funds are restricted to security elements of that construction.",
+    "close_time": "2026-07-14T14:16:06Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXROADOUTCOME-26",
+  "series_ticker": "KXROADOUTCOME",
+  "title": "Will it be reported by any of the Source Agencies that Donald Trump vetoes the 21st Century ROAD to Housing Act before Jul 14, 2026?",
+  "close_time": "2026-07-14T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXROADOUTCOME-26-VETO",
+    "title": "Will it be reported by any of the Source Agencies that Donald Trump vetoes the 21st Century ROAD to Housing Act before Jul 14, 2026?",
+    "rules_primary": "If Donald Trump vetoes the 21st Century ROAD to Housing Act  after Issuance and before Jul 14, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The \"Pocket veto\" strike does not include a regular veto, and vice versa. Once one of the above actions is confirmed by a Source Agency, the entire event will resolve. Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-14T03:59:00Z"
+   },
+   {
+    "ticker": "KXROADOUTCOME-26-SIGN",
+    "title": "Will it be reported by any of the Source Agencies that Donald Trump signs the 21st Century ROAD to Housing Act into law before Jul 14, 2026?",
+    "rules_primary": "If Donald Trump signs the 21st Century ROAD to Housing Act into law  after Issuance and before Jul 14, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The \"Pocket veto\" strike does not include a regular veto, and vice versa. Once one of the above actions is confirmed by a Source Agency, the entire event will resolve. Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-14T03:59:00Z"
+   },
+   {
+    "ticker": "KXROADOUTCOME-26-NOSIG",
+    "title": "Will it be reported by any of the Source Agencies that the 21st Century ROAD to Housing Act becomes law without Donald Trump\u2019s signature before Jul 14, 2026?",
+    "rules_primary": "If the 21st Century ROAD to Housing Act becomes law without Donald Trump\u2019s signature  after Issuance and before Jul 14, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The \"Pocket veto\" strike does not include a regular veto, and vice versa. Once one of the above actions is confirmed by a Source Agency, the entire event will resolve. Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-07-14T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXWCSONG-26JUL25",
+  "series_ticker": "KXWCSONG",
+  "title": "Will DNA (More Than A Game) be Top 10 on the any Billboard Hot 100 chart after June 10th and before July 26th ",
+  "close_time": "2026-07-20T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXWCSONG-26JUL25-DNA",
+    "title": "Will DNA (More Than A Game) be Top 10 on the any Billboard Hot 100 chart after June 10th and before July 26th ",
+    "rules_primary": "If DNA (More Than A Game) is Top 10 on any Billboard Hot 100 chart after June 10th and before July 26th, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-07-20T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXWHVISIT-27",
+  "series_ticker": "KXWHVISIT",
+  "title": "Will Joseph Aoun visit the White House before Jan 1, 2027?",
+  "close_time": "2026-07-21T15:32:09Z",
+  "markets": [
+   {
+    "ticker": "KXWHVISIT-27JAN-JAOU",
+    "title": "Will Joseph Aoun visit the White House before Jan 1, 2027?",
+    "rules_primary": "If Joseph Aoun visits the White House after Apr 16, 2026 and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "This means a physical visit to any of: The Executive Residence, the West Wing, the East Wing, the Eisenhower Executive Office Building, and all gardens, lawns, and outdoor spaces within the secured perimeter of the White House, including the Rose Garden and the South Lawn. The announcement must occur after Issuance and before Jan 1, 2027 and so must the actual visit.",
+    "close_time": "2026-07-21T15:32:09Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXART-AAR26",
+  "series_ticker": "KXART",
+  "title": "Will the lot sold price of the Aaron Judge \u2018Rookie Debut\u2019 New York Yankees 2016 Game Worn Jersey | 1st Career Home Run on Sotheby's be above $8000000 during the live auction beginning July 01, 2026 at 10:00 EDT?",
+  "close_time": "2026-07-21T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXART-AAR26-8000000",
+    "title": "Will the lot sold price of the Aaron Judge \u2018Rookie Debut\u2019 New York Yankees 2016 Game Worn Jersey | 1st Career Home Run on Sotheby's be above $8000000 during the live auction beginning July 01, 2026 at 10:00 EDT?",
+    "rules_primary": "If the lot sold price of the Aaron Judge \u2018Rookie Debut\u2019 New York Yankees 2016 Game Worn Jersey | 1st Career Home Run on Sotheby's is above $8M during the live auction beginning July 01, 2026 at 10:00 EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.\n\nThis market and these products have not been endorsed by Sotheby\u2019s. Any references to Sotheby\u2019s, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Sotheby\u2019s and Kalshi.",
+    "close_time": "2026-07-21T14:00:00Z"
+   },
+   {
+    "ticker": "KXART-AAR26-7000000",
+    "title": "Will the lot sold price of the Aaron Judge \u2018Rookie Debut\u2019 New York Yankees 2016 Game Worn Jersey | 1st Career Home Run on Sotheby's be above $7000000 during the live auction beginning July 01, 2026 at 10:00 EDT?",
+    "rules_primary": "If the lot sold price of the Aaron Judge \u2018Rookie Debut\u2019 New York Yankees 2016 Game Worn Jersey | 1st Career Home Run on Sotheby's is above $7M during the live auction beginning July 01, 2026 at 10:00 EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.\n\nThis market and these products have not been endorsed by Sotheby\u2019s. Any references to Sotheby\u2019s, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Sotheby\u2019s and Kalshi.",
+    "close_time": "2026-07-21T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLIUSAELIMINATION-26JUL09",
+  "series_ticker": "KXLIUSAELIMINATION",
+  "title": "Will Zach be eliminated from Love Island USA before Jul 10, 2026?",
+  "close_time": "2026-07-10T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXLIUSAELIMINATION-26JUL09-ZAC",
+    "title": "Will Zach be eliminated from Love Island USA before Jul 10, 2026?",
+    "rules_primary": "If Zach is officially eliminated from Love Island USA S8 Before Jul 10, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-10T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATION-26JUL09-TIE",
+    "title": "Will Tierra be eliminated from Love Island USA before Jul 10, 2026?",
+    "rules_primary": "If Tierra is officially eliminated from Love Island USA S8 Before Jul 10, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-10T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATION-26JUL09-SIN",
+    "title": "Will Sincere be eliminated from Love Island USA before Jul 10, 2026?",
+    "rules_primary": "If Sincere is officially eliminated from Love Island USA S8 Before Jul 10, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-10T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATION-26JUL09-NON",
+    "title": "Will NONE be eliminated from Love Island USA before Jul 10, 2026?",
+    "rules_primary": "If NONE is officially eliminated from Love Island USA S8 Before Jul 10, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-10T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATION-26JUL09-KEN",
+    "title": "Will Kenzie be eliminated from Love Island USA before Jul 10, 2026?",
+    "rules_primary": "If Kenzie is officially eliminated from Love Island USA S8 Before Jul 10, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-10T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATION-26JUL09-KCC",
+    "title": "Will KC be eliminated from Love Island USA before Jul 10, 2026?",
+    "rules_primary": "If KC is officially eliminated from Love Island USA S8 Before Jul 10, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-10T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATION-26JUL09-KAY",
+    "title": "Will Kayda be eliminated from Love Island USA before Jul 10, 2026?",
+    "rules_primary": "If Kayda is officially eliminated from Love Island USA S8 Before Jul 10, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-10T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUSAELIMINATION-26JUL09-DYL",
+    "title": "Will Dylan be eliminated from Love Island USA before Jul 10, 2026?",
+    "rules_primary": "If Dylan is officially eliminated from Love Island USA S8 Before Jul 10, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No. This market and these products have not been endorsed by Love Island or peacock. Any references to Love Island or peacock, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island or peacock and Kalshi.",
+    "close_time": "2026-07-10T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMEDIAGUESTFALLON-27",
+  "series_ticker": "KXMEDIAGUESTFALLON",
+  "title": "Will Christopher Nolan be on The Tonight Show Starring Jimmy Fallon before 2027?",
+  "close_time": "2026-07-26T22:32:59Z",
+  "markets": [
+   {
+    "ticker": "KXMEDIAGUESTFALLON-27-CHR",
+    "title": "Will Christopher Nolan be on The Tonight Show Starring Jimmy Fallon before 2027?",
+    "rules_primary": "If Christopher Nolan is on the The Tonight Show Starring Jimmy Fallon before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "If Christopher Nolan appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of The Tonight Show Starring Jimmy Fallon (e.g., the host playing a portion of a speech or song excerpt by Christopher Nolan), the Payout Criterion is not satisfied.",
+    "close_time": "2026-07-26T22:32:59Z"
+   },
+   {
+    "ticker": "KXMEDIAGUESTFALLON-27-TOM",
+    "title": "Will Tom Holland be on The Tonight Show Starring Jimmy Fallon before 2027?",
+    "rules_primary": "If Tom Holland is on the The Tonight Show Starring Jimmy Fallon before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "If Tom Holland appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of The Tonight Show Starring Jimmy Fallon (e.g., the host playing a portion of a speech or song excerpt by Tom Holland), the Payout Criterion is not satisfied.",
+    "close_time": "2026-07-15T18:00:55Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXDATACENTERMORATORIUM-27JAN01",
+  "series_ticker": "KXDATACENTERMORATORIUM",
+  "title": "Will any state enact a data center moratorium?",
+  "close_time": "2026-07-14T15:53:02Z",
+  "markets": [
+   {
+    "ticker": "KXDATACENTERMORATORIUM-27JAN01",
+    "title": "Will any state enact a data center moratorium?",
+    "rules_primary": "If a statewide moratorium, pause, or ban on new data center construction or permitting has become law in any U.S. state before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law.\n\nStandard legislation requiring executive approval: final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods\nLegislation not requiring executive approval: final passage and completion of required waiting periods\nConstitutional amendments: passage with required supermajorities and completion of ratification processes\nExecutive orders: official signature, publication in official government records, and legal effectiveness\n\nThe following do NOT constitute enactment:\n\nLegislative passage without completed executive action\nPassage by only some required bodies\nProvisional passage\nNon-binding resolutions\nDraft orders\n\nEnactment occurs when all requirements are completed, regardless of pending judicial challenges.",
+    "close_time": "2026-07-14T15:53:02Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOP10BBSPOTS-26JUL25-FUT",
+  "series_ticker": "KXTOP10BBSPOTS",
+  "title": "How many spots on the Billboard Hot 100's top 10 will Future hold for the week of Jul 25, 2026?",
+  "close_time": "2026-07-22T18:07:57Z",
+  "markets": [
+   {
+    "ticker": "KXTOP10BBSPOTS-26JUL25-FUT-0",
+    "title": "How many spots on the Billboard Hot 100's top 10 will Future hold for the week of Jul 25, 2026?",
+    "rules_primary": "If Future has exactly 0 songs in the top 10 of the Billboard Hot 100 chart dated Jul 25, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-07-22T18:07:57Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBIGBROTHERELIMINATION-26JUL16",
+  "series_ticker": "KXBIGBROTHERELIMINATION",
+  "title": "Will Yash Patel be eliminated from Big Brother Season 28 before Jul 17, 2026?",
+  "close_time": "2026-07-17T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26JUL16-YAS",
+    "title": "Will Yash Patel be eliminated from Big Brother Season 28 before Jul 17, 2026?",
+    "rules_primary": "If Yash Patel is officially eliminated from Big Brother Season 28 Before Jul 17, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26JUL16-TAY",
+    "title": "Will Taylor Brown be eliminated from Big Brother Season 28 before Jul 17, 2026?",
+    "rules_primary": "If Taylor Brown is officially eliminated from Big Brother Season 28 Before Jul 17, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26JUL16-MEL",
+    "title": "Will Melody Morris be eliminated from Big Brother Season 28 before Jul 17, 2026?",
+    "rules_primary": "If Melody Morris is officially eliminated from Big Brother Season 28 Before Jul 17, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26JUL16-HAL",
+    "title": "Will Haley Thogmartin be eliminated from Big Brother Season 28 before Jul 17, 2026?",
+    "rules_primary": "If Haley Thogmartin is officially eliminated from Big Brother Season 28 Before Jul 17, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26JUL16-BAR",
+    "title": "Will Barrett Pfeiffer be eliminated from Big Brother Season 28 before Jul 17, 2026?",
+    "rules_primary": "If Barrett Pfeiffer is officially eliminated from Big Brother Season 28 Before Jul 17, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-17T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26JUL16-ASH",
+    "title": "Will Ashley Trail be eliminated from Big Brother Season 28 before Jul 17, 2026?",
+    "rules_primary": "If Ashley Trail is officially eliminated from Big Brother Season 28 Before Jul 17, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-07-17T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXNEWTARIFFS-26JUL",
+  "series_ticker": "KXNEWTARIFFS",
+  "title": "Will Donald Trump issue any executive action on imposing new or increased tariffs on any country, provided the action specifies an effective date (even if such date occurs after expiration) during in Jul 2026?",
+  "close_time": "2026-07-20T18:03:03Z",
+  "markets": [
+   {
+    "ticker": "KXNEWTARIFFS-26JUL-AUG01",
+    "title": "Will Donald Trump issue any executive action on imposing new or increased tariffs on any country, provided the action specifies an effective date (even if such date occurs after expiration) during in Jul 2026?",
+    "rules_primary": "If Donald Trump has taken any executive action imposing new or increased tariffs on any country, provided the action specifies an effective date (even if such date occurs after expiration) in Jul 2026, then the market resolves to Yes.",
+    "rules_secondary": "The qualifying action must be of the specific type designated (executive order, presidential memorandum, proclamation, directive, determination, or finding), be signed by the President personally during the specified time period, and explicitly address the topic in the document's operative provisions, title, or official White House summary. Actions must have legal or policy effect - ceremonial proclamations without policy impact do not qualify unless specifically included. Actions that only incidentally mention the topic, statements without formal action, actions by cabinet members, legislative proposals without executive action, and signing statements do not qualify. The action must be publicly announced or documented by a Source Agency before expiration.",
+    "close_time": "2026-07-20T18:03:03Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXNEXTUKFOREIGNSEC-27JAN01",
+  "series_ticker": "KXNEXTUKFOREIGNSEC",
+  "title": "Will Wes Streeting be the next UK Foreign Secretary before Jan 1, 2027?",
+  "close_time": "2026-07-21T03:15:45Z",
+  "markets": [
+   {
+    "ticker": "KXNEXTUKFOREIGNSEC-27JAN01-WSTR",
+    "title": "Will Wes Streeting be the next UK Foreign Secretary before Jan 1, 2027?",
+    "rules_primary": "If Wes Streeting formally holds the position of UK Foreign Secretary before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+    "rules_secondary": "The holder of the position at the time of Issuance is excluded. For the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity\u2014as formally designated by the body or organization at which the position is held\u2014is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.",
+    "close_time": "2026-07-21T03:15:45Z"
+   },
+   {
+    "ticker": "KXNEXTUKFOREIGNSEC-27JAN01-NNEW",
+    "title": "Will No new person be the next UK Foreign Secretary before Jan 1, 2027?",
+    "rules_primary": "If No new person formally holds the position of UK Foreign Secretary before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+    "rules_secondary": "The holder of the position at the time of Issuance is excluded. For the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity\u2014as formally designated by the body or organization at which the position is held\u2014is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.",
+    "close_time": "2026-07-21T03:15:45Z"
+   },
+   {
+    "ticker": "KXNEXTUKFOREIGNSEC-27JAN01-JHEA",
+    "title": "Will John Healey be the next UK Foreign Secretary before Jan 1, 2027?",
+    "rules_primary": "If John Healey formally holds the position of UK Foreign Secretary before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+    "rules_secondary": "The holder of the position at the time of Issuance is excluded. For the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity\u2014as formally designated by the body or organization at which the position is held\u2014is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.",
+    "close_time": "2026-07-21T03:15:45Z"
+   },
+   {
+    "ticker": "KXNEXTUKFOREIGNSEC-27JAN01-EMIL",
+    "title": "Will Ed Miliband be the next UK Foreign Secretary before Jan 1, 2027?",
+    "rules_primary": "If Ed Miliband formally holds the position of UK Foreign Secretary before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+    "rules_secondary": "The holder of the position at the time of Issuance is excluded. For the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity\u2014as formally designated by the body or organization at which the position is held\u2014is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.",
+    "close_time": "2026-07-21T03:15:45Z"
+   },
+   {
+    "ticker": "KXNEXTUKFOREIGNSEC-27JAN01-DMIL",
+    "title": "Will David Miliband be the next UK Foreign Secretary before Jan 1, 2027?",
+    "rules_primary": "If David Miliband formally holds the position of UK Foreign Secretary before Jan 1, 2027, and is the first such subject to do so after Issuance, then the market resolves to Yes.",
+    "rules_secondary": "The holder of the position at the time of Issuance is excluded. For the purposes of this Contract, only a subject who holds the position in a permanent, confirmed, elected, or otherwise non-acting and non-temporary capacity\u2014as formally designated by the body or organization at which the position is held\u2014is treated as formally holding the position; assumption of the role solely in an acting, interim, transitional, provisional, caretaker, pro tempore, or otherwise temporary capacity does not, by itself, satisfy the Payout Criterion.",
+    "close_time": "2026-07-21T03:15:45Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLIUKELIMINATIONW-26JUL17",
+  "series_ticker": "KXLIUKELIMINATIONW",
+  "title": "Will Yasmine be eliminated from Love Island UK S13 before Jul 18, 2026?",
+  "close_time": "2026-07-18T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL17-YAS",
+    "title": "Will Yasmine be eliminated from Love Island UK S13 before Jul 18, 2026?",
+    "rules_primary": "If Yasmine is officially eliminated from Love Island UK: Season 13 Before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL17-TOM",
+    "title": "Will Tommy be eliminated from Love Island UK S13 before Jul 18, 2026?",
+    "rules_primary": "If Tommy is officially eliminated from Love Island UK: Season 13 Before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL17-SIM",
+    "title": "Will Simba be eliminated from Love Island UK S13 before Jul 18, 2026?",
+    "rules_primary": "If Simba is officially eliminated from Love Island UK: Season 13 Before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL17-SAMR",
+    "title": "Will Samraj be eliminated from Love Island UK S13 before Jul 18, 2026?",
+    "rules_primary": "If Samraj is officially eliminated from Love Island UK: Season 13 Before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL17-PRI",
+    "title": "Will Priya be eliminated from Love Island UK S13 before Jul 18, 2026?",
+    "rules_primary": "If Priya is officially eliminated from Love Island UK: Season 13 Before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL17-MIC",
+    "title": "Will Mica be eliminated from Love Island UK S13 before Jul 18, 2026?",
+    "rules_primary": "If Mica is officially eliminated from Love Island UK: Season 13 Before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL17-ETH",
+    "title": "Will Ethan be eliminated from Love Island UK S13 before Jul 18, 2026?",
+    "rules_primary": "If Ethan is officially eliminated from Love Island UK: Season 13 Before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL17-ANG",
+    "title": "Will Angelista be eliminated from Love Island UK S13 before Jul 18, 2026?",
+    "rules_primary": "If Angelista is officially eliminated from Love Island UK: Season 13 Before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL17-AID",
+    "title": "Will Aidan be eliminated from Love Island UK S13 before Jul 18, 2026?",
+    "rules_primary": "If Aidan is officially eliminated from Love Island UK: Season 13 Before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL17-MART",
+    "title": "Will Martha be eliminated from Love Island UK S13 before Jul 18, 2026?",
+    "rules_primary": "If Martha is officially eliminated from Love Island UK: Season 13 Before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-17T14:53:58Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL17-FIN",
+    "title": "Will Finley be eliminated from Love Island UK S13 before Jul 18, 2026?",
+    "rules_primary": "If Finley is officially eliminated from Love Island UK: Season 13 Before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-17T14:53:35Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUL17-ELL",
+    "title": "Will Ellie be eliminated from Love Island UK S13 before Jul 18, 2026?",
+    "rules_primary": "If Ellie is officially eliminated from Love Island UK: Season 13 Before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nThis market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-17T14:53:21Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXG7LEADEROUT-45JAN01",
+  "series_ticker": "KXG7LEADEROUT",
+  "title": "Will Prime Minister of the United Kingdom be the first to leave office?",
+  "close_time": "2026-07-20T14:22:46Z",
+  "markets": [
+   {
+    "ticker": "KXG7LEADEROUT-45JAN01-KSTA",
+    "title": "Will Prime Minister of the United Kingdom be the first to leave office?",
+    "rules_primary": "If the individual holding the title of Prime Minister of the United Kingdom at the time of Issuance is the first within G7 leaders to leave their position, then the market resolves to Yes.",
+    "rules_secondary": "The individual must actually leave office and no longer hold their title. An announcement of resignation or intention to leave is not sufficient. The person who held the position at market issuance must be the one who leaves (not a successor). If a leader dies in office, all markets in the set settle at their last traded prices before the death, with the Exchange determining fair allocation if prices are not logically consistent. Leaders can leave office through resignation, removal, term limits, electoral defeat, coup, impeachment and removal, or other constitutional processes. The first leader to leave triggers resolution for all markets in the set - the one who left resolves to Yes, all others resolve to No.",
+    "close_time": "2026-07-20T14:22:46Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLOVEISLANDUKRANK-26AUG31RTOP3",
+  "series_ticker": "KXLOVEISLANDUKRANK",
+  "title": "Will Yasmine and Tommy S finish in the Top 3 Couples in Love Island UK Season 13?",
+  "close_time": "2026-07-28T00:37:20Z",
+  "markets": [
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31RTOP3-YATMS",
+    "title": "Will Yasmine and Tommy S finish in the Top 3 Couples in Love Island UK Season 13?",
+    "rules_primary": "If Yasmine and Tommy S finish Top 3 in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-28T00:37:20Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31RTOP3-PRAI",
+    "title": "Will Priya and Aidan finish in the Top 3 Couples in Love Island UK Season 13?",
+    "rules_primary": "If Priya and Aidan finish Top 3 in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-28T00:37:20Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31RTOP3-ELFI",
+    "title": "Will Ellie and Finley finish in the Top 3 Couples in Love Island UK Season 13?",
+    "rules_primary": "If Ellie and Finley finish Top 3 in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-28T00:37:19Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31RTOP3-MISA",
+    "title": "Will Mica and Samraj finish in the Top 3 Couples in Love Island UK Season 13?",
+    "rules_primary": "If Mica and Samraj finish Top 3 in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-28T00:37:17Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31RTOP3-ANSI",
+    "title": "Will Angelista and Simba finish in the Top 3 Couples in Love Island UK Season 13?",
+    "rules_primary": "If Angelista and Simba finish Top 3 in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-27T22:31:29Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31RTOP3-JULO",
+    "title": "Will Julia and Lorenzo finish in the Top 3 Couples in Love Island UK Season 13?",
+    "rules_primary": "If Julia and Lorenzo finish Top 3 in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-27T22:30:42Z"
+   },
+   {
+    "ticker": "KXLOVEISLANDUKRANK-26AUG31RTOP3-JAKA",
+    "title": "Will Jasmine and Kavan finish in the Top 3 Couples in Love Island UK Season 13?",
+    "rules_primary": "If Jasmine and Kavan finish Top 3 in Love Island UK Season 13, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Love Island, Hulu, Or ITV. Any references to Love Island, Hulu, ITV, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Love Island, Hulu, Or ITV and Kalshi.",
+    "close_time": "2026-07-27T22:30:17Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXPMA-28JANZYN",
+  "series_ticker": "KXPMA",
+  "title": "Will Philip Morris International Inc report Above 820 million zyn u.s. shipment volume in 2026?",
+  "close_time": "2026-07-27T21:13:41Z",
+  "markets": [
+   {
+    "ticker": "KXPMA-28JANZYN-820000000",
+    "title": "Will Philip Morris International Inc report Above 820 million zyn u.s. shipment volume in 2026?",
+    "rules_primary": "If Philip Morris International Inc reports Above 820000000 zyn u.s. shipment volume in 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-27T21:13:41Z"
+   },
+   {
+    "ticker": "KXPMA-28JANZYN-800000000",
+    "title": "Will Philip Morris International Inc report Above 800 million zyn u.s. shipment volume in 2026?",
+    "rules_primary": "If Philip Morris International Inc reports Above 800000000 zyn u.s. shipment volume in 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-27T21:13:41Z"
+   },
+   {
+    "ticker": "KXPMA-28JANZYN-720000000",
+    "title": "Will Philip Morris International Inc report Above 720 million zyn u.s. shipment volume in 2026?",
+    "rules_primary": "If Philip Morris International Inc reports Above 720000000 zyn u.s. shipment volume in 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-27T21:13:41Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTECHRANKLISTAICODE-26JUL20",
+  "series_ticker": "KXTECHRANKLISTAICODE",
+  "title": "Top Coding AI this week?",
+  "close_time": "2026-07-20T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTECHRANKLISTAICODE-26JUL20-KIMI",
+    "title": "Top Coding AI this week?",
+    "rules_primary": "If Kimi is the #1 model on LM Code Arena Leaderboard on Jul 20, 2026 at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.",
+    "close_time": "2026-07-20T14:00:00Z"
+   },
+   {
+    "ticker": "KXTECHRANKLISTAICODE-26JUL20-CLAU",
+    "title": "Top Coding AI this week?",
+    "rules_primary": "If Claude is the #1 model on LM Code Arena Leaderboard on Jul 20, 2026 at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.",
+    "close_time": "2026-07-20T14:00:00Z"
+   },
+   {
+    "ticker": "KXTECHRANKLISTAICODE-26JUL20-CHAT",
+    "title": "Top Coding AI this week?",
+    "rules_primary": "If ChatGPT is the #1 model on LM Code Arena Leaderboard on Jul 20, 2026 at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.",
+    "close_time": "2026-07-20T14:00:00Z"
+   }
+  ]
+ }
+]

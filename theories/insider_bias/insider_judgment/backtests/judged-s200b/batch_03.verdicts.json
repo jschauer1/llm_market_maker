@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXTRUMPSUPREMELEADER-27JAN01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "No US-Iran meeting is scheduled or plausible given the absence of diplomatic relations; no small group has decided to hold such a meeting. This is a rate/possibility question about whether contact happens at all, not a case where someone already knows the answer.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTVSEASONRELEASEOUTBANKS",
+  "insider_group": "Netflix and the Outer Banks production/marketing team, who control the release-date announcement",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Netflix and the show's marketing team know their internal release-date plans well before any public reveal, but streaming release dates commonly slip and no Season 5 date has publicly surfaced yet, so this is informed rather than settled.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXZELENSKYPUTIN-29",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "A Zelenskyy-Putin meeting requires both sides to agree to convene, which has not happened; this is a live, unresolved diplomatic question, not a decision already made by an identifiable small group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFRAGRANCE-27JPG",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves on Jomashop's publicly displayed price; if no data is available at check time, the last known value is used instead, a data-availability quirk rather than an insider-knowledge edge.",
+  "rationale": "This is a fluctuating public retail price nobody decides in advance; Jomashop's own current price is trivially public, not private insider knowledge of a future outcome.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLIUSAELIMINATIONW-26JUN26B",
+  "insider_group": "Love Island USA production and villa cast, who know taped competition/coupling outcomes before broadcast",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Declaration must come via official broadcast, website, verified social media, or press release; the near-live format means public confirmation can lag the already-taped outcome by roughly a day.",
+  "rationale": "Love Island airs roughly a day behind the villa, so production and cast already know taped segments before broadcast, but final eliminations combine that with a public app vote revealed close to air, which keeps the outcome from being fully locked in for any one contestant this early. Note: one leg in this event (Alannah, ticker suffix -ALA) has a close time about 13 hours earlier than the other 23 contestant legs, suggesting her status may already be more settled than the rest.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTAYLORSWIFTWEDDINGATTEND-28DEC31",
+  "insider_group": "Taylor Swift and Travis Kelce's wedding planners and the couple themselves, who control the guest list and invitations",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves on being 'reported present' by any Source Agency, including the guest's own social media; an attendee who avoids posting or being photographed could go unconfirmed by close.",
+  "rationale": "The couple and their planners already know the invite list and likely RSVPs, but actual last-minute attendance, no-shows, and even the wedding's own timing remain genuinely uncertain this far out, so this is informed rather than a settled fact for any specific guest.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRAVISKELCEWEDDING-30JAN01",
+  "insider_group": "The couple and their wedding planners, who select the wedding party",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Requires confirmation from wedding programs, major media, or verified footage of the actual ceremony (not rehearsal or reception); role assignments may not be publicized even if decided.",
+  "rationale": "Wedding-party roles are typically decided and privately known well before a ceremony, but nothing about this wedding's party has been made public, and the multi-year window (through 2030) means it mostly reflects whether/when the wedding even happens.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMARRIAGESWIFTKELCE-26",
+  "insider_group": "The couple, who control their own wedding planning and timeline",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Whether the wedding happens within 2026 is a plan known first to the couple and their close circle, but engagement-to-wedding timelines commonly slip, so this falls short of a settled fact even to insiders.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPPHOTO-26JUN28",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Depends on Getty's own tagging; a genuine photo could be mistagged (or a bad tag wrongly counted), and Kalshi reserves discretion to disregard flawed tags.",
+  "rationale": "This counts publicly visible tagged photos over a week that is almost entirely elapsed as of today; anyone can check Getty directly, so there is no private advance knowledge, just a countable public record.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXRANKLIST1SONG-26JUL25",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Eligible Billboard chart dates run July 4-25, entirely after this market's June 30 close; the tracking weeks that determine the outcome haven't started yet at close.",
+  "rationale": "Billboard's #1 spot is the aggregate outcome of millions of listeners across weeks that have not even begun by close; no group decides this number, and nobody can know it yet.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOP10BBSPOTS-26JUL04-OLI",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "The Jul 4-dated chart publishes after this market's June 30 close; the target tracking week hasn't started yet at close.",
+  "rationale": "Same as the chart family generally: aggregate listener behavior for a week not yet underway at close, with no informed group to lean on.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPMEETING-27JAN01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "These are open-ended, long-horizon (through Jan 2027) meeting markets with no confirmed meeting scheduled for any of the three leaders; the long window makes this a rate/likelihood question rather than a case where a decision has already been made and is merely unannounced.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPPASSPORT-26",
+  "insider_group": "US State Department, which controls passport design and production and knows internally whether Trump-image passports have been issued",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves only on qualifying Source Agency reporting of issuance, not the underlying fact itself; issuance could occur without being reported before a given strike's close, especially the near-term Jul 4 leg.",
+  "rationale": "The State Department knows its own passport production and any issuance internally, but the market requires public reporting of that fact, which is a separate and less certain event on a tight timeline for the earliest strikes.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-CSACTO",
+  "insider_group": "Television Academy and its tabulating accountants, who hold the finalized nominee list before the public announcement",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Market close (~17:53 on Jul 8) falls right around the live nomination announcement, so the informational edge exists only in the window before this specific category is read out.",
+  "rationale": "Emmy nominee lists are tabulated by the Academy's accountants well before the live July 8 announcement; a specific, named, small group already has the finalized list for this category.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-DS",
+  "insider_group": "Television Academy and its tabulating accountants, who hold the finalized nominee list before the public announcement",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Market close (~18:01 on Jul 8) falls right around the live nomination announcement, so the informational edge exists only in the window before this specific category is read out.",
+  "rationale": "Same mechanism as other Emmy nomination categories: the Academy's accountants already know the Drama Series nominee list before the live reveal.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-LACT",
+  "insider_group": "Television Academy and its tabulating accountants, who hold the finalized nominee list before the public announcement",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Market close (~17:59 on Jul 8) falls right around the live nomination announcement, so the informational edge exists only in the window before this specific category is read out.",
+  "rationale": "Same mechanism as other Emmy nomination categories: the Academy's accountants already know the Movie/Limited Actor nominee list before the live reveal.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-LS",
+  "insider_group": "Television Academy and its tabulating accountants, who hold the finalized nominee list before the public announcement",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Market close (~19:12 on Jul 8) falls right around the live nomination announcement, so the informational edge exists only in the window before this specific category is read out.",
+  "rationale": "Same mechanism as other Emmy nomination categories: the Academy's accountants already know the Limited Series nominee list before the live reveal.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-LSACTR",
+  "insider_group": "Television Academy and its tabulating accountants, who hold the finalized nominee list before the public announcement",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Market close (~17:57 on Jul 8) falls right around the live nomination announcement, so the informational edge exists only in the window before this specific category is read out.",
+  "rationale": "Same mechanism as other Emmy nomination categories: the Academy's accountants already know the Movie/Limited Supporting Actress nominee list before the live reveal.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-TVM",
+  "insider_group": "Television Academy and its tabulating accountants, who hold the finalized nominee list before the public announcement",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Market close (~19:15 on Jul 8) falls right around the live nomination announcement, so the informational edge exists only in the window before this specific category is read out.",
+  "rationale": "Same mechanism as other Emmy nomination categories: the Academy's accountants already know the TV Movie nominee list before the live reveal.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEVENTOCCURCLTR-27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "There is no evidence a wedding venue has been finalized, let alone that it would be Madison Square Garden specifically; even if a wedding-planning circle privately knows the eventual venue, this specific guess is too speculative to treat as a knowledge edge.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYNOMS-26-DSACTR",
+  "insider_group": "Television Academy and its tabulating accountants, who hold the finalized nominee list before the public announcement",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Market close (~19:09 on Jul 8) falls right around the live nomination announcement, so the informational edge exists only in the window before this specific category is read out.",
+  "rationale": "Same mechanism as other Emmy nomination categories: the Academy's accountants already know the Drama Supporting Actress nominee list before the live reveal.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXRANKLISTSONGSPOTUSA-26AUG01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "The target window is July 2026 Spotify daily charts; several legs close well before or during that period while others sit near the Aug 1 event close, so timing between legs is uneven relative to the underlying data window.",
+  "rationale": "Spotify's #1 daily song is an aggregate of consumer streaming behavior; the platform sees the number first but does not decide it, so this is not a discretionary decision any small group has already made.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXHOSTRNCCONV-26",
+  "insider_group": "RNC site-selection committee and party leadership, who choose and typically finalize the host city well ahead of any public announcement",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Convention host cities are chosen through an internal RNC bid/selection process that concludes well before the public reveal; a specific, named organizational body already has the pick, though the strike names one city (Dallas) among possible alternatives.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEMMYLSERIES-26SEP14",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title asks whether Half Man wins the Emmy (a final winner, normally decided by a separate final-round vote and announced at the September ceremony), but this market's close (Jul 8) coincides with the nomination announcement itself, well before any final-round winner voting could occur since nominees aren't even set until that day.",
+  "resolution_source_risk": null,
+  "rationale": "Winner selection requires a final round of Academy voting that happens after nominees are locked in, which itself is only being announced on this market's close date; no group can already know a winner that has not yet been decided, let alone voted on.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPVH-26JUL03",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "A polling average aggregator has no discretionary decision-maker behind it; it is a computed statistic from public polls, not private knowledge held by an identifiable group.",
+  "researched": false
+ }
+]

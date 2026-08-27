@@ -1,0 +1,762 @@
+[
+ {
+  "event_ticker": "KXGABBARDOUT-26",
+  "series_ticker": "KXGABBARDOUT",
+  "title": "Will Tulsi Gabbard be out as Director of National Intelligence (DNI) before Jun 29, 2026?",
+  "close_time": "2026-06-19T12:38:54Z",
+  "markets": [
+   {
+    "ticker": "KXGABBARDOUT-26JUN-JUN29",
+    "title": "Will Tulsi Gabbard be out as Director of National Intelligence (DNI) before Jun 29, 2026?",
+    "rules_primary": "If Tulsi Gabbard leaves as Director of National Intelligence (DNI) before Jun 29, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Tulsi Gabbard must have an actual departure date and vacate the role within the time period. \n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role. If the role otherwise ceases to exist with no plausible successor, the contract may resolve to \"No.\"\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-06-19T12:38:54Z"
+   },
+   {
+    "ticker": "KXGABBARDOUT-26-JUL01",
+    "title": "Will Tulsi Gabbard leaves Director of National Intelligence (DNI) before Jul 1, 2026?",
+    "rules_primary": "If Tulsi Gabbard leaves as Director of National Intelligence (DNI) before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Tulsi Gabbard must have an actual departure date and vacate the role within the time period. \n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role. If the role otherwise ceases to exist with no plausible successor, the contract may resolve to \"No.\"\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-06-19T12:38:54Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMDEBUT-26JUN27-YOU",
+  "series_ticker": "KXALBUMDEBUT",
+  "title": "Will Olivia Rodrigo's 'you seem pretty sad for a girl so in love' debut at #1",
+  "close_time": "2026-06-22T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMDEBUT-26JUN27-YOU",
+    "title": "Will Olivia Rodrigo's 'you seem pretty sad for a girl so in love' debut at #1",
+    "rules_primary": "If you seem pretty sad for a girl so in love is the #1 album on the Billboard 200 chart for the week of June 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-22T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFESTIVALEVENTPACHNYC-26JUN22",
+  "series_ticker": "KXFESTIVALEVENTPACHNYC",
+  "title": "Will Pacha New York Opening Weekend  happen before Jun 22, 2026",
+  "close_time": "2026-06-22T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXFESTIVALEVENTPACHNYC-26JUN22-PAC",
+    "title": "Will Pacha New York Opening Weekend  happen before Jun 22, 2026",
+    "rules_primary": "If Pacha New York Opening Weekend  happens before Jun 22, 2026, then the market resolves to Yes.",
+    "rules_secondary": "\u201cPacha New York Opening Weekend\u201d refers specifically to the officially designated opening weekend programming of Pacha New York, as identified by Source Agencies. This does not include any pre-opening events, preview events, soft openings, or promotional programming, including but not limited to the \u201cUNLOCKED\u201d and \u201cUNBLOCKED\u201d events. Only events identified by Source Agencies as part of the official Opening Weekend will be considered.",
+    "close_time": "2026-06-22T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLEADERSOUT-27JAN01",
+  "series_ticker": "KXLEADERSOUT",
+  "title": "Will Aleksandar Vu\u010di\u0107 leave President of Serbia before Jan 1, 2027?",
+  "close_time": "2026-06-28T18:26:06Z",
+  "markets": [
+   {
+    "ticker": "KXLEADERSOUT-27JAN01-AVUCPSER",
+    "title": "Will Aleksandar Vu\u010di\u0107 leave President of Serbia before Jan 1, 2027?",
+    "rules_primary": "If Aleksandar Vu\u010di\u0107 has either officially announced their intention to leave as President of Serbia or has actually left President of Serbia before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "An \"official announcement\" means a statement by the person themselves, their authorized representative, or the official body governing the office that the person will be departing from the office. Such announcements must be reported by at least one Source Agency to be considered official. The announcement must not specify they are leaving in more than a year from the statement, in which case the market does not resolve to Yes.\n\n\"Leaving office\" means the person no longer holds the office in any capacity, including but not limited to: resignation (effective), termination, removal, impeachment and removal, recall, or the expiration of their term without renewal. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining the office do NOT constitute leaving office. Death does NOT satisfy the Payout Criterion for this Contract. Forced departures (termination, impeachment and removal, etc.) satisfy the Payout Criterion even without a prior announcement.",
+    "close_time": "2026-06-28T18:26:06Z"
+   },
+   {
+    "ticker": "KXLEADERSOUT-27JAN01-KSTAUK",
+    "title": "Will Keir Starmer leave Prime Minister of the United Kingdom before Jan 1, 2027?",
+    "rules_primary": "If Keir Starmer has either officially announced their intention to leave as Prime Minister of the United Kingdom or has actually left Prime Minister of the United Kingdom before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "An \"official announcement\" means a statement by the person themselves, their authorized representative, or the official body governing the office that the person will be departing from the office. Such announcements must be reported by at least one Source Agency to be considered official. The announcement must not specify they are leaving in more than a year from the statement, in which case the market does not resolve to Yes.\n\n\"Leaving office\" means the person no longer holds the office in any capacity, including but not limited to: resignation (effective), termination, removal, impeachment and removal, recall, or the expiration of their term without renewal. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining the office do NOT constitute leaving office. Death does NOT satisfy the Payout Criterion for this Contract. Forced departures (termination, impeachment and removal, etc.) satisfy the Payout Criterion even without a prior announcement.",
+    "close_time": "2026-06-22T17:22:52Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLEAVESTARMER",
+  "series_ticker": "KXLEAVESTARMER",
+  "title": "Will Keir Starmer leave Prime Minister of the United Kingdom before Sep 1, 2026?",
+  "close_time": "2026-06-22T11:54:03Z",
+  "markets": [
+   {
+    "ticker": "KXLEAVESTARMER-26SEP01",
+    "title": "Will Keir Starmer leave Prime Minister of the United Kingdom before Sep 1, 2026?",
+    "rules_primary": "If Keir Starmer has either officially announced their intention to leave as Prime Minister of the United Kingdom or has actually left as Prime Minister of the United Kingdom before Sep 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "An \"official announcement\" means a statement by the person themselves, their authorized representative, or the official body governing the office that the person will be departing from the office. Such announcements must be reported by at least one Source Agency to be considered official. The announcement must not specify they are leaving in more than a year from the statement, in which case the market does not resolve to Yes.\n\n\"Leaving office\" means the person no longer holds the office in any capacity, including but not limited to: resignation (effective), termination, removal, impeachment and removal, recall, or the expiration of their term without renewal. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining the office do NOT constitute leaving office. Death does NOT satisfy the Payout Criterion for this Contract. Forced departures (termination, impeachment and removal, etc.) satisfy the Payout Criterion even without a prior announcement.",
+    "close_time": "2026-06-22T11:54:03Z"
+   },
+   {
+    "ticker": "KXLEAVESTARMER-26OCT01",
+    "title": "Will Keir Starmer leave Prime Minister of the United Kingdom before Oct 1, 2026?",
+    "rules_primary": "If Keir Starmer\n has either officially announced their intention to leave as Prime Minister of the United Kingdom or has actually left as Prime Minister of the United Kingdom before Oct 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "An \"official announcement\" means a statement by the person themselves, their authorized representative, or the official body governing the office that the person will be departing from the office. Such announcements must be reported by at least one Source Agency to be considered official. The announcement must not specify they are leaving in more than a year from the statement, in which case the market does not resolve to Yes.\n\n\"Leaving office\" means the person no longer holds the office in any capacity, including but not limited to: resignation (effective), termination, removal, impeachment and removal, recall, or the expiration of their term without renewal. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining the office do NOT constitute leaving office. Death does NOT satisfy the Payout Criterion for this Contract. Forced departures (termination, impeachment and removal, etc.) satisfy the Payout Criterion even without a prior announcement.",
+    "close_time": "2026-06-22T11:54:03Z"
+   },
+   {
+    "ticker": "KXLEAVESTARMER-26JUN27",
+    "title": "Will Keir Starmer leave Prime Minister of the United Kingdom before Jun 27, 2026?",
+    "rules_primary": "If Keir Starmer\n has either officially announced their intention to leave as Prime Minister of the United Kingdom or has actually left as Prime Minister of the United Kingdom before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "An \"official announcement\" means a statement by the person themselves, their authorized representative, or the official body governing the office that the person will be departing from the office. Such announcements must be reported by at least one Source Agency to be considered official. The announcement must not specify they are leaving in more than a year from the statement, in which case the market does not resolve to Yes.\n\n\"Leaving office\" means the person no longer holds the office in any capacity, including but not limited to: resignation (effective), termination, removal, impeachment and removal, recall, or the expiration of their term without renewal. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining the office do NOT constitute leaving office. Death does NOT satisfy the Payout Criterion for this Contract. Forced departures (termination, impeachment and removal, etc.) satisfy the Payout Criterion even without a prior announcement.",
+    "close_time": "2026-06-22T11:54:03Z"
+   },
+   {
+    "ticker": "KXLEAVESTARMER-26JUN23",
+    "title": "Will Keir Starmer leave Prime Minister of the United Kingdom before Jun 23, 2026?",
+    "rules_primary": "If Keir Starmer\n has either officially announced their intention to leave as Prime Minister of the United Kingdom or has actually left as Prime Minister of the United Kingdom before Jun 23, 2026, then the market resolves to Yes.",
+    "rules_secondary": "An \"official announcement\" means a statement by the person themselves, their authorized representative, or the official body governing the office that the person will be departing from the office. Such announcements must be reported by at least one Source Agency to be considered official. The announcement must not specify they are leaving in more than a year from the statement, in which case the market does not resolve to Yes.\n\n\"Leaving office\" means the person no longer holds the office in any capacity, including but not limited to: resignation (effective), termination, removal, impeachment and removal, recall, or the expiration of their term without renewal. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining the office do NOT constitute leaving office. Death does NOT satisfy the Payout Criterion for this Contract. Forced departures (termination, impeachment and removal, etc.) satisfy the Payout Criterion even without a prior announcement.",
+    "close_time": "2026-06-22T11:54:03Z"
+   },
+   {
+    "ticker": "KXLEAVESTARMER-26JUL23",
+    "title": "Will Keir Starmer leave Prime Minister of the United Kingdom before Jul 23, 2026?",
+    "rules_primary": "If Keir Starmer\n has either officially announced their intention to leave as Prime Minister of the United Kingdom or has actually left as Prime Minister of the United Kingdom before Jul 23, 2026, then the market resolves to Yes.",
+    "rules_secondary": "An \"official announcement\" means a statement by the person themselves, their authorized representative, or the official body governing the office that the person will be departing from the office. Such announcements must be reported by at least one Source Agency to be considered official. The announcement must not specify they are leaving in more than a year from the statement, in which case the market does not resolve to Yes.\n\n\"Leaving office\" means the person no longer holds the office in any capacity, including but not limited to: resignation (effective), termination, removal, impeachment and removal, recall, or the expiration of their term without renewal. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining the office do NOT constitute leaving office. Death does NOT satisfy the Payout Criterion for this Contract. Forced departures (termination, impeachment and removal, etc.) satisfy the Payout Criterion even without a prior announcement.",
+    "close_time": "2026-06-22T11:54:03Z"
+   },
+   {
+    "ticker": "KXLEAVESTARMER-26JUL01",
+    "title": "Will Keir Starmer leave Prime Minister of the United Kingdom before Jul 1, 2026?",
+    "rules_primary": "If Keir Starmer has either officially announced their intention to leave as Prime Minister of the United Kingdom or has actually left as Prime Minister of the United Kingdom before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "An \"official announcement\" means a statement by the person themselves, their authorized representative, or the official body governing the office that the person will be departing from the office. Such announcements must be reported by at least one Source Agency to be considered official. The announcement must not specify they are leaving in more than a year from the statement, in which case the market does not resolve to Yes.\n\n\"Leaving office\" means the person no longer holds the office in any capacity, including but not limited to: resignation (effective), termination, removal, impeachment and removal, recall, or the expiration of their term without renewal. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining the office do NOT constitute leaving office. Death does NOT satisfy the Payout Criterion for this Contract. Forced departures (termination, impeachment and removal, etc.) satisfy the Payout Criterion even without a prior announcement.",
+    "close_time": "2026-06-22T11:54:03Z"
+   },
+   {
+    "ticker": "KXLEAVESTARMER-26AUG01",
+    "title": "Will Keir Starmer leave Prime Minister of the United Kingdom before Aug 1, 2026?",
+    "rules_primary": "If Keir Starmer has either officially announced their intention to leave as Prime Minister of the United Kingdom or has actually left as Prime Minister of the United Kingdom before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "An \"official announcement\" means a statement by the person themselves, their authorized representative, or the official body governing the office that the person will be departing from the office. Such announcements must be reported by at least one Source Agency to be considered official. The announcement must not specify they are leaving in more than a year from the statement, in which case the market does not resolve to Yes.\n\n\"Leaving office\" means the person no longer holds the office in any capacity, including but not limited to: resignation (effective), termination, removal, impeachment and removal, recall, or the expiration of their term without renewal. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining the office do NOT constitute leaving office. Death does NOT satisfy the Payout Criterion for this Contract. Forced departures (termination, impeachment and removal, etc.) satisfy the Payout Criterion even without a prior announcement.",
+    "close_time": "2026-06-22T11:54:03Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOP10BBSPOTS-26JUN27-OLI",
+  "series_ticker": "KXTOP10BBSPOTS",
+  "title": "How many spots on the Billboard Hot 100's top 10 will Olivia Rodrigo hold for the week of Jun 27, 2026?",
+  "close_time": "2026-06-23T19:47:43Z",
+  "markets": [
+   {
+    "ticker": "KXTOP10BBSPOTS-26JUN27-OLI-7",
+    "title": "How many spots on the Billboard Hot 100's top 10 will Olivia Rodrigo hold for the week of Jun 27, 2026?",
+    "rules_primary": "If Olivia Rodrigo has exactly 7 songs in the top 10 of the Billboard Hot 100 chart dated Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-23T19:47:43Z"
+   },
+   {
+    "ticker": "KXTOP10BBSPOTS-26JUN27-OLI-6",
+    "title": "How many spots on the Billboard Hot 100's top 10 will Olivia Rodrigo hold for the week of Jun 27, 2026?",
+    "rules_primary": "If Olivia Rodrigo has exactly 6 songs in the top 10 of the Billboard Hot 100 chart dated Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-23T19:47:43Z"
+   },
+   {
+    "ticker": "KXTOP10BBSPOTS-26JUN27-OLI-5",
+    "title": "How many spots on the Billboard Hot 100's top 10 will Olivia Rodrigo hold for the week of Jun 27, 2026?",
+    "rules_primary": "If Olivia Rodrigo has exactly 5 songs in the top 10 of the Billboard Hot 100 chart dated Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-23T19:47:43Z"
+   },
+   {
+    "ticker": "KXTOP10BBSPOTS-26JUN27-OLI-4",
+    "title": "How many spots on the Billboard Hot 100's top 10 will Olivia Rodrigo hold for the week of Jun 27, 2026?",
+    "rules_primary": "If Olivia Rodrigo has exactly 4 songs in the top 10 of the Billboard Hot 100 chart dated Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-23T19:47:43Z"
+   },
+   {
+    "ticker": "KXTOP10BBSPOTS-26JUN27-OLI-3",
+    "title": "How many spots on the Billboard Hot 100's top 10 will Olivia Rodrigo hold for the week of Jun 27, 2026?",
+    "rules_primary": "If Olivia Rodrigo has exactly 3 songs in the top 10 of the Billboard Hot 100 chart dated Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-23T19:47:43Z"
+   },
+   {
+    "ticker": "KXTOP10BBSPOTS-26JUN27-OLI-2",
+    "title": "How many spots on the Billboard Hot 100's top 10 will Olivia Rodrigo hold for the week of Jun 27, 2026?",
+    "rules_primary": "If Olivia Rodrigo has exactly 2 songs in the top 10 of the Billboard Hot 100 chart dated Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-23T19:47:43Z"
+   },
+   {
+    "ticker": "KXTOP10BBSPOTS-26JUN27-OLI-1",
+    "title": "How many spots on the Billboard Hot 100's top 10 will Olivia Rodrigo hold for the week of Jun 27, 2026?",
+    "rules_primary": "If Olivia Rodrigo has exactly 1 songs in the top 10 of the Billboard Hot 100 chart dated Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-23T19:47:43Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPALBUMRECORD-ICE-DRA",
+  "series_ticker": "KXTOPALBUMRECORD",
+  "title": "How many straight weeks will 'ICEMAN' be #1?",
+  "close_time": "2026-06-23T13:26:47Z",
+  "markets": [
+   {
+    "ticker": "KXTOPALBUMRECORD-ICE-DRA-7",
+    "title": "How many straight weeks will 'ICEMAN' be #1?",
+    "rules_primary": "If ICEMAN by Drake has had the #1 spot on the Billboard 200 for more than 7 consecutive weeks, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi. If this event occurs, or the streak ends, the market will close the following 10am ET. This market specifically encompasses the first streak ICEMAN holds.",
+    "close_time": "2026-06-23T13:26:47Z"
+   },
+   {
+    "ticker": "KXTOPALBUMRECORD-ICE-DRA-6",
+    "title": "How many straight weeks will 'ICEMAN' be #1?",
+    "rules_primary": "If ICEMAN by Drake has had the #1 spot on the Billboard 200 for more than 6 consecutive weeks, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi. If this event occurs, or the streak ends, the market will close the following 10am ET. This market specifically encompasses the first streak ICEMAN holds.",
+    "close_time": "2026-06-23T13:26:47Z"
+   },
+   {
+    "ticker": "KXTOPALBUMRECORD-ICE-DRA-5",
+    "title": "How many straight weeks will 'ICEMAN' be #1?",
+    "rules_primary": "If ICEMAN by Drake has had the #1 spot on the Billboard 200 for more than 5 consecutive weeks, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi. If this event occurs, or the streak ends, the market will close the following 10am ET. This market specifically encompasses the first streak ICEMAN holds.",
+    "close_time": "2026-06-23T13:26:47Z"
+   },
+   {
+    "ticker": "KXTOPALBUMRECORD-ICE-DRA-4",
+    "title": "How many straight weeks will 'ICEMAN' be #1?",
+    "rules_primary": "If ICEMAN by Drake has had the #1 spot on the Billboard 200 for more than 4 consecutive weeks, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi. If this event occurs, or the streak ends, the market will close the following 10am ET. This market specifically encompasses the first streak ICEMAN holds.",
+    "close_time": "2026-06-23T13:26:47Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXART-BILD26",
+  "series_ticker": "KXART",
+  "title": "Will the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's be above $38000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+  "close_time": "2026-06-25T01:38:46Z",
+  "markets": [
+   {
+    "ticker": "KXART-BILD26-38000000",
+    "title": "Will the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's be above $38000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's is above $38M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:38:46Z"
+   },
+   {
+    "ticker": "KXART-BILD26-36000000",
+    "title": "Will the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's be above $36000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's is above $36M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:38:46Z"
+   },
+   {
+    "ticker": "KXART-BILD26-34000000",
+    "title": "Will the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's be above $34000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's is above $34M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:38:46Z"
+   },
+   {
+    "ticker": "KXART-BILD26-32000000",
+    "title": "Will the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's be above $32000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's is above $32M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:38:46Z"
+   },
+   {
+    "ticker": "KXART-BILD26-30000000",
+    "title": "Will the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's be above $30000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's is above $30M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:38:46Z"
+   },
+   {
+    "ticker": "KXART-BILD26-28000000",
+    "title": "Will the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's be above $28000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's is above $28M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:38:46Z"
+   },
+   {
+    "ticker": "KXART-BILD26-26000000",
+    "title": "Will the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's be above $26000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's is above $26M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:38:46Z"
+   },
+   {
+    "ticker": "KXART-BILD26-22000000",
+    "title": "Will the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's be above $22000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's is above $22M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:38:46Z"
+   },
+   {
+    "ticker": "KXART-BILD26-20000000",
+    "title": "Will the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's be above $20000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Bildnis Gertrud Loew (Gertha Fels\u0151v\u00e1nyi) (Portrait of Gertrud Loew (Gertha Fels\u0151v\u00e1nyi)) by Gustav Klimt on Sotheby's is above $20M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:38:46Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXART-DAN26",
+  "series_ticker": "KXART",
+  "title": "Will the lot sold price of the Dana\u00eb by Egon Schiele on Sotheby's be above $28000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+  "close_time": "2026-06-25T01:39:58Z",
+  "markets": [
+   {
+    "ticker": "KXART-DAN26-28000000",
+    "title": "Will the lot sold price of the Dana\u00eb by Egon Schiele on Sotheby's be above $28000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Dana\u00eb by Egon Schiele on Sotheby's is above $28M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:39:58Z"
+   },
+   {
+    "ticker": "KXART-DAN26-26000000",
+    "title": "Will the lot sold price of the Dana\u00eb by Egon Schiele on Sotheby's be above $26000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Dana\u00eb by Egon Schiele on Sotheby's is above $26M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:39:58Z"
+   },
+   {
+    "ticker": "KXART-DAN26-20000000",
+    "title": "Will the lot sold price of the Dana\u00eb by Egon Schiele on Sotheby's be above $20000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Dana\u00eb by Egon Schiele on Sotheby's is above $20M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:39:58Z"
+   },
+   {
+    "ticker": "KXART-DAN26-14000000",
+    "title": "Will the lot sold price of the Dana\u00eb by Egon Schiele on Sotheby's be above $14000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Dana\u00eb by Egon Schiele on Sotheby's is above $14M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:39:58Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXART-HOM26",
+  "series_ticker": "KXART",
+  "title": "Will the lot sold price of the Homme \u00e0 la pipe (Le Notaire de Nice) by Amedeo Modigliani on Sotheby's be above $22000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+  "close_time": "2026-06-25T01:40:52Z",
+  "markets": [
+   {
+    "ticker": "KXART-HOM26-22000000",
+    "title": "Will the lot sold price of the Homme \u00e0 la pipe (Le Notaire de Nice) by Amedeo Modigliani on Sotheby's be above $22000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Homme \u00e0 la pipe (Le Notaire de Nice) by Amedeo Modigliani on Sotheby's is above $22M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:40:52Z"
+   },
+   {
+    "ticker": "KXART-HOM26-20000000",
+    "title": "Will the lot sold price of the Homme \u00e0 la pipe (Le Notaire de Nice) by Amedeo Modigliani on Sotheby's be above $20000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Homme \u00e0 la pipe (Le Notaire de Nice) by Amedeo Modigliani on Sotheby's is above $20M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:40:52Z"
+   },
+   {
+    "ticker": "KXART-HOM26-18000000",
+    "title": "Will the lot sold price of the Homme \u00e0 la pipe (Le Notaire de Nice) by Amedeo Modigliani on Sotheby's be above $18000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Homme \u00e0 la pipe (Le Notaire de Nice) by Amedeo Modigliani on Sotheby's is above $18M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:40:52Z"
+   },
+   {
+    "ticker": "KXART-HOM26-16000000",
+    "title": "Will the lot sold price of the Homme \u00e0 la pipe (Le Notaire de Nice) by Amedeo Modigliani on Sotheby's be above $16000000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Homme \u00e0 la pipe (Le Notaire de Nice) by Amedeo Modigliani on Sotheby's is above $16M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:40:52Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXART-LYD26",
+  "series_ticker": "KXART",
+  "title": "Will the lot sold price of the Lydia (\u00c9tude pour Portrait au manteau bleu) by Henri Matisse on Sotheby's be above $2500000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+  "close_time": "2026-06-25T01:43:41Z",
+  "markets": [
+   {
+    "ticker": "KXART-LYD26-2500000",
+    "title": "Will the lot sold price of the Lydia (\u00c9tude pour Portrait au manteau bleu) by Henri Matisse on Sotheby's be above $2500000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Lydia (\u00c9tude pour Portrait au manteau bleu) by Henri Matisse on Sotheby's is above $2.5M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:43:41Z"
+   },
+   {
+    "ticker": "KXART-LYD26-2250000",
+    "title": "Will the lot sold price of the Lydia (\u00c9tude pour Portrait au manteau bleu) by Henri Matisse on Sotheby's be above $2250000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Lydia (\u00c9tude pour Portrait au manteau bleu) by Henri Matisse on Sotheby's is above $2.25M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:43:41Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXART-WOM26",
+  "series_ticker": "KXART",
+  "title": "Will the lot sold price of the Woman in a Grey Sweater by Lucian Freud on Sotheby's be above $4500000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+  "close_time": "2026-06-25T01:51:56Z",
+  "markets": [
+   {
+    "ticker": "KXART-WOM26-4500000",
+    "title": "Will the lot sold price of the Woman in a Grey Sweater by Lucian Freud on Sotheby's be above $4500000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Woman in a Grey Sweater by Lucian Freud on Sotheby's is above $4.5M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:51:56Z"
+   },
+   {
+    "ticker": "KXART-WOM26-4250000",
+    "title": "Will the lot sold price of the Woman in a Grey Sweater by Lucian Freud on Sotheby's be above $4250000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Woman in a Grey Sweater by Lucian Freud on Sotheby's is above $4.25M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:51:56Z"
+   },
+   {
+    "ticker": "KXART-WOM26-2750000",
+    "title": "Will the lot sold price of the Woman in a Grey Sweater by Lucian Freud on Sotheby's be above $2750000 during the live auction beginning June 24, 2026, 01:00 PM EDT?",
+    "rules_primary": "If the lot sold price of the Woman in a Grey Sweater by Lucian Freud on Sotheby's is above $2.75M during the live auction beginning June 24, 2026, 01:00 PM EDT, then the market resolves to Yes.",
+    "rules_secondary": "Outcome verified from the amount displayed under \u201cLot Sold\u201d on the Sotheby\u2019s website.\n\nIf the value is reported in a currency other than USD, it will be converted to USD using the prevailing exchange rate.",
+    "close_time": "2026-06-25T01:51:56Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXGTAPRICE",
+  "series_ticker": "KXGTAPRICE",
+  "title": "What will the price of GTA VI be?",
+  "close_time": "2026-06-24T20:12:37Z",
+  "markets": [
+   {
+    "ticker": "KXGTAPRICE-100",
+    "title": "What will the price of GTA VI be?",
+    "rules_primary": "If the price of the base game of Grand Theft Auto VI for PS5 is above $100 dollars USD, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-24T20:12:37Z"
+   },
+   {
+    "ticker": "KXGTAPRICE-90",
+    "title": "What will the price of GTA VI be?",
+    "rules_primary": "If the price of the base game of Grand Theft Auto VI for PS5 is above $90 dollars USD, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-24T20:12:30Z"
+   },
+   {
+    "ticker": "KXGTAPRICE-80",
+    "title": "What will the price of GTA VI be?",
+    "rules_primary": "If the price of the base game of Grand Theft Auto VI for PS5 is above $80 dollars USD, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-24T20:12:24Z"
+   },
+   {
+    "ticker": "KXGTAPRICE-60",
+    "title": "What will the price of GTA VI be?",
+    "rules_primary": "If the price of the base game of Grand Theft Auto VI for PS5 is above $60 dollars USD, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-24T20:12:16Z"
+   },
+   {
+    "ticker": "KXGTAPRICE-70",
+    "title": "What will the price of GTA VI be?",
+    "rules_primary": "If the price of the base game of Grand Theft Auto VI for PS5 is above $70 dollars USD, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-24T20:12:07Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXRANKLIST1ALBUM-26JUN27",
+  "series_ticker": "KXRANKLIST1ALBUM",
+  "title": "Will you seem pretty sad for a girl so in love be #1 on the Billboard 200 in June 2026?",
+  "close_time": "2026-06-24T14:01:09Z",
+  "markets": [
+   {
+    "ticker": "KXRANKLIST1ALBUM-26JUN27-YOU",
+    "title": "Will you seem pretty sad for a girl so in love be #1 on the Billboard 200 in June 2026?",
+    "rules_primary": "If you seem pretty sad for a girl so in love is #1 on the Billboard 200 in June 2026, then the market resolves to Yes.",
+    "rules_secondary": "Only Billboard charts dated between June 06, 2026, and June 27, 2026, inclusive, will be considered for this market. These are the first and last eligible chart dates for June 2026.\n\nThis market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-06-24T14:01:09Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFISAEXTEND-26MAY",
+  "series_ticker": "KXFISAEXTEND",
+  "title": "Will legislation that reauthorizes FISA Section 702 authority become law before Aug 1, 2026?",
+  "close_time": "2026-08-01T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXFISAEXTEND-26MAY-26AUG01",
+    "title": "Will legislation that reauthorizes FISA Section 702 authority become law before Aug 1, 2026?",
+    "rules_primary": "If legislation that reauthorizes FISA Section 702 authority has become law after Issuance and before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+    "close_time": "2026-08-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXFISAEXTEND-26MAY-JUL01",
+    "title": "Will legislation that reauthorizes FISA Section 702 authority become law before Jul 1, 2026?",
+    "rules_primary": "If legislation that reauthorizes FISA Section 702 authority has become law after Issuance and before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+    "close_time": "2026-07-01T14:00:00Z"
+   },
+   {
+    "ticker": "KXFISAEXTEND-26JUN-26JUN25",
+    "title": "Will legislation that reauthorizes FISA Section 702 authority become law before Jun 25, 2026?",
+    "rules_primary": "If legislation that reauthorizes FISA Section 702 authority has become law after Issuance and before Jun 25, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+    "close_time": "2026-06-25T14:00:00Z"
+   },
+   {
+    "ticker": "KXFISAEXTEND-26JUN-26JUN19",
+    "title": "Will legislation that reauthorizes FISA Section 702 authority become law before Jun 19, 2026?",
+    "rules_primary": "If legislation that reauthorizes FISA Section 702 authority has become law after Issuance and before Jun 19, 2026, then the market resolves to Yes.",
+    "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+    "close_time": "2026-06-19T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMONSANTODURNELL-26AUG",
+  "series_ticker": "KXMONSANTODURNELL",
+  "title": "Will the Supreme Court rule in favor of Monsanto Company in Monsanto Company v. Durnell",
+  "close_time": "2026-06-25T15:05:10Z",
+  "markets": [
+   {
+    "ticker": "KXMONSANTODURNELL-26AUG",
+    "title": "Will the Supreme Court rule in favor of Monsanto Company in Monsanto Company v. Durnell",
+    "rules_primary": "If the Supreme Court, in Monsanto Company v. Durnell, rules that FIFRA preempts label-based failure-to-warn claims where EPA has not required the warning, then the market resolves to Yes.",
+    "rules_secondary": "The Payout Criterion for the Contract encompasses the Expiration Values that the Supreme Court of the United States has issued a decision in Monsanto Company v. Durnell holding that the Federal Insecticide, Fungicide, and Rodenticide Act preempts state-law, label-based failure-to-warn claims where EPA has not required the warning, after Issuance and before August 1, 2026. The market resolves to No if the Supreme Court holds that such claims are not preempted. If the case is dismissed, settled, dismissed as improvidently granted, or otherwise disposed of without a merits decision on whether FIFRA preempts such label-based failure-to-warn claims before August 1, 2026, the market also resolves to No.",
+    "close_time": "2026-06-25T15:05:10Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXNYCRENTFREEZE-25",
+  "series_ticker": "KXNYCRENTFREEZE",
+  "title": "Will NYC implement a rent freeze for leases starting October 2026?",
+  "close_time": "2026-06-25T23:50:17Z",
+  "markets": [
+   {
+    "ticker": "KXNYCRENTFREEZE-25",
+    "title": "Will NYC implement a rent freeze for leases starting October 2026?",
+    "rules_primary": "If the NYC Rent Guidelines Board has voted to set a 0% rent increase or any level of decrease for either one-year leases, two-year leases, or both, for rent-stabilized apartments with leases commencing between October 1 of 2026 and September 30 of the following year, then the market resolves to Yes.",
+    "rules_secondary": "A rent freeze means the Board has voted for exactly 0% increase or any negative percentage (rent decrease) for either one-year leases, two-year leases, or both. The vote must be the final, official vote of the Board for the annual cycle, not a preliminary vote or proposed range. Indexation to inflation is considered a rent increase and would not qualify as a freeze. If the Board votes 0% for either one-year or two-year leases (or both), the market resolves to Yes. If the Board votes only positive percentages for both lease types, the market resolves to No. The Board typically meets and votes in June for leases beginning October 1. If the Board is unable to meet or vote due to lack of quorum, or if the rent stabilization system is abolished or suspended, the market resolves to No.",
+    "close_time": "2026-06-25T23:50:17Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXCLAYTONCONF-26JUN11",
+  "series_ticker": "KXCLAYTONCONF",
+  "title": "Will Jay Clayton be confirmed as Director of National Intelligence before Aug 8, 2026?",
+  "close_time": "2026-07-28T23:51:10Z",
+  "markets": [
+   {
+    "ticker": "KXCLAYTONCONF-26JUN11-AUG08",
+    "title": "Will Jay Clayton be confirmed as Director of National Intelligence before Aug 8, 2026?",
+    "rules_primary": "If Jay Clayton is the first person confirmed as Director of National Intelligence before Aug 8, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If a nomination is withdrawn before the deadline, that market immediately resolves to No.",
+    "close_time": "2026-07-28T23:51:10Z"
+   },
+   {
+    "ticker": "KXCLAYTONCONF-26JUN11-AUG01",
+    "title": "Will Jay Clayton be confirmed as Director of National Intelligence before Aug 1, 2026?",
+    "rules_primary": "If Jay Clayton is the first person confirmed as Director of National Intelligence before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If a nomination is withdrawn before the deadline, that market immediately resolves to No.",
+    "close_time": "2026-07-28T23:51:10Z"
+   },
+   {
+    "ticker": "KXCLAYTONCONF-26JUN11-JUL18",
+    "title": "Will Jay Clayton be confirmed as Director of National Intelligence before Jul 18, 2026?",
+    "rules_primary": "If Jay Clayton is the first person confirmed as Director of National Intelligence before Jul 18, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If a nomination is withdrawn before the deadline, that market immediately resolves to No.",
+    "close_time": "2026-07-18T03:59:00Z"
+   },
+   {
+    "ticker": "KXCLAYTONCONF-26JUN11-JUN27",
+    "title": "Will Jay Clayton be confirmed as Director of National Intelligence before Jun 27, 2026?",
+    "rules_primary": "If Jay Clayton is the first person confirmed as Director of National Intelligence before Jun 27, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If a nomination is withdrawn before the deadline, that market immediately resolves to No.",
+    "close_time": "2026-06-27T03:59:00Z"
+   },
+   {
+    "ticker": "KXCLAYTONCONF-26JUN11-JUN24",
+    "title": "Will Jay Clayton be confirmed as Director of National Intelligence before Jun 24, 2026?",
+    "rules_primary": "If Jay Clayton is the first person confirmed as Director of National Intelligence before Jun 24, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If a nomination is withdrawn before the deadline, that market immediately resolves to No.",
+    "close_time": "2026-06-24T03:59:00Z"
+   },
+   {
+    "ticker": "KXCLAYTONCONF-26JUN11-JUN19",
+    "title": "Will Jay Clayton be confirmed as Director of National Intelligence before Jun 19, 2026?",
+    "rules_primary": "If Jay Clayton is the first person confirmed as Director of National Intelligence before Jun 19, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If a nomination is withdrawn before the deadline, that market immediately resolves to No.",
+    "close_time": "2026-06-19T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMAMDANIEO-26JUN20",
+  "series_ticker": "KXMAMDANIEO",
+  "title": "Will Mamdani sign above 0 executive orders between Jun 14, 2026 and Jun 20, 2026?",
+  "close_time": "2026-06-21T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXMAMDANIEO-26JUN20-T0",
+    "title": "Will Mamdani sign above 0 executive orders between Jun 14, 2026 and Jun 20, 2026?",
+    "rules_primary": "If the number of non-emergency executive orders signed by Zohran Mamdani is above 0 from Jun 14, 2026 to Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-06-21T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXLIUKELIMINATIONW-26JUN19",
+  "series_ticker": "KXLIUKELIMINATIONW",
+  "title": "Will Tommy be eliminated from Love Island UK S13 before Jun 20, 2026?",
+  "close_time": "2026-06-20T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUN19-TOM",
+    "title": "Will Tommy be eliminated from Love Island UK S13 before Jun 20, 2026?",
+    "rules_primary": "If Tommy is officially eliminated from Love Island UK: Season 13 Before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-20T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUN19-MIC",
+    "title": "Will Mica be eliminated from Love Island UK S13 before Jun 20, 2026?",
+    "rules_primary": "If Mica is officially eliminated from Love Island UK: Season 13 Before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-20T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUN19-LOL",
+    "title": "Will Lola be eliminated from Love Island UK S13 before Jun 20, 2026?",
+    "rules_primary": "If Lola is officially eliminated from Love Island UK: Season 13 Before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-20T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUN19-ELL",
+    "title": "Will Ellie be eliminated from Love Island UK S13 before Jun 20, 2026?",
+    "rules_primary": "If Ellie is officially eliminated from Love Island UK: Season 13 Before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-20T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUN19-ANG",
+    "title": "Will Angelista be eliminated from Love Island UK S13 before Jun 20, 2026?",
+    "rules_primary": "If Angelista is officially eliminated from Love Island UK: Season 13 Before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-20T03:59:00Z"
+   },
+   {
+    "ticker": "KXLIUKELIMINATIONW-26JUN19-AID",
+    "title": "Will Aidan be eliminated from Love Island UK S13 before Jun 20, 2026?",
+    "rules_primary": "If Aidan is officially eliminated from Love Island UK: Season 13 Before Jun 20, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.",
+    "close_time": "2026-06-20T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXANTHROPICRESCIND-26JUN",
+  "series_ticker": "KXANTHROPICRESCIND",
+  "title": "Will the Department of Defense or the White House announce an official action rescinding, waiving, or materially modifying the supply-chain-risk designation or phaseout directive applicable to Anthropic, so as to permit federal government or Department of Defense use of Anthropic's AI models or services before Aug 1, 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXANTHROPICRESCIND-26JUN-26AUG01",
+    "title": "Will the Department of Defense or the White House announce an official action rescinding, waiving, or materially modifying the supply-chain-risk designation or phaseout directive applicable to Anthropic, so as to permit federal government or Department of Defense use of Anthropic's AI models or services before Aug 1, 2026?",
+    "rules_primary": "If the Department of Defense or the White House announces an official action rescinding, waiving, or materially modifying the supply-chain-risk designation or phaseout directive applicable to Anthropic, so as to permit federal government or Department of Defense use of Anthropic's AI models or services before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXANTHROPICRESCIND-26JUN-26JUL01",
+    "title": "Will the Department of Defense or the White House announce an official action rescinding, waiving, or materially modifying the supply-chain-risk designation or phaseout directive applicable to Anthropic, so as to permit federal government or Department of Defense use of Anthropic's AI models or services before Jul 1, 2026?",
+    "rules_primary": "If the Department of Defense or the White House announces an official action rescinding, waiving, or materially modifying the supply-chain-risk designation or phaseout directive applicable to Anthropic, so as to permit federal government or Department of Defense use of Anthropic's AI models or services before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFDAAPPROVE-CAM",
+  "series_ticker": "KXFDAAPPROVE",
+  "title": "Will the FDA approve camizestrant for HR+/HER2- advanced breast cancer with ESR1 mutation before Jul 1, 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXFDAAPPROVE-CAM-26JUL01",
+    "title": "Will the FDA approve camizestrant for HR+/HER2- advanced breast cancer with ESR1 mutation before Jul 1, 2026?",
+    "rules_primary": "If the FDA approves camizestrant for HR+/HER2- advanced breast cancer with ESR1 mutation for marketing before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "An approval is defined as:\n\nFor new drugs: FDA issuance of an approval letter for a New Drug Application (NDA) or Biologics License Application (BLA)\nFor already-marketed drugs seeking new indications: FDA approval of a supplemental NDA (sNDA) or supplemental BLA (sBLA) for the specific indication referenced\nFor generic drugs: FDA approval of an Abbreviated New Drug Application (ANDA)\nFor biosimilars: FDA approval of a 351(k) application\n\nThe following constitute approvals that trigger the Payout Criterion:\n\nStandard approval (traditional approval based on clinical benefit)\nAccelerated approval (based on surrogate endpoints)\nApproval with Risk Evaluation and Mitigation Strategy (REMS)\nApproval with restricted distribution or indication limitations, except compassionate use/expanded access programs\n\nThe following do NOT constitute approvals:\n\nComplete Response Letters (CRLs) indicating the application cannot be approved in its current form\nApprovable letters that require additional actions before approval\nTentative approvals pending patent or exclusivity expiration\nFDA requests for additional information or studies\nExtension of Prescription Drug User Fee Amendments dates\nApproval for compassionate use or expanded access programs only\nEmergency Use Authorization (EUA) without full approval\nApproval only for export or for use outside the United States\n\nIf the FDA issues a Complete Response Letter before Jul 1, 2026, the market will resolve to No unless the FDA subsequently approves camizestrant for HR+/HER2- advanced breast cancer with ESR1 mutation after addressing the CRL concerns and before Jul 1, 2026.\n\nIf the FDA convenes an Advisory Committee that votes against approval but the FDA approves camizestrant for HR+/HER2- advanced breast cancer with ESR1 mutation anyway before Jul 1, 2026, the market will resolve to Yes.\n\nIf camizestrant for HR+/HER2- advanced breast cancer with ESR1 mutation receives accelerated approval that is later withdrawn before Jul 1, 2026, the market will resolve based on whether the initial accelerated approval occurred after Issuance (Yes), regardless of the subsequent withdrawal.\n\nIf the drug sponsor withdraws the application before FDA action and before Jul 1, 2026, the market will resolve to No immediately.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFDAAPPROVE-GED",
+  "series_ticker": "KXFDAAPPROVE",
+  "title": "Will the FDA approve gedatolisib for HR+/HER2-, PIK3CA wild-type advanced breast cancer before Jan 1, 2027?",
+  "close_time": "2026-07-14T23:36:28Z",
+  "markets": [
+   {
+    "ticker": "KXFDAAPPROVE-GED-27JAN01",
+    "title": "Will the FDA approve gedatolisib for HR+/HER2-, PIK3CA wild-type advanced breast cancer before Jan 1, 2027?",
+    "rules_primary": "If the FDA approves gedatolisib for HR+/HER2-, PIK3CA wild-type advanced breast cancer for marketing before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "An approval is defined as:\n\nFor new drugs: FDA issuance of an approval letter for a New Drug Application (NDA) or Biologics License Application (BLA)\nFor already-marketed drugs seeking new indications: FDA approval of a supplemental NDA (sNDA) or supplemental BLA (sBLA) for the specific indication referenced\nFor generic drugs: FDA approval of an Abbreviated New Drug Application (ANDA)\nFor biosimilars: FDA approval of a 351(k) application\n\nThe following constitute approvals that trigger the Payout Criterion:\n\nStandard approval (traditional approval based on clinical benefit)\nAccelerated approval (based on surrogate endpoints)\nApproval with Risk Evaluation and Mitigation Strategy (REMS)\nApproval with restricted distribution or indication limitations, except compassionate use/expanded access programs\n\nThe following do NOT constitute approvals:\n\nComplete Response Letters (CRLs) indicating the application cannot be approved in its current form\nApprovable letters that require additional actions before approval\nTentative approvals pending patent or exclusivity expiration\nFDA requests for additional information or studies\nExtension of Prescription Drug User Fee Amendments dates\nApproval for compassionate use or expanded access programs only\nEmergency Use Authorization (EUA) without full approval\nApproval only for export or for use outside the United States\n\nIf the FDA issues a Complete Response Letter before Jan 1, 2027, the market will resolve to No unless the FDA subsequently approves gedatolisib for HR+/HER2-, PIK3CA wild-type advanced breast cancer after addressing the CRL concerns and before Jan 1, 2027.\n\nIf the FDA convenes an Advisory Committee that votes against approval but the FDA approves gedatolisib for HR+/HER2-, PIK3CA wild-type advanced breast cancer anyway before Jan 1, 2027, the market will resolve to Yes.\n\nIf gedatolisib for HR+/HER2-, PIK3CA wild-type advanced breast cancer receives accelerated approval that is later withdrawn before Jan 1, 2027, the market will resolve based on whether the initial accelerated approval occurred after Issuance (Yes), regardless of the subsequent withdrawal.\n\nIf the drug sponsor withdraws the application before FDA action and before Jan 1, 2027, the market will resolve to No immediately.",
+    "close_time": "2026-07-14T23:36:28Z"
+   },
+   {
+    "ticker": "KXFDAAPPROVE-GED-26AUG01",
+    "title": "Will the FDA approve gedatolisib for HR+/HER2-, PIK3CA wild-type advanced breast cancer before Aug 1, 2026?",
+    "rules_primary": "If the FDA approves gedatolisib for HR+/HER2-, PIK3CA wild-type advanced breast cancer for marketing before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "An approval is defined as:\n\nFor new drugs: FDA issuance of an approval letter for a New Drug Application (NDA) or Biologics License Application (BLA)\nFor already-marketed drugs seeking new indications: FDA approval of a supplemental NDA (sNDA) or supplemental BLA (sBLA) for the specific indication referenced\nFor generic drugs: FDA approval of an Abbreviated New Drug Application (ANDA)\nFor biosimilars: FDA approval of a 351(k) application\n\nThe following constitute approvals that trigger the Payout Criterion:\n\nStandard approval (traditional approval based on clinical benefit)\nAccelerated approval (based on surrogate endpoints)\nApproval with Risk Evaluation and Mitigation Strategy (REMS)\nApproval with restricted distribution or indication limitations, except compassionate use/expanded access programs\n\nThe following do NOT constitute approvals:\n\nComplete Response Letters (CRLs) indicating the application cannot be approved in its current form\nApprovable letters that require additional actions before approval\nTentative approvals pending patent or exclusivity expiration\nFDA requests for additional information or studies\nExtension of Prescription Drug User Fee Amendments dates\nApproval for compassionate use or expanded access programs only\nEmergency Use Authorization (EUA) without full approval\nApproval only for export or for use outside the United States\n\nIf the FDA issues a Complete Response Letter before Aug 1, 2026, the market will resolve to No unless the FDA subsequently approves gedatolisib for HR+/HER2-, PIK3CA wild-type advanced breast cancer after addressing the CRL concerns and before Aug 1, 2026.\n\nIf the FDA convenes an Advisory Committee that votes against approval but the FDA approves gedatolisib for HR+/HER2-, PIK3CA wild-type advanced breast cancer anyway before Aug 1, 2026, the market will resolve to Yes.\n\nIf gedatolisib for HR+/HER2-, PIK3CA wild-type advanced breast cancer receives accelerated approval that is later withdrawn before Aug 1, 2026, the market will resolve based on whether the initial accelerated approval occurred after Issuance (Yes), regardless of the subsequent withdrawal.\n\nIf the drug sponsor withdraws the application before FDA action and before Aug 1, 2026, the market will resolve to No immediately.",
+    "close_time": "2026-07-14T23:36:28Z"
+   },
+   {
+    "ticker": "KXFDAAPPROVE-GED-26JUL01",
+    "title": "Will the FDA approve gedatolisib for HR+/HER2-, PIK3CA wild-type advanced breast cancer before Jul 1, 2026?",
+    "rules_primary": "If the FDA approves gedatolisib for HR+/HER2-, PIK3CA wild-type advanced breast cancer for marketing before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "An approval is defined as:\n\nFor new drugs: FDA issuance of an approval letter for a New Drug Application (NDA) or Biologics License Application (BLA)\nFor already-marketed drugs seeking new indications: FDA approval of a supplemental NDA (sNDA) or supplemental BLA (sBLA) for the specific indication referenced\nFor generic drugs: FDA approval of an Abbreviated New Drug Application (ANDA)\nFor biosimilars: FDA approval of a 351(k) application\n\nThe following constitute approvals that trigger the Payout Criterion:\n\nStandard approval (traditional approval based on clinical benefit)\nAccelerated approval (based on surrogate endpoints)\nApproval with Risk Evaluation and Mitigation Strategy (REMS)\nApproval with restricted distribution or indication limitations, except compassionate use/expanded access programs\n\nThe following do NOT constitute approvals:\n\nComplete Response Letters (CRLs) indicating the application cannot be approved in its current form\nApprovable letters that require additional actions before approval\nTentative approvals pending patent or exclusivity expiration\nFDA requests for additional information or studies\nExtension of Prescription Drug User Fee Amendments dates\nApproval for compassionate use or expanded access programs only\nEmergency Use Authorization (EUA) without full approval\nApproval only for export or for use outside the United States\n\nIf the FDA issues a Complete Response Letter before Jul 1, 2026, the market will resolve to No unless the FDA subsequently approves gedatolisib for HR+/HER2-, PIK3CA wild-type advanced breast cancer after addressing the CRL concerns and before Jul 1, 2026.\n\nIf the FDA convenes an Advisory Committee that votes against approval but the FDA approves gedatolisib for HR+/HER2-, PIK3CA wild-type advanced breast cancer anyway before Jul 1, 2026, the market will resolve to Yes.\n\nIf gedatolisib for HR+/HER2-, PIK3CA wild-type advanced breast cancer receives accelerated approval that is later withdrawn before Jul 1, 2026, the market will resolve based on whether the initial accelerated approval occurred after Issuance (Yes), regardless of the subsequent withdrawal.\n\nIf the drug sponsor withdraws the application before FDA action and before Jul 1, 2026, the market will resolve to No immediately.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXGPT-OPEN",
+  "series_ticker": "KXGPT",
+  "title": "Will OpenAI release GPT-6 before Jul 1, 2026?",
+  "close_time": "2026-07-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXGPT-OPEN-26JUL01",
+    "title": "Will OpenAI release GPT-6 before Jul 1, 2026?",
+    "rules_primary": "If OpenAI releases A model called GPT-6 or greater before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXGTATRAILER-26MAY",
+  "series_ticker": "KXGTATRAILER",
+  "title": "Will another GTA VI trailer come out before Aug 2026?",
+  "close_time": "2026-08-01T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXGTATRAILER-26AUG",
+    "title": "Will another GTA VI trailer come out before Aug 2026?",
+    "rules_primary": "If a new (at least 30 second) GTA VI trailer is publicly and officially released before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Rockstar Games. Any references to Rockstar Games, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Rockstar Games and Kalshi.",
+    "close_time": "2026-08-01T03:59:00Z"
+   },
+   {
+    "ticker": "KXGTATRAILER-26JUL",
+    "title": "Will another GTA VI trailer come out before Jul 2026?",
+    "rules_primary": "If a new (at least 30 second) GTA VI trailer is publicly and officially released before Jul 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Rockstar Games. Any references to Rockstar Games, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Rockstar Games and Kalshi.",
+    "close_time": "2026-07-01T03:59:00Z"
+   }
+  ]
+ }
+]

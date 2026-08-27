@@ -1,0 +1,601 @@
+[
+ {
+  "event_ticker": "KXWEPFUNDEND-27",
+  "series_ticker": "KXWEPFUNDEND",
+  "title": "Will it be reported by any of the Source Agencies that the U.S. Department of Justice formally terminates the Anti-Weaponization Fund through a legally operative written instrument before Jan 1, 2027?",
+  "close_time": "2026-08-03T10:38:21Z",
+  "markets": [
+   {
+    "ticker": "KXWEPFUNDEND-27",
+    "title": "Will it be reported by any of the Source Agencies that the U.S. Department of Justice formally terminates the Anti-Weaponization Fund through a legally operative written instrument before Jan 1, 2027?",
+    "rules_primary": "If the U.S. Department of Justice formally terminates the Anti-Weaponization Fund through a legally operative written instrument  after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Qualifying instruments include a rescission or replacement of the Attorney General\u2019s order that legally removes the Department\u2019s obligation to establish or operate the Fund, a written modification or termination of the relevant provisions of the Trump v. IRS settlement agreement, or a sworn declaration filed in federal court committing the Department not to establish, fund, or operate the Fund. Statements, testimony, or filings that merely describe the Fund as abandoned or state a present intention not to proceed do not qualify.\n\nOnly reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+    "close_time": "2026-08-03T10:38:21Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXWHCDATTEND-26",
+  "series_ticker": "KXWHCDATTEND",
+  "title": "Will Susie Wiles attend the 2026 White House Correspondents' Dinner?",
+  "close_time": "2026-07-25T16:23:52Z",
+  "markets": [
+   {
+    "ticker": "KXWHCDATTEND-26-SWIL",
+    "title": "Will Susie Wiles attend the 2026 White House Correspondents' Dinner?",
+    "rules_primary": "If Susie Wiles attends the 2026 White House Correspondents' Dinner, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-25T16:23:52Z"
+   },
+   {
+    "ticker": "KXWHCDATTEND-26-SHAN",
+    "title": "Will Sean Hannity attend the 2026 White House Correspondents' Dinner?",
+    "rules_primary": "If Sean Hannity attends the 2026 White House Correspondents' Dinner, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-25T16:23:52Z"
+   },
+   {
+    "ticker": "KXWHCDATTEND-26-JTHU",
+    "title": "Will John Thune attend the 2026 White House Correspondents' Dinner?",
+    "rules_primary": "If John Thune attends the 2026 White House Correspondents' Dinner, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-25T16:23:52Z"
+   },
+   {
+    "ticker": "KXWHCDATTEND-26-ITRU",
+    "title": "Will Ivanka Trump attend the 2026 White House Correspondents' Dinner?",
+    "rules_primary": "If Ivanka Trump attends the 2026 White House Correspondents' Dinner, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-25T16:23:52Z"
+   },
+   {
+    "ticker": "KXWHCDATTEND-26-GSTE",
+    "title": "Will George Stephanopoulos attend the 2026 White House Correspondents' Dinner?",
+    "rules_primary": "If George Stephanopoulos attends the 2026 White House Correspondents' Dinner, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance.",
+    "close_time": "2026-07-25T16:23:52Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPSONG-26AUG08",
+  "series_ticker": "KXTOPSONG",
+  "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 during the week of Aug 8, 2026",
+  "close_time": "2026-08-03T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPSONG-26AUG08-CHO",
+    "title": "Will Choosin' Texas be #1 on the Billboard Hot 100 during the week of Aug 8, 2026",
+    "rules_primary": "If Choosin' Texas is #1 on the Billboard Hot 100  chart for the Week of Aug 8, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-03T03:59:00Z"
+   },
+   {
+    "ticker": "KXTOPSONG-26AUG08-BEE",
+    "title": "Will Been By Now be #1 on the Billboard Hot 100 during the week of Aug 8, 2026",
+    "rules_primary": "If Been By Now is #1 on the Billboard Hot 100  chart for the Week of Aug 8, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-03T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPTALKSCOTUS-26DEC31",
+  "series_ticker": "KXTRUMPTALKSCOTUS",
+  "title": "Will Donald Trump meet (including phone calls) any sitting Supreme Court justice before Aug 1, 2026?",
+  "close_time": "2026-08-01T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPTALKSCOTUS-26DEC31-AUG01",
+    "title": "Will Donald Trump meet (including phone calls) any sitting Supreme Court justice before Aug 1, 2026?",
+    "rules_primary": "If Donald Trump and any sitting Supreme Court justice meet (including phone calls) during after Issuance and before Aug 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "A qualifying meeting must satisfy the following: both persons must be present (physically or virtually, as specified) and engage in communication or interaction\u2014mere presence in the same location without interaction does not constitute a meeting unless otherwise specified. The meeting must be confirmed by at least one Source Agency through official statement, press release, credible media report, or other documented evidence. The meeting must occur at any point during the time period; for meetings that span across the boundary of the time period, any portion of the meeting occurring within the time period is sufficient. Coincidental encounters without purposeful engagement (e.g., passing in a hallway without acknowledgment) do not count. Communication via intermediaries, written letters, or social media do not count unless specified.",
+    "close_time": "2026-08-01T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXBIGBROTHERELIMINATION-26JUL30",
+  "series_ticker": "KXBIGBROTHERELIMINATION",
+  "title": "Will Mallory Aurichio be eliminated from Big Brother Season 28 before Jul 31, 2026?",
+  "close_time": "2026-07-31T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26JUL30-MAL",
+    "title": "Will Mallory Aurichio be eliminated from Big Brother Season 28 before Jul 31, 2026?",
+    "rules_primary": "If Mallory Aurichio is officially eliminated from Big Brother Season 28 Before Jul 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-31T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26JUL30-LYR",
+    "title": "Will Lyric Medeiros be eliminated from Big Brother Season 28 before Jul 31, 2026?",
+    "rules_primary": "If Lyric Medeiros is officially eliminated from Big Brother Season 28 Before Jul 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-31T03:59:00Z"
+   },
+   {
+    "ticker": "KXBIGBROTHERELIMINATION-26JUL30-LAT",
+    "title": "Will LaTrice Verrett be eliminated from Big Brother Season 28 before Jul 31, 2026?",
+    "rules_primary": "If LaTrice Verrett is officially eliminated from Big Brother Season 28 Before Jul 31, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Elimination includes being voted off, evicted, knocked out, removed from further contention, voluntary withdrawal, disqualification, or producer removal. The declaration must be made through official program broadcast, website, verified social media, or press releases. Multiple simultaneous eliminations count. Initial elimination counts even if the contestant later returns. Eliminations immediately reversed in the same episode don't count. Temporary suspensions, medical holds, or being runner-up in the finale don't count as elimination. If the season is canceled without declaring eliminations, the market resolves to No.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-07-31T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFIREWORKRECORD-27",
+  "series_ticker": "KXFIREWORKRECORD",
+  "title": "Will it be reported by any of the Source Agencies that Freedom250\u2019s July 4, 2026 fireworks display is certified or recognized by Guinness World Records as a world record before Jan 1, 2027?",
+  "close_time": "2026-08-07T23:38:49Z",
+  "markets": [
+   {
+    "ticker": "KXFIREWORKRECORD-27-27JAN01",
+    "title": "Will it be reported by any of the Source Agencies that Freedom250\u2019s July 4, 2026 fireworks display is certified or recognized by Guinness World Records as a world record before Jan 1, 2027?",
+    "rules_primary": "If Freedom250\u2019s July 4, 2026 fireworks display is certified or recognized by Guinness World Records as a world record  after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity. Kalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Guinness World Records Limited. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-07T23:38:49Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMRELEASE-26",
+  "series_ticker": "KXALBUMRELEASE",
+  "title": "Will Logic release a new album in 2026?",
+  "close_time": "2026-08-04T23:12:52Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMRELEASE-26-LOG",
+    "title": "Will Logic release a new album in 2026?",
+    "rules_primary": "If Logic releases a new album in 2026, then the market resolves to Yes.",
+    "rules_secondary": "A \u201cnew album\u201d,  must be an original\ncomposition first released during  2026, including new singles, unreleased\ntracks, or collaborations featuring new material. It may take the form of an LP or EP.\nRe-recordings (unless in a new language), remasters, radio edits, clean or explicit releases\nof the same underlying track(s), remixes, live versions, acoustic versions, instrumentals,\ndemos, alternative takes, \u201cartist version\u201d-style releases, or any other full reproduction of a\nsong already available on Spotify before 2026 does NOT meet the Payout\nCriterion. Additionally, uploading albums that have not previously been available on\nSpotify but have been widely publicly available before time period does NOT meet the\nPayout Criterion for a \u201cnew album\u201d",
+    "close_time": "2026-08-04T23:12:52Z"
+   },
+   {
+    "ticker": "KXALBUMRELEASE-26-UZI",
+    "title": "Will Lil Uzi Vert release a new album in 2026?",
+    "rules_primary": "If Lil Uzi Vert releases a new album in 2026, then the market resolves to Yes.",
+    "rules_secondary": "A \u201cnew album\u201d,  must be an original\ncomposition first released during  2026, including new singles, unreleased\ntracks, or collaborations featuring new material. It may take the form of an LP or EP.\nRe-recordings (unless in a new language), remasters, radio edits, clean or explicit releases\nof the same underlying track(s), remixes, live versions, acoustic versions, instrumentals,\ndemos, alternative takes, \u201cartist version\u201d-style releases, or any other full reproduction of a\nsong already available on Spotify before 2026 does NOT meet the Payout\nCriterion. Additionally, uploading albums that have not previously been available on\nSpotify but have been widely publicly available before time period does NOT meet the\nPayout Criterion for a \u201cnew album\u201d",
+    "close_time": "2026-08-01T14:22:57Z"
+   },
+   {
+    "ticker": "KXALBUMRELEASE-26-TYG",
+    "title": "Will Tyga release a new album in 2026?",
+    "rules_primary": "If Tyga releases a new album in 2026, then the market resolves to Yes.",
+    "rules_secondary": "A \u201cnew album\u201d,  must be an original\ncomposition first released during  2026, including new singles, unreleased\ntracks, or collaborations featuring new material. It may take the form of an LP or EP.\nRe-recordings (unless in a new language), remasters, radio edits, clean or explicit releases\nof the same underlying track(s), remixes, live versions, acoustic versions, instrumentals,\ndemos, alternative takes, \u201cartist version\u201d-style releases, or any other full reproduction of a\nsong already available on Spotify before 2026 does NOT meet the Payout\nCriterion. Additionally, uploading albums that have not previously been available on\nSpotify but have been widely publicly available before time period does NOT meet the\nPayout Criterion for a \u201cnew album\u201d",
+    "close_time": "2026-07-31T15:49:13Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXAUGRECESSCAB-26AUG08",
+  "series_ticker": "KXAUGRECESSCAB",
+  "title": "Will the number of Cabinet nominees confirmed by the Senate be exactly 3 after Issuance and before the 2026 August recess?",
+  "close_time": "2026-08-08T13:01:38Z",
+  "markets": [
+   {
+    "ticker": "KXAUGRECESSCAB-26AUG08-E3",
+    "title": "Will the number of Cabinet nominees confirmed by the Senate be exactly 3 after Issuance and before the 2026 August recess?",
+    "rules_primary": "If the number of Cabinet nominees confirmed by the Senate is exactly 3 after Issuance and before the 2026 August recess, then the market resolves to Yes.",
+    "rules_secondary": "Cabinet-level positions, such as the Director of National Intelligence, are included. \u201cBefore August recess\u201d means before the Senate adjourns following its final substantive session preceding the 2026 August state work period.",
+    "close_time": "2026-08-08T13:01:38Z"
+   },
+   {
+    "ticker": "KXAUGRECESSCAB-26AUG08-E2",
+    "title": "Will the number of Cabinet nominees confirmed by the Senate be exactly 2 after Issuance and before the 2026 August recess?",
+    "rules_primary": "If the number of Cabinet nominees confirmed by the Senate is exactly 2 after Issuance and before the 2026 August recess, then the market resolves to Yes.",
+    "rules_secondary": "Cabinet-level positions, such as the Director of National Intelligence, are included. \u201cBefore August recess\u201d means before the Senate adjourns following its final substantive session preceding the 2026 August state work period.",
+    "close_time": "2026-08-08T13:01:38Z"
+   },
+   {
+    "ticker": "KXAUGRECESSCAB-26AUG08-E1",
+    "title": "Will the number of Cabinet nominees confirmed by the Senate be exactly 1 after Issuance and before the 2026 August recess?",
+    "rules_primary": "If the number of Cabinet nominees confirmed by the Senate is exactly 1 after Issuance and before the 2026 August recess, then the market resolves to Yes.",
+    "rules_secondary": "Cabinet-level positions, such as the Director of National Intelligence, are included. \u201cBefore August recess\u201d means before the Senate adjourns following its final substantive session preceding the 2026 August state work period.",
+    "close_time": "2026-08-08T13:01:38Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXSENATECONFIRM-26APR29",
+  "series_ticker": "KXSENATECONFIRM",
+  "title": "Will Brett Matsumoto be confirmed as Commissioner of Labor Statistics before Aug 8, 2026?",
+  "close_time": "2026-08-08T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXSENATECONFIRM-26APR29-BMAT",
+    "title": "Will Brett Matsumoto be confirmed as Commissioner of Labor Statistics before Aug 8, 2026?",
+    "rules_primary": "If Brett Matsumoto is the first person confirmed as Commissioner of Labor Statistics before Aug 8, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If a nomination is withdrawn before the deadline, that market immediately resolves to No.",
+    "close_time": "2026-08-08T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXFRONTIER-FRONB",
+  "series_ticker": "KXFRONTIER",
+  "title": "When will any AI solves at least 1 Frontier Math: Open Problems?",
+  "close_time": "2026-07-31T19:09:40Z",
+  "markets": [
+   {
+    "ticker": "KXFRONTIER-FRONB-27JAN01",
+    "title": "When will any AI solves at least 1 Frontier Math: Open Problems?",
+    "rules_primary": "If any AI solves at least 1 Frontier Math: Open Problems after issuance and before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "At the time of issuance, TWO FrontierMath: Open Problems have been solved by AI (a Ramsey-style problem on hypergraphs & The 2-adic Absolute Galois Group); for the purpose of this market, additional AI models subsequently solving the same problem will not count.",
+    "close_time": "2026-07-31T19:09:40Z"
+   },
+   {
+    "ticker": "KXFRONTIER-FRONB-26SEP01",
+    "title": "When will any AI solves at least 1 Frontier Math: Open Problems?",
+    "rules_primary": "If any AI solves at least 1 Frontier Math: Open Problems after issuance and before Sep 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "At the time of issuance, TWO FrontierMath: Open Problems have been solved by AI (a Ramsey-style problem on hypergraphs & The 2-adic Absolute Galois Group); for the purpose of this market, additional AI models subsequently solving the same problem will not count.",
+    "close_time": "2026-07-31T19:09:40Z"
+   },
+   {
+    "ticker": "KXFRONTIER-FRONB-26NOV01",
+    "title": "When will any AI solves at least 1 Frontier Math: Open Problems?",
+    "rules_primary": "If any AI solves at least 1 Frontier Math: Open Problems after issuance and before Nov 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "At the time of issuance, TWO FrontierMath: Open Problems have been solved by AI (a Ramsey-style problem on hypergraphs & The 2-adic Absolute Galois Group); for the purpose of this market, additional AI models subsequently solving the same problem will not count.",
+    "close_time": "2026-07-31T19:09:40Z"
+   },
+   {
+    "ticker": "KXFRONTIER-FRONB-26DEC01",
+    "title": "When will any AI solves at least 1 Frontier Math: Open Problems?",
+    "rules_primary": "If any AI solves at least 1 Frontier Math: Open Problems after issuance and before Dec 1, 2026, then the market resolves to Yes.",
+    "rules_secondary": "At the time of issuance, TWO FrontierMath: Open Problems have been solved by AI (a Ramsey-style problem on hypergraphs & The 2-adic Absolute Galois Group); for the purpose of this market, additional AI models subsequently solving the same problem will not count.",
+    "close_time": "2026-07-31T19:09:40Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMC-BEA",
+  "series_ticker": "KXMC",
+  "title": "Beast of Reincarnation Metacritic score?",
+  "close_time": "2026-08-10T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXMC-BEA-75",
+    "title": "Beast of Reincarnation Metacritic score?",
+    "rules_primary": "If the Metascore for Beast of Reincarnation is Above 75 seven days after release at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Important Information: If no platform is specified, then the value used will be the first one listed on the\nMetacritic site on the page for Beast of Reincarnation.\n\nThis market and these products have not been endorsed by metacritic. Any references to metacritic, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between metacritic and Kalshi.",
+    "close_time": "2026-08-10T14:00:00Z"
+   },
+   {
+    "ticker": "KXMC-BEA-70",
+    "title": "Beast of Reincarnation Metacritic score?",
+    "rules_primary": "If the Metascore for Beast of Reincarnation is Above 70 seven days after release at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Important Information: If no platform is specified, then the value used will be the first one listed on the\nMetacritic site on the page for Beast of Reincarnation.\n\nThis market and these products have not been endorsed by metacritic. Any references to metacritic, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between metacritic and Kalshi.",
+    "close_time": "2026-08-10T14:00:00Z"
+   },
+   {
+    "ticker": "KXMC-BEA-65",
+    "title": "Beast of Reincarnation Metacritic score?",
+    "rules_primary": "If the Metascore for Beast of Reincarnation is Above 65 seven days after release at 10:00AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Important Information: If no platform is specified, then the value used will be the first one listed on the\nMetacritic site on the page for Beast of Reincarnation.\n\nThis market and these products have not been endorsed by metacritic. Any references to metacritic, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between metacritic and Kalshi.",
+    "close_time": "2026-08-10T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOPALBUM-26AUG08",
+  "series_ticker": "KXTOPALBUM",
+  "title": "Will you seem pretty sad for a girl so in love be #1 on the Billboard 200 during the week of Aug 8, 2026",
+  "close_time": "2026-08-03T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXTOPALBUM-26AUG08-YOU",
+    "title": "Will you seem pretty sad for a girl so in love be #1 on the Billboard 200 during the week of Aug 8, 2026",
+    "rules_primary": "If you seem pretty sad for a girl so in love is #1 on the Billboard 200  chart for the Week of Aug 8, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-03T03:59:00Z"
+   },
+   {
+    "ticker": "KXTOPALBUM-26AUG08-MUS",
+    "title": "Will MUSIC, FASHION, FILM be #1 on the Billboard 200 during the week of Aug 8, 2026",
+    "rules_primary": "If MUSIC, FASHION, FILM is #1 on the Billboard 200  chart for the Week of Aug 8, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-03T03:59:00Z"
+   },
+   {
+    "ticker": "KXTOPALBUM-26AUG08-IMT",
+    "title": "Will I'm The Problem be #1 on the Billboard 200 during the week of Aug 8, 2026",
+    "rules_primary": "If I'm The Problem is #1 on the Billboard 200  chart for the Week of Aug 8, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-03T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPADMINLEAVE-26DEC31",
+  "series_ticker": "KXTRUMPADMINLEAVE",
+  "title": "Will Todd Blanche leaves Deputy Attorney General in before 2027?",
+  "close_time": "2026-08-10T19:06:35Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPADMINLEAVE-26DEC31-TBLA",
+    "title": "Will Todd Blanche leaves Deputy Attorney General in before 2027?",
+    "rules_primary": "If Todd Blanche leaves as Deputy Attorney General before 2027, then the market resolves to Yes.",
+    "rules_secondary": "Todd Blanche must have an actual departure date by vacating the role within the time period. \n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-08-10T19:06:35Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTOP10BBSPOTS-26AUG15-ARI",
+  "series_ticker": "KXTOP10BBSPOTS",
+  "title": "How many spots on the Billboard Hot 100's top 10 will Ariana Grande hold for the week of Aug 15, 2026?",
+  "close_time": "2026-08-11T17:48:10Z",
+  "markets": [
+   {
+    "ticker": "KXTOP10BBSPOTS-26AUG15-ARI-5",
+    "title": "How many spots on the Billboard Hot 100's top 10 will Ariana Grande hold for the week of Aug 15, 2026?",
+    "rules_primary": "If Ariana Grande has exactly 5 songs in the top 10 of the Billboard Hot 100 chart dated Aug 15, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-11T17:48:10Z"
+   },
+   {
+    "ticker": "KXTOP10BBSPOTS-26AUG15-ARI-4",
+    "title": "How many spots on the Billboard Hot 100's top 10 will Ariana Grande hold for the week of Aug 15, 2026?",
+    "rules_primary": "If Ariana Grande has exactly 4 songs in the top 10 of the Billboard Hot 100 chart dated Aug 15, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-11T17:48:10Z"
+   },
+   {
+    "ticker": "KXTOP10BBSPOTS-26AUG15-ARI-3",
+    "title": "How many spots on the Billboard Hot 100's top 10 will Ariana Grande hold for the week of Aug 15, 2026?",
+    "rules_primary": "If Ariana Grande has exactly 3 songs in the top 10 of the Billboard Hot 100 chart dated Aug 15, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-11T17:48:10Z"
+   },
+   {
+    "ticker": "KXTOP10BBSPOTS-26AUG15-ARI-2",
+    "title": "How many spots on the Billboard Hot 100's top 10 will Ariana Grande hold for the week of Aug 15, 2026?",
+    "rules_primary": "If Ariana Grande has exactly 2 songs in the top 10 of the Billboard Hot 100 chart dated Aug 15, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-11T17:48:10Z"
+   },
+   {
+    "ticker": "KXTOP10BBSPOTS-26AUG15-ARI-1",
+    "title": "How many spots on the Billboard Hot 100's top 10 will Ariana Grande hold for the week of Aug 15, 2026?",
+    "rules_primary": "If Ariana Grande has exactly 1 songs in the top 10 of the Billboard Hot 100 chart dated Aug 15, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-11T17:48:10Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMLABELSHARE-W3026JUL30",
+  "series_ticker": "KXMLABELSHARE",
+  "title": "Will SME's market share be above 25% on the Hits Daily Double: Hits Top 50 chart week ending Jul 30, 2026?",
+  "close_time": "2026-07-31T21:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXMLABELSHARE-W3026JUL30-SME",
+    "title": "Will SME's market share be above 25% on the Hits Daily Double: Hits Top 50 chart week ending Jul 30, 2026?",
+    "rules_primary": "If SME's market share is above 25% on the Hits Daily Double: Hits Top 50 chart's week ending Jul 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Market share percentages are shown on the Hits Daily Double: Hits Top 50 chart page for each week. The chart dated Thursday is usually published on Friday.\n\nThis market and these products have not been endorsed by SME and Hits Daily Double. Any references to SME and Hits Daily Double or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between SME and Hits Daily Double and Kalshi.",
+    "close_time": "2026-07-31T21:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXALBUMDEBUT-26AUG08-CHA",
+  "series_ticker": "KXALBUMDEBUT",
+  "title": "Will Charli xcx's 'Music, Fashion, Film' debut at #1",
+  "close_time": "2026-08-03T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXALBUMDEBUT-26AUG08-CHA",
+    "title": "Will Charli xcx's 'Music, Fashion, Film' debut at #1",
+    "rules_primary": "If Music, Fashion, Film is the #1 album on the Billboard 200 chart for the week of August 08, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi.",
+    "close_time": "2026-08-03T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXCLARITYVOTE-26JUL",
+  "series_ticker": "KXCLARITYVOTE",
+  "title": "Will the Senate vote on CLARITY Act?",
+  "close_time": "2026-08-08T13:03:08Z",
+  "markets": [
+   {
+    "ticker": "KXCLARITYVOTE-26JUL-AUG08",
+    "title": "Will the Senate vote on CLARITY Act?",
+    "rules_primary": "If the Senate has conducted any recorded vote on the CLARITY Act after Issuance and before Aug 8, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This includes:\nRoll call votes\nRecorded votes\nYea-and-nay votes\nElectronic votes (in the House)\nDivision/standing votes\n\nThe following do NOT satisfy the Payout Criterion:\nVoice votes where individual member positions are not recorded\nUnanimous consent agreements without a recorded vote\nVotes in committee, unless the bill/motion specifically refers to a committee vote\nProcedural determinations by the presiding officer\nDeemed passage without an actual vote\n\nFor clarity:\nA vote on cloture regarding the bill/motion, including cloture on a motion to proceed to the bill/motion, DOES satisfy the Payout Criterion\nA vote on the rule governing debate of the bill/motion DOES satisfy the Payout Criterion if the bill/motion specifically refers to that rule\nA vote on a motion to proceed to the bill/motion DOES satisfy the Payout Criterion\nA vote on final passage DOES satisfy the Payout Criterion\nA vote on an amendment to the bill/motion does NOT satisfy the Payout Criterion unless the bill/motion specifically refers to that amendment",
+    "close_time": "2026-08-08T13:03:08Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXGROK-GROK47",
+  "series_ticker": "KXGROK",
+  "title": "Will SpaceXAI release Grok 4.7 before Aug 21, 2026?",
+  "close_time": "2026-08-21T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXGROK-GROK47-26AUG21",
+    "title": "Will SpaceXAI release Grok 4.7 before Aug 21, 2026?",
+    "rules_primary": "If SpaceXAI releases Grok 4.7 before Aug 21, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-08-21T03:59:00Z"
+   },
+   {
+    "ticker": "KXGROK-GROK47-26AUG14",
+    "title": "Will SpaceXAI release Grok 4.7 before Aug 14, 2026?",
+    "rules_primary": "If SpaceXAI releases Grok 4.7 before Aug 14, 2026, then the market resolves to Yes.",
+    "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+    "close_time": "2026-08-14T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXACTBLUETOP-26AUG07",
+  "series_ticker": "KXACTBLUETOP",
+  "title": "Will Troy Jackson be the top ActBlue fundraiser on Aug 7 at 10:00 AM ET?",
+  "close_time": "2026-08-07T13:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXACTBLUETOP-26AUG07-TJAC",
+    "title": "Will Troy Jackson be the top ActBlue fundraiser on Aug 7 at 10:00 AM ET?",
+    "rules_primary": "If Troy Jackson is the top ActBlue fundraiser on Aug 7 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Fundraiser rankings are determined by the \u201cTop fundraisers from this week\u201d list displayed on ActBlue\u2019s official directory page. The leftmost candidate is considered the top fundraiser.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with ActBlue. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-07T13:59:00Z"
+   },
+   {
+    "ticker": "KXACTBLUETOP-26AUG07-JTAL",
+    "title": "Will James Talarico be the top ActBlue fundraiser on Aug 7 at 10:00 AM ET?",
+    "rules_primary": "If James Talarico is the top ActBlue fundraiser on Aug 7 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Fundraiser rankings are determined by the \u201cTop fundraisers from this week\u201d list displayed on ActBlue\u2019s official directory page. The leftmost candidate is considered the top fundraiser.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with ActBlue. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-07T13:59:00Z"
+   },
+   {
+    "ticker": "KXACTBLUETOP-26AUG07-JOSS",
+    "title": "Will Jon Ossoff be the top ActBlue fundraiser on Aug 7 at 10:00 AM ET?",
+    "rules_primary": "If Jon Ossoff is the top ActBlue fundraiser on Aug 7 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Fundraiser rankings are determined by the \u201cTop fundraisers from this week\u201d list displayed on ActBlue\u2019s official directory page. The leftmost candidate is considered the top fundraiser.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with ActBlue. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-07T13:59:00Z"
+   },
+   {
+    "ticker": "KXACTBLUETOP-26AUG07-AELS",
+    "title": "Will Abdul El-Sayed be the top ActBlue fundraiser on Aug 7 at 10:00 AM ET?",
+    "rules_primary": "If Abdul El-Sayed is the top ActBlue fundraiser on Aug 7 at 10:00 AM ET, then the market resolves to Yes.",
+    "rules_secondary": "Fundraiser rankings are determined by the \u201cTop fundraisers from this week\u201d list displayed on ActBlue\u2019s official directory page. The leftmost candidate is considered the top fundraiser.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with ActBlue. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-07T13:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXARENASCORE-GROK46",
+  "series_ticker": "KXARENASCORE",
+  "title": "Grok 4.6 debut arena score?",
+  "close_time": "2026-08-12T15:56:06Z",
+  "markets": [
+   {
+    "ticker": "KXARENASCORE-GROK46-1490",
+    "title": "Grok 4.6 debut arena score?",
+    "rules_primary": "If Grok 4.6 scores above 1490 on Arena AI Text Score (Remove Style Control) Before Sep 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If multiple qualifying models are added, the highest scoring model will be used for resolution. Models added following the initial qualifying model will not count.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-12T15:56:06Z"
+   },
+   {
+    "ticker": "KXARENASCORE-GROK46-1485",
+    "title": "Grok 4.6 debut arena score?",
+    "rules_primary": "If Grok 4.6 scores above 1485 on Arena AI Text Score (Remove Style Control) Before Sep 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If multiple qualifying models are added, the highest scoring model will be used for resolution. Models added following the initial qualifying model will not count.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-12T15:56:06Z"
+   },
+   {
+    "ticker": "KXARENASCORE-GROK46-1480",
+    "title": "Grok 4.6 debut arena score?",
+    "rules_primary": "If Grok 4.6 scores above 1480 on Arena AI Text Score (Remove Style Control) Before Sep 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If multiple qualifying models are added, the highest scoring model will be used for resolution. Models added following the initial qualifying model will not count.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-12T15:56:06Z"
+   },
+   {
+    "ticker": "KXARENASCORE-GROK46-1465",
+    "title": "Grok 4.6 debut arena score?",
+    "rules_primary": "If Grok 4.6 scores above 1465 on Arena AI Text Score (Remove Style Control) Before Sep 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If multiple qualifying models are added, the highest scoring model will be used for resolution. Models added following the initial qualifying model will not count.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-12T15:56:06Z"
+   },
+   {
+    "ticker": "KXARENASCORE-GROK46-1460",
+    "title": "Grok 4.6 debut arena score?",
+    "rules_primary": "If Grok 4.6 scores above 1460 on Arena AI Text Score (Remove Style Control) Before Sep 30, 2026, then the market resolves to Yes.",
+    "rules_secondary": "If multiple qualifying models are added, the highest scoring model will be used for resolution. Models added following the initial qualifying model will not count.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-12T15:56:06Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXTRUMPUFC-26AUG",
+  "series_ticker": "KXTRUMPUFC",
+  "title": "Will Donald Trump attend UFC 330?",
+  "close_time": "2026-08-16T14:00:00Z",
+  "markets": [
+   {
+    "ticker": "KXTRUMPUFC-26AUG-DJT",
+    "title": "Will Donald Trump attend UFC 330?",
+    "rules_primary": "If Donald Trump attends UFC 330, then the market resolves to Yes.",
+    "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance. Kalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Ultimate Fighting Championship (UFC) or TKO Group Holdings. All trademarks, logos, and brand names are the property of their respective owners.",
+    "close_time": "2026-08-16T14:00:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXABRAHAMSA-27",
+  "series_ticker": "KXABRAHAMSA",
+  "title": "Will Israel and Colombia normalize relations before Jan 1, 2027?",
+  "close_time": "2026-08-17T14:37:40Z",
+  "markets": [
+   {
+    "ticker": "KXABRAHAMSA-27-JAN01-COLO",
+    "title": "Will Israel and Colombia normalize relations before Jan 1, 2027?",
+    "rules_primary": "If Israel and Colombia normalize diplomatic relations before Jan 1, 2027, then the market resolves to Yes.",
+    "rules_secondary": "The agreement must be ratified before Jan 1, 2027 to be included within the Payout Criterion.",
+    "close_time": "2026-08-17T14:37:40Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXPIRROOUT-26AUG",
+  "series_ticker": "KXPIRROOUT",
+  "title": "Will Jeanine Pirro announce their departure as United States Attorney for the District of Columbia before Aug 7, 2026?",
+  "close_time": "2026-08-07T03:59:00Z",
+  "markets": [
+   {
+    "ticker": "KXPIRROOUT-26AUG-26AUG07",
+    "title": "Will Jeanine Pirro announce their departure as United States Attorney for the District of Columbia before Aug 7, 2026?",
+    "rules_primary": "If Jeanine Pirro leaves as United States Attorney for the District of Columbia before Aug 7, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market resolves based on when the departure is publicly announced or officially communicated, regardless of the effective date.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-08-07T03:59:00Z"
+   },
+   {
+    "ticker": "KXPIRROOUT-26AUG-26AUG06",
+    "title": "Will Jeanine Pirro announce their departure as United States Attorney for the District of Columbia before Aug 6, 2026?",
+    "rules_primary": "If Jeanine Pirro leaves as United States Attorney for the District of Columbia before Aug 6, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market resolves based on when the departure is publicly announced or officially communicated, regardless of the effective date.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-08-06T03:59:00Z"
+   },
+   {
+    "ticker": "KXPIRROOUT-26AUG-26AUG05",
+    "title": "Will Jeanine Pirro announce their departure as United States Attorney for the District of Columbia before Aug 5, 2026?",
+    "rules_primary": "If Jeanine Pirro leaves as United States Attorney for the District of Columbia before Aug 5, 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market resolves based on when the departure is publicly announced or officially communicated, regardless of the effective date.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+    "close_time": "2026-08-05T03:59:00Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXWEEKSNUM1-26DEC26-CHO",
+  "series_ticker": "KXWEEKSNUM1",
+  "title": "Will Choosin' Texas by Ella Langley spend 17 weeks at #1 on the Billboard Hot 100 in 2026?",
+  "close_time": "2026-08-11T17:49:41Z",
+  "markets": [
+   {
+    "ticker": "KXWEEKSNUM1-26DEC26-CHO-17",
+    "title": "Will Choosin' Texas by Ella Langley spend 17 weeks at #1 on the Billboard Hot 100 in 2026?",
+    "rules_primary": "If Choosin' Texas by Ella Langley spends at least 17 week(s) at the #1 position on the Billboard Hot 100 in 2026, then the market resolves to Yes.",
+    "rules_secondary": "This market and these products have not been endorsed by Billboard. Any references to \"Billboard\", the \"Hot 100,\" or any other associated marks are descriptive only, and do not indicate an endorsement of this product or any affiliation between Billboard and Kalshi. For the purposes of this market, the last Billboard chart that will be included is the one published for Dec 26, 2026.",
+    "close_time": "2026-08-11T17:49:41Z"
+   }
+  ]
+ },
+ {
+  "event_ticker": "KXMOVIECAST-XMAN29",
+  "series_ticker": "KXMOVIECAST",
+  "title": "Will Sadie Sink be cast in the next official X-Men motion picture produced by Marvel Studios?",
+  "close_time": "2026-08-17T15:32:19Z",
+  "markets": [
+   {
+    "ticker": "KXMOVIECAST-XMAN29-SAD",
+    "title": "Will Sadie Sink be cast in the next official X-Men motion picture produced by Marvel Studios?",
+    "rules_primary": "If Sadie Sink is cast in the next official X-Men motion picture produced by Marvel Studios before Jan 1, 2029, then the market resolves to Yes.",
+    "rules_secondary": "",
+    "close_time": "2026-08-17T15:32:19Z"
+   }
+  ]
+ }
+]

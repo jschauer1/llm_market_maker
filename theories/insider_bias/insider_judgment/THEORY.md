@@ -510,6 +510,63 @@ and full breakdown in Learnings below.
 
 ## Learnings
 
+- 2026-08-26 — **The campaign's authoritative summary lives in
+  `backtests/RESULTS.md`** — read it before quoting any number from the
+  entries below. It carries the corrected statistics (Holm over the
+  pre-registered family: the bet rule and moderate-NO survive,
+  strong-NO alone and the divergence flag do not; event-clustered
+  significance ≈ p=0.01, not the row-level p<0.0001), the attribution
+  ladder, the timing verdict, the gate validation (99/100 weak), and
+  the contamination audit (clean; the batch-as-of wrinkle bounded, rule
+  holds at +4.65 on the clean subset).
+- 2026-08-26 — **Full-population judgment coverage; the pre-registered
+  NO-side rule replicated out of sample.** All 457 gate-plausible events
+  from the tier-A walk are now judged (runs `...judged-s200`, `-s200b`,
+  `-s57`; 1,561 market rows). The bet rule pre-registered after s200 —
+  strong-or-moderate verdict, NO-side favorite, first-qualifying entry —
+  scored **+4.92pts net (p=0.0008, 312 rows / 85 events) on the 257
+  events judged after pre-registration**, vs +5.34 (p=0.0018) on the
+  round that generated it; pooled +5.10, p<0.0001, win rate 0.922 at
+  mean ask 0.863. Moderate-NO replicated stronger (+5.13, p=0.003);
+  strong-NO in direction but weaker (+4.29, p=0.096). The NO bucket
+  ladder is monotone and significant on the full population (+6.50 /
+  +4.52 / −1.96); every YES cell stays flat-to-negative — judgment adds
+  selection only on the NO side, consistent with the optimism-tax
+  mechanism and with strong-YES's bleed tracing to sealed-tabulation
+  award families (see 2026-08-26 log). Timing: uniform 3-2d late entry
+  underperforms first-qualifying entry on the full set (+2.32 vs
+  +5.10); only strong-NO tolerates late entry. Promotion still requires
+  live settlements; the proposed v4 procedure (NO-side-only betting
+  rule, dtc + divergence flag recorded per row, award families gated)
+  awaits the user's ratification.
+- 2026-08-25/26 — **Two backtests at scale: screen+gate is breakeven,
+  and judgment shows its first predicted ordering.** Tier A
+  (`backtest-2026-08-25-insider-fullcov`): every non-mention survivor in
+  the API-reachable window (n=3,181 settled, 831 events) — the gate
+  discriminates (+0.71pts net kept vs −2.18 gated, ~2.9pt gap in the
+  predicted direction), but the kept slice is fair-priced once event
+  clustering is respected (t_ev −0.25); the old 84-row sample's +4.40
+  was small-sample noise, exactly like the sibling theory's +5.48. So
+  the thesis rests entirely on stage-2/3 selection. Tier B
+  (`backtest-2026-08-26-insider-judged-s200`): 200 seeded gate-plausible
+  events judged by claude-sonnet-5 through the committed analysis
+  prompt, web search off, blind payloads, per-batch as-of dates, with a
+  committed mechanism context sheet substituting for search (all
+  artifacts under `backtests/judged-s200/`). Result: **buckets order
+  outcomes as the thesis predicts** — strong +5.09pts net (n=111 rows /
+  24 events, row-level p=0.044), moderate +0.85, weak −0.79; event-level
+  means +2.88 / −0.56 / −2.26. Two sharper cells, both post-hoc and both
+  echoing the session's optimism-tax finding: strong-NO +8.59 (n=83,
+  p=0.006) vs strong-YES −5.30; and events flagged
+  `rules_diverge_from_title` scored +1.97 with the strongest clustered
+  stat of the day (t_ev +2.90, 26 events) — the "read the rules, not
+  the title" claim finally has a measurement. Honest limits: 24 strong
+  events is thin, clustered support for the bucket ordering itself is
+  weak (t_ev +0.66), and the sharp cells came from slicing. Status
+  stays `testing`; what this earns is a pre-registered live tracking
+  plan — strong (and strong-NO specifically) as the buckets that must
+  repeat live before any promotion, with the divergence flag recorded
+  on every live row.
 - 2026-08-23 — Ported from `kalshi_trader`. The reality-TV weighting is
   recorded here as a stage-2 heuristic rather than encoded, because it has not
   yet been measured against the endorsed/rejected split. Migrate it into

@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXWEPFUNDEND-27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Requires reporting by a qualifying Source Agency of a specific legal instrument; DOJ could act without the required instrument type or without timely qualifying coverage before the deadline.",
+  "rationale": "DOJ leadership would know before any public report if it formally terminates the fund, but nothing indicates that decision has actually been made -- this is a discretionary act nobody has yet committed to, not a sealed-but-undisclosed fact. The narrow qualifying-instrument definition adds resolution risk on top of the underlying uncertainty.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXWHCDATTEND-26",
+  "insider_group": "The individual's own staff/scheduling office and event organizers",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Personal attendance at a scheduled dinner is known in advance to each person's staff and to event organizers with RSVP lists, but plans for public figures remain changeable up to the day of. No named group has certain, final knowledge this far out, so this sits below strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPSONG-26AUG08",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Billboard publishes the chart itself several days after the tracking week and after this market's close; industry mid-week tracking gives a forecast, not certainty.",
+  "rationale": "The Hot 100 #1 is an aggregate of millions of listeners' streaming/sales behavior; no single group decides it. Labels and chart-watchers can forecast late in the tracking week from partial data, but that is prediction, not knowledge of an already-settled fact.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPTALKSCOTUS-26DEC31",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "Event ticker suffix (26DEC31) does not match the actual close date (Aug 1, 2026) or the title's window -- likely a template artifact, not a substantive rules conflict.",
+  "resolution_source_risk": null,
+  "rationale": "Whether Trump and a sitting justice meet or speak by phone is partly scheduled (staff would know a calendared meeting) but also genuinely spontaneous (a phone call can happen with no advance record). No specific named meeting is evidenced in the payload, so there is no concrete group that already knows the answer.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBIGBROTHERELIMINATION-26JUL30",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "Rules boilerplate references \"the Governing League\" -- a mismatched template artifact, not related to Big Brother.",
+  "resolution_source_risk": null,
+  "rationale": "Big Brother eviction votes are cast live on broadcast, so who is actually eliminated is genuinely undecided until airtime even though house events leading up to it are taped and known to production. Without evidence a specific taped eviction has already occurred for this window, this stays weak.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFIREWORKRECORD-27",
+  "insider_group": "Guinness World Records adjudicators and Freedom250 event organizers",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Requires a qualifying Source Agency to report the certification specifically; Guinness certification review can take weeks to months after the July 4 display, and a decision reached internally may not be reported before the deadline.",
+  "rationale": "Guinness and the event organizers would know the certification outcome before any public report, similar to other 'reported by source agencies' markets, but certification review timelines are long and there's no evidence the process has concluded yet as of today.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMRELEASE-26",
+  "insider_group": "The artist's team and label",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Artist teams and labels know release plans internally well ahead of a public drop, and leaks/announcements are common in this industry. But plans for these three artists change late and nothing in the payload indicates a finished, scheduled album for any of them, so this falls short of strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXAUGRECESSCAB-26AUG08",
+  "insider_group": "Senate majority leadership / whip office",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Senate leadership controls floor scheduling and has a good advance whip count of which nominees will get confirmation votes before recess, but an exact count (1 vs 2 vs 3) is more granular than a simple pass/fail and can still shift with scheduling slippage.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSENATECONFIRM-26APR29",
+  "insider_group": "Senate majority leadership / whip office",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": "Ticker prefix (26APR29) doesn't match the actual close date (Aug 8, 2026) -- likely a stale series-naming artifact, not a rules conflict.",
+  "resolution_source_risk": null,
+  "rationale": "Confirmation timing is largely a scheduling decision controlled by Senate leadership, who track vote counts closely, but the market also requires this specific nominee to be the *first* confirmed, adding uncertainty leadership doesn't fully control (withdrawal risk is called out explicitly in the rules).",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFRONTIER-FRONB",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolution depends on public disclosure that a new Frontier Math Open Problem was solved; a lab could achieve this internally without any near-term announcement.",
+  "rationale": "Solving an unsolved math problem is an unpredictable research outcome, not a scheduled decision -- no named group can be said to already know before it happens, and even a lab that solved it internally may not be the source of a timely public disclosure. This is closer to a rate/achievement question than a knowledge question.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMC-BEA",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Metacritic aggregates critic reviews under embargo through the seven-day window; the final average isn't fixed until that window closes.",
+  "rationale": "Metacritic scores aggregate many independent critics' scores under embargo -- no single group, including the publisher, knows the final average before critics' reviews are compiled. This is the textbook aggregate-consumer-behavior case the thesis says NO to.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPALBUM-26AUG08",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "Rules boilerplate references \"Hot 100\" despite this being a Billboard 200 album chart market -- a copy-paste template artifact, not a substantive divergence.",
+  "resolution_source_risk": "Billboard 200 publishes after this market's close; only partial mid-week sales data is available to insiders before then.",
+  "rationale": "Billboard 200 #1 is decided by aggregate consumer purchases/streams, not any single group's decision. Labels can forecast from mid-week sales tracking but do not know the final number with certainty.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPADMINLEAVE-26DEC31",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "Title/rules frame this as \"before 2027\" but the market's actual close_time is Aug 10, 2026 -- a much shorter effective window than the title implies.",
+  "resolution_source_risk": null,
+  "rationale": "A resignation or removal would be decided by a small circle (the principal, DOJ leadership) before any announcement, which is the strong sub-case for this family -- but nothing in the payload suggests such a decision has actually been made. Absent evidence of an already-made decision, this remains a long-window rate question rather than a knowledge question.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOP10BBSPOTS-26AUG15-ARI",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Chart publishes after mid-week tracking; the exact top-10 count is not fixed until Billboard's official chart date.",
+  "rationale": "How many top-10 spots Ariana Grande holds is an aggregate outcome of chart-wide consumer behavior across many songs, not a decision anyone makes. Industry insiders can estimate from partial data late in the week but cannot know the exact count in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMLABELSHARE-W3026JUL30",
+  "insider_group": "Record label / distributor sales-tracking teams",
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "The chart is described as \"usually\" published the day after the tracking week ends, which is close to this market's close time -- timing could slip.",
+  "rationale": "Market-share trackers aggregate many independent releases' real-time sales; labels see their own numbers continuously but not a competitor's full picture, so no single group knows the aggregate figure with confidence before the chart compiles it. This is the same aggregate-consumer-behavior case as the other chart markets.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMDEBUT-26AUG08-CHA",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "Rules boilerplate references \"Hot 100\" despite this being a Billboard 200 album debut market -- a copy-paste template artifact, not a substantive divergence.",
+  "resolution_source_risk": "Billboard 200 publishes after this market's close.",
+  "rationale": "An album's chart debut position is determined by aggregate first-week sales/streams across many consumers -- nobody decides it in advance, though labels can forecast from mid-week tracking data.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXCLARITYVOTE-26JUL",
+  "insider_group": "Senate majority leadership",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Whether a recorded vote (even a procedural cloture or motion-to-proceed vote) happens by the deadline is largely a floor-scheduling decision controlled by Senate leadership, who plan the calendar in advance -- more knowable than an exact vote tally, but schedules still slip, keeping this below strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXGROK-GROK47",
+  "insider_group": "xAI/SpaceXAI engineering and release team",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "AI labs know their internal release roadmaps and readiness well ahead of a public launch, but version timing and naming decisions routinely slip close to release, so no named group has a fixed, reliable answer this far out.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXACTBLUETOP-26AUG07",
+  "insider_group": "The campaigns' own fundraising/finance teams and ActBlue itself",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolution depends on the specific snapshot of ActBlue's public directory page at a fixed time; rankings can shift right up to and after that moment.",
+  "rationale": "ActBlue and each campaign's finance team see real-time fundraising totals continuously before the public page reflects them, giving genuine but narrow foreknowledge. The ranking among several named candidates at one snapshot moment is still close to a live horse race, keeping this below strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXARENASCORE-GROK46",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "Rules boilerplate references \"the Governing League\" -- a mismatched template artifact unrelated to an AI leaderboard.",
+  "resolution_source_risk": null,
+  "rationale": "Arena-style leaderboard scores are crowd-voted aggregates of many independent head-to-head user votes; xAI knows its release plans but cannot know the resulting crowd score before it accumulates. This is a direct NO-ish case per the mechanism sheet.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPUFC-26AUG",
+  "insider_group": "Trump's own scheduling/security staff and UFC/event organizers",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Attendance at a scheduled sporting event is known in advance to the person's staff and event organizers doing security planning, but public-figure plans remain changeable up to the day of the event, so this stays moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXABRAHAMSA-27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Diplomatic normalization requires both governments' small circles to negotiate, agree, and then ratify -- a real but unfinished process. Nothing in the payload signals an advanced-stage or already-concluded deal between Israel and Colombia, so this reads as a long-window, undecided outcome rather than a sealed fact known to insiders.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPIRROOUT-26AUG",
+  "insider_group": "Pirro herself, DOJ leadership, and the small circle managing any departure announcement",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "This is an explicit 'announce by' departure market -- the announcement's timing is controlled by a small circle who would know before the public does. But nothing in the payload indicates a departure decision has actually been made yet, so this stays moderate rather than strong; the three near-identical near-term windows (Aug 5/6/7) suggest an active rumor being tracked rather than a confirmed fact.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXWEEKSNUM1-26DEC26-CHO",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Depends on many future weekly Billboard chart publications through Dec 26, most of which have not yet occurred as of today.",
+  "rationale": "A cumulative weeks-at-#1 count depends on many future weeks of aggregate consumer behavior, none of which is decided by any group in advance. This compounds the standard chart-market weakness across many future data points.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMOVIECAST-XMAN29",
+  "insider_group": "Marvel Studios casting/production team and the actor's representation, if a deal exists",
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Casting decisions are genuinely made by a small studio/producer circle before any public announcement, which would normally support a higher bucket, but nothing in the payload indicates a deal for Sadie Sink specifically exists, and the window runs through Jan 2029 -- a long horizon where the event could happen at essentially any point, making this a rate question rather than a knowledge-of-a-made-decision question today.",
+  "researched": false
+ }
+]

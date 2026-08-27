@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXTRUMPPHOTO-26JUL19",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Relies on Getty's own tagging/metadata; Kalshi has discretion to include or disregard mis-tagged photos, which could shift the exact count.",
+  "rationale": "This is a count of distinct days with a tagged Getty photo over a public week-long window, aggregated from many independent photographers and editors, not a decision any small group has made. No insider group can know the final tally in advance since it depends on ongoing editorial activity. Weak fit for the insider thesis.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPBIBIMEET-26AUG01",
+  "insider_group": "White House and Israeli PM office scheduling/advance staff",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "A Trump-Netanyahu meeting requires both principals' scheduling staff to arrange logistics, so a specific advance-planning group would have lead knowledge once a meeting is booked. But high-level meetings can also be arranged on short notice at summits or sidelines, and nothing here indicates one is currently locked in, so this stays short of strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXREHEARBIRTHRIGHT-27",
+  "insider_group": "Supreme Court justices and their clerks, in conference",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolution depends on Source Agencies reporting the grant; a report could lag, or the rehearing petition could still be pending or unfiled.",
+  "rationale": "A rehearing grant would be decided in conference before any public order, known first to the justices and clerks. But whether a petition has even been filed or decided by today is unclear, and the rules resolve No if none is ever filed -- a live, unmade decision keeps this short of strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXWCFIRSTSONG-JUS26JUL20",
+  "insider_group": "Justin Bieber's production team, tour crew, and halftime show producers",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves on official confirmation (setlist archives, livestream, post-event press), which should be reliable and timely.",
+  "rationale": "Halftime show setlists are rehearsed and locked with production well ahead of broadcast, matching the mechanism sheet's guidance that setlists are known to production, performers, and crew in advance. A concrete, named group already knows the planned opening song, though live shows carry some spontaneity risk.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXFABLEDISABLED-27",
+  "insider_group": "Anthropic leadership/engineering, if such a decision were made",
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Requires Source Agencies to report the disabling in time; a real disabling that goes unreported before close would not qualify.",
+  "rationale": "Disabling general access would be an internal Anthropic decision known to leadership before any announcement, but nothing here indicates such a decision has actually been made. This reads as a speculative future action on an active flagship product rather than an already-decided fact, which is the key warning sign against this thesis.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXWCFIRSTSONG-SHA26JUL20",
+  "insider_group": "Shakira's production team, tour crew, and halftime show producers",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same mechanism as the Bieber halftime market: the opening song of a scheduled, rehearsed live performance is known in advance to a specific, identifiable production/artist team, per the mechanism sheet's guidance on halftime show setlists.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXAGCONF-26",
+  "insider_group": "Senate majority leadership and whip staff",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Floor scheduling for confirmation votes is controlled by Senate leadership, who have a good advance whip count, giving a plausible informed group real visibility. Exact vote timing against a hard date, and possible withdrawal, remain genuinely uncertain, keeping this below strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMRELEASEDATEUZI-NEWUZI",
+  "insider_group": "Lil Uzi Vert's label and management team",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "The artist's label/team would know a planned release date well ahead of the public, but hip-hop album release dates are notoriously prone to last-minute slippage even after being set internally, and this market asks for an exact single day, so the group's knowledge is real but not fully reliable.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBIGBROTHERELIMINATION-26JUL23",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Per the mechanism sheet, Big Brother eviction votes are cast live and the outcome is genuinely undecided until airtime, even though some house events are pre-taped. Production may know intermediate nomination states, but the final eliminated houseguest is not knowable in advance by a fixed insider group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXCLAUDE-NXTMYTH",
+  "insider_group": "Anthropic product/release team",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "AI lab release plans are known internally ahead of time, so Anthropic's own team is a plausible informed group, but timing slips routinely and branding decisions (what counts as \"Mythos-Class\") are made late -- exactly the kind of undecided-branding uncertainty that caps this at moderate.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXCLAUDE-OPUS",
+  "insider_group": "Anthropic product/release team",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same reasoning as the Mythos-class market: internal roadmap knowledge exists but release timing for a new Opus-branded model is routinely subject to slippage and late naming decisions, so this is a plausible-but-imprecise informed group rather than a settled internal decision.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXJUDGECOUNT-26JUL",
+  "insider_group": "Senate majority leadership/whip office",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": "Rules carve out several federal courts (Court of International Trade, Tax Court, Veterans Claims, Armed Forces, Military Commission Review, D.C. local courts) that a plain reading of \"judges confirmed\" might otherwise include.",
+  "resolution_source_risk": null,
+  "rationale": "Senate leadership controls the confirmation floor schedule and has a strong advance whip count on planned July confirmations, a real informational advantage. But this is a monthly aggregate count across many individual confirmations rather than one clean decision, so exact totals against a threshold remain somewhat rate-like.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLABORSECCONF-26",
+  "insider_group": "Senate majority leadership and whip staff",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same mechanics as the Attorney General confirmation market: Senate leadership has a good advance whip count on the floor schedule, but exact confirmation timing against a hard date and possible withdrawal keep the outcome genuinely uncertain.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMEDIARELEASESPIDERMAN",
+  "insider_group": "Sony/Marvel marketing and distribution team",
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "rules_primary asks whether the official TRAILER is released, but rules_secondary is boilerplate for a full-media-release market and explicitly states \"Trailers and soundtracks do not satisfy the criterion unless the full media is released\" -- a direct internal contradiction between the two rule sections.",
+  "resolution_source_risk": null,
+  "rationale": "Studio marketing calendars are normally a controlled internal decision, which would otherwise support a stronger bucket. But the rules text is internally contradictory about whether a trailer alone even counts, exactly the kind of rules/title divergence the instructions say should lower confidence -- it is unclear what a trader would even be right about.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPERFORMROLEJEANGREY",
+  "insider_group": "Marvel Studios casting office and Sadie Sink's representation, if a deal exists",
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Rules allow YES on an official casting announcement alone, even if the film is later cancelled, so this does not actually require Sink to ever perform, despite the title's \"perform as Jean Grey\" framing.",
+  "resolution_source_risk": null,
+  "rationale": "If a casting deal were signed, the studio and the actor's team would know before any announcement, which is the classic strong case. But there is no indication such a decision has been made -- the film itself is not confirmed to exist yet -- so this depends on an unmade decision rather than a sealed one.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXROLEATEVENTLOLLA-26DEC31",
+  "insider_group": "Festival organizers and Lorde's booking/management team",
+  "bucket": "moderate",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title asks only whether Lorde \"be a Headliner,\" but rules require she actually appear and carry out the role -- being listed in the official lineup without performing does not qualify.",
+  "resolution_source_risk": null,
+  "rationale": "Festival lineups and headliner slots are set on an internal booking calendar well before public announcement, giving organizers and the artist's team real advance knowledge. The performance requirement adds late-cancellation risk a pure lineup-announcement reading of the title would miss, keeping this at moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPMONTHLY-26JUL",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Monthly-listener leadership is a published aggregate of millions of independent Spotify users' behavior at a snapshot time. Spotify itself sees the running number first, but nobody decides it, so there is no specific insider group with foreknowledge of who leads at month's end.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMRELEASEDATEUZI",
+  "insider_group": "Lil Uzi Vert's label and management team",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "As with the exact-date sibling market, the label/team has real internal knowledge of release plans, but the longer windows here (up to two months out) push part of this toward a rate question rather than a pure knowledge question, and release dates in this genre slip often even after being internally set.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXGALLEGOOUT-26APR",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Gallego is a sitting Senator with years left on his term; nothing here suggests he or a close circle has already decided to resign, and the rules' own carve-out for death as a resolution path underscores how contingent this is. This depends on a decision that, as far as this record shows, has not been made.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXKXSPOTIFYNUM1GLB-26AUG01-ARI",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Daily #1 status on a global streaming chart is an aggregate outcome of millions of independent listeners' behavior across a month; Spotify observes it but does not decide it, and no small group can know the full July tally in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMACHADOVENEZUELA-26JUN29",
+  "insider_group": "Machado's close entourage and security detail",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Per the personal-attendance mechanism, a public figure's travel plans are known to their close circle shortly before they happen, which applies here. Given Machado's fraught security situation in the Venezuelan political crisis, any such visit is likely planned close to the moment and highly changeable, capping this below strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRYFIRECOOK-27JAN01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "The rules define a narrow list of qualifying acts (EO, directed termination, public statement of having fired/decided to fire, written notice, formal legal proceedings) and explicitly exclude softer statements like \"should resign\" or \"looking into it\" -- a plain reading of \"try to fire\" could miss how narrow this is.",
+  "resolution_source_risk": null,
+  "rationale": "The qualifying act itself (e.g., a public statement) is what creates public knowledge -- there is essentially no lead time between the President deciding and the public finding out, since several qualifying triggers are public by definition. This is closer to spontaneous individual behavior than a sealed decision a small group holds privately.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLIUKELIMINATIONW-26JUL31",
+  "insider_group": "Love Island UK production and villa cast (for intermediate vulnerability/couplings)",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Per the mechanism sheet, production and the villa know intermediate states like who is vulnerable ahead of broadcast, a real informational edge, but final eliminations often hinge on a public app vote revealed live, which is genuinely undecided until the vote closes. That mix keeps individual contestant markets at moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXMEDIACOVEREAFC-26",
+  "insider_group": "EA Sports marketing team and the selected athlete's agency",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Cover athletes for major annual sports titles are locked in via signed marketing deals many months before the reveal, per the entertainment-marketing mechanism -- a classic \"signed deal awaiting only announcement\" case. The imminent close time (today) is also consistent with a decision that is already finalized internally.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPNOMNUM-26JUL19",
+  "insider_group": "White House Presidential Personnel Office",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": "Rules clarify multiple nominations to the same person on the same day count separately (per the Kevin Warsh example), which a plain reading of \"nominations\" might not anticipate.",
+  "resolution_source_risk": "Resolution is solely by what is visibly posted on whitehouse.gov's \"Presidential Actions\" page at a specific checked time; a real nomination could be sent but posted late or miscategorized.",
+  "rationale": "The administration controls its own nomination pipeline and pacing, so the Presidential Personnel Office has real visibility into planned submissions for the week. But reaching a specific weekly count still depends on day-to-day scheduling choices not yet finalized for the whole week, and the exact public-posting mechanic adds execution risk.",
+  "researched": false
+ }
+]

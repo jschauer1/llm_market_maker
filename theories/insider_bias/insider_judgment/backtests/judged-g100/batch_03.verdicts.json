@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXALBUMEQUIV-REA26JUL30",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Album Equivalent Units aggregate millions of individual consumer streams/purchases over a tracking week; Luminate publishes the number but does not decide it. Labels get mid-week tracking projections that let them forecast, not know, the final figure.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXCHINAAI-26JUL27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Resolves on Arena's crowd-voted head-to-head leaderboard at a snapshot time. Labs know their own release plans but cannot know an aggregated crowd score before enough votes accumulate, so no group has advance knowledge of the ranking itself.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXCHINAAI-26JUL31",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same Arena crowd-voted leaderboard mechanism as the weekly version, just a later snapshot. Nobody, including the labs themselves, knows the aggregated score before it accumulates from many independent voters.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNETFLIXRANKMOVIE-26JUL27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Resolves on Netflix's published Top 10 chart, itself an aggregate of millions of viewers' behavior over a tracking week. Netflix sees its own numbers first but nobody 'decides' the rank; it is a consumer-behavior outcome, not a discretionary decision.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNETFLIXRANKMOVIEGLOBAL2-26JUL27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same Netflix Top 10 aggregation mechanism, global chart, #2 slot instead of #1. Outcome is the aggregate of many viewers' streaming choices; no small group decides or knows it in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNETFLIXRANKSHOWGLOBAL-26JUL27",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same Netflix Top 10 chart mechanism applied to global shows. Purely a published aggregate of consumer viewing; Netflix has earliest visibility but does not choose the outcome.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXEOWEEK-26AUG01",
+  "insider_group": "White House Counsel's Office / staff secretary, who track every EO actually signed",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "The Jul 26-Aug 1 signing window had already fully elapsed as of today (Aug 4), so the administration already knows the true count, but resolution depends on Federal Register publication, which the rules say can lag days and can even re-date an EO into a different period -- so the public record the market uses may not yet match what insiders know.",
+  "rationale": "The window already closed before judgment day, so this is a completed fact known to a small White House group rather than a future decision, which pushes it above weak. It stays out of strong because the market's own rules show real ambiguity in exactly when/how the public record catches up via Federal Register publication.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXHORMUZWEEKLY-26AUG02",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves 'no earlier than Tuesday 9am following the end of the period, once complete data is available' -- a genuine chance the source lags the close.",
+  "rationale": "Transit-call counts are a published aggregate of many independent ships' movements tallied by IMF PortWatch. No single actor decides or knows the total in advance; it is a rate/count question over many actors, the theory's classic NO-ish case.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPENDORSEMENTS-26AUG01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "The Jul 26-Aug 1 window already ended, but the underlying evidence (Truth Social posts) is already fully public, not privately held by any insider group -- so there is no informational asymmetry, only a counting/interpretation task over public statements, some of which are explicitly flagged as ambiguous under the rules.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXCHINAAI-26AUG10",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same Arena crowd-voted leaderboard mechanism as the other KXCHINAAI events in this batch. The ranking is an aggregate of independent voters that accrues over time; no lab or group can know it before the snapshot.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPOKEMON-26JULMEGDRAEX",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "If no Collectr price is posted by expiration, the rules fall back to the last available value, or resolve the market No if none exists -- a real chance the tracked price never updates before the deadline.",
+  "rationale": "Resolves on a posted marketplace price aggregated from many sellers' listings. No single group sets or knows this number in advance; it moves with listed asks, the theory's collectibles-index NO-ish case.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXRT-SUPER",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolution is keyed to 'the Monday after wide release,' so if the theatrical release date slips, the effective resolution date and available review sample shift with it.",
+  "rationale": "The Tomatometer score aggregates many individual critics' reviews published under embargo; like Metacritic, no single group knows the final average before critics' reviews post. Studio/critics may have early impressions, but that is forecasting, not knowledge of a decided number.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTOPMODEL-26AUG03",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolution requires reading the Arena leaderboard with the 'Remove Style Control' toggle checked specifically; misreading the source or a scoring update near the deadline could change the settled rank.",
+  "rationale": "Top-ranked model on a crowd-voted Arena leaderboard is an aggregate of many independent head-to-head votes. Labs know their own release plans but not the resulting crowd score, which only exists once enough votes accumulate.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXA100W-26JUL31",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title asks whether the price will go 'up,' implying a relative/directional comparison, but the rule resolves on an absolute level check -- whether the posted rate is above a fixed $1.06 threshold on the date -- with no reference to the prior week's price.",
+  "resolution_source_risk": "Single-source dependency on the Ornn dashboard; if no data is published by expiration, the rules resolve No.",
+  "rationale": "Resolves on a posted compute-rental price aggregated from many vendors' listings on a single tracker; no group decides or knows this number in advance, and vendors changing list prices does not equate to knowing the tracker's final published value.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXRTX5090W-26JUL31",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Same as the A100 market: the title implies a directional 'up' move, but the rule is an absolute threshold check against a fixed value ($0.49), not a comparison to the prior period's price.",
+  "resolution_source_risk": "Single-source dependency on the Ornn dashboard; no data by expiration resolves No.",
+  "rationale": "Posted GPU compute price aggregated across many sellers on one tracker. No single actor sets or knows the resolved value in advance; this is a market-price index, the theory's canonical NO-ish family.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXYTVIEWSHIGH-YOU26SEP",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Global daily YouTube view counts are an aggregate of millions of independent viewers, published on YouTube Charts. YouTube sees the number first but does not decide it, and no outside group has advance knowledge of a peak daily figure that has not yet occurred.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNETFLIXRANKMOVIE-26AUG03",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same Netflix Top 10 US Movie chart mechanism as the earlier July instance in this batch: aggregate of consumer viewing behavior, not a decision any group makes or knows ahead of the chart's publication.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNETFLIXTOPVIEWSTV-26AUG03",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title says generically 'the #1 Show on Netflix,' but the rules specify this is the Global 'Shows | English' chart specifically -- a narrower, language-and-scope-restricted list than a reader would infer from the title alone.",
+  "resolution_source_risk": null,
+  "rationale": "View-count thresholds for the top-ranked show are an aggregate of global viewing behavior; nobody decides the figure, and Netflix's own visibility into it does not translate into a small identifiable group with advance knowledge of the published number.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSUEZWEEKLY-26AUG02",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves 'no earlier than Tuesday 9am following the end of the period, once complete data is available,' leaving room for the source to lag.",
+  "rationale": "Same IMF PortWatch transit-call mechanism as the Hormuz markets: an aggregate count across many independent vessel operators, not a decision or fact any small group holds in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXYTVIEWSHIGH-ARI26SEP",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same YouTube global daily-views mechanism as the YoungBoy market: an aggregate of independent viewer behavior across the month, published by the platform but not decided by anyone in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXYTVIEWSHIGH-BAD26SEP",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same YouTube global daily-views mechanism as the other artists in this batch: an aggregate published metric with no small group holding advance knowledge of whether a future daily peak will clear the threshold.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPSAYCOMPANY-26SEP01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title asks simply whether Trump will 'say' the word/phrase, but the rules restrict qualifying instances to public statements, source-agency-quoted remarks, or his own social media posts, and explicitly exclude official acts such as signed executive orders or bills even if the company name appears there.",
+  "resolution_source_risk": null,
+  "rationale": "Whether Trump says a specific company name in an unscripted public setting is genuinely spontaneous; no close staff or aide can know in advance whether or when he will say it, since it depends on live remarks and social posts not yet made.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMEQUIV-THI26AUG13",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "Same Luminate Album Equivalent Units mechanism as the Strokes market: an aggregate of consumer purchases/streams over a tracking week, forecastable late in the week from industry tracking data but not decided or known in full by anyone in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXBILLBOARDRUNNERUPSONG-26AUG15",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": null,
+  "rationale": "The Billboard Hot 100 aggregates a full tracking week of consumption across millions of listeners. Labels and chart-watchers get mid-week projections that let them forecast the #2 slot late in the week, but nobody decides or fully knows the published rank in advance.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXHORMUZWEEKLY-26AUG09",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves 'no earlier than Tuesday 9am following the end of the period, once complete data is available' -- the reporting window is still open as of judgment day, adding further uncertainty on top of the source lag.",
+  "rationale": "Same IMF PortWatch transit-call mechanism as the other Hormuz/Suez markets in this batch: a many-actor aggregate count, with the tracking window (Aug 3-9) not even complete as of today (Aug 4), making this doubly a rate question rather than a knowledge question.",
+  "researched": false
+ }
+]

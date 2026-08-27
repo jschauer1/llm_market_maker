@@ -1,0 +1,252 @@
+[
+ {
+  "event_ticker": "KXHEGSETHANNOUNCEOUT-26APR",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Public announcements of a cabinet departure are covered immediately by major media, so low risk of missing the close once it happens.",
+  "rationale": "No evidence in the payload that a decision to leave has actually been made. Departure decisions are made by the principal and a small circle only once decided; without any sign that has happened, this is an unmade discretionary decision nobody can already know the answer to.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXHEGSETHOUT-26APR",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Requires an actual vacated role, which is publicly verifiable once it occurs; low risk of missing the close.",
+  "rationale": "Stricter than the announce-variant (requires actual departure, not just announcement), and the same absence of evidence applies: no indication a decision to leave has been made. This is a genuinely unmade decision, which the thesis explicitly treats as no-one-knows.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXKASHANNOUNCEOUT-26APR",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Public announcements of an FBI Director's departure would be covered immediately; low risk of missing the close.",
+  "rationale": "Same pattern as the Hegseth announce-variant: no evidence a decision to leave has been made by Kash Patel or his circle. Absent that, this is an unmade decision rather than knowledge anyone already holds.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXKASHOUT-26APR",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "An actual departure is publicly verifiable once it occurs; low risk of missing either the Jul1 or Aug1 close.",
+  "rationale": "Requires an actual vacated role across two nested windows (Jul1, Aug1). No evidence a departure decision exists yet, so the outcome remains unmade and unknown to any specific group at this time.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXKNESSET-27",
+  "insider_group": "Knesset coalition leadership / whip's office, who track advance vote counts on dissolution motions",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "A dissolution vote is a public parliamentary act; low risk of the source missing any of the four close windows once it occurs.",
+  "rationale": "The mechanism sheet notes coalition leadership holds a good, not perfect, advance whip count on Knesset votes, which is real but imperfect foreknowledge. Nothing in the payload indicates a dissolution vote is currently scheduled or imminent, so this stays short of strong across all four nested-date markets.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXKXSPOTIFYNUM1GLB-26JUL01-ARI",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Daily global chart data is public and low-risk to capture by close, but final tally isn't known until the month ends.",
+  "rationale": "Streaming chart-topping days are an aggregate of millions of independent listeners; Spotify sees the data first but, per the mechanism sheet, nobody decides it. With June only half elapsed, whether the 12/15-day thresholds are hit is still an open rate question, not a fact already known.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXKXSPOTIFYNUM1GLB-26JUL01-OLI",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Daily global chart data is public and low-risk to capture by close, but final tally isn't known until the month ends.",
+  "rationale": "Same aggregate-consumer-behavior pattern as the Ariana Grande global chart market. Partial-month data exists but the 9/12/15-day thresholds remain an open rate question with the tracking window still running, not knowledge any group already holds.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLEAVECONGRESS-26JUN",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "Rules_primary narrows to 'resigns or is expelled,' while rules_secondary's general 'leave' definition is much broader (retirement, removal, recall, expiration of term without renewal) — a real internal inconsistency about what actually counts, though likely moot since no member's term expires mid-June.",
+  "resolution_source_risk": "A resignation/expulsion of a sitting member is immediately and unambiguously public; low risk of missing the close.",
+  "rationale": "Spans all 535 members of Congress with no specific named individual or pending resignation identified anywhere in the payload. This is a diffuse behavioral question, not knowledge held by any identifiable group.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLLM1-26JUN30",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Public leaderboard, continuously updated; low risk of missing the close.",
+  "rationale": "Top-ranked model is set by a crowd-voted Arena leaderboard. Labs know their own release plans but, per the mechanism sheet, cannot know the resulting crowd score before it accumulates — an aggregate outcome nobody decides.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXNRSCFEC-26AUG",
+  "insider_group": "The Supreme Court justices and their law clerks, who vote on the merits in conference typically weeks to months before the written opinion is released",
+  "bucket": "strong",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title says 'rule in favor of NRSC' broadly; rules require specifically that the coordinated-expenditure limits be struck down on First Amendment grounds (facially or as-applied). A procedural dismissal, DIG, or remand without that specific merits holding resolves No, even though it might loosely read as not a loss for NRSC.",
+  "resolution_source_risk": "Close time (Jun 30) is well before the rules' own stated resolution deadline (Aug 1); if the opinion has not issued by close, settlement likely waits on the actual release rather than defaulting immediately.",
+  "rationale": "This is a merits case already before the Court this term. Per the mechanism sheet, SCOTUS decides in conference well before publishing, so the outcome is already fixed internally to the justices and clerks even though the public opinion has not yet issued.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSPOTIFYARTISTW-26JUN18",
+  "insider_group": "Spotify's internal charting/analytics team, which has completed the underlying weekly tracking data as of today since Jun 18 is the chart's own dated day",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "The weekly USA chart typically publishes shortly after the tracking week ends; publication timing relative to the Jun19 03:59 UTC close is tight and could plausibly land at or after close.",
+  "rationale": "Today's date coincides with the chart's dated day, so the tracking week is complete and Spotify's internal data already reflects the final ranking even though public publication may lag slightly. Stronger than a mid-week forecast, but still an aggregate outcome rather than anyone's decision, so moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSPOTIFYNUM1USA-26JUL01-OLI",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Daily USA chart data is public and low-risk to capture by close, but the final tally isn't set until month end.",
+  "rationale": "Same aggregate-consumer-behavior, open-rate-question pattern as the global chart-count markets. With June only half over, the 6/9/15-day thresholds remain undetermined and not knowledge any group already holds.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTARIFFRATEEU-26JUL01",
+  "insider_group": "The administration (USTR/White House), which knows the currently active executive-order tariff schedule and any internally planned changes before they take effect",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves on the rate actually being collected on a specific date, which is low-ambiguity once in effect, but a last-minute change or a finalized EU negotiation could shift the applicable rate right up to the deadline.",
+  "rationale": "Current tariff rates are set by executive action the administration already controls, matching the mechanism sheet's corporate/administration-decision pattern. Downgraded from strong because negotiated outcomes with a foreign counterparty (the EU) can still shift until signed, per the sheet's own caveat.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTARIFFRATEINDIA-26JUL01",
+  "insider_group": "The administration (USTR/White House), which knows the currently active executive-order tariff schedule and any internally planned changes before they take effect",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Resolves on the rate actually being collected on a specific date; a finalized India negotiation or new order could shift the applicable rate up to the deadline.",
+  "rationale": "Same administration-controlled-policy pattern as the EU tariff market. Downgraded from strong because a negotiated outcome with India can still shift until finalized.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRUMPUAP-26MAY",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": "Title says 'issue any executive action'; rules narrow this substantially to a specific document type (EO, memorandum, proclamation, directive, determination, or finding) personally signed by Trump and explicitly addressing UAP/UFOs in its operative text, title, or official White House summary — actions by cabinet members or incidental mentions do not qualify.",
+  "resolution_source_risk": "Also requires the action be publicly announced or documented by a Source Agency before expiration; an action taken very close to the deadline could miss timely sourcing.",
+  "rationale": "No evidence any such action has been drafted or decided by the White House; this is a speculative future discretionary act with no identified group already holding the answer, an unmade-decision case the thesis treats as weak regardless of how small the eventual circle would be.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXWOLFORDLOPEZ-26AUG",
+  "insider_group": "The Supreme Court justices and their law clerks, who vote on the merits in conference before the opinion is drafted and released",
+  "bucket": "strong",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title says 'rule in favor of Jason Wolford'; rules require the specific holding that Hawaii's presumptive prohibition is unconstitutional absent affirmative owner permission. A favorable-sounding but narrower ruling, DIG, dismissal, or remand without that specific merits holding resolves No.",
+  "resolution_source_risk": "Close (Jun 25) is over a month before the rules' own stated deadline (Aug 1); if undecided by close, settlement likely awaits the actual opinion within that longer window rather than resolving immediately.",
+  "rationale": "Same conference-vote mechanism as other pending SCOTUS merits cases this term — the outcome is already fixed internally well ahead of the public opinion. Strong on the knowledge question; the title/rules gap is a separate execution risk.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXAISPIKE-26B",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Public leaderboard, continuously updated; low risk of missing the close.",
+  "rationale": "A crowd-voted Arena/LMSYS score accumulates from many independent raters. Per the mechanism sheet, no one decides or knows this score in advance; it can only be forecast from partial trend data.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXALBUMRELEASEDATE-REAFUT",
+  "insider_group": "Future's label and management team, who control the album's release plan and date",
+  "bucket": "strong",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Low — a commercial album release to streaming/retail is immediately and unambiguously publicly observable.",
+  "rationale": "The album already carries a confirmed title, 'The Real Me,' indicating a release plan the artist's team and label already control internally, matching the mechanism sheet's release-date pattern and the thesis's own explicit example. Plans slipping late is the main residual risk.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXLAGODAYS-26JUN",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Presidential travel is closely covered by press pool; low risk of missing the close once a trip occurs.",
+  "rationale": "A whole-month exact-count market on personal travel. Close staff have some near-term schedule foreknowledge, but per the mechanism sheet much of this behavior is genuinely spontaneous, and with the month not yet over the exact final count for either the 0-trip or 1-trip market remains open.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXPRATTCONCEDE-27JAN01",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "A public concession statement would be immediately and widely reported; low risk of missing the close.",
+  "rationale": "Depends entirely on a personal, as-yet-unmade discretionary decision by Spencer Pratt to concede. Nothing in the payload suggests that decision has already been made, so this is an unmade decision no one can yet know the answer to.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSONGRELEASEDATEPC-26",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "A song release to streaming platforms is immediately and unambiguously public; low risk of missing the close.",
+  "rationale": "Unlike a named, already-titled album, this asks whether Playboi Carti releases any new song at all before the deadline — an open behavioral/rate question with no specific announced release for an identifiable group to already know about.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSPOTIFYNUM1USA-26JUL01-ELL",
+  "insider_group": null,
+  "bucket": "weak",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "Daily USA chart data is public and low-risk to capture by close, but the final tally isn't set until month end.",
+  "rationale": "Same aggregate-consumer-behavior pattern as the other daily-chart-count markets. With June only half elapsed, the 9/12-day thresholds remain an open rate question, not knowledge any group already holds.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSPOTIFYW-26JUN18",
+  "insider_group": "Spotify's internal charting team, same mechanism as the parallel Weekly Top Artists market — the tracking week ending today is already complete in Spotify's own data",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "The weekly USA chart typically publishes shortly after the tracking week ends; publication timing relative to the Jun19 03:59 UTC close is tight and could plausibly land at or after close.",
+  "rationale": "Today's date coincides with the chart's dated day, so the tracking week is complete and Spotify's internal data already reflects the final result even though public publication may lag slightly. Aggregate outcome rather than a decision, so moderate rather than strong.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXSTOCKBANHOUSE",
+  "insider_group": "House leadership / whip's office, who track vote counts on scheduled floor votes ahead of the roll call",
+  "bucket": "moderate",
+  "rules_diverge_from_title": false,
+  "rules_note": null,
+  "resolution_source_risk": "A House floor vote is publicly and immediately recorded once it happens; the real risk is whether a vote is even scheduled before either close date, not whether the record is captured in time.",
+  "rationale": "Matches the mechanism sheet's legislative pattern: leadership has a good, not perfect, advance whip count on scheduled floor votes. No evidence in the payload that a vote is currently scheduled, so this stays moderate rather than strong for both the Jul1 and Jan1 2027 windows.",
+  "researched": false
+ },
+ {
+  "event_ticker": "KXTRANSGENDERSPORTSBAN",
+  "insider_group": "The Supreme Court justices and clerks in West Virginia v. B.P.J. / Little v. Hecox, who vote on the merits in conference before the opinion is released",
+  "bucket": "strong",
+  "rules_diverge_from_title": true,
+  "rules_note": "Title says 'uphold transgender sports bans' broadly; rules require the specific holding that Equal Protection/Title IX do not bar sex-based team designation. A ruling on narrower procedural grounds, or disposal without a merits decision, resolves No despite superficially reading as favorable.",
+  "resolution_source_risk": "Close (Jun 30) is well before the rules' own stated deadline (Jan 1, 2027) — a much longer runway than the other SCOTUS markets here, so a delayed opinion is less likely to cause a missed resolution, though trading itself stops at the earlier close.",
+  "rationale": "Same conference-vote mechanism as the other pending SCOTUS merits cases this term. Strong on the knowledge question; the title/rules gap and the unusually generous resolution runway are noted separately.",
+  "researched": false
+ }
+]
