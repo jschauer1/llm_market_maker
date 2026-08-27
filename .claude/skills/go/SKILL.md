@@ -151,12 +151,15 @@ floor. The standing menu, roughly highest-leverage first:
 - **Build a queued theory.** Twenty-two researched, implementable specs sit
   in
   [docs/superpowers/specs/theories/](../../../docs/superpowers/specs/theories/)
-  — start at the backlog index — and **none has been built yet**. Every
+  — start at the backlog index — and far more are specced than built
+  (`theories list` against that folder tells you the current gap). Every
   instrument added widens the board the "what is the best bet right now?"
   question can be asked about, and a mechanical one carries evidence
   immediately (tier A, `edge_basis='model'`, no judgment to wait on). Check
   `ideas search "<slug>"` first in case the idea has since been killed or
-  parked, then `propose-theory`.
+  parked, and the build tracker in
+  [docs/superpowers/plans/theories/](../../../docs/superpowers/plans/theories/)
+  in case someone is already on it, then `propose-theory`.
 - **Backtest** a theory running on claims rather than evidence
   (`backtest-theory`).
 - **Propose a new theory** (`propose-theory`) — from a market pattern you
