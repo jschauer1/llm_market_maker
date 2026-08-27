@@ -209,3 +209,61 @@ def test_cell_rates_reads_back_what_was_collected(conn):
     assert cell["n"] == 10
     assert cell["wins"] == 9
     assert cell["n_days"] == 10
+
+
+# ---- the volume floor: the replay must reconstruct the LIVE decision ------
+
+def test_entry_below_the_volume_floor_yields_no_observation():
+    """screen.py requires volume >= 500; the replay must apply it too.
+
+    Without this the collector measures a population the live screen would
+    never have traded, and every cell rate describes markets the theory
+    cannot actually bet.
+    """
+    candles = [_candle(CLOSE_TS - 1 * DAY, 0.90, 0.93, volume=10)]
+    obs = collect.observations_for(
+        ticker="KXPOL-1", series="KXPOL", category="Politics",
+        close_ts=CLOSE_TS, result="yes", candles=candles,
+    )
+    assert obs == []
+
+
+def test_volume_accumulates_up_to_the_entry_candle():
+    """Kalshi candle volume is per-period, so the floor is the running sum.
+
+    Cumulative volume at entry is what the live screen saw; summing only to
+    the entry candle is what keeps that lookahead-free.
+    """
+    candles = [
+        _candle(CLOSE_TS - 6 * DAY, 0.77, 0.80, volume=300),
+        _candle(CLOSE_TS - 4 * DAY, 0.77, 0.80, volume=300),   # cum 600
+        _candle(CLOSE_TS - 1 * DAY, 0.90, 0.93, volume=10_000),
+    ]
+    obs = collect.observations_for(
+        ticker="KXPOL-1", series="KXPOL", category="Politics",
+        close_ts=CLOSE_TS, result="yes", candles=candles,
+    )
+    bins = {o["horizon_bin"] for o in obs}
+    assert "2d-1w" in bins          # 600 cumulative at the 4-day entry
+
+
+def test_later_volume_does_not_leak_back_to_an_earlier_entry():
+    """The 1w-1mo entry must not see volume that only arrived later."""
+    candles = [
+        _candle(CLOSE_TS - 14 * DAY, 0.77, 0.80, volume=5),
+        _candle(CLOSE_TS - 1 * DAY, 0.90, 0.93, volume=50_000),
+    ]
+    obs = collect.observations_for(
+        ticker="KXPOL-1", series="KXPOL", category="Politics",
+        close_ts=CLOSE_TS, result="yes", candles=candles,
+    )
+    assert {o["horizon_bin"] for o in obs} == {"<=2d"}
+
+
+def test_settled_market_below_the_floor_is_skipped_before_any_candle_call():
+    """Cumulative volume only grows, so a final volume under the floor
+    proves the screen could never have fired -- and skipping it avoids the
+    candlestick call, which is the collector's dominant cost."""
+    assert collect.worth_fetching(volume=10.0) is False
+    assert collect.worth_fetching(volume=5000.0) is True
+    assert collect.worth_fetching(volume=None) is False

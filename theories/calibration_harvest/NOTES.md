@@ -95,3 +95,53 @@ checkpoint at `backtests/weather.json`. Politics+Elections
 (~2,504 series) is the larger job and has not been started. The theory
 moves to `testing` only once a population is complete and a cell clears
 both floors under full coverage.
+
+## 2026-08-27 (later) — collector was measuring a population the screen would never trade
+
+Caught while watching the first full weather run: **`collect.py` applied no
+volume floor at all**, while `screen.py` requires `volume >= 500`. The
+replay was therefore reconstructing decisions on markets the live theory
+could never have surfaced, and every cell rate it produced would have
+described an untradeable population. That is the exact failure the
+backtest rule in CLAUDE.md is written to prevent — "call the same
+functions the live path calls" — and I had reimplemented the screen's
+conditions in the collector while dropping one of them.
+
+The 417 observations already collected were discarded (rows deleted;
+settlements kept, since those are facts about the world rather than
+decisions) and the checkpoint reset. Nothing was published from them.
+
+Fixed in two places, both mirroring `insider_bias.replay`:
+
+- `_candle_at` now returns `(candle, running_volume)`, accumulating volume
+  over exactly the candles at or before the entry moment. Kalshi's candle
+  volume is per-period, not cumulative, so the running sum is what the
+  live screen's `volume` field would have shown — and summing only to the
+  entry candle is what keeps it lookahead-free. An entry below the floor
+  yields no observation for that bin.
+- `worth_fetching(volume)` skips a settled market before any candlestick
+  call when its *final* volume is under the floor. Cumulative volume only
+  grows, so a market that ends below the floor was below it at every
+  earlier moment — a safe, conservative pre-filter, and the same argument
+  `replay.is_candidate` makes.
+
+The second one is also the fix for a practical problem: the first run was
+managing ~80s per series (11 of 154 in ~15 minutes, a ~3.5h projection)
+because it fetched 60 days of daily candles for *every* settled market
+including low-volume husks. `below_floor` is now reported per series so
+the skip rate is visible rather than assumed.
+
+**No version bump.** The theory is `proposed`, has never run live, and has
+published no measurement — this is fixing the procedure before it has a
+track record, not changing one that has. Had a single cell been published
+from the old rule, this would have been a v2.
+
+Lesson worth carrying: a collector that *reimplements* the screen's
+predicates instead of calling `screen.screen()` will drift from it, and
+the drift is invisible until someone diffs the two by eye. The sibling
+`insider_bias.replay.replay_market` avoids this by running the real
+`screen.screen()` against a reconstructed `Market`. This collector cannot
+do quite the same thing — it needs an observation *per horizon bin*
+rather than the first day that clears — but the next revision should
+reconstruct a `Market` and call the real screen per bin rather than
+re-checking spread/volume/price by hand.

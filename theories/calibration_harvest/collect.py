@@ -71,21 +71,39 @@ def _is_mention(series: str | None) -> bool:
     return any(marker in s for marker in MENTION_MARKERS)
 
 
-def _candle_at(candles: list[dict], target_ts: int) -> dict | None:
-    """The last candle at or before `target_ts` -- never after.
+def worth_fetching(volume: float | None) -> bool:
+    """True if a settled market could ever have cleared the volume floor.
+
+    Cumulative volume only grows, so a market whose FINAL volume is below
+    the floor was below it at every earlier moment too -- the live screen
+    could never have fired on it. Checking the settlement snapshot first
+    skips the candlestick call entirely, which is the collector's dominant
+    cost. Same reasoning as `insider_bias.replay.is_candidate`.
+    """
+    return volume is not None and volume >= MIN_VOLUME
+
+
+def _candle_at(candles: list[dict], target_ts: int) -> tuple[dict, float] | None:
+    """The last candle at or before `target_ts`, and volume accumulated to it.
 
     "At or before" is what makes this lookahead-free: a candle whose period
     ends after the entry moment already contains information the entry
-    decision could not have had.
+    decision could not have had. The running volume is summed over exactly
+    those same candles, so an entry never sees liquidity that arrived after
+    it -- Kalshi's candle volume is per-period, not cumulative, so the sum
+    is what the live screen's `volume` field would have shown.
     """
     best = None
-    for candle in candles:
+    running = 0.0
+    for candle in sorted(candles, key=lambda c: c.get("end_ts") or 0):
         ts = candle.get("end_ts")
         if ts is None or ts > target_ts:
             continue
-        if best is None or ts > best["end_ts"]:
-            best = candle
-    return best
+        running += candle.get("volume") or 0.0
+        best = candle
+    if best is None:
+        return None
+    return best, running
 
 
 def observations_for(
@@ -103,8 +121,16 @@ def observations_for(
 
     for bin_label, offset in ENTRY_OFFSET_DAYS.items():
         target = close_ts - int(offset * 86400)
-        candle = _candle_at(candles, target)
-        if candle is None:
+        found = _candle_at(candles, target)
+        if found is None:
+            continue
+        candle, volume_at_entry = found
+
+        # The live screen's liquidity floor, reconstructed. Without it the
+        # collector measures markets `screen.py` would never have surfaced,
+        # and every cell rate would describe a population the theory cannot
+        # actually trade.
+        if volume_at_entry < MIN_VOLUME:
             continue
 
         yes_bid = candle.get("yes_bid_close")
@@ -290,11 +316,15 @@ def collect_series(conn, series: dict, min_close_ts: int, max_close_ts: int,
 
     observations: list[dict] = []
     no_candles = 0
+    below_floor = 0
     for market in settled:
         if not market.result:
             continue
         close_ts = _parse_ts(market.close_time)
         if close_ts is None:
+            continue
+        if not worth_fetching(market.volume):
+            below_floor += 1
             continue
         candles = history.candlesticks(
             ticker, market.ticker,
@@ -316,6 +346,7 @@ def collect_series(conn, series: dict, min_close_ts: int, max_close_ts: int,
         "n_obs": len(observations),
         "written": written,
         "no_candles": no_candles,
+        "below_floor": below_floor,
     }
 
 
@@ -369,6 +400,7 @@ def main() -> None:
             if outcome["n_obs"]:
                 print(f"  {ticker:32s} settled={outcome['n_settled']:4d} "
                       f"obs={outcome['n_obs']:4d} "
+                      f"thin={outcome['below_floor']:4d} "
                       f"no_candles={outcome['no_candles']:3d}")
 
         done = state["series"].values()
