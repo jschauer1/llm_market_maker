@@ -250,3 +250,29 @@ def test_cache_and_fetch_boards_are_identical_raw_included(conn, monkeypatch):
     for a, b in zip(first, rebuilt):
         assert a.raw == b.raw      # raw is compare=False, so check it here
         assert a.raw["junk_b"] == list(range(50))
+
+
+def test_rebuilt_board_derives_identity_the_raw_payload_lacks(conn, monkeypatch):
+    """Regression, 2026-08-26: the live API carries series/event identity on
+    the EVENT envelope, not the market payload — `list_open` patches it onto
+    each Market, but the snapshot stores only the market's own raw. A rebuilt
+    board therefore had series_ticker=None on every market, which silently
+    disabled every family classifier downstream (gate.py passed 349/349
+    events on a cached board vs 100/349 on the same board freshly fetched).
+    The rebuild must derive identity from the ticker when raw lacks it."""
+    from dataclasses import replace
+    from tools.kalshi import markets
+
+    raw = _raw("KXWIDGET-26SEP01-STRIKE")
+    del raw["series_ticker"], raw["event_ticker"]
+    fetched = replace(
+        markets.normalize(raw),
+        series_ticker="KXWIDGET",              # list_open's envelope patch
+        event_ticker="KXWIDGET-26SEP01",
+    )
+    monkeypatch.setattr(board.kalshi_markets, "list_open", lambda: [fetched])
+    board.get_board(conn, force=True, now=NOW)          # fetch + snapshot
+    rebuilt = board.get_board(conn, now=NOW)            # cache hit
+
+    assert rebuilt[0].series_ticker == "KXWIDGET"
+    assert rebuilt[0].event_ticker == "KXWIDGET-26SEP01"

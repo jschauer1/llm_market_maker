@@ -28,6 +28,7 @@ from __future__ import annotations
 
 import json
 import sqlite3
+from dataclasses import replace
 from datetime import datetime, timezone
 
 from tools import snapshot
@@ -89,7 +90,25 @@ def _rebuild(conn: sqlite3.Connection, captured_at: str) -> list[Market]:
                 "raw_json and cannot be rebuilt into a board. Re-fetch with "
                 "get_board(conn, force=True)."
             )
-        out.append(kalshi_markets.normalize(raw))
+        market = kalshi_markets.normalize(raw)
+        # `list_open` patches series/event identity onto each market from
+        # its event envelope; the snapshot stores only the market's own raw
+        # payload, where those fields are absent. Without this derivation a
+        # rebuilt board has series_ticker=None on every market, which
+        # silently disables anything that classifies by family --
+        # discovered 2026-08-26 when gate.py passed 349/349 events on a
+        # cached board after passing 100/349 on the same board freshly
+        # fetched. Kalshi tickers embed the identity (SERIES-EVENT-STRIKE),
+        # so derive what the payload does not carry.
+        ticker = market.ticker
+        patch = {}
+        if not market.series_ticker:
+            patch["series_ticker"] = ticker.split("-", 1)[0]
+        if not market.event_ticker and "-" in ticker:
+            patch["event_ticker"] = ticker.rsplit("-", 1)[0]
+        if patch:
+            market = replace(market, **patch)
+        out.append(market)
     return out
 
 
