@@ -1249,3 +1249,20 @@ moderates (Big Brother DRE 4.9d, two Grok strikes 14.9d, asks
 converged to 0.97 exactly as the timing analysis predicts).
 Settlements land within days; these are the first live rows of the
 pre-registered forward test.
+
+## 2026-08-26 — User bets placed and tracked; stage-3 research made a mandatory, attributed step
+
+User placed $25 NO on KXGTATRAILER-26SEP (id 9186) and $25 NO on
+KXGROK-GROK47-26SEP04 (id 9184), both tracked via mark-taken. Stage-3
+research (user-prompted) validated the Grok bet independently (4.7
+publicly slipped to early September vs the Sep 3 deadline) and found
+real resolution risk on the trailer bet (the Aug 27 "Extended Look"
+airs inside the window; media call it a trailer; Rockstar does not) —
+flag recorded on the row; hold-don't-add advice given at $25 size.
+Process change ratified by the user and written into RESULTS.md's v4
+section: the operating model's independent research pass is a
+mandatory stage-3 step; endorsements/rejections in the ledger ARE the
+model's tracked suggestions (8 endorsed / 9 rejected this scan, 11
+endorsed live rows all-time), attributed via final_review provenance
+(claude-fable-5 recorded for this scan) so interpretation_value can
+score the model's suggestion quality against the raw screen over time.

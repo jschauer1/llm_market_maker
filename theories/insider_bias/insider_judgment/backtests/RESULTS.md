@@ -137,4 +137,22 @@ qualification; record days-to-close and the divergence flag on every
 row; pin judgment as-of per event, not per batch; add a leakability
 question to the prompt ("can this group's knowledge escape before
 close?"); candidate gate NO-rule for sealed-tabulation award families.
+
+**Stage 3 is mandatory and is the operating model's own suggestion
+(added 2026-08-26, user-directed):** before anything is presented as a
+bet, the operating model runs an independent research pass on each
+would-be endorsement — rules text against the real-world calendar, web
+research where it decides anything — and records the outcome as the
+ledger disposition (`endorsed`/`rejected` with the reasoning), plus
+`final_review` provenance naming the model. The endorsement IS the
+model's tracked suggestion; `score.interpretation_value` then measures
+whether those suggestions beat the raw screen, which is only possible
+because rejections are recorded too. Worked example of why this step
+exists: the 2026-08-26 live scan's KXGTATRAILER endorsement survived
+the blind judge with no flags, and only the stage-3 research pass
+found that Rockstar's Aug 27 "Extended Look" airs inside the
+resolution window — the strong verdict was right that insiders know,
+but what they know may cut YES. Direction-mapping of verdicts is not
+automatic; research is the step that catches it.
+
 Promotion to `active` requires the rule repeating on live settlements.
