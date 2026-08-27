@@ -38,6 +38,7 @@ def _register_matching(conn):
         ("insider_judgment", "Insider Judgment", 3, True),
         ("mention_family", "Mention Family", 1, False),
         ("structural_arb", "Structural Arb", 1, False),
+        ("no_side_premium", "No-Side Premium", 1, False),
     ):
         theories.register(conn, tid, name, f"theories/{tid}", now=TS)
         with db.write(conn):
@@ -88,7 +89,8 @@ def test_a_proposed_row_without_code_is_not_drift(conn):
 def test_running_returns_scannable_theories_and_raises_on_drift(conn):
     _register_matching(conn)
     ids = [t.id for t in registry.running(conn)]
-    assert ids == ["insider_judgment", "mention_family", "structural_arb"]
+    assert ids == ["insider_judgment", "mention_family",
+                   "no_side_premium", "structural_arb"]
     with db.write(conn):
         conn.execute("UPDATE theories SET version=99"
                      " WHERE id='mention_family'")
