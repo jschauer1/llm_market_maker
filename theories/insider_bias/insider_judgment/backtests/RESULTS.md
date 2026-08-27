@@ -107,6 +107,22 @@ clean still-open subset holds at +4.65, win 0.910, n=409.** Behavioral
 fingerprint is anti-leakage: strong-YES lost money, and three judge
 instances independently rediscovered the Emmy nomination-day trap.
 
+## Concentration (is it one market?)
+
+No. The rule's 551 rows span **92 series / 162 events**; 133 of 162
+events (82%) are individually net-positive with a median event net of
++7.8 — many small wins, not a few whales. Leave-one-out on each of the
+six largest series contributors leaves the mean at +4.45 to +5.23 (vs
++5.10). Dropping the entire World Cup broadcast family — the largest
+thematic cluster (~30% of profit) and one that no longer exists —
+leaves **+4.19 on 459 rows / 155 events**, the number to lean on for
+live expectations. A symmetric outlier trim (drop the 20 best AND 20
+worst events) *raises* the mean to +7.57, because the extreme tail of
+this strategy is its rare big losses, not its wins. Residual caveat:
+single-broadcast series carry many sibling legs (e.g. 29 rows on one
+World Cup final), which is why the event-clustered p≈0.01 — not the
+row-level p — is the quoted significance.
+
 ## Standing caveats
 
 One summer (June–Aug 2026), one regime. Entries assume the daily
