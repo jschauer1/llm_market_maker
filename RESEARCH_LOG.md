@@ -1327,3 +1327,48 @@ distinct series — healthier immediately.
 
 **Next:** Both new theories accrue settlements automatically via the
 session settle pass. Nothing to do but run each session and wait.
+
+## 2026-08-27 — structural_arb v2: depth gate mechanical; queue re-quoted, mostly decayed
+
+**Did:** Settle pass: 0 newly finalized (220 active, 5 closed awaiting
+finalization — most of the queue resolves tonight). Scores unchanged
+(insider_judgment n=12 +8.28 net; the two new theories n=0).
+insider_judgment and no_side_premium already saw today's date
+(last night's late session); not re-run. structural_arb re-run against
+a fresh 107,656-market board: 1 survivor (KXNCAAMBWINS-26SJU 24/27
+nested pair, 4.8% riskless at top-of-book), killed by the manual
+orderbook check — 0.47 contracts deep, ~$0.02 fillable (opp 9309,
+rejected). Second consecutive live finalist to die exactly this way,
+so promoted the depth check into stage 1 as **v2** (TDD, 10 tests,
+701 green): `implied_ask_ladder` + lockstep `fillable_floor` walk in
+scan.py, orderbook fetch per finalist leg in live price(), <$5
+fillable → recorded rejected, unreadable book → screened + `Depth
+UNVERIFIED`. Registry bumped. v2 validated live: same find,
+mechanically rejected with the hand-check's numbers (opp 9310).
+Details: theories/structural_arb/NOTES.md 2026-08-27.
+
+Queue re-quoted (9 endorsed untouched, none settled): GTA ladder
+converged to the endorsed [15,30) view (YES-10 0.93→0.97, YES-15
+0.87→0.96, NO-45 0.94→0.96; NO-30 moved 6pts against, 0.85→0.79);
+BB-DRE NO@0.82 broken (NO now 0.54 — house plan shifted, the risk the
+Aug-24 correction flagged); CANUSDEAL NO 0.97→0.98 and CMPS NO
+0.91→1.00 have no buyable edge left; NTLA NO 0.88→0.90 thinner,
+rules-divergence caution stands. Opp 9248's arb fully gone at
+top-of-book (YES leg 0.07→0.21), consistent with its dust rejection.
+
+**Learned:** Top-of-book existence vs fillable size is not an edge
+case for this theory — it is the *typical* failure of its finds
+(2 of 2). The book's implied-ask structure (`orderbook_fp` = resting
+bids; asks implied from the opposite side; fractional dust sizes) is
+now encoded and tested. Greedy lockstep ladder walk is exact for the
+riskless-fill question because the marginal basket always takes every
+leg's cheapest remaining level.
+
+**Next:** Tonight settles most of the queue (GTA video length ladder,
+both Big Brother legs) plus the two taken bets' markets soon after
+(Grok 4.7 by Sep 4, GTA trailer by Sep 1) — tomorrow's settle pass is
+the first real scorecard for insider_judgment v3's endorsed tier and
+no_side_premium's cells. calendar-arb (idea 21) remains the natural
+next build (same interval machinery, cross-event date ladders).
+Ask the user to mark-taken/skipped: 187, 188, 192, 9134, 9140, 9203,
+9204, 9238, 9239.

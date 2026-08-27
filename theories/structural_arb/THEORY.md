@@ -75,6 +75,20 @@ re-run the scan on fresh asks before anything is recorded; the board can
 be tens of minutes old and this theory's false positives cost real money.
 Backtest runs never re-quote — they price the snapshot.
 
+**Depth gate (v2, live only).** Fresh quotes prove existence at
+top-of-book; they say nothing about size, and both v1 live finds were
+real yet died 0.3–0.5 contracts deep (opps 9248, 9309). Live pricing
+therefore reads each finalist leg's orderbook (`orderbook_fp`; resting
+bids, asks implied from the opposite side), walks all legs' ask ladders
+in lockstep while the marginal basket stays riskless
+(`scan.implied_ask_ladder`, `scan.fillable_floor`), and records the
+fillable basket count and dollar floor profit in the rationale. A find
+whose fillable riskless profit is below **$5** records as
+`disposition="rejected"` (dust: real, not actionable) — kept, so the
+control group settles. An unreadable book (fetch failure, or the
+20-fetch budget) leaves the find screened but explicitly marked
+`Depth UNVERIFIED` — v1 behavior, never silent.
+
 Every find is recorded with `ledger.record_basket` (one position, joint
 payoff), `disposition="screened"` (nothing to interpret),
 `edge_basis="model"`. Because cost + fees ≤ `min_payout`, scoring routes
@@ -91,8 +105,10 @@ construction.
 A basket is riskless only if **all** legs fill at the recorded asks.
 Every report tells the user to verify each leg before entering any;
 single-leg-pair findings rank above wide baskets at equal edge for this
-reason. Depth beyond top-of-book is not checked (the board carries no
-book depth) — small size only until verified on the book.
+reason. Since v2 the fillable size at riskless prices is measured from
+the book and stated in the rationale — but the book moves between the
+measurement and the user's order, so the instruction to re-verify every
+leg stands.
 
 ## Data sources
 
@@ -128,4 +144,14 @@ ran end to end.)
 ## Version
 
 1 — initial: nested pairs, geometry NO-baskets, flag NO-baskets; 1¢/leg
-buffer; 25-fetch flag cap; live re-quote verification.
+buffer; 150-fetch flag cap; live re-quote verification. (An earlier
+draft of this note said 25-fetch; the shipped constant was 150.)
+
+2 — 2026-08-27: mechanical depth gate in live pricing. Orderbook per
+finalist leg, lockstep ladder walk for fillable riskless size, <$5
+fillable floor profit records as rejected, unreadable book records as
+screened + `Depth UNVERIFIED`. Decision-path change (a find v1 would
+have screened can now be rejected), hence the bump. Motivated by opps
+9248 and 9309 — the only two live finds v1 produced, both killed by
+hand on depth two sessions running. Backtests are unchanged
+(existence only; no historical orderbooks exist).

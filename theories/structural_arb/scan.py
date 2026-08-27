@@ -561,3 +561,67 @@ def describe(finding: Finding) -> str:
         "every leg's ask before entering any — quotes move, and a "
         "partial basket is not riskless."
     )
+
+
+# --------------------------------------------------------------- depth
+# Top-of-book existence and fillable size are different claims: opps
+# 9248 and 9309 were both riskless at the quoted asks and both died
+# 0.3-0.5 contracts deep. These two functions turn an orderbook into
+# the size a basket can actually be filled at riskless prices.
+
+def implied_ask_ladder(fp: dict | None,
+                       side: str) -> list[tuple[float, float]]:
+    """Executable asks for `side`, cheapest first, from an orderbook.
+
+    `fp` is the API's `orderbook_fp`: `yes_dollars`/`no_dollars` are the
+    resting BID lists as `[price, size]` (dollar strings, fractional
+    sizes). Buying a side lifts the opposite side's bids, so each ask is
+    `1 - opposite_bid` at that bid's size.
+    """
+    if not fp:
+        return []
+    opposite = fp.get("no_dollars" if side == "yes" else "yes_dollars")
+    ladder = []
+    for entry in opposite or []:
+        try:
+            bid, size = float(entry[0]), float(entry[1])
+        except (TypeError, ValueError, IndexError):
+            continue
+        ask = 1.0 - bid
+        if 0.0 < ask <= 1.0 and size > 0.0:
+            ladder.append((ask, size))
+    ladder.sort(key=lambda ps: ps[0])
+    return ladder
+
+
+def fillable_floor(ladders: list[list[tuple[float, float]]],
+                   min_payout: float) -> tuple[float, float]:
+    """(baskets, profit) fillable while every marginal basket stays
+    riskless.
+
+    Walks all legs' ask ladders in lockstep — the marginal basket always
+    fills at the cheapest available level of every leg, so the greedy
+    walk is exact. Stops when the marginal cost plus fees reaches
+    `min_payout` (the book has un-crossed) or any leg's ladder runs out.
+    """
+    if not ladders or any(not lad for lad in ladders):
+        return 0.0, 0.0
+    idx = [0] * len(ladders)
+    remaining = [lad[0][1] for lad in ladders]
+    baskets = 0.0
+    profit = 0.0
+    while True:
+        prices = [lad[i][0] for lad, i in zip(ladders, idx)]
+        marginal = min_payout - sum(p + _fee(p) for p in prices)
+        if marginal <= 0.0:
+            return baskets, profit
+        fill = min(remaining)
+        baskets += fill
+        profit += fill * marginal
+        for j, lad in enumerate(ladders):
+            remaining[j] -= fill
+            if remaining[j] <= 1e-12:
+                idx[j] += 1
+                if idx[j] >= len(lad):
+                    return baskets, profit
+                remaining[j] = lad[idx[j]][1]

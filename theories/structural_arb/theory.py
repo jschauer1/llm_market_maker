@@ -53,6 +53,22 @@ MAX_FLAG_FETCHES = 150
 #: Tickers per quotes request. 3,438 in one GET returned HTTP 414.
 QUOTE_CHUNK = 100
 
+ORDERBOOK_URL = ("https://api.elections.kalshi.com/trade-api/v2"
+                 "/markets/{}/orderbook")
+
+#: Orderbook lookups per pricing pass, one per distinct finalist leg.
+#: Finalists are a handful per board (v1 live evidence: 1-3 findings),
+#: so this cap only guards a pathological board; capped-out legs record
+#: as depth-UNVERIFIED, never silently.
+MAX_ORDERBOOK_FETCHES = 20
+
+#: A basket whose fillable riskless profit is below this is dust: real
+#: at top-of-book, not actionable at any size worth the user's time.
+#: Both v1 live finds died here (opp 9248: ~$0.30 fillable, opp 9309:
+#: ~$0.02) — v2 makes the check mechanical and records such finds as
+#: rejected, keeping the free control group.
+MIN_FILLABLE_PROFIT_USD = 5.0
+
 FACT_KIND = "event_me_flag"
 
 #: Process-lifetime cache: event_ticker -> bool | None (None: fetch failed).
@@ -105,7 +121,9 @@ def _me_flag_fetch(conn, event_ticker: str, fetch: Fetch) -> bool | None:
 class StructuralArbTheory(Theory):
     id = "structural_arb"
     name = "Structural Arb"
-    version = 1
+    # v2: live pricing reads the orderbook for every finalist leg and
+    # rejects baskets whose fillable riskless profit is dust (< $5).
+    version = 2
     uses_llm_judgment = False
     # Voluntary self-documentation: the deciding artifact is code.
     # finish() records it with model='none (deterministic)'.
@@ -225,7 +243,12 @@ class StructuralArbTheory(Theory):
 
     def price(self, ctx: TheoryContext, cands: list[Candidate],
               verdicts=None) -> list[ScoredCandidate]:
+        from tools.http import get_json
+        fetch = self._fetch or get_json
+
         out = []
+        books: dict[str, dict | None] = {}   # ticker -> fp (None: failed)
+        budget = [MAX_ORDERBOOK_FETCHES]
         for c in cands:
             cost = c.cost
             fee = sum(scan._fee(leg.price) for leg in c.legs)
@@ -240,6 +263,13 @@ class StructuralArbTheory(Theory):
                 legs=c.legs, min_payout=c.min_payout,
                 max_payout=c.max_payout,
             )
+            disposition = "screened"
+            if ctx.run_mode == "live":
+                # Backtests price the snapshot; only a live run can ask
+                # the book how much of the floor is actually fillable.
+                disposition, note = self._depth_verdict(
+                    finding, fetch, books, budget)
+                finding = dc_replace(finding, note=note)
             out.append(ScoredCandidate(
                 candidate=c,
                 edge=Edge(
@@ -249,6 +279,46 @@ class StructuralArbTheory(Theory):
                     fee_pts=100.0 * fee,
                 ),
                 rationale=scan.describe(finding),
-                disposition="screened",
+                disposition=disposition,
             ))
         return out
+
+    def _depth_verdict(self, finding: scan.Finding, fetch: Fetch,
+                       books: dict[str, dict | None],
+                       budget: list[int]) -> tuple[str, str]:
+        """(disposition, note) from the legs' orderbooks.
+
+        A leg whose book cannot be read (fetch failed, or budget spent)
+        leaves the finding screened but explicitly UNVERIFIED — the v1
+        behavior, never silently. A readable book either clears the
+        actionability floor or records the finding as rejected, which
+        keeps the dust finds as a settled control group.
+        """
+        ladders = []
+        for leg in finding.legs:
+            ticker = leg.market.ticker
+            if ticker not in books:
+                if budget[0] <= 0:
+                    books[ticker] = None
+                else:
+                    budget[0] -= 1
+                    try:
+                        payload = fetch(ORDERBOOK_URL.format(ticker))
+                        books[ticker] = payload.get("orderbook_fp") or {}
+                    except Exception:
+                        books[ticker] = None
+            fp = books[ticker]
+            if fp is None:
+                return "screened", (
+                    "Depth UNVERIFIED (orderbook unavailable this run):"
+                    " top-of-book existence only — check fillable size"
+                    " before entering")
+            ladders.append(scan.implied_ask_ladder(fp, leg.side))
+        baskets, dollars = scan.fillable_floor(ladders, finding.min_payout)
+        note = (f"Depth: ~{baskets:.2f} baskets fillable at riskless"
+                f" prices, ~${dollars:.2f} floor profit")
+        if dollars < MIN_FILLABLE_PROFIT_USD:
+            return "rejected", note + (
+                f" — below the ${MIN_FILLABLE_PROFIT_USD:.0f}"
+                " actionability floor (depth gate)")
+        return "screened", note

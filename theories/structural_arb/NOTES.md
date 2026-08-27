@@ -97,3 +97,46 @@ judgment disposes" split — but the check is mechanical and belongs in
 stage 1 eventually. Also learned: the orderbook endpoint's schema is
 `orderbook_fp.{yes,no}_dollars` = resting BID lists (asks are implied
 from the opposite side), size is fractional-contract decimal.
+
+## 2026-08-27 — v2: the depth gate goes mechanical
+
+Session re-ran the v1 scan on today's board (107,656 markets): 1
+survivor, KXNCAAMBWINS-26SJU 24/27 nested pair back again at 4.8%
+riskless floor (it existed Aug 24, vanished, returned). Orderbook check:
+the NO-27 leg rests against a 0.47-contract YES bid at 0.50; next level
+0.02 implies NO @0.98, un-crossing the pair. Fillable riskless profit
+~$0.02. Recorded opp 9309 and interpreted it rejected by hand — the
+second consecutive live finalist killed by exactly the depth check
+NOTES sketched as a v2 candidate yesterday (9248: ~$0.30 fillable).
+
+Two-for-two is enough: promoted the heuristic into stage 1 as v2
+(TDD; 10 new tests, 701 repo-wide green). Design:
+
+- `scan.implied_ask_ladder(fp, side)` — the API's `orderbook_fp` lists
+  resting BIDS; buying a side lifts the opposite side's bids, so the
+  ask ladder is `1 - opposite_bid` at that bid's size, cheapest first.
+- `scan.fillable_floor(ladders, min_payout)` — lockstep greedy walk:
+  the marginal basket always fills at every leg's cheapest remaining
+  level, so greedy is exact; stop when marginal cost + unrounded fees
+  reaches the floor payout or a ladder runs out.
+- `theory.price()` (live only): fetch each finalist leg's book (20/run
+  budget, per-ticker cache), compute (baskets, $), put both in the
+  rationale. < $5 fillable → `disposition="rejected"` (recorded — the
+  dust finds are a free control group that settles). Unreadable book →
+  screened + `Depth UNVERIFIED`, the v1 behavior made explicit.
+- Backtest path untouched: snapshots carry no orderbooks, so tier-A
+  replays keep measuring existence only, as THEORY.md already stated.
+
+Validation: re-ran live under v2 — same find, mechanically rejected
+with the same numbers the manual check produced (~0.47 baskets,
+~$0.02), recorded as opp 9310 (v2's own row). Version bumped in code
+and registry; drift tests forced the registry fixture update, which is
+the system working.
+
+Fee note for the walk: fees are computed per level price, so a deeper
+(more expensive) level pays a different fee — the marginal-basket
+riskless test is exact per level, not an average.
+
+Still open for v3: nothing new. The remaining v2 ideas from yesterday
+(YES-basket exhaustiveness source, `yes_sub_title` masking for date
+ladders) stand; cross-event date ladders remain calendar-arb's.

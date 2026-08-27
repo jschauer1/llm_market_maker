@@ -243,7 +243,8 @@ def test_flag_candidate_separated_and_contradiction_voids():
 
 # ------------------------------------------------------- theory adapter
 
-def _fake_fetch(me_flags: dict[str, bool], fresh_quotes: list[dict]):
+def _fake_fetch(me_flags: dict[str, bool], fresh_quotes: list[dict],
+                orderbooks: dict[str, dict] | None = None):
     def fetch(url, params=None):
         if "/events/" in url:
             ev = url.rsplit("/", 1)[1]
@@ -251,6 +252,13 @@ def _fake_fetch(me_flags: dict[str, bool], fresh_quotes: list[dict]):
                 raise RuntimeError("no such event")
             return {"event": {"event_ticker": ev,
                               "mutually_exclusive": me_flags[ev]}}
+        if url.endswith("/orderbook"):
+            if orderbooks is None:
+                raise AssertionError(f"unexpected fetch {url}")
+            ticker = url.rsplit("/", 2)[-2]
+            if ticker not in orderbooks:
+                raise RuntimeError("orderbook unavailable")
+            return {"orderbook_fp": orderbooks[ticker]}
         if url.endswith("/markets"):
             return {"markets": fresh_quotes}
         raise AssertionError(f"unexpected fetch {url}")
@@ -468,3 +476,140 @@ def test_flag_fetch_cap_reported():
     res = theory.screen(_ctx(board))
     assert res.gate_removed.get("flag_fetch_capped") == 3
     assert res.gate_removed.get("not_mutually_exclusive") == MAX_FLAG_FETCHES
+
+
+# ------------------------------------------------------------- depth gate
+# v2: top-of-book existence and fillable size are different claims (opps
+# 9248 and 9309 both died 0.3-0.5 contracts deep). Live pricing reads the
+# orderbook for every finalist leg and rejects baskets whose fillable
+# riskless profit is dust.
+
+def _depth_board():
+    return [
+        m("L-10", event="EV-G", strike_type="greater", floor=10,
+          yes_ask=0.40),
+        m("L-20", event="EV-G", strike_type="greater", floor=20,
+          no_ask=0.50),
+    ]
+
+
+_DEPTH_FRESH = [
+    {"ticker": "L-10", "status": "active", "yes_ask_dollars": "0.41",
+     "strike_type": "greater", "floor_strike": 10, "event_ticker": "EV-G"},
+    {"ticker": "L-20", "status": "active", "no_ask_dollars": "0.50",
+     "strike_type": "greater", "floor_strike": 20, "event_ticker": "EV-G"},
+]
+
+
+def test_implied_ask_ladder_converts_opposite_bids():
+    fp = {"yes_dollars": [["0.5000", "0.47"], ["0.0200", "40.00"]],
+          "no_dollars": [["0.5900", "5.00"], ["0.0100", "50.00"]]}
+    yes = scan.implied_ask_ladder(fp, "yes")
+    no = scan.implied_ask_ladder(fp, "no")
+    assert [(round(p, 4), s) for p, s in yes] == [(0.41, 5.0), (0.99, 50.0)]
+    assert [(round(p, 4), s) for p, s in no] == [(0.5, 0.47), (0.98, 40.0)]
+
+
+def test_implied_ask_ladder_missing_side_is_empty():
+    assert scan.implied_ask_ladder({"yes_dollars": []}, "yes") == []
+    assert scan.implied_ask_ladder(None, "no") == []
+
+
+def test_fillable_floor_stops_where_book_uncrosses():
+    a = [(0.41, 5.0), (0.99, 50.0)]
+    b = [(0.50, 0.47), (0.98, 40.0)]
+    baskets, profit = scan.fillable_floor([a, b], 1.0)
+    per = 1.0 - (0.41 + 0.50 + scan._fee(0.41) + scan._fee(0.50))
+    assert baskets == pytest.approx(0.47)
+    assert profit == pytest.approx(0.47 * per)
+
+
+def test_fillable_floor_walks_deeper_riskless_levels():
+    a = [(0.40, 5.0), (0.41, 5.0)]
+    b = [(0.50, 5.0), (0.51, 5.0)]
+    baskets, profit = scan.fillable_floor([a, b], 1.0)
+    lvl1 = 1.0 - (0.40 + 0.50 + scan._fee(0.40) + scan._fee(0.50))
+    lvl2 = 1.0 - (0.41 + 0.51 + scan._fee(0.41) + scan._fee(0.51))
+    assert baskets == pytest.approx(10.0)
+    assert profit == pytest.approx(5 * lvl1 + 5 * lvl2)
+
+
+def test_fillable_floor_empty_leg_is_zero():
+    assert scan.fillable_floor([[(0.4, 5.0)], []], 1.0) == (0.0, 0.0)
+
+
+def test_price_live_rejects_depth_dust_basket():
+    orderbooks = {
+        "L-10": {"yes_dollars": [["0.1000", "5.00"]],
+                 "no_dollars": [["0.5900", "200.00"]]},
+        "L-20": {"yes_dollars": [["0.5000", "0.47"], ["0.0200", "40.00"]],
+                 "no_dollars": [["0.0100", "5.00"]]},
+    }
+    theory = StructuralArbTheory(
+        fetch=_fake_fetch({}, _DEPTH_FRESH, orderbooks))
+    run = theory.start(_ctx(_depth_board(), run_mode="live"))
+    result = run.finish(dry_run=True)
+    assert len(result.scored) == 1
+    sc = result.scored[0]
+    assert sc.disposition == "rejected"
+    assert "fillable" in sc.rationale
+
+
+def test_price_live_screens_deep_book_and_notes_depth():
+    orderbooks = {
+        "L-10": {"yes_dollars": [["0.1000", "5.00"]],
+                 "no_dollars": [["0.5900", "200.00"]]},
+        "L-20": {"yes_dollars": [["0.5000", "200.00"]],
+                 "no_dollars": [["0.0100", "5.00"]]},
+    }
+    theory = StructuralArbTheory(
+        fetch=_fake_fetch({}, _DEPTH_FRESH, orderbooks))
+    run = theory.start(_ctx(_depth_board(), run_mode="live"))
+    result = run.finish(dry_run=True)
+    sc = result.scored[0]
+    assert sc.disposition == "screened"
+    assert "fillable" in sc.rationale
+
+
+def test_price_backtest_never_fetches_orderbooks():
+    # orderbooks=None makes any orderbook fetch an AssertionError; the
+    # backtest path prices the snapshot and must not touch the book.
+    theory = StructuralArbTheory(fetch=_fake_fetch({}, []))
+    run = theory.start(_ctx(_depth_board(), run_mode="backtest"))
+    result = run.finish(dry_run=True)
+    sc = result.scored[0]
+    assert sc.disposition == "screened"
+    assert "UNVERIFIED" not in sc.rationale
+
+
+def test_price_live_orderbook_failure_records_unverified():
+    orderbooks = {
+        "L-10": {"yes_dollars": [["0.1000", "5.00"]],
+                 "no_dollars": [["0.5900", "200.00"]]},
+        # L-20 missing: fetch raises RuntimeError
+    }
+    theory = StructuralArbTheory(
+        fetch=_fake_fetch({}, _DEPTH_FRESH, orderbooks))
+    run = theory.start(_ctx(_depth_board(), run_mode="live"))
+    result = run.finish(dry_run=True)
+    sc = result.scored[0]
+    assert sc.disposition == "screened"
+    assert "UNVERIFIED" in sc.rationale
+
+
+def test_price_live_orderbook_budget_caps_fetches(monkeypatch):
+    import theories.structural_arb.theory as sa_theory
+    monkeypatch.setattr(sa_theory, "MAX_ORDERBOOK_FETCHES", 1)
+    orderbooks = {
+        "L-10": {"yes_dollars": [["0.1000", "5.00"]],
+                 "no_dollars": [["0.5900", "200.00"]]},
+        "L-20": {"yes_dollars": [["0.5000", "200.00"]],
+                 "no_dollars": [["0.0100", "5.00"]]},
+    }
+    theory = StructuralArbTheory(
+        fetch=_fake_fetch({}, _DEPTH_FRESH, orderbooks))
+    run = theory.start(_ctx(_depth_board(), run_mode="live"))
+    result = run.finish(dry_run=True)
+    sc = result.scored[0]
+    assert sc.disposition == "screened"
+    assert "UNVERIFIED" in sc.rationale
