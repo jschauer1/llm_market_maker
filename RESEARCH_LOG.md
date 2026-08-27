@@ -1372,3 +1372,45 @@ no_side_premium's cells. calendar-arb (idea 21) remains the natural
 next build (same interval machinery, cross-event date ladders).
 Ask the user to mark-taken/skipped: 187, 188, 192, 9134, 9140, 9203,
 9204, 9238, 9239.
+
+## 2026-08-27 (later) — ledger defect: position identity, not a theory finding
+
+Not a research session. User asked whether duplicate suggestions are handled
+correctly for performance measurement. They are not, and the diagnosis is
+in **docs/DEDUP_PLAN.md** (full handoff: findings, design, next steps).
+
+**Learned:** `opportunities` carries `run_id` in its UNIQUE key, so it
+enforces one row per market per *run* where `ledger.py`'s own docstring says
+one position per market per *theory version*. Every run gets a fresh dated
+run_id, so re-recordings insert instead of collide. 1,686 duplicate positions
+repo-wide. Pooled `compute_score` counts each as an independent observation:
+insider_judgment v3 backtest reads n=4,759 / -0.59 net where the fullcov run
+alone is n=3,195 / -1.15 — the judged sub-runs were drawn *from* fullcov, so
+pooling re-counts them and pulls the headline up. A duplicate improved
+measured performance.
+
+The same defect destroyed the persistence signal: `times_seen` exists to count
+re-proposal and reads **1 on all 9,153 rows** — every repetition became a new
+row instead of incrementing the counter. The double-count and the lost signal
+are one defect seen from two sides; fixing the key fixes both.
+
+`extra_json.entry_day_iso` already holds the decision day (8,880/9,153), so
+decision identity needs no heuristic. All 1,564 insider_judgment duplicate
+groups share it — every duplicate in the repo is a same-day re-recording, and
+there are currently **zero** genuine multi-day re-decisions. (An earlier read
+of 19 live cross-run positions as multi-day was wrong — they are v2 vs v3.)
+
+Design agreed with the user: two levels. **Proposals** keyed
+(theory, version, run_mode, lane, ticker, outcome) with `run_id` demoted to an
+attribute and an `opportunity_attempts` child table carrying the date list —
+scored for calibration, theory_id stays in the key so per-theory track records
+survive. **Bets** keyed (ticker, outcome) with no theory — scored for money, so
+one bet proposed by three theories and taken once counts once.
+
+**Built:** the handoff doc and `tests/test_position_dedup.py` (15 tests,
+failing by design). No implementation yet.
+
+**Next:** schema + migration + ledger + score per docs/DEDUP_PLAN.md section 5,
+then level 2. Note the caveat in section 7 — deduping fixes the pooled
+number's arithmetic, not its meaning; insider_judgment v3's honest reading
+stays the fullcov run alone at -1.15.
