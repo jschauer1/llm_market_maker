@@ -140,3 +140,37 @@ riskless test is exact per level, not an average.
 Still open for v3: nothing new. The remaining v2 ideas from yesterday
 (YES-basket exhaustiveness source, `yes_sub_title` masking for date
 ladders) stand; cross-event date ladders remain calendar-arb's.
+
+## 2026-08-27 (evening) — third consecutive find is the same pair; v3 should remember
+
+Re-ran v2 against tonight's fresh board (110,399 markets, pulled 23:18Z —
+11h newer than this morning's 107,656). Funnel: 11,602 multi-outcome
+events → 3,099 scalar → 1 nested raw violation → 1 geometry finding;
+1,447 flag candidates all removed as `not_mutually_exclusive`, 0 confirmed.
+
+**1 survivor, and it is the same pair for the third run running:**
+`KXNCAAMBWINS-26SJU` 24/27, YES-24 @ 0.42 + NO-27 @ 0.50 = 0.92 + 0.0346
+fees against a guaranteed 1.00 floor → 4.8% riskless at top-of-book.
+Depth gate: **~0.47 baskets fillable, ~$0.02 floor profit**, below the $5
+floor → recorded `rejected` (opp 9311). Identical numbers to opp 9310 this
+morning and to the hand-check on 9309 before that.
+
+So the gate is working exactly as designed and the theory is behaving
+correctly. But the *reporting* is now misleading in a small way worth
+fixing: each session's scan announces "1 survivor" as though it found
+something, when it is re-finding a known, persistently-dust pair. Three
+sessions have each spent an orderbook fetch and a ledger row on it.
+
+**v3 candidate — dust memory.** Before the depth fetch, check whether this
+exact leg-set has been rejected for depth before and how recently; if so,
+either skip the fetch and re-record cheaply, or fetch but report it as
+"known dust, unchanged" rather than as a new finding. The ledger already
+holds what is needed (`opportunity_legs` + `disposition='rejected'` +
+rationale), so this is a query, not new storage. Care needed on one point:
+a pair that was dust yesterday can legitimately gain depth today, so the
+memory must never *suppress* the check — only change how it is fetched and
+reported. That distinction is the whole design.
+
+Not doing it tonight; recorded as idea `arb-dust-memory` so it does not
+get rediscovered a fourth time. No version bump — nothing about the
+decision procedure changed.

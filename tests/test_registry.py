@@ -45,6 +45,11 @@ def _register_matching(conn):
             conn.execute("UPDATE theories SET version=?, status='testing'"
                          " WHERE id=?", (version, tid))
         theories.set_uses_llm_judgment(conn, tid, uses, now=TS)
+    # calibration_harvest has a class but is deliberately left `proposed`:
+    # its cells are unmeasured, so it must not appear in registry.running().
+    # The class still needs a row -- a class with no row is drift.
+    theories.register(conn, "calibration_harvest", "Calibration Harvest",
+                      "theories/calibration_harvest", now=TS)
 
 
 def test_check_drift_is_empty_when_code_and_db_agree(conn):
