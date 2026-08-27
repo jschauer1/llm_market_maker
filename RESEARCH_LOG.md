@@ -1266,3 +1266,38 @@ model's tracked suggestions (8 endorsed / 9 rejected this scan, 11
 endorsed live rows all-time), attributed via final_review provenance
 (claude-fable-5 recorded for this scan) so interpretation_value can
 score the model's suggestion quality against the raw screen over time.
+
+## 2026-08-26 — structural_arb implemented from backlog; first live riskless find recorded
+
+**Did:** Settled 15 newly finalized tickers (insider_judgment noscan
+weak rows 5W/1L; two of its Aug-23 rejects settled — one rejection
+correct, one missed win; mention_family preview 4W/2L, consistent with
+the standing retirement proposal). Then implemented `structural_arb`
+(backlog idea 4, priority 3/22): pure-code within-event consistency
+scanner — nested-pair (ladder monotonicity via YES-interval
+containment), geometry NO-baskets (weighted-interval-scheduling DP over
+provably disjoint strikes), flag NO-baskets (event mutually_exclusive
+envelope, persisted to theory_facts). 26 tests. Registered v1, status
+testing. Live scan: 108,820 markets → 1 verified find, recorded as
+**opp 9248**: KXNASDAQ100MINY-26DEC31H1600 T22800.01 YES@0.07 +
+T22600.01 NO@0.86 — $0.943 all-in vs $1.00 guaranteed floor (+6.0%
+riskless, +112% if the 2026 NDX low lands between strikes; crossed
+since Aug 24 per snapshots). Tier-A existence replay over all 6 stored
+snapshots recorded (backtest-2026-08-26-structarb-snap): 1–3 violations
+per snapshot, day-scale persistence. All 1,291 flag candidates fetched:
+zero ME.
+
+**Learned:** The first naive scan was a masterclass in why proofs must
+be conservative — three defects (414 on bulk re-quote; per-player
+strikes sharing one event; Kalshi strike metadata lying on exact-value
+markets, which would have recorded a losing "riskless" basket) all
+caught before anything hit the ledger; details in
+theories/structural_arb/NOTES.md. Also: Polymarket's whales filter
+returned a sub-threshold trade (live test now failing on filterAmount
+semantics) — needs a look before any whale-based theory trusts it.
+
+**Next:** Watch opp 9248 (mark-taken if entered). Re-run structural_arb
+each session — flag lookups are now nearly free. calendar-arb (idea 21)
+is the natural sibling: same interval machinery across events in a
+series (date ladders). mention_family retirement still awaits the
+user's ruling.
