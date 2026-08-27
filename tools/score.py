@@ -644,3 +644,122 @@ def save_bucket_rates(
             rows,
         )
     return len(rows)
+
+
+def settlement_day_clusters(
+    conn: sqlite3.Connection,
+    theory_id: str,
+    theory_version: int,
+    run_mode: str = "live",
+    disposition: str = "all",
+    *,
+    run_id: str | None = None,
+) -> dict:
+    """Calibration edge broken out by settlement day, with a clustered SE.
+
+    `compute_score`'s `n` counts rows, and treats them as independent draws.
+    They are not. Kalshi markets settle in day-clumps -- a screen's whole
+    near-term board resolves within hours of itself -- and a day on which
+    favorites overperform lifts every row that settled on it at once.
+    Measured on the shared insider_bias screen population over three
+    consecutive close-days (2026-08-25/26/27, n=215, whole population, not
+    a theory's picks), the day-level favorite edge ran +5.00, -6.30, +6.14
+    net, and the YES/NO split reversed outright between days: YES -0.61 /
+    NO +8.67 on the 25th against YES +12.89 / NO -2.30 on the 27th. That
+    swing is wider than any edge either live theory claims, so a score
+    drawn from one settlement day measures the day, not the theory.
+
+    So the honest unit of evidence is the day, not the row:
+
+    - `n_days` is the effective sample size. One day is one draw, whatever
+      `n` says.
+    - `day_clustered_se` is the standard error of the per-day edges about
+      their mean (between-cluster, unweighted). It is `None` below two
+      days, because a single cluster carries no information about spread
+      -- returning the row-level SE there would be precisely the
+      overstatement this function exists to correct.
+
+    Days are equally weighted rather than row-weighted: the question is how
+    much the edge moves between days, and a heavy day is still one draw
+    from that distribution.
+
+    Riskless positions are excluded for `_aggregate`'s reason -- they have
+    no implied rate and no forecast to be right about. Baskets are excluded
+    for `bucket_rates`' reason: a basket header's synthetic ticker never
+    appears in `settlements`.
+    """
+    where, params = _segment_filter(
+        theory_id, theory_version, run_mode, disposition, run_id
+    )
+    sql = (
+        "SELECT o.outcome, o.entry_price, s.result,"
+        " SUBSTR(COALESCE(s.resolved_at, ''), 1, 10) AS day"
+        " FROM opportunities o"
+        " JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker"
+        + where
+        + " AND o.position_kind = 'single'"
+    )
+
+    grouped: dict[str, list[dict]] = {}
+    total = 0
+    for row in conn.execute(sql, params).fetchall():
+        # A settlement with no resolved_at cannot be assigned to a day. It
+        # still counts in `n` so this never silently disagrees with
+        # `compute_score`, but it forms no cluster.
+        total += 1
+        day = row["day"]
+        if not day:
+            continue
+        price = row["entry_price"]
+        grouped.setdefault(day, []).append({
+            "won": _won(row["outcome"], row["result"]),
+            "implied_rate": price,
+            "fee_pts": fee_pts(price),
+        })
+
+    days = []
+    for day in sorted(grouped):
+        members = grouped[day]
+        count = len(members)
+        win_rate = sum(1 for m in members if m["won"]) / count
+        implied = sum(m["implied_rate"] for m in members) / count
+        fee = sum(m["fee_pts"] for m in members) / count
+        edge = (win_rate - implied) * 100.0
+        days.append({
+            "day": day,
+            "n": count,
+            "win_rate": win_rate,
+            "price_implied_rate": implied,
+            "calibration_edge": edge,
+            "calibration_edge_net": edge - fee,
+        })
+
+    n_days = len(days)
+    if n_days == 0:
+        mean_edge = mean_edge_net = None
+        clustered_se = None
+    else:
+        mean_edge = sum(d["calibration_edge"] for d in days) / n_days
+        mean_edge_net = sum(
+            d["calibration_edge_net"] for d in days
+        ) / n_days
+        if n_days < 2:
+            clustered_se = None
+        else:
+            variance = sum(
+                (d["calibration_edge"] - mean_edge) ** 2 for d in days
+            ) / (n_days - 1)
+            clustered_se = math.sqrt(variance / n_days)
+
+    return {
+        "n": total,
+        "n_days": n_days,
+        "days": days,
+        # Day-weighted, so this deliberately differs from `compute_score`'s
+        # row-weighted `calibration_edge`. Both are correct answers to
+        # different questions; this one answers "what does a typical day
+        # look like", which is the one `n_days` can put an error bar on.
+        "calibration_edge": mean_edge,
+        "calibration_edge_net": mean_edge_net,
+        "day_clustered_se": clustered_se,
+    }

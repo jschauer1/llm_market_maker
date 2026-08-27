@@ -83,6 +83,37 @@ No gate, no judgment, no prompts. Tier A by construction.
   n ≥ 150. Both dead → propose retirement, record against idea 14 that
   the side effect did not survive out-of-population forward testing.
 
+### Amendment, 2026-08-27 — every bar above also requires `n_days ≥ 8`
+
+Rows are not independent draws. The settlement-day clustering study
+(`studies/2026-08-27-settlement-day-clustering/`) measured this screen's
+whole population over three consecutive close-days and found the
+day-level favorite edge swinging +4.26 / −7.29 / +5.40 net, with the
+YES/NO split *reversing* between days (08-25: YES −1.42, NO +7.98;
+08-27: YES +12.15, NO −3.05). This theory measures exactly that split,
+so a row-counted sample spanning three settlement days cannot resolve a
+2-point side effect however many rows it holds.
+
+So each bar above now reads "**and** `n_days ≥ 8`", where `n_days` comes
+from `score.settlement_day_clusters()`, and the interim look additionally
+requires the day-clustered SE to be reported alongside the point estimate.
+
+This is a post-hoc amendment to a pre-registration, which is normally
+exactly the wrong thing to do. Why it is admissible here: it was derived
+from a **control population** (215 markets, whole screen, none selected
+on outcome), not from this theory's own rows; and it makes confirmation
+strictly **harder** in both directions — no bar was loosened. It does not
+bump the version because the decision procedure — population, cells,
+sides, price bands, recording — is untouched; only the evidentiary bar
+for reading the results moved.
+
+**Worked example of why it was needed:** cell B's first 12 settlements
+came in 12/12 (+14.59 net), which read naively falsifies its −3.9 claim.
+All 12 settled on 2026-08-27, a day on which **all 55** YES favorites in
+the population won. Cell B did not beat that day; it was a subset of it.
+Under the amended bar that sample is `n_days=1` — one draw, no computable
+SE, no reading either way. See `NOTES.md` 2026-08-27.
+
 ## How to backtest
 
 The tier-A measurements above are the backtest; they are recorded in
@@ -94,6 +125,9 @@ planned.
 ## Status
 
 `testing` — 2026-08-26: forward test running; rows accrue each session.
+2026-08-27: cell B has 12 settled rows across **1** settlement day; under
+the day amendment above that is unmeasured, not a result. Cell A has 0
+settled (its rows are KXTRUMPSAY-26AUG31 strikes, closing 08-31).
 
 ## Version
 

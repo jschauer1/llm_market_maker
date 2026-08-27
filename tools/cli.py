@@ -167,6 +167,18 @@ def _cmd_score(args) -> int:
                         for disposition in ("all", "screened", "endorsed",
                                             "rejected")
                     },
+                    # Reported alongside, never instead: `all` above counts
+                    # rows, and rows that settled the same day are one draw
+                    # wearing many rows' clothes. `n_days` is the sample
+                    # size a reader should believe.
+                    "settlement_days": {
+                        disposition: score.settlement_day_clusters(
+                            conn, args.theory_id, version, args.run_mode,
+                            disposition, run_id=args.run_id,
+                        )
+                        for disposition in ("all", "screened", "endorsed",
+                                            "rejected")
+                    },
                 }
             )
         elif args.action == "settle-one":
