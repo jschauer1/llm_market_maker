@@ -75,3 +75,25 @@ Open v2 ideas: cross-event date-ladder nesting belongs to calendar-arb
 (idea 21), not here; YES-basket needs an exhaustiveness source; the
 underlying-key could use `yes_sub_title` masking to recover date-strike
 ladders the token rule drops.
+
+## 2026-08-27 (same session) — depth post-mortem on opp 9248: real, riskless, and 32 cents deep
+
+Orderbook check (GET /markets/{t}/orderbook -> `orderbook_fp`,
+price/size lists in dollars): the YES leg @0.07 has ~61 contracts, but
+the NO leg @0.86 rests against a 0.32-contract dust YES bid at 0.14 —
+next level implies NO @0.99, which un-crosses the pair. Fillable
+profit: ~$0.30 total. Interpreted the row rejected with the depth
+rationale. Mystery of the multi-day persistence solved: nobody cleans
+up an arb worth thirty cents.
+
+Lesson for the theory: top-of-book existence (what the screen measures,
+what the spec scoped v1 to) and fillable size are different claims, and
+the gap between them was 200x here. v2 candidate: fetch orderbooks for
+finalists only (a handful per session), compute depth-aware fillable
+size and profit, and put both in the rationale; a min-fillable-profit
+threshold would be a decision-path change -> version bump. Session
+judgment covered it this time — exactly the "pipelines propose,
+judgment disposes" split — but the check is mechanical and belongs in
+stage 1 eventually. Also learned: the orderbook endpoint's schema is
+`orderbook_fp.{yes,no}_dollars` = resting BID lists (asks are implied
+from the opposite side), size is fractional-contract decimal.
