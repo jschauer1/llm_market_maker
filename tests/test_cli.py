@@ -199,6 +199,9 @@ def test_score_report_theory_version_reflects_a_bump(dbpath, capsys):
 
 def test_score_report_run_id_scopes_the_sample(dbpath, capsys):
     conn = db.connect(dbpath)
+    # Two backtest runs proposing the same market merge into one position
+    # (position-identity dedup), so the unscoped report still reads n=1 --
+    # a duplicate recording must not move it.
     for run in ("run-a", "run-b"):
         ledger.record_opportunity(
             conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
@@ -212,7 +215,7 @@ def test_score_report_run_id_scopes_the_sample(dbpath, capsys):
         capsys, "--db", dbpath, "score", "report", "t1",
         "--run-mode", "backtest",
     )
-    assert payload["all"]["n"] == 2, "unscoped report still pools every run"
+    assert payload["all"]["n"] == 1, "a duplicate recording must not move n"
 
     code, payload = _run(
         capsys, "--db", dbpath, "score", "report", "t1",

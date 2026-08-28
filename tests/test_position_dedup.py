@@ -181,3 +181,15 @@ def test_pooled_scoring_still_excludes_experiments(conn):
     _settle(conn, "A", "yes")
     _settle(conn, "B", "yes")
     assert score.compute_score(conn, "t1", 1)["n"] == 1
+
+
+def test_bucket_rates_count_positions_not_recordings(conn):
+    _rec(conn, ticker="A", price=0.50, run_id="r1")
+    conn.execute(
+        "UPDATE opportunities SET confidence = 'strong' WHERE kalshi_ticker = 'A'"
+    )
+    conn.commit()
+    _settle(conn, "A", "yes")
+    _rec(conn, ticker="A", price=0.50, run_id="r2")
+    rates = score.bucket_rates(conn, "t1", 1)
+    assert rates["strong"]["n"] == 1, "one settlement is one draw"

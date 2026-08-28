@@ -133,6 +133,9 @@ def test_bucket_rates_are_segmented_by_run_mode(conn):
 
 
 def test_bucket_rates_can_be_scoped_to_a_single_run(conn):
+    # Two backtest runs proposing the same market merge into one position
+    # (position-identity dedup), so pooled still counts it once -- one
+    # settlement is one draw, however many runs proposed it.
     for run in ("run-a", "run-b"):
         ledger.record_opportunity(
             conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
@@ -142,7 +145,7 @@ def test_bucket_rates_can_be_scoped_to_a_single_run(conn):
     score.record_settlement(conn, "A", "yes")
 
     pooled = score.bucket_rates(conn, "t1", 1, run_mode="backtest")
-    assert pooled["strong"]["n"] == 2
+    assert pooled["strong"]["n"] == 1
     scoped = score.bucket_rates(
         conn, "t1", 1, run_mode="backtest", run_id="run-a"
     )
