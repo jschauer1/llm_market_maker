@@ -81,6 +81,40 @@ without the contract.
   never mistaken for a forecast. A settled payout outside
   `{min_payout, max_payout}` raises — the decomposition still assumes the
   at-risk portion is binary.
+- **A position is identified by theory version, not by run.**
+  `opportunities` is keyed `(theory_id, theory_version, run_mode, lane,
+  kalshi_ticker, outcome)` — `run_id` stays on the row as an attribute
+  (which run first saw this), never as identity, so the same bet
+  re-proposed by five runs across five sessions is one position, not
+  five. `lane` is `'main'` for every real run and the full run id for an
+  `exp/` run, so a variant under test never merges into the record it is
+  measured against — the mechanism behind the "`exp/` run ids are
+  experiments" rule below, now enforced by the key itself rather than
+  only by a filter.
+- **`opportunity_attempts` holds what actually happened; `opportunities`
+  is a rollup, not the record.** Every re-sighting of a position — one row
+  per `(opportunity_id, decision_date, run_id)` — is an attempt, carrying
+  its own `entry_price`, `edge_pts_net`, `confidence`, `judged_blind`,
+  `disposition`, `rationale`, and `extra_json`. The position row can only
+  hold one value per column, so a merge may overwrite the rollup but may
+  never lose an attempt's value — that is what lets a theory's feature
+  flags and per-run reasoning survive a re-proposal instead of being
+  silently discarded by whichever run happened to record last.
+  `decision_date` is the day the theory was deciding about, never the day
+  the code ran: a backtest **must** pass it explicitly
+  (`record_opportunity`/`record_basket` raise on a backtest with no
+  `decision_date`), or a replay covering many days stamps every attempt
+  with the same wall-clock date and the primary key silently collapses
+  many decisions into one row.
+- **`opportunity_fills` is the money-side mirror of attempts.** Every
+  `mark-taken ... taken` appends a fill rather than overwriting, so
+  scaling into a position on two different days at two different prices
+  keeps both, and `roi_taken` is computed from what was actually paid.
+  `mark-taken` now **requires `--theory`** for a `taken` action (not for
+  `skipped` — only money can be double-counted): two theories can both
+  propose the same market, but only the named one is credited with the
+  purchase, which is what stops `roi_taken` from crediting every theory
+  that happened to see it.
 - **No credentials.** Every endpoint this project uses is public. Never add
   an API key, and never send any user identifier in a header, URL, or body.
 - **Edge numbers carry a provenance tier.** Every edge is stamped with an
