@@ -12,6 +12,7 @@ failing with "database is locked".
 
 from __future__ import annotations
 
+import json
 import sqlite3
 from contextlib import contextmanager
 from datetime import datetime, timezone
@@ -271,3 +272,342 @@ def _migrate_theories(conn: sqlite3.Connection) -> None:
     finally:
         conn.execute("PRAGMA legacy_alter_table = OFF")
         conn.execute("PRAGMA foreign_keys = ON")
+
+
+def _table_exists(conn: sqlite3.Connection, name: str) -> bool:
+    return conn.execute(
+        "SELECT 1 FROM sqlite_master WHERE type='table' AND name = ?",
+        (name,),
+    ).fetchone() is not None
+
+
+def _decision_day(row: sqlite3.Row) -> str:
+    """The as-of day of a legacy row's decision.
+
+    `extra_json.entry_day_iso` is what the theory recorded as the day it was
+    deciding about; `first_seen_at` is wall-clock recording time and is a
+    fallback only. Using the recording time would split one decision
+    recorded by two runs an hour apart into two attempts.
+    """
+    raw = row["extra_json"]
+    if raw:
+        try:
+            day = json.loads(raw).get("entry_day_iso")
+            if day:
+                return str(day)[:10]
+        except (ValueError, TypeError, AttributeError):
+            pass
+    return str(row["first_seen_at"])[:10]
+
+
+def _rollup(
+    group: list[sqlite3.Row],
+) -> tuple[sqlite3.Row, str | None, int | None, int, sqlite3.Row | None]:
+    """Pick the surviving row's values for one duplicate group.
+
+    First sighting owns price and edge, so the pair can never be
+    mismatched. Two things are deliberately taken from a later row:
+
+    - The judgment -- `confidence` AND the `judged_blind` that belongs with
+      it (attempt-fidelity spec section 8c). Taking the label from the
+      latest attempt that carried one is what stops a merge from deleting a
+      confidence recorded by a later judged run; leaving the blind flag on
+      the earliest row's value would label a position `strong` while
+      claiming nothing is known about how it was judged.
+    - The stage-2 research, when a row has it. `interpretation` and
+      `interpreted_at` are position-only by design (spec section 7), so
+      unlike every other varying field they have no attempt row to fall
+      back on: taking the earliest row's NULLs would lose a verdict
+      outright rather than merely un-cache it. `ledger.interpret` writes
+      `disposition`, `interpretation`, `interpreted_at` and (optionally)
+      `edge_pts_net` in one statement, so they travel together.
+
+    Returns (earliest, label, judged_blind, n_judged, researched-or-None).
+    """
+    ordered = sorted(group, key=lambda r: (_decision_day(r), r["last_seen_at"]))
+    earliest = ordered[0]
+    judged = [r for r in ordered if r["confidence"]]
+    label = judged[-1]["confidence"] if judged else None
+    blind = judged[-1]["judged_blind"] if judged else earliest["judged_blind"]
+    interpreted = [r for r in ordered if r["interpretation"]]
+    return earliest, label, blind, len(judged), (
+        interpreted[-1] if interpreted else None
+    )
+
+
+def has_legacy_position_key(conn: sqlite3.Connection) -> bool:
+    """True if `opportunities` still carries run_id in its UNIQUE key."""
+    row = conn.execute(
+        "SELECT sql FROM sqlite_master WHERE type='table'"
+        " AND name='opportunities'"
+    ).fetchone()
+    if row is None:
+        return False
+    return "run_id, kalshi_ticker" in " ".join((row[0] or "").split())
+
+
+# Every `opportunity_attempts` column copied straight across from the legacy
+# row of the same name (attempt-fidelity spec section 4). The four not
+# listed are the ones with no same-named source: `opportunity_id` (the
+# surviving position), `decision_date` (derived), `run_id` (already the key
+# the group is split on) and `recorded_at` (the legacy table has no
+# per-attempt recording time, so `last_seen_at` stands in).
+#
+# The INSERT below builds its column list and its value list from this one
+# tuple, in this one order, so the two cannot fall out of alignment.
+_ATTEMPT_COPIED = (
+    "scan_id", "entry_price", "spread_at_call", "volume_at_call",
+    "model_prob", "edge_pts_gross", "fee_pts", "edge_pts_net", "edge_basis",
+    "disposition", "confidence", "judged_blind", "rationale",
+    "suggested_size", "evidence_source", "evidence_market_id", "extra_json",
+)
+
+
+def migrate_positions(
+    conn: sqlite3.Connection, dry_run: bool = False
+) -> dict:
+    """Collapse run-scoped opportunity rows into positions with attempts.
+
+    `opportunities` was keyed on run_id, so one bet re-recorded by a second
+    run became two rows: pooled scoring counted it twice, and `times_seen`
+    never incremented. This rebuilds the table under the position-scoped key
+    and turns every duplicate row into an attempt, at the full column parity
+    the attempt table declares -- the pre-migration rows are in hand while
+    this runs, so every rationale and every extra_json feature lands in
+    `opportunity_attempts` rather than only in a backup table nothing
+    queries.
+
+    Deliberately not run from `init_db`. Unlike `_migrate_theories`, which
+    carries every row over unchanged, this one deletes rows, and a
+    row-collapsing migration that fires unattended on whatever database
+    happens to be opened is the kind of thing you only get to be wrong about
+    once.
+
+    Idempotent in the strong sense: on an already-migrated database this
+    reports the current shape and does nothing at all. Rebuilding there
+    would be worse than useless -- it would re-derive attempts from the
+    *collapsed* rows, so a position holding two real attempts would come
+    back holding one, and the before/after counts would still match.
+    """
+    stats = {
+        "before": 0, "after": 0, "attempts": 0, "labels_preserved": 0,
+        "legs_repointed": 0, "fills_backfilled": 0, "backup_table": None,
+    }
+    if not has_legacy_position_key(conn):
+        if not _table_exists(conn, "opportunities"):
+            return stats
+        stats["before"] = stats["after"] = conn.execute(
+            "SELECT COUNT(*) FROM opportunities"
+        ).fetchone()[0]
+        stats["labels_preserved"] = conn.execute(
+            "SELECT COUNT(*) FROM opportunities WHERE confidence IS NOT NULL"
+        ).fetchone()[0]
+        if _table_exists(conn, "opportunity_attempts"):
+            stats["attempts"] = conn.execute(
+                "SELECT COUNT(*) FROM opportunity_attempts"
+            ).fetchone()[0]
+        return stats
+
+    rows = conn.execute("SELECT * FROM opportunities").fetchall()
+    stats["before"] = len(rows)
+
+    groups: dict[tuple, list[sqlite3.Row]] = {}
+    for row in rows:
+        run_id = row["run_id"]
+        lane = run_id if run_id.startswith("exp/") else "main"
+        key = (
+            row["theory_id"], row["theory_version"], row["run_mode"], lane,
+            row["kalshi_ticker"], row["outcome"],
+        )
+        groups.setdefault(key, []).append(row)
+
+    stats["after"] = len(groups)
+    stats["attempts"] = sum(
+        len({(_decision_day(r), r["run_id"]) for r in g})
+        for g in groups.values()
+    )
+    stats["labels_preserved"] = sum(
+        1 for g in groups.values() if any(r["confidence"] for r in g)
+    )
+    if dry_run:
+        return stats
+
+    stamp = utcnow().replace("-", "").replace(":", "").replace("Z", "")
+    backup = f"opportunities_premigration_{stamp}"
+
+    columns = [r[1] for r in conn.execute("PRAGMA table_info(opportunities)")]
+    ddl = schema_statement("opportunities")
+    attempts_ddl = schema_statement("opportunity_attempts")
+    # The live database holds only `opportunities` and `opportunity_legs`,
+    # and the taken rows below are written as fills, so the fills table has
+    # to be created here -- nothing else will have made it by then
+    # (attempt-fidelity spec section 8a).
+    fills_ddl = schema_statement("opportunity_fills")
+
+    # `lane` and `id` are appended explicitly rather than copied. `lane` so
+    # this works whether or not the legacy table already had the column;
+    # `id` because the surviving row keeps the id it already had. A rebuilt
+    # AUTOINCREMENT table restarts at 1 and hands out ids that legacy rows
+    # still hold, which would make repointing legs by id move rows
+    # belonging to another group -- and ids are cited outside the database,
+    # in campaign write-ups and notes.
+    shared = [c for c in columns if c not in ("id", "lane")]
+    insert_sql = (
+        f"INSERT INTO opportunities ({', '.join(shared + ['lane', 'id'])})"
+        f" VALUES ({', '.join('?' for _ in shared)}, ?, ?)"
+    )
+    copied = [c for c in _ATTEMPT_COPIED if c in columns]
+    attempt_cols = [
+        "opportunity_id", "decision_date", "run_id", "recorded_at", *copied
+    ]
+    attempt_sql = (
+        f"INSERT INTO opportunity_attempts ({', '.join(attempt_cols)})"
+        f" VALUES ({', '.join('?' for _ in attempt_cols)})"
+        " ON CONFLICT (opportunity_id, decision_date, run_id) DO NOTHING"
+    )
+
+    conn.commit()
+    conn.execute("PRAGMA foreign_keys = OFF")
+    conn.execute("PRAGMA legacy_alter_table = ON")
+    try:
+        conn.execute("BEGIN")
+        try:
+            # The backup comes first, and everything destructive happens
+            # after it inside the same transaction -- so a failure anywhere
+            # below leaves the database exactly as it was found.
+            conn.execute(
+                f"CREATE TABLE {backup} AS SELECT * FROM opportunities"
+            )
+            conn.execute(
+                f"CREATE TABLE {backup}_legs AS SELECT * FROM opportunity_legs"
+            )
+            conn.execute(
+                "ALTER TABLE opportunities RENAME TO opportunities_legacy"
+            )
+            conn.execute(ddl)
+            conn.execute(attempts_ddl)
+            conn.execute(fills_ddl)
+
+            for key, group in groups.items():
+                lane = key[3]
+                earliest, label, blind, _, research = _rollup(group)
+                survivor = earliest["id"]
+                seen = {(_decision_day(r), r["run_id"]) for r in group}
+
+                # Money the user already recorded becomes a fill, so the
+                # rollup on the surviving row stays true and roi_taken keeps
+                # seeing it. Undated in the legacy schema -- there was no
+                # take-date column -- so last_seen_at is the best available
+                # stand-in.
+                taken = [r for r in group if r["user_action"] == "taken"]
+                skipped = [r for r in group if r["user_action"] == "skipped"]
+                fill_row = (
+                    max(taken, key=lambda r: r["last_seen_at"])
+                    if taken else None
+                )
+                money = fill_row or (
+                    max(skipped, key=lambda r: r["last_seen_at"])
+                    if skipped else None
+                )
+
+                values = [earliest[c] for c in shared]
+                # The judgment and the blind flag that belongs with it are
+                # the fields taken from a later row (spec section 8c).
+                values[shared.index("confidence")] = label
+                values[shared.index("judged_blind")] = blind
+                values[shared.index("times_seen")] = len(seen)
+                values[shared.index("last_seen_at")] = max(
+                    r["last_seen_at"] for r in group
+                )
+                # The money rollup is recomputed from what became a fill,
+                # never copied off the earliest row (spec section 8d): a
+                # later `taken` row must not land as an `untouched` position
+                # holding a fill, and `user_size` is the sum of the fills,
+                # which is nothing when there are none.
+                values[shared.index("user_action")] = (
+                    money["user_action"] if money else "untouched"
+                )
+                values[shared.index("user_size")] = (
+                    fill_row["user_size"] if fill_row else None
+                )
+                if money is not None:
+                    values[shared.index("user_reason")] = money["user_reason"]
+                if research is not None:
+                    for column in (
+                        "disposition", "interpretation", "interpreted_at",
+                        "edge_pts_net",
+                    ):
+                        values[shared.index(column)] = research[column]
+                conn.execute(insert_sql, values + [lane, survivor])
+
+                if fill_row is not None:
+                    conn.execute(
+                        """
+                        INSERT INTO opportunity_fills (
+                            opportunity_id, filled_on, size, price, reason,
+                            recorded_at
+                        ) VALUES (?, ?, ?, NULL, ?, ?)
+                        """,
+                        (
+                            survivor, str(fill_row["last_seen_at"])[:10],
+                            fill_row["user_size"], fill_row["user_reason"],
+                            fill_row["last_seen_at"],
+                        ),
+                    )
+                    stats["fills_backfilled"] += 1
+
+                for row in group:
+                    conn.execute(
+                        attempt_sql,
+                        [
+                            survivor, _decision_day(row), row["run_id"],
+                            row["last_seen_at"],
+                            *(row[c] for c in copied),
+                        ],
+                    )
+                    if row["id"] == survivor:
+                        continue
+                    # Legs are repointed BEFORE the legacy table goes.
+                    # opportunity_legs is ON DELETE CASCADE, so dropping the
+                    # losing row of a merged basket would silently eat its
+                    # legs. OR IGNORE covers the other half of a merge: both
+                    # rows of one basket describe the same legs at the same
+                    # indexes and (opportunity_id, leg_index) is the primary
+                    # key, so the survivor's copy stands and the loser's
+                    # duplicate is dropped rather than colliding.
+                    stats["legs_repointed"] += conn.execute(
+                        "UPDATE OR IGNORE opportunity_legs"
+                        " SET opportunity_id = ? WHERE opportunity_id = ?",
+                        (survivor, row["id"]),
+                    ).rowcount
+                    conn.execute(
+                        "DELETE FROM opportunity_legs WHERE opportunity_id = ?",
+                        (row["id"],),
+                    )
+
+            conn.execute("DROP TABLE opportunities_legacy")
+            # The rename carried the old table's indexes with it and the
+            # drop took them along; CREATE TABLE does not bring them back,
+            # and a `CREATE INDEX IF NOT EXISTS` before the drop would have
+            # been silently skipped while the names were still taken.
+            # Restore what this migration destroyed; indexes on the tables
+            # it created are the schema script's job, as for any new table.
+            conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_opportunities_theory"
+                " ON opportunities"
+                " (theory_id, theory_version, run_mode, disposition)"
+            )
+            conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_opportunities_ticker"
+                " ON opportunities (kalshi_ticker)"
+            )
+            conn.commit()
+        except BaseException:
+            conn.rollback()
+            raise
+    finally:
+        conn.execute("PRAGMA legacy_alter_table = OFF")
+        conn.execute("PRAGMA foreign_keys = ON")
+
+    stats["backup_table"] = backup
+    return stats
