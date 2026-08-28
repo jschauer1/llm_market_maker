@@ -407,7 +407,9 @@ def test_a_later_interpreted_row_keeps_its_research(legacy):
     """`interpretation` and `interpreted_at` are position-only (section 7).
 
     Nothing else holds them, so taking the earliest row's values would lose
-    a stage-2 verdict outright rather than merely un-cache it.
+    a stage-2 verdict outright rather than merely un-cache it. The rule is
+    earliest-*interpreted*, so a group first judged by a later pass -- this
+    one -- still keeps its verdict.
     """
     _legacy_row(legacy, run_id="fullcov", kalshi_ticker="KXA")
     _legacy_row(legacy, run_id="researched", kalshi_ticker="KXA",
@@ -419,23 +421,71 @@ def test_a_later_interpreted_row_keeps_its_research(legacy):
     assert row["disposition"] == "rejected"
     assert row["interpretation"] == "the source can miss the close"
     assert row["interpreted_at"] == TS2
-    assert row["edge_pts_net"] == -3.0
     assert row["screen_edge_pts_net"] == 2.0, "the screen claim is an anchor"
+
+
+def test_the_research_override_never_reaches_the_edge(legacy):
+    """Price and edge move together, with no exception (section 4.4).
+
+    `ledger.interpret` writes `edge_pts_net` alongside the verdict, so a
+    verdict taken off another attempt used to drag that attempt's edge onto
+    the earliest attempt's price -- the mismatched pair section 4.4 forbids,
+    and the thing that keeps `_single_leg_observations` correct with no
+    change to its SELECT.
+    """
+    _legacy_row(legacy, run_id="fullcov", kalshi_ticker="KXA",
+                entry_price=0.73, edge_pts_net=4.52)
+    _legacy_row(legacy, run_id="researched", kalshi_ticker="KXA",
+                last_seen_at=TS2, entry_price=0.77, edge_pts_net=-3.0,
+                disposition="rejected", interpretation="worse ask now",
+                interpreted_at=TS2)
+    db.migrate_positions(legacy)
+    row = legacy.execute("SELECT * FROM opportunities").fetchone()
+    assert (row["entry_price"], row["edge_pts_net"]) == (0.73, 4.52)
+
+
+def test_a_re_proposal_does_not_flip_the_verdict_the_money_was_taken_on(
+    legacy,
+):
+    """The two positions in the live ledger that hold money have this shape.
+
+    Endorsed on the 26th at 0.73, then declined on the 28th at 0.77 -- a
+    judgement of a *different, worse price*, not a revision of the one the
+    user is holding. Latest-wins turned both into `rejected`, which
+    corrupts the endorsed/rejected control group at exactly the rows
+    carrying money.
+    """
+    _legacy_row(legacy, run_id="live-26", kalshi_ticker="KXGROK",
+                entry_price=0.73, edge_pts_net=4.52, disposition="endorsed",
+                interpretation="nobody outside the lab knows yet",
+                interpreted_at=TS, user_action="taken", user_size=25.0)
+    _legacy_row(legacy, run_id="live-28", kalshi_ticker="KXGROK",
+                last_seen_at=TS2, entry_price=0.77, edge_pts_net=2.0,
+                disposition="rejected", interpretation="too rich now",
+                interpreted_at=TS2)
+    db.migrate_positions(legacy)
+    row = legacy.execute("SELECT * FROM opportunities").fetchone()
+    assert row["disposition"] == "endorsed"
+    assert (row["entry_price"], row["edge_pts_net"]) == (0.73, 4.52)
+    assert row["user_action"] == "taken"
+    assert [a["disposition"] for a in ledger.attempts(legacy, row["id"])] == [
+        "endorsed", "rejected"
+    ], "the later decline is not lost -- it is its own attempt"
 
 
 # --- the rebuilt table --------------------------------------------------
 
 
-def test_a_superseded_interpretation_is_counted_not_hidden(legacy):
-    """Keeping the latest verdict is right; keeping quiet about it is not.
+def test_a_superseded_interpretation_is_named_not_counted(legacy):
+    """Keeping the earliest verdict is a call about somebody's research.
 
-    The earlier interpretation survives only in the backup table, and
-    nobody looks there unless the migration says how many there are. The
-    count comes off the dry run too, so it can be read before the write.
+    A count cannot be checked. The names can: a reader sees which position
+    lost which verdict while the migration is still a dry run and the
+    decision is still reversible.
     """
     _legacy_row(legacy, run_id="first", kalshi_ticker="KXA",
                 disposition="endorsed", interpretation="pre-taped",
-                interpreted_at=TS)
+                interpreted_at=TS, user_action="taken", user_size=25.0)
     _legacy_row(legacy, run_id="second", kalshi_ticker="KXA",
                 last_seen_at=TS2, disposition="rejected",
                 interpretation="the source can miss the close",
@@ -448,18 +498,64 @@ def test_a_superseded_interpretation_is_counted_not_hidden(legacy):
                 last_seen_at=TS2)
 
     dry = db.migrate_positions(legacy, dry_run=True)
-    assert dry["superseded_interpretations"] == 1
+    assert dry["superseded_interpretation_count"] == 1
+    assert dry["superseded_interpretations"] == [{
+        "theory_id": "t1",
+        "kalshi_ticker": "KXA",
+        "outcome": "yes",
+        "disposition_kept": "endorsed",
+        "disposition_dropped": "rejected",
+        "has_fill": True,
+    }]
     stats = db.migrate_positions(legacy)
-    assert stats["superseded_interpretations"] == 1
+    assert stats["superseded_interpretations"] == dry[
+        "superseded_interpretations"
+    ]
     kept = legacy.execute(
         "SELECT interpretation FROM opportunities WHERE kalshi_ticker = 'KXA'"
     ).fetchone()["interpretation"]
-    assert kept == "the source can miss the close"
+    assert kept == "pre-taped"
     superseded = legacy.execute(
         f"SELECT COUNT(*) FROM {stats['backup_table']}"
-        " WHERE interpretation = 'pre-taped'"
+        " WHERE interpretation = 'the source can miss the close'"
     ).fetchone()[0]
-    assert superseded == 2, "the earlier verdicts are still in the backup"
+    assert superseded == 1, "the superseded verdict is still in the backup"
+
+
+def test_the_named_list_is_capped_but_the_count_is_not(legacy):
+    """A dry run has to stay readable; the total has to stay honest."""
+    for i in range(db._SUPERSEDED_CAP + 3):
+        _legacy_row(legacy, run_id="first", kalshi_ticker=f"KX{i}",
+                    disposition="endorsed", interpretation="pre-taped",
+                    interpreted_at=TS)
+        _legacy_row(legacy, run_id="second", kalshi_ticker=f"KX{i}",
+                    last_seen_at=TS2, disposition="rejected",
+                    interpretation="declined", interpreted_at=TS2)
+    dry = db.migrate_positions(legacy, dry_run=True)
+    assert dry["superseded_interpretation_count"] == db._SUPERSEDED_CAP + 3
+    assert len(dry["superseded_interpretations"]) == db._SUPERSEDED_CAP
+
+
+def test_a_position_holding_money_is_named_before_the_cap_bites(legacy):
+    """The cap must never be the reason a money position goes unreported."""
+    for i in range(db._SUPERSEDED_CAP + 3):
+        _legacy_row(legacy, run_id="first", kalshi_ticker=f"KX{i}",
+                    disposition="endorsed", interpretation="pre-taped",
+                    interpreted_at=TS)
+        _legacy_row(legacy, run_id="second", kalshi_ticker=f"KX{i}",
+                    last_seen_at=TS2, disposition="rejected",
+                    interpretation="declined", interpreted_at=TS2)
+    # Recorded last, so insertion order alone would push it past the cap.
+    _legacy_row(legacy, run_id="first", kalshi_ticker="KXMONEY",
+                disposition="endorsed", interpretation="pre-taped",
+                interpreted_at=TS, user_action="taken", user_size=25.0)
+    _legacy_row(legacy, run_id="second", kalshi_ticker="KXMONEY",
+                last_seen_at=TS2, disposition="rejected",
+                interpretation="declined", interpreted_at=TS2)
+
+    dry = db.migrate_positions(legacy, dry_run=True)
+    assert dry["superseded_interpretations"][0]["kalshi_ticker"] == "KXMONEY"
+    assert dry["superseded_interpretations"][0]["has_fill"] is True
 
 
 def test_a_take_with_no_size_is_refused_before_anything_is_written(legacy):

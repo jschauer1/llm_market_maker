@@ -311,37 +311,89 @@ def _decision_day(row: sqlite3.Row) -> str:
     return str(row["first_seen_at"])[:10]
 
 
+def _ordered(group: list[sqlite3.Row]) -> list[sqlite3.Row]:
+    """One duplicate group, oldest decision first.
+
+    The same order the position row's rollup and the attempt table use:
+    the day the theory was deciding about, then wall-clock recording time
+    to break a tie within a day.
+    """
+    return sorted(group, key=lambda r: (_decision_day(r), r["last_seen_at"]))
+
+
 def _rollup(
     group: list[sqlite3.Row],
 ) -> tuple[sqlite3.Row, str | None, int | None, sqlite3.Row | None]:
     """Pick the surviving row's values for one duplicate group.
 
-    First sighting owns price and edge, so the pair can never be
-    mismatched. Two things are deliberately taken from a later row:
+    First sighting owns price **and** edge, with no exception, so the pair
+    can never be mismatched -- which is what keeps
+    `score._single_leg_observations` correct with no change to its SELECT
+    (position-identity spec section 4.4). An `edge_pts_net` computed
+    against a later, worse ask sitting on the earliest ask is exactly the
+    mismatch that rule exists to forbid, so the research override below
+    stops at the three research columns and never reaches the edge.
+
+    Two things are deliberately taken from a row other than the earliest:
 
     - The judgment -- `confidence` AND the `judged_blind` that belongs with
-      it (attempt-fidelity spec section 8c). Taking the label from the
-      latest attempt that carried one is what stops a merge from deleting a
-      confidence recorded by a later judged run; leaving the blind flag on
-      the earliest row's value would label a position `strong` while
-      claiming nothing is known about how it was judged.
-    - The stage-2 research, when a row has it. `interpretation` and
-      `interpreted_at` are position-only by design (spec section 7), so
-      unlike every other varying field they have no attempt row to fall
-      back on: taking the earliest row's NULLs would lose a verdict
-      outright rather than merely un-cache it. `ledger.interpret` writes
-      `disposition`, `interpretation`, `interpreted_at` and (optionally)
-      `edge_pts_net` in one statement, so they travel together.
+      it (attempt-fidelity spec section 8c), from the LATEST attempt
+      carrying a label. Taking the label from the latest attempt that
+      carried one is what stops a merge from deleting a confidence recorded
+      by a later judged run; leaving the blind flag on the earliest row's
+      value would label a position `strong` while claiming nothing is known
+      about how it was judged.
+    - The stage-2 research, from the EARLIEST attempt carrying an
+      interpretation. `interpretation` and `interpreted_at` are
+      position-only by design (spec section 7), so unlike every other
+      varying field they have no attempt row to fall back on: taking the
+      earliest row's NULLs would lose a verdict outright rather than merely
+      un-cache it. Earliest-*interpreted* rather than simply earliest, so a
+      group first judged by a later pass still keeps its verdict.
+
+      Earliest rather than latest because a re-proposal is a judgment of a
+      *different price*, not a revision of the one the position holds: the
+      two live money positions in the ledger were endorsed at 0.73 and 0.75
+      and then declined a day later at 0.77 and 0.94, and latest-wins
+      flipped both to `rejected` -- corrupting the endorsed/rejected control
+      group at precisely the rows carrying money. The later verdict is not
+      lost: it is on its own attempt row, in the backup table, and named in
+      `migrate_positions`' report.
 
     Returns (earliest, label, judged_blind, researched-or-None).
     """
-    ordered = sorted(group, key=lambda r: (_decision_day(r), r["last_seen_at"]))
+    ordered = _ordered(group)
     earliest = ordered[0]
     judged = [r for r in ordered if r["confidence"]]
     label = judged[-1]["confidence"] if judged else None
     blind = judged[-1]["judged_blind"] if judged else earliest["judged_blind"]
     interpreted = [r for r in ordered if r["interpretation"]]
-    return earliest, label, blind, (interpreted[-1] if interpreted else None)
+    return earliest, label, blind, (interpreted[0] if interpreted else None)
+
+
+def _superseded(group: list[sqlite3.Row]) -> dict | None:
+    """What verdict this group drops, named -- or None if it drops none.
+
+    A group holding two interpreted rows keeps the earlier verdict
+    (`_rollup`) and supersedes every later one. That is a judgement call
+    about somebody's research, so it is reported by name rather than by
+    count: a decision like this has to be visible while it is still
+    reversible, and "21 interpretations superseded" is not something anyone
+    can check. When a group holds more than two, the last one -- the verdict
+    a latest-wins rule would have kept -- is the one named.
+    """
+    interpreted = [r for r in _ordered(group) if r["interpretation"]]
+    if len(interpreted) < 2:
+        return None
+    kept, dropped = interpreted[0], interpreted[-1]
+    return {
+        "theory_id": kept["theory_id"],
+        "kalshi_ticker": kept["kalshi_ticker"],
+        "outcome": kept["outcome"],
+        "disposition_kept": kept["disposition"],
+        "disposition_dropped": dropped["disposition"],
+        "has_fill": _fill_row(group) is not None,
+    }
 
 
 def _fill_row(group: list[sqlite3.Row]) -> sqlite3.Row | None:
@@ -382,6 +434,13 @@ _ATTEMPT_COPIED = (
 )
 
 
+# How many superseded verdicts `migrate_positions` names before it stops
+# and leaves the rest to the count beside them. The list is for a human
+# reading CLI output; past this it stops being readable and the count is
+# the honest summary.
+_SUPERSEDED_CAP = 50
+
+
 def migrate_positions(
     conn: sqlite3.Connection, dry_run: bool = False
 ) -> dict:
@@ -408,10 +467,11 @@ def migrate_positions(
     *collapsed* rows, so a position holding two real attempts would come
     back holding one, and the before/after counts would still match.
     """
-    stats = {
+    stats: dict = {
         "before": 0, "after": 0, "attempts": 0, "labels_preserved": 0,
         "legs_repointed": 0, "fills_backfilled": 0,
-        "superseded_interpretations": 0, "takes_missing_size": 0,
+        "superseded_interpretation_count": 0,
+        "superseded_interpretations": [], "takes_missing_size": 0,
         "backup_table": None,
     }
     if not has_legacy_position_key(conn):
@@ -450,15 +510,19 @@ def migrate_positions(
     stats["labels_preserved"] = sum(
         1 for g in groups.values() if any(r["confidence"] for r in g)
     )
-    # A merge keeps the latest interpreted row's verdict, which is what
-    # re-interpreting a position means. The earlier verdict is not lost --
-    # it is in the backup table -- but nobody will know to look for it
-    # unless the migration says how many there were, so this is counted
-    # here, in the pass a dry run also makes.
-    stats["superseded_interpretations"] = sum(
-        1 for g in groups.values()
-        if len({r["interpretation"] for r in g if r["interpretation"]}) > 1
+    # A merge keeps the earliest interpreted row's verdict; every later one
+    # is superseded. Those verdicts are not lost -- each is on its own
+    # attempt row and in the backup table -- but nobody will know to look
+    # unless the migration says which positions they were, so they are
+    # NAMED here, in the pass a dry run also makes, while the decision is
+    # still reversible. Positions holding money sort first so the cap can
+    # never be what hides one.
+    superseded = [s for g in groups.values() if (s := _superseded(g)) is not None]
+    superseded.sort(
+        key=lambda s: (not s["has_fill"], s["kalshi_ticker"], s["outcome"])
     )
+    stats["superseded_interpretation_count"] = len(superseded)
+    stats["superseded_interpretations"] = superseded[:_SUPERSEDED_CAP]
     # opportunity_fills.size is NOT NULL, so a taken row carrying no
     # user_size would raise IntegrityError halfway through the rebuild.
     # Counted before the transaction so a dry run can warn, and refused
@@ -592,10 +656,13 @@ def migrate_positions(
                 )
                 if money is not None:
                     values[shared.index("user_reason")] = money["user_reason"]
+                # `edge_pts_net` is NOT in this list: price and edge move
+                # together from the earliest attempt (spec section 4.4), so
+                # an edge computed against a later ask can never land on
+                # the first-sighting price.
                 if research is not None:
                     for column in (
                         "disposition", "interpretation", "interpreted_at",
-                        "edge_pts_net",
                     ):
                         values[shared.index(column)] = research[column]
                 conn.execute(insert_sql, values + [lane, survivor])
