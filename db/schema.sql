@@ -148,25 +148,49 @@ CREATE TABLE IF NOT EXISTS opportunity_legs (
 CREATE INDEX IF NOT EXISTS idx_opportunity_legs_ticker
     ON opportunity_legs (kalshi_ticker);
 
--- Every time a theory proposed a position. The position row is the
--- identity; this is the evidence that it kept being proposed. Day
--- granularity is deliberate: two recordings of one decision an hour apart
--- collapse to one attempt, which is the unit the persistence signal is
--- wanted in. The judgment fields live here so that merging two runs that
--- saw one market coalesces their judgments instead of one overwriting the
--- other.
+-- Every time a theory proposed a position. The position row is a rollup --
+-- current identity, first-sighting anchors, a cached best view -- and the
+-- attempt is the record: full parity with every argument
+-- ledger.record_opportunity accepts that is not part of the position's
+-- identity (theory_id, theory_version, run_mode, kalshi_ticker, outcome,
+-- run_id, decision_date, now). A merge may overwrite the rollup; it may
+-- never lose an attempt's value (attempt-fidelity spec, 2026-08-27).
+--
+-- Day granularity is deliberate: two recordings of one decision an hour
+-- apart collapse to one attempt, which is the unit the persistence signal
+-- is wanted in. decision_date is the day the theory was DECIDING about,
+-- never the day the code ran -- a backtest replaying sixty days in one
+-- session must stamp sixty different decision_dates or the primary key
+-- collapses them into one row.
+--
+-- extra_json is each theory's escape hatch: a theory can add a feature
+-- without the ledger needing to know about it, and without that feature
+-- being lost on the next merge.
 CREATE TABLE IF NOT EXISTS opportunity_attempts (
-    opportunity_id INTEGER NOT NULL REFERENCES opportunities(id)
-                   ON DELETE CASCADE,
-    decision_date  TEXT NOT NULL,
-    run_id         TEXT NOT NULL,
-    recorded_at    TEXT NOT NULL,
-    entry_price    REAL NOT NULL,
-    edge_pts_net   REAL NOT NULL,
-    disposition    TEXT NOT NULL DEFAULT 'screened'
-                   CHECK (disposition IN ('screened','endorsed','rejected')),
-    confidence     TEXT,
-    judged_blind   INTEGER,
+    opportunity_id     INTEGER NOT NULL REFERENCES opportunities(id)
+                       ON DELETE CASCADE,
+    decision_date      TEXT NOT NULL,
+    run_id             TEXT NOT NULL,
+    recorded_at        TEXT NOT NULL,
+    scan_id            TEXT,
+    entry_price        REAL NOT NULL,
+    spread_at_call     REAL,
+    volume_at_call     REAL,
+    model_prob         REAL,
+    edge_pts_gross     REAL,
+    fee_pts            REAL,
+    edge_pts_net       REAL NOT NULL,
+    edge_basis         TEXT NOT NULL DEFAULT 'prior'
+                       CHECK (edge_basis IN ('measured','prior','model')),
+    disposition        TEXT NOT NULL DEFAULT 'screened'
+                       CHECK (disposition IN ('screened','endorsed','rejected')),
+    confidence         TEXT,
+    judged_blind       INTEGER,
+    rationale          TEXT,
+    suggested_size     REAL,
+    evidence_source    TEXT,
+    evidence_market_id TEXT,
+    extra_json         TEXT,
     PRIMARY KEY (opportunity_id, decision_date, run_id)
 );
 

@@ -149,34 +149,96 @@ def _record_attempt(
     recorded_at: str,
     entry_price: float,
     edge_pts_net: float,
-    confidence: str | None,
-    judged_blind: bool | None,
+    *,
+    scan_id: str | None = None,
+    spread_at_call: float | None = None,
+    volume_at_call: float | None = None,
+    model_prob: float | None = None,
+    edge_pts_gross: float | None = None,
+    fee_pts: float | None = None,
+    edge_basis: str = "prior",
+    confidence: str | None = None,
+    judged_blind: bool | None = None,
+    rationale: str | None = None,
+    suggested_size: float | None = None,
+    evidence_source: str | None = None,
+    evidence_market_id: str | None = None,
+    extra_json: str | None = None,
 ) -> None:
     """Record one proposal of a position, and refresh its attempt count.
 
     Called inside the caller's `write` block. Re-recording the same decision
     in the same run updates that attempt rather than adding one, which is
     what makes two recordings an hour apart count once.
+
+    Full parity (attempt-fidelity spec section 4): every non-identity
+    argument `record_opportunity`/`record_basket` accepts has a column here,
+    enforced by
+    tests/test_conventions.py::test_every_record_opportunity_param_has_an_attempt_column.
+    Everything past `edge_pts_net` is keyword-only on purpose -- with this
+    many same-typed columns (three REALs in a row, three more further down)
+    a positional slip is silent and corrupting, and keyword-only args make
+    that class of bug a TypeError instead of a wrong number in the ledger.
+
+    The ON CONFLICT rule splits the columns into two groups:
+
+    - Last-writer-wins (`excluded.<col>`) for everything that describes
+      market/call conditions at the moment of recording -- entry_price,
+      spread_at_call, volume_at_call, model_prob, edge_pts_gross, fee_pts,
+      edge_pts_net, edge_basis, suggested_size, evidence_source,
+      evidence_market_id, extra_json, scan_id, disposition, recorded_at.
+      A second recording of the same (opportunity, decision_date, run_id)
+      is a correction to what was measured, not a second opinion to
+      reconcile -- the caller re-ran and has a newer number, so the newer
+      number should win outright.
+    - COALESCE for the judgment fields -- confidence, judged_blind,
+      rationale -- so a later judging pass can add a label without erasing
+      one a caller already wrote. These are the fields a human or an LLM
+      supplies rather than the harness measuring, and a re-recording that
+      omits them (e.g. a mechanical re-score with no judge in the loop)
+      must not blank out judgment that already happened.
     """
     conn.execute(
         """
         INSERT INTO opportunity_attempts (
-            opportunity_id, decision_date, run_id, recorded_at,
-            entry_price, edge_pts_net, disposition, confidence, judged_blind
-        ) VALUES (?, ?, ?, ?, ?, ?, 'screened', ?, ?)
+            opportunity_id, decision_date, run_id, recorded_at, scan_id,
+            entry_price, spread_at_call, volume_at_call, model_prob,
+            edge_pts_gross, fee_pts, edge_pts_net, edge_basis, disposition,
+            confidence, judged_blind, rationale, suggested_size,
+            evidence_source, evidence_market_id, extra_json
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'screened',
+                  ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT (opportunity_id, decision_date, run_id) DO UPDATE SET
-            recorded_at = excluded.recorded_at,
-            entry_price = excluded.entry_price,
-            edge_pts_net = excluded.edge_pts_net,
-            confidence = COALESCE(excluded.confidence,
-                                  opportunity_attempts.confidence),
+            recorded_at        = excluded.recorded_at,
+            scan_id            = excluded.scan_id,
+            entry_price        = excluded.entry_price,
+            spread_at_call     = excluded.spread_at_call,
+            volume_at_call     = excluded.volume_at_call,
+            model_prob         = excluded.model_prob,
+            edge_pts_gross     = excluded.edge_pts_gross,
+            fee_pts            = excluded.fee_pts,
+            edge_pts_net       = excluded.edge_pts_net,
+            edge_basis         = excluded.edge_basis,
+            disposition        = excluded.disposition,
+            suggested_size     = excluded.suggested_size,
+            evidence_source    = excluded.evidence_source,
+            evidence_market_id = excluded.evidence_market_id,
+            extra_json         = excluded.extra_json,
+            confidence   = COALESCE(excluded.confidence,
+                                    opportunity_attempts.confidence),
             judged_blind = COALESCE(excluded.judged_blind,
-                                    opportunity_attempts.judged_blind)
+                                    opportunity_attempts.judged_blind),
+            rationale    = COALESCE(excluded.rationale,
+                                    opportunity_attempts.rationale)
         """,
         (
-            opportunity_id, decision_date, run_id, recorded_at, entry_price,
-            edge_pts_net, confidence,
+            opportunity_id, decision_date, run_id, recorded_at, scan_id,
+            entry_price, spread_at_call, volume_at_call, model_prob,
+            edge_pts_gross, fee_pts, edge_pts_net, edge_basis,
+            confidence,
             1 if judged_blind else (0 if judged_blind is not None else None),
+            rationale, suggested_size, evidence_source, evidence_market_id,
+            extra_json,
         ),
     )
     # times_seen counts distinct attempts, never recordings -- the whole
@@ -392,7 +454,21 @@ def record_opportunity(
 
         _record_attempt(
             conn, opportunity_id, day, resolved_run_id, stamp, entry_price,
-            edge_pts_net, confidence, judged_blind,
+            edge_pts_net,
+            scan_id=scan_id,
+            spread_at_call=spread_at_call,
+            volume_at_call=volume_at_call,
+            model_prob=model_prob,
+            edge_pts_gross=edge_pts_gross,
+            fee_pts=fee_pts,
+            edge_basis=edge_basis,
+            confidence=confidence,
+            judged_blind=judged_blind,
+            rationale=rationale,
+            suggested_size=suggested_size,
+            evidence_source=evidence_source,
+            evidence_market_id=evidence_market_id,
+            extra_json=extra_json,
         )
 
     return opportunity_id, created is not None
@@ -703,10 +779,27 @@ def record_basket(
         )
 
         # The basket's attempt entry_price is its total cost -- the header
-        # row's entry_price -- not any individual leg's price.
+        # row's entry_price -- not any individual leg's price. There is no
+        # basket-level spread_at_call/volume_at_call to pass through: those
+        # describe one market's order book and live per-leg on
+        # opportunity_legs, which record_basket has no top-level parameter
+        # for either -- so both are left at their None default here, same
+        # as on the header row.
         _record_attempt(
             conn, opportunity_id, day, resolved_run_id, stamp, cost,
-            edge_pts_net, confidence, judged_blind,
+            edge_pts_net,
+            scan_id=scan_id,
+            model_prob=model_prob,
+            edge_pts_gross=edge_pts_gross,
+            fee_pts=fee_pts,
+            edge_basis=edge_basis,
+            confidence=confidence,
+            judged_blind=judged_blind,
+            rationale=rationale,
+            suggested_size=suggested_size,
+            evidence_source=evidence_source,
+            evidence_market_id=evidence_market_id,
+            extra_json=extra_json,
         )
 
     return opportunity_id, created is not None

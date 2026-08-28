@@ -30,10 +30,19 @@ def test_the_unique_key_no_longer_contains_run_id(conn):
 
 
 def test_the_attempt_table_exists_with_its_key(conn):
+    # Full parity (attempt-fidelity spec section 4): every non-identity
+    # argument record_opportunity accepts has a column here, not just the
+    # nine the position-identity plan started with. See
+    # tests/test_conventions.py::test_every_record_opportunity_param_has_an_attempt_column
+    # for the enforcement that keeps this set from drifting away from the
+    # ledger's real signature.
     assert _columns(conn, "opportunity_attempts") == {
         "opportunity_id", "decision_date", "run_id", "recorded_at",
-        "entry_price", "edge_pts_net", "disposition", "confidence",
-        "judged_blind",
+        "scan_id", "entry_price", "spread_at_call", "volume_at_call",
+        "model_prob", "edge_pts_gross", "fee_pts", "edge_pts_net",
+        "edge_basis", "disposition", "confidence", "judged_blind",
+        "rationale", "suggested_size", "evidence_source",
+        "evidence_market_id", "extra_json",
     }
 
 

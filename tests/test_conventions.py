@@ -5,12 +5,13 @@ shim is gone for good, and the actually-running registry has no drift
 between code and DB."""
 
 import ast
+import inspect
 import pytest
 import sys
 from dataclasses import fields
 from pathlib import Path
 
-from tools import db, domain, registry
+from tools import db, domain, ledger, registry
 from tools.theory import Theory, TheoryRun
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -207,4 +208,57 @@ def test_every_recorded_prompt_path_still_resolves():
         "the file's new home and record the original path (and, if the "
         "content also changed, the git command that retrieves the version "
         "that ran) in its notes:\n" + "\n".join(missing)
+    )
+
+
+#: `record_opportunity`'s identity parameters -- these key the position row
+#: (`opportunities.UNIQUE`) or steer the write itself, and have no per-call
+#: value to lose on a merge, so they carry no `opportunity_attempts` column.
+_RECORD_OPPORTUNITY_IDENTITY_PARAMS = frozenset({
+    "theory_id", "theory_version", "run_mode", "kalshi_ticker", "outcome",
+    "run_id", "decision_date", "now",
+})
+
+
+def test_every_record_opportunity_param_has_an_attempt_column():
+    """Full parity, enforced (attempt-fidelity spec section 4).
+
+    `opportunity_attempts` exists so that a re-sighting of a position never
+    loses a value the run supplied -- the position row is a rollup, the
+    attempt is the record. That guarantee only holds if every argument
+    `record_opportunity` accepts, other than the ones that identify *which*
+    position/attempt this is, has somewhere on the attempt row to land.
+    Without this test, a future parameter can be added to
+    `record_opportunity`, threaded only onto the `opportunities` row, and
+    silently dropped on every re-sighting -- exactly the defect this table
+    exists to close -- and nothing would fail until someone went looking
+    for a value that was never recorded.
+
+    Checked against a freshly created database's real schema (not a
+    hand-maintained list of column names), so a schema change and a
+    signature change are compared against each other directly.
+    """
+    sig = inspect.signature(ledger.record_opportunity)
+    params = {
+        name for name in sig.parameters
+        if name != "conn" and name not in _RECORD_OPPORTUNITY_IDENTITY_PARAMS
+    }
+
+    conn = db.connect(":memory:")
+    try:
+        db.init_db(conn)
+        columns = {
+            row["name"]
+            for row in conn.execute("PRAGMA table_info(opportunity_attempts)")
+        }
+    finally:
+        conn.close()
+
+    missing = sorted(params - columns)
+    assert missing == [], (
+        "record_opportunity accepts a parameter with no matching "
+        "opportunity_attempts column -- its value would be recorded on the "
+        "position row (if at all) and lost on the next re-sighting. Add a "
+        "column in db/schema.sql and thread it through "
+        "ledger._record_attempt:\n" + "\n".join(missing)
     )

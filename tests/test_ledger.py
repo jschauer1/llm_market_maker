@@ -155,6 +155,42 @@ def test_backtest_runs_dedupe_to_one_position(conn):
     )
 
 
+def test_attempts_retain_their_own_rationale_and_extra_json(conn):
+    # The defect this table exists to close (attempt-fidelity spec sections
+    # 1-2): a position row can only hold one value per column, so merging
+    # two runs' proposals of one market used to keep one run's rationale
+    # and extra_json and silently discard the other's. Two different runs
+    # are two different attempt rows now, and each must keep exactly what
+    # it was given -- neither overwritten by, nor merged with, the other's.
+    id_a, _ = _record(
+        conn, run_mode="backtest", run_id="run-a",
+        rationale="run-a thinks this is mispriced",
+        extra_json='{"batch": "a", "source_run": "run-a"}',
+    )
+    id_b, _ = _record(
+        conn, run_mode="backtest", run_id="run-b",
+        rationale="run-b found the same market independently",
+        extra_json='{"batch": "b", "source_run": "run-b"}',
+    )
+
+    assert id_a == id_b, "one position -- both runs proposed the same market"
+    rows = {row["run_id"]: row for row in ledger.attempts(conn, id_a)}
+    assert set(rows) == {"run-a", "run-b"}
+    assert rows["run-a"]["rationale"] == "run-a thinks this is mispriced"
+    assert (
+        rows["run-a"]["extra_json"]
+        == '{"batch": "a", "source_run": "run-a"}'
+    )
+    assert (
+        rows["run-b"]["rationale"]
+        == "run-b found the same market independently"
+    )
+    assert (
+        rows["run-b"]["extra_json"]
+        == '{"batch": "b", "source_run": "run-b"}'
+    )
+
+
 def test_missing_kalshi_ticker_is_rejected(conn):
     with pytest.raises(ValueError, match="kalshi_ticker"):
         _record(conn, kalshi_ticker="")
