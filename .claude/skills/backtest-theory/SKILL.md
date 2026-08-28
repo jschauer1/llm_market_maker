@@ -50,11 +50,26 @@ also part of the decision path. Record the later of the two cutoffs as
   live path calls — replaying a reimplementation of the screen is a
   backtest of nothing.
 - **`TheoryContext(run_mode="backtest")` is what a replay keys on.** Build
-  the context once with `run_mode="backtest"` and a real `run_id` (not
-  `"live"`) — `TheoryContext.build(..., run_mode="backtest", run_id=...)` —
-  and it propagates everywhere that matters: `finish()` stamps every row it
-  writes with `ctx.run_mode` and `ctx.run_id` automatically, so replayed
-  rows stay separable from live ones with no per-candidate bookkeeping.
+  the context with `run_mode="backtest"` and a real `run_id` (not `"live"`)
+  — `TheoryContext.build(..., run_mode="backtest", run_id=...)` — and it
+  propagates everywhere that matters: `finish()` stamps every row it writes
+  with `ctx.run_mode` and `ctx.run_id` automatically, so replayed rows stay
+  separable from live ones with no per-candidate bookkeeping.
+- **`ctx.now` must be the day being replayed, not the day you are running
+  on** — so a walk over sixty days builds a context per replayed day (or
+  rebuilds one with a new `now`), never one context for the whole walk.
+  `ctx.now` is the harness's as-of time and it is what dates the attempt:
+  `OpportunityRecord.from_scored` passes `decision_date=ctx.now.date()`,
+  and an attempt is keyed `(opportunity_id, decision_date, run_id)`. One
+  context for the whole walk stamps all sixty decisions with today's date
+  under one `run_id`, the key collapses them, and **fifty-nine attempts are
+  overwritten in silence** — the position ends up looking like a single
+  proposal at whichever price was written last. Nothing catches this:
+  `record_opportunity` refuses a backtest with a *missing* `decision_date`,
+  and cannot know a present one is wrong. Setting `ctx.now` correctly also
+  keeps `point_in_time` and the attempt agreeing on which moment is being
+  replayed, which is what makes a per-day price series reconstructable
+  afterwards.
 - **Web search must be off** in any backtest judgment subagent, every tier.
   Live search reveals historical outcomes trivially. This is no longer only
   a discipline: `run_mode="backtest"` makes `finish()` record
