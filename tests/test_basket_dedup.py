@@ -59,6 +59,25 @@ def test_a_basket_records_an_attempt_per_decision_day(conn):
     assert ledger.attempt_dates(conn, opp) == ["2026-08-26", "2026-08-27"]
 
 
+def test_resighting_a_basket_with_a_judgment_carries_both_fields(conn):
+    # Mirrors record_opportunity's rule: a screen run records neither
+    # confidence nor judged_blind, a later judging run records both, and
+    # the rollup must carry both together rather than ending up with
+    # confidence='strong' and a NULL blind flag (attempt-fidelity spec
+    # section 8c).
+    opp, _ = _basket(conn, "r1", now=TS)
+    ledger.record_basket(
+        conn, theory_id="t1", theory_version=1, legs=LEGS,
+        edge_pts_net=5.0, run_id="r2", now=TS2,
+        confidence="strong", judged_blind=True,
+    )
+    row = conn.execute(
+        "SELECT * FROM opportunities WHERE id = ?", (opp,)
+    ).fetchone()
+    assert row["confidence"] == "strong"
+    assert row["judged_blind"] == 1
+
+
 def test_backtest_basket_without_decision_date_is_rejected(conn):
     # Mirrors record_opportunity's rule (attempt-fidelity spec section 5):
     # without a real decision_date, a backtest replaying many days would

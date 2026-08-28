@@ -197,6 +197,43 @@ def test_attempts_retain_their_own_rationale_and_extra_json(conn):
     )
 
 
+def test_a_resighting_does_not_downgrade_the_attempts_disposition(conn):
+    # _record_attempt's ON CONFLICT UPDATE must never touch disposition:
+    # record_opportunity has no disposition argument at all, so refreshing
+    # it from `excluded` on a re-recording would always write the literal
+    # 'screened' -- silently downgrading any attempt a stage-2 pass had
+    # already marked endorsed/rejected back to screened the next time the
+    # same (opportunity, decision_date, run_id) is recorded.
+    opp_id, _ = _record(conn)
+    conn.execute(
+        "UPDATE opportunity_attempts SET disposition = 'endorsed' "
+        "WHERE opportunity_id = ?",
+        (opp_id,),
+    )
+    conn.commit()
+    # Same decision_date and run_id as the first call (both default to the
+    # 'now' stamp and the live run id), so this hits the ON CONFLICT path
+    # on the existing attempt row rather than inserting a new one.
+    _record(conn, edge_pts_net=9.0)
+    row = ledger.attempts(conn, opp_id)[0]
+    assert row["disposition"] == "endorsed", (
+        "a re-recording must not flatten a per-row disposition back to "
+        "the literal 'screened' it can only ever supply"
+    )
+
+
+def test_resighting_with_a_judgment_carries_both_confidence_and_blind_flag(conn):
+    # A screen run records neither; a later judging run records both. The
+    # rollup must carry both together on re-sighting -- confidence='strong'
+    # with judged_blind left NULL is exactly the wrong state attempt-
+    # fidelity spec section 8c calls out.
+    opp_id, _ = _record(conn)
+    _record(conn, confidence="strong", judged_blind=True, now=LATER)
+    row = ledger.get_opportunity(conn, opp_id)
+    assert row["confidence"] == "strong"
+    assert row["judged_blind"] == 1
+
+
 def test_missing_kalshi_ticker_is_rejected(conn):
     with pytest.raises(ValueError, match="kalshi_ticker"):
         _record(conn, kalshi_ticker="")

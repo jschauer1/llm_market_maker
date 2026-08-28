@@ -186,7 +186,7 @@ def _record_attempt(
       market/call conditions at the moment of recording -- entry_price,
       spread_at_call, volume_at_call, model_prob, edge_pts_gross, fee_pts,
       edge_pts_net, edge_basis, suggested_size, evidence_source,
-      evidence_market_id, extra_json, scan_id, disposition, recorded_at.
+      evidence_market_id, extra_json, scan_id, recorded_at.
       A second recording of the same (opportunity, decision_date, run_id)
       is a correction to what was measured, not a second opinion to
       reconcile -- the caller re-ran and has a newer number, so the newer
@@ -197,6 +197,15 @@ def _record_attempt(
       supplies rather than the harness measuring, and a re-recording that
       omits them (e.g. a mechanical re-score with no judge in the loop)
       must not blank out judgment that already happened.
+    - Untouched: `disposition`. It is on the attempt specifically to hold a
+      per-row value (attempt-fidelity spec section 7 -- 371 legacy rows
+      carry a real one), and this INSERT can only ever supply the literal
+      `'screened'`, since `record_opportunity` has no disposition argument
+      and stage-2 research writes through `ledger.interpret` on the
+      position. Refreshing it from `excluded` would therefore mean a second
+      session re-screening a dated run id silently downgrading every
+      endorsement and rejection under it back to `screened` -- writing a
+      value nobody supplied over one somebody did.
     """
     conn.execute(
         """
@@ -219,7 +228,6 @@ def _record_attempt(
             fee_pts            = excluded.fee_pts,
             edge_pts_net       = excluded.edge_pts_net,
             edge_basis         = excluded.edge_basis,
-            disposition        = excluded.disposition,
             suggested_size     = excluded.suggested_size,
             evidence_source    = excluded.evidence_source,
             evidence_market_id = excluded.evidence_market_id,
@@ -424,6 +432,13 @@ def record_opportunity(
             # only refreshes edge_pts_net from the new screen while the row
             # is still uninterpreted; once interpreted_at is set, the
             # researched value stands.
+            #
+            # judged_blind is COALESCEd alongside confidence, never left
+            # behind: a screen run records neither, a later judging run
+            # records both, and refreshing the label without the flag leaves
+            # the rollup claiming `strong` while claiming nothing is known
+            # about how it was judged -- the same wrong state the migration
+            # fixes for history in attempt-fidelity spec section 8c.
             conn.execute(
                 """
                 UPDATE opportunities SET
@@ -438,6 +453,7 @@ def record_opportunity(
                     spread_at_call = COALESCE(?, spread_at_call),
                     volume_at_call = COALESCE(?, volume_at_call),
                     confidence = COALESCE(?, confidence),
+                    judged_blind = COALESCE(?, judged_blind),
                     rationale = COALESCE(?, rationale),
                     suggested_size = COALESCE(?, suggested_size)
                 WHERE theory_id = ? AND theory_version = ? AND run_mode = ?
@@ -445,7 +461,10 @@ def record_opportunity(
                 """,
                 (
                     stamp, edge_pts_net, model_prob, edge_pts_gross, fee_pts,
-                    spread_at_call, volume_at_call, confidence, rationale,
+                    spread_at_call, volume_at_call, confidence,
+                    1 if judged_blind
+                    else (0 if judged_blind is not None else None),
+                    rationale,
                     suggested_size,
                     theory_id, theory_version, run_mode, lane,
                     kalshi_ticker, outcome,
@@ -746,6 +765,7 @@ def record_basket(
                     edge_pts_gross = COALESCE(?, edge_pts_gross),
                     fee_pts = COALESCE(?, fee_pts),
                     confidence = COALESCE(?, confidence),
+                    judged_blind = COALESCE(?, judged_blind),
                     rationale = COALESCE(?, rationale),
                     suggested_size = COALESCE(?, suggested_size)
                 WHERE theory_id = ? AND theory_version = ? AND run_mode = ?
@@ -753,7 +773,10 @@ def record_basket(
                 """,
                 (
                     stamp, edge_pts_net, model_prob, edge_pts_gross, fee_pts,
-                    confidence, rationale, suggested_size,
+                    confidence,
+                    1 if judged_blind
+                    else (0 if judged_blind is not None else None),
+                    rationale, suggested_size,
                     theory_id, theory_version, run_mode, lane, header_ticker,
                 ),
             )
