@@ -175,6 +175,23 @@ def test_a_position_is_in_every_run_that_proposed_it(conn):
         )["n"] == 1
 
 
+def test_scoped_run_does_not_fan_out_across_decision_dates(conn):
+    # opportunity_attempts' primary key is (opportunity_id, decision_date,
+    # run_id), not (opportunity_id, run_id) -- one run proposing the same
+    # position on two different days is the normal case, and writes two
+    # attempt rows that share an opportunity_id and run_id. Scoring that
+    # run must still see one position, priced at its earliest attempt --
+    # never one observation per attempt, and never an average across them.
+    _rec(conn, ticker="A", price=0.50, run_id="r1", decision_date="2026-08-26")
+    _rec(conn, ticker="A", price=0.70, run_id="r1", decision_date="2026-08-27")
+    _settle(conn, "A", "yes")
+    scoped = score.compute_score(conn, "t1", 1, run_id="r1")
+    assert scoped["n"] == 1, "one settlement is one draw, not one per attempt"
+    assert scoped["price_implied_rate"] == pytest.approx(0.50), (
+        "priced at the earliest attempt, not averaged across attempts"
+    )
+
+
 def test_pooled_scoring_still_excludes_experiments(conn):
     _rec(conn, ticker="A", price=0.50, run_id="live-1")
     _rec(conn, ticker="B", price=0.50, run_id="exp/variant")

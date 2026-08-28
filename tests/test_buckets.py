@@ -146,10 +146,17 @@ def test_bucket_rates_can_be_scoped_to_a_single_run(conn):
 
     pooled = score.bucket_rates(conn, "t1", 1, run_mode="backtest")
     assert pooled["strong"]["n"] == 1
-    scoped = score.bucket_rates(
-        conn, "t1", 1, run_mode="backtest", run_id="run-a"
-    )
-    assert scoped["strong"]["n"] == 1
+
+    # run-a is the surviving row's own stored run_id -- the first sighting
+    # -- so scoping to it would still pass under the old `o.run_id = ?`
+    # filter and prove nothing about the fix. run-b only matches through
+    # the new EXISTS-against-opportunity_attempts scoping, since the merged
+    # row's stored run_id never becomes "run-b".
+    for run in ("run-a", "run-b"):
+        scoped = score.bucket_rates(
+            conn, "t1", 1, run_mode="backtest", run_id=run
+        )
+        assert scoped["strong"]["n"] == 1
 
 
 def test_save_bucket_rates_persists_rows(conn):

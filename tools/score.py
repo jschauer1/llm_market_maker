@@ -32,6 +32,34 @@ from tools.sizing import fee_pts
 
 VALID_TIERS = ("A", "B", "C")
 
+# One row per (opportunity_id, run_id) -- the earliest attempt by
+# (decision_date, recorded_at) -- for a LEFT JOIN to price a run-scoped
+# observation without fanning it out.
+#
+# opportunity_attempts' primary key is (opportunity_id, decision_date,
+# run_id): one run proposing a position on two different decision dates is
+# the normal case, not an edge case, and produces two attempt rows sharing
+# an opportunity_id and run_id. Joining on (opportunity_id, run_id) alone
+# would match both and multiply that position into two observations under
+# `--run-id` -- the exact per-recording double counting this branch exists
+# to remove, just relocated from the position row to the join. Ranked with
+# ROW_NUMBER rather than aggregated with MIN/MAX, because the ledger's
+# "first sighting owns entry_price" rule (`record_opportunity`'s re-sighting
+# UPDATE) needs the whole earliest row's entry_price and edge_pts_net
+# together, not a column-wise blend that could pair one attempt's price
+# with another's edge.
+_EARLIEST_ATTEMPT_PER_RUN = """
+    SELECT opportunity_id, entry_price, edge_pts_net FROM (
+        SELECT opportunity_id, entry_price, edge_pts_net,
+               ROW_NUMBER() OVER (
+                   PARTITION BY opportunity_id
+                   ORDER BY decision_date, recorded_at
+               ) AS rn
+        FROM opportunity_attempts
+        WHERE run_id = ?
+    ) WHERE rn = 1
+"""
+
 EMPTY_SCORE = {
     "n": 0,
     "win_rate": None,
@@ -148,11 +176,11 @@ def _single_leg_observations(
         theory_id, theory_version, run_mode, disposition, run_id
     )
     # The LEFT JOIN prices a run-scoped observation at that run's own
-    # attempt rather than the position's (possibly earlier) entry_price.
-    # When run_id is None the join predicate never matches -- SQL equality
-    # against a bound NULL is never true -- so both COALESCEs fall through
-    # to the position row and pooled scoring reads exactly what it read
-    # before this join existed.
+    # (earliest) attempt rather than the position's (possibly earlier)
+    # entry_price. When run_id is None the derived table's WHERE run_id = ?
+    # matches nothing -- SQL equality against a bound NULL is never true --
+    # so both COALESCEs fall through to the position row and pooled scoring
+    # reads exactly what it read before this join existed.
     sql = (
         "SELECT o.outcome, o.user_action,"
         " COALESCE(a.entry_price, o.entry_price) AS entry_price,"
@@ -161,8 +189,8 @@ def _single_leg_observations(
         "  WHERE x.opportunity_id = o.id) AS n_attempts,"
         " s.result FROM opportunities o"
         " JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker"
-        " LEFT JOIN opportunity_attempts a"
-        "   ON a.opportunity_id = o.id AND a.run_id = ?"
+        " LEFT JOIN (" + _EARLIEST_ATTEMPT_PER_RUN + ") a"
+        "   ON a.opportunity_id = o.id"
         + where
         + " AND o.position_kind = 'single'"
     )
@@ -206,9 +234,9 @@ def _basket_observations(
         theory_id, theory_version, run_mode, disposition, run_id
     )
     # Same LEFT JOIN + COALESCE as _single_leg_observations, and the same
-    # reason: price a run-scoped basket at that run's own attempt, while
-    # pooled scoring (run_id is None, so the join matches nothing) reads
-    # the position row unchanged.
+    # reason: price a run-scoped basket at that run's own earliest attempt,
+    # while pooled scoring (run_id is None, so the derived table matches
+    # nothing) reads the position row unchanged.
     headers = conn.execute(
         "SELECT o.id, o.user_action, o.leg_count, o.max_payout, o.min_payout,"
         " COALESCE(a.entry_price, o.entry_price) AS entry_price,"
@@ -216,8 +244,8 @@ def _basket_observations(
         " (SELECT COUNT(*) FROM opportunity_attempts x"
         "  WHERE x.opportunity_id = o.id) AS n_attempts"
         " FROM opportunities o"
-        " LEFT JOIN opportunity_attempts a"
-        "   ON a.opportunity_id = o.id AND a.run_id = ?"
+        " LEFT JOIN (" + _EARLIEST_ATTEMPT_PER_RUN + ") a"
+        "   ON a.opportunity_id = o.id"
         + where
         + " AND o.position_kind = 'basket'",
         [run_id] + params,

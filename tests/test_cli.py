@@ -217,9 +217,13 @@ def test_score_report_run_id_scopes_the_sample(dbpath, capsys):
     )
     assert payload["all"]["n"] == 1, "a duplicate recording must not move n"
 
+    # run-a is the surviving row's own stored run_id -- the first sighting
+    # -- so it would still resolve under the old `o.run_id = ?` scoping and
+    # prove nothing about --run-id actually working. run-b only resolves
+    # through the new EXISTS-against-opportunity_attempts scoping.
     code, payload = _run(
         capsys, "--db", dbpath, "score", "report", "t1",
-        "--run-mode", "backtest", "--run-id", "run-a",
+        "--run-mode", "backtest", "--run-id", "run-b",
     )
     assert payload["all"]["n"] == 1
 
