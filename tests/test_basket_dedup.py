@@ -2,7 +2,7 @@
 
 import pytest
 
-from tools import db, ledger, theories
+from tools import db, ledger, score, theories
 
 TS = "2026-08-26T12:00:00Z"
 TS2 = "2026-08-27T12:00:00Z"
@@ -76,6 +76,35 @@ def test_resighting_a_basket_with_a_judgment_carries_both_fields(conn):
     ).fetchone()
     assert row["confidence"] == "strong"
     assert row["judged_blind"] == 1
+
+
+def _settle(conn, pairs):
+    for ticker, result in pairs:
+        score.record_settlement(conn, ticker, result, resolved_at=TS)
+
+
+def test_run_scoped_n_attempts_does_not_count_other_runs(conn):
+    # Pooled n_attempts is the basket's lifetime attempt count across every
+    # run that ever proposed it -- score.compute_score's collapse reveal --
+    # and that reading must not change. A run-scoped count must not fold in
+    # attempts made by OTHER runs that happened to see the same basket: the
+    # correlated subquery had no run filter at all, so `--run-id
+    # backtest-...-s200` reported n_attempts as if every run that ever
+    # touched the position belonged to it.
+    _basket(conn, "r1")
+    _basket(conn, "r2")
+    # KXA-T1 (outcome 'yes') wins, KXA-T2 (outcome 'no') loses against a
+    # 'yes' settlement -- payout 1.0, exactly the default max_payout, so
+    # this is a valid at-risk observation rather than a raised mismatch.
+    _settle(conn, [("KXA-T1", "yes"), ("KXA-T2", "yes")])
+
+    pooled = score.compute_score(conn, "t1", 1)
+    assert pooled["n"] == 1
+    assert pooled["n_attempts"] == 2, "pooled reads the position's lifetime attempts"
+
+    scoped = score.compute_score(conn, "t1", 1, run_id="r1")
+    assert scoped["n"] == 1
+    assert scoped["n_attempts"] == 1, "must not count r2's attempt too"
 
 
 def test_backtest_basket_without_decision_date_is_rejected(conn):

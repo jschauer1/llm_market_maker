@@ -157,6 +157,29 @@ def test_score_reports_how_many_attempts_backed_it(conn):
     assert result["n_attempts"] == 2, "the collapse must be visible, not silent"
 
 
+def test_run_scoped_n_attempts_does_not_count_other_runs(conn):
+    # Pooled n_attempts is the position's lifetime attempt count across
+    # every run that ever proposed it -- the collapse compute_score exists
+    # to reveal -- and that reading must not change. A run-scoped count
+    # must not fold in attempts made by OTHER runs that happened to
+    # propose the same market: the correlated subquery had no run filter
+    # at all, so `--run-id backtest-2026-08-26-insider-judged-s200`
+    # reported n_attempts as if every run that ever saw the position
+    # belonged to it -- n=704 attempts made by that run alone reported as
+    # n_attempts=1408.
+    _rec(conn, ticker="A", run_id="r1")
+    _rec(conn, ticker="A", run_id="r2")
+    _settle(conn, "A", "yes")
+
+    pooled = score.compute_score(conn, "t1", 1)
+    assert pooled["n"] == 1
+    assert pooled["n_attempts"] == 2, "pooled reads the position's lifetime attempts"
+
+    scoped = score.compute_score(conn, "t1", 1, run_id="r1")
+    assert scoped["n"] == 1
+    assert scoped["n_attempts"] == 1, "must not count r2's attempt too"
+
+
 def test_a_single_run_can_still_be_scored_alone(conn):
     _rec(conn, ticker="A", price=0.50, run_mode="backtest", run_id="bt-1",
         decision_date="2026-08-26")

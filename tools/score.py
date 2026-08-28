@@ -175,6 +175,23 @@ def _single_leg_observations(
     where, params = _segment_filter(
         theory_id, theory_version, run_mode, disposition, run_id
     )
+    # Pooled (run_id is None), n_attempts is the position's LIFETIME
+    # attempt count across every run that ever proposed it -- the intended
+    # reveal of the collapse (position-identity spec section 2: 3,195
+    # positions / 4,759 attempts on the real data), and that reading must
+    # not change. Scoped to one run it must count only that run's own
+    # attempts, or `score report --run-id <run>` reports every OTHER run
+    # that ever touched the position as if it belonged to this one too --
+    # a run that made 704 attempts would show n_attempts=1408 the moment a
+    # second run had ever seen the same markets.
+    n_attempts_sql, n_attempts_params = (
+        ("(SELECT COUNT(*) FROM opportunity_attempts x"
+         " WHERE x.opportunity_id = o.id) AS n_attempts,", [])
+        if run_id is None else
+        ("(SELECT COUNT(*) FROM opportunity_attempts x"
+         " WHERE x.opportunity_id = o.id AND x.run_id = ?) AS n_attempts,",
+         [run_id])
+    )
     # The LEFT JOIN prices a run-scoped observation at that run's own
     # (earliest) attempt rather than the position's (possibly earlier)
     # entry_price. When run_id is None the derived table's WHERE run_id = ?
@@ -185,8 +202,7 @@ def _single_leg_observations(
         "SELECT o.outcome, o.user_action,"
         " COALESCE(a.entry_price, o.entry_price) AS entry_price,"
         " COALESCE(a.edge_pts_net, o.edge_pts_net) AS edge_pts_net,"
-        " (SELECT COUNT(*) FROM opportunity_attempts x"
-        "  WHERE x.opportunity_id = o.id) AS n_attempts,"
+        " " + n_attempts_sql +
         # The fallback inside COALESCE must match the same run-scoped price
         # `cost` below is built from -- bare o.entry_price would blend an
         # unpriced fill at the wrong reference under --run-id, where the
@@ -206,7 +222,9 @@ def _single_leg_observations(
         + where
         + " AND o.position_kind = 'single'"
     )
-    rows = conn.execute(sql, [run_id] + params).fetchall()
+    rows = conn.execute(
+        sql, n_attempts_params + [run_id] + params
+    ).fetchall()
     out = []
     for row in rows:
         won = _won(row["outcome"], row["result"])
@@ -255,6 +273,18 @@ def _basket_observations(
     where, params = _segment_filter(
         theory_id, theory_version, run_mode, disposition, run_id
     )
+    # Same run/pooled split as _single_leg_observations, and the same
+    # reason: pooled n_attempts must stay the position's lifetime count
+    # across every run, while a run-scoped count must not fold in attempts
+    # made by other runs that happened to see the same basket.
+    n_attempts_sql, n_attempts_params = (
+        ("(SELECT COUNT(*) FROM opportunity_attempts x"
+         " WHERE x.opportunity_id = o.id) AS n_attempts,", [])
+        if run_id is None else
+        ("(SELECT COUNT(*) FROM opportunity_attempts x"
+         " WHERE x.opportunity_id = o.id AND x.run_id = ?) AS n_attempts,",
+         [run_id])
+    )
     # Same LEFT JOIN + COALESCE as _single_leg_observations, and the same
     # reason: price a run-scoped basket at that run's own earliest attempt,
     # while pooled scoring (run_id is None, so the derived table matches
@@ -263,8 +293,7 @@ def _basket_observations(
         "SELECT o.id, o.user_action, o.leg_count, o.max_payout, o.min_payout,"
         " COALESCE(a.entry_price, o.entry_price) AS entry_price,"
         " COALESCE(a.edge_pts_net, o.edge_pts_net) AS edge_pts_net,"
-        " (SELECT COUNT(*) FROM opportunity_attempts x"
-        "  WHERE x.opportunity_id = o.id) AS n_attempts,"
+        " " + n_attempts_sql +
         # Same run-scoped fallback as _single_leg_observations: an unpriced
         # fill must blend at this basket's own COALESCE(a.entry_price,
         # o.entry_price), not the bare position-row price, or a partially
@@ -280,7 +309,7 @@ def _basket_observations(
         "   ON a.opportunity_id = o.id"
         + where
         + " AND o.position_kind = 'basket'",
-        [run_id] + params,
+        n_attempts_params + [run_id] + params,
     ).fetchall()
 
     out = []
@@ -849,22 +878,40 @@ def settlement_day_clusters(
     no implied rate and no forecast to be right about. Baskets are excluded
     for `bucket_rates`' reason: a basket header's synthetic ticker never
     appears in `settlements`.
+
+    Priced the same way `compute_score` is, and for the same reason: under
+    `--run-id` this reads that run's own earliest attempt (via the same
+    `_EARLIEST_ATTEMPT_PER_RUN` join `_single_leg_observations` uses), not
+    the position row's `entry_price`, which can be a different run's first
+    sighting. `_segment_filter` already scopes both to the same rows; this
+    is what keeps them priced alike too, so this never silently disagrees
+    with `compute_score` on the price behind the edge it reports.
     """
     where, params = _segment_filter(
         theory_id, theory_version, run_mode, disposition, run_id
     )
+    # Same LEFT JOIN + COALESCE as _single_leg_observations, and the same
+    # reason: under --run-id this must price at that run's own earliest
+    # attempt, not the position row's (possibly earlier, possibly later)
+    # entry_price -- `_segment_filter` already scopes both functions to the
+    # same rows, and this join is what keeps them priced alike too. When
+    # run_id is None the derived table matches nothing and this reads
+    # o.entry_price unchanged, exactly as before this join existed.
     sql = (
-        "SELECT o.outcome, o.entry_price, s.result,"
+        "SELECT o.outcome, COALESCE(a.entry_price, o.entry_price)"
+        " AS entry_price, s.result,"
         " SUBSTR(COALESCE(s.resolved_at, ''), 1, 10) AS day"
         " FROM opportunities o"
         " JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker"
+        " LEFT JOIN (" + _EARLIEST_ATTEMPT_PER_RUN + ") a"
+        "   ON a.opportunity_id = o.id"
         + where
         + " AND o.position_kind = 'single'"
     )
 
     grouped: dict[str, list[dict]] = {}
     total = 0
-    for row in conn.execute(sql, params).fetchall():
+    for row in conn.execute(sql, [run_id] + params).fetchall():
         # A settlement with no resolved_at cannot be assigned to a day. It
         # still counts in `n` so this never silently disagrees with
         # `compute_score`, but it forms no cluster.
