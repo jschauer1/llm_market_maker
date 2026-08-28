@@ -6,6 +6,76 @@
    "written": 0,
    "no_candles": 0,
    "below_floor": 0
+  },
+  "KXHIGHTSEA": {
+   "n_settled": 348,
+   "n_obs": 163,
+   "written": 163,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHIGHDEN": {
+   "n_settled": 348,
+   "n_obs": 93,
+   "written": 93,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLOWTPHX": {
+   "n_settled": 348,
+   "n_obs": 69,
+   "written": 69,
+   "no_candles": 0,
+   "below_floor": 55
+  },
+  "KXHIGHTSAN": {
+   "n_settled": 48,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 47
+  },
+  "KXDENHIGH": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXEARTHQUAKEM": {
+   "n_settled": 10,
+   "n_obs": 1,
+   "written": 1,
+   "no_candles": 4,
+   "below_floor": 3
+  },
+  "KXHIGHLAX": {
+   "n_settled": 348,
+   "n_obs": 166,
+   "written": 166,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXEARTHQUAKELA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLOWTSATX": {
+   "n_settled": 348,
+   "n_obs": 24,
+   "written": 24,
+   "no_candles": 0,
+   "below_floor": 145
+  },
+  "KXLOWNY": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
   }
  }
 }

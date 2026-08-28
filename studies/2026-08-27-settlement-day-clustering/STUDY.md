@@ -138,3 +138,70 @@ look someday — "are near-term screened favorites systematically
 underpriced" is a real question — but it needs weeks of settlement days,
 not three, and a design that handles the in-progress-sports contamination.
 Recorded as idea `favorite-day-effect`.
+
+---
+
+## Addendum, same day — applying the lens to the repo's historical evidence
+
+Every historical backtest initially returned `n_days=0`: the replays
+recorded settlements with **no `resolved_at` at all**, so the repo's entire
+body of tier-A evidence — including the numbers `mention_family` was
+retired on — could not be day-clustered.
+
+The date turned out to be recoverable with no API call: every backtest row
+carries `entry_day_iso` and `days_to_close_at_entry` in `extra_json`, and
+their sum is the close date. `backfill_resolved_at.py` (in this folder,
+idempotent, never overwrites a real timestamp) filled 6,636 of them.
+
+### The good news first
+
+| run | n | days | row net | day net | row SE | day SE | inflation |
+|---|---|---|---|---|---|---|---|
+| mention fullcov | 3,441 | 67 | −1.53 | −0.82 | 0.69 | 0.79 | 1.15× |
+| insider fullcov | 3,195 | 66 | −1.15 | −1.16 | 0.63 | 1.12 | 1.77× |
+| insider judged s200 | 704 | 58 | **+0.67** | **−0.35** | 1.27 | 2.50 | 1.97× |
+| insider judged s200b | 644 | 63 | −0.02 | +0.35 | 1.37 | 2.33 | 1.70× |
+| insider judged s57 | 216 | 30 | **+1.90** | **−1.36** | 2.02 | 4.78 | 2.37× |
+
+**The historical tier-A evidence survives.** These runs span 30–67
+settlement days, so clustering widens their error bars by 1.15×–2.37× —
+not the collapse the live one-day samples suffered. Backtests that walk
+months of history are largely protected from this confound *by* spanning
+many days. The acute problem is a live theory reading one day's rows.
+
+### What it does change
+
+**`mention_family`'s retirement rationale was stated more strongly than
+the data supports.** It cited −1.53 net at n=3,441 as showing the family
+"priced essentially fairly, so favorites lose the fee." Day-weighted the
+same rows give **−0.82 ± 0.79** — about one standard error from zero, and
+29 of 67 days were positive. The *conclusion* stands (a family with no
+measurable edge is not worth running, and retirement was the user's call
+on that basis), but the honest phrasing is **"no measurable edge"**, not
+"measurably negative". Nothing here argues for un-retiring it.
+
+**The judged tier-B runs say nothing, and their sign is not stable.**
+s200 goes **+0.67 row-weighted → −0.35 day-weighted**; s57 goes **+1.90 →
+−1.36**. Both flip sign purely from how the days are weighted, and their
+clustered SEs (2.50, 4.78) swamp either estimate. Row-weighting
+over-counts busy days, so a few heavy good days lift the row-weighted
+number — which is exactly the confound this study is about, showing up in
+the evidence that was meant to validate `insider_judgment` v3's buckets.
+
+Consequence for that theory: it stays `testing`, which already means
+"claims not demonstrated" — but **it must not be promoted to `active` on
+these runs**, and the live endorsed tier (first settlements due
+2026-08-28) now carries the weight its backtests cannot.
+
+### A caveat on the arithmetic, stated rather than hidden
+
+Row-weighted and day-weighted point estimates answer different questions,
+and the day-clustered SE reported here is the SE *of the day-weighted
+mean* — so pairing it with a row-weighted point estimate is not strictly
+valid. A cluster-robust SE for the row-weighted estimate was not computed.
+For `mention_family` the two readings differ enough to matter (−1.53 vs
+−0.82), and both are small and non-positive; the responsible summary is
+that its edge is somewhere around zero to slightly negative, and no
+weighting makes it positive. The sign instability in the judged runs is
+the sharper warning, and it needs no such caveat: an estimate that flips
+sign under reweighting is not evidence in either direction.
