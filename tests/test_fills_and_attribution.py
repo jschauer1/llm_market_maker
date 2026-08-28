@@ -92,3 +92,46 @@ def test_unmarking_clears_the_fills(conn):
     row = ledger.get_opportunity(conn, opp)
     assert row["user_action"] == "untouched"
     assert row["user_size"] is None
+
+
+def test_unmarking_also_clears_the_reason(conn):
+    """A stale reason must not survive onto an untouched row.
+
+    compare-theories mines divergences off any row with a non-NULL
+    user_reason and does not check user_action at all -- so a reason left
+    behind by an earlier skip/take would be mined as a live divergence
+    signal for a position the user is no longer in.
+    """
+    opp = _rec(conn)
+    ledger.mark_user_action(conn, opp, "skipped", reason="too thin")
+    ledger.mark_user_action(conn, opp, "untouched")
+    row = ledger.get_opportunity(conn, opp)
+    assert row["user_reason"] is None
+    assert row["user_size"] is None
+    assert ledger.fills(conn, opp) == []
+
+
+def test_fill_price_rejects_cents(conn):
+    opp = _rec(conn)
+    with pytest.raises(ValueError, match="entry_price"):
+        ledger.mark_user_action(
+            conn, opp, "taken", size=25, price=85, theory_id="t1", now=TS,
+        )
+
+
+def test_fill_price_accepts_decimal_dollars(conn):
+    opp = _rec(conn)
+    ledger.mark_user_action(
+        conn, opp, "taken", size=25, price=0.85, theory_id="t1", now=TS,
+    )
+    got = ledger.fills(conn, opp)
+    assert got[0]["price"] == pytest.approx(0.85)
+
+
+def test_fill_price_may_be_omitted(conn):
+    opp = _rec(conn)
+    ledger.mark_user_action(
+        conn, opp, "taken", size=25, theory_id="t1", now=TS,
+    )
+    got = ledger.fills(conn, opp)
+    assert got[0]["price"] is None

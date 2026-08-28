@@ -964,6 +964,14 @@ def mark_user_action(
             )
         if size is None:
             raise ValueError("taking a bet requires --size")
+        # price is the same unit as entry_price -- decimal dollars in
+        # [0, 1] -- and Task 6 computes roi_taken directly off it, so the
+        # cents-vs-dollars mistake _validate_entry_price already guards
+        # against (entry_price=40 silently producing a -3900pt edge) is
+        # just as live here. None is allowed: a take with no --price falls
+        # back to the proposed ask at scoring time.
+        if price is not None:
+            _validate_entry_price(price)
 
     with write(conn):
         if action == "taken":
@@ -984,16 +992,28 @@ def mark_user_action(
                 "DELETE FROM opportunity_fills WHERE opportunity_id = ?",
                 (opportunity_id,),
             )
+        if action == "untouched":
+            # No money and no reason either: user_reason must go back to
+            # NULL, not just user_size. compare-theories mines divergences
+            # off any row with a non-NULL user_reason and does not check
+            # user_action at all, so a stale "too thin" surviving from a
+            # prior skip/take would be mined as a live signal for a
+            # position the user is no longer in.
+            reason_sql, reason_params = "NULL", ()
+        else:
+            # taken/skipped: COALESCE so re-taking (or re-skipping) without
+            # --reason does not wipe out the reason already on file.
+            reason_sql, reason_params = "COALESCE(?, user_reason)", (reason,)
         conn.execute(
-            """
+            f"""
             UPDATE opportunities SET
                 user_action = ?,
                 user_size = (SELECT SUM(size) FROM opportunity_fills
                              WHERE opportunity_id = ?),
-                user_reason = COALESCE(?, user_reason)
+                user_reason = {reason_sql}
             WHERE id = ?
             """,
-            (action, opportunity_id, reason, opportunity_id),
+            (action, opportunity_id, *reason_params, opportunity_id),
         )
 
 

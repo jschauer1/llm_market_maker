@@ -358,7 +358,8 @@ def build_parser() -> argparse.ArgumentParser:
     )
     mark.add_argument(
         "--price", type=float, default=None,
-        help="what you actually paid; defaults to the proposed ask",
+        help="what you actually paid; if omitted, scoring falls back to "
+             "the proposed ask",
     )
 
     p = sub.add_parser("score", help="calibration and settlement")
