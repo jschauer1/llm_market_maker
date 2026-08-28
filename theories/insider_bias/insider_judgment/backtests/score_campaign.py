@@ -51,12 +51,19 @@ def event_clustered_t(rows: list[dict]) -> tuple[int, float, float, float]:
 
 
 def load(conn: sqlite3.Connection) -> list[dict]:
+    # Reads what the judged run itself recorded (opportunity_attempts),
+    # not the position rollup -- after position-identity merges, a
+    # re-sighted position's opportunities.run_id is the *earliest* run's,
+    # so filtering there would silently miss every merged row (attempt
+    # fidelity spec, 2026-08-27 sec 9). o.outcome is identity, not
+    # per-attempt, so it still comes from the position join.
     rows = conn.execute(
-        """select o.run_id, o.outcome, o.entry_price, o.confidence,
-                  o.extra_json, s.result
-           from opportunities o
+        """select a.run_id, o.outcome, a.entry_price, a.confidence,
+                  a.extra_json, s.result
+           from opportunity_attempts a
+           join opportunities o on o.id = a.opportunity_id
            join settlements s on s.kalshi_ticker = o.kalshi_ticker
-           where o.run_id like ? and s.result in ('yes','no')""",
+           where a.run_id like ? and s.result in ('yes','no')""",
         (JUDGED_PREFIX,),
     ).fetchall()
     out = []

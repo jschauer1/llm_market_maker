@@ -106,11 +106,22 @@ def _market_payload(cache_conn: sqlite3.Connection, ticker: str) -> dict:
 
 
 def _source_rows(conn: sqlite3.Connection) -> list[sqlite3.Row]:
+    # Reads the fullcov run's own attempt, not the position rollup: today
+    # this works "by luck" because fullcov happens to be the earliest run
+    # for every one of these positions, so opportunities.run_id still
+    # equals SOURCE_RUN_ID -- but a position-identity merge always keeps
+    # the *earliest* run_id on the rollup, so filtering there breaks the
+    # moment fullcov is not first (attempt fidelity spec, 2026-08-27 sec
+    # 9). o.kalshi_ticker/o.outcome/o.theory_id are identity, not
+    # per-attempt. fullcov records exactly one decision_date per market
+    # (replay_market returns the first qualifying day only), so this exact
+    # run_id match cannot fan out one position into more than one row.
     return conn.execute(
-        """SELECT o.kalshi_ticker, o.outcome, o.entry_price,
-                  o.spread_at_call, o.volume_at_call, o.extra_json
-           FROM opportunities o
-           WHERE o.run_id = ? AND o.theory_id = ?""",
+        """SELECT o.kalshi_ticker, o.outcome, a.entry_price,
+                  a.spread_at_call, a.volume_at_call, a.extra_json
+           FROM opportunity_attempts a
+           JOIN opportunities o ON o.id = a.opportunity_id
+           WHERE a.run_id = ? AND o.theory_id = ?""",
         (SOURCE_RUN_ID, THEORY_ID),
     ).fetchall()
 

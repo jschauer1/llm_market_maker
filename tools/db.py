@@ -478,7 +478,8 @@ def migrate_positions(
             f"{len(sizeless)} taken position(s) have no user_size, and a "
             f"fill must have one: {names}"
             f"{' ...' if len(sizeless) > 5 else ''}. Set the size with "
-            f"`opportunities mark-taken <id> taken --size <N>` first -- "
+            f"`opportunities mark-taken <id> taken --theory <slug> "
+            f"--size <N>` first -- "
             f"refused here rather than raising IntegrityError partway "
             f"through the rebuild."
         )

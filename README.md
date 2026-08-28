@@ -73,7 +73,7 @@ The CLI underneath is plain Python:
 pip install -r requirements.txt
 python -m tools.cli --help
 python -m tools.cli ideas search "<keyword>"      # research memory
-python -m tools.cli opportunities mark-taken <id> taken --size <N> --reason "<why>"
+python -m tools.cli opportunities mark-taken <id> taken --theory <slug> --size <N> --reason "<why>"
 ```
 
 That last command is how the system learns what you actually bet — without it
