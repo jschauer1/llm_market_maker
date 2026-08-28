@@ -187,6 +187,16 @@ def _single_leg_observations(
         " COALESCE(a.edge_pts_net, o.edge_pts_net) AS edge_pts_net,"
         " (SELECT COUNT(*) FROM opportunity_attempts x"
         "  WHERE x.opportunity_id = o.id) AS n_attempts,"
+        " (SELECT SUM(f.size * COALESCE(f.price, o.entry_price))"
+        "    / NULLIF(SUM(f.size), 0)"
+        "  FROM opportunity_fills f"
+        "  WHERE f.opportunity_id = o.id) AS fill_price,"
+        # COUNT(f.price) skips NULLs, so this is 0 exactly when a taken
+        # position's fills never recorded a price. `fill_price` alone can't
+        # signal that -- see the fuller comment in _basket_observations,
+        # where the distinction actually changes the number.
+        " (SELECT COUNT(f.price) FROM opportunity_fills f"
+        "  WHERE f.opportunity_id = o.id) AS n_priced_fills,"
         " s.result FROM opportunities o"
         " JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker"
         " LEFT JOIN (" + _EARLIEST_ATTEMPT_PER_RUN + ") a"
@@ -209,6 +219,7 @@ def _single_leg_observations(
             "edge_pts_net": row["edge_pts_net"],
             "user_action": row["user_action"],
             "n_attempts": row["n_attempts"],
+            "fill_price": row["fill_price"] if row["n_priced_fills"] else None,
             # A single position can always resolve against you -- there is
             # no floor to fall back on -- so it is never riskless.
             "riskless": False,
@@ -242,7 +253,21 @@ def _basket_observations(
         " COALESCE(a.entry_price, o.entry_price) AS entry_price,"
         " COALESCE(a.edge_pts_net, o.edge_pts_net) AS edge_pts_net,"
         " (SELECT COUNT(*) FROM opportunity_attempts x"
-        "  WHERE x.opportunity_id = o.id) AS n_attempts"
+        "  WHERE x.opportunity_id = o.id) AS n_attempts,"
+        " (SELECT SUM(f.size * COALESCE(f.price, o.entry_price))"
+        "    / NULLIF(SUM(f.size), 0)"
+        "  FROM opportunity_fills f"
+        "  WHERE f.opportunity_id = o.id) AS fill_price,"
+        # See the matching comment in _single_leg_observations: without
+        # this, a basket taken with no recorded price would still fall
+        # into the "priced" branch below and get its fee approximated as
+        # fee_pts() of the blended entry_price instead of the exact
+        # per-leg fee sum already carried in `cost` -- silently wrong
+        # because fee_pts is not linear (fee_pts(a) + fee_pts(b) !=
+        # fee_pts(a + b)), and a basket has no per-leg fill data to
+        # recover the true figure from once the fee identity breaks.
+        " (SELECT COUNT(f.price) FROM opportunity_fills f"
+        "  WHERE f.opportunity_id = o.id) AS n_priced_fills"
         " FROM opportunities o"
         " LEFT JOIN (" + _EARLIEST_ATTEMPT_PER_RUN + ") a"
         "   ON a.opportunity_id = o.id"
@@ -362,6 +387,9 @@ def _basket_observations(
             "edge_pts_net": header["edge_pts_net"],
             "user_action": header["user_action"],
             "n_attempts": header["n_attempts"],
+            "fill_price": (
+                header["fill_price"] if header["n_priced_fills"] else None
+            ),
             "riskless": riskless,
         })
     return out
@@ -410,7 +438,14 @@ def _aggregate(rows: list[dict]) -> dict:
         riskless_return += r["payout"]
         if r["user_action"] == "taken":
             riskless_has_taken = True
-            riskless_taken_cost += r["cost"]
+            # The money number uses what was actually paid. `cost` prices
+            # the proposal; a fill prices the purchase. They differ whenever
+            # the market moved between the call and the entry.
+            paid = r.get("fill_price")
+            riskless_taken_cost += (
+                r["cost"] if paid is None
+                else paid + fee_pts(paid) / 100.0
+            )
             riskless_taken_return += r["payout"]
     riskless_roi = (
         (riskless_return - riskless_cost) / riskless_cost
@@ -459,7 +494,14 @@ def _aggregate(rows: list[dict]) -> dict:
         total_fee_pts += r["fee_pts"]
         if r["user_action"] == "taken":
             has_taken = True
-            taken_cost += r["cost"]
+            # The money number uses what was actually paid. `cost` prices
+            # the proposal; a fill prices the purchase. They differ whenever
+            # the market moved between the call and the entry.
+            paid = r.get("fill_price")
+            taken_cost += (
+                r["cost"] if paid is None
+                else paid + fee_pts(paid) / 100.0
+            )
             taken_return += r["payout"]
 
     win_rate = wins / n

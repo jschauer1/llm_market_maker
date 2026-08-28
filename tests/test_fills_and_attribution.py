@@ -135,3 +135,30 @@ def test_fill_price_may_be_omitted(conn):
     )
     got = ledger.fills(conn, opp)
     assert got[0]["price"] is None
+
+
+def test_roi_taken_uses_the_price_actually_paid(conn):
+    from tools import score
+
+    opp = _rec(conn, ticker="A", price=0.50)
+    score.record_settlement(conn, "A", "yes", resolved_at=TS)
+    # Proposed at 0.50, actually bought at 0.25. ROI must reflect the 0.25.
+    ledger.mark_user_action(
+        conn, opp, "taken", size=10, price=0.25, theory_id="t1", now=TS,
+    )
+    result = score.compute_score(conn, "t1", 1)
+    # Won a dollar on a 0.25 entry: roughly +3.0 before fees, and in any
+    # case far above the +1.0 a 0.50 entry would have produced.
+    assert result["roi_taken"] > 2.0
+
+
+def test_roi_taken_falls_back_to_the_proposed_ask(conn):
+    from tools import score
+
+    opp = _rec(conn, ticker="B", price=0.50)
+    score.record_settlement(conn, "B", "yes", resolved_at=TS)
+    ledger.mark_user_action(
+        conn, opp, "taken", size=10, theory_id="t1", now=TS,
+    )
+    result = score.compute_score(conn, "t1", 1)
+    assert 0.8 < result["roi_taken"] < 1.0
