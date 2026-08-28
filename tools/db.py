@@ -441,6 +441,35 @@ _ATTEMPT_COPIED = (
 _SUPERSEDED_CAP = 50
 
 
+def _restore_sequence_ceiling(
+    conn: sqlite3.Connection, table: str, minimum: int
+) -> None:
+    """Ensure AUTOINCREMENT on `table` never hands out an id below `minimum`.
+
+    A rebuild that only re-inserts a group's SURVIVING id can leave
+    `sqlite_sequence` tracking the highest id actually re-inserted -- lower
+    than the highest id the table ever handed out whenever the row holding
+    that max id lost its dedup group and was dropped. Left alone, the next
+    row written reuses an id a backup table already assigned to something
+    else. Never lowers the ceiling -- only ever raises it to `minimum`.
+    """
+    if minimum <= 0:
+        return
+    existing = conn.execute(
+        "SELECT seq FROM sqlite_sequence WHERE name = ?", (table,)
+    ).fetchone()
+    if existing is None:
+        conn.execute(
+            "INSERT INTO sqlite_sequence (name, seq) VALUES (?, ?)",
+            (table, minimum),
+        )
+    elif existing["seq"] < minimum:
+        conn.execute(
+            "UPDATE sqlite_sequence SET seq = ? WHERE name = ?",
+            (minimum, table),
+        )
+
+
 def migrate_positions(
     conn: sqlite3.Connection, dry_run: bool = False
 ) -> dict:
@@ -491,6 +520,12 @@ def migrate_positions(
 
     rows = conn.execute("SELECT * FROM opportunities").fetchall()
     stats["before"] = len(rows)
+    # Captured now, before the table is renamed and dropped: the rebuild
+    # below only ever re-inserts a group's SURVIVING id, so a row that lost
+    # its dedup never lands in the new table again and SQLite's own
+    # AUTOINCREMENT bookkeeping only sees what actually got re-inserted --
+    # which can be lower than the highest id this table ever handed out.
+    pre_migration_max_id = max((r["id"] for r in rows), default=0)
 
     groups: dict[tuple, list[sqlite3.Row]] = {}
     for row in rows:
@@ -727,6 +762,17 @@ def migrate_positions(
             conn.execute(
                 "CREATE INDEX IF NOT EXISTS idx_opportunities_ticker"
                 " ON opportunities (kalshi_ticker)"
+            )
+            # Restore the ceiling explicitly. Left alone, sqlite_sequence
+            # tracks only the highest SURVIVOR id the loop above actually
+            # re-inserted -- lower than the pre-migration max whenever the
+            # row holding that max id lost its dedup group -- and the next
+            # position written would be handed an id the backup table
+            # already assigned to a different market. Ids are preserved on
+            # purpose (they are cited in campaign write-ups and notes), so
+            # handing a deleted one to a different market defeats that.
+            _restore_sequence_ceiling(
+                conn, "opportunities", pre_migration_max_id
             )
             conn.commit()
         except BaseException:

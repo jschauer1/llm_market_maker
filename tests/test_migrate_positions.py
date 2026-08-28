@@ -629,6 +629,128 @@ def test_the_surviving_row_keeps_its_original_id(legacy):
     assert kept == expected
 
 
+def test_sqlite_sequence_is_restored_past_the_premigration_max(legacy):
+    """A deleted id must never be handed to a different market.
+
+    Constructed so the highest id in the pre-migration table (2) belongs to
+    the LOSING row of a group: KXA's later, judged row is dropped in favor
+    of the earlier one (id 1), so nothing in the rebuild ever re-inserts id
+    2 -- SQLite's own AUTOINCREMENT bookkeeping only sees what actually
+    landed in the new table, which tops out at id 1. Left alone, the next
+    row written after this migration would be handed id 2 -- the exact id
+    the backup table already assigned to KXA's judged attempt.
+    """
+    _legacy_row(legacy, run_id="fullcov", kalshi_ticker="KXA")
+    _legacy_row(legacy, run_id="judged", kalshi_ticker="KXA",
+                confidence="strong", last_seen_at=TS2)
+    pre_migration_max = legacy.execute(
+        "SELECT MAX(id) FROM opportunities"
+    ).fetchone()[0]
+    assert pre_migration_max == 2, "the losing row must hold the max id"
+
+    db.migrate_positions(legacy)
+
+    survivor_max = legacy.execute(
+        "SELECT MAX(id) FROM opportunities"
+    ).fetchone()[0]
+    assert survivor_max == 1, "sanity: the losing row's id (2) is gone"
+
+    seq = legacy.execute(
+        "SELECT seq FROM sqlite_sequence WHERE name = 'opportunities'"
+    ).fetchone()[0]
+    assert seq >= pre_migration_max, (
+        "sqlite_sequence must not fall below the pre-migration max, or the "
+        "next position written reuses an id the backup table already "
+        "assigned to a different market"
+    )
+
+    # Prove it end to end: the next row autoincremented into the table (no
+    # explicit id, exactly how ledger.record_opportunity inserts) must not
+    # collide with id 2. The rebuilt opportunities table FK-references
+    # theories(id) with foreign_keys back ON post-migration, so the parent
+    # row has to exist for this insert to be legal at all.
+    legacy.execute("CREATE TABLE theories (id TEXT PRIMARY KEY)")
+    legacy.execute("INSERT INTO theories (id) VALUES ('t1')")
+    new_id = legacy.execute(
+        "INSERT INTO opportunities ("
+        " theory_id, theory_version, run_mode, run_id, kalshi_ticker,"
+        " outcome, entry_price, screen_edge_pts_net, edge_pts_net,"
+        " first_seen_at, last_seen_at"
+        ") VALUES ('t1', 1, 'live', 'live', 'KXNEW', 'yes', 0.5, 1.0, 1.0,"
+        " ?, ?)",
+        (TS, TS),
+    ).lastrowid
+    legacy.commit()
+    assert new_id > pre_migration_max, (
+        f"id {new_id} was already assigned to a different market "
+        f"(KXA's judged attempt) in the backup table"
+    )
+
+
+def test_restore_sequence_ceiling_inserts_a_row_when_none_exists(tmp_path):
+    """`_restore_sequence_ceiling` must not assume a row already exists.
+
+    In `migrate_positions` itself the loop's explicit-id inserts always
+    create the row first, so this branch is unreachable through that call
+    path -- exercised directly here instead, on a table that has never had
+    an AUTOINCREMENT write at all.
+    """
+    c = db.connect(tmp_path / "seq.db")
+    c.execute(
+        "CREATE TABLE opportunities (id INTEGER PRIMARY KEY AUTOINCREMENT,"
+        " x TEXT)"
+    )
+    c.commit()
+    assert c.execute(
+        "SELECT * FROM sqlite_sequence WHERE name = 'opportunities'"
+    ).fetchone() is None
+
+    db._restore_sequence_ceiling(c, "opportunities", 10529)
+    c.commit()
+
+    seq = c.execute(
+        "SELECT seq FROM sqlite_sequence WHERE name = 'opportunities'"
+    ).fetchone()[0]
+    assert seq == 10529
+    c.close()
+
+
+def test_restore_sequence_ceiling_never_lowers_an_existing_seq(tmp_path):
+    c = db.connect(tmp_path / "seq.db")
+    c.execute(
+        "CREATE TABLE opportunities (id INTEGER PRIMARY KEY AUTOINCREMENT,"
+        " x TEXT)"
+    )
+    c.execute("INSERT INTO opportunities (id, x) VALUES (500, 'a')")
+    c.commit()
+
+    db._restore_sequence_ceiling(c, "opportunities", 10)
+    c.commit()
+
+    seq = c.execute(
+        "SELECT seq FROM sqlite_sequence WHERE name = 'opportunities'"
+    ).fetchone()[0]
+    assert seq == 500, "a lower minimum must never pull the ceiling down"
+    c.close()
+
+
+def test_restore_sequence_ceiling_is_a_noop_for_a_zero_minimum(tmp_path):
+    c = db.connect(tmp_path / "seq.db")
+    c.execute(
+        "CREATE TABLE opportunities (id INTEGER PRIMARY KEY AUTOINCREMENT,"
+        " x TEXT)"
+    )
+    c.commit()
+
+    db._restore_sequence_ceiling(c, "opportunities", 0)
+    c.commit()
+
+    assert c.execute(
+        "SELECT * FROM sqlite_sequence WHERE name = 'opportunities'"
+    ).fetchone() is None
+    c.close()
+
+
 def test_a_failed_migration_leaves_the_database_untouched(legacy, monkeypatch):
     """The rollback must undo work that had already landed, not nothing.
 
