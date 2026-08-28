@@ -302,7 +302,7 @@ def _decision_day(row: sqlite3.Row) -> str:
 
 def _rollup(
     group: list[sqlite3.Row],
-) -> tuple[sqlite3.Row, str | None, int | None, int, sqlite3.Row | None]:
+) -> tuple[sqlite3.Row, str | None, int | None, sqlite3.Row | None]:
     """Pick the surviving row's values for one duplicate group.
 
     First sighting owns price and edge, so the pair can never be
@@ -322,7 +322,7 @@ def _rollup(
       `disposition`, `interpretation`, `interpreted_at` and (optionally)
       `edge_pts_net` in one statement, so they travel together.
 
-    Returns (earliest, label, judged_blind, n_judged, researched-or-None).
+    Returns (earliest, label, judged_blind, researched-or-None).
     """
     ordered = sorted(group, key=lambda r: (_decision_day(r), r["last_seen_at"]))
     earliest = ordered[0]
@@ -330,9 +330,17 @@ def _rollup(
     label = judged[-1]["confidence"] if judged else None
     blind = judged[-1]["judged_blind"] if judged else earliest["judged_blind"]
     interpreted = [r for r in ordered if r["interpretation"]]
-    return earliest, label, blind, len(judged), (
-        interpreted[-1] if interpreted else None
-    )
+    return earliest, label, blind, (interpreted[-1] if interpreted else None)
+
+
+def _fill_row(group: list[sqlite3.Row]) -> sqlite3.Row | None:
+    """The taken row whose money becomes this position's single fill.
+
+    Shared by the counting pass and the rebuild so a dry run reports on
+    exactly the row the real run would write.
+    """
+    taken = [r for r in group if r["user_action"] == "taken"]
+    return max(taken, key=lambda r: r["last_seen_at"]) if taken else None
 
 
 def has_legacy_position_key(conn: sqlite3.Connection) -> bool:
@@ -391,7 +399,9 @@ def migrate_positions(
     """
     stats = {
         "before": 0, "after": 0, "attempts": 0, "labels_preserved": 0,
-        "legs_repointed": 0, "fills_backfilled": 0, "backup_table": None,
+        "legs_repointed": 0, "fills_backfilled": 0,
+        "superseded_interpretations": 0, "takes_missing_size": 0,
+        "backup_table": None,
     }
     if not has_legacy_position_key(conn):
         if not _table_exists(conn, "opportunities"):
@@ -429,8 +439,38 @@ def migrate_positions(
     stats["labels_preserved"] = sum(
         1 for g in groups.values() if any(r["confidence"] for r in g)
     )
+    # A merge keeps the latest interpreted row's verdict, which is what
+    # re-interpreting a position means. The earlier verdict is not lost --
+    # it is in the backup table -- but nobody will know to look for it
+    # unless the migration says how many there were, so this is counted
+    # here, in the pass a dry run also makes.
+    stats["superseded_interpretations"] = sum(
+        1 for g in groups.values()
+        if len({r["interpretation"] for r in g if r["interpretation"]}) > 1
+    )
+    # opportunity_fills.size is NOT NULL, so a taken row carrying no
+    # user_size would raise IntegrityError halfway through the rebuild.
+    # Counted before the transaction so a dry run can warn, and refused
+    # below rather than discovered mid-flight.
+    sizeless = [
+        g for g in groups.values()
+        if (row := _fill_row(g)) is not None and row["user_size"] is None
+    ]
+    stats["takes_missing_size"] = len(sizeless)
     if dry_run:
         return stats
+    if sizeless:
+        names = ", ".join(
+            sorted(_fill_row(g)["kalshi_ticker"] for g in sizeless)[:5]
+        )
+        raise ValueError(
+            f"{len(sizeless)} taken position(s) have no user_size, and a "
+            f"fill must have one: {names}"
+            f"{' ...' if len(sizeless) > 5 else ''}. Set the size with "
+            f"`opportunities mark-taken <id> taken --size <N>` first -- "
+            f"refused here rather than raising IntegrityError partway "
+            f"through the rebuild."
+        )
 
     stamp = utcnow().replace("-", "").replace(":", "").replace("Z", "")
     backup = f"opportunities_premigration_{stamp}"
@@ -487,10 +527,22 @@ def migrate_positions(
             conn.execute(ddl)
             conn.execute(attempts_ddl)
             conn.execute(fills_ddl)
+            # Both tables are created here rather than by the schema
+            # script, so their indexes are this migration's job too --
+            # without idx_attempts_run every per-run consumer query
+            # full-scans 9,732 attempts until the next init_db.
+            conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_attempts_run"
+                " ON opportunity_attempts(run_id)"
+            )
+            conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_fills_opportunity"
+                " ON opportunity_fills(opportunity_id)"
+            )
 
             for key, group in groups.items():
                 lane = key[3]
-                earliest, label, blind, _, research = _rollup(group)
+                earliest, label, blind, research = _rollup(group)
                 survivor = earliest["id"]
                 seen = {(_decision_day(r), r["run_id"]) for r in group}
 
@@ -499,12 +551,8 @@ def migrate_positions(
                 # seeing it. Undated in the legacy schema -- there was no
                 # take-date column -- so last_seen_at is the best available
                 # stand-in.
-                taken = [r for r in group if r["user_action"] == "taken"]
                 skipped = [r for r in group if r["user_action"] == "skipped"]
-                fill_row = (
-                    max(taken, key=lambda r: r["last_seen_at"])
-                    if taken else None
-                )
+                fill_row = _fill_row(group)
                 money = fill_row or (
                     max(skipped, key=lambda r: r["last_seen_at"])
                     if skipped else None

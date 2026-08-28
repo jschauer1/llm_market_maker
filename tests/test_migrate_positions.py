@@ -426,6 +426,76 @@ def test_a_later_interpreted_row_keeps_its_research(legacy):
 # --- the rebuilt table --------------------------------------------------
 
 
+def test_a_superseded_interpretation_is_counted_not_hidden(legacy):
+    """Keeping the latest verdict is right; keeping quiet about it is not.
+
+    The earlier interpretation survives only in the backup table, and
+    nobody looks there unless the migration says how many there are. The
+    count comes off the dry run too, so it can be read before the write.
+    """
+    _legacy_row(legacy, run_id="first", kalshi_ticker="KXA",
+                disposition="endorsed", interpretation="pre-taped",
+                interpreted_at=TS)
+    _legacy_row(legacy, run_id="second", kalshi_ticker="KXA",
+                last_seen_at=TS2, disposition="rejected",
+                interpretation="the source can miss the close",
+                interpreted_at=TS2)
+    # A group with one interpretation is not superseding anything.
+    _legacy_row(legacy, run_id="first", kalshi_ticker="KXB",
+                disposition="endorsed", interpretation="pre-taped",
+                interpreted_at=TS)
+    _legacy_row(legacy, run_id="second", kalshi_ticker="KXB",
+                last_seen_at=TS2)
+
+    dry = db.migrate_positions(legacy, dry_run=True)
+    assert dry["superseded_interpretations"] == 1
+    stats = db.migrate_positions(legacy)
+    assert stats["superseded_interpretations"] == 1
+    kept = legacy.execute(
+        "SELECT interpretation FROM opportunities WHERE kalshi_ticker = 'KXA'"
+    ).fetchone()["interpretation"]
+    assert kept == "the source can miss the close"
+    superseded = legacy.execute(
+        f"SELECT COUNT(*) FROM {stats['backup_table']}"
+        " WHERE interpretation = 'pre-taped'"
+    ).fetchone()[0]
+    assert superseded == 2, "the earlier verdicts are still in the backup"
+
+
+def test_a_take_with_no_size_is_refused_before_anything_is_written(legacy):
+    """opportunity_fills.size is NOT NULL.
+
+    Left alone this raises IntegrityError partway through the rebuild of a
+    database that only gets migrated once. The dry run reports it, and the
+    real run refuses while the ledger is still untouched.
+    """
+    _legacy_row(legacy, run_id="r1", kalshi_ticker="KXA")
+    _legacy_row(legacy, run_id="r2", kalshi_ticker="KXB",
+                user_action="taken", user_size=None, user_reason="oops")
+    tables = _tables(legacy)
+
+    dry = db.migrate_positions(legacy, dry_run=True)
+    assert dry["takes_missing_size"] == 1
+
+    with pytest.raises(ValueError, match="no user_size"):
+        db.migrate_positions(legacy)
+
+    assert legacy.execute(
+        "SELECT COUNT(*) FROM opportunities"
+    ).fetchone()[0] == 2
+    assert _tables(legacy) == tables, "refused before the backup is written"
+    assert db.has_legacy_position_key(legacy)
+
+
+def test_a_take_with_a_size_reports_nothing_missing(legacy):
+    _legacy_row(legacy, run_id="r1", kalshi_ticker="KXA",
+                user_action="taken", user_size=25.0)
+    assert db.migrate_positions(
+        legacy, dry_run=True
+    )["takes_missing_size"] == 0
+    assert db.migrate_positions(legacy)["fills_backfilled"] == 1
+
+
 def test_the_rebuilt_table_keeps_its_indexes(legacy):
     """DROP TABLE takes the renamed table's indexes with it."""
     _legacy_row(legacy, run_id="r1", kalshi_ticker="KXA")
@@ -433,10 +503,13 @@ def test_the_rebuilt_table_keeps_its_indexes(legacy):
     indexes = {
         r[0] for r in legacy.execute(
             "SELECT name FROM sqlite_master WHERE type='index'"
-            " AND tbl_name='opportunities'"
         )
     }
     assert {"idx_opportunities_theory", "idx_opportunities_ticker"} <= indexes
+    # The attempt and fill tables are created by this migration, so their
+    # indexes are its job too -- a per-run consumer query would otherwise
+    # full-scan every attempt until the next init_db.
+    assert {"idx_attempts_run", "idx_fills_opportunity"} <= indexes
 
 
 def test_the_surviving_row_keeps_its_original_id(legacy):
@@ -461,28 +534,56 @@ def test_the_surviving_row_keeps_its_original_id(legacy):
 
 
 def test_a_failed_migration_leaves_the_database_untouched(legacy, monkeypatch):
-    _legacy_row(legacy, run_id="fullcov", kalshi_ticker="KXA")
-    _legacy_row(legacy, run_id="judged", kalshi_ticker="KXA",
-                confidence="strong", last_seen_at=TS2)
+    """The rollback must undo work that had already landed, not nothing.
+
+    A failure on the first group proves very little -- there is no
+    half-built table to discard. This one fires while the *second* group is
+    being rolled up, so a whole position, its attempts and its fill are
+    already in the rebuilt tables when the exception goes off, and the
+    witness below records that they really were there.
+    """
+    for ticker in ("KXA", "KXB", "KXC"):
+        _legacy_row(legacy, run_id="fullcov", kalshi_ticker=ticker)
+        _legacy_row(legacy, run_id="judged", kalshi_ticker=ticker,
+                    confidence="strong", last_seen_at=TS2,
+                    user_action="taken", user_size=5.0)
     before = _rows(legacy, "opportunities")
     tables = _tables(legacy)
 
     real_day = db._decision_day
+    witness = {}
 
     def explode(row):
-        # Fail only once the destructive half has started, so the rollback
-        # has a renamed table, a rebuilt table and inserted rows to undo.
+        # `opportunities` is the rebuilt table only once the rename has
+        # happened. Waiting for both of the first group's attempts means a
+        # whole group -- position, fill and attempts -- is on disk before
+        # the exception goes off.
         renamed = legacy.execute(
             "SELECT 1 FROM sqlite_master WHERE name = 'opportunities_legacy'"
         ).fetchone()
         if renamed is not None:
-            raise RuntimeError("usage cut out mid-migration")
+            witness["positions"] = legacy.execute(
+                "SELECT COUNT(*) FROM opportunities"
+            ).fetchone()[0]
+            witness["attempts"] = legacy.execute(
+                "SELECT COUNT(*) FROM opportunity_attempts"
+            ).fetchone()[0]
+            witness["fills"] = legacy.execute(
+                "SELECT COUNT(*) FROM opportunity_fills"
+            ).fetchone()[0]
+            if witness["attempts"] >= 2:
+                raise RuntimeError("usage cut out mid-migration")
         return real_day(row)
 
     monkeypatch.setattr(db, "_decision_day", explode)
     with pytest.raises(RuntimeError):
         db.migrate_positions(legacy)
 
+    assert witness["positions"] >= 1, "the failure must land after an INSERT"
+    assert witness["attempts"] >= 2 and witness["fills"] >= 1
+
     assert _rows(legacy, "opportunities") == before
     assert _tables(legacy) == tables
+    assert "opportunity_attempts" not in _tables(legacy), "rebuilt tables go"
+    assert "opportunity_fills" not in _tables(legacy)
     assert db.has_legacy_position_key(legacy)
