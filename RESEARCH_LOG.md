@@ -1389,6 +1389,15 @@ alone is n=3,195 / -1.15 — the judged sub-runs were drawn *from* fullcov, so
 pooling re-counts them and pulls the headline up. A duplicate improved
 measured performance.
 
+> **Corrected 2026-08-28.** This figure pooled duplicate rows: `run_id` was
+> in the `opportunities` UNIQUE key, so the judged sub-runs re-counted
+> markets the full-coverage run had already recorded. The honest figure for
+> v3 backtest is the full-coverage run alone: `n=3,195, calibration_edge_net
+> -1.15` — and after the migration, pooled and fullcov now report the
+> identical number, because the merge collapsed the duplicates. See
+> `docs/superpowers/specs/2026-08-27-position-identity-design.md` and
+> `docs/superpowers/plans/2026-08-27-migration-report.md`.
+
 The same defect destroyed the persistence signal: `times_seen` exists to count
 re-proposal and reads **1 on all 9,153 rows** — every repetition became a new
 row instead of incrementing the counter. The double-count and the lost signal
@@ -1525,3 +1534,48 @@ per-market candle call before committing to the ~2,504-series politics run.
 Suite: 754 passing. The 15 failures in `tests/test_position_dedup.py` belong
 to separate in-progress position-identity work (commit b6d1c25), not to
 anything in this session.
+
+## 2026-08-28 — position identity + attempt fidelity: the migration ran
+
+Not a research session. Closes out the ledger defect diagnosed 2026-08-27
+(`docs/DEDUP_PLAN.md`, above). Both specs
+(`docs/superpowers/specs/2026-08-27-position-identity-design.md`,
+`docs/superpowers/specs/2026-08-27-attempt-fidelity-design.md`) implemented
+and merged to `master` (`12a898b`), then `db/market_edge.db` migrated once,
+for real: **9,948 rows -> 8,183 positions**, every row surviving as an
+attempt, 0 legs orphaned, 0 attempts orphaned, `times_seen` finally moving
+off 1 (1,764 positions now show it). Full figures, independently
+re-verified against the live database rather than copied from the
+migration's own report, and the 26 superseded research verdicts named in
+full (money-holding ones called out): `docs/superpowers/plans/
+2026-08-27-migration-report.md`.
+
+**The corrected headline:** `insider_judgment` v3 backtest pooled scoring,
+previously `n=4,759, calibration_edge_net -0.588` (duplicated rows —
+judged sub-runs re-counting markets the fullcov run already recorded),
+now reads `n=3,195, calibration_edge_net -1.1486` — identical to the
+fullcov-only figure, which is what pooled should always have meant. Same
+correction annotated in place above (2026-08-27 entry) rather than edited
+out; no other theory write-up quoted the stale number.
+
+The migration also made something computable for the first time:
+confidence-bucket win rates over the *merged* judged backtest (labels and
+settlements previously lived on different rows). Monotone in the claimed
+direction (weak -0.29, moderate +2.51, strong +3.95 pts gross, n=1,564) —
+but it's post-hoc on the data that suggested it, so it's pre-registered as
+a hypothesis in the idea registry (`confidence-bucket-gradient`, id 27,
+`ideas status` carries the revisit angle: needs an out-of-sample walk, net
+of fees, and checked inside single settlement-day clusters), not acted on.
+
+`score_campaign.py` — the script that regenerates `insider_judgment`'s
+`RESULTS.md` — was repointed to read `opportunity_attempts` directly
+(spec attempt-fidelity §9, done on-branch as Task 10a) rather than the
+position rollup, because a merged position's `run_id` is now the
+*earliest* run's and the old query would have silently returned nothing.
+Re-ran it against the migrated database: `load()` returns the same 1,561
+rows it returned before the migration, and every printed number (bucket ×
+side, the Holm-Bonferroni family, the event-clustered t) matches
+`RESULTS.md` exactly. Nothing in that file needed correction.
+
+No theory version bumped — this changed how the ledger counts, not any
+theory's decision procedure. Suite green (848) after.
