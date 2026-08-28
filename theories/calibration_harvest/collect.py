@@ -248,13 +248,40 @@ def cell_rates(conn, run_id: str) -> dict[str, dict]:
 
     `n_days` counts distinct settlement days, not rows -- the floor that
     decides whether a cell may call itself `measured`.
+
+    Reads the collection run's own attempt rows, never the position rollup
+    (attempt-fidelity spec section 9 -- this is a fourth per-run consumer
+    the spec's table missed). Two things break when this reads
+    `opportunities`:
+
+    - A second collection run touching an already-collected ticker merges
+      onto the existing position, whose `run_id` stays the *earlier* run's.
+      `cell_rates(later_run)` then silently misses every re-touched market.
+    - One market contributes an observation per horizon bin it can support,
+      deliberately (see this module's docstring), and those observations
+      can land in different cells. They share a ticker and a side, so they
+      are one position holding several attempts -- and the position row
+      carries only the first attempt's `extra_json`, so a market feeding
+      two cells was counted in exactly one of them.
+
+    That second point is why this consumer, unlike the four in section 9,
+    keeps **every** attempt of the run rather than the earliest per
+    `(opportunity_id, run_id)`. There, several attempts under one run_id
+    would be one judgment recorded twice and deduping is what stops a
+    settlement being counted twice. Here they are distinct measurements at
+    distinct offsets, which is the whole design; the primary key already
+    makes a same-day re-recording impossible, so there is no fan-out to
+    guard against, and the dependence between rows of one market is
+    absorbed by `n_days` (and by the day-clustered SE this theory
+    mandates), not by dropping the rows.
     """
     sql = """
-        SELECT o.extra_json, o.outcome, s.result,
+        SELECT a.extra_json, o.outcome, s.result,
                SUBSTR(COALESCE(s.resolved_at, ''), 1, 10) AS day
-        FROM opportunities o
+        FROM opportunity_attempts a
+        JOIN opportunities o ON o.id = a.opportunity_id
         JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker
-        WHERE o.theory_id = 'calibration_harvest' AND o.run_id = ?
+        WHERE o.theory_id = 'calibration_harvest' AND a.run_id = ?
     """
     acc: dict[str, dict] = {}
     for row in conn.execute(sql, (run_id,)).fetchall():
