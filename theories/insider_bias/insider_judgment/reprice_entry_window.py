@@ -67,12 +67,24 @@ def load_judged(conn: sqlite3.Connection) -> list[dict]:
     # opportunities.run_id is the *earliest* run's, so filtering there
     # would silently miss every merged row (attempt fidelity spec,
     # 2026-08-27 sec 9). o.kalshi_ticker is identity, not per-attempt.
+    #
+    # `earliest` keeps one attempt per (opportunity_id, run_id) so a
+    # position judged twice under one run_id (none are, today) cannot
+    # fan out into two rows and double count one settlement (sec 6).
     rows = conn.execute(
-        """select o.kalshi_ticker, a.confidence, a.extra_json, s.result
-           from opportunity_attempts a
+        """with earliest as (
+               select *, row_number() over (
+                   partition by opportunity_id, run_id
+                   order by decision_date, recorded_at
+               ) as rn
+               from opportunity_attempts
+               where run_id like ?
+           )
+           select o.kalshi_ticker, a.confidence, a.extra_json, s.result
+           from earliest a
            join opportunities o on o.id = a.opportunity_id
            join settlements s on s.kalshi_ticker = o.kalshi_ticker
-           where a.run_id like ? and s.result in ('yes','no')""",
+           where a.rn = 1 and s.result in ('yes','no')""",
         (JUDGED_RUN_PREFIX,),
     ).fetchall()
     out = []
@@ -124,9 +136,34 @@ def snapshot(cache_conn: sqlite3.Connection, ticker: str,
 def main() -> None:
     conn = sqlite3.connect("db/market_edge.db")
     conn.row_factory = sqlite3.Row
+    # Reads the fullcov run's own attempt, not the position rollup. This
+    # used to read opportunities.extra_json directly and it happened to be
+    # correct -- ledger.record_opportunity's re-sighting UPDATE never
+    # touches opportunities.run_id or opportunities.extra_json, so both
+    # stay frozen at whichever run recorded the position first, and
+    # fullcov (SOURCE_RUN) is that first run for every position in this
+    # campaign today. But that is exactly the "earliest run wins"
+    # fragility attempt fidelity sec 9 exists to remove: a future run
+    # that ever predates fullcov for one of these tickers would silently
+    # break it with no error. Reading opportunity_attempts filtered on
+    # a.run_id removes the assumption instead of relying on it holding
+    # forever. `earliest` guards against one position recording two
+    # decision_dates under this run_id (sec 6); fullcov's replay records
+    # exactly one per market today, so rn is never >1 in practice.
     close_by_ticker = {}
     for r in conn.execute(
-        "select kalshi_ticker, extra_json from opportunities where run_id = ?",
+        """with earliest as (
+               select *, row_number() over (
+                   partition by opportunity_id, run_id
+                   order by decision_date, recorded_at
+               ) as rn
+               from opportunity_attempts
+               where run_id = ?
+           )
+           select o.kalshi_ticker, a.extra_json
+           from earliest a
+           join opportunities o on o.id = a.opportunity_id
+           where a.rn = 1""",
         (SOURCE_RUN,),
     ):
         x = json.loads(r["extra_json"])

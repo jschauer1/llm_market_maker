@@ -115,13 +115,23 @@ def _source_rows(conn: sqlite3.Connection) -> list[sqlite3.Row]:
     # 9). o.kalshi_ticker/o.outcome/o.theory_id are identity, not
     # per-attempt. fullcov records exactly one decision_date per market
     # (replay_market returns the first qualifying day only), so this exact
-    # run_id match cannot fan out one position into more than one row.
+    # run_id match cannot fan out one position into more than one row --
+    # `earliest` (sec 6's guard) makes that a property of the query
+    # rather than an assumption about the replay that produced the data.
     return conn.execute(
-        """SELECT o.kalshi_ticker, o.outcome, a.entry_price,
+        """WITH earliest AS (
+               SELECT *, ROW_NUMBER() OVER (
+                   PARTITION BY opportunity_id, run_id
+                   ORDER BY decision_date, recorded_at
+               ) AS rn
+               FROM opportunity_attempts
+               WHERE run_id = ?
+           )
+           SELECT o.kalshi_ticker, o.outcome, a.entry_price,
                   a.spread_at_call, a.volume_at_call, a.extra_json
-           FROM opportunity_attempts a
+           FROM earliest a
            JOIN opportunities o ON o.id = a.opportunity_id
-           WHERE a.run_id = ? AND o.theory_id = ?""",
+           WHERE a.rn = 1 AND o.theory_id = ?""",
         (SOURCE_RUN_ID, THEORY_ID),
     ).fetchall()
 
