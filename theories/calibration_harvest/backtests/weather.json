@@ -76,6 +76,27 @@
    "written": 0,
    "no_candles": 0,
    "below_floor": 0
+  },
+  "KXTEMPLAXH": {
+   "n_settled": 12070,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 3570,
+   "below_floor": 8353
+  },
+  "KXRAINHOLIDAY": {
+   "n_settled": 20,
+   "n_obs": 21,
+   "written": 15,
+   "no_candles": 0,
+   "below_floor": 2
+  },
+  "KXLOWTEHAM": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
   }
  }
 }
