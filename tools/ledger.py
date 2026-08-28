@@ -41,6 +41,21 @@ LIVE_RUN_ID = "live"
 #: against. Score one explicitly with run_id="exp/<slug>".
 EXPERIMENT_RUN_PREFIX = "exp/"
 
+
+def lane_for(run_id: str | None) -> str:
+    """Which track record a run's rows belong to.
+
+    Experiments are quarantined by run id, so a variant being tried never
+    merges into the record it is meant to be measured against. Everything
+    else shares the 'main' lane, which is what makes a position one row
+    across all of a theory version's real runs.
+    """
+    resolved = run_id or LIVE_RUN_ID
+    if resolved.startswith(EXPERIMENT_RUN_PREFIX):
+        return resolved
+    return "main"
+
+
 VALID_DISPOSITIONS = ("screened", "endorsed", "rejected")
 VALID_USER_ACTIONS = ("untouched", "taken", "skipped")
 VALID_EDGE_BASES = ("measured", "prior", "model")
@@ -198,6 +213,7 @@ def record_opportunity(
         outcome = outcome.strip().lower()
 
     resolved_run_id = run_id or LIVE_RUN_ID
+    resolved_lane = lane_for(run_id)
     stamp = now or utcnow()
 
     # One atomic statement: a SELECT-then-INSERT pair would let a concurrent
@@ -209,7 +225,7 @@ def record_opportunity(
         conn.execute(
             """
             INSERT INTO opportunities (
-                theory_id, theory_version, run_mode, run_id, scan_id,
+                theory_id, theory_version, run_mode, run_id, lane, scan_id,
                 kalshi_ticker, outcome, entry_price, spread_at_call,
                 volume_at_call, model_prob, edge_pts_gross, fee_pts,
                 screen_edge_pts_net, edge_pts_net, edge_basis, disposition,
@@ -218,9 +234,9 @@ def record_opportunity(
                 evidence_market_id,
                 user_action, first_seen_at, last_seen_at, times_seen,
                 extra_json
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
                       'screened', ?, ?, ?, ?, ?, ?, 'untouched', ?, ?, 1, ?)
-            ON CONFLICT (theory_id, theory_version, run_id, kalshi_ticker,
+            ON CONFLICT (theory_id, theory_version, run_mode, lane, kalshi_ticker,
                          outcome) DO UPDATE SET
                 last_seen_at = excluded.last_seen_at,
                 times_seen = opportunities.times_seen + 1,
@@ -258,6 +274,7 @@ def record_opportunity(
                 theory_version,
                 run_mode,
                 resolved_run_id,
+                resolved_lane,
                 scan_id,
                 kalshi_ticker,
                 outcome,
@@ -288,10 +305,10 @@ def record_opportunity(
     row = conn.execute(
         """
         SELECT id, times_seen FROM opportunities
-        WHERE theory_id = ? AND theory_version = ? AND run_id = ?
+        WHERE theory_id = ? AND theory_version = ? AND run_mode = ? AND lane = ?
           AND kalshi_ticker = ? AND outcome = ?
         """,
-        (theory_id, theory_version, resolved_run_id, kalshi_ticker, outcome),
+        (theory_id, theory_version, run_mode, resolved_lane, kalshi_ticker, outcome),
     ).fetchone()
     return row["id"], row["times_seen"] == 1
 
@@ -479,13 +496,14 @@ def record_basket(
     header_ticker = basket_key(norm)
     cost = sum(leg["entry_price"] for leg in norm)
     resolved_run_id = run_id or LIVE_RUN_ID
+    resolved_lane = lane_for(run_id)
     stamp = now or utcnow()
 
     with write(conn):
         conn.execute(
             """
             INSERT INTO opportunities (
-                theory_id, theory_version, run_mode, run_id, scan_id,
+                theory_id, theory_version, run_mode, run_id, lane, scan_id,
                 kalshi_ticker, outcome, entry_price, position_kind,
                 leg_count, max_payout, min_payout, model_prob, edge_pts_gross,
                 fee_pts, screen_edge_pts_net, edge_pts_net, edge_basis,
@@ -493,10 +511,10 @@ def record_basket(
                 suggested_size, evidence_source, evidence_market_id,
                 user_action, first_seen_at, last_seen_at, times_seen,
                 extra_json
-            ) VALUES (?, ?, ?, ?, ?, ?, 'basket', ?, 'basket', ?, ?, ?, ?, ?,
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, 'basket', ?, 'basket', ?, ?, ?, ?, ?,
                       ?, ?, ?, ?, 'screened', ?, ?, ?, ?, ?, ?, 'untouched',
                       ?, ?, 1, ?)
-            ON CONFLICT (theory_id, theory_version, run_id, kalshi_ticker,
+            ON CONFLICT (theory_id, theory_version, run_mode, lane, kalshi_ticker,
                          outcome) DO UPDATE SET
                 last_seen_at = excluded.last_seen_at,
                 times_seen = opportunities.times_seen + 1,
@@ -518,7 +536,7 @@ def record_basket(
                                           opportunities.suggested_size)
             """,
             (
-                theory_id, theory_version, run_mode, resolved_run_id, scan_id,
+                theory_id, theory_version, run_mode, resolved_run_id, resolved_lane, scan_id,
                 header_ticker, cost, len(norm), max_payout, min_payout,
                 model_prob, edge_pts_gross, fee_pts, edge_pts_net,
                 edge_pts_net, edge_basis, confidence,
@@ -531,10 +549,10 @@ def record_basket(
         row = conn.execute(
             """
             SELECT id, times_seen FROM opportunities
-            WHERE theory_id = ? AND theory_version = ? AND run_id = ?
+            WHERE theory_id = ? AND theory_version = ? AND run_mode = ? AND lane = ?
               AND kalshi_ticker = ? AND outcome = 'basket'
             """,
-            (theory_id, theory_version, resolved_run_id, header_ticker),
+            (theory_id, theory_version, run_mode, resolved_lane, header_ticker),
         ).fetchone()
 
         # The leg set is identical across every sighting by construction --

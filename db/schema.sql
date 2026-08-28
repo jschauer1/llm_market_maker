@@ -77,6 +77,10 @@ CREATE TABLE IF NOT EXISTS opportunities (
     theory_version      INTEGER NOT NULL,
     run_mode            TEXT NOT NULL CHECK (run_mode IN ('live','backtest')),
     run_id              TEXT NOT NULL,
+    -- Which track record this position belongs to. 'main' for the real
+    -- record; the full run id for an experiment, so a variant being tried
+    -- never merges into the record it is meant to be measured against.
+    lane                TEXT NOT NULL DEFAULT 'main',
     scan_id             TEXT,
     kalshi_ticker       TEXT NOT NULL,
     outcome             TEXT NOT NULL,
@@ -120,7 +124,7 @@ CREATE TABLE IF NOT EXISTS opportunities (
     last_seen_at        TEXT NOT NULL,
     times_seen          INTEGER NOT NULL DEFAULT 1,
     extra_json          TEXT,
-    UNIQUE (theory_id, theory_version, run_id, kalshi_ticker, outcome)
+    UNIQUE (theory_id, theory_version, run_mode, lane, kalshi_ticker, outcome)
 );
 
 CREATE INDEX IF NOT EXISTS idx_opportunities_theory
@@ -143,6 +147,49 @@ CREATE TABLE IF NOT EXISTS opportunity_legs (
 
 CREATE INDEX IF NOT EXISTS idx_opportunity_legs_ticker
     ON opportunity_legs (kalshi_ticker);
+
+-- Every time a theory proposed a position. The position row is the
+-- identity; this is the evidence that it kept being proposed. Day
+-- granularity is deliberate: two recordings of one decision an hour apart
+-- collapse to one attempt, which is the unit the persistence signal is
+-- wanted in. The judgment fields live here so that merging two runs that
+-- saw one market coalesces their judgments instead of one overwriting the
+-- other.
+CREATE TABLE IF NOT EXISTS opportunity_attempts (
+    opportunity_id INTEGER NOT NULL REFERENCES opportunities(id)
+                   ON DELETE CASCADE,
+    decision_date  TEXT NOT NULL,
+    run_id         TEXT NOT NULL,
+    recorded_at    TEXT NOT NULL,
+    entry_price    REAL NOT NULL,
+    edge_pts_net   REAL NOT NULL,
+    disposition    TEXT NOT NULL DEFAULT 'screened'
+                   CHECK (disposition IN ('screened','endorsed','rejected')),
+    confidence     TEXT,
+    judged_blind   INTEGER,
+    PRIMARY KEY (opportunity_id, decision_date, run_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_attempts_run
+    ON opportunity_attempts(run_id);
+
+-- Every time the user actually bought. The mirror of opportunity_attempts:
+-- that table is what the theory proposed, this is what the user did. No
+-- uniqueness on (opportunity_id, filled_on) -- two buys on one day at two
+-- prices are two real fills, and collapsing them would lose money history.
+CREATE TABLE IF NOT EXISTS opportunity_fills (
+    id             INTEGER PRIMARY KEY AUTOINCREMENT,
+    opportunity_id INTEGER NOT NULL REFERENCES opportunities(id)
+                   ON DELETE CASCADE,
+    filled_on      TEXT NOT NULL,
+    size           REAL NOT NULL,
+    price          REAL,
+    reason         TEXT,
+    recorded_at    TEXT NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_fills_opportunity
+    ON opportunity_fills(opportunity_id);
 
 CREATE TABLE IF NOT EXISTS settlements (
     kalshi_ticker TEXT PRIMARY KEY,

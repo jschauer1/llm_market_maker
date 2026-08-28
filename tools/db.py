@@ -86,6 +86,12 @@ def init_db(conn: sqlite3.Connection) -> None:
     _add_column_if_missing(
         conn, "opportunities", "min_payout", "REAL NOT NULL DEFAULT 0.0"
     )
+    # Additive. The UNIQUE key that uses this column cannot be changed in
+    # place -- `migrate_positions` rebuilds the table for that -- but the
+    # column has to exist first so the migration can populate it.
+    _add_column_if_missing(
+        conn, "opportunities", "lane", "TEXT NOT NULL DEFAULT 'main'"
+    )
     # Additive: no pre-existing score row ever scored a floor basket, so
     # every one of them truly had zero riskless positions -- these defaults
     # describe that history exactly, with no backfill needed.
