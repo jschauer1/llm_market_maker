@@ -1498,3 +1498,30 @@ was a no-op except structural_arb, which was re-run against the fresh
 - Idea 21's revisit angle (soft relative value / implied conditional
   hazard between two deadlines) is the live successor to calendar-arb and
   has a ready dataset.
+
+**Addendum (session stop, 00:20Z).** Two more things after the entry above:
+
+6. **Day-clustered the repo's historical evidence.** It had never been
+   possible — every backtest returned `n_days=0` because the replays
+   recorded settlements with no `resolved_at`. Recovered from `extra_json`
+   with no API call (`backfill_resolved_at.py`, 6,636 rows). The tier-A
+   backtests *survive* (they span 30–67 settlement days; SEs widen only
+   1.15–2.37×), but two things changed: `mention_family`'s retirement
+   rationale was stated more strongly than the data supports (−1.53 row →
+   −0.82 ± 0.79 day-weighted; conclusion stands, phrasing does not, and
+   nothing argues for un-retiring), and **the judged tier-B runs flip sign
+   under day weighting** (s200 +0.67 → −0.35; s57 +1.90 → −1.36, clustered
+   SEs 2.50/4.78). Those were `insider_judgment` v3's pre-registered bucket
+   validation, so **v3 must not be promoted to `active` on them**. Status
+   and version unchanged.
+
+**Stop state.** Weather collection stopped cleanly at **11/154 series, 531
+rows persisted**. `record()` is idempotent and the checkpoint only advances
+after a series completes, so resuming re-walks at most one series and
+double-counts nothing — resume with the RUNBOOK command. Note the collector
+is slow (~1 series/several minutes on large series); worth profiling the
+per-market candle call before committing to the ~2,504-series politics run.
+
+Suite: 754 passing. The 15 failures in `tests/test_position_dedup.py` belong
+to separate in-progress position-identity work (commit b6d1c25), not to
+anything in this session.
