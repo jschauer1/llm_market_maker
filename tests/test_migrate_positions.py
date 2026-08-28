@@ -587,3 +587,34 @@ def test_a_failed_migration_leaves_the_database_untouched(legacy, monkeypatch):
     assert "opportunity_attempts" not in _tables(legacy), "rebuilt tables go"
     assert "opportunity_fills" not in _tables(legacy)
     assert db.has_legacy_position_key(legacy)
+
+
+# --- the CLI command and the init_db guard -------------------------------
+
+
+def test_init_db_refuses_a_legacy_database(legacy):
+    with pytest.raises(RuntimeError, match="migrate-positions"):
+        db.init_db(legacy)
+
+
+def test_init_db_is_happy_once_migrated(legacy):
+    _legacy_row(legacy, run_id="r1", kalshi_ticker="KXA")
+    db.migrate_positions(legacy)
+    db.init_db(legacy)  # must not raise
+
+
+def test_the_cli_reports_the_collapse(legacy, tmp_path, capsys):
+    from tools import cli
+
+    _legacy_row(legacy, run_id="fullcov", kalshi_ticker="KXA")
+    _legacy_row(legacy, run_id="judged", kalshi_ticker="KXA",
+                confidence="strong")
+    legacy.commit()
+    legacy.close()
+
+    rc = cli.main([
+        "--db", str(tmp_path / "legacy.db"), "migrate-positions", "--dry-run",
+    ])
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert '"before": 2' in out and '"after": 1' in out

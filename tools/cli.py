@@ -37,6 +37,18 @@ def _cmd_init(args) -> int:
     return 0
 
 
+def _cmd_migrate_positions(args) -> int:
+    # Deliberately not routed through `_connect`: that helper calls
+    # `init_db` (tools/cli.py:29), and `init_db` refuses a legacy database
+    # on purpose. This command is the thing that fixes it.
+    conn = db.connect(args.db) if args.db else db.connect()
+    try:
+        _emit(db.migrate_positions(conn, dry_run=args.dry_run))
+    finally:
+        conn.close()
+    return 0
+
+
 def _cmd_theories(args) -> int:
     conn = _connect(args)
     try:
@@ -238,6 +250,16 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("init", help="create the database").set_defaults(
         func=_cmd_init
     )
+
+    mp = sub.add_parser(
+        "migrate-positions",
+        help="collapse run-scoped opportunity rows into positions",
+    )
+    mp.add_argument(
+        "--dry-run", dest="dry_run", action="store_true",
+        help="report what would change without writing",
+    )
+    mp.set_defaults(func=_cmd_migrate_positions)
 
     p = sub.add_parser("theories", help="theory registry")
     p.set_defaults(func=_cmd_theories)

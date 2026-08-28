@@ -58,6 +58,17 @@ def write(conn: sqlite3.Connection) -> Iterator[sqlite3.Connection]:
 
 def init_db(conn: sqlite3.Connection) -> None:
     """Create any missing tables and migrate stale ones. Safe to call repeatedly."""
+    # A legacy ledger cannot simply be extended: its UNIQUE key still
+    # contains run_id, so every write would land on the wrong identity and
+    # the double-counting this migration exists to end would continue
+    # silently. Fail loudly and name the fix.
+    if has_legacy_position_key(conn):
+        raise RuntimeError(
+            "this database still keys opportunities on run_id, which "
+            "double-counts a bet seen by two runs. Run "
+            "`python -m tools.cli migrate-positions --dry-run` to see what "
+            "would change, then drop --dry-run to apply it."
+        )
     # Runs BEFORE the schema script, which contains CREATE UNIQUE INDEX on
     # market_snapshots. A database holding the duplicates the old non-unique
     # index allowed would fail that statement and be unable to open at all,
