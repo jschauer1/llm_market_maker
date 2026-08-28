@@ -127,6 +127,13 @@ class OpportunityRecord:
             run_mode=ctx.run_mode, run_id=ctx.run_id,
             evidence_source=sc.evidence_source,
             evidence_market_id=sc.evidence_market_id,
+            # The as-of day the theory is deciding about, not the wall-clock
+            # day the code happened to run (attempt-fidelity spec section 5).
+            # A backtest sets ctx.now to the replayed day, so this dates the
+            # attempt correctly for free; a live run's ctx.now is today,
+            # which is what record_opportunity's own wall-clock default
+            # would have produced anyway.
+            decision_date=ctx.now.date().isoformat(),
         )
         if c.is_basket:
             legs = [dict(kalshi_ticker=l.market.ticker, outcome=l.side,

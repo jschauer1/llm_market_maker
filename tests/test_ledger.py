@@ -7,6 +7,7 @@ from tools import db, ledger, theories
 
 TS = "2026-08-23T12:00:00Z"
 LATER = "2026-08-24T12:00:00Z"
+EVEN_LATER = "2026-08-25T12:00:00Z"
 
 
 @pytest.fixture
@@ -133,11 +134,104 @@ def test_different_theory_version_is_a_different_opportunity(conn):
     assert len(ledger.list_opportunities(conn)) == 2
 
 
-def test_backtest_runs_are_deduped_per_run(conn):
-    _record(conn, run_mode="backtest", run_id="run-a")
-    _record(conn, run_mode="backtest", run_id="run-a")
-    _record(conn, run_mode="backtest", run_id="run-b")
-    assert len(ledger.list_opportunities(conn, run_mode="backtest")) == 2
+def test_backtest_runs_dedupe_to_one_position(conn):
+    # Two backtest runs that both propose the same market are one position,
+    # not two -- the old contract (run_id in the UNIQUE key) is exactly the
+    # double-counting defect this position-identity work removes. What
+    # distinguishes the runs now lives in the attempt list, not in a second
+    # opportunities row: re-recording under "run-a" a second time is the
+    # same decision seen again and updates its attempt in place, while
+    # "run-b" is a genuinely different run and adds a second attempt.
+    id_a, created_a = _record(conn, run_mode="backtest", run_id="run-a",
+                              decision_date="2026-08-23")
+    id_again, created_again = _record(conn, run_mode="backtest",
+                                      run_id="run-a",
+                                      decision_date="2026-08-23")
+    id_b, created_b = _record(conn, run_mode="backtest", run_id="run-b",
+                              decision_date="2026-08-23")
+
+    assert id_a == id_again == id_b
+    assert created_a is True
+    assert created_again is False and created_b is False
+    assert len(ledger.list_opportunities(conn, run_mode="backtest")) == 1
+    assert len(ledger.attempts(conn, id_a)) == 2, (
+        "one attempt per run that proposed it, not one per recording"
+    )
+
+
+def test_attempts_retain_their_own_rationale_and_extra_json(conn):
+    # The defect this table exists to close (attempt-fidelity spec sections
+    # 1-2): a position row can only hold one value per column, so merging
+    # two runs' proposals of one market used to keep one run's rationale
+    # and extra_json and silently discard the other's. Two different runs
+    # are two different attempt rows now, and each must keep exactly what
+    # it was given -- neither overwritten by, nor merged with, the other's.
+    id_a, _ = _record(
+        conn, run_mode="backtest", run_id="run-a",
+        decision_date="2026-08-23",
+        rationale="run-a thinks this is mispriced",
+        extra_json='{"batch": "a", "source_run": "run-a"}',
+    )
+    id_b, _ = _record(
+        conn, run_mode="backtest", run_id="run-b",
+        decision_date="2026-08-23",
+        rationale="run-b found the same market independently",
+        extra_json='{"batch": "b", "source_run": "run-b"}',
+    )
+
+    assert id_a == id_b, "one position -- both runs proposed the same market"
+    rows = {row["run_id"]: row for row in ledger.attempts(conn, id_a)}
+    assert set(rows) == {"run-a", "run-b"}
+    assert rows["run-a"]["rationale"] == "run-a thinks this is mispriced"
+    assert (
+        rows["run-a"]["extra_json"]
+        == '{"batch": "a", "source_run": "run-a"}'
+    )
+    assert (
+        rows["run-b"]["rationale"]
+        == "run-b found the same market independently"
+    )
+    assert (
+        rows["run-b"]["extra_json"]
+        == '{"batch": "b", "source_run": "run-b"}'
+    )
+
+
+def test_a_resighting_does_not_downgrade_the_attempts_disposition(conn):
+    # _record_attempt's ON CONFLICT UPDATE must never touch disposition:
+    # record_opportunity has no disposition argument at all, so refreshing
+    # it from `excluded` on a re-recording would always write the literal
+    # 'screened' -- silently downgrading any attempt a stage-2 pass had
+    # already marked endorsed/rejected back to screened the next time the
+    # same (opportunity, decision_date, run_id) is recorded.
+    opp_id, _ = _record(conn)
+    conn.execute(
+        "UPDATE opportunity_attempts SET disposition = 'endorsed' "
+        "WHERE opportunity_id = ?",
+        (opp_id,),
+    )
+    conn.commit()
+    # Same decision_date and run_id as the first call (both default to the
+    # 'now' stamp and the live run id), so this hits the ON CONFLICT path
+    # on the existing attempt row rather than inserting a new one.
+    _record(conn, edge_pts_net=9.0)
+    row = ledger.attempts(conn, opp_id)[0]
+    assert row["disposition"] == "endorsed", (
+        "a re-recording must not flatten a per-row disposition back to "
+        "the literal 'screened' it can only ever supply"
+    )
+
+
+def test_resighting_with_a_judgment_carries_both_confidence_and_blind_flag(conn):
+    # A screen run records neither; a later judging run records both. The
+    # rollup must carry both together on re-sighting -- confidence='strong'
+    # with judged_blind left NULL is exactly the wrong state attempt-
+    # fidelity spec section 8c calls out.
+    opp_id, _ = _record(conn)
+    _record(conn, confidence="strong", judged_blind=True, now=LATER)
+    row = ledger.get_opportunity(conn, opp_id)
+    assert row["confidence"] == "strong"
+    assert row["judged_blind"] == 1
 
 
 def test_missing_kalshi_ticker_is_rejected(conn):
@@ -168,10 +262,13 @@ def test_backtest_cannot_claim_the_live_run_id(conn):
 def test_outcome_case_does_not_create_a_second_row(conn):
     # The dedup key uses SQLite's binary collation but the win predicate
     # compares case-insensitively: three casings would be three rows and
-    # three counted wins for one real bet.
+    # three counted wins for one real bet. Each call lands on its own day so
+    # each is counted as a distinct attempt -- times_seen now counts distinct
+    # (decision_date, run_id) attempts, not raw recordings, so two calls on
+    # the same day under the same run_id would otherwise collapse to one.
     _record(conn, outcome="yes")
     _record(conn, outcome="YES", now=LATER)
-    _record(conn, outcome=" Yes ", now=LATER)
+    _record(conn, outcome=" Yes ", now=EVEN_LATER)
 
     rows = ledger.list_opportunities(conn)
     assert len(rows) == 1
@@ -349,7 +446,8 @@ def test_interpret_rejects_unknown_opportunity(conn):
 def test_mark_user_action_records_a_taken_bet(conn):
     opp_id, _ = _record(conn)
     ledger.mark_user_action(conn, opp_id, "taken", size=25.0,
-                            reason="reality TV markets are soft")
+                            reason="reality TV markets are soft",
+                            theory_id="t1")
     row = ledger.get_opportunity(conn, opp_id)
     assert row["user_action"] == "taken"
     assert row["user_size"] == pytest.approx(25.0)

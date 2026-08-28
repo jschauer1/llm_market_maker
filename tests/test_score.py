@@ -138,17 +138,22 @@ def test_scoring_uses_the_revised_claim_not_the_screen_claim(conn):
 
 
 def test_scores_can_be_scoped_to_a_single_run(conn):
-    # Re-running a backtest over the same markets must not multiply n.
+    # Two backtest runs proposing the same market merge into one position
+    # (position-identity dedup), so re-running a backtest must not multiply
+    # n -- pooled still reads 1, not 2. Each run individually still finds
+    # that one position, because the position is "in" every run that
+    # proposed it.
     for run in ("run-a", "run-b"):
         ledger.record_opportunity(
             conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
             outcome="yes", entry_price=0.50, edge_pts_net=6.0,
             run_mode="backtest", run_id=run, now=TS,
+            decision_date=TS[:10],
         )
     score.record_settlement(conn, "A", "yes")
 
     pooled = score.compute_score(conn, "t1", 1, run_mode="backtest")
-    assert pooled["n"] == 2, "unfiltered scoring still pools every run"
+    assert pooled["n"] == 1, "a duplicate recording must not move n"
 
     for run in ("run-a", "run-b"):
         scoped = score.compute_score(
@@ -173,7 +178,7 @@ def test_roi_taken_only_counts_taken_bets(conn):
     _bet(conn, "B", 0.50, 6.0)
     score.record_settlement(conn, "A", "yes")
     score.record_settlement(conn, "B", "no")
-    ledger.mark_user_action(conn, winner, "taken", size=10.0)
+    ledger.mark_user_action(conn, winner, "taken", size=10.0, theory_id="t1")
 
     result = score.compute_score(conn, "t1", 1)
     assert result["roi_all"] < result["roi_taken"]

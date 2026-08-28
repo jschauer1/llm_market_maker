@@ -74,8 +74,8 @@ report. Three things to check on each, cheapest first:
 2. **Re-quote before re-recommending.** `markets.quotes([tickers])` gives
    the current ask for a handful of tickers without touching the board. If
    the edge is gone at today's price, say so and stop carrying it.
-3. **Chase the disposition.** Ask the user to `mark-taken … taken` or
-   `… skipped` on anything they have already acted on. Until they do,
+3. **Chase the disposition.** Ask the user to `mark-taken … taken --theory
+   <slug>` or `… skipped` on anything they have already acted on. Until they do,
    `roi_taken` stays `null` forever and the endorsed-vs-actually-bet
    divergence — the raw material `compare-theories` mines — never
    accumulates. A queue that only grows is a queue nobody is learning from.
@@ -283,9 +283,10 @@ which you closed out as stale — a queue nobody reads is a list of bets
 quietly expiring.
 
 Tell them they can record what they actually bet with
-`python -m tools.cli opportunities mark-taken <id> taken --size <N> --reason
-"<why>"` (or `skipped` with a reason). This is not optional bookkeeping: until
-a bet is marked `taken`, `roi_taken` stays `null` forever, and divergences
+`python -m tools.cli opportunities mark-taken <id> taken --theory <slug>
+--size <N> --reason "<why>"` (or `skipped` with a reason). This is not
+optional bookkeeping: until a bet is marked `taken`, `roi_taken` stays
+`null` forever, and divergences
 between what was endorsed and what was actually bet — the raw material
 `compare-theories` mines for new theory candidates — are invisible. Name the
 specific ids you want resolved rather than repeating the command generically;

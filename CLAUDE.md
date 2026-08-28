@@ -76,7 +76,7 @@ Both are normal.
 happened unless told:
 
 ```bash
-python -m tools.cli opportunities mark-taken <id> taken --size <N> --reason "<why>"
+python -m tools.cli opportunities mark-taken <id> taken --theory <slug> --size <N> --reason "<why>"
 ```
 
 Without this, `roi_taken` stays `null` forever and there is no user-divergence

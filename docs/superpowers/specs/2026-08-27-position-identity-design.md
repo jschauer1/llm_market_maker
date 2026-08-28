@@ -168,7 +168,8 @@ What the surviving position row holds:
 | fields | taken from |
 |---|---|
 | `entry_price`, `edge_pts_net`, `spread_at_call`, `volume_at_call`, `run_id`, `scan_id`, `first_seen_at` | **earliest** attempt |
-| `disposition`, `confidence`, `judged_blind`, `interpretation`, `rationale`, `interpreted_at` | **latest attempt carrying a judgment**, else earliest |
+| `confidence`, `judged_blind`, `rationale` | **latest attempt carrying a judgment**, else earliest |
+| `disposition`, `interpretation`, `interpreted_at` | **earliest attempt carrying an interpretation**, else earliest |
 | `times_seen`, `last_seen_at` | `COUNT(attempts)`, `MAX(recorded_at)` |
 | `user_action`, `user_size` | `'taken'` iff a fill exists; `SUM(fills.size)` |
 
@@ -176,6 +177,23 @@ What the surviving position row holds:
 attempt carrying a judgment" means the last attempt in that order whose
 `confidence IS NOT NULL`; if no attempt carries one, the earliest attempt's
 values stand.
+
+**Amended 2026-08-28, during the final review of the implementation.** As
+first written this row read "`disposition`, …, `interpretation`,
+`interpreted_at` — latest attempt carrying a judgment", and `edge_pts_net`
+travelled with them because `ledger.interpret` writes all four in one
+statement. Measured against the real ledger that flipped nine positions from
+`endorsed` to `rejected`, including **both** positions holding money: each was
+endorsed on 8/26 at its ask and then declined on 8/28 at a *worse* ask, and a
+re-proposal at a different price is a judgement of that price, not a revision
+of the one the user is holding. It also put an `edge_pts_net` computed against
+the later ask onto the earlier `entry_price` — the mismatched pair the
+paragraph below forbids. So: research fields come from the earliest
+*interpreted* attempt (earliest-interpreted, not simply earliest, so a group
+first judged by a later pass keeps its verdict), and `edge_pts_net` never
+leaves the earliest attempt. `migrate_positions` names every superseded
+verdict, rather than counting them, so the call is visible while it is still
+reversible.
 
 Price and edge move together from one attempt, so they can never be a
 mismatched pair — which is what keeps `_single_leg_observations` correct with

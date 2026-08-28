@@ -36,7 +36,7 @@ from __future__ import annotations
 
 import argparse
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from tools import db, ledger, score
@@ -155,6 +155,17 @@ def observations_for(
         if key is None:
             continue
 
+        # The as-of day this observation entered, derived from the two
+        # fields that are already persisted (close_iso via settlements,
+        # days_to_close via extra_json) so a future session can reconstruct
+        # it without the raw candle timestamp. Backtest attempts must be
+        # dated by the day being decided about, not the collector's
+        # wall-clock run day (attempt-fidelity spec section 5).
+        entry_day_iso = (
+            datetime.fromisoformat(close_iso.replace("Z", "+00:00"))
+            - timedelta(days=offset)
+        ).isoformat().replace("+00:00", "Z")
+
         out.append({
             "ticker": ticker,
             "series": series,
@@ -169,6 +180,7 @@ def observations_for(
             "won": side == result,
             "days_to_close": offset,
             "close_iso": close_iso,
+            "entry_day_iso": entry_day_iso,
         })
     return out
 
@@ -186,6 +198,12 @@ def record(conn, observations: list[dict], run_id: str) -> int:
     `resolved_at` is the market's close time, which is what makes day
     clustering meaningful -- omit it and every collected row falls into one
     undated cluster and `n_days` becomes a lie.
+
+    `decision_date` is `entry_day_iso`'s date, not the day this collector
+    happens to run -- a multi-session collection walk must date each
+    observation by the day it was entered, or same-run same-day fallback
+    collapses distinct entries into one attempt (attempt-fidelity spec
+    section 5).
     """
     written = 0
     for obs in observations:
@@ -200,6 +218,7 @@ def record(conn, observations: list[dict], run_id: str) -> int:
             edge_basis="model",
             run_mode="backtest",
             run_id=run_id,
+            decision_date=obs["entry_day_iso"][:10],
             rationale=(
                 f"tier-A collection row for cell {obs['cell']} "
                 f"(entry {obs['days_to_close']:.0f}d before close); "
@@ -229,13 +248,40 @@ def cell_rates(conn, run_id: str) -> dict[str, dict]:
 
     `n_days` counts distinct settlement days, not rows -- the floor that
     decides whether a cell may call itself `measured`.
+
+    Reads the collection run's own attempt rows, never the position rollup
+    (attempt-fidelity spec section 9 -- this is a fourth per-run consumer
+    the spec's table missed). Two things break when this reads
+    `opportunities`:
+
+    - A second collection run touching an already-collected ticker merges
+      onto the existing position, whose `run_id` stays the *earlier* run's.
+      `cell_rates(later_run)` then silently misses every re-touched market.
+    - One market contributes an observation per horizon bin it can support,
+      deliberately (see this module's docstring), and those observations
+      can land in different cells. They share a ticker and a side, so they
+      are one position holding several attempts -- and the position row
+      carries only the first attempt's `extra_json`, so a market feeding
+      two cells was counted in exactly one of them.
+
+    That second point is why this consumer, unlike the four in section 9,
+    keeps **every** attempt of the run rather than the earliest per
+    `(opportunity_id, run_id)`. There, several attempts under one run_id
+    would be one judgment recorded twice and deduping is what stops a
+    settlement being counted twice. Here they are distinct measurements at
+    distinct offsets, which is the whole design; the primary key already
+    makes a same-day re-recording impossible, so there is no fan-out to
+    guard against, and the dependence between rows of one market is
+    absorbed by `n_days` (and by the day-clustered SE this theory
+    mandates), not by dropping the rows.
     """
     sql = """
-        SELECT o.extra_json, o.outcome, s.result,
+        SELECT a.extra_json, o.outcome, s.result,
                SUBSTR(COALESCE(s.resolved_at, ''), 1, 10) AS day
-        FROM opportunities o
+        FROM opportunity_attempts a
+        JOIN opportunities o ON o.id = a.opportunity_id
         JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker
-        WHERE o.theory_id = 'calibration_harvest' AND o.run_id = ?
+        WHERE o.theory_id = 'calibration_harvest' AND a.run_id = ?
     """
     acc: dict[str, dict] = {}
     for row in conn.execute(sql, (run_id,)).fetchall():

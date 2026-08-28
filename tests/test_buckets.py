@@ -121,6 +121,7 @@ def test_bucket_rates_are_segmented_by_run_mode(conn):
         conn, theory_id="t1", theory_version=1, kalshi_ticker="B",
         outcome="yes", entry_price=0.5, edge_pts_net=4.0,
         confidence="strong", run_mode="backtest", run_id="bt-1", now=TS,
+        decision_date=TS[:10],
     )
     score.record_settlement(conn, "B", "no")
 
@@ -133,20 +134,31 @@ def test_bucket_rates_are_segmented_by_run_mode(conn):
 
 
 def test_bucket_rates_can_be_scoped_to_a_single_run(conn):
+    # Two backtest runs proposing the same market merge into one position
+    # (position-identity dedup), so pooled still counts it once -- one
+    # settlement is one draw, however many runs proposed it.
     for run in ("run-a", "run-b"):
         ledger.record_opportunity(
             conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
             outcome="yes", entry_price=0.5, edge_pts_net=4.0,
             confidence="strong", run_mode="backtest", run_id=run, now=TS,
+            decision_date=TS[:10],
         )
     score.record_settlement(conn, "A", "yes")
 
     pooled = score.bucket_rates(conn, "t1", 1, run_mode="backtest")
-    assert pooled["strong"]["n"] == 2
-    scoped = score.bucket_rates(
-        conn, "t1", 1, run_mode="backtest", run_id="run-a"
-    )
-    assert scoped["strong"]["n"] == 1
+    assert pooled["strong"]["n"] == 1
+
+    # run-a is the surviving row's own stored run_id -- the first sighting
+    # -- so scoping to it would still pass under the old `o.run_id = ?`
+    # filter and prove nothing about the fix. run-b only matches through
+    # the new EXISTS-against-opportunity_attempts scoping, since the merged
+    # row's stored run_id never becomes "run-b".
+    for run in ("run-a", "run-b"):
+        scoped = score.bucket_rates(
+            conn, "t1", 1, run_mode="backtest", run_id=run
+        )
+        assert scoped["strong"]["n"] == 1
 
 
 def test_save_bucket_rates_persists_rows(conn):

@@ -199,11 +199,15 @@ def test_score_report_theory_version_reflects_a_bump(dbpath, capsys):
 
 def test_score_report_run_id_scopes_the_sample(dbpath, capsys):
     conn = db.connect(dbpath)
+    # Two backtest runs proposing the same market merge into one position
+    # (position-identity dedup), so the unscoped report still reads n=1 --
+    # a duplicate recording must not move it.
     for run in ("run-a", "run-b"):
         ledger.record_opportunity(
             conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
             outcome="yes", entry_price=0.50, edge_pts_net=6.0,
             run_mode="backtest", run_id=run, now=TS,
+            decision_date=TS[:10],
         )
     score.record_settlement(conn, "A", "yes")
     conn.close()
@@ -212,11 +216,15 @@ def test_score_report_run_id_scopes_the_sample(dbpath, capsys):
         capsys, "--db", dbpath, "score", "report", "t1",
         "--run-mode", "backtest",
     )
-    assert payload["all"]["n"] == 2, "unscoped report still pools every run"
+    assert payload["all"]["n"] == 1, "a duplicate recording must not move n"
 
+    # run-a is the surviving row's own stored run_id -- the first sighting
+    # -- so it would still resolve under the old `o.run_id = ?` scoping and
+    # prove nothing about --run-id actually working. run-b only resolves
+    # through the new EXISTS-against-opportunity_attempts scoping.
     code, payload = _run(
         capsys, "--db", dbpath, "score", "report", "t1",
-        "--run-mode", "backtest", "--run-id", "run-a",
+        "--run-mode", "backtest", "--run-id", "run-b",
     )
     assert payload["all"]["n"] == 1
 
@@ -240,6 +248,7 @@ def test_opportunities_mark_taken_persists_action_size_and_reason(
     code, payload = _run(
         capsys, "--db", dbpath, "opportunities", "mark-taken", str(opp_id),
         "taken", "--size", "25", "--reason", "reality TV markets are soft",
+        "--theory", "t1",
     )
     assert code == 0
     assert payload["user_action"] == "taken"

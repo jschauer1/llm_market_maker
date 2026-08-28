@@ -106,11 +106,32 @@ def _market_payload(cache_conn: sqlite3.Connection, ticker: str) -> dict:
 
 
 def _source_rows(conn: sqlite3.Connection) -> list[sqlite3.Row]:
+    # Reads the fullcov run's own attempt, not the position rollup: today
+    # this works "by luck" because fullcov happens to be the earliest run
+    # for every one of these positions, so opportunities.run_id still
+    # equals SOURCE_RUN_ID -- but a position-identity merge always keeps
+    # the *earliest* run_id on the rollup, so filtering there breaks the
+    # moment fullcov is not first (attempt fidelity spec, 2026-08-27 sec
+    # 9). o.kalshi_ticker/o.outcome/o.theory_id are identity, not
+    # per-attempt. fullcov records exactly one decision_date per market
+    # (replay_market returns the first qualifying day only), so this exact
+    # run_id match cannot fan out one position into more than one row --
+    # `earliest` (sec 6's guard) makes that a property of the query
+    # rather than an assumption about the replay that produced the data.
     return conn.execute(
-        """SELECT o.kalshi_ticker, o.outcome, o.entry_price,
-                  o.spread_at_call, o.volume_at_call, o.extra_json
-           FROM opportunities o
-           WHERE o.run_id = ? AND o.theory_id = ?""",
+        """WITH earliest AS (
+               SELECT *, ROW_NUMBER() OVER (
+                   PARTITION BY opportunity_id, run_id
+                   ORDER BY decision_date, recorded_at
+               ) AS rn
+               FROM opportunity_attempts
+               WHERE run_id = ?
+           )
+           SELECT o.kalshi_ticker, o.outcome, a.entry_price,
+                  a.spread_at_call, a.volume_at_call, a.extra_json
+           FROM earliest a
+           JOIN opportunities o ON o.id = a.opportunity_id
+           WHERE a.rn = 1 AND o.theory_id = ?""",
         (SOURCE_RUN_ID, THEORY_ID),
     ).fetchall()
 
@@ -232,6 +253,7 @@ def ingest(conn: sqlite3.Connection, batch: int, model: str | None,
                 kalshi_ticker=r["ticker"], outcome=r["outcome"],
                 entry_price=r["entry_price"], edge_pts_net=0.0,
                 run_mode="backtest", run_id=run_id,
+                decision_date=r["entry_day_iso"][:10],
                 spread_at_call=r["spread_at_call"],
                 volume_at_call=r["volume_at_call"],
                 edge_basis="prior", confidence=v["bucket"],

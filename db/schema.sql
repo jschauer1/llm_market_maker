@@ -77,6 +77,10 @@ CREATE TABLE IF NOT EXISTS opportunities (
     theory_version      INTEGER NOT NULL,
     run_mode            TEXT NOT NULL CHECK (run_mode IN ('live','backtest')),
     run_id              TEXT NOT NULL,
+    -- Which track record this position belongs to. 'main' for the real
+    -- record; the full run id for an experiment, so a variant being tried
+    -- never merges into the record it is meant to be measured against.
+    lane                TEXT NOT NULL DEFAULT 'main',
     scan_id             TEXT,
     kalshi_ticker       TEXT NOT NULL,
     outcome             TEXT NOT NULL,
@@ -120,7 +124,7 @@ CREATE TABLE IF NOT EXISTS opportunities (
     last_seen_at        TEXT NOT NULL,
     times_seen          INTEGER NOT NULL DEFAULT 1,
     extra_json          TEXT,
-    UNIQUE (theory_id, theory_version, run_id, kalshi_ticker, outcome)
+    UNIQUE (theory_id, theory_version, run_mode, lane, kalshi_ticker, outcome)
 );
 
 CREATE INDEX IF NOT EXISTS idx_opportunities_theory
@@ -143,6 +147,73 @@ CREATE TABLE IF NOT EXISTS opportunity_legs (
 
 CREATE INDEX IF NOT EXISTS idx_opportunity_legs_ticker
     ON opportunity_legs (kalshi_ticker);
+
+-- Every time a theory proposed a position. The position row is a rollup --
+-- current identity, first-sighting anchors, a cached best view -- and the
+-- attempt is the record: full parity with every argument
+-- ledger.record_opportunity accepts that is not part of the position's
+-- identity (theory_id, theory_version, run_mode, kalshi_ticker, outcome,
+-- run_id, decision_date, now). A merge may overwrite the rollup; it may
+-- never lose an attempt's value (attempt-fidelity spec, 2026-08-27).
+--
+-- Day granularity is deliberate: two recordings of one decision an hour
+-- apart collapse to one attempt, which is the unit the persistence signal
+-- is wanted in. decision_date is the day the theory was DECIDING about,
+-- never the day the code ran -- a backtest replaying sixty days in one
+-- session must stamp sixty different decision_dates or the primary key
+-- collapses them into one row.
+--
+-- extra_json is each theory's escape hatch: a theory can add a feature
+-- without the ledger needing to know about it, and without that feature
+-- being lost on the next merge.
+CREATE TABLE IF NOT EXISTS opportunity_attempts (
+    opportunity_id     INTEGER NOT NULL REFERENCES opportunities(id)
+                       ON DELETE CASCADE,
+    decision_date      TEXT NOT NULL,
+    run_id             TEXT NOT NULL,
+    recorded_at        TEXT NOT NULL,
+    scan_id            TEXT,
+    entry_price        REAL NOT NULL,
+    spread_at_call     REAL,
+    volume_at_call     REAL,
+    model_prob         REAL,
+    edge_pts_gross     REAL,
+    fee_pts            REAL,
+    edge_pts_net       REAL NOT NULL,
+    edge_basis         TEXT NOT NULL DEFAULT 'prior'
+                       CHECK (edge_basis IN ('measured','prior','model')),
+    disposition        TEXT NOT NULL DEFAULT 'screened'
+                       CHECK (disposition IN ('screened','endorsed','rejected')),
+    confidence         TEXT,
+    judged_blind       INTEGER,
+    rationale          TEXT,
+    suggested_size     REAL,
+    evidence_source    TEXT,
+    evidence_market_id TEXT,
+    extra_json         TEXT,
+    PRIMARY KEY (opportunity_id, decision_date, run_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_attempts_run
+    ON opportunity_attempts(run_id);
+
+-- Every time the user actually bought. The mirror of opportunity_attempts:
+-- that table is what the theory proposed, this is what the user did. No
+-- uniqueness on (opportunity_id, filled_on) -- two buys on one day at two
+-- prices are two real fills, and collapsing them would lose money history.
+CREATE TABLE IF NOT EXISTS opportunity_fills (
+    id             INTEGER PRIMARY KEY AUTOINCREMENT,
+    opportunity_id INTEGER NOT NULL REFERENCES opportunities(id)
+                   ON DELETE CASCADE,
+    filled_on      TEXT NOT NULL,
+    size           REAL NOT NULL,
+    price          REAL,
+    reason         TEXT,
+    recorded_at    TEXT NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_fills_opportunity
+    ON opportunity_fills(opportunity_id);
 
 CREATE TABLE IF NOT EXISTS settlements (
     kalshi_ticker TEXT PRIMARY KEY,

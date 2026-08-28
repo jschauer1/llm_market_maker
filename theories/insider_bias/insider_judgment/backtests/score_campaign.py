@@ -51,12 +51,36 @@ def event_clustered_t(rows: list[dict]) -> tuple[int, float, float, float]:
 
 
 def load(conn: sqlite3.Connection) -> list[dict]:
+    # Reads what the judged run itself recorded (opportunity_attempts),
+    # not the position rollup -- after position-identity merges, a
+    # re-sighted position's opportunities.run_id is the *earliest* run's,
+    # so filtering there would silently miss every merged row (attempt
+    # fidelity spec, 2026-08-27 sec 9). o.outcome is identity, not
+    # per-attempt, so it still comes from the position join.
+    #
+    # `earliest` picks one attempt per (opportunity_id, run_id): a run_id
+    # is a single judgment of a position, and if a future ingestion path
+    # ever recorded that judgment under two decision_dates, joining
+    # straight to opportunity_attempts would return both rows and double
+    # count one settlement (sec 6). No sampled/ingested row does this
+    # today -- sample()/ingest() partition events across batches with no
+    # ticker recorded twice under one run_id -- but the guard costs
+    # nothing and removes the assumption from the query.
     rows = conn.execute(
-        """select o.run_id, o.outcome, o.entry_price, o.confidence,
-                  o.extra_json, s.result
-           from opportunities o
+        """with earliest as (
+               select *, row_number() over (
+                   partition by opportunity_id, run_id
+                   order by decision_date, recorded_at
+               ) as rn
+               from opportunity_attempts
+               where run_id like ?
+           )
+           select a.run_id, o.outcome, a.entry_price, a.confidence,
+                  a.extra_json, s.result
+           from earliest a
+           join opportunities o on o.id = a.opportunity_id
            join settlements s on s.kalshi_ticker = o.kalshi_ticker
-           where o.run_id like ? and s.result in ('yes','no')""",
+           where a.rn = 1 and s.result in ('yes','no')""",
         (JUDGED_PREFIX,),
     ).fetchall()
     out = []

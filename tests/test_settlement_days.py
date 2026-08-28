@@ -113,6 +113,70 @@ def test_disposition_segments_like_compute_score(conn):
         conn, "t1", 1, disposition="all")["n"] == 2
 
 
+def test_run_scoped_pricing_matches_compute_score(conn):
+    # Position identity freezes the position row's entry_price at first
+    # sighting (0.50, run r1); a later run (r2) proposing the same market
+    # records its own attempt at a different price (0.80) without moving
+    # the frozen position-row price. Under --run-id this must price at
+    # THAT run's own attempt, exactly as compute_score does -- not at the
+    # position row's frozen entry_price -- or the two reports, printed
+    # side by side by `score report`, disagree about the price behind the
+    # edge they show.
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
+        outcome="yes", entry_price=0.50, edge_pts_net=6.0,
+        run_mode="backtest", run_id="r1", decision_date="2026-08-24",
+        now=TS,
+    )
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
+        outcome="yes", entry_price=0.80, edge_pts_net=6.0,
+        run_mode="backtest", run_id="r2", decision_date="2026-08-25",
+        now=TS,
+    )
+    score.record_settlement(conn, "A", "yes",
+                            resolved_at="2026-08-27T01:00:00Z")
+
+    scoped = score.settlement_day_clusters(
+        conn, "t1", 1, run_mode="backtest", run_id="r2"
+    )
+    assert scoped["days"][0]["price_implied_rate"] == pytest.approx(0.80), (
+        "must price at r2's own attempt, not the position row's frozen "
+        "first-sighting entry_price (0.50)"
+    )
+
+    pooled_by_row = score.compute_score(
+        conn, "t1", 1, run_mode="backtest", run_id="r2"
+    )
+    assert scoped["days"][0]["price_implied_rate"] == pytest.approx(
+        pooled_by_row["price_implied_rate"]
+    ), "must never silently disagree with compute_score on price"
+
+
+def test_pooled_clustering_still_reads_the_position_row(conn):
+    # Without run_id the derived attempt table matches nothing (SQL
+    # equality against a bound NULL is never true), so pooled clustering
+    # keeps reading o.entry_price unchanged -- the same fallback
+    # _single_leg_observations relies on.
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
+        outcome="yes", entry_price=0.50, edge_pts_net=6.0,
+        run_mode="backtest", run_id="r1", decision_date="2026-08-24",
+        now=TS,
+    )
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
+        outcome="yes", entry_price=0.80, edge_pts_net=6.0,
+        run_mode="backtest", run_id="r2", decision_date="2026-08-25",
+        now=TS,
+    )
+    score.record_settlement(conn, "A", "yes",
+                            resolved_at="2026-08-27T01:00:00Z")
+
+    pooled = score.settlement_day_clusters(conn, "t1", 1, run_mode="backtest")
+    assert pooled["days"][0]["price_implied_rate"] == pytest.approx(0.50)
+
+
 def test_experiment_runs_are_excluded_when_pooling(conn):
     ledger.record_opportunity(
         conn, theory_id="t1", theory_version=1, kalshi_ticker="X",

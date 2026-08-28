@@ -79,7 +79,8 @@ def test_versions_theories_sides_and_modes_stay_separate(conn):
     assert _rec(conn, theory="t2")[0] != base
     assert _rec(conn, outcome="no")[0] != base
     assert _rec(conn, ticker="B")[0] != base
-    assert _rec(conn, run_mode="backtest", run_id="bt-1")[0] != base
+    assert _rec(conn, run_mode="backtest", run_id="bt-1",
+               decision_date="2026-08-26")[0] != base
 
 
 # --- the attempt list -----------------------------------------------------
@@ -156,9 +157,34 @@ def test_score_reports_how_many_attempts_backed_it(conn):
     assert result["n_attempts"] == 2, "the collapse must be visible, not silent"
 
 
+def test_run_scoped_n_attempts_does_not_count_other_runs(conn):
+    # Pooled n_attempts is the position's lifetime attempt count across
+    # every run that ever proposed it -- the collapse compute_score exists
+    # to reveal -- and that reading must not change. A run-scoped count
+    # must not fold in attempts made by OTHER runs that happened to
+    # propose the same market: the correlated subquery had no run filter
+    # at all, so `--run-id backtest-2026-08-26-insider-judged-s200`
+    # reported n_attempts as if every run that ever saw the position
+    # belonged to it -- n=704 attempts made by that run alone reported as
+    # n_attempts=1408.
+    _rec(conn, ticker="A", run_id="r1")
+    _rec(conn, ticker="A", run_id="r2")
+    _settle(conn, "A", "yes")
+
+    pooled = score.compute_score(conn, "t1", 1)
+    assert pooled["n"] == 1
+    assert pooled["n_attempts"] == 2, "pooled reads the position's lifetime attempts"
+
+    scoped = score.compute_score(conn, "t1", 1, run_id="r1")
+    assert scoped["n"] == 1
+    assert scoped["n_attempts"] == 1, "must not count r2's attempt too"
+
+
 def test_a_single_run_can_still_be_scored_alone(conn):
-    _rec(conn, ticker="A", price=0.50, run_mode="backtest", run_id="bt-1")
-    _rec(conn, ticker="B", price=0.50, run_mode="backtest", run_id="bt-2")
+    _rec(conn, ticker="A", price=0.50, run_mode="backtest", run_id="bt-1",
+        decision_date="2026-08-26")
+    _rec(conn, ticker="B", price=0.50, run_mode="backtest", run_id="bt-2",
+        decision_date="2026-08-26")
     _settle(conn, "A", "yes")
     _settle(conn, "B", "yes")
     one = score.compute_score(conn, "t1", 1, "backtest", run_id="bt-1")
@@ -166,13 +192,84 @@ def test_a_single_run_can_still_be_scored_alone(conn):
 
 
 def test_a_position_is_in_every_run_that_proposed_it(conn):
-    _rec(conn, ticker="A", price=0.50, run_mode="backtest", run_id="bt-1")
-    _rec(conn, ticker="A", price=0.50, run_mode="backtest", run_id="bt-2")
+    _rec(conn, ticker="A", price=0.50, run_mode="backtest", run_id="bt-1",
+        decision_date="2026-08-26")
+    _rec(conn, ticker="A", price=0.50, run_mode="backtest", run_id="bt-2",
+        decision_date="2026-08-26")
     _settle(conn, "A", "yes")
     for run in ("bt-1", "bt-2"):
         assert score.compute_score(
             conn, "t1", 1, "backtest", run_id=run
         )["n"] == 1
+
+
+def test_scoped_run_does_not_fan_out_across_decision_dates(conn):
+    # opportunity_attempts' primary key is (opportunity_id, decision_date,
+    # run_id), not (opportunity_id, run_id) -- one run proposing the same
+    # position on two different days is the normal case, and writes two
+    # attempt rows that share an opportunity_id and run_id. Scoring that
+    # run must still see one position, priced at its earliest attempt --
+    # never one observation per attempt, and never an average across them.
+    _rec(conn, ticker="A", price=0.50, run_id="r1", decision_date="2026-08-26")
+    _rec(conn, ticker="A", price=0.70, run_id="r1", decision_date="2026-08-27")
+    _settle(conn, "A", "yes")
+    scoped = score.compute_score(conn, "t1", 1, run_id="r1")
+    assert scoped["n"] == 1, "one settlement is one draw, not one per attempt"
+    assert scoped["price_implied_rate"] == pytest.approx(0.50), (
+        "priced at the earliest attempt, not averaged across attempts"
+    )
+
+
+# --- backtest dating: an attempt is keyed on the day being decided about,
+# never the wall-clock day the code ran (attempt-fidelity spec section 5) --
+
+def test_backtest_without_decision_date_is_rejected(conn):
+    # Without this, a backtest replaying many days in one session stamps
+    # every attempt with the wall-clock date, the (opportunity_id,
+    # decision_date, run_id) primary key collapses them, and many decisions
+    # silently become one row. Refusing to record is what makes that failure
+    # mode impossible instead of merely documented.
+    with pytest.raises(ValueError, match="decision_date"):
+        _rec(conn, run_mode="backtest", run_id="bt-nodate")
+
+
+def test_replay_recording_three_entry_days_makes_three_attempts(conn):
+    # Simulates a backtest replaying one ticker across a sixty-day window in
+    # one session: each day's decision is recorded under the same run_id but
+    # a different decision_date, so it must produce three attempt rows, not
+    # one collapsed row.
+    opp, _ = _rec(conn, ticker="A", run_mode="backtest", run_id="bt-replay",
+                 decision_date="2026-08-24")
+    _rec(conn, ticker="A", run_mode="backtest", run_id="bt-replay",
+        decision_date="2026-08-25")
+    _rec(conn, ticker="A", run_mode="backtest", run_id="bt-replay",
+        decision_date="2026-08-26")
+    assert ledger.attempt_dates(conn, opp) == [
+        "2026-08-24", "2026-08-25", "2026-08-26",
+    ]
+    assert len(ledger.attempts(conn, opp)) == 3
+
+
+def test_replay_across_three_days_still_scores_one_settlement(conn):
+    # The no-fan-out guarantee (spec section 6), pinned against the case
+    # this whole plumbing exists for: a backtest replay that proposes one
+    # position on three separate decision days under one run_id must still
+    # settle as n == 1 under --run-id, priced at the earliest attempt --
+    # never one observation per replayed day.
+    opp, _ = _rec(conn, ticker="A", price=0.50, run_mode="backtest",
+                 run_id="bt-replay", decision_date="2026-08-24")
+    _rec(conn, ticker="A", price=0.55, run_mode="backtest",
+        run_id="bt-replay", decision_date="2026-08-25")
+    _rec(conn, ticker="A", price=0.60, run_mode="backtest",
+        run_id="bt-replay", decision_date="2026-08-26")
+    _settle(conn, "A", "yes")
+    scoped = score.compute_score(
+        conn, "t1", 1, "backtest", run_id="bt-replay"
+    )
+    assert scoped["n"] == 1, "one settlement is one draw, not one per day"
+    assert scoped["price_implied_rate"] == pytest.approx(0.50), (
+        "priced at the earliest attempt, not averaged across three"
+    )
 
 
 def test_pooled_scoring_still_excludes_experiments(conn):
@@ -181,3 +278,15 @@ def test_pooled_scoring_still_excludes_experiments(conn):
     _settle(conn, "A", "yes")
     _settle(conn, "B", "yes")
     assert score.compute_score(conn, "t1", 1)["n"] == 1
+
+
+def test_bucket_rates_count_positions_not_recordings(conn):
+    _rec(conn, ticker="A", price=0.50, run_id="r1")
+    conn.execute(
+        "UPDATE opportunities SET confidence = 'strong' WHERE kalshi_ticker = 'A'"
+    )
+    conn.commit()
+    _settle(conn, "A", "yes")
+    _rec(conn, ticker="A", price=0.50, run_id="r2")
+    rates = score.bucket_rates(conn, "t1", 1)
+    assert rates["strong"]["n"] == 1, "one settlement is one draw"

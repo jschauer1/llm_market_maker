@@ -37,6 +37,18 @@ def _cmd_init(args) -> int:
     return 0
 
 
+def _cmd_migrate_positions(args) -> int:
+    # Deliberately not routed through `_connect`: that helper calls
+    # `init_db` (tools/cli.py:29), and `init_db` refuses a legacy database
+    # on purpose. This command is the thing that fixes it.
+    conn = db.connect(args.db) if args.db else db.connect()
+    try:
+        _emit(db.migrate_positions(conn, dry_run=args.dry_run))
+    finally:
+        conn.close()
+    return 0
+
+
 def _cmd_theories(args) -> int:
     conn = _connect(args)
     try:
@@ -142,7 +154,8 @@ def _cmd_opportunities(args) -> int:
         elif args.action == "mark-taken":
             ledger.mark_user_action(
                 conn, args.id, args.value, size=args.size,
-                reason=args.reason,
+                reason=args.reason, theory_id=args.mark_theory,
+                price=args.price,
             )
             _emit(dict(ledger.get_opportunity(conn, args.id)))
     finally:
@@ -237,6 +250,16 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("init", help="create the database").set_defaults(
         func=_cmd_init
     )
+
+    mp = sub.add_parser(
+        "migrate-positions",
+        help="collapse run-scoped opportunity rows into positions",
+    )
+    mp.add_argument(
+        "--dry-run", dest="dry_run", action="store_true",
+        help="report what would change without writing",
+    )
+    mp.set_defaults(func=_cmd_migrate_positions)
 
     p = sub.add_parser("theories", help="theory registry")
     p.set_defaults(func=_cmd_theories)
@@ -351,6 +374,15 @@ def build_parser() -> argparse.ArgumentParser:
     mark.add_argument("value", choices=ledger.VALID_USER_ACTIONS)
     mark.add_argument("--size", type=float, default=None)
     mark.add_argument("--reason", default=None)
+    mark.add_argument(
+        "--theory", dest="mark_theory", default=None,
+        help="theory this bet is taken for; required for 'taken'",
+    )
+    mark.add_argument(
+        "--price", type=float, default=None,
+        help="what you actually paid; if omitted, scoring falls back to "
+             "the proposed ask",
+    )
 
     p = sub.add_parser("score", help="calibration and settlement")
     p.set_defaults(func=_cmd_score)
