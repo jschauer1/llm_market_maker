@@ -125,3 +125,70 @@ resolve tonight (TAY looks a win, NO at 0.91; DRE looks a loss, NO down to
 night, so it will come back `n_days=1` with no computable SE — a first
 data point, not a verdict, and the temptation to call a 5-1 start
 "validation" is exactly what this whole day's work exists to prevent.
+
+## 2026-08-28 — the `weak` bucket graduated on one day of gate leakage
+
+Live run `live-2026-08-28`, stages 1–6, judged in-session (no subagent
+dispatched this session), 216 candidates over 119 events. **Nothing
+endorsed.** Funnel: 110,399 board → 767 screened → 321 events → gate
+removed 202 → 119 survivors / 216 markets. Gate counts: live sport 58,
+aggregate-of-many 43, weather 32, commodity/FX/rates 23, compute
+16, crypto 13, scheduled indicator 10, retail price index 7.
+
+**The finding is in the bucket layer, not the board.** `buckets.py`
+promoted `weak` from `prior` to `edge_basis='measured'` this run, because
+the bucket crossed `MIN_BUCKET_N = 10` on 17 settled rows. All 17 of
+those rows:
+
+- settled on **one day**, 2026-08-27 (`n_days=1`), and
+- are **NO favorites on live sport** (Argentine basketball, Bolivian
+  football, CPL, Egyptian football, FIBA, KBO, T20, USL) plus one diesel
+  strike — i.e. every one of them is a `gate.py` leak into a family this
+  theory's thesis explicitly excludes.
+
+16/17 won, which is simply what a 0.70–0.96 NO favorite does. The bucket
+layer then applied that 94.12% as a **flat win probability to every weak
+candidate regardless of its own price**, which mints apparent edge on
+anything quoted below 0.94: 150 of 216 rows came back "positive edge",
+all of them junk. Stage 3 declined all 190 weak rows on that basis.
+
+Three separate defects stacked here, worth separating:
+
+1. **`MIN_BUCKET_N` counts rows, not settlement days.** This is the exact
+   confound the 2026-08-27 clustering study measured, and the amendment
+   `no_side_premium` adopted (`n_days >= 8`). `buckets.py` has no
+   equivalent, so one lucky settlement day can graduate any bucket.
+2. **A flat bucket rate ignores the candidate's own price.** A single
+   `win_rate` applied across a 0.65–0.97 band is not a calibration; it is
+   a constant, and it is mechanically guaranteed to claim edge on the
+   cheap end of the band and negative edge on the expensive end.
+3. **Gate leakage contaminates the bucket rates, not just the scan.**
+   `gate.py` misses FIBA, KBO, CPL, T20, USL, Argentine/Bolivian league
+   football and `KXEURUSDAW`; those leak to the deep stage, get judged
+   `weak`, settle at sport-favorite base rates, and then *define* what
+   `weak` is worth. The gate's known failure mode was "a false
+   elimination is invisible" — this is the mirror: a false *survival*
+   silently becomes the theory's own yardstick.
+
+Rejecting all 190 is also the repair path: they span many future
+settlement days and many families, so once they settle the weak bucket's
+rate is measured on something other than one night of football.
+
+**Also recorded, and separately useful:** the Big Brother week-7 legs
+(`KXBIGBROTHERELIMINATION-26AUG27-{DRE,MAL,TAY}`) were priced on a
+168-minute-old board and the episode aired inside that window — Drew won
+the Block Buster and came off the block, Mallory was evicted. A re-quote
+showed 0.99/0.01/0.01. The board freshness window
+(`DEFAULT_MAX_AGE_MINUTES = 240`) is far too loose for a market that
+resolves during it; the general rule stands that a re-quote is mandatory
+before recommending, and this is the concrete case that proves it.
+
+**Rules divergences found this run** (9 events), all of which cut against
+the NO side the screen picks: `KXCABLEAVE` (rules resolve YES on merely
+*announcing* a departure), `KXGEMINI-GEMI35P` ("Gemini 3.5 Pro **or
+greater**"), `KXTRUMPMEET` (phone calls count as a "meet"), `KXUAPFILES`
+(any *federal government* UAP release, not just Trump). Narrower-than-
+title, therefore helping NO: `KXGTATRAILER` (≥30s), `KXMAMDANIEO`
+(non-emergency only), `KXPIRROOUT` (actually leaves, not announces),
+`KXITALYBORDERCHECK` (not replaced by equivalent checks),
+`KXBIGBENDRESUME` (agency-reported).
