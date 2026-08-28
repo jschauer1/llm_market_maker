@@ -3,6 +3,7 @@
 import pytest
 
 from tools import db, ledger, theories
+from tools.sizing import fee_pts
 
 TS = "2026-08-26T12:00:00Z"
 TS2 = "2026-08-29T12:00:00Z"
@@ -147,9 +148,10 @@ def test_roi_taken_uses_the_price_actually_paid(conn):
         conn, opp, "taken", size=10, price=0.25, theory_id="t1", now=TS,
     )
     result = score.compute_score(conn, "t1", 1)
-    # Won a dollar on a 0.25 entry: roughly +3.0 before fees, and in any
-    # case far above the +1.0 a 0.50 entry would have produced.
-    assert result["roi_taken"] > 2.0
+    # Pinned exactly, not just bounded -- the exact value also pins the
+    # fee handling, which a loose bound would let drift unnoticed.
+    cost = 0.25 + fee_pts(0.25) / 100.0
+    assert result["roi_taken"] == pytest.approx((1.0 - cost) / cost)
 
 
 def test_roi_taken_falls_back_to_the_proposed_ask(conn):
@@ -162,3 +164,57 @@ def test_roi_taken_falls_back_to_the_proposed_ask(conn):
     )
     result = score.compute_score(conn, "t1", 1)
     assert 0.8 < result["roi_taken"] < 1.0
+
+
+def test_roi_taken_weights_multiple_fills_by_size(conn):
+    """The expression this task exists to add: a position bought in two
+    fills of different sizes and prices must land on the size-weighted
+    average, not the naive mean of the two prices -- 25 @ 0.80 and 10 @
+    0.90 average to 0.8286, not 0.85.
+    """
+    from tools import score
+
+    opp = _rec(conn, ticker="C", price=0.50)
+    score.record_settlement(conn, "C", "yes", resolved_at=TS)
+    ledger.mark_user_action(
+        conn, opp, "taken", size=25, price=0.80, theory_id="t1", now=TS,
+    )
+    ledger.mark_user_action(
+        conn, opp, "taken", size=10, price=0.90, theory_id="t1", now=TS2,
+    )
+    obs = score._single_leg_observations(conn, "t1", 1, "live", "all", None)
+    assert len(obs) == 1
+    weighted = (25 * 0.80 + 10 * 0.90) / 35
+    assert obs[0]["fill_price"] == pytest.approx(weighted)
+    # Not the naive mean -- confirms the fixture actually distinguishes
+    # weighted-by-size from an unweighted average.
+    assert weighted != pytest.approx((0.80 + 0.90) / 2)
+
+    result = score.compute_score(conn, "t1", 1)
+    cost = weighted + fee_pts(weighted) / 100.0
+    assert result["roi_taken"] == pytest.approx((1.0 - cost) / cost)
+
+
+def test_roi_taken_blends_a_partially_priced_fill_at_the_reference_price(
+    conn,
+):
+    """One fill records a price, the other doesn't. The unpriced fill
+    still contributes its size to the weighted average -- at the
+    position's own reference price, the same one a fully-unpriced
+    position falls back to -- rather than being dropped from the blend
+    or treated as free.
+    """
+    from tools import score
+
+    opp = _rec(conn, ticker="D", price=0.50)
+    score.record_settlement(conn, "D", "yes", resolved_at=TS)
+    ledger.mark_user_action(
+        conn, opp, "taken", size=10, price=0.30, theory_id="t1", now=TS,
+    )
+    ledger.mark_user_action(
+        conn, opp, "taken", size=10, theory_id="t1", now=TS2,
+    )
+    obs = score._single_leg_observations(conn, "t1", 1, "live", "all", None)
+    assert len(obs) == 1
+    weighted = (10 * 0.30 + 10 * 0.50) / 20  # unpriced fill blends at 0.50
+    assert obs[0]["fill_price"] == pytest.approx(weighted)

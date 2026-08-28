@@ -326,3 +326,71 @@ def test_roi_taken_excludes_an_untaken_riskless_position_pooled_with_a_bet(
     all_cost = bet_cost + taken_cost + untouched_cost
     all_roi = (bet_payout + 2 * payout - all_cost) / all_cost
     assert r["roi_all"] == pytest.approx(all_roi)
+
+
+def test_roi_taken_scales_leg_fees_by_the_price_actually_paid(conn):
+    """A basket's `opportunity_fills` row records one blended price for the
+    whole position, never a price per leg, so honouring a recorded price
+    means guessing how it splits across legs. The only defensible guess is
+    that every leg moved by the same proportion the blended price moved by
+    -- so the fee is re-summed over each leg's own price scaled by that
+    ratio, not by calling fee_pts() on the blended price itself. The two
+    disagree because fee_pts is quadratic: fee_pts(a) + fee_pts(b) !=
+    fee_pts(a + b) in general, so pricing the fee off the wrong side of
+    that inequality silently overstates or understates the true fee.
+
+    This basket costs 0.95 as proposed (legs 0.60 + 0.35) but is taken at
+    0.80 -- a real, different price, not the SQL's own entry_price
+    fallback -- so it must exercise the scaling path, not the identity
+    Finding 1 also guarantees for the untouched-price case (see the next
+    test).
+    """
+    opp_id, _ = _basket(conn)
+    ledger.mark_user_action(
+        conn, opp_id, "taken", size=10, price=0.80, theory_id="t1", now=TS,
+    )
+    _settle(conn, [("KXLATE-26", "yes"), ("KXEARLY-26", "yes")])  # pays 1.00
+    r = score.compute_score(conn, "t1", 1)
+
+    ref = 0.60 + 0.35
+    scale = 0.80 / ref
+    fee = fee_pts(0.60 * scale) + fee_pts(0.35 * scale)
+    cost = 0.80 + fee / 100.0
+    expected_roi = (1.0 - cost) / cost
+    assert r["roi_taken"] == pytest.approx(expected_roi)
+
+    # The wrong (blended-price) fee this test guards against -- confirms
+    # the fixture actually distinguishes the two formulas rather than
+    # coincidentally agreeing.
+    wrong_cost = 0.80 + fee_pts(0.80) / 100.0
+    wrong_roi = (1.0 - wrong_cost) / wrong_cost
+    assert expected_roi != pytest.approx(wrong_roi)
+    assert r["roi_taken"] != pytest.approx(wrong_roi)
+
+
+def test_roi_taken_reproduces_cost_exactly_for_an_unpriced_taken_basket(
+    conn,
+):
+    """The identity the scaling fix in the test above depends on: when a
+    taken basket's fill never recorded a price, SQL's own COALESCE
+    fallback makes the blended `paid` equal to this position's own
+    entry_price, the scale factor collapses to exactly 1, and the scaled
+    per-leg fee sum reproduces the proposal's `cost` term for term. A
+    taken position that recorded no price must therefore cost exactly
+    what the proposal cost -- no separate flag is needed to say so, and
+    this is the test that would catch a regression if one were
+    reintroduced. (`_riskless_pair`'s tests above cover the same identity
+    for a *riskless* basket; this one is an ordinary at-risk basket, so
+    together they guard both branches `_aggregate` can take it through.)
+    """
+    opp_id, _ = _basket(conn)
+    ledger.mark_user_action(
+        conn, opp_id, "taken", size=10, theory_id="t1", now=TS,
+    )
+    _settle(conn, [("KXLATE-26", "yes"), ("KXEARLY-26", "yes")])  # pays 1.00
+    r = score.compute_score(conn, "t1", 1)
+
+    fee = fee_pts(0.60) + fee_pts(0.35)
+    cost = 0.95 + fee / 100.0
+    expected_roi = (1.0 - cost) / cost
+    assert r["roi_taken"] == pytest.approx(expected_roi)

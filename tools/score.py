@@ -187,16 +187,18 @@ def _single_leg_observations(
         " COALESCE(a.edge_pts_net, o.edge_pts_net) AS edge_pts_net,"
         " (SELECT COUNT(*) FROM opportunity_attempts x"
         "  WHERE x.opportunity_id = o.id) AS n_attempts,"
-        " (SELECT SUM(f.size * COALESCE(f.price, o.entry_price))"
+        # The fallback inside COALESCE must match the same run-scoped price
+        # `cost` below is built from -- bare o.entry_price would blend an
+        # unpriced fill at the wrong reference under --run-id, where the
+        # attempt's a.entry_price differs from the position row's own.
+        # Nesting COALESCE inside COALESCE just tries f.price, then
+        # a.entry_price, then o.entry_price -- SQL flattens it exactly like
+        # the `entry_price` column above.
+        " (SELECT SUM(f.size *"
+        "         COALESCE(f.price, a.entry_price, o.entry_price))"
         "    / NULLIF(SUM(f.size), 0)"
         "  FROM opportunity_fills f"
         "  WHERE f.opportunity_id = o.id) AS fill_price,"
-        # COUNT(f.price) skips NULLs, so this is 0 exactly when a taken
-        # position's fills never recorded a price. `fill_price` alone can't
-        # signal that -- see the fuller comment in _basket_observations,
-        # where the distinction actually changes the number.
-        " (SELECT COUNT(f.price) FROM opportunity_fills f"
-        "  WHERE f.opportunity_id = o.id) AS n_priced_fills,"
         " s.result FROM opportunities o"
         " JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker"
         " LEFT JOIN (" + _EARLIEST_ATTEMPT_PER_RUN + ") a"
@@ -210,6 +212,7 @@ def _single_leg_observations(
         won = _won(row["outcome"], row["result"])
         price = row["entry_price"]
         fee = fee_pts(price)
+        paid = row["fill_price"]
         out.append({
             "implied_rate": price,
             "won": won,
@@ -219,7 +222,15 @@ def _single_leg_observations(
             "edge_pts_net": row["edge_pts_net"],
             "user_action": row["user_action"],
             "n_attempts": row["n_attempts"],
-            "fill_price": row["fill_price"] if row["n_priced_fills"] else None,
+            "fill_price": paid,
+            # The fee actually paid, at the recorded price. A single
+            # position has one leg, so this is just fee_pts of that price
+            # -- unlike a basket, there is no per-leg sum to preserve. When
+            # a fill never recorded a price, `paid` falls back (in SQL) to
+            # this row's own reference price, so fill_fee_pts here
+            # reproduces `fee` above exactly and `_aggregate` never sees a
+            # difference.
+            "fill_fee_pts": None if paid is None else fee_pts(paid),
             # A single position can always resolve against you -- there is
             # no floor to fall back on -- so it is never riskless.
             "riskless": False,
@@ -254,20 +265,16 @@ def _basket_observations(
         " COALESCE(a.edge_pts_net, o.edge_pts_net) AS edge_pts_net,"
         " (SELECT COUNT(*) FROM opportunity_attempts x"
         "  WHERE x.opportunity_id = o.id) AS n_attempts,"
-        " (SELECT SUM(f.size * COALESCE(f.price, o.entry_price))"
+        # Same run-scoped fallback as _single_leg_observations: an unpriced
+        # fill must blend at this basket's own COALESCE(a.entry_price,
+        # o.entry_price), not the bare position-row price, or a partially
+        # priced basket scored under --run-id would blend its unpriced fill
+        # at the wrong reference.
+        " (SELECT SUM(f.size *"
+        "         COALESCE(f.price, a.entry_price, o.entry_price))"
         "    / NULLIF(SUM(f.size), 0)"
         "  FROM opportunity_fills f"
-        "  WHERE f.opportunity_id = o.id) AS fill_price,"
-        # See the matching comment in _single_leg_observations: without
-        # this, a basket taken with no recorded price would still fall
-        # into the "priced" branch below and get its fee approximated as
-        # fee_pts() of the blended entry_price instead of the exact
-        # per-leg fee sum already carried in `cost` -- silently wrong
-        # because fee_pts is not linear (fee_pts(a) + fee_pts(b) !=
-        # fee_pts(a + b)), and a basket has no per-leg fill data to
-        # recover the true figure from once the fee identity breaks.
-        " (SELECT COUNT(f.price) FROM opportunity_fills f"
-        "  WHERE f.opportunity_id = o.id) AS n_priced_fills"
+        "  WHERE f.opportunity_id = o.id) AS fill_price"
         " FROM opportunities o"
         " LEFT JOIN (" + _EARLIEST_ATTEMPT_PER_RUN + ") a"
         "   ON a.opportunity_id = o.id"
@@ -347,6 +354,38 @@ def _basket_observations(
 
         cost = header["entry_price"] + fee / 100.0
 
+        # The fee actually paid, at the price actually paid -- for a
+        # basket's taken-money leg of `_aggregate`, not for `cost` above,
+        # which stays the proposal's fee and never changes. A basket has no
+        # per-leg fill data (`opportunity_fills` records one blended price
+        # per position, not per leg), so there is no way to know which leg
+        # absorbed the price move. This scales every leg's own price by the
+        # same ratio the blended price moved by and re-sums fee_pts over
+        # the scaled legs -- an approximation that assumes the legs moved
+        # together between the call and the fill, which is the best a
+        # single blended number can support. It is exact, not approximate,
+        # in the common case where no price was ever recorded: then `paid`
+        # equals header["entry_price"] (SQL's own fallback), the scale
+        # factor is 1, and this reproduces `fee` above term for term -- so
+        # a taken position with no fill price still costs exactly `cost`,
+        # with no separate flag required to say so.
+        paid = header["fill_price"]
+        fill_fee_pts = None
+        if paid is not None:
+            ref = header["entry_price"]
+            if ref == 0:
+                # A zero-cost basket has nothing to scale a ratio against.
+                # Real baskets never land here -- a basket that cost
+                # nothing would already be riskless -- but the guard must
+                # not raise. Fall back to the single-leg approximation:
+                # fee on the blended price alone.
+                fill_fee_pts = fee_pts(paid)
+            else:
+                scale = paid / ref
+                fill_fee_pts = sum(
+                    fee_pts(leg["entry_price"] * scale) for leg in legs
+                )
+
         # A position whose cost is covered by its guaranteed floor cannot
         # lose. Calibration is undefined for it -- a win rate over things
         # that always win is 1.0 by construction and measures nothing --
@@ -387,9 +426,8 @@ def _basket_observations(
             "edge_pts_net": header["edge_pts_net"],
             "user_action": header["user_action"],
             "n_attempts": header["n_attempts"],
-            "fill_price": (
-                header["fill_price"] if header["n_priced_fills"] else None
-            ),
+            "fill_price": paid,
+            "fill_fee_pts": fill_fee_pts,
             "riskless": riskless,
         })
     return out
@@ -439,12 +477,16 @@ def _aggregate(rows: list[dict]) -> dict:
         if r["user_action"] == "taken":
             riskless_has_taken = True
             # The money number uses what was actually paid. `cost` prices
-            # the proposal; a fill prices the purchase. They differ whenever
-            # the market moved between the call and the entry.
+            # the proposal; a fill prices the purchase, with its fee
+            # supplied by the observation builder as `fill_fee_pts` --
+            # only the builder holds the per-position-kind knowledge (a
+            # basket's per-leg prices) the quadratic fee model needs to
+            # price a fill correctly. They differ whenever the market moved
+            # between the call and the entry.
             paid = r.get("fill_price")
             riskless_taken_cost += (
                 r["cost"] if paid is None
-                else paid + fee_pts(paid) / 100.0
+                else paid + r["fill_fee_pts"] / 100.0
             )
             riskless_taken_return += r["payout"]
     riskless_roi = (
@@ -495,12 +537,16 @@ def _aggregate(rows: list[dict]) -> dict:
         if r["user_action"] == "taken":
             has_taken = True
             # The money number uses what was actually paid. `cost` prices
-            # the proposal; a fill prices the purchase. They differ whenever
-            # the market moved between the call and the entry.
+            # the proposal; a fill prices the purchase, with its fee
+            # supplied by the observation builder as `fill_fee_pts` --
+            # only the builder holds the per-position-kind knowledge (a
+            # basket's per-leg prices) the quadratic fee model needs to
+            # price a fill correctly. They differ whenever the market moved
+            # between the call and the entry.
             paid = r.get("fill_price")
             taken_cost += (
                 r["cost"] if paid is None
-                else paid + fee_pts(paid) / 100.0
+                else paid + r["fill_fee_pts"] / 100.0
             )
             taken_return += r["payout"]
 
