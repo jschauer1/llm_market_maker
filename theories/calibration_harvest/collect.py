@@ -36,7 +36,7 @@ from __future__ import annotations
 
 import argparse
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from tools import db, ledger, score
@@ -155,6 +155,17 @@ def observations_for(
         if key is None:
             continue
 
+        # The as-of day this observation entered, derived from the two
+        # fields that are already persisted (close_iso via settlements,
+        # days_to_close via extra_json) so a future session can reconstruct
+        # it without the raw candle timestamp. Backtest attempts must be
+        # dated by the day being decided about, not the collector's
+        # wall-clock run day (attempt-fidelity spec section 5).
+        entry_day_iso = (
+            datetime.fromisoformat(close_iso.replace("Z", "+00:00"))
+            - timedelta(days=offset)
+        ).isoformat().replace("+00:00", "Z")
+
         out.append({
             "ticker": ticker,
             "series": series,
@@ -169,6 +180,7 @@ def observations_for(
             "won": side == result,
             "days_to_close": offset,
             "close_iso": close_iso,
+            "entry_day_iso": entry_day_iso,
         })
     return out
 
@@ -186,6 +198,12 @@ def record(conn, observations: list[dict], run_id: str) -> int:
     `resolved_at` is the market's close time, which is what makes day
     clustering meaningful -- omit it and every collected row falls into one
     undated cluster and `n_days` becomes a lie.
+
+    `decision_date` is `entry_day_iso`'s date, not the day this collector
+    happens to run -- a multi-session collection walk must date each
+    observation by the day it was entered, or same-run same-day fallback
+    collapses distinct entries into one attempt (attempt-fidelity spec
+    section 5).
     """
     written = 0
     for obs in observations:
@@ -200,6 +218,7 @@ def record(conn, observations: list[dict], run_id: str) -> int:
             edge_basis="model",
             run_mode="backtest",
             run_id=run_id,
+            decision_date=obs["entry_day_iso"][:10],
             rationale=(
                 f"tier-A collection row for cell {obs['cell']} "
                 f"(entry {obs['days_to_close']:.0f}d before close); "

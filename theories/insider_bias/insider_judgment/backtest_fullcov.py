@@ -195,6 +195,7 @@ def record_hits(conn: sqlite3.Connection, hits: list[dict]) -> int:
             edge_pts_net=0.0,
             run_mode="backtest",
             run_id=RUN_ID,
+            decision_date=entry_day.date().isoformat(),
             spread_at_call=h["spread_at_call"],
             volume_at_call=h["volume_at_call"],
             edge_basis="prior",

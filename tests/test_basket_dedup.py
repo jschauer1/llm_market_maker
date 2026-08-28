@@ -57,3 +57,16 @@ def test_a_basket_records_an_attempt_per_decision_day(conn):
     opp, _ = _basket(conn, "r1", now=TS, decision_date="2026-08-26")
     _basket(conn, "r2", now=TS2, decision_date="2026-08-27")
     assert ledger.attempt_dates(conn, opp) == ["2026-08-26", "2026-08-27"]
+
+
+def test_backtest_basket_without_decision_date_is_rejected(conn):
+    # Mirrors record_opportunity's rule (attempt-fidelity spec section 5):
+    # without a real decision_date, a backtest replaying many days would
+    # collapse every day's attempt into one row under the shared wall-clock
+    # fallback.
+    with pytest.raises(ValueError, match="decision_date"):
+        ledger.record_basket(
+            conn, theory_id="t1", theory_version=1, legs=LEGS,
+            edge_pts_net=5.0, run_mode="backtest", run_id="bt-nodate",
+            now=TS,
+        )

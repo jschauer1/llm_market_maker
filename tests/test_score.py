@@ -148,6 +148,7 @@ def test_scores_can_be_scoped_to_a_single_run(conn):
             conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
             outcome="yes", entry_price=0.50, edge_pts_net=6.0,
             run_mode="backtest", run_id=run, now=TS,
+            decision_date=TS[:10],
         )
     score.record_settlement(conn, "A", "yes")
 

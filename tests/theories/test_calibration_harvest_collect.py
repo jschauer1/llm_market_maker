@@ -9,6 +9,7 @@ anyone re-runs it.
 """
 
 import json
+from datetime import datetime
 
 import pytest
 
@@ -111,6 +112,25 @@ def test_one_market_can_populate_several_horizon_bins():
     assert all(o["won"] for o in obs)
 
 
+def test_entry_day_iso_is_close_minus_the_horizon_offset():
+    """Backtest attempts must be dated by the day being decided about
+    (attempt-fidelity spec section 5). entry_day_iso is derived from
+    close_iso and days_to_close specifically so it stays reconstructable
+    from what is actually persisted (settlements.resolved_at, extra_json),
+    without needing the raw candle timestamp."""
+    candles = [_candle(CLOSE_TS - 4 * DAY, 0.77, 0.80)]
+    obs = collect.observations_for(
+        ticker="KXPOL-1", series="KXPOL", category="Politics",
+        close_ts=CLOSE_TS, result="yes", candles=candles,
+    )
+    by_bin = {o["horizon_bin"]: o for o in obs}
+    row = by_bin["2d-1w"]
+    close = datetime.fromisoformat(row["close_iso"].replace("Z", "+00:00"))
+    entry = datetime.fromisoformat(
+        row["entry_day_iso"].replace("Z", "+00:00"))
+    assert (close - entry).days == row["days_to_close"]
+
+
 # ---- persistence --------------------------------------------------------
 
 def test_record_writes_rows_and_settlements(conn):
@@ -121,6 +141,7 @@ def test_record_writes_rows_and_settlements(conn):
         "entry_price": 0.80, "outcome": "yes", "won": True,
         "result": "yes", "days_to_close": 4.0,
         "close_iso": "2026-08-20T00:00:00Z",
+        "entry_day_iso": "2026-08-16T00:00:00Z",
     }]
     n = collect.record(conn, obs, run_id="backtest-test")
     assert n == 1
@@ -145,6 +166,8 @@ def test_record_writes_rows_and_settlements(conn):
 
 def test_collected_rows_cluster_by_settlement_day(conn):
     obs = []
+    # entry_day_iso is close_iso minus the 4-day 2d-1w offset.
+    entry_for = {"2026-08-20": "2026-08-16", "2026-08-21": "2026-08-17"}
     for day in ("2026-08-20", "2026-08-21"):
         for i in range(3):
             obs.append({
@@ -155,6 +178,7 @@ def test_collected_rows_cluster_by_settlement_day(conn):
                 "entry_price": 0.80, "outcome": "yes", "won": True,
                 "result": "yes", "days_to_close": 4.0,
                 "close_iso": f"{day}T00:00:00Z",
+                "entry_day_iso": f"{entry_for[day]}T00:00:00Z",
             })
     collect.record(conn, obs, run_id="backtest-test")
     out = score.settlement_day_clusters(
@@ -173,6 +197,7 @@ def test_record_is_idempotent_so_a_resumed_run_does_not_double_count(conn):
         "entry_price": 0.80, "outcome": "yes", "won": True,
         "result": "yes", "days_to_close": 4.0,
         "close_iso": "2026-08-20T00:00:00Z",
+        "entry_day_iso": "2026-08-16T00:00:00Z",
     }]
     collect.record(conn, obs, run_id="backtest-test")
     collect.record(conn, obs, run_id="backtest-test")
@@ -202,6 +227,7 @@ def test_cell_rates_reads_back_what_was_collected(conn):
             "won": day != 0, "result": "yes" if day != 0 else "no",
             "days_to_close": 4.0,
             "close_iso": f"2026-08-{10 + day:02d}T00:00:00Z",
+            "entry_day_iso": f"2026-08-{6 + day:02d}T00:00:00Z",
         })
     collect.record(conn, obs, run_id="backtest-test")
     rates = collect.cell_rates(conn, run_id="backtest-test")

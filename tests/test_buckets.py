@@ -121,6 +121,7 @@ def test_bucket_rates_are_segmented_by_run_mode(conn):
         conn, theory_id="t1", theory_version=1, kalshi_ticker="B",
         outcome="yes", entry_price=0.5, edge_pts_net=4.0,
         confidence="strong", run_mode="backtest", run_id="bt-1", now=TS,
+        decision_date=TS[:10],
     )
     score.record_settlement(conn, "B", "no")
 
@@ -141,6 +142,7 @@ def test_bucket_rates_can_be_scoped_to_a_single_run(conn):
             conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
             outcome="yes", entry_price=0.5, edge_pts_net=4.0,
             confidence="strong", run_mode="backtest", run_id=run, now=TS,
+            decision_date=TS[:10],
         )
     score.record_settlement(conn, "A", "yes")
 

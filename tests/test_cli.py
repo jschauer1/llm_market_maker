@@ -207,6 +207,7 @@ def test_score_report_run_id_scopes_the_sample(dbpath, capsys):
             conn, theory_id="t1", theory_version=1, kalshi_ticker="A",
             outcome="yes", entry_price=0.50, edge_pts_net=6.0,
             run_mode="backtest", run_id=run, now=TS,
+            decision_date=TS[:10],
         )
     score.record_settlement(conn, "A", "yes")
     conn.close()

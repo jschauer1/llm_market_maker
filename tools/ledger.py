@@ -337,6 +337,15 @@ def record_opportunity(
             "the live row for the same ticker. Give the backtest its own "
             "run_id."
         )
+    if run_mode == "backtest" and not decision_date:
+        raise ValueError(
+            "decision_date is required for backtest runs: without it every "
+            "replayed day falls back to the wall-clock date, so a replay "
+            "that covers many days stamps every attempt with the same "
+            "(decision_date, run_id) and the primary key on "
+            "opportunity_attempts silently collapses them into one row. "
+            "Pass the as-of day the theory is deciding about."
+        )
     if edge_basis not in VALID_EDGE_BASES:
         raise ValueError(
             f"invalid edge_basis {edge_basis!r}; "
@@ -621,6 +630,15 @@ def record_basket(
     if run_mode == "backtest" and run_id == LIVE_RUN_ID:
         raise ValueError(
             f"run_id {LIVE_RUN_ID!r} is a reserved sentinel for live scans"
+        )
+    if run_mode == "backtest" and not decision_date:
+        raise ValueError(
+            "decision_date is required for backtest runs: without it every "
+            "replayed day falls back to the wall-clock date, so a replay "
+            "that covers many days stamps every attempt with the same "
+            "(decision_date, run_id) and the primary key on "
+            "opportunity_attempts silently collapses them into one row. "
+            "Pass the as-of day the theory is deciding about."
         )
     if edge_basis not in VALID_EDGE_BASES:
         raise ValueError(

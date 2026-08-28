@@ -142,9 +142,13 @@ def test_backtest_runs_dedupe_to_one_position(conn):
     # opportunities row: re-recording under "run-a" a second time is the
     # same decision seen again and updates its attempt in place, while
     # "run-b" is a genuinely different run and adds a second attempt.
-    id_a, created_a = _record(conn, run_mode="backtest", run_id="run-a")
-    id_again, created_again = _record(conn, run_mode="backtest", run_id="run-a")
-    id_b, created_b = _record(conn, run_mode="backtest", run_id="run-b")
+    id_a, created_a = _record(conn, run_mode="backtest", run_id="run-a",
+                              decision_date="2026-08-23")
+    id_again, created_again = _record(conn, run_mode="backtest",
+                                      run_id="run-a",
+                                      decision_date="2026-08-23")
+    id_b, created_b = _record(conn, run_mode="backtest", run_id="run-b",
+                              decision_date="2026-08-23")
 
     assert id_a == id_again == id_b
     assert created_a is True
@@ -164,11 +168,13 @@ def test_attempts_retain_their_own_rationale_and_extra_json(conn):
     # it was given -- neither overwritten by, nor merged with, the other's.
     id_a, _ = _record(
         conn, run_mode="backtest", run_id="run-a",
+        decision_date="2026-08-23",
         rationale="run-a thinks this is mispriced",
         extra_json='{"batch": "a", "source_run": "run-a"}',
     )
     id_b, _ = _record(
         conn, run_mode="backtest", run_id="run-b",
+        decision_date="2026-08-23",
         rationale="run-b found the same market independently",
         extra_json='{"batch": "b", "source_run": "run-b"}',
     )
