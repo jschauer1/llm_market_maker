@@ -1,0 +1,59 @@
+"""A basket seen by two runs is one position, and keeps its legs."""
+
+import pytest
+
+from tools import db, ledger, theories
+
+TS = "2026-08-26T12:00:00Z"
+TS2 = "2026-08-27T12:00:00Z"
+
+LEGS = [
+    {"kalshi_ticker": "KXA-T1", "outcome": "yes", "entry_price": 0.40},
+    {"kalshi_ticker": "KXA-T2", "outcome": "no", "entry_price": 0.50},
+]
+
+
+@pytest.fixture
+def conn(tmp_path):
+    c = db.connect(tmp_path / "test.db")
+    db.init_db(c)
+    theories.register(c, "t1", "Theory One", "theories/t1", now=TS)
+    yield c
+    c.close()
+
+
+def _basket(conn, run_id, now=TS, decision_date=None):
+    return ledger.record_basket(
+        conn, theory_id="t1", theory_version=1, legs=LEGS,
+        edge_pts_net=5.0, run_id=run_id, now=now,
+        decision_date=decision_date,
+    )
+
+
+def test_two_runs_seeing_one_basket_make_one_position(conn):
+    a, made_a = _basket(conn, "live-2026-08-26")
+    b, made_b = _basket(conn, "live-2026-08-26-eve")
+    assert a == b
+    assert made_a is True and made_b is False
+    rows = conn.execute("SELECT * FROM opportunities").fetchall()
+    assert len(rows) == 1
+
+
+def test_the_merged_basket_keeps_exactly_one_set_of_legs(conn):
+    opp, _ = _basket(conn, "live-2026-08-26")
+    _basket(conn, "live-2026-08-26-eve")
+    legs = ledger.get_legs(conn, opp)
+    assert [leg["kalshi_ticker"] for leg in legs] == ["KXA-T1", "KXA-T2"]
+    orphans = conn.execute(
+        """
+        SELECT COUNT(*) FROM opportunity_legs
+        WHERE opportunity_id NOT IN (SELECT id FROM opportunities)
+        """
+    ).fetchone()[0]
+    assert orphans == 0
+
+
+def test_a_basket_records_an_attempt_per_decision_day(conn):
+    opp, _ = _basket(conn, "r1", now=TS, decision_date="2026-08-26")
+    _basket(conn, "r2", now=TS2, decision_date="2026-08-27")
+    assert ledger.attempt_dates(conn, opp) == ["2026-08-26", "2026-08-27"]

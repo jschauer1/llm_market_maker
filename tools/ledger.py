@@ -503,6 +503,7 @@ def record_basket(
     evidence_source: str | None = None,
     evidence_market_id: str | None = None,
     extra_json: str | None = None,
+    decision_date: str | None = None,
     now: str | None = None,
 ) -> tuple[int, bool]:
     """Record or refresh a multi-leg position. Returns (id, was_created).
@@ -517,13 +518,20 @@ def record_basket(
     sections 3.6 and 3.6.1).
 
     Re-sighting contract, mirroring `record_opportunity`'s single-position
-    rows: `entry_price` is frozen at first sighting on *both* the header and
-    every leg, along with each leg's `kalshi_ticker`, `outcome`, and
-    `leg_index` -- they record the entry actually available when the basket
-    was first seen and must not drift. `min_payout` is frozen the same way,
-    for the same reason. Only `last_seen_at`, `times_seen`, `edge_pts_net`
-    (while uninterpreted), and the legs' `spread_at_call` / `volume_at_call`
-    refresh on a re-sighting.
+    rows: the row is identified by (theory_id, theory_version, run_mode,
+    lane, kalshi_ticker, outcome) -- not by run_id -- so two different runs
+    that both propose the same basket land on one header row, not two.
+    `entry_price` is frozen at first sighting on *both* the header and every
+    leg, along with each leg's `kalshi_ticker`, `outcome`, and `leg_index`
+    -- they record the entry actually available when the basket was first
+    seen and must not drift. `min_payout` is frozen the same way, for the
+    same reason. Only `last_seen_at`, `edge_pts_net` (while uninterpreted),
+    and the legs' `spread_at_call` / `volume_at_call` refresh on a
+    re-sighting. `times_seen` is no longer bumped in this UPDATE -- it is
+    recomputed by `_record_attempt` from the distinct (decision_date,
+    run_id) attempts recorded in `opportunity_attempts`, so that two runs
+    re-proposing the same basket on the same day count as one attempt, not
+    two.
     """
     if edge_pts_net is None:
         raise ValueError(
@@ -581,11 +589,18 @@ def record_basket(
     header_ticker = basket_key(norm)
     cost = sum(leg["entry_price"] for leg in norm)
     resolved_run_id = run_id or LIVE_RUN_ID
-    resolved_lane = lane_for(run_id)
     stamp = now or utcnow()
+    lane = lane_for(resolved_run_id)
+    # The as-of day of the decision, not the wall-clock recording time. Two
+    # runs an hour apart replaying the same day are one decision.
+    day = decision_date or stamp[:10]
 
     with write(conn):
-        conn.execute(
+        # Same atomic creation test record_opportunity uses: INSERT ... DO
+        # NOTHING RETURNING id, so "was this the first sighting" is answered
+        # by the presence of a row rather than a counter read back after the
+        # fact.
+        created = conn.execute(
             """
             INSERT INTO opportunities (
                 theory_id, theory_version, run_mode, run_id, lane, scan_id,
@@ -599,46 +614,63 @@ def record_basket(
             ) VALUES (?, ?, ?, ?, ?, ?, ?, 'basket', ?, 'basket', ?, ?, ?, ?, ?,
                       ?, ?, ?, ?, 'screened', ?, ?, ?, ?, ?, ?, 'untouched',
                       ?, ?, 1, ?)
-            ON CONFLICT (theory_id, theory_version, run_mode, lane, kalshi_ticker,
-                         outcome) DO UPDATE SET
-                last_seen_at = excluded.last_seen_at,
-                times_seen = opportunities.times_seen + 1,
-                edge_pts_net = CASE
-                    WHEN opportunities.interpreted_at IS NULL
-                        THEN excluded.edge_pts_net
-                    ELSE opportunities.edge_pts_net
-                END,
-                model_prob =
-                    COALESCE(excluded.model_prob, opportunities.model_prob),
-                edge_pts_gross = COALESCE(excluded.edge_pts_gross,
-                                          opportunities.edge_pts_gross),
-                fee_pts = COALESCE(excluded.fee_pts, opportunities.fee_pts),
-                confidence =
-                    COALESCE(excluded.confidence, opportunities.confidence),
-                rationale =
-                    COALESCE(excluded.rationale, opportunities.rationale),
-                suggested_size = COALESCE(excluded.suggested_size,
-                                          opportunities.suggested_size)
+            ON CONFLICT (theory_id, theory_version, run_mode, lane,
+                         kalshi_ticker, outcome) DO NOTHING
+            RETURNING id
             """,
             (
-                theory_id, theory_version, run_mode, resolved_run_id, resolved_lane, scan_id,
-                header_ticker, cost, len(norm), max_payout, min_payout,
-                model_prob, edge_pts_gross, fee_pts, edge_pts_net,
+                theory_id, theory_version, run_mode, resolved_run_id, lane,
+                scan_id, header_ticker, cost, len(norm), max_payout,
+                min_payout, model_prob, edge_pts_gross, fee_pts, edge_pts_net,
                 edge_pts_net, edge_basis, confidence,
                 1 if judged_blind else (0 if judged_blind is not None else None),
                 rationale, suggested_size, evidence_source,
                 evidence_market_id, stamp, stamp, extra_json,
             ),
-        )
-
-        row = conn.execute(
-            """
-            SELECT id, times_seen FROM opportunities
-            WHERE theory_id = ? AND theory_version = ? AND run_mode = ? AND lane = ?
-              AND kalshi_ticker = ? AND outcome = 'basket'
-            """,
-            (theory_id, theory_version, run_mode, resolved_lane, header_ticker),
         ).fetchone()
+
+        if created is not None:
+            opportunity_id = created["id"]
+        else:
+            # A re-sighting. entry_price (the header's frozen cost),
+            # first_seen_at, run_id and screen_edge_pts_net are deliberately
+            # absent from this UPDATE, for the same reason record_opportunity
+            # leaves them alone: they record the first sighting and must not
+            # drift. times_seen is not bumped here either -- it is
+            # recomputed below by _record_attempt from the distinct attempts
+            # on file, so two runs re-proposing this basket on the same day
+            # count once, not twice.
+            conn.execute(
+                """
+                UPDATE opportunities SET
+                    last_seen_at = ?,
+                    edge_pts_net = CASE
+                        WHEN interpreted_at IS NULL THEN ?
+                        ELSE edge_pts_net
+                    END,
+                    model_prob = COALESCE(?, model_prob),
+                    edge_pts_gross = COALESCE(?, edge_pts_gross),
+                    fee_pts = COALESCE(?, fee_pts),
+                    confidence = COALESCE(?, confidence),
+                    rationale = COALESCE(?, rationale),
+                    suggested_size = COALESCE(?, suggested_size)
+                WHERE theory_id = ? AND theory_version = ? AND run_mode = ?
+                  AND lane = ? AND kalshi_ticker = ? AND outcome = 'basket'
+                """,
+                (
+                    stamp, edge_pts_net, model_prob, edge_pts_gross, fee_pts,
+                    confidence, rationale, suggested_size,
+                    theory_id, theory_version, run_mode, lane, header_ticker,
+                ),
+            )
+            opportunity_id = conn.execute(
+                """
+                SELECT id FROM opportunities
+                WHERE theory_id = ? AND theory_version = ? AND run_mode = ?
+                  AND lane = ? AND kalshi_ticker = ? AND outcome = 'basket'
+                """,
+                (theory_id, theory_version, run_mode, lane, header_ticker),
+            ).fetchone()["id"]
 
         # The leg set is identical across every sighting by construction --
         # `header_ticker` is a hash of (ticker, outcome) pairs, so a
@@ -663,14 +695,21 @@ def record_basket(
                 volume_at_call = excluded.volume_at_call
             """,
             [
-                (row["id"], i, leg["kalshi_ticker"], leg["outcome"],
+                (opportunity_id, i, leg["kalshi_ticker"], leg["outcome"],
                  leg["entry_price"], leg["spread_at_call"],
                  leg["volume_at_call"])
                 for i, leg in enumerate(norm)
             ],
         )
 
-    return row["id"], row["times_seen"] == 1
+        # The basket's attempt entry_price is its total cost -- the header
+        # row's entry_price -- not any individual leg's price.
+        _record_attempt(
+            conn, opportunity_id, day, resolved_run_id, stamp, cost,
+            edge_pts_net, confidence, judged_blind,
+        )
+
+    return opportunity_id, created is not None
 
 
 def get_legs(
