@@ -142,7 +142,8 @@ def _cmd_opportunities(args) -> int:
         elif args.action == "mark-taken":
             ledger.mark_user_action(
                 conn, args.id, args.value, size=args.size,
-                reason=args.reason,
+                reason=args.reason, theory_id=args.mark_theory,
+                price=args.price,
             )
             _emit(dict(ledger.get_opportunity(conn, args.id)))
     finally:
@@ -351,6 +352,14 @@ def build_parser() -> argparse.ArgumentParser:
     mark.add_argument("value", choices=ledger.VALID_USER_ACTIONS)
     mark.add_argument("--size", type=float, default=None)
     mark.add_argument("--reason", default=None)
+    mark.add_argument(
+        "--theory", dest="mark_theory", default=None,
+        help="theory this bet is taken for; required for 'taken'",
+    )
+    mark.add_argument(
+        "--price", type=float, default=None,
+        help="what you actually paid; defaults to the proposed ask",
+    )
 
     p = sub.add_parser("score", help="calibration and settlement")
     p.set_defaults(func=_cmd_score)

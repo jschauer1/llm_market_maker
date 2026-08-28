@@ -231,7 +231,7 @@ def _riskless_pair(conn):
         conn, theory_id="t1", theory_version=1, legs=untouched_legs,
         min_payout=1.0, max_payout=2.0, edge_pts_net=4.0,
         edge_basis="model", now=TS)
-    ledger.mark_user_action(conn, taken_id, "taken", size=10)
+    ledger.mark_user_action(conn, taken_id, "taken", size=10, theory_id="t1")
 
     # Leg 1 of each basket settles "yes" (matches its "yes" outcome, wins);
     # leg 2 settles "yes" too, which misses its "no" outcome and loses. Each
@@ -298,7 +298,7 @@ def test_roi_taken_excludes_an_untaken_riskless_position_pooled_with_a_bet(
     bet_id, _ = ledger.record_opportunity(
         conn, theory_id="t1", theory_version=1, kalshi_ticker="KXBET-26",
         outcome="yes", entry_price=0.50, edge_pts_net=6.0, now=TS)
-    ledger.mark_user_action(conn, bet_id, "taken", size=10)
+    ledger.mark_user_action(conn, bet_id, "taken", size=10, theory_id="t1")
     _settle(conn, [("KXBET-26", "yes")])  # the single position wins
 
     taken_cost, untouched_cost = _riskless_pair(conn)

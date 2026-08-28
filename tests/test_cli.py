@@ -247,6 +247,7 @@ def test_opportunities_mark_taken_persists_action_size_and_reason(
     code, payload = _run(
         capsys, "--db", dbpath, "opportunities", "mark-taken", str(opp_id),
         "taken", "--size", "25", "--reason", "reality TV markets are soft",
+        "--theory", "t1",
     )
     assert code == 0
     assert payload["user_action"] == "taken"

@@ -177,7 +177,7 @@ def test_roi_taken_only_counts_taken_bets(conn):
     _bet(conn, "B", 0.50, 6.0)
     score.record_settlement(conn, "A", "yes")
     score.record_settlement(conn, "B", "no")
-    ledger.mark_user_action(conn, winner, "taken", size=10.0)
+    ledger.mark_user_action(conn, winner, "taken", size=10.0, theory_id="t1")
 
     result = score.compute_score(conn, "t1", 1)
     assert result["roi_all"] < result["roi_taken"]

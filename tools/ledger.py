@@ -904,8 +904,22 @@ def mark_user_action(
     action: str,
     size: float | None = None,
     reason: str | None = None,
+    *,
+    theory_id: str | None = None,
+    price: float | None = None,
+    filled_on: str | None = None,
+    now: str | None = None,
 ) -> None:
-    """Record what the user actually did (spec sections 6 and 7).
+    """Record what the user actually did with a bet.
+
+    Taking names the theory it is taken for. Two theories proposing one
+    market are two forecasts and one bet: both stay graded on calibration,
+    but only the named one books the money, so `roi_taken` counts a single
+    purchase once.
+
+    A take appends a fill rather than overwriting, so scaling into a
+    position keeps both entries. `user_action` and `user_size` on the
+    position are maintained rollups of the fills.
 
     The reason matters: divergence between what the system endorsed and what
     the user bet is usually an unencoded heuristic, and those get mined into
@@ -915,14 +929,80 @@ def mark_user_action(
         raise ValueError(
             f"invalid action {action!r}; expected one of {VALID_USER_ACTIONS}"
         )
-    if get_opportunity(conn, opportunity_id) is None:
+    row = get_opportunity(conn, opportunity_id)
+    if row is None:
         raise KeyError(opportunity_id)
+
+    stamp = now or utcnow()
+
+    if action == "taken":
+        if not theory_id:
+            raise ValueError(
+                "taking a bet must name the theory it is taken for: pass "
+                "--theory. Two theories can propose one market, and only "
+                "the named one books the money."
+            )
+        if theory_id != row["theory_id"]:
+            raise ValueError(
+                f"opportunity {opportunity_id} belongs to "
+                f"{row['theory_id']!r}, not {theory_id!r}"
+            )
+        holder = conn.execute(
+            """
+            SELECT id, theory_id FROM opportunities
+            WHERE kalshi_ticker = ? AND outcome = ? AND user_action = 'taken'
+              AND id != ?
+            """,
+            (row["kalshi_ticker"], row["outcome"], opportunity_id),
+        ).fetchone()
+        if holder is not None:
+            raise ValueError(
+                f"{row['kalshi_ticker']} {row['outcome']} is already taken "
+                f"under theory {holder['theory_id']!r} (opportunity "
+                f"{holder['id']}). One real position, one theory credited -- "
+                f"unmark that one first if the attribution is wrong."
+            )
+        if size is None:
+            raise ValueError("taking a bet requires --size")
+
     with write(conn):
+        if action == "taken":
+            conn.execute(
+                """
+                INSERT INTO opportunity_fills (
+                    opportunity_id, filled_on, size, price, reason,
+                    recorded_at
+                ) VALUES (?, ?, ?, ?, ?, ?)
+                """,
+                (opportunity_id, filled_on or stamp[:10], size, price,
+                 reason, stamp),
+            )
+        else:
+            # Skipping or unmarking retires the money record: a position the
+            # user is no longer in has no fills.
+            conn.execute(
+                "DELETE FROM opportunity_fills WHERE opportunity_id = ?",
+                (opportunity_id,),
+            )
         conn.execute(
             """
-            UPDATE opportunities
-            SET user_action = ?, user_size = ?, user_reason = ?
+            UPDATE opportunities SET
+                user_action = ?,
+                user_size = (SELECT SUM(size) FROM opportunity_fills
+                             WHERE opportunity_id = ?),
+                user_reason = COALESCE(?, user_reason)
             WHERE id = ?
             """,
-            (action, size, reason, opportunity_id),
+            (action, opportunity_id, reason, opportunity_id),
         )
+
+
+def fills(conn: sqlite3.Connection, opportunity_id: int) -> list[sqlite3.Row]:
+    """Every recorded purchase of a position, oldest first."""
+    return conn.execute(
+        """
+        SELECT * FROM opportunity_fills WHERE opportunity_id = ?
+        ORDER BY filled_on, id
+        """,
+        (opportunity_id,),
+    ).fetchall()

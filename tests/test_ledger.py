@@ -367,7 +367,8 @@ def test_interpret_rejects_unknown_opportunity(conn):
 def test_mark_user_action_records_a_taken_bet(conn):
     opp_id, _ = _record(conn)
     ledger.mark_user_action(conn, opp_id, "taken", size=25.0,
-                            reason="reality TV markets are soft")
+                            reason="reality TV markets are soft",
+                            theory_id="t1")
     row = ledger.get_opportunity(conn, opp_id)
     assert row["user_action"] == "taken"
     assert row["user_size"] == pytest.approx(25.0)
