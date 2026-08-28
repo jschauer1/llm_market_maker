@@ -7,6 +7,7 @@ from tools import db, ledger, theories
 
 TS = "2026-08-23T12:00:00Z"
 LATER = "2026-08-24T12:00:00Z"
+EVEN_LATER = "2026-08-25T12:00:00Z"
 
 
 @pytest.fixture
@@ -133,11 +134,25 @@ def test_different_theory_version_is_a_different_opportunity(conn):
     assert len(ledger.list_opportunities(conn)) == 2
 
 
-def test_backtest_runs_are_deduped_per_run(conn):
-    _record(conn, run_mode="backtest", run_id="run-a")
-    _record(conn, run_mode="backtest", run_id="run-a")
-    _record(conn, run_mode="backtest", run_id="run-b")
-    assert len(ledger.list_opportunities(conn, run_mode="backtest")) == 2
+def test_backtest_runs_dedupe_to_one_position(conn):
+    # Two backtest runs that both propose the same market are one position,
+    # not two -- the old contract (run_id in the UNIQUE key) is exactly the
+    # double-counting defect this position-identity work removes. What
+    # distinguishes the runs now lives in the attempt list, not in a second
+    # opportunities row: re-recording under "run-a" a second time is the
+    # same decision seen again and updates its attempt in place, while
+    # "run-b" is a genuinely different run and adds a second attempt.
+    id_a, created_a = _record(conn, run_mode="backtest", run_id="run-a")
+    id_again, created_again = _record(conn, run_mode="backtest", run_id="run-a")
+    id_b, created_b = _record(conn, run_mode="backtest", run_id="run-b")
+
+    assert id_a == id_again == id_b
+    assert created_a is True
+    assert created_again is False and created_b is False
+    assert len(ledger.list_opportunities(conn, run_mode="backtest")) == 1
+    assert len(ledger.attempts(conn, id_a)) == 2, (
+        "one attempt per run that proposed it, not one per recording"
+    )
 
 
 def test_missing_kalshi_ticker_is_rejected(conn):
@@ -168,10 +183,13 @@ def test_backtest_cannot_claim_the_live_run_id(conn):
 def test_outcome_case_does_not_create_a_second_row(conn):
     # The dedup key uses SQLite's binary collation but the win predicate
     # compares case-insensitively: three casings would be three rows and
-    # three counted wins for one real bet.
+    # three counted wins for one real bet. Each call lands on its own day so
+    # each is counted as a distinct attempt -- times_seen now counts distinct
+    # (decision_date, run_id) attempts, not raw recordings, so two calls on
+    # the same day under the same run_id would otherwise collapse to one.
     _record(conn, outcome="yes")
     _record(conn, outcome="YES", now=LATER)
-    _record(conn, outcome=" Yes ", now=LATER)
+    _record(conn, outcome=" Yes ", now=EVEN_LATER)
 
     rows = ledger.list_opportunities(conn)
     assert len(rows) == 1

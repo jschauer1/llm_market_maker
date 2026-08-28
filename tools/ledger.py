@@ -141,6 +141,90 @@ def _validate_entry_price(entry_price: object) -> None:
         )
 
 
+def _record_attempt(
+    conn: sqlite3.Connection,
+    opportunity_id: int,
+    decision_date: str,
+    run_id: str,
+    recorded_at: str,
+    entry_price: float,
+    edge_pts_net: float,
+    confidence: str | None,
+    judged_blind: bool | None,
+) -> None:
+    """Record one proposal of a position, and refresh its attempt count.
+
+    Called inside the caller's `write` block. Re-recording the same decision
+    in the same run updates that attempt rather than adding one, which is
+    what makes two recordings an hour apart count once.
+    """
+    conn.execute(
+        """
+        INSERT INTO opportunity_attempts (
+            opportunity_id, decision_date, run_id, recorded_at,
+            entry_price, edge_pts_net, disposition, confidence, judged_blind
+        ) VALUES (?, ?, ?, ?, ?, ?, 'screened', ?, ?)
+        ON CONFLICT (opportunity_id, decision_date, run_id) DO UPDATE SET
+            recorded_at = excluded.recorded_at,
+            entry_price = excluded.entry_price,
+            edge_pts_net = excluded.edge_pts_net,
+            confidence = COALESCE(excluded.confidence,
+                                  opportunity_attempts.confidence),
+            judged_blind = COALESCE(excluded.judged_blind,
+                                    opportunity_attempts.judged_blind)
+        """,
+        (
+            opportunity_id, decision_date, run_id, recorded_at, entry_price,
+            edge_pts_net, confidence,
+            1 if judged_blind else (0 if judged_blind is not None else None),
+        ),
+    )
+    # times_seen counts distinct attempts, never recordings -- the whole
+    # point of the attempt table is that repetition is counted once per
+    # decision.
+    conn.execute(
+        """
+        UPDATE opportunities SET times_seen =
+            (SELECT COUNT(*) FROM opportunity_attempts
+             WHERE opportunity_id = ?)
+        WHERE id = ?
+        """,
+        (opportunity_id, opportunity_id),
+    )
+
+
+def attempts(
+    conn: sqlite3.Connection, opportunity_id: int
+) -> list[sqlite3.Row]:
+    """Every recorded proposal of a position, oldest first."""
+    return conn.execute(
+        """
+        SELECT * FROM opportunity_attempts WHERE opportunity_id = ?
+        ORDER BY decision_date, recorded_at
+        """,
+        (opportunity_id,),
+    ).fetchall()
+
+
+def attempt_dates(conn: sqlite3.Connection, opportunity_id: int) -> list[str]:
+    """The distinct days a position was proposed, oldest first.
+
+    Derived rather than stored: `len(attempt_dates(...))` is the persistence
+    signal, and keeping it beside the attempt table would be two places
+    holding overlapping truth.
+    """
+    return [
+        row["decision_date"]
+        for row in conn.execute(
+            """
+            SELECT DISTINCT decision_date FROM opportunity_attempts
+            WHERE opportunity_id = ? ORDER BY decision_date
+            """,
+            (opportunity_id,),
+        ).fetchall()
+    ]
+
+
 def record_opportunity(
     conn: sqlite3.Connection,
     *,
@@ -166,6 +250,7 @@ def record_opportunity(
     evidence_source: str | None = None,
     evidence_market_id: str | None = None,
     extra_json: str | None = None,
+    decision_date: str | None = None,
     now: str | None = None,
 ) -> tuple[int, bool]:
     """Record or refresh an opportunity. Returns (id, was_created)."""
@@ -213,16 +298,18 @@ def record_opportunity(
         outcome = outcome.strip().lower()
 
     resolved_run_id = run_id or LIVE_RUN_ID
-    resolved_lane = lane_for(run_id)
     stamp = now or utcnow()
+    lane = lane_for(resolved_run_id)
+    # The as-of day of the decision, not the wall-clock recording time. Two
+    # runs an hour apart replaying the same day are one decision.
+    day = decision_date or stamp[:10]
 
-    # One atomic statement: a SELECT-then-INSERT pair would let a concurrent
-    # writer slip between them and turn a re-sighting into an IntegrityError.
-    # The DO UPDATE clause deliberately leaves entry_price, first_seen_at and
-    # screen_edge_pts_net alone — those record the first sighting and must
-    # not drift.
     with write(conn):
-        conn.execute(
+        # INSERT ... DO NOTHING RETURNING is an atomic creation test: no
+        # SELECT-then-INSERT window for a concurrent writer to slip through,
+        # and an unambiguous answer to "was this the first sighting" that
+        # does not depend on reading a counter back.
+        created = conn.execute(
             """
             INSERT INTO opportunities (
                 theory_id, theory_version, run_mode, run_id, lane, scan_id,
@@ -236,81 +323,79 @@ def record_opportunity(
                 extra_json
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
                       'screened', ?, ?, ?, ?, ?, ?, 'untouched', ?, ?, 1, ?)
-            ON CONFLICT (theory_id, theory_version, run_mode, lane, kalshi_ticker,
-                         outcome) DO UPDATE SET
-                last_seen_at = excluded.last_seen_at,
-                times_seen = opportunities.times_seen + 1,
-                -- Once research has spoken, it supersedes the mechanical
-                -- screen: screen_edge_pts_net already preserves the original
-                -- screen claim, and there is deliberately no column for
-                -- "latest screen value" — the interpretation is the current
-                -- best estimate, which is precisely what edge_pts_net means.
-                -- So a re-sighting only refreshes edge_pts_net from the new
-                -- screen while the row is still uninterpreted; once
-                -- interpreted_at is set, the researched value stands.
-                edge_pts_net = CASE
-                    WHEN opportunities.interpreted_at IS NULL
-                        THEN excluded.edge_pts_net
-                    ELSE opportunities.edge_pts_net
-                END,
-                model_prob =
-                    COALESCE(excluded.model_prob, opportunities.model_prob),
-                edge_pts_gross = COALESCE(excluded.edge_pts_gross,
-                                          opportunities.edge_pts_gross),
-                fee_pts = COALESCE(excluded.fee_pts, opportunities.fee_pts),
-                spread_at_call = COALESCE(excluded.spread_at_call,
-                                          opportunities.spread_at_call),
-                volume_at_call = COALESCE(excluded.volume_at_call,
-                                          opportunities.volume_at_call),
-                confidence =
-                    COALESCE(excluded.confidence, opportunities.confidence),
-                rationale =
-                    COALESCE(excluded.rationale, opportunities.rationale),
-                suggested_size = COALESCE(excluded.suggested_size,
-                                          opportunities.suggested_size)
+            ON CONFLICT (theory_id, theory_version, run_mode, lane,
+                         kalshi_ticker, outcome) DO NOTHING
+            RETURNING id
             """,
             (
-                theory_id,
-                theory_version,
-                run_mode,
-                resolved_run_id,
-                resolved_lane,
-                scan_id,
-                kalshi_ticker,
-                outcome,
-                entry_price,
-                spread_at_call,
-                volume_at_call,
-                model_prob,
-                edge_pts_gross,
-                fee_pts,
-                edge_pts_net,
-                edge_pts_net,
-                edge_basis,
-                confidence,
+                theory_id, theory_version, run_mode, resolved_run_id, lane,
+                scan_id, kalshi_ticker, outcome, entry_price, spread_at_call,
+                volume_at_call, model_prob, edge_pts_gross, fee_pts,
+                edge_pts_net, edge_pts_net, edge_basis, confidence,
                 1 if judged_blind else (0 if judged_blind is not None else None),
-                rationale,
-                suggested_size,
-                evidence_source,
-                evidence_market_id,
-                stamp,
-                stamp,
-                extra_json,
+                rationale, suggested_size, evidence_source,
+                evidence_market_id, stamp, stamp, extra_json,
             ),
+        ).fetchone()
+
+        if created is not None:
+            opportunity_id = created["id"]
+        else:
+            # A re-sighting. entry_price, first_seen_at, run_id and
+            # screen_edge_pts_net are deliberately absent from this UPDATE:
+            # they record the first sighting and must not drift.
+            #
+            # Once research has spoken, it supersedes the mechanical screen:
+            # screen_edge_pts_net already preserves the original screen
+            # claim, and there is deliberately no column for "latest screen
+            # value" — the interpretation is the current best estimate,
+            # which is precisely what edge_pts_net means. So a re-sighting
+            # only refreshes edge_pts_net from the new screen while the row
+            # is still uninterpreted; once interpreted_at is set, the
+            # researched value stands.
+            conn.execute(
+                """
+                UPDATE opportunities SET
+                    last_seen_at = ?,
+                    edge_pts_net = CASE
+                        WHEN interpreted_at IS NULL THEN ?
+                        ELSE edge_pts_net
+                    END,
+                    model_prob = COALESCE(?, model_prob),
+                    edge_pts_gross = COALESCE(?, edge_pts_gross),
+                    fee_pts = COALESCE(?, fee_pts),
+                    spread_at_call = COALESCE(?, spread_at_call),
+                    volume_at_call = COALESCE(?, volume_at_call),
+                    confidence = COALESCE(?, confidence),
+                    rationale = COALESCE(?, rationale),
+                    suggested_size = COALESCE(?, suggested_size)
+                WHERE theory_id = ? AND theory_version = ? AND run_mode = ?
+                  AND lane = ? AND kalshi_ticker = ? AND outcome = ?
+                """,
+                (
+                    stamp, edge_pts_net, model_prob, edge_pts_gross, fee_pts,
+                    spread_at_call, volume_at_call, confidence, rationale,
+                    suggested_size,
+                    theory_id, theory_version, run_mode, lane,
+                    kalshi_ticker, outcome,
+                ),
+            )
+            opportunity_id = conn.execute(
+                """
+                SELECT id FROM opportunities
+                WHERE theory_id = ? AND theory_version = ? AND run_mode = ?
+                  AND lane = ? AND kalshi_ticker = ? AND outcome = ?
+                """,
+                (theory_id, theory_version, run_mode, lane, kalshi_ticker,
+                 outcome),
+            ).fetchone()["id"]
+
+        _record_attempt(
+            conn, opportunity_id, day, resolved_run_id, stamp, entry_price,
+            edge_pts_net, confidence, judged_blind,
         )
 
-    # `times_seen` is the reliable witness: the insert path writes 1, the
-    # update path always increments to at least 2. `cursor.lastrowid` is not
-    # meaningful when the conflict clause fired.
-    row = conn.execute(
-        """
-        SELECT id, times_seen FROM opportunities
-        WHERE theory_id = ? AND theory_version = ? AND run_mode = ? AND lane = ?
-          AND kalshi_ticker = ? AND outcome = ?
-        """,
-        (theory_id, theory_version, run_mode, resolved_lane, kalshi_ticker, outcome),
-    ).fetchone()
-    return row["id"], row["times_seen"] == 1
+    return opportunity_id, created is not None
 
 
 def _normalize_legs(legs: list[dict], max_payout: float) -> list[dict]:
