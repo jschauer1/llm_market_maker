@@ -2339,3 +2339,50 @@ Study: `studies/2026-08-29-series-bias-mining/`. Suite **955** green.
 sweep, then re-run — budgeting for the per-series `list_settled` walk, not
 the candlestick fetches. Pre-register a **power floor** (MDE ≤ 5pts), not a
 count floor, and keep mention_family out of the Holm family.
+
+## 2026-08-29 (cont.) — the ledger is confirmed paper: 8 endorsed, 8 skipped, 0 taken
+
+**Did:** The user confirmed they have **never placed a bet** from this
+system. All eight endorsed positions still sitting at
+`user_action='untouched'` are now marked `skipped` with that reason:
+
+| id | market | side | ask | recommended | outcome |
+|---|---|---|---|---|---|
+| 187 | `KXVIDEOLENGTH-26AUG27-GTA-10` | yes | 0.93 | 08-24 | won |
+| 188 | `KXVIDEOLENGTH-26AUG27-GTA-15` | yes | 0.87 | 08-24 | won |
+| 192 | `KXBIGBROTHERELIMINATION-26AUG27-DRE` | no | 0.82 | 08-24 | won |
+| 9134 | `KXBIGBROTHERELIMINATION-26AUG27-TAY` | no | 0.65 | 08-27 | won |
+| 9140 | `KXCANUSDEAL-26-26SEP01` | no | 0.97 | 08-27 | open |
+| 9204 | `KXNEWDRUGAPPNTLA-LONV-26SEP01` | no | 0.88 | 08-27 | open |
+| 9238 | `KXVIDEOLENGTH-26AUG27-GTA-30` | no | 0.85 | 08-27 | won |
+| 9239 | `KXVIDEOLENGTH-26AUG27-GTA-45` | no | 0.94 | 08-27 | won |
+
+**Learned:**
+
+1. **`roi_taken: null` now means something different, and the difference
+   matters.** Until today it meant *unknown* — nobody had told the system
+   either way. It now means **confirmed zero**: the user has placed no
+   bets, ever. The `user_action='skipped'` on all eight rows is what
+   carries that distinction; a future session must not read the null as a
+   missing-data problem to chase.
+2. **Every performance number in this repo is hypothetical, without
+   exception.** `roi_all` assumes every suggestion was taken. Six
+   endorsed positions settled as winners this session and **none of them
+   was money**. That was always true and is now recorded rather than
+   implied.
+3. **The endorsed-vs-taken divergence signal `compare-theories` mines is
+   uniform and therefore empty**: 8 endorsed, 8 skipped, 0 taken. There
+   is no divergence to learn from yet, and there will not be until a bet
+   is actually placed. Worth knowing before anyone builds analysis on top
+   of that channel.
+4. **Stop asking for `mark-taken` on a settled backlog.** The standing
+   ask in every report was addressed to a queue that no longer exists.
+   The right ask from here is narrower: *when a new position is endorsed,
+   say whether you took it* — not a recurring request to reconcile
+   history.
+
+Note also that `score report insider_judgment` now returns `n=0`: the
+registry is at v4 (bumped today) and every settled row is v2 or v3. That
+is version segmentation working as designed, not data loss — v2 holds 15
+settled rows, v3 holds 96. Score a specific version explicitly with
+`score.compute_score(conn, 'insider_judgment', 3, run_mode='live')`.
