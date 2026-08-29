@@ -2977,3 +2977,23 @@ prior comes from a stated structural assumption, never a felt sense. No rule
 removed, no hedge dropped; enforcement already existed in code (Verdict has
 no numeric field; `buckets.py`; `edge_basis`). Spec updated; no open
 questions remain in it.
+
+---
+
+## 2026-08-29 — RULING: task-time rules get one home — their skill, not CLAUDE.md
+
+**RULING (user, direct — backfill into `rulings` when §3.3 ships):** The
+enforcing-surfaces spec's §7 changes from duplicate-and-test to
+**single-home relocation**: the ten owned task-time rules (web-search-off,
+structural-gate conditions, tier-claim recording; judge-blind,
+buckets-from-deep-stage, batch-and-dedupe; facts-are-data,
+search-the-registry, revisit-angle; notes/theory/log split) **move** out of
+`CLAUDE.md` into the skills that own their activities, so `CLAUDE.md` reads
+as a non-diluted cardinal core plus a skill map. Constitutional and
+enforced tiers stay in full; the three unowned rules stay (nowhere to go);
+rule 18's tier definitions stay constitutional with only a reading
+explainer in score-theories. Safety mechanics are part of the ruling: every
+move is atomic (removal and skill-landing in one commit, content-neutral by
+diff) and a manifest conventions test holds each moved rule in exactly its
+owning skill. Approval is scoped to exactly these ten; anything further
+needs fresh approval. Spec §0/§7/§9/§10/§11 rewritten accordingly.

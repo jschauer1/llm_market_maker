@@ -2,15 +2,15 @@
 
 Two halves. **§1–6** give an enforcing surface to five norms `CLAUDE.md`
 states but nothing checks. **§7** addresses the other ~30 rules, which are
-fine as written and simply arrive at the wrong moment — by loading them where
-they bind, deleting none of them.
+fine as written and simply arrive at the wrong moment — by moving each to
+where it binds, losing none of them.
 
 **Date:** 2026-08-29. **Status:** design proposed, implementation not started.
-Reviewed and corrected against the live repo and DB the same day; six
+Reviewed and corrected against the live repo and DB the same day; seven
 rulings were issued directly by the user during that review — §6.5's two,
-the §4.3 no, the §5.2 phase-1 relocation, the §5.3 force floor, and §7.7's
-division-of-labour reframing (performed). No questions remain open in this
-document.
+the §4.3 no, the §5.2 phase-1 relocation, the §5.3 force floor, §7.7's
+division-of-labour reframing (performed), and §7.2's single-home relocation
+of the task-time rules. No questions remain open in this document.
 **Scope:** `tools/` + `db/schema.sql` + ~370 net new words in `CLAUDE.md`,
 substantial additions to five skills, plus a one-time migration of
 `RESEARCH_LOG.md` (§6).
@@ -36,11 +36,11 @@ So this spec adopts a hard budget and honours the repo's own construction rule
 
 | Constraint | Value |
 |---|---|
-| Net new words in `CLAUDE.md` | **≤ 370** (5.8% of the current 6,388) |
+| Net new words in `CLAUDE.md` | additions capped at **≤ 370**; with §7's relocation the *net* change is expected to be negative |
 | New top-level `CLAUDE.md` sections | **0** — every edit lands inside an existing section |
-| Rules **removed** from `CLAUDE.md` | **0** — and removal needs per-rule user approval (§7.7) |
+| Rules **removed** from `CLAUDE.md` | **the ten owned task-time rules** — moved, never lost: user-approved 2026-08-29 (§7.7), each enumerated in the same commit that lands it in its owning skill |
 | New doctrine | **1** — §7.5's skill-invocation rule, flagged as such |
-| Deletions offsetting the additions | 2 (§3.4, §6.7) — both rewrites in place, no rule lost |
+| Deletions offsetting the additions | 2 rewrites in place (§3.4, §6.7) plus §7.3's ten relocations — no rule lost anywhere |
 
 For §1–6 the unifying observation is that **every defect is a norm `CLAUDE.md`
 already states, which has no surface that makes omitting it impossible.** The
@@ -54,8 +54,8 @@ an agent to believe anything new; each item takes a sentence that is already
 law and gives it a table, a refusal, or a test.
 
 §7 is the one place this spec adds doctrine rather than enforcement, and it
-does so to make the *existing* rules land at the right moment. It removes
-nothing.
+does so to make the *existing* rules land at the right moment. It moves ten
+rules to the skills that own them and loses none (§7.2).
 
 ---
 
@@ -466,13 +466,14 @@ CREATE TABLE rulings (
 ```
 
 `log_entry` points back at the narrative; the log keeps the reasoning, the row
-carries the binding text. Backfill is the ten rulings currently on record —
-the four in the log tail (attempt-level scoring, cluster-`n` schema, the
-`bucket_rates` carve-out, the blocked skill edits) plus the six the user
+carries the binding text. Backfill is the eleven rulings currently on record
+— the four in the log tail (attempt-level scoring, cluster-`n` schema, the
+`bucket_rates` carve-out, the blocked skill edits) plus the seven the user
 issued 2026-08-29 during this spec's review: §6.5's two (migrate the log;
 adopt the promotion bar), the §4.3 paper-lane no, the §5.2 phase-1
-relocation choice, the §5.3 force floor, and §7.7's division-of-labour
-reframing — a ten-minute job that is the whole payoff.
+relocation choice, the §5.3 force floor, §7.7's division-of-labour
+reframing, and §7.2's single-home relocation — a ten-minute job that is the
+whole payoff.
 
 ### 3.4 `CLAUDE.md` edit (net ≈ 0 words, inside "Data conventions")
 
@@ -966,7 +967,7 @@ clean.
 
 ---
 
-## 7. Rule delivery: load the rule where it binds, delete nothing
+## 7. Rule delivery: each rule lives where it binds, and none is lost
 
 ### 7.1 The problem, stated correctly
 
@@ -984,19 +985,36 @@ that will backtest reaches the moment it binds.
 So the target is not a shorter file. It is: **every rule is in front of the
 model at the moment it is about to violate it.**
 
-### 7.2 The principle: relocation, never deletion
+### 7.2 The principle: one home per rule — **ruled by the user, 2026-08-29**
 
 These rules are hard-won. Most exist because something went wrong once, and
-the hedges inside them are scar tissue from specific misreadings. **Nothing in
-this section removes a rule, and no rule leaves `CLAUDE.md` without explicit
-per-rule approval from the user** (§7.7).
+the hedges inside them are scar tissue from specific misreadings. **No rule
+is ever lost** — but this section's earlier draft chose duplication
+(`CLAUDE.md` *and* the skill, held identical by a test), and the user
+rejected that for the dilution it preserves: `CLAUDE.md` should carry a
+non-diluted cardinal core, and a task-time rule should live in exactly one
+place — the skill that owns its activity.
 
-That flips the earlier framing in this spec's own out-of-scope list. The
-question is not "what can be cut to raise rule density" — it is "what can be
-*additionally delivered* at the point of use." **Duplication is acceptable and
-often correct here**: a rule may live in `CLAUDE.md` *and* be restated inside
-the skill that owns the activity. The redundancy costs tokens; a rule that
-fails to bind costs a contaminated track record. That trade is not close.
+So the ruling: **the owned task-time rules move, they are not copied.**
+`CLAUDE.md` keeps the enforced and constitutional tiers in full plus §7.5's
+skill map, and sheds the task-time text. Two mechanics make removal safe
+rather than brave:
+
+- **Atomicity.** A rule leaves `CLAUDE.md` only in the same commit that
+  lands it in its owning skill. At every commit in history, every rule has
+  exactly one authoritative home; there is never a window where a rule
+  exists nowhere.
+- **The single-home test** (§7.6). A conventions test holds the manifest:
+  every moved rule is present in its owning skill, and `CLAUDE.md`'s skill
+  map names every skill that carries rules. A silently dropped rule fails
+  the suite at the commit that dropped it.
+
+The known risk is stated, not hidden: skills load on invocation and
+`CLAUDE.md` is guaranteed, so a session that skips its skill never sees the
+moved rules. §7.4's test is what bounds that risk — anything whose
+violation outside the skill would be a disaster stays constitutional — and
+§7.5's invocation rule, now genuinely load-bearing, is the enforcement
+that skills actually open.
 
 ### 7.3 Three tiers, by how a rule binds
 
@@ -1004,7 +1022,7 @@ fails to bind costs a contaminated track record. That trade is not close.
 |---|---|---|
 | **Enforced** (13) | code refuses or a test fails | `CLAUDE.md` keeps the rule; the *argument* may move. The enforcement already teaches it |
 | **Constitutional** (~9) | unenforceable, always binding, disaster if violated unaware | `CLAUDE.md`, in full, with worked examples — untouched |
-| **Task-time** (~15) | unenforceable, binds during one activity | `CLAUDE.md` **and** the owning skill, quoted verbatim (§7.6) |
+| **Task-time** (~15) | unenforceable, binds during one activity | **the owning skill, in full — moved there, not copied** (§7.2 ruling); `CLAUDE.md` keeps only §7.5's map |
 
 **Enforced:** 1 ticker, 2 provenance, 5 basket, 6 arb-scoring, 9 Verdict,
 16 retirement, 21 `finish()`, 22 sibling imports, 23 contract, 26 prompts on
@@ -1026,10 +1044,16 @@ engine, 31 SQLite is truth, 33 ranking formula.
 | (none yet) | 24 elevate at 2+ callers, 29 raw payloads, 30 record incrementally |
 
 Skill text lives at `.claude/skills/<name>/SKILL.md`; all six named skills
-exist there today. The three rules with no owning skill are **not** relocated
-and get no new skill invented for them — they stay delivered by `CLAUDE.md`
-alone until an activity-owning skill exists, and that is the complete
-disposition of that row.
+exist there today. **The removal scope is exactly the ten owned rules** (13,
+19, 20; 10, 11, 12; 17, 35, 36; 32). Two carve-outs, both already implied by
+the classification: the three rules with no owning skill (24, 29, 30) stay
+in `CLAUDE.md` — nowhere to move, no new skill invented for them — and
+`score-theories`' row is an *explainer* of rule 18, whose text stays
+constitutional; nothing is removed for it. Where a moved rule is embedded in
+a `CLAUDE.md` narrative that survives (19's five conditions sit inside the
+Backtest tiers story), the removal leaves the section coherent with one
+pointer sentence — the sentence is a pointer, never a paraphrase of the
+moved rule.
 
 ### 7.4 The test that decides constitutional vs task-time
 
@@ -1066,39 +1090,50 @@ This is the only new doctrine in this spec — the one §0's budget table
 allocates. It is also load-bearing: without it, §7.3 moves rules into
 documents that may never open.
 
-### 7.6 Anti-drift: quoted blocks, checked by a test
+### 7.6 The single-home test: a manifest, checked by a test
 
-Duplication's failure mode is divergence — two copies of a rule that no longer
-say the same thing, with nothing to say which governs.
+With one home per rule, drift between copies is impossible — the failure
+modes that remain are a rule silently dropped during its move, and a rule
+quietly edited under cover of relocation. Both get the same treatment.
 
-So a task-time rule restated in a skill is **quoted, not paraphrased**, inside
-a marked block naming its `CLAUDE.md` anchor:
+A moved rule lands in its skill **verbatim from `ff4318a`'s `CLAUDE.md`
+text**, inside a marked block naming its origin:
 
 ```markdown
-<!-- rule: structural-gate-conditions (CLAUDE.md § Backtest tiers) -->
+<!-- rule: structural-gate-conditions (moved from CLAUDE.md § Backtest tiers, 2026-08-29) -->
 > A judging stage is structural — and does not cost tier A — only when all
 > of the following hold...
 <!-- /rule -->
 ```
 
+Changing a moved rule's *content* after the move is a normal governance act
+— it just happens in the skill now, reviewed in `git diff` like any prompt
+change. The move itself must be content-neutral, which the commit diff
+shows by construction: text deleted here, identical text added there.
+
 New in `tests/test_conventions.py`, in the idiom of
-`test_every_recorded_prompt_path_still_resolves`:
+`test_every_recorded_prompt_path_still_resolves`, over a manifest of the
+ten moved slugs and their owners:
 
 ```python
-def test_every_quoted_rule_matches_its_source():
-    """A skill that quotes a CLAUDE.md rule must quote it exactly. Two
-    copies that disagree are worse than one copy nobody read: nothing
-    says which governs. Fails at the commit that forks them."""
+def test_every_moved_rule_lives_in_its_owning_skill():
+    """Each relocated rule has exactly one home: its marked block exists
+    in the owning skill, and CLAUDE.md's skill map still names that
+    skill. A rule dropped in a move fails at the dropping commit."""
 ```
 
-That makes duplication safe, which is what lets §7.2 prefer it.
+That makes removal safe, which is what lets §7.2 prefer a non-diluted
+`CLAUDE.md` over duplication.
 
 ### 7.7 What requires explicit approval
 
-- **Removing any rule from `CLAUDE.md`** — per rule, from the user, never in
-  bulk and never as a side effect of relocation. The default outcome of this
-  section is that `CLAUDE.md` gets *slightly longer* (§7.5's rule) and the
-  skills get substantially longer.
+- **Removing any rule from `CLAUDE.md`** — per rule, from the user, never as
+  a side effect. **Granted 2026-08-29 for exactly the ten owned task-time
+  rules enumerated in §7.3**, the user's stated aim being a non-diluted
+  cardinal core; each implementing commit still lists the rules it moves, so
+  the approval stays auditable per rule. Any removal beyond those ten —
+  constitutional, enforced, or the three unowned — needs fresh approval;
+  nothing here is a precedent for it.
 - **Consolidating the prefer-mechanical argument — approved and performed,
   2026-08-29, with a reframing the user required.** The user rejected the
   old "prefer statistics / mechanical-first" framing and recentred the rule
@@ -1115,10 +1150,12 @@ That makes duplication safe, which is what lets §7.2 prefer it.
   the code enforces.
 - **Any change to the `Subset edges` subsection** — session 9a's text (§8).
 
-### 7.8 `CLAUDE.md` edit (≈120 words — §7.5's rule, inside "How the user drives this")
+### 7.8 `CLAUDE.md` edit (≈120 words added — §7.5's rule, inside "How the user drives this")
 
-Net additive. §7.3's relocations add nothing to `CLAUDE.md` and subtract
-nothing from it; only the skills grow.
+The ~120-word skill map is the section's only addition; §7.3's relocations
+then subtract the ten task-time rules, so §7's net effect on `CLAUDE.md` is
+**negative** — the cardinal core, undiluted, plus a map that says where the
+rest went.
 
 ---
 
@@ -1137,10 +1174,11 @@ nothing from it; only the skills grow.
   number exists.
 - **Adjusting credibility for the question budget** (§1.2).
 - **`bucket_rates` clustering** — already carved out by a standing ruling.
-- **Any rewrite of `CLAUDE.md` for length.** The document's size is a
-  deliberate purchase of cross-session consistency. It is not technical debt
-  and this spec does not treat it as such — §7 explicitly removes nothing and
-  expects the file to get slightly *longer*.
+- **Any rewrite of `CLAUDE.md` for length.** The cardinal core's size is a
+  deliberate purchase of cross-session consistency, not technical debt. §7
+  does shrink the file, but as a byproduct of single-home delivery — the
+  motive is undiluted cardinal rules, never a word count, and the
+  constitutional and enforced text is not compressed by so much as a hedge.
 - ~~Consolidating the prefer-mechanical argument~~ — no longer out of scope:
   approved, reframed and performed 2026-08-29 on the user's ruling (§7.7).
 - **The `Subset edges — registered slices` subsection of `CLAUDE.md`**
@@ -1166,8 +1204,8 @@ Each phase is independently shippable and independently useful.
 | 6 | §2 carry/breaking + backfill + `rank`/`segment_report` disclosure | The evidence bleed; largest payoff, needs the disclosure precedent |
 | 7 | §1 question budget + §1.7 slice columns | Needs windows registered, easiest once `state` renders them |
 | 8 | §5.2 phases 2–4: dedup → compress → split | Pure operations once phase 0 has a backup; the design gate (measure the hash-based dedup rate) precedes phase 2 |
-| **A** | §7.5 skill-invocation rule + §7.6 quoted-rule test | **Independent of everything above — ship first if desired.** The rule is worthless until the test makes duplication safe, so they land together |
-| **B** | §7.3 task-time rules quoted into `backtest-theory`, `find-edge`, `propose-theory`, `go`, `score-theories` | One skill per commit, each verified by the §7.6 test. No `CLAUDE.md` change, so it cannot regress the guaranteed layer |
+| **A** | §7.5 skill-invocation rule + §7.6 single-home test + manifest | **Must precede B.** The map and the test are what make removal survivable, so no rule moves before they exist |
+| **B** | §7.3's ten task-time rules moved into `backtest-theory`, `find-edge`, `propose-theory`, `go` (+ the rule-18 explainer in `score-theories`) | One skill per commit; each commit adds the marked blocks to the skill **and removes the same text from `CLAUDE.md` atomically**, enumerating the rules it moves, verified by the §7.6 test |
 | — | §6.5 rulings 1 & 2 (§22 reversal, promotion bar) | **Ruled by the user, 2026-08-29** — migrate, and the bar is adopted. Phases 4–5 now gate only on phases 1–3; the bar still *binds* only once phase 1 ships, per §6.3 |
 | — | §4.3 paper lane | **Ruled NO by the user, 2026-08-29** — nothing ships; §4.2 stands |
 
@@ -1201,29 +1239,35 @@ re-measured 2026-08-29 at review):
   cross-citation names a file that exists *and still contains that date
   heading*. A stub passes; a silent move fails. This is the migration's only
   real safety net, and it must land **before** phase 4.
-- New `test_every_quoted_rule_matches_its_source` (§7.6) — a skill quoting a
-  `CLAUDE.md` rule must quote it exactly; the test fails at the commit that
-  forks the two copies. This is what makes §7.2's deliberate duplication safe,
-  and it must land **with** phase A, not after it.
+- New `test_every_moved_rule_lives_in_its_owning_skill` (§7.6) — each of the
+  ten relocated rules has its marked block in its owning skill and an entry
+  in `CLAUDE.md`'s skill map; a rule dropped in a move fails at the dropping
+  commit. This is what makes §7.2's removal safe, and it must land **with**
+  phase A, before any rule moves.
 
 ## 11. What this spec does not change
 
 The mission, the theory contract, `finish()` as the ledger boundary, the
 credibility formula, the tier definitions, the no-introspected-probability
 rule, the ranking arithmetic, `edge_basis`, the disposition vocabulary, "only
-the user retires a theory", or the size and voice of `CLAUDE.md`.
+the user retires a theory", or the voice of `CLAUDE.md` (its size now shrinks
+by design — §7.2).
 
 `RESEARCH_LOG.md` in particular **stays append-only and stays the audit
 trail**. §6 moves content out of it and leaves a stub at every anchor; it does
 not compress it, rewrite it, delete from it, or cap its growth. A journal is
 supposed to grow. The change is that the canon stops living inside it.
 
-**And no rule is removed from `CLAUDE.md`.** §7 relocates *delivery*, never
-authority: a task-time rule is restated in the skill that owns the activity
-*in addition to* remaining where it is, held identical by a test. Every rule in
-that file was paid for by something going wrong once; none of them is cut here,
-and cutting one later needs the user's approval, per rule (§7.7).
+**And no rule is lost.** §7 moves the ten owned task-time rules into the
+skills that own their activities — with the user's explicit approval, each
+move atomic and content-neutral, each rule's single home held by a test —
+and `CLAUDE.md` keeps the enforced and constitutional tiers in full plus the
+map that says where the rest went. Every rule in that file was paid for by
+something going wrong once; every one still exists, in exactly one place,
+and removing anything beyond those ten needs fresh approval, per rule
+(§7.7).
 
-Five sentences the document already contains get a table, a refusal and a test.
-One rule is added, so the other thirty arrive when they matter. That is the
-whole change.
+Five sentences the document already contains get a table, a refusal and a
+test. One rule is added and ten are moved to where they bind, so the
+cardinal core reads undiluted and the rest arrives when it matters. That is
+the whole change.
