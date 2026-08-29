@@ -283,6 +283,28 @@ def test_quotes_returns_empty_for_no_tickers(monkeypatch):
     assert markets.quotes([]) == {}
 
 
+def test_quotes_chunks_large_ticker_lists(monkeypatch):
+    # Kalshi answers /markets?tickers=... with 414 once the URL grows past
+    # its limit, which a settle pass hits as soon as the ledger holds a few
+    # hundred unsettled tickers. quotes() must chunk rather than make the
+    # caller do it.
+    calls = []
+
+    def fake_get(url, params=None, **kwargs):
+        asked = (params or {})["tickers"].split(",")
+        calls.append(asked)
+        return {"markets": [dict(RAW, ticker=t) for t in asked]}
+
+    monkeypatch.setattr(markets, "get_json", fake_get)
+    tickers = [f"T{i:04d}" for i in range(250)]
+    result = markets.quotes(tickers)
+
+    assert set(result) == set(tickers)
+    assert len(calls) > 1, "expected more than one request for 250 tickers"
+    assert all(len(c) <= markets.QUOTE_CHUNK for c in calls)
+    assert [t for c in calls for t in c] == tickers
+
+
 @pytest.mark.network
 def test_live_open_markets_have_expected_shape():
     # list_open takes no cap: it always pages to exhaustion (~60 requests

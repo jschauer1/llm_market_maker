@@ -91,3 +91,34 @@ within-day clustering problem in miniature, one level below the day level.
 **Next look:** when `n_days` reaches ~8 for either cell, not when `n` does.
 `python -m tools.cli score report no_side_premium` now prints
 `settlement_days` with `n_days` and the clustered SE.
+
+## 2026-08-29 — cell B at n=35 / n_days=2: the day amendment earns its keep again
+
+Live run `live-2026-08-29`: population 748 → **17 cell A (screened) + 56
+cell B (rejected)** = 73 rows recorded at fresh asks. Cell A is no longer
+a single event's strike ladder, which was the 2026-08-26 worry.
+
+The settle pass added 95 settlements repo-wide and cell B now has **35
+settled rows**. Read naively that is `calibration_edge_net = −12.17`,
+which "confirms" the −3.9 avoid claim. **It does not, and the amendment is
+why.** Day-clustered: `n_days = 2`, net **−7.78 ± 22.0**.
+
+The two days disagree completely:
+
+| settlement day | n | win rate | implied | net edge |
+|---|---|---|---|---|
+| 2026-08-27 | 14 | 1.000 | 0.849 | **+14.18** |
+| 2026-08-28 | 21 | 0.571 | 0.860 | **−29.74** |
+
+That is the same population swinging 44 points between two consecutive
+close-days. The 2026-08-27 note recorded cell B's first 12 settlements as
++14.59 net on one day and refused to read it; the row count has since
+tripled and the sign has flipped, which is exactly what the clustering
+study predicted a row-counted sample would do. Had the pre-registration
+been left at "n ≥ 60 rows" the theory would now be claiming confirmation
+of an effect it has measured for two days.
+
+Bars unchanged and both still far off: cell B needs `n ≥ 60` **and**
+`n_days ≥ 8`; cell A has 0 settled (its rows close 08-31 onward).
+Status stays `testing`; nothing here is recommendable — `edge_basis` is
+`prior` on every row by design.

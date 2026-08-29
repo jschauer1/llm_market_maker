@@ -292,9 +292,20 @@ def list_settled(
     return out
 
 
+QUOTE_CHUNK = 100
+"""Tickers per /markets request.
+
+Kalshi passes them in the query string and answers 414 once the URL grows
+too long — a settle pass hit that at 378 tickers, and the unsettled list
+only grows. 100 keeps the URL a few KB even for the longest tickers.
+"""
+
+
 def quotes(tickers: list[str], *,
            fetch: Fetch | None = None) -> dict[str, Market]:
     """Live re-quote for specific tickers, keyed by ticker.
+
+    Chunks internally: callers pass however many tickers they have.
 
     A ticker absent from the returned dict was not found or not returned
     by Kalshi — the caller must not assume every requested ticker appears.
@@ -302,11 +313,16 @@ def quotes(tickers: list[str], *,
     if not tickers:
         return {}
     fetch = fetch or get_json
-    payload = fetch(
-        f"{BASE_URL}/markets",
-        params={"tickers": ",".join(tickers), "limit": len(tickers)},
-    )
-    return {
-        market.ticker: market
-        for market in (normalize(raw) for raw in payload.get("markets", []))
-    }
+    out: dict[str, Market] = {}
+    for start in range(0, len(tickers), QUOTE_CHUNK):
+        chunk = tickers[start:start + QUOTE_CHUNK]
+        payload = fetch(
+            f"{BASE_URL}/markets",
+            params={"tickers": ",".join(chunk), "limit": len(chunk)},
+        )
+        out.update({
+            market.ticker: market
+            for market in (normalize(raw)
+                           for raw in payload.get("markets", []))
+        })
+    return out

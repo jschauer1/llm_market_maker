@@ -174,3 +174,33 @@ reported. That distinction is the whole design.
 Not doing it tonight; recorded as idea `arb-dust-memory` so it does not
 get rediscovered a fourth time. No version bump — nothing about the
 decision procedure changed.
+
+## 2026-08-29 — third consecutive run, third depth-gate kill
+
+Live run `live-2026-08-29` against the session's 117,272-market board.
+Funnel: 12,616 multi-market events → 3,577 scalar events → 4 raw nested
+violations → 3 geometry findings → 3 survivors. Gate removed 1,490
+not-mutually-exclusive events and capped 37 flag fetches; 1,527 flag
+candidates checked, **0 confirmed**.
+
+All three survivors rejected mechanically by the v2 depth gate:
+
+| position | apparent riskless | fillable | floor profit |
+|---|---|---|---|
+| `KXWTAGTOTAL-26AUG30RAKKRE` 15/20 (YES 0.13 / NO 0.42) | 73.9% | ~0.01 baskets | ~$0.00 |
+| `KXWTAGTOTAL-26AUG30GIBVEK` 18/23 (YES 0.13 / NO 0.56) | 39.8% | ~0.01 baskets | ~$0.00 |
+| `KXNCAAMBWINS-26SJU` 24/27 (YES 0.42 / NO 0.50) | 4.8% | ~0.47 baskets | ~$0.02 |
+
+The two WTA games-total pairs are new and instructive: both are US Open
+first-round matches listed 2026-08-27 with essentially no trading
+(volume 0.11 and 0.0), so top-of-book is a market-maker's opening quote
+that has never been tested. An untraded ladder is the *cheapest* place to
+find an apparent monotonicity violation and the least likely place to
+fill one — 73.9% "riskless" against one one-hundredth of a basket. That
+is the same failure as the two hand-checked kills that motivated v2,
+arriving now from a new direction: not thin depth behind a real quote,
+but no depth behind a nominal one.
+
+`KXNCAAMBWINS-26SJU` is the same position rejected on 08-27 and 08-28
+(opp 9310), unchanged. Nothing endorsed. Three live runs, three finds,
+three depth kills, zero recordable arbitrage.
