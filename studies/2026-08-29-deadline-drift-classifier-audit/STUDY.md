@@ -184,14 +184,27 @@ The corrected options:
    explicit instruction that no prompt should be written to re-derive it.
    **This is the first-choice option and it did not exist when this study
    was written.**
-2. **Structural LLM gate.** Would clear 10%, and under the amended rule
-   **keeps tier A** *if* it meets all four conditions — answerable from
+
+   **It is not yet established that it clears the 10% bar.** The flag
+   *alone* catches only **2 of the 5** named round-4 misses; it takes the
+   flag **plus** the price-partition test to reach 4 of 5, and the
+   resulting projection of ~8% is **in-sample on the very round-4 markets
+   that motivated the rule**. What the flag has going for it is
+   independent of that: 98% agreement with the regex's 2,687 hand-derived
+   exclusions, and it reaches the multi-destination residue the regex
+   structurally could not. Strong first instrument; unmeasured out of
+   sample. **Round 5 is that measurement**, and it should be run on a
+   fresh disjoint sample before anyone records this as solved.
+2. **Structural LLM gate.** Under the amended rule it **keeps tier A**
+   *if* it meets all four conditions — answerable from
    the market's text at open, payload of rules and title only, decides
    eligibility never direction, and **passes the contamination probe**.
    The first three are plainly satisfiable for "does this condition on
    which branch?"; the fourth is **unrun**, and CLAUDE.md is explicit
    that an unrun probe counts as outcome judgment. So this is *plausibly*
-   tier A, not established as tier A. It still costs tokens on every
+   tier A, not established as tier A — and whether it would clear 10% is
+   equally unmeasured, since no LLM gate has been built or run against
+   any sample here. It still costs tokens on every
    scan, and it is third in the stated preference order (data, then code,
    then structural gate, then outcome judgment).
 3. **Series allowlist** of the ~20 unambiguous recurring families

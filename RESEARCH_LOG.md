@@ -2498,3 +2498,53 @@ rewritten.
    judgment whatever its prompt is called. It moves the tier, not the
    paper trail — provenance, prompts-on-disk and version bumps are all
    untouched.
+
+## 2026-08-29 (cont.) — a fourth stale artifact, and my third overstatement of the day
+
+**Did:** Two corrections, both from peer pushback, both mine.
+
+**1. My sweep for tier-rule-dated artifacts missed one, and the miss was
+instructive.** I grepped `"loses tier A\|forfeits tier A\|tier-A status"`
+and found three. Session 78 applied my own generalisation back to me with
+a wider pattern and found a fourth: the backlog index's step 3, *"backtest
+tier A means **no LLM anywhere in the decision path**"* (`b1e2e7d`).
+
+It survived because it states the claim as a **contract** rather than as a
+**consequence** — no "loses", no "forfeits", no "status". And it was the
+worst one to leave standing: it sits in the index's how-to-implement
+checklist, read at the start of any work on any of the 22 backlog entries,
+so it would have re-taught the old rule to sessions that never went near
+`deadline-drift`.
+
+So the rule needs one more turn: **grep the claim, not the file — and
+grep more than one phrasing of the claim.** Two phrasings found three
+artifacts; a third phrasing found the fourth. I re-ran a wider sweep
+across `*.md` and `*.py` and confirmed the remainder are legitimate: the
+new rule itself, three hits in `plans/2026-08-23-theory-harness.md` (a
+historical plan, correctly left as audit trail), and per-spec headers that
+are still true of theories using no model at all.
+
+**2. I overstated the deadline-drift conclusion — the third time today.**
+I told the user the decision had "collapsed" to *take the data*. It has
+not. `mutually_exclusive` **alone catches 2 of the 5** named round-4
+misses; it takes the flag *plus* a price-partition test to reach 4 of 5,
+and the resulting ~8% is **in-sample on the very markets that motivated
+the rule**. Data is the right first instrument and the evidence for it is
+strong — 98% agreement with 2,687 hand-derived exclusions, and it reaches
+the residue the regex structurally could not — but *clears the 10% bar* is
+unmeasured out of sample, and round 5 is that measurement.
+
+Re-reading my own text I found a second overstatement in the same
+paragraph: I had written that a structural LLM gate **"would clear 10%"**.
+No such gate has been built or run against any sample. Both corrected.
+
+**Learned:** three overstatements in one day — the politics headline, "the
+decision collapsed", "would clear 10%" — is a pattern, not three
+accidents. Each was the same move: taking a real, directional result and
+reporting it one notch stronger than the measurement supported. The
+symmetry is worth recording, because session 78 made the mirror-image
+error in the same exchange (telling the user the structural gate route was
+"available" when its probe is unrun) and we caught each other's within
+minutes. **Neither of us should be writing the conclusion before the
+audit** — and the reason this repo keeps catching it is that the numbers
+are always reproducible and someone always re-derives them.
