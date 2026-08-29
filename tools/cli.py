@@ -284,6 +284,15 @@ def _cmd_rank(args) -> int:
     return 0
 
 
+def _cmd_db(args) -> int:
+    from tools import backup as backup_mod
+    if args.action == "backup":
+        _emit(backup_mod.backup_ledger(
+            args.db or db.DEFAULT_DB_PATH, dest_dir=args.dest
+        ))
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="tools.cli")
     parser.add_argument("--db", default=None, help="path to the database")
@@ -540,6 +549,18 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p.add_argument("--mean-claimed-edge", dest="mean_claimed_edge",
                    type=float, default=None)
+
+    p = sub.add_parser("db", help="database operations")
+    p.set_defaults(func=_cmd_db)
+    dbsub = p.add_subparsers(dest="action", required=True)
+    dbackup = dbsub.add_parser(
+        "backup",
+        help="gzip every table except market_snapshots to a non-synced dir",
+    )
+    dbackup.add_argument(
+        "--dest", default=None,
+        help=r"destination directory (default %LOCALAPPDATA%\market_edge\backups)",
+    )
 
     return parser
 
