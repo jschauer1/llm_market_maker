@@ -290,20 +290,44 @@ Appended after the existing bump paragraph:
 ### 2.8 Slice segments pool across a carry-chain too (added after `ff4318a`)
 
 Slices are per-version like scores, so they inherit this defect exactly.
-`insider_judgment` v3→v4 is the live worked example and is almost certainly a
-`carry`: v4 adopted the slice's own rule, and v4 candidates currently cite the
-**v3** segment, disclosed by a manual rule in the report.
-
-A manual disclosure is a norm with no surface — the same failure class this
-whole spec addresses — so it should be replaced, not documented.
 `slices.segment_report` moves to the same `pool="version" | "chain"` switch as
-`compute_score`, defaulting to `"version"`. Under a proven carry the v3 segment
-pools into v4 mechanically and the manual citation rule is deleted.
+`compute_score`, defaulting to `"version"`. Under a *proven* carry, a
+predecessor's segment pools into its successor mechanically instead of being
+cited by a rule someone has to remember.
 
-**Prove it before relying on it.** v3→v4 is the natural first `prove_carry`
-target: if the replay shows v4's gate would have decided any v3 row
-differently, the bump is `breaking`, the pooling does not happen, and the
-manual disclosure stays. The proof decides this, not the convenience.
+**`insider_judgment` v3→v4 is the natural first `prove_carry` target, and its
+own record says it will prove `breaking`.** Three divergences, each
+individually fatal to exact reproduction (raised by session 9a, verified
+against the theory's files):
+
+1. **v4's gate reads resolution rules**, not ticker prefixes — 130 survivors →
+   18 (`NOTES.md` 2026-08-29 "defect 3 closed"; `THEORY.md` Version 4(a)).
+   Eligibility is decided differently for most v3 events.
+2. **v4 changed bucket pricing semantics** — "a bucket contributes an edge, not
+   a probability" (`NOTES.md` 2026-08-29). `edge_pts_net` and `edge_basis`
+   move on judged rows even where the verdict would not.
+3. **The ratified v4 procedure is NO-side-only with award families gated**
+   (`THEORY.md` Learnings 2026-08-26). Every v3 YES row is decided
+   differently — not proposed at all.
+
+**This is the mechanism working, not failing.** `breaking` is the
+epistemically correct answer here: v3's slice evidence backs v3's procedure,
+and v4's segment is already accruing its own rows and flips on at 10
+out-of-sample clusters / 5 days. The section earns its place by making that
+verdict *mechanical and recorded* rather than a judgement call — but the spec
+must not predict the outcome of its own proof, which is what an earlier draft
+of this subsection did.
+
+Scope note: only half the current disclosure is manual. `slices match` at v4
+already returns the below-gates annotation and empty rank inputs; it is the
+"also cite v3" half that is hand-maintained.
+
+**Considered and deferred: segment-scoped carry.** A narrower rule — exact
+reproduction proven over slice-matched rows only, rather than the whole
+procedure — is the obvious refinement, and it does not help here either: v4's
+gate change alters which events reach judgment, so even the slice's populations
+differ across the bump. Recorded so a future session does not re-derive it;
+left unspecified until a candidate case actually needs it.
 
 ---
 
@@ -574,10 +598,20 @@ The problem was never that the journal is big. **It is that the canon is
 embedded inside the journal**, so reading the canon requires reading the
 journal. Extract the canon and a 200 KB journal is harmless.
 
-### 6.5 The promotion bar — *proposed; a governance ruling, not mine to make*
+### 6.5 Two rulings this section needs — *proposed, not decided here*
 
-Per the standing delegation, the bar itself goes to the supervisor session.
-Proposed wording, so there is something concrete to rule on:
+Per the standing delegation, both go to the supervisor session as one packet.
+
+**Ruling 1 — reverse `2026-08-25-theory-locality.md` §22.** Raised by session
+9a: §22 is a documented decision, and reversing it must be *ruled on*, not
+inherited implicitly by shipping a migration that contradicts it. The case is
+§6.2 — forward-only produced 5,838 words of the thing it forbade across 44
+entries in four days. If the ruling goes the other way, §6.6 does not run and
+§6.7's `CLAUDE.md` edit stands alone as a forward-only restatement with the
+`state` surface behind it.
+
+**Ruling 2 — the promotion bar.** Proposed wording, so there is something
+concrete to rule on:
 
 > **A log entry is earned by a fact that changes how a session that never
 > touched this theory would act.** Everything else is a pointer. Concretely, an
@@ -697,7 +731,7 @@ Each phase is independently shippable and independently useful.
 | 6 | §2 carry/breaking + backfill + `rank`/`segment_report` disclosure | The evidence bleed; largest payoff, needs the disclosure precedent |
 | 7 | §1 question budget + §1.7 slice columns | Needs windows registered, easiest once `state` renders them |
 | 8 | §5.2 DB split | Pure operations; safe to defer, unsafe to defer indefinitely |
-| — | §6.5 promotion bar | **Blocked on the supervisor's ruling** — and on phase 1, per §6.3 |
+| — | §6.5 rulings 1 & 2 (§22 reversal, promotion bar) | **Blocked on the supervisor.** Ruling 1 gates phases 4–5; ruling 2 also gates on phase 1, per §6.3 |
 | — | §4.3 paper lane | Blocked on the user's ruling |
 
 Phases 3–5 are the migration. **Phase 1 gates all of them** (§6.3): raising the
