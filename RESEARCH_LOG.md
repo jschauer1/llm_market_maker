@@ -2954,3 +2954,26 @@ comparability across concurrent sessions is the point.
 Spec updated in place; the only question still open in it is §7.7's
 prefer-mechanical consolidation (explanation delivered to the user, ruling
 pending).
+
+---
+
+## 2026-08-29 — RULING: the prefer-mechanical rule reframed as a division of labour, consolidation performed
+
+**RULING (user, direct — backfill into `rulings` when §3.3 ships):** The
+user rejected the "prefer statistics / mechanical-first" framing and
+recentred the rule: **a model categorizes; measurement quantifies.** An LLM
+may only classify (bucket, side, in/out, better/worse) — it can never emit
+an edge number — and any edge an LLM-judged theory claims must trace to
+backtesting or settled history, never the model guessing. Interpretive
+theories (`insider_judgment`-style) remain explicitly first-class.
+
+**Did:** Performed the §7.7 consolidation under that framing. The canonical
+statement (with the four hedges kept as numbered riders) now lives in
+`CLAUDE.md` under "Never state a probability you introspected"; the
+question/thesis passage and the backtest-tiers ladder passage were trimmed
+to their local substance plus pointers; the gates paragraph is untouched as
+rider 4's operational home. `edge_basis='prior'` is explicitly bound: a
+prior comes from a stated structural assumption, never a felt sense. No rule
+removed, no hedge dropped; enforcement already existed in code (Verdict has
+no numeric field; `buckets.py`; `edge_basis`). Spec updated; no open
+questions remain in it.

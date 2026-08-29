@@ -70,10 +70,10 @@ judgment must never be spent on is a *structural* question — a fact about
 the market's own mechanics: how many winners it pays, whether its strikes
 are mutually exclusive, which family a ticker belongs to. Those are
 determined programmatically — a published field, a ticker pattern,
-arithmetic — unless that is absolutely impossible. So "prefer statistics"
-constrains how a *question* gets answered, never which *theses* are worth
-having: mechanize every question that can be mechanized, and spend judgment
-where the thesis itself is interpretive.
+arithmetic — unless that is absolutely impossible. Mechanize every question
+that can be mechanized, and spend judgment where the thesis itself is
+interpretive; the full division-of-labour rule and its riders are stated
+once, under "Never state a probability you introspected".
 
 ## Platform roles
 
@@ -279,6 +279,17 @@ Then `tools/buckets.py` turns that bucket into a number using the bucket's own
 realized win rate. "When this theory says `strong`, it wins 78% of the time" is
 a fact; your felt sense of 78% is not.
 
+**A model categorizes; measurement quantifies.** That is the entire division
+of labour. A model can say which bucket, which side, in or out of a
+population, better or worse than the next candidate. It cannot say "this has
+a 0.5% edge" — a number like that from a model is noise wearing the costume
+of analysis. So any edge an LLM-judged theory claims must trace to
+backtesting or settled history — the bucket's realized rate, the family's
+measured base — never to the model guessing at an edge. This binds `prior`
+placeholders too: a prior comes from a stated structural assumption (uniform
+over strikes, a family's base rate), never from a felt sense wearing a
+decimal point.
+
 **Judge blind to price wherever the theory allows it.** Get the classification
 first, reveal the price second, compute edge mechanically. Record
 `judged_blind=True`. This costs nothing and removes the largest contaminant.
@@ -291,12 +302,33 @@ There is deliberately no basis meaning "it felt about right".
 not arithmetic. A theory computing a probability from base rates, a Poisson
 process, or sibling-strike monotonicity should absolutely do so — that is
 reproducible and auditable, it records as `model`, and it backtests at tier A.
-A mechanical model and a judgment stage carry *different* evidence, not more
-and less of it: the mechanical one replays over all history and reproduces
-exactly, the judgment one replays over a recent window and moves with the
-model that ran it. Mechanize every question that can be mechanized — and read
-that as a rule about questions, never a mark against theses only judgment can
-express.
+
+**The division of labour, stated once — other sections point here.**
+Judgment classifies; measurement quantifies. And a *structural* question — a
+fact about a market's own mechanics — is answered by data, then code, then a
+structural gate, then outcome judgment, in that order: a published field is
+free, exact, and cannot drift with phrasing, so no prompt is written where a
+field or a script can answer. This ranks instruments for *questions*. It is
+not a ranking of theories, and four riders are part of the rule, not
+softenings of it:
+
+1. **Interpretive theses are not second-class.** LLM judgment is where
+   theses like `insider_judgment`'s live — no field or threshold could
+   express them — and proposing them is encouraged at whatever rate the
+   ideas arrive. The rule never means "think of fewer judgment theories";
+   it means their *numbers* are measured, not felt.
+2. **Mechanical and judgment stages carry different evidence, not more and
+   less.** The mechanical one replays over all history and reproduces
+   exactly; the judgment one replays over a recent, more current window and
+   moves with the model that ran it. Sample size is already priced into the
+   statistics — never discount a tier B result a second time for being
+   tier B.
+3. **A structural gate that is genuinely the best instrument does not
+   downgrade the evidence.** Penalising it taught theories to avoid the
+   honest tool rather than the contaminated one.
+4. **A code gate drops silently inside families it thinks it knows — always
+   report what it removed, by category** — and reach for a model when the
+   question needs reading comprehension rather than resolution mechanics.
 
 ## Research memory
 
@@ -543,20 +575,17 @@ version when a prompt changes. This amendment moves the tier, not the
 paper trail.
 
 **For a structural question, reaching for a model is still the second
-choice, and this does not soften that.** If the answer is available as *data* — a field the platform already
-publishes, a ticker pattern, an arithmetic property — take the data. It is
-free, exact, instant, needs no probe and no prompt, and cannot drift with
-phrasing. `mutually_exclusive` on Kalshi's event envelope is the worked
-example: it answers "does this condition on which branch?" outright, and no
-prompt should be written to re-derive it. Prefer data, then code, then a
-structural gate, then outcome judgment. But when a structural gate genuinely
-is the best available instrument, **it should not downgrade the evidence** —
-penalising it taught theories to avoid the honest tool rather than the
-contaminated one, which was never the point. And the ladder ranks instruments
-for a given *question*, not theories: an interpretive thesis runs outcome
-judgment at its deep stage by design, and is welcome to. The ladder exists so
-that no *structural* question is ever answered by a prompt when a field or a
-script can answer it.
+choice, and this does not soften that.** The division-of-labour rule — data,
+then code, then a structural gate, then outcome judgment, with its four
+riders — is stated once, under "Never state a probability you introspected";
+what this section adds is the tier consequence. When a structural gate
+genuinely is the best available instrument, **it should not downgrade the
+evidence** — penalising it taught theories to avoid the honest tool rather
+than the contaminated one, which was never the point. `mutually_exclusive`
+on Kalshi's event envelope is still the worked example of the top rung: the
+field answers "does this condition on which branch?" outright, and no prompt
+should be written to re-derive it. No *structural* question is ever answered
+by a prompt when a field or a script can answer it.
 
 Where the replay itself lives — and why there is no shared backtest engine
 — is under "What lives in a theory, and what gets elevated".

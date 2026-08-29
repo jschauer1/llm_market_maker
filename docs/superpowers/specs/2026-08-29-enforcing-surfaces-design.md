@@ -6,11 +6,11 @@ fine as written and simply arrive at the wrong moment — by loading them where
 they bind, deleting none of them.
 
 **Date:** 2026-08-29. **Status:** design proposed, implementation not started.
-Reviewed and corrected against the live repo and DB the same day; five
+Reviewed and corrected against the live repo and DB the same day; six
 rulings were issued directly by the user during that review — §6.5's two,
-the §4.3 no, the §5.2 phase-1 relocation, and the §5.3 force floor. The one
-open question left in this document is §7.7's prefer-mechanical
-consolidation.
+the §4.3 no, the §5.2 phase-1 relocation, the §5.3 force floor, and §7.7's
+division-of-labour reframing (performed). No questions remain open in this
+document.
 **Scope:** `tools/` + `db/schema.sql` + ~370 net new words in `CLAUDE.md`,
 substantial additions to four skills, plus a one-time migration of
 `RESEARCH_LOG.md` (§6).
@@ -463,13 +463,13 @@ CREATE TABLE rulings (
 ```
 
 `log_entry` points back at the narrative; the log keeps the reasoning, the row
-carries the binding text. Backfill is the nine rulings currently on record —
+carries the binding text. Backfill is the ten rulings currently on record —
 the four in the log tail (attempt-level scoring, cluster-`n` schema, the
-`bucket_rates` carve-out, the blocked skill edits) plus the five the user
+`bucket_rates` carve-out, the blocked skill edits) plus the six the user
 issued 2026-08-29 during this spec's review: §6.5's two (migrate the log;
 adopt the promotion bar), the §4.3 paper-lane no, the §5.2 phase-1
-relocation choice, and the §5.3 force floor — a ten-minute job that is the
-whole payoff.
+relocation choice, the §5.3 force floor, and §7.7's division-of-labour
+reframing — a ten-minute job that is the whole payoff.
 
 ### 3.4 `CLAUDE.md` edit (net ≈ 0 words, inside "Data conventions")
 
@@ -1095,12 +1095,20 @@ That makes duplication safe, which is what lets §7.2 prefer it.
   bulk and never as a side effect of relocation. The default outcome of this
   section is that `CLAUDE.md` gets *slightly longer* (§7.5's rule) and the
   skills get substantially longer.
-- **Consolidating the prefer-mechanical argument** (lines 38, 73–75, 297,
-  546–551, 596 — five statements with separately accumulated hedges). This is
-  a rewrite of existing text, not a relocation, so it is proposed and not
-  performed: state it once, completely, with all four hedges, and leave
-  pointers. Needs approval because a hedge dropped in the merge is a rule
-  silently weakened.
+- **Consolidating the prefer-mechanical argument — approved and performed,
+  2026-08-29, with a reframing the user required.** The user rejected the
+  old "prefer statistics / mechanical-first" framing and recentred the rule
+  as a **division of labour**: a model can only categorize (good vs bad, a
+  bucket, a side) — it can never emit a number like "0.5% edge" — and any
+  edge an LLM-judged theory claims must trace to backtesting or settled
+  history, never the model guessing. Interpretive theories stay explicitly
+  first-class. The canonical statement now lives under "Never state a
+  probability you introspected" with all four hedges kept as numbered
+  riders; the other sites keep their local substance plus a pointer. The
+  machinery already enforced this (Verdict has no numeric field,
+  `buckets.py` converts via realized rates, `edge_basis` has no
+  felt-about-right option) — the rewrite makes the constitution say what
+  the code enforces.
 - **Any change to the `Subset edges` subsection** — session 9a's text (§8).
 
 ### 7.8 `CLAUDE.md` edit (≈120 words — §7.5's rule, inside "How the user drives this")
@@ -1129,10 +1137,8 @@ nothing from it; only the skills grow.
   deliberate purchase of cross-session consistency. It is not technical debt
   and this spec does not treat it as such — §7 explicitly removes nothing and
   expects the file to get slightly *longer*.
-- **Consolidating the prefer-mechanical argument** (lines 38, 73–75, 297,
-  546–551, 596). Proposed in §7.7, deliberately not performed: it is a rewrite
-  of existing text rather than a relocation, and a hedge dropped during the
-  merge is a rule silently weakened. Needs the user's approval first.
+- ~~Consolidating the prefer-mechanical argument~~ — no longer out of scope:
+  approved, reframed and performed 2026-08-29 on the user's ruling (§7.7).
 - **The `Subset edges — registered slices` subsection of `CLAUDE.md`**
   (`ff4318a`, line 331). Session 9a owns that text; §1.7 and §2.8 above add
   columns and a pooling switch around it and reword none of it. If the §6.5
