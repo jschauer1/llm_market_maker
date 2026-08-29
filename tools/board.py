@@ -41,6 +41,13 @@ from tools.kalshi import markets as kalshi_markets
 #: new session the next morning gets fresh prices.
 DEFAULT_MAX_AGE_MINUTES = 240
 
+#: The floor `force=True` honours. Ruled 2026-08-29 (enforcing-surfaces
+#: spec 5.3): with 4-5 concurrent sessions, unconditional force makes
+#: them reason over *different* boards; a board younger than this is the
+#: session's board, force or not. Re-quoting a handful of tickers is
+#: `markets.quotes()`, which no floor touches.
+FORCE_FLOOR_MINUTES = 30
+
 
 def _parse(stamp: str) -> datetime:
     return datetime.fromisoformat(stamp.replace("Z", "+00:00"))
@@ -127,13 +134,15 @@ def get_board(
     refresh (`go`'s Orient step) or when a price is known to have moved and
     freshness genuinely matters — re-quoting a handful of tickers before
     betting is `markets.quotes()`, which is cheaper than any board pull.
+    A board younger than FORCE_FLOOR_MINUTES is reused even under force
+    (ruled 2026-08-29).
 
     A fetch is always snapshotted, so the pull is never lost.
     """
-    if not force:
-        info = board_info(conn, now=now)
-        if info is not None and info["age_minutes"] <= max_age_minutes:
-            return _rebuild(conn, info["captured_at"])
+    info = board_info(conn, now=now)
+    floor = FORCE_FLOOR_MINUTES if force else max_age_minutes
+    if info is not None and info["age_minutes"] <= floor:
+        return _rebuild(conn, info["captured_at"])
 
     board = kalshi_markets.list_open()
     snapshot.save_kalshi(conn, board, now=now)

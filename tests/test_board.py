@@ -89,13 +89,27 @@ def test_no_snapshot_at_all_fetches(conn, monkeypatch):
     assert len(calls) == 1
 
 
-def test_force_refetches_even_when_fresh(conn, monkeypatch):
-    snapshot.save_kalshi(conn, _board(3), now="2026-08-24T11:59:00Z")
+def test_force_refetches_past_the_floor(conn, monkeypatch):
+    # 31 minutes old: stale under the force floor, fresh under the
+    # 4-hour default -- exactly the window where force must still act.
+    snapshot.save_kalshi(conn, _board(3), now="2026-08-24T11:29:00Z")
     calls = []
     monkeypatch.setattr(board.kalshi_markets, "list_open",
                         lambda: calls.append(1) or _board(9))
     got = board.get_board(conn, force=True, now=NOW)
     assert len(calls) == 1 and len(got) == 9
+
+
+def test_force_honours_the_floor_on_a_very_fresh_board(conn, monkeypatch):
+    # Ruled 2026-08-29 (spec 5.3): concurrent sessions must reason over
+    # the same board, so a force within the floor reuses, never refetches.
+    snapshot.save_kalshi(conn, _board(3), now="2026-08-24T11:59:00Z")
+
+    def boom():
+        raise AssertionError("force within the floor must not refetch")
+    monkeypatch.setattr(board.kalshi_markets, "list_open", boom)
+    got = board.get_board(conn, force=True, now=NOW)
+    assert [m.ticker for m in got] == ["T-0", "T-1", "T-2"]
 
 
 def test_a_fetch_is_always_snapshotted(conn, monkeypatch):
