@@ -19,11 +19,11 @@ def test_state_renders_every_panel_header(conn):
 
 
 def test_absent_tables_render_stubs_not_errors(conn):
-    # rulings (phase 2), theory_versions (phase 6) and data_windows
-    # (phase 7) do not exist yet -- the shape is stable from day one and
-    # panels light up as phases land (spec 3.2).
+    # theory_versions (phase 6) and data_windows (phase 7) do not exist
+    # yet -- the shape is stable from day one and panels light up as
+    # phases land (spec 3.2).
     text = state.render_state(conn, now="2026-08-29T12:00:00Z")
-    assert "not yet tracked" in text
+    assert "not yet tracked — table data_windows" in text
 
 
 def test_state_reflects_theories_and_freshness(conn):

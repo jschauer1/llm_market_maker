@@ -382,3 +382,18 @@ CREATE TABLE IF NOT EXISTS theory_facts (
     provenance_id  INTEGER REFERENCES judgment_runs(id),
     PRIMARY KEY (theory_id, kind, key)
 );
+
+-- Binding rulings, extracted from prose (enforcing-surfaces spec 3.3).
+-- The log keeps the reasoning; this row carries the binding text, so a
+-- session can know what binds without reading a 25k-word journal.
+CREATE TABLE IF NOT EXISTS rulings (
+    id        INTEGER PRIMARY KEY AUTOINCREMENT,
+    ruled_at  TEXT NOT NULL,
+    authority TEXT NOT NULL CHECK (authority IN ('user', 'supervisor')),
+    subject   TEXT NOT NULL,
+    ruling    TEXT NOT NULL,
+    scope_out TEXT,
+    status    TEXT NOT NULL DEFAULT 'binding'
+              CHECK (status IN ('binding', 'implemented', 'superseded')),
+    log_entry TEXT
+);

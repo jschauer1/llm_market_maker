@@ -105,6 +105,27 @@ def _cmd_provenance(args) -> int:
     return 0
 
 
+def _cmd_rulings(args) -> int:
+    from tools import rulings as rulings_mod
+    conn = _connect(args)
+    try:
+        if args.action == "record":
+            rid = rulings_mod.record(
+                conn, args.ruling, authority=args.authority,
+                subject=args.subject, ruled_at=args.ruled_at,
+                scope_out=args.scope_out, log_entry=args.log_entry,
+            )
+            _emit({"id": rid})
+        elif args.action == "list":
+            _emit(_rows(rulings_mod.list_rulings(conn, status=args.status)))
+        elif args.action == "status":
+            rulings_mod.set_status(conn, args.id, args.value)
+            _emit({"id": args.id, "status": args.value})
+    finally:
+        conn.close()
+    return 0
+
+
 def _cmd_ideas(args) -> int:
     conn = _connect(args)
     try:
@@ -412,6 +433,27 @@ def build_parser() -> argparse.ArgumentParser:
                      choices=(0, 1))
     pvr.add_argument("--n-items", dest="n_items", type=int, default=None)
     pvr.add_argument("--notes", default=None)
+
+    p = sub.add_parser("rulings", help="binding rulings extracted from prose")
+    p.set_defaults(func=_cmd_rulings)
+    rsub = p.add_subparsers(dest="action", required=True)
+    rrec = rsub.add_parser("record")
+    rrec.add_argument("ruling", help="the binding text, one sentence or two")
+    rrec.add_argument("--authority", required=True,
+                      choices=("user", "supervisor"))
+    rrec.add_argument("--subject", required=True,
+                      help="e.g. scoring | schema | lifecycle | governance")
+    rrec.add_argument("--ruled-at", dest="ruled_at", default=None)
+    rrec.add_argument("--scope-out", dest="scope_out", default=None,
+                      help="what the ruling explicitly excluded")
+    rrec.add_argument("--log-entry", dest="log_entry", default=None,
+                      help="the RESEARCH_LOG.md date heading with the reasoning")
+    rlist = rsub.add_parser("list")
+    rlist.add_argument("--status", default=None,
+                       choices=("binding", "implemented", "superseded"))
+    rst = rsub.add_parser("status")
+    rst.add_argument("id", type=int)
+    rst.add_argument("value", choices=("binding", "implemented", "superseded"))
 
     p = sub.add_parser("ideas", help="research memory")
     p.set_defaults(func=_cmd_ideas)
