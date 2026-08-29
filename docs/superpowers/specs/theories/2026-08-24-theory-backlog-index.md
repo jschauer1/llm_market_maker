@@ -131,7 +131,14 @@ sources; every spec links back here instead of repeating them.
    `edge_basis` (`measured`/`model`/`prior` — never a felt sense); any
    LLM in the decision path requires provenance records and prompts on
    disk; any change to a decision procedure bumps the theory version;
-   backtest tier A means **no LLM anywhere in the decision path**.
+   backtest tier A means **no outcome judgment anywhere in the decision
+   path** (amended 2026-08-29, 0f06265 — it previously read "no LLM
+   anywhere". A *structural* gate, one whose answer cannot be influenced
+   by the outcome, keeps tier A if it meets CLAUDE.md's four conditions
+   and its contamination probe has actually been run; an unrun probe
+   counts as outcome judgment. The preference order is unchanged and
+   still binds: data, then code, then a structural gate, then outcome
+   judgment).
 4. Reuse the validated patterns already in the repo: the price-bin bucket
    pattern in `theories/insider_bias/mention_family/mention_bucket.py`
    (`PRICE_BINS`, `bucket_for_price`, measured rates via
