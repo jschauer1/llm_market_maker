@@ -62,8 +62,16 @@ def _price(raw: dict, key: str) -> float | None:
         ) from exc
 
 
-def normalize(raw: dict) -> Market:
-    """Convert a raw Kalshi market into the internal shape."""
+def normalize(raw: dict, event: dict | None = None) -> Market:
+    """Convert a raw Kalshi market into the internal shape.
+
+    `event` is the market's Kalshi event envelope, when the caller walked
+    `/events` and has one. It is optional and absent-tolerant on purpose:
+    `quotes()`, `list_settled()`, and every study that rebuilds a Market
+    from a stored `market_snapshots.raw_json` have no envelope, and must
+    keep working unchanged. Absent becomes `{}`, never a fabricated False
+    -- see `Market.event`.
+    """
     ticker = raw.get("ticker")
     if not ticker:
         raise ValueError(
@@ -105,6 +113,10 @@ def normalize(raw: dict) -> Market:
         result=raw.get("result") or None,
         rules_primary=raw.get("rules_primary"),
         raw=raw,
+        # The envelope rides along on every market in the event, so its
+        # nested `markets` list is dropped: keeping it would store the whole
+        # event once per sibling and bloat every snapshot quadratically.
+        event={k: v for k, v in (event or {}).items() if k != "markets"},
     )
 
 
@@ -146,7 +158,7 @@ def list_open(limit: int = 200, *,
 
         for event in payload.get("events", []):
             for raw in event.get("markets", []):
-                market = normalize(raw)
+                market = normalize(raw, event)
                 if market.ticker in seen_tickers:
                     continue
                 seen_tickers.add(market.ticker)

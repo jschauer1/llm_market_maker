@@ -114,6 +114,15 @@ class Market:
     event_ticker: str | None = None
     series_ticker: str | None = None
     raw: dict = field(default_factory=dict, repr=False, compare=False)
+    #: The market's Kalshi *event* envelope, minus its nested `markets`
+    #: list. Carries structural facts no market payload has --
+    #: `mutually_exclusive`, `category`, `strike_period`,
+    #: `settlement_sources`. Empty when no envelope was captured, which is
+    #: not the same as an envelope saying False: read it as
+    #: `m.event.get("mutually_exclusive")` and treat None as UNKNOWN. Every
+    #: capture before 2026-08-29 is unknown, because `list_open` fetched
+    #: the envelope and discarded it.
+    event: dict = field(default_factory=dict, repr=False, compare=False)
 
     def __post_init__(self) -> None:
         if not self.ticker:

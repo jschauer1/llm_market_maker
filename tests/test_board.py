@@ -276,3 +276,48 @@ def test_rebuilt_board_derives_identity_the_raw_payload_lacks(conn, monkeypatch)
 
     assert rebuilt[0].series_ticker == "KXWIDGET"
     assert rebuilt[0].event_ticker == "KXWIDGET-26SEP01"
+
+
+# --- event envelope ---------------------------------------------------
+
+
+def _enveloped(ticker="T-0", **event_kw):
+    from tools.kalshi import markets
+    envelope = {
+        "event_ticker": "EV", "series_ticker": "KXTHING",
+        "title": "an event", "category": "Politics",
+        "mutually_exclusive": True, "strike_period": "",
+    }
+    envelope.update(event_kw)
+    return markets.normalize(_raw(ticker), envelope)
+
+
+def test_rebuilt_board_keeps_the_event_envelope(conn):
+    # board.py guarantees a cached board and a fetched board are identical.
+    # That held for the market payload and silently failed for the event
+    # envelope, which list_open discarded before the snapshot ever saw it.
+    snapshot.save_kalshi(conn, [_enveloped()], now="2026-08-24T11:59:00Z")
+    rebuilt = board.get_board(conn, now=NOW)
+    assert rebuilt[0].event["mutually_exclusive"] is True
+    assert rebuilt[0].event["category"] == "Politics"
+
+
+def test_rebuilt_board_reports_unknown_not_false_for_pre_envelope_captures(conn):
+    # The sharp edge: absent is not False. Captures taken before the
+    # envelope was kept must read as UNKNOWN, so a future replay can tell
+    # "Kalshi said not exclusive" from "we weren't storing it yet".
+    # Reading absent as False loses real violations; as True it manufactures
+    # riskless-looking baskets that lose money.
+    from tools.kalshi import markets
+    legacy = markets.normalize(_raw("T-0"))          # no envelope, as before
+    snapshot.save_kalshi(conn, [legacy], now="2026-08-24T11:59:00Z")
+    rebuilt = board.get_board(conn, now=NOW)
+    assert rebuilt[0].event == {}
+    assert rebuilt[0].event.get("mutually_exclusive") is None
+
+
+def test_rebuilt_board_keeps_a_false_flag_distinct_from_a_missing_one(conn):
+    snapshot.save_kalshi(conn, [_enveloped(mutually_exclusive=False)],
+                         now="2026-08-24T11:59:00Z")
+    rebuilt = board.get_board(conn, now=NOW)
+    assert rebuilt[0].event.get("mutually_exclusive") is False

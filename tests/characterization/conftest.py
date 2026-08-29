@@ -137,7 +137,18 @@ def proj(x):
         if isinstance(x, (domain.Market, domain.PolymarketMarket)):
             from dataclasses import asdict
 
-            return proj(asdict(x))
+            d = asdict(x)
+            # `event` (the Kalshi event envelope, added 2026-08-29) is
+            # projected out. Every fixture row is a bare market payload
+            # captured before the envelope was kept, so the field is `{}`
+            # on all of them; including it would freeze "envelope absent"
+            # into goldens as though it were proven behavior, and would
+            # break every one of them the day a fixture gains an envelope.
+            # No golden pipeline reads it. generate_goldens.py refuses to
+            # overwrite, by design, so an additive field is projected out
+            # here rather than rewritten there.
+            d.pop("event", None)
+            return proj(d)
 
     if isinstance(x, dict):
         return {k: proj(v) for k, v in x.items()}

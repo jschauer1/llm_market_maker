@@ -73,7 +73,7 @@ def _rebuild(conn: sqlite3.Connection, captured_at: str) -> list[Market]:
     """Reconstruct normalized markets from a stored snapshot batch."""
     rows = conn.execute(
         """
-        SELECT raw_json FROM market_snapshots
+        SELECT raw_json, event_json FROM market_snapshots
          WHERE platform = 'kalshi' AND captured_at = ?
         """,
         (captured_at,),
@@ -90,7 +90,8 @@ def _rebuild(conn: sqlite3.Connection, captured_at: str) -> list[Market]:
                 "raw_json and cannot be rebuilt into a board. Re-fetch with "
                 "get_board(conn, force=True)."
             )
-        market = kalshi_markets.normalize(raw)
+        market = kalshi_markets.normalize(
+            raw, json.loads(row["event_json"] or "null"))
         # `list_open` patches series/event identity onto each market from
         # its event envelope; the snapshot stores only the market's own raw
         # payload, where those fields are absent. Without this derivation a

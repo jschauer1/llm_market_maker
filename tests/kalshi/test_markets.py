@@ -375,3 +375,66 @@ def test_list_settled_accepts_an_injected_fetch():
 
     got = markets.list_settled(fetch=fake)
     assert [m.result for m in got] == ["yes"]
+
+
+def test_list_open_keeps_the_event_envelope(monkeypatch):
+    # Kalshi's event object carries structural facts no market payload has:
+    # mutually_exclusive (is this a partition of one outcome, or an
+    # independent hazard?), category, strike_period, settlement_sources.
+    # list_open walks /events to get them and used to drop all of it,
+    # forcing structural_arb to re-fetch mutually_exclusive one event at a
+    # time under a 150-per-screen budget for data the board pull already had.
+    monkeypatch.setattr(
+        markets, "get_json",
+        lambda *a, **k: {
+            "events": [
+                {
+                    "event_ticker": "KXNEXTDEF-29",
+                    "series_ticker": "KXNEXTDEF",
+                    "title": "Who will be Trump's next Secretary of Defense?",
+                    "category": "Politics",
+                    "mutually_exclusive": True,
+                    "strike_period": "",
+                    "settlement_sources": [{"name": "DoD"}],
+                    "collateral_return_type": "",
+                    "markets": [dict(RAW, ticker="KXNEXTDEF-29-BHAG")],
+                }
+            ],
+            "cursor": "",
+        },
+    )
+    m = markets.list_open()[0]
+    assert m.event["mutually_exclusive"] is True
+    assert m.event["category"] == "Politics"
+    assert m.event["settlement_sources"] == [{"name": "DoD"}]
+
+
+def test_list_open_strips_nested_markets_from_the_envelope(monkeypatch):
+    # The envelope rides along on every market in the event, so keeping its
+    # `markets` list would store the whole event once per sibling -- 111k
+    # markets' worth of quadratic bloat in every snapshot.
+    monkeypatch.setattr(
+        markets, "get_json",
+        lambda *a, **k: {
+            "events": [
+                {
+                    "event_ticker": "E1", "series_ticker": "S1",
+                    "title": "Event one", "mutually_exclusive": False,
+                    "markets": [dict(RAW, ticker="A"), dict(RAW, ticker="B")],
+                }
+            ],
+            "cursor": "",
+        },
+    )
+    result = markets.list_open()
+    assert len(result) == 2
+    for m in result:
+        assert "markets" not in m.event
+        assert m.event["event_ticker"] == "E1"
+
+
+def test_normalize_has_no_event_envelope_when_none_was_attached():
+    # A market payload fetched outside an /events walk (quotes, list_settled)
+    # has no envelope. That must be an empty dict, not a crash and not None,
+    # so callers can do m.event.get(...) unconditionally.
+    assert markets.normalize(RAW).event == {}

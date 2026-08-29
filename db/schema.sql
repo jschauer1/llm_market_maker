@@ -60,7 +60,13 @@ CREATE TABLE IF NOT EXISTS market_snapshots (
     open_interest    REAL,
     close_time       TEXT,
     status           TEXT,
-    raw_json         TEXT
+    raw_json         TEXT,
+    -- The market's Kalshi event envelope (kalshi only), minus its nested
+    -- `markets` list. Additive and nullable on purpose: NULL means the
+    -- envelope was not captured, which is NOT the same as an envelope
+    -- saying mutually_exclusive=false. Every capture before 2026-08-29 is
+    -- NULL, because list_open fetched the envelope and discarded it.
+    event_json       TEXT
 );
 
 -- One row per market per capture. `captured_at` has one-second resolution

@@ -28,8 +28,9 @@ from tools.polymarket import markets as poly_markets
 _INSERT = """
     INSERT INTO market_snapshots (
         platform, market_id, captured_at, title, implied_prob_yes,
-        yes_bid, yes_ask, volume, open_interest, close_time, status, raw_json
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        yes_bid, yes_ask, volume, open_interest, close_time, status,
+        raw_json, event_json
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT (platform, market_id, captured_at) DO UPDATE SET
         title            = excluded.title,
         implied_prob_yes = excluded.implied_prob_yes,
@@ -39,7 +40,8 @@ _INSERT = """
         open_interest    = excluded.open_interest,
         close_time       = excluded.close_time,
         status           = excluded.status,
-        raw_json         = excluded.raw_json
+        raw_json         = excluded.raw_json,
+        event_json       = excluded.event_json
 """
 
 # Kalshi's own status strings (see kalshi_markets.OPEN_STATUSES and
@@ -101,6 +103,9 @@ def save_kalshi(
             m.close_time,
             _kalshi_snapshot_status(m),
             json.dumps(m.raw or {}),
+            # None, not "{}": a capture with no envelope must stay
+            # distinguishable from an envelope that was genuinely empty.
+            json.dumps(m.event) if getattr(m, "event", None) else None,
         )
         for m in markets
     ]
@@ -130,6 +135,7 @@ def save_polymarket(
             m.end_date,
             "settled" if m.closed else "open",
             json.dumps(m.raw),
+            None,          # Polymarket has no Kalshi event envelope.
         )
         for m in markets
     ]
