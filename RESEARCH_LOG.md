@@ -2692,3 +2692,40 @@ Ruled under that authority, same hour:
   78's deadline_drift hazard bins next (theory-critical); then the
   phase-2 remainder (~10h, authorized, resumable). One long job at a
   time.
+
+## 2026-08-29 (cont.) — supervisor rulings: attempt-level scoring; the anchor rule at scale
+
+**Disposition scoring ruled ATTEMPT-LEVEL** (supervisor, under delegated
+authority). Each attempt scores in the pool of its own disposition at
+its own decision_date and entry price; position-level disposition is
+display-only (latest attempt), never a scoring key. Rejects both
+"latest view wins" (a later run could erase an earlier run's published
+decision — the disposition-form of the silent merge the versioning rule
+prevents) and "ever-endorsed" (pins the maximal claim, starves the
+control pool). The three flipped positions (9184, 9186, 9203, settling
+Sept 1–4) therefore feed both pools — endorsed as of their August
+attempts, rejected as of 2026-08-27. 4f implements in
+`tools/score.py::compute_score` before Sept 1, flip case tested,
+semantics documented; unstamped-attempt backfill cases come back to the
+supervisor rather than being chosen silently.
+
+**The early-settlement anchor hazard is two-thirds broad, not an edge
+case.** 4f measured 66.8% of 173,632 eligible settled markets closing
+early (median 3h, max 490 days); 28.4% close on schedule. 78's
+deadline_drift sign-flip was the visible instance. Kalshi's
+`expected_expiration_time` preserves the schedule (the measurement is
+only possible because it does), making it the valid anchor where rules
+parsing is impractical. 4f's phase-2 hardening: anchor on
+`expected_expiration_time`, exclude-and-count when absent (114 rows),
+never fall back to observed close; both the 25%-of-span and original
+24h decision points now computed inside the same fetch, so the
+pre-registration amendment gets measured, not argued.
+
+**Pending skill edits, blocked by session 09's permissions** (queued for
+the user or a permitted session; CLAUDE.md is authoritative meanwhile):
+`.claude/skills/backtest-theory/SKILL.md` — (1) "four conditions" →
+five; (2) point-in-time payload paragraph mirroring the adopted fifth
+condition; (3) the pass-rate probe recommendation; (4) new bullet under
+"Enforce the rules": never derive a decision point from observed close
+or span — on a "by D" market actual close is the outcome variable
+(66.8% measurement; deadline_drift sign-flip as the worked example).
