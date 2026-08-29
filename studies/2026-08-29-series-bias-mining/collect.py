@@ -57,11 +57,40 @@ WINDOW_DAYS = 60
 #: not a claim about the thesis.
 RECENCY_DAYS = 60
 
-#: THE decision point, single and pre-registered: the ask 24h before
-#: close. One observation per market. The spec's 7d/3d/1d would triple
-#: the comparison count and its own section 10 says resist that until the
-#: guard is proven.
-DECISION_OFFSET_S = 86400
+#: THE decision point, single and pre-registered: **25% of the market's
+#: own lifetime before close**. One observation per market. The spec's
+#: 7d/3d/1d would triple the comparison count and its own section 10
+#: says resist that until the guard is proven.
+#:
+#: AMENDED 2026-08-29, before any observation existed. The original was a
+#: fixed 24h before close, which is UNRUNNABLE on this population: a
+#: smoke test on the first series (KXAUDUSDAD) returned 0 of 40, because
+#: those markets live **7.5 hours** -- 24h before close predates their
+#: existence entirely, and the same is true of every intraday and daily
+#: market on the board. A fixed wall-clock offset is also not comparable
+#: across series: 24h is impossible for a 7-hour market and trivially
+#: early for a 3-month one, so it does not represent a similar
+#: information state.
+#:
+#: A fraction of lifetime is scale-free and well-defined for every
+#: market. 25% is chosen to sit clear of the near-settled zone -- the
+#: 2026-08-27 clustering study found favorites priced during an
+#: in-progress game are close to already resolved, which would inflate
+#: every edge -- while still being late enough that the market has
+#: traded. Changed for WELL-DEFINEDNESS, not for any outcome: no
+#: observation had been computed when this was amended.
+DECISION_FRACTION = 0.25
+
+#: Hourly-candle lookback. NOT larger: a 400-day hourly request returns
+#: HttpError from Kalshi, and the first version swallowed that in a bare
+#: `except Exception: continue`, so every market silently priced 0. The
+#: whole population closed inside WINDOW_DAYS, so 90 days of hourly
+#: candles covers any market that opened within a month of its close;
+#: a longer-lived market has its early life truncated, which shortens the
+#: measured span and moves its decision point later. `offset_h` is
+#: recorded per observation so that bias is visible and filterable rather
+#: than silent.
+CANDLE_LOOKBACK_DAYS = 90
 
 #: Only fetch prices for series with at least this many settled markets.
 #: Below it a series cannot clear the miner's own n>=40 floor anyway, so
@@ -119,7 +148,9 @@ CREATE TABLE IF NOT EXISTS obs (
     result        TEXT,
     side          TEXT,      -- favorite side at the decision point
     ask           REAL,      -- what you would have paid for it
-    won           INTEGER
+    won           INTEGER,
+    offset_h      REAL,      -- hours before close the price was taken
+    n_candles     INTEGER    -- how much price history existed at all
 );
 CREATE INDEX IF NOT EXISTS idx_obs_series ON obs(series_ticker);
 CREATE TABLE IF NOT EXISTS progress (
@@ -248,24 +279,46 @@ def prices(conn, limit_series: int | None = None) -> None:
             "SELECT ticker, close_time, result FROM settled WHERE "
             "series_ticker=?", (series_ticker,)))
         got = 0
+        errs: list[str] = []
         for r in rows:
             if not r["close_time"]:
                 continue
             try:
                 close_ts = int(datetime.fromisoformat(
                     r["close_time"].replace("Z", "+00:00")).timestamp())
-                candle = history.point_in_time(
-                    series_ticker, r["ticker"], close_ts - DECISION_OFFSET_S)
-            except Exception:                         # noqa: BLE001
+                # One hourly-candle call per market over its whole life;
+                # the series doubles as the lifetime measurement, so this
+                # costs no extra request over the old point_in_time call.
+                cs = history.candlesticks(
+                    series_ticker, r["ticker"],
+                    start_ts=close_ts - 86400 * CANDLE_LOOKBACK_DAYS,
+                    end_ts=close_ts, period_interval=60)
+            except Exception as exc:                  # noqa: BLE001
+                errs.append(f"{type(exc).__name__}")
                 continue
-            if not candle:
+            if not cs:
                 continue
-            ya = candle.get("yes_ask")
-            na = candle.get("no_ask")
-            if ya is None or na is None:
+            span = max(cs[-1]["end_ts"] - cs[0]["end_ts"], 0)
+            # At least an hour back, else a fraction of the observed span.
+            target = close_ts - max(3600.0, DECISION_FRACTION * span)
+            eligible = [c for c in cs if c["end_ts"] <= target]
+            # A short-lived market may have only one candle, and that
+            # single price is all the history that exists. Use it rather
+            # than dropping the market -- but record offset_h so an
+            # analysis can restrict to comparable information states.
+            candle = eligible[-1] if eligible else cs[0]
+            # Candles carry yes_ask_close / yes_bid_close. There is no
+            # no_ask field: the NO ask is 1 - the YES bid.
+            ya = candle.get("yes_ask_close")
+            yb = candle.get("yes_bid_close")
+            if ya is None or yb is None:
                 continue
-            # The favorite side and the price actually payable for it.
-            if ya <= na:
+            ya, yb = float(ya), float(yb)
+            if ya > 1.0 or yb > 1.0:          # cents, not dollars
+                ya, yb = ya / 100.0, yb / 100.0
+            na = 1.0 - yb
+            # Buy the favorite, at the ask actually payable for it.
+            if (ya + yb) / 2.0 >= 0.5:
                 side, ask = "yes", ya
             else:
                 side, ask = "no", na
@@ -273,13 +326,18 @@ def prices(conn, limit_series: int | None = None) -> None:
                 continue
             conn.execute(
                 "INSERT OR REPLACE INTO obs(ticker,series_ticker,close_time,"
-                "result,side,ask,won) VALUES(?,?,?,?,?,?,?)",
+                "result,side,ask,won,offset_h,n_candles) "
+                "VALUES(?,?,?,?,?,?,?,?,?)",
                 (r["ticker"], series_ticker, r["close_time"], r["result"],
-                 side, ask, 1 if side == r["result"] else 0))
+                 side, ask, 1 if side == r["result"] else 0,
+                 (close_ts - candle["end_ts"]) / 3600.0, len(cs)))
             got += 1
-        _mark(conn, "prices", series_ticker, f"{got}/{len(rows)} priced")
+        note = f"{got}/{len(rows)} priced"
+        if errs:
+            note += f"; {len(errs)} fetch errors ({errs[0]})"
+        _mark(conn, "prices", series_ticker, note)
         conn.commit()                                 # per series, always
-        print(f"  [{si}/{len(todo_series)}] {series_ticker}: {got}/{len(rows)}",
+        print(f"  [{si}/{len(todo_series)}] {series_ticker}: {note}",
               flush=True)
     print("phase 2 complete")
 
