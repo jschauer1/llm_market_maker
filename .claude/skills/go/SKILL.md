@@ -119,32 +119,54 @@ Two halves, in order:
 Both halves are on the *whole running set*, not on whichever theory is
 currently interesting.
 
-**Skip it only when it is already done today.** The check is per theory,
-not per session:
+**Skip it only when it is already done today *at its current version*.**
+The check is per theory **and per version** — "ran today" and "ran today at
+the version it is now" are different questions, and only the second one
+matters:
 
 ```python
 from tools import db
 conn = db.connect()
-for r in conn.execute(
-    "SELECT theory_id, MAX(DATE(last_seen_at)) AS last_day "
-    "FROM opportunities WHERE run_mode = 'live' GROUP BY theory_id"
-):
-    print(dict(r))
+current = {r["id"]: r["version"] for r in conn.execute(
+    "SELECT id, version FROM theories WHERE status IN "
+    "('testing','active','under_review')")}
+seen = {(r["theory_id"], r["theory_version"]): r["last_day"]
+        for r in conn.execute(
+            "SELECT theory_id, theory_version, MAX(DATE(last_seen_at)) AS last_day "
+            "FROM opportunities WHERE run_mode = 'live' "
+            "GROUP BY theory_id, theory_version")}
+today = __import__("datetime").datetime.utcnow().strftime("%Y-%m-%d")
+for tid, ver in sorted(current.items()):
+    day = seen.get((tid, ver))
+    print(f"{tid} v{ver}: {'current' if day == today else f'STALE (last {day})'}")
 ```
 
-Compare that against `theories list --running`: a running theory missing
-from the result, or carrying an older date, has not been updated today. If
-every running theory is current, say so in one line and go straight to §3 —
-re-running a theory twice against the same board produces nothing but
-duplicate rows and wasted time.
+A running theory that prints `STALE` — including one whose *older* version
+ran today — has not been updated and must run. If every running theory is
+current, say so in one line and go straight to §3; re-running a theory twice
+against the same board produces nothing but duplicate rows and wasted time.
 
-**One caveat that check cannot cover: a scan that legitimately found
+**Why the version, not just the date.** Grouping by `theory_id` alone was
+wrong and hid a real gap on 2026-08-29: `insider_judgment` v3→v4 and
+`structural_arb` v2→v3 were both bumped at ~00:34Z, *after* that morning's
+00:21/00:44 runs. The ledger showed both "current for today" while neither
+**current decision procedure had ever seen a board**. A version bump means a
+different theory — that is the whole point of the versioning rule — so a run
+at the previous version is not evidence about this one, and treating it as
+such is the silent merge the rule exists to prevent, arriving through the
+freshness check instead of through the ledger.
+
+**One caveat this check cannot cover: a scan that legitimately found
 nothing writes no rows, so it is indistinguishable from a scan that never
-happened.** Until that is fixed, close the gap in prose — when a theory
-runs and produces no candidates, say so explicitly in the session log
-("`mention_family`: ran, 0 candidates"). A future session reading only the
-ledger cannot tell the difference, and will either redo your work or
+happened** — it prints `STALE (last None)` either way. Expect that reading
+for any theory that ran clean, and resolve it from the session log, not the
+ledger: when a theory runs and produces no candidates, say so explicitly
+("`structural_arb` v3: ran, 0 candidates"). A future session reading only
+the ledger cannot tell the difference, and will either redo your work or
 wrongly assume it was done.
+
+So `STALE` is a prompt to check the log, not an order to re-run. Re-run only
+if the log does not say the theory ran clean today at its current version.
 
 **Then stop.** Updating the theories is the floor, not the session. Once
 they are current, the rest of the time is yours.
