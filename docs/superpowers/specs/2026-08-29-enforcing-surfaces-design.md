@@ -1,7 +1,10 @@
-# Enforcing surfaces: four norms that exist only as prose
+# Enforcing surfaces: five norms that exist only as prose
 
 **Date:** 2026-08-29. **Status:** design proposed, implementation not started.
-**Scope:** `tools/` + `db/schema.sql` + ~170 net new words in `CLAUDE.md`.
+**Scope:** `tools/` + `db/schema.sql` + ~250 net new words in `CLAUDE.md`, plus
+a one-time migration of `RESEARCH_LOG.md` (§6).
+**Base:** `ff4318a` (registered slices). `CLAUDE.md` is 6,388 words as of that
+commit; every budget below is against it.
 **Non-goal:** changing what this project believes.
 
 ---
@@ -19,10 +22,10 @@ So this spec adopts a hard budget and honours the repo's own construction rule
 
 | Constraint | Value |
 |---|---|
-| Net new words in `CLAUDE.md` | **≤ 170** (2.9% of the current 5,902) |
+| Net new words in `CLAUDE.md` | **≤ 250** (3.9% of the current 6,388) |
 | New top-level `CLAUDE.md` sections | **0** — every edit lands inside an existing section |
 | New doctrine | **0** — every item below enforces a rule the document already states |
-| Deletions offsetting the additions | 1 (§3.4) |
+| Deletions offsetting the additions | 2 (§3.4, §6.7) |
 
 The unifying observation is that **every defect here is a norm `CLAUDE.md`
 already states, which has no surface that makes omitting it impossible.** The
@@ -144,6 +147,29 @@ Appended to the paragraph that already ends with the pairing discipline:
 > disclosed beside every score; it does not yet adjust one. Idea 2's retraction
 > is the instance this exists to catch without luck.
 
+### 1.7 Registered slices are the natural choke point (added after `ff4318a`)
+
+`ff4318a` landed registered slices, and `CLAUDE.md`'s mining paragraph now
+names slice registration as the concrete pre-registration act for a mined
+pattern. That is exactly the boundary §1.4 was looking for: **the moment a
+pattern gets registered is the moment its question count is knowable**, and
+registration is already mandatory for a mined slice to earn ranking evidence.
+
+`theory_slices.origin` carries the provenance today as prose. Two additive
+columns turn it into the counted surface:
+
+```sql
+ALTER TABLE theory_slices ADD COLUMN window_slug TEXT REFERENCES data_windows(slug);
+ALTER TABLE theory_slices ADD COLUMN n_examined INTEGER;   -- partitions considered before this one was chosen
+```
+
+`n_examined` is the honest denominator — "this cell was the best of 16" is the
+fact that makes a Wilson bound readable, and it is currently recoverable only
+by reading a study. `slices register` prompts for it; `segment_report` prints
+it beside the slice's edge. No behaviour changes, and `hypothesis_tests` rows
+can be written by `slices register` rather than by a separate call an agent
+must remember.
+
 ---
 
 ## 2. Version bumps outrun settlements
@@ -260,6 +286,24 @@ Appended after the existing bump paragraph:
 > not soften the bump rule, it makes the rule affordable: a theory still being
 > improved could otherwise never accumulate evidence, which is how three of
 > five theories reached n=0.
+
+### 2.8 Slice segments pool across a carry-chain too (added after `ff4318a`)
+
+Slices are per-version like scores, so they inherit this defect exactly.
+`insider_judgment` v3→v4 is the live worked example and is almost certainly a
+`carry`: v4 adopted the slice's own rule, and v4 candidates currently cite the
+**v3** segment, disclosed by a manual rule in the report.
+
+A manual disclosure is a norm with no surface — the same failure class this
+whole spec addresses — so it should be replaced, not documented.
+`slices.segment_report` moves to the same `pool="version" | "chain"` switch as
+`compute_score`, defaulting to `"version"`. Under a proven carry the v3 segment
+pools into v4 mechanically and the manual citation rule is deleted.
+
+**Prove it before relying on it.** v3→v4 is the natural first `prove_carry`
+target: if the replay shows v4's gate would have decided any v3 row
+differently, the bump is `breaking`, the pooling does not happen, and the
+manual disclosure stays. The proof decides this, not the convenience.
 
 ---
 
@@ -440,7 +484,177 @@ sync.
 
 ---
 
-## 6. Explicitly out of scope
+## 6. The log carries theory-local content, and the rule against it is four days old
+
+### 6.1 The problem, measured
+
+`RESEARCH_LOG.md` is **64 entries / 24,812 words**. Theory notebooks already
+hold **16,896 words across 7 files** — `insider_judgment` 4,332,
+`structural_arb` 4,316, `calibration_harvest` 4,293, `deadline_drift` 1,608,
+`no_side_premium` 1,517, `mention_family` 556.
+
+So the defect is **not** that theories fail to keep notebooks. They keep them.
+The log is 24,837 words *in addition*, and `CLAUDE.md` already forbids the
+duplication:
+
+> `RESEARCH_LOG.md` stays cross-theory: when a session's work sits inside one
+> theory, the log entry is a pointer to that theory's `NOTES.md` entry, **not a
+> copy of it**.
+
+Every entry is classified, per row, in the companion file
+`2026-08-29-enforcing-surfaces-log-classification.md` — the migration acts on
+that table, not on this summary, so any single row can be disputed:
+
+| class | entries | words | share |
+|---|---:|---:|---:|
+| **T** — theory-local; belongs in a `NOTES.md` | 22 | 9,484 | 38% |
+| **M** — theory work carrying a repo-level fact | 14 | 5,958 | 24% |
+| **X** — cross-cutting: architecture, tooling, governance | 28 | 9,370 | 38% |
+
+*(Measuring turned up a formatting defect worth fixing on the way through:
+**three headings are written as two consecutive `## ` lines**, so every
+heading-based count of this file — including the "66 entries" figure this spec
+quoted before the table existed — is wrong until they are joined.)*
+
+**The M column is the whole risk of this migration**, and it is a quarter of
+the log. Those entries look theory-local and are not: the ~60-day Kalshi
+archive limit, settlement-day clustering confounding both live theories, the
+Holm + event-clustering precedent, the politics retraction, the version-bump
+gap that produced §2 of this spec. Moved wholesale into a notebook, each
+becomes exactly what `CLAUDE.md` names as broken:
+
+> A theory whose true status is discoverable only by reading its `NOTES.md` has
+> broken that surface, and the fix is distillation upward.
+
+### 6.2 This reverses a prior decision, deliberately
+
+`docs/superpowers/plans/2026-08-25-theory-locality.md` §22 decided the
+opposite:
+
+> **No migration of existing notes.** Content already in `THEORY.md` Learnings
+> and `RESEARCH_LOG.md` stays exactly where it is; the convention is
+> forward-only and the seeded `NOTES.md` files point at the old locations
+> rather than absorbing them.
+
+That was a reasonable call on 2026-08-25 — migration is risk, and forward-only
+is free if the convention holds. **It did not hold.** Of the 44 entries written
+*after* the locality convention landed, **16 are pure theory-local, totalling
+5,838 words** (plus 11 mixed at 4,616). Four days, one convention, 5,838 words
+of the exact thing it forbade.
+
+That is the evidence that this is not a discipline problem to be solved by
+restating the rule a third time. Forward-only was tried and produced 5,838
+words of the thing it forbade.
+
+### 6.3 Why it failed: the incentive, not the rule
+
+The log is what the next session reads — `CLAUDE.md` says "read its tail" and
+the `go` skill says "the last ~30 lines". A pointer does not get read; a copy
+does. Every session therefore chooses between following the rule and being seen
+by the next session, and picks being seen. That is rational, not sloppy.
+
+**So the promotion bar cannot be the first change.** Raise the bar while the
+log is still the only thing read at orientation, and sessions will either
+violate the higher bar or lose their work into files nobody opens. §3's `state`
+surface is the prerequisite: once orientation reads the DB and theory notes,
+writing to `NOTES.md` becomes the way to be seen, and the bar costs nothing to
+hold because nobody wants to write to the log anyway.
+
+### 6.4 Three documents, currently two files
+
+The log fuses two things with opposite growth requirements:
+
+| | grows | read | bounded by |
+|---|---|---|---|
+| **Journal** (`RESEARCH_LOG.md`) | forever, harmlessly | on demand, for one entry's reasoning | nothing — and that is fine |
+| **Canon** (`rulings` + `theory_facts` + `state`) | slowly | every session, whole | supersession — entries drop out |
+| **Notebook** (`NOTES.md`) | per theory | when working that theory | the theory's own lifetime |
+
+The problem was never that the journal is big. **It is that the canon is
+embedded inside the journal**, so reading the canon requires reading the
+journal. Extract the canon and a 200 KB journal is harmless.
+
+### 6.5 The promotion bar — *proposed; a governance ruling, not mine to make*
+
+Per the standing delegation, the bar itself goes to the supervisor session.
+Proposed wording, so there is something concrete to rule on:
+
+> **A log entry is earned by a fact that changes how a session that never
+> touched this theory would act.** Everything else is a pointer. Concretely, an
+> entry is warranted for: a repo-level mechanism or defect; a ruling; a
+> methodological precedent; a data-source constraint; a cross-theory finding; a
+> correction to something previously published. A result inside one theory is a
+> one-line headline plus a pointer into that theory's `NOTES.md` — never the
+> narrative, the tables, or the numbers, which live in the notebook and the
+> ledger.
+
+The test case already exists: `ff4318a`'s own entry is cross-cutting (a new
+repo-wide mechanism) with theory-local numbers distilled to a headline plus a
+pointer. It passes the proposed bar as written, which is the cheapest available
+evidence that the bar is not too strict to comply with.
+
+### 6.6 The migration
+
+**T entries** move to the owning theory's `NOTES.md`, in date order, verbatim —
+the notebook is append-only and raw, so nothing is rewritten or summarised on
+the way in.
+
+**M entries** split: the repo-level fact is extracted upward into `rulings`,
+`theory_facts`, or a one-paragraph log entry; the theory narrative moves to the
+notebook. **This is the only judgement-bearing step in the migration**, so it
+is done one entry at a time with the extraction written down, never in bulk.
+
+**X entries** stay.
+
+**Every moved entry leaves a stub at its original anchor** — date, heading, and
+the pointer to where the content went. The journal stays append-only and its
+line numbering stays meaningful; a stub is an edit *in place*, not a deletion.
+
+#### The citation sweep (flagged by session 9a — do this first, not last)
+
+Prose citations point *into* the content being moved, and unlike
+`prompt_path`, nothing test-enforces them. Known classes:
+
+- `theory_slices.origin` — cites `THEORY.md Learnings 2026-08-26` and
+  `backtests/<run>/RESULTS.md` (confirmed present on
+  `insider_judgment/strong-moderate-no`).
+- `judgment_runs.prompt_path` — test-enforced already, but repointing rules
+  apply if a prompt moves with a notebook.
+- `NOTES.md` / `THEORY.md` entries cross-citing each other **by date**, which
+  a move silently breaks because the date still exists somewhere else.
+- `docs/superpowers/plans/*` and `docs/DEDUP_PLAN.md`, which cite log content
+  by description.
+
+Sweep before moving anything:
+
+```bash
+grep -rn 'THEORY.md Learnings\|NOTES.md 20\|RESEARCH_LOG' --include='*.md' --include='*.py' .
+python -m tools.cli slices list --show-origin
+```
+
+Then the durable guard, in the idiom of
+`test_every_recorded_prompt_path_still_resolves`: extend §5.1's docs-path test
+to assert that every `theory_slices.origin` and every dated cross-citation
+names a file that exists **and still contains that date heading**. A stub
+satisfies it; a silent move does not.
+
+### 6.7 `CLAUDE.md` edit (net ≈ 0 words, inside "What lives in a theory")
+
+The existing sentence is edited in place, not appended to:
+
+> `RESEARCH_LOG.md` stays cross-theory: a log entry is earned by a fact that
+> changes how a session that never touched this theory would act — a mechanism,
+> a ruling, a precedent, a constraint, a correction. A result inside one theory
+> is a headline and a pointer into its `NOTES.md`, never a copy. This was
+> forward-only from 2026-08-25 and produced 5,838 words of copies anyway,
+> because the log was what got read; it binds now because `state` is.
+
+**This is the second offsetting deletion.** It replaces the existing
+pointer-not-copy sentence rather than adding to it.
+
+---
+
+## 7. Explicitly out of scope
 
 - **Execution realism for `structural_arb`.** Already done, and better than
   this spec would have specified:
@@ -457,11 +671,19 @@ sync.
 - **`bucket_rates` clustering** — already carved out by a standing ruling.
 - **Any rewrite of `CLAUDE.md` for length.** The document's size is a
   deliberate purchase of cross-session consistency. It is not technical debt
-  and this spec does not treat it as such.
+  and this spec does not treat it as such. A separate question — whether
+  `CLAUDE.md`'s *rule density* can be raised by consolidating the
+  prefer-mechanical argument, which currently appears at lines 38, 73–75, 297,
+  546–551 and 596 with separately accumulated hedges — is open and not
+  specified here.
+- **The `Subset edges — registered slices` subsection of `CLAUDE.md`**
+  (`ff4318a`, line 331). Session 9a owns that text; §1.7 and §2.8 above add
+  columns and a pooling switch around it and reword none of it. If the §6.5
+  bar, once ruled, would require changing it, that goes back to 9a first.
 
 ---
 
-## 7. Sequencing
+## 8. Sequencing
 
 Each phase is independently shippable and independently useful.
 
@@ -469,12 +691,20 @@ Each phase is independently shippable and independently useful.
 |---|---|---|
 | 1 | §5.1 hygiene, §4.2 `--ticker`, §3.2 `state` | Zero doctrine, zero schema risk, immediate orientation payoff |
 | 2 | §3.3 `rulings` + backfill | Makes the four buried rulings survivable before the next session loses them |
-| 3 | §2 carry/breaking + backfill + `rank` disclosure | The evidence bleed; largest payoff, needs the disclosure precedent |
-| 4 | §1 question budget | Needs windows registered, easiest once `state` renders them |
-| 5 | §5.2 DB split | Pure operations; safe to defer, unsafe to defer indefinitely |
+| 3 | §6.6 citation sweep + the citation test | Read-only; must precede any move, and is useful even if the migration never runs |
+| 4 | §6.6 T-entry migration + stubs | Mechanical once the sweep is clean; 22 entries / 9,484 words, no judgement |
+| 5 | §6.6 M-entry split, one at a time | The judgement-bearing quarter; only safe once `rulings` (phase 2) exists to receive the extractions |
+| 6 | §2 carry/breaking + backfill + `rank`/`segment_report` disclosure | The evidence bleed; largest payoff, needs the disclosure precedent |
+| 7 | §1 question budget + §1.7 slice columns | Needs windows registered, easiest once `state` renders them |
+| 8 | §5.2 DB split | Pure operations; safe to defer, unsafe to defer indefinitely |
+| — | §6.5 promotion bar | **Blocked on the supervisor's ruling** — and on phase 1, per §6.3 |
 | — | §4.3 paper lane | Blocked on the user's ruling |
 
-## 8. Testing
+Phases 3–5 are the migration. **Phase 1 gates all of them** (§6.3): raising the
+bar or emptying the log before `state` exists just moves work into files nobody
+reads.
+
+## 9. Testing
 
 Every item ships with tests in the existing suite (986 passing, 64s):
 
@@ -490,13 +720,22 @@ Every item ships with tests in the existing suite (986 passing, 64s):
 - New `test_question_budget.py` — count rises with registration, the disclosure
   line fires above threshold, `record_backtest_run` refuses without a window.
 - New `test_state.py` — `state` renders from a fixture DB with no network.
+- Extended docs-path test (§6.6) — every `theory_slices.origin` and every dated
+  cross-citation names a file that exists *and still contains that date
+  heading*. A stub passes; a silent move fails. This is the migration's only
+  real safety net, and it must land **before** phase 4.
 
-## 9. What this spec does not change
+## 10. What this spec does not change
 
 The mission, the theory contract, `finish()` as the ledger boundary, the
 credibility formula, the tier definitions, the no-introspected-probability
 rule, the ranking arithmetic, `edge_basis`, the disposition vocabulary, "only
 the user retires a theory", or the size and voice of `CLAUDE.md`.
 
-Four sentences the document already contains get a table, a refusal and a test.
+`RESEARCH_LOG.md` in particular **stays append-only and stays the audit
+trail**. §6 moves content out of it and leaves a stub at every anchor; it does
+not compress it, rewrite it, delete from it, or cap its growth. A journal is
+supposed to grow. The change is that the canon stops living inside it.
+
+Five sentences the document already contains get a table, a refusal and a test.
 That is the whole change.
