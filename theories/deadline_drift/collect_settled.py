@@ -127,6 +127,34 @@ def collect(series: list[str], *, fetch=None) -> dict:
                                 if isinstance(v, list))}
 
 
+FACT_KIND = "last_settled_capture"
+
+
+def mark_captured(conn, when: str | None = None) -> None:
+    """Stamp the capture date so any session's orient can see staleness."""
+    from tools import db
+    when = when or dt.datetime.now(dt.timezone.utc).isoformat()
+    with db.write(conn):
+        conn.execute(
+            "INSERT OR REPLACE INTO theory_facts"
+            " (theory_id, kind, key, value_json, established_at)"
+            " VALUES (?, ?, ?, ?, ?)",
+            ("deadline_drift", FACT_KIND, "all", json.dumps(when), when))
+
+
+def days_since_capture(conn, now: str | None = None) -> float | None:
+    """None if never captured. >14 means top it up -- see RUNBOOK.md."""
+    row = conn.execute(
+        "SELECT value_json FROM theory_facts WHERE theory_id='deadline_drift'"
+        " AND kind=? AND key='all'", (FACT_KIND,)).fetchone()
+    if row is None:
+        return None
+    then = dt.datetime.fromisoformat(json.loads(row[0]))
+    ref = (dt.datetime.fromisoformat(now) if now
+           else dt.datetime.now(dt.timezone.utc))
+    return (ref - then).total_seconds() / 86400.0
+
+
 if __name__ == "__main__":
     import sys
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
@@ -137,3 +165,5 @@ if __name__ == "__main__":
     series = sorted({m.series_ticker for m in dd.population(board)})
     print(f"walking {len(series)} allowlist series...")
     print(collect(series))
+    mark_captured(conn)
+    print("capture date stamped in theory_facts")

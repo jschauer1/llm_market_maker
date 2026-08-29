@@ -99,3 +99,34 @@ def test_screen_drops_markets_outside_the_entry_band():
     cands, funnel = dd.screen(board, now=NOW)
     assert cands == []
     assert funnel["outside_entry_band"] == 1
+
+
+def test_parse_deadline_reads_the_stated_date_not_the_close(tmp_path):
+    """The correction of 2026-08-29: actual close is a FUNCTION OF THE
+    OUTCOME on a 'by D' market -- a NO runs to the deadline, a YES stops
+    when the event fires (median 210 days early). Only the stated deadline
+    is a sound anchor."""
+    from theories.deadline_drift.collect_settled import parse_deadline
+    assert parse_deadline(
+        "If Alito retires before Jul 1, 2026, then the market resolves to Yes."
+    ).startswith("2026-07-01")
+    assert parse_deadline(
+        "If X is traded on or before Feb 12, 2027, resolves Yes."
+    ).startswith("2027-02-12")
+    assert parse_deadline("If X happens, resolves Yes.") is None
+
+
+def test_capture_staleness_marker_roundtrips(tmp_path):
+    """Sessions die; the top-up obligation has to outlive them, so it is a
+    marker any session's orient can read rather than a background job."""
+    from tools import db, theories
+    from theories.deadline_drift import collect_settled as cs
+    conn = db.connect(tmp_path / "t.db")
+    db.init_db(conn)
+    theories.register(conn, "deadline_drift", "Deadline Drift",
+                      "theories/deadline_drift")
+    assert cs.days_since_capture(conn) is None      # never captured
+    cs.mark_captured(conn, when="2026-08-01T00:00:00+00:00")
+    got = cs.days_since_capture(conn, now="2026-08-29T00:00:00+00:00")
+    assert round(got) == 28, "28 days stale -> RUNBOOK says top it up"
+    conn.close()
