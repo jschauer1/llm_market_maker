@@ -1,0 +1,154 @@
+ROUND 5 SAMPLE -- board 2026-08-29T13:14:32Z, 110,628 markets
+candidate population 4,135 in 786 series
+drawn from 4,001 not judged in rounds 1-4; 48 distinct series
+
+[1] KX1ALBUM-26DEC-BAB  yes_ask=0.29  event=KX1ALBUM-26DEC
+    T: Will Lil Baby have a #1 album this year?
+    R: If Lil Baby has a #1 album on the Billboard 200 by Dec 26, 2026, then the market resolves to Yes.
+[2] KX1ALBUM-26DEC-SEL  yes_ask=0.18  event=KX1ALBUM-26DEC
+    T: Will Selena Gomez have a #1 album this year?
+    R: If Selena Gomez has a #1 album on the Billboard 200 by Dec 26, 2026, then the market resolves to Yes.
+[3] KX2028RRUN-28-NHAL  yes_ask=0.23  event=KX2028RRUN-28
+    T: Who will run for the Republican presidential nomination in 2028?
+    R: If Nikki Haley announces a presidential campaign to contest the presidential nomination of the Republican party for the 2028 U.S. presidential election before Jan 1, 2028, then the market resolves to Yes.
+[4] KXACTORSONNYCROCKETT-35-GLE  yes_ask=0.34  event=KXACTORSONNYCROCKETT-35
+    T: Will Glen Powell be casted in the next Miami Vice?
+    R: If Glen Powell is cast in Miami Vice before Jan 1, 2035, then the market resolves to Yes.
+[5] KXALBUMRELEASEDATE-NEWFUTURE-27AUG01  yes_ask=0.73  event=KXALBUMRELEASEDATE-NEWFUTURE
+    T: Will Future release new album before Aug 1, 2027?
+    R: If Future releases a new album before Aug 1, 2027, then the market resolves to Yes.
+[6] KXANTHROPICBANKPUBLIC-28JAN01-ROTHX  yes_ask=0.26  event=KXANTHROPICBANKPUBLIC-28JAN01
+    T: Will Rothschild & Co take Anthropic public before Jan 1, 2028?
+    R: If Rothschild & Co serves as a lead underwriter for Anthropic's initial public offering in the United States before Jan 1, 2028, then the market resolves to Yes.
+[7] KXBERNIEENDORSE-26NOV03-JTUR  yes_ask=0.17  event=KXBERNIEENDORSE-26NOV03
+    T: Will Bernie Sanders endorse Josh Turek in Iowa Senate Race before Nov 3, 2026?
+    R: If Bernie Sanders publicly endorses Josh Turek in the 2026 United States Senate election in Iowa before Nov 3, 2026, then the market resolves to Yes.
+[8] KXBOND-30-JACO  yes_ask=0.11  event=KXBOND-30
+    T: Will Jacob Elordi be the next James Bond?
+    R: If Jacob Elordi is cast as the next James Bond before Jan 1, 2030, then the market resolves to Yes.
+[9] KXCANUSDEAL-26-27JAN01  yes_ask=0.35  event=KXCANUSDEAL-26
+    T: Will it be reported by a Source Agency that Canada and the United States have concluded a final trade agreement before Jan 1, 2027?
+    R: If Canada and the United States have concluded a final trade agreement after Issuance and before Jan 1, 2027, then the market resolves to Yes.
+[10] KXCLAUDE-OPUS6-26OCT01  yes_ask=0.06  event=KXCLAUDE-OPUS6
+    T: Will Anthropic release Opus 6 before Oct 1, 2026?
+    R: If Anthropic releases Opus 6 before Oct 1, 2026, then the market resolves to Yes.
+[11] KXCOMPANYLAYOFF-27JAN01-ORCL  yes_ask=1.0  event=KXCOMPANYLAYOFF-27JAN01
+    T: Will Oracle issue layoffs this year?
+    R: If  Oracle announces, implements, or acknowledges a layoff after Issuance and before Jan 1, 2027, then the market resolves to Yes.
+[12] KXDEMSCHUMER-27-NOV03  yes_ask=0.2  event=KXDEMSCHUMER-27
+    T: Will any current member of the Democratic Senate caucus (including independents who caucus with Democrats) publicly states that Chuck Schumer should s
+    R: If any?current member of the Democratic Senate caucus (including independents who caucus with Democrats) publicly states that Chuck Schumer should step down, resign, or be replaced as Senate Democratic Leader before Nov 3, 2026, then the market resolves to Yes.
+[13] KXEARTHQUAKEM-26AUG-79  yes_ask=0.07  event=KXEARTHQUAKEM-26AUG
+    T: Will an earthquake of at least 7.9 magnitude occur worldwide before Sep 1, 2026?
+    R: If an earthquake with a magnitude at least 7.9 on the Moment Magnitude Scale occurs with its epicenter in worldwide before Sep 1, 2026, then the market resolves to Yes.
+[14] KXEPSTEIN-26SEP01  yes_ask=0.02  event=KXEPSTEIN-26SEP01
+    T: Will Trump release any documents about Epstein's associates before Sep 1, 2026?
+    R: If the Trump Administration has released, after Issuance and before Sep 1, 2026, previously unreleased (but created prior to the start of his Administration) documents related to or discussing Jeffrey Epstein?s connections, or associates, then the market resolves to Yes.
+[15] KXFDAAPPROVE-V940-27APR01  yes_ask=0.1  event=KXFDAAPPROVE-V940
+    T: Will the FDA approve intismeran autogene (V940/mRNA-4157) with pembrolizumab (KEYTRUDA) for adjuvant treatment of completely resected stage IIB-IV mel
+    R: If the FDA approves intismeran autogene (V940/mRNA-4157) with pembrolizumab (KEYTRUDA) for adjuvant treatment of completely resected stage IIB-IV melanoma for marketing before Apr 1, 2027, then the market resolves to Yes.
+[16] KXFETTERMANSWITCH-26MAY-27AUG01  yes_ask=0.3  event=KXFETTERMANSWITCH-26MAY
+    T: Will John Fetterman leave the Democratic party before Aug 1, 2027?
+    R: If John Fetterman announces they are leaving party (or are no longer caucusing with them in the Senate) before Aug 1, 2027, then the market resolves to Yes.
+[17] KXGAMBLINGREPEAL-26AUG-27SEP01  yes_ask=0.32  event=KXGAMBLINGREPEAL-26JAN
+    T: Will bill that removes/changes the gambling tax provision in the One Big Beautiful Bill Act ("OBBB") become law before Sep 1, 2027?
+    R: If a bill that removes/changes the gambling tax provision in the One Big Beautiful Bill Act ("OBBB") has become law after Issuance and before Sep 1, 2027, then the market resolves to Yes.
+[18] KXGPT-OPEN-26NOV01  yes_ask=0.57  event=KXGPT-OPEN
+    T: Will OpenAI release GPT-6 before Nov 1, 2026?
+    R: If OpenAI releases A model called GPT-6 or greater before Nov 1, 2026, then the market resolves to Yes.
+[19] KXINTERSTELLAR-26  yes_ask=0.19  event=KXINTERSTELLAR-26
+    T: Will a new interstellar visitor be confirmed in 2026?
+    R: If any object is confirmed to be an interstellar visitor before Jan 1, 2027, then the market resolves to Yes.
+[20] KXIPOBEASTINDUSTRIES-26NOV01  yes_ask=0.06  event=KXIPOBEASTINDUSTRIES
+    T: When will Beast Industries IPO?
+    R: If Beast Industries confirms an IPO before Nov 1, 2026, then the market resolves to Yes.
+[21] KXIPODISCORD-27MAY01  yes_ask=0.69  event=KXIPODISCORD
+    T: When will Discord IPO?
+    R: If Discord confirms an IPO before May 1, 2027, then the market resolves to Yes.
+[22] KXIPOSKIMS-DATE-26AUG01  yes_ask=1.0  event=KXIPOSKIMS-DATE
+    T: When will Skims officially announce an IPO?
+    R: If Skims confirms an IPO before Aug 1, 2026, then the market resolves to Yes.
+[23] KXJUDGMENT-NPS29  yes_ask=0.73  event=KXJUDGMENT-NPS29
+    T: Will SCOTUS end the White House ballroom injunction?
+    R: If the U.S. Supreme Court in a final merits disposition that the preliminary injunction no longer bars White House ballroom construction in National Park Service, et al. v. National Trust for Historic Preservation in the United States, No. 26A203, including any merits docket arising from the same di
+[24] KXLEADERSOUT-27JAN01-DNOBECUA  yes_ask=0.079  event=KXLEADERSOUT-27JAN01
+    T: Will Daniel Noboa leave President of Ecuador before Jan 1, 2027?
+    R: If Daniel Noboa has either officially announced their intention to leave as President of Ecuador or has actually left President of Ecuador before Jan 1, 2027, then the market resolves to Yes.
+[25] KXLOCALLAW-VADATA-27AUG01  yes_ask=0.58  event=KXLOCALLAW-VADATA-27AUG01
+    T: Will Virginia require data centers to use clean energy?
+    R: If legislation or budget language requiring data centers to procure a minimum share of their electricity or associated renewable energy certificates from carbon-free resources, or barring dedicated fossil-fueled generation from serving them, either directly or as a condition of a tax preference or p
+[26] KXMARALAGO-27-JFIS  yes_ask=0.091  event=KXMARALAGO-27
+    T: Will James Fishback be reported to visit Mar-a-Lago before Jan 1, 2027?
+    R: If James Fishback has visited Mar-a-Lago after Issuance and before Jan 1, 2027, then the market resolves to Yes.
+[27] KXMEDIAGUESTKIMMEL-27-TAY  yes_ask=0.24  event=KXMEDIAGUESTKIMMEL-27
+    T: Will Taylor Swift be on Jimmy Kimmel Live! before 2027?
+    R: If Taylor Swift is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.
+[28] KXMLBDEBUT-EQUINTERO-28NOV01  yes_ask=0.72  event=KXMLBDEBUT-EQUINTERO
+    T: Will Eduardo Quintero play in a game for any team in the MLB before Nov 1, 2028?
+    R: If Eduardo Quintero plays for any MLB team in a regular season or playoff game before Nov 1, 2028, then the market resolves to Yes.
+[29] KXMLBDEBUT-SHERNANDEZ-29NOV01  yes_ask=0.93  event=KXMLBDEBUT-SHERNANDEZ
+    T: Will Seth Hernandez play in a game for any team in the MLB before Nov 1, 2029?
+    R: If Seth Hernandez plays for any MLB team in a regular season or playoff game before Nov 1, 2029, then the market resolves to Yes.
+[30] KXMOVIECAST-XMAN29-KEL  yes_ask=0.23  event=KXMOVIECAST-XMAN29
+    T: Will Kelsey Grammer be cast in the next official X-Men motion picture produced by Marvel Studios?
+    R: If Kelsey Grammer is cast in the next official X-Men motion picture produced by Marvel Studios before Jan 1, 2029, then the market resolves to Yes.
+[31] KXNBATRADE-27FEB12-LDORT5  yes_ask=1.0  event=KXNBATRADE-27FEB12
+    T: Will Luguentz Dort be traded after Issuance and before Feb 12, 2027?
+    R: If Luguentz Dort is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.
+[32] KXNCAAFCONFLEAVE-27-MISS  yes_ask=0.07  event=KXNCAAFCONFLEAVE-27
+    T: Will Ole Miss leave the SEC before Jul 1, 2027?
+    R: If the Ole Miss College Football Team leaves the SEC before Jul 1, 2027, then the market resolves to Yes.
+[33] KXNEWGLENN-262-OCT  yes_ask=0.02  event=KXNEWGLENN-262
+    T: Will Blue Origin's New Glenn rocket launch before Oct 2026?
+    R: If Blue Origin's New Glenn rocket has launched from the launch pad before Oct 1, 2026, then the market resolves to Yes.
+[34] KXNFLTRADE-26DEC01-JWIN  yes_ask=0.16  event=KXNFLTRADE-26DEC01
+    T: Will Jameis Winston be traded before Dec 1, 2026?
+    R: If Jameis Winston is traded before Dec 1, 2026, then the market resolves to Yes.
+[35] KXOPENAIBANKPUBLIC-28JAN01-QATAX  yes_ask=0.23  event=KXOPENAIBANKPUBLIC-28JAN01
+    T: Will Qatalyst Partners take OpenAI public before Jan 1, 2028?
+    R: If Qatalyst Partners serves as a lead underwriter for OpenAI's initial public offering in the United States before Jan 1, 2028, then the market resolves to Yes.
+[36] KXPODCASTGUESTCALLHERDADDY-27JAN-HAI  yes_ask=0.22  event=KXPODCASTGUESTCALLHERDADDY-27JAN
+    T: Will Hailey Bieber go on Call Her Daddy?
+    R: If Hailey Bieber goes on Call Her Daddy before Jan 1, 2027, then the market resolves to Yes.
+[37] KXREDISTRICTING-26-AL  yes_ask=0.85  event=KXREDISTRICTING-26
+    T: What states will redistrict before the 2026 Congressional elections?
+    R: If the Alabama legislature has adopted new, qualifying congressional district maps after Issuance and before Nov 1, 2026, then the market resolves to Yes.
+[38] KXROGANGUEST-27JAN01-HUN  yes_ask=0.45  event=KXROGANGUEST-27JAN01
+    T: Will Hunter Biden go on the Joe Rogan Experience before Jan 1, 2027?
+    R: If Hunter Biden goes on the Joe Rogan Experience before Jan 1, 2027, then the market resolves to Yes.
+[39] KXSHOWENDFAMILYGUY-30  yes_ask=0.46  event=KXSHOWENDFAMILYGUY-30
+    T: Will there be an announcement that Family Guy is ending?
+    R: If there is an announcement that Family Guy will end, has been cancelled, or is entering its final season, before Jan 1, 2030, then the market resolves to Yes.
+[40] KXSPCXLAUNCH-CREW13-26DEC01  yes_ask=0.93  event=KXSPCXLAUNCH-CREW13
+    T: When will SpaceX launch Dragon Crew-13?
+    R: If SpaceX launches Dragon Crew-13 After issuance and before Dec 1, 2026, then the market resolves to Yes.
+[41] KXSUPERBOWLHEADLINE-27-BAC  yes_ask=0.06  event=KXSUPERBOWLHEADLINE-27
+    T: Who will headline the Pro Football Championship Halftime Show?
+    R: If Backstreet Boys is announced to headline the Pro Football Championship Halftime Show before Feb 15, 2027, then the market resolves to Yes.
+[42] KXTARIFFAGREE-27-26NOV01  yes_ask=0.56  event=KXTARIFFAGREE-27
+    T: Will it be reported by any of the Source Agencies that the United States and China reach a new mutual tariff agreement, publicly announced or confirme
+    R: If the United States and China reach a new mutual tariff agreement, publicly announced or confirmed by both governments after Issuance and before Nov 1, 2026, then the market resolves to Yes.
+[43] KXTRAVELDOWNGRADE-27JAN01-RUS  yes_ask=0.071  event=KXTRAVELDOWNGRADE-27JAN01
+    T: Will the U.S. State Department issue a level 3 or lower warning for Russia?
+    R: If the U.S. State Department issues, updates, or reaffirms a level 3 or lower travel advisory for Russia after Issuance and before Jan 1, 2027, then the market resolves to Yes.
+[44] KXTRUMPMEETING-27JAN01-NAALS  yes_ask=1.0  event=KXTRUMPMEETING-27JAN01
+    T: Will Donald Trump meet in person Ahmed al-Sharaa before Jan 1, 2027?
+    R: If Donald Trump and Ahmed al-Sharaa meet in person after Issuance and before Jan 1, 2027, then the market resolves to Yes.
+[45] KXTRUMPPARDONS-29JAN21-JVAN  yes_ask=0.41  event=KXTRUMPPARDONS-29JAN21
+    T: Will JD Vance receive a presidential pardon before Jan 21, 2029?
+    R: If JD Vance has been given a presidential pardon, commutation, or reprieve during Trump's second term and before Jan 21, 2029, then the market resolves to Yes.
+[46] KXTRUMPSAYCOMPANY-26SEP01-MU  yes_ask=1.0  event=KXTRUMPSAYCOMPANY-26SEP01
+    T: Will Trump say "Micron / MU" before Sep 1, 2026?
+    R: If Micron / MU, or a plural or possessive form of Micron / MU, is stated by Donald Trump before Sep 1, 2026 at 12:00am ET, then the market resolves to Yes.
+[47] KXTRUMPSUPREMELEADER-27JAN01-JAN01  yes_ask=0.05  event=KXTRUMPSUPREMELEADER-27JAN01
+    T: Will Donald Trump meet in person the Supreme Leader of Iran before Jan 1, 2027?
+    R: If Donald Trump and the Supreme Leader of Iran meet in person after Issuance and before Jan 1, 2027, then the market resolves to Yes.
+[48] KXUKWEALTHTAX-26DEC01-CTAX  yes_ask=0.27  event=KXUKWEALTHTAX-26DEC01
+    T: Will the United Kingdom agree to or announce the replacement of council tax or stamp duty land tax with an annual property or land value tax before De
+    R: If the United Kingdom agrees to or announces the replacement of council tax or stamp duty land tax with an annual property or land value tax before Dec 1, 2026, then the market resolves to Yes.
+[49] KXVANCERUN-28-27APR01  yes_ask=0.42  event=KXVANCERUN-28
+    T: Will JD Vance announce a run for President of the United States before Apr 1, 2027?
+    R: If JD Vance has announced that he will run for President of the United States in 2028 before Apr 1, 2027, including running for the nomination of any political party to contest that office, then the market resolves to Yes.
+[50] KXWHVISIT-27-BTIN  yes_ask=0.087  event=KXWHVISIT-27
+    T: Will Bola Ahmed Tinubu visit the White House before Jan 1, 2027?
+    R: If Bola Ahmed Tinubu visits the White House after Jan 5, 2026 and before Jan 1, 2027, then the market resolves to Yes.
