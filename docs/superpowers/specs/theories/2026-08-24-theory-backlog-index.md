@@ -62,6 +62,19 @@ sources; every spec links back here instead of repeating them.
      measured*, not *calibrated*. See
      `studies/2026-08-29-series-bias-mining/`.
 
+   **Caveat found the same day, by the floor's own author:** an
+   SE-based power floor is **not outcome-neutral for binomial data.**
+   Bernoulli variance is `p(1−p)`, so a series with an extreme win rate
+   has a small SE and therefore a small MDE — the floor preferentially
+   admits exactly the candidates where a large gap can sit. Measured in
+   `series-bias-mining` pass 2: mean win rate **0.864** among series with
+   MDE ≤ 8 versus **0.829** among MDE > 8, and the single flagged series
+   was the most extreme in the population *and* had the lowest MDE. So
+   prefer a floor on `n` and `n_days` where the design allows it, and
+   where an SE-based floor is used, **report the outcome composition of
+   who passed it** so the selection channel is visible rather than
+   silent.
+
    So write down, before looking: the contrast **and** who is in the
    sample **and** the smallest effect the design can detect. If the
    answer to the last one is larger than a theory-grade edge, the run
