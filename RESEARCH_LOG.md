@@ -2603,3 +2603,65 @@ against round 5 would reproduce the in-sample flattery the round exists
 to detect). If round 5 lands near the projected ~8%, that agreement is
 **unsurprising rather than confirmatory**: the projection was fitted on
 those same misses. Only a disjoint sample carries information.
+
+## 2026-08-29 (cont.) — supervisor session: three reviews, two standing proposals for the user
+
+Session 09 ran as a review-only supervisor at the user's direction;
+peers sent three items. All three closed the same day.
+
+**1. 4f's payload-version study (`0b5b25e`) — thesis right, exhibits
+wrong.** Independent re-run reproduced every count (331/541/39), but
+three of four examples were quoted direction-reversed — the headline
+"strike moved 12000→12500" was actually a title typo corrected *toward*
+rules that said 12K throughout, on a market whose outcome does not exist
+yet — and the 39 "number moves" decomposed to 38 template artifacts plus
+that typo. Root cause in 4f's extraction: `sorted(set)` presented as
+chronology. 4f verified all of it and revised (`0ecd8f2`); the
+hand-classification the review asked for found **one** genuine
+resolution-criteria change in the 5-day window (`KXDATACENTERMORATORIUM`),
+now the study's entire empirical basis, labelled as such. The review
+also caught that the proposed fix's exclusion clause would have voided
+structural gating over all pre-2026-08-24 history — repealing the
+amendment it patched. Replaced by a two-part form (mandatory
+point-in-time payload where a capture exists; disclosed, drift-bounded
+current text where none does).
+
+**2. 78's deadline-drift round 5 — reviewed after the fact, holds.**
+Design-stage request was overtaken; reviewed execution instead: sample
+disjointness verified against all four prior rounds (zero overlap),
+arithmetic checked, two-reader protocol sound. Review adds recorded in
+`3dcc2d5`: the 6/50 CI contains the bar (verdict rests on burden +
+mechanism, stated now), the shared-frame limitation, and a real bug in
+the price-partition rule — no lower bound on the sum — which 78 then
+measured: **281 of 318 exclusions were wrong** (true population ~4,416,
+not 4,135). No conclusion moved; the frozen classifier stayed frozen.
+
+**3. structural_arb v4 (`117a258`) — sound; rationale inverted; fixed in
+`3475d26`.** Requested by session 18, which ended before delivery;
+fixes applied directly. The tri-state's stated reason ("absence-as-False
+would let a replay accept an unverified partition") is backwards —
+False and None both exclude; the split protects the *record* against
+re-manufacturing the all-false illusion. "1,449 false arbitrage claims"
+tempered to unverifiable: round 5 proved the flag reads False on
+semantically exclusive events, and 78 measured the gap (53 partition-
+priced events, 10 unflagged, 0 clearing) — real, currently empty, kept
+as a standing check in the theory's NOTES. Read-only cache now has a
+pin test; flag-stability-across-life flagged as assumed-not-measured,
+now measurable from cross-capture envelopes. Ideas #28
+(`unflagged-partition-arbs`) files the lead. Suite 965.
+
+**Standing proposals awaiting the user — surfaced here so orient sees
+them; CLAUDE.md deliberately untouched (tier rule is a user decision):**
+
+1. **Fifth structural-gate condition, two-part form** — payload built
+   from a point-in-time capture where one exists; where none exists
+   (all history before 2026-08-24), today's text may be used but the
+   run's notes must say so and carry a snapshot-era drift bound, with
+   tier-A acceptability of that half explicitly the user's call.
+   Proposal text and evidence: `studies/2026-08-29-structural-gate-
+   payload-version/STUDY.md` (revised, `0ecd8f2`).
+2. **A sharper contamination probe** for the backtest-theory skill, as
+   its own item, not bundled with #1: compare a gate's *pass rate* on
+   structure-matched pre- vs post-cutoff markets; a gap is leakage the
+   current "can you state the outcome?" probe cannot see. Origin: 4f's
+   study, observation 2; endorsed on review.
