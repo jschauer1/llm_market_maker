@@ -557,7 +557,8 @@ the budget.
   `2026-08-27-position-identity-design.md`; its header should say so.
 - `migrate_kalshi_trader.py` (root) and `db/opportunities.json` (532 KB) are
   one-time migration artifacts still tracked at the top level, where they read
-  as live entry points.
+  as live entry points (fixed by the foundation plan: both now live in
+  `attic/kalshi_trader_migration/`).
 
 The durable fix is one conventions test, in the exact idiom of
 `test_every_recorded_prompt_path_still_resolves`:

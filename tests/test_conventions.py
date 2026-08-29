@@ -2,7 +2,8 @@
 4.5c, 9): every theory package exposes a proper singleton, nobody
 overrides the workflow, a Verdict can never grow a number, the migration
 shim is gone for good, and the actually-running registry has no drift
-between code and DB."""
+between code and DB; and every repo path named in living docs resolves
+(enforcing-surfaces spec 5.1)."""
 
 import ast
 import inspect

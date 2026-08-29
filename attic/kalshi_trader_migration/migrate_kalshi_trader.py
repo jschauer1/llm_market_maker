@@ -20,7 +20,7 @@ but it is labeled rather than laundered: edge_basis is the least-trusted
 "prior" basis, and extra_json records exactly where the number came from.
 
 Usage:
-    python migrate_kalshi_trader.py --source <path-to-kalshi_trader>
+    python -m attic.kalshi_trader_migration.migrate_kalshi_trader --source <path-to-kalshi_trader>
 """
 
 from __future__ import annotations
