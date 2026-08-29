@@ -2099,3 +2099,36 @@ version → 2. Suite **900** green.
 
 **Next:** read the politics cells — that is where the horizon spread the
 theory actually claims lives.
+
+## 2026-08-29 (session 3, item 3) — TWO SESSIONS ARE RUNNING CONCURRENTLY
+
+**Did:** Went to pick up `calibration_harvest` (the #1-ranked spec, then
+`proposed`) and found another session had just taken it to `testing` v2.
+
+**Learned — this is a process problem, not a research finding:**
+
+1. **A concurrent session is live on this repo and database.** Commit
+   `a7bddcb` ("calibration_harvest: first population complete; two defects
+   fixed; -> testing v2") landed at 08:13:10, **three seconds** before this
+   session's `7555bc8` at 08:13:13. It has since written
+   `backtests/politics.json` and a `backtest-2026-08-29-calharvest-politics`
+   run. `calibration_harvest` now has two live runs today (10,269 rows at v1
+   under `live-2026-08-29-calharvest`, 10,269 at v2 under
+   `...-calharvest-v2`).
+2. **This session's `git add -A` swept that session's in-progress work into
+   commit `edba7f7`.** `theories/calibration_harvest/{THEORY.md,NOTES.md,
+   theory.py,backtests/weather.json}` and two test files were staged and
+   committed under a message about `insider_judgment` and `structural_arb`.
+   Nothing is broken — tree is coherent and the suite is **900** green — but
+   one logical change is now split across two commits and the first
+   attributes it wrongly.
+3. **`git add -A` is unsafe in this repo.** Stage explicit paths. Recorded
+   here rather than only in a report because the next session will otherwise
+   repeat it.
+
+**Consequence for the standing obligation:** `calibration_harvest` became a
+running theory mid-session and was already run today by the other session, so
+§2 is satisfied for it without this session touching it.
+
+**Next:** paused for a user ruling on how the two sessions should divide work
+— continuing in parallel risks duplicated effort and further tangled commits.
