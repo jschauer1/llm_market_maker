@@ -2042,3 +2042,60 @@ actually calls for. Study:
 session — the series hits the `n_days >= 8` bar around 2026-09-01. Cell A's
 first settlements land 08-31. `deadline-drift`'s three-way user decision is
 still open.
+
+## 2026-08-29 (cont.) — calibration_harvest's first population lands; weather is fairly priced; two defects fixed
+
+**NOTE: a second Claude session was working this repo in parallel today**
+(commits `edba7f7`, `7555bc8` are not from this session). Its work is
+complementary — it re-ran `insider_judgment` v4 and `structural_arb` v3
+after this session bumped them, and extended the `no_side_premium`
+within-day analysis. Nothing conflicted, but both sessions were writing
+one SQLite file and one git tree, which is worth knowing before it bites.
+
+**Did:** The Climate-and-Weather walk **finished** — 154/154 series, 3,267
+observations over 3,260 settled markets — so `calibration_harvest`'s first
+pre-registered population is complete and its cells may be read. Status
+`proposed` → `testing`; two defects found by actually running it, fixed;
+version → 2. Suite **900** green.
+
+**Learned:**
+
+1. **Short-horizon weather favorites are priced correctly.** Four `<=2d`
+   cells, n≈700–930 each, **59 settlement days** each, and every one
+   inside its own day-clustered noise band: +0.58±1.80, −1.09±1.97,
+   +1.63±1.29, −0.83±0.85. Net of fees and the bound, nothing is
+   recommendable in either direction — not a favorite buy, and not the
+   fade the spec expected from Le 2026's "short-horizon weather is too
+   extreme". A clean tier-A answer on a complete population.
+2. **The population cannot test the theory's actual claim.** Every
+   longer-horizon cell has n ≤ 8: weather markets list and settle within
+   days, so `2d-1w`, `1w-1mo` and `1mo+` are structurally empty. The
+   thesis is *horizon compression*. Weather tests one column of a
+   four-column claim, and was the right cheap first walk for proving the
+   collector, nothing more.
+3. **The contract had no channel for structured context.**
+   `record_opportunity` has always taken `extra_json`, but
+   `ScoredCandidate` had no field for it, so the live path wrote NULL —
+   and `collect.cell_rates` reads the cell *out of* `extra_json`. All
+   10,269 rows of the first live run, recorded expressly "so the cell
+   accrues settlements", were invisible to the grid they existed to grow.
+   Added `ScoredCandidate.extra`.
+4. **The same row-vs-day confound, for the fourth time today.**
+   `cell_edge` took its Wilson bound on the **row** count while the
+   theory refuses to call a cell measured below `MIN_CELL_DAYS` — because
+   rows are not independent draws. That undid the protection exactly
+   where it decides to commit money: 628/789 over 59 days claims +1.64pts
+   at an ask of 0.75; day-counted it is **−7.27pts**. Three live rows
+   priced positive on the row-counted bound; under v2, zero do. Today the
+   same error has now appeared in `buckets.py`, `no_side_premium`'s cell
+   B reading, `insider_judgment`'s pooled scores, and here. **It is the
+   repo's characteristic bug**, and any new statistic should be assumed
+   guilty of it until checked.
+5. **Politics is a 12-minute job, not a multi-session one.** The
+   enumeration everyone deferred says 3,392 candlestick fetches — because
+   politics has only 3,877 settled markets in the 60-day window, against
+   weather's 85,683. The 2,504-series count that made it look enormous is
+   series breadth, not depth. Running it now.
+
+**Next:** read the politics cells — that is where the horizon spread the
+theory actually claims lives.
