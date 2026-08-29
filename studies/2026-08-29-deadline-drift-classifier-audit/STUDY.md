@@ -228,3 +228,100 @@ repo's own preference order names.
    settled. They are the expensive, rate-limited step and the one
    misclassification poisons.
 3. User decides among the three options above.
+
+---
+
+# Round 5 — structure instead of wording, and it does not clear either
+
+**Date:** 2026-08-29 (same day, later session) · **Tier:** A (no model in
+the measurement path) · **Verdict:** **12%, still above the 10% bar**, and
+the reason is more interesting than the number
+
+## What changed
+
+Rounds 1–4 read the *wording*. Round 5 keeps those regexes unchanged and
+adds two signals that read the market's *structure*:
+
+1. **Kalshi's event-level `mutually_exclusive` flag** — ground truth for
+   "does this condition on which branch?", published by the venue instead
+   of inferred from prose. It reached the board in `09a66f7`; before that
+   `list_open` fetched it on every pull and discarded it.
+2. **A price-partition test** — ≥3 siblings sharing *one* deadline whose
+   prices sum ≤1.05. The shared-deadline condition is load-bearing: without
+   it the rule kills date ladders (`KXALITOOUT` at four deadlines is nested,
+   not exclusive) and cost 88 false positives when first measured.
+
+`classifier_r5.py` was **frozen before the sample was drawn**, and says so.
+The two rules were fitted on round 4's misses, so re-tuning them here would
+manufacture exactly the in-sample flattery the round exists to detect.
+
+Population: 7,820 by-deadline → **4,135 candidates** in 786 series, 2,623
+in the $0.05–0.60 band. The new signals removed 654 markets the regex kept
+(336 by flag, 318 by price partition).
+
+## Result
+
+Sample drawn after excluding all 181 tickers judged in rounds 1–4, at a
+fresh systematic offset, with asserts on disjointness and size.
+
+| round | population | misclassified | rate |
+|---|---|---|---|
+| 1 | 7,613 | 20 | 40% |
+| 2 | 5,155 | 10 | 20% |
+| 3 | 4,792 | 6 | 12% |
+| 4 | 4,792 | 8 | 16% |
+| **5** | **4,135** | **6** | **12%** |
+
+**6/50 = 12%**, range 12–16% on two recorded judgment calls. SE at n=50 is
+~4.6pts, so 12% and round 4's 16% are the same number: **the structural
+signals are not a demonstrated improvement.** The in-sample projection was
+~8%; measured out-of-sample it is 12%. That gap is the entire reason the
+round was run.
+
+## Why — and this is the transferable part
+
+**All six misses carry `mutually_exclusive = False`.**
+
+The flag agreed with **98%** of the regex's 2,687 existing multi-destination
+exclusions, which is what made it look decisive. But that measured agreement
+on markets **the regex already caught**. On the residue — the only place the
+flag was ever needed — it is False every time.
+
+This is the same conditioning trap that produced `structural_arb`'s
+all-false flag cache, discovered hours earlier in the same repo: *a signal
+validated on the population where the old method already worked tells you
+nothing about the population where it failed.* Validating on the easy class
+and deploying against the hard one is the error, and it survived two
+sessions writing the lesson down.
+
+**The price-partition test fails separately, and it looks harder to fix.**
+Exclusive events are not reliably *priced* like partitions:
+
+```
+KXSUPERBOWLHEADLINE-27  "Who will headline?"  54 legs, sum 3.64  — exclusive
+KXBOND-30               "the next James Bond" 30 legs, sum 1.72  — exclusive
+KXACTORSONNYCROCKETT-35 one role              10 legs, sum 1.08  — exclusive
+```
+
+Only *tightly priced* partitions sum near a dollar. Illiquid longshot legs
+have wide spreads and overstated mids, so a 54-leg exclusive event sums to
+3.64. Loosening 1.05 to reach them would swallow the date ladders the
+shared-deadline exemption exists to protect — the two failure modes push the
+threshold in opposite directions.
+
+## What this leaves
+
+The multi-destination residue has now defeated, in order: four rounds of
+rules-text regex, the venue's own exclusivity flag, and a price-structure
+test. The population is real (4,135 markets, 2,623 in band) and the thesis
+is still untested — **no hazard bins have ever been collected**, which
+remains correct under the spec's section 7.
+
+What is now ruled out is that the screen can be made clean *mechanically*.
+That is a genuine narrowing, not a failure: it converts the user's original
+three-way choice into a two-way one, and it removes the option that looked
+free.
+
+Labels were committed (`ca1333a`) **before** a blind second reading was
+requested, because the session that wrote the rules under test is a
+conflicted auditor. Second reading pending from session 18.
