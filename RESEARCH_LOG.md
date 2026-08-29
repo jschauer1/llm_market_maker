@@ -3017,3 +3017,19 @@ surface in shared structures; theory folders are self-sufficient) are this
 architecture's two interfaces, unchanged. Recorded in the
 enforcing-surfaces spec as §7.9 with phase C; the §6 migration is the
 architecture's backfill.
+
+---
+
+## 2026-08-29 — Expert-agent architecture written into CLAUDE.md; the two locality rules renamed as its contracts
+
+**Did (user-instructed):** Performed §7.9's CLAUDE.md rewrite. The "shape
+also supports — without requiring" paragraph is now the stated overarching
+architecture: a supervisor over theory experts, an expert initializable
+from the cardinal file + skills + theory folder. The two existing rules are
+rephrased in the architecture's vocabulary — **the supervisor's contract**
+(every fact the supervisor needs in order to supervise surfaces in a shared
+structure; distillation upward, never a supervisor reading notebooks) and
+**the expert's contract** (a theory folder contains everything its expert
+needs to run; no sibling imports; shared ancestry via parent module or
+tools/; test-enforced). Substance unchanged, names new. Spec §3.1/§7.9/§9
+updated to quote the new wording.

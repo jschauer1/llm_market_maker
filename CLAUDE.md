@@ -243,21 +243,28 @@ theories is encouraged — `mention_family` exists because someone looked
 sideways at `insider_judgment`'s screen backtest. Nothing in this repo is
 private.
 
-This shape also supports — without requiring — a **repo-level agent** that
-understands every theory from a high level and **theory-level agents** that
-each know one theory in depth. Nothing orchestrates that today, and nothing
-needs to. What holds the option open is one rule: **any fact the repo level
-needs must surface in a shared structure** — `THEORY.md`, the database, or
-`RESEARCH_LOG.md`. A theory whose true status is discoverable only by
-reading its `NOTES.md` has broken that surface, and the fix is distillation
-upward, not a repo level that reads every notebook. Symmetrically, a theory
-folder must stay self-sufficient to run: **no imports from a sibling
-theory's folder** — shared ancestry goes through a shared parent module
-(`theories/insider_bias/` holds `screen.py`, `replay.py` and `families.py`
-for exactly this reason; its `README.md` says what may join them) or
-through `tools/`. Enforced by
-`tests/test_conventions.py::test_no_theory_imports_a_sibling_theory`. A
-family folder is not a theory: it has no `THEORY.md` and records no bets.
+**This shape is the repo's overarching architecture: a supervisor over
+theory experts.** Design every addition so that a strong agent can be
+initialized inside one theory — handed this file, the skills, and the
+theory's own folder — and operate as that theory's **expert**: investigate,
+solve problems, run the procedure, extend the notebook. Above the experts,
+a **supervisor** understands every theory abstractly and supervises without
+ever opening a notebook. Each side of that split has a contract:
+
+- **The supervisor's contract: every fact the supervisor needs in order to
+  supervise surfaces in a shared structure** — `THEORY.md`, the database,
+  or `RESEARCH_LOG.md`. A theory whose true status is discoverable only by
+  reading its `NOTES.md` has broken this contract, and the fix is
+  distillation upward, never a supervisor that reads every notebook.
+- **The expert's contract: a theory folder contains everything its expert
+  needs to run** — self-sufficient, with **no imports from a sibling
+  theory's folder**. Shared ancestry goes through a shared parent module
+  (`theories/insider_bias/` holds `screen.py`, `replay.py` and
+  `families.py` for exactly this reason; its `README.md` says what may
+  join them) or through `tools/`. Enforced by
+  `tests/test_conventions.py::test_no_theory_imports_a_sibling_theory`.
+
+A family folder is not a theory: it has no `THEORY.md` and records no bets.
 
 ## Never state a probability you introspected
 
