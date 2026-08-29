@@ -69,14 +69,40 @@ decision point**, never from a current fetch. Where no snapshot predates
 the decision point, that market cannot be structurally gated honestly and
 should be excluded rather than judged on today's text.
 
+### The prevalence number is a LOWER BOUND, and the condition should not lean on it
+
+Raised by session 78 and it corrects this study's own framing, so it is
+recorded here rather than in a reply.
+
+**Five days and 12 captures measure a floor, not a rate.** Text edits are
+almost certainly not uniform in time: a market's rules are most likely to
+be corrected near **listing** and near **settlement** — and settlement is
+exactly where a replay's decision point sits *furthest* from today's
+text. The twelve-month figure that actually governs a backtest could be
+materially worse than 331/541, and this window cannot see it.
+
+So the fifth condition **should not cite a prevalence number at all**.
+Quoting 0.17% invites the reply "that is small enough to ignore", which
+is an argument this measurement cannot support in either direction. The
+fix is cheap, already in the repo, and costs nothing when no edit
+occurred — so require it unconditionally and let the prevalence question
+stay open.
+
 Suggested fifth condition:
 
 > **The payload is point-in-time.** Rules and title come from a capture
-> at or before the decision point, not from a fetch made now. Measured
-> 2026-08-29: over a 5-day window, 331 markets had a substantive
-> `rules_primary` change and 541 a substantive `title` change, 39 of
-> those moving a number — including a strike that went 12000 → 12500
-> under a live market.
+> at or before the decision point, never from a fetch made now, and a
+> market with no capture predating its decision point is excluded rather
+> than judged on today's text.
+>
+> Kalshi edits both fields under live markets — a strike moved 12000 →
+> 12500 while its ticker still read `-12K`; "has become law" became "is
+> enacted in"; a counterparty was renamed. Neither the contamination
+> probe nor `git diff` of the prompt can see it: there is no recall to
+> catch, and the prompt is fully compliant. **How often it happens is
+> deliberately not part of this condition** — the honest measurement is a
+> lower bound (see above), and the fix costs nothing when no edit
+> occurred.
 
 ## Two weaker observations, recorded but not claimed as holes
 
