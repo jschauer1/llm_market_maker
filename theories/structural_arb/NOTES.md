@@ -426,3 +426,39 @@ Two tests were deleted rather than adapted (`test_flag_persists_to_
 theory_facts`, `test_flag_fetch_cap_reported`): both pinned the fetch
 path, which no longer exists. The cache's surviving role is covered by
 `test_the_theory_facts_cache_is_still_a_fallback`.
+
+### Synthesis of the two 2026-08-29 entries — what each does and does not license
+
+Two entries above were written hours apart by different sessions and are
+often going to be cited together, so: they are complementary, not
+duplicates, and neither alone supports what the pair does.
+
+**The v4 entry (mechanism, from the candidate side).** Conditioning on
+"the NO-basket arithmetic already clears" selects almost perfectly
+*against* real partitions, because on a genuine partition that arithmetic
+*is* an arbitrage and makers price it to sum correctly. This is why 2,042
+lifetime fetches returned all-false, and it is the reason to **keep** the
+guard: without it, 1,449 candidates become 1,449 false arbitrage claims.
+
+**The exhaustive entry (population, from the ME side).** Checking all
+**6,414** mutually-exclusive events directly — the approach most
+favourable to the thesis — finds **1** with a NO-basket under its payout,
+at 0.125c/leg, and **0** clearing the 1c/leg buffer.
+
+**What only the pair licenses.** The v4 entry alone leaves open that real
+partitions with tradeable slack exist and this theory's search order
+simply misses them; that reading would make an inverted screen the
+obvious next move. The exhaustive check closes it: they do not exist on
+this board in tradeable size. Conversely the exhaustive check alone might
+suggest cutting the path — wrong, because the guard is what stops 1,449
+false claims.
+
+So the accurate joint statement is: **the guard is correct and necessary,
+and the path should not be expected to produce finds.** Its value is
+rejecting false positives, not generating trades.
+
+One phrase to avoid when citing: *"the guard is working"* on its own
+implies it separated a mixed population. It never saw a true value at
+all — the candidate and ME populations barely intersect. Say
+"conditioning on the arithmetic selects against real partitions", which
+is the fact.
