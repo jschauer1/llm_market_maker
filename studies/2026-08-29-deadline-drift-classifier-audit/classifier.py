@@ -96,8 +96,8 @@ print(f"in the 0.05-0.60 band: {len(band):,}")
 
 kept.sort(key=lambda m: m.ticker)
 k = len(kept) / 50.0
-sample = [kept[min(len(kept) - 1, int((i + 0.25) * k))] for i in range(50)]
-print(f"\nround-3 sample: {len(sample)} markets, "
+sample = [kept[min(len(kept) - 1, int((i + 0.75) * k))] for i in range(50)]
+print(f"\nround-4 sample: {len(sample)} markets, "
       f"{len({m.series_ticker for m in sample})} distinct series\n")
 for i, m in enumerate(sample, 1):
     t = (m.title or "").encode("ascii", "replace").decode()

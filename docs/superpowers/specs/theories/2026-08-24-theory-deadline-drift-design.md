@@ -91,10 +91,32 @@ count thresholds and scheduled competition outcomes, both also missed by
 the original two families) still leaves 4,792 markets in 859 series,
 3,079 in the entry band.
 
-The audit's other result belongs here too: misclassification fell
-40% → 20% → 12% across the three rounds and has **not** cleared this
-spec's own 10% bar. Do not collect hazard bins until it does — see the
-study's Next section.
+The audit's other result belongs here too, and it changes the spec's
+implementation plan. Misclassification went **40% → 20% → 12% → 16%**
+across four rounds. Round 4 folded in every fix the first three implied
+and came back worse; at n=50 the SE on a 15% rate is ~5 points, so 12%
+and 16% are one number — **a plateau near 15%, above this spec's own 10%
+bar.**
+
+The residue is semantic, not syntactic. The irreducible family is
+multi-destination — "does this market condition on *which branch* the
+event takes?" — which Kalshi expresses in unboundedly many ways: a
+possessive ("X's next team is Y"), a relative clause ("the next club that
+X joins is Y"), an ordinal ("is the first country to launch"), a
+comparative ("before any other head coach"), a composition ("a coalition
+that includes SPD make up the next government"). These share a meaning,
+not a string, so section 4's "rules-text patterns" cannot express them
+and section 8's effort estimate is optimistic.
+
+**Section 4 as written is therefore not implementable at this spec's own
+quality bar.** Three options, all costing something, and the choice is
+the user's because it trades away the property in this spec's own header
+(*LLM in decision path: no*): a cheap LLM gate (clears the bar, loses
+tier A); a series allowlist of the ~20 unambiguous recurring families
+(stays tier A, smaller population, maintenance treadmill); or drop the
+theory. **Do not collect hazard bins under any option until that is
+settled** — they are the expensive, rate-limited step and the one
+misclassification poisons.
 
 ## 4. Decision procedure
 

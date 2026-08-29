@@ -1,9 +1,9 @@
-# deadline-drift's rules classifier: three audit rounds, 40% → 20% → 12%
+# deadline-drift's rules classifier plateaus at ~15%, above its own kill bar
 
-**Date:** 2026-08-29 · **Status:** incomplete — stopped deliberately ·
-**Tier:** A (no model in the measurement path) · **Verdict:** the theory is
-viable and the population is large, but the classifier has not yet cleared
-its own kill threshold and needs at least one more round
+**Date:** 2026-08-29 · **Status:** complete · **Tier:** A (no model in the
+measurement path) · **Verdict:** the theory is viable and the population is
+large, but a **regex classifier does not reach the spec's 10% bar** — it
+plateaus near 15%, and the residue is semantic, not syntactic
 
 ## Question
 
@@ -32,11 +32,11 @@ The board is this session's shared pull (117,272 markets); no API calls.
 Candidates are markets whose `rules_primary` carries a by-deadline
 phrasing ("before <date>", "by <date>", "on or before", "no later than").
 Each round applies the current exclusions, then draws a **systematic
-sample of 50** over ticker order, offset so the three samples are
-disjoint. Every sampled market was classified by hand against the spec's
-own definition.
+sample of 50** over ticker order, at a different offset so the four
+samples are disjoint. Every sampled market was classified by hand against
+the spec's own definition.
 
-`classifier.py` is the round-3 classifier; `data/round{1,2,3}_sample.txt`
+`classifier.py` is the round-4 classifier; `data/round{1,2,3,4}_sample.txt`
 are the exact samples judged.
 
 ## Results
@@ -46,8 +46,13 @@ are the exact samples judged.
 | 1 | 7,613 | 50 (42 series) | 20 | **40%** |
 | 2 | 5,155 | 50 (50 series) | 10 | **20%** |
 | 3 | 4,792 | 50 (48 series) | 6 | **12%** |
+| 4 | 4,792 | 50 (50 series) | 8 | **16%** |
 
-Converging, and not yet under the 10% bar.
+**Round 4 is the answer, and it is not convergence.** Rounds 1–3 looked
+like a rate halving toward the bar. Round 4 applied every fix rounds 1–3
+implied and came back *worse*. At n=50 the standard error on a ~15% rate
+is about 5 points, so 12% and 16% are the same number: the classifier has
+**plateaued around 15%**, above the spec's 10% kill threshold.
 
 ### What each round found
 
@@ -104,40 +109,82 @@ Three further borderline cases were counted as correct but are arguable:
 product releases with announced dates (`iPhone 18 Pro`, the next James
 Bond film) are scheduled certainties in substance.
 
+**Round 4 — every previous fix applied, and the same family walks back in
+wearing new clothes.** 8 of 50, five of them multi-destination again:
+
+```
+"the next club that Cristiano Ronaldo joins is CF Monterrey before D"
+"Russia is the first country to launch a manned mission to the Moon before D"
+"the next new Secretary of Defense before Jan 20, 2029 is Mike Pompeo"
+"leaves ... before any other Pro Football head coach before D"
+"a coalition that includes SPD make up the next elected ruling government"
+```
+
+Round 3's pattern already covered "next club is", "is the first ... to
+declare", "becomes <role> following the <election>". None of these five
+match it, and no reasonable extension of it anticipates the next five.
+Plus two more thresholds in prose ("orders Meta to pay $10 billion **or
+more**", "USD/BRL **rises above** 6.4999").
+
 ## What this means
 
-**The theory is viable.** After three rounds of exclusions the population
-is still **4,792 markets across 859 series**, 3,079 of them in the spec's
-$0.05–$0.60 entry band, and the surviving markets are squarely the thesis:
-traded before D, pardoned before D, charged before D, IPO confirmed before
-D, legislation becomes law before D, manager out before D, cast before D.
+**The theory is viable and its population is real.** 4,792 markets across
+859 series survive, 3,079 in the spec's $0.05–$0.60 entry band, and the
+survivors are squarely the thesis: traded before D, pardoned before D,
+charged before D, IPO confirmed before D, legislation becomes law before
+D, manager out before D, cast before D.
 
-**But the classifier is a long tail of prose, not a small pattern set.**
-The rate is decaying by roughly half per round and every round finds a
-family the previous one did not imagine. Two readings, and the study does
-not have the evidence to choose between them:
+**But a regex classifier will not get there, and round 4 is why.** The
+question the study set out to answer was whether the decay 40 → 20 → 12
+was convergence or a floor. Round 4 folded in every fix the first three
+rounds implied and came back at 16%. At n=50 the SE on a 15% rate is ~5
+points, so 12% and 16% are one number: **a plateau near 15%**, comfortably
+above the spec's 10% bar.
 
-1. *It converges.* One or two more rounds gets under 10% and the work is
-   done. The decay so far is consistent with this.
-2. *It does not.* Kalshi's rules prose has no fixed grammar, so a
-   regex classifier has an irreducible error floor somewhere near
-   10%, and the spec's own bar is unreachable this way.
+**The reason is that the residue is semantic, not syntactic.** The
+irreducible family is multi-destination — "does this market condition on
+*which branch* the event takes?" — and Kalshi expresses that question in
+unboundedly many ways: a possessive ("X's next team is Y"), a relative
+clause ("the next club that X joins is Y"), an ordinal ("is the first
+country to launch"), a comparative ("before any other head coach"), a
+composition ("a coalition that includes SPD make up the next
+government"). These share a *meaning*, not a *string*. A pattern set can
+chase them forever and always be one phrasing behind, which is exactly
+what four rounds show.
 
-If (2), the honest fix is the one CLAUDE.md already describes: this is the
-case where a *model* gate earns its cost, because the exclusions need
-reading comprehension rather than resolution mechanics. That would cost
-the theory its tier-A status for the live path, which is a real price and
-a decision for the user — a cheap LLM gate over ~4,800 markets is not
-free, and it puts a model back in the decision path of a theory whose
-whole appeal was not having one.
+This is the case CLAUDE.md describes for reaching past code: *"Prefer code
+when the exclusions follow from resolution mechanics; reach for a model
+when they need reading comprehension."* The vendor-panel and sport
+exclusions in `insider_judgment`'s gate follow from mechanics and a regex
+nails them. "Which branch does this condition on?" does not.
+
+## The decision this leaves the user
+
+Three options, and the choice is not the researcher's to make because it
+trades away the theory's defining property:
+
+1. **Cheap LLM gate over the ~4,800 candidates.** Gets under 10% almost
+   certainly. Costs the live path its **tier-A status** — a model
+   re-enters the decision path of a theory whose whole appeal (spec: "LLM
+   in decision path: no") was not having one. It also costs tokens per
+   scan, forever.
+2. **Narrow the theory to series allowlists** — the ~20 recurring series
+   that are unambiguously in-thesis (`KXFEDERALCHARGE`, `KXTRUMPPARDON`,
+   `KXNBATRADE`, `KXNFLTRADE`, `KXIPO*`, `KXNCAAFCONFLEAVE`, `KXMLBDEBUT`,
+   the `*OUT`/`*ANNOUNCEOUT` families). Stays tier A and mechanical, but
+   shrinks the population and reintroduces exactly the maintenance
+   treadmill the gate work on 2026-08-29 moved *away* from.
+3. **Drop it** and spend the effort on a theory whose screen is
+   mechanical by nature.
+
+The study has no opinion between them; it has the measurement.
 
 ## Next
 
-1. Run round 4 with the round-3 misses folded in. It is cheap — no API,
-   one board pull — and it distinguishes reading (1) from reading (2)
-   better than any argument.
-2. **Amend the spec's non-goals** to name multi-destination /
-   which-branch markets as a third excluded family, with the 34% figure.
-   Anyone implementing from the spec as written would pool them.
-3. Only then collect hazard bins. They are the expensive step and the one
-   the misclassification rate poisons.
+1. **Amend the spec's non-goals** to name multi-destination /
+   which-branch markets as a third excluded family, with the 34% figure —
+   **done, 2026-08-29**, in the spec's section 3.
+2. **Do not collect hazard bins** under any option until the population is
+   settled. They are the expensive, rate-limited step and the one
+   misclassification poisons.
+3. User decides among the three options above.

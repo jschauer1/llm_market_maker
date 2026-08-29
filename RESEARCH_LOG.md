@@ -1795,7 +1795,28 @@ poisons them. Study, classifier and all three judged samples:
 
 Idea 3 moved `considered` → `investigating` with all of this recorded.
 
-**Next:** round 4 of the audit (cheap, no API, decides convergence vs
-floor); then hazard bins only if it clears 10%. If it does not, the
-fallback is a cheap LLM gate — which costs the live path its tier-A
-status and is therefore the user's call, not mine.
+**Round 4, run immediately after: 16% — it went UP.** That is the
+answer. Every fix rounds 1–3 implied was folded in and the rate did not
+improve; at n=50 the SE on a 15% rate is ~5 points, so 12% and 16% are
+one number — **a plateau near 15%**, above the spec's own bar. Five of
+round 4's eight misses were multi-destination *again*, in phrasings no
+extension of the round-3 pattern anticipates: "the next club that
+Cristiano Ronaldo joins is CF Monterrey", "Russia is the first country to
+launch a manned mission", "the next new Secretary of Defense ... is Mike
+Pompeo", "leaves before any other Pro Football head coach", "a coalition
+that includes SPD make up the next elected ruling government".
+
+**The residue is semantic, not syntactic** — "does this condition on
+which branch the event takes?" is a meaning these share, not a string.
+That is exactly CLAUDE.md's line for when to reach past code: mechanics
+yield to a regex (the gate work earlier today), reading comprehension
+does not.
+
+**Next: a user decision, because every option costs something the spec
+promised.** (1) a cheap LLM gate — clears the bar, forfeits **tier A**,
+which was this theory's defining property; (2) a series allowlist of the
+~20 unambiguous recurring families — stays tier A, smaller population,
+and reintroduces the maintenance treadmill today's gate work moved away
+from; (3) drop it. Spec section 3 amended to say section 4 is not
+implementable as written. **No hazard bins under any option until this is
+settled.**
