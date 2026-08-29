@@ -52,20 +52,21 @@ post-cutoff window. LLM judgment is one instrument, and the most expensive and
 least verifiable one. If statistics can find the edge, prefer statistics.
 
 **The line between the two is the kind of question, not the presence of a
-model.** Judgment used the way `insider_judgment` uses it — an *interpretive*
-thesis about the world, "is there a specific group who already knows how this
-resolves?", where reading a situation *is* the edge and no published field or
-threshold could ever express it — is a first-class kind of theory here.
-Proposing and experimenting with new theses in that mold is encouraged, not a
-fallback for when statistics run out: those theories surface bets no
-mechanical screen can see. What judgment must never be spent on is a
-*structural* question — a fact about the market's own mechanics: how many
-winners it pays, whether its strikes are mutually exclusive, which family a
-ticker belongs to. Those are determined programmatically — a published field,
-a ticker pattern, arithmetic — unless that is absolutely impossible. So
-"prefer statistics" constrains how a *question* gets answered, never which
-*theses* are worth having: mechanize every question that can be mechanized,
-and spend judgment where the thesis itself is interpretive.
+model.** Judgment's proper domain is the *interpretive* thesis — a claim
+about the world: that somebody already knows something the price doesn't
+reflect, that an outcome is effectively decided before it is official, that
+a resolution source behaves in a way only reading the situation reveals.
+There, reading the situation *is* the edge, no published field or threshold
+could ever express it, and proposing and experimenting with theses in that
+mold is encouraged — they surface bets no mechanical screen can see. What
+judgment must never be spent on is a *structural* question — a fact about
+the market's own mechanics: how many winners it pays, whether its strikes
+are mutually exclusive, which family a ticker belongs to. Those are
+determined programmatically — a published field, a ticker pattern,
+arithmetic — unless that is absolutely impossible. So "prefer statistics"
+constrains how a *question* gets answered, never which *theses* are worth
+having: mechanize every question that can be mechanized, and spend judgment
+where the thesis itself is interpretive.
 
 ## Platform roles
 
