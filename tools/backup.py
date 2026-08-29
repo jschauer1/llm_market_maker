@@ -39,40 +39,54 @@ def backup_ledger(
 
     stamp = (now or utcnow()).replace("-", "").replace(":", "").replace("Z", "")
     raw_path = dest_dir / f"market_edge_ledger_{stamp}.db"
+    gz_path = raw_path.with_suffix(".db.gz")
 
     src = sqlite3.connect(f"file:{source_path}?mode=ro", uri=True)
     src.row_factory = sqlite3.Row
-    out = sqlite3.connect(raw_path)
+    # uri=True here, not just on `src` above: SQLite only honours a
+    # `file:...?mode=ro` URI on ATTACH when the attaching connection itself
+    # was opened with URI filenames enabled. Without it, the ATTACH below
+    # would take the URI string as a literal filename and attach the
+    # source read-write, leaving read-only enforced by convention only.
+    out = sqlite3.connect(f"file:{raw_path}", uri=True)
     tables: list[str] = []
     try:
-        ddl_rows = src.execute(
-            "SELECT name, sql FROM sqlite_master WHERE type='table'"
-            " AND name NOT LIKE 'sqlite_%' AND name != 'market_snapshots'"
-            " AND sql IS NOT NULL"
-        ).fetchall()
-        # Parameterized plain-path ATTACH: a `file:...?mode=ro` URI string
-        # is only honoured when the connection enables URIs, and silently
-        # opens a literal file named `file:...` otherwise. The read-only
-        # guarantee lives on `src` above; this handle only SELECTs.
-        out.execute("ATTACH DATABASE ? AS src", (str(source_path),))
-        for row in ddl_rows:
-            out.execute(row["sql"])
+        try:
+            ddl_rows = src.execute(
+                "SELECT name, sql FROM sqlite_master WHERE type='table'"
+                " AND name NOT LIKE 'sqlite_%' AND name != 'market_snapshots'"
+                " AND sql IS NOT NULL"
+            ).fetchall()
             out.execute(
-                f'INSERT INTO main."{row["name"]}"'
-                f' SELECT * FROM src."{row["name"]}"'
+                "ATTACH DATABASE ? AS src", (f"file:{source_path}?mode=ro",)
             )
-            tables.append(row["name"])
-        out.commit()
-        out.execute("DETACH DATABASE src")
-    finally:
-        out.close()
-        src.close()
+            for row in ddl_rows:
+                out.execute(row["sql"])
+                out.execute(
+                    f'INSERT INTO main."{row["name"]}"'
+                    f' SELECT * FROM src."{row["name"]}"'
+                )
+                tables.append(row["name"])
+            out.commit()
+            out.execute("DETACH DATABASE src")
+        finally:
+            out.close()
+            src.close()
 
-    gz_path = raw_path.with_suffix(".db.gz")
-    with open(raw_path, "rb") as f_in, gzip.open(gz_path, "wb") as f_out:
-        while chunk := f_in.read(1 << 20):
-            f_out.write(chunk)
-    raw_path.unlink()
+        with open(raw_path, "rb") as f_in, gzip.open(gz_path, "wb") as f_out:
+            while chunk := f_in.read(1 << 20):
+                f_out.write(chunk)
+    except BaseException:
+        # A failure anywhere above -- mid SQL copy or mid gzip -- must not
+        # leave a partial artifact behind for a later backup or a restore
+        # to trip over.
+        gz_path.unlink(missing_ok=True)
+        raise
+    finally:
+        # Removed on both the success path (the .gz is the deliverable) and
+        # the failure path (nothing partial survives).
+        raw_path.unlink(missing_ok=True)
+
     return {
         "path": str(gz_path),
         "tables": sorted(tables),
