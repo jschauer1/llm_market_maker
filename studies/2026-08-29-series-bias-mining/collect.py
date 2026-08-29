@@ -214,8 +214,15 @@ def walk(conn, now=None) -> None:
 
 def eligible_series(conn) -> list[tuple[str, int]]:
     return [(r["series_ticker"], r["n"]) for r in conn.execute(
+        # ASCENDING by market count, deliberately. Phase 2 is ~174k
+        # candle fetches at Kalshi's ~4-5/s, i.e. 10-12 hours, so it will
+        # almost certainly be interrupted. Cheapest-first means the
+        # maximum number of COMPLETE series exists at any stopping point,
+        # and a series is the miner's unit of analysis -- half a series
+        # is worth nothing to it. Ordering by n DESC would spend the
+        # first hours on the few largest and leave the most series unstarted.
         "SELECT series_ticker, COUNT(*) n FROM settled GROUP BY series_ticker "
-        "HAVING n >= ? AND n <= ? ORDER BY n DESC",
+        "HAVING n >= ? AND n <= ? ORDER BY n ASC",
         (MIN_SETTLED_FOR_PRICES, MAX_SETTLED_FOR_PRICES))]
 
 
