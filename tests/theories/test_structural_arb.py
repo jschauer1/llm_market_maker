@@ -727,7 +727,7 @@ def test_flag_read_from_the_envelope_needs_no_fetch():
     ]
     theory = StructuralArbTheory(fetch=no_fetch)
     result = theory.screen(_ctx(board))
-    assert result.funnel["flag_confirmed"] >= 0   # ran without fetching
+    assert result.funnel["flag_confirmed"] == 1   # confirmed, no fetch
 
 
 def test_a_non_exclusive_event_is_rejected_from_the_envelope():
@@ -744,9 +744,11 @@ def test_a_non_exclusive_event_is_rejected_from_the_envelope():
 
 def test_an_envelope_less_market_reads_unknown_not_false():
     """Captures before 2026-08-29 carry no envelope. Unknown must not be
-    silently read as False -- that is the tri-state the tools change was
-    built around, and reading it wrong would let a replay over an old
-    snapshot claim a partition it never verified."""
+    read as False: both exclude the candidate, but False claims the venue
+    rejected it while unknown says nobody checked. Collapsing them would
+    make a replay over an old snapshot report 100% venue-rejected and
+    recreate the all-false-cache illusion this theory already fell for
+    once (NOTES 2026-08-29)."""
     board = [
         _ev_market("U-A", event="EV-U", me=None, no_ask=0.20),
         _ev_market("U-B", event="EV-U", me=None, no_ask=0.20),
@@ -796,3 +798,28 @@ def test_the_theory_facts_cache_is_still_a_fallback(tmp_path):
     assert res.funnel["flag_confirmed"] == 1, (
         "the cached flag must still confirm an envelope-less event"
     )
+
+
+def test_screen_never_writes_theory_facts(tmp_path):
+    """v4's cache is read-only: nothing fetches, so nothing may write.
+    The docstring says so; this is the pin that keeps a reintroduced
+    write-back from crossing silently."""
+    conn = tdb.connect(tmp_path / "t.db")
+    tdb.init_db(conn)
+    theories_db.register(conn, "structural_arb", "Structural Arb",
+                         "theories/structural_arb",
+                         now="2026-08-26T12:00:00Z")
+    board = [
+        _ev_market("W-A", event="EV-W", me=True, no_ask=0.20),
+        _ev_market("W-B", event="EV-W", me=True, no_ask=0.20),
+        _ev_market("W-C", event="EV-W", me=True, no_ask=0.20),
+        _ev_market("X-A", event="EV-X", me=False, no_ask=0.20),
+        _ev_market("X-B", event="EV-X", me=False, no_ask=0.20),
+        _ev_market("X-C", event="EV-X", me=False, no_ask=0.20),
+    ]
+    ctx = TheoryContext(conn=conn, board=board, now=NOW,
+                        run_id="exp/test", run_mode="backtest")
+    StructuralArbTheory(fetch=_fake_fetch({}, [])).screen(ctx)
+    rows = conn.execute("SELECT COUNT(*) FROM theory_facts").fetchone()[0]
+    assert rows == 0, "screen() must not write flags to theory_facts"
+    conn.close()

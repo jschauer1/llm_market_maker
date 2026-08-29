@@ -124,10 +124,13 @@ def _me_flag(conn, finding) -> bool | None:
     the envelope and threw it away.
 
     **Tri-state on purpose.** `{}` means no envelope was captured, which
-    is emphatically not the same as an envelope saying False: a board
-    snapshot taken before that change carries no envelope at all, and
-    reading absence as False would let a replay over an old snapshot
-    silently accept a partition it never verified. Unknown falls back to
+    is emphatically not the same as an envelope saying False. The caller
+    excludes a candidate on False and None alike — only True confirms —
+    so the distinction never changes a decision; it changes the *record*.
+    Reading absence as False would make a replay over a pre-2026-08-29
+    snapshot report every candidate as "venue says not exclusive" when
+    the venue said nothing, re-manufacturing the all-false illusion that
+    nearly got this path cut (NOTES 2026-08-29). Unknown falls back to
     `theory_facts`, which still holds the 2,042 flags this theory paid for
     one fetch at a time, and is reported as `flag_unknown` if that misses
     too.

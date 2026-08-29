@@ -156,9 +156,20 @@ checks all 1,449, for free. Live: 1,449 candidates, 1,449 rejected as
 non-exclusive, 0 network calls.
 
 The flag is tri-state and `None` is not `False`: a pre-2026-08-29
-snapshot carries no envelope, and reading absence as False would let a
-replay accept a partition it never verified. Unknown falls back to the
-2,042 flags already in `theory_facts`, then reports `flag_unknown`.
+snapshot carries no envelope. False and None both exclude a candidate —
+only True confirms — so the split protects the *record*, not the
+decision: absence-as-False would report unchecked candidates as
+venue-rejected and recreate the all-false-cache illusion. Unknown falls
+back to the 2,042 flags already in `theory_facts`, then reports
+`flag_unknown`. Note the guard's rejections are "unverifiable", not
+proven-false: Kalshi flags some semantically exclusive events False
+(`KXBOND-30`, `KXSUPERBOWLHEADLINE-27` — deadline-drift round 5), so a
+rejected candidate is not thereby a false claim. Measured 2026-08-29
+(session 78): 53 events price as partitions (≥3 legs, one deadline, sum
+in [0.90, 1.05]), 10 of them unflagged — and none of the 10 intersects a
+clearing candidate, so no real arb is being rejected *today*. That
+intersection moves with prices; re-run it before citing "nothing to
+find" as settled (NOTES 2026-08-29 correction entry has the recipe).
 
 3 — 2026-08-29: **stage 1 drops three sterile violation classes before
 the orderbook fetch.** The snapshot study

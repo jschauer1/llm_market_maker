@@ -462,3 +462,60 @@ implies it separated a mixed population. It never saw a true value at
 all — the candidate and ME populations barely intersect. Say
 "conditioning on the arithmetic selects against real partitions", which
 is the fact.
+
+## 2026-08-29 — corrections to the v4 entry, from supervisor review (session 09)
+
+Session 18 requested a review of v4 before it ended; session 09 reviewed
+and applied these fixes (docstrings, THEORY.md, and two test changes)
+since the author was gone. Two claims in the entries above are corrected
+here rather than rewritten in place — the entries stay as written, this
+supersedes them.
+
+**1. The tri-state rationale above is inverted.** "Reading absence as
+False would let a replay silently accept a partition it never verified"
+is wrong: the consumer in `screen()` excludes a candidate on False and
+None alike — only True confirms — so absence-as-False could never accept
+anything. What it would actually do is *mislabel*: a replay over a
+pre-envelope snapshot would report every candidate as
+`not_mutually_exclusive` ("venue said no") when the venue said nothing,
+re-manufacturing the same all-false illusion this path barely survived
+this morning. The tri-state protects the record, not the decision. Same
+error shape as 0e, in a rationale instead of a measurement. Docstring,
+test docstring, and THEORY.md now say the correct thing; the v4 commit
+message (117a258) is immutable and carries the wrong version.
+
+**2. "Without it those 1,449 become 1,449 false arbitrage claims"
+overstates.** Deadline-drift round 5 proved Kalshi's flag reads False on
+semantically exclusive events (`KXBOND-30`, one next Bond;
+`KXSUPERBOWLHEADLINE-27`, one headliner), so flag=False does not mean
+not-a-partition, and rejected candidates are *unverifiable*, not
+proven-false. This also bounds the exhaustive entry above: it was
+exhaustive over *flagged* events, not actually-exclusive ones. Session 78
+then measured the gap rather than leaving the caveat (2026-08-29): with
+the priced-as-partition definition ≥3 legs sharing one deadline, sum in
+[0.90, 1.05] —
+
+    events priced as a partition   : 53
+      Kalshi flags them exclusive  : 43
+      unflagged (the gap)          : 10
+      gap ∩ clearing candidates    :  0
+
+So no real arb is being rejected **today**, and "nothing to find from
+either direction" survives — for a measured reason instead of an assumed
+one. **Standing check, not a one-off:** the intersection moves with
+prices. Recompute the three numbers from the board (partition events by
+the definition above; diff against `mutually_exclusive`; intersect with
+`flag_candidates`) before repeating "nothing to find" as settled. Kept
+out of `screen()` deliberately — it is a research check, not a decision
+input, and the test suite must stay deterministic, so it lives here.
+
+**3. Flag stability is assumed, never measured.** The `theory_facts`
+fallback in a replay consults a 2026-08-2x observation at an earlier
+decision point, justified only by "the flag is a stable property of an
+event". Envelopes ride on every capture since `09a66f7`, so a
+cross-capture diff of `mutually_exclusive` (the same scan 4f ran for
+rules/title text, which found text *does* drift) settles this in
+minutes once a few days of captures accumulate. Run it before any real
+backtest leans on the cache; cache rows carry `established_at`, so a
+strict replay can also filter to entries established before its
+decision point.
