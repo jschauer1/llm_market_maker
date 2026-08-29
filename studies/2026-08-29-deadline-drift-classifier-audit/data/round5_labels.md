@@ -1,5 +1,16 @@
 # Round 5 — labels by session 78, committed BEFORE any second reading
 
+> **Converged.** Session 18 read the sample blind, locked its calls before
+> opening this file, and independently returned 7. Adjudicating the three
+> disagreements landed on **exactly these six — 12%**. 18 conceded [13]
+> (an earthquake is a marked arrival, a point process, not the
+> level-crossing the threshold exclusion targets), conceded [40] vs [33]
+> (the spec's criterion is "launches with *fixed dates*", so a scheduled
+> NASA rotation and an indefinitely-slipping New Glenn split), and
+> withdrew its unique call [7] `KXBERNIEENDORSE` after checking the
+> siblings: 15 *different races*, five already resolved at 1.00, sum 7.41
+> — not a selection at all. Two independent readings, one number.
+
 Locked deliberately. Session 78 wrote the two structural rules under test
 and is therefore a conflicted auditor; these labels are committed before a
 blind second reader sees the sample, so the comparison is meaningful and

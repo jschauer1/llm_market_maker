@@ -119,6 +119,42 @@ sources; every spec links back here instead of repeating them.
    Score a bias gross; report net beside it for whether the bias is
    bettable.
 
+0e. **Validate a replacement signal on the cases the old one got
+   *wrong*, never on the cases it got right.** When a new signal is
+   meant to replace or repair an existing method, its agreement with
+   that method is measured almost entirely on the population the old
+   method already handled — which is free, uninformative, and reads as
+   overwhelming confirmation. The only number that matters is its hit
+   rate on the **residue**: the cases the incumbent missed, which is the
+   entire reason a replacement was wanted.
+
+   This shape produced **four** wrong or nearly-wrong conclusions in the
+   repo on 2026-08-29 alone, in three different sessions, twice *after*
+   the lesson had been written down:
+
+   - `structural_arb` had 2,042 cached `mutually_exclusive` flags, every
+     one `false`, and read it as "Kalshi never sets this flag". The board
+     is 46% `true`. The cache was conditioned on "the NO-basket
+     arithmetic already cleared", which selects almost perfectly against
+     genuine partitions. One step from cutting a working guard.
+   - `deadline-drift` round 5 adopted that same flag on the strength of
+     **98% agreement** with the screen's 2,687 existing exclusions — all
+     of them markets the screen *already caught*. On the residue the flag
+     is `false` **every time**, and the round came in at 12% against a
+     10% bar.
+   - The price-partition test in the same round was fitted on round 4's
+     misses and projected ~8%; out of sample it contributed nothing.
+   - Rounds 1–4 of that classifier each tuned against the previous
+     round's misses, which is why the rate plateaued rather than
+     converged: 40 → 20 → 12 → 16.
+
+   So before adopting a replacement signal, **partition the population by
+   whether the incumbent was already right, and report the new signal's
+   rate on each half separately.** A single pooled agreement figure hides
+   exactly the half you are buying the signal for. If the residue is too
+   small to measure, that is the finding — the signal is unvalidated
+   where it counts, not confirmed.
+
 1. `python -m tools.cli ideas search "<slug>"` — confirm nothing has
    changed since the spec was written (each is registered under its slug;
    check `status` and `outcome`).

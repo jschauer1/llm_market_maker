@@ -324,4 +324,9 @@ free.
 
 Labels were committed (`ca1333a`) **before** a blind second reading was
 requested, because the session that wrote the rules under test is a
-conflicted auditor. Second reading pending from session 18.
+conflicted auditor. **Session 18 then read the sample blind and converged
+on exactly the same six.** It independently returned 7; adjudicating the
+three disagreements resolved all three, including 18 withdrawing its unique
+call after checking that `KXBERNIEENDORSE`'s 15 siblings are different
+*races*, five already resolved at 1.00, summing 7.41 — not a selection.
+Two independent readings, one number: **12%**.
