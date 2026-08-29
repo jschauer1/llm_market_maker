@@ -222,11 +222,24 @@ Recording it rather than quietly re-bucketing the result.
    data known to be fairly priced — which is the one thing this run does
    establish about the guard.
 3. **One candidate worth a powered test.** `KXRT` (Rotten Tomatoes
-   scores): gross **−4.23**, halves **−4.68 / −3.86** — strikingly
-   consistent across the split — but SE 2.97 over 11 days, so t = −1.43.
-   That is exactly the size of effect this study could not resolve.
-   **Pre-registered here as a hypothesis for a powered population**, not
-   a finding, and explicitly not bettable on this data.
+   scores): gross **−4.23**, halves **−4.68 / −3.86**, SE 2.97 over 11
+   days, t = −1.43. Exactly the size of effect this study could not
+   resolve. **Pre-registered here as a hypothesis for a powered
+   population**, not a finding, and explicitly not bettable on this data.
+
+   **Do not read the split consistency as evidence.** −4.68 / −3.86 looks
+   compelling and is the shape that fools people: both halves come from
+   the *same 11 settlement days*, so the split guards against **regime
+   change**, not against the effect being noise. Two halves of one noisy
+   sample agree about as often as not. The only thing that resolves this
+   is new data.
+
+   So the powered re-test must pre-register, before looking: **the sign
+   (negative — favorites in this series realize below their ask), the
+   MDE (≤ 5 pts), and the population**. Fixing the sign in advance
+   matters most: without it a *positive* result could be read as
+   confirmation of "a bias exists", which would make the hypothesis
+   unfalsifiable.
 
 ## Revisit angle
 

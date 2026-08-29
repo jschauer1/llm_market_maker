@@ -70,6 +70,34 @@ sources; every spec links back here instead of repeating them.
    failed*; a better-looking cut found afterwards is a hypothesis for the
    next population, never the headline.
 
+0c. **If the theory scans many candidates, give it a negative control
+   — a slice whose answer is already known.** A screen that reports hits
+   tells you nothing on its own; a screen that reports *no* hits on data
+   known to be fairly priced is a screen whose next positive is worth
+   reading. Build the control into the run, not into a follow-up.
+
+   Worked example: `series-bias-mining` carried `mention_family`'s ten
+   series as a control, because that family is known from a
+   full-coverage backtest (n=3,441, −1.53 net) to be priced fairly. All
+   ten came back non-significant. That is the one thing that run
+   established about its own guard — and it cost nothing, because the
+   series were already in the population.
+
+   Two rules that follow: measure the control, and **keep it out of the
+   multiple-comparisons family** — correction budget spent on series
+   nobody would promote only dilutes the real tests.
+
+0d. **Build the fixtures before touching real data.** A fixture universe
+   with a planted effect among known-null cases catches the bugs that
+   look like discoveries. `series-bias-mining`'s caught one that would
+   have flagged **every calibrated series**: its statistic was net of
+   fees, and fees are a near-constant −1 to −3pt offset, so a perfectly
+   calibrated series scored −1.12 with the *same sign in both halves* —
+   sailing through the split-sample guard that existed to stop exactly
+   that. A guard defeating itself, and it would have read as a finding.
+   Score a bias gross; report net beside it for whether the bias is
+   bettable.
+
 1. `python -m tools.cli ideas search "<slug>"` — confirm nothing has
    changed since the spec was written (each is registered under its slug;
    check `status` and `outcome`).
