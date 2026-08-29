@@ -2823,3 +2823,44 @@ they are the audit trail of what was decided when, not live guidance.
 Not addressed, still open: nothing in code reads `backtest_runs.tier`, so
 "tier C is excluded from credibility" is a procedural rule rather than an
 enforced one. No tier C runs exist today, so it does not yet bite.
+
+## 2026-08-29 (cont.) — subset edges: registered slices, and the ranking partition
+
+User directive: a theory whose aggregate shows no edge can contain a
+subset with a demonstrated one (insider_judgment's strong/moderate-NO
+rule), and bets inside the proven subset must be weighted differently
+from the rest — built into the repo as an expectation for every agent
+composing bets.
+
+Shipped `tools/slices.py` + `theory_slices` + `cli slices
+register|list|report|match|retire` (spec:
+`docs/superpowers/specs/2026-08-29-theory-slices-design.md`; tests:
+`tests/test_slices.py`; CLAUDE.md "Subset edges" under How ranking
+works; find-edge and score-theories updated). The short version: a
+slice is an immutable, pre-registered, mechanical predicate over
+recorded fields; its credibility counts only out-of-sample evidence
+(settled after registration, or runs designated at registration —
+designation matches any run that proposed the position, since the
+first seer is usually the mechanical screen); past ≥10 OOS clusters
+and ≥5 settlement days it partitions ranking into slice vs complement.
+`rank.py`'s formula is untouched — slices choose which row feeds it.
+`score.py` grew the seam (`observations()`/`aggregate()`, enriched
+observation dicts); `compute_score` arithmetic unchanged, suite green
+(1,005).
+
+First registration: `insider_judgment/strong-moderate-no`, backdated to
+its documented 2026-08-26 pre-registration, s200b/s57 designated OOS.
+Result on real data (v3): slice OOS +4.30 net row-weighted / **+8.10 ±
+1.88 day-weighted over 42 days** — the bet-rule cell survives day
+clustering even though the judged runs as a whole flip sign under it —
+against a complement of **−2.54 net (809 clusters)**. Details:
+insider_judgment `NOTES.md` 2026-08-29 (cont.).
+
+Two standing notes. (1) The 2026-08-29 "nothing reads
+backtest_runs.tier" gap is now partially closed: slice segments exclude
+tier-C-touched rows in code; whole-theory `compute_score` still does
+not read tiers. (2) A segment whose rows recorded near-zero claimed
+edges saturates `realization` at the 1.5 clamp (insider's OOS segment
+does: mean_claimed_edge ≈ 0.09), so credibility there is effectively
+sample-weight × 1.5 — reports built on such a segment must show the
+clustered/day SEs alongside, which `slices report` emits.

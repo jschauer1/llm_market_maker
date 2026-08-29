@@ -328,6 +328,54 @@ measured at n=40 that delivered nothing ranks at zero; the floor does not
 protect a theory that has been tested and found wanting. Show claimed and
 ranked edge side by side. Do not game this.
 
+### Subset edges — registered slices
+
+One credibility number per theory is a lie whenever a defined subset of
+its output has its own demonstrated record. `insider_judgment` is the
+worked example: the whole screen is breakeven, while its pre-registered
+strong-or-moderate NO rule is strongly positive out of sample — one
+number would bury the proven subset under the aggregate and let the
+unproven remainder borrow what the subset earned. So a theory can carry
+**registered slices** (`tools/slices.py`, `theory_slices`,
+`python -m tools.cli slices --help`; spec
+`docs/superpowers/specs/2026-08-29-theory-slices-design.md`), and any
+agent building bets is **expected to rank a sliced theory's candidates
+per segment, never on one row**:
+
+- A slice's predicate is **data over recorded fields** — outcome,
+  confidence bucket, price band, `extra_json` features — never
+  judgment. If the boundary can't be written in that vocabulary, it is
+  a sibling theory (that is what `no_side_premium` is), not a slice.
+  A slice re-weights the parent's normal output; a subset that needs
+  its own screen, entry rule, or population needs its own theory.
+- **Registration is the pre-registration.** A pattern found by mining
+  settled rows is registered with its mechanism (`hypothesis`) and
+  provenance (`origin`); its credibility then counts only
+  **out-of-sample** evidence — settlements after the registration day,
+  or runs explicitly designated at registration with the argument
+  recorded (tier C never counts). The data that suggested a slice can
+  never vouch for it; the split is enforced in code, not by discipline.
+- A slice drives ranking only past its **evidence gates** (≥ 10 event
+  clusters and ≥ 5 settlement days, out of sample). Then the theory's
+  evidence is **partitioned**: candidates matching a ready slice rank
+  on the slice's own record, and everything else ranks on the
+  **complement** — the remainder never borrows a slice's shine, and a
+  slice gone bad drags exactly its own candidates. Below the gates,
+  nothing changes and the slice is reported as accruing.
+- The `ranked_edge` formula is untouched; slices only select **which
+  score row feeds it** (`slices match <opportunity_id>` returns the
+  segment and its rank inputs). Reports must show the segment next to
+  ranked edge. Slice evidence is **per theory version** like every
+  score; when a version bump adopted the slice's rule, the prior
+  version's slice segment may be cited for ranking — say so explicitly
+  in the report, and switch to the current version's own segment as
+  soon as it is ready.
+- Registering a slice never bumps the theory's version (facts are
+  data, not procedure). A slice is **immutable** — supersede with a
+  new slug; retiring one is a governance call like retiring a theory,
+  and a retired slice keeps reporting so retirement can never hide a
+  bad record.
+
 ## Toolkit
 
 `python -m tools.cli --help` for the command line. See `tools/README.md` for
@@ -397,6 +445,11 @@ what keeps this honest in both directions: a pattern found post-hoc is a
 walk, never an edge to bet on the same data that suggested it — and a
 pattern that fails its first small sample is *unconfirmed*, not
 disproven, until a full-coverage or adequately powered pass has been run.
+When the pattern is expressible over recorded fields, the concrete form
+of that pre-registration is a **registered slice** (`cli slices
+register` — see "Subset edges" under How ranking works), which makes the
+out-of-sample bookkeeping automatic and starts the forward test the
+moment it is written.
 
 **Only the user retires a theory.** You diagnose, then put it in front of
 them:

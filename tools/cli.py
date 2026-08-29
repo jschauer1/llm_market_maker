@@ -13,7 +13,7 @@ import argparse
 import json
 import sys
 
-from tools import db, ideas, ledger, provenance, rank, score, theories
+from tools import db, ideas, ledger, provenance, rank, score, slices, theories
 
 
 def _emit(payload) -> None:
@@ -224,6 +224,48 @@ def _cmd_backtest(args) -> int:
     return 0
 
 
+def _cmd_slices(args) -> int:
+    conn = _connect(args)
+    try:
+        if args.action == "register":
+            slices.register_slice(
+                conn, args.theory_id, args.slug,
+                predicate=json.loads(args.predicate),
+                hypothesis=args.hypothesis, origin=args.origin,
+                oos_run_ids=args.oos_run or (),
+                priority=args.priority,
+                registered_at=args.registered_at,
+            )
+            _emit(dict(slices.get_slice(conn, args.theory_id, args.slug)))
+        elif args.action == "list":
+            _emit(_rows(slices.list_slices(conn, theory_id=args.theory)))
+        elif args.action == "report":
+            _emit(
+                slices.segment_report(
+                    conn, args.theory_id, args.version,
+                    disposition=args.disposition,
+                    run_modes=tuple(args.run_modes.split(",")),
+                )
+            )
+        elif args.action == "match":
+            row = ledger.get_opportunity(conn, args.opportunity_id)
+            if row is None:
+                raise SystemExit(f"no opportunity {args.opportunity_id}")
+            _emit(
+                slices.ranking_segment(
+                    conn, row, disposition=args.disposition
+                )
+            )
+        elif args.action == "retire":
+            slices.retire_slice(
+                conn, args.theory_id, args.slug, reason=args.reason
+            )
+            _emit(dict(slices.get_slice(conn, args.theory_id, args.slug)))
+    finally:
+        conn.close()
+    return 0
+
+
 def _cmd_rank(args) -> int:
     credibility = rank.credibility(
         args.n, args.calibration_edge_net, args.mean_claimed_edge
@@ -420,6 +462,66 @@ def build_parser() -> argparse.ArgumentParser:
     )
     btrec.add_argument("--model-cutoff", dest="model_cutoff", default=None)
     btrec.add_argument("--notes", default=None)
+
+    p = sub.add_parser(
+        "slices", help="registered subset edges (tools/slices.py)"
+    )
+    p.set_defaults(func=_cmd_slices)
+    slsub = p.add_subparsers(dest="action", required=True)
+    slreg = slsub.add_parser("register")
+    slreg.add_argument("theory_id")
+    slreg.add_argument("slug")
+    slreg.add_argument(
+        "--predicate", required=True,
+        help=(
+            "JSON dict of AND clauses over recorded fields, e.g. "
+            '{"outcome": ["no"], "confidence": ["strong", "moderate"]}; '
+            "also supports entry_price {min,max} and extra {key: value}"
+        ),
+    )
+    slreg.add_argument(
+        "--hypothesis", required=True,
+        help="the mechanism claim — why this subset should differ",
+    )
+    slreg.add_argument(
+        "--origin", required=True,
+        help=(
+            "where the pattern was found; must also cite the record for "
+            "any --registered-at earlier than today and for every --oos-run"
+        ),
+    )
+    slreg.add_argument(
+        "--oos-run", dest="oos_run", action="append", default=[],
+        help="run_id designated out-of-sample at registration (repeatable)",
+    )
+    slreg.add_argument("--priority", type=int, default=0)
+    slreg.add_argument(
+        "--registered-at", dest="registered_at", default=None,
+        help=(
+            "backdate the registration to a documented pre-registration; "
+            "the citation goes in --origin"
+        ),
+    )
+    sllist = slsub.add_parser("list")
+    sllist.add_argument("--theory", default=None)
+    slrep = slsub.add_parser("report")
+    slrep.add_argument("theory_id")
+    slrep.add_argument("--version", type=int, default=None)
+    slrep.add_argument("--disposition", default="all")
+    slrep.add_argument(
+        "--run-modes", dest="run_modes", default="live,backtest",
+        help="comma-separated evidence pool; tier-C rows are always excluded",
+    )
+    slmatch = slsub.add_parser("match")
+    slmatch.add_argument("opportunity_id", type=int)
+    slmatch.add_argument("--disposition", default="all")
+    slret = slsub.add_parser("retire")
+    slret.add_argument("theory_id")
+    slret.add_argument("slug")
+    slret.add_argument(
+        "--reason", required=True,
+        help="governance call — user/supervisor authorizes, like a theory",
+    )
 
     p = sub.add_parser("rank", help="credibility-weighted edge")
     p.set_defaults(func=_cmd_rank)

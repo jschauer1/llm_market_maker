@@ -321,6 +321,43 @@ CREATE TABLE IF NOT EXISTS judgment_runs (
 CREATE INDEX IF NOT EXISTS idx_judgment_runs_run
     ON judgment_runs (theory_id, theory_version, run_id);
 
+-- Registered sub-population slices -- subset edges with their own
+-- credibility (tools/slices.py; spec docs/superpowers/specs/
+-- 2026-08-29-theory-slices-design.md).
+--
+-- A slice is a HYPOTHESIS that a mechanical subset of one theory's
+-- output carries a different edge than the aggregate. Its predicate is
+-- data over recorded ledger fields, never judgment. A slice is
+-- IMMUTABLE once registered -- editing a predicate would silently merge
+-- two hypotheses into one track record, the same merge theory
+-- versioning forbids -- so a change is a new slug plus retirement of
+-- the old one, and retiring is a governance call like retiring a
+-- theory. Registering a slice never bumps the theory version: it
+-- changes which evidence row the RANKING layer reads, not the theory's
+-- decision procedure.
+--
+-- oos_run_ids (JSON array) are the runs designated out-of-sample AT
+-- registration; the argument for why lives in `origin`, alongside the
+-- citation for any registered_at earlier than the row's created_at.
+-- Everything else matching the predicate counts as in-sample unless its
+-- decision date postdates registration -- see tools/slices.py.
+CREATE TABLE IF NOT EXISTS theory_slices (
+    theory_id      TEXT NOT NULL REFERENCES theories(id),
+    slug           TEXT NOT NULL,
+    predicate_json TEXT NOT NULL,
+    hypothesis     TEXT NOT NULL,
+    origin         TEXT NOT NULL,
+    registered_at  TEXT NOT NULL,
+    oos_run_ids    TEXT,
+    priority       INTEGER NOT NULL DEFAULT 0,
+    status         TEXT NOT NULL DEFAULT 'registered'
+                   CHECK (status IN ('registered','retired')),
+    retired_at     TEXT,
+    retired_reason TEXT,
+    created_at     TEXT NOT NULL,
+    PRIMARY KEY (theory_id, slug)
+);
+
 -- Durable per-theory facts: confirmed market pairings, implication edges,
 -- per-wallet scores -- things a theory establishes once and reuses on
 -- every run. One shared table rather than five theories inventing five

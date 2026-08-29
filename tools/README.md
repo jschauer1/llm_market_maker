@@ -177,6 +177,19 @@ without the contract.
 - **`Theory` is for things that produce bets.** A study produces theories
   (mark its folder with `STUDY.md`; discovery skips it); an execution
   policy decorates candidates. Neither is a `Theory` subclass.
+- **A theory's ranking evidence can be partitioned by registered
+  slices** (`slices.py`, `theory_slices`). A slice is an immutable,
+  pre-registered hypothesis that a mechanical subset of one theory's
+  output (predicate over recorded fields: outcome, confidence, price
+  band, `extra_json`) carries its own edge. Its credibility counts only
+  out-of-sample evidence — settlements after registration, or runs
+  designated at registration (any run that proposed the position, not
+  just the first seer); tier-C rows feed no segment. Past its gates
+  (≥ 10 out-of-sample event clusters, ≥ 5 settlement days) it splits
+  ranking into slice and complement; below them nothing changes.
+  Registering one never bumps the theory version. `score.observations`
+  + `score.aggregate` are the seam it consumes — partitioning that list
+  and aggregating a part IS `compute_score` on that part.
 - **`exp/` run ids are experiments.** Pooled `compute_score` and
   `bucket_rates` exclude them; score one explicitly by passing its
   `run_id`. This is what makes variant-testing free — a subclass and a
@@ -259,6 +272,7 @@ narrow context, then promote it once there is evidence it belongs.
 | `ledger.py` | `record_opportunity`, `record_basket`, interpretation, user actions |
 | `score.py` | Settlements, calibration edge, ROI, interpretation value |
 | `rank.py` | Credibility-weighted ranking |
+| `slices.py` | Registered subset edges — per-slice out-of-sample credibility and the slice/complement ranking partition |
 | `buckets.py` | Confidence-bucket win rates → measured edge, not guessed |
 | `sizing.py` | Kalshi fee model, Kelly sizing |
 | `board.py` | The session's shared Kalshi board — one pull per session, reused by every theory |

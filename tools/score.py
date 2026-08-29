@@ -72,8 +72,8 @@ VALID_TIERS = ("A", "B", "C")
 # together, not a column-wise blend that could pair one attempt's price
 # with another's edge.
 _EARLIEST_ATTEMPT_PER_RUN = """
-    SELECT opportunity_id, entry_price, edge_pts_net FROM (
-        SELECT opportunity_id, entry_price, edge_pts_net,
+    SELECT opportunity_id, entry_price, edge_pts_net, decision_date FROM (
+        SELECT opportunity_id, entry_price, edge_pts_net, decision_date,
                ROW_NUMBER() OVER (
                    PARTITION BY opportunity_id
                    ORDER BY decision_date, recorded_at
@@ -118,10 +118,11 @@ _EARLIEST_ATTEMPT_PER_RUN = """
 #:    never-interpreted positions. For a fully mechanical theory there are
 #:    no interpreted attempts, so this rule is a no-op.
 _DECISION_ATTEMPTS = """
-    SELECT opportunity_id, disposition, entry_price, edge_pts_net
+    SELECT opportunity_id, disposition, entry_price, edge_pts_net,
+           confidence, decision_date, run_id
     FROM (
         SELECT opportunity_id, disposition, entry_price, edge_pts_net,
-               decision_date,
+               confidence, decision_date, run_id,
                LAG(disposition) OVER (
                    PARTITION BY opportunity_id
                    ORDER BY decision_date, recorded_at
@@ -255,6 +256,45 @@ def record_settlement(
         )
 
 
+def observations(
+    conn: sqlite3.Connection,
+    theory_id: str,
+    theory_version: int,
+    run_mode: str = "live",
+    disposition: str = "all",
+    *,
+    run_id: str | None = None,
+) -> list[dict]:
+    """Every settled observation for the segment, one dict per unit.
+
+    The public seam between the scoring SQL and any consumer that needs
+    to partition observations before aggregating — `tools/slices.py` is
+    the caller this exists for. Each dict carries what `aggregate`
+    consumes plus the identity fields a slice predicate and its
+    out-of-sample split key on: `position_kind`, `outcome`,
+    `confidence`, `entry_price`, `extra` (parsed `extra_json`),
+    `decision_date`, `run_id`, `run_ids` (every run that proposed the
+    position — the first seer alone would hide a judged re-proposal),
+    and `resolved_day`. Partitioning this list
+    and calling `aggregate` on a part is exactly `compute_score` on that
+    part — same identity, decision, and cluster semantics, because it is
+    the same rows.
+    """
+    return _single_leg_observations(
+        conn, theory_id, theory_version, run_mode, disposition, run_id
+    ) + _basket_observations(
+        conn, theory_id, theory_version, run_mode, disposition, run_id
+    )
+
+
+def aggregate(rows: list[dict]) -> dict:
+    """Turn a list of observations into the score dict.
+
+    Public counterpart of `_aggregate` for consumers of `observations`.
+    """
+    return _aggregate(rows)
+
+
 def compute_score(
     conn: sqlite3.Connection,
     theory_id: str,
@@ -270,12 +310,12 @@ def compute_score(
     theory version pools together, so re-running a backtest over the same
     markets multiplies `n` without adding a single real bet.
     """
-    obs = _single_leg_observations(
-        conn, theory_id, theory_version, run_mode, disposition, run_id
-    ) + _basket_observations(
-        conn, theory_id, theory_version, run_mode, disposition, run_id
+    return _aggregate(
+        observations(
+            conn, theory_id, theory_version, run_mode, disposition,
+            run_id=run_id,
+        )
     )
-    return _aggregate(obs)
 
 
 def _segment_filter(
@@ -349,6 +389,26 @@ def _single_leg_observations(
         "SELECT o.outcome, o.user_action, o.kalshi_ticker, o.extra_json,"
         " COALESCE(a.entry_price, d.entry_price, o.entry_price) AS entry_price,"
         " COALESCE(a.edge_pts_net, d.edge_pts_net, o.edge_pts_net) AS edge_pts_net,"
+        # Observation identity for consumers of `observations()` (slice
+        # scoring needs the fields a predicate and the out-of-sample split
+        # key on). Position-level values serve the 'all' path; the decision
+        # join's own values serve a named pool, so a flip-back's two
+        # decisions each carry their own confidence, date, and run.
+        " o.confidence AS position_confidence, o.run_id AS position_run_id,"
+        " d.confidence AS decision_confidence,"
+        " d.decision_date AS decision_decision_date,"
+        " d.run_id AS decision_run_id,"
+        " a.decision_date AS run_decision_date,"
+        " (SELECT MIN(x.decision_date) FROM opportunity_attempts x"
+        "  WHERE x.opportunity_id = o.id) AS first_decision_date,"
+        # EVERY run that ever proposed this position, not just the first
+        # seer. A position's own run_id is first-sighting only, and slice
+        # out-of-sample designation must see a judged re-proposal: the
+        # insider_judgment shape is a mechanical screen run recording the
+        # position first and a designated judged run labeling it later.
+        " (SELECT GROUP_CONCAT(DISTINCT x.run_id)"
+        "    FROM opportunity_attempts x"
+        "   WHERE x.opportunity_id = o.id) AS attempt_run_ids,"
         " " + n_attempts_sql +
         # The fallback inside COALESCE must match the same run-scoped price
         # `cost` below is built from -- bare o.entry_price would blend an
@@ -362,7 +422,7 @@ def _single_leg_observations(
         "    / NULLIF(SUM(f.size), 0)"
         "  FROM opportunity_fills f"
         "  WHERE f.opportunity_id = o.id) AS fill_price,"
-        " s.result FROM opportunities o"
+        " s.result, s.resolved_at FROM opportunities o"
         " JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker"
         " LEFT JOIN (" + _EARLIEST_ATTEMPT_PER_RUN + ") a"
         "   ON a.opportunity_id = o.id"
@@ -391,7 +451,48 @@ def _single_leg_observations(
         price = row["entry_price"]
         fee = fee_pts(price)
         paid = row["fill_price"]
+        # Which confidence/date/run identifies this observation depends on
+        # which unit it is: a named pool's row IS one decision, so the
+        # decision attempt's own values apply; the 'all' path counts each
+        # position once, priced at its earliest attempt, so the earliest
+        # date and the first-seeing run apply.
+        if disposition == "all":
+            confidence = row["position_confidence"]
+            decision_date = (
+                row["run_decision_date"] if run_id is not None
+                else row["first_decision_date"]
+            )
+            obs_run = run_id if run_id is not None else row["position_run_id"]
+            # A named pool's row is one decision by one run; an 'all'-path
+            # row is the whole position, which any number of runs touched.
+            if run_id is not None:
+                run_ids = [run_id]
+            else:
+                run_ids = [
+                    r for r in (row["attempt_run_ids"] or "").split(",") if r
+                ] or [row["position_run_id"]]
+        else:
+            confidence = row["decision_confidence"]
+            decision_date = row["decision_decision_date"]
+            obs_run = row["decision_run_id"]
+            run_ids = [obs_run] if obs_run else []
+        try:
+            extra = json.loads(row["extra_json"]) if row["extra_json"] else {}
+            if not isinstance(extra, dict):
+                extra = {}
+        except (ValueError, TypeError):
+            extra = {}
+        resolved = row["resolved_at"]
         out.append({
+            "position_kind": "single",
+            "outcome": row["outcome"],
+            "confidence": confidence,
+            "entry_price": price,
+            "extra": extra,
+            "decision_date": decision_date,
+            "run_id": obs_run,
+            "run_ids": run_ids,
+            "resolved_day": str(resolved)[:10] if resolved else None,
             "implied_rate": price,
             "won": won,
             "cost": price + fee / 100.0,
@@ -618,6 +719,10 @@ def _basket_observations(
                                rel_tol=1e-9, abs_tol=1e-9)
 
         out.append({
+            # A basket has no single outcome, confidence, or leg price, so
+            # it carries only its kind: slice predicates (tools/slices.py)
+            # never match a basket, by construction of their vocabulary.
+            "position_kind": "basket",
             "implied_rate": implied_rate,
             "won": won,
             "cost": cost,

@@ -521,3 +521,49 @@ the gate fix worked. The open question is whether the screen should be allowed
 to pick the YES side when a rules divergence says the market may already be
 resolved, which is a stage-1 change and a v5. Recorded as a question, not a
 change: nothing has measured that the YES side of a divergent market wins.
+
+## 2026-08-29 (cont.) — the bet rule became a registered slice, and its OOS cell is day-robust
+
+The pre-registered strong-or-moderate-NO bet rule is now a **registered
+slice** (`strong-moderate-no`, `theory_slices`, registered_at backdated
+to the documented 2026-08-26 pre-registration; `s200b`/`s57` designated
+out-of-sample, `s200` in-sample — see the slice row's `origin` for the
+full citation). Ranking now reads this theory per segment instead of on
+one row: `python -m tools.cli slices report insider_judgment --version 3`.
+
+What the mechanism computes from the ledger, v3, live+backtest pooled,
+first-sighting prices (so the numbers differ slightly from the
+campaign's first-qualifying-entry methodology in `backtests/RESULTS.md`):
+
+| segment | n | clusters | days | row net | day mean | day SE |
+|---|---|---|---|---|---|---|
+| slice OOS | 320 | 88 | 42 | **+4.30** | **+8.10** | 1.88 |
+| slice in-sample | 239 | 77 | 31 | +5.34 | +0.10 | 4.12 |
+| complement | 2,732 | 809 | 69 | −2.54 | −2.36 | 1.34 |
+
+Two things worth keeping:
+
+1. **The OOS cell survives day clustering; the in-sample cell does
+   not.** The 2026-08-27 entry above showed the judged runs as a whole
+   flipping sign under day weighting. The bet-rule cell specifically
+   does not: out of sample it is positive row-weighted AND day-weighted
+   (+8.10 ± 1.88 over 42 days), while the in-sample rows collapse to
+   +0.10 day-weighted — the discovery sample's strength was
+   concentrated on heavy days, and the forward evidence is the part
+   that generalizes. That is the right way around, and it is the first
+   time this theory's central claim has held under the day lens.
+2. **The complement is measurably negative** (−2.54 row / −2.36 day,
+   SE 1.34, n_clusters=809). Everything this theory proposes outside
+   the slice has been worse than its prices after fees. Candidates
+   outside the slice now rank on that record instead of hiding behind
+   the aggregate's −1.31.
+
+Caveats, so nobody reads this as promotion: v4's own segments are empty
+(nothing settled), and slice evidence is per-version — v4 candidates
+citing the v3 slice segment must say so out loud until v4's segment is
+ready. The OOS `mean_claimed_edge` is ≈0.09 because the backtest rows
+recorded near-zero claims, so `realization` saturates at its 1.5 clamp
+and credibility is effectively sample-weight × 1.5; show `clustered_se`
+(2.43) and `day_clustered_se` (1.88) alongside any ranked edge built on
+this segment. Status stays `testing`; the promotion bar from 2026-08-27
+(live settlements, day-counted) is unchanged.

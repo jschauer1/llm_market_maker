@@ -59,6 +59,24 @@ bucket that turns out to be worth nothing is one of the most valuable findings
 this system can produce, and the theory's priors in `THEORY.md` should be
 updated to match reality.
 
+For any theory with registered slices (`python -m tools.cli slices list
+--theory <id>`), also recompute the segments:
+
+```bash
+python -m tools.cli slices report <theory_id>
+```
+
+Report two events the moment they happen: a slice **crossing its
+readiness gates** (≥ 10 out-of-sample clusters and ≥ 5 settlement days)
+— from then on find-edge ranks that theory per segment, in-slice
+candidates on the slice's record and the rest on the complement — and a
+ready slice whose out-of-sample `calibration_edge_net` has **gone
+negative**, which is a real falsification of a pre-registered claim, not
+noise to sit on. Diagnose it like any underperforming theory, and if the
+slice is dead, propose retiring it (`slices retire` is
+user/supervisor-authorized, like theory retirement; a retired slice
+keeps reporting, so the record survives).
+
 The score report returns all four dispositions. The one that matters most:
 
 ```python
@@ -110,8 +128,12 @@ question below is answerable from data already on disk.
 4. **Does one slice work?** Break the settled rows down by confidence bucket,
    market family (series prefix), days-to-close, price band, and
    `theory_version`. A theory that loses overall while one slice wins is a
-   narrow theory wearing a broad one's clothes — that is a real finding and a
-   version bump, not a failure.
+   narrow theory wearing a broad one's clothes — that is a real finding, and
+   its follow-through is a **registered slice** (`cli slices register`, with
+   the mechanism and the mined runs' in-sample status recorded) when the cut
+   is expressible over recorded fields, or a version bump / sibling theory
+   when it needs its own procedure. Never bet the finding on the data that
+   produced it — the slice's out-of-sample split enforces exactly that.
 5. **Is it inverted?** A theory reliably on the wrong side is reliably
    informative. Check whether the opposite side clears the bar *after* fees —
    fees are paid either way, so a mirrored edge is not automatic.

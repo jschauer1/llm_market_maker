@@ -229,6 +229,22 @@ one row (e.g. `all`) with realization figures from another (e.g.
 an edge whose realization was measured on a completely different, unrelated
 sample.
 
+**If the theory has registered slices, one score row is the wrong unit —
+rank per segment.** Check with `python -m tools.cli slices list --theory
+<id>`; when any slice exists, run each recorded candidate through
+`python -m tools.cli slices match <opportunity_id>` and feed its
+`rank_inputs` (already cluster-counted `n`, net calibration, mean claimed)
+into `rank` instead of the whole-theory row. A candidate matching a
+*ready* slice ranks on that slice's out-of-sample record; the rest of the
+theory ranks on the **complement**, so the remainder cannot borrow the
+slice's demonstrated edge — nor be punished for it. A candidate matching
+a slice still below its evidence gates ranks unchanged but gets the
+annotation `slices match` returns. Slice evidence is per theory version:
+if the current version's segments are empty because a version bump
+*adopted* the slice's rule, cite the prior version's segment
+(`slices report <id> --version <n>`) and say so explicitly in the report
+— switch to the current version's own segment as soon as it is ready.
+
 **If credibility computes to 0** — realization is 0.0 even though `n` clears
 the probation floor — do not present a table of zeroed-out ranked edges. That
 reads as "no edge exists" when the truth is "this theory hasn't demonstrated
@@ -240,7 +256,9 @@ any other row.
 
 **Recommended bets** — one ranked table across all theories: ticker, side,
 entry price, confidence bucket (blank for mechanical theories), claimed edge,
-**edge basis**, ranked edge, `n`, realization, theory, suggested size, and your
+**edge basis**, ranked edge, `n`, realization, theory, **segment** (the
+slice, complement, or aggregate row that ranked it — blank only for a
+theory with no registered slices), suggested size, and your
 interpretation (blank for mechanical theories).
 
 Two kinds of candidate belong in this table, and `edge_basis` is what tells

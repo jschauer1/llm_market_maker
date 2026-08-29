@@ -6,6 +6,12 @@ visible without dominating; at or above it the floor is withdrawn, so a
 theory that has been measured and found wanting sinks to zero rather than
 resting on newcomer protection.
 
+WHICH evidence row feeds these functions is the caller's other half of
+the job: for a theory with registered slices, an in-slice candidate's
+(n, calibration, claim) comes from the slice's out-of-sample segment and
+everything else from the complement — `tools/slices.py::ranking_segment`
+returns the right row. The formula itself never changes.
+
 All edge values are in percentage points, including calibration_edge.
 """
 

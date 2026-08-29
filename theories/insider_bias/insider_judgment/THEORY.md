@@ -569,6 +569,19 @@ and full breakdown in Learnings below.
 
 ## Learnings
 
+- 2026-08-29 — **The bet rule is registered as slice
+  `strong-moderate-no`** (`theory_slices`; `cli slices report
+  insider_judgment --version 3`), so ranking reads this theory per
+  segment: candidates matching strong-or-moderate NO rank on the
+  slice's out-of-sample record (+4.30 net row-weighted / +8.10 ± 1.88
+  day-weighted, 88 clusters / 42 days — the OOS cell survives day
+  clustering, which the judged runs as a whole did not), and everything
+  else ranks on the complement (−2.54 net, 809 clusters), not the
+  aggregate. `s200b`/`s57` are the designated out-of-sample runs; `s200`
+  stays in-sample. Slice evidence is per-version: v4's segments are
+  empty until its rows settle, and any v4 recommendation citing the v3
+  segment must say so. No version bump — a slice is ranking-layer data.
+  Full numbers and caveats: `NOTES.md` 2026-08-29 (cont.).
 - 2026-08-26 — **The campaign's authoritative summary lives in
   `backtests/RESULTS.md`** — read it before quoting any number from the
   entries below. It carries the corrected statistics (Holm over the
