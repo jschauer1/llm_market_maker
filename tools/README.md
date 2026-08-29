@@ -106,6 +106,30 @@ without the contract.
   `decision_date`), or a replay covering many days stamps every attempt
   with the same wall-clock date and the primary key silently collapses
   many decisions into one row.
+- **Scoring keys on the ATTEMPT, never on the position's disposition**
+  (ruling 2026-08-29; `tools/score.py::_DECISION_ATTEMPTS`,
+  `tests/test_attempt_scoring.py`). An attempt joins the pool of *its
+  own* disposition, so a position endorsed on Monday and rejected on
+  Tuesday earns settlement feedback in **both** pools — two decisions
+  were really made, and each is priced at the decision it records.
+  `opportunities.disposition` is the **current view only**, for display
+  and live decisions; grouping scores on it let a later run retroactively
+  erase an earlier run's published decision, which is the
+  disposition-form of the silent merge the versioning rule exists to
+  prevent (re-see your losers, flip them to `rejected`, launder the
+  endorsed pool). Two refinements keep it honest: consecutive
+  same-disposition attempts collapse to their **first** — a
+  re-affirmation at a drifted price is the standing decision re-observed,
+  not a new one, and first-of-run is also the least drift-contaminated
+  price — while keying on *changes* rather than on (position,
+  disposition) means a genuine flip-back scores twice. And a `screened`
+  attempt on a position that already carries an interpreted verdict is a
+  **non-decision**: it records the scan re-seeing the market without
+  stage 2 engaging, so it stays in the ledger but is not scored. A
+  `screened` attempt *before* any interpretation does score — that is the
+  real stage-1 baseline, and dropping it would bias the screened pool
+  toward never-interpreted positions. For a fully mechanical theory the
+  whole rule is a no-op.
 - **`opportunity_fills` is the money-side mirror of attempts.** Every
   `mark-taken ... taken` appends a fill rather than overwriting, so
   scaling into a position on two different days at two different prices
