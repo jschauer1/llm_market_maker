@@ -29,7 +29,7 @@ FUNNEL_KEYS = ("board_markets", "screened_markets", "events", "gated_out",
 class InsiderJudgmentTheory(Theory):
     id = "insider_judgment"
     name = "Insider Judgment"
-    version = 3
+    version = 4
     uses_llm_judgment = True
     prompts = {
         "analysis":

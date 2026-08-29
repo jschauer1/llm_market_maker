@@ -10,8 +10,11 @@ see `THEORY.md` Hypothesis section for why). The package path is
 `theories.insider_bias.insider_judgment`; `theories/insider_bias/` is now a
 shared parent folder, not this theory's own name.
 
-Current version: **3**, carried over from the `insider_bias` rename, not
-reset. Changing any prompt file, `gate.py`, `screen.py`, or the stage
+Current version: **4** (2026-08-29 — a confidence bucket now supplies
+its own realized edge rather than a probability, and must span
+`buckets.MIN_BUCKET_DAYS` settlement days before it may replace its
+prior; see THEORY.md Version). Carried forward from the
+`insider_bias` rename, not reset. Changing any prompt file, `gate.py`, `screen.py`, or the stage
 sequence below is a decision-procedure change and **bumps the version**.
 v3 (2026-08-24) marks the point where the mention-family discovery
 happened; it briefly lived here as a mechanical sub-path before moving into
@@ -101,13 +104,13 @@ refuses rows for a run with no provenance.
 
 ```bash
 RUN=live-$(date -u +%Y-%m-%d)
-python -m tools.cli provenance record --theory insider_judgment --version 2 \
+python -m tools.cli provenance record --theory insider_judgment --version 4 \
     --run $RUN --stage gate --model "none (deterministic)" \
     --prompt-path theories/insider_bias/insider_judgment/gate.py --web-search 0
-python -m tools.cli provenance record --theory insider_judgment --version 2 \
+python -m tools.cli provenance record --theory insider_judgment --version 4 \
     --run $RUN --stage analysis --model "opus (Agent tool alias)" \
     --prompt-path theories/insider_bias/insider_judgment/prompts/analysis.md --web-search 1
-python -m tools.cli provenance record --theory insider_judgment --version 2 \
+python -m tools.cli provenance record --theory insider_judgment --version 4 \
     --run $RUN --stage final_review --model "<main session model id>" \
     --prompt-path theories/insider_bias/insider_judgment/prompts/final_review.md --web-search 1
 ```

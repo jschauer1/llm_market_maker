@@ -112,6 +112,40 @@ What's left to settle the theory as a whole, roughly in order of value:
 
 ## Version
 
+**4** (2026-08-29) — *A confidence bucket now contributes its own realized
+EDGE, not a probability.* `tools/buckets.py` previously computed
+`(bucket_win_rate − this candidate's price)`, which reads the bucket's
+pooled win rate as this candidate's probability and therefore makes the
+claimed edge vary 1:1 with price. That is a constant, not a calibration:
+it manufactures edge on everything cheaper than the bucket rate and
+negative edge on everything dearer, regardless of what the judge said.
+Diagnosed on the 2026-08-28 run (a `weak` bucket graduated by one night of
+gate-leaked football minted "positive edge" on 150 of 216 rows) and
+confirmed unchanged on 2026-08-29 with a 4× larger sample — the rate moved
+0.941 → 0.776 and the shape did not, still claiming edge on Taça de
+Portugal football and app-download markets priced just under it.
+
+Now the bucket carries `(win_rate − mean entry price of the rows that
+measured it)`, i.e. how far it beat the prices it was actually bought at,
+and only the fee depends on the candidate's own price. This also brings
+three things that had silently disagreed into line: the prior path (always
+points of edge), `score.compute_score` (which GRADES this theory on
+`win_rate − price_implied_rate`), and `Edge.model_prob` (now this
+candidate's price plus the bucket's edge).
+
+A second guard lands with it: `buckets.MIN_BUCKET_DAYS = 5`. A bucket must
+span five distinct settlement days before it may replace its prior,
+because rows are not independent draws — the 2026-08-27 clustering study
+measured this screen's own population swinging +4.26 / −7.29 / +5.40 net
+across three consecutive close-days, and the `weak` bucket graduated on
+17 rows that all settled on one night. `score.bucket_rates` reports
+`n_days`, and a rates dict that cannot supply it fails closed to the
+prior.
+
+**Rows recorded at v3 and earlier keep v3's arithmetic and stay their own
+cohort.** They travelled through the old formula; relabelling them would
+be exactly the silent merge the versioning rule exists to prevent.
+
 **No version bump — 2026-08-25 module move.** The tier A replay of the
 shared stage-1 screen moved from `insider_judgment/backtest.py` to
 `theories/insider_bias/replay.py`, and the `is_mention_family` ticker

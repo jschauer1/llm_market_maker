@@ -38,3 +38,34 @@ This file starts empty by design; nothing was migrated into it.
 From here on, raw findings about this theory land in this file, and
 `THEORY.md` changes only when the claim, the procedure, or the status
 changes.
+
+## 2026-08-29 — a shared-module correction changed this theory's arithmetic (retired; no version bump)
+
+`tools/buckets.edge_for` was corrected on 2026-08-29: a confidence bucket
+now contributes its own realized **edge** (`win_rate − mean entry price of
+the rows that measured it`) instead of being repriced against each
+candidate's own ask. See `theories/insider_bias/insider_judgment/
+THEORY.md` "Version 4" for the full argument.
+
+**This theory used that function, so its arithmetic moved under it.** On
+the characterization fixture the ranking changes materially:
+
+| | top pick | ask | net edge |
+|---|---|---|---|
+| before | `KXEARNINGSMENTIONURBN` (a cheaper strike) | 0.85 | +14.11 |
+| after | `KXEARNINGSMENTIONURBN-26AUG26-TARI` | 0.97 | +8.21 |
+
+The old formula was sorting this theory **by cheapness**: every candidate
+in a price bin was repriced against that bin's win rate, so the cheapest
+member of the bin always looked best. Price binning was the workaround
+that kept this survivable — inside a narrow bin the flat rate is nearly
+right — which is why the defect was never visible here as it was on
+`insider_judgment`'s single 0.65–0.97 band. It was still a defect.
+
+**No version bump.** This theory is `retired` (user ruling, 2026-08-27)
+and records no further rows, so there is no track record for a version
+number to keep separable; the fact is recorded here and in `THEORY.md`
+instead. Anyone reviving it must read the v1 rows as priced by the old
+formula, and re-derive, not reuse, any ranking from that era. The
+pre-correction output is preserved unmodified in
+`tests/characterization/goldens/mention_rank_wide.json`.

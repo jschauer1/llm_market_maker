@@ -101,12 +101,53 @@ def test_mention_family_wide_horizon_matches_goldens():
     assert cz.proj(wide) == cz.load_golden("mention_find_candidates_wide")
 
     ranked = mention_bucket.rank(wide, cz.frozen_rates(), top_n=len(wide))
-    assert cz.proj(ranked) == cz.load_golden("mention_rank_wide")
+    assert cz.proj(ranked) == cz.load_golden(
+        "mention_rank_wide_edge_corrected")
 
     preview = mention_bucket.rank_preview(
         wide, cz.frozen_rates(), top_n=len(wide)
     )
     assert cz.proj(preview) == cz.load_golden("mention_rank_preview_wide")
+
+
+def test_the_bucket_edge_correction_is_visible_in_the_goldens():
+    """2026-08-29: `buckets.edge_for` stopped differencing a bucket's
+    pooled win rate against the CANDIDATE's price and started carrying the
+    bucket's own realized edge.
+
+    `mention_rank_wide.json` is deliberately kept, unmodified, as the
+    record of the pre-correction arithmetic -- goldens are immutable, so
+    the corrected behaviour got a new file rather than overwriting the
+    old one. This test locks the difference itself, which is the most
+    useful thing either file can do: under the old formula the ranking
+    sorted by CHEAPNESS (every candidate in a bin was repriced against
+    that bin's win rate, so the cheapest looked best); under the
+    corrected one every candidate in a bin claims the same gross edge and
+    the ranking is decided by fees and volume instead.
+    """
+    old = cz.load_golden("mention_rank_wide")
+    new = cz.load_golden("mention_rank_wide_edge_corrected")
+    assert len(old) == len(new), "same candidate set, different arithmetic"
+
+    # The old top pick was the cheaper market; the corrected one is not.
+    assert old[0]["entry_price"] < new[0]["entry_price"]
+    assert old[0]["edge_pts_net"] > new[0]["edge_pts_net"]
+
+    # Under the correction, claimed gross edge is a property of the
+    # bucket, so every row sharing a bucket claims the same gross number
+    # and differs only by its own fee.
+    from tools.sizing import fee_pts
+
+    by_bucket: dict[str, set] = {}
+    for row in new:
+        gross = row["edge_pts_net"] + fee_pts(row["entry_price"])
+        by_bucket.setdefault(row["bucket"], set()).add(round(gross, 6))
+    assert by_bucket, "the corrected golden carries no bucketed rows"
+    for bucket, grosses in by_bucket.items():
+        assert len(grosses) == 1, (
+            f"{bucket} claims {len(grosses)} different gross edges; a "
+            "bucket's realized edge does not depend on the candidate"
+        )
 
 
 def test_rank_and_rank_preview_stay_two_different_functions():

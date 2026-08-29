@@ -7,16 +7,19 @@
   "mention_family_75_85": {
    "mean_entry_price": 0.7931578947368421,
    "n": 38,
+   "n_days": 31,
    "win_rate": 0.868421052631579
   },
   "mention_family_85plus": {
    "mean_entry_price": 0.9158536585365855,
    "n": 41,
+   "n_days": 30,
    "win_rate": 1.0
   },
   "mention_family_lt75": {
    "mean_entry_price": 0.6962162162162161,
    "n": 37,
+   "n_days": 28,
    "win_rate": 0.7297297297297297
   }
  },

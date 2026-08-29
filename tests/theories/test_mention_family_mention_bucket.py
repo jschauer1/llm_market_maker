@@ -50,10 +50,17 @@ def _candidate(ticker, entry_price, fav_side="yes", volume=5000.0) -> Candidate:
 
 
 #: Mirrors the real 2026-08-24 backtest's three price bins.
+# n_days are the real distinct-settlement-day counts of the originating
+# backtest run (backtest-2026-08-24-stage1-90d), required since
+# 2026-08-29: a bucket rate must survive settlement-day clustering, not
+# just a row count. See tools/buckets.MIN_BUCKET_DAYS.
 RATES = {
-    "mention_family_lt75": {"n": 37, "win_rate": 0.730, "mean_entry_price": 0.696},
-    "mention_family_75_85": {"n": 38, "win_rate": 0.868, "mean_entry_price": 0.793},
-    "mention_family_85plus": {"n": 41, "win_rate": 1.000, "mean_entry_price": 0.916},
+    "mention_family_lt75": {"n": 37, "win_rate": 0.730,
+                            "mean_entry_price": 0.696, "n_days": 28},
+    "mention_family_75_85": {"n": 38, "win_rate": 0.868,
+                             "mean_entry_price": 0.793, "n_days": 31},
+    "mention_family_85plus": {"n": 41, "win_rate": 1.000,
+                              "mean_entry_price": 0.916, "n_days": 30},
 }
 
 
@@ -143,17 +150,19 @@ def test_rank_uses_each_candidates_own_price_bin():
     by_ticker = {c.candidate.ticker: c for c in ranked}
     assert by_ticker["cheap"].confidence == "mention_family_lt75"
     assert by_ticker["strong"].confidence == "mention_family_85plus"
-    # The strong favorite's bin has both a higher win rate AND less edge
-    # headroom lost to fees than the naive flat-rate model would have given
-    # the cheap one -- this is the fix: the cheap end no longer looks best.
+    # The 85plus bin beat its own prices by more than the lt75 bin beat
+    # its own (8.4 vs 3.4 points gross), and pays a smaller fee doing it.
+    # A single family-wide rate could not express that.
     assert by_ticker["strong"].edge.pts_net > by_ticker["cheap"].edge.pts_net
 
 
 def test_rank_attaches_measured_edge_basis():
     ranked = mention_bucket.rank([_candidate("A", 0.80)], RATES, top_n=20)
     assert ranked[0].edge.basis == "measured"
+    # The bin's own realized edge -- 0.868 against the 0.793 it was bought
+    # at -- carried to this candidate, minus this candidate's own fee.
     assert ranked[0].edge.pts_net == pytest.approx(
-        (0.868 - 0.80) * 100 - fee_pts(0.80)
+        (0.868 - 0.793) * 100 - fee_pts(0.80)
     )
 
 
@@ -164,7 +173,9 @@ def test_rank_respects_top_n():
 
 
 def test_rank_falls_back_to_prior_below_min_bucket_n():
-    thin_rates = {"mention_family_75_85": {"n": 3, "win_rate": 1.0, "mean_entry_price": 0.9}}
+    thin_rates = {"mention_family_75_85": {"n": 3, "win_rate": 1.0,
+                                           "mean_entry_price": 0.9,
+                                           "n_days": 3}}
     ranked = mention_bucket.rank([_candidate("A", 0.80)], thin_rates, top_n=20)
     assert ranked[0].edge.basis == "prior"
     assert ranked[0].edge.pts_net == pytest.approx(0.0)

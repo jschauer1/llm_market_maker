@@ -766,7 +766,8 @@ def bucket_rates(
     # so this join could only ever drop them. The predicate says so out
     # loud rather than leaving the exclusion to be inferred from the join.
     sql = """
-        SELECT o.confidence, o.outcome, o.entry_price, s.result
+        SELECT o.confidence, o.outcome, o.entry_price, s.result,
+               s.resolved_at
         FROM opportunities o
         JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker
         WHERE o.theory_id = ? AND o.theory_version = ? AND o.run_mode = ?
@@ -794,6 +795,17 @@ def bucket_rates(
     for row in rows:
         grouped.setdefault(row["confidence"], []).append(row)
 
+    def _n_days(members: list) -> int | None:
+        """Distinct settlement days behind a bucket's rate, or None.
+
+        None when no member carries a `resolved_at` -- older backtest rows
+        settled without one. Unknown must read as unknown rather than as
+        zero or one, because `buckets.measured_gross` fails closed on it:
+        a day count that cannot be checked is not a day count.
+        """
+        days = {m["resolved_at"][:10] for m in members if m["resolved_at"]}
+        return len(days) or None
+
     return {
         bucket: {
             "n": len(members),
@@ -803,6 +815,10 @@ def bucket_rates(
             / len(members),
             "mean_entry_price": sum(m["entry_price"] for m in members)
             / len(members),
+            # Rows are not independent draws; a bucket measured on one
+            # settlement day has one draw behind it however many rows it
+            # holds. See tools/buckets.MIN_BUCKET_DAYS.
+            "n_days": _n_days(members),
         }
         for bucket, members in grouped.items()
     }
@@ -819,7 +835,7 @@ def save_bucket_rates(
     stamp = now or utcnow()
     rows = [
         (theory_id, theory_version, bucket, data["n"], data["win_rate"],
-         data["mean_entry_price"], stamp)
+         data["mean_entry_price"], data.get("n_days"), stamp)
         for bucket, data in rates.items()
     ]
     if not rows:
@@ -829,8 +845,8 @@ def save_bucket_rates(
             """
             INSERT INTO bucket_rates (theory_id, theory_version, confidence,
                                       n, win_rate, mean_entry_price,
-                                      computed_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+                                      n_days, computed_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """,
             rows,
         )

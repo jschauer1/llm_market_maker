@@ -31,7 +31,8 @@ import math
 from dataclasses import dataclass, field, fields
 from typing import Protocol
 
-from tools.buckets import edge_for
+from tools.buckets import measured_gross
+from tools.sizing import fee_pts
 
 VALID_EDGE_BASES = ("measured", "model", "prior")
 VALID_DISPOSITIONS = ("screened", "endorsed", "rejected")
@@ -314,17 +315,27 @@ class Edge:
         """Turn a judge's bucket label into a number, mechanically.
 
         This is the only sanctioned path from an LLM's classification to a
-        probability: `tools.buckets.edge_for` uses the bucket's realized
-        win rate, so "when this theory says strong, it wins 78% of the
-        time" is a fact about the past rather than an introspection. That
-        function stays pure; this only wraps it.
+        probability. What the bucket supplies is its own realized EDGE --
+        how far the markets it picked beat the prices they were actually
+        bought at -- so "when this theory says strong it beats its prices
+        by 4 points" is a fact about the past rather than an
+        introspection. See `tools.buckets` for why the pooled win rate is
+        not the thing to transfer. Those functions stay pure; this only
+        wraps them.
         """
-        pts_net, basis = edge_for(bucket, entry_price, rates, priors)
-        measured = rates.get(bucket) if basis == "measured" else None
+        gross = measured_gross(bucket, rates)
+        if gross is None:
+            return cls(pts_net=float(priors.get(bucket, 0.0)), basis="prior")
+        fee = fee_pts(entry_price)
         return cls(
-            pts_net=pts_net,
-            basis=basis,
-            model_prob=measured["win_rate"] if measured else None,
+            pts_net=gross - fee,
+            basis="measured",
+            pts_gross=gross,
+            fee_pts=fee,
+            # This candidate's own price plus the bucket's edge. The
+            # bucket's pooled win rate describes a different set of
+            # prices and is not this market's probability.
+            model_prob=entry_price + gross / 100.0,
         )
 
 

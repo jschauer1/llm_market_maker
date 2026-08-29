@@ -77,6 +77,23 @@ confirm the price-binned model, not on the backtest alone.
 
 ## Version
 
+**No version bump — 2026-08-29 shared-module correction, and read this
+before reviving the theory.** `tools/buckets.edge_for` was corrected so a
+confidence bucket contributes its own realized *edge* rather than being
+repriced against each candidate's ask (see
+`theories/insider_bias/insider_judgment/THEORY.md` "Version 4"). This
+theory called that function, so **its arithmetic changed under it**: on
+the characterization fixture the top pick moves from a $0.85 candidate at
++14.11 net to a $0.97 one at +8.21. The old formula ranked this theory by
+*cheapness*; price binning masked how badly, because inside a narrow bin
+a flat rate is nearly right.
+
+No bump because the theory is `retired` and records no further rows —
+there is no track record for a version number to keep separable. The v1
+rows in the ledger were priced by the old formula and stay that way.
+Anyone reviving this must re-derive any ranking from that era rather than
+reuse it; `NOTES.md` 2026-08-29 has the full account.
+
 **No version bump — 2026-08-25 module move.** The tier A replay of the
 shared stage-1 screen moved from `insider_judgment/backtest.py` to
 `theories/insider_bias/replay.py`, and the `is_mention_family` ticker

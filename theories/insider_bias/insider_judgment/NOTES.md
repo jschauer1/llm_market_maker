@@ -291,3 +291,73 @@ no computable SE.** `interpretation_value` is now +34.4 (endorsed n=3 at
 100%, rejected n=51 at 68.6% against 84.5% implied), which is a first
 data point and emphatically not validation: the endorsed tier is three
 rows on one night.
+
+## 2026-08-29 (cont.) — v4: a bucket contributes an edge, not a probability
+
+The three stacked defects of 2026-08-28 turned out to be two mechanical
+bugs and one contamination, and the first two are now fixed in
+`tools/buckets.py`. **`insider_judgment` bumps to v4.**
+
+### Defect 2 was the load-bearing one, and it was a sign error in kind
+
+`edge_for` computed `(bucket_win_rate − this candidate's price) × 100`.
+That reads the bucket's *pooled win rate* as *this candidate's
+probability*, which makes the claimed edge move 1:1 with price. It is not
+a calibration — it is a bet that price carries no information at all.
+
+Concretely, on this theory's own live `weak` rate (n=67, win 0.7761,
+mean entry 0.8446):
+
+| candidate ask | old claim | corrected claim |
+|---|---|---|
+| 0.66 | **+10.04** measured | +0.00 prior |
+| 0.72 | **+4.20** measured | +0.00 prior |
+| 0.85 | −8.28 measured | +0.00 prior |
+| 0.97 | −19.59 measured | +0.00 prior |
+
+A 30-point swing driven entirely by price, out of a bucket whose actual
+realized edge is **−6.85 points**. The corrected formula carries
+`(win_rate − mean entry price of the rows that measured it)` — how far
+the bucket beat the prices it was really bought at — and lets only the
+fee depend on the candidate's own price.
+
+Three things that had silently disagreed now agree: the prior path
+(always points of edge), `score.compute_score` (which *grades* this
+theory on `win_rate − price_implied_rate`), and `Edge.model_prob` (now
+this candidate's price plus the bucket's edge, not a pooled rate
+describing other prices).
+
+### Defect 1 fixed as `MIN_BUCKET_DAYS = 5`
+
+`score.bucket_rates` now reports `n_days`, and a bucket must span five
+distinct settlement days before it may replace its prior. A rates dict
+that cannot supply `n_days` or `mean_entry_price` **fails closed** to the
+prior — an unverifiable measurement is not a measurement, which is the
+same false-survival failure that let one night of football define
+`weak`. `bucket_rates` snapshots persist `n_days` too (nullable: unknown
+must read as unknown, never as zero).
+
+Live effect: all three of this theory's buckets are currently `n_days`
+1–2, so **every bucket falls back to its prior** and the 16 junk
+"positive edge" rows this run produced could not be minted at all.
+
+### Defect 3 (gate leakage) is NOT fixed
+
+`gate.py` still passes FIBA, KBO, CPL, T20, USL, Taça de Portugal,
+Argentine/Bolivian league football and the Carbon Arc vendor-metric
+family. That is a `gate.py` change and a separate version bump; it is the
+next thing to do here. What has changed is that leakage can no longer
+*define* a bucket on one night — it still contaminates the population.
+
+### A found bug in a retired sibling, worth recording
+
+The same correction re-ranks `mention_family`'s golden output, and the
+diff is the defect in one line: the old top pick was a **$0.85**
+candidate at +14.11 net, the corrected one a **$0.97** candidate at
++8.21. The old formula was sorting that theory by *cheapness*, because
+every candidate in a price bin got repriced against that bin's win rate.
+`mention_family` is retired and records nothing, so no version was
+bumped; the pre-correction arithmetic is preserved unmodified in
+`tests/characterization/goldens/mention_rank_wide.json` and the
+correction itself is now locked by
+`test_the_bucket_edge_correction_is_visible_in_the_goldens`.

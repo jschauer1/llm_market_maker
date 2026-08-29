@@ -253,6 +253,10 @@ CREATE TABLE IF NOT EXISTS bucket_rates (
     n                 INTEGER NOT NULL,
     win_rate          REAL,
     mean_entry_price  REAL,
+    -- Distinct settlement days behind the rate. NULL means unknown (rows
+    -- that settled before resolved_at was recorded); tools/buckets.py
+    -- fails closed on unknown rather than treating it as measured.
+    n_days            INTEGER,
     computed_at       TEXT NOT NULL
 );
 

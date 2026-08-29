@@ -81,6 +81,11 @@ def init_db(conn: sqlite3.Connection) -> None:
     _add_column_if_missing(
         conn, "theories", "uses_llm_judgment", "INTEGER NOT NULL DEFAULT 0"
     )
+    # Additive and nullable on purpose: a rate snapshot taken before
+    # settlement days were counted has an UNKNOWN day count, not a zero.
+    # `buckets.measured_gross` fails closed on unknown, so a legacy row
+    # can never be mistaken for a measurement.
+    _add_column_if_missing(conn, "bucket_rates", "n_days", "INTEGER")
     # Additive: every pre-existing row is a single-leg position, and these
     # defaults describe it exactly, so there is no backfill.
     _add_column_if_missing(

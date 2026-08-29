@@ -160,20 +160,36 @@ def test_edge_validates_basis():
 
 def test_edge_from_bucket_measured_and_prior():
     from tools.sizing import fee_pts
-    rates = {"strong": {"n": 20, "win_rate": 0.9, "mean_entry_price": 0.8}}
+    # The bucket won 90% of markets bought at a mean of 0.85, i.e. it beat
+    # its own prices by 5 points. That is what a new candidate inherits --
+    # not a repricing of 0.9 against the new candidate's own 0.8. See
+    # tools/buckets.py (2026-08-29).
+    rates = {"strong": {"n": 20, "win_rate": 0.9,
+                        "mean_entry_price": 0.85, "n_days": 7}}
     priors = {"strong": 4.0, "weak": 0.0}
 
     e = Edge.from_bucket("strong", 0.8, rates, priors)
     assert e.basis == "measured"
-    assert e.model_prob == pytest.approx(0.9)
-    assert e.pts_net == pytest.approx((0.9 - 0.8) * 100.0 - fee_pts(0.8))
+    assert e.pts_gross == pytest.approx(5.0)
+    assert e.pts_net == pytest.approx(5.0 - fee_pts(0.8))
+    # This candidate's implied probability: its own price plus the edge.
+    assert e.model_prob == pytest.approx(0.85)
 
     p = Edge.from_bucket("weak", 0.8, rates, priors)
     assert (p.basis, p.pts_net, p.model_prob) == ("prior", 0.0, None)
 
 
 def test_edge_from_bucket_falls_back_to_prior_below_min_n():
-    rates = {"strong": {"n": 2, "win_rate": 1.0, "mean_entry_price": 0.8}}
+    rates = {"strong": {"n": 2, "win_rate": 1.0,
+                        "mean_entry_price": 0.8, "n_days": 2}}
+    e = Edge.from_bucket("strong", 0.8, rates, {"strong": 4.0})
+    assert e.basis == "prior" and e.pts_net == pytest.approx(4.0)
+
+
+def test_edge_from_bucket_falls_back_to_prior_below_min_days():
+    # Enough rows, but they all settled on two nights: not a measurement.
+    rates = {"strong": {"n": 40, "win_rate": 1.0,
+                        "mean_entry_price": 0.8, "n_days": 2}}
     e = Edge.from_bucket("strong", 0.8, rates, {"strong": 4.0})
     assert e.basis == "prior" and e.pts_net == pytest.approx(4.0)
 
