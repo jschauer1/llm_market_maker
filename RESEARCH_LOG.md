@@ -2236,3 +2236,61 @@ the live scan records ~10.3k rows per session and, since this morning's
 `cell_rates` as they settle. Read the live run's own cells once its
 `n_days` grows, and compare against these in-sample numbers rather than
 pooling them.
+
+## 2026-08-29 (CORRECTION) — the politics headline was wrong; the pre-registered test failed
+
+**Retracting the entry two above.** Peer review from the parallel session
+`llm-market-identifier-4f` (`df27978`,
+`studies/2026-08-29-calibration-harvest-gradient-review/`) challenged it.
+I re-derived every number independently: **the critique is right on the
+points that matter and my headline was wrong.** One of its own claims does
+not survive the same check, and that is recorded rather than quietly used.
+
+**What I got wrong:**
+
+1. **The pre-registered test failed, and I reported a different one.**
+   `4a01f9a` required the ordering `1mo+` > `1w-1mo` > `2d-1w` > `<=2d`.
+   Observed: **−1.21 → −4.26 → +5.05 → +9.38** — violated at the first
+   step. I collapsed four bins into two, ran long-vs-short, and published
+   it as "the contrast I pre-registered before the data landed". **It was
+   not pre-registered**; it was chosen after seeing where the sign
+   flipped. That is the exact substitution pre-registration exists to
+   prevent, made while invoking pre-registration's authority — worse than
+   not pre-registering, because it borrows credibility the number never
+   earned.
+2. **My t=3.50 was the best of three splits** (+0.11, +3.50, +2.23).
+3. **There is no gradient.** Adjacent paired steps: `2d-1w`−`<=2d` −2.19
+   (t −0.90), `1w-1mo`−`2d-1w` **+7.01 (t +2.96)**, `1mo+`−`1w-1mo` +0.06
+   (t +0.02). Flat, one jump, flat — **a level shift at one boundary, not
+   the continuously growing slope Le 2026 predicts.**
+
+**Where the critique does not hold, checked the same way:** its proposed
+replacement headline (+3.14 pts/bin, t 2.68, from a day-level regression
+on horizon-bin rank, offered as "choice-free") reproduces exactly — but
+only under an **unstated ≥3-bins-per-day inclusion rule**. At ≥2 bins it
+is **+0.50, t 0.26**; at ≥4 bins +3.48, t 2.70. The inclusion rule *is*
+the result, so that number should not become the new headline either.
+
+**And the composition check it flagged but did not run, does bite.**
+Restricted to the 95 series present on both sides of the one-week
+boundary, the step falls from **+9.31 to +5.75** — roughly **38% is
+composition**, not horizon. `KXAPRPOTUS` and `KXHORMUZWEEKLY` are heavy
+in `2d-1w` and near-absent in `1w-1mo`.
+
+**What stands:** a single level shift at the one-week boundary, +7.01 ±
+2.36 (surviving Holm over the three adjacent steps), about 38% of it
+composition — **a hypothesis for the next population, not a result**.
+Unchanged and still correct: status `testing`, the out-of-sample `active`
+bar, and **nothing is bettable** (all sixteen cells net-negative at the
+Wilson bound).
+
+**Learned — and this one is mine.** Pre-registration only works if you
+report the test you registered, *including when it fails*. I wrote a good
+bar, watched it fail, found a better-looking cut, and shipped that
+instead; and the failure was invisible from outside **because** the
+pre-registration made it look rigorous. It was caught only by a second
+reader diffing `4a01f9a` against `9d9526a`. Two process notes worth
+keeping: a peer review that reproduces the arithmetic before arguing is
+worth far more than one that argues first, and it works in both
+directions — the same scrutiny that overturned my headline also found the
+knob in theirs.

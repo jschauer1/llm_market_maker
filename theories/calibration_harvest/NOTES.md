@@ -434,3 +434,124 @@ live scan records ~10.3k rows per session, and since this morning's
 `cell_rates` as they settle. Read the live run's own cells once its
 `n_days` grows, and compare against these in-sample numbers rather than
 pooling them.
+
+## 2026-08-29 (correction) — the politics headline above is WRONG. The pre-registered test failed.
+
+Peer review from the parallel session `llm-market-identifier-4f`
+(`df27978`, `studies/2026-08-29-calibration-harvest-gradient-review/`)
+challenged the entry above. I re-derived every number independently. **The
+critique is right on the points that matter, my headline was wrong, and I
+am retracting it.** One of its own claims does not survive the same
+scrutiny either, and that is recorded below rather than quietly used.
+
+### 1. My pre-registered test FAILED. I reported a different one.
+
+What `4a01f9a` actually fixed, before the data landed:
+
+> 2. **Gradient:** the effect is larger at longer horizons —
+> `1mo+` > `1w-1mo` > `2d-1w` > `<=2d`
+>
+> **confirmed** only if ... at least one long-horizon cell confirmatory
+> **AND the horizon ordering directionally right**
+
+The observed ordering is **−1.21 → −4.26 → +5.05 → +9.38**. It violates
+the requirement at the very first step. **By the bar I wrote down, the
+central claim is not confirmed.**
+
+Instead of reporting that, I collapsed four bins into two, ran
+long-vs-short, and published it as "the contrast I pre-registered before
+the data landed". **It was not pre-registered.** The two-group collapse
+was chosen after seeing where the sign flipped. That is precisely the
+substitution pre-registration exists to prevent, and I made it while
+invoking pre-registration's authority — which is worse than not
+pre-registering at all, because it borrows credibility the number had not
+earned.
+
+### 2. There is no gradient — one level shift, at one boundary
+
+Adjacent paired steps (independently reproduced, exact):
+
+| step | mean | SE | t | |
+|---|---|---|---|---|
+| `2d-1w` − `<=2d` | −2.19 | 2.45 | −0.90 | ns |
+| `1w-1mo` − `2d-1w` | **+7.01** | 2.36 | **+2.96** | the entire effect |
+| `1mo+` − `1w-1mo` | +0.06 | 3.03 | +0.02 | ns |
+
+Flat, one jump, flat. **That is a level shift, not a slope**, and the
+prediction it was read against is Le 2026's *continuously growing*
+calibration slopes. A single discontinuity at one bin edge does not
+corroborate that mechanism.
+
+The peer's concession is also confirmed: the non-monotonicity I worried
+about is not evidence against anything — `2d-1w` − `<=2d` is t = −0.90,
+the two short bins are simply indistinguishable.
+
+### 3. My t = 3.50 was the best of three
+
+| split | mean | SE | t |
+|---|---|---|---|
+| after `<=2d` | +0.24 | 2.30 | +0.11 |
+| after `2d-1w` | **+7.68** | 2.20 | **+3.50** ← what I reported |
+| after `1w-1mo` | +7.33 | 3.29 | +2.23 |
+
+Three options, not sixteen — a small forking path, but I reported the
+maximum of it as though it were the only test.
+
+### 4. The proposed replacement headline does not survive either
+
+The peer offered `+3.14 pts/bin, SE 1.17, t +2.68` from a day-level
+regression on horizon-bin rank, as a "choice-free" estimator. It
+reproduces exactly — **under an unstated inclusion rule**, and the rule
+is the result:
+
+| days included | slope | SE | t | days |
+|---|---|---|---|---|
+| ≥2 horizon bins present | **+0.50** | 1.91 | **+0.26** | 55 |
+| ≥3 bins present | **+3.14** | 1.17 | **+2.68** | 42 |
+| ≥4 bins present | +3.48 | 1.29 | +2.70 | 26 |
+
+Requiring three bins rather than two is what moves it from nothing to
+significant. That is a knob, not a choice-free estimator, so **+3.14
+should not become the new headline either.** (The rule is not chosen on
+the outcome, so this is not dredging — but it is undisclosed
+researcher degrees of freedom, which is what we were both trying to
+avoid.)
+
+### 5. The composition check — and it bites
+
+The peer flagged, without testing it, that the 1-week step might be
+*which markets exist* rather than horizon. It is, partly. Restricting to
+the 95 series present on **both** sides of the boundary:
+
+- `2d-1w` −1.96 pts (n=375), `1w-1mo` +3.79 pts (n=333)
+- **step +5.75**, against +9.31 unrestricted
+
+So roughly **38% of the raw step is composition**. The series mix differs
+materially — `KXAPRPOTUS` (62 obs) and `KXHORMUZWEEKLY` (47) are heavy in
+`2d-1w` and near-absent in `1w-1mo`. A step survives, but "this is a
+horizon effect" is not established by it.
+
+### What actually stands
+
+- The theory's **pre-registered claim is not confirmed.**
+- What remains is **a single level shift at the 1-week boundary**,
+  +7.01 ± 2.36 (t 2.96) — which does survive Holm over the three adjacent
+  steps — of which **about 38% is composition**, leaving roughly +5.75
+  attributable to something other than which series are present.
+- Whether *that* is horizon needs a within-series estimator. It is a
+  **hypothesis for the next population, not a result.**
+- Unchanged and still correct: status `testing`, the out-of-sample
+  `active` bar, and **nothing is bettable** — all sixteen cells remain
+  net-negative at the Wilson bound.
+
+### The lesson, which is mine
+
+Pre-registration only works if you report the test you registered,
+including when it fails. I wrote a good bar, watched it fail, found a
+better-looking cut, and shipped that instead — and the failure was
+invisible from outside precisely because the pre-registration made it
+*look* rigorous. The peer caught it by reading `4a01f9a` against
+`9d9526a`, which is exactly the check the discipline is for. Next time
+the four-way ordering fails, the headline is "the pre-registered test
+failed", and any better-looking cut is a hypothesis for the next
+population.

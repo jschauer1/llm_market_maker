@@ -86,27 +86,48 @@ about horizon compression, so the weather walk tested one column of a
 four-column claim.
 
 **Politics/Elections completed the same day (2,507/2,507 series, 1,541
-observations, 916 markets) and it does test the claim — the horizon
-gradient is confirmed.** Day-clustered, price bands pooled: `<=2d` −1.21,
-`2d-1w` −4.26, `1w-1mo` **+5.05** (t 2.44), `1mo+` **+9.38** (t 3.01).
-The contrast pre-registered before the data landed — long horizon versus
-short — comes in at **+9.18 ± 3.40 (t 2.70)** unpaired and **+7.68 ± 2.20
-(t 3.50)** paired within settlement day, 29/45 days positive, sign test
-p = 0.036. That is what Le 2026's political slopes predict.
+observations, 916 markets) and it does test the claim. The
+pre-registered test FAILED.**
 
-**But not one of the sixteen cells is recommendable.** All are
-net-negative at the Wilson bound (−5.68 to −29.92 pts), because bounding
-on `n_days` of 16–47 gives an interval far wider than a ~9-point effect.
-**The effect being real and the effect being bettable are different
-questions**, and what closes the gap is more settlement days, not more
-rows.
+The bar fixed before the data landed (`4a01f9a`) required the horizon
+ordering `1mo+` > `1w-1mo` > `2d-1w` > `<=2d`. Observed, day-clustered
+with price bands pooled: **−1.21 → −4.26 → +5.05 → +9.38** — violated at
+the first step.
 
-Three caveats hold the result in place: it is **in-sample** (the bar for
-`active` is out-of-sample and is untouched); **no individual cell
-survives multiple comparisons** (three clear 2 SE, the largest at 2.83,
-where Holm over sixteen needs about 3 — the gradient stands because it
-was pre-registered as one contrast); and it is **not monotone** (`2d-1w`
-sits below `<=2d`), so the surviving claim is long-versus-short.
+An earlier version of this section reported a two-group long-vs-short
+contrast (+7.68, t 3.50) as though it had been pre-registered. **It had
+not been**; it was chosen after seeing where the sign flipped, and it was
+the best of the three available split points (+0.11, +3.50, +2.23). That
+claim is **retracted**. See `NOTES.md` 2026-08-29 (correction) for the
+full account, and
+`studies/2026-08-29-calibration-harvest-gradient-review/` for the peer
+review that caught it.
+
+**What actually stands** is narrower. Decomposed into adjacent paired
+steps, the data is flat, one jump, flat:
+
+| step | mean | SE | t |
+|---|---|---|---|
+| `2d-1w` − `<=2d` | −2.19 | 2.45 | −0.90 |
+| `1w-1mo` − `2d-1w` | **+7.01** | 2.36 | **+2.96** |
+| `1mo+` − `1w-1mo` | +0.06 | 3.03 | +0.02 |
+
+That is **a single level shift at the one-week boundary, not a slope** —
+and Le 2026's prediction is of continuously growing calibration slopes,
+which a lone discontinuity does not corroborate. About **38% of the step
+is composition**: restricted to the 95 series present on both sides it
+falls from +9.31 to **+5.75**, because the series mix differs materially
+across the boundary. Whether the remainder is a horizon effect at all
+needs a within-series estimator.
+
+**Treat it as a hypothesis for the next population, not a result.**
+
+**Nothing is recommendable, and that part is unchanged.** All sixteen
+cells are net-negative at the Wilson bound (−5.68 to −29.92 pts), because
+bounding on `n_days` of 16–47 gives an interval far wider than any effect
+seen here. The effect being real and the effect being bettable are
+different questions, and what would close the gap is more settlement
+days, not more rows.
 
 Full numbers and reproduction: `NOTES.md` 2026-08-29, and
 `python -m theories.calibration_harvest.gradient`.
