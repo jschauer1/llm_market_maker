@@ -3033,3 +3033,31 @@ structure; distillation upward, never a supervisor reading notebooks) and
 needs to run; no sibling imports; shared ancestry via parent module or
 tools/; test-enforced). Substance unchanged, names new. Spec §3.1/§7.9/§9
 updated to quote the new wording.
+
+---
+
+## 2026-08-29 — Foundation plan shipped: backup, hygiene, --ticker, force floor, state, rulings; db/ relocated out of OneDrive
+
+**Did:** Executed `docs/superpowers/plans/2026-08-29-enforcing-surfaces-foundation.md`
+(spec phases 0, 1, 1b, 2) via subagent-driven development — every task
+reviewed, all findings fixed or ruled, suite 1,022 green. Shipped: `db
+backup` (ledger dump excluding snapshots, source attached SQLite-enforced
+read-only; real backup taken and restore-verified at
+%LOCALAPPDATA%\market_edge\backups\market_edge_ledger_20260829T233205.db.gz,
+4.2 MB); §5.1 hygiene + `test_every_repo_path_named_in_docs_resolves`
+(migration artifacts retired to `attic/kalshi_trader_migration/`);
+`mark-taken --ticker`; the 30-minute force floor on `get_board`;
+`python -m tools.cli state` (orientation now renders from the DB —
+`CLAUDE.md` and the go skill point at it); the `rulings` table with all
+twelve standing rulings backfilled. **`db/` was then relocated** to
+`%LOCALAPPDATA%\market_edge\db\` behind an NTFS junction at `db/`
+(WAL-checkpointed first; `state`, git tracking of `db/schema.sql`, and the
+full suite verified through the junction). OneDrive was not running during
+the move; watch its first restart for any attempt to sync the junction —
+fallback is pointing `tools/db.py::DEFAULT_DB_PATH` at the new home.
+Rulings 4 (relocation), 5 (force floor) and 6 (division of labour, from the
+earlier consolidation) marked implemented.
+
+**Next:** Plan 2 of the spec — §9 phases 3–5, the log migration (§6.8's
+procedure), now unblocked: `state` exists, `rulings` exists, the citation
+sweep is the first step.
