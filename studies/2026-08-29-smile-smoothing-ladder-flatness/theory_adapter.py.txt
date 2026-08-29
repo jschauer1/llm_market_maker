@@ -1,0 +1,91 @@
+"""Contract adapter for the fully mechanical smile-smoothing scanner.
+
+`fit.py` decides; this module converts shapes at the boundary. There is
+no stage 2, no gate, no prompt and no model anywhere in the decision
+path, so this theory declares nothing to `judgment_runs` and backtests at
+tier A.
+
+`edge_basis` is `model`: the fitted probability is computed from the
+ladder's own sibling prices by isotonic regression, which is arithmetic
+over observed quotes rather than anything introspected. Every recorded
+edge is net of the unrounded per-contract fee at the ask actually payable.
+
+No instance state: the funnel travels on the `ScreenResult` and there are
+no verdicts, so `price()` is a pure re-shaping of what `screen()` found.
+"""
+
+from __future__ import annotations
+
+from tools.domain import (Candidate, Edge, Leg, ScoredCandidate,
+                          ScreenResult)
+from tools.theory import Theory, TheoryContext
+
+from theories.smile_smoothing import fit
+
+
+class SmileSmoothingTheory(Theory):
+    id = "smile_smoothing"
+    name = "Smile Smoothing"
+    version = 1
+    uses_llm_judgment = False
+    # Voluntary self-documentation: the deciding artifact is code.
+    # finish() records it with model='none (deterministic)'.
+    prompts = {"other": "theories/smile_smoothing/fit.py"}
+
+    # ---- stage 1: the whole theory ----
+
+    def screen(self, ctx: TheoryContext) -> ScreenResult:
+        findings, funnel = fit.scan(ctx.board, now=ctx.now)
+        cands = []
+        for f in findings:
+            leg = Leg(market=f.rung.market, side=f.side, price=f.entry_price)
+            days = fit.days_until(f.rung.market.close_time, now=ctx.now)
+            cands.append(Candidate(legs=(leg,), days_to_close=days or 0.0))
+        return ScreenResult(
+            candidates=tuple(cands),
+            funnel=funnel,
+            gate_removed={
+                "conceded to structural_arb (hard violation)":
+                    funnel["ladders_conceded_to_structural_arb"],
+            },
+        )
+
+    def price(self, ctx, cands, verdicts=None) -> list[ScoredCandidate]:
+        # Re-derived from the same board rather than carried on the
+        # instance: `Theory` is stateless by contract, and `fit.scan` is
+        # a pure function of (board, now), so this reproduces exactly
+        # what screen() found. Keyed by LEG TICKER, never Candidate.key
+        # -- that is the *event* ticker for a single leg, and one event
+        # can hold several ladders (a strike ladder per player or per
+        # team), which would collide.
+        findings, _ = fit.scan(ctx.board, now=ctx.now)
+        by_leg = {(f.rung.market.ticker, f.side): f for f in findings}
+        out = []
+        for c in cands:
+            leg = c.legs[0]
+            f = by_leg.get((leg.market.ticker, leg.side))
+            if f is None:
+                continue
+            out.append(ScoredCandidate(
+                candidate=c,
+                edge=Edge(pts_net=f.edge_pts_net, basis="model",
+                          pts_gross=f.edge_pts_gross, fee_pts=f.fee_pts,
+                          model_prob=f.model_prob),
+                confidence=None,
+                rationale=describe(f),
+                judged_blind=False,   # mechanical: price is an input, not a leak
+            ))
+        return out
+
+
+def describe(f: fit.Finding) -> str:
+    """The audit line recorded as the opportunity's rationale."""
+    return (
+        f"Ladder {f.ladder.event_ticker} ({len(f.ladder.rungs)} liquid rungs, "
+        f"{'upper' if f.ladder.upper_tail else 'lower'} tail): strike "
+        f"{f.rung.strike:g} mid {f.rung.mid:.3f} vs isotonic fit "
+        f"{f.fitted:.3f}. Buy {f.side.upper()} at ask {f.entry_price:.2f} "
+        f"toward the fit; model_prob {f.model_prob:.3f}, "
+        f"edge {f.edge_pts_gross:+.2f} gross - {f.fee_pts:.2f} fee = "
+        f"{f.edge_pts_net:+.2f} net pts."
+    )
