@@ -97,6 +97,76 @@
    "written": 0,
    "no_candles": 0,
    "below_floor": 0
+  },
+  "KXHIGHTZBAA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLOWTMMMX": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXAVGTATL": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXAVGTKPHX": {
+   "n_settled": 5,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHURPATHNC": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXRAINWKND": {
+   "n_settled": 20,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 2
+  },
+  "KXHURPATHFLA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHURPATHGULFCOAST": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHIGHTEDDF": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXRAINMIAM": {
+   "n_settled": 7,
+   "n_obs": 6,
+   "written": 4,
+   "no_candles": 0,
+   "below_floor": 0
   }
  }
 }

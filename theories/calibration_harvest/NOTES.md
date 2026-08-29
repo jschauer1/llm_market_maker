@@ -145,3 +145,84 @@ do quite the same thing — it needs an observation *per horizon bin*
 rather than the first day that clears — but the next revision should
 reconstruct a `Market` and call the real screen per bin rather than
 re-checking spread/volume/price by hand.
+
+## 2026-08-29 — the collector cannot be made faster, and it does not need to be
+
+The 2026-08-27 stop note flagged the collector as slow ("~1 series/several
+minutes on large series; worth profiling the per-market candle call before
+committing to the ~2,504-series politics run"). Profiled it. Three
+findings, and the last one is the useful one.
+
+### 1. It is all in the candlestick call, as suspected
+
+Instrumented `tools.http.get_json` by URL shape over three real weather
+series: **99.5% of wall clock in per-market candlestick GETs**, 350 calls
+at 244ms each = 85s of an 86s walk. `list_settled` was 0.4s of it.
+
+### 2. The obvious two fixes do not work
+
+**Connection pooling: no.** The hypothesis was a TLS handshake per call,
+since `requests.get` opens a fresh connection every time. Added a pooled
+per-thread `requests.Session` (`tools/http.py`) and re-measured against
+the live API: mean candlestick latency **244ms → 239ms**. The cost is
+server-side, not handshake. The change was kept — it is correct, it does
+help the paged `list_settled` calls (127ms → 82ms), and it is the
+prerequisite for any threaded caller — but it is not a speedup.
+
+**Concurrency: also no, and this is the real constraint.** Same 80-fetch
+probe set at several worker counts:
+
+| workers | wall clock | ms/call | errors |
+|---|---|---|---|
+| 1 | 17.5s | 218 | 0 |
+| 4 | 20.5s | 256 | 0 |
+| 8 | 20.4s | 255 | 0 |
+| 12 | 21.1s | 263 | **4** |
+
+Four and eight workers are *no faster than one*, and twelve starts
+failing. Kalshi serializes candlestick requests per client at roughly
+4–5/s regardless of how many connections you open. **There is no
+optimization available at the HTTP layer**, and none should be attempted;
+raising concurrency only buys retries.
+
+Nor is there one in the collector: it already makes exactly one
+candlestick call per qualifying settled market (one 60-day daily-candle
+window serving all four horizon bins), and `worth_fetching` already skips
+sub-floor volume — on `KXLOWTLV`, 360 settled → 173 fetched. Cutting
+calls further would mean changing the population, which is a
+pre-registration question, not a performance one.
+
+### 3. So the plan changes instead — and the real number is much smaller
+
+One cheap `list_settled` per series (53s for all 154) gives the exact
+fetch count instead of an extrapolation:
+
+```
+154 series in scope
+85,683 settled markets in the 60-day window
+28,336 candlestick fetches needed
+     -> 1.7 hours at the measured, irreducible 220ms
+```
+
+**1.7 hours, not "multiple sessions".** The earlier pessimism came from
+the walk hitting the heaviest series early — the distribution is brutally
+skewed:
+
+| series | settled | fetches | time |
+|---|---|---|---|
+| KXTEMPNYCH | 17,417 | 4,106 | 15.1 min |
+| KXTEMPLAXH | 12,323 | 3,753 | 13.8 min |
+| KXTEMPAUSH | 12,341 | 2,574 | 9.4 min |
+| KXTEMPCHIH | 12,371 | 2,508 | 9.2 min |
+| KXTEMPDCH | 12,401 | 1,420 | 5.2 min |
+
+Five series are 40% of the whole population. Anyone sampling the first few
+series and extrapolating gets an answer that is wrong by an order of
+magnitude in either direction depending on which ones they hit.
+
+**The same enumeration should be run before the politics walk** rather
+than starting it and hoping: it costs under a minute per category and
+turns "expect multiple sessions" into a number the user can decide on.
+
+Weather collection resumed 2026-08-29 against checkpoint
+`backtests/weather.json`, run id `backtest-2026-08-27-calharvest-weather`.
