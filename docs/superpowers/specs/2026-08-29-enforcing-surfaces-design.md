@@ -501,27 +501,107 @@ def test_every_repo_path_named_in_docs_resolves():
 Scanning `README.md`, `CLAUDE.md`, `tools/README.md` and every `THEORY.md`,
 matching backticked strings that look like repo paths.
 
-### 5.2 Split the snapshot store
+### 5.2 The snapshot store: back up, de-sync, dedup, compress — then split
 
-`db/market_edge.db` is 5.5 GB, ~1.39M `market_snapshots` rows, growing ~200 MB
-per board pull, **inside a OneDrive sync root**. The ledger — the
-irreplaceable, small, frequently-written part — is a few tens of MB of that and
-is currently hostage to it: every backup, copy and sync moves 5.5 GB to protect
-30 MB.
+*Rewritten 2026-08-29 from a measured handoff supplied by the user; all
+figures measured that day against `db/market_edge.db`. The section as first
+written was wrong in two ways: it understated the growth rate, and it
+proposed the least important fix first.*
 
-Move `market_snapshots` to `db/snapshots.db`, `ATTACH`ed by
-`tools/db.connect()` so every existing query keeps working unqualified. This
-changes no policy: `CLAUDE.md`'s "save as much as you can, while you can" is
-correct and snapshots stay complete and raw. It only stops the
-precious-and-small file from inheriting the operational profile of the large
-one, and lets the two have different backup cadences.
+**Corrections to the original text.** A board pull writes **~400 MB**, not
+~200: 1,390,328 rows at 2,815 bytes average (`raw_json` 2,192 +
+`event_json` 622), ~100k markets per pull. Growth is **~1.3–1.8 GB per
+active day** (~13 pulls over 3 active days) — **~50 GB/month at the current
+rate** — not a per-pull cost to be shrugged at. Journal mode is WAL, inside
+a OneDrive sync root; no conflict copies yet and checkpointing is clean,
+which is luck holding, not safety.
 
-Add `python -m tools.cli db stats` (per-table bytes via `dbstat` — note the
-module is not compiled into the current interpreter's SQLite, so fall back to
-page-count estimation), and a WAL checkpoint on close.
+**The finding that changes the plan: 56.5% of snapshot rows record nothing
+new.** Measured with `LAG` over `(market_id ORDER BY captured_at)`
+comparing `yes_bid`, `yes_ask`, `volume`, `open_interest`, `status`:
 
-Recommend to the user, cannot be done in code: exclude `db/` from OneDrive
-sync.
+| rows | |
+|---|---:|
+| total | 1,390,328 |
+| first capture (must keep) | 202,690 |
+| unchanged repeats | **785,343 (56.5%)** |
+| genuine changes | 402,295 |
+
+That is ~2.2 GB of the 5.5 GB; 71,783 markets have all 13 captures stored.
+The unique index is `(platform, market_id, captured_at)` — a row per market
+per pull, unconditionally. This is the same shape as the position-identity
+work in `f6a1047`: re-proposing a bet stopped writing a duplicate row and
+started writing an attempt with `times_seen` on the position.
+`market_snapshots` never got that treatment.
+
+**Phase 0 — back up the ledger.** Blocks nothing; do it first. `.dump` of
+every table except `market_snapshots`, gzipped, written outside OneDrive —
+~30 MB. The entire track record currently exists in exactly one 5.5 GB
+WAL-mode file inside a sync root, gitignored. That is a total-loss single
+point of failure, and it is the only item here with an irreversible
+downside.
+
+**Phase 1 — exclude `db/` from OneDrive sync.** User action, not code.
+Kills the WAL-sidecar corruption vector.
+
+**Phase 2 — dedup on write.** Add `last_seen_at`; backfill
+`= captured_at`. In `snapshot.save_kalshi`, compare each market against its
+latest stored row: unchanged → `UPDATE last_seen_at`; changed → `INSERT`.
+Board rebuild becomes "latest row per market at or before T" instead of
+"all rows where `captured_at = T`".
+
+**Design gate — do not skip.** "Unchanged" must be decided by hashing the
+full `raw_json` + `event_json`, never by the five material columns above —
+or edits to rules text and `close_time` are silently dropped and
+`CLAUDE.md`'s save-everything rule is violated. Measure the hash-based
+dedup rate before committing to the design: it will be lower than 56.5%,
+and if it is poor, find which field jitters and justify excluding it
+explicitly rather than quietly.
+
+**Phase 3 — compress `raw_json`/`event_json`.** zlib BLOBs, ~8× on the
+remaining JSON. Needs a codec column or magic-prefix sniff so old and new
+rows coexist; transparent behind the accessor.
+
+**Phase 4 — the split, as this section originally proposed.** Move
+`market_snapshots` to `db/snapshots.db`, `ATTACH`ed by `tools/db.connect()`
+so every existing query keeps working unqualified, letting the
+precious-and-small file and the large one have different backup cadences.
+`python -m tools.cli db stats` (per-table bytes via `dbstat`, falling back
+to page-count estimation where the module is not compiled in) and a WAL
+checkpoint on close ride along here. After phases 0–3 this is
+backup-granularity convenience, not risk reduction — which is the ordering
+the original section got wrong.
+
+Projected: 5.5 GB → ~3.3 GB (dedup) → ~0.5 GB (compressed). **Zero
+information loss** — `CLAUDE.md`'s "save as much as you can, while you can"
+stays correct and untouched.
+
+**The safety net — non-negotiable.** These already exist and must pass
+unchanged at every phase; they are precisely the golden tests for this
+migration:
+
+```
+tests/test_board.py::test_cache_and_fetch_boards_are_identical_raw_included
+                   ::test_rebuilt_board_matches_the_fetched_one
+                   ::test_uncommon_fields_survive_the_cache_round_trip
+                   ::test_snapshot_stores_the_complete_raw_payload
+```
+
+And the structural-gate point-in-time guarantee must survive the rebuild
+rephrasing: "market text at time T" now resolves via the row whose
+`[captured_at, last_seen_at]` interval spans T.
+
+### 5.3 `get_board(force=True)` bypasses freshness — separate item, do not bundle
+
+`force=True` refetches unconditionally, skipping the 4-hour window
+(`DEFAULT_MAX_AGE_MINUTES` in `tools/board.py`). With one `go` session a
+day that is correct; with 4–5 concurrent sessions it is ~2 GB/day — and,
+the real issue, concurrent sessions reasoning over *different boards*.
+Fix: make `force` honor a short floor (~30 minutes). The storage saving is
+incidental; comparability is the point. Kept out of §5.2's phases
+deliberately — it adjusts the behavior behind a documented convention
+("`go`'s Orient makes the one deliberate refresh"), so it should be ruled
+on and shipped on its own, not ride a storage migration.
 
 ---
 
@@ -901,6 +981,7 @@ Each phase is independently shippable and independently useful.
 
 | Phase | Contents | Why this order |
 |---|---|---|
+| 0 | §5.2 phases 0–1: ledger backup + `db/` out of OneDrive | The repo's only total-loss risk; blocks nothing, ships in minutes |
 | 1 | §5.1 hygiene, §4.2 `--ticker`, §3.2 `state` | Zero doctrine, zero schema risk, immediate orientation payoff |
 | 2 | §3.3 `rulings` + backfill | Makes the four buried rulings survivable before the next session loses them |
 | 3 | §6.6 citation sweep + the citation test | Read-only; must precede any move, and is useful even if the migration never runs |
@@ -908,7 +989,7 @@ Each phase is independently shippable and independently useful.
 | 5 | §6.6 M-entry split, one at a time | The judgement-bearing quarter; only safe once `rulings` (phase 2) exists to receive the extractions |
 | 6 | §2 carry/breaking + backfill + `rank`/`segment_report` disclosure | The evidence bleed; largest payoff, needs the disclosure precedent |
 | 7 | §1 question budget + §1.7 slice columns | Needs windows registered, easiest once `state` renders them |
-| 8 | §5.2 DB split | Pure operations; safe to defer, unsafe to defer indefinitely |
+| 8 | §5.2 phases 2–4: dedup → compress → split | Pure operations once phase 0 has a backup; the design gate (measure the hash-based dedup rate) precedes phase 2 |
 | **A** | §7.5 skill-invocation rule + §7.6 quoted-rule test | **Independent of everything above — ship first if desired.** The rule is worthless until the test makes duplication safe, so they land together |
 | **B** | §7.3 task-time rules quoted into `backtest-theory`, `find-edge`, `propose-theory`, `go`, `score-theories` | One skill per commit, each verified by the §7.6 test. No `CLAUDE.md` change, so it cannot regress the guaranteed layer |
 | — | §6.5 rulings 1 & 2 (§22 reversal, promotion bar) | **Blocked on the supervisor.** Ruling 1 gates phases 4–5; ruling 2 also gates on phase 1, per §6.3 |
