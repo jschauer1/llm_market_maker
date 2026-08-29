@@ -2386,3 +2386,61 @@ registry is at v4 (bumped today) and every settled row is v2 or v3. That
 is version segmentation working as designed, not data loss — v2 holds 15
 settled rows, v3 holds 96. Score a specific version explicitly with
 `score.compute_score(conn, 'insider_judgment', 3, run_mode='live')`.
+
+## 2026-08-29 — the event envelope was being fetched and discarded on every board pull
+
+> Contributed verbatim by the parallel session `llm-market-identifier-78`.
+> Appended by `llm-market-identifier-18`, which owns this file for the day.
+
+`tools/kalshi/markets.py::list_open` walked `/events?with_nested_markets=true`, iterated `event["markets"]`, and dropped the event object — keeping only `event_ticker`, `series_ticker`, `title`, and only as fallbacks. Kalshi sends `mutually_exclusive`, `category`, `strike_period`, `settlement_sources`, `collateral_return_type` on every event. A full pull downloaded ~14k envelopes and discarded all of them, breaking the guarantee in `Market.raw`'s docstring that a cached board is identical to a fetched one. `board.py:93`'s series_ticker re-derivation is an older scar from the same cause (2026-08-26, gate.py 349/349 cached vs 100/349 fetched).
+
+Cost, before the fix: `structural_arb` fetched `mutually_exclusive` one event at a time under a 150-per-screen budget, accumulating 2,042 cached flags over the repo's whole history; `calibration_harvest` carried an injected series->category map for the same reason.
+
+Fixed in `09a66f7` (tools/ only — re-sourcing a theory's data bumps its version, left to the owning sessions). `Market.event` defaults to `{}` and `market_snapshots.event_json` is additive/nullable, so pre-fix captures read UNKNOWN rather than false, following the `bucket_rates.n_days` convention. Verified: 961 passed; structural_arb's funnel byte-identical; live pull carries envelopes on all 110,628 markets with 0 fetched-vs-cached mismatches; 8/8 positive-class agreement against the old per-event path.
+
+Two findings fell out, both cross-session:
+
+- **structural_arb's 1,445 flag candidates -> 0 confirmed is the guard working, not budget exhaustion.** Kalshi calls 0 of those 1,445 mutually_exclusive (1,436 false, 9 unknown) against a board that is 46% true — conditioning on "the NO-basket arithmetic cleared" selects against genuine partitions, because real ones are priced to sum correctly. The guard should become free rather than be cut.
+- **`deadline-drift` gains a fourth option.** Its screen plateaued at ~15% misclassification over four disjoint 50-market audits because the residue (multi-destination "which branch" markets) is semantic. `mutually_exclusive` answers that mechanically and keeps the theory tier A. On the current board the flag agrees with 98% of the regex's 2,687 hand-derived exclusions and catches 336 survivors it missed; paired with a price-partition test (>=3 siblings sharing one deadline summing <=1.05, with a date-ladder exemption) the union removes 665 and catches 4 of the 5 named round-4 misses. Projected ~8% — but that is IN-SAMPLE on the markets that motivated it and needs a fresh disjoint round 5. User decision still open; this changes the choice rather than settling it.
+
+## 2026-08-29 (cont.) — structural_arb v4: the guard is free, and now complete
+
+**Did:** Took the theory side of the envelope change above.
+`structural_arb` v3 → **v4**: `mutually_exclusive` now reads off the
+board, and `MAX_FLAG_FETCHES`, `_me_flag_fetch` and the `theory_facts`
+write-back are gone. Suite **964** green.
+
+**Learned:**
+
+1. **The gain is coverage, not speed.** v3 could afford to check the
+   **150 largest** of ~1,449 flag candidates; v4 checks **all 1,449**,
+   with zero network calls. Live verification: 1,449 candidates, 1,449
+   rejected as non-exclusive, 0 confirmed, 0 unknown, screen in 11.7s.
+   Previously the honest claim was "the 150 largest were all false";
+   now it is complete.
+2. **I was one step from cutting the path for the wrong reason.** The
+   all-false cache of 2,042 flags looked like Kalshi never setting the
+   flag. It isn't — **46% of open events are `true`**. The real cause is
+   *selection*: this theory only asks once the NO-basket arithmetic
+   clears, and on a genuine partition that arithmetic *is* an arbitrage,
+   so makers price it to sum correctly and it never clears. The
+   cross-reference confirmed it exactly — **0 of 1,445 candidates
+   exclusive**. So `0 confirmed` is the guard doing its job; without it
+   those 1,449 become 1,449 false arbitrage claims. A real observation,
+   a wrong inference, stopped only by a number I could not cheaply get
+   myself.
+3. **Tri-state, and `None` is not `False`.** A pre-2026-08-29 snapshot
+   carries no envelope; reading absence as False would let a replay
+   accept a partition it never verified. Unknown falls back to the 2,042
+   cached flags, then reports `flag_unknown`.
+4. **Two tests were deleted rather than adapted**, because both pinned
+   the fetch path itself. Adapting a test whose subject no longer exists
+   produces a test that passes and means nothing.
+
+**Process note.** Three sessions ran this repo today. What made it work
+was not the parallelism but that nobody was the last reader of their own
+numbers: 4f overturned my politics headline, I found the knob in their
+replacement, 78 supplied the one figure that stopped me cutting a working
+guard, and I found the API trap that would have bitten their validation.
+Every one of those was caught by someone reproducing an arithmetic claim
+before arguing with it.
