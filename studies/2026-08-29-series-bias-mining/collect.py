@@ -137,8 +137,11 @@ SCHEMA = """
 CREATE TABLE IF NOT EXISTS settled (
     series_ticker TEXT NOT NULL,
     ticker        TEXT NOT NULL PRIMARY KEY,
-    close_time    TEXT,
-    result        TEXT
+    close_time    TEXT,           -- OBSERVED close (may be early)
+    result        TEXT,
+    open_time     TEXT,
+    expected_expiration_time TEXT, -- SCHEDULED close: outcome-independent
+    latest_expiration_time   TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_settled_series ON settled(series_ticker);
 CREATE TABLE IF NOT EXISTS obs (
@@ -150,7 +153,18 @@ CREATE TABLE IF NOT EXISTS obs (
     ask           REAL,      -- what you would have paid for it
     won           INTEGER,
     offset_h      REAL,      -- hours before close the price was taken
-    n_candles     INTEGER    -- how much price history existed at all
+    n_candles     INTEGER,   -- how much price history existed at all
+    -- The ORIGINAL pre-registered point (24h before scheduled close),
+    -- priced from the same candles at zero extra API cost, so the
+    -- amendment is measured rather than argued. NULL where the market
+    -- lived < 24h, i.e. where the original rule was undefined.
+    ask_24h       REAL,
+    side_24h      TEXT,
+    won_24h       INTEGER,
+    -- Outcome-independence: a "by D" market that resolves early has its
+    -- OBSERVED span truncated by the outcome itself. Anchoring to
+    -- scheduled close removes that; this flag says when they differ.
+    early_settled INTEGER
 );
 CREATE INDEX IF NOT EXISTS idx_obs_series ON obs(series_ticker);
 CREATE TABLE IF NOT EXISTS progress (
@@ -169,6 +183,17 @@ def connect() -> sqlite3.Connection:
     conn.row_factory = sqlite3.Row
     conn.executescript(SCHEMA)
     return conn
+
+
+def _ts(iso: str | None) -> int | None:
+    """Unix seconds from an ISO-8601 stamp, or None."""
+    if not iso:
+        return None
+    try:
+        return int(datetime.fromisoformat(
+            iso.replace("Z", "+00:00")).timestamp())
+    except ValueError:
+        return None
 
 
 def _done(conn, phase: str) -> set[str]:
@@ -228,12 +253,16 @@ def walk(conn, now=None) -> None:
             _mark(conn, "walk", tick, f"ERROR {exc!r}"[:200])
             conn.commit()
             continue
-        rows = [(tick, m.ticker, m.close_time, m.result)
+        rows = [(tick, m.ticker, m.close_time, m.result,
+                 (m.raw or {}).get("open_time"),
+                 (m.raw or {}).get("expected_expiration_time"),
+                 (m.raw or {}).get("latest_expiration_time"))
                 for m in found if m.result in ("yes", "no")]
         if rows:
             conn.executemany(
                 "INSERT OR REPLACE INTO settled(series_ticker,ticker,"
-                "close_time,result) VALUES(?,?,?,?)", rows)
+                "close_time,result,open_time,expected_expiration_time,"
+                "latest_expiration_time) VALUES(?,?,?,?,?,?,?)", rows)
         _mark(conn, "walk", tick, f"{len(rows)} settled")
         conn.commit()                                 # per series, always
         if i % 250 == 0:
@@ -276,19 +305,26 @@ def prices(conn, limit_series: int | None = None) -> None:
         if series_ticker in done:
             continue
         rows = list(conn.execute(
-            "SELECT ticker, close_time, result FROM settled WHERE "
-            "series_ticker=?", (series_ticker,)))
+            "SELECT ticker, close_time, result, open_time, "
+            "expected_expiration_time FROM settled WHERE series_ticker=?",
+            (series_ticker,)))
         got = 0
+        noshed = 0
         errs: list[str] = []
         for r in rows:
             if not r["close_time"]:
                 continue
             try:
-                close_ts = int(datetime.fromisoformat(
-                    r["close_time"].replace("Z", "+00:00")).timestamp())
-                # One hourly-candle call per market over its whole life;
-                # the series doubles as the lifetime measurement, so this
-                # costs no extra request over the old point_in_time call.
+                close_ts = _ts(r["close_time"])
+                # SCHEDULED close, not observed. A "by D" market that
+                # resolves early has its observed close pulled forward BY
+                # THE OUTCOME, so anchoring the decision point to it makes
+                # the information state a function of the answer -- which
+                # would bias any bias the miner then measures. Scheduled
+                # close is outcome-independent; fall back to observed only
+                # when the field is absent.
+                sched_ts = _ts(r["expected_expiration_time"])
+                open_ts = _ts(r["open_time"])
                 cs = history.candlesticks(
                     series_ticker, r["ticker"],
                     start_ts=close_ts - 86400 * CANDLE_LOOKBACK_DAYS,
@@ -298,41 +334,76 @@ def prices(conn, limit_series: int | None = None) -> None:
                 continue
             if not cs:
                 continue
-            span = max(cs[-1]["end_ts"] - cs[0]["end_ts"], 0)
-            # At least an hour back, else a fraction of the observed span.
-            target = close_ts - max(3600.0, DECISION_FRACTION * span)
-            eligible = [c for c in cs if c["end_ts"] <= target]
-            # A short-lived market may have only one candle, and that
-            # single price is all the history that exists. Use it rather
-            # than dropping the market -- but record offset_h so an
-            # analysis can restrict to comparable information states.
-            candle = eligible[-1] if eligible else cs[0]
-            # Candles carry yes_ask_close / yes_bid_close. There is no
-            # no_ask field: the NO ask is 1 - the YES bid.
-            ya = candle.get("yes_ask_close")
-            yb = candle.get("yes_bid_close")
-            if ya is None or yb is None:
+            if sched_ts is None:
+                # EXCLUDED, never fallen back to observed close. On a
+                # "does X happen by D" market the actual close IS the
+                # outcome variable, so using it to place the decision
+                # point makes the information state a function of the
+                # answer. Measured on this population: 66.8% of eligible
+                # markets settled EARLY (median 3h, max 490 days), so the
+                # fallback would have contaminated two thirds of it.
+                # Session 78 hit exactly this and their deadline_drift
+                # result flipped sign (-3.4 -> +4.7) on correction.
+                # Only 114 eligible rows lack the field; dropping them is
+                # cheaper than trusting them.
+                noshed += 1
                 continue
-            ya, yb = float(ya), float(yb)
-            if ya > 1.0 or yb > 1.0:          # cents, not dollars
-                ya, yb = ya / 100.0, yb / 100.0
-            na = 1.0 - yb
-            # Buy the favorite, at the ask actually payable for it.
-            if (ya + yb) / 2.0 >= 0.5:
-                side, ask = "yes", ya
+
+            # Scheduled lifetime where open_time exists; else observed span.
+            if open_ts and sched_ts > open_ts:
+                lifetime = sched_ts - open_ts
             else:
-                side, ask = "no", na
-            if not (0.0 < ask < 1.0):
+                lifetime = max(cs[-1]["end_ts"] - cs[0]["end_ts"], 0)
+
+            def price_at(target_ts):
+                """(side, ask, won, offset_h) at the last candle <= target."""
+                elig = [c for c in cs if c["end_ts"] <= target_ts]
+                c0 = elig[-1] if elig else None
+                if c0 is None:
+                    return None
+                ya, yb = c0.get("yes_ask_close"), c0.get("yes_bid_close")
+                if ya is None or yb is None:
+                    return None
+                ya, yb = float(ya), float(yb)
+                if ya > 1.0 or yb > 1.0:              # cents, not dollars
+                    ya, yb = ya / 100.0, yb / 100.0
+                if (ya + yb) / 2.0 >= 0.5:
+                    side_, ask_ = "yes", ya
+                else:
+                    side_, ask_ = "no", 1.0 - yb
+                if not (0.0 < ask_ < 1.0):
+                    return None
+                return (side_, ask_, 1 if side_ == r["result"] else 0,
+                        (close_ts - c0["end_ts"]) / 3600.0)
+
+            # THE amended pre-registered point: 25% of scheduled lifetime.
+            main = price_at(sched_ts - max(3600.0, DECISION_FRACTION * lifetime))
+            if main is None:
+                # A short-lived market may have one candle and that single
+                # price is all the history there is.
+                main = price_at(cs[0]["end_ts"])
+            if main is None:
                 continue
+            side, ask, won, offset_h = main
+
+            # The ORIGINAL rule, priced from the same candles for free.
+            # Undefined (NULL) where the market lived under 24h -- which
+            # is precisely the population class that made it unrunnable.
+            alt = price_at(sched_ts - 86400) if lifetime >= 86400 else None
+
             conn.execute(
                 "INSERT OR REPLACE INTO obs(ticker,series_ticker,close_time,"
-                "result,side,ask,won,offset_h,n_candles) "
-                "VALUES(?,?,?,?,?,?,?,?,?)",
+                "result,side,ask,won,offset_h,n_candles,ask_24h,side_24h,"
+                "won_24h,early_settled) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 (r["ticker"], series_ticker, r["close_time"], r["result"],
-                 side, ask, 1 if side == r["result"] else 0,
-                 (close_ts - candle["end_ts"]) / 3600.0, len(cs)))
+                 side, ask, won, offset_h, len(cs),
+                 alt[1] if alt else None, alt[0] if alt else None,
+                 alt[2] if alt else None,
+                 1 if (sched_ts - close_ts) > 3600 else 0))
             got += 1
         note = f"{got}/{len(rows)} priced"
+        if noshed:
+            note += f"; {noshed} no scheduled close"
         if errs:
             note += f"; {len(errs)} fetch errors ({errs[0]})"
         _mark(conn, "prices", series_ticker, note)
