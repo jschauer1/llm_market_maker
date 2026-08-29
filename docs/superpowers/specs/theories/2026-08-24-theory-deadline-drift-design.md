@@ -71,6 +71,31 @@ per-category report:
 One direction only: no symmetric YES-side bet (an undocumented thesis
 that would muddy the track record).
 
+**Amendment, 2026-08-29 — a third excluded family, and it is the biggest
+one.** The 50-market audit section 7 mandates was run (three rounds,
+disjoint samples; `studies/2026-08-29-deadline-drift-classifier-audit/`)
+and found that the dominant contaminant is neither family named above:
+
+- **Multi-destination / "which branch" markets** — "X's next team is Y
+  before D", "Z is the first NFL team to announce a sale before D", "P is
+  the first person confirmed as Commissioner before D", "Q becomes Prime
+  Minister following the next election". These resolve YES only if the
+  event happens **and** lands on this specific branch, so the process is a
+  hazard **times a conditional multinomial**, not a hazard.
+
+At board scale this is **2,687 markets, 34% of the entire by-deadline
+population** — an implementation following the non-goals as originally
+written pools all of it straight into the hazard bins, which is precisely
+the poisoning section 7 exists to prevent. Excluding it (plus prose-form
+count thresholds and scheduled competition outcomes, both also missed by
+the original two families) still leaves 4,792 markets in 859 series,
+3,079 in the entry band.
+
+The audit's other result belongs here too: misclassification fell
+40% → 20% → 12% across the three rounds and has **not** cleared this
+spec's own 10% bar. Do not collect hazard bins until it does — see the
+study's Next section.
+
 ## 4. Decision procedure
 
 Fully mechanical, no LLM.

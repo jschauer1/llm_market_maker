@@ -167,6 +167,69 @@
    "written": 4,
    "no_candles": 0,
    "below_floor": 0
+  },
+  "KXLOWTSEA": {
+   "n_settled": 348,
+   "n_obs": 29,
+   "written": 29,
+   "no_candles": 0,
+   "below_floor": 127
+  },
+  "KXHIGHTMIN": {
+   "n_settled": 348,
+   "n_obs": 44,
+   "written": 44,
+   "no_candles": 0,
+   "below_floor": 9
+  },
+  "KXLOWTLTFM": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXRAINSFOM": {
+   "n_settled": 7,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHIGHTWSSS": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLOWTNYC": {
+   "n_settled": 348,
+   "n_obs": 89,
+   "written": 89,
+   "no_candles": 0,
+   "below_floor": 15
+  },
+  "KXHIGHTLTFM": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHURPATHGENERAL": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXECLIPSEREYK": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
   }
  }
 }

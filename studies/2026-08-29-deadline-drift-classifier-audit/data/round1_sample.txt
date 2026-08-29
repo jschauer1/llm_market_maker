@@ -1,0 +1,132 @@
+[19] KXMARRIAGESTYLESKRAVITZ-HSZK-28JAN01   series=KXMARRIAGESTYLESKRAVITZ  yes_ask=0.98
+    TITLE: Will Harry Styles and Zoe Kravitz be married Before Jan 1, 2028?
+    RULES: If Harry Styles and Zoe? Kravitz are married Before Jan 1, 2028, then the market resolves to Yes.
+
+[20] KXMLBDEBUT-EHOLLIDAY-29AUG01   series=KXMLBDEBUT  yes_ask=0.53
+    TITLE: Will Ethan Holliday play in a game for any team in the MLB before Aug 1, 2029?
+    RULES: If Ethan Holliday plays for any MLB team in a regular season or playoff game before Aug 1, 2029, then the market resolves to Yes.
+
+[21] KXMLBNEXTTEAM-27FLINDOR12-SD   series=KXMLBNEXTTEAM  yes_ask=0.01
+    TITLE: Francisco Lindor's next team before Mar 25, 2027: San Diego
+    RULES: If Francisco Lindor's 
+next team is the San Diego Pro Baseball team
+ before Mar 25, 2027, then the market resolves to Yes.
+
+[22] KXMUSKPRIMARY-26-JTHU   series=KXMUSKPRIMARY  yes_ask=0.05
+    TITLE: Who will Elon Musk back a primary against in 2026?
+    RULES: If Elon Musk backs a challenger to John Thune before Nov 3, 2026, then the market resolves to Yes.
+
+[23] KXNBANEXTTEAM-26VOLA-ATL   series=KXNBANEXTTEAM  yes_ask=0.05
+    TITLE: Victor Oladipo's next team before Oct 21, 2026: Atlanta
+    RULES: If Victor Oladipo's 
+next team is the Atlanta Pro Basketball team
+ before Oct 21, 2026, then the market resolves to Yes.
+
+[24] KXNCAAFCONFLEAVE-27-KU   series=KXNCAAFCONFLEAVE  yes_ask=0.1
+    TITLE: Will Kansas leave the Big 12 before Jul 1, 2027?
+    RULES: If the Kansas College Football Team leaves the Big 12 before Jul 1, 2027, then the market resolves to Yes.
+
+[25] KXNEWROLEJP-35DEC-MLA   series=KXNEWROLEJP  yes_ask=0.1
+    TITLE: Who will be the next CEO of JP Morgan Chase?
+    RULES: If Marianne Lake is appointed, elected, named, designated, or succeeded to the position as CEO for JP Morgan Chase before Dec 31, 2035, then the market resolves to Yes.
+
+[26] KXNEXTTEAMMLB-27ACHAPMAN-MIA   series=KXNEXTTEAMMLB  yes_ask=0.01
+    TITLE: What will be Aroldis Chapman's next team?
+    RULES: If Aroldis Chapman's next team is Miami before Mar 25, 2027, then the market resolves to Yes.
+
+[27] KXNEXTTEAMMLB-27LSEVERINO-KC   series=KXNEXTTEAMMLB  yes_ask=0.09
+    TITLE: What will be Luis Severino's next team?
+    RULES: If Luis Severino's next team is Kansas City before Mar 25, 2027, then the market resolves to Yes.
+
+[28] KXNEXTTEAMNBA-26ADAVIS23-HOU   series=KXNEXTTEAMNBA  yes_ask=0.01
+    TITLE: What will be Anthony Davis's next team?
+    RULES: If Anthony Davis's next team is Houston before Oct 21, 2026, then the market resolves to Yes.
+
+[29] KXNEXTTEAMNBA-26BJAMES9-DEN   series=KXNEXTTEAMNBA  yes_ask=0.01
+    TITLE: What will be Bronny James's next team?
+    RULES: If Bronny James's next team is Denver before Oct 23, 2026, then the market resolves to Yes.
+
+[30] KXNEXTTEAMNBA-26DGRE-DAL   series=KXNEXTTEAMNBA  yes_ask=0.01
+    TITLE: What will be Draymond Green's next team?
+    RULES: If Draymond Green's next team is Dallas before Oct 21, 2026, then the market resolves to Yes.
+
+[31] KXNEXTTEAMNBA-26JGID-DAL   series=KXNEXTTEAMNBA  yes_ask=0.05
+    TITLE: What will be Josh Giddey's next team?
+    RULES: If Josh Giddey's next team is Dallas before Oct 21, 2026, then the market resolves to Yes.
+
+[32] KXNEXTTEAMNBA-26KLEONARD2-DET   series=KXNEXTTEAMNBA  yes_ask=0.01
+    TITLE: What will be Kawhi Leonard's next team?
+    RULES: If Kawhi Leonard's next team is Detroit before Oct 21, 2026, then the market resolves to Yes.
+
+[33] KXNEXTTEAMNBA-26TYOUNG3-GSW   series=KXNEXTTEAMNBA  yes_ask=0.04
+    TITLE: What will be Trae Young's next team?
+    RULES: If Trae Young's next team is Golden State before Oct 21, 2026, then the market resolves to Yes.
+
+[34] KXNEXTTEAMNFL-26DADAMS-BUF   series=KXNEXTTEAMNFL  yes_ask=0.05
+    TITLE: What will be Davante Adams's next team?
+    RULES: If Davante Adams' next team is Buffalo before Sep 1, 2026, then the market resolves to Yes.
+
+[35] KXNEXTTEAMNFL-26MCROSBY-SEA   series=KXNEXTTEAMNFL  yes_ask=0.02
+    TITLE: What will be Maxx Crosby's next team?
+    RULES: If Maxx Crosby's next team is Seattle before Dec 1, 2026, then the market resolves to Yes.
+
+[36] KXNEXTTEAMNHL-26AMAT-OTT   series=KXNEXTTEAMNHL  yes_ask=0.05
+    TITLE: What will be Auston Matthews's next team?
+    RULES: If Auston Matthews's next team is the Ottawa Senators before Nov 1, 2026, then the market resolves to Yes.
+
+[37] KXNEXTTEAMNHL-26JROBERTSON21-COL   series=KXNEXTTEAMNHL  yes_ask=0.01
+    TITLE: What will be Jason Robertson's next team?
+    RULES: If Jason Robertson's next team is Colorado Avalanche before Nov 1, 2026, then the market resolves to Yes.
+
+[38] KXNFLCOACHOUT-27MAR01-MVRA   series=KXNFLCOACHOUT  yes_ask=0.99
+    TITLE: Mike Vrabel out before Mar 1, 2027
+    RULES: If the head coach of the New England Pro Football team leaves, or announces they will leave, before Mar 1, 2027, then the market resolves to Yes.
+
+[39] KXNFLOWNERSTAKE-27JUL01-HOU   series=KXNFLOWNERSTAKE  yes_ask=0.07
+    TITLE: Will the Houston Pro Football team be the next Pro Football team to sell an ownership stake after Issuance and before Ju
+    RULES: If Houston is the first NFL team to announce the sale, transfer, or divestiture of an ownership stake in the team (whether controlling or minority) after Issuance and before Jul 1, 2027, then the market resolves to Yes.
+
+[40] KXNYTCHARGE-27JAN01-27JAN01   series=KXNYTCHARGE  yes_ask=0.19
+    TITLE: Will any New York Times reporter whose alleged offense arises from newsgathering, publication, source protection, or com
+    RULES: If any New York Times reporter whose alleged offense arises from newsgathering, publication, source protection, or compliance with investigative demands concerning the Times?s July 2026 reporting on the security of the Qatari-donated aircraft used as Air Force One has been formally charged with any crime in federal cou
+
+[41] KXPODCASTGUESTCALLHERDADDY-27JAN-TAT   series=KXPODCASTGUESTCALLHERDADDY  yes_ask=0.21
+    TITLE: Will Tate McRae go on Call Her Daddy?
+    RULES: If Tate McRae goes on Call Her Daddy before Jan 1, 2027, then the market resolves to Yes.
+
+[42] KXRKLBCOUNT-27JAN-11   series=KXRKLBCOUNT  yes_ask=0.12
+    TITLE: How many launches will Rocket Lab Corporation have after June 29, 2026 at 4:00pm ET and before Jan 1, 2027?
+    RULES: If Rocket Lab Corporation has Above 11 launch after June 29, 2026 at 4:00pm ET and before Jan 1, 2027, then the market resolves to Yes.
+
+[43] KXSECQUARTERLY-26MAR-27JAN01   series=KXSECQUARTERLY  yes_ask=0.17
+    TITLE: Will Securities and Exchange Commission (SEC) announce the publication of a final rule, with an effective date, making q
+    RULES: If the Securities and Exchange Commission (SEC) announces the publication of a final rule (with any effective date) making quarterly reporting optional for public companies before Jan 1, 2027, then the market resolves to Yes.
+
+[44] KXSTATE51-29-DC   series=KXSTATE51  yes_ask=0.006
+    TITLE: Will D.C. be the 51st U.S. state before Jan 20, 2029?
+    RULES: If the 51st state is District of Columbia before Jan 20, 2029, then the market resolves to Yes.
+
+[45] KXTARIFFCHECKS-26-27   series=KXTARIFFCHECKS  yes_ask=0.057
+    TITLE: Will it be reported that at least one million Americans have received checks of at least $1000 directly attributable to 
+    RULES: If at least one million Americans have received payments of at least $1,000 directly attributable to tariff revenue is reported by any of the Source Agencies before Jan 1, 2027, then the market resolves to Yes.
+
+[46] KXTRUMPFLOCK-26-SEP04   series=KXTRUMPFLOCK  yes_ask=0.19
+    TITLE: Will Donald Trump publicly criticize Flock Safety's license plate reader cameras before Sep 4, 2026?
+    RULES: If Donald Trump publicly criticizes Flock Safety's license plate reader cameras before Sep 4, 2026, then the market resolves to Yes.
+
+[47] KXTRUMPRUN-27JAN01   series=KXTRUMPRUN  yes_ask=0.069
+    TITLE: Will Donald Trump announce a run for President of the United States before Jan 1, 2027?
+    RULES: If Donald Trump has announced that he will run for President of the United States in 2028 before Jan 1, 2027, including running for the nomination of any political party to contest that office, then the market resolves to Yes.
+
+[48] KXTRUTHAPIBLOCK-INT27   series=KXTRUTHAPIBLOCK  yes_ask=0.48
+    TITLE: Will any federal or state court rule issues a preliminary or permanent injunction prohibiting Trump Media & Technology G
+    RULES: If any federal or state court issues a preliminary or permanent injunction prohibiting Trump Media & Technology Group from providing paying customers faster access to Donald Trump's Truth Social posts than is available to the general public in a case concerning paid early access to Donald Trump's Truth Social posts bef
+
+[49] KXUPONLY-01-BARR   series=KXUPONLY  yes_ask=0.1
+    TITLE: Will Barron Trump be on UpOnly Podcast before Jan 2027?
+    RULES: If Barron Trump is on the UpOnly Podcast before Jan 1, 2027, then the market resolves to Yes.
+
+[50] KXWAYMO-DATE-26NOV01   series=KXWAYMO  yes_ask=0.02
+    TITLE: When will Waymo officially announce an IPO?
+    RULES: If Waymo confirms an IPO before Nov 1, 2026, then the market resolves to Yes.
+

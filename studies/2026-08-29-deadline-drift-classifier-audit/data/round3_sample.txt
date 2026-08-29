@@ -1,0 +1,109 @@
+by-deadline phrasing : 7,882
+  excluded  2,687  multi-destination branch
+  excluded    373  continuous or count threshold
+  excluded     30  scheduled certainty
+candidate population : 4,792 markets in 859 series
+in the 0.05-0.60 band: 3,079
+
+round-3 sample: 50 markets, 48 distinct series
+
+[1] KX1ALBUM-26DEC-BEY  yes_ask=0.57
+    R: If Beyonc? has a #1 album on the Billboard 200 by Dec 26, 2026, then the market resolves to Yes.
+[2] KX1ALBUM-26DEC-UZI  yes_ask=0.31
+    R: If Lil Uzi Vert has a #1 album on the Billboard 200 by Dec 26, 2026, then the market resolves to Yes.
+[3] KXAAAGASMAXFL-26DEC31-5.30  yes_ask=0.18
+    R: If average regular gas prices for Florida are strictly greater than $5.30 by Dec 31, 2026 according to AAA,  the market resolves to Yes.
+[4] KXACTORTOMCRUZ-30-TOM  yes_ask=0.45
+    R: If Tom Cruise is cast in a Film With Ana de Armas before Dec 31, 2030, then the market resolves to Yes.
+[5] KXALBUMRELEASEDATE-NEWKEN-26JUL01  yes_ask=1.0
+    R: If Kendrick Lamar releases a new album before Jul 1, 2026, then the market resolves to Yes.
+[6] KXARENASCORE-GEMI35P-1515  yes_ask=0.08
+    R: If A model called Gemini 3.5 Pro or greater scores above 1515 on Arena AI Text Score (Remove Style Control) Before Jan 1, 2027, then the market resolves to Yes.
+[7] KXBILLS-DATA  yes_ask=0.14
+    R: If legislation that prohibits data center power usage from increasing consumers' electric utility bills has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.
+[8] KXCAFRAUD-27JAN01  yes_ask=0.13
+    R: If any California statewide elected official or Governor's cabinet member has been federally charged with fraud after Issuance and before Jan 1, 2027, then the market resolves to Yes.
+[9] KXCITYCHAMPS-BOS30JUL01CPRB-1  yes_ask=0.59
+    R: If the Boston Pro Basketball team, New England Pro Football team, Boston Pro Baseball team, and the Boston Bruins combine to win at least 1 championship after Jun 9, 2026 and before Jul 1, 2030, then the market resolves to Yes.
+[10] KXCOACHOUTMLBDATE-27NYY-26SEP01  yes_ask=0.08
+    R: If the Manager of the New York Yankees Pro Baseball team leaves, or announces they will leave, before Sep 1, 2026, then the market resolves to Yes.
+[11] KXCONGRESSTESTIFY-27JAN-JROL  yes_ask=0.069
+    R: If Jelly Roll has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.
+[12] KXDECLAREPRESFIRSTD-28NOV01-RWAR  yes_ask=0.02
+    R: If Raphael Warnock is the first individual in this list to publicly declare their candidacy for 2028 United States presidential election after Issuance and before Nov 1, 2028, then the market resolves to Yes.
+[13] KXEACNOM-27-26OCT01  yes_ask=0.17
+    R: If any person is nominated to be member of the Election Assistance Commission after Issuance and before Oct 1, 2026. then the market resolves to Yes.
+[14] KXENGAGEMENTDURANTADAMS-26  yes_ask=0.01
+    R: If Kevin Durant and Kay Adams are reported to be engaged to be married before Jan 1, 2027, then the market resolves to Yes.
+[15] KXFDAAPPROVE-CYT-26OCT01  yes_ask=0.12
+    R: If the FDA approves cytisinicline for smoking cessation for marketing before Oct 1, 2026, then the market resolves to Yes.
+[16] KXFEDGOVNOM-27-RRIE  yes_ask=0.085
+    R: If Rick Rieder is nominated as a member of the Board of Governors of the Federal Reserve System after Issuance and before Jan 1, 2027. then the market resolves to Yes.
+[17] KXFTCAIBOOKS-26AUG-27JAN01  yes_ask=0.33
+    R: If the Federal Trade Commission announces opening an investigation into the acquisition, scanning and destruction of books by artificial intelligence companies for use in training AI models before Jan 1, 2027, then the market reso
+[18] KXGPT-OPEN-26JUL01  yes_ask=1.0
+    R: If OpenAI releases A model called GPT-6 or greater before Jul 1, 2026, then the market resolves to Yes.
+[19] KXIPHONERELEASE-IPHONE18PRO-26SEP21  yes_ask=0.89
+    R: If Apple Inc. releases iPhone 18 Pro to the public before Sep 21, 2026, then the market resolves to Yes.
+[20] KXIPOBREX-26OCT01  yes_ask=0.04
+    R: If Brex confirms an IPO before Oct 1, 2026, then the market resolves to Yes.
+[21] KXIPOOLIPOP-27JUN01  yes_ask=0.2
+    R: If Olipop confirms an IPO before Jun 1, 2027, then the market resolves to Yes.
+[22] KXISLEMINISTER-26SEP24-JPOO  yes_ask=0.15
+    R: If Jane Poole-Wilson becomes Chief Minister of Isle of Man following the 2026 Manx general election and meets all constitutional requirements before Sep 24, 2027, then the market resolves to Yes.
+[23] KXKXMEDIAGUESTTINYDESK-27-AND  yes_ask=0.1
+    R: If Andr? 3000 is on Tiny Desk before Jan 1, 2027, then the market resolves to Yes.
+[24] KXLEAVEPOWELLGOV-26AUG01-27  yes_ask=0.18
+    R: If Jerome Powell has either officially announced their intention to leave as member of the Board of Governors of the Federal Reserve System or has actually left as member of the Board of Governors of the Federal Reserve System bef
+[25] KXMANAGERSOUT-27JUN01EPL-FHUR  yes_ask=0.99
+    R: If Fabian H?rzeler ceases to be the manager of Brighton before Jun 1, 2027, then the market resolves to Yes.
+[26] KXMEDIAGUESTKIMMEL-27-MRB  yes_ask=0.1
+    R: If MrBeast is on Jimmy Kimmel Live! before Jan 1, 2027, then the market resolves to Yes.
+[27] KXMLBDEBUT-EQUINTERO-29NOV01  yes_ask=0.89
+    R: If Eduardo Quintero plays for any MLB team in a regular season or playoff game before Nov 1, 2029, then the market resolves to Yes.
+[28] KXMLBDEBUT-VLACKEY-29AUG01  yes_ask=0.81
+    R: If Vahn Lackey plays for any MLB team in a regular season or playoff game before Aug 1, 2029, then the market resolves to Yes.
+[29] KXMOVIERELEASEDATE-007-28JUL01  yes_ask=0.5
+    R: If next James Bond has been publicly released in the USA through official channels before Before Jul 1, 2028, then the market resolves to Yes.
+[30] KXNBATRADE-27FEB12-NMARSHALL13  yes_ask=0.28
+    R: If Naji Marshall is traded after Issuance and before Feb 12, 2027, then the market resolves to Yes.
+[31] KXNCAAFCONFLEAVE-27-TENN  yes_ask=0.07
+    R: If the Tennessee College Football Team leaves the SEC before Jul 1, 2027, then the market resolves to Yes.
+[32] KXNEWGLENN-272-JAN  yes_ask=0.12
+    R: If Blue Origin's New Glenn rocket has launched from the launch pad before Jan 1, 2027, then the market resolves to Yes.
+[33] KXNEXTTRILLIONAIRE-33-MD  yes_ask=0.09
+    R: If Forbes reports that Michael Dell has become the second person in the world to reach a net worth of at least $1 trillion USD before Jan 1, 2033 then the market resolves to Yes.
+[34] KXNFLTRADE-26DEC01-JELL  yes_ask=0.43
+    R: If Jonah Elliss is traded before Dec 1, 2026, then the market resolves to Yes.
+[35] KXOPENAIBANKPUBLIC-28JAN01-MCX  yes_ask=0.16
+    R: If Moelis & Company serves as a lead underwriter for OpenAI's initial public offering in the United States before Jan 1, 2028, then the market resolves to Yes.
+[36] KXPODCASTGUESTCALLHERDADDY-27JAN-EMM  yes_ask=0.2
+    R: If Emma Chamberlain goes on Call Her Daddy before Jan 1, 2027, then the market resolves to Yes.
+[37] KXRECNCH-27-JAN01  yes_ask=0.3
+    R: If a reconciliation bill passes the House before January 01, 2027, then the market resolves to Yes.
+[38] KXROGANGUEST-27JAN01-BA  yes_ask=0.8
+    R: If Bill Ackman goes on the Joe Rogan Experience before Jan 1, 2027, then the market resolves to Yes.
+[39] KXSENATEREC-26JUN-27JAN01  yes_ask=0.25
+    R: If a reconciliation bill has passed the Senate after Issuance and before Jan 1, 2027, then the market resolves to Yes.
+[40] KXSPCXLAUNCH-CREW13-26SEP01  yes_ask=0.04
+    R: If SpaceX launches Dragon Crew-13 After issuance and before Sep 1, 2026, then the market resolves to Yes.
+[41] KXSUPERBOWLHEADLINE-27-FOO  yes_ask=0.06
+    R: If Foo Fighters is announced to headline the Pro Football Championship Halftime Show before Feb 15, 2027, then the market resolves to Yes.
+[42] KXTOKENLAUNCH-27JAN01-EXPO  yes_ask=0.26
+    R: If Exponent launches a token after Issuance and before Jan 1, 2027, then the market resolves to Yes.
+[43] KXTRUMPCOUNTRIES-27JAN01-PAL  yes_ask=0.065
+    R: If Donald Trump has physically travelled to and been present within the geographic boundaries of Palestine (West Bank and Gaza Strip) after Issuance and before Jan 1, 2027, then the market resolves to Yes.
+[44] KXTRUMPPARDON-27JAN01-ESNO  yes_ask=0.097
+    R: If Edward Snowden has been given a presidential pardon, commutation, or reprieve during Trump's second term and before Jan 1, 2027, then the market resolves to Yes.
+[45] KXTRUMPSAY-26AUG31-KARO  yes_ask=1.0
+    R: If Karoline / Leavitt, or a plural or possessive form of Karoline / Leavitt, is stated by Donald Trump after August 24, 2026 at 8:00am ET and before Aug 31, 2026 at 12:00am ET, then the market resolves to Yes.
+[46] KXTRUMPSAYNICKNAME-26OCT01-MARJ  yes_ask=1.0
+    R: If Marjorie Traitor Greene, or a plural or possessive form of Marjorie Traitor Greene, is stated by Donald Trump before Oct 1, 2026 at 12:00am ET, then the market resolves to Yes.
+[47] KXTVSHOWSCANCELLED-27-JIM  yes_ask=0.1
+    R: If Jimmy Kimmel Live! is cancelled before Jan 1, 2027, then the market resolves to Yes.
+[48] KXUPONLY-01-GCR  yes_ask=0.01
+    R: If GCR is on the UpOnly Podcast before Jan 1, 2027, then the market resolves to Yes.
+[49] KXVERARELEASE-VERARUBIN-26AUG01  yes_ask=1.0
+    R: If NVIDIA releases Vera Rubin to the public before Aug 1, 2026, then the market resolves to Yes.
+[50] KXWHVISIT-27-GNEW  yes_ask=0.19
+    R: If Gavin Newsom visits the White House after Dec 9, 2025 and before Jan 1, 2027, then the market resolves to Yes.
