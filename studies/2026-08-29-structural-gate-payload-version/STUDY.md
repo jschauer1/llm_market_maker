@@ -123,7 +123,17 @@ written, and on the fix being free when no edit occurred.
 
 (Both confirmed by session 09 against attempts to break them.)
 
-## The fix — two-part, because the one-part version repeals the amendment
+## PROPOSED fifth condition — not adopted, not in force
+
+> ⚠️ **STATUS: PROPOSAL ONLY.** Nothing in this section is a rule. The
+> current rule is `0f06265`'s four conditions in CLAUDE.md, unchanged.
+> This text is a *proposal awaiting the user's ruling*; no session edits
+> CLAUDE.md on it (authority boundary confirmed with sessions 78 and 09).
+> A future session skimming this study should read the four conditions in
+> CLAUDE.md as authoritative and everything below as a suggestion that
+> may have been rejected.
+
+### Why two parts, and not the one part first drafted
 
 The first version proposed: build the payload from the snapshot at or
 before the decision point, and **exclude** markets with no such capture.
@@ -138,10 +148,10 @@ structural gating — while the amendment's entire pitch was tier-A
 evidence over *all* history instead of tier B's thin post-cutoff window.
 As drafted it did not patch the amendment; it repealed it for the past.
 
-Proposed instead, with the second half explicitly a **user judgment
-call**:
+**Proposed** instead — again, *proposed*, with the second half
+explicitly a **user judgment call**:
 
-> **(a) Point-in-time where available — mandatory.** Where a capture at
+> **(a) Point-in-time where available — would be mandatory.** Where a capture at
 > or before the decision point exists, the gate's payload is built from
 > it, never from a current fetch. Cheap, closes the live-drift channel
 > for the whole snapshot era going forward.
@@ -152,7 +162,8 @@ call**:
 > snapshot era for its population.
 
 Whether (b) is acceptable **at tier A** is not a question this study
-should answer. Both options belong in front of the user.
+should answer. Both options belong in front of the user, and until they
+rule, **the four conditions as written remain the whole rule.**
 
 ## Two observations that are not this hole
 
