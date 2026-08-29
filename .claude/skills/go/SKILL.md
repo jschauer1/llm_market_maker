@@ -55,14 +55,23 @@ resolved — the user may have placed them, skipped them, or never seen them.
 The listing above is the raw material; derive the queue from it:
 
 ```python
-import json, subprocess
-rows = json.loads(subprocess.run(
-    ["python", "-m", "tools.cli", "opportunities", "list",
-     "--disposition", "endorsed"], capture_output=True, text=True).stdout)
-queued = [r for r in rows
-          if not r.get("settled_at")
-          and (r.get("user_action") or "untouched") == "untouched"]
+from tools import db, ledger
+
+conn = db.connect()
+queued = [r for r in ledger.list_opportunities(
+              conn, disposition="endorsed", unsettled_only=True)
+          if (r["user_action"] or "untouched") == "untouched"]
 ```
+
+**Use `unsettled_only=True`, not a `settled_at` field on the row.** An
+earlier version of this snippet filtered `opportunities list` output on
+`r.get("settled_at")` — a key that listing has never returned, because
+settlements live in their own table keyed by ticker. `not r.get(...)` was
+therefore always true, so every session counted already-settled positions
+as outstanding and over-reported the queue to the user. Fixed 2026-08-29,
+after it reported 8 open bets when 3 were open and 5 had settled that
+morning. `unsettled_only` also handles baskets correctly: a basket is
+settled only when every leg is.
 
 A queued bet **decays**, which is why this belongs in Orient and not in the
 report. Three things to check on each, cheapest first:

@@ -1899,3 +1899,50 @@ green.
 
 Not an edge change — all six historical finds were rejected either way.
 It buys a scan that stops announcing finds it will always throw away.
+
+## 2026-08-29 (cont.) — two ledger defects found while taking stock, one urgent
+
+**Did:** Closing out the session's state check surfaced two real bugs, both
+in code that runs every session.
+
+**1. The `go` skill over-reported the endorsed queue, every session.** Its
+snippet filtered `opportunities list` output on `r.get("settled_at")` — a
+key that listing has never returned, because settlements live in their own
+table keyed by ticker. `not r.get(...)` was therefore always true, so
+settled positions were counted as outstanding. It reported **8 open bets
+when 2 were open**. Replaced with `ledger.list_opportunities(...,
+unsettled_only=True)`, which also handles baskets correctly (a basket is
+settled only when every leg is). Skill fixed in place.
+
+**2. A re-judged position silently rewrites its own history — and this one
+is about to bite.** `compute_score` groups by the POSITION's disposition,
+but a position seen again by a later run gets re-interpreted, and
+`ledger.interpret` overwrote the position row *without touching the
+attempt*. So the record of what each run actually decided was lost the
+moment a later run disagreed.
+
+Measured: 222 of 630 live positions have a current disposition differing
+from their first attempt. Most are the benign `screened -> rejected`. But
+**three went `endorsed -> rejected`** — 9184 (`KXGROK-GROK47`), 9186
+(`KXGTATRAILER`), 9203 (`KXNEWDRUGAPPLICATIONCMPS-360`) — all endorsed on
+2026-08-27, all declined by today's stage-3 review, **and all settling
+Sept 1–4**. None has settled yet, so no score is wrong *yet*; when they
+settle they will land in the rejected control pool, which is exactly the
+comparison `interpretation_value` exists to make.
+
+`interpret` now stamps the current attempt as well as the position (TDD,
+suite **893** green). That is a *fidelity* fix, not a semantics one: it
+makes both readings computable instead of losing the earlier verdict.
+
+**Learned:** both bugs were invisible because they fail silently in the
+safe-looking direction — one inflates a count nobody cross-checks, the
+other quietly moves rows between the two pools the repo exists to compare.
+Neither would ever surface as an error; the queue one had been wrong for
+every session since the skill was written.
+
+**Next (user decision):** which disposition should a re-judged position be
+scored under? Two defensible answers — "a recommendation, once made,
+happened, so ever-endorsed scores as endorsed", or "the latest view wins,
+because a withdrawn recommendation was never acted on". The history now
+supports either. Three positions settle within days, so it is worth
+deciding before then.

@@ -466,3 +466,65 @@ def test_mark_user_action_rejects_invalid_action(conn):
     opp_id, _ = _record(conn)
     with pytest.raises(ValueError):
         ledger.mark_user_action(conn, opp_id, "pondered")
+
+
+# --- interpret must stamp the attempt, not only the position ------------
+#
+# Found 2026-08-29. `interpret` wrote the position row only, so a
+# re-judged position lost the record of what each run actually decided:
+# insider_judgment's 2026-08-29 stage-3 rejections showed as `screened` in
+# `opportunity_attempts` while the position said `rejected`. Three live
+# positions (9184, 9186, 9203) had already gone endorsed -> rejected
+# across runs, and `compute_score` groups by the POSITION's disposition,
+# so whichever way that question is settled, the per-attempt history has
+# to be complete enough to recompute it.
+
+
+def _attempts(conn, opp_id):
+    return [dict(r) for r in conn.execute(
+        "SELECT decision_date, run_id, disposition FROM opportunity_attempts"
+        " WHERE opportunity_id = ? ORDER BY decision_date, recorded_at",
+        (opp_id,))]
+
+
+def test_interpret_stamps_the_current_attempt(conn):
+    opp_id, _ = _record(conn, decision_date="2026-08-27")
+    ledger.interpret(conn, opp_id, "endorsed", "worth taking", now=LATER)
+
+    assert ledger.get_opportunity(conn, opp_id)["disposition"] == "endorsed"
+    attempts = _attempts(conn, opp_id)
+    assert len(attempts) == 1
+    assert attempts[0]["disposition"] == "endorsed", (
+        "the attempt must record what this run decided"
+    )
+
+
+def test_interpret_leaves_earlier_attempts_alone(conn):
+    """The whole point: a later run's verdict must not rewrite what an
+    earlier run decided. That history is what makes the endorsed-vs-
+    rejected comparison recomputable under either scoring rule."""
+    opp_id, _ = _record(conn, decision_date="2026-08-27",
+                        run_id="live-2026-08-27")
+    ledger.interpret(conn, opp_id, "endorsed", "day one: take it")
+
+    # A later run sees the same position and declines it.
+    again, created = _record(conn, decision_date="2026-08-29",
+                             run_id="live-2026-08-29")
+    assert again == opp_id and created is False
+    ledger.interpret(conn, opp_id, "rejected", "day three: changed my mind")
+
+    attempts = _attempts(conn, opp_id)
+    assert [a["disposition"] for a in attempts] == ["endorsed", "rejected"]
+    assert [a["decision_date"] for a in attempts] == ["2026-08-27",
+                                                      "2026-08-29"]
+    # The position rolls up to the latest view; the history keeps both.
+    assert ledger.get_opportunity(conn, opp_id)["disposition"] == "rejected"
+
+
+def test_interpret_on_a_position_with_no_attempt_does_not_crash(conn):
+    opp_id, _ = _record(conn)
+    conn.execute("DELETE FROM opportunity_attempts WHERE opportunity_id = ?",
+                 (opp_id,))
+    conn.commit()
+    ledger.interpret(conn, opp_id, "rejected", "no attempt row on file")
+    assert ledger.get_opportunity(conn, opp_id)["disposition"] == "rejected"

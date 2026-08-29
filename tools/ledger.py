@@ -1030,6 +1030,32 @@ def interpret(
                     opportunity_id,
                 ),
             )
+        # Stamp the attempt this verdict belongs to, not just the position.
+        #
+        # `compute_score` groups by the POSITION's disposition, so a
+        # position re-judged by a later run moves between the endorsed and
+        # rejected pools wholesale -- and those two pools are exactly what
+        # `interpretation_value` compares. Three live positions had already
+        # gone endorsed -> rejected across runs by 2026-08-29 (9184, 9186,
+        # 9203), all settling within days.
+        #
+        # This does NOT decide which disposition such a position should be
+        # scored under; that is a semantics question with two defensible
+        # answers. It makes sure the per-attempt history is complete enough
+        # that either answer stays computable, instead of the earlier run's
+        # verdict being lost the moment a later one disagrees.
+        conn.execute(
+            """
+            UPDATE opportunity_attempts
+            SET disposition = ?
+            WHERE opportunity_id = ?
+              AND rowid = (SELECT rowid FROM opportunity_attempts
+                            WHERE opportunity_id = ?
+                            ORDER BY decision_date DESC, recorded_at DESC
+                            LIMIT 1)
+            """,
+            (disposition, opportunity_id, opportunity_id),
+        )
 
 
 def mark_user_action(
