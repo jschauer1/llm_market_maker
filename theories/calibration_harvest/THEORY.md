@@ -97,6 +97,35 @@ rule below).
 
 ## Version
 
+2 — 2026-08-29: **the Wilson bound counts settlement days, not rows.**
+
+This theory already refused to call a cell `measured` below
+`MIN_CELL_DAYS`, on the stated grounds that rows are not independent
+draws — a screen's whole near-term board settles within hours of itself,
+and the 2026-08-27 clustering study measured the day-level swings
+directly. But `cell_edge` then took its Wilson bound on the **row** count,
+which undid that protection at the one point where it decides whether to
+commit money.
+
+Measured on the first complete population: the `<=2d|0.75-0.85` cell went
+628/789 over 59 settlement days. Row-counted, the bound claimed
+**+1.64 pts** at an ask of 0.75; day-counted it says **−7.27 pts**. Three
+live rows priced positive on the row-counted bound; under v2, none do.
+
+The fix collapses the cell to its day count before bounding
+(`wilson_lower(round(p·n_days), n_days)`). That is deliberately
+conservative rather than clever: it under-uses genuine within-day
+information, and a proper cluster-robust interval would sit somewhere
+between `n_days` and `n`. Under-claiming is the safe direction for the
+number that decides a bet, so the cheap version ships and the refinement
+is a later version's job.
+
+**Also in v2, not a decision change:** `price()` now records each row's
+cell in `extra_json` (via the new `ScoredCandidate.extra`). An unmeasured
+cell's rows exist *only* so that cell can accrue settlements, and
+`collect.cell_rates` reads the cell out of `extra_json` — so before this,
+every live row was invisible to the grid it was recorded to grow.
+
 1 — initial. Two pre-registered cell families, the price/horizon/category
 grid in `cells.py`, Wilson-lower-bound edges, and the overlap exclusions.
 
