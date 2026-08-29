@@ -2000,3 +2000,45 @@ both.
 **Next:** the `deadline-drift` user decision is still open (three options, in
 the idea's `revisit_angle`). The queue is down to 0 live endorsed positions —
 both carried bets died at today's ask.
+
+## 2026-08-29 (session 3, item 2) — no_side_premium: a sharper estimator, and a contaminated control caught
+
+**Did:** Diagnosed `no_side_premium`'s headline `calibration_edge_net =
+-10.44 (n=46)`. Extended the settlement-day-clustering study by two clean
+close-days and built the paired within-day estimator the theory's claim
+actually calls for. Study:
+`studies/2026-08-29-side-asymmetry-extension/`; theory detail in its
+`NOTES.md`; `THEORY.md` status updated. Suite **900** green.
+
+**Learned:**
+
+1. **The -10.44 is three days, not 46 draws.** Per-day net +14.18 /
+   -29.74 / -4.93, day-clustered SE **12.73** — larger than the point
+   estimate. The 08-27 amendment predicted this precisely: the same cell
+   read +14.59 on one day and looked falsified; the sign flipped with two
+   more days. Neither reading was information.
+2. **The claim is a side claim, so measure it paired.** The day effect is
+   a common shock to both sides and cancels in `NO_net - YES_net` within
+   a day. Over the clean snapshot population across 5 close-days: **mean
+   +8.25 pts, SE 7.60, t=1.08, 4/5 days positive.** Right sign,
+   not significant, bar is `n_days >= 8`.
+3. **Both pre-registered point estimates are close to measured.** YES side
+   -4.42 vs -3.9 claimed; NO side +3.83 vs +2.0. Two independent estimates
+   agreeing with their priors is encouraging and is *not* significance —
+   worth saying twice because it is the tempting misread.
+4. **I built a contaminated control and caught it.** Comparing cell B to
+   *other YES favorites in the ledger* gave +14.84 and "cell B never
+   underperforms". Worthless: the comparison population is the one the
+   thesis indicts, and ledger rows are theory picks, not a board sample.
+   Clean population says +8.25. **Population-level questions get the
+   snapshot population, never the ledger** — recorded in the study so it
+   is not repeated.
+5. **A silent trap in replaying any snapshot:** `screen()` filters on
+   days-to-close and defaults `now` to the wall clock, so without
+   `now=<capture time>` it drops the entire settled population and returns
+   ~0 rows without erroring. Cost one confused run; now documented.
+
+**Next:** re-run `measure.py` with a new (close day, snapshot) pair each
+session — the series hits the `n_days >= 8` bar around 2026-09-01. Cell A's
+first settlements land 08-31. `deadline-drift`'s three-way user decision is
+still open.
