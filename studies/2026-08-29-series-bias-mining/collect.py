@@ -83,6 +83,27 @@ MIN_SETTLED_FOR_PRICES = 40
 #: outcome; excluded series are reported by name so the cut is visible.
 MAX_SETTLED_FOR_PRICES = 1000
 
+#: Abort a single series' WALK once it exceeds this many rows.
+#: `list_settled` has no partial-fetch option by design -- a prefix of
+#: pages is not a representative sample -- so a combinatorial series is
+#: walked to exhaustion or not at all. KXBTCD (257,632 rows) took minutes
+#: and held every row in memory; the docstring's KXMVECROSSCATEGORY is
+#: 400,000 settled markets PER DAY, which over a 60-day window would be
+#: ~24M rows and would hang or exhaust memory outright.
+#:
+#: `on_page` is a callback, not an abort hook -- but raising from it
+#: propagates out of the walk, which is the only bail-out available. The
+#: series is then recorded as aborted, BY NAME, so an oversized series is
+#: never silently missing: it is visibly excluded, which is the
+#: distinction between a bounded population and an unexplained gap.
+#: Well above MAX_SETTLED_FOR_PRICES, so nothing priceable is ever lost.
+WALK_ROW_BUDGET = 20000
+
+
+class SeriesTooLarge(Exception):
+    """Raised from `on_page` to abort a combinatorial series' walk."""
+
+
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS settled (
     series_ticker TEXT NOT NULL,
@@ -158,9 +179,20 @@ def walk(conn, now=None) -> None:
     t0 = time.time()
     for i, s in enumerate(todo, 1):
         tick = s["ticker"]
+        def _budget(pages, seen, _t=tick):
+            if seen > WALK_ROW_BUDGET:
+                raise SeriesTooLarge(f"{_t}: >{WALK_ROW_BUDGET} rows")
+
         try:
             found = markets.list_settled(min_close_ts=lo, max_close_ts=hi,
-                                         series_ticker=tick)
+                                         series_ticker=tick, on_page=_budget)
+        except SeriesTooLarge:
+            # Visibly excluded, never silently missing.
+            _mark(conn, "walk", tick,
+                  f"ABORTED combinatorial (>{WALK_ROW_BUDGET} rows)")
+            conn.commit()
+            print(f"  aborted {tick}: combinatorial", flush=True)
+            continue
         except Exception as exc:                      # noqa: BLE001
             _mark(conn, "walk", tick, f"ERROR {exc!r}"[:200])
             conn.commit()
@@ -258,6 +290,14 @@ def status(conn) -> None:
     ex = excluded_as_combinatorial(conn)
     print(f"  excluded as combinatorial : {len(ex)}"
           + (f"  {', '.join(f'{t}({n})' for t, n in ex[:4])}" if ex else ""))
+    ab = [r["key"] for r in conn.execute(
+        "SELECT key FROM progress WHERE phase='walk' AND note LIKE 'ABORTED%'")]
+    err = [r["key"] for r in conn.execute(
+        "SELECT key FROM progress WHERE phase='walk' AND note LIKE 'ERROR%'")]
+    print(f"  walk aborted (too large)  : {len(ab)}"
+          + (f"  {', '.join(ab[:5])}" if ab else ""))
+    print(f"  walk errored              : {len(err)}"
+          + (f"  {', '.join(err[:5])}" if err else ""))
     print(f"priced observations: {o} across {no} series")
 
 
