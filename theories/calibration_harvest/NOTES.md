@@ -293,3 +293,61 @@ what that does and does not mean — the theory now runs each session and
 will emit **nothing** on weather, because no weather cell says anything is
 mispriced. That is the correct behaviour and should be logged as "ran, 0
 candidates" rather than read as a failure.
+
+## 2026-08-29 — pre-registering the politics read, BEFORE the data lands
+
+The politics/elections collection is running (2,126 of 2,504 series at the
+time of writing). Writing the bar down now, because deciding what counts
+as confirmation *after* seeing four horizon columns and four price bands
+is sixteen chances to find a story, and this repo has already been burned
+once by exactly that (`mention_family`'s 85plus bin, 41/41 on a ~3%
+sample).
+
+### What the spec predicts, specifically
+
+The design cites Le 2026 for **political markets showing calibration
+slopes of 1.48–1.83 from 12h out to a month** — i.e. compression toward
+0.5, i.e. **favorites underpriced**, with the effect **growing with
+horizon**. So the theory predicts, in politics:
+
+1. **Sign:** positive edge on favorites (realized rate above the ask).
+2. **Gradient:** the effect is larger at longer horizons —
+   `1mo+` > `1w-1mo` > `2d-1w` > `<=2d`.
+3. **Where it should be strongest:** the compression story is about
+   extreme prices, so the 0.92–0.97 band should show it most.
+
+Weather showed none of this, but weather could not test it: its
+longer-horizon cells were empty. Politics is the test.
+
+### The bar, fixed now
+
+A politics cell is **confirmatory** only if all of:
+
+- `n >= 30` and `n_days >= 8` (the standing floors — a cell that fails
+  these is not read at all, in either direction);
+- its **day-clustered** raw edge exceeds **2 SE** from zero. Not the
+  row-counted one; today's four separate row-vs-day failures are why;
+- it is **positive**, i.e. the predicted sign. A significant *negative*
+  cell does not confirm the theory — it is a different finding, and one
+  the spec's own "mirrored fade band" would want, but it must be recorded
+  as a surprise rather than a success;
+- it survives net of fees at the Wilson bound `price()` actually uses.
+
+**The theory's central claim is confirmed** only if the *gradient* in (2)
+appears — at least one long-horizon cell confirmatory AND the horizon
+ordering directionally right. A single significant cell with no gradient
+is one cell out of sixteen, which at 2 SE is roughly what chance
+delivers; it would be a hypothesis to pre-register for the next
+population, not a result.
+
+**The theory's central claim is damaged** if every horizon column looks
+like weather did — everything inside noise on an adequately powered
+sample. That would be two complete populations with no compression, and
+the honest response is to say the effect is not present on Kalshi at
+these horizons, whatever Le 2026 measured elsewhere.
+
+**Neither, if the cells are underpowered.** Politics has only 3,877
+settled markets in the 60-day window against weather's 85,683, so thin
+cells are the likely outcome and "still unmeasured" is a perfectly good
+answer. Recording that expectation now so a thin result is not talked up
+later.
