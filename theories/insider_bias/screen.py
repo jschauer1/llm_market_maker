@@ -36,6 +36,8 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 
+from tools.timeutil import days_until  # noqa: F401  (re-exported)
+
 from tools.domain import Candidate, Leg, Market
 
 MIN_FAVORITE_PRICE = 0.65
@@ -82,16 +84,6 @@ def favorite(market: Market) -> tuple[str, float] | None:
     return side, price
 
 
-def days_until(close_time: str | None, now: datetime | None = None) -> float | None:
-    """Days from now until close, or None if unparseable."""
-    if not close_time:
-        return None
-    try:
-        closes = datetime.fromisoformat(close_time.replace("Z", "+00:00"))
-    except ValueError:
-        return None
-    reference = now or datetime.now(timezone.utc)
-    return (closes - reference).total_seconds() / 86400.0
 
 
 def screen(

@@ -21,6 +21,8 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 
+from tools.timeutil import days_until  # noqa: F401  (re-exported)
+
 from tools.domain import Candidate, Leg, Market, ScreenResult
 from theories.calibration_harvest import cells
 
@@ -45,14 +47,6 @@ def _is_mention_family(series_ticker: str | None) -> bool:
     return any(marker in s for marker in MENTION_MARKERS)
 
 
-def days_until(close_time: str | None, now: datetime) -> float | None:
-    if not close_time:
-        return None
-    try:
-        closes = datetime.fromisoformat(close_time.replace("Z", "+00:00"))
-    except ValueError:
-        return None
-    return (closes - now).total_seconds() / 86400.0
 
 
 def favorite(market: Market) -> tuple[str, float] | None:

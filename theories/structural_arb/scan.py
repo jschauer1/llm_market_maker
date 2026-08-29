@@ -38,6 +38,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 
 from tools.domain import Leg, Market
+from tools.timeutil import days_until  # noqa: F401  (re-exported)
 from tools.ladders import (NEG_INF, POS_INF, YesSet, underlying_key,  # noqa: F401
                            yes_set)
 from tools.sizing import fee_pts
@@ -430,23 +431,6 @@ def refresh_finding(finding: Finding,
                  legs=tuple(legs), min_payout=float(len(legs) - 1),
                  max_payout=float(len(legs)), note=finding.note)
     return nf if nf.clears_buffer else None
-
-
-def days_until(close_time: str | None,
-               now: datetime | None = None) -> float | None:
-    """Days from `now` to an ISO-8601 close. Local copy of
-    insider_bias.screen.days_until — promote to tools/ if a third caller
-    appears."""
-    if not close_time:
-        return None
-    try:
-        closes = datetime.fromisoformat(close_time.replace("Z", "+00:00"))
-    except ValueError:
-        return None
-    now = now or datetime.now(timezone.utc)
-    if now.tzinfo is None:
-        now = now.replace(tzinfo=timezone.utc)
-    return (closes - now).total_seconds() / 86400.0
 
 
 def describe(finding: Finding) -> str:
