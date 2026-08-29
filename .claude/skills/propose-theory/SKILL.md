@@ -51,9 +51,15 @@ decided by code — a monotonicity violation, a NO-basket summing below its
 payout, a base-rate regression, a cross-platform divergence on a matched pair,
 a measurable structural bias in a market family — then write the script,
 record `edge_basis="model"`, leave stage 2 empty, and stop. That theory is
-cheaper, reproducible, scales to the whole board, and backtests at tier A, so
-it can carry real evidence immediately rather than waiting out tier B's thin
-post-cutoff window. Prefer it whenever the thesis allows.
+cheaper, reproducible, scales to the whole board, and backtests at tier A —
+it replays over all reachable history and re-runs for free. Prefer it
+whenever the thesis allows.
+
+When the thesis does not allow it, that is not a downgrade. A tier B backtest
+is capped to the post-cutoff window, so it accrues evidence more slowly and
+costs tokens to replay — but that window is recent by construction, and the
+smaller sample is already priced into the t-statistic and credibility. Do not
+discount it a second time for being tier B.
 
 Reach for LLM judgment when the thesis is *interpretive* — a claim about the
 world that genuinely needs reading comprehension or context no threshold

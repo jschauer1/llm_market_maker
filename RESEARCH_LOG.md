@@ -2788,3 +2788,38 @@ on clusters). Additive ALTER only; characterization tests cover both
 row generations. `bucket_rates` shares the correlated-sibling issue in
 principle but is explicitly OUT of this scope — separate ruling when
 filed.
+
+## 2026-08-29 (cont.) — tier B is a different evidence profile, not a worse one
+
+User ruling on the narrative around judgment theories. The docs had been
+saying two incompatible things: "the ladder ranks instruments for a given
+*question*, not theories" alongside "pure code is often the better theory"
+and "the most expensive and least verifiable" instrument. The portfolio
+shows which half was winning — 1 of 6 theories uses judgment, and that one
+(`insider_judgment`) was ported in rather than chosen; the open backlog is
+~1 interpretive idea in 22.
+
+Six edits to CLAUDE.md, two to `theories/_TEMPLATE/THEORY.md`, one to
+`propose-theory`. Substance, not tone:
+
+- Tier B's cost is reframed as **operational** (slower accrual, tokens per
+  replay) rather than epistemic. That is a reason to iterate faster on
+  mechanical theories, never to propose fewer interpretive ones.
+- **Counterweight recorded for the first time:** tier B's window is recent
+  *by construction*, so its sample sits closer to current market conditions
+  than years of tier A history.
+- **Double-counting forbidden.** Sample size is already in the t-statistic
+  and in `credibility`; discounting a tier B result again "for being tier B"
+  charges twice for the same fact. The doubt that *is* unpriced is named
+  explicitly: residual leakage (a cutoff is a ragged boundary) and
+  non-reproducibility (verdicts move with model version).
+- "Reaching for a model is the second choice" now scoped in its topic
+  sentence to *structural* questions, which is what the rest of the passage
+  already meant.
+
+Historical specs under `docs/superpowers/` keep the old wording on purpose:
+they are the audit trail of what was decided when, not live guidance.
+
+Not addressed, still open: nothing in code reads `backtest_runs.tier`, so
+"tier C is excluded from credibility" is a procedural rule rather than an
+enforced one. No tier C runs exist today, so it does not yet bite.

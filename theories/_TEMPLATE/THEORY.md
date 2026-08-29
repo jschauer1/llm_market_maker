@@ -10,9 +10,9 @@
 > not the shape — it needs judgment only because its thesis ("does a specific
 > group already know?") cannot be written as a threshold.
 >
-> **A theory can be pure code, and that is often the better theory.** If you
-> can find edge statistically, do that. Real examples, all decidable with no
-> model in the loop:
+> **A theory can be pure code — no model anywhere in the decision path.** If
+> a question can be settled statistically, settle it that way. Real examples,
+> all decidable with no model in the loop:
 >
 > - sibling-strike monotonicity violations (">40" priced below ">50")
 > - a NO-basket on a mutually exclusive event summing below its payout
@@ -22,10 +22,13 @@
 >
 > A mechanical theory records `edge_basis="model"`, leaves stage 2 empty,
 > costs nothing per candidate, scales to the whole board, and backtests at
-> **tier A** — so it can carry real evidence immediately instead of waiting
-> out tier B's thin post-cutoff window. LLM judgment is one instrument, and
-> the most expensive and least verifiable one. Reach for it when the thesis
-> genuinely needs reading comprehension or context, not by default.
+> **tier A** — it replays over all reachable history and re-runs for free.
+>
+> A judgment theory has a different profile, not a worse one: its backtest is
+> capped to the post-cutoff window, so evidence accrues more slowly and each
+> replay costs tokens — but that window is recent by construction. Reach for
+> judgment when the thesis is genuinely interpretive, and propose those at
+> whatever rate the ideas arrive.
 >
 > Write whatever code the idea needs — a scraper, a regression, an order-book
 > walker, a scheduler. The folder is yours.

@@ -35,7 +35,7 @@ and composing the results. Every instrument you add widens the board that
 question can be asked about. A theory that fails still helps, because knowing
 which lenses are blind is what makes the surviving ones trustworthy.
 
-**Theories can be pure code, and that's often the better theory.**
+**Theories can be pure code — no model anywhere in the decision path.**
 `insider_judgment` needs LLM judgment only because its thesis ("does a
 specific group already know?") can't be written as a threshold. Many theses
 can be — `mention_family`, discovered as a side effect of backtesting
@@ -46,10 +46,17 @@ series with years of base rates, a persistent Kalshi-vs-Polymarket divergence
 on a matched pair — all real edges a script decides with no model in the loop.
 
 Such a theory records `edge_basis="model"`, has no stage 2, costs nothing per
-candidate, scales to the whole board, and backtests at **tier A** — so it
-carries real evidence immediately instead of waiting out tier B's thin
-post-cutoff window. LLM judgment is one instrument, and the most expensive and
-least verifiable one. If statistics can find the edge, prefer statistics.
+candidate, scales to the whole board, and backtests at **tier A** — it replays
+over all reachable history and re-runs for free.
+
+A judgment theory has a different profile, not a worse one. Its backtest is
+capped to the post-cutoff window, so it accrues evidence more slowly and each
+replay costs tokens rather than CPU — but that window is *recent by
+construction*, sitting closer to current market conditions than years of
+tier A history do. **Propose interpretive and mechanical theses at whatever
+rate the ideas arrive.** The cost difference is a reason to iterate faster on
+mechanical theories, never a reason to think of fewer interpretive ones. If a
+*question* can be settled by statistics, settle it that way.
 
 **The line between the two is the kind of question, not the presence of a
 model.** Judgment's proper domain is the *interpretive* thesis — a claim
@@ -284,9 +291,12 @@ There is deliberately no basis meaning "it felt about right".
 not arithmetic. A theory computing a probability from base rates, a Poisson
 process, or sibling-strike monotonicity should absolutely do so — that is
 reproducible and auditable, it records as `model`, and it backtests at tier A.
-A theory resting on a mechanical model generally carries *stronger evidence*
-than one resting on judgment — which is a reason to mechanize every question
-that can be mechanized, not a mark against theses only judgment can express.
+A mechanical model and a judgment stage carry *different* evidence, not more
+and less of it: the mechanical one replays over all history and reproduces
+exactly, the judgment one replays over a recent window and moves with the
+model that ran it. Mechanize every question that can be mechanized — and read
+that as a rule about questions, never a mark against theses only judgment can
+express.
 
 ## Research memory
 
@@ -419,7 +429,13 @@ through and must bump the version exactly like a threshold change would.
   history. Fully mechanical theories qualify, and so does a theory whose
   only model stage is a **structural gate** (below).
 - **B** — outcome judgment, markets resolved after the model's knowledge
-  cutoff, web search off. Valid but small.
+  cutoff, web search off. Full evidence over a smaller, more recent window.
+  Sample size is already priced into the t-statistic and into credibility —
+  **do not discount a tier B result a second time for being tier B.** What
+  those numbers do *not* price, and where the genuine doubt sits: residual
+  leakage (a knowledge cutoff is a ragged boundary, not a wall) and
+  non-reproducibility (rerun the replay on a different model version and the
+  verdicts move). Weigh those two; do not re-charge for the first.
 - **C** — outcome judgment on pre-cutoff markets. Contaminated; excluded from
   credibility. Use the contamination probe before trusting anything from it.
 
@@ -473,8 +489,8 @@ every judging stage, still keeps its prompts on disk, and still bumps its
 version when a prompt changes. This amendment moves the tier, not the
 paper trail.
 
-**Reaching for a model is still the second choice, and this does not soften
-that.** If the answer is available as *data* — a field the platform already
+**For a structural question, reaching for a model is still the second
+choice, and this does not soften that.** If the answer is available as *data* — a field the platform already
 publishes, a ticker pattern, an arithmetic property — take the data. It is
 free, exact, instant, needs no probe and no prompt, and cannot drift with
 phrasing. `mutually_exclusive` on Kalshi's event envelope is the worked
@@ -566,7 +582,7 @@ provenance — the omission is made impossible rather than discouraged. Record
 every stage that judged: `gate`, `analysis`, `final_review`.
 
 A fully mechanical theory declares nothing and records nothing, because it has
-no prompt. That is one more reason to prefer one.
+no prompt.
 
 **Moving a prompt or a judging module breaks the record unless you repoint
 it.** A `judgment_runs` row names the file that judged; rename or relocate
