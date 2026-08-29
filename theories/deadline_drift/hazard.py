@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import json
 import math
+import statistics
 from pathlib import Path
 
 DATA = Path(__file__).parent / "data"
@@ -84,8 +85,12 @@ def main() -> None:
     print("early settlement (deadline - actual close), days:")
     for k, v in by_res.items():
         if v:
-            v = sorted(v)
-            print(f"  {k.upper():>4} n={len(v):>3}  median {v[len(v)//2]:7.1f}"
+            # statistics.median, not v[len(v)//2]: for even n the latter
+            # returns the upper-middle element, not the median. That bug
+            # printed 212.9 against the data's true 209.6 and was caught in
+            # review -- a reproducible script is only worth as much as its
+            # arithmetic.
+            print(f"  {k.upper():>4} n={len(v):>3}  median {statistics.median(v):7.1f}"
                   f"   closed >3d early: {sum(1 for x in v if x > 3)}/{len(v)}")
     print()
     hdr = f"{'anchor':<20}{'mkts':>6}{'mean_ask':>10}{'P(YES)':>9}{'gap':>9}{'SE':>7}{'z':>7}{'net':>8}"

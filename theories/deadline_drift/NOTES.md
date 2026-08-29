@@ -180,3 +180,15 @@ bet at that moment, so excluding it is precisely what makes P(YES) the right
 does YES come in?" — the only question a bettor can act on. Anchoring on
 actual close does the opposite: it drags each YES market's resolution
 moment into the late window and asks a question nobody can trade.
+
+### Canonical numbers
+
+`python -m theories.deadline_drift.hazard` is the canonical source for every
+figure in this notebook; anything quoted here that disagrees with it is
+stale. Session 09 found the two disagreeing on the YES early-settlement
+median (script 212.9 vs notes 209.6) and the data was right: `hazard.py`
+was taking `v[len(v)//2]`, which for even n is the upper-middle element
+rather than the median. Fixed to `statistics.median`. **209.6 days is
+canonical.** A reproducible script is only worth as much as its arithmetic,
+and this one was checked against a number written down before it existed —
+which is the only reason the bug surfaced.
