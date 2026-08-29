@@ -707,8 +707,10 @@ keep this, but it's a hassle" resolves to keeping it.
 - **`NOTES.md`** in a theory folder is that theory's raw lab notebook —
   dated, append-only; the distilled version lives in its `THEORY.md`. Any
   session may read any theory's notes.
-- **`RESEARCH_LOG.md`** carries continuity between sessions — read its tail
-  when starting, append when finishing.
+- **`RESEARCH_LOG.md`** carries continuity between sessions — append when
+  finishing. It is append-only and now too large to read; orient with
+  `python -m tools.cli state`, which renders current state from the DB, and
+  read the log for the reasoning behind a specific ruling it names.
 - Prices are decimal dollars in [0, 1]. Edge is in percentage points. Entry
   prices are the **ask** you would actually pay, never the mid. Timestamps are
   UTC ISO-8601.

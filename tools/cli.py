@@ -306,6 +306,19 @@ def _cmd_db(args) -> int:
     return 0
 
 
+def _cmd_state(args) -> int:
+    from tools import state as state_mod
+    conn = _connect(args)
+    try:
+        text = state_mod.render_state(conn)
+        print(text)
+        if args.write:
+            state_mod.write_state(conn)
+    finally:
+        conn.close()
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="tools.cli")
     parser.add_argument("--db", default=None, help="path to the database")
@@ -580,6 +593,14 @@ def build_parser() -> argparse.ArgumentParser:
         "--dest", default=None,
         help=r"destination directory (default %LOCALAPPDATA%\market_edge\backups)",
     )
+
+    p = sub.add_parser(
+        "state",
+        help="current research state from the DB — the orientation surface",
+    )
+    p.add_argument("--write", action="store_true",
+                   help="also write STATE.md (gitignored) for humans")
+    p.set_defaults(func=_cmd_state)
 
     return parser
 

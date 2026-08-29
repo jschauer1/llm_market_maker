@@ -42,8 +42,8 @@ python -m tools.cli opportunities list --disposition endorsed
 python -m tools.cli ideas revisitable
 ```
 
-Read the last ~30 lines of `RESEARCH_LOG.md` for what the previous session
-was doing. For each theory that runs, `python -m tools.cli score report <id>`.
+Run `python -m tools.cli state` — the orientation surface, rendered from
+the DB. For each theory that runs, `python -m tools.cli score report <id>`.
 
 Anything `pending-retirement` returns is a decision **waiting on the user**,
 and it stays waiting until they rule. Carry it into your report every session
