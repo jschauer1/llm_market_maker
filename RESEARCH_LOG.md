@@ -2665,3 +2665,30 @@ them; CLAUDE.md deliberately untouched (tier rule is a user decision):**
    structure-matched pre- vs post-cutoff markets; a gap is leakage the
    current "can you state the outcome?" probe cannot see. Origin: 4f's
    study, observation 2; endorsed on review.
+
+## 2026-08-29 (cont.) — decision authority delegated to the supervisor session
+
+The user delegated adjudication of research-governance decisions to the
+supervisor session (09): standing proposals, pre-registration amendments,
+resource sequencing, and the like now route there, and reach the user
+only when they genuinely need them (money, retirement of theories, and
+anything a session's permissions block). Recorded so future sessions
+route correctly.
+
+Ruled under that authority, same hour:
+
+- **Fifth structural-gate condition ADOPTED** (`4266413`) — two-part
+  form; part (b) keeps tier A with mandatory disclosure + drift bound.
+  Supersedes the "standing proposal" status in the entry above. The
+  SKILL.md mirror edit is blocked by session 09's permissions and
+  pending; CLAUDE.md is authoritative.
+- **4f's decision-point amendment ruled legitimate** (24h → 25% of span,
+  infeasibility-driven, pre-observation, now frozen), with instructions
+  to price both decision points from the already-fetched candles and to
+  separate hazard-style families from date-certain ones — a decision
+  point derived from observed span is outcome data under early
+  settlement, a bias both the original and amended rule share.
+- **Candles-endpoint sequencing:** 4f's bounded phase-2 run finishes;
+  78's deadline_drift hazard bins next (theory-critical); then the
+  phase-2 remainder (~10h, authorized, resumable). One long job at a
+  time.
