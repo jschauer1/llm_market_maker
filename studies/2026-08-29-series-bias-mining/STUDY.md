@@ -1,6 +1,6 @@
 # Series bias mining — pre-registration, written BEFORE looking
 
-**Date:** 2026-08-29 · **Status:** pre-registered; no result yet ·
+**Date:** 2026-08-29 · **Status:** complete — **result: not measured** ·
 **Tier:** A (no model anywhere) · Backlog spec #4, registry slug
 `series-bias-mining`
 
@@ -149,3 +149,103 @@ guard is proven. Bins are a follow-on for a series that already survived.
   and are not used.
 - In-sample throughout. The split-sample test is out-of-sample in *time*
   within a series, which is weaker than a fresh population.
+
+
+---
+
+# Result (run 2026-08-29, after the bar and the miner were both committed)
+
+```
+series seen              : 461
+series tested (floors)   :  17
+expected false positives : 0.9
+pass split-sample guard  :   4
+  ... and |t| >= 2       :   0
+survive Holm-Bonferroni  :   0
+FLAGGED (all four gates) :   0
+```
+
+Largest |t| anywhere is **1.43**. Nothing is flagged.
+
+## This is NOT the pre-registered "valuable negative". It is "not measured".
+
+The bar above says nothing surviving means "the recurring series in this
+population are calibrated at the family level". **That conclusion is not
+supported, and the fault is in the bar, not the data.**
+
+Minimum detectable effect per series (≈ 2.8 × SE, the effect this test
+would catch 80% of the time at α = .05):
+
+```
+median MDE           13.5 pts      best 0.8      worst 28.8
+MDE <= 10 pts         7 of 17 series
+MDE <=  5 pts         2 of 17 series
+```
+
+A theory-grade edge in this repo is **3–6 points**. The median series
+here could only have detected an effect **two to four times larger than
+anything worth betting**. Finding nothing was the overwhelmingly likely
+outcome whether or not bias exists.
+
+**And the population is mostly the control.** 10 of the 17 tested series
+are `mention_family` (the built-in negative control, which is *known* to
+be priced fairly at full coverage). Only **7 non-control series** were
+actually tested. "Mine every recurring series" became "mine seven".
+
+## The defect in my own pre-registration
+
+The bar used **series count** as its power proxy — "fewer than ~10 series
+clear the floors → uninformative". 17 cleared, so by the letter this
+lands in the "valuable negative" bucket. That is wrong: series count says
+nothing about whether any individual series could resolve a 4-point
+effect, and `n >= 40 / n_days >= 8` admits series whose SE is 6–10
+points.
+
+**This is the same class of error I criticised in the peer session's
+politics read a few hours earlier** — an inclusion rule that was never
+stated as a claim, silently spanning the conclusion. There it was
+"≥3 bins per day"; here it is "series count as power". Pre-registering
+the *contrast* is not enough; the *power floor* and the *inclusion rules*
+are part of the bar and have to be written down as such.
+
+Recording it rather than quietly re-bucketing the result.
+
+## What was actually learned
+
+1. **One clean per-series measurement.** `KXAPRPOTUS` has an MDE of
+   **0.8 pts** and a measured gross edge of **−0.06 ± 0.29**. That series
+   really is calibrated, to within a point. It is the only series here
+   where "calibrated" is a measurement rather than an absence.
+2. **The negative control behaved.** All 10 `mention_family` series came
+   back non-significant, consistent with their known full-coverage
+   failure (−1.53 net at n=3,441). The guard did not manufacture a hit on
+   data known to be fairly priced — which is the one thing this run does
+   establish about the guard.
+3. **One candidate worth a powered test.** `KXRT` (Rotten Tomatoes
+   scores): gross **−4.23**, halves **−4.68 / −3.86** — strikingly
+   consistent across the split — but SE 2.97 over 11 days, so t = −1.43.
+   That is exactly the size of effect this study could not resolve.
+   **Pre-registered here as a hypothesis for a powered population**, not
+   a finding, and explicitly not bettable on this data.
+
+## Revisit angle
+
+The blocker is data, and it is the collection I deferred earlier in the
+session rather than anything about the method:
+
+1. **Collect broadly first.** The 461 series seen collapse to 17 tested
+   because the existing populations were fetched for other theories.
+   A dedicated sweep (budget for the per-series `list_settled` walk, not
+   the candlestick fetches — the peer measured 2,507 politics series of
+   which 2,180 had zero fetchable markets) is the prerequisite.
+2. **Pre-register a power floor, not a count floor.** Test only series
+   whose MDE is ≤ some stated value (5 pts is the natural choice, being
+   the low end of a theory-grade edge), and report how many series that
+   excludes. A series that cannot resolve a bettable effect should not be
+   in the family at all — it only inflates the Holm correction and
+   dilutes the result.
+3. **Exclude the control from the tested family.** `mention_family`'s
+   series should be measured and reported separately, not carried in the
+   Holm family where they consume correction budget for series nobody
+   would promote anyway.
+4. `KXRT` first when power exists.
