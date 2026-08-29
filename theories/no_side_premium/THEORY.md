@@ -128,6 +128,16 @@ planned.
 2026-08-27: cell B has 12 settled rows across **1** settlement day; under
 the day amendment above that is unmeasured, not a result. Cell A has 0
 settled (its rows are KXTRUMPSAY-26AUG31 strikes, closing 08-31).
+2026-08-29: cell B at n=46 / **n_days=3** reads -10.44 net pooled, but its
+per-day net is +14.18 / -29.74 / -4.93 with a day-clustered SE of **12.73**
+— still unmeasured, now in the other direction. Cell A still 0 settled.
+Measured instead on the **paired within-day** statistic the claim actually
+makes (`NO_net - YES_net`, which cancels the day effect) over the clean
+snapshot population: **mean +8.25 pts, n_days=5, SE 7.60, 4/5 days
+positive** — right sign, not significant, bar is 8 days. Per-side day means
+land at YES **-4.42** (claimed -3.9) and NO **+3.83** (claimed +2.0). Full
+write-up: `studies/2026-08-29-side-asymmetry-extension/`; report this
+theory on the paired statistic first, `compute_score` alongside.
 
 ## Version
 

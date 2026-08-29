@@ -22,7 +22,12 @@ from theories.calibration_harvest import cells, screen as screen_mod
 class CalibrationHarvestTheory(Theory):
     id = "calibration_harvest"
     name = "Calibration Harvest"
-    version = 1
+    # v2 (2026-08-29): the Wilson bound counts SETTLEMENT DAYS, not rows.
+    # The theory already refused to call a cell measured below
+    # MIN_CELL_DAYS because rows are not independent draws; computing the
+    # bound on n undid that exactly where it decides to commit money.
+    # See cells.cell_edge and THEORY.md Version.
+    version = 2
     uses_llm_judgment = False
     prompts: dict = {}
 

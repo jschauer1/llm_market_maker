@@ -111,8 +111,12 @@ def test_wilson_lower_handles_the_all_wins_case_mention_family_flagged():
 # ---- edge arithmetic ------------------------------------------------------
 
 def test_edge_is_wilson_bound_minus_ask_minus_fees():
+    """The bound is taken on the SETTLEMENT-DAY count, not the row count
+    -- changed 2026-08-29, see cell_edge. Here 90/100 over 10 days is
+    read as 9/10, which is the whole point: ten days of evidence buys a
+    ten-day-wide interval however many rows those days held."""
     e = cells.cell_edge(wins=90, n=100, n_days=10, ask=0.80)
-    expected = (cells.wilson_lower(90, 100) - 0.80) * 100 - cells.fee_pts(0.80)
+    expected = (cells.wilson_lower(9, 10) - 0.80) * 100 - cells.fee_pts(0.80)
     assert e.pts_net == pytest.approx(expected)
     assert e.basis == "measured"
 
@@ -139,3 +143,53 @@ def test_edge_never_claims_measured_without_both_floors():
     assert cells.cell_edge(wins=29, n=29, n_days=20, ask=0.8).basis == "model"
     assert cells.cell_edge(wins=30, n=30, n_days=7, ask=0.8).basis == "model"
     assert cells.cell_edge(wins=30, n=30, n_days=8, ask=0.8).basis == "measured"
+
+
+# --- the bound must count settlement days, not rows (2026-08-29) --------
+#
+# The theory already refuses to call a cell `measured` below
+# MIN_CELL_DAYS, because "rows are not independent draws" -- a screen's
+# whole near-term board settles within hours of itself. But `cell_edge`
+# then computed its Wilson bound on the ROW count, which undoes that
+# protection at exactly the point where money would be committed.
+#
+# Measured on the first complete population (weather, 2026-08-29): the
+# `<=2d|0.75-0.85` cell went 628/789 over 59 settlement days. Row-counted,
+# the bound claims +1.64pts at an ask of 0.75. Day-counted it says
+# -7.27pts. Three live rows were priced positive on the row-counted bound
+# and all three flip negative under the day-counted one.
+
+
+def test_the_bound_counts_settlement_days_not_rows():
+    # 628/789 (79.6%) over 59 days, bought at 0.75.
+    edge = cells.cell_edge(wins=628, n=789, n_days=59, ask=0.75)
+    assert edge.basis == "measured"
+    # Row-counted this was wilson_lower(628, 789) = 0.7664 -> +1.64pts.
+    assert edge.model_prob < 0.72, (
+        "the bound must widen for 59 independent days, not 789 rows"
+    )
+    assert edge.pts_net < 0
+
+
+def test_many_rows_on_one_day_buy_almost_no_confidence():
+    """The failure this exists to stop: a cell that looks overwhelming on
+    row count but rests on a handful of settlement days."""
+    wide = cells.cell_edge(wins=900, n=1000, n_days=50, ask=0.80)
+    narrow = cells.cell_edge(wins=900, n=1000, n_days=10, ask=0.80)
+    assert narrow.model_prob < wide.model_prob, (
+        "the same rows spread over fewer days must yield a weaker bound"
+    )
+
+
+def test_the_point_estimate_is_preserved_when_days_are_ample():
+    """Day-counting must not bias the estimate, only widen the interval:
+    the bound still sits below the raw rate and above zero."""
+    edge = cells.cell_edge(wins=940, n=1000, n_days=200, ask=0.50)
+    assert 0.0 < edge.model_prob < 0.94
+    assert edge.pts_net > 0, "a genuinely strong, well-spread cell survives"
+
+
+def test_a_cell_with_no_settlement_days_cannot_claim_a_bound():
+    edge = cells.cell_edge(wins=50, n=60, n_days=0, ask=0.50)
+    assert edge.basis == "model"
+    assert edge.model_prob == 0.0

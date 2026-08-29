@@ -122,3 +122,74 @@ Bars unchanged and both still far off: cell B needs `n ≥ 60` **and**
 `n_days ≥ 8`; cell A has 0 settled (its rows close 08-31 onward).
 Status stays `testing`; nothing here is recommendable — `edge_basis` is
 `prior` on every row by design.
+
+## 2026-08-29 — cell B's -10.44 is three days, and a sharper estimator exists
+
+`score report` today shows cell B (rejected) at **calibration_edge_net
+-10.44, n=46**, which reads as the avoid-list being validated hard. It is
+not a result. Day-clustered: **n_days=3**, per-day net +14.18 / -29.74 /
+-4.93, **day-clustered SE 12.73** — larger than the point estimate. The
+2026-08-27 amendment called this exactly: on that date the same cell read
++14.59 on `n_days=1` and looked like a falsification. The sign flipped
+with two more days. Neither reading was information.
+
+Cell A still has **0 settled**. Its rows are `KXTRUMPSAY-26AUG31` strikes;
+first evidence lands 08-31.
+
+### The paired within-day estimator
+
+Full write-up: `studies/2026-08-29-side-asymmetry-extension/`. Two more
+close-days measured on the clean snapshot population (08-28 n=158, 08-29
+n=24 partial), composed with the earlier study's three.
+
+This theory's claim is a **side** claim, and the day effect is a common
+shock to both sides — so it cancels in `NO_net - YES_net` computed within
+a day. That is the same claim with the dominant noise term removed:
+
+| close day | YES | NO | NO-YES |
+|---|---|---|---|
+| 08-25 | -1.42 | +7.98 | +9.40 |
+| 08-26 | -11.50 | -6.55 | +4.95 |
+| 08-27 | +12.15 | -3.05 | **-15.20** |
+| 08-28 | -26.45 | +6.15 | **+32.60** |
+| 08-29 † | +5.11 | +14.60 | +9.49 |
+
+† partial day, 24 of 70 settled; will move.
+
+```
+n_days = 5 (amended bar: >= 8)
+mean NO-YES = +8.25   day-clustered SE = 7.60   t = +1.08 (4 df)
+sign test: 4/5 positive, p = 0.375
+```
+
+Per-side day-equal-weighted means vs the pre-registration:
+
+| | measured | claimed |
+|---|---|---|
+| YES side | **-4.42** | -3.9 (cell B) |
+| NO side | **+3.83** | +2.0 (cell A, narrower slice) |
+
+**Both point estimates land within ~1.8 pts of their priors, and 4 of 5
+days carry the predicted sign — and none of that is significance.**
+`n_days=5 < 8`, `t=1.08`. Two independent estimates agreeing with their
+priors is encouraging and nothing more; the bar is unchanged.
+
+### A contaminated control, recorded so it is not repeated
+
+An intermediate pass compared cell B against *other YES favorites in the
+ledger* on the same day: deltas +7.32 / +0.25 / +19.27, mean +14.84 — cell
+B never underperforming. **Worthless twice over.** The comparison
+population is the very population the thesis indicts, and ledger rows are
+theory picks, not a sample of the board. The clean snapshot population
+gives +8.25. Population-level questions get the snapshot population; never
+the ledger.
+
+### Reading recommendation (no version bump)
+
+Report this theory on the paired within-day statistic as the primary
+figure, with `compute_score`'s per-disposition numbers alongside.
+Decision procedure — population, cells, sides, bands, recording — is
+untouched, so this is the same class of change as the 08-27 day amendment,
+and like that one it makes confirmation **harder**: the pooled -10.44
+flatters cell B, while the paired estimator says there is no result yet in
+either direction.

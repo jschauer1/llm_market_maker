@@ -187,7 +187,32 @@ def cell_edge(wins: int, n: int, n_days: int, ask: float) -> CellEdge:
     the theory's most interesting output, since it names the mirrored fade
     trade the spec asks for.
     """
-    prob = wilson_lower(wins, n)
+    # The bound counts SETTLEMENT DAYS, not rows.
+    #
+    # This theory already refuses to call a cell `measured` below
+    # MIN_CELL_DAYS, because rows are not independent draws: a screen's
+    # whole near-term board settles within hours of itself, and the
+    # 2026-08-27 clustering study measured the resulting day-level swings
+    # directly. Computing the bound on `n` undid that protection at the
+    # one point where it decides whether to commit money.
+    #
+    # Measured on the first complete population (weather, 2026-08-29):
+    # `<=2d|0.75-0.85` went 628/789 over 59 days. Row-counted, the bound
+    # claimed +1.64pts at an ask of 0.75; day-counted it says -7.27pts.
+    # Three live rows priced positive on the row-counted bound, and all
+    # three flip negative here.
+    #
+    # Deliberately conservative rather than clever: collapsing to the day
+    # count under-uses genuine within-day information, and a proper
+    # cluster-robust interval would sit somewhere between `n_days` and
+    # `n`. Under-claiming is the safe direction for the number that
+    # decides a bet, so the cheap version ships and the refinement is a
+    # later version's job.
+    effective_n = int(n_days)
+    if effective_n <= 0 or n <= 0:
+        prob = 0.0
+    else:
+        prob = wilson_lower(round((wins / n) * effective_n), effective_n)
     gross = (prob - ask) * 100.0
     fee = fee_pts(ask)
     measured = n >= MIN_CELL_N and n_days >= MIN_CELL_DAYS

@@ -146,11 +146,17 @@ def test_unmeasured_cell_prices_as_model_and_is_never_endorsed():
 
 
 def test_measured_cell_prices_as_measured():
+    """A cell strong enough AND spread widely enough produces a real
+    positive edge. The day spread was widened from 20 to 120 on
+    2026-08-29 when the Wilson bound moved onto the settlement-day count:
+    190/200 over 20 days is 19/20 of evidence, which cannot clear an 0.80
+    ask at 95%, and that is the correction working rather than a
+    regression."""
     board = [m("KXPOL-1", yes_ask=0.80, yes_bid=0.77, no_ask=0.23)]
     theory = CalibrationHarvestTheory(
         categories={"KXPOL": "Politics"},
         cell_rates={"politics|2d-1w|0.75-0.85":
-                    {"wins": 190, "n": 200, "n_days": 20}},
+                    {"wins": 1140, "n": 1200, "n_days": 120}},
     )
     run = theory.start(_ctx(board))
     scored = theory.price(run.ctx, list(run.candidates))

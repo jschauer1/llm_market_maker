@@ -45,11 +45,17 @@ def _register_matching(conn):
             conn.execute("UPDATE theories SET version=?, status='testing'"
                          " WHERE id=?", (version, tid))
         theories.set_uses_llm_judgment(conn, tid, uses, now=TS)
-    # calibration_harvest has a class but is deliberately left `proposed`:
-    # its cells are unmeasured, so it must not appear in registry.running().
-    # The class still needs a row -- a class with no row is drift.
+    # calibration_harvest joined the running set on 2026-08-29, when its
+    # first pre-registered population (Climate and Weather, 154/154
+    # series) completed and four cells cleared both floors. It was
+    # `proposed` here until then precisely because its cells were
+    # unmeasured.
     theories.register(conn, "calibration_harvest", "Calibration Harvest",
                       "theories/calibration_harvest", now=TS)
+    with db.write(conn):
+        conn.execute("UPDATE theories SET version=2, status='testing'"
+                     " WHERE id='calibration_harvest'")
+    theories.set_uses_llm_judgment(conn, "calibration_harvest", False, now=TS)
 
 
 def test_check_drift_is_empty_when_code_and_db_agree(conn):
@@ -94,8 +100,8 @@ def test_a_proposed_row_without_code_is_not_drift(conn):
 def test_running_returns_scannable_theories_and_raises_on_drift(conn):
     _register_matching(conn)
     ids = [t.id for t in registry.running(conn)]
-    assert ids == ["insider_judgment", "mention_family",
-                   "no_side_premium", "structural_arb"]
+    assert ids == ["calibration_harvest", "insider_judgment",
+                   "mention_family", "no_side_premium", "structural_arb"]
     with db.write(conn):
         conn.execute("UPDATE theories SET version=99"
                      " WHERE id='mention_family'")
