@@ -11,12 +11,37 @@ an answer, not a hiccup.
 from __future__ import annotations
 
 import json
+import threading
 import time
 
 import requests
 
 USER_AGENT = "market-edge-finder/1.0"
 RETRYABLE_STATUS = {429, 500, 502, 503, 504}
+
+_local = threading.local()
+
+
+def _session() -> requests.Session:
+    """The pooled session for this thread.
+
+    `requests.get` opens a new connection — and so a new TLS handshake —
+    for every call. That is invisible on a handful of requests and
+    dominant on a walk: profiling `calibration_harvest`'s collector on
+    2026-08-29 found **99.5% of its wall clock in per-market candlestick
+    GETs at 244ms each**, almost none of it server time. Pooling makes the
+    handshake a per-thread one-off.
+
+    Per thread, not global, because `requests.Session` is not thread-safe.
+    A caller that fans out across threads gets one session each for free
+    and never has to know this exists.
+    """
+    session = getattr(_local, "session", None)
+    if session is None:
+        session = requests.Session()
+        session.headers.update({"User-Agent": USER_AGENT})
+        _local.session = session
+    return session
 
 
 class HttpError(Exception):
@@ -35,7 +60,7 @@ def get_json(
 
     for attempt in range(max_retries):
         try:
-            response = requests.get(
+            response = _session().get(
                 url,
                 params=params,
                 timeout=timeout,
