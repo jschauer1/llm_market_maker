@@ -39,7 +39,7 @@ def _theories_panel(conn) -> list[str]:
     lines = []
     for t in theories.list_theories(conn):
         settled = _one(conn, """
-            SELECT COUNT(*) FROM opportunities o
+            SELECT COUNT(DISTINCT o.kalshi_ticker) FROM opportunities o
               JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker
              WHERE o.theory_id = ? AND o.theory_version = ?
         """, (t["id"], t["version"]))
@@ -143,12 +143,12 @@ def _queue_panel(conn) -> list[str]:
 def _freshness_panel(conn, now: str) -> list[str]:
     board = _one(conn, "SELECT MAX(captured_at) FROM market_snapshots"
                        " WHERE platform = 'kalshi'")
-    settle = _one(conn, "SELECT MAX(resolved_at) FROM settlements")
+    settle = _one(conn, "SELECT MAX(computed_at) FROM scores")
     taken = _one(conn, "SELECT MAX(recorded_at) FROM opportunity_fills") \
         if _table_exists(conn, "opportunity_fills") else None
     return [
         f"  last board pull:  {_age_days(board, now)}",
-        f"  last settlement:  {_age_days(settle, now)}",
+        f"  last settle run:  {_age_days(settle, now)}",
         f"  last mark-taken:  {_age_days(taken, now)}",
         "  last bets render: (not yet tracked — raise-lane spec)",
     ]
