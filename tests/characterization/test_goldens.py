@@ -40,7 +40,7 @@ def test_dedupe_by_event_matches_golden():
 
 def test_gate_partition_matches_golden():
     survivors, counts = gate.partition(pipeline.dedupe_by_event(_screened()))
-    want = cz.load_golden("gate_partition")
+    want = cz.load_golden("gate_partition_v3")
     assert cz.proj(survivors) == want["survivors"]
     assert cz.proj(counts) == want["counts"]
 
@@ -60,7 +60,7 @@ def test_blind_payload_matches_golden():
     keys = {cz.event_key(s) for s in survivors}
     kept = [c for c in candidates if cz.event_key(c) in keys]
     got = pipeline.build_blind_payload(survivors, kept)
-    assert cz.proj(got) == cz.load_golden("blind_payload")
+    assert cz.proj(got) == cz.load_golden("blind_payload_v3")
 
 
 def test_blind_payload_carries_no_price():
@@ -77,7 +77,8 @@ def test_run_mechanical_stages_subset_matches_golden():
     got = cz.proj(
         pipeline.run_mechanical_stages(cz.board_input(), cz.frozen_now())
     )
-    for key, want in cz.load_golden("run_mechanical_stages").items():
+    for key, want in cz.load_golden(
+            "run_mechanical_stages_v3").items():
         assert got[key] == want, f"funnel key {key!r} changed"
 
 
@@ -172,3 +173,38 @@ def test_normalize_preserves_the_complete_raw_payload():
     uncommon field work on a forced pull and return None on a cached one."""
     for row in cz.load_fixture()[:200]:
         assert markets.normalize(row["raw"]).raw == row["raw"]
+
+
+def test_the_gate_v3_rules_reading_is_visible_in_the_goldens():
+    """2026-08-29: gate.py started reading resolution rules, not only
+    series-ticker prefixes.
+
+    `gate_partition.json`, `blind_payload.json` and
+    `run_mechanical_stages.json` are kept unmodified as the record of the
+    prefix-only gate; the rules-reading behaviour got `_v3` files rather
+    than overwriting them. This test locks the difference.
+
+    On the fixture board the old gate classified **every** screened event
+    as PLAUSIBLE -- it recognised none of these families -- which is
+    exactly the failure the change addresses: an allowlist only knows what
+    someone has already typed into it.
+    """
+    old = cz.load_golden("gate_partition")
+    new = cz.load_golden("gate_partition_v3")
+
+    assert old["counts"] == {"PLAUSIBLE": len(old["survivors"])}, (
+        "the pre-v3 gate recognised no family on this fixture"
+    )
+    assert len(new["survivors"]) < len(old["survivors"])
+
+    # Every category the new gate reports must be one it can name, and the
+    # counts must still account for every event -- a gate that drops
+    # silently is how a scan claims coverage it never had.
+    assert set(new["counts"]) - {"PLAUSIBLE"}, "v3 removed nothing"
+    assert sum(new["counts"].values()) == sum(old["counts"].values())
+
+    # Nothing survived v3 that did not survive the looser v2 gate: the
+    # change may only remove, never resurrect.
+    old_keys = {cz.event_key(s) for s in old["survivors"]}
+    new_keys = {cz.event_key(s) for s in new["survivors"]}
+    assert new_keys < old_keys

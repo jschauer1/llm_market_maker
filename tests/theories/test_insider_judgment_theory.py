@@ -24,7 +24,7 @@ def fake_ctx(board, conn=None, judge_model=None):
 def test_screen_reproduces_the_golden_funnel():
     result = _theory().screen(fake_ctx(cz.board_input()))
     assert isinstance(result, ScreenResult)
-    want = cz.load_golden("run_mechanical_stages")
+    want = cz.load_golden("run_mechanical_stages_v3")
     for key in ("board_markets", "screened_markets", "events", "gated_out",
                 "survivors", "survivor_markets"):
         assert result.funnel[key] == want[key]
@@ -37,7 +37,7 @@ def test_screen_reproduces_the_golden_funnel():
 def test_judgment_payload_equals_the_golden_blind_payload():
     theory = _theory()
     run = theory.start(fake_ctx(cz.board_input()))
-    assert run.payload == cz.load_golden("blind_payload")
+    assert run.payload == cz.load_golden("blind_payload_v3")
 
 
 def test_judgment_payload_is_none_when_nothing_survives():

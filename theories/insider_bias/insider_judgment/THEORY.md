@@ -112,7 +112,32 @@ What's left to settle the theory as a whole, roughly in order of value:
 
 ## Version
 
-**4** (2026-08-29) — *A confidence bucket now contributes its own realized
+**4** (2026-08-29) — *Two changes, both in this version because no v4 row
+had been recorded when the second landed.*
+
+**(a) `gate.py` reads resolution rules, not only ticker prefixes.**
+Measured over the whole 117,272-market board: the prefix allowlist removed
+198 of 328 screened events, and **109 of the surviving 130 were still
+families the thesis rejects outright** — 84% junk reaching the expensive
+stage, in whole categories nobody had enumerated (39 Carbon Arc
+vendor-panel events, 47 sport fixtures across a dozen leagues, 7
+OpenRouter share events, 3 Metacritic events). A vendor panel says "Carbon
+Arc" in its own rules whatever its ticker is called, so `RULES_NO_RULES`
+matches the mechanics instead of the name and covers every such series
+Kalshi adds without an edit. **Net: 130 survivors → 18**, and every one of
+the 18 is an event a human reading this file would agree is at least
+arguable.
+
+Two seemingly-obvious rules were measured and **rejected** for silently
+killing real candidates — a ticker-suffix sport rule that eats `KXRACE`
+(Ferrari's own shipment count) and `KXXAIGAME` (xAI's own roadmap), and a
+substring statistical rule where "Phili**PPI**nes" matches `PPI` and
+`KXGTA**SALES**RECORD` dies on `SALES`. Both are documented in `gate.py`
+with the measurement, and a test asserts those four survive. This is the
+gate's own documented failure mode ("inside a matched family it drops
+silently") caught before it cost anything.
+
+**(b) A confidence bucket now contributes its own realized
 EDGE, not a probability.* `tools/buckets.py` previously computed
 `(bucket_win_rate − this candidate's price)`, which reads the bucket's
 pooled win rate as this candidate's probability and therefore makes the

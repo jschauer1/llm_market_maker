@@ -10,10 +10,11 @@ see `THEORY.md` Hypothesis section for why). The package path is
 `theories.insider_bias.insider_judgment`; `theories/insider_bias/` is now a
 shared parent folder, not this theory's own name.
 
-Current version: **4** (2026-08-29 — a confidence bucket now supplies
-its own realized edge rather than a probability, and must span
-`buckets.MIN_BUCKET_DAYS` settlement days before it may replace its
-prior; see THEORY.md Version). Carried forward from the
+Current version: **4** (2026-08-29 — `gate.py` now reads resolution rules
+as well as ticker prefixes, cutting survivors 130 -> 18 on a full board;
+and a confidence bucket now supplies its own realized edge rather than a
+probability, and must span `buckets.MIN_BUCKET_DAYS` settlement days
+before it may replace its prior. See THEORY.md Version). Carried forward from the
 `insider_bias` rename, not reset. Changing any prompt file, `gate.py`, `screen.py`, or the stage
 sequence below is a decision-procedure change and **bumps the version**.
 v3 (2026-08-24) marks the point where the mention-family discovery

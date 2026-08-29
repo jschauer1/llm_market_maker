@@ -361,3 +361,84 @@ bumped; the pre-correction arithmetic is preserved unmodified in
 `tests/characterization/goldens/mention_rank_wide.json` and the
 correction itself is now locked by
 `test_the_bucket_edge_correction_is_visible_in_the_goldens`.
+
+## 2026-08-29 (cont.) — defect 3 closed: the gate reads rules now, 130 survivors → 18
+
+The last of the three 2026-08-28 defects. `gate.py` classified by
+series-ticker prefix only, which means it knows exactly the families
+someone has already typed into it — and Kalshi adds families faster than
+that. Measured over the whole 117,272-market board:
+
+```
+328 screened events
+-198 removed by the prefix allowlist (v2)
+=130 survivors, of which 109 were STILL families the thesis rejects
+```
+
+84% of what reached the expensive stage was junk, and not stragglers —
+whole categories: 39 Carbon Arc vendor-panel events, 47 sport fixtures
+across a dozen unenumerated leagues, 7 OpenRouter share events, 3
+Metacritic events.
+
+### The fix is to match resolution mechanics, not names
+
+A Carbon Arc panel says "Carbon Arc" in its own resolution rules whatever
+its ticker is called, so one pattern covers every such series Kalshi ever
+adds. Four rules-text rules, each measured against every series on the
+board before being written:
+
+| rule | series caught | markets | false positives |
+|---|---|---|---|
+| sport fixture | 611 | ~23,000 | none |
+| Carbon Arc vendor panel | 77 | 956 | none |
+| statistical release | 29 | ~1,000 | none |
+| OpenRouter / Metascore | 11 | 122 | none |
+
+**Net: 130 survivors → 18**, zero forbidden eliminations board-wide. The
+18 are exactly the events this session's own hand-judgment had identified
+as arguable, arrived at independently — which is about as good a check on
+a gate as is available without settlements.
+
+### Two obvious rules were measured and rejected — this is the real lesson
+
+Both would have shipped on intuition and both silently kill live
+candidates. This is the failure mode the gate's docstring already named
+("inside a matched family it drops silently"), caught only because the
+patterns were run over the whole board before being written rather than
+after.
+
+1. **Ticker-suffix sport rule** `(GAME|MATCH|SPREAD|TOTAL|BTTS|TOP\d+|RACE)$`.
+   Catches 496 series — *fewer* than the rules-text rule's 611 — and eats
+   `KXRACE` ("Will Ferrari N.V. report Above 3225 total car shipments in
+   Q3 2026": a company that knows its own shipments, which is the thesis
+   verbatim) and `KXXAIGAME` ("Will xAI release a video game before
+   2027"). It also files `KXHOUSERACE` and four Billboard/DJ-Mag ranking
+   series under "live sport".
+2. **Substring statistical rule** `^KX.*(CPI|PPI|INF|GDP|SALES|KWH)`.
+   "Phili**PPI**nes" matches `PPI`, killing three Philippine election
+   series; "LAYOFFSY**INF**O" matches `INF`; and `KXGTASALESRECORD`
+   ("Will GTA 6 break the record for the highest-grossing videogame in 24
+   hours" — Take-Two knows its own first-day sales) dies on `SALES`.
+
+Both are recorded in `gate.py` as rejected-with-measurement, and
+`test_the_rejected_rules_false_positives_still_survive` asserts all four
+of those candidates still reach the deep stage. The safe form of the
+statistical rule names the published series and the publishing agency
+(text that appears in the rules), which is what shipped.
+
+### Bookkeeping
+
+Folded into **v4** rather than a v5: no v4 row had been recorded when this
+landed (today's 232 rows are v3), so there is no track record for a
+separate number to keep separable. The three affected characterization
+goldens are kept unmodified as the record of the prefix-only gate; the
+rules-reading behaviour got `_v3` files, and
+`test_the_gate_v3_rules_reading_is_visible_in_the_goldens` locks the
+difference — including that v3 may only *remove* survivors, never
+resurrect one.
+
+**What this does not fix.** The gate still cannot see a family whose rules
+give no mechanical tell, and the screen still has no thesis term in it
+(known weakness 3) — 18 survivors out of 328 screened means the screen is
+selecting tradeable favourites, not markets an insider could know. That
+remains the deeper problem.
