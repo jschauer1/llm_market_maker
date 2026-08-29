@@ -157,7 +157,11 @@ def backup_ledger(
             " AND name NOT LIKE 'sqlite_%' AND name != 'market_snapshots'"
             " AND sql IS NOT NULL"
         ).fetchall()
-        out.execute(f"ATTACH DATABASE 'file:{source_path}?mode=ro' AS src")
+        # Parameterized plain-path ATTACH: a `file:...?mode=ro` URI string
+        # is only honoured when the connection enables URIs, and silently
+        # opens a literal file named `file:...` otherwise. The read-only
+        # guarantee lives on `src` above; this handle only SELECTs.
+        out.execute("ATTACH DATABASE ? AS src", (str(source_path),))
         for row in ddl_rows:
             out.execute(row["sql"])
             out.execute(
