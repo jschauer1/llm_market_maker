@@ -12,10 +12,13 @@ the §4.3 no, the §5.2 phase-1 relocation, the §5.3 force floor, and §7.7's
 division-of-labour reframing (performed). No questions remain open in this
 document.
 **Scope:** `tools/` + `db/schema.sql` + ~370 net new words in `CLAUDE.md`,
-substantial additions to four skills, plus a one-time migration of
+substantial additions to five skills, plus a one-time migration of
 `RESEARCH_LOG.md` (§6).
-**Base:** `ff4318a` (registered slices). `CLAUDE.md` is 6,388 words as of that
-commit; every budget below is against it.
+**Base:** `ff4318a` (registered slices). `CLAUDE.md` was 6,388 words at that
+commit; the §7.7 division-of-labour consolidation (user-ruled, performed
+2026-08-29, `9770e0e`) has since taken it to 6,671. That change was outside
+the budget below, which governs §1–7's own edits and applies against the
+post-consolidation file.
 **Non-goal:** changing what this project believes.
 
 ---
@@ -345,7 +348,7 @@ Appended after the existing bump paragraph:
 > exactly. Assertion does not qualify; the proof is the permission. This does
 > not soften the bump rule, it makes the rule affordable: a theory still being
 > improved could otherwise never accumulate evidence, which is how three of
-> five theories reached n=0.
+> the four running theories reached n=0.
 
 ### 2.8 Slice segments pool across a carry-chain too (added after `ff4318a`)
 
@@ -903,7 +906,7 @@ The existing sentence is edited in place, not appended to:
 
 > `RESEARCH_LOG.md` stays cross-theory: a log entry is earned by a fact that
 > changes how a session that never touched this theory would act — a mechanism,
-> a ruling, a precedent, a constraint, a correction. A result inside one theory
+> a ruling, a precedent, a constraint, a breakthrough, a correction. A result inside one theory
 > is a headline and a pointer into its `NOTES.md`, never a copy. This was
 > forward-only from 2026-08-25 and produced 5,838 words of copies anyway,
 > because the log was what got read; it binds now because `state` is.
@@ -967,7 +970,8 @@ clean.
 
 ### 7.1 The problem, stated correctly
 
-`CLAUDE.md` is 6,388 words carrying ~36 rules. **6,388 words is ~8k tokens —
+`CLAUDE.md` is 6,671 words (post-consolidation) carrying ~36 rules. **That
+is ~8k tokens —
 that is not a context problem**, and any version of this section justified by
 load cost is solving the wrong thing.
 
@@ -1154,7 +1158,8 @@ Each phase is independently shippable and independently useful.
 |---|---|---|
 | 0 | §5.2 phases 0–1: ledger backup + `db/` out of OneDrive | The repo's only total-loss risk; blocks nothing, ships in minutes |
 | 1 | §5.1 hygiene, §4.2 `--ticker`, §3.2 `state` | Zero doctrine, zero schema risk, immediate orientation payoff |
-| 2 | §3.3 `rulings` + backfill | Makes the four buried rulings survivable before the next session loses them |
+| 1b | §5.3 force floor | **Ruled 2026-08-29: adopted.** One-commit behavior change, independent of the storage phases |
+| 2 | §3.3 `rulings` + backfill | Makes the ten buried rulings survivable before the next session loses them |
 | 3 | §6.8 steps 1–3: pin, heading fix, citation sweep + test | Read-only bar the heading join; must precede any move, and is useful even if the migration never runs |
 | 4 | §6.8 steps 4–5: T-entry migration + stubs | Mechanical once the sweep is clean; 22 entries / 9,484 words, no judgement |
 | 5 | §6.8 steps 6–8: M-entry split + reconcile | The judgement-bearing quarter; only safe once `rulings` (phase 2) exists to receive the extractions |
@@ -1163,7 +1168,6 @@ Each phase is independently shippable and independently useful.
 | 8 | §5.2 phases 2–4: dedup → compress → split | Pure operations once phase 0 has a backup; the design gate (measure the hash-based dedup rate) precedes phase 2 |
 | **A** | §7.5 skill-invocation rule + §7.6 quoted-rule test | **Independent of everything above — ship first if desired.** The rule is worthless until the test makes duplication safe, so they land together |
 | **B** | §7.3 task-time rules quoted into `backtest-theory`, `find-edge`, `propose-theory`, `go`, `score-theories` | One skill per commit, each verified by the §7.6 test. No `CLAUDE.md` change, so it cannot regress the guaranteed layer |
-| 1b | §5.3 force floor | **Ruled 2026-08-29: adopted.** One-commit behavior change, independent of the storage phases |
 | — | §6.5 rulings 1 & 2 (§22 reversal, promotion bar) | **Ruled by the user, 2026-08-29** — migrate, and the bar is adopted. Phases 4–5 now gate only on phases 1–3; the bar still *binds* only once phase 1 ships, per §6.3 |
 | — | §4.3 paper lane | **Ruled NO by the user, 2026-08-29** — nothing ships; §4.2 stands |
 
