@@ -6,11 +6,12 @@ fine as written and simply arrive at the wrong moment — by moving each to
 where it binds, losing none of them.
 
 **Date:** 2026-08-29. **Status:** design proposed, implementation not started.
-Reviewed and corrected against the live repo and DB the same day; seven
+Reviewed and corrected against the live repo and DB the same day; eight
 rulings were issued directly by the user during that review — §6.5's two,
 the §4.3 no, the §5.2 phase-1 relocation, the §5.3 force floor, §7.7's
-division-of-labour reframing (performed), and §7.2's single-home relocation
-of the task-time rules. No questions remain open in this document.
+division-of-labour reframing (performed), §7.2's single-home relocation
+of the task-time rules, and §7.9's expert-agent architecture. No questions
+remain open in this document.
 **Scope:** `tools/` + `db/schema.sql` + ~370 net new words in `CLAUDE.md`,
 substantial additions to five skills, plus a one-time migration of
 `RESEARCH_LOG.md` (§6).
@@ -39,7 +40,7 @@ So this spec adopts a hard budget and honours the repo's own construction rule
 | Net new words in `CLAUDE.md` | additions capped at **≤ 370**; with §7's relocation the *net* change is expected to be negative |
 | New top-level `CLAUDE.md` sections | **0** — every edit lands inside an existing section |
 | Rules **removed** from `CLAUDE.md` | **the ten owned task-time rules** — moved, never lost: user-approved 2026-08-29 (§7.7), each enumerated in the same commit that lands it in its owning skill |
-| New doctrine | **1** — §7.5's skill-invocation rule, flagged as such |
+| New doctrine | **2** — §7.5's skill-invocation rule, and §7.9's expert-agent architecture (an in-place promotion of a paragraph already present); both flagged as such |
 | Deletions offsetting the additions | 2 rewrites in place (§3.4, §6.7) plus §7.3's ten relocations — no rule lost anywhere |
 
 For §1–6 the unifying observation is that **every defect is a norm `CLAUDE.md`
@@ -466,14 +467,14 @@ CREATE TABLE rulings (
 ```
 
 `log_entry` points back at the narrative; the log keeps the reasoning, the row
-carries the binding text. Backfill is the eleven rulings currently on record
+carries the binding text. Backfill is the twelve rulings currently on record
 — the four in the log tail (attempt-level scoring, cluster-`n` schema, the
-`bucket_rates` carve-out, the blocked skill edits) plus the seven the user
+`bucket_rates` carve-out, the blocked skill edits) plus the eight the user
 issued 2026-08-29 during this spec's review: §6.5's two (migrate the log;
 adopt the promotion bar), the §4.3 paper-lane no, the §5.2 phase-1
 relocation choice, the §5.3 force floor, §7.7's division-of-labour
-reframing, and §7.2's single-home relocation — a ten-minute job that is the
-whole payoff.
+reframing, §7.2's single-home relocation, and §7.9's expert-agent
+architecture — a ten-minute job that is the whole payoff.
 
 ### 3.4 `CLAUDE.md` edit (net ≈ 0 words, inside "Data conventions")
 
@@ -566,7 +567,8 @@ def test_every_repo_path_named_in_docs_resolves():
     commit that breaks the path, not months later."""
 ```
 
-Scanning `README.md`, `CLAUDE.md`, `tools/README.md` and every `THEORY.md`,
+Scanning `README.md`, `CLAUDE.md`, `tools/README.md`, every `THEORY.md`,
+and every `theories/*/CLAUDE.md` once §7.9 seeds them,
 matching backticked strings that look like repo paths.
 
 ### 5.2 The snapshot store: back up, de-sync, dedup, compress — then split
@@ -1086,8 +1088,8 @@ written:
 > loading one**: the cost of reading one you did not strictly need is a few
 > hundred tokens, and the cost of skipping one is a rule you never saw.
 
-This is the only new doctrine in this spec — the one §0's budget table
-allocates. It is also load-bearing: without it, §7.3 moves rules into
+This is one of the two doctrine changes §0's budget table allocates (§7.9
+is the other). It is also load-bearing: without it, §7.3 moves rules into
 documents that may never open.
 
 ### 7.6 The single-home test: a manifest, checked by a test
@@ -1152,10 +1154,53 @@ That makes removal safe, which is what lets §7.2 prefer a non-diluted
 
 ### 7.8 `CLAUDE.md` edit (≈120 words added — §7.5's rule, inside "How the user drives this")
 
-The ~120-word skill map is the section's only addition; §7.3's relocations
-then subtract the ten task-time rules, so §7's net effect on `CLAUDE.md` is
-**negative** — the cardinal core, undiluted, plus a map that says where the
-rest went.
+The ~120-word skill map plus §7.9's ~60-word rewrite are the section's only
+additions; §7.3's relocations then subtract the ten task-time rules, so §7's
+net effect on `CLAUDE.md` is **negative** — the cardinal core, undiluted,
+plus a map that says where the rest went.
+
+### 7.9 Theory-level context and skills — the expert-agent architecture (**ruled by the user, 2026-08-29**)
+
+The user promoted a latent option to the repo's stated architecture: **it
+must always be possible to initialize a strong agent inside one theory —
+hand it the cardinal `CLAUDE.md`, the skills, and the theory's own folder —
+and have it operate as that theory's expert**: investigate, solve problems,
+run the procedure, extend the notebook. Above the experts sits a supervisor
+that understands every theory abstractly and never needs a notebook: it
+reads only the shared structures — `state`, `THEORY.md`, the DB,
+`RESEARCH_LOG.md`.
+
+Both interfaces are already law, which is why this lands as a §7 delivery
+extension rather than new machinery: "any fact the repo level needs must
+surface in a shared structure" is the supervisor's contract, and "a theory
+folder must stay self-sufficient to run" is the expert's. §6's migration is
+this architecture's backfill — it moves each theory's context into the
+folder where its expert will look. Two mechanisms extend §7's ladder one
+level down, both native to the harness:
+
+- **Theory-level contextualization: `theories/<slug>/CLAUDE.md`.** The
+  harness auto-loads a directory's `CLAUDE.md` when working under it, so a
+  theory's cardinal context rides the same mechanism as the repo's. It is a
+  distillate with the repo file's own philosophy — the thesis in one
+  breath, the current version and what bumped it, standing constraints and
+  data-source quirks, pointers to `RUNBOOK.md` and `NOTES.md` — and it is
+  never a second notebook: raw narrative stays in `NOTES.md`, and the §6.5
+  promotion-bar philosophy applies inside the theory exactly as it does at
+  the repo level.
+- **Theory-level skills.** A skill useful to exactly one theory lives
+  directory-scoped to that theory's folder (the skill listing shows it
+  path-prefixed; the scoped variant wins inside its directory). Elevation
+  to the global skill set follows the same rule as code elevating to
+  `tools/`: two or more real theory callers, as a migration, never a copy.
+
+**`CLAUDE.md` edit (~60 words net, rewrite in place — doctrine change #2,
+flagged in §0):** the existing "This shape also supports — without
+requiring — a repo-level agent…" paragraph in "What lives in a theory" is
+rewritten from *option held open* to *stated architecture*: design every
+addition so a theory expert can be initialized from the cardinal file, the
+skills, and the folder — and so the supervisor can supervise from shared
+structures alone. The two rules that paragraph already cites are unchanged;
+they were this architecture all along, unnamed.
 
 ---
 
@@ -1206,6 +1251,7 @@ Each phase is independently shippable and independently useful.
 | 8 | §5.2 phases 2–4: dedup → compress → split | Pure operations once phase 0 has a backup; the design gate (measure the hash-based dedup rate) precedes phase 2 |
 | **A** | §7.5 skill-invocation rule + §7.6 single-home test + manifest | **Must precede B.** The map and the test are what make removal survivable, so no rule moves before they exist |
 | **B** | §7.3's ten task-time rules moved into `backtest-theory`, `find-edge`, `propose-theory`, `go` (+ the rule-18 explainer in `score-theories`) | One skill per commit; each commit adds the marked blocks to the skill **and removes the same text from `CLAUDE.md` atomically**, enumerating the rules it moves, verified by the §7.6 test |
+| **C** | §7.9: the architecture rewrite in `CLAUDE.md`, then `theories/<slug>/CLAUDE.md` seeded per running theory; theory-skill scoping convention documented in `tools/README.md` | The rewrite can ship with phase A; the seeds are best after phases 4–5 (the migrated notebooks are their source), one theory per commit, distillate only — a theory's cardinal core, never a second notebook |
 | — | §6.5 rulings 1 & 2 (§22 reversal, promotion bar) | **Ruled by the user, 2026-08-29** — migrate, and the bar is adopted. Phases 4–5 now gate only on phases 1–3; the bar still *binds* only once phase 1 ships, per §6.3 |
 | — | §4.3 paper lane | **Ruled NO by the user, 2026-08-29** — nothing ships; §4.2 stands |
 

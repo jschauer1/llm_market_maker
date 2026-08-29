@@ -2997,3 +2997,23 @@ move is atomic (removal and skill-landing in one commit, content-neutral by
 diff) and a manifest conventions test holds each moved rule in exactly its
 owning skill. Approval is scoped to exactly these ten; anything further
 needs fresh approval. Spec §0/§7/§9/§10/§11 rewritten accordingly.
+
+---
+
+## 2026-08-29 — RULING: the expert-agent architecture — theory-level context and skills
+
+**RULING (user, direct — backfill into `rulings` when §3.3 ships):** The
+repo's overarching architecture is now stated, not latent: **design
+everything so a strong agent can be initialized inside one theory — the
+cardinal `CLAUDE.md`, the skills, and the theory's folder — and operate as
+that theory's expert**, while a supervisor at the abstract level supervises
+experts reading only shared structures (`state`, `THEORY.md`, the DB, this
+log). Mechanisms, both native to the harness: `theories/<slug>/CLAUDE.md`
+as auto-loaded theory-level cardinal context (a distillate, never a second
+notebook), and directory-scoped theory-level skills that elevate to the
+global set only at 2+ theory callers, as a migration — the same elevation
+rule code follows into `tools/`. The two existing laws (repo-level facts
+surface in shared structures; theory folders are self-sufficient) are this
+architecture's two interfaces, unchanged. Recorded in the
+enforcing-surfaces spec as §7.9 with phase C; the §6 migration is the
+architecture's backfill.
