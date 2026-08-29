@@ -67,8 +67,8 @@ floor needs exhaustiveness ("at least one YES"), which neither the flag
 ("at most one") nor strike endpoints can prove.
 
 Buffer: 1¢ per leg beyond fees (spec). Fees: unrounded per-contract
-`0.07·P·(1−P)` capped at $0.035 (`tools/sizing.fee_pts`); an actual order
-rounds up to the cent, which amortizes at size — the rationale says so.
+`0.07·P·(1−P)` capped at $0.035 (`tools/sizing.py`'s `fee_pts`); an actual
+order rounds up to the cent, which amortizes at size — the rationale says so.
 
 Live runs re-quote every leg of every finding (`markets.quotes`) and
 re-run the scan on fresh asks before anything is recorded; the board can

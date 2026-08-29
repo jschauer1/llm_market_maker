@@ -1,7 +1,8 @@
 # Handoff: position identity, deduplication, and the persistence signal
 
-**Session:** 2026-08-27. **Status:** diagnosed and designed; tests written and
-failing by design; **implementation not started.**
+**Session:** 2026-08-27. **Status:** SUPERSEDED — implemented in `f6a1047`;
+the authoritative design is `docs/superpowers/specs/2026-08-27-position-identity-design.md`.
+Kept as the diagnostic narrative behind that spec.
 
 ---
 

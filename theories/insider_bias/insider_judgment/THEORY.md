@@ -64,8 +64,8 @@ carried forward. That was the right call: those rows were produced by a
 different procedure (OpenAI classify/pick, no main-model sign-off, no
 recorded decider), and scoring them alongside v2 rows would merge two
 different theories into one track record. A backup of the deleted rows exists
-outside the repo, and `migrate_kalshi_trader.py` can regenerate them if a
-v1-specific question ever needs answering.
+outside the repo, and `attic/kalshi_trader_migration/migrate_kalshi_trader.py`
+can regenerate them if a v1-specific question ever needs answering.
 
 **2026-08-24 — item 1 of the "what would settle it" list below is now done.**
 A tier A backtest of the stage-1 screen alone (then

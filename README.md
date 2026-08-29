@@ -57,7 +57,7 @@ edge you cannot reproduce is an anecdote.
 | `theories/` | One folder per hypothesis: `THEORY.md`, screen code, prompts |
 | `tools/` | Single-purpose scripts: Kalshi/Polymarket clients, ledger, scoring, ranking, sizing (see `tools/README.md`) |
 | `db/` | SQLite source of truth (`schema.sql` is tracked; the database itself is not) |
-| `docs/theory-specs/` | Sketches of proposed theories not yet built |
+| `docs/superpowers/specs/theories/` | Sketches of proposed theories not yet built |
 | `RESEARCH_LOG.md` | Session-to-session continuity — what was tried, found, and killed |
 | `tests/` | Pytest suite mirroring `tools/` |
 

@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-import migrate_kalshi_trader as mig
+from attic.kalshi_trader_migration import migrate_kalshi_trader as mig
 from tools import db, ledger, score, theories
 
 TS = "2026-08-23T12:00:00Z"

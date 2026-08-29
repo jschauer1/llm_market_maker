@@ -7,6 +7,7 @@ between code and DB."""
 import ast
 import inspect
 import pytest
+import re
 import sys
 from dataclasses import fields
 from pathlib import Path
@@ -261,4 +262,43 @@ def test_every_record_opportunity_param_has_an_attempt_column():
         "position row (if at all) and lost on the next re-sighting. Add a "
         "column in db/schema.sql and thread it through "
         "ledger._record_attempt:\n" + "\n".join(missing)
+    )
+
+
+#: Docs whose backticked repo paths must resolve. Spec §5.1; later plans
+#: add theories/*/CLAUDE.md (§7.9) and the dated-citation check (§6.6).
+_DOC_FILES = ("README.md", "CLAUDE.md", "tools/README.md")
+
+#: Paths that legitimately exist only at runtime (gitignored artifacts).
+_ALLOWED_MISSING = re.compile(r"^(db/.*\.(db|db-wal|db-shm)|STATE\.md)$")
+
+_PATH_LIKE = re.compile(r"^[A-Za-z0-9_][A-Za-z0-9_.\-]*(/[A-Za-z0-9_.\-]+)+/?$")
+
+
+def _doc_paths():
+    docs = [ROOT / f for f in _DOC_FILES]
+    docs += sorted(ROOT.glob("theories/*/THEORY.md"))
+    for doc in docs:
+        for span in re.findall(r"`([^`\n]+)`", doc.read_text(encoding="utf-8")):
+            # Only bare repo paths: no spaces/flags, at least one slash, no
+            # placeholders (<slug>), globs, code, or URLs.
+            if " " in span or "://" in span or "<" in span or "*" in span:
+                continue
+            if not _PATH_LIKE.match(span):
+                continue
+            yield doc.name, span
+
+
+def test_every_repo_path_named_in_docs_resolves():
+    """A doc that names a path nobody can open is worse than no doc: it
+    sends the next session somewhere that does not exist. Fails at the
+    commit that breaks the path, not months later."""
+    missing = [
+        f"{doc}: `{span}`"
+        for doc, span in _doc_paths()
+        if not (ROOT / span).exists() and not _ALLOWED_MISSING.match(span)
+    ]
+    assert missing == [], (
+        "a doc names a repo path that does not resolve -- fix the doc or "
+        "add a deliberate runtime-artifact exception:\n" + "\n".join(missing)
     )

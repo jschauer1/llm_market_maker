@@ -201,10 +201,10 @@ without the contract.
   A basket that can genuinely land in between needs a different definition
   of `won` for a multi-outcome position; that is not built.
 - **For a backtest, this layer owns time, bookkeeping and scoring; the
-  theory owns the replay.** `kalshi/history.py` and `snapshot.py`
+  theory owns the replay.** `tools/kalshi/history.py` and `tools/snapshot.py`
   (point-in-time truth), the `run_mode`/`run_id` plumbing through
   `theory.finish()`, the `backtest_runs` table, and `score.py` are the
-  whole shared contribution. **There is no `tools/backtest.py` replay
+  whole shared contribution. **There is no tools/backtest.py replay
   engine, and none gets built** — `theories/insider_bias/replay.py` shows
   why: most of its design handles quirks (a combinatorial series settling
   400,000 markets a day, per-day candle volume that must be summed into a
@@ -280,7 +280,7 @@ narrow context, then promote it once there is evidence it belongs.
 | `provenance.py` | Which model judged and with which prompt — required for any theory with an LLM in its decision path |
 | `match_market.py` | Non-Kalshi finding → Kalshi ticker shortlist |
 | `http.py` | Retrying HTTP for the public APIs |
-| `kalshi/markets.py` | Open/settled markets, live quotes, resolution rules |
-| `kalshi/history.py` | Candlesticks, point-in-time reconstruction |
-| `polymarket/markets.py` | Open/resolved markets |
-| `polymarket/trades.py` | Trades, whale detection, holders |
+| `tools/kalshi/markets.py` | Open/settled markets, live quotes, resolution rules |
+| `tools/kalshi/history.py` | Candlesticks, point-in-time reconstruction |
+| `tools/polymarket/markets.py` | Open/resolved markets |
+| `tools/polymarket/trades.py` | Trades, whale detection, holders |
