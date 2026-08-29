@@ -368,3 +368,61 @@ Not worth claiming: that it will find more. It will find the same
 nothing, faster and provably. The honest v4 rationale is *coverage and
 cost*, not edge — and since it changes where a decision input comes
 from, it bumps the version and is the user's call.
+
+## 2026-08-29 — v4: the exclusivity guard is free, and now checks everything
+
+`tools` stopped discarding Kalshi's event envelope on every board pull
+(`09a66f7`, session `llm-market-identifier-78`), so `mutually_exclusive`
+now rides on every market. This theory had been re-fetching it **one
+event at a time** under a 150-per-screen budget, spending the budget on
+the largest violations first and reporting the rest as
+`flag_fetch_capped`. All of that is gone.
+
+**The guard did not get cheaper. It got *complete*.**
+
+| | v3 | v4 |
+|---|---|---|
+| candidates checked | 150 (largest) | **1,449 (all)** |
+| network fetches | up to 150 | **0** |
+| `theory_facts` writes | one per fetch | none |
+
+Live verification on today's board: 1,449 flag candidates, **1,449
+rejected as not mutually exclusive**, 0 confirmed, 0 unknown, screen in
+11.7s with no rate-limited calls.
+
+### The finding that made this the right change rather than an optimisation
+
+Session `78` measured that **46% of the 14,065 open events are
+`mutually_exclusive=true`** — so this theory's all-false cache of 2,042
+flags was not Kalshi failing to set the flag. I predicted the cause was
+*selection*, and the cross-reference confirmed it exactly: of my 1,445
+flag candidates on that board, Kalshi calls **zero** exclusive (1,436
+false, 9 closed between pulls).
+
+The mechanism: this theory only asks about an event once the NO-basket
+arithmetic already clears. On a genuine partition that arithmetic *is* an
+arbitrage, so makers price it to sum correctly and it essentially never
+clears. Conditioning on "the arithmetic looked profitable" therefore
+selects almost perfectly *against* real partitions.
+
+**So `flag_candidates -> 0 confirmed` is the guard working, not budget
+exhaustion and not a dead path.** Without it those 1,449 become 1,449
+false arbitrage claims. I had been one step from proposing the path be
+cut for lack of true values; that would have been a wrong conclusion
+drawn from a real observation, and it took a number I could not cheaply
+get myself (the 46%) to stop it.
+
+### Tri-state, deliberately
+
+`_me_flag` returns True / False / **None**, and None is not False. A
+board snapshot from before 2026-08-29 carries no envelope, and reading
+absence as False would let a replay silently accept a partition it never
+verified. Unknown falls back to `theory_facts` — the 2,042 flags this
+theory already paid for one fetch at a time are kept and still read —
+and is reported as `flag_unknown` if that misses too. Nothing writes new
+flags any more, because nothing fetches.
+
+Two tests were deleted rather than adapted (`test_flag_persists_to_
+theory_facts`, `test_flag_fetch_cap_reported`): both pinned the fetch
+path, which no longer exists. The cache's surviving role is covered by
+`test_the_theory_facts_cache_is_still_a_fallback`.

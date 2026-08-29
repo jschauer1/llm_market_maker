@@ -1,16 +1,18 @@
 """Contract adapter for the fully mechanical structural-arb scanner.
 
-`scan.py` decides; this module fetches. Two fetches exist and both are
-bounded:
+`scan.py` decides; this module fetches. Since v4 only one fetch path
+remains, and it is bounded:
 
-- the event envelope's ``mutually_exclusive`` flag, for arithmetic hits
-  the geometry could not prove. Flags are structural properties of an
-  event, stable over its life, so each one is fetched once ever: looked
-  up in ``theory_facts`` (kind=``event_me_flag``) first, fetched only on
-  a miss (network budget ``MAX_FLAG_FETCHES`` per screen, spent on the
-  largest violations first), and written back for every later session.
-  Consulting today's envelope is valid in a backtest replay too, for the
-  same stability reason.
+- the event envelope's ``mutually_exclusive`` flag is **not fetched at
+  all** any more. `list_open` used to pull Kalshi's event envelope on
+  every board walk and discard it, so this theory re-fetched the flag one
+  event at a time under a per-screen budget, spent on the largest
+  violations first. The envelope has ridden on every market since
+  2026-08-29 (tools ``09a66f7``), so the guard is free *and* complete:
+  every candidate is checked, where the budget could only afford the 150
+  largest. ``theory_facts`` still holds the 2,042 flags bought the old
+  way and is read as the fallback for envelope-less snapshots; nothing
+  writes new ones.
 - fresh quotes for every leg of every finding, live runs only, batched
   ``QUOTE_CHUNK`` tickers per request (one request for thousands of
   tickers 414s). The board can be an hour old; the first live run proved
@@ -41,14 +43,6 @@ from tools.theory import Theory, TheoryContext
 from theories.structural_arb import scan
 
 EVENT_URL = "https://api.elections.kalshi.com/trade-api/v2/events/{}"
-
-#: Network budget for *new* flag lookups per screen. Known flags come
-#: from theory_facts for free, so coverage of persistent events ratchets
-#: up across sessions; the budget is spent in profit order and capped-out
-#: candidates are reported in the funnel, never silently dropped. (First
-#: live board: 526 arithmetic hits, nearly all ephemeral daily sports
-#: events or legitimately non-ME categoricals.)
-MAX_FLAG_FETCHES = 150
 
 #: Tickers per quotes request. 3,438 in one GET returned HTTP 414.
 QUOTE_CHUNK = 100
@@ -122,28 +116,33 @@ def _me_flag_cached(conn, event_ticker: str) -> bool | None:
     raise KeyError(event_ticker)
 
 
-def _me_flag_fetch(conn, event_ticker: str, fetch: Fetch) -> bool | None:
-    """Fetch the flag, cache it, and persist it for future sessions."""
+def _me_flag(conn, finding) -> bool | None:
+    """Is this finding's event mutually exclusive? True / False / unknown.
+
+    Reads Kalshi's own event envelope off the board -- `list_open` has
+    carried it since 2026-08-29 (tools `09a66f7`), where before it fetched
+    the envelope and threw it away.
+
+    **Tri-state on purpose.** `{}` means no envelope was captured, which
+    is emphatically not the same as an envelope saying False: a board
+    snapshot taken before that change carries no envelope at all, and
+    reading absence as False would let a replay over an old snapshot
+    silently accept a partition it never verified. Unknown falls back to
+    `theory_facts`, which still holds the 2,042 flags this theory paid for
+    one fetch at a time, and is reported as `flag_unknown` if that misses
+    too.
+
+    No network path remains. There is nothing left to ration, which is
+    why the caller checks every candidate rather than the 150 largest.
+    """
+    envelope = finding.legs[0].market.event or {}
+    flag = envelope.get("mutually_exclusive")
+    if flag is not None:
+        return bool(flag)
     try:
-        payload = fetch(EVENT_URL.format(event_ticker),
-                        params={"with_nested_markets": "false"})
-        event = payload.get("event", payload) or {}
-        flag = bool(event.get("mutually_exclusive"))
-    except Exception:
-        _flag_cache[event_ticker] = None   # session-only; retry next run
+        return _me_flag_cached(conn, finding.event_ticker)
+    except KeyError:
         return None
-    _flag_cache[event_ticker] = flag
-    if conn is not None:
-        with db.write(conn):
-            conn.execute(
-                "INSERT OR REPLACE INTO theory_facts"
-                " (theory_id, kind, key, value_json, established_at)"
-                " VALUES (?, ?, ?, ?, ?)",
-                (StructuralArbTheory.id, FACT_KIND, event_ticker,
-                 "true" if flag else "false",
-                 datetime.now(timezone.utc).isoformat()),
-            )
-    return flag
 
 
 def _drop_sterile(findings: list[scan.Finding], now=None,
@@ -193,7 +192,10 @@ class StructuralArbTheory(Theory):
     # ladders, and long-dated ladders below a cash floor -- before the
     # orderbook fetch, so the scan stops reporting finds it will always
     # reject. See MIN_LEG_VOLUME / MIN_ANNUALISED_RETURN above.
-    version = 3
+    # v4: the mutual-exclusivity guard reads Kalshi's event envelope
+    # off the board instead of fetching it per event, so it costs
+    # nothing and checks EVERY candidate rather than the 150 largest.
+    version = 4
     uses_llm_judgment = False
     # Voluntary self-documentation: the deciding artifact is code.
     # finish() records it with model='none (deterministic)'.
@@ -218,20 +220,16 @@ class StructuralArbTheory(Theory):
         findings = list(out.findings)
 
         # Confirm the ME flag for arithmetic hits geometry couldn't prove.
-        flag_cands = sorted(out.flag_candidates,
-                            key=lambda f: f.profit_floor, reverse=True)
+        #
+        # v4: read straight off the board. `list_open` used to fetch
+        # Kalshi's event envelope and discard it, so this cost one network
+        # call per event and had to ration itself to the 150 largest
+        # candidates. The envelope is now on every market, so the guard is
+        # free AND complete -- every candidate is checked, not a budgeted
+        # slice. No ordering by profit is needed for the same reason.
         confirmed = 0
-        budget = MAX_FLAG_FETCHES
-        for f in flag_cands:
-            try:
-                flag = _me_flag_cached(ctx.conn, f.event_ticker)
-            except KeyError:
-                if budget <= 0:
-                    gate_removed["flag_fetch_capped"] = (
-                        gate_removed.get("flag_fetch_capped", 0) + 1)
-                    continue
-                budget -= 1
-                flag = _me_flag_fetch(ctx.conn, f.event_ticker, fetch)
+        for f in out.flag_candidates:
+            flag = _me_flag(ctx.conn, f)
             if flag is True:
                 findings.append(f)
                 confirmed += 1
@@ -239,8 +237,8 @@ class StructuralArbTheory(Theory):
                 gate_removed["not_mutually_exclusive"] = (
                     gate_removed.get("not_mutually_exclusive", 0) + 1)
             else:
-                gate_removed["flag_fetch_failed"] = (
-                    gate_removed.get("flag_fetch_failed", 0) + 1)
+                gate_removed["flag_unknown"] = (
+                    gate_removed.get("flag_unknown", 0) + 1)
         funnel["flag_confirmed"] = confirmed
 
         # v3: drop the three sterile classes before anything expensive.

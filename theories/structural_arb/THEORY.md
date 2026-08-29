@@ -143,6 +143,23 @@ ran end to end.)
 
 ## Version
 
+4 — 2026-08-29: **the mutual-exclusivity guard reads the board, not the
+network.** `tools` stopped discarding Kalshi's event envelope on every
+pull (`09a66f7`), so `mutually_exclusive` is on every market. This theory
+had been re-fetching it one event at a time under `MAX_FLAG_FETCHES=150`,
+spent on the largest violations first. Removed: the budget, the per-event
+fetch, and the write-back.
+
+The point is not that it is cheaper — it is that the guard is now
+**complete**. v3 could check the 150 largest of ~1,449 candidates; v4
+checks all 1,449, for free. Live: 1,449 candidates, 1,449 rejected as
+non-exclusive, 0 network calls.
+
+The flag is tri-state and `None` is not `False`: a pre-2026-08-29
+snapshot carries no envelope, and reading absence as False would let a
+replay accept a partition it never verified. Unknown falls back to the
+2,042 flags already in `theory_facts`, then reports `flag_unknown`.
+
 3 — 2026-08-29: **stage 1 drops three sterile violation classes before
 the orderbook fetch.** The snapshot study
 (`studies/2026-08-29-structural-arb-violation-liquidity/`) replayed this

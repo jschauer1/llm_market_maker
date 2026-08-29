@@ -12,8 +12,8 @@ from datetime import datetime, timezone
 import pytest
 
 from theories.structural_arb import scan
-from theories.structural_arb.theory import (MAX_FLAG_FETCHES,
-                                            StructuralArbTheory, _flag_cache)
+from theories.structural_arb.theory import (
+    StructuralArbTheory, _flag_cache)
 from tools import db as tdb
 from tools import theories as theories_db
 from tools.domain import Market
@@ -291,8 +291,11 @@ def test_screen_backtest_flag_paths():
         m("P-2", event="EV-FREE", strike_type="structured", no_ask=0.30),
         m("P-3", event="EV-FREE", strike_type="structured", no_ask=0.30),
     ]
-    theory = StructuralArbTheory(
-        fetch=_fake_fetch({"EV-ME": True, "EV-FREE": False}, []))
+    # v4: the flag rides on the board's event envelope, not a fetch.
+    board = [replace(mk, event={"mutually_exclusive": {
+        "EV-ME": True, "EV-FREE": False}.get(mk.event_ticker, False)})
+        for mk in board]
+    theory = StructuralArbTheory(fetch=_fake_fetch({}, []))
     res = theory.screen(_ctx(board))
     assert res.funnel["flag_confirmed"] == 1
     assert res.gate_removed.get("not_mutually_exclusive") == 1
@@ -440,68 +443,6 @@ def test_refresh_finding_nested_pair_needs_both_legs():
     assert scan.refresh_finding(f, {"L-10": sup}) is None  # missing quote
 
 
-def test_flag_persists_to_theory_facts(tmp_path):
-    conn = tdb.connect(tmp_path / "t.db")
-    tdb.init_db(conn)
-    theories_db.register(conn, "structural_arb", "Structural Arb",
-                         "theories/structural_arb")
-    calls: list[str] = []
-
-    def fetch(url, params=None):
-        calls.append(url)
-        return {"event": {"mutually_exclusive": True}}
-
-    board = [m(f"A{j}", event="EV-ME", strike_type="structured",
-               no_ask=0.30) for j in range(3)]
-    theory = StructuralArbTheory(fetch=fetch)
-    ctx = TheoryContext(conn=conn, board=board, now=NOW,
-                        run_id="exp/t", run_mode="backtest")
-    res = theory.screen(ctx)
-    assert len(res.candidates) == 1
-    assert len(calls) == 1
-    _flag_cache.clear()                      # kill the session cache
-    res2 = theory.screen(ctx)
-    assert len(res2.candidates) == 1
-    assert len(calls) == 1                   # served from theory_facts
-    conn.close()
-
-
-def test_flag_fetch_cap_reported():
-    board = []
-    for i in range(MAX_FLAG_FETCHES + 3):
-        for j in range(2):
-            board.append(m(f"E{i}M{j}", event=f"EV-{i}",
-                           strike_type="structured", no_ask=0.20))
-    theory = StructuralArbTheory(fetch=_fake_fetch(
-        {f"EV-{i}": False for i in range(MAX_FLAG_FETCHES + 3)}, []))
-    res = theory.screen(_ctx(board))
-    assert res.gate_removed.get("flag_fetch_capped") == 3
-    assert res.gate_removed.get("not_mutually_exclusive") == MAX_FLAG_FETCHES
-
-
-# ------------------------------------------------------------- depth gate
-# v2: top-of-book existence and fillable size are different claims (opps
-# 9248 and 9309 both died 0.3-0.5 contracts deep). Live pricing reads the
-# orderbook for every finalist leg and rejects baskets whose fillable
-# riskless profit is dust.
-
-def _depth_board():
-    return [
-        m("L-10", event="EV-G", strike_type="greater", floor=10,
-          yes_ask=0.40),
-        m("L-20", event="EV-G", strike_type="greater", floor=20,
-          no_ask=0.50),
-    ]
-
-
-_DEPTH_FRESH = [
-    {"ticker": "L-10", "status": "active", "yes_ask_dollars": "0.41",
-     "strike_type": "greater", "floor_strike": 10, "event_ticker": "EV-G"},
-    {"ticker": "L-20", "status": "active", "no_ask_dollars": "0.50",
-     "strike_type": "greater", "floor_strike": 20, "event_ticker": "EV-G"},
-]
-
-
 def test_implied_ask_ladder_converts_opposite_bids():
     fp = {"yes_dollars": [["0.5000", "0.47"], ["0.0200", "40.00"]],
           "no_dollars": [["0.5900", "5.00"], ["0.0100", "50.00"]]}
@@ -537,6 +478,23 @@ def test_fillable_floor_walks_deeper_riskless_levels():
 
 def test_fillable_floor_empty_leg_is_zero():
     assert scan.fillable_floor([[(0.4, 5.0)], []], 1.0) == (0.0, 0.0)
+
+
+def _depth_board():
+    return [
+        m("L-10", event="EV-G", strike_type="greater", floor=10,
+          yes_ask=0.40),
+        m("L-20", event="EV-G", strike_type="greater", floor=20,
+          no_ask=0.50),
+    ]
+
+
+_DEPTH_FRESH = [
+    {"ticker": "L-10", "status": "active", "yes_ask_dollars": "0.41",
+     "strike_type": "greater", "floor_strike": 10, "event_ticker": "EV-G"},
+    {"ticker": "L-20", "status": "active", "no_ask_dollars": "0.50",
+     "strike_type": "greater", "floor_strike": 20, "event_ticker": "EV-G"},
+]
 
 
 def test_price_live_rejects_depth_dust_basket():
@@ -724,3 +682,117 @@ def test_sterile_class_removals_are_reported_by_category():
         "untraded or near-untraded leg": 1,
         "return below the cash floor": 1,
     }
+
+
+# `test_flag_persists_to_theory_facts` and `test_flag_fetch_cap_reported`
+# were removed at v4 (2026-08-29): both pinned the per-event fetch path,
+# which no longer exists. Nothing writes new flags to `theory_facts` now
+# -- the 2,042 already there are kept and still read as the fallback for
+# envelope-less snapshots, which `test_the_theory_facts_cache_is_still_a_
+# fallback` covers.
+
+
+# --- v4: the mutual-exclusivity guard is free, and checks everything ----
+#
+# Until 2026-08-29 `list_open` fetched Kalshi's event envelope on every
+# board pull and threw it away, so this theory re-fetched
+# `mutually_exclusive` one event at a time under a 150-per-screen budget.
+# The envelope is now on every market (tools 09a66f7), so the guard costs
+# nothing and no longer has to ration itself to the 150 largest
+# candidates.
+#
+# The cross-session measurement that motivated the change: of 1,445 flag
+# candidates on one board, Kalshi calls **zero** mutually_exclusive,
+# against a board that is 46% true. Conditioning on "the NO-basket
+# arithmetic already cleared" selects against genuine partitions, because
+# a real partition is priced to sum correctly. So the guard is doing its
+# job, and making it free makes it strictly stronger.
+
+
+def _ev_market(ticker, *, event, me, **kw):
+    market = m(ticker, event=event, **kw)
+    return replace(market, event={"mutually_exclusive": me} if me is not None
+                   else {})
+
+
+def test_flag_read_from_the_envelope_needs_no_fetch():
+    """A board carrying envelopes must produce zero network calls."""
+    def no_fetch(*a, **k):
+        raise AssertionError("v4 must not fetch the ME flag")
+
+    board = [
+        _ev_market("P-A", event="EV-P", me=True, no_ask=0.20),
+        _ev_market("P-B", event="EV-P", me=True, no_ask=0.20),
+        _ev_market("P-C", event="EV-P", me=True, no_ask=0.20),
+    ]
+    theory = StructuralArbTheory(fetch=no_fetch)
+    result = theory.screen(_ctx(board))
+    assert result.funnel["flag_confirmed"] >= 0   # ran without fetching
+
+
+def test_a_non_exclusive_event_is_rejected_from_the_envelope():
+    board = [
+        _ev_market("N-A", event="EV-N", me=False, no_ask=0.20),
+        _ev_market("N-B", event="EV-N", me=False, no_ask=0.20),
+        _ev_market("N-C", event="EV-N", me=False, no_ask=0.20),
+    ]
+    theory = StructuralArbTheory(fetch=_fake_fetch({}, []))
+    result = theory.screen(_ctx(board))
+    assert result.candidates == ()
+    assert result.gate_removed.get("not_mutually_exclusive", 0) >= 1
+
+
+def test_an_envelope_less_market_reads_unknown_not_false():
+    """Captures before 2026-08-29 carry no envelope. Unknown must not be
+    silently read as False -- that is the tri-state the tools change was
+    built around, and reading it wrong would let a replay over an old
+    snapshot claim a partition it never verified."""
+    board = [
+        _ev_market("U-A", event="EV-U", me=None, no_ask=0.20),
+        _ev_market("U-B", event="EV-U", me=None, no_ask=0.20),
+        _ev_market("U-C", event="EV-U", me=None, no_ask=0.20),
+    ]
+    theory = StructuralArbTheory(fetch=_fake_fetch({}, []))
+    result = theory.screen(_ctx(board))
+    assert result.candidates == ()
+    assert result.gate_removed.get("flag_unknown", 0) >= 1
+
+
+def test_no_fetch_budget_survives_into_v4():
+    """The budget existed only because the flag cost a network call."""
+    import theories.structural_arb.theory as t
+    assert not hasattr(t, "MAX_FLAG_FETCHES"), (
+        "the per-screen flag budget is obsolete once the envelope is free"
+    )
+    assert not hasattr(t, "_me_flag_fetch"), (
+        "the per-event flag fetch is obsolete once the envelope is free"
+    )
+
+
+def test_the_theory_facts_cache_is_still_a_fallback(tmp_path):
+    """A replay over a pre-2026-08-29 snapshot has no envelope. The 2,042
+    flags this theory paid for one fetch at a time are still read, so an
+    old board is not blind -- it just cannot learn new flags."""
+    conn = tdb.connect(tmp_path / "t.db")
+    tdb.init_db(conn)
+    theories_db.register(conn, "structural_arb", "Structural Arb",
+                         "theories/structural_arb",
+                         now="2026-08-26T12:00:00Z")
+    with tdb.write(conn):
+        conn.execute(
+            "INSERT INTO theory_facts (theory_id, kind, key, value_json,"
+            " established_at) VALUES (?, ?, ?, ?, ?)",
+            ("structural_arb", "event_me_flag", "EV-OLD", "true",
+             "2026-08-26T12:00:00Z"),
+        )
+    board = [                     # no envelope at all
+        m("O1", event="EV-OLD", strike_type="structured", no_ask=0.30),
+        m("O2", event="EV-OLD", strike_type="structured", no_ask=0.30),
+        m("O3", event="EV-OLD", strike_type="structured", no_ask=0.30),
+    ]
+    ctx = TheoryContext(conn=conn, board=board, now=NOW,
+                        run_id="exp/test", run_mode="backtest")
+    res = StructuralArbTheory(fetch=_fake_fetch({}, [])).screen(ctx)
+    assert res.funnel["flag_confirmed"] == 1, (
+        "the cached flag must still confirm an envelope-less event"
+    )
