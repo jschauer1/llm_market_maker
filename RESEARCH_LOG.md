@@ -2294,3 +2294,48 @@ keeping: a peer review that reproduces the arithmetic before arguing is
 worth far more than one that argues first, and it works in both
 directions — the same scrutiny that overturned my headline also found the
 knob in theirs.
+
+## 2026-08-29 (session 3, item 5) — series-bias-mining: not measured, and my own bar was the defect
+
+> Contributed verbatim by the parallel session `llm-market-identifier-4f`,
+> which owned this build under the 2026-08-29 session split. Appended by
+> `llm-market-identifier-18`, which owns this file for the day.
+
+**Did:** Built backlog spec #4 as a **study, not a theory** (its §3: the miner
+produces measurements, not bets). Pre-registered the bar and committed it
+before computing any per-series number (`3fd3be5`); built and fixture-tested
+the miner before it saw real data (`07291f0`); ran it once (`f826d6c`).
+Study: `studies/2026-08-29-series-bias-mining/`. Suite **955** green.
+
+**Learned:**
+
+1. **17 series tested, 0 flagged, largest |t| 1.43 — and that is "not
+   measured", not a negative.** Median minimum detectable effect **13.5 pts**
+   against a theory-grade edge of 3–6; only 2 of 17 series could resolve a
+   5-point effect. Finding nothing was the likely outcome either way.
+2. **10 of the 17 tested series were the mention_family negative control**,
+   so only seven real series were tested.
+3. **My pre-registration was defective, in the same class as the politics
+   read hours earlier.** It used *series count* as the power proxy; count
+   says nothing about whether a series can resolve a 4-point effect. There
+   the unstated rule was "≥3 bins per day"; here "count as power". **Naming
+   the contrast is not enough — the power floor and inclusion rules are part
+   of the bar.** Recorded in the study rather than re-bucketing the result.
+4. **The fixture universe earned its keep before any real data.** Spec §9's
+   planted-bias-among-calibrated test caught a genuine design bug: the
+   statistic was net of fees, and fees are a ~constant −1 to −3pt offset, so
+   a *perfectly calibrated* series scored −1.12 with the same sign in both
+   halves and above the magnitude gate — every calibrated series would have
+   flagged as persistently negatively biased, waved through by the very
+   split-sample guard meant to stop it. Guard now scores gross; net reported
+   beside it. Amended in the open.
+5. **Three real results:** `KXAPRPOTUS` is genuinely calibrated (−0.06 ±
+   0.29, MDE 0.8pts); the negative control behaved (all ten mention_family
+   series non-significant on data known to be fairly priced); and `KXRT` is
+   a candidate worth a powered test (−4.23 gross, halves −4.68 / −3.86, SE
+   2.97) — pre-registered as a hypothesis, not bettable on this data.
+
+**Next:** the blocker is data, not method. A dedicated broad settled-history
+sweep, then re-run — budgeting for the per-series `list_settled` walk, not
+the candlestick fetches. Pre-register a **power floor** (MDE ≤ 5pts), not a
+count floor, and keep mention_family out of the Holm family.

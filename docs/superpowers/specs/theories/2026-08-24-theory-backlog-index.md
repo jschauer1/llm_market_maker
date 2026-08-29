@@ -40,6 +40,36 @@ sources; every spec links back here instead of repeating them.
    relative value is not covered by this warning and remains open; the
    closed channel is specifically within-event.
 
+0b. **A pre-registration must name its inclusion rules and its power
+   floor, not just its contrast.** Naming only the hypothesis leaves the
+   rules that decide who is *in* the sample undeclared — and those rules
+   routinely span the entire conclusion. Two independent failures on
+   2026-08-29, hours apart, in different theories, by different sessions:
+
+   - **`calibration_harvest`**: the pre-registered bar fixed a four-way
+     horizon ordering. It failed. A two-group long-vs-short collapse was
+     then chosen *after* seeing where the sign flipped and published as
+     "pre-registered" (t 3.50 — also the best of three available splits).
+     The proposed replacement estimator was no safer: a day-level
+     regression on horizon-bin rank reads **+0.50/t 0.26** including days
+     with ≥2 horizon bins and **+3.14/t 2.68** including only days with
+     ≥3. The inclusion rule *was* the result. Retracted; see that
+     theory's `NOTES.md` 2026-08-29 (correction).
+   - **`series-bias-mining`**: the bar used *series count* as its power
+     proxy. Count says nothing about whether a series can resolve the
+     3–6pt effect worth betting; the median tested series had a minimum
+     detectable effect of **13.5 pts**, so "0 of 17 flagged" meant *not
+     measured*, not *calibrated*. See
+     `studies/2026-08-29-series-bias-mining/`.
+
+   So write down, before looking: the contrast **and** who is in the
+   sample **and** the smallest effect the design can detect. If the
+   answer to the last one is larger than a theory-grade edge, the run
+   cannot inform the question and should be resized before it is run,
+   not reinterpreted after. Report a failed pre-registered test *as
+   failed*; a better-looking cut found afterwards is a hypothesis for the
+   next population, never the headline.
+
 1. `python -m tools.cli ideas search "<slug>"` — confirm nothing has
    changed since the spec was written (each is registered under its slug;
    check `status` and `outcome`).
