@@ -87,3 +87,69 @@ repo has `market_snapshots` and the settled-history machinery already; what
 is missing is anything that routinely sweeps THIS population before it
 expires. That is worth more than any further screen work, and it is the
 thing that decides whether this theory is ever testable at n that matters.
+
+## 2026-08-29 (later still) — CORRECTION: the previous entry was measuring an artifact
+
+**Retract the "-3.4 pts, thesis does not hold" result above.** It was
+contaminated by early-settlement lookahead through the *time* axis. Session
+09 flagged the general shape while reviewing an unrelated amendment; I
+checked, and it had already bitten.
+
+**The bug.** `days_to_close` was computed from each settled market's
+`close_time`. These markets carry `can_close_early=true`, and measured
+across all 112:
+
+```
+              deadline - actual_close      closed >3d early
+  YES  n=34   median 209.6d                32/34
+  NO   n=78   median  -0.2d                 0/78
+```
+
+A NO market runs to its deadline. A YES market stops trading the moment the
+event fires — a median of seven months early. So the two arms were on
+**different clocks**: "21 days to close" meant *21 days before the deadline*
+for NO markets and *21 days before the event* for YES markets, which is
+precisely when the price is climbing toward 1.0. The first result therefore
+measured "prices rise before events happen", which is true and worthless.
+
+It is also a **selection** error, not only an axis error: a market that
+resolves YES early never experiences the quiet-near-the-deadline state the
+thesis is about, so conditioning on actual close imported exactly the
+population the thesis excludes.
+
+**Re-anchored on the deadline stated in the rules text** (parsed for
+112/112), same clustering by market:
+
+```
+                        contaminated      corrected
+  anchor                actual close      stated deadline
+  markets                        55               48
+  mean yes_ask                0.148            0.109
+  realized P(YES)             0.182            0.062
+  gap                        -3.4 pts        +4.7 pts   (SE 3.5, z=1.34)
+  net of fees                      —          +4.0 pts
+  outcome mix                     —        3 YES / 45 NO
+```
+
+**The sign flips.** Corrected, the point estimate is *thesis-consistent*:
+YES overpriced late by ~4.7 gross, ~4.0 net after the 0.68pt fee on a NO at
+$0.891.
+
+**It is not a demonstration.** z=1.34 is not significant, and the whole
+estimate rests on **3 YES outcomes** — one more would move P(YES) from
+0.062 to 0.083 and cut the gap by a third. This is a promising point
+estimate on a sample far too small to reject zero, and it must not be
+reported as anything else.
+
+Two lessons worth carrying, both mine:
+
+- **Check the clock before trusting a hazard measurement.** On any "does X
+  happen by D" market, actual close is a function of the outcome. Anchor on
+  the *scheduled* deadline, always. The corrected pipeline parses it from
+  the rules text and it was recoverable for 112/112.
+- **I published the artifact before checking it.** The previous entry and
+  its commit stated a conclusion with the wrong sign, and it survived
+  because the result was *unsurprising* — a thesis failing is exactly what I
+  had been primed to expect after five rounds of screen work. A result that
+  confirms your current mood deserves the same scrutiny as one that
+  offends it.
