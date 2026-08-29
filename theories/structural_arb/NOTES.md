@@ -271,3 +271,42 @@ numerically and mean nothing across subjects. `underlying_key` exists to
 prevent exactly that and its docstring says "a false merge costs real
 money". Any future replay of this scan must group by event **and**
 `underlying_key`, as `scan.scan()` does.
+
+## 2026-08-29 (cont.) — v3: the three sterile classes screened at stage 1
+
+Implemented the cheap change the study above pre-registered. `_drop_sterile`
+runs between the flag check and the live re-quote, so a sterile finding
+never reaches the orderbook walk:
+
+- `MIN_LEG_VOLUME = 100.0` — catches classes 1 and 2 (untraded strikes and
+  frozen thin ladders). Both are the same defect seen at different volumes:
+  a quote no trade has tested.
+- `MIN_ANNUALISED_RETURN = 0.05` over horizons of at least
+  `ANNUALISE_MIN_DAYS = 30` — catches class 3 (long-dated ladders). The
+  horizon floor matters: a 15-day basket annualises to four digits, so
+  applying a per-year hurdle to it would be nonsense in the other
+  direction.
+
+**The bar, and the test that pins it.**
+`test_the_one_liquid_short_dated_violation_survives` asserts that
+`KXNASDAQ100MINY` — the only violation in 11 snapshots that was both
+liquid (3,918 contracts) and attractively priced (36.4%/yr) — still
+reaches the depth gate. Screening it out would have been the easy way to
+get a quiet scan and the wrong one.
+
+`MIN_LEG_VOLUME` is deliberately **not** a liquidity proxy for the depth
+gate. Lifetime volume and fillable size are different questions, and
+`KXNASDAQ100MINY` is the proof: 3,918 contracts of lifetime volume and
+still dust at the prices that mattered. This screen only removes what
+lifetime volume *alone* already proves sterile; the orderbook walk still
+decides everything else.
+
+**Verified against today's board.** Same 3 geometry findings as the v2 run
+earlier today (2 × `KXWTAGTOTAL` at volume 0.11/0.0, `KXNCAAMBWINS` at
+6.0); all three now removed at stage 1 as `untraded or near-untraded leg`,
+0 candidates, and **6 orderbook fetches not spent** on a rate-limited
+endpoint. Under v2 the same three were fetched and then rejected.
+
+Not an edge change — all six historical finds were rejected either way.
+What it buys is a scan that no longer announces finds it will always throw
+away. Suite 890 green.

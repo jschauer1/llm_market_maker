@@ -573,6 +573,20 @@
    "written": 0,
    "no_candles": 0,
    "below_floor": 12
+  },
+  "KXTEMPDCH": {
+   "n_settled": 12411,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 1357,
+   "below_floor": 10991
+  },
+  "KXHIGHTSATX": {
+   "n_settled": 348,
+   "n_obs": 46,
+   "written": 46,
+   "no_candles": 0,
+   "below_floor": 51
   }
  }
 }

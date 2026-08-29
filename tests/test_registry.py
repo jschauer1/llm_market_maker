@@ -37,7 +37,7 @@ def _register_matching(conn):
     for tid, name, version, uses in (
         ("insider_judgment", "Insider Judgment", 4, True),
         ("mention_family", "Mention Family", 1, False),
-        ("structural_arb", "Structural Arb", 2, False),
+        ("structural_arb", "Structural Arb", 3, False),
         ("no_side_premium", "No-Side Premium", 1, False),
     ):
         theories.register(conn, tid, name, f"theories/{tid}", now=TS)

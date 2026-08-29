@@ -69,6 +69,34 @@ MAX_ORDERBOOK_FETCHES = 20
 #: rejected, keeping the free control group.
 MIN_FILLABLE_PROFIT_USD = 5.0
 
+#: v3 stage-1 sterile-class screens. The 2026-08-29 snapshot study
+#: (studies/2026-08-29-structural-arb-violation-liquidity/) replayed this
+#: theory's geometry over 11 stored boards and found six violations in
+#: five days, EVERY ONE of which the depth gate then rejected. They fall
+#: into three classes identifiable from the board alone, so screening
+#: them here stops the scan reporting finds it will always reject — and
+#: stops it spending a rate-limited orderbook fetch per leg to discover
+#: what the volume field already said.
+#:
+#: A violation whose thinner leg has never traded this much is either a
+#: market maker's untested opening mark (study class 1: lifetime volume
+#: 0.0–0.1, each seen in exactly one snapshot) or a frozen thin ladder
+#: (class 2: KXNCAAMBWINS sat in 8 of 11 snapshots at unchanged prices on
+#: 6- and 40-contract legs, worth $0.02 fillable).
+MIN_LEG_VOLUME = 100.0
+
+#: Class 3: long-dated ladders. USCLIMATE 2025/2030 was genuinely liquid
+#: (11,596 contracts) and genuinely persistent, and paid 1.5%/yr over 4.3
+#: years — a riskless return below cash is not an opportunity, and it is
+#: the same conclusion the calendar-arb study reached independently.
+#: 5%/yr is a deliberately loose cash floor: the point is to drop the
+#: multi-year ladders, not to tune a hurdle rate.
+MIN_ANNUALISED_RETURN = 0.05
+
+#: Below this horizon the annualised figure is noise (a 15-day basket
+#: annualises to four digits), so the return floor simply does not apply.
+ANNUALISE_MIN_DAYS = 30.0
+
 FACT_KIND = "event_me_flag"
 
 #: Process-lifetime cache: event_ticker -> bool | None (None: fetch failed).
@@ -118,12 +146,54 @@ def _me_flag_fetch(conn, event_ticker: str, fetch: Fetch) -> bool | None:
     return flag
 
 
+def _drop_sterile(findings: list[scan.Finding], now=None,
+                  ) -> tuple[list[scan.Finding], dict[str, int]]:
+    """Remove the violation classes that are never actionable.
+
+    Returns `(kept, removed_by_category)`. The categories are reported,
+    never silently dropped — a gate that drops without saying what it
+    dropped lets a scan claim coverage it never had (CLAUDE.md).
+
+    Deliberately NOT a liquidity *proxy* for the depth gate: lifetime
+    volume and fillable size are different questions, and the study's one
+    genuinely interesting find (KXNASDAQ100MINY, 3,918 contracts) had
+    plenty of the former and none of the latter. This only removes
+    findings that lifetime volume alone already proves sterile; the
+    orderbook walk still decides everything else.
+    """
+    kept: list[scan.Finding] = []
+    removed: dict[str, int] = {}
+    for f in findings:
+        volumes = [leg.market.volume or 0.0 for leg in f.legs]
+        if min(volumes, default=0.0) < MIN_LEG_VOLUME:
+            removed["untraded or near-untraded leg"] = (
+                removed.get("untraded or near-untraded leg", 0) + 1)
+            continue
+        days = [d for leg in f.legs
+                if (d := scan.days_until(leg.market.close_time,
+                                         now=now)) is not None]
+        horizon = max(days) if days else 0.0
+        if horizon >= ANNUALISE_MIN_DAYS and f.cost > 0:
+            per_year = (f.profit_floor / f.cost) / (horizon / 365.25)
+            if per_year < MIN_ANNUALISED_RETURN:
+                removed["return below the cash floor"] = (
+                    removed.get("return below the cash floor", 0) + 1)
+                continue
+        kept.append(f)
+    return kept, removed
+
+
 class StructuralArbTheory(Theory):
     id = "structural_arb"
     name = "Structural Arb"
     # v2: live pricing reads the orderbook for every finalist leg and
     # rejects baskets whose fillable riskless profit is dust (< $5).
-    version = 2
+    # v3: stage 1 drops the three sterile violation classes the
+    # 2026-08-29 snapshot study measured -- untraded legs, frozen thin
+    # ladders, and long-dated ladders below a cash floor -- before the
+    # orderbook fetch, so the scan stops reporting finds it will always
+    # reject. See MIN_LEG_VOLUME / MIN_ANNUALISED_RETURN above.
+    version = 3
     uses_llm_judgment = False
     # Voluntary self-documentation: the deciding artifact is code.
     # finish() records it with model='none (deterministic)'.
@@ -172,6 +242,11 @@ class StructuralArbTheory(Theory):
                 gate_removed["flag_fetch_failed"] = (
                     gate_removed.get("flag_fetch_failed", 0) + 1)
         funnel["flag_confirmed"] = confirmed
+
+        # v3: drop the three sterile classes before anything expensive.
+        findings, sterile = _drop_sterile(findings, now=ctx.now)
+        for label, n in sterile.items():
+            gate_removed[label] = gate_removed.get(label, 0) + n
 
         # Live runs re-quote every leg and re-decide on fresh asks.
         if ctx.run_mode == "live" and findings:

@@ -1870,3 +1870,32 @@ measures the population, not the edge. Two cheap changes are
 pre-registered in the study: screen the three sterile classes out in
 stage 1 (all identifiable before the depth fetch), and treat sub-daily
 decay as an execution-*cadence* question if it is confirmed.
+
+## 2026-08-29 (cont.) — structural_arb v3: the sterile classes screened at stage 1
+
+**Did:** Implemented the cheap change the snapshot study pre-registered an
+hour earlier. `_drop_sterile` removes the three never-actionable violation
+classes before the orderbook walk: `MIN_LEG_VOLUME = 100` (untraded
+strikes and frozen thin ladders) and `MIN_ANNUALISED_RETURN = 0.05` over
+horizons ≥ 30 days (long-dated ladders). Version 3, TDD, suite **890**
+green.
+
+**Learned:**
+
+1. **The test that mattered was the keep-case, not the drop-cases.**
+   `test_the_one_liquid_short_dated_violation_survives` pins that
+   `KXNASDAQ100MINY` — the single violation in 11 snapshots that was both
+   liquid and attractively priced — still reaches the depth gate.
+   Screening it out would have produced a quieter scan and a worse
+   theory; writing that test first is what stopped the thresholds drifting
+   toward "remove everything".
+2. **Lifetime volume is not a liquidity proxy, and the code says so.**
+   `KXNASDAQ100MINY` had 3,918 contracts of lifetime volume and was still
+   dust at the prices that mattered. The new screen only removes what
+   lifetime volume *alone* already proves sterile.
+3. **Verified live:** today's board gives the same 3 findings as this
+   morning's v2 run, all now removed at stage 1, and **6 orderbook
+   fetches not spent** on the endpoint the collector is competing for.
+
+Not an edge change — all six historical finds were rejected either way.
+It buys a scan that stops announcing finds it will always throw away.

@@ -143,6 +143,33 @@ ran end to end.)
 
 ## Version
 
+3 — 2026-08-29: **stage 1 drops three sterile violation classes before
+the orderbook fetch.** The snapshot study
+(`studies/2026-08-29-structural-arb-violation-liquidity/`) replayed this
+theory's geometry over 11 stored boards and found six violations in five
+days, **every one of which the v2 depth gate then rejected**. All six fall
+into classes the board alone identifies:
+
+| class | screen | study evidence |
+|---|---|---|
+| untraded strikes | `MIN_LEG_VOLUME = 100` | 3 finds at 0.0–0.1 lifetime volume, each in one snapshot only |
+| frozen thin ladders | same | `KXNCAAMBWINS` in 8 of 11 snapshots at unchanged prices, $0.02 fillable |
+| long-dated ladders | `MIN_ANNUALISED_RETURN = 0.05` | `USCLIMATE` 2025/2030: liquid (11,596) and persistent, 1.5%/yr over 4.3 years |
+
+The bar these thresholds had to clear, and the test that pins it
+(`test_the_one_liquid_short_dated_violation_survives`): they must **not**
+remove `KXNASDAQ100MINY` — the single violation in the whole dataset that
+was both liquid (3,918 contracts) and attractively priced (36.4%/yr).
+That one still reaches the depth gate, which is whose job it is.
+
+This is a reporting and cost change, not an edge change: all six were
+already rejected. What it buys is a scan that stops announcing finds it
+will always throw away, and stops spending a rate-limited orderbook fetch
+per leg to rediscover what `volume` already said. `MIN_LEG_VOLUME` is
+explicitly **not** a liquidity proxy for the depth gate — lifetime volume
+and fillable size are different questions, which `KXNASDAQ100MINY` proves
+by having lots of the first and none of the second.
+
 1 — initial: nested pairs, geometry NO-baskets, flag NO-baskets; 1¢/leg
 buffer; 150-fetch flag cap; live re-quote verification. (An earlier
 draft of this note said 25-fetch; the shipped constant was 150.)

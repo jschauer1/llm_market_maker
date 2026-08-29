@@ -6,6 +6,7 @@ must not. The proofs are conservative on purpose — a false positive here
 is real money lost, a false negative is a missed lottery ticket.
 """
 
+from dataclasses import replace
 from datetime import datetime, timezone
 
 import pytest
@@ -613,3 +614,113 @@ def test_price_live_orderbook_budget_caps_fetches(monkeypatch):
     sc = result.scored[0]
     assert sc.disposition == "screened"
     assert "UNVERIFIED" in sc.rationale
+
+
+# --- v3: the three sterile classes, screened before the depth fetch ------
+#
+# The 2026-08-29 snapshot study
+# (studies/2026-08-29-structural-arb-violation-liquidity/) replayed the
+# geometry over 11 stored boards and found six violations in five days,
+# every one of which the depth gate rejected. They fall into three classes
+# that are all identifiable from the board alone, so the scan should stop
+# reporting finds it will always reject -- and stop spending a
+# rate-limited orderbook fetch per leg to discover it.
+#
+# The bar these thresholds must clear: they must NOT remove the one
+# violation in the study that was both liquid and attractively priced.
+
+
+def _vol_market(ticker, volume, close_time, **kw):
+    market = m(ticker, **kw)
+    return replace(market, volume=volume, close_time=close_time)
+
+
+def test_untraded_legs_are_screened_out():
+    # KXWTAGTOTAL: lifetime volume 0.0-0.1. The 1992%/yr on the study's
+    # worst offender is arithmetic on quotes no trade has ever tested.
+    board = [
+        _vol_market("W-15", 0.11, "2026-09-13T00:00:00Z", event="EV-W",
+                    strike_type="greater", floor=15, yes_ask=0.13),
+        _vol_market("W-20", 0.11, "2026-09-13T00:00:00Z", event="EV-W",
+                    strike_type="greater", floor=20, no_ask=0.42),
+    ]
+    result = StructuralArbTheory(fetch=_fake_fetch({}, [])).screen(
+        _ctx(board))
+    assert result.candidates == ()
+    assert result.gate_removed["untraded or near-untraded leg"] == 1
+
+
+def test_frozen_thin_ladders_are_screened_out():
+    # KXNCAAMBWINS: 6 and 40 contracts of lifetime volume, and it sat in
+    # 8 of 11 snapshots at unchanged prices worth $0.02 fillable.
+    board = [
+        _vol_market("N-24", 6.0, "2027-03-21T00:00:00Z", event="EV-N",
+                    strike_type="greater", floor=24, yes_ask=0.42),
+        _vol_market("N-27", 39.9, "2027-03-21T00:00:00Z", event="EV-N",
+                    strike_type="greater", floor=27, no_ask=0.50),
+    ]
+    result = StructuralArbTheory(fetch=_fake_fetch({}, [])).screen(
+        _ctx(board))
+    assert result.candidates == ()
+    assert result.gate_removed["untraded or near-untraded leg"] == 1
+
+
+def test_long_dated_ladders_below_the_cash_floor_are_screened_out():
+    # USCLIMATE 2025/2030: genuinely liquid (11,596 contracts) and
+    # genuinely persistent, and pays 1.5%/yr over 4.3 years. A riskless
+    # return below cash is not an opportunity.
+    board = [
+        _vol_market("C-2025", 11596.0, "2030-12-31T00:00:00Z", event="EV-C",
+                    strike_type="greater", floor=2025, yes_ask=0.50),
+        _vol_market("C-2030", 11596.0, "2030-12-31T00:00:00Z", event="EV-C",
+                    strike_type="greater", floor=2030, no_ask=0.438),
+    ]
+    result = StructuralArbTheory(fetch=_fake_fetch({}, [])).screen(
+        _ctx(board))
+    assert result.candidates == ()
+    assert result.gate_removed["return below the cash floor"] == 1
+
+
+def test_the_one_liquid_short_dated_violation_survives():
+    """The bar for these thresholds. KXNASDAQ100MINY was the single
+    violation in 11 snapshots that was both liquid (3,918 contracts) and
+    attractively priced (12.4% over four months, 36.4%/yr). It was still
+    correctly rejected downstream on fillable depth -- which is the depth
+    gate's job, not stage 1's. Stage 1 must hand it on."""
+    board = [
+        # YES on the superset (>22600) at 0.86 plus NO on the subset
+        # (>22800) at 0.07: cost 0.93 against a guaranteed 1.00. The
+        # superset trading below the subset is the violation.
+        _vol_market("Q-22600", 3918.3, "2026-12-31T00:00:00Z", event="EV-Q",
+                    strike_type="greater", floor=22600, yes_ask=0.86),
+        _vol_market("Q-22800", 14822.2, "2026-12-31T00:00:00Z", event="EV-Q",
+                    strike_type="greater", floor=22800, no_ask=0.07),
+    ]
+    result = StructuralArbTheory(fetch=_fake_fetch({}, [])).screen(
+        _ctx(board))
+    assert len(result.candidates) == 1, (
+        "stage 1 must not remove the only liquid, short-dated, "
+        "attractively-priced violation the study found"
+    )
+    assert not result.gate_removed
+
+
+def test_sterile_class_removals_are_reported_by_category():
+    """CLAUDE.md: a gate that drops candidates without saying what it
+    dropped lets a scan claim coverage it never had."""
+    board = [
+        _vol_market("W-15", 0.11, "2026-09-13T00:00:00Z", event="EV-W",
+                    strike_type="greater", floor=15, yes_ask=0.13),
+        _vol_market("W-20", 0.11, "2026-09-13T00:00:00Z", event="EV-W",
+                    strike_type="greater", floor=20, no_ask=0.42),
+        _vol_market("C-2025", 11596.0, "2030-12-31T00:00:00Z", event="EV-C",
+                    strike_type="greater", floor=2025, yes_ask=0.50),
+        _vol_market("C-2030", 11596.0, "2030-12-31T00:00:00Z", event="EV-C",
+                    strike_type="greater", floor=2030, no_ask=0.438),
+    ]
+    result = StructuralArbTheory(fetch=_fake_fetch({}, [])).screen(
+        _ctx(board))
+    assert result.gate_removed == {
+        "untraded or near-untraded leg": 1,
+        "return below the cash floor": 1,
+    }
