@@ -528,3 +528,24 @@ def test_interpret_on_a_position_with_no_attempt_does_not_crash(conn):
     conn.commit()
     ledger.interpret(conn, opp_id, "rejected", "no attempt row on file")
     assert ledger.get_opportunity(conn, opp_id)["disposition"] == "rejected"
+
+
+def test_resolve_ticker_finds_the_latest_attempt(conn):
+    _record(conn, kalshi_ticker="KXFOO-T1", theory_id="t1")
+    row = ledger.resolve_ticker(conn, "KXFOO-T1")
+    assert row["kalshi_ticker"] == "KXFOO-T1"
+
+
+def test_resolve_ticker_refuses_ambiguity_without_theory(conn):
+    theories.register(conn, "t2", "Theory Two", "theories/t2", now=TS)
+    _record(conn, kalshi_ticker="KXFOO-T1", theory_id="t1")
+    _record(conn, kalshi_ticker="KXFOO-T1", theory_id="t2")
+    with pytest.raises(ValueError, match="pass --theory"):
+        ledger.resolve_ticker(conn, "KXFOO-T1")
+    row = ledger.resolve_ticker(conn, "KXFOO-T1", theory_id="t2")
+    assert row["theory_id"] == "t2"
+
+
+def test_resolve_ticker_unknown_raises_keyerror(conn):
+    with pytest.raises(KeyError):
+        ledger.resolve_ticker(conn, "KXNOPE-T1")

@@ -152,12 +152,25 @@ def _cmd_opportunities(args) -> int:
                     ]
             _emit(rows)
         elif args.action == "mark-taken":
+            opp_id = args.id
+            if opp_id is None:
+                if not args.ticker:
+                    raise SystemExit("pass an opportunity id or --ticker")
+                row = ledger.resolve_ticker(
+                    conn, args.ticker, theory_id=args.mark_theory
+                )
+                opp_id = row["id"]
+                print(
+                    f"matched {row['kalshi_ticker']} -> opportunity "
+                    f"{opp_id} ({row['theory_id']} v{row['theory_version']})",
+                    file=sys.stderr,
+                )
             ledger.mark_user_action(
-                conn, args.id, args.value, size=args.size,
+                conn, opp_id, args.value, size=args.size,
                 reason=args.reason, theory_id=args.mark_theory,
                 price=args.price,
             )
-            _emit(dict(ledger.get_opportunity(conn, args.id)))
+            _emit(dict(ledger.get_opportunity(conn, opp_id)))
     finally:
         conn.close()
     return 0
@@ -421,13 +434,19 @@ def build_parser() -> argparse.ArgumentParser:
     mark = osub.add_parser(
         "mark-taken", help="record what the user actually did with a bet"
     )
-    mark.add_argument("id", type=int)
+    mark.add_argument("id", type=int, nargs="?", default=None)
     mark.add_argument("value", choices=ledger.VALID_USER_ACTIONS)
     mark.add_argument("--size", type=float, default=None)
     mark.add_argument("--reason", default=None)
     mark.add_argument(
         "--theory", dest="mark_theory", default=None,
         help="theory this bet is taken for; required for 'taken'",
+    )
+    mark.add_argument(
+        "--ticker", default=None,
+        help="resolve the position by Kalshi ticker instead of id "
+             "(latest open attempt wins; ambiguity across theories refuses "
+             "and lists candidates)",
     )
     mark.add_argument(
         "--price", type=float, default=None,

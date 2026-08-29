@@ -865,6 +865,38 @@ def get_opportunity(
     ).fetchone()
 
 
+def resolve_ticker(
+    conn: sqlite3.Connection, ticker: str, theory_id: str | None = None
+) -> sqlite3.Row:
+    """The open position `mark-taken --ticker` should act on.
+
+    Most recent sighting wins. More than one theory open on the ticker is
+    a refusal, not a guess -- marking the wrong theory's row corrupts the
+    only realized-ROI signal this system gets -- so the error names each
+    candidate and the flag that disambiguates.
+    """
+    rows = conn.execute(
+        """
+        SELECT * FROM opportunities
+         WHERE kalshi_ticker = ? AND (? IS NULL OR theory_id = ?)
+         ORDER BY last_seen_at DESC
+        """,
+        (ticker, theory_id, theory_id),
+    ).fetchall()
+    if not rows:
+        raise KeyError(ticker)
+    theories_open = {r["theory_id"] for r in rows}
+    if len(theories_open) > 1:
+        names = ", ".join(
+            f"{r['theory_id']}:{r['id']}" for r in rows
+        )
+        raise ValueError(
+            f"{ticker} has open positions under more than one theory "
+            f"({names}); pass --theory to say which one you acted on"
+        )
+    return rows[0]
+
+
 def list_opportunities(
     conn: sqlite3.Connection,
     theory_id: str | None = None,
