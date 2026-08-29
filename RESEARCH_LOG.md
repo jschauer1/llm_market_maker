@@ -1820,3 +1820,53 @@ and reintroduces the maintenance treadmill today's gate work moved away
 from; (3) drop it. Spec section 3 amended to say section 4 is not
 implementable as written. **No hazard bins under any option until this is
 settled.**
+
+## 2026-08-29 (cont.) — structural_arb: six violations in 11 snapshots, and all three kinds are sterile
+
+**Did:** Three live sessions had produced five `structural_arb` positions
+and five depth-gate rejections. Rather than guess whether the gate was
+too strict or the theory simply does not fire, replayed the theory's own
+geometry over all **11 stored board snapshots** (2026-08-24 → 2026-08-29,
+96k–117k markets each). No API calls, which mattered because the
+calibration_harvest collector was saturating the rate-limited history
+endpoint at the time. Study:
+`studies/2026-08-29-structural-arb-violation-liquidity/`.
+
+**Learned:**
+
+1. **Six distinct violations in 5 days, in three sterile classes.**
+   Untraded strikes (3, lifetime volume 0.0–0.1 — the 100–1992%/yr
+   figures are arithmetic on prices nobody will fill); one frozen thin
+   ladder (`KXNCAAMBWINS`, persisting **8 of 11 snapshots at unchanged
+   prices** on 6-contract legs, worth $0.02 fillable); and one long-dated
+   liquid ladder (`USCLIMATE` 2025/2030, 11,596 contracts, **1.5%/yr over
+   4.3 years** — below cash).
+2. **Exactly one was both liquid and attractive**, and it evaporated.
+   `KXNASDAQ100MINY` paid 36.4%/yr on a 3,918-contract leg, was recorded
+   as opp 9248, was **rejected as dust**, and by the next session its YES
+   leg had gone 0.07 → 0.21.
+3. **So the v2 depth gate is validated rather than too strict** — and
+   lifetime volume is not the right liquidity test, which is precisely
+   why v2 walks the order book instead.
+4. **The zero tradeable firing rate is structural, not unlucky.** A
+   violation both fillable and worth filling is by construction the one
+   someone else takes first; a periodic board pull sees the residue.
+   More sessions of the same scan will not change that.
+5. **`USCLIMATE` is calendar-arb's conclusion arrived at independently**
+   — cross-date nesting survives only at horizons where carry dwarfs it.
+   Two studies, two directions, same answer.
+6. **A method error worth remembering.** The probe's first draft grouped
+   by event alone and reported **10,799** violations instead of 6, a
+   1,800× inflation, because one Kalshi event holds several independent
+   ladders (spread per team, hits per player) whose strike numbers
+   compare numerically and mean nothing across subjects. `underlying_key`
+   exists to prevent that and says so; any replay must group by event
+   **and** underlying, as `scan.scan()` does. Recorded in the study
+   because the wrong answer was superficially far more exciting than the
+   right one.
+
+**No retirement proposal** — n=6, `testing`, 0 settled rows; this
+measures the population, not the edge. Two cheap changes are
+pre-registered in the study: screen the three sterile classes out in
+stage 1 (all identifiable before the depth fetch), and treat sub-daily
+decay as an execution-*cadence* question if it is confirmed.

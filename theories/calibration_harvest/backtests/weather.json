@@ -230,6 +230,349 @@
    "written": 0,
    "no_candles": 0,
    "below_floor": 0
+  },
+  "KXTEMPCHIH": {
+   "n_settled": 12371,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 2410,
+   "below_floor": 9863
+  },
+  "KXHIGHTTTN": {
+   "n_settled": 12,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 12
+  },
+  "KXAVGTKSAT": {
+   "n_settled": 5,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXARCTICICEMIN": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHURPATHSCAROLINA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXRAINAUSM": {
+   "n_settled": 7,
+   "n_obs": 1,
+   "written": 1,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXEARTHQUAKECALIFORNIA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLOWTKSAN": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXAVGTKSAN": {
+   "n_settled": 10,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 5
+  },
+  "KXLOWTLV": {
+   "n_settled": 348,
+   "n_obs": 47,
+   "written": 47,
+   "no_candles": 0,
+   "below_floor": 184
+  },
+  "KXHIGHTSFO": {
+   "n_settled": 348,
+   "n_obs": 189,
+   "written": 189,
+   "no_candles": 0,
+   "below_floor": 1
+  },
+  "KXHIGHTRJTT": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLOWTRKSI": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXRAINHOUM": {
+   "n_settled": 7,
+   "n_obs": 6,
+   "written": 4,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLOWTPHIL": {
+   "n_settled": 348,
+   "n_obs": 36,
+   "written": 36,
+   "no_candles": 0,
+   "below_floor": 109
+  },
+  "KXLOWTMIA": {
+   "n_settled": 348,
+   "n_obs": 52,
+   "written": 52,
+   "no_candles": 0,
+   "below_floor": 17
+  },
+  "KXHIGHTEMPDEN": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHIGHTLSGG": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHURPATHHAWAII": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXAVGTKAUS": {
+   "n_settled": 5,
+   "n_obs": 1,
+   "written": 1,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHIGHTEBBR": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLOWTRJTT": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHIGHTEDDB": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHIGHTZSPD": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLOWTNOLA": {
+   "n_settled": 348,
+   "n_obs": 10,
+   "written": 10,
+   "no_candles": 0,
+   "below_floor": 114
+  },
+  "KXLOWTHOU": {
+   "n_settled": 348,
+   "n_obs": 22,
+   "written": 22,
+   "no_candles": 0,
+   "below_floor": 118
+  },
+  "KXHIGHTATL": {
+   "n_settled": 348,
+   "n_obs": 97,
+   "written": 97,
+   "no_candles": 0,
+   "below_floor": 4
+  },
+  "KXLOWTDEN": {
+   "n_settled": 348,
+   "n_obs": 44,
+   "written": 44,
+   "no_candles": 0,
+   "below_floor": 65
+  },
+  "KXLOWTBOS": {
+   "n_settled": 348,
+   "n_obs": 35,
+   "written": 35,
+   "no_candles": 0,
+   "below_floor": 189
+  },
+  "KXHEATAPHX": {
+   "n_settled": 1,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 1
+  },
+  "KXHURPATHGENERALMAJOR": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXARTICICE": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLOWTLAX": {
+   "n_settled": 348,
+   "n_obs": 35,
+   "written": 35,
+   "no_candles": 0,
+   "below_floor": 122
+  },
+  "KXLOWTLFPG": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLOWTVABB": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXECLIPSECOVERBUFF": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXEARTHQUAKEJAPAN": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLOWTDC": {
+   "n_settled": 348,
+   "n_obs": 33,
+   "written": 33,
+   "no_candles": 0,
+   "below_floor": 118
+  },
+  "KXRAINSEAM": {
+   "n_settled": 7,
+   "n_obs": 3,
+   "written": 2,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXRAINDALM": {
+   "n_settled": 7,
+   "n_obs": 1,
+   "written": 1,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXEARTHQUAKEJAPANTATSUKI": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHIGHMIA": {
+   "n_settled": 348,
+   "n_obs": 145,
+   "written": 145,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHIGHTOKC": {
+   "n_settled": 348,
+   "n_obs": 76,
+   "written": 76,
+   "no_candles": 0,
+   "below_floor": 24
+  },
+  "KXLOWTSDF": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXRAINDC": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHIGHNY": {
+   "n_settled": 348,
+   "n_obs": 149,
+   "written": 149,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHIGHTEHAM": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXTEMPMIAH": {
+   "n_settled": 3210,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 848,
+   "below_floor": 2322
+  },
+  "KXLOWTTTN": {
+   "n_settled": 12,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 12
   }
  }
 }

@@ -204,3 +204,70 @@ but no depth behind a nominal one.
 `KXNCAAMBWINS-26SJU` is the same position rejected on 08-27 and 08-28
 (opp 9310), unchanged. Nothing endorsed. Three live runs, three finds,
 three depth kills, zero recordable arbitrage.
+
+## 2026-08-29 (cont.) — what the violations actually are: 6 in 11 snapshots, all three kinds sterile
+
+Three live sessions, five positions, five depth-gate rejections. Rather
+than read that as "the gate is too strict" or "it does not fire", replayed
+the theory's own geometry over all **11 stored board snapshots**
+(2026-08-24 to 2026-08-29, 96k–117k markets each). No API calls — which
+mattered, because a calibration_harvest collector was saturating the
+rate-limited history endpoint at the time. Full write-up and reproducible
+probe: `studies/2026-08-29-structural-arb-violation-liquidity/`.
+
+**Six distinct violations across 11 snapshots and 5 days**, and they fall
+into exactly three sterile classes:
+
+| violation | gross | horizon | return/yr | thin leg vol | snaps |
+|---|---|---|---|---|---|
+| `KXWTAGTOTAL` ×3 | 4–82% | 15d | 101–1992% | **0.0–0.1** | 1 each |
+| `KXNCAAMBWINS-26SJU` 24/27 | 8.7% | 0.56y | 15.6% | **6.0** | **8** |
+| `KXNASDAQ100MINY-26DEC31` | 12.4% | 0.34y | **36.4%** | **3,918** | 5 |
+| `USCLIMATE` 2025/2030 | 6.6% | 4.34y | **1.5%** | **11,596** | 4 |
+
+1. **Untraded strikes** — quotes no trade has ever tested; the huge
+   annualised numbers are arithmetic on prices nobody will fill. Each
+   appeared in one snapshot only.
+2. **Frozen thin ladders** — `KXNCAAMBWINS` persisted **8 of 11
+   snapshots at unchanged prices** on 6- and 40-contract legs. A 15.6%/yr
+   riskless return sitting untouched for five days is not an opportunity
+   anyone is declining; the live depth check measured 0.47 baskets and
+   **$0.02**.
+3. **Long-dated ladders** — `USCLIMATE` is genuinely liquid (11,596
+   contracts) and genuinely persistent, and pays **1.5%/yr over 4.3
+   years**: below cash. Independent arrival at calendar-arb's conclusion.
+
+**Exactly one candidate was both liquid and attractively priced:**
+`KXNASDAQ100MINY` (36.4%/yr, 3,918 contracts) — recorded as opp 9248 on
+08-27, **rejected as dust**, and by the next session its YES leg had moved
+0.07 → 0.21 and the violation was gone.
+
+**So v2's depth gate is validated, not too strict.** All six would have
+been correctly rejected, and the one that looked real proved it by
+evaporating. Lifetime volume is *not* the right liquidity test — 9248 had
+3,918 contracts and was still dust at the prices that mattered — which is
+exactly why v2 walks the order book.
+
+**But the tradeable firing rate over 5 days and 11 pulls is zero, and the
+mechanism explains it.** A violation both fillable and worth filling is by
+construction the one somebody else takes first; what survives to be
+visible on a periodic board pull is the residue. Adverse selection, not
+bad luck — more sessions of the same scan should not be expected to fix
+it.
+
+**No retirement proposal**: n=6, `testing`, 0 settled rows, and this
+measures the population rather than the theory's edge. Two cheap changes
+are pre-registered in the study for whenever they are wanted: screen out
+the three sterile classes in stage 1 (they are all identifiable before the
+depth fetch, and it would stop the scan reporting finds it will always
+reject), and — if fillable violations really do decay within a day — treat
+this as an execution-*cadence* problem rather than a screen problem.
+
+**Method note worth keeping.** The probe's first draft grouped by event
+alone and reported **10,799** violations instead of 6 — a 1,800× inflation
+— because one Kalshi event holds several independent ladders (a spread
+ladder per team, a hits ladder per player) whose strike numbers compare
+numerically and mean nothing across subjects. `underlying_key` exists to
+prevent exactly that and its docstring says "a false merge costs real
+money". Any future replay of this scan must group by event **and**
+`underlying_key`, as `scan.scan()` does.
