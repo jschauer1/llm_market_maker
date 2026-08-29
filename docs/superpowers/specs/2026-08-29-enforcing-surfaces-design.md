@@ -529,7 +529,7 @@ hold **16,896 words across 7 files** — `insider_judgment` 4,332,
 `no_side_premium` 1,517, `mention_family` 556.
 
 So the defect is **not** that theories fail to keep notebooks. They keep them.
-The log is 24,837 words *in addition*, and `CLAUDE.md` already forbids the
+The log is 24,812 words *in addition*, and `CLAUDE.md` already forbids the
 duplication:
 
 > `RESEARCH_LOG.md` stays cross-theory: when a session's work sits inside one
@@ -642,18 +642,33 @@ evidence that the bar is not too strict to comply with.
 
 **T entries** move to the owning theory's `NOTES.md`, in date order, verbatim —
 the notebook is append-only and raw, so nothing is rewritten or summarised on
-the way in.
+the way in. The owner is the companion table's `owner` column, recorded per
+row; the one entry spanning two theories (2026-08-24 "Two follow-ups") moves
+whole to the majority owner, with a dated pointer in the other notebook, per
+that row's pairing note.
 
 **M entries** split: the repo-level fact is extracted upward into `rulings`,
 `theory_facts`, or a one-paragraph log entry; the theory narrative moves to the
 notebook. **This is the only judgement-bearing step in the migration**, so it
 is done one entry at a time with the extraction written down, never in bulk.
+A row whose owner is a `studies/` folder splits the same way, with the study's
+own write-up as the notebook-equivalent — those entries are study work, and no
+theory `NOTES.md` exists to receive them.
 
-**X entries** stay.
+**X entries** stay. Entries appended after `ff4318a` are classified under the
+same legend into the companion file's addendum before anything moves; the
+table pins its revision, the log does not stop.
 
 **Every moved entry leaves a stub at its original anchor** — date, heading, and
 the pointer to where the content went. The journal stays append-only and its
 line numbering stays meaningful; a stub is an edit *in place*, not a deletion.
+
+**A correction never separates from its target.** The 2026-08-29 politics
+correction retracts its target *by position* ("the entry two above") — exactly
+the reference a stub silently falsifies. A correction's narrative lands
+adjacent to wherever its target landed, in date order, never in a different
+file, and its stub names the target by date and heading, not position. The
+companion table's pairing notes bind the known pair.
 
 #### The citation sweep (flagged by session 9a — do this first, not last)
 
@@ -669,11 +684,15 @@ Prose citations point *into* the content being moved, and unlike
   a move silently breaks because the date still exists somewhere else.
 - `docs/superpowers/plans/*` and `docs/DEDUP_PLAN.md`, which cite log content
   by description.
+- Positional cross-references *within the log itself* ("the entry two above"),
+  which the dated-citation grep cannot see. Four instances enumerated in the
+  companion file; only the politics correction crosses a move boundary.
 
 Sweep before moving anything:
 
 ```bash
 grep -rn 'THEORY.md Learnings\|NOTES.md 20\|RESEARCH_LOG' --include='*.md' --include='*.py' .
+grep -n 'entry above\|entry two above\|entries above\|see above' RESEARCH_LOG.md
 python -m tools.cli slices list --show-origin
 ```
 
