@@ -453,6 +453,17 @@ line is outcome judgment.
 - **It passes the contamination probe.** Run the probe against the gate's
   own sample: given only what the prompt shows, can the model state the
   outcome? If it can, the stage is not structural, whatever the prompt says.
+- **The payload is point-in-time where a capture exists.** Market text is
+  edited under live markets, and a compliant prompt shows which *fields*
+  it sends, never which *version* — so where a snapshot at or before the
+  decision point exists, rules and title come from it, never from a
+  current fetch. Where none exists (all history before 2026-08-24),
+  today's text may be used and the tier is kept, but the `backtest_runs`
+  notes must say so and cite the measured drift bound for the population
+  (currently one genuine resolution-criteria change across 156k
+  multi-capture markets in 5 days —
+  `studies/2026-08-29-structural-gate-payload-version/`; refresh the
+  bound as snapshot history grows).
 
 Record the claim where it can be checked: the `judgment_runs` row for a
 structural stage says so in its `notes`, alongside the probe result that

@@ -123,15 +123,18 @@ written, and on the fix being free when no edit occurred.
 
 (Both confirmed by session 09 against attempts to break them.)
 
-## PROPOSED fifth condition — not adopted, not in force
+## Fifth condition — ADOPTED 2026-08-29
 
-> ⚠️ **STATUS: PROPOSAL ONLY.** Nothing in this section is a rule. The
-> current rule is `0f06265`'s four conditions in CLAUDE.md, unchanged.
-> This text is a *proposal awaiting the user's ruling*; no session edits
-> CLAUDE.md on it (authority boundary confirmed with sessions 78 and 09).
-> A future session skimming this study should read the four conditions in
-> CLAUDE.md as authoritative and everything below as a suggestion that
-> may have been rejected.
+> **STATUS: ADOPTED.** The user delegated adjudication of this class of
+> decision to the supervisor session (09) on 2026-08-29; the amendment's
+> author (78) had recused. Ruling: the two-part form below is adopted,
+> and part (b) **keeps tier A** — with the disclosure and drift bound
+> mandatory, since the measured drift composition (one genuine
+> resolution-criteria change in the 5-day window) does not justify
+> voiding all pre-snapshot history, and a downgrade would re-teach
+> theories to avoid the honest tool. CLAUDE.md and
+> `.claude/skills/backtest-theory/SKILL.md` now carry the rule; this
+> section stays as the rationale record.
 
 ### Why two parts, and not the one part first drafted
 
