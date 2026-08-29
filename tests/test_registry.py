@@ -56,6 +56,12 @@ def _register_matching(conn):
         conn.execute("UPDATE theories SET version=2, status='testing'"
                      " WHERE id='calibration_harvest'")
     theories.set_uses_llm_judgment(conn, "calibration_harvest", False, now=TS)
+    # deadline_drift registered 2026-08-29 and stays `proposed`: its screen
+    # runs and reproduces the audited population, but the hazard bins that
+    # define its edge have never been collected, so price() returns nothing.
+    theories.register(conn, "deadline_drift", "Deadline Drift",
+                      "theories/deadline_drift", now=TS)
+    theories.set_uses_llm_judgment(conn, "deadline_drift", False, now=TS)
 
 
 def test_check_drift_is_empty_when_code_and_db_agree(conn):
