@@ -153,3 +153,30 @@ Two lessons worth carrying, both mine:
   had been primed to expect after five rounds of screen work. A result that
   confirms your current mood deserves the same scrutiny as one that
   offends it.
+
+### Reproducibility fix, and why dropping early-YES markets is not survivorship bias
+
+The correction above was committed as prose: the numbers retracting a
+committed conclusion existed only in one session's memory. Fixed —
+`collect_settled.py` persists the raw `list_settled` payloads, per-market
+anchors (parsed deadline, actual close, and the gap), and candles carrying
+**both** `days_to_close` and `days_to_deadline`; `hazard.py` regenerates
+both tables from disk. `python -m theories.deadline_drift.hazard` prints the
+contaminated and corrected rows side by side, so the retraction is a number
+you can run rather than a claim you have to trust.
+
+`hazard_observations.json` is deleted rather than kept: every row in it was
+anchored to actual close with no absolute dates, so it could only ever
+reproduce the *wrong* table. `data/candles.json` supersedes it and carries
+both anchors.
+
+**On the 7 markets the corrected view drops.** At a glance, excluding
+markets that resolved YES before deadline−21 looks like selection — the
+correction removes exactly the arm that would raise P(YES). It is not.
+Conditioning on "still open at deadline − h" is the hazard-analysis
+**at-risk set**: a market that has already resolved YES is not available to
+bet at that moment, so excluding it is precisely what makes P(YES) the right
+*conditional*. The number answers "given I can still buy NO here, how often
+does YES come in?" — the only question a bettor can act on. Anchoring on
+actual close does the opposite: it drags each YES market's resolution
+moment into the late window and asks a question nobody can trade.
