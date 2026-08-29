@@ -7,26 +7,45 @@ description: Replay a theory against historical markets without lookahead bias, 
 
 ## 1. Determine the tier — derived, never self-reported
 
-Two facts decide it:
+Three facts decide it:
 
 1. Does the theory's decision path invoke LLM judgment? Check
    `theory.uses_llm_judgment` — a `ClassVar`, drift-checked against the DB
    by `registry.check_drift`, so it cannot silently disagree with the
    registry row. `THEORY.md` explains *why*; the class is the fact.
-2. Did the markets resolve before or after the judging model's knowledge
+2. If it does, is **every** judging stage a *structural gate* — a stage
+   whose answer cannot be influenced by the outcome? Test it against
+   CLAUDE.md's four conditions ("Structural gates keep tier A"), not
+   against the prompt's self-description. The decisive one is the
+   contamination probe: given only what the prompt shows, can the model
+   state the outcome? If it can, the stage is outcome judgment.
+3. Did the markets resolve before or after the judging model's knowledge
    cutoff?
 
 | Tier | Condition | Trust |
 |---|---|---|
-| **A** | No LLM in the decision path | Full evidence, all history |
-| **B** | LLM judgment, markets resolved *after* the cutoff, web search off | Valid, small sample |
-| **C** | LLM judgment, markets resolved *before* the cutoff | Contaminated — indicative only |
+| **A** | No LLM, **or** every model stage is a structural gate | Full evidence, all history |
+| **B** | Outcome judgment, markets resolved *after* the cutoff, web search off | Valid, small sample |
+| **C** | Outcome judgment, markets resolved *before* the cutoff | Contaminated — indicative only |
+
+**Structural is a finding, not a claim.** "Derived, never self-reported"
+binds hardest here, because it is now the one label a theory could award
+itself. Run the probe, record its result in the `judgment_runs` row's
+`notes`, and treat an unrun probe as outcome judgment. A stage that
+assigns any bucket, side, or probability is outcome judgment whatever its
+prompt is titled — buckets come only from a deep stage.
 
 A tier A backtest of a judgment theory's *screen alone* is often the best
 available evidence: uncontaminated, and it measures whether the filter selects
 markets that beat their price.
 
-**A cascade has two cutoffs, not one.** If the theory runs a cheap gate ahead
+**Only outcome stages contribute a cutoff.** A structural gate cannot
+leak the future, so it does not drag a cascade's cutoff earlier — a theory
+whose gate is structural and whose deep stage judges outcomes takes the
+deep stage's cutoff alone. A theory with *no* outcome stage has no cutoff
+to honour at all, which is what tier A means.
+
+**A cascade with two outcome stages has two cutoffs, not one.** If the theory runs a cheap gate ahead
 of deep analysis, those are two different models with two different knowledge
 cutoffs. Tier B validity requires the markets to resolve after the **later**
 of the two — a cheap gate with an earlier cutoff still contaminates the run

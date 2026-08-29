@@ -397,13 +397,64 @@ through and must bump the version exactly like a threshold change would.
 
 ## Backtest tiers
 
-- **A** — no LLM in the decision path. Full evidence, all history.
-- **B** — LLM judgment, markets resolved after the model's knowledge cutoff,
-  web search off. Valid but small.
-- **C** — LLM judgment on pre-cutoff markets. Contaminated; excluded from
+- **A** — no *outcome* judgment in the decision path. Full evidence, all
+  history. Fully mechanical theories qualify, and so does a theory whose
+  only model stage is a **structural gate** (below).
+- **B** — outcome judgment, markets resolved after the model's knowledge
+  cutoff, web search off. Valid but small.
+- **C** — outcome judgment on pre-cutoff markets. Contaminated; excluded from
   credibility. Use the contamination probe before trusting anything from it.
 
 Web search stays off in every backtest judgment subagent.
+
+### Structural gates keep tier A
+
+The tier exists for exactly one reason: a model may **remember how a market
+resolved**, so replaying it over history the model already knows measures
+recall rather than edge. That worry is about the *question asked*, not about
+whether a model was present. Asking "will Davis be traded to Houston by
+Oct 21?" is contaminated, because the answer *is* the outcome. Asking "does
+this market require picking one team out of thirty?" is not: the answer sat
+in the sentence the day the market opened, and knowing where Davis actually
+went cannot change it.
+
+A judging stage is **structural** — and does not cost tier A — only when all
+of the following hold. This list is the whole point; a stage that misses any
+line is outcome judgment.
+
+- **Answerable from the market's own text as written at open.** The
+  classification would have been identical on day one and on settlement day.
+- **The payload carries no outcome-bearing data.** Rules and title only —
+  no price, result, settlement, volume, close date, or anything downstream
+  of what happened. This is a property of the prompt file, which is already
+  on disk and reviewable in `git diff`.
+- **It decides eligibility, never direction.** A structural gate answers
+  "is this market in the population?" It never assigns a probability, a
+  side, or a confidence bucket. Buckets still come only from a deep stage,
+  and any theory with a deep stage is tier B or C as before.
+- **It passes the contamination probe.** Run the probe against the gate's
+  own sample: given only what the prompt shows, can the model state the
+  outcome? If it can, the stage is not structural, whatever the prompt says.
+
+Record the claim where it can be checked: the `judgment_runs` row for a
+structural stage says so in its `notes`, alongside the probe result that
+supports it. **Everything else about LLM record-keeping is unchanged** —
+the theory still declares `uses_llm_judgment`, still records provenance for
+every judging stage, still keeps its prompts on disk, and still bumps its
+version when a prompt changes. This amendment moves the tier, not the
+paper trail.
+
+**Reaching for a model is still the second choice, and this does not soften
+that.** If the answer is available as *data* — a field the platform already
+publishes, a ticker pattern, an arithmetic property — take the data. It is
+free, exact, instant, needs no probe and no prompt, and cannot drift with
+phrasing. `mutually_exclusive` on Kalshi's event envelope is the worked
+example: it answers "does this condition on which branch?" outright, and no
+prompt should be written to re-derive it. Prefer data, then code, then a
+structural gate, then outcome judgment. But when a structural gate genuinely
+is the best available instrument, **it should not downgrade the evidence** —
+penalising it taught theories to avoid the honest tool rather than the
+contaminated one, which was never the point.
 
 Where the replay itself lives — and why there is no shared backtest engine
 — is under "What lives in a theory, and what gets elevated".
@@ -432,8 +483,9 @@ market *families* — "any future price", "weather", "live sport" — is asking 
 ticker question, not a judgment question, and a pattern answers it for free,
 deterministically, and auditably. `insider_judgment` gates this way: `gate.py`
 removes 88% of its screened events with no model, and the cascade's expensive
-stage sees only what is left. A code gate also keeps one fewer model out of
-the decision path, which matters for the tier B cutoff rule.
+stage sees only what is left. A code gate is also free, exact and instant
+where a model is none of those — the reason to prefer it, now that a
+structural gate no longer costs tier A on its own.
 
 The trade is real in both directions. A code gate only knows families it has
 seen, and inside a matched family it drops silently — so **always report what
