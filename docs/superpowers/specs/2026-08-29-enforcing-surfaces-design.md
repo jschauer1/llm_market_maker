@@ -6,6 +6,8 @@ fine as written and simply arrive at the wrong moment — by loading them where
 they bind, deleting none of them.
 
 **Date:** 2026-08-29. **Status:** design proposed, implementation not started.
+Reviewed and corrected against the live repo and DB the same day; §6.5's two
+rulings were issued directly by the user during that review.
 **Scope:** `tools/` + `db/schema.sql` + ~370 net new words in `CLAUDE.md`,
 substantial additions to four skills, plus a one-time migration of
 `RESEARCH_LOG.md` (§6).
@@ -117,7 +119,8 @@ Additive only. `window_slug` is nullable so the eight historical
 
 ### 1.4 The refusal
 
-`ledger.record_backtest_run()` gains a required `window_slug`. This is the
+`score.record_backtest_run()` (`tools/score.py`) gains a required
+`window_slug`. This is the
 narrow analogue of `record_opportunity` refusing a row with no Kalshi ticker:
 one boundary, one field, no judgement involved. Studies are not ledger writes,
 so they get a CLI call plus a conventions test rather than a refusal.
@@ -177,9 +180,12 @@ ALTER TABLE theory_slices ADD COLUMN n_examined INTEGER;   -- partitions conside
 `n_examined` is the honest denominator — "this cell was the best of 16" is the
 fact that makes a Wilson bound readable, and it is currently recoverable only
 by reading a study. `slices register` prompts for it; `segment_report` prints
-it beside the slice's edge. No behaviour changes, and `hypothesis_tests` rows
-can be written by `slices register` rather than by a separate call an agent
-must remember.
+it beside the slice's edge. No behaviour changes, and `slices register` is the
+**sole writer** of `hypothesis_tests` rows for slice registrations — running
+`questions ask` as well for the same registration would count one question
+twice, so `questions ask` is reserved for the moments with no registration
+act: studies and backtests. Belt and braces: `questions ask` warns on an
+exact `(window_slug, asked_by, hypothesis)` duplicate.
 
 ---
 
@@ -199,7 +205,8 @@ Measured 2026-08-29 against `db/market_edge.db`:
 
 Three of five running theories score `n=0`. `structural_arb` has been bumped
 twice past every row it has ever recorded. `score report insider_judgment`
-returns nulls across the board while 96 settled rows sit in the table at v3.
+returns nulls across the board while 96 settled live-mode rows sit in the
+table at v3 (3,675 more settled there under backtest runs).
 
 The versioning rule is correct and must not be weakened — it is the only thing
 standing between this project and tuning until the history looks good. But it
@@ -231,11 +238,16 @@ CREATE TABLE theory_versions (
     kind            TEXT NOT NULL CHECK (kind IN ('breaking','carry')),
     predecessor     INTEGER,                -- NULL for v1
     justification   TEXT NOT NULL,
-    equivalence_run TEXT,                   -- REQUIRED when kind='carry'
+    equivalence_run TEXT,
     created_at      TEXT NOT NULL,
-    PRIMARY KEY (theory_id, version)
+    PRIMARY KEY (theory_id, version),
+    CHECK (kind <> 'carry' OR equivalence_run IS NOT NULL)
 );
 ```
+
+The `CHECK` is the refusal in the repo's own idiom — `judgment_runs` already
+constrains prompts this way — so an unproven `carry` cannot be inserted at
+all; the §10 conventions test stays as belt and braces over old databases.
 
 - **`breaking`** — the decision path changed. Track record resets. This is the
   default and stays the default; an agent that does not think about it gets
@@ -247,19 +259,28 @@ CREATE TABLE theory_versions (
 
 `theories.bump_version(..., kind="carry")` **refuses without an
 `equivalence_run`**: a replay of the new code over a pinned fixture of the
-predecessor version's recorded rows, which must reproduce every one of
-`disposition`, `outcome`, `entry_price`, `edge_pts_net` and `edge_basis`
-exactly. Any single divergence makes the bump `breaking`, whatever the author
-intended.
+predecessor version's recorded rows, which must reproduce every decision
+*output* exactly — the side (`outcome`, which lives on the parent
+`opportunities` row, so the fixture joins attempts to their positions),
+`disposition`, `model_prob`, `confidence`, `edge_pts_gross`, `edge_pts_net`,
+`edge_basis`, and **any `extra_json` key a registered slice predicates on**.
+That last item is load-bearing for §2.8: slice predicates run over outcome,
+confidence bucket, price band and `extra_json` features, so an equivalence
+check that skipped them could pass a carry that silently changes slice
+membership — pooling a slice's evidence across a bump that changed the
+slice's own inputs. `decision_date` and `entry_price` are the replay's
+stored *inputs*, not things it proves. Any single divergence makes the bump
+`breaking`, whatever the author intended.
 
 This is the load-bearing half. Without it `carry` becomes a self-granted
 exemption and reintroduces the silent merge through the front door.
 
-Reference implementation: `tools/theories.py::prove_carry(conn, theory_id,
-from_version, theory_instance) -> EquivalenceResult`, replaying against
-`opportunity_attempts` rows at `from_version` using each attempt's stored
-`decision_date` and `entry_price`, so no fresh board is needed and the proof is
-reproducible offline.
+Proposed implementation (does not exist yet): `tools/theories.py::
+prove_carry(conn, theory_id, from_version, theory_instance) ->
+EquivalenceResult`, replaying against `opportunity_attempts` rows at
+`from_version` using each attempt's stored `decision_date` and
+`entry_price`, so no fresh board is needed and the proof is reproducible
+offline.
 
 ### 2.5 Scoring across a carry-chain
 
@@ -281,7 +302,10 @@ probation flip.**
 The five existing theories' historical bumps are **not** retro-classified by an
 agent. Every pre-existing `(theory_id, version)` gets a row with
 `kind='breaking'` and `justification='pre-dates the carry ruling; not
-adjudicated'`. If a past bump was genuinely a carry, it can be proven later by
+adjudicated'`. The registry stores only the *current* version and some past
+versions recorded zero rows (`structural_arb` v3 has none), so the backfill
+does not mine rows for history: it enumerates `1..current_version` per theory
+and stamps every step `breaking`. If a past bump was genuinely a carry, it can be proven later by
 running `prove_carry` against the fixture — evidence, not recollection. Nothing
 is rewritten in place.
 
@@ -346,9 +370,11 @@ left unspecified until a candidate case actually needs it.
 
 ### 3.1 The problem
 
-`RESEARCH_LOG.md` is 168 KB / 24,341 words across 66 entries. `CLAUDE.md` says
+`RESEARCH_LOG.md` is 171 KB / 24,812 words across 64 entries (the §6.1
+classification's measurement, 2026-08-29 — the file grows every session, so
+quote that table's figures, not a fresh count). `CLAUDE.md` says
 "read its tail when starting" and the `go` skill says "read the last ~30
-lines". Thirty lines of a 66-entry log is now roughly the last two hours of one
+lines". Thirty lines of a 64-entry log is now roughly the last two hours of one
 session.
 
 The consequence is not merely inefficiency. **Binding rulings are discoverable
@@ -547,8 +573,18 @@ Kills the WAL-sidecar corruption vector.
 **Phase 2 — dedup on write.** Add `last_seen_at`; backfill
 `= captured_at`. In `snapshot.save_kalshi`, compare each market against its
 latest stored row: unchanged → `UPDATE last_seen_at`; changed → `INSERT`.
-Board rebuild becomes "latest row per market at or before T" instead of
-"all rows where `captured_at = T`".
+(The existing `ON CONFLICT (platform, market_id, captured_at)` clause is
+same-timestamp idempotency only; this is new machinery, not a duplicate of
+it.) Board rebuild becomes "latest row per market at or before T" instead of
+"all rows where `captured_at = T`" — **and batch semantics change with it**:
+a pull where a market moved nothing writes no row, so "the freshest batch"
+is no longer ~100k rows. `board_info` must derive size as "markets with
+`last_seen_at` >= the latest batch time" and age from `MAX(last_seen_at)`.
+Three tests encode the old row-per-pull shape and keep their *intent* while
+their fixtures update — `test_re_saving_updates_rather_than_duplicating`,
+`test_separate_seconds_are_separate_batches`,
+`test_board_info_uses_only_the_freshest_batch`. Only those three may change
+meaning in this phase; the four fidelity tests below may not.
 
 **Design gate — do not skip.** "Unchanged" must be decided by hashing the
 full `raw_json` + `event_json`, never by the five material columns above —
@@ -560,7 +596,18 @@ explicitly rather than quietly.
 
 **Phase 3 — compress `raw_json`/`event_json`.** zlib BLOBs, ~8× on the
 remaining JSON. Needs a codec column or magic-prefix sniff so old and new
-rows coexist; transparent behind the accessor.
+rows coexist. **There is no single accessor today** — the column is read by
+direct `SELECT` + `json.loads` in `tools/board.py`, `tools/kalshi/
+markets.py`, `tests/test_board.py`/`test_snapshot.py`, and four `studies/`
+scripts (e.g. `2026-08-29-structural-gate-payload-version/measure.py`). So
+this phase ships a decode helper in `tools/snapshot.py` (accepting both
+plain text and compressed rows), repoints every `tools/` and `tests/`
+reader through it, and takes an explicit stance on studies: they are
+historical artifacts, so they are **not** rewritten — instead each affected
+study's write-up gains a one-line note that re-running its probe against
+compressed rows requires the helper. The sweep that finds the readers is
+`grep -rn "raw_json\|event_json" --include='*.py' .`, run again at ship
+time, because this list rots.
 
 **Phase 4 — the split, as this section originally proposed.** Move
 `market_snapshots` to `db/snapshots.db`, `ATTACH`ed by `tools/db.connect()`
@@ -576,9 +623,11 @@ Projected: 5.5 GB → ~3.3 GB (dedup) → ~0.5 GB (compressed). **Zero
 information loss** — `CLAUDE.md`'s "save as much as you can, while you can"
 stays correct and untouched.
 
-**The safety net — non-negotiable.** These already exist and must pass
-unchanged at every phase; they are precisely the golden tests for this
-migration:
+**The safety net — non-negotiable.** These four already exist and must pass
+**unchanged — assertions and fixtures both — at every phase**; they are
+precisely the golden tests for this migration. (The three batch-semantics
+tests named in phase 2 are the only board tests allowed to change, and only
+there.)
 
 ```
 tests/test_board.py::test_cache_and_fetch_boards_are_identical_raw_included
@@ -695,33 +744,40 @@ The problem was never that the journal is big. **It is that the canon is
 embedded inside the journal**, so reading the canon requires reading the
 journal. Extract the canon and a 200 KB journal is harmless.
 
-### 6.5 Two rulings this section needs — *proposed, not decided here*
+### 6.5 Two rulings this section needed — **ruled by the user, 2026-08-29**
 
-Per the standing delegation, both go to the supervisor session as one packet.
+Both were drafted for the supervisor under the standing delegation; the user
+ruled directly before the packet went out, which outranks it. Recorded here
+so the migration can cite its authority; both belong in the `rulings` table
+the moment §3.3 ships.
 
-**Ruling 1 — reverse `2026-08-25-theory-locality.md` §22.** Raised by session
-9a: §22 is a documented decision, and reversing it must be *ruled on*, not
-inherited implicitly by shipping a migration that contradicts it. The case is
-§6.2 — forward-only produced 5,838 words of the thing it forbade across 44
-entries in four days. If the ruling goes the other way, §6.6 does not run and
-§6.7's `CLAUDE.md` edit stands alone as a forward-only restatement with the
-`state` surface behind it.
+**Ruling 1 — reverse `2026-08-25-theory-locality.md` §22: RULED, migrate.**
+The user's words: "I do want to migrate the research.md information into
+local theory when possible." *When possible* maps exactly onto §6.6's
+structure — T entries move wholesale, M entries split one at a time with the
+repo-level fact extracted upward first, X entries stay. The case that got it
+here is §6.2 — forward-only produced 5,838 words of the thing it forbade
+across 44 entries in four days. (Raised by session 9a: §22 was a documented
+decision and needed to be *ruled on*, not reversed implicitly by shipping a
+migration that contradicts it. It now has been.)
 
-**Ruling 2 — the promotion bar.** Proposed wording, so there is something
-concrete to rule on:
+**Ruling 2 — the promotion bar: RULED, adopted.** The user's words: the log
+"should only be information that is very useful generally or breakthroughs."
+The wording below was proposed as the concrete form and is adopted as the
+binding text — it is the user's sentence made checkable:
 
 > **A log entry is earned by a fact that changes how a session that never
 > touched this theory would act.** Everything else is a pointer. Concretely, an
 > entry is warranted for: a repo-level mechanism or defect; a ruling; a
 > methodological precedent; a data-source constraint; a cross-theory finding; a
-> correction to something previously published. A result inside one theory is a
-> one-line headline plus a pointer into that theory's `NOTES.md` — never the
-> narrative, the tables, or the numbers, which live in the notebook and the
-> ledger.
+> breakthrough result; a correction to something previously published. A result
+> inside one theory is a one-line headline plus a pointer into that theory's
+> `NOTES.md` — never the narrative, the tables, or the numbers, which live in
+> the notebook and the ledger.
 
 The test case already exists: `ff4318a`'s own entry is cross-cutting (a new
 repo-wide mechanism) with theory-local numbers distilled to a headline plus a
-pointer. It passes the proposed bar as written, which is the cheapest available
+pointer. It passes the bar as written, which is the cheapest available
 evidence that the bar is not too strict to comply with.
 
 ### 6.6 The migration
@@ -801,6 +857,56 @@ The existing sentence is edited in place, not appended to:
 
 **This is the second offsetting deletion.** It replaces the existing
 pointer-not-copy sentence rather than adding to it.
+
+### 6.8 The migration procedure, step by step
+
+Written so a session that never saw this spec can execute it, in order, with
+a checkable exit condition per step. Prerequisites are §9's phases 1–3:
+`state` exists (or moved content vanishes from orientation — §6.3), `rulings`
+exists (or M extractions have nowhere to land), and the citation sweep is
+clean.
+
+1. **Pin the classification.** Extend the companion file's addendum to cover
+   every entry appended since `ff4318a`, classified under the same T/M/X
+   legend, and cite the companion file's revision in the migration commits.
+   The table is the migration's input; the log keeps growing while the work
+   runs, and anything newer than the pin is out of scope for this pass.
+2. **Join the three double-`## ` headings** (lines 290, 359, 471 as of the
+   classification) into single lines, as its own commit. Every count and
+   every stub anchor keys on headings; fix the anchors before anything moves.
+3. **Run the citation sweep** (§6.6's three commands) and land the extended
+   citation test. Exit condition: sweep output saved alongside the companion
+   file, test green. Nothing moves before this.
+4. **Move T entries, in date order, one commit per owning theory.** Verbatim
+   append to that theory's `NOTES.md` under
+   `## <original date> — <original heading> (migrated from RESEARCH_LOG.md)`.
+   Leave the stub at the original anchor — date, heading, one pointer line.
+   Apply the pairing rules as recorded per row: the politics correction lands
+   adjacent to its target, and the one two-theory entry goes to the majority
+   owner with a dated pointer in the other notebook.
+5. **Run the citation test and the full suite after each theory's commit**,
+   never once at the end — a broken citation must surface while the move that
+   broke it is still the newest commit.
+6. **Split M entries one at a time**, each its own commit: the repo-level
+   fact goes up — into `rulings` if it is a ruling, `theory_facts` if it is a
+   durable theory fact, or a one-paragraph replacement entry if it is
+   narrative context — and the theory narrative goes to the notebook (or the
+   study's write-up, for study-owned rows). Record what was extracted and
+   where in the companion table row. Never batch these; §6.6 marks this the
+   only judgement-bearing step.
+7. **X entries: untouched.**
+8. **Reconcile.** Stub count equals moved-row count in the companion table;
+   `state` renders; suite green. The log gets one migration entry carrying
+   those reconciliation numbers — it passes the §6.5 bar on its own terms,
+   being a repo-level change.
+9. **The bar binds from that commit forward.** New entries follow §6.7's
+   `CLAUDE.md` text: mechanisms, rulings, precedents, constraints,
+   breakthroughs, corrections — generally useful facts only, per the user's
+   ruling. Everything theory-local is a headline plus a pointer into
+   `NOTES.md`. The citation test is the enforcement: dated citations into the
+   log must keep resolving, so a copy pasted where a pointer belongs has no
+   gap to hide in — and `state`, not the log tail, is what the next session
+   reads, so the incentive §6.3 diagnosed points the same way the rule does.
 
 ---
 
@@ -893,9 +999,9 @@ written:
 > loading one**: the cost of reading one you did not strictly need is a few
 > hundred tokens, and the cost of skipping one is a rule you never saw.
 
-This is the only new doctrine in this spec, and it breaks §0's "0 new
-doctrine" budget line deliberately. It is also load-bearing: without it, §7.3
-moves rules into documents that may never open.
+This is the only new doctrine in this spec — the one §0's budget table
+allocates. It is also load-bearing: without it, §7.3 moves rules into
+documents that may never open.
 
 ### 7.6 Anti-drift: quoted blocks, checked by a test
 
@@ -984,15 +1090,15 @@ Each phase is independently shippable and independently useful.
 | 0 | §5.2 phases 0–1: ledger backup + `db/` out of OneDrive | The repo's only total-loss risk; blocks nothing, ships in minutes |
 | 1 | §5.1 hygiene, §4.2 `--ticker`, §3.2 `state` | Zero doctrine, zero schema risk, immediate orientation payoff |
 | 2 | §3.3 `rulings` + backfill | Makes the four buried rulings survivable before the next session loses them |
-| 3 | §6.6 citation sweep + the citation test | Read-only; must precede any move, and is useful even if the migration never runs |
-| 4 | §6.6 T-entry migration + stubs | Mechanical once the sweep is clean; 22 entries / 9,484 words, no judgement |
-| 5 | §6.6 M-entry split, one at a time | The judgement-bearing quarter; only safe once `rulings` (phase 2) exists to receive the extractions |
+| 3 | §6.8 steps 1–3: pin, heading fix, citation sweep + test | Read-only bar the heading join; must precede any move, and is useful even if the migration never runs |
+| 4 | §6.8 steps 4–5: T-entry migration + stubs | Mechanical once the sweep is clean; 22 entries / 9,484 words, no judgement |
+| 5 | §6.8 steps 6–8: M-entry split + reconcile | The judgement-bearing quarter; only safe once `rulings` (phase 2) exists to receive the extractions |
 | 6 | §2 carry/breaking + backfill + `rank`/`segment_report` disclosure | The evidence bleed; largest payoff, needs the disclosure precedent |
 | 7 | §1 question budget + §1.7 slice columns | Needs windows registered, easiest once `state` renders them |
 | 8 | §5.2 phases 2–4: dedup → compress → split | Pure operations once phase 0 has a backup; the design gate (measure the hash-based dedup rate) precedes phase 2 |
 | **A** | §7.5 skill-invocation rule + §7.6 quoted-rule test | **Independent of everything above — ship first if desired.** The rule is worthless until the test makes duplication safe, so they land together |
 | **B** | §7.3 task-time rules quoted into `backtest-theory`, `find-edge`, `propose-theory`, `go`, `score-theories` | One skill per commit, each verified by the §7.6 test. No `CLAUDE.md` change, so it cannot regress the guaranteed layer |
-| — | §6.5 rulings 1 & 2 (§22 reversal, promotion bar) | **Blocked on the supervisor.** Ruling 1 gates phases 4–5; ruling 2 also gates on phase 1, per §6.3 |
+| — | §6.5 rulings 1 & 2 (§22 reversal, promotion bar) | **Ruled by the user, 2026-08-29** — migrate, and the bar is adopted. Phases 4–5 now gate only on phases 1–3; the bar still *binds* only once phase 1 ships, per §6.3 |
 | — | §4.3 paper lane | Blocked on the user's ruling |
 
 Phases 3–5 are the migration. **Phase 1 gates all of them** (§6.3): raising the

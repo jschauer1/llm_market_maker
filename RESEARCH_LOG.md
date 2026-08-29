@@ -2903,3 +2903,37 @@ just insider_judgment. Reviewed all six; per-theory outcomes:
 No code changes; registrations are DB rows plus notes. Coverage rule
 now in effect via find-edge: any theory with a `slices list` result is
 ranked per segment.
+
+---
+
+## 2026-08-29 — Enforcing-surfaces spec reviewed and corrected; user ruled: migrate the log, adopt the bar
+
+**Did:** Reviewed `docs/superpowers/specs/2026-08-29-enforcing-surfaces-design.md`
+against the live repo and DB. Every measured claim reproduced exactly
+(opportunity counts, per-version settled rows, snapshot rows, CLAUDE.md line
+anchors, companion-table structure). Fixed what didn't hold: §2.4's carry
+equivalence field list (now checks decision outputs incl. `confidence` and
+slice-predicated `extra_json` keys; `outcome` joins from the parent position;
+`entry_price` is input, not proof), §5.2 phase 2's batch-semantics gap
+(`board_info` under dedup; three tests allowed to change, four frozen), §5.2
+phase 3's nonexistent "accessor" (readers enumerated; decode helper +
+studies stance specified), §1.4/§1.7 question double-count (`slices register`
+is sole writer for slice-origin questions), §7.5-vs-§0 doctrine-count
+contradiction, §3.1 stale log measurements, `ledger.`→`score.
+record_backtest_run`, §2.6 backfill's version-history source, and a
+`theory_versions` CHECK making unproven carries uninsertable. Added §6.8: a
+nine-step executable migration procedure.
+
+**Learned / RULINGS (user, direct, this session — backfill into `rulings`
+when §3.3 ships):** (1) Theory-locality plan §22 is **reversed** — migrate
+theory-local `RESEARCH_LOG.md` content into the owning theory's `NOTES.md`
+"when possible" (T wholesale, M split one at a time, X stays). (2) The
+promotion bar is **adopted**: this log carries only what is very useful
+generally — mechanisms, rulings, precedents, constraints, breakthroughs,
+corrections; theory-local results are a headline plus a pointer. Both
+outrank the pending supervisor packet. Sequencing still holds: nothing moves
+before `state`, `rulings`, and the citation sweep exist (§9 phases 1–3).
+
+**Next:** Implement §9 phase 0 (ledger backup — the only total-loss risk),
+then phase 1 (`state`, `--ticker`, hygiene). The migration itself follows
+§6.8 in order.
