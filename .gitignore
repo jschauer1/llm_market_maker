@@ -9,3 +9,4 @@ db/*.db-shm
 
 # SDD isolated worktrees
 .worktrees/
+studies/2026-08-29-series-bias-mining/data/collect.db
