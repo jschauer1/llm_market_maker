@@ -79,13 +79,37 @@ and the Wilson bound all four are negative, so the theory emits **nothing**
 on this domain — neither a favorite buy nor the mirrored fade. A live run
 producing zero candidates from weather is correct behaviour, not a fault.
 
-**The claim this population cannot test.** Every longer-horizon cell has
-n ≤ 8: weather markets list and settle within days, so `2d-1w`, `1w-1mo`
-and `1mo+` are structurally empty here. The thesis is about horizon
-compression ("everything compresses at 1mo+"), so the weather walk tests
-one column of a four-column claim. **Politics/Elections is where the
-horizon spread lives, and it is not yet collected.** Do not read the
-weather result as evidence for or against the theory's central claim.
+**The claim that population could not test.** Every longer-horizon
+weather cell has n ≤ 8: weather markets list and settle within days, so
+`2d-1w`, `1w-1mo` and `1mo+` are structurally empty there. The thesis is
+about horizon compression, so the weather walk tested one column of a
+four-column claim.
+
+**Politics/Elections completed the same day (2,507/2,507 series, 1,541
+observations, 916 markets) and it does test the claim — the horizon
+gradient is confirmed.** Day-clustered, price bands pooled: `<=2d` −1.21,
+`2d-1w` −4.26, `1w-1mo` **+5.05** (t 2.44), `1mo+` **+9.38** (t 3.01).
+The contrast pre-registered before the data landed — long horizon versus
+short — comes in at **+9.18 ± 3.40 (t 2.70)** unpaired and **+7.68 ± 2.20
+(t 3.50)** paired within settlement day, 29/45 days positive, sign test
+p = 0.036. That is what Le 2026's political slopes predict.
+
+**But not one of the sixteen cells is recommendable.** All are
+net-negative at the Wilson bound (−5.68 to −29.92 pts), because bounding
+on `n_days` of 16–47 gives an interval far wider than a ~9-point effect.
+**The effect being real and the effect being bettable are different
+questions**, and what closes the gap is more settlement days, not more
+rows.
+
+Three caveats hold the result in place: it is **in-sample** (the bar for
+`active` is out-of-sample and is untouched); **no individual cell
+survives multiple comparisons** (three clear 2 SE, the largest at 2.83,
+where Holm over sixteen needs about 3 — the gradient stands because it
+was pre-registered as one contrast); and it is **not monotone** (`2d-1w`
+sits below `<=2d`), so the surviving claim is long-versus-short.
+
+Full numbers and reproduction: `NOTES.md` 2026-08-29, and
+`python -m theories.calibration_harvest.gradient`.
 
 The original `proposed` bar, now met, was: `collect.py` has completed its
 first pre-registered population and `cells.py` has at least one cell at

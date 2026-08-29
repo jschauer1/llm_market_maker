@@ -351,3 +351,86 @@ settled markets in the 60-day window against weather's 85,683, so thin
 cells are the likely outcome and "still unmeasured" is a perfectly good
 answer. Recording that expectation now so a thin result is not talked up
 later.
+
+## 2026-08-29 — politics: the horizon gradient is REAL, and nothing is bettable
+
+Second pre-registered population **complete**: Politics/Elections,
+**2,507 of 2,507 series**, 1,541 observations over 916 settled markets
+(run `backtest-2026-08-29-calharvest-politics`). All sixteen cells clear
+both floors — `n` 39–249, `n_days` 16–47 — so unlike weather, this
+population can actually test the claim.
+
+Read against the bar fixed **before the data landed** (NOTES.md above,
+commit `4a01f9a`). Reproduce with
+`python -m theories.calibration_harvest.gradient`.
+
+### The gradient: confirmed
+
+Per horizon, day-clustered, price bands pooled:
+
+| horizon | rows | days | edge | SE | t |
+|---|---|---|---|---|---|
+| `<=2d` | 420 | 51 | −1.21 | 2.59 | −0.47 |
+| `2d-1w` | 563 | 56 | −4.26 | 2.99 | −1.42 |
+| `1w-1mo` | 374 | 43 | **+5.05** | 2.07 | **+2.44** |
+| `1mo+` | 184 | 31 | **+9.38** | 3.12 | **+3.01** |
+
+The pre-registered contrast, long vs short horizon:
+
+- **unpaired:** +9.18 pts ± 3.40, **t = +2.70**
+- **paired within settlement day** (cancels the day shock; 45 of 46
+  long-horizon days also carry short-horizon data): **+7.68 ± 2.20,
+  t = +3.50**, 29/45 days positive, one-sided sign test **p = 0.036**
+
+The paired estimator is *stronger* than the unpaired one, which is what
+should happen when a common day-level shock is removed — the same
+estimator `no_side_premium` adopted today for the same reason.
+
+**This is what the spec predicted.** Le 2026's political calibration
+slopes of 1.48–1.83 from 12h out to a month say favorites are underpriced
+and the effect grows with horizon. It does, on a complete population, on a
+contrast written down before the data was seen.
+
+### And yet: nothing is recommendable. Not one cell.
+
+Every one of the sixteen is **net-negative** at the Wilson bound `price()`
+actually uses — from −5.68 to −29.92 pts. The reason is v2's own
+correction: bounding on the settlement-day count with `n_days` of 16–47
+gives an interval far wider than a ~9-point effect, so no cell's lower
+bound clears its ask.
+
+**The effect being real and the effect being bettable are different
+questions, and today they have different answers.** That is the system
+working: an effect measured at t=3.5 on 45 days is a good reason to keep
+collecting and a bad reason to bet, because the bound that decides a bet
+is not yet strong enough to carry one. What closes that gap is **more
+settlement days**, not more rows — the v2 bound is explicitly insensitive
+to row count.
+
+### What this does NOT establish
+
+- **It is in-sample.** This is the population that measured it.
+  THEORY.md's bar for `active` is positive net calibration edge
+  *out-of-sample*, and that bar is untouched. Status stays `testing`.
+- **No individual cell survives multiple comparisons.** Three cells clear
+  2 SE alone (`1w-1mo|0.75-0.85` +11.14±3.93, `1mo+|0.75-0.85`
+  +13.16±5.15, `1mo+|0.92-0.97` +3.59±1.31) but the largest is 2.83 SE
+  and Holm over sixteen tests needs roughly 3. The gradient stands
+  *because it was pre-registered as one contrast*, not because sixteen
+  cells were searched.
+- **It is not monotone.** `2d-1w` (−4.26) sits below `<=2d` (−1.21). The
+  confirmed claim is long-versus-short, not a clean four-step ramp, and
+  the spec's wording ("everything compresses at 1mo+") is the half that
+  survives.
+- **Weather still shows nothing**, and that is now interpretable rather
+  than contradictory: weather has no long-horizon markets at all, so it
+  never sampled the region where the effect lives.
+
+### Next
+
+The out-of-sample test is already running and costs nothing extra: the
+live scan records ~10.3k rows per session, and since this morning's
+`ScoredCandidate.extra` fix they carry their cell keys, so they will feed
+`cell_rates` as they settle. Read the live run's own cells once its
+`n_days` grows, and compare against these in-sample numbers rather than
+pooling them.
