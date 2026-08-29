@@ -226,3 +226,70 @@ turns "expect multiple sessions" into a number the user can decide on.
 
 Weather collection resumed 2026-08-29 against checkpoint
 `backtests/weather.json`, run id `backtest-2026-08-27-calharvest-weather`.
+
+## 2026-08-29 — first complete population: weather favorites are priced correctly
+
+The Climate-and-Weather walk **finished**: 154 of 154 series in scope,
+3,267 observations over 3,260 settled markets, run
+`backtest-2026-08-27-calharvest-weather`, checkpoint
+`backtests/weather.json`. Population complete, so the cells may be read —
+the RUNBOOK's precondition, and the one `mention_family` violated.
+
+### The four measured cells
+
+Every `<=2d` cell clears both floors comfortably (`MIN_CELL_N = 30`,
+`MIN_CELL_DAYS = 8`) with **59 distinct settlement days** each:
+
+| cell | n | days | mean ask | realized | raw edge | day-clustered |
+|---|---|---|---|---|---|---|
+| `<=2d\|0.65-0.75` | 824 | 59 | 0.6954 | 0.6978 | **+0.25p** | +0.58 ± 1.80 |
+| `<=2d\|0.75-0.85` | 789 | 59 | 0.7938 | 0.7959 | **+0.21p** | −1.09 ± 1.97 |
+| `<=2d\|0.85-0.92` | 692 | 59 | 0.8803 | 0.8931 | **+1.27p** | +1.63 ± 1.29 |
+| `<=2d\|0.92-0.97` | 926 | 59 | 0.9488 | 0.9417 | **−0.71p** | −0.83 ± 0.85 |
+
+**Every one is inside its own noise band.** The largest absolute effect
+(+1.63 ± 1.29 in the 0.85–0.92 band) is 1.3 SE from zero. Net of fees
+and the Wilson lower bound the theory uses for recommending, all four are
+negative (−1.99 to −4.46 pts), so **nothing here is recommendable in
+either direction** — not as a favorite buy, and not as the mirrored fade
+the spec hoped for.
+
+**Short-horizon Kalshi weather favorites are priced correctly.** That is a
+real, clean, tier-A answer: n≈3,200 over 59 settlement days on a complete
+pre-registered population is not a sample anyone should re-litigate.
+
+### This contradicts the spec's expectation, in an informative way
+
+The design cited Le 2026 for *short-horizon weather being too extreme,
+opposite in sign to politics* — i.e. an expected fade. The measurement
+says neither sign: flat. Two readings worth keeping apart:
+
+- Kalshi's weather book is genuinely efficient at ≤2 days, which is
+  plausible — these are high-volume daily markets with public NWS
+  forecasts and obvious reference points.
+- Or the effect exists at a horizon this population cannot see. Which
+  brings up the real limitation below.
+
+### The horizon coverage is the finding under the finding
+
+Look at the `n` column outside `<=2d`: **8, 7, 6, 5, 4, 3, 2, 1.** The
+entire longer-horizon grid is empty. Weather markets are listed and
+settled within days, so the population physically cannot populate
+`2d-1w`, `1w-1mo` or `1mo+`.
+
+That matters because the spec's thesis is explicitly about horizon —
+"everything compresses at 1mo+". **This population tests one cell column
+of a theory whose claim is about the other three.** The weather domain
+was chosen as the cheap first walk (154 series vs ~2,504), and it was
+the right call for proving the collector, but it cannot confirm or kill
+the theory's central claim. Politics is where the horizon spread lives.
+
+### Status
+
+Moving `proposed` → `testing`: THEORY.md's stated condition ("collect.py
+has completed its first pre-registered population and cells.py has at
+least one cell at n ≥ 30 with full coverage") is met four times over. Note
+what that does and does not mean — the theory now runs each session and
+will emit **nothing** on weather, because no weather cell says anything is
+mispriced. That is the correct behaviour and should be logged as "ran, 0
+candidates" rather than read as a failure.

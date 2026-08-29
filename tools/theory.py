@@ -23,6 +23,7 @@ measured bucket rates or a mechanical model -- never from the judge.
 
 from __future__ import annotations
 
+import json
 import sqlite3
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
@@ -134,6 +135,9 @@ class OpportunityRecord:
             # which is what record_opportunity's own wall-clock default
             # would have produced anyway.
             decision_date=ctx.now.date().isoformat(),
+            # Structured context the theory wants queryable later; prose
+            # in `rationale` is not (see ScoredCandidate.extra).
+            extra_json=json.dumps(sc.extra) if sc.extra else None,
         )
         if c.is_basket:
             legs = [dict(kalshi_ticker=l.market.ticker, outcome=l.side,

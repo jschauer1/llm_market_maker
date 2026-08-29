@@ -1,8 +1,9 @@
+import json
 from datetime import datetime, timezone
 
 import pytest
 
-from tools import db, provenance, theories
+from tools import db, ledger, provenance, theories
 from tools.domain import (Candidate, Edge, Leg, Market, ScoredCandidate,
                           ScreenResult, Verdict)
 from tools.theory import Theory, TheoryContext
@@ -267,3 +268,71 @@ def test_a_basket_candidates_floor_reaches_the_ledger(tmp_path):
     assert row["min_payout"] == pytest.approx(1.0)
     assert row["max_payout"] == pytest.approx(2.0)
     conn.close()
+
+
+# --- a theory can record structured context with its rows ---------------
+#
+# Found 2026-08-29. `record_opportunity` has always accepted `extra_json`,
+# but `ScoredCandidate` had no field for it and `from_scored` never passed
+# one, so no theory going through the contract could record structured
+# per-candidate context. calibration_harvest's live path recorded 10,269
+# rows whose whole stated purpose was "recorded so the cell accrues
+# settlements" -- and `collect.cell_rates` reads the cell out of
+# `extra_json`, so every one of them was unreadable and the rows could
+# never feed the grid they existed to grow.
+
+
+def _scored_with_extra(extra):
+    market = Market(platform="kalshi", ticker="KXEXTRA-26", is_open=True,
+                    yes_ask=0.40)
+    candidate = Candidate(
+        legs=(Leg(market=market, side="yes", price=0.40),),
+        days_to_close=3.0,
+    )
+    return ScoredCandidate(
+        candidate=candidate,
+        edge=Edge(pts_net=1.0, basis="model"),
+        extra=extra,
+    )
+
+
+class _ExtraTheory(Theory):
+    id = "extra_theory"
+    name = "Extra Theory"
+    version = 1
+
+    def __init__(self, extra):
+        self._extra = extra
+
+    def screen(self, ctx):
+        return [_scored_with_extra(self._extra).candidate]
+
+    def price(self, ctx, cands, verdicts=None):
+        return [_scored_with_extra(self._extra)]
+
+
+def test_scored_candidate_extra_reaches_the_ledger(tmp_path):
+    conn = db.connect(tmp_path / "t.db")
+    db.init_db(conn)
+    theories.register(conn, "extra_theory", "Extra Theory",
+                      "theories/extra_theory", now=NOW.isoformat())
+
+    extra = {"cell": "weather|<=2d|0.65-0.75", "domain": "weather"}
+    ctx = TheoryContext.build(conn, [], NOW, run_id="live-extra")
+    result = _ExtraTheory(extra).start(ctx).finish()
+
+    row = ledger.get_opportunity(conn, result.opportunity_ids[0])
+    assert json.loads(row["extra_json"]) == extra
+
+
+def test_scored_candidate_without_extra_records_no_extra_json(tmp_path):
+    conn = db.connect(tmp_path / "t.db")
+    db.init_db(conn)
+    theories.register(conn, "extra_theory", "Extra Theory",
+                      "theories/extra_theory", now=NOW.isoformat())
+
+    ctx = TheoryContext.build(conn, [], NOW, run_id="live-extra")
+    result = _ExtraTheory(None).start(ctx).finish()
+
+    row = ledger.get_opportunity(conn, result.opportunity_ids[0])
+    assert row["extra_json"] is None

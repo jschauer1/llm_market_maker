@@ -93,11 +93,26 @@ class CalibrationHarvestTheory(Theory):
                         f"n_days>={cells.MIN_CELL_DAYS})."
                     )
 
+            # The cell must be queryable, not just readable in prose:
+            # `collect.cell_rates` reads it out of `extra_json`, and it is
+            # the whole reason an unmeasured cell's rows are recorded at
+            # all. Live rows carried it only in `rationale` until
+            # 2026-08-29, so none of them could ever feed the grid.
+            parts = (key or "").split("|")
+            extra = {
+                "cell": key,
+                "domain": parts[0] if len(parts) == 3 else None,
+                "horizon_bin": parts[1] if len(parts) == 3 else None,
+                "price_bin": parts[2] if len(parts) == 3 else None,
+                "series_ticker": leg.market.series_ticker,
+                "days_to_close_at_entry": cand.days_to_close,
+            }
             scored.append(ScoredCandidate(
                 candidate=cand,
                 edge=edge,
                 rationale=rationale,
                 judged_blind=None,
                 disposition="screened",
+                extra=extra,
             ))
         return scored

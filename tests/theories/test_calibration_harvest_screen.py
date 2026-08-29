@@ -176,3 +176,23 @@ def test_theory_declares_no_llm_judgment():
     theory = CalibrationHarvestTheory()
     assert theory.uses_llm_judgment is False
     assert theory.prompts == {}
+
+
+def test_priced_rows_carry_their_cell_as_queryable_context():
+    """An unmeasured cell's rows exist only so that cell can accrue
+    settlements, and `collect.cell_rates` reads the cell out of
+    `extra_json`. Until 2026-08-29 `price()` put the cell in `rationale`
+    and left `extra_json` null, so the first live run's 10,269 rows were
+    invisible to the very grid they were recorded to grow."""
+    board = [m("KXPOL-1", yes_ask=0.80, yes_bid=0.77, no_ask=0.23, days=5)]
+    theory = CalibrationHarvestTheory(
+        categories={"KXPOL": "Politics"}, cell_rates={})
+    run = theory.start(_ctx(board, categories={"KXPOL": "Politics"}))
+    scored = theory.price(run.ctx, list(run.candidates))
+
+    extra = scored[0].extra
+    assert extra["cell"] == "politics|2d-1w|0.75-0.85"
+    assert extra["domain"] == "politics"
+    assert extra["horizon_bin"] == "2d-1w"
+    assert extra["price_bin"] == "0.75-0.85"
+    assert extra["series_ticker"] == "KXPOL"

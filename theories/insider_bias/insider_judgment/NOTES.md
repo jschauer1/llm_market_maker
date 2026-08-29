@@ -442,3 +442,82 @@ give no mechanical tell, and the screen still has no thesis term in it
 (known weakness 3) — 18 survivors out of 328 screened means the screen is
 selecting tradeable favourites, not markets an insider could know. That
 remains the deeper problem.
+
+## 2026-08-29 (cont.) — v4's first live run: the gate works, and the screen's side is now the problem
+
+**First run at v4** (`live-2026-08-29b`, board of 111,102 markets). Stage 5
+was judged **inline by the main session (claude-opus-5)** rather than by
+Agent-tool subagents — this session was instructed not to spawn subagents
+unless asked — and the `judgment_runs` row says so. Same model tier as the
+runbook's `opus` alias; the record names what actually judged.
+
+### Funnel
+
+```
+111,102  board markets
+    764  screened / 365 events
+    342  gated out  ->  23 events survived  ->  35 markets judged
+      0  recommended
+```
+
+Gate removed: live sport 150, aggregate-of-many 47, vendor panel 35, weather
+27, compute/collectible 23, scheduled indicator 26, commodity/FX 17, crypto
+12, retail price index 5.
+
+**v4's gate change is doing what it was built to do.** 130 survivors under
+v3's prefix-only gate, 23 under v4 on a comparable board — and the vendor-panel
+and sport families that motivated it are gone.
+
+### The finding: the screen picks NO, and the divergences all push YES
+
+15 of the 23 surviving events carry a rules divergence, and — this is the
+part that only shows up across the batch — **almost every one is a rule that
+is BROADER than its title, which makes YES easier.** The screen picked NO on
+**30 of 35** legs. So the theory's own stage-1 side selection is systematically
+opposed by the defect stage 2 is best at finding:
+
+| event | divergence | direction |
+|---|---|---|
+| `KXCLAUDE-NXTMYTH` | rules exclude only Fable 5; **Mythos 5 shipped to approved orgs in late June** and is "branded Mythos" | may already be YES |
+| `KXNEWDRUGAPPNTLA-LONV` | rolling BLA *initiated* Apr 27 2026 vs *completed* filing (H2 2026) | may already be YES |
+| `KXNEWDRUGAPPLICATIONCMPS-360` | rolling NDA underway, sections submitted; completion guided Q4 2026 | may already be YES |
+| `KXTRYFIRECOOK-27JAN01` | "has tried to fire" with **no after-Issuance anchor**; 2025 attempt + Aug 7 2026 notice letter | may already be YES |
+| `KXSNAPELECTIONRS-27` | Vucic announced an Oct 18/25 snap election **on Aug 20**; rule says "officially announces" | may already be YES |
+| `KXPRESSSECANNOUNCE-26AUG` | rules count an **acting/interim** naming; title says "the next Press Secretary" | broadens YES |
+| `KXTRUMPMEET-26AUG` (10 legs) | rules count a **phone call** as a "meet" | broadens YES |
+| `KXUAPFILES`, `KXCABLEAVE`, `KXBIGBENDRESUME` | rule broader than title in each case | broadens YES |
+
+Five of those were confirmed by research (Mythos 5's June release, the two
+rolling submissions, the Aug 7 Cook letter, Vucic's Aug 20 announcement) —
+they are not speculative readings.
+
+This is a **structural mismatch, not a run of bad luck**: stage 1 selects
+tradeable favourites and lands on NO ~70% of the time (RUNBOOK known weakness
+3), while the thesis's most reliable tell — a rule that resolves on something
+already true — is precisely a YES-side signal. Every final review since v2 has
+declined for a version of this reason; v4 is the first run where the gate is
+clean enough that the pattern is unmistakable rather than buried under sport
+and vendor-panel noise.
+
+### Two other things worth keeping
+
+1. **Every edge this run is `edge_basis='prior'`.** v4 has no bucket rates
+   (they are version-scoped, correctly), so `strong`=4.0 / `moderate`=2.0 /
+   `weak`=0.0 are placeholders. Nothing here could have been endorsed on
+   measured evidence even if the judgment had favoured it.
+2. **Two gate leaks measured, both real.** `KXKBOTOTAL` (two KBO baseball
+   events) leaked because **Kalshi's own rules text calls a Korean pro fixture
+   a "College Baseball game"** — the rules-reading matcher had nothing to
+   catch. `KXDDR5MS` (a DDR5 spot-price monthly average), `KXCBDPOLAND` (an
+   NBP rate decision) and `KXTECHRANKLISTAICODE` (a crowd-voted Elo
+   leaderboard) also survived into a stage that should never have seen them.
+   Four wasted deep-stage slots out of 23 — a 17% leak rate, now measured
+   rather than assumed.
+
+### Where this points
+
+Not at retirement. The candidate list here is *better* than any previous run —
+the gate fix worked. The open question is whether the screen should be allowed
+to pick the YES side when a rules divergence says the market may already be
+resolved, which is a stage-1 change and a v5. Recorded as a question, not a
+change: nothing has measured that the YES side of a divergent market wins.

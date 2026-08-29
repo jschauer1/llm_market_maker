@@ -375,6 +375,18 @@ class ScoredCandidate:
     disposition: str = "screened"      # screened | endorsed | rejected
     evidence_source: str = "kalshi"    # "kalshi" | "polymarket" | ...
     evidence_market_id: str | None = None  # the non-Kalshi source id, if any
+    extra: dict | None = None
+    """Structured per-candidate context, stored as the row's `extra_json`.
+
+    For anything a later reader must be able to *query*, as opposed to
+    read in prose. `record_opportunity` has always accepted `extra_json`,
+    but until 2026-08-29 nothing on this type carried it, so a theory
+    going through the contract could only put such context in
+    `rationale` — where nothing can find it. `calibration_harvest`
+    recorded 10,269 live rows whose stated purpose was to let their cell
+    accrue settlements, while `collect.cell_rates` reads the cell out of
+    `extra_json`: every one was unreadable, and the rows could never feed
+    the grid they existed to grow."""
 
     def __post_init__(self) -> None:
         if self.disposition not in VALID_DISPOSITIONS:

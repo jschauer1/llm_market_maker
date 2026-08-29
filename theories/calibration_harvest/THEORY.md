@@ -58,11 +58,38 @@ All in-repo, no external feeds, no LLM:
 
 ## Status
 
-`proposed` — 2026-08-27. Procedure code and the collector are written and
-tested; **no cell is measured yet**, so the theory records nothing and is
-not on the board. It moves to `testing` when `collect.py` has completed
-its first pre-registered population and `cells.py` has at least one cell
-at n ≥ 30 with full coverage of that population.
+`testing` — 2026-08-29. The first pre-registered population is
+**complete** (Climate and Weather, 154/154 series, 3,267 observations over
+3,260 settled markets, run `backtest-2026-08-27-calharvest-weather`), and
+four cells clear both floors, so the `proposed` condition below is met.
+
+**What the first population measured: nothing to harvest.** All four
+measured cells are `<=2d`, each with n≈700–930 over **59 settlement
+days**, and every one is inside its own day-clustered noise band:
+
+| cell | n | mean ask | realized | raw edge | day-clustered |
+|---|---|---|---|---|---|
+| `<=2d\|0.65-0.75` | 824 | 0.6954 | 0.6978 | +0.25p | +0.58 ± 1.80 |
+| `<=2d\|0.75-0.85` | 789 | 0.7938 | 0.7959 | +0.21p | −1.09 ± 1.97 |
+| `<=2d\|0.85-0.92` | 692 | 0.8803 | 0.8931 | +1.27p | +1.63 ± 1.29 |
+| `<=2d\|0.92-0.97` | 926 | 0.9488 | 0.9417 | −0.71p | −0.83 ± 0.85 |
+
+Short-horizon Kalshi weather favorites are priced correctly. Net of fees
+and the Wilson bound all four are negative, so the theory emits **nothing**
+on this domain — neither a favorite buy nor the mirrored fade. A live run
+producing zero candidates from weather is correct behaviour, not a fault.
+
+**The claim this population cannot test.** Every longer-horizon cell has
+n ≤ 8: weather markets list and settle within days, so `2d-1w`, `1w-1mo`
+and `1mo+` are structurally empty here. The thesis is about horizon
+compression ("everything compresses at 1mo+"), so the weather walk tests
+one column of a four-column claim. **Politics/Elections is where the
+horizon spread lives, and it is not yet collected.** Do not read the
+weather result as evidence for or against the theory's central claim.
+
+The original `proposed` bar, now met, was: `collect.py` has completed its
+first pre-registered population and `cells.py` has at least one cell at
+n ≥ 30 with full coverage of that population.
 
 It does not become `active` until a cell shows positive *net* calibration
 edge out-of-sample, at n ≥ 30 **and** n_days ≥ 8 (see the day-clustering
