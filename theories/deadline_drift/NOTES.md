@@ -33,3 +33,57 @@ Not done and deliberately so: **no hazard bins**. They are the expensive
 rate-limited step, section 7 forbids collecting them until the population is
 settled, and the population only settled today. That is the next step and
 the only thing between v1 and `testing`.
+
+## 2026-08-29 (later) — the thesis, finally measured. It does not hold up.
+
+After five audit rounds spent on the *screen*, the actual claim got tested
+for the first time. Tier A, no model anywhere.
+
+**What was collectable, and why that is the headline.** Kalshi archives
+settled markets out of its public API ~60 days after close. Walking all 70
+allowlist series returned **112 settled markets** — that is not a sample,
+it is the *entire fetchable history* for this population. Candles for all
+112 gave 2,805 daily observations, saved raw in
+`hazard_observations.json`.
+
+**Clustered by market**, because one market contributes ~25 daily rows that
+all share a single outcome — treating those as independent would inflate n
+by 25x and manufacture significance out of nothing:
+
+```
+POOLED, late window (<=21d), entry band ($0.05-0.60), n = 55 markets
+  mean yes_ask      0.148
+  realized P(YES)   0.182
+  gap              -3.4 pts   (SE 5.2, z = -0.66)
+```
+
+**The point estimate has the wrong sign.** The thesis says YES is
+*overpriced* late, so the gap should be positive. It is negative — YES was
+mildly *under*priced — and not significant either way. Kill criterion 1 was
+"implied and empirical hazard agree within fees across all bins"; on this
+evidence they agree, with the point estimate leaning against the theory.
+
+**What I am NOT doing: writing `hazard_bins.json`.** With `min_n=30`, cell
+`d3|p0` (n=31) would squeak through and start emitting +4.4pt "edges" from
+a single thin cell. That is manufacturing bets out of noise, so the file
+stays absent, `price()` keeps returning nothing, and the theory stays
+`proposed`. The bins are data, not a live instrument.
+
+**One pattern, recorded as a hypothesis and explicitly NOT an edge.** The
+only positive cells are the cheapest price bin ($0.05-0.15), and they are
+the three biggest cells: +1.0 (n=19), +2.8 (n=27), +4.4 (n=31), monotone in
+days-remaining. That is longshot bias exactly where the thesis predicts it,
+and it is the *only* place the effect appears — everything at $0.15-0.60
+runs negative. Per CLAUDE.md's pairing discipline this is a hypothesis to
+pre-register for a forward test, never an edge to bet on the data that
+suggested it. If it is pursued, the pre-registration is: **NO on allowlist
+markets with yes_ask in $0.05-0.15 and 7-21 days to close.**
+
+**The urgent operational finding.** 112 markets is all that exists *today*,
+and the window keeps rolling — markets settling now become unfetchable in
+60 days. This population produces ~714 closes a year, so a capture job
+running from today would hold ~350 by February and ~700 by next August. The
+repo has `market_snapshots` and the settled-history machinery already; what
+is missing is anything that routinely sweeps THIS population before it
+expires. That is worth more than any further screen work, and it is the
+thing that decides whether this theory is ever testable at n that matters.
