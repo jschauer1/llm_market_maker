@@ -143,15 +143,24 @@ def days_until(close_time: str | None,
     already carries the note "promote to tools/ if a third caller
     appears" -- so the elevation trigger is long since met.
 
-    It is NOT elevated here on purpose. A migration means one
-    implementation and deleting every local copy, and one of those copies
-    lives in `theories/calibration_harvest/`, which another session was
-    actively writing when this was written (2026-08-29). Half-migrating
-    across a live working tree is worse than a documented fourth copy.
-    Left as one clean task: move it to `tools/`, repoint all four, delete
-    the locals. A sibling-theory import would have been the one
-    genuinely forbidden option
-    (`test_no_theory_imports_a_sibling_theory`).
+    This copy is **deliberately frozen and must not be repointed** at
+    the shared helper when that elevation happens. This file is a study
+    artifact: its job is to reproduce the 2026-08-29 measurement exactly,
+    and a study importing a module that can later change is a study that
+    silently stops reproducing. The elevation therefore has *three*
+    callers to repoint, not four -- the two theory screens and
+    `structural_arb.scan` -- and this one stays put.
+
+    Note the copies are NOT identical, so that elevation is a
+    decision-procedure question rather than a formatting one:
+    `insider_bias.screen` and `calibration_harvest.screen` subtract `now`
+    directly (and calibration_harvest makes it *required*), while
+    `structural_arb.scan` additionally coerces a naive `now` to UTC. Hand
+    a naive datetime to the first two and you get a TypeError; hand it to
+    the third and you get a number. The superset (optional `now`, with
+    the coercion) preserves every currently-working path and changes
+    behaviour only where the old code raised -- verified 2026-08-29 that
+    no caller anywhere passes a naive datetime.
     """
     if not close_time:
         return None
