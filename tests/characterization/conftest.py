@@ -144,9 +144,18 @@ def proj(x):
             # on all of them; including it would freeze "envelope absent"
             # into goldens as though it were proven behavior, and would
             # break every one of them the day a fixture gains an envelope.
-            # No golden pipeline reads it. generate_goldens.py refuses to
-            # overwrite, by design, so an additive field is projected out
-            # here rather than rewritten there.
+            # No golden pipeline reads it -- verified 2026-08-29 by
+            # grepping theories/ and tools/ for `.event`, which found only
+            # docstrings and the snapshot write -- so projecting it out
+            # removes no coverage the goldens ever had. The semantics that
+            # matter are pinned directly instead, in test_board.py's
+            # tri-state tests. generate_goldens.py refuses to overwrite, by
+            # design, so an additive field is projected out here rather
+            # than rewritten there.
+            # TRIPWIRE: the day any golden pipeline actually reads
+            # `m.event`, this pop silently stops covering a field that has
+            # started to matter. When that happens, delete the pop and
+            # regenerate the goldens -- deliberately, as a decision.
             d.pop("event", None)
             return proj(d)
 
