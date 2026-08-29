@@ -390,3 +390,82 @@ machinery that 4f's finding
 gated version. The LLM gate remains the right instrument for *coverage*
 later — 604 in-band versus ~2,600 — but coverage is worth paying for only
 once the effect is known to exist, and it is still completely unmeasured.
+
+---
+
+# Limitations and defects (review by session 09, post-hoc)
+
+Session 09 reviewed the execution after the fact — the design request was
+overtaken by the blind read landing first. It independently re-verified
+disjointness (zero overlap against all four prior sample files), the SE
+arithmetic, and the two-reader protocol. Four things it raised, all
+recorded here rather than argued:
+
+## 1. 12% does not statistically *prove* failure, and must not be read as if it did
+
+The exact binomial 95% CI on 6/50 is roughly **[4.5%, 24.3%]**, which
+**contains the 10% bar**. So round 5 neither demonstrates clearing nor
+proves failure.
+
+The verdict rests on two things that are not that interval:
+
+- **The burden is to demonstrate clearing**, and 12% does not. Section 7
+  says fix the screen *before* trusting any bin; an unresolved interval
+  spanning 4.5–24.3% is not a resolution.
+- **The mechanism**, which is not statistical: both structural signals are
+  *blind on the residue* — all six misses carry `mutually_exclusive=False`
+  and none is caught by the price test.
+
+Likewise "a mechanically clean screen is ruled out" is a **mechanism
+claim** — three instrument families defeated in sequence — and not a
+statistical one. A future reader should not treat 12% as proof, nor treat
+the wide interval as an opening to relitigate without new evidence.
+
+## 2. The price-partition test has no lower bound — a real defect, measured
+
+As coded, **any** ≥3 same-deadline siblings summing ≤1.05 count as a
+partition, including three unrelated longshots at $0.10. Measured:
+
+| | events | markets excluded |
+|---|---|---|
+| price-partition total | 125 | 318 |
+| sum ≥ 0.90 (genuine partitions) | 53 | 37 |
+| **sum < 0.90 (spurious)** | **72** | **281** |
+
+```
+sum=0.13  22 legs  KXCOACHOUTNFL   "Which Pro Football coaches will be out"
+sum=0.12   3 legs  KXUSFUNDHEAD-27 "Will Bill Ackman join Trump's fund?"
+sum=0.11   6 legs  KXTRUMPWEP-27
+```
+
+`KXCOACHOUTNFL` is the clearest case: 22 *independent* coach-departure
+hazards, low-priced, summing 0.13 — the exact false positive predicted
+when the rule was first built, now confirmed.
+
+**So the rule's real contribution was ~37 markets, not 318, and the
+4,135 population figure is an undercount by up to 281 (true ≈4,416).**
+This error direction *wrongly excludes in-thesis markets*, so it is
+invisible to the round-5 audit, which sampled only what was kept. Its
+effect on the rate is to make 12% a slight **over**-estimate — restoring
+281 correct markets moves 6/50 to roughly 6/53 ≈ 11.3%, which changes no
+conclusion. `≥0.90` is the fix, carried into any production screen.
+
+**`classifier_r5.py` is deliberately NOT patched.** It was frozen before
+the sample was drawn and that property is worth more than a corrected
+population count; editing it now would retroactively break the one
+guarantee that makes round 5 an out-of-sample measurement.
+
+## 3. Round 5b is unaffected — verified, not assumed
+
+**0 allowlist markets were wrongly excluded by the spurious rule.** The
+981/604 figures and the 70/70 series verdict stand exactly as reported.
+`KXUKCABOUT` sums to 0.90 and so is a genuine partition on either
+threshold.
+
+## 4. The two readings shared a frame, even though they were blind to each other's calls
+
+Both readers knew the two rules under test and the round 1–4 error
+taxonomy. **No rules-naive reader was ever used.** Given the convergence
+and the pre-recorded borderline list this is unlikely to have moved the
+number, but the independence claim is about *calls*, not about framing,
+and the record should say so.
