@@ -262,3 +262,54 @@ session rather than anything about the method:
    Holm family where they consume correction budget for series nobody
    would promote anyway.
 4. `KXRT` first when power exists.
+
+---
+
+# Pass 2 — pre-registration for the weather population (written BEFORE looking)
+
+**Committed before any pass-2 number was computed.** Pass 1's failure was
+that its power floor was a *count* floor. This pass fixes that, and is
+the first thing in the repo to pre-register a power floor.
+
+## Why a separate pass, not a pooled one
+
+`backtest-2026-08-27-calharvest-weather` uses a **different decision
+rule** from pass 1 (`calibration_harvest.screen`: both sides eligible,
+signed cells, no days-to-close cap, dead middle excluded — versus
+`insider_bias.screen`'s favorites 0.65–0.97 at first qualifying day).
+Pooling them would make per-series bias partly an artifact of which rule
+sampled which series. Pass 1's own Population section said this
+population was "a separate future pass"; this is that pass, and its
+results are **never pooled with pass 1's**.
+
+## What changes from pass 1 (and only this)
+
+1. **A power floor replaces the count floor.** A series is tested only
+   if its minimum detectable effect `MDE = 2.8 × SE` is **≤ 5.0 points**
+   — the low end of a theory-grade edge. A series that cannot resolve a
+   bettable effect is *excluded from the family entirely*: it can only
+   inflate the Holm correction and dilute the result. The number of
+   series excluded on this ground is reported, because that count is the
+   power story.
+2. **The control is measured but excluded from the Holm family.**
+   `mention_family` series (none expected in weather, but the rule
+   stands) are reported separately.
+3. Everything else — the day-clustered gross statistic, split-sample
+   same sign, both halves ≥ 1.0 pt, `|t| ≥ 2`, Holm at α = .05 — is
+   **unchanged from pass 1**.
+
+Note the power floor is a *rule*, not a peek: it is stated here in
+advance and the data decides who passes it. Reporting the MDE
+distribution is what makes a null readable.
+
+## What counts as what, fixed now
+
+- **Confirmatory:** a series passing all four gates *and* the power
+  floor. Its follow-on may only claim `edge_basis="measured"` after an
+  out-of-population or forward test — never on this data.
+- **Genuine negative:** ≥ 10 series clear the **power floor** and none
+  is flagged. *That* would be evidence the population is calibrated,
+  which pass 1 could not claim.
+- **Not measured, again:** fewer than 10 series clear the power floor.
+  Then weather is as underpowered as pass 1 was and the honest answer is
+  the same — recorded now so it cannot be talked up later.
