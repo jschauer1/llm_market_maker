@@ -26,8 +26,16 @@ python -m theories.calibration_harvest.collect run \
 ## Read the cells
 
 ```bash
+# wins / n / distinct settlement days
 python -m theories.calibration_harvest.collect rates \
     --run-id backtest-2026-08-27-calharvest-weather
+
+# ...and the three things a cell cannot honestly be read without: the mean
+# ask actually paid (a raw edge against a bin midpoint is an edge against
+# nothing), the Wilson-bounded edge price() would claim, and the
+# day-clustered SE. Prefer this one.
+python -m theories.calibration_harvest.read_cells \
+    backtest-2026-08-27-calharvest-weather
 ```
 
 Never read a cell as measured until its population is **complete** — the
