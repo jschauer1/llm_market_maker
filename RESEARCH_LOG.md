@@ -2766,3 +2766,25 @@ item 4 adopts 78's conditional wording: anchor on scheduled close
 always; families with a long right tail in closed_early_days (median
 210d for "by D" families vs 3h population-wide) are where the
 actual-close anchor inverts signs rather than adding noise.
+
+## 2026-08-29 (cont.) — attempt-level scoring landed; schema ruling for cluster-n
+
+`f6a1047` (suite 982) lands the attempt-level ruling ahead of the Sept 1
+settlements: consecutive-run dedupe (flip-backs score twice, proven by
+test), post-interpretation screened rows retained-but-unscored, three-
+position two-pool fixture. First concrete payoff: position-level
+grouping had been ERASING stage-1 baselines wherever stage 2 later
+engaged — no_side_premium cell A went n=0 → n=8 (+1.375 net), and 4f
+corrected its own morning statement to the user ("cell A has 0 settled
+rows") which was an artifact of the defect.
+
+Schema ruling for the clustering extension (supervisor): `n_clusters`
+is ADDED as a nullable column — the stored `n` keeps its row-count
+meaning everywhere, historical rows stay NULL, nothing is rewritten in
+place. `rank.py` switches to cluster-n in the same commit, with two
+mandatory disclosures: the full before/after ranked-edge table for
+every theory, and explicit callout of probation flips (n<10 now binds
+on clusters). Additive ALTER only; characterization tests cover both
+row generations. `bucket_rates` shares the correlated-sibling issue in
+principle but is explicitly OUT of this scope — separate ruling when
+filed.
