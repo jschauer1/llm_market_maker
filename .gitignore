@@ -9,4 +9,7 @@ db/*.db-shm
 
 # SDD isolated worktrees
 .worktrees/
+
+# User-only deliverables — not part of the research corpus, not read by models
+user_reports/
 studies/2026-08-29-series-bias-mining/data/collect.db
