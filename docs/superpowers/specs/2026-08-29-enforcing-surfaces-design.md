@@ -374,7 +374,7 @@ STANDING     pending retirements · open rulings · blocked items
 EVIDENCE     per running theory: calibration_edge_net, n_clusters, tier
 WINDOWS      each data window and its question count            (§1)
 QUEUE        endorsed + untouched + unsettled, with age and close time
-FRESHNESS    last board pull · last settle run · last mark-taken
+FRESHNESS    last board pull · last settle run · last mark-taken · last bets render
 ```
 
 Optionally written to `STATE.md` by `--write` for humans; that file is
@@ -427,6 +427,12 @@ Some of this is simply that the user places few bets, which is not a defect.
 But part is friction the repo can remove: `mark-taken` requires an opportunity
 id, which means first running a listing and reading it. Nobody does that after
 placing a bet on their phone.
+
+The other half of the loop — a surface that tells the user a bet is worth
+placing at all — is specified separately in
+`2026-08-29-bets-raise-lane-design.md` (the raise lane, user-requested).
+Its raised-but-never-taken population is the divergence input this section
+has been missing.
 
 ### 4.2 Friction removal (uncontroversial, do this regardless)
 
