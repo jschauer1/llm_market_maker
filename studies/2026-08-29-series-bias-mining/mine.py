@@ -39,6 +39,14 @@ MIN_HALF_EDGE = 1.0
 MIN_ABS_T = 2.0
 ALPHA = 0.05
 
+#: Pass 2's power floor (STUDY.md "Pass 2"). A series is tested only if
+#: 2.8*SE -- the effect it would catch 80% of the time at alpha .05 -- is
+#: at or below this. Pass 1 used a COUNT floor as its power proxy and
+#: therefore reported "0 of 17 flagged" on a family whose median series
+#: could only resolve 13.5pts. None applies pass 1's rule unchanged.
+MAX_MDE_PTS = 5.0
+PASS2_RUNS = ("backtest-2026-08-27-calharvest-weather",)
+
 #: mention_family's series -- the built-in negative control. Measured,
 #: never promoted; a flag here means the guard is too loose.
 MENTION_MARKER = ("MENTION", "SAY", "ACT")
@@ -187,15 +195,38 @@ def holm(stats: list[SeriesStat], alpha: float = ALPHA) -> set[str]:
     return survivors
 
 
-def mine(conn, runs=RUNS) -> dict:
+def mde(stat: "SeriesStat") -> float:
+    """Smallest effect this series would catch 80% of the time at .05."""
+    return 2.8 * stat.se
+
+
+def mine(conn, runs=RUNS, max_mde: float | None = None,
+         drop_control: bool = False) -> dict:
+    """`max_mde` applies pass 2's power floor; None is pass 1's rule.
+
+    `drop_control` keeps mention_family out of the Holm family (pass 2),
+    reporting it separately rather than spending correction budget on
+    series nobody would promote.
+    """
     by_series = load(conn, runs)
-    stats = [st for series, rows in sorted(by_series.items())
-             if (st := stat_for(series, rows)) is not None]
+    admitted = [st for series, rows in sorted(by_series.items())
+                if (st := stat_for(series, rows)) is not None]
+    control = [s for s in admitted if is_mention_family(s.series)]
+    family = [s for s in admitted
+              if not (drop_control and is_mention_family(s.series))]
+    underpowered = ([s for s in family if mde(s) > max_mde]
+                    if max_mde is not None else [])
+    stats = ([s for s in family if mde(s) <= max_mde]
+             if max_mde is not None else family)
     survivors = holm(stats)
     flagged = [s for s in stats
                if s.passes_split and s.passes_t and s.series in survivors]
     return {
         "series_seen": len(by_series),
+        "series_admitted": len(admitted),
+        "series_underpowered": len(underpowered),
+        "control": control,
+        "mde_values": sorted(mde(s) for s in admitted),
         "series_tested": len(stats),
         "expected_false_positives": ALPHA * len(stats),
         "passing_split": sum(s.passes_split for s in stats),

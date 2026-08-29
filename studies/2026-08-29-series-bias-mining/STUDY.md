@@ -313,3 +313,95 @@ distribution is what makes a null readable.
 - **Not measured, again:** fewer than 10 series clear the power floor.
   Then weather is as underpowered as pass 1 was and the honest answer is
   the same — recorded now so it cannot be talked up later.
+
+## Pass 2 result — one flag, in a pass my own bar calls "not measured"
+
+```
+series seen                 : 57
+series clearing floors      : 28
+  excluded: underpowered    : 27   (MDE > 5.0 pts)
+series TESTED (power floor) :  1
+FLAGGED (all gates)         :  1   KXLOWTLV
+```
+
+MDE over the 28 admitted: median **10.8**, best 4.9, worst 18.1. Only
+**1 of 28** could resolve a 5-point effect; 12 of 28 could resolve 10.
+
+**By the bar fixed above, this pass is "not measured, again"** — a
+genuine negative required ≥10 series clearing the power floor, and one
+did. The flag arrives inside a pass pre-declared uninformative, and that
+framing is not negotiable after the fact.
+
+### The flag, and it is statistically robust in-sample
+
+`KXLOWTLV` (Tel Aviv daily low temperature), n=47 over 38 settlement
+days, favorites at mean ask 0.882 realizing **0.957**:
+
+| check | result |
+|---|---|
+| day-clustered gross | **+9.50** (net +8.83) |
+| halves | +8.06 / +10.95 |
+| t | **+5.44**, p < 1e-5 |
+| days positive | **36 / 38**, sign test p < 1e-6 |
+| jackknife (drop any 1 day) | t stays **+5.21 … +8.33** |
+| drop 3 most extreme days | t **+8.48** — *stronger* |
+| bootstrap over days, 10k | 95% CI **[+5.82, +12.59]**, P(≤0) = 0.0000 |
+
+No single day drives it, it survives trimming, and the two
+distribution-free checks (sign test, bootstrap) agree with the t-test.
+It also clears Bonferroni over all 28 admitted series (0.05/28 = 0.0018)
+by four orders of magnitude, so multiplicity is not the objection.
+
+### Why it is still only a hypothesis — including a flaw in my own floor
+
+1. **It arrives in a pass pre-declared "not measured".** One series is
+   not a family, and the pre-registration said so before the run.
+2. **The power floor is not outcome-neutral, which I did not anticipate
+   when pre-registering it.** For a Bernoulli, variance is `p(1−p)`, so a
+   series with an extreme win rate has a low SE and therefore a low MDE.
+   The floor *preferentially admits extreme-win-rate series*, which is
+   exactly where a large gap can sit if prices lag. Measured in this
+   population: mean win rate **0.864** among MDE ≤ 8 series versus
+   **0.829** among MDE > 8 — and `KXLOWTLV` at **0.957** is the most
+   extreme series in the population *and* has the lowest MDE. Its
+   admission to the family was not independent of its outcome.
+
+   This tempers but does not erase it: the other low-MDE series show no
+   comparable edge (`KXHIGHCHI` +1.89, `KXHIGHNY` +0.37, `KXHIGHMIA`
+   −3.05), so low MDE does not mechanically produce a large gap.
+3. **Thin day cells.** 47 rows over 38 days is ~1.2 rows/day, so most
+   day-edges are a single Bernoulli draw minus an ask. The sign test and
+   bootstrap carry the weight here, not the t.
+
+### Not actionable today
+
+`KXLOWTLV` has 6 markets open on the 2026-08-29 board (close
+2026-08-30T08:00Z), and they do not present the trade: five are dust
+(volume 5–98, books at 0.01/1.00) and the only liquid one
+(`-T84`, volume 806) is at **yes_ask 0.98** — *above* the 0.97 cap of
+the very screen that generated the population. There is no position here
+at today's prices.
+
+### The forward test, pre-registered now
+
+Per the lesson from pass 1 and the peer's `KXRT` caution, fixed before
+looking again:
+
+- **Sign: positive** (favorites in `KXLOWTLV` realize *above* their ask).
+  Fixed in advance so a negative result cannot be re-read as "a bias
+  exists".
+- **Population:** forward `KXLOWTLV` settlements only, entered under the
+  same screen (favorite, ask ≤ 0.97).
+- **MDE ≤ 5 pts**, day-clustered, which at this series' observed
+  between-day SD needs roughly **35–40 settlement days**.
+- **Confirmation** requires the day-clustered gross edge > 0 at 2 SE
+  *and* ≥ 60% of days positive. Anything less is a failed forward test,
+  reported as failed.
+
+### Correction to the checklist advice
+
+Backlog index step 0b (added today) says to pre-register a power floor.
+That is still right, but it needs the caveat found here: **an SE-based
+floor is not outcome-neutral for binomial data.** State it as a floor on
+`n` and `n_days` where possible, or report the win-rate composition of
+who passed, so the selection channel is visible rather than silent.
