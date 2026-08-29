@@ -17,9 +17,8 @@ sources; every spec links back here instead of repeating them.
    event*? If so, expect to find nothing, and measure before you
    build.** Kalshi lists and quotes the markets inside an event
    *together* — the same makers post the whole ladder or date-set — so
-   they come out internally consistent by construction. Two theories in
-   this backlog died on exactly this in 2026-08, from opposite
-   directions, and neither spec anticipated it:
+   they come out internally consistent by construction. Three independent measurements in 2026-08, from different
+   directions, and no spec anticipated it:
 
    - **`calendar-arb`** (#12, now `dead`): zero violations at its own
      1c/leg buffer across 10 snapshots. Near-dated date ladders are
@@ -33,6 +32,15 @@ sources; every spec links back here instead of repeating them.
      appeared only in rungs with median volume **0**, where the "mid" is
      an empty book rather than a price. Study:
      `studies/2026-08-29-smile-smoothing-ladder-flatness/`.
+
+   - **`structural_arb`'s NO-basket path** (2026-08-29, exhaustive):
+     with the event envelope making Kalshi's `mutually_exclusive` flag
+     free, all **6,414** mutually-exclusive events on one board were
+     checked directly. **Exactly 1** had a NO-basket costing less than
+     its guaranteed payout, at 0.125c/leg against a 1c/leg buffer — **0
+     tradeable**. This is the strongest form of the finding: not a
+     sample, the whole board, from the direction most favourable to the
+     thesis. See `theories/structural_arb/NOTES.md` 2026-08-29.
 
    The cheap check is a one-board measurement of the *dispersion the
    thesis needs*, run before any theory scaffolding — both of the above

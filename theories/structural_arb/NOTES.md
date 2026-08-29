@@ -310,3 +310,61 @@ endpoint. Under v2 the same three were fetched and then rejected.
 Not an edge change — all six historical finds were rejected either way.
 What it buys is a scan that no longer announces finds it will always throw
 away. Suite 890 green.
+
+## 2026-08-29 — the flag path validated, and exhaustively empty
+
+The event envelope landed in `tools/` today (`09a66f7`, session 78), which
+made the `mutually_exclusive` flag free and complete instead of a
+150-per-screen fetch budget. Three things follow, none of which changes
+this theory's procedure — recorded so a v4 proposal can cite measurement
+rather than hope.
+
+### 1. The expensive path was correct
+
+`theory_facts` holds **2,042** flags accumulated one event at a time
+across every session this theory has run. Against the envelope on the
+first envelope-bearing capture (`2026-08-29T13:14:32Z`, 110,628 markets),
+**1,502 overlap and 0 mismatch.** The per-event fetch was never wrong; it
+was only slow.
+
+### 2. Every one of those 2,042 cached flags is `false`
+
+The theory has never once confirmed a mutually-exclusive event, and the
+envelope explains why that was never observable: it says `true` for
+**6,414** events on this board, and this theory had fetched **none** of
+them. Its candidates are *arithmetic hits* (a NO-basket already summing
+below its payout), and that population and the ME population barely
+intersect — so the budget was being spent where the answer is almost
+always `false`.
+
+That is not budget exhaustion and not a broken guard. It is a search
+order aimed at the wrong end.
+
+### 3. Inverting the search does not help — measured, not assumed
+
+The obvious v4 was: start from the 6,414 ME events and check *their*
+arithmetic, rather than starting from arithmetic hits and paying to check
+exclusivity. Now free, so it was worth testing directly.
+
+**Of 6,414 mutually-exclusive events, exactly 1 has a full NO-basket
+costing less than its guaranteed payout** — `KXLOWTDC-26AUG29`, $0.005
+over 4 legs = **0.125c/leg**, against this theory's 1c/leg buffer. **0
+clear the buffer.**
+
+So the inversion finds nothing either. The `no_basket` path has nothing
+to find on this board from *either* direction, and that statement is now
+**exhaustive over every ME event** rather than limited to 150 fetches.
+
+### What a v4 should and should not claim
+
+Worth doing: source the flag from `m.event.get("mutually_exclusive")`,
+falling back to `theory_facts` then a fetch when the capture predates the
+envelope (`None` means UNKNOWN, never `False` — reading absent as false
+would silently discard real violations). That removes a network budget,
+makes coverage complete, and lets the funnel report `flag_confirmed`
+against the whole board.
+
+Not worth claiming: that it will find more. It will find the same
+nothing, faster and provably. The honest v4 rationale is *coverage and
+cost*, not edge — and since it changes where a decision input comes
+from, it bumps the version and is the user's call.
