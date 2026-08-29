@@ -330,3 +330,63 @@ three disagreements resolved all three, including 18 withdrawing its unique
 call after checking that `KXBERNIEENDORSE`'s 15 siblings are different
 *races*, five already resolved at 1.00, summing 7.41 — not a selection.
 Two independent readings, one number: **12%**.
+
+---
+
+# Round 5b — the allowlist, audited exhaustively, is clean
+
+Round 5 killed the *broad* mechanical screen. That leaves the series
+allowlist, whose premise — "these series are unambiguously in-thesis" —
+had never been tested. It is a **series**-level construct, so it can be
+audited **exhaustively rather than sampled**: 70 series, no sampling error.
+
+## Result
+
+| | markets | series | in band |
+|---|---|---|---|
+| naive allowlist (suffix rule, no screen) | 1,036 | 72 | 623 |
+| after the round-5 screen | **981** | **70** | **604** |
+
+- **70 of 70 series are genuine per-subject hazards.** Every one asks
+  "does this discrete unscheduled thing happen to this specific subject by
+  this date", and its siblings are *different subjects* — different
+  players traded, different officials pardoned, different leaders out —
+  never branches of one outcome. The `KXIPO*` families are date ladders.
+- **0 of the 981 survivors carry `mutually_exclusive=True`.**
+- **0 are in the price-partition set.**
+- The contamination flagged earlier is gone: **`KXUKCABOUT` — "who is
+  *next* to leave the Burnham Cabinet", 23 markets, pure
+  multi-destination — is removed in full.** Both signals fire on it
+  (`flag=True`, and 23 legs sharing one deadline summing 0.90).
+
+## Why the signals work here and failed in round 5
+
+This looks contradictory and is not. The price test catches a partition
+only when it is **tightly priced**, and that is a property of the
+population, not of the rule:
+
+```
+KXUKCABOUT-BURNN28JAN01   23 legs, sum 0.90  -> caught
+KXSUPERBOWLHEADLINE-27    54 legs, sum 3.64  -> missed
+```
+
+On the broad board the exclusive events that slip through are illiquid
+longshot ladders whose mids overstate and whose legs sum to 3–4. Inside
+the allowlist, the one exclusive family present is liquid and priced to
+sum near a dollar. **Narrow the population and the same signal becomes
+reliable** — which is the 0e lesson read forwards rather than backwards:
+a signal's hit rate is a fact about a population, never about the signal.
+
+## What this settles
+
+The allowlist option is **live, tier A, mechanically clean, and audited
+without sampling error** at 981 markets / 604 in the entry band. That is
+enough for hazard bins and enough for a backtest.
+
+It is now the strongest option on the board: it ships without a prompt, a
+contamination probe, a provenance record, or the point-in-time payload
+machinery that 4f's finding
+(`studies/2026-08-29-structural-gate-payload-version/`) would require of a
+gated version. The LLM gate remains the right instrument for *coverage*
+later — 604 in-band versus ~2,600 — but coverage is worth paying for only
+once the effect is known to exist, and it is still completely unmeasured.
