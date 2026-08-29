@@ -1,8 +1,14 @@
-# Enforcing surfaces: five norms that exist only as prose
+# Enforcing surfaces: making the rules bind
+
+Two halves. **§1–6** give an enforcing surface to five norms `CLAUDE.md`
+states but nothing checks. **§7** addresses the other ~30 rules, which are
+fine as written and simply arrive at the wrong moment — by loading them where
+they bind, deleting none of them.
 
 **Date:** 2026-08-29. **Status:** design proposed, implementation not started.
-**Scope:** `tools/` + `db/schema.sql` + ~250 net new words in `CLAUDE.md`, plus
-a one-time migration of `RESEARCH_LOG.md` (§6).
+**Scope:** `tools/` + `db/schema.sql` + ~370 net new words in `CLAUDE.md`,
+substantial additions to four skills, plus a one-time migration of
+`RESEARCH_LOG.md` (§6).
 **Base:** `ff4318a` (registered slices). `CLAUDE.md` is 6,388 words as of that
 commit; every budget below is against it.
 **Non-goal:** changing what this project believes.
@@ -22,21 +28,26 @@ So this spec adopts a hard budget and honours the repo's own construction rule
 
 | Constraint | Value |
 |---|---|
-| Net new words in `CLAUDE.md` | **≤ 250** (3.9% of the current 6,388) |
+| Net new words in `CLAUDE.md` | **≤ 370** (5.8% of the current 6,388) |
 | New top-level `CLAUDE.md` sections | **0** — every edit lands inside an existing section |
-| New doctrine | **0** — every item below enforces a rule the document already states |
-| Deletions offsetting the additions | 2 (§3.4, §6.7) |
+| Rules **removed** from `CLAUDE.md` | **0** — and removal needs per-rule user approval (§7.7) |
+| New doctrine | **1** — §7.5's skill-invocation rule, flagged as such |
+| Deletions offsetting the additions | 2 (§3.4, §6.7) — both rewrites in place, no rule lost |
 
-The unifying observation is that **every defect here is a norm `CLAUDE.md`
+For §1–6 the unifying observation is that **every defect is a norm `CLAUDE.md`
 already states, which has no surface that makes omitting it impossible.** The
 document names the correct pattern itself, in the provenance section:
 
 > After that `record_opportunity` **refuses** to write a row for a run with no
 > provenance — the omission is made impossible rather than discouraged.
 
-That is the template. Four norms have not received it yet. Nothing below asks
+That is the template. Five norms have not received it yet. Nothing in §1–6 asks
 an agent to believe anything new; each item takes a sentence that is already
 law and gives it a table, a refusal, or a test.
+
+§7 is the one place this spec adds doctrine rather than enforcement, and it
+does so to make the *existing* rules land at the right moment. It removes
+nothing.
 
 ---
 
@@ -688,7 +699,148 @@ pointer-not-copy sentence rather than adding to it.
 
 ---
 
-## 7. Explicitly out of scope
+## 7. Rule delivery: load the rule where it binds, delete nothing
+
+### 7.1 The problem, stated correctly
+
+`CLAUDE.md` is 6,388 words carrying ~36 rules. **6,388 words is ~8k tokens —
+that is not a context problem**, and any version of this section justified by
+load cost is solving the wrong thing.
+
+The cost is **dilution**. Rules compete for attention inside one document that
+is read once, at session start, whatever the session turns out to do. A rule
+about structural-gate conditions is read by a session that will never
+backtest, and — the part that matters — is read *hours before* the session
+that will backtest reaches the moment it binds.
+
+So the target is not a shorter file. It is: **every rule is in front of the
+model at the moment it is about to violate it.**
+
+### 7.2 The principle: relocation, never deletion
+
+These rules are hard-won. Most exist because something went wrong once, and
+the hedges inside them are scar tissue from specific misreadings. **Nothing in
+this section removes a rule, and no rule leaves `CLAUDE.md` without explicit
+per-rule approval from the user** (§7.7).
+
+That flips the earlier framing in this spec's own out-of-scope list. The
+question is not "what can be cut to raise rule density" — it is "what can be
+*additionally delivered* at the point of use." **Duplication is acceptable and
+often correct here**: a rule may live in `CLAUDE.md` *and* be restated inside
+the skill that owns the activity. The redundancy costs tokens; a rule that
+fails to bind costs a contaminated track record. That trade is not close.
+
+### 7.3 Three tiers, by how a rule binds
+
+| tier | what it is | where the text lives |
+|---|---|---|
+| **Enforced** (13) | code refuses or a test fails | `CLAUDE.md` keeps the rule; the *argument* may move. The enforcement already teaches it |
+| **Constitutional** (~9) | unenforceable, always binding, disaster if violated unaware | `CLAUDE.md`, in full, with worked examples — untouched |
+| **Task-time** (~15) | unenforceable, binds during one activity | `CLAUDE.md` **and** the owning skill, quoted verbatim (§7.6) |
+
+**Enforced:** 1 ticker, 2 provenance, 5 basket, 6 arb-scoring, 9 Verdict,
+16 retirement, 21 `finish()`, 22 sibling imports, 23 contract, 26 prompts on
+disk, 27 `exp/` runs, 28 one board, 34 slice registration.
+
+**Constitutional:** 3 `edge_basis`, 4 record rejections, 7 ask-not-mid,
+8 never introspect, 14 version bump, 15 status is evidence, 25 no backtest
+engine, 31 SQLite is truth, 33 ranking formula.
+
+**Task-time, by owner:**
+
+| skill | rules |
+|---|---|
+| `backtest-theory` | 13 web search off, 19 structural-gate five conditions, 20 record the tier claim |
+| `find-edge` | 10 judge blind, 11 buckets from the deep stage only, 12 batch and dedupe |
+| `propose-theory` | 17 facts are data, 35 search the registry, 36 record with a `revisit_angle` |
+| `go` | 32 notes/theory/log split |
+| `score-theories` | 18's *reading* half — what a tier means when trusting a number |
+| (none yet) | 24 elevate at 2+ callers, 29 raw payloads, 30 record incrementally |
+
+### 7.4 The test that decides constitutional vs task-time
+
+**Would violating this rule while the owning skill is not loaded be a
+disaster?** If yes, it is constitutional regardless of which activity it
+mentions. Skills are discretionary; `CLAUDE.md` is guaranteed.
+
+Two rules look task-time and fail the test, which is why the test earns its
+place:
+
+- **25 — no shared backtest engine.** Reads like a backtesting rule. The
+  moment someone builds one is during a *refactor*, when `backtest-theory` is
+  not loaded. Constitutional.
+- **18 — tier definitions.** Reads like a backtesting rule. But tiers are
+  *read* when ranking, reporting and deciding what to trust. The definitions
+  stay constitutional; only the five structural-gate conditions (19) are
+  task-time.
+
+### 7.5 The skill-invocation rule — **new doctrine, flagged as such**
+
+Relocation is only safe if the skill actually loads. So `CLAUDE.md` gains one
+rule that is genuinely new rather than an enforcement of something already
+written:
+
+> **When a task has a skill, invoke it before starting.** Backtesting →
+> `backtest-theory`. Choosing bets → `find-edge`. New hypothesis →
+> `propose-theory`. Settling and scoring → `score-theories`. Comparing →
+> `compare-theories`. A session → `go`. The skills carry rules this file does
+> not repeat, loaded at the moment they bind. **Prefer loading a skill to not
+> loading one**: the cost of reading one you did not strictly need is a few
+> hundred tokens, and the cost of skipping one is a rule you never saw.
+
+This is the only new doctrine in this spec, and it breaks §0's "0 new
+doctrine" budget line deliberately. It is also load-bearing: without it, §7.3
+moves rules into documents that may never open.
+
+### 7.6 Anti-drift: quoted blocks, checked by a test
+
+Duplication's failure mode is divergence — two copies of a rule that no longer
+say the same thing, with nothing to say which governs.
+
+So a task-time rule restated in a skill is **quoted, not paraphrased**, inside
+a marked block naming its `CLAUDE.md` anchor:
+
+```markdown
+<!-- rule: structural-gate-conditions (CLAUDE.md § Backtest tiers) -->
+> A judging stage is structural — and does not cost tier A — only when all
+> of the following hold...
+<!-- /rule -->
+```
+
+New in `tests/test_conventions.py`, in the idiom of
+`test_every_recorded_prompt_path_still_resolves`:
+
+```python
+def test_every_quoted_rule_matches_its_source():
+    """A skill that quotes a CLAUDE.md rule must quote it exactly. Two
+    copies that disagree are worse than one copy nobody read: nothing
+    says which governs. Fails at the commit that forks them."""
+```
+
+That makes duplication safe, which is what lets §7.2 prefer it.
+
+### 7.7 What requires explicit approval
+
+- **Removing any rule from `CLAUDE.md`** — per rule, from the user, never in
+  bulk and never as a side effect of relocation. The default outcome of this
+  section is that `CLAUDE.md` gets *slightly longer* (§7.5's rule) and the
+  skills get substantially longer.
+- **Consolidating the prefer-mechanical argument** (lines 38, 73–75, 297,
+  546–551, 596 — five statements with separately accumulated hedges). This is
+  a rewrite of existing text, not a relocation, so it is proposed and not
+  performed: state it once, completely, with all four hedges, and leave
+  pointers. Needs approval because a hedge dropped in the merge is a rule
+  silently weakened.
+- **Any change to the `Subset edges` subsection** — session 9a's text (§8).
+
+### 7.8 `CLAUDE.md` edit (≈120 words — §7.5's rule, inside "How the user drives this")
+
+Net additive. §7.3's relocations add nothing to `CLAUDE.md` and subtract
+nothing from it; only the skills grow.
+
+---
+
+## 8. Explicitly out of scope
 
 - **Execution realism for `structural_arb`.** Already done, and better than
   this spec would have specified:
@@ -705,11 +857,12 @@ pointer-not-copy sentence rather than adding to it.
 - **`bucket_rates` clustering** — already carved out by a standing ruling.
 - **Any rewrite of `CLAUDE.md` for length.** The document's size is a
   deliberate purchase of cross-session consistency. It is not technical debt
-  and this spec does not treat it as such. A separate question — whether
-  `CLAUDE.md`'s *rule density* can be raised by consolidating the
-  prefer-mechanical argument, which currently appears at lines 38, 73–75, 297,
-  546–551 and 596 with separately accumulated hedges — is open and not
-  specified here.
+  and this spec does not treat it as such — §7 explicitly removes nothing and
+  expects the file to get slightly *longer*.
+- **Consolidating the prefer-mechanical argument** (lines 38, 73–75, 297,
+  546–551, 596). Proposed in §7.7, deliberately not performed: it is a rewrite
+  of existing text rather than a relocation, and a hedge dropped during the
+  merge is a rule silently weakened. Needs the user's approval first.
 - **The `Subset edges — registered slices` subsection of `CLAUDE.md`**
   (`ff4318a`, line 331). Session 9a owns that text; §1.7 and §2.8 above add
   columns and a pooling switch around it and reword none of it. If the §6.5
@@ -717,7 +870,7 @@ pointer-not-copy sentence rather than adding to it.
 
 ---
 
-## 8. Sequencing
+## 9. Sequencing
 
 Each phase is independently shippable and independently useful.
 
@@ -731,6 +884,8 @@ Each phase is independently shippable and independently useful.
 | 6 | §2 carry/breaking + backfill + `rank`/`segment_report` disclosure | The evidence bleed; largest payoff, needs the disclosure precedent |
 | 7 | §1 question budget + §1.7 slice columns | Needs windows registered, easiest once `state` renders them |
 | 8 | §5.2 DB split | Pure operations; safe to defer, unsafe to defer indefinitely |
+| **A** | §7.5 skill-invocation rule + §7.6 quoted-rule test | **Independent of everything above — ship first if desired.** The rule is worthless until the test makes duplication safe, so they land together |
+| **B** | §7.3 task-time rules quoted into `backtest-theory`, `find-edge`, `propose-theory`, `go`, `score-theories` | One skill per commit, each verified by the §7.6 test. No `CLAUDE.md` change, so it cannot regress the guaranteed layer |
 | — | §6.5 rulings 1 & 2 (§22 reversal, promotion bar) | **Blocked on the supervisor.** Ruling 1 gates phases 4–5; ruling 2 also gates on phase 1, per §6.3 |
 | — | §4.3 paper lane | Blocked on the user's ruling |
 
@@ -738,7 +893,7 @@ Phases 3–5 are the migration. **Phase 1 gates all of them** (§6.3): raising t
 bar or emptying the log before `state` exists just moves work into files nobody
 reads.
 
-## 9. Testing
+## 10. Testing
 
 Every item ships with tests in the existing suite (986 passing, 64s):
 
@@ -758,8 +913,12 @@ Every item ships with tests in the existing suite (986 passing, 64s):
   cross-citation names a file that exists *and still contains that date
   heading*. A stub passes; a silent move fails. This is the migration's only
   real safety net, and it must land **before** phase 4.
+- New `test_every_quoted_rule_matches_its_source` (§7.6) — a skill quoting a
+  `CLAUDE.md` rule must quote it exactly; the test fails at the commit that
+  forks the two copies. This is what makes §7.2's deliberate duplication safe,
+  and it must land **with** phase A, not after it.
 
-## 10. What this spec does not change
+## 11. What this spec does not change
 
 The mission, the theory contract, `finish()` as the ledger boundary, the
 credibility formula, the tier definitions, the no-introspected-probability
@@ -771,5 +930,12 @@ trail**. §6 moves content out of it and leaves a stub at every anchor; it does
 not compress it, rewrite it, delete from it, or cap its growth. A journal is
 supposed to grow. The change is that the canon stops living inside it.
 
+**And no rule is removed from `CLAUDE.md`.** §7 relocates *delivery*, never
+authority: a task-time rule is restated in the skill that owns the activity
+*in addition to* remaining where it is, held identical by a test. Every rule in
+that file was paid for by something going wrong once; none of them is cut here,
+and cutting one later needs the user's approval, per rule (§7.7).
+
 Five sentences the document already contains get a table, a refusal and a test.
-That is the whole change.
+One rule is added, so the other thirty arrive when they matter. That is the
+whole change.
