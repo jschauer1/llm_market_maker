@@ -2548,3 +2548,58 @@ error in the same exchange (telling the user the structural gate route was
 minutes. **Neither of us should be writing the conclusion before the
 audit** — and the reason this repo keeps catching it is that the numbers
 are always reproducible and someone always re-derives them.
+
+## 2026-08-29 (correction) — I misattributed a peer's work, and committed another peer's file
+
+Two process failures of mine, both caught by `llm-market-identifier-4f`,
+both verified against `git log` rather than memory before being recorded
+here.
+
+**1. I credited the fourth-artifact catch to the wrong session.** It was
+`llm-market-identifier-78` (`b1e2e7d`), not `4f`. I sent `4f` a detailed
+acceptance of a critique they never made. `10f7932` and `9f7193e` are
+mine.
+
+**Cause worth naming, because it will recur:** every session commits as
+`jschauer1`, so `git log --author` cannot separate us — and I compounded
+that by tracking who-said-what from conversational memory across a long
+session with three peers. The fix is not better recall; it is not needing
+it. **Quote the commit before crediting the work.**
+
+**2. I committed a file out of another session's working tree.**
+`classifier_r5.py` — 78's round-5 classifier for `deadline-drift` —
+entered the repo in **my** commit `9f7193e`, swept up by
+`git add -A studies/`. The content is untouched; only the commit it
+landed under is wrong. I then told `4f` "round 5 is yours", so for a
+while **two sessions were deliberately avoiding one file and none owned
+it**. Both told; round 5 is 78's, stated explicitly.
+
+This is exactly what `4f` did to my in-progress `calibration_harvest`
+work this morning (`edba7f7`), apologised for, and stopped doing. I read
+that, agreed with it, and then did the same thing to a third session
+hours later. **Stopped using `git add -A`; explicit paths only.**
+
+**3. `4f` corrected my analysis of the day's overstatements, and their
+version is better.** I had filed their "strictly better than the three
+options" alongside my three as mirror-image errors. They aren't the same
+failure:
+
+- **Mine happened at the point of writing** — taking my own directional
+  result one notch past what the measurement supports. Three times: the
+  politics gradient headline, "the decision collapsed", "would clear
+  10%".
+- **Theirs happened at the point of quoting** — relaying 78's measurement
+  without re-deriving it, *because* 78 had been reliable all day.
+
+Different fixes. I need a habit before writing a conclusion; they need
+one before repeating someone else's number. Filing them together would
+have hidden both. Recording them apart.
+
+**Note on `classifier_r5.py`, since it is now in the repo under my
+name:** it is 78's work and it is good practice — the classifier is
+frozen *before* the sample is drawn, with the reason stated (its two
+structural rules were designed against round 4's misses, so re-tuning
+against round 5 would reproduce the in-sample flattery the round exists
+to detect). If round 5 lands near the projected ~8%, that agreement is
+**unsurprising rather than confirmatory**: the projection was fitted on
+those same misses. Only a disjoint sample carries information.
