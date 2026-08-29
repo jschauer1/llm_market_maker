@@ -130,6 +130,24 @@ without the contract.
   real stage-1 baseline, and dropping it would bias the screened pool
   toward never-interpreted positions. For a fully mechanical theory the
   whole rule is a no-op.
+- **Uncertainty is clustered at the EVENT, and credibility keys on the
+  CLUSTER count** (ruling 2026-08-29). Sibling markets of one Kalshi
+  event share an outcome driver, so rows overstate evidence by roughly
+  the sibling count — session 78's hazard estimate ran z≈9 naive against
+  1.34 clustered, on 2,805 rows that were only 48 clusters. So
+  `compute_score` emits `n_clusters` (the effective sample size),
+  `clustered_se` (between-cluster SE of the net calibration edge, `None`
+  below two clusters because one cluster says nothing about spread), and
+  `unclustered_rows`. `rank.credibility(n, ...)` takes the **cluster**
+  count: a theory holding fifty siblings of one event must not clear
+  probation as n=50 when it has watched one event resolve. The event is
+  derived from `extra_json.event_ticker`, else the ticker minus its last
+  dash-segment; unrecoverable rows cluster alone and are counted, never
+  silently bucketed. **Schema migration:** `scores.n_clusters` and
+  `scores.clustered_se` are additive and nullable, and historical rows
+  are deliberately **not** backfilled — a stored score row records what
+  was computed then, so NULL means "not computed under this semantics"
+  and must never be read as a cluster count of 0.
 - **`opportunity_fills` is the money-side mirror of attempts.** Every
   `mark-taken ... taken` appends a fill rather than overwriting, so
   scaling into a position on two different days at two different prices

@@ -123,6 +123,13 @@ def init_db(conn: sqlite3.Connection) -> None:
     _add_column_if_missing(
         conn, "scores", "riskless_roi", "REAL"
     )
+    # Additive and NULLABLE on purpose (ruling 2026-08-29). A stored score
+    # row is a record of what was computed THEN; rewriting it is the
+    # silent merge in storage form. So historical rows keep n_clusters
+    # NULL, meaning "not computed under this semantics" -- never
+    # backfilled, and never confused with a genuine cluster count of 0.
+    _add_column_if_missing(conn, "scores", "n_clusters", "INTEGER")
+    _add_column_if_missing(conn, "scores", "clustered_se", "REAL")
 
 
 def _dedupe_snapshots(conn: sqlite3.Connection) -> None:

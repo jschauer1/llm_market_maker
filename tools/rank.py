@@ -38,7 +38,20 @@ def credibility(
     calibration_edge: float | None = None,
     mean_claimed_edge: float | None = None,
 ) -> float:
-    """Weight in [0, 1.5] to apply to a theory's claimed edge."""
+    """Weight in [0, 1.5] to apply to a theory's claimed edge.
+
+    **`n` is the CLUSTER count** -- `compute_score`'s `n_clusters`, not
+    its row count `n` (ruling 2026-08-29). Sibling markets of one Kalshi
+    event share an outcome driver, so rows overstate evidence by roughly
+    the sibling count: a theory holding fifty siblings of one event must
+    not clear probation as n=50 when it has seen one event resolve. The
+    formula text in CLAUDE.md is unchanged; this is what its `n` means.
+
+    Callers pass `score["n_clusters"]`. A stored score row from before
+    that column existed has `n_clusters` NULL -- such a row cannot be
+    ranked under these semantics and must not be silently read as 0,
+    which would look like maximum ignorance rather than absent data.
+    """
     if n < PROBATION_N:
         return PROBATION_CREDIBILITY
     sample_weight = n / (n + SHRINK_DENOM)

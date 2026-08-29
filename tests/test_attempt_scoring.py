@@ -178,3 +178,73 @@ def test_a_screened_row_BEFORE_interpretation_still_scores(conn):
 
     assert score.compute_score(conn, "t", 1, disposition="screened")["n"] == 1
     assert score.compute_score(conn, "t", 1, disposition="endorsed")["n"] == 1
+
+
+# --------------------------------------------------- event clustering
+
+def test_siblings_of_one_event_are_ONE_cluster(conn):
+    """Fifty siblings of one event share an outcome driver. Pooling them
+    as independent draws manufactures precision -- session 78's hazard
+    estimate ran z~9 naive against 1.34 clustered, on 2,805 rows that
+    were only 48 clusters."""
+    for i in range(12):
+        _record(conn, f"KXEV-26SEP01-{i}", disposition="screened",
+                price=0.80, day="2026-08-27", run_id="r1")
+        score.record_settlement(conn, f"KXEV-26SEP01-{i}", "yes",
+                                resolved_at="2026-09-01T00:00:00Z")
+    r = score.compute_score(conn, "t", 1, disposition="screened")
+    assert r["n"] == 12, "twelve rows really were recorded"
+    assert r["n_clusters"] == 1, (
+        "but they are one event, so one draw -- this is what credibility "
+        "must key on, or fifty siblings rank as n=50"
+    )
+
+
+def test_clustered_se_is_wider_than_the_naive_row_se(conn):
+    """The whole point: correlated siblings must not buy precision."""
+    import statistics
+    # Two events, siblings within each disagreeing sharply between events.
+    for i in range(8):
+        _record(conn, f"KXA-26SEP01-{i}", disposition="screened",
+                price=0.50, day="2026-08-27", run_id="r1")
+        score.record_settlement(conn, f"KXA-26SEP01-{i}", "yes",
+                                resolved_at="2026-09-01T00:00:00Z")
+        _record(conn, f"KXB-26SEP01-{i}", disposition="screened",
+                price=0.50, day="2026-08-27", run_id="r1")
+        score.record_settlement(conn, f"KXB-26SEP01-{i}", "no",
+                                resolved_at="2026-09-01T00:00:00Z")
+    r = score.compute_score(conn, "t", 1, disposition="screened")
+    assert r["n"] == 16
+    assert r["n_clusters"] == 2
+
+    rows = [50.0] * 8 + [-50.0] * 8          # per-row net edges, roughly
+    naive_se = statistics.stdev(rows) / len(rows) ** 0.5
+    assert r["clustered_se"] > naive_se, (
+        "two clusters that disagree completely must report MORE "
+        "uncertainty than sixteen rows pretending to be independent"
+    )
+
+
+def test_a_single_cluster_reports_no_se_rather_than_a_narrow_one(conn):
+    """One cluster carries no information about spread. Returning the
+    row-level SE there is exactly the overstatement this corrects."""
+    for i in range(5):
+        _record(conn, f"KXONE-26SEP01-{i}", disposition="screened",
+                price=0.80, day="2026-08-27", run_id="r1")
+        score.record_settlement(conn, f"KXONE-26SEP01-{i}", "yes",
+                                resolved_at="2026-09-01T00:00:00Z")
+    r = score.compute_score(conn, "t", 1, disposition="screened")
+    assert r["n_clusters"] == 1
+    assert r["clustered_se"] is None
+
+
+def test_an_unrecoverable_event_is_counted_not_hidden(conn):
+    """A ticker with no dash cannot yield an event. It clusters alone --
+    conservative, since it never merges two events -- but that must be
+    reported rather than silently shrinking nothing."""
+    _record(conn, "NODASHTICKER", disposition="screened", price=0.80,
+            day="2026-08-27", run_id="r1")
+    score.record_settlement(conn, "NODASHTICKER", "yes",
+                            resolved_at="2026-09-01T00:00:00Z")
+    r = score.compute_score(conn, "t", 1, disposition="screened")
+    assert r["unclustered_rows"] == 1

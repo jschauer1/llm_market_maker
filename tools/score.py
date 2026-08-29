@@ -44,8 +44,10 @@ re-run backtest from pooling into one inflated sample.
 
 from __future__ import annotations
 
+import json
 import math
 import sqlite3
+import statistics
 
 from tools.db import utcnow, write
 from tools.rank import realization as _realization
@@ -152,7 +154,72 @@ EMPTY_SCORE = {
     "riskless_n": 0,
     "riskless_roi": None,
     "n_attempts": 0,
+    "n_clusters": 0,
+    "clustered_se": None,
+    "unclustered_rows": 0,
 }
+
+
+def cluster_key(row: sqlite3.Row) -> tuple[str, bool]:
+    """(cluster id, was it recoverable) for one observation.
+
+    Sibling markets of ONE Kalshi event share an outcome driver, so
+    pooling them as independent draws manufactures precision: session
+    78's hazard estimate ran z~9 naive against 1.34 once clustered, on
+    2,805 rows that were only 48 clusters. Uncertainty is therefore
+    clustered at the EVENT level, and `n_clusters` -- not the row count --
+    is what feeds credibility, so a theory holding fifty siblings of one
+    event cannot rank as n=50.
+
+    `opportunity_attempts` carries no event ticker, so it is derived:
+    `extra_json.event_ticker` where the theory recorded one, else the
+    ticker with its last dash-segment stripped, which is Kalshi's own
+    event/strike convention. An unrecoverable row falls back to its own
+    ticker -- a cluster of one, which is conservative in the right
+    direction (it never merges two events) but does not shrink n; those
+    rows are counted and reported as `unclustered_rows` rather than
+    silently bucketed.
+    """
+    raw = row["extra_json"] if "extra_json" in row.keys() else None
+    if raw:
+        try:
+            ev = json.loads(raw).get("event_ticker")
+            if ev:
+                return str(ev), True
+        except (ValueError, TypeError):
+            pass
+    ticker = row["kalshi_ticker"] or ""
+    if "-" in ticker:
+        return ticker.rsplit("-", 1)[0], True
+    return ticker, False
+
+
+def _clustered_stats(rows: list[dict]) -> tuple[int, float | None, int]:
+    """(n_clusters, clustered SE of the net calibration edge, unrecoverable).
+
+    Outcomes are aggregated WITHIN each cluster first, then the SE is the
+    between-cluster standard error of those cluster means. `None` below
+    two clusters: one cluster carries no information about spread, and
+    returning the row-level SE there is precisely the overstatement this
+    exists to correct.
+    """
+    by: dict[str, list[dict]] = {}
+    unrecoverable = 0
+    for r in rows:
+        key = r.get("cluster")
+        if not r.get("cluster_ok", True):
+            unrecoverable += 1
+        by.setdefault(key or "", []).append(r)
+    means = []
+    for group in by.values():
+        edges = [(r["won"] - r["implied_rate"]) * 100.0 - r["fee_pts"]
+                 for r in group if r.get("implied_rate") is not None]
+        if edges:
+            means.append(statistics.mean(edges))
+    if len(means) < 2:
+        return len(by), None, unrecoverable
+    se = statistics.stdev(means) / len(means) ** 0.5
+    return len(by), se, unrecoverable
 
 
 def _won(outcome: object, result: object) -> bool:
@@ -279,7 +346,7 @@ def _single_leg_observations(
     # so both COALESCEs fall through to the position row and pooled scoring
     # reads exactly what it read before this join existed.
     sql = (
-        "SELECT o.outcome, o.user_action,"
+        "SELECT o.outcome, o.user_action, o.kalshi_ticker, o.extra_json,"
         " COALESCE(a.entry_price, d.entry_price, o.entry_price) AS entry_price,"
         " COALESCE(a.edge_pts_net, d.edge_pts_net, o.edge_pts_net) AS edge_pts_net,"
         " " + n_attempts_sql +
@@ -320,6 +387,7 @@ def _single_leg_observations(
     out = []
     for row in rows:
         won = _won(row["outcome"], row["result"])
+        cluster, cluster_ok = cluster_key(row)
         price = row["entry_price"]
         fee = fee_pts(price)
         paid = row["fill_price"]
@@ -332,6 +400,8 @@ def _single_leg_observations(
             "edge_pts_net": row["edge_pts_net"],
             "user_action": row["user_action"],
             "n_attempts": row["n_attempts"],
+            "cluster": cluster,
+            "cluster_ok": cluster_ok,
             "fill_price": paid,
             # The fee actually paid, at the recorded price. A single
             # position has one leg, so this is just fee_pts of that price
@@ -589,6 +659,8 @@ def _aggregate(rows: list[dict]) -> dict:
     # from this list, not from `rows` -- covers both groups. Summing after
     # the split would silently drop riskless positions' attempts.
     all_rows = list(rows)
+    n_clusters, clustered_se, unclustered = _clustered_stats(
+        [r for r in rows if not r.get("riskless")])
 
     riskless = [r for r in rows if r.get("riskless")]
     rows = [r for r in rows if not r.get("riskless")]
@@ -725,6 +797,18 @@ def _aggregate(rows: list[dict]) -> dict:
         # positions, because one settlement is one draw; this makes the
         # collapse visible instead of silent.
         "n_attempts": sum(r.get("n_attempts", 1) for r in all_rows),
+        # The EFFECTIVE sample size. Sibling markets of one event share an
+        # outcome driver, so `n` (rows) overstates evidence by roughly the
+        # sibling count -- this is what credibility keys on, so fifty
+        # siblings of one event cannot rank as n=50.
+        "n_clusters": n_clusters,
+        # Between-cluster SE of the net calibration edge. None below two
+        # clusters, deliberately: one cluster says nothing about spread.
+        "clustered_se": clustered_se,
+        # Rows whose event could not be recovered and so cluster alone.
+        # Conservative (never merges two events) but does not shrink n,
+        # so it is reported rather than hidden.
+        "unclustered_rows": unclustered,
     }
 
 
@@ -745,8 +829,9 @@ def save_score(
                 theory_id, theory_version, run_mode, disposition, n, win_rate,
                 price_implied_rate, calibration_edge, calibration_edge_net,
                 mean_claimed_edge, realization, roi_all, roi_taken,
-                riskless_n, riskless_roi, computed_at
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                riskless_n, riskless_roi, computed_at, n_clusters,
+                clustered_se
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 theory_id,
@@ -765,6 +850,8 @@ def save_score(
                 result["riskless_n"],
                 result["riskless_roi"],
                 now or utcnow(),
+                result.get("n_clusters"),
+                result.get("clustered_se"),
             ),
         )
     return cursor.lastrowid
