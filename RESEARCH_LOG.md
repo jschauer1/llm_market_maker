@@ -1697,3 +1697,53 @@ the families it misses are a ticker question, not a judgment question, so
 the fix is code and it bumps the version again. Beyond that: 22 specced
 theories remain unbuilt (`docs/superpowers/specs/theories/`), and idea 21's
 soft relative-value successor still has a ready dataset.
+
+## 2026-08-29 (cont.) — gate.py reads resolution rules; 130 survivors → 18
+
+**Did:** Closed the last of the three 2026-08-28 defects. `gate.py`
+classified by series-ticker prefix only, so it knew exactly the families
+someone had already typed into it. Measured over the whole
+117,272-market board: it removed 198 of 328 screened events and **109 of
+the surviving 130 were still families the thesis rejects** — whole
+categories, not stragglers. Added `RULES_NO_RULES`, which matches the
+market's **resolution rules** instead of its name: four patterns (sport
+fixture, Carbon Arc vendor panel, statistical release,
+OpenRouter/Metascore), each validated against every series on the board,
+zero false positives. **Net: 130 survivors → 18.** Folded into v4 (no v4
+row had been recorded yet). Suite 883 green.
+
+**Learned:**
+
+1. **Matching mechanics beats matching names, and the difference is
+   maintenance.** A Carbon Arc panel says "Carbon Arc" in its own rules
+   whatever its ticker is called, so one pattern covers 77 series today
+   and every one Kalshi adds tomorrow. The prefix list needed an edit per
+   family and was losing the race.
+2. **The two rules I would have shipped on intuition both silently killed
+   live candidates.** A ticker-suffix sport rule
+   `(GAME|MATCH|SPREAD|TOTAL|BTTS|TOP\d+|RACE)$` catches *fewer* series
+   than the rules-text one (496 vs 611) and eats `KXRACE` (Ferrari's own
+   shipment count) and `KXXAIGAME` (xAI's own roadmap) — both the thesis
+   verbatim. A substring statistical rule
+   `^KX.*(CPI|PPI|INF|GDP|SALES|KWH)` eats three Philippine election
+   series on "Phili**PPI**nes" and `KXGTASALESRECORD` on `SALES`. Only
+   running every candidate pattern over the whole board *before* writing
+   it caught this. **That is now the procedure for any gate rule**, and
+   both rejected rules are recorded in `gate.py` with their measurements
+   so nobody re-adds them.
+3. **An independent check fell out for free.** The 18 survivors the new
+   gate produces are the same set this session's own hand-judgment had
+   flagged as arguable among 131 events, arrived at by a completely
+   different route. That is about as much validation as a gate can get
+   before settlements arrive.
+4. **The deeper problem is upstream and unchanged.** 18 survivors out of
+   328 screened events means the screen still has no thesis term in it —
+   it selects tradeable favourites, not markets an informed minority
+   could know (known weakness 3 in the RUNBOOK). The gate has been doing
+   the screen's job.
+
+**Next:** the screen itself is now the top `insider_judgment` item — a
+stage-1 filter with a thesis term would beat a stage-1.5 gate that throws
+away 95% of what stage 1 returns. Otherwise: 22 specced theories remain
+unbuilt, and idea 21's soft relative-value successor still has a ready
+dataset.
