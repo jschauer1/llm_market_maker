@@ -2178,3 +2178,61 @@ llm-market-identifier-18. Built it to spec, then measured it against the whole
 **Next:** series-bias-mining (#4) is the remaining open build, but it is a
 settled-history sweep and would contend with the rate-limited candlestick
 endpoint; hold until the politics collection is done.
+
+## 2026-08-29 (cont.) — politics: the horizon gradient is REAL, and nothing is bettable
+
+**Did:** Second pre-registered population complete — Politics/Elections,
+**2,507/2,507 series**, 1,541 observations over 916 settled markets. Read
+it against the bar fixed **before the data landed** (`4a01f9a`), which
+made the horizon *gradient* the test rather than any single cell. Both
+populations are now done and `calibration_harvest` has its first real
+answer.
+
+**Learned:**
+
+1. **The gradient is confirmed, and it is the spec's own prediction.**
+   Day-clustered, price bands pooled: `<=2d` −1.21, `2d-1w` −4.26,
+   `1w-1mo` **+5.05** (t 2.44), `1mo+` **+9.38** (t 3.01). The
+   pre-registered long-vs-short contrast is **+9.18 ± 3.40 (t 2.70)**
+   unpaired and **+7.68 ± 2.20 (t 3.50)** paired within settlement day,
+   29/45 days positive, sign test **p = 0.036**. Le 2026's political
+   slopes said favorites are underpriced and the effect grows with
+   horizon; on a complete population, it does.
+2. **The paired estimator came in stronger than the unpaired one**
+   (t 2.70 → 3.50), which is what should happen when a common day-level
+   shock is removed. Same estimator `no_side_premium` adopted today, for
+   the same reason. 45 of 46 long-horizon days also carry short-horizon
+   data, so almost nothing is discarded to get it.
+3. **And not one of the sixteen cells is recommendable.** All are
+   net-negative at the Wilson bound (−5.68 to −29.92 pts), because
+   bounding on `n_days` of 16–47 gives an interval far wider than a
+   ~9-point effect. **The effect being real and the effect being bettable
+   are different questions, and today they have different answers.** What
+   closes that gap is more *settlement days* — the v2 bound is
+   deliberately insensitive to row count, so a cell with 45 days and 10k
+   rows is bounded no better than one with 45 days and 200.
+4. **Pre-registration is the only reason this is readable.** Sixteen
+   cells at 2 SE is roughly one false positive by chance; three cells
+   cleared it, but the largest is 2.83 SE where Holm over sixteen needs
+   about 3, so **no individual cell survives multiple comparisons**. The
+   gradient stands solely because it was written down as one contrast
+   before the data existed. Had the bar been set afterwards, the honest
+   reading and the flattering one would have been indistinguishable.
+5. **Weather's null is now interpretable rather than contradictory.**
+   Weather measured flat (four `<=2d` cells, n 692–926, 59 days each, all
+   inside noise) — and it has no long-horizon markets at all, so it never
+   sampled the region where the effect lives.
+6. **Not monotone.** `2d-1w` (−4.26) sits below `<=2d` (−1.21), so the
+   surviving claim is long-versus-short, not a clean four-step ramp. The
+   spec's "everything compresses at 1mo+" is the half that holds.
+
+**Status unchanged: `testing`.** The result is in-sample, and the bar for
+`active` is positive net calibration edge *out-of-sample*. That bar is
+untouched and should stay untouched.
+
+**Next:** the out-of-sample test is already running at zero extra cost —
+the live scan records ~10.3k rows per session and, since this morning's
+`ScoredCandidate.extra` fix, they carry their cell keys and will feed
+`cell_rates` as they settle. Read the live run's own cells once its
+`n_days` grows, and compare against these in-sample numbers rather than
+pooling them.
