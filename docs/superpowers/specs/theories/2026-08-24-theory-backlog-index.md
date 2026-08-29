@@ -13,6 +13,33 @@ sources; every spec links back here instead of repeating them.
 
 ## Before implementing any spec
 
+0. **Does this theory's edge live *between siblings of one Kalshi
+   event*? If so, expect to find nothing, and measure before you
+   build.** Kalshi lists and quotes the markets inside an event
+   *together* — the same makers post the whole ladder or date-set — so
+   they come out internally consistent by construction. Two theories in
+   this backlog died on exactly this in 2026-08, from opposite
+   directions, and neither spec anticipated it:
+
+   - **`calendar-arb`** (#12, now `dead`): zero violations at its own
+     1c/leg buffer across 10 snapshots. Near-dated date ladders are
+     siblings inside ONE event, so basket cost never fell below 1.000;
+     cross-event ladders exist only at 1y+ where carry dwarfs a
+     cent-scale edge. Study:
+     `studies/2026-08-27-calendar-arb-firing-rate/`.
+   - **`smile-smoothing`** (#11, now `dead`): at a tradeable liquidity
+     floor, **97.6% of 959 strike rungs sat *exactly* on their own
+     isotonic fit**, max deviation 1.5c, zero candidates. Deviations
+     appeared only in rungs with median volume **0**, where the "mid" is
+     an empty book rather than a price. Study:
+     `studies/2026-08-29-smile-smoothing-ladder-flatness/`.
+
+   The cheap check is a one-board measurement of the *dispersion the
+   thesis needs*, run before any theory scaffolding — both of the above
+   were settled in well under a session that way. Cross-**event**
+   relative value is not covered by this warning and remains open; the
+   closed channel is specifically within-event.
+
 1. `python -m tools.cli ideas search "<slug>"` — confirm nothing has
    changed since the spec was written (each is registered under its slug;
    check `status` and `outcome`).
@@ -69,8 +96,8 @@ likelihood 2/5 because the best available evidence points against them.
 | 8 | [parlay-fade](2026-08-24-theory-parlay-fade-design.md) | combo markup vs product-of-legs | 3 | 3 | 4 | 10 | A | M |
 | 9 | [weather-model-gap](2026-08-24-theory-weather-model-gap-design.md) | ensemble forecast vs market | 4 | 3 | 3 | 10 | A | M |
 | 10 | [cross-venue-fair-value](2026-08-24-theory-cross-venue-fair-value-design.md) | cross-venue convergence | 3 | 3 | 3 | 9 | A | M |
-| 11 | [smile-smoothing](2026-08-24-theory-smile-smoothing-design.md) | ladder shape | 4 | 3 | 3 | 10 | A | M |
-| 12 | [calendar-arb](2026-08-24-theory-calendar-arb-design.md) | date-ladder nesting logic | 3 | 4 | 3 | 10 | A | S |
+| 11 | ~~[smile-smoothing](2026-08-24-theory-smile-smoothing-design.md)~~ **DEAD 2026-08-29** | ladder shape | 4 | 3 | 3 | 10 | A | M |
+| 12 | ~~[calendar-arb](2026-08-24-theory-calendar-arb-design.md)~~ **DEAD 2026-08-27** | date-ladder nesting logic | 3 | 4 | 3 | 10 | A | S |
 | 13 | [econ-anchoring](2026-08-24-theory-econ-anchoring-design.md) | consensus anchoring on releases | 3 | 3 | 3 | 9 | A | M |
 | 14 | [settled-but-trading](2026-08-24-theory-settled-but-trading-design.md) | resolution-source staleness | 4 | 3 | 3 | 10 | A | M–L |
 | 15 | [new-market-anchor](2026-08-24-theory-new-market-anchor-design.md) | issuance mispricing (study) | 3 | 5 | 2 | 10 | A | S |
