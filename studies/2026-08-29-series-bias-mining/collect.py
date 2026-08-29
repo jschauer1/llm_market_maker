@@ -68,6 +68,21 @@ DECISION_OFFSET_S = 86400
 #: the candles would be wasted.
 MIN_SETTLED_FOR_PRICES = 40
 
+#: ...and at most this many. A series settling more than ~17 markets a
+#: day over the window is a COMBINATORIAL PRODUCT, not a recurring series
+#: -- KXBTCD alone settled 257,632 in 60 days (~4,300/day: Bitcoin price
+#: across many strikes x many intraday times). Three reasons this cap is
+#: not merely convenience:
+#:   1. Thesis. The hypothesis is habitual retail flow on a *recurring*
+#:      series. A 4,300/day combinatorial grid is a different object.
+#:   2. Tractability. Kalshi serialises candlesticks at ~4-5/s, so
+#:      pricing KXBTCD alone is 14+ hours.
+#:   3. Weighting. One such series would supply 98% of all observations
+#:      and dominate every pooled figure computed from them.
+#: Chosen after seeing the COUNT distribution and before computing any
+#: outcome; excluded series are reported by name so the cut is visible.
+MAX_SETTLED_FOR_PRICES = 1000
+
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS settled (
     series_ticker TEXT NOT NULL,
@@ -168,7 +183,15 @@ def walk(conn, now=None) -> None:
 def eligible_series(conn) -> list[tuple[str, int]]:
     return [(r["series_ticker"], r["n"]) for r in conn.execute(
         "SELECT series_ticker, COUNT(*) n FROM settled GROUP BY series_ticker "
-        "HAVING n >= ? ORDER BY n DESC", (MIN_SETTLED_FOR_PRICES,))]
+        "HAVING n >= ? AND n <= ? ORDER BY n DESC",
+        (MIN_SETTLED_FOR_PRICES, MAX_SETTLED_FOR_PRICES))]
+
+
+def excluded_as_combinatorial(conn) -> list[tuple[str, int]]:
+    """Series above the cap, reported by name so the cut stays visible."""
+    return [(r["series_ticker"], r["n"]) for r in conn.execute(
+        "SELECT series_ticker, COUNT(*) n FROM settled GROUP BY series_ticker "
+        "HAVING n > ? ORDER BY n DESC", (MAX_SETTLED_FOR_PRICES,))]
 
 
 def prices(conn, limit_series: int | None = None) -> None:
@@ -230,7 +253,11 @@ def status(conn) -> None:
     no = conn.execute("SELECT COUNT(DISTINCT series_ticker) c FROM obs").fetchone()["c"]
     print(f"walked series      : {w}")
     print(f"settled markets    : {s} across {ns} series")
-    print(f"  series >= {MIN_SETTLED_FOR_PRICES:<3}      : {len(eligible_series(conn))}")
+    print(f"  eligible ({MIN_SETTLED_FOR_PRICES}-{MAX_SETTLED_FOR_PRICES}) : "
+          f"{len(eligible_series(conn))}")
+    ex = excluded_as_combinatorial(conn)
+    print(f"  excluded as combinatorial : {len(ex)}"
+          + (f"  {', '.join(f'{t}({n})' for t, n in ex[:4])}" if ex else ""))
     print(f"priced observations: {o} across {no} series")
 
 

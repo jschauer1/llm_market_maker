@@ -405,3 +405,33 @@ That is still right, but it needs the caveat found here: **an SE-based
 floor is not outcome-neutral for binomial data.** State it as a floor on
 `n` and `n_days` where possible, or report the win-rate composition of
 who passed, so the selection channel is visible rather than silent.
+
+## Pass 3 collection — the combinatorial cap, pre-registered before pricing
+
+The broad walk (`collect.py walk`) surfaced a population problem the
+earlier passes never hit, so the rule is fixed here before any price is
+fetched or any outcome computed.
+
+`KXBTCD` settled **257,632** markets in the 60-day window — ~4,300 a day,
+Bitcoin's price across many strikes times many intraday times. Priced
+uncapped it would be 98% of all observations.
+
+**Rule: price only series settling 40–1,000 markets in the window.**
+Above the cap a series is a *combinatorial product*, not a recurring
+series, and is excluded and **reported by name**. Three reasons, only one
+of which is convenience:
+
+1. **Thesis.** The hypothesis is habitual retail flow on a *recurring*
+   series with stable behavioural biases. A 4,300/day grid is a different
+   object and was never what the spec meant.
+2. **Weighting.** One such series would supply the overwhelming majority
+   of observations and dominate every pooled figure.
+3. **Tractability.** Kalshi serialises candlesticks at ~4–5/s, so pricing
+   `KXBTCD` alone is 14+ hours.
+
+**Chosen after seeing the count distribution and before computing any
+outcome.** That ordering is the whole point of today's repeated lesson:
+an inclusion rule is part of the bar, so it is written down here, with
+its reasons, and the excluded series are named rather than silently
+dropped. Counts are not outcomes — but a reader is entitled to check
+that claim, which is why the exclusions are listed.
