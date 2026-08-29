@@ -55,9 +55,15 @@ cheaper, reproducible, scales to the whole board, and backtests at tier A, so
 it can carry real evidence immediately rather than waiting out tier B's thin
 post-cutoff window. Prefer it whenever the thesis allows.
 
-Reach for LLM judgment when the thesis genuinely needs reading comprehension or
-context that no threshold captures — as `insider_judgment` does, since "would a
-specific group already know this?" is not a number.
+Reach for LLM judgment when the thesis is *interpretive* — it genuinely needs
+reading comprehension or context about the world that no threshold captures —
+as `insider_judgment` does, since "would a specific group already know this?"
+is not a number. Theses in that mold are encouraged, not a concession: they
+surface bets no mechanical screen can see, and proposing more of them is good
+research. What judgment is never for is a *structural* question — how many
+winners the market pays, whether its strikes are mutually exclusive, which
+family a ticker is in. Determine those programmatically unless it is
+absolutely impossible; CLAUDE.md's "Theories are instruments" draws the line.
 
 If you do need stage 2: push as much as possible into stage 1 — code is
 repeatable and free to run at scale. Be concrete about what's left: "check

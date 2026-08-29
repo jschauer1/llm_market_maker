@@ -51,6 +51,22 @@ carries real evidence immediately instead of waiting out tier B's thin
 post-cutoff window. LLM judgment is one instrument, and the most expensive and
 least verifiable one. If statistics can find the edge, prefer statistics.
 
+**The line between the two is the kind of question, not the presence of a
+model.** Judgment used the way `insider_judgment` uses it — an *interpretive*
+thesis about the world, "is there a specific group who already knows how this
+resolves?", where reading a situation *is* the edge and no published field or
+threshold could ever express it — is a first-class kind of theory here.
+Proposing and experimenting with new theses in that mold is encouraged, not a
+fallback for when statistics run out: those theories surface bets no
+mechanical screen can see. What judgment must never be spent on is a
+*structural* question — a fact about the market's own mechanics: how many
+winners it pays, whether its strikes are mutually exclusive, which family a
+ticker belongs to. Those are determined programmatically — a published field,
+a ticker pattern, arithmetic — unless that is absolutely impossible. So
+"prefer statistics" constrains how a *question* gets answered, never which
+*theses* are worth having: mechanize every question that can be mechanized,
+and spend judgment where the thesis itself is interpretive.
+
 ## Platform roles
 
 **Kalshi is where bets get placed.** The user can only wager there.
@@ -267,8 +283,9 @@ There is deliberately no basis meaning "it felt about right".
 not arithmetic. A theory computing a probability from base rates, a Poisson
 process, or sibling-strike monotonicity should absolutely do so — that is
 reproducible and auditable, it records as `model`, and it backtests at tier A.
-A theory resting on a mechanical model is generally *stronger* than one resting
-on judgment.
+A theory resting on a mechanical model generally carries *stronger evidence*
+than one resting on judgment — which is a reason to mechanize every question
+that can be mechanized, not a mark against theses only judgment can express.
 
 ## Research memory
 
@@ -454,7 +471,11 @@ prompt should be written to re-derive it. Prefer data, then code, then a
 structural gate, then outcome judgment. But when a structural gate genuinely
 is the best available instrument, **it should not downgrade the evidence** —
 penalising it taught theories to avoid the honest tool rather than the
-contaminated one, which was never the point.
+contaminated one, which was never the point. And the ladder ranks instruments
+for a given *question*, not theories: an interpretive thesis runs outcome
+judgment at its deep stage by design, and is welcome to. The ladder exists so
+that no *structural* question is ever answered by a prompt when a field or a
+script can answer it.
 
 Where the replay itself lives — and why there is no shared backtest engine
 — is under "What lives in a theory, and what gets elevated".
