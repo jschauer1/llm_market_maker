@@ -109,14 +109,28 @@ not a string, so section 4's "rules-text patterns" cannot express them
 and section 8's effort estimate is optimistic.
 
 **Section 4 as written is therefore not implementable at this spec's own
-quality bar.** Three options, all costing something, and the choice is
-the user's because it trades away the property in this spec's own header
-(*LLM in decision path: no*): a cheap LLM gate (clears the bar, loses
-tier A); a series allowlist of the ~20 unambiguous recurring families
-(stays tier A, smaller population, maintenance treadmill); or drop the
-theory. **Do not collect hazard bins under any option until that is
-settled** — they are the expensive, rate-limited step and the one
-misclassification poisons.
+quality bar.**
+
+**Amended later on 2026-08-29 — two repo changes reopened this.** First,
+`tools` stopped discarding Kalshi's event envelope (`09a66f7`), so
+**`mutually_exclusive` is free on every market** and answers the
+multi-destination question as *data*. Second, the user amended the tier
+rule (`0f06265`): tier A now means no *outcome* judgment, so a
+**structural gate no longer costs tier A**.
+
+So the choice is no longer "three options that each sacrifice something".
+In the repo's own preference order — data, then code, then a structural
+gate, then outcome judgment — the options are: **take the
+`mutually_exclusive` data** (free, exact, unambiguously tier A, and named
+in CLAUDE.md as the worked example with the instruction that no prompt
+should re-derive it); a **structural LLM gate**, which *plausibly* keeps
+tier A but only if it passes the contamination probe, which is **unrun**
+— and an unrun probe counts as outcome judgment; a **series allowlist**
+(mechanical, smaller population, maintenance treadmill); or **drop it**.
+
+**Do not collect hazard bins under any option until that is settled** —
+they are the expensive, rate-limited step and the one misclassification
+poisons.
 
 ## 4. Decision procedure
 

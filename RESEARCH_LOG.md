@@ -2444,3 +2444,57 @@ replacement, 78 supplied the one figure that stopped me cutting a working
 guard, and I found the API trap that would have bitten their validation.
 Every one of those was caught by someone reproducing an arithmetic claim
 before arguing with it.
+
+## 2026-08-29 (cont.) — the tier rule changed under three of my artifacts
+
+**Did:** The user amended the backtest tier rule (`0f06265`, CLAUDE.md +
+the `backtest-theory` skill). Tier A moved from "no LLM in the decision
+path" to "no **outcome** judgment in the decision path": a stage that
+only asks a *structural* question keeps tier A, subject to four
+conditions, all required — answerable from the market's text as written
+at open; payload of rules and title only; decides eligibility never
+direction; and passes the contamination probe.
+
+I verified the commit and read the rule rather than taking the summary on
+trust, because CLAUDE.md is the governing document and a peer report of a
+user decision is still a report.
+
+**The peer relaying it said "nothing to do on your side". That was
+wrong**, and it is worth recording why: three of my own artifacts assert
+the trade-off the amendment removes, and all three are load-bearing for a
+decision the user is holding *right now*.
+
+- `studies/2026-08-29-deadline-drift-classifier-audit/STUDY.md` — "Costs
+  the live path its **tier-A status**"
+- `docs/superpowers/specs/theories/2026-08-24-theory-deadline-drift-design.md`
+  — "a cheap LLM gate (clears the bar, loses tier A)"
+- idea 3's `revisit_angle` — the same, in the field a future session reads
+  *instead of* the study
+
+All three corrected in place, marked as amendments rather than silently
+rewritten.
+
+**Learned:**
+
+1. **A rule change dates every artifact that reasoned about the rule.**
+   The tier amendment touched no code, so nothing failed and no test went
+   red — and three documents quietly became misleading. The blast radius
+   of a *docs* change is the set of claims that depended on it, and
+   nothing computes that set for you. `grep` for the claim, not for the
+   file.
+2. **The decision I put to the user got simpler, not just different.** It
+   was "three options, each sacrificing something". It is now: **take the
+   data.** `mutually_exclusive` answers the multi-destination question
+   outright, free and exact, and CLAUDE.md now names that exact field as
+   its worked example with the instruction that no prompt should be
+   written to re-derive it. The LLM gate is third in the stated
+   preference order (data → code → structural gate → outcome judgment),
+   and only *plausibly* tier A: the contamination probe is **unrun**, and
+   an unrun probe counts as outcome judgment.
+3. **The amendment's own guard is the interesting part.** "Structural" is
+   the one label a theory could award itself, so the rule makes it
+   derived and never self-reported, treats an unrun probe as outcome
+   judgment, and rules that any stage assigning a bucket is outcome
+   judgment whatever its prompt is called. It moves the tier, not the
+   paper trail — provenance, prompts-on-disk and version bumps are all
+   untouched.

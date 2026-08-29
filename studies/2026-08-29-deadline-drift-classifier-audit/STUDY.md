@@ -160,24 +160,51 @@ nails them. "Which branch does this condition on?" does not.
 
 ## The decision this leaves the user
 
-Three options, and the choice is not the researcher's to make because it
-trades away the theory's defining property:
+**Amended 2026-08-29, after this section was written.** Two repo changes
+landed the same day and both bear directly on the options below, so the
+original framing — "three options, all trading away the theory's defining
+property" — is **no longer correct** and is corrected here rather than
+left to mislead.
 
-1. **Cheap LLM gate over the ~4,800 candidates.** Gets under 10% almost
-   certainly. Costs the live path its **tier-A status** — a model
-   re-enters the decision path of a theory whose whole appeal (spec: "LLM
-   in decision path: no") was not having one. It also costs tokens per
-   scan, forever.
-2. **Narrow the theory to series allowlists** — the ~20 recurring series
-   that are unambiguously in-thesis (`KXFEDERALCHARGE`, `KXTRUMPPARDON`,
-   `KXNBATRADE`, `KXNFLTRADE`, `KXIPO*`, `KXNCAAFCONFLEAVE`, `KXMLBDEBUT`,
-   the `*OUT`/`*ANNOUNCEOUT` families). Stays tier A and mechanical, but
-   shrinks the population and reintroduces exactly the maintenance
-   treadmill the gate work on 2026-08-29 moved *away* from.
-3. **Drop it** and spend the effort on a theory whose screen is
-   mechanical by nature.
+1. `tools` stopped discarding Kalshi's event envelope (`09a66f7`), so
+   **`mutually_exclusive` is now free on every market**. It answers the
+   multi-destination question — "does this condition on which branch?" —
+   outright, as data.
+2. The user amended the tier rule (`0f06265`): tier A now means *no
+   **outcome** judgment* in the decision path, so a **structural gate**
+   no longer costs tier A. The old rule penalised a gate reading market
+   text identically to a model predicting outcomes.
 
-The study has no opinion between them; it has the measurement.
+The corrected options:
+
+1. **Take the data.** Use `mutually_exclusive` from the board, plus a
+   price-partition test for the residue. Free, exact, instant, no prompt
+   and no probe, and unambiguously tier A. CLAUDE.md now names this exact
+   field as its worked example of preferring data over a model, with the
+   explicit instruction that no prompt should be written to re-derive it.
+   **This is the first-choice option and it did not exist when this study
+   was written.**
+2. **Structural LLM gate.** Would clear 10%, and under the amended rule
+   **keeps tier A** *if* it meets all four conditions — answerable from
+   the market's text at open, payload of rules and title only, decides
+   eligibility never direction, and **passes the contamination probe**.
+   The first three are plainly satisfiable for "does this condition on
+   which branch?"; the fourth is **unrun**, and CLAUDE.md is explicit
+   that an unrun probe counts as outcome judgment. So this is *plausibly*
+   tier A, not established as tier A. It still costs tokens on every
+   scan, and it is third in the stated preference order (data, then code,
+   then structural gate, then outcome judgment).
+3. **Series allowlist** of the ~20 unambiguous recurring families
+   (`KXFEDERALCHARGE`, `KXTRUMPPARDON`, `KXNBATRADE`, `KXNFLTRADE`,
+   `KXIPO*`, `KXNCAAFCONFLEAVE`, `KXMLBDEBUT`, the `*OUT` families).
+   Mechanical and tier A, but a smaller population and the maintenance
+   treadmill the 2026-08-29 gate work moved away from.
+4. **Drop it.**
+
+The study still has no opinion between the *remaining* choices — but the
+old option 1 was framed as a sacrifice it no longer requires, and option
+1 as now written is strictly better than the LLM gate on every axis the
+repo's own preference order names.
 
 ## Next
 
