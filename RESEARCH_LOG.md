@@ -2729,3 +2729,40 @@ condition; (3) the pass-rate probe recommendation; (4) new bullet under
 "Enforce the rules": never derive a decision point from observed close
 or span — on a "by D" market actual close is the outcome variable
 (66.8% measurement; deadline_drift sign-flip as the worked example).
+
+## 2026-08-29 (cont.) — scoring ruling completed: dedupe, non-decisions, clustering
+
+Three refinements to the attempt-level ruling, from cases 4f and 78
+surfaced before implementation (the surfacing discipline working as
+intended):
+
+1. **Consecutive-run dedupe.** Same-disposition re-affirmations collapse
+   to the first attempt of the run — a disposition *change* is the
+   decision boundary. Handles 2,204 positions with duplicate-disposition
+   attempts (worst case: one market screened daily for its whole window
+   would otherwise score ~21× against one settlement), while still
+   scoring genuine flip-backs as separate decisions at their own prices.
+2. **Post-interpretation `screened` rows are non-decisions.** A screened
+   attempt on a position with any prior interpreted attempt records the
+   scan re-seeing, not a judgment: retained in the ledger, skipped by
+   scoring. Pre-interpretation screened rows DO score (they are the
+   stage-1 baseline; dropping them would bias the screened pool toward
+   never-interpreted positions). No-op for mechanical theories. The
+   three flipped positions land in two pools, not three.
+3. **Event-clustered uncertainty, cluster-count n.** Point estimates
+   stay attempt-level post-dedupe; all SE/z/intervals are clustered at
+   the event level (ticker fallback); and the n feeding credibility is
+   the cluster count, raw rows reported beside it. 78's hazard estimate
+   is the exhibit: 2,805 daily rows → 48 clustered, z≈9 naive → 1.34
+   honest. Correlated rows must not manufacture precision or ranking
+   credibility. CLAUDE.md's formula text unchanged; n's definition is
+   documented at compute_score.
+
+4f implements all of it before Sept 1. Verified independently this hour:
+`python -m theories.deadline_drift.hazard` reproduces the corrected
+deadline_drift table from disk (1eaa918), and the standing capture job
+for its perishing population is committed (766d469). Pending skill-edit
+item 4 adopts 78's conditional wording: anchor on scheduled close
+always; families with a long right tail in closed_early_days (median
+210d for "by D" families vs 3h population-wide) are where the
+actual-close anchor inverts signs rather than adding noise.
