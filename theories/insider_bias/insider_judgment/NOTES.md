@@ -567,3 +567,19 @@ and credibility is effectively sample-weight × 1.5; show `clustered_se`
 (2.43) and `day_clustered_se` (1.88) alongside any ranked edge built on
 this segment. Status stays `testing`; the promotion bar from 2026-08-27
 (live settlements, day-counted) is unchanged.
+
+## 2026-08-29 (cont.) — divergence-flag slice blocked: v4 live rows record no extra_json
+
+The pre-registered live tracking plan (2026-08-26) says the
+`rules_diverge_from_title` flag is recorded on every live row, and the
+proposed rules-diverge slice would condition on it
+(`{"extra": {"rules_diverge_from_title": true}}`). Checked while
+applying slices across the portfolio: **all 35 v4 live rows have
+extra_json NULL** — the flag is not being recorded, so the slice cannot
+be registered (its predicate would reference a field that does not
+exist) and, worse, the tracking plan's data is not accruing. Fixing the
+recording is a change to what v4 writes per row; flagged for the next
+session that runs this theory rather than patched here. Register the
+slice the day the field exists — with everything to that date
+in-sample, since the +1.97/t_ev 2.90 cell that motivated it came from
+post-hoc slicing of s200 and did not survive Holm.

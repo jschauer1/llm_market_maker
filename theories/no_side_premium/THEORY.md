@@ -114,6 +114,21 @@ the population won. Cell B did not beat that day; it was a subset of it.
 Under the amended bar that sample is `n_days=1` — one draw, no computable
 SE, no reading either way. See `NOTES.md` 2026-08-27.
 
+## Slices (2026-08-29)
+
+Both cells are **registered slices** (`cell-a-no-favorite`,
+`cell-b-yes-avoid`; `cli slices report no_side_premium`), backdated to
+the 2026-08-26 pre-registration above. The slice machinery reproduces
+this theory's status numbers independently (cell B forward: n=46 /
+n_days=3 / −10.44 net, day SE 12.7 — unmeasured, matching the day
+amendment's reading) and adds the segment bookkeeping: every row is OOS
+by settlement date because the motivating fullcov evidence lives in
+sibling theories' ledgers. The bars in "Pre-registered outcomes" remain
+the confirmation criteria — slice readiness (10 clusters / 5 days)
+gates only how ranking reads the cells, and cell B is an avoid-list
+whose ready state should show a *negative* record. Registration changed
+no procedure; no version bump.
+
 ## How to backtest
 
 The tier-A measurements above are the backtest; they are recorded in

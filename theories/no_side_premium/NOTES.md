@@ -193,3 +193,21 @@ untouched, so this is the same class of change as the 08-27 day amendment,
 and like that one it makes confirmation **harder**: the pooled -10.44
 flatters cell B, while the paired estimator says there is no result yet in
 either direction.
+
+## 2026-08-29 (cont.) — cells registered as slices; machinery agrees with the hand count
+
+`cell-a-no-favorite` ({outcome: no, entry_price >= 0.85}) and
+`cell-b-yes-avoid` ({outcome: yes, entry_price 0.80–0.90}) are now
+registered slices, registered_at backdated to the documented 2026-08-26
+pre-registration. Validation: `slices report no_side_premium` reproduces
+the status section's numbers from the ledger independently — cell B
+forward n=46 / n_days=3 / −10.44 net pooled, day-weighted −6.83 ± 12.72,
+not ready (day gate); cell A 0 settled. Every row lands OOS because this
+theory's own ledger only began after registration; the fullcov evidence
+that motivated the cells sits in sibling theories' ledgers and never
+enters these segments. Nothing about the decision procedure changed.
+
+One reading note: when cell B's slice goes ready, a *negative* OOS
+record is the claim CONFIRMING (avoid validated), and ranking will
+correctly zero its rejected rows — do not read a ready-and-negative
+cell B as the theory failing.

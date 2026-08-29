@@ -2864,3 +2864,42 @@ edges saturates `realization` at the 1.5 clamp (insider's OOS segment
 does: mean_claimed_edge ≈ 0.09), so credibility there is effectively
 sample-weight × 1.5 — reports built on such a segment must show the
 clustered/day SEs alongside, which `slices report` emits.
+
+## 2026-08-29 (cont.) — slice sweep: the subset-edge mechanism applied across the portfolio
+
+User directive: make sure registered slices apply to all theories, not
+just insider_judgment. Reviewed all six; per-theory outcomes:
+
+- **insider_judgment** — `strong-moderate-no` already registered
+  (earlier today). The second documented candidate (rules-diverge, from
+  the 2026-08-26 live tracking plan) is **blocked**: all 35 v4 live
+  rows have extra_json NULL, so the flag the plan says is recorded per
+  row is not being recorded. That is a v4 recording gap for the next
+  session that runs the theory; the slice registers the day the field
+  exists. See its NOTES.md 2026-08-29 (cont.).
+- **no_side_premium** — both pre-registered cells registered as slices
+  (`cell-a-no-favorite`, `cell-b-yes-avoid`), backdated to the
+  documented 2026-08-26 pre-registration. Validation: the slice
+  machinery independently reproduces the theory's hand-computed status
+  (cell B forward n=46 / 3 days / −10.44, day SE 12.7 — unmeasured;
+  cell A 0 settled). The theory's own stricter bars still govern
+  confirmation; note in its THEORY.md that a ready-and-negative cell B
+  is the avoid claim CONFIRMING.
+- **calibration_harvest** — deliberately none: its cell grid is the
+  native subset mechanism with stricter bars, and no cell is
+  measurable-positive. Standing rule recorded in its NOTES.md: register
+  a cell as a slice in the same session it first clears its bars
+  (`{"extra": {"cell": ...}}`; v2 records the cell per row). Tooling
+  gap noted for cross-cell predicates (extra clause is exact-equality;
+  extend to lists only when a real slice needs it).
+- **deadline_drift** — `proposed`, does not run; its hazard bins are
+  native subset machinery. Nothing to register until rows exist.
+- **structural_arb** — not applicable by design: its positions are
+  baskets, and slice predicates never match baskets (single-leg
+  vocabulary).
+- **mention_family** — retired; produces no rows to partition. Its
+  surviving subset claim already lives on as no_side_premium's cell A.
+
+No code changes; registrations are DB rows plus notes. Coverage rule
+now in effect via find-edge: any theory with a `slices list` result is
+ranked per segment.

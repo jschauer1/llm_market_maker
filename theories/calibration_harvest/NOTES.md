@@ -555,3 +555,22 @@ invisible from outside precisely because the pre-registration made it
 the four-way ordering fails, the headline is "the pre-registered test
 failed", and any better-looking cut is a hypothesis for the next
 population.
+
+## 2026-08-29 (cont.) — ruling: cells are this theory's slices; register at emission, not before
+
+Portfolio slice sweep ruling for this theory: **no slices registered
+now, deliberately.** The cell grid already is the subset mechanism on
+the pricing side, with stricter bars than slice readiness (n >= 30 AND
+n_days >= 8 AND day-counted Wilson vs 10 clusters / 5 days), and no
+cell is measurable-positive — registering sixteen empty slices would be
+multiple-comparison surface with nothing to rank. The rule going
+forward: **the day a cell first clears its own bars and starts emitting
+recommendable rows, register that cell as a slice in the same session**
+(predicate: `{"extra": {"cell": "<cell string>"}}` — v2 records the
+cell in extra_json), so ranking reads the cell's own record rather than
+this theory's aggregate. Known tooling gap if a *cross-cell* pattern
+ever needs registering (e.g. the one-week boundary step, currently a
+hypothesis for the next population): the predicate `extra` clause is
+exact-equality and cannot express "cell IN (list)" — extend
+`tools/slices.py::build_matcher` to accept a list value at that point,
+not before.
