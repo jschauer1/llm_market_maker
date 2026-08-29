@@ -57,7 +57,7 @@ read in either direction.
 Per series, the **day-clustered** calibration edge, net of fees:
 
 - one observation per settlement day = `mean(won) − mean(ask)` over that
-  day's rows, in points, minus the mean per-contract fee;
+  day's rows, in points (**gross** — see the amendment below);
 - the series' estimate is the **mean over days**, SE the between-day
   standard error, `t = mean / SE`.
 
@@ -66,6 +66,38 @@ and this repo has now been bitten by that four separate times in one day
 (`buckets.py`, `no_side_premium` cell B, `insider_judgment`'s pooled
 scores, `calibration_harvest`'s Wilson bound). A recurring series is the
 *worst* case for it: its markets settle in tight clumps by construction.
+
+### Amendment, 2026-08-29 — the guard scores GROSS, not net
+
+**Found on fixture data, before the miner had seen a single real row.**
+The clause above said "net of fees". That is wrong, and wrong in a way
+that would have manufactured findings: fees are a roughly constant −1 to
+−3 pt offset, so a **perfectly calibrated series** scores ≈ −1.12 net,
+with the *same sign in both halves* and a magnitude above the 1.0 pt
+gate. Every calibrated series in the population would have flagged as
+persistently *negatively* biased, and the split-sample guard — the
+study's central protection — would have waved them all through, because
+a constant offset is perfectly consistent across halves by construction.
+
+So the guard (sign, half-magnitude, `t`, Holm) is scored on the **gross**
+calibration edge `(realized rate − ask)`, which is the bias itself. The
+net edge is computed and reported beside it for the separate question of
+whether a real bias is *bettable*.
+
+Why this is a legitimate amendment and not a moved goalpost:
+
+- it was found by `tests/test_series_bias_mining.py`'s fixture universe
+  (spec §9: calibrated series among a planted one), **not** by looking at
+  results — no real series' bias had been computed when it was made;
+- it makes the guard strictly **harder**, removing a systematic
+  false-positive channel rather than opening one;
+- it is recorded here, in the file the bar lives in, rather than applied
+  silently.
+
+The same commit also fixes an inverted edge case found by the same
+fixture: zero between-day variance produced `se = 0` and therefore
+`t = 0`, treating a perfectly consistent effect as maximally
+*insignificant*. It now reads as maximally significant.
 
 ## The multiple-comparisons guard — the central constraint
 
