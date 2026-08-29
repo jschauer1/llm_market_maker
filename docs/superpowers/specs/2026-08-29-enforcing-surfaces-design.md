@@ -123,7 +123,13 @@ Additive only. `window_slug` is nullable so the eight historical
 `window_slug`. This is the
 narrow analogue of `record_opportunity` refusing a row with no Kalshi ticker:
 one boundary, one field, no judgement involved. Studies are not ledger writes,
-so they get a CLI call plus a conventions test rather than a refusal.
+so they get a CLI call plus a conventions test rather than a refusal — and
+because `test_conventions.py` reads files, not the live DB, the test is
+file-shaped: every `studies/` folder dated after this ruling must name its
+`window_slug` and its registered question in its own write-up. (A study that
+names them but never ran `questions ask` is caught by the number on the
+`state` WINDOWS panel not moving, which is the same visibility this whole
+section exists to buy.)
 
 ```bash
 python -m tools.cli windows register <slug> --source kalshi_settled \
@@ -134,11 +140,23 @@ python -m tools.cli questions ask <window-slug> --by <study-or-theory> \
 python -m tools.cli questions count <window-slug>
 ```
 
+**Backfill is in scope, once, best-effort.** The count is only honest if the
+questions already asked are in it: the existing `studies/` folders, the eight
+`backtest_runs` rows, and every registered slice's origin get one
+`hypothesis_tests` row each against the windows they used, `pre_registered=0`
+except where a registration commit can be cited, with `notes='backfilled
+2026-XX-XX from <source>'`. An unknowable historical question is skipped and
+listed in the backfill commit message — the figure is a floor either way, and
+a floor beats the current unknown.
+
 ### 1.5 The disclosure
 
 `score.compute_score()` gains two keys, computed not asserted:
 
-- `window_slug` — the window the settled rows came from, where derivable.
+- `window_slug` — the window the settled rows came from. Derivable means:
+  backtest pools read it off the run's `backtest_runs.window_slug`; live
+  pools carry none and the key stays null — no guessing a window from date
+  arithmetic.
 - `questions_asked_of_window` — `SELECT COUNT(*) FROM hypothesis_tests WHERE
   window_slug = ?`.
 
@@ -179,7 +197,9 @@ ALTER TABLE theory_slices ADD COLUMN n_examined INTEGER;   -- partitions conside
 
 `n_examined` is the honest denominator — "this cell was the best of 16" is the
 fact that makes a Wilson bound readable, and it is currently recoverable only
-by reading a study. `slices register` prompts for it; `segment_report` prints
+by reading a study. `slices register` takes it as a `--n-examined` argument —
+an interactive prompt would block the non-interactive agent sessions that do
+the registering — and `segment_report` prints
 it beside the slice's edge. No behaviour changes, and `slices register` is the
 **sole writer** of `hypothesis_tests` rows for slice registrations — running
 `questions ask` as well for the same registration would count one question
@@ -203,7 +223,9 @@ Measured 2026-08-29 against `db/market_edge.db`:
 | `no_side_premium` | 1 | 137 | 46 |
 | `mention_family` (retired) | 1 | 3,476 | 3,464 |
 
-Three of five running theories score `n=0`. `structural_arb` has been bumped
+Three of the four theories currently allowed to run (`deadline_drift` is
+`proposed` and does not run; `mention_family` is retired) score `n=0`.
+`structural_arb` has been bumped
 twice past every row it has ever recorded. `score report insider_judgment`
 returns nulls across the board while 96 settled live-mode rows sit in the
 table at v3 (3,675 more settled there under backtest runs).
@@ -403,6 +425,20 @@ QUEUE        endorsed + untouched + unsettled, with age and close time
 FRESHNESS    last board pull · last settle run · last mark-taken · last bets render
 ```
 
+Every panel has a named DB source, and `state` ships in §9's phase 1 while
+three of those sources land later — so **each panel renders from its table if
+it exists and prints a one-line `not yet tracked` stub if not**. The shape is
+stable from day one; panels light up as phases land:
+
+| panel | source | exists at phase 1? |
+|---|---|---|
+| THEORIES | `theories`, `opportunities`, `settlements`; chain n from `theory_versions` (§2, phase 6) | yes, minus chain n |
+| STANDING | pending retirements; `rulings` (§3.3, phase 2); `parked` ideas + `paused` theories | partially |
+| EVIDENCE | `scores`, `backtest_runs` | yes |
+| WINDOWS | `data_windows` + `hypothesis_tests` (§1, phase 7) | no — stub |
+| QUEUE | `opportunities` | yes |
+| FRESHNESS | `market_snapshots`, `scores.computed_at`, `opportunity_fills.recorded_at`; "last bets render" comes from the raise-lane spec and stubs until that ships | yes, minus bets |
+
 Optionally written to `STATE.md` by `--write` for humans; that file is
 gitignored, because a tracked generated file drifts the moment someone edits
 it. The DB is the source of truth, as it already is for everything else
@@ -424,8 +460,11 @@ CREATE TABLE rulings (
 ```
 
 `log_entry` points back at the narrative; the log keeps the reasoning, the row
-carries the binding text. Backfill is the four rulings currently in the log
-tail — a ten-minute job that is the whole payoff.
+carries the binding text. Backfill is the six rulings currently in the log —
+the four in the tail (attempt-level scoring, cluster-`n` schema, the
+`bucket_rates` carve-out, the blocked skill edits) plus the two §6.5 rulings
+the user issued 2026-08-29 (migrate the log; adopt the promotion bar) — a
+ten-minute job that is the whole payoff.
 
 ### 3.4 `CLAUDE.md` edit (net ≈ 0 words, inside "Data conventions")
 
@@ -562,7 +601,10 @@ started writing an attempt with `times_seen` on the position.
 
 **Phase 0 — back up the ledger.** Blocks nothing; do it first. `.dump` of
 every table except `market_snapshots`, gzipped, written outside OneDrive —
-~30 MB. The entire track record currently exists in exactly one 5.5 GB
+~30 MB. Default destination `%LOCALAPPDATA%\market_edge\backups\` (any
+non-synced local path the user prefers overrides it); one-time now, with a
+recurring cadence decided at phase 4 where the split makes per-file cadences
+meaningful. The entire track record currently exists in exactly one 5.5 GB
 WAL-mode file inside a sync root, gitignored. That is a total-loss single
 point of failure, and it is the only item here with an irreversible
 downside.
@@ -835,7 +877,7 @@ Sweep before moving anything:
 ```bash
 grep -rn 'THEORY.md Learnings\|NOTES.md 20\|RESEARCH_LOG' --include='*.md' --include='*.py' .
 grep -n 'entry above\|entry two above\|entries above\|see above' RESEARCH_LOG.md
-python -m tools.cli slices list --show-origin
+python -m tools.cli slices list   # rows carry `origin`; no flag needed
 ```
 
 Then the durable guard, in the idiom of
@@ -967,6 +1009,12 @@ engine, 31 SQLite is truth, 33 ranking formula.
 | `go` | 32 notes/theory/log split |
 | `score-theories` | 18's *reading* half — what a tier means when trusting a number |
 | (none yet) | 24 elevate at 2+ callers, 29 raw payloads, 30 record incrementally |
+
+Skill text lives at `.claude/skills/<name>/SKILL.md`; all six named skills
+exist there today. The three rules with no owning skill are **not** relocated
+and get no new skill invented for them — they stay delivered by `CLAUDE.md`
+alone until an activity-owning skill exists, and that is the complete
+disposition of that row.
 
 ### 7.4 The test that decides constitutional vs task-time
 
@@ -1107,7 +1155,8 @@ reads.
 
 ## 10. Testing
 
-Every item ships with tests in the existing suite (986 passing, 64s):
+Every item ships with tests in the existing suite (1,005 passing in 42s,
+re-measured 2026-08-29 at review):
 
 - `test_conventions.py` — docs paths resolve (§5.1); every `carry` row has an
   `equivalence_run` (§2.4); every `backtest_runs` row created after the ruling
@@ -1120,7 +1169,12 @@ Every item ships with tests in the existing suite (986 passing, 64s):
   chain mid-run.
 - New `test_question_budget.py` — count rises with registration, the disclosure
   line fires above threshold, `record_backtest_run` refuses without a window.
-- New `test_state.py` — `state` renders from a fixture DB with no network.
+- New `test_state.py` — `state` renders from a fixture DB with no network,
+  including the stub line for every panel whose table is absent (§3.2's
+  degradation contract is behaviour, so it is tested).
+- `mark-taken --ticker` (§4.2) — resolves the latest attempt, and the
+  ambiguous-ticker case (two theories open on one ticker) asks rather than
+  guessing.
 - Extended docs-path test (§6.6) — every `theory_slices.origin` and every dated
   cross-citation names a file that exists *and still contains that date
   heading*. A stub passes; a silent move fails. This is the migration's only
