@@ -6,8 +6,11 @@ fine as written and simply arrive at the wrong moment — by loading them where
 they bind, deleting none of them.
 
 **Date:** 2026-08-29. **Status:** design proposed, implementation not started.
-Reviewed and corrected against the live repo and DB the same day; §6.5's two
-rulings were issued directly by the user during that review.
+Reviewed and corrected against the live repo and DB the same day; five
+rulings were issued directly by the user during that review — §6.5's two,
+the §4.3 no, the §5.2 phase-1 relocation, and the §5.3 force floor. The one
+open question left in this document is §7.7's prefer-mechanical
+consolidation.
 **Scope:** `tools/` + `db/schema.sql` + ~370 net new words in `CLAUDE.md`,
 substantial additions to four skills, plus a one-time migration of
 `RESEARCH_LOG.md` (§6).
@@ -460,11 +463,13 @@ CREATE TABLE rulings (
 ```
 
 `log_entry` points back at the narrative; the log keeps the reasoning, the row
-carries the binding text. Backfill is the six rulings currently in the log —
-the four in the tail (attempt-level scoring, cluster-`n` schema, the
-`bucket_rates` carve-out, the blocked skill edits) plus the two §6.5 rulings
-the user issued 2026-08-29 (migrate the log; adopt the promotion bar) — a
-ten-minute job that is the whole payoff.
+carries the binding text. Backfill is the nine rulings currently on record —
+the four in the log tail (attempt-level scoring, cluster-`n` schema, the
+`bucket_rates` carve-out, the blocked skill edits) plus the five the user
+issued 2026-08-29 during this spec's review: §6.5's two (migrate the log;
+adopt the promotion bar), the §4.3 paper-lane no, the §5.2 phase-1
+relocation choice, and the §5.3 force floor — a ten-minute job that is the
+whole payoff.
 
 ### 3.4 `CLAUDE.md` edit (net ≈ 0 words, inside "Data conventions")
 
@@ -514,29 +519,23 @@ Second: `state` (§3.2) reports days-since-last-`mark-taken` under FRESHNESS, so
 a decaying loop is visible in every orient rather than discoverable only by
 someone who thinks to query for it.
 
-### 4.3 A paper lane — **open decision for the user, not proposed unilaterally**
+### 4.3 A paper lane — **ruled NO by the user, 2026-08-29**
 
-A third `user_action` value, `paper`: a declared hypothetical fill at the
-recorded ask, feeding a separate `roi_paper` that **never** contributes to
-`roi_taken`, `calibration_edge`, or credibility.
-
-- **For:** it exercises the divergence machinery, which is otherwise untested
-  code that will be wrong the first time it carries real data.
-- **Against:** `CLAUDE.md` is emphatic that the user places every bet and that
-  `roi_taken` is the real signal. A lane that looks like betting without being
-  betting is exactly the kind of thing that erodes a narrative by inches.
-
-**Recommendation: yes, with the separation enforced in `score.py` rather than
-by convention** — but this is the one item in this spec that touches what the
-project *means*, so it should be the user's call and is written here as a
-question, not a task. If the answer is no, §4.2 still stands and this section
-is deleted.
+The proposal (a third `user_action` value `paper`, feeding a segregated
+`roi_paper`) was put to the user as the one item touching what the project
+*means*, and the answer was no: the user places every bet, and a lane that
+looks like betting without being betting is not worth the narrative erosion.
+Per the section's own terms the design is deleted; this stub records the
+ruling so it is never re-proposed as if undecided (backfill it into
+`rulings` with §3.3). The divergence machinery still gets its input — the
+raise lane's raised-but-never-taken population (§4.1) serves that purpose
+without a hypothetical-fill lane.
 
 ### 4.4 `CLAUDE.md` edit
 
-None for §4.2 — it is a CLI ergonomics change to a command the document already
-documents. §4.3 needs ~40 words if adopted, and counts against the budget only
-in that case.
+None — §4.2 is a CLI ergonomics change to a command the document already
+documents, and §4.3 was ruled out, so its ~40-word contingency returns to
+the budget.
 
 ---
 
@@ -609,8 +608,18 @@ WAL-mode file inside a sync root, gitignored. That is a total-loss single
 point of failure, and it is the only item here with an irreversible
 downside.
 
-**Phase 1 — exclude `db/` from OneDrive sync.** User action, not code.
-Kills the WAL-sidecar corruption vector.
+**Phase 1 — get `db/` out of OneDrive's sync path.** Ruled 2026-08-29: the
+user chose **relocation plus junction** — move the directory to a non-synced
+local path (default `%LOCALAPPDATA%\market_edge\db\`) and leave an NTFS
+junction at `db/` so every repo path keeps working. Two cautions are part of
+the procedure, not optional: (a) OneDrive clients have historically
+*followed* directory junctions and synced the target's content anyway — after
+creating the junction, verify OneDrive is not uploading `db/`; if it is,
+fall back to OneDrive's folder-exclusion setting or point `tools/db.py` at
+the new path directly and drop the junction. (b) The move runs only after
+phase 0's backup exists and only while **no session holds the DB open** —
+concurrent sessions are normal here (§5.3), and relocating a live WAL-mode
+file is exactly the corruption this phase exists to prevent.
 
 **Phase 2 — dedup on write.** Add `last_seen_at`; backfill
 `= captured_at`. In `snapshot.save_kalshi`, compare each market against its
@@ -691,8 +700,10 @@ the real issue, concurrent sessions reasoning over *different boards*.
 Fix: make `force` honor a short floor (~30 minutes). The storage saving is
 incidental; comparability is the point. Kept out of §5.2's phases
 deliberately — it adjusts the behavior behind a documented convention
-("`go`'s Orient makes the one deliberate refresh"), so it should be ruled
-on and shipped on its own, not ride a storage migration.
+("`go`'s Orient makes the one deliberate refresh"), so it needed its own
+ruling. **Ruled 2026-08-29: adopted.** Ships as its own commit, any time —
+it changes board reuse, not any theory's decision procedure, so no version
+bumps; `test_force_refetches_even_when_fresh` updates to assert the floor.
 
 ---
 
@@ -1146,8 +1157,9 @@ Each phase is independently shippable and independently useful.
 | 8 | §5.2 phases 2–4: dedup → compress → split | Pure operations once phase 0 has a backup; the design gate (measure the hash-based dedup rate) precedes phase 2 |
 | **A** | §7.5 skill-invocation rule + §7.6 quoted-rule test | **Independent of everything above — ship first if desired.** The rule is worthless until the test makes duplication safe, so they land together |
 | **B** | §7.3 task-time rules quoted into `backtest-theory`, `find-edge`, `propose-theory`, `go`, `score-theories` | One skill per commit, each verified by the §7.6 test. No `CLAUDE.md` change, so it cannot regress the guaranteed layer |
+| 1b | §5.3 force floor | **Ruled 2026-08-29: adopted.** One-commit behavior change, independent of the storage phases |
 | — | §6.5 rulings 1 & 2 (§22 reversal, promotion bar) | **Ruled by the user, 2026-08-29** — migrate, and the bar is adopted. Phases 4–5 now gate only on phases 1–3; the bar still *binds* only once phase 1 ships, per §6.3 |
-| — | §4.3 paper lane | Blocked on the user's ruling |
+| — | §4.3 paper lane | **Ruled NO by the user, 2026-08-29** — nothing ships; §4.2 stands |
 
 Phases 3–5 are the migration. **Phase 1 gates all of them** (§6.3): raising the
 bar or emptying the log before `state` exists just moves work into files nobody

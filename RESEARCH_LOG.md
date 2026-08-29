@@ -2937,3 +2937,20 @@ before `state`, `rulings`, and the citation sweep exist (§9 phases 1–3).
 **Next:** Implement §9 phase 0 (ledger backup — the only total-loss risk),
 then phase 1 (`state`, `--ticker`, hygiene). The migration itself follows
 §6.8 in order.
+
+---
+
+## 2026-08-29 — Three more user rulings on the enforcing-surfaces spec
+
+**RULINGS (user, direct — backfill into `rulings` when §3.3 ships):**
+(1) §4.3 paper lane: **no** — deleted per its own terms; divergence input
+comes from the raise lane's raised-but-never-taken population instead.
+(2) §5.2 phase 1: get `db/` out of OneDrive by **relocation + junction**
+(default `%LOCALAPPDATA%\market_edge\db\`), with the junction-sync
+verification and no-open-sessions caution now written into the phase.
+(3) §5.3: **adopt** the ~30-minute floor on `get_board(force=True)` —
+comparability across concurrent sessions is the point.
+
+Spec updated in place; the only question still open in it is §7.7's
+prefer-mechanical consolidation (explanation delivered to the user, ruling
+pending).
