@@ -210,3 +210,118 @@ are different claims, and this study only ever produces the first.
   collection is a snapshot of what was reachable on 2026-08-30.
 - **In-sample throughout.** Any pattern found is a hypothesis for a
   forward test, and the forward test is the follow-on theory's job.
+
+---
+
+# Result — phase 1 (run 2026-08-30, after the bar was committed at `e5514a2`)
+
+```
+POPULATION: cross_game  (partial collection: 503,000 rows, sweep still walking back)
+  included        : 395,692
+  excluded        : n_legs>12 46,910 | open_interest<=0 3,657 | result='scalar' 1,741
+
+  settlement days : 18
+  mean last_price : 0.1732
+  realized win    : 0.1444
+  edge (gross)    : -5.19 pts
+  SE / t          :  4.09 / -1.27
+  MDE (2.8*SE)    : 11.44 pts     (pre-registered power floor: 3.0)
+  VERDICT         : NOT MEASURED
+```
+
+The point estimate is signed the way the bar predicted (parlays
+overpriced) and is not close to significant. Every leg-count bucket is
+noise: `|t|` never exceeds 1.58, and bucket MDEs run 7.7–20.4 pts.
+
+**This is "not measured", exactly as the bar defines it — not
+"calibrated", and not "the markup is absent".** Recording it under the
+pre-registered label rather than the more interesting one is the whole
+reason the label was fixed in advance.
+
+## The finding is not the point estimate. It is that this design cannot work.
+
+395,692 rows produced **18 clusters**. The row count is an illusion of
+power: on any given slate, every parlay shares legs with hundreds of
+others, so when the favorites win, they nearly all win together. That
+common shock is the dominant term, and day-clustering — correctly —
+refuses to count it more than once.
+
+The between-day standard deviation is **17.35 pts**. Turning that into a
+requirement:
+
+| target MDE | settlement days needed |
+|---|---|
+| 3 pts (the pre-registered floor) | **262** |
+| 5 pts | 94 |
+| 6 pts | 66 |
+
+| days available | achievable MDE |
+|---|---|
+| 20 | 10.9 pts |
+| 60 (Kalshi's retention ceiling) | **6.3 pts** |
+
+**Kalshi ages settled markets out of the public API at ~60 days.** So the
+best this design can ever do on this data source is an MDE of ~6.3
+points — twice the low end of a theory-grade edge, and it would still be
+reported as "not measured" under this study's own bar.
+
+Outcome-based calibration of parlays is therefore **structurally
+underpowered on Kalshi**, and no amount of additional collection fixes
+it. That is a property of the population, not an accident of this
+sample. Collecting the remaining history is still worth doing (the data
+is perishable and feeds phase 2), but it will not rescue this statistic.
+
+## Correction: my design change was wrong, and the spec's instinct was right
+
+The bar above demoted product-of-legs to a "phase 2 mechanism check" on
+the grounds that calibration answers the primary question more cheaply.
+Cheaper, yes. Able to answer it, no.
+
+The reason is one the spec never stated and I did not see until the
+variance appeared: **product-of-legs is an outcome-free measurement.**
+Comparing a parlay's price to the product of its legs' contemporaneous
+prices never touches a realized result, so the day-level common shock
+that destroys the calibration statistic — did the favorites win today —
+cannot enter it at all. Its precision is limited by leg-price
+availability, not by how many days happened to settle.
+
+So the ordering is inverted from what this file pre-registered:
+
+- **Primary (phase 2):** markup = `parlay_price − Π(leg prices)` at
+  matched timestamps. Outcome-free, high precision, tier A.
+- **Secondary:** calibration against realized outcomes — retained only as
+  a sanity check on whether product-of-legs is itself fair value, and
+  reported with its MDE so it is never read as a null.
+
+This is recorded as a correction rather than applied silently, and it
+does not touch the pre-registered *direction* (parlays overpriced) or
+the inclusion rules, both of which carry over to phase 2 unchanged. What
+changes is which statistic is the headline — and it changes because the
+data showed the chosen one cannot resolve a bettable effect, which is
+the resize-before-you-run response rule 0b asks for, arriving one step
+late.
+
+**Phase 2 is tractable, and much cheaper than the spec assumed.** The
+naive cost is ~400k parlays × ~4 legs of candlestick fetches. But
+parlays on one slate draw from a small shared pool of underlying game
+markets, so the distinct-leg count is bounded by the slate (order
+thousands, not millions). Fetch each distinct leg's candles once, then
+price every parlay that references it.
+
+## Fixture note (rule 0d)
+
+The fixtures caught a defect — in the fixture, not the estimator. The
+first version gated a single simulated draw at ±1.5 pts when the
+between-day SE at that size is ~1.05 pts, so it fired on a genuine
+3-sigma draw and reported FAIL. A single-draw tolerance test is itself
+an underpowered test: the same class of error as judging a series by
+count instead of power. Replaced with an unbiasedness check across 60
+seeds (mean −0.177 pts) plus a detection-rate check on a planted −8 pt
+effect (recovered −8.04, detected 100%).
+
+One residual, recorded rather than fixed: the calibrated fixture trips
+`|t| ≥ 2` about **10%** of the time, not the nominal 5%. The t
+approximation runs liberal at these cluster counts and skewed per-day
+distributions, so `|t| ≥ 2` is a slightly weak bar. It did not matter
+here — nothing came close — but a phase-2 result near the threshold
+should use a cluster bootstrap rather than the t.
