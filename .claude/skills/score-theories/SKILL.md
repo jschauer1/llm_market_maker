@@ -41,8 +41,15 @@ score.record_settlement(conn, ticker, result, resolved_at=...)
 ## 3. Recompute scores and bucket rates
 
 ```bash
-python -m tools.cli score report <theory_id>
+python -m tools.cli score report <theory_id> --pool chain
 ```
+
+`--pool chain` pools evidence across any proven carry-chain (spec 2.5) —
+a version bump proven equivalent (`theories.prove_carry`) carries its
+predecessor's rows forward instead of resetting `n` to zero; the
+response's `chain_versions` key shows what pooled, and is absent when
+nothing did. Without it (`--pool version`, the default) the report scopes
+to the current version alone, exactly as before this flag existed.
 
 Then recompute what each confidence bucket is actually worth — this is what
 replaces guessed probabilities with measured ones:

@@ -231,6 +231,82 @@ def test_score_report_run_id_scopes_the_sample(dbpath, capsys):
     assert payload["all"]["n"] == 1
 
 
+def _echo_decide(row):
+    """A decide that reproduces the recorded outputs exactly (proves carry)."""
+    return {
+        "outcome": row["outcome"], "disposition": row["disposition"],
+        "model_prob": row["model_prob"], "confidence": row["confidence"],
+        "edge_pts_gross": row["edge_pts_gross"],
+        "edge_pts_net": row["edge_pts_net"], "edge_basis": row["edge_basis"],
+    }
+
+
+def test_score_report_pool_chain_pools_across_a_proven_carry(dbpath, capsys):
+    conn = db.connect(dbpath)
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="KXCH-A",
+        outcome="yes", entry_price=0.40, edge_pts_net=6.0, model_prob=0.55,
+        edge_pts_gross=8.0, confidence="strong", edge_basis="measured",
+        rationale="looks mispriced", now=TS,
+    )
+    score.record_settlement(
+        conn, "KXCH-A", "yes", resolved_at="2026-08-20T00:00:00Z"
+    )
+
+    res = theories.prove_carry(conn, "t1", 1, _echo_decide)
+    assert res.passed
+    theories.bump_version(
+        conn, "t1", kind="carry", justification="no-op refactor",
+        equivalence=res,
+    )
+
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=2, kalshi_ticker="KXCH-B",
+        outcome="yes", entry_price=0.40, edge_pts_net=6.0, model_prob=0.55,
+        edge_pts_gross=8.0, confidence="strong", edge_basis="measured",
+        rationale="looks mispriced", now=TS,
+    )
+    score.record_settlement(
+        conn, "KXCH-B", "yes", resolved_at="2026-08-27T00:00:00Z"
+    )
+    conn.close()
+
+    # Default (--pool version, implicit): v1's proven-carry predecessor
+    # never joins -- exactly today's behaviour.
+    code, payload = _run(capsys, "--db", dbpath, "score", "report", "t1")
+    assert payload["all"]["n"] == 1
+    assert "chain_versions" not in payload["all"]
+    assert payload["settlement_days"]["all"]["n"] == 1
+    assert "chain_versions" not in payload["settlement_days"]["all"]
+
+    # --pool chain: the proven carry pools v1's row in, for both the score
+    # and the settlement-day clusters alike -- no silent segment mismatch.
+    code, payload = _run(
+        capsys, "--db", dbpath, "score", "report", "t1", "--pool", "chain",
+    )
+    assert payload["all"]["n"] == 2
+    assert payload["all"]["chain_versions"] == [1, 2]
+    assert payload["settlement_days"]["all"]["n"] == 2
+    assert payload["settlement_days"]["all"]["n_days"] == 2
+    assert payload["settlement_days"]["all"]["chain_versions"] == [1, 2]
+
+
+def test_score_report_default_pool_matches_explicit_version(dbpath, capsys):
+    conn = db.connect(dbpath)
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="KXNP-A",
+        outcome="yes", entry_price=0.40, edge_pts_net=6.0, now=TS,
+    )
+    score.record_settlement(conn, "KXNP-A", "yes", resolved_at=TS)
+    conn.close()
+
+    code, implicit = _run(capsys, "--db", dbpath, "score", "report", "t1")
+    code, explicit = _run(
+        capsys, "--db", dbpath, "score", "report", "t1", "--pool", "version",
+    )
+    assert implicit == explicit
+
+
 def test_state_write_matches_printed_text(dbpath, tmp_path, monkeypatch,
                                           capsys):
     # _cmd_state must render once and reuse the text for both stdout and

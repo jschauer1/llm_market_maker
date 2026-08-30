@@ -1207,6 +1207,7 @@ def settlement_day_clusters(
     disposition: str = "all",
     *,
     run_id: str | None = None,
+    pool: str = "version",
 ) -> dict:
     """Calibration edge broken out by settlement day, with a clustered SE.
 
@@ -1248,9 +1249,29 @@ def settlement_day_clusters(
     sighting. `_segment_filter` already scopes both to the same rows; this
     is what keeps them priced alike too, so this never silently disagrees
     with `compute_score` on the price behind the edge it reports.
+
+    `pool="version"` (default) is today's behaviour, unchanged -- no
+    existing caller's meaning moves. `pool="chain"` widens the segment
+    the same way `compute_score(pool="chain")` does (spec 2.5): every
+    version a proven `carry` bump links back to `theory_version` pools
+    into the same day-clusters, and the returned dict gains
+    `chain_versions` so a pooled day-count can never be read without
+    seeing what was pooled into it. A chain of one version (nothing
+    proven carry) adds no key, since nothing was pooled. Pooling widens
+    which *rows* fall into each day, not the day-clustering logic
+    itself -- a day that only v1 settled on and a day that only v2
+    settled on both still cluster independently, exactly as they would
+    if two runs of one version had produced them.
     """
+    if pool not in ("version", "chain"):
+        raise ValueError(f"invalid pool {pool!r}; expected 'version' or 'chain'")
+    versions = (
+        theories.carry_chain(conn, theory_id, theory_version)
+        if pool == "chain" else None
+    )
     where, params = _segment_filter(
-        theory_id, theory_version, run_mode, disposition, run_id
+        theory_id, theory_version, run_mode, disposition, run_id,
+        versions=versions,
     )
     # Same LEFT JOIN + COALESCE as _single_leg_observations, and the same
     # reason: under --run-id this must price at that run's own earliest
@@ -1327,7 +1348,7 @@ def settlement_day_clusters(
             ) / (n_days - 1)
             clustered_se = math.sqrt(variance / n_days)
 
-    return {
+    result = {
         "n": total,
         "n_days": n_days,
         "days": days,
@@ -1339,3 +1360,6 @@ def settlement_day_clusters(
         "calibration_edge_net": mean_edge_net,
         "day_clustered_se": clustered_se,
     }
+    if pool == "chain" and versions and len(versions) > 1:
+        result["chain_versions"] = versions
+    return result

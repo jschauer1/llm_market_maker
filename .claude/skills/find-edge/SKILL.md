@@ -15,8 +15,13 @@ Run every theory that runs — `active`, `testing`, and `under_review`
 
 ```bash
 python -m tools.cli theories list --running
-python -m tools.cli score report <theory_id>
+python -m tools.cli score report <theory_id> --pool chain
 ```
+
+`--pool chain` pools evidence across any proven carry-chain (spec 2.5) —
+without it a theory that carried its track record through a no-op version
+bump reports only its current version's rows; the response's
+`chain_versions` key shows what pooled, and is absent when nothing did.
 
 Ordering by credibility is right; excluding the unproven is not. Ranking
 already shrinks an unproven claim to a quarter of its face value and a

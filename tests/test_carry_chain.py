@@ -329,6 +329,69 @@ def test_compute_score_invalid_pool_rejected(conn):
         score.compute_score(conn, "t1", 1, pool="bogus")
 
 
+# --- score.settlement_day_clusters(pool=...) evidence pooling (spec 2.5) ---
+# Same widening as compute_score above, at the same _segment_filter seam --
+# a report whose scores pool across a chain while its day-clusters stay
+# per-version would be a silent segment inconsistency.
+
+
+def test_settlement_day_clusters_pools_across_a_proven_carry_chain(conn):
+    _record(conn, kalshi_ticker="KXTEST-O2", outcome="yes")
+    score.record_settlement(
+        conn, "KXTEST-O2", "yes", resolved_at="2026-08-20T00:00:00Z"
+    )
+
+    res = theories.prove_carry(conn, "t1", 1, _echo_decide)
+    assert res.passed
+    theories.bump_version(
+        conn, "t1", kind="carry", justification="no-op refactor",
+        equivalence=res,
+    )
+
+    _record(conn, kalshi_ticker="KXTEST-P2", outcome="yes", theory_version=2)
+    score.record_settlement(
+        conn, "KXTEST-P2", "yes", resolved_at="2026-08-27T00:00:00Z"
+    )
+
+    by_version = score.settlement_day_clusters(conn, "t1", 2, pool="version")
+    assert by_version["n"] == 1
+    assert by_version["n_days"] == 1
+    assert "chain_versions" not in by_version
+
+    by_chain = score.settlement_day_clusters(conn, "t1", 2, pool="chain")
+    assert by_chain["n"] == 2
+    assert by_chain["n_days"] == 2, "v1's day and v2's day are distinct clusters"
+    assert by_chain["chain_versions"] == [1, 2]
+
+
+def test_settlement_day_clusters_chain_of_one_adds_no_key(conn):
+    # v2 is 'breaking' -- carry_chain(..., 2) == [2], nothing pooled -- so
+    # pool="chain" must report identically to pool="version" and must not
+    # claim a pooling that never happened.
+    theories.bump_version(conn, "t1", now=TS, justification="real change")
+    _record(conn, kalshi_ticker="KXTEST-Q2", outcome="yes", theory_version=2)
+    score.record_settlement(conn, "KXTEST-Q2", "yes", resolved_at=TS)
+
+    by_chain = score.settlement_day_clusters(conn, "t1", 2, pool="chain")
+    assert by_chain["n"] == 1
+    assert "chain_versions" not in by_chain
+
+
+def test_settlement_day_clusters_invalid_pool_rejected(conn):
+    with pytest.raises(ValueError):
+        score.settlement_day_clusters(conn, "t1", 1, pool="bogus")
+
+
+def test_settlement_day_clusters_pool_version_is_byte_identical_to_default(conn):
+    # pool="chain" is new; the implicit default must still be exactly what
+    # settlement_day_clusters always returned, byte for byte.
+    _record(conn, kalshi_ticker="KXTEST-R3", outcome="yes")
+    score.record_settlement(conn, "KXTEST-R3", "yes", resolved_at=TS)
+
+    assert score.settlement_day_clusters(conn, "t1", 1) == \
+        score.settlement_day_clusters(conn, "t1", 1, pool="version")
+
+
 # --- slices.segment_report(pool=...) evidence pooling (spec 2.8) ---
 
 

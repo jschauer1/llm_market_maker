@@ -234,7 +234,7 @@ def _cmd_score(args) -> int:
                     **{
                         disposition: score.compute_score(
                             conn, args.theory_id, version, args.run_mode,
-                            disposition, run_id=args.run_id,
+                            disposition, run_id=args.run_id, pool=args.pool,
                         )
                         for disposition in ("all", "screened", "endorsed",
                                             "rejected")
@@ -242,11 +242,13 @@ def _cmd_score(args) -> int:
                     # Reported alongside, never instead: `all` above counts
                     # rows, and rows that settled the same day are one draw
                     # wearing many rows' clothes. `n_days` is the sample
-                    # size a reader should believe.
+                    # size a reader should believe. Same --pool as the
+                    # scores above, so a chain-pooled edge is never read
+                    # next to a per-version day count (spec 2.5).
                     "settlement_days": {
                         disposition: score.settlement_day_clusters(
                             conn, args.theory_id, version, args.run_mode,
-                            disposition, run_id=args.run_id,
+                            disposition, run_id=args.run_id, pool=args.pool,
                         )
                         for disposition in ("all", "screened", "endorsed",
                                             "rejected")
@@ -560,6 +562,16 @@ def build_parser() -> argparse.ArgumentParser:
             "score a single run rather than pooling every run of this "
             "theory version -- required to avoid multiplying n when "
             "re-scoring a re-run backtest"
+        ),
+    )
+    report.add_argument(
+        "--pool", choices=("version", "chain"), default="version",
+        help=(
+            "'version' (default) scopes to theory_version alone, exactly "
+            "as before this flag existed. 'chain' widens the score and "
+            "settlement-day segments to every version a proven carry bump "
+            "links back to (spec 2.5); the response's chain_versions key "
+            "shows what pooled, and is absent when nothing did"
         ),
     )
     settle = ssub.add_parser("settle-one")
