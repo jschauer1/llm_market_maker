@@ -721,3 +721,61 @@ guard, and I found the API trap that would have bitten their validation.
 Every one of those was caught by someone reproducing an arithmetic claim
 before arguing with it.
 
+
+## 2026-08-30 — the COMBO family is liquid AND flat; the parlay edge is in a different product
+
+**Context.** Peer session `ec` measured cross-game parlays trading **+7.06
+pts above the product of their legs** and reported `active_quoters = 0`
+across 2,134 events, concluding "real mispricing, almost certainly
+untradeable". Checked the executability half independently against today's
+board, because it is the claim that decides whether any of it matters to
+this theory — and because every arb in this repo so far has died on
+exactly this step.
+
+**The two products must not be conflated, and the headline changes if they
+are:**
+
+| product | on the standard board? | quoting | edge found |
+|---|---|---|---|
+| multivariate event collections (RFQ parlays) | **no** — 0 of 104,304 board markets carry `mve_selected_legs` | 0 active quoters | **+7.06 pts** |
+| `*COMBO` markets | yes, 86 of them | **liquid and tight** | ~0 |
+
+So: **the edge and the liquidity are in different products.** `ec`'s
+"untradeable" is correct *for the RFQ parlay product where the +7.06
+lives*, and it should not be repeated about the `*COMBO` family, which is
+the opposite of untradeable.
+
+**Measured on the `*COMBO` family** (86 markets, today's board):
+
+- **71 of 86 carry a real two-sided book**; all 86 have lifetime volume
+  and open interest above zero.
+- Spreads: median **4c**, 53 of 86 at **≤ 5c**, tightest at 1c.
+- The large ones are very large: `KXBALANCEPOWERCOMBO-27FEB-RR` shows
+  **4.17M lifetime volume / 2.73M open interest** at bid 0.15 / ask 0.16.
+
+**And it is priced coherently**, which is the part that matters to this
+theory. The `KXBALANCEPOWERCOMBO-27FEB` 2x2 partition {DD, DR, RD, RR} is
+mutually exclusive and exhaustive, so its four YES prices must sum to 1:
+
+```
+asks 0.47 + 0.39 + 0.013 + 0.16 = 1.033   -> buying the basket loses 3.3c
+bids 0.46 + 0.38 + 0.012 + 0.15 = 1.002   -> selling it nets 0.2c gross
+```
+
+0.2c gross against Kalshi fees on four legs is not a trade. This
+independently corroborates `ec`'s own COMBO result (34 constructions, 1
+profitable at zero buffer at +0.05 pts, 0 at a 1c/leg buffer) by a
+different route — their route was the cross-event synthetic identity,
+this one is the within-partition sum.
+
+**What this means for `structural_arb`.** The COMBO family is the single
+best place on Kalshi for this theory's thesis to pay off — a
+mutually-exclusive partition with millions in open interest and 1c
+spreads, where a violation could actually be filled at size. There is no
+violation there. That is a stronger negative than the usual "the edge
+existed but died on depth": here the depth is real and the edge is
+absent.
+
+Today's scan is consistent: 1,411 flag candidates all removed as
+`not_mutually_exclusive` on Kalshi's own envelope field, 1 nested
+violation killed by an untraded leg, 0 recorded.
