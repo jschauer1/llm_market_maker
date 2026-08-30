@@ -1019,3 +1019,10 @@ away 95% of what stage 1 returns. Otherwise: 22 specced theories remain
 unbuilt, and idea 21's soft relative-value successor still has a ready
 dataset.
 
+## 2026-08-24 — pointer: the corrected Big Brother bet (migrated entry lives in mention_family's notebook)
+
+Item (1) of `## 2026-08-24 — Two follow-ups from user questions: a
+corrected Big Brother bet, and a new mechanical path for the
+MENTION-family edge (migrated from RESEARCH_LOG.md)` in
+`theories/insider_bias/mention_family/NOTES.md` is insider_judgment's:
+the Big Brother correction and the stage-3 checklist item.
