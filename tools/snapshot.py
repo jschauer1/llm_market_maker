@@ -19,7 +19,7 @@ import json
 import sqlite3
 import zlib  # used from Task 4; harmless to import now
 
-from tools.db import utcnow, write
+from tools.db import utcnow
 from tools.kalshi import markets as kalshi_markets
 from tools.polymarket import markets as poly_markets
 
@@ -44,7 +44,11 @@ _INSERT = """
         status           = excluded.status,
         raw_json         = excluded.raw_json,
         event_json       = excluded.event_json,
-        last_seen_at     = excluded.last_seen_at
+        -- MAX(), not a plain overwrite: a same-second changed payload
+        -- must never regress an interval a prior bump had already
+        -- extended past this captured_at (spec 5.2 phase 2, controller
+        -- ruling 2026-08-30).
+        last_seen_at     = MAX(last_seen_at, excluded.last_seen_at)
 """
 
 
@@ -69,12 +73,20 @@ def _payload_key(raw_text: str | None, event_text: str | None) -> bytes:
     return h.digest()
 
 
-def _latest_rows(conn, platform: str) -> dict[str, tuple[str, bytes]]:
-    """market_id -> (captured_at, payload key) of each market's latest row."""
+def _latest_rows(conn, platform: str) -> dict[str, tuple[int, str, str, bytes]]:
+    """market_id -> (id, captured_at, last_seen_at, payload key) of the
+    market's latest row.
+
+    Returning `id` (rather than deriving it again at write time) is what
+    lets every write below target `WHERE id = ?` directly -- no subquery
+    re-resolves "the latest row" after other rows in the same batch have
+    already been written, which is what let a same-batch bump mis-target
+    a row this same call had just inserted (review finding, 2026-08-30).
+    """
     out = {}
     for row in conn.execute(
         """
-        SELECT market_id, captured_at, raw_json, event_json
+        SELECT id, market_id, captured_at, last_seen_at, raw_json, event_json
           FROM market_snapshots
          WHERE platform = ? AND id IN (
                SELECT MAX(id) FROM market_snapshots
@@ -83,7 +95,9 @@ def _latest_rows(conn, platform: str) -> dict[str, tuple[str, bytes]]:
         (platform, platform),
     ):
         out[row["market_id"]] = (
+            row["id"],
             row["captured_at"],
+            row["last_seen_at"],
             _payload_key(payload_text(row["raw_json"]),
                          payload_text(row["event_json"])),
         )
@@ -93,39 +107,102 @@ def _latest_rows(conn, platform: str) -> dict[str, tuple[str, bytes]]:
 def _save(conn, platform: str, rows: list[tuple], stamp: str) -> int:
     """Dedup-aware write of one pull (spec 5.2 phase 2).
 
-    Each incoming row is compared byte-exactly against the market's
-    latest stored payload:
-      unchanged and stamp is not older -> UPDATE last_seen_at (interval
-        extends; no new row);
-      anything else -> INSERT (same-second re-save still lands on the
-        (platform, market_id, captured_at) upsert, last write wins).
-    An *older* stamp never extends an interval backwards: it inserts as
-    history, which is what a backfill save means.
+    The incoming batch is deduped by market_id first, last occurrence
+    wins -- the same "last write wins" rule `_INSERT`'s own comment
+    already documents for a market re-saved mid-pull. Deciding once per
+    market, rather than once per incoming row, is what stops an
+    unchanged-then-changed pair for one ticker inside a single batch from
+    producing an insert immediately followed by a bump that targets the
+    row the insert just wrote (review finding, 2026-08-30).
+
+    Reading "the latest row per market" and deciding what to do about it
+    happen inside one `BEGIN IMMEDIATE` transaction together with the
+    writes, so a second writer cannot decide from a snapshot the first is
+    about to invalidate -- without it, two concurrent callers could both
+    read the same latest row, and a bump from one could land on a row the
+    other had just inserted (review finding, 2026-08-30). `write()` is not
+    used here because it does not itself open the transaction; the explicit
+    BEGIN IMMEDIATE must happen before `_latest_rows` reads, and `write()`
+    only wraps writes it is handed after entry. Commit/rollback are
+    therefore handled directly, mirroring what `write()` does.
+
+    Per market, given the incoming (stamp, new_key) and the latest known
+    row (id, cap=captured_at, reach=last_seen_at, key):
+      no latest row                       -> INSERT (cap=reach=stamp).
+      new_key == key and stamp >= cap     -> UPDATE last_seen_at =
+        MAX(last_seen_at, stamp) WHERE id -- the interval extends, no new
+        row.
+      new_key == key and stamp < cap      -> INSERT: an unchanged payload
+        at a stamp older than the row's own capture is history, not an
+        extension.
+      new_key != key and stamp == cap     -> INSERT, which lands on the
+        (platform, market_id, captured_at) unique key and upserts in
+        place (same-second last-write-wins); its DO UPDATE folds
+        last_seen_at forward with MAX() rather than overwriting, so a
+        same-second changed payload can never regress an interval a prior
+        bump had already extended.
+      new_key != key and stamp == reach   -> the contested second's
+        (reach > cap)                        payload is ambiguous between
+        the two captures that both claim it: the surviving row is
+        retracted to its own cap (UPDATE last_seen_at = cap WHERE id --
+        it was never actually unchanged at this stamp) and the new
+        payload gets its own row (cap=reach=stamp). This matches the
+        pre-dedup upsert outcome for a plain two-save sequence, and it
+        forgets any bump stamps strictly between cap and reach -- a
+        bounded, same-second-conflict-only information loss, accepted by
+        controller ruling 2026-08-30.
+      anything else (out-of-order stamp,  -> plain INSERT. Production
+        different payload)                   stamps are monotone
+        (`utcnow()`), so this combination -- and the overlapping interval
+        it can leave behind -- only arises from test-style backfills
+        that pass an out-of-order `now=`, accepted by controller ruling
+        2026-08-30.
+
     Returns rows physically written or updated (unchanged bumps count).
     """
-    latest = _latest_rows(conn, platform)
-    inserts, bumps = [], []
+    deduped: dict[str, tuple] = {}
     for r in rows:
-        market_id, raw_text, event_text = r[1], r[11], r[12]
-        seen = latest.get(market_id)
-        if (seen is not None and seen[1] == _payload_key(raw_text, event_text)
-                and stamp >= seen[0]):
-            bumps.append((stamp, platform, market_id))
-        else:
-            inserts.append(r + (stamp,))
-    with write(conn):
+        deduped[r[1]] = r          # market_id -> row; last occurrence wins
+    rows = list(deduped.values())
+
+    conn.execute("BEGIN IMMEDIATE")
+    try:
+        latest = _latest_rows(conn, platform)
+        inserts, bumps, retractions = [], [], []
+        for r in rows:
+            market_id, raw_text, event_text = r[1], r[11], r[12]
+            new_key = _payload_key(raw_text, event_text)
+            seen = latest.get(market_id)
+            if seen is None:
+                inserts.append(r + (stamp,))
+                continue
+            row_id, cap, reach, key = seen
+            if new_key == key and stamp >= cap:
+                bumps.append((stamp, row_id))
+            elif new_key == key:                       # stamp < cap
+                inserts.append(r + (stamp,))
+            elif stamp == reach and reach > cap:
+                retractions.append((cap, row_id))
+                inserts.append(r + (stamp,))
+            else:                    # stamp == cap, or out-of-order+changed
+                inserts.append(r + (stamp,))
+        if retractions:
+            conn.executemany(
+                "UPDATE market_snapshots SET last_seen_at = ? WHERE id = ?",
+                retractions,
+            )
         if inserts:
             conn.executemany(_INSERT, inserts)
         if bumps:
             conn.executemany(
-                """
-                UPDATE market_snapshots SET last_seen_at = MAX(last_seen_at, ?)
-                 WHERE platform = ? AND market_id = ? AND id = (
-                       SELECT MAX(id) FROM market_snapshots
-                        WHERE platform = ? AND market_id = ?)
-                """,
-                [(s, p, m, p, m) for s, p, m in bumps],
+                "UPDATE market_snapshots"
+                " SET last_seen_at = MAX(last_seen_at, ?) WHERE id = ?",
+                bumps,
             )
+    except BaseException:
+        conn.rollback()
+        raise
+    conn.commit()
     return len(inserts) + len(bumps)
 
 
