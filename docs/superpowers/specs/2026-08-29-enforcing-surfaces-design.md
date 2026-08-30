@@ -304,12 +304,16 @@ stored *inputs*, not things it proves. Any single divergence makes the bump
 This is the load-bearing half. Without it `carry` becomes a self-granted
 exemption and reintroduces the silent merge through the front door.
 
-Proposed implementation (does not exist yet): `tools/theories.py::
-prove_carry(conn, theory_id, from_version, theory_instance) ->
-EquivalenceResult`, replaying against `opportunity_attempts` rows at
-`from_version` using each attempt's stored `decision_date` and
-`entry_price`, so no fresh board is needed and the proof is reproducible
-offline.
+Shipped implementation (phase 6, amended from the original
+`theory_instance` proposal): `tools/theories.py::prove_carry(conn,
+theory_id, from_version, decide) -> EquivalenceResult`, where `decide` is a
+**theory-supplied callable** mapping one stored attempt row (joined to its
+parent position) to the current code's decision outputs. A `theory_instance`
+parameter would have required the harness to know how to drive a theory —
+the engine this repo forbids; the callable keeps the replay theory-owned and
+the harness's role to fixture selection, comparison, and reporting. The
+replay uses each attempt's stored `decision_date` and `entry_price` and must
+not consult a fresh board; point-in-time market state comes from snapshots.
 
 ### 2.5 Scoring across a carry-chain
 
