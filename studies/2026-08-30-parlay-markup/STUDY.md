@@ -413,3 +413,72 @@ the thesis, and it is kept out of the headline entirely.
   provably close once a timestamp for the trade is available.
 - Hourly candles, not minute. A leg that moved sharply inside the hour
   is mispriced by up to that hour's range.
+
+---
+
+# Result — phase 2, first slate (2026-08-11 creations)
+
+```
+1,200 parlays sampled -> 1,083 priced, 117 excluded (no candle at or before created_time)
+1,084 distinct legs fetched, 26,110 hourly candles, 0 fetch errors
+
+  mean parlay price    : 0.1646
+  mean product-of-legs : 0.0861
+  markup               : +7.85 pts
+  legset-clustered     : +7.85 pts, t=+15.92, k=1083, MDE=1.38
+  day-clustered        : k=1 -- no SE obtainable from one day
+```
+
+Every leg-count bucket is positive and individually significant.
+
+## The spread confound, tested and survived
+
+A +7.85 pt markup on a mean price of 0.16 means parlays trade at nearly
+**twice** the product of their legs. An effect that large should be
+attacked before it is believed, and the obvious suspect is that leg
+bid-ask spreads **compound multiplicatively**: a product of *mids*
+understates what replication actually costs, by more and more as legs
+are added.
+
+Tested directly on the cached quotes, repricing each parlay against the
+side you would actually pay (YES legs at their ask, NO legs at
+`1 − yes_bid`):
+
+| benchmark | markup |
+|---|---|
+| product of leg **bids** | +8.20 pts |
+| product of leg **mids** | +7.85 pts |
+| product of leg **asks** (conservative) | **+7.44 pts** |
+
+`product(asks) / product(mids)` averages **1.116** — so spread
+compounding is real but accounts for only **0.41 pts** of the 7.85. The
+finding survives its most conservative benchmark.
+
+## What this is NOT yet
+
+**One creation day. `k = 1`.** The leg-set clustering reports k=1083 and
+t=+15.92, and that number should not be trusted on its own: leg-sets
+within a single day share underlying legs heavily, so they are not 1,083
+independent observations of anything. Phase 1's entire lesson was that a
+large row count can be one cluster wearing a crowd's clothes, and
+repeating that mistake here — with a *quieter* statistic and a much
+more attractive result — would be the same error in a more tempting
+costume.
+
+Ruling 14 (recorded 2026-08-30: a calibration figure spanning fewer than
+three settlement days triggers no lifecycle action) applies here in
+spirit. Until several creation days are pooled and the **day-clustered**
+number holds, this is a promising single slate, not a measurement.
+
+Additional limits still outstanding, unchanged from the phase-2 bar:
+
+- `last_price` is the last *trade*, whose timestamp need not equal
+  `created_time`; leg marks may be stale relative to the trade in an
+  unknown direction. This remains the largest unquantified error.
+- 117 of 1,200 (~10%) were excluded for an unpriceable leg. If those are
+  systematically the illiquid ones, the surviving sample is biased
+  toward liquid legs — direction unknown.
+- Selection: a parlay exists because somebody asked for it. This
+  measures the markup on parlays people *wanted*, which is the right
+  population for "is retail paying a markup" and the wrong one for "is
+  every possible parlay overpriced".
