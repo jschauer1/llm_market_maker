@@ -104,13 +104,14 @@ for a session about to act on a score.
   in this system is more solid than a tier A number.
 - **Tier B** — outcome judgment on markets that settled after the judging
   model's knowledge cutoff. Its sample is smaller than tier A's by
-  construction, but that is already priced into the t-statistic and into
-  credibility — **never discount a tier B result a second time for being
-  tier B.** The doubts the statistics do not already price are narrower
-  and specific: a knowledge cutoff is a ragged boundary, not a wall, so
-  some leakage can remain, and rerunning the same replay on a different
-  model version can move the verdicts. Weigh those two directly; don't
-  re-charge for sample size, which is already spent.
+  construction, but the t-statistic and the credibility weighting already
+  paid that small-sample penalty once — **marking the score down again for
+  being tier B just double-counts a cost that's already been charged.**
+  The doubts the statistics do not already price are narrower and
+  specific: cutoffs leak at the edges rather than sealing cleanly, so some
+  residual contamination can remain, and rerunning the same replay on a
+  different model version can move the verdicts. Weigh those two
+  directly; don't re-charge for sample size, which is already spent.
 - **Tier C** — outcome judgment on markets the model could plausibly have
   known the outcome of. Contaminated, and excluded from credibility
   outright. If a tier C number ever reaches this checklist, run the
