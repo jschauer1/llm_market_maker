@@ -1096,3 +1096,61 @@ moderates (Big Brother DRE 4.9d, two Grok strikes 14.9d, asks
 converged to 0.97 exactly as the timing analysis predicts).
 Settlements land within days; these are the first live rows of the
 pre-registered forward test.
+
+## 2026-08-29 — all three theories current; six endorsed bets settled (all won, one day); the bucket defect survives a 4x bigger sample (migrated from RESEARCH_LOG.md)
+
+**Did:** Full orient on a fresh 117,272-market board. Fixed a real
+blocker first: `markets.quotes()` 414s on more than ~300 tickers and the
+settle pass had 378 waiting, so it never ran — chunked it inside
+`quotes()` (TDD, `QUOTE_CHUNK=100`) and dropped the workaround two
+theories were already carrying at their call sites. Then settled **95
+tickers**, recomputed scores and bucket rates, and re-ran every running
+theory:
+
+- `insider_judgment` v3 — `live-2026-08-29`, stages 1–6, judged
+  in-session by claude-opus-5. 740 screened → 328 events → gate removed
+  198 → 130 survivors / **232 markets**; 122 weak / 9 moderate / 0
+  strong. **Nothing endorsed**, second run running.
+- `no_side_premium` v1 — 748 population → **17 cell A + 56 cell B**
+  recorded at fresh asks.
+- `structural_arb` v2 — 3 nested-pair finds, **all three rejected** by
+  the v2 depth gate.
+
+**Learned:**
+
+1. **Six of the nine queued endorsed bets settled and all six won** —
+   the GTA video-length ladder (4 legs) and both Big Brother legs,
+   including 192 (BB-DRE NO @0.82), which the 08-27 re-quote had written
+   off at 0.44. `interpretation_value` is now **+34.4** (endorsed n=3 at
+   100%, rejected n=51 at 68.6% vs 84.5% implied). **All six settled the
+   same night**: `n_days=1`, no computable SE. A first data point, not
+   validation.
+2. **The bucket defect diagnosed on 08-28 survived a 4× larger sample.**
+   `weak` went from n=17 (one night of gate-leaked football) to n=67 and
+   the flat rate merely moved from 0.941 to 0.776 — a constant applied
+   across a 0.65–0.97 band still mints "positive edge" on everything
+   cheaper than itself. It produced 16 such rows this run: Taça de
+   Portugal football, T20 cricket, Hulu app downloads, South Africa GDP,
+   a Creed Aventus retail price. Bigger n fixes nothing when the shape is
+   wrong.
+3. **`no_side_premium` cell B flipped sign as predicted.** 12 rows on one
+   day read +14.59; 35 rows on two days read −12.17 row-weighted but
+   **−7.78 ± 22.0** day-clustered, with the two days at +14.18 and
+   −29.74. The 08-27 `n_days ≥ 8` amendment is what stopped this being
+   reported as confirmation of the avoid claim.
+4. **AGT is not a pre-taped-TV case** (researched): season 21's
+   quarterfinals are live shows decided by public vote. The thesis's
+   flagship sub-case does not transfer on ticker family alone — only
+   resolution timing separates taping-in-the-can from a live audience
+   vote.
+5. **`structural_arb`'s newest finds are untraded ladders**, not thin
+   ones: two US Open games-total pairs listed 08-27 with volume 0.11 and
+   0.0, showing 73.9% and 39.8% "riskless" against ~0.01 fillable
+   baskets. Nominal quotes that were never tested are the cheapest source
+   of apparent violations and the least fillable.
+
+Details in each theory's `NOTES.md` (2026-08-29 entries).
+
+**Next:** The bucket layer is the highest-value fix on the board and now
+has two independent runs of evidence against it — see the following
+session entry.
