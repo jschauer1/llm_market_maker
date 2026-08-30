@@ -438,3 +438,66 @@ class ScanResult:
     funnel: dict                       # board -> screened -> ... -> recorded
     gate_removed: dict                 # by category; {} when there is no gate
     judged: bool                       # did stage 2 actually run
+
+
+@dataclass(frozen=True, slots=True)
+class EquivalenceResult:
+    """What `theories.prove_carry` actually proved -- a replay result, not
+    an assertion (enforcing-surfaces spec 2.4).
+
+    This is the only thing `theories.bump_version(kind="carry",
+    equivalence=...)` accepts as permission to pool evidence across a
+    bump. There is deliberately no field a caller can set to declare
+    "trust me, it carries" -- `passed` is a *computed* property over
+    `n_attempts` and `n_divergent`, so the only way to make a carry proof
+    pass is for the replay to have actually reproduced every recorded
+    decision. An empty fixture never passes: `n_attempts > 0` is part of
+    the condition, so a theory with no recorded history cannot carry by
+    default.
+
+    `divergences` holds up to 50 `(opportunity_id, decision_date, field,
+    recorded, replayed)` tuples for a readable report; `n_divergent` is
+    never capped, so a badly diverged replay cannot masquerade as a
+    narrowly-missed one. `field` is either a top-level decision output
+    (`outcome`, `disposition`, `model_prob`, `confidence`,
+    `edge_pts_gross`, `edge_pts_net`, `edge_basis`) or `extra.<key>` for a
+    key a registered slice predicates on. `recorded`/`replayed` is the
+    string `"<absent>"` when the compared side had no value for that
+    field at all, distinct from an explicit `None`.
+    """
+
+    theory_id: str
+    from_version: int
+    n_attempts: int
+    divergences: tuple
+    n_divergent: int
+    label: str
+
+    def __post_init__(self) -> None:
+        if not self.theory_id:
+            raise ValueError("EquivalenceResult.theory_id must be non-empty")
+        if self.from_version < 1:
+            raise ValueError(
+                f"EquivalenceResult.from_version must be >= 1, got "
+                f"{self.from_version!r}"
+            )
+        if self.n_attempts < 0:
+            raise ValueError("EquivalenceResult.n_attempts must be >= 0")
+        if self.n_divergent < 0:
+            raise ValueError("EquivalenceResult.n_divergent must be >= 0")
+        if len(self.divergences) > 50:
+            raise ValueError(
+                "EquivalenceResult.divergences must be capped at 50 entries"
+            )
+        if not self.label:
+            raise ValueError("EquivalenceResult.label must be non-empty")
+
+    @property
+    def passed(self) -> bool:
+        """True iff the replay reproduced every recorded decision exactly.
+
+        `n_attempts > 0` is part of the condition on purpose: a carry
+        proof run against an empty fixture has demonstrated nothing, and
+        `bump_version` must not read silence as equivalence.
+        """
+        return self.n_divergent == 0 and self.n_attempts > 0
