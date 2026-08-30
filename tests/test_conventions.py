@@ -408,6 +408,9 @@ _MOVED_RULES: dict[str, str] = {
     "backtest-web-search-off": "backtest-theory",
     "structural-gate-conditions": "backtest-theory",
     "record-the-tier-claim": "backtest-theory",
+    "judge-blind": "find-edge",
+    "batch-and-dedupe": "find-edge",
+    "buckets-from-deep-stage": "find-edge",
 }
 
 

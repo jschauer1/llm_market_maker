@@ -305,10 +305,6 @@ placeholders too: a prior comes from a stated structural assumption (uniform
 over strikes, a family's base rate), never from a felt sense wearing a
 decimal point.
 
-**Judge blind to price wherever the theory allows it.** Get the classification
-first, reveal the price second, compute edge mechanically. Record
-`judged_blind=True`. This costs nothing and removes the largest contaminant.
-
 Every recorded edge carries an `edge_basis`: `measured` (the bucket earned it),
 `model` (a mechanical calculation), or `prior` (a placeholder awaiting data).
 There is deliberately no basis meaning "it felt about right".
@@ -594,8 +590,7 @@ pick. Narrow in stages:
 | Deep analysis: "is it true here, which bucket?" | tens | strong, high reasoning |
 | Final selection | a handful | you, this session |
 
-The cheap stage exists so the expensive one never sees raw data. Deduplicate
-before gating — sibling strikes on one event almost always share a verdict.
+The cheap stage exists so the expensive one never sees raw data.
 
 **Check whether the gate needs a model at all.** A thesis whose exclusions are
 market *families* — "any future price", "weather", "live sport" — is asking a
@@ -612,10 +607,6 @@ the gate removed**, by category. An LLM gate handles novel families and reads
 actual resolution rules, but its mistakes are hundreds of unreviewable
 judgments. Prefer code when the exclusions follow from resolution *mechanics*;
 reach for a model when they need reading comprehension.
-
-**Batch within a tier** — tens of candidates per call, never one subagent per
-candidate. Confidence buckets always come from the deep stage; a gate answers
-"worth a closer look," never "good bet."
 
 This runs on the user's Claude subscription; there are no API keys anywhere in
 this repo, and none should be added.

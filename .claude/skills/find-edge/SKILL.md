@@ -155,9 +155,15 @@ raises rather than write a row if that is unset. There is no separate manual
 `provenance record` call on this path — it is what makes an edge this scan
 finds reproducible rather than anecdotal, without you having to remember it.
 
-Batch within every tier — tens of candidates per call, never one subagent per
-candidate. The confidence bucket always comes from the deep stage; a gate
-answers "worth a closer look," never "good bet."
+<!-- rule: batch-and-dedupe (moved from CLAUDE.md § Subagents — cheap gates, expensive analysis, 2026-08-29) -->
+**Batch within a tier** — tens of candidates per call, never one subagent per
+candidate. Deduplicate before gating — sibling strikes on one event almost
+always share a verdict.
+<!-- /rule -->
+<!-- rule: buckets-from-deep-stage (moved from CLAUDE.md § Subagents — cheap gates, expensive analysis, 2026-08-29) -->
+Confidence buckets always come from the deep stage; a gate answers "worth a
+closer look," never "good bet."
+<!-- /rule -->
 
 **Never ask a subagent for a probability.** Ask for a classification, the
 structural features the theory cares about, and a confidence bucket from the
@@ -165,9 +171,11 @@ theory's declared scale. A number an LLM introspects is mostly an anchor on
 whatever price was in its context — see the theory's stage 2 section and spec
 section 7.
 
-**Judge blind to price where the theory allows it.** Send the market question
-and resolution rules without the price; reveal it afterwards and compute edge
-mechanically. Record `judged_blind=True`.
+<!-- rule: judge-blind (moved from CLAUDE.md § Never state a probability you introspected, 2026-08-29) -->
+**Judge blind to price wherever the theory allows it.** Get the classification
+first, reveal the price second, compute edge mechanically. Record
+`judged_blind=True`. This costs nothing and removes the largest contaminant.
+<!-- /rule -->
 
 Build a `Verdict` per candidate — a bucket from the theory's declared scale
 plus a rationale, never a number — and record through the contract:
