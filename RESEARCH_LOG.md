@@ -979,63 +979,26 @@ RESEARCH_LOG.md)` (spec §6.8).
 
 ## 2026-08-29 (cont.) — the bucket layer was differencing against the wrong price; insider_judgment v4
 
-**Did:** Fixed the defect the two previous runs kept reproducing.
-`tools/buckets.edge_for` computed `(bucket_win_rate − THIS candidate's
-price)`, which reads a bucket's *pooled win rate* as *this candidate's
-probability*. That makes claimed edge move 1:1 with price — a constant,
-not a calibration — so it mints edge on everything cheaper than the
-bucket rate and negative edge on everything dearer, whatever the judge
-said. On `insider_judgment`'s own live `weak` bucket (win 0.7761 at a
-mean entry of 0.8446, i.e. **−6.85 points of real edge**) it claimed
-**+10.04** at an ask of 0.66 and **−19.59** at 0.97.
+`tools/buckets.edge_for` computed `(bucket_win_rate − this candidate's
+price)`, reading a bucket's pooled win rate as this candidate's
+probability, which made claimed edge move 1:1 with price and disagreed
+with `score.compute_score`'s own `win_rate − price_implied_rate`
+formula — undetected for a month. On `insider_judgment`'s own live
+`weak` bucket (win 0.7761 at a mean entry of 0.8446, i.e. −6.85 points
+of real edge) it claimed +10.04 at an ask of 0.66 and −19.59 at 0.97.
+The fix rewrote the formula to `(win_rate − mean entry price of the
+rows that measured it)`, with only the fee depending on the
+candidate's own ask, and shipped `MIN_BUCKET_DAYS = 5` (a bucket must
+span five distinct settlement days before replacing its prior, and an
+unsupplied day count fails closed). This bumped `insider_judgment` to
+**v4**, recorded in its own `THEORY.md`. The same bug had a second,
+invisible victim: it had been silently ranking the retired
+`mention_family`'s candidates by cheapness rather than edge.
 
-The bucket now carries `(win_rate − mean entry price of the rows that
-measured it)` — how far it beat the prices it was actually bought at —
-and only the fee depends on the candidate's own ask. Shipped with
-`MIN_BUCKET_DAYS = 5` (a bucket must span five distinct settlement days
-before replacing its prior; `bucket_rates` reports and persists
-`n_days`, and an unsupplied day count fails closed to the prior).
-`insider_judgment` → **v4**. TDD throughout; suite 861 green.
-
-**Learned:**
-
-1. **The formula disagreed with the scoring it is graded by, and nobody
-   noticed for a month.** `score.compute_score` measures
-   `win_rate − price_implied_rate` — edge against the prices actually
-   paid. `edge_for` claimed edge a different way. A theory claiming by
-   one formula and being graded by another cannot converge, and the
-   symptom (junk candidates with big positive numbers) looks like a
-   screen problem, not an arithmetic one. **Worth checking elsewhere:
-   wherever a theory claims an edge, confirm the claim is in the same
-   units the ledger will grade it in.**
-2. **`mean_entry_price` was already collected by `bucket_rates` and never
-   read.** The data the correct formula needs had been sitting in the
-   same dict the wrong formula was reading from since the beginning.
-3. **The bug had a second, invisible victim.** The retired
-   `mention_family` used the same function, and the correction re-ranks
-   its golden output — old top pick a $0.85 candidate at +14.11 net,
-   corrected one a $0.97 candidate at +8.21. It had been ranking **by
-   cheapness**. Price binning masked it (inside a narrow bin a flat rate
-   is nearly right), which is why the defect only became visible on
-   `insider_judgment`'s single 0.65–0.97 band. A workaround that hides a
-   bug is worse than no workaround.
-4. **The immutable characterization goldens did their job and forced the
-   escalation.** Rather than regenerate, `mention_rank_wide.json` is kept
-   unmodified as the record of the pre-correction arithmetic, the
-   corrected behaviour got its own file, and a new test asserts the
-   *difference* between them — which locks the correction permanently
-   instead of just re-baselining it.
-5. **Only two of the three 2026-08-28 defects were arithmetic.** Gate
-   leakage (defect 3) is untouched: `gate.py` still passes Taça de
-   Portugal, T20, KBO, CPL and the whole Carbon Arc vendor-metric family.
-   Leakage can no longer *define* a bucket on one night, but it still
-   contaminates the population.
-
-**Next:** `gate.py` is now the clear top item for `insider_judgment` —
-the families it misses are a ticker question, not a judgment question, so
-the fix is code and it bumps the version again. Beyond that: 22 specced
-theories remain unbuilt (`docs/superpowers/specs/theories/`), and idea 21's
-soft relative-value successor still has a ready dataset.
+Narrative moved 2026-08-29 to
+`theories/insider_bias/insider_judgment/NOTES.md` under `## 2026-08-29
+(cont.) — the bucket layer was differencing against the wrong price;
+insider_judgment v4 (migrated from RESEARCH_LOG.md)` (spec §6.8).
 
 ## 2026-08-29 (cont.) — gate.py reads resolution rules; 130 survivors → 18
 
