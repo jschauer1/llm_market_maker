@@ -42,11 +42,34 @@ sources; every spec links back here instead of repeating them.
      sample, the whole board, from the direction most favourable to the
      thesis. See `theories/structural_arb/NOTES.md` 2026-08-29.
 
+   - **combo-vs-leg, the first CROSS-event probe** (2026-08-30): Kalshi's
+     92 listed `*COMBO` markets are 2x2 partitions (DD/DR/RD/RR) whose
+     *legs* sit in separate events, so `{DD, DR}` is an **exact
+     synthetic** of the standalone leg market — an arbitrage identity
+     that holds *whatever* the correlation between legs, unlike a
+     product-of-legs test. **34 exact riskless constructions at
+     executable prices with real fees: 1 profitable at zero buffer
+     (+0.05 pts), 0 at a 1c/leg buffer.** Mid-price gaps up to 6.4 pts
+     exist but sit entirely inside the spread, and the most liquid case
+     (`KXBALANCEPOWERCOMBO`, 10.7M volume, 1c spread) has the
+     *smallest* gap. Study:
+     `studies/2026-08-30-parlay-markup/` (rule-0 section).
+
    The cheap check is a one-board measurement of the *dispersion the
    thesis needs*, run before any theory scaffolding — both of the above
    were settled in well under a session that way. Cross-**event**
-   relative value is not covered by this warning and remains open; the
-   closed channel is specifically within-event.
+   relative value is **no longer untested**: the combo-vs-leg channel is
+   now measured and flat, by the strongest available test (an exact
+   synthetic, correlation-free). What remains open is cross-event
+   relative value where no arbitrage identity exists — a *forecast*
+   disagreement between two separately-priced events, which is a
+   different and much weaker claim than a violated identity.
+
+   **Matching trap, recorded because it is silent:** KS/NH/OH list
+   governor and senate contests from **different election cycles** under
+   adjacent tickers (`GOVPARTYKS-27-D` beside `SENATEKS-26-D`). Matching
+   legs by ticker year-suffix pairs the wrong election and produces a
+   confident, wrong arbitrage. Match on `close_time`.
 
 0b. **A pre-registration must name its inclusion rules and its power
    floor, not just its contrast.** Naming only the hypothesis leaves the
