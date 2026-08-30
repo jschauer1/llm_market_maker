@@ -176,6 +176,51 @@ def test_backtest_attempts_in_the_main_lane_are_included(conn):
     assert res.passed
 
 
+def test_tier_c_backtest_attempts_are_excluded_from_the_fixture(conn):
+    # M3: a tier-C attempt is contaminated evidence -- it must not be able
+    # to prove a carry either, mirroring segment_report's tier-C
+    # exclusion. Recorded but never fed to `decide`.
+    _record(
+        conn, kalshi_ticker="KXTEST-TC", outcome="yes",
+        run_mode="backtest", run_id="bt-c", decision_date="2026-08-20",
+    )
+    score.record_backtest_run(conn, "bt-c", "t1", 1, tier="C", now=TS)
+
+    res = theories.prove_carry(conn, "t1", 1, _echo_decide)
+    assert res.n_attempts == 0
+
+
+def test_tier_a_backtest_attempts_still_enter_the_fixture(conn):
+    # A NULL tier (test_backtest_attempts_in_the_main_lane_are_included,
+    # above) and an explicit A/B tier are both kept -- only 'C' is
+    # excluded.
+    _record(
+        conn, kalshi_ticker="KXTEST-TA", outcome="yes",
+        run_mode="backtest", run_id="bt-a", decision_date="2026-08-20",
+    )
+    score.record_backtest_run(conn, "bt-a", "t1", 1, tier="A", now=TS)
+
+    res = theories.prove_carry(conn, "t1", 1, _echo_decide)
+    assert res.n_attempts == 1
+    assert res.passed
+
+
+def test_position_kind_is_exposed_on_the_replayed_row(conn):
+    # M2: o.position_kind is joined into the fixture row so a `decide`
+    # that needs to special-case a basket header can see it. No
+    # comparison changes -- prove_carry itself never reads this field.
+    _record(conn, kalshi_ticker="KXTEST-PK", outcome="yes")
+    seen = []
+
+    def decide(row):
+        seen.append(row["position_kind"])
+        return _echo_decide(row)
+
+    res = theories.prove_carry(conn, "t1", 1, decide)
+    assert res.passed
+    assert seen == ["single"]
+
+
 def test_other_theory_version_is_excluded_from_the_fixture(conn):
     _record(conn, kalshi_ticker="KXTEST-I", outcome="yes", theory_version=1)
     theories.bump_version(conn, "t1", now=TS, justification="unrelated bump")
@@ -283,6 +328,27 @@ def test_carry_chain_breaking_in_the_middle_stops_the_walk(conn):
 
     assert theories.carry_chain(conn, "t1", 3) == [3]
     assert theories.carry_chain(conn, "t1", 2) == [1, 2]
+
+
+def test_carry_chain_refuses_a_malformed_cycle_row(conn):
+    # bump_version can never write this -- it always names a predecessor
+    # strictly less than the version being bumped to -- but a raw INSERT
+    # (a hand-edited fixture, a future writer that bypasses bump_version)
+    # is not guaranteed that. A self-referential row (v2's own predecessor
+    # is v2) is the simplest cycle: walking it would loop forever without
+    # the guard (M1).
+    with db.write(conn):
+        conn.execute(
+            """
+            INSERT INTO theory_versions
+                (theory_id, version, kind, predecessor, justification,
+                 equivalence_run, created_at)
+            VALUES ('t1', 2, 'carry', 2, 'malformed fixture', 'fake', ?)
+            """,
+            (TS,),
+        )
+    with pytest.raises(ValueError, match="predecessor"):
+        theories.carry_chain(conn, "t1", 2)
 
 
 # --- score.compute_score(pool=...) evidence pooling (spec 2.5) ---
@@ -561,3 +627,56 @@ def test_segment_report_pool_version_is_byte_identical_to_default(conn):
 
     assert slices.segment_report(conn, "t1", 1) == \
         slices.segment_report(conn, "t1", 1, pool="version")
+
+
+# --- slices.ranking_segment(pool=...) evidence pooling (spec 2.5, I1) ---
+# ranking_segment is the seam an agent actually ranks candidates through
+# (`slices match`) -- segment_report supporting pool="chain" is not
+# enough on its own if the thing that feeds `rank` never asks for it.
+
+
+def test_ranking_segment_pool_chain_widens_the_segment_and_discloses_it(conn):
+    _record(conn, kalshi_ticker="KXALPHA-A", outcome="yes")
+    score.record_settlement(
+        conn, "KXALPHA-A", "yes", resolved_at="2026-08-20T00:00:00Z"
+    )
+
+    res = theories.prove_carry(conn, "t1", 1, _echo_decide)
+    assert res.passed
+    theories.bump_version(
+        conn, "t1", kind="carry", justification="no-op refactor",
+        equivalence=res,
+    )
+
+    opp_id, _ = _record(
+        conn, kalshi_ticker="KXBETA-A", outcome="yes", theory_version=2
+    )
+    score.record_settlement(
+        conn, "KXBETA-A", "yes", resolved_at="2026-08-27T00:00:00Z"
+    )
+    row = ledger.get_opportunity(conn, opp_id)
+
+    # Default (pool="version"): only v2's own row counts -- distinct
+    # ticker prefixes (KXALPHA vs KXBETA) so n_clusters, not just n,
+    # actually differs between the two calls.
+    default_seg = slices.ranking_segment(conn, row)
+    assert default_seg["segment"] == "aggregate"
+    assert default_seg["rank_inputs"]["n"] == 1
+    assert "chain_versions" not in default_seg
+
+    # pool="chain": v1's proven-carry predecessor pools in too, and the
+    # widening is disclosed on the returned dict itself.
+    chained_seg = slices.ranking_segment(conn, row, pool="chain")
+    assert chained_seg["rank_inputs"]["n"] == 2
+    assert chained_seg["chain_versions"] == [1, 2]
+
+
+def test_ranking_segment_pool_version_is_byte_identical_to_default(conn):
+    # pool="chain" is new; the implicit default must still be exactly
+    # what ranking_segment always returned, byte for byte.
+    opp_id, _ = _record(conn, kalshi_ticker="KXGAMMA-A", outcome="yes")
+    score.record_settlement(conn, "KXGAMMA-A", "yes", resolved_at=TS)
+    row = ledger.get_opportunity(conn, opp_id)
+
+    assert slices.ranking_segment(conn, row) == \
+        slices.ranking_segment(conn, row, pool="version")

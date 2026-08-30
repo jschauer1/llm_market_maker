@@ -306,6 +306,7 @@ def _cmd_slices(args) -> int:
                     conn, args.theory_id, args.version,
                     disposition=args.disposition,
                     run_modes=tuple(args.run_modes.split(",")),
+                    pool=args.pool,
                 )
             )
         elif args.action == "match":
@@ -314,7 +315,7 @@ def _cmd_slices(args) -> int:
                 raise SystemExit(f"no opportunity {args.opportunity_id}")
             _emit(
                 slices.ranking_segment(
-                    conn, row, disposition=args.disposition
+                    conn, row, disposition=args.disposition, pool=args.pool
                 )
             )
         elif args.action == "retire":
@@ -645,9 +646,27 @@ def build_parser() -> argparse.ArgumentParser:
         "--run-modes", dest="run_modes", default="live,backtest",
         help="comma-separated evidence pool; tier-C rows are always excluded",
     )
+    slrep.add_argument(
+        "--pool", choices=("version", "chain"), default="version",
+        help=(
+            "'version' (default) scopes to theory_version alone, exactly "
+            "as before this flag existed. 'chain' widens every segment -- "
+            "aggregate, each slice's oos/in_sample, and the complement -- "
+            "to every version a proven carry bump links back to (spec "
+            "2.8); the response's chain_versions key shows what pooled, "
+            "and is absent when nothing did"
+        ),
+    )
     slmatch = slsub.add_parser("match")
     slmatch.add_argument("opportunity_id", type=int)
     slmatch.add_argument("--disposition", default="all")
+    slmatch.add_argument(
+        "--pool", choices=("version", "chain"), default="version",
+        help=(
+            "same widening as 'slices report --pool chain', threaded "
+            "into the segment this candidate ranks on"
+        ),
+    )
     slret = slsub.add_parser("retire")
     slret.add_argument("theory_id")
     slret.add_argument("slug")

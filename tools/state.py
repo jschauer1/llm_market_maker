@@ -49,7 +49,8 @@ def _theories_panel(conn) -> list[str]:
                     (t["id"], t["version"]))
         chain = "chain n/a"
         if _table_exists(conn, "theory_versions"):
-            chain = "chain ready"          # phase 6 replaces this with chain n
+            versions = theories.carry_chain(conn, t["id"], t["version"])
+            chain = f"chain {len(versions)}"
         lines.append(
             f"  {t['id']:<22} {t['status']:<13} v{t['version']}"
             f"  rows {rows}  settled {settled}  [{chain}]"

@@ -3,6 +3,7 @@ import sqlite3
 import pytest
 
 from tools import db, theories
+from tools.domain import EquivalenceResult
 
 TS = "2026-08-23T12:00:00Z"
 
@@ -228,15 +229,36 @@ def test_carry_refuses_without_a_passing_proof(conn):
 
 
 class _Proof:
+    """A look-alike carrying the right attributes but not the right type.
+
+    `bump_version` must refuse this (enforcing-surfaces spec 2.4, I2): the
+    proof is `isinstance(equivalence, EquivalenceResult)`, not merely an
+    object that happens to expose `.passed`/`.label`. Accepting a duck
+    type here is exactly the loophole that lets a caller assert "trust
+    me, it carries" without ever having run a real replay.
+    """
     passed = True
     label = "carry-proof/t1-v1-to-v2"
 
 
-def test_carry_records_the_equivalence_run(conn):
+def test_carry_refuses_a_duck_typed_proof(conn):
     theories.register(conn, "t1", "T1", "theories/t1")
-    v = theories.bump_version(conn, "t1", kind="carry",
+    with pytest.raises(ValueError, match="proof"):
+        theories.bump_version(conn, "t1", kind="carry",
                               justification="plumbing only",
                               equivalence=_Proof())
+
+
+def test_carry_records_the_equivalence_run(conn):
+    theories.register(conn, "t1", "T1", "theories/t1")
+    proof = EquivalenceResult(
+        theory_id="t1", from_version=1, n_attempts=1, divergences=(),
+        n_divergent=0, label="carry-proof/t1-v1-to-v2",
+    )
+    assert proof.passed
+    v = theories.bump_version(conn, "t1", kind="carry",
+                              justification="plumbing only",
+                              equivalence=proof)
     row = theories.list_versions(conn, "t1")[-1]
     assert (v, row["kind"], row["equivalence_run"]) == (
         2, "carry", "carry-proof/t1-v1-to-v2")

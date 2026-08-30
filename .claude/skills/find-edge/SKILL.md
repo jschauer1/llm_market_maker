@@ -254,9 +254,14 @@ slice's demonstrated edge — nor be punished for it. A candidate matching
 a slice still below its evidence gates ranks unchanged but gets the
 annotation `slices match` returns. Slice evidence is per theory version:
 if the current version's segments are empty because a version bump
-*adopted* the slice's rule, cite the prior version's segment
-(`slices report <id> --version <n>`) and say so explicitly in the report
-— switch to the current version's own segment as soon as it is ready.
+*adopted* the slice's rule, pass `--pool chain` to `slices match` and
+`slices report` first — under a **proven carry**, pooling the prior
+version's evidence in is mechanical, and the response's `chain_versions`
+key confirms what pooled. Only when `chain_versions` does not appear
+(a **breaking** bump never pools) fall back to the manual citation: cite
+the prior version's segment via `slices report <id> --version <n>` and
+say so explicitly in the report — switch to the current version's own
+segment as soon as it is ready.
 
 **If credibility computes to 0** — realization is 0.0 even though `n` clears
 the probation floor — do not present a table of zeroed-out ranked edges. That

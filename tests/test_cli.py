@@ -307,6 +307,110 @@ def test_score_report_default_pool_matches_explicit_version(dbpath, capsys):
     assert implicit == explicit
 
 
+def test_slices_report_pool_chain_pools_across_a_proven_carry(dbpath, capsys):
+    conn = db.connect(dbpath)
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="KXCP-A",
+        outcome="yes", entry_price=0.40, edge_pts_net=6.0, now=TS,
+    )
+    score.record_settlement(
+        conn, "KXCP-A", "yes", resolved_at="2026-08-20T00:00:00Z"
+    )
+
+    res = theories.prove_carry(conn, "t1", 1, _echo_decide)
+    assert res.passed
+    theories.bump_version(
+        conn, "t1", kind="carry", justification="no-op refactor",
+        equivalence=res,
+    )
+
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=2, kalshi_ticker="KXCQ-A",
+        outcome="yes", entry_price=0.40, edge_pts_net=6.0, now=TS,
+    )
+    score.record_settlement(
+        conn, "KXCQ-A", "yes", resolved_at="2026-08-27T00:00:00Z"
+    )
+    conn.close()
+
+    # Default (--pool version, implicit): v1's proven-carry predecessor
+    # never joins.
+    code, payload = _run(capsys, "--db", dbpath, "slices", "report", "t1")
+    assert payload["aggregate"]["n"] == 1
+    assert "chain_versions" not in payload
+
+    # --pool chain: the proven carry pools v1's row in.
+    code, payload = _run(
+        capsys, "--db", dbpath, "slices", "report", "t1", "--pool", "chain",
+    )
+    assert payload["aggregate"]["n"] == 2
+    assert payload["chain_versions"] == [1, 2]
+
+
+def test_slices_match_pool_chain_pools_across_a_proven_carry(dbpath, capsys):
+    conn = db.connect(dbpath)
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="KXCM-A",
+        outcome="yes", entry_price=0.40, edge_pts_net=6.0, now=TS,
+    )
+    score.record_settlement(
+        conn, "KXCM-A", "yes", resolved_at="2026-08-20T00:00:00Z"
+    )
+
+    res = theories.prove_carry(conn, "t1", 1, _echo_decide)
+    assert res.passed
+    theories.bump_version(
+        conn, "t1", kind="carry", justification="no-op refactor",
+        equivalence=res,
+    )
+
+    opp_id2, _ = ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=2, kalshi_ticker="KXCN-A",
+        outcome="yes", entry_price=0.40, edge_pts_net=6.0, now=TS,
+    )
+    score.record_settlement(
+        conn, "KXCN-A", "yes", resolved_at="2026-08-27T00:00:00Z"
+    )
+    conn.close()
+
+    # Default (--pool version, implicit): v1's proven-carry predecessor
+    # never joins the ranking segment -- distinct ticker prefixes so
+    # n_clusters (what rank_inputs reports) really does differ below.
+    code, payload = _run(
+        capsys, "--db", dbpath, "slices", "match", str(opp_id2),
+    )
+    assert payload["rank_inputs"]["n"] == 1
+    assert "chain_versions" not in payload
+
+    # --pool chain: the proven carry pools v1's row in, and the ranking
+    # segment discloses it.
+    code, payload = _run(
+        capsys, "--db", dbpath, "slices", "match", str(opp_id2),
+        "--pool", "chain",
+    )
+    assert payload["rank_inputs"]["n"] == 2
+    assert payload["chain_versions"] == [1, 2]
+
+
+def test_slices_match_default_pool_matches_explicit_version(dbpath, capsys):
+    conn = db.connect(dbpath)
+    opp_id, _ = ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="KXCO-A",
+        outcome="yes", entry_price=0.40, edge_pts_net=6.0, now=TS,
+    )
+    score.record_settlement(conn, "KXCO-A", "yes", resolved_at=TS)
+    conn.close()
+
+    code, implicit = _run(
+        capsys, "--db", dbpath, "slices", "match", str(opp_id),
+    )
+    code, explicit = _run(
+        capsys, "--db", dbpath, "slices", "match", str(opp_id),
+        "--pool", "version",
+    )
+    assert implicit == explicit
+
+
 def test_state_write_matches_printed_text(dbpath, tmp_path, monkeypatch,
                                           capsys):
     # _cmd_state must render once and reuse the text for both stdout and

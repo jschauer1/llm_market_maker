@@ -9,7 +9,7 @@ description: Compare theories by demonstrated performance, including whether int
 
 ```bash
 python -m tools.cli theories list
-python -m tools.cli score report <id>   # for each
+python -m tools.cli score report <id> --pool chain   # for each
 ```
 
 ## 2. Keep separate what is different

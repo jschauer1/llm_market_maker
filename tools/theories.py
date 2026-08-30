@@ -283,16 +283,15 @@ def set_uses_llm_judgment(
         )
 
 
-#: Duck-typed stand-in for Task 2's real `EquivalenceResult` (enforcing-
-#: surfaces spec 2.4). Until that type lands, `bump_version` accepts any
-#: object exposing these two attributes:
-#:   .passed  -- bool, True iff the replay reproduced every recorded
-#:               decision exactly
-#:   .label   -- str, an identifier for the equivalence run, stored as
-#:               `theory_versions.equivalence_run`
-#: This is a comment, not an enforced Protocol -- `getattr` below is what
-#: actually reads it.
-_CarryProof = object
+#: `bump_version`'s carry-proof parameter type (enforcing-surfaces spec
+#: 2.4). `EquivalenceResult` (`tools/domain.py`) IS this type -- there is
+#: no longer a duck-typed stand-in. `bump_version` enforces
+#: `isinstance(equivalence, EquivalenceResult)` before it ever looks at
+#: `.passed`, so an object that merely exposes the right attributes is
+#: refused, not silently accepted. `_CarryProof` stays as a readable
+#: alias at the call site below rather than spelling out
+#: `EquivalenceResult | None` twice.
+_CarryProof = EquivalenceResult
 
 
 def bump_version(
@@ -320,12 +319,12 @@ def bump_version(
         raise KeyError(theory_id)
     equivalence_run = None
     if kind == "carry":
-        if equivalence is None or not getattr(equivalence, "passed", False):
+        if not isinstance(equivalence, EquivalenceResult) or not equivalence.passed:
             raise ValueError(
                 "carry needs a passing equivalence proof -- the proof is "
                 "the permission (spec 2.4)"
             )
-        equivalence_run = getattr(equivalence, "label", None)
+        equivalence_run = equivalence.label
     new_version = row["version"] + 1
     stamp = now or utcnow()
     with write(conn):
@@ -372,8 +371,19 @@ def carry_chain(
     immediately. `version` itself is always included, even when its own
     row is missing or breaking, so a caller never has to special-case an
     isolated version. The result is ascending.
+
+    `bump_version` only ever writes a predecessor strictly less than the
+    version being bumped to, so a well-formed table can never cycle. A
+    row written outside `bump_version` (a raw INSERT, a hand-edited
+    fixture) is not guaranteed that, and a cycle here would loop
+    forever -- so each step is guarded: the predecessor named by the
+    current version's row must be strictly older than it, and must not
+    be a version already walked. Either violation raises `ValueError`
+    naming the offending row rather than hanging or silently truncating
+    the chain.
     """
     chain = [version]
+    visited = {version}
     current = version
     while True:
         row = conn.execute(
@@ -383,7 +393,15 @@ def carry_chain(
         ).fetchone()
         if row is None or row["kind"] != "carry" or row["predecessor"] is None:
             break
-        current = row["predecessor"]
+        predecessor = row["predecessor"]
+        if predecessor >= current or predecessor in visited:
+            raise ValueError(
+                f"malformed theory_versions row: {theory_id!r} v{current} "
+                f"names predecessor {predecessor!r}, which is not strictly "
+                "older than it -- carry_chain refuses to walk a cycle"
+            )
+        current = predecessor
+        visited.add(current)
         chain.append(current)
     return sorted(chain)
 
@@ -491,17 +509,22 @@ def prove_carry(
 
     The harness never decides anything itself -- `decide` is theory-
     supplied. It receives one joined attempt row (attempt columns plus
-    the parent position's `kalshi_ticker` and `outcome`) and must derive
-    its outputs only from that row's stored `decision_date` and
-    `entry_price`, so the proof is reproducible offline with no fresh
-    board. This function only selects the fixture, compares field-
-    exactly, and reports: a carry claim earns its permission from the
-    comparison, never from an assertion.
+    the parent position's `kalshi_ticker`, `outcome`, and
+    `position_kind`) and must not consult a fresh board -- point-in-time
+    market state comes from snapshots (`tools/snapshot.py`), so the
+    proof is reproducible offline. This function only selects the
+    fixture, compares field-exactly, and reports: a carry claim earns
+    its permission from the comparison, never from an assertion.
 
     The fixture is every attempt recorded against `(theory_id,
     from_version)` in the theory's real track record -- live and
     backtest, `lane='main'` only, so a variant being tried under
-    `run_id="exp/..."` never feeds or blocks a carry proof.
+    `run_id="exp/..."` never feeds or blocks a carry proof. A backtest
+    attempt whose run is recorded `tier='C'` in `backtest_runs` is
+    excluded from the fixture entirely -- contaminated evidence proves
+    nothing about equivalence, mirroring `segment_report`'s tier-C
+    exclusion. A NULL tier or tier A/B is kept, and a live attempt
+    (which never appears in `backtest_runs`) is unaffected.
     `slice_extra_keys` defaults to the keys every slice registered on
     this theory predicates on under its `extra` clause; the parameter
     exists so a test (or a slice-free theory) does not need one
@@ -514,11 +537,14 @@ def prove_carry(
 
     rows = conn.execute(
         """
-        SELECT o.kalshi_ticker AS kalshi_ticker, o.outcome AS outcome, a.*
+        SELECT o.kalshi_ticker AS kalshi_ticker, o.outcome AS outcome,
+               o.position_kind AS position_kind, a.*
           FROM opportunity_attempts a
           JOIN opportunities o ON o.id = a.opportunity_id
+          LEFT JOIN backtest_runs br ON br.run_id = a.run_id
          WHERE o.theory_id = ? AND o.theory_version = ? AND o.lane = 'main'
            AND o.run_mode IN ('live', 'backtest')
+           AND (br.tier IS NULL OR br.tier != 'C')
          ORDER BY a.decision_date, a.opportunity_id
         """,
         (theory_id, from_version),

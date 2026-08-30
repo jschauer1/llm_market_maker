@@ -530,6 +530,7 @@ def ranking_segment(
     disposition: str = "all",
     run_modes: tuple[str, ...] = DEFAULT_RUN_MODES,
     report: dict | None = None,
+    pool: str = "version",
 ) -> dict:
     """Which evidence row ranks this candidate, and why.
 
@@ -542,6 +543,17 @@ def ranking_segment(
     slice, on the aggregate, exactly as before slices existed. Pass
     `report` (one `segment_report` call) when ranking a whole
     candidate list, rather than recomputing per row.
+
+    `pool` is forwarded to `segment_report` when this call computes its
+    own report (a `report` passed in was already built with whatever
+    pool its caller chose, so `pool` is ignored then). `pool="version"`
+    (default) is today's behaviour, unchanged. `pool="chain"` widens
+    every segment — the aggregate, each slice's oos/in_sample, and the
+    complement — the same way `segment_report(pool="chain")` does (spec
+    2.5), and the returned dict gains `chain_versions` whenever the
+    underlying report has it, whether the candidate ranked on a slice,
+    the complement, or the aggregate — a pooled ranking input can never
+    be read without seeing what was pooled into it.
     """
     if theory_id is None:
         theory_id = _field(row, "theory_id")
@@ -550,7 +562,7 @@ def ranking_segment(
     if report is None:
         report = segment_report(
             conn, theory_id, theory_version,
-            disposition=disposition, run_modes=run_modes,
+            disposition=disposition, run_modes=run_modes, pool=pool,
         )
 
     matched = None
@@ -586,7 +598,7 @@ def ranking_segment(
                 "but below its evidence gates; ranking on the aggregate"
             )
 
-    return {
+    result = {
         "segment": segment,
         "matched_slice": matched["slug"] if matched else None,
         "matched_slice_ready": bool(matched and matched["ready"]),
@@ -599,3 +611,6 @@ def ranking_segment(
             "mean_claimed_edge": seg_score["mean_claimed_edge"],
         },
     }
+    if "chain_versions" in report:
+        result["chain_versions"] = report["chain_versions"]
+    return result

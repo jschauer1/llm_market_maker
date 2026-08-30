@@ -977,6 +977,11 @@ def save_score(
     now: str | None = None,
 ) -> int:
     """Persist a computed score. Returns the new row id."""
+    if "chain_versions" in result:
+        raise ValueError(
+            "the scores table has no column for what pooled; persist "
+            "per-version (pool='version') scores only"
+        )
     with write(conn):
         cursor = conn.execute(
             """

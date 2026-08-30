@@ -90,3 +90,42 @@ def test_standing_does_not_add_ellipsis_when_not_truncated(conn):
     text = state.render_state(conn, now="2026-08-29T12:00:00Z")
     assert "short ruling…" not in text
     assert "short ruling" in text
+
+
+def test_theories_panel_shows_chain_1_for_a_fresh_theory(conn):
+    # I3: register() alone writes v1's own theory_versions row -- carry_
+    # chain(..., 1) is [1], so the panel must show the real figure, not
+    # the old "chain ready" placeholder.
+    from tools import theories
+    theories.register(conn, "demo_theory", "Demo", "theories/demo")
+    text = state.render_state(conn, now="2026-08-29T12:00:00Z")
+    assert "[chain 1]" in text
+    assert "chain ready" not in text
+
+
+def test_theories_panel_shows_chain_n_for_a_proven_carry(conn):
+    from tools import theories
+    from tools.domain import EquivalenceResult
+    theories.register(conn, "demo_theory", "Demo", "theories/demo")
+    proof = EquivalenceResult(
+        theory_id="demo_theory", from_version=1, n_attempts=1,
+        divergences=(), n_divergent=0, label="carry-proof/demo-v1-to-v2",
+    )
+    theories.bump_version(
+        conn, "demo_theory", kind="carry", justification="no-op refactor",
+        equivalence=proof,
+    )
+    text = state.render_state(conn, now="2026-08-29T12:00:00Z")
+    assert "[chain 2]" in text
+
+
+def test_theories_panel_stubs_when_theory_versions_is_absent(conn):
+    # Defensive path (mirrors every other panel's _table_exists guard):
+    # an older DB that predates this table must stub, not error, even
+    # though a theory was registered before the table went away.
+    from tools import db as db_mod, theories
+    theories.register(conn, "demo_theory", "Demo", "theories/demo")
+    with db_mod.write(conn):
+        conn.execute("DROP TABLE theory_versions")
+    text = state.render_state(conn, now="2026-08-29T12:00:00Z")
+    assert "[chain n/a]" in text

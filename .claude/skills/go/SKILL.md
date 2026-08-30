@@ -43,7 +43,8 @@ python -m tools.cli ideas revisitable
 ```
 
 Run `python -m tools.cli state` — the orientation surface, rendered from
-the DB. For each theory that runs, `python -m tools.cli score report <id>`.
+the DB. For each theory that runs, `python -m tools.cli score report <id>
+--pool chain`.
 
 Anything `pending-retirement` returns is a decision **waiting on the user**,
 and it stays waiting until they rule. Carry it into your report every session
