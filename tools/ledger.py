@@ -868,31 +868,44 @@ def get_opportunity(
 def resolve_ticker(
     conn: sqlite3.Connection, ticker: str, theory_id: str | None = None
 ) -> sqlite3.Row:
-    """The open position `mark-taken --ticker` should act on.
+    """The latest live-lane sighting of `ticker` `mark-taken --ticker` acts on.
 
-    Most recent sighting wins. More than one theory open on the ticker is
-    a refusal, not a guess -- marking the wrong theory's row corrupts the
-    only realized-ROI signal this system gets -- so the error names each
-    candidate and the flag that disambiguates.
+    Only the money record can be marked taken, so the lookup is pinned to
+    `run_mode = 'live' AND lane = 'main'` before anything else -- a backtest
+    replay or an `exp/` variant sighting of the same ticker has no real
+    money behind it and must never be mistaken for the live position.
+    Nothing here filters on settlement; a settled ticker is still returned.
+
+    Among what survives that filter, most recent sighting (by
+    `last_seen_at`) wins. More than one theory open on the ticker -- or one
+    theory open on more than one outcome of the ticker -- is a refusal, not
+    a guess -- marking the wrong theory's or the wrong side's row corrupts
+    the only realized-ROI signal this system gets -- so the error names
+    each candidate and the flag that disambiguates. A theory that fanned
+    across versions on the same (theory, outcome) pair is not ambiguous:
+    that is one theory whose procedure was bumped mid-track, and the
+    newest sighting is the position still open.
     """
     rows = conn.execute(
         """
         SELECT * FROM opportunities
-         WHERE kalshi_ticker = ? AND (? IS NULL OR theory_id = ?)
+         WHERE kalshi_ticker = ? AND run_mode = 'live' AND lane = 'main'
+           AND (? IS NULL OR theory_id = ?)
          ORDER BY last_seen_at DESC
         """,
         (ticker, theory_id, theory_id),
     ).fetchall()
     if not rows:
         raise KeyError(ticker)
-    theories_open = {r["theory_id"] for r in rows}
-    if len(theories_open) > 1:
+    combos = {(r["theory_id"], r["outcome"]) for r in rows}
+    if len(combos) > 1:
         names = ", ".join(
-            f"{r['theory_id']}:{r['id']}" for r in rows
+            f"{r['theory_id']}:{r['outcome']}:{r['id']}" for r in rows
         )
         raise ValueError(
-            f"{ticker} has open positions under more than one theory "
-            f"({names}); pass --theory to say which one you acted on"
+            f"{ticker} has open positions under more than one "
+            f"theory/outcome ({names}); pass --theory to say which one you "
+            "acted on"
         )
     return rows[0]
 

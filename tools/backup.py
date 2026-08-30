@@ -1,9 +1,17 @@
 """Ledger backup: every table except market_snapshots, gzipped.
 
-The working database is one WAL-mode file inside a OneDrive sync root --
-a total-loss single point of failure for the entire track record. The
-snapshots are excluded because they are 98% of the bytes and rebuildable
-in spirit (prices re-fetch; judgments and settlements do not).
+The working database is one WAL-mode file -- a total-loss single point of
+failure for the entire track record. `db/` was relocated behind a
+junction and out of the OneDrive sync root in this same branch, so sync
+churn on a live WAL file is no longer the risk this backup covers; what
+remains is disk loss, a bad migration corrupting the live file, or any
+other way one copy can turn into zero. The snapshots are excluded
+because they are 98% of the bytes and rebuildable in spirit (prices
+re-fetch; judgments and settlements do not).
+
+To restore: gunzip the backup, open the resulting `.db` directly, and run
+`db.init_db` against it to rebuild the indexes a raw table copy does not
+carry over.
 """
 
 from __future__ import annotations

@@ -213,6 +213,46 @@ def test_every_recorded_prompt_path_still_resolves():
     )
 
 
+def test_every_ruling_log_entry_resolves():
+    """A ruling row points back at RESEARCH_LOG.md's reasoning for it, or it
+    was never traceable. `rulings.log_entry` names the log's date heading
+    that explains a binding ruling; a heading that gets edited, retitled,
+    or moved out from under it silently turns the ruling into a claim with
+    no audit trail -- the same failure `test_every_recorded_prompt_path_
+    still_resolves` above catches for provenance, here for rulings.
+
+    Headings can wrap onto one line in the log (a long title stays on its
+    `## ` line), so this matches on substring containment of the stored
+    heading text within the file, not an exact line match.
+
+    Read-only against the working database, and skipped where there is
+    none (a fresh clone, or CI) rather than creating one as a side effect.
+    """
+    if not db.DEFAULT_DB_PATH.exists():
+        pytest.skip(
+            f"{db.DEFAULT_DB_PATH} does not exist -- no recorded rulings "
+            "to check in this environment"
+        )
+    conn = db.connect(db.DEFAULT_DB_PATH)
+    try:
+        rows = list(conn.execute(
+            "SELECT id, log_entry FROM rulings WHERE log_entry IS NOT NULL"
+        ))
+    finally:
+        conn.close()
+    log_text = (ROOT / "RESEARCH_LOG.md").read_text(encoding="utf-8")
+    missing = [
+        f"ruling {r['id']} -> {r['log_entry']!r}"
+        for r in rows if r["log_entry"] not in log_text
+    ]
+    assert missing == [], (
+        "a ruling's log_entry no longer appears in RESEARCH_LOG.md -- the "
+        "reasoning behind a binding ruling is no longer traceable from the "
+        "ledger alone. Repoint the row to the heading's new text:\n"
+        + "\n".join(missing)
+    )
+
+
 #: `record_opportunity`'s identity parameters -- these key the position row
 #: (`opportunities.UNIQUE`) or steer the write itself, and have no per-call
 #: value to lose on a merge, so they carry no `opportunity_attempts` column.
@@ -268,10 +308,42 @@ def test_every_record_opportunity_param_has_an_attempt_column():
 
 #: Docs whose backticked repo paths must resolve. Spec §5.1; later plans
 #: add theories/*/CLAUDE.md (§7.9) and the dated-citation check (§6.6).
+#:
+#: Deliberately excludes nested theories/*/*/THEORY.md (e.g.
+#: theories/insider_bias/insider_judgment/THEORY.md,
+#: theories/insider_bias/mention_family/THEORY.md): `_doc_paths` only
+#: globs one level deep (`theories/*/THEORY.md`), so a family's nested
+#: THEORY.md files never enter this check. That is on purpose, not an
+#: oversight -- a nested theory doc's backticked paths are written
+#: relative to ITS OWN directory (e.g. `screen.py` meaning
+#: `theories/insider_bias/insider_judgment/screen.py`), while this test
+#: resolves every span against the repo ROOT. Checking them as written
+#: produced 13 false positives on paths that are perfectly real, just not
+#: root-relative. The real fix is resolving each span against the doc's
+#: own directory instead of ROOT; that is deferred, so nested THEORY.md
+#: files stay out of scope here rather than fail on their own correct
+#: paths.
 _DOC_FILES = ("README.md", "CLAUDE.md", "tools/README.md")
 
 #: Paths that legitimately exist only at runtime (gitignored artifacts).
-_ALLOWED_MISSING = re.compile(r"^(db/.*\.(db|db-wal|db-shm)|STATE\.md)$")
+#: `STATE\.md` is deliberately NOT listed here: `_PATH_LIKE` below requires
+#: at least one `/`, so a bare `STATE.md` span is never matched by it and
+#: never reaches this regex at all -- an alternative here for it would be
+#: dead code. `STATE.md` is written as a bare filename in the docs that
+#: mention it (see CLAUDE.md), so it never needs this exception.
+_ALLOWED_MISSING = re.compile(r"^db/.*\.(db|db-wal|db-shm)$")
+
+#: Paths a doc names specifically to assert they must NEVER exist -- the
+#: opposite of `_ALLOWED_MISSING`, which excuses a real runtime artifact
+#: that just isn't checked out yet. `tools/backtest.py` is CLAUDE.md's and
+#: tools/README.md's worked example of a shared backtest engine the
+#: architecture deliberately never builds ("there is no tools/backtest.py
+#: replay engine, and none gets built"). Excluded from the "must resolve"
+#: check below, and the test asserts the opposite instead: that it stays
+#: absent, so a future change that quietly builds the very file the docs
+#: argue against is caught here rather than discovered by someone reading
+#: the docs and being told the opposite of what the repo now does.
+_DELIBERATELY_ABSENT = {"tools/backtest.py"}
 
 _PATH_LIKE = re.compile(r"^[A-Za-z0-9_][A-Za-z0-9_.\-]*(/[A-Za-z0-9_.\-]+)+/?$")
 
@@ -297,9 +369,31 @@ def test_every_repo_path_named_in_docs_resolves():
     missing = [
         f"{doc}: `{span}`"
         for doc, span in _doc_paths()
-        if not (ROOT / span).exists() and not _ALLOWED_MISSING.match(span)
+        if not (ROOT / span).exists()
+        and not _ALLOWED_MISSING.match(span)
+        and span not in _DELIBERATELY_ABSENT
     ]
     assert missing == [], (
         "a doc names a repo path that does not resolve -- fix the doc or "
         "add a deliberate runtime-artifact exception:\n" + "\n".join(missing)
+    )
+
+
+def test_deliberately_absent_paths_stay_absent():
+    """The other direction of `_DELIBERATELY_ABSENT`: a doc that argues a
+    file must never exist is broken the moment that file shows up, exactly
+    as broken as a doc pointing at a path that resolves to nothing. This
+    is the guard for `tools/backtest.py` specifically -- CLAUDE.md and
+    tools/README.md both say, in prose, that no shared backtest engine
+    gets built; this is that claim enforced."""
+    present = [
+        f"{doc}: `{span}`"
+        for doc, span in _doc_paths()
+        if span in _DELIBERATELY_ABSENT and (ROOT / span).exists()
+    ]
+    assert present == [], (
+        "a doc asserts a path must never exist, but it does now -- this is "
+        "an architecture decision to revisit deliberately, not to let "
+        "drift silently past the docs that argue against it:\n"
+        + "\n".join(present)
     )

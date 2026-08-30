@@ -57,6 +57,19 @@ def _theories_panel(conn) -> list[str]:
     return lines or ["  (no theories registered)"]
 
 
+def _truncate(text: str, limit: int = 100) -> str:
+    """The first `limit` chars, with a trailing ellipsis only if cut short.
+
+    A ruling shorter than the limit must render exactly as written -- the
+    ellipsis is a promise that text was dropped, and a false promise sends
+    the reader to `rulings list` to find nothing more than what they
+    already saw.
+    """
+    if len(text) <= limit:
+        return text
+    return text[:limit] + "…"
+
+
 def _standing_panel(conn) -> list[str]:
     lines = []
     for t in theories.list_pending_retirement(conn):
@@ -68,32 +81,49 @@ def _standing_panel(conn) -> list[str]:
         ):
             lines.append(
                 f"  ruling [{r['subject']}] ({r['authority']},"
-                f" {str(r['ruled_at'])[:10]}): {r['ruling'][:100]}"
+                f" {str(r['ruled_at'])[:10]}): {_truncate(r['ruling'])}"
             )
     else:
         lines.append(_STUB.format(table="rulings"))
     parked = _one(conn, "SELECT COUNT(*) FROM ideas WHERE status = 'parked'")
     paused = _one(conn, "SELECT COUNT(*) FROM theories WHERE status = 'paused'")
     lines.append(f"  blocked: {parked or 0} parked idea(s), {paused or 0} paused theory(ies)")
+    lines.append(
+        "  full text: python -m tools.cli rulings list --status binding"
+    )
     return lines
 
 
 def _evidence_panel(conn) -> list[str]:
     lines = []
+    # Zero rows in `scores` means score-theories has never run at all --
+    # that is a different fact from "this particular theory/version has no
+    # live score yet" (which can be true even after scoring has run many
+    # times for other theories), and conflating the two under "no live
+    # score at vN" reads as a per-theory gap when the real problem is that
+    # nobody has run score-theories this session.
+    scores_written = _one(conn, "SELECT COUNT(*) FROM scores")
     for t in theories.list_theories(conn, running_only=True):
-        row = conn.execute(
-            """
-            SELECT calibration_edge_net, n, n_clusters FROM scores
-             WHERE theory_id = ? AND theory_version = ?
-               AND run_mode = 'live' AND disposition = 'all'
-             ORDER BY computed_at DESC LIMIT 1
-            """,
-            (t["id"], t["version"]),
-        ).fetchone()
+        row = None
+        if scores_written:
+            row = conn.execute(
+                """
+                SELECT calibration_edge_net, n, n_clusters FROM scores
+                 WHERE theory_id = ? AND theory_version = ?
+                   AND run_mode = 'live' AND disposition = 'all'
+                 ORDER BY computed_at DESC LIMIT 1
+                """,
+                (t["id"], t["version"]),
+            ).fetchone()
         tier = _one(conn,
                     "SELECT tier FROM backtest_runs WHERE theory_id = ?"
                     " ORDER BY created_at DESC LIMIT 1", (t["id"],))
-        if row is None:
+        if not scores_written:
+            lines.append(
+                f"  {t['id']:<22} scores never written — run score-theories"
+                f"  [best backtest tier {tier or '—'}]"
+            )
+        elif row is None:
             lines.append(f"  {t['id']:<22} no live score at v{t['version']}"
                          f"  [best backtest tier {tier or '—'}]")
         else:
@@ -171,7 +201,19 @@ def render_state(conn: sqlite3.Connection, now: str | None = None) -> str:
     return "\n".join(out) + "\n"
 
 
-def write_state(conn: sqlite3.Connection, now: str | None = None) -> Path:
+def write_state(
+    conn: sqlite3.Connection, now: str | None = None, text: str | None = None
+) -> Path:
+    """Write STATE.md. Pass `text` to reuse an already-rendered string.
+
+    Without it, a caller that also prints `render_state(conn)` to the
+    terminal would trigger a second render here -- and since `now`
+    defaults to the real clock, the printed text and the file would
+    disagree, each stamped with a different `now`. `tools/cli.py`'s
+    `state --write` renders once and passes the result through for
+    exactly this reason.
+    """
     path = Path("STATE.md")
-    path.write_text(render_state(conn, now=now), encoding="utf-8")
+    path.write_text(text if text is not None else render_state(conn, now=now),
+                     encoding="utf-8")
     return path

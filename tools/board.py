@@ -135,12 +135,19 @@ def get_board(
     freshness genuinely matters — re-quoting a handful of tickers before
     betting is `markets.quotes()`, which is cheaper than any board pull.
     A board younger than FORCE_FLOOR_MINUTES is reused even under force
-    (ruled 2026-08-29).
+    (ruled 2026-08-29) — unless `max_age_minutes` was explicitly passed
+    tighter than the floor, in which case that tighter bound wins.
 
     A fetch is always snapshotted, so the pull is never lost.
     """
     info = board_info(conn, now=now)
-    floor = FORCE_FLOOR_MINUTES if force else max_age_minutes
+    # force means "refresh unless this is basically the board I already
+    # have," not "ignore what the caller asked for." An explicitly tighter
+    # max_age_minutes than the floor is still honoured -- min(), not a flat
+    # override -- so force never becomes less strict than a plain max_age
+    # would have been. No caller passes both today, so this only ever
+    # narrows the floor.
+    floor = min(max_age_minutes, FORCE_FLOOR_MINUTES) if force else max_age_minutes
     if info is not None and info["age_minutes"] <= floor:
         return _rebuild(conn, info["captured_at"])
 

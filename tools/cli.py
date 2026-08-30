@@ -173,17 +173,31 @@ def _cmd_opportunities(args) -> int:
                     ]
             _emit(rows)
         elif args.action == "mark-taken":
+            if args.id is not None and args.ticker:
+                raise SystemExit(
+                    "pass an opportunity id or --ticker, not both -- "
+                    "ambiguous which one identifies the position"
+                )
             opp_id = args.id
             if opp_id is None:
                 if not args.ticker:
                     raise SystemExit("pass an opportunity id or --ticker")
-                row = ledger.resolve_ticker(
-                    conn, args.ticker, theory_id=args.mark_theory
-                )
+                try:
+                    row = ledger.resolve_ticker(
+                        conn, args.ticker, theory_id=args.mark_theory
+                    )
+                except KeyError:
+                    raise SystemExit(
+                        f"no open live position on {args.ticker}"
+                    )
+                except ValueError as e:
+                    raise SystemExit(str(e))
                 opp_id = row["id"]
                 print(
-                    f"matched {row['kalshi_ticker']} -> opportunity "
-                    f"{opp_id} ({row['theory_id']} v{row['theory_version']})",
+                    f"matched {row['kalshi_ticker']} {row['outcome']} -> "
+                    f"opportunity {opp_id} ({row['theory_id']} "
+                    f"v{row['theory_version']}, {row['run_mode']}/"
+                    f"{row['lane']})",
                     file=sys.stderr,
                 )
             ledger.mark_user_action(
@@ -334,7 +348,7 @@ def _cmd_state(args) -> int:
         text = state_mod.render_state(conn)
         print(text)
         if args.write:
-            state_mod.write_state(conn)
+            state_mod.write_state(conn, text=text)
     finally:
         conn.close()
     return 0
@@ -499,9 +513,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     mark.add_argument(
         "--ticker", default=None,
-        help="resolve the position by Kalshi ticker instead of id "
-             "(latest open attempt wins; ambiguity across theories refuses "
-             "and lists candidates)",
+        help="resolve the position by Kalshi ticker instead of id -- the "
+             "latest live-lane sighting (run_mode='live', lane='main'); "
+             "nothing here filters on settlement, and ambiguity across "
+             "theories or outcomes refuses and lists candidates",
     )
     mark.add_argument(
         "--price", type=float, default=None,

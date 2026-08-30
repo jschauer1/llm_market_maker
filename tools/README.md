@@ -204,7 +204,7 @@ without the contract.
   theory owns the replay.** `tools/kalshi/history.py` and `tools/snapshot.py`
   (point-in-time truth), the `run_mode`/`run_id` plumbing through
   `theory.finish()`, the `backtest_runs` table, and `score.py` are the
-  whole shared contribution. **There is no tools/backtest.py replay
+  whole shared contribution. **There is no `tools/backtest.py` replay
   engine, and none gets built** — `theories/insider_bias/replay.py` shows
   why: most of its design handles quirks (a combinatorial series settling
   400,000 markets a day, per-day candle volume that must be summed into a
@@ -280,6 +280,9 @@ narrow context, then promote it once there is evidence it belongs.
 | `provenance.py` | Which model judged and with which prompt — required for any theory with an LLM in its decision path |
 | `match_market.py` | Non-Kalshi finding → Kalshi ticker shortlist |
 | `http.py` | Retrying HTTP for the public APIs |
+| `backup.py` | Ledger backup — gzipped copy of every table except `market_snapshots`, restorable by `gunzip` + `db.init_db` |
+| `state.py` | The orientation surface — renders THEORIES/STANDING/EVIDENCE/WINDOWS/QUEUE/FRESHNESS from the DB |
+| `rulings.py` | Binding rulings as rows — `record`/`list`/`status`, so a ruling stops binding only until nobody scrolls to it in the log |
 | `tools/kalshi/markets.py` | Open/settled markets, live quotes, resolution rules |
 | `tools/kalshi/history.py` | Candlesticks, point-in-time reconstruction |
 | `tools/polymarket/markets.py` | Open/resolved markets |

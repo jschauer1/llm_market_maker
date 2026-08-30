@@ -100,6 +100,19 @@ def test_force_refetches_past_the_floor(conn, monkeypatch):
     assert len(calls) == 1 and len(got) == 9
 
 
+def test_force_honours_an_explicitly_tighter_max_age(conn, monkeypatch):
+    # 20 minutes old: within the 30-minute force floor, so a bare
+    # force=True would reuse it -- but the caller passed max_age=10,
+    # explicitly asking for something fresher than the floor guarantees,
+    # and that must be honoured rather than overridden by force.
+    snapshot.save_kalshi(conn, _board(3), now="2026-08-24T11:40:00Z")
+    calls = []
+    monkeypatch.setattr(board.kalshi_markets, "list_open",
+                        lambda: calls.append(1) or _board(9))
+    got = board.get_board(conn, force=True, max_age_minutes=10, now=NOW)
+    assert len(calls) == 1 and len(got) == 9
+
+
 def test_force_honours_the_floor_on_a_very_fresh_board(conn, monkeypatch):
     # Ruled 2026-08-29 (spec 5.3): concurrent sessions must reason over
     # the same board, so a force within the floor reuses, never refetches.

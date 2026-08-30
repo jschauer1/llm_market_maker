@@ -74,6 +74,56 @@ def test_attached_source_is_write_protected(source, tmp_path):
         conn.close()
 
 
+def test_backup_ledger_attaches_the_source_read_only(source, tmp_path,
+                                                      monkeypatch):
+    """The read-only guarantee is enforced by backup_ledger's own CODE, not
+    by nobody happening to write -- that is what
+    `test_attached_source_is_write_protected` above already proves about
+    SQLite in general, on a hand-reproduced ATTACH, not on backup_ledger
+    itself. This test pins the actual mechanism: monkeypatch
+    `backup.sqlite3.connect` to capture every connection backup_ledger
+    opens (via `factory=`, since `sqlite3.Connection` does not allow
+    reassigning `execute` on an instance) and every `ATTACH DATABASE`
+    call it issues, then assert the attaching connection was opened with
+    `uri=True` (required, or the ATTACH URI below is parsed as a literal
+    filename and the source attaches read-write) and that the ATTACH's
+    own parameter is a `mode=ro` URI. It must fail at the commit that
+    reverts `tools/backup.py` to a plain-path ATTACH, even though such a
+    revert would still pass every behavioral test in this file."""
+    connect_calls = []
+    attach_params = []
+    real_connect = sqlite3.connect
+
+    class SpyConnection(sqlite3.Connection):
+        def execute(self, sql, params=()):
+            if "ATTACH DATABASE" in sql:
+                attach_params.append(params)
+            return super().execute(sql, params)
+
+    def spy_connect(*args, **kwargs):
+        connect_calls.append(kwargs)
+        return real_connect(*args, factory=SpyConnection, **kwargs)
+
+    monkeypatch.setattr(backup.sqlite3, "connect", spy_connect)
+    backup.backup_ledger(source, tmp_path / "backups",
+                         now="2026-08-29T12:00:00Z")
+
+    assert attach_params, "backup_ledger must issue an ATTACH DATABASE call"
+    assert any("mode=ro" in str(p) for p in attach_params), (
+        f"ATTACH DATABASE parameters must be a mode=ro URI, got "
+        f"{attach_params!r} -- a plain path attaches the source "
+        "read-write and the read-only guarantee is gone"
+    )
+
+    # The connection ATTACH ran on must itself have been opened with
+    # uri=True -- SQLite only honours a `file:...?mode=ro` URI on ATTACH
+    # when the attaching connection was opened with URI filenames enabled.
+    assert any(kwargs.get("uri") is True for kwargs in connect_calls), (
+        "backup_ledger must open the attaching connection with uri=True, "
+        "or the mode=ro ATTACH URI is taken as a literal filename"
+    )
+
+
 def test_backup_cleans_up_partial_artifacts_on_failure(
     source, tmp_path, monkeypatch
 ):

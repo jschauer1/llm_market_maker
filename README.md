@@ -79,6 +79,15 @@ python -m tools.cli opportunities mark-taken <id> taken --theory <slug> --size <
 That last command is how the system learns what you actually bet — without it
 there is no realized-ROI signal to score against.
 
+A few more worth knowing: `python -m tools.cli db backup` gzips every table
+except `market_snapshots` into a non-synced local directory, so the track
+record survives a lost or corrupted working database. `python -m tools.cli
+state` renders the session's orientation surface (running theories, standing
+rulings, evidence, the endorsed-but-untaken queue, data freshness) straight
+from the DB — pass `--write` to also drop it to `STATE.md` for humans.
+`python -m tools.cli rulings record|list|status` keeps binding rulings as
+queryable rows instead of prose buried in `RESEARCH_LOG.md`'s tail.
+
 ## Design constraints
 
 - **No credentials.** Every endpoint used is public; there are no API keys

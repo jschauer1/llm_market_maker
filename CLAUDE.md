@@ -220,7 +220,7 @@ these quirks — which is why machinery like this belongs in the family's
 own parent package, where `theories/insider_bias/screen.py` already
 sits, rather than in `tools/`.
 
-So: **there is no tools/backtest.py replay engine and no `backtest()`
+So: **there is no `tools/backtest.py` replay engine and no `backtest()`
 method on the `Theory` contract, and neither gets built.** A second
 theory-local backtest that resembles the first is *not* grounds for an
 engine — a shared replay would have to either anticipate every such quirk

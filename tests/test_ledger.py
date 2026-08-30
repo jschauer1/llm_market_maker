@@ -549,3 +549,38 @@ def test_resolve_ticker_refuses_ambiguity_without_theory(conn):
 def test_resolve_ticker_unknown_raises_keyerror(conn):
     with pytest.raises(KeyError):
         ledger.resolve_ticker(conn, "KXNOPE-T1")
+
+
+def test_resolve_ticker_ignores_backtest_and_exp_lane_rows(conn):
+    # Only the live, main-lane row is the money record `mark-taken --ticker`
+    # can act on. A backtest replay and an exp/ variant sighting of the same
+    # ticker must never be mistaken for it -- neither has real money behind
+    # it, and marking either one taken would corrupt the realized-ROI signal.
+    _record(
+        conn, kalshi_ticker="KXFOO-T1", run_mode="backtest", run_id="bt/1",
+        decision_date="2026-08-01",
+    )
+    _record(conn, kalshi_ticker="KXFOO-T1", run_id="exp/variant")
+    with pytest.raises(KeyError):
+        ledger.resolve_ticker(conn, "KXFOO-T1")
+
+
+def test_resolve_ticker_refuses_when_one_theory_differs_on_outcome(conn):
+    # Ambiguity is not only "more than one theory" -- the same theory open
+    # on both sides of one ticker is just as unsafe to guess, since marking
+    # the wrong outcome taken would credit the wrong side of the bet.
+    _record(conn, kalshi_ticker="KXFOO-T1", outcome="yes")
+    _record(conn, kalshi_ticker="KXFOO-T1", outcome="no", now=LATER)
+    with pytest.raises(ValueError, match="pass --theory"):
+        ledger.resolve_ticker(conn, "KXFOO-T1")
+
+
+def test_resolve_ticker_version_fanout_resolves_to_newest(conn):
+    # Same theory, same outcome, different theory_version -- not ambiguous.
+    # This is one theory whose procedure was bumped mid-track, and the
+    # newest sighting is the position still open.
+    _record(conn, kalshi_ticker="KXFOO-T1", theory_version=1, now=TS)
+    theories.bump_version(conn, "t1", now=LATER)
+    _record(conn, kalshi_ticker="KXFOO-T1", theory_version=2, now=LATER)
+    row = ledger.resolve_ticker(conn, "KXFOO-T1")
+    assert row["theory_version"] == 2

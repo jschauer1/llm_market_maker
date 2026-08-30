@@ -229,6 +229,23 @@ def test_score_report_run_id_scopes_the_sample(dbpath, capsys):
     assert payload["all"]["n"] == 1
 
 
+def test_state_write_matches_printed_text(dbpath, tmp_path, monkeypatch,
+                                          capsys):
+    # _cmd_state must render once and reuse the text for both stdout and
+    # STATE.md -- rendering twice would stamp two different `now`
+    # timestamps if the wall clock ticks over between the two calls.
+    monkeypatch.chdir(tmp_path)
+    from tools import state as state_mod
+    stamps = iter(["2026-08-29T12:00:00Z", "2026-08-29T12:00:05Z"])
+    monkeypatch.setattr(state_mod, "utcnow", lambda: next(stamps))
+
+    code = cli.main(["--db", dbpath, "state", "--write"])
+    out = capsys.readouterr().out
+    written = (tmp_path / "STATE.md").read_text(encoding="utf-8")
+    assert code == 0
+    assert out.strip() == written.strip()
+
+
 def test_unknown_command_returns_nonzero(capsys):
     with pytest.raises(SystemExit):
         cli.main(["nonsense"])
@@ -254,6 +271,69 @@ def test_opportunities_mark_taken_persists_action_size_and_reason(
     assert payload["user_action"] == "taken"
     assert payload["user_size"] == pytest.approx(25.0)
     assert payload["user_reason"] == "reality TV markets are soft"
+
+
+def test_opportunities_mark_taken_resolves_by_ticker(dbpath, capsys):
+    conn = db.connect(dbpath)
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="KXA",
+        outcome="yes", entry_price=0.4, edge_pts_net=6.0, now=TS,
+    )
+    conn.close()
+
+    code = cli.main(
+        ["--db", dbpath, "opportunities", "mark-taken",
+         "--ticker", "KXA", "taken", "--size", "10", "--theory", "t1"]
+    )
+    captured = capsys.readouterr()
+    payload = json.loads(captured.out)
+    assert code == 0
+    assert payload["user_action"] == "taken"
+    assert "KXA" in captured.err
+    assert "yes" in captured.err
+    assert "live/main" in captured.err
+
+
+def test_opportunities_mark_taken_rejects_both_id_and_ticker(dbpath, capsys):
+    conn = db.connect(dbpath)
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="KXA",
+        outcome="yes", entry_price=0.4, edge_pts_net=6.0, now=TS,
+    )
+    opp_id = ledger.list_opportunities(conn)[0]["id"]
+    conn.close()
+
+    with pytest.raises(SystemExit):
+        cli.main(["--db", dbpath, "opportunities", "mark-taken", str(opp_id),
+                  "--ticker", "KXA", "taken", "--size", "10",
+                  "--theory", "t1"])
+
+
+def test_opportunities_mark_taken_unknown_ticker_exits_cleanly(dbpath, capsys):
+    with pytest.raises(SystemExit, match="no open live position on KXNOPE"):
+        cli.main(["--db", dbpath, "opportunities", "mark-taken",
+                  "--ticker", "KXNOPE", "taken", "--size", "10",
+                  "--theory", "t1"])
+
+
+def test_opportunities_mark_taken_ambiguous_ticker_exits_cleanly(
+    dbpath, capsys
+):
+    conn = db.connect(dbpath)
+    theories.register(conn, "t2", "Theory Two", "theories/t2", now=TS)
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="KXA",
+        outcome="yes", entry_price=0.4, edge_pts_net=6.0, now=TS,
+    )
+    ledger.record_opportunity(
+        conn, theory_id="t2", theory_version=1, kalshi_ticker="KXA",
+        outcome="yes", entry_price=0.4, edge_pts_net=6.0, now=TS,
+    )
+    conn.close()
+
+    with pytest.raises(SystemExit, match="pass --theory"):
+        cli.main(["--db", dbpath, "opportunities", "mark-taken",
+                  "--ticker", "KXA", "taken", "--size", "10"])
 
 
 def test_opportunities_mark_taken_rejects_invalid_action(dbpath, capsys):
