@@ -2121,3 +2121,79 @@ This entry is here rather than in a theory's notes because rule 1 changes
 how any session in this repo should write a pre-registration, and because
 rule 2 is an execution finding that applies to every theory's entry rule,
 not to one.
+
+## 2026-08-30 (cont.) — parlays: a real +7 pt markup nobody here can trade, and the cross-event arb channel closes
+
+**Did:** Took the theory-backlog lane (session `8e` ran the §2 floor; we
+collided on ownership four times before settling it). Ran the mandatory
+rule-0 measurement on backlog spec #8 `parlay-fade`, which turned into a
+full study: `studies/2026-08-30-parlay-markup/`.
+
+**Learned — three things a session that never touches parlays still needs:**
+
+**1. The cross-event combo-vs-leg channel is measured and flat.** Rule 0
+of the backlog index told every session that cross-*event* relative value
+"remains open". One channel of it is now closed by the strongest test
+available. Kalshi's 92 listed `*COMBO` markets are 2x2 partitions whose
+legs sit in *separate* events, so `{DD, DR}` is an **exact synthetic** of
+the standalone leg — an arbitrage identity holding whatever the
+correlation, unlike a product-of-legs test. 34 constructions at executable
+prices with real fees: **1 profitable at zero buffer (+0.05 pts), 0 at a
+1c/leg buffer**, and the most liquid case had the *smallest* gap. Rule 0
+updated (`93de418`) to narrow the open claim rather than erase it: what
+remains open is cross-event *forecast* disagreement, where no identity
+exists — a weaker claim than a violated identity.
+
+**2. A large, unknown-to-this-repo data source exists, and it is
+perishable.** `/multivariate_event_collections` is **public and
+unauthenticated**. Settled parlays carry `mve_selected_legs` (exact leg
+tickers **and sides**), `last_price_dollars`, `open_interest_fp` and
+`result` — a complete tier-A input with no model in the path. 1.7M+
+settled cross-game rows collected before the sweep was stopped. Kalshi
+ages settled markets out at ~60 days, so this window cannot be recovered
+later.
+
+**3. The finding, and why it is not a theory.** Cross-game parlays trade
+**+7.06 pts above the product of their legs** (day-clustered over 4
+creation slates, t=+17.47, MDE 1.13 against a 3pt floor, all four days
+positive at 6.01–7.85). It survives the artifact most likely to have
+manufactured it — leg spreads compound multiplicatively — at **+6.64 pts**
+when every leg is priced at the side actually payable. But `active_quoters`
+is **0 across all 2,134 associated events in all three open collections**:
+capturing a markup means *selling* parlays into RFQs answered in seconds,
+which a manual bettor cannot do. The spec's own kill criterion #7 called
+this. **A real mispricing this user probably cannot trade** — worth
+knowing, poor basis for a theory.
+
+**Two methodological facts that generalize beyond this study:**
+
+- **A row count can be one cluster wearing a crowd's clothes, and the
+  arithmetic can prove a design is hopeless before you run it.** Phase 1
+  (calibration against realized outcomes) put 395,692 rows into **18
+  day-clusters** — every parlay on a slate shares legs, so they win
+  together. Between-day SD 17.35 pts ⇒ the 3pt floor needs **262
+  settlement days**; Kalshi retains ~60, capping the achievable MDE at
+  **6.3 pts**. Outcome-based calibration of parlays is *structurally*
+  underpowered here and no further collection fixes it. The fix was to
+  switch to an **outcome-free** statistic (price vs product-of-legs),
+  which the day-level common shock cannot enter at all. Worth asking of
+  any new design: *is there an outcome-free form of this question?*
+- **Report a failed secondary as failed, and do not switch units.** The
+  bar predicted markup magnitude **grows** with leg count. In points it
+  shrinks hard (`corr = −0.920`: +10.50 at 2 legs, +1.75 at 12). In
+  *ratio* terms it grows (+0.682) — but that framing was not
+  pre-registered and is a hypothesis for a separate test, not a rescue.
+  Switching metrics after seeing the sign is what `calibration_harvest`
+  was retracted for the day before. The points reading is also the
+  economically relevant one for a fader, so the usable form **inverts**
+  both the spec and its source paper: the largest absolute edge is in
+  **short 2–5 leg parlays**, not long lottery tickets.
+
+**Next:** the study's open items are listed in its own `STUDY.md` (the
+`last_price`-vs-`created_time` timing gap, ~10% unpriceable-leg
+exclusions, an unrun `same_game` control that would be weak anyway since
+correlated legs *should* show a positive gap that is correlation not
+markup). `parlay-fade` is `investigating` in the registry with all of it
+recorded. The question that decides whether it ever becomes a theory is
+**execution, not measurement**: whether any resting-order path exists to
+sell parlays without answering an RFQ.
