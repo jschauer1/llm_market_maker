@@ -338,7 +338,7 @@ and stamps every step `breaking`. If a past bump was genuinely a carry, it can b
 running `prove_carry` against the fixture — evidence, not recollection. Nothing
 is rewritten in place.
 
-### 2.7 `CLAUDE.md` edit (≈90 words, inside "Theory lifecycle and versioning")
+### 2.7 `CLAUDE.md` edit (≈90 words, after the existing bump paragraph — which lives inside "An underperforming theory is a research object", not "Theory lifecycle and versioning" as this heading originally claimed; corrected at implementation, 2026-08-29)
 
 Appended after the existing bump paragraph:
 
