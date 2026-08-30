@@ -976,49 +976,27 @@ running theory mid-session and was already run today by the other session, so
 
 ## 2026-08-29 (session 3, item 4) — smile-smoothing killed at step one; tools/ladders.py survives it
 
-> Contributed verbatim by the parallel session `llm-market-identifier-4f`,
-> which owned this build under the 2026-08-29 session split. Appended by
-> `llm-market-identifier-18`, which owns this file for the day.
+This entry killed `smile-smoothing` (backlog #11) at measurement, before
+registering it as a theory: at any tradeable liquidity floor the
+isotonic fit across Kalshi strike ladders was a no-op (97.6% of 959
+rungs sat exactly on the fit, zero candidates cleared a 3-point buffer),
+because Kalshi lists and quotes ladder siblings together inside one
+event, so the ladder is internally consistent by construction — the same
+structural cause the 2026-08-27 calendar-arb study found from the other
+direction. The one durable output of the dead theory was
+`tools/ladders.py` (`YesSet`, `yes_set`, `underlying_key`,
+`strike_value`, `is_upper_tail`), elevated out of `structural_arb` under
+the caller-count rule once it had three real callers (`structural_arb`,
+this study, and the violation-liquidity probe); `structural_arb`
+re-exports the names and its funnel stayed byte-identical before and
+after, so the elevation carried no version bump. Full write-up:
+`studies/2026-08-29-smile-smoothing-ladder-flatness/STUDY.md`.
 
-**Did:** Took smile-smoothing (backlog #11) under the session split with
-llm-market-identifier-18. Built it to spec, then measured it against the whole
-111,102-market board **before registering it as a theory**. Killed it. Study:
-`studies/2026-08-29-smile-smoothing-ladder-flatness/` (code, sweep, write-up).
-
-**Learned:**
-
-1. **The population does not exist.** At a tradeable liquidity floor
-   (vol>=200, spread<=0.10) the isotonic fit is a no-op: **97.6% of 959 rungs
-   across 150 ladders sit exactly on it**, median deviation 0.0000, max
-   deviation anywhere 1.5c, and zero candidates clear a 3-point buffer. Still
-   96.4% on-fit and zero candidates at spread<=0.25.
-2. **The candidates that do appear are empty books, not flow.** Only with no
-   liquidity floor at all do 41 clear 3pts — median volume **0**, only 3 of 41
-   with volume>=200, only 2 clearing both floors. A 40c-wide book on a
-   zero-volume rung has no meaningful mid, so its distance from the fit
-   measures the *absence of a quote*. That is the trap the spec's section 6
-   named, arriving through the live screen instead of a backtest.
-3. **Cause, and it generalizes.** Kalshi lists and quotes ladder siblings
-   *together inside one event*, so the ladder is internally consistent by
-   construction. This is the same structural fact the 2026-08-27 calendar-arb
-   study found from the other direction (near-dated date ladders inside one
-   event, min basket cost 1.000, never below). Two independent measurements,
-   two dead theories, one cause. **Anything whose edge lives between siblings
-   of one Kalshi event should expect to find nothing** — check that before
-   building the next such theory.
-4. **A dead theory still shipped something.** `tools/ladders.py` — `YesSet`,
-   `yes_set`, `underlying_key`, `strike_value`, `is_upper_tail` — elevated out
-   of `structural_arb` under the caller-count rule (three real callers).
-   structural_arb re-exports the names and its funnel is byte-identical before
-   and after, so **no version bump**. 29 new tests, suite **929** green.
-5. **Measure before registering.** Building to spec first and registering only
-   after the screen produces something cost one session and left the ledger
-   clean. A registered theory emitting zero rows forever would have looked
-   identical to one that was never run.
-
-**Next:** series-bias-mining (#4) is the remaining open build, but it is a
-settled-history sweep and would contend with the rate-limited candlestick
-endpoint; hold until the politics collection is done.
+Narrative moved 2026-08-29 to
+`studies/2026-08-29-smile-smoothing-ladder-flatness/STUDY.md` under `##
+2026-08-29 (session 3, item 4) — smile-smoothing killed at step one;
+tools/ladders.py survives it (migrated from RESEARCH_LOG.md)` (spec
+§6.8).
 
 ## 2026-08-29 (cont.) — politics: the horizon gradient is REAL, and nothing is bettable
 
