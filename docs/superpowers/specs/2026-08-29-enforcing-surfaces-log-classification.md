@@ -167,3 +167,9 @@ appended after this revision are out of scope for the migration pass (spec
 | X | — | 110 | 2026-08-29 — Expert-agent architecture written into CLAUDE.md; the two locality rules renamed as its contracts |
 | X | — | 312 | 2026-08-29 — Foundation plan shipped: backup, hygiene, --ticker, force floor, state, rulings; db/ relocated out of OneDrive |
 | X | — | 149 | 2026-08-29 — Storage design gate measured: byte-exact dedup is 38.8%, and the "jitter" is mostly real data |
+
+## M-split record (spec §6.8 step 6; extended one row per split commit)
+
+| entry | fact extracted, and where it went | narrative destination |
+|---|---|---|
+| 2026-08-29 (CORRECTION) — the politics headline was wrong... | retraction-of-published-result, stated in the M-stub paragraph in the log itself | calibration_harvest NOTES.md, adjacent to its target |
