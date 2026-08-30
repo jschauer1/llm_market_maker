@@ -91,6 +91,32 @@ score.interpretation_value(conn, theory_id, version)
 
 It is `None` until both endorsed and rejected samples have settled.
 
+<!-- explainer: tier-reading (authority: CLAUDE.md § Backtest tiers) -->
+### Reading a tier before you trust its number
+
+Every calibration edge and bucket rate you just recomputed carries a tier.
+Check it before deciding how much weight the number deserves — full
+definitions live in CLAUDE.md § Backtest tiers; this is what each one means
+for a session about to act on a score.
+
+- **Tier A** — no outcome judgment sat in the decision path. The replay
+  covers all reachable history and reproduces exactly on a rerun. Nothing
+  in this system is more solid than a tier A number.
+- **Tier B** — outcome judgment on markets that settled after the judging
+  model's knowledge cutoff. Its sample is smaller than tier A's by
+  construction, but that is already priced into the t-statistic and into
+  credibility — **never discount a tier B result a second time for being
+  tier B.** The doubts the statistics do not already price are narrower
+  and specific: a knowledge cutoff is a ragged boundary, not a wall, so
+  some leakage can remain, and rerunning the same replay on a different
+  model version can move the verdicts. Weigh those two directly; don't
+  re-charge for sample size, which is already spent.
+- **Tier C** — outcome judgment on markets the model could plausibly have
+  known the outcome of. Contaminated, and excluded from credibility
+  outright. If a tier C number ever reaches this checklist, run the
+  contamination probe before treating anything it says as evidence.
+<!-- /explainer -->
+
 ## 4. Apply lifecycle flags
 
 - `n = 20` with *net* calibration edge (`calibration_edge_net`) ≤ 0 →
