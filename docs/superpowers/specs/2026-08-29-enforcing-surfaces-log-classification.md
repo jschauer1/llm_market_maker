@@ -174,3 +174,4 @@ appended after this revision are out of scope for the migration pass (spec
 |---|---|---|
 | 2026-08-29 (CORRECTION) — the politics headline was wrong... | retraction-of-published-result, stated in the M-stub paragraph in the log itself | calibration_harvest NOTES.md, adjacent to its target |
 | 2026-08-26 — Formal multiplicity pass... | Holm-plus-event-clustering precedent (already cited by CLAUDE.md's mining discipline), stated in the M-stub paragraph | insider_judgment NOTES.md, appended at end |
+| 2026-08-26 — Contamination audit of the judged runs... | contamination-probe precedent and its clean result, stated in the M-stub paragraph | insider_judgment NOTES.md, appended at end |

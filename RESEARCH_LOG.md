@@ -654,25 +654,27 @@ Formal multiplicity pass (user-prompted): Holm + event clustering
 
 ## 2026-08-26 — Contamination audit of the judged runs (user-prompted): no hints found; one timing wrinkle bounded
 
-Four channels audited mechanically. (1) Web tools: grep of all 23 judge
-subagent transcripts for WebSearch/WebFetch invocations — zero. (2)
-Payload fields: all 557 events / 2,044 markets across the four runs
-carry only the whitelisted fields; zero price/outcome/status keys; the
-11 'settle' substring hits are ordinary Kalshi rules boilerplate
-("dismissed, settled, or otherwise disposed of..."), verified in
-context. (3) The one real wrinkle: batch-level as_of pinning (max of
-the batch's entry days) left 618/2,044 markets whose close_time
-precedes the pinned "today" — a judge could infer those events had
-concluded, though never how. Contamination-shape check: those rows
-scored WORSE overall (-0.74 vs +1.16 net) and the strong bucket scored
-worse on them (+0.73 vs +3.52) — the opposite of leakage, which
-inflates confident buckets. The bet rule on the CLEAN subset only
-(still-open at as_of): +4.65 net, win 0.910, n=409 — the headline
-survives with every affected row discarded. (4) Behavioral: strong-YES
-lost money, verdicts track mechanism not outcomes, and three judge
-instances independently rediscovered the Emmy nomination-day trap.
-Fix for future runs: pin as_of per event (or min-of-batch), not
-max-of-batch — noted for the v4 procedure.
+A four-channel contamination audit of the judged runs found no leakage:
+zero WebSearch/WebFetch calls across the 23 judge subagent transcripts,
+zero price/outcome/status fields in the 557 events / 2,044 markets
+carried by the four runs (the 11 "settle" substring hits were ordinary
+Kalshi rules boilerplate), and no outcome-tracking behavior in
+verdicts — strong-YES lost money, and three judge instances
+independently rediscovered the Emmy nomination-day trap on mechanism
+grounds, not outcome grounds. One real wrinkle was found and bounded:
+batch-level as_of pinning (max of the batch's entry days) left
+618/2,044 markets with a close_time before the pinned "today"; those
+rows scored WORSE, not better (-0.74 vs +1.16 net), the opposite of
+what leakage would produce, and the bet rule held on the clean
+still-open-at-as_of subset alone (+4.65 net, win 0.910, n=409). The fix
+— pin as_of per event, or at the min of the batch rather than the max —
+was noted for the v4 procedure. This established the contamination-probe
+method used on subsequent judged runs.
+
+Narrative moved 2026-08-29 to
+`theories/insider_bias/insider_judgment/NOTES.md` under `## 2026-08-26 —
+Contamination audit of the judged runs (user-prompted): no hints found;
+one timing wrinkle bounded (migrated from RESEARCH_LOG.md)` (spec §6.8).
 
 ## 2026-08-26 — First live scan under the campaign rule: 8 endorsed NO bets; board-cache identity bug found and fixed on the way
 

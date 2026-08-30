@@ -1042,3 +1042,25 @@ are directionally supported but unproven, and the exploratory scans
 never survived formal correction — which is why they were sent to
 forward tests rather than believed. Report language downgraded
 accordingly: the edge is established at ~p=0.01 clustered, not p<0.0001.
+
+## 2026-08-26 — Contamination audit of the judged runs (user-prompted): no hints found; one timing wrinkle bounded (migrated from RESEARCH_LOG.md)
+
+Four channels audited mechanically. (1) Web tools: grep of all 23 judge
+subagent transcripts for WebSearch/WebFetch invocations — zero. (2)
+Payload fields: all 557 events / 2,044 markets across the four runs
+carry only the whitelisted fields; zero price/outcome/status keys; the
+11 'settle' substring hits are ordinary Kalshi rules boilerplate
+("dismissed, settled, or otherwise disposed of..."), verified in
+context. (3) The one real wrinkle: batch-level as_of pinning (max of
+the batch's entry days) left 618/2,044 markets whose close_time
+precedes the pinned "today" — a judge could infer those events had
+concluded, though never how. Contamination-shape check: those rows
+scored WORSE overall (-0.74 vs +1.16 net) and the strong bucket scored
+worse on them (+0.73 vs +3.52) — the opposite of leakage, which
+inflates confident buckets. The bet rule on the CLEAN subset only
+(still-open at as_of): +4.65 net, win 0.910, n=409 — the headline
+survives with every affected row discarded. (4) Behavioral: strong-YES
+lost money, verdicts track mechanism not outcomes, and three judge
+instances independently rediscovered the Emmy nomination-day trap.
+Fix for future runs: pin as_of per event (or min-of-batch), not
+max-of-batch — noted for the v4 procedure.
