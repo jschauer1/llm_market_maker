@@ -1268,3 +1268,73 @@ both.
 **Next:** the `deadline-drift` user decision is still open (three options, in
 the idea's `revisit_angle`). The queue is down to 0 live endorsed positions —
 both carried bets died at today's ask.
+
+## 2026-08-30 — stages 1-4 run; 21 of 25 survivors are NO-side favorites; stages 5-6 unrun
+
+**Did.** Ran `pipeline.run_mechanical_stages` against the shared
+104,304-market board (pulled 19:22Z). Funnel:
+
+```
+104,304  board markets
+    700  screened markets / 309 events
+    288  gated out  ->  21 events survived / 25 markets
+```
+
+Gate removals, by category, as the gate rule requires: live sport/esport
+90, aggregate of many independent people 44, weather/natural event 28,
+commodity/FX/rates 27, vendor panel metric 27, scheduled economic
+indicator 25, compute/collectible 22, PLAUSIBLE 21, crypto 19, retail
+price index 6.
+
+Blind payload (21 events) at `live/2026-08-30/payload.json`.
+
+**Stages 5-6 were NOT run**, so nothing is recorded in the ledger and no
+provenance was written. The session that ran the mechanical half is
+instructed not to spawn subagents unless its user asks; two peer sessions
+claimed the judging pass during the day and both exited without running
+it. This is a gap in the day's coverage, not a clean scan — v4 has not
+seen a judged board today.
+
+**The side split, which is what makes the pending v4 ratification
+concrete.** The pre-registered v3 bet rule is *strong-or-moderate verdict,
+NO-side favorite, first-qualifying entry*. The side-and-price half of that
+is mechanical, so it can be measured without judging anything:
+
+| side | n | ask range |
+|---|---|---|
+| **NO-side favorite** | **21 of 25** | 0.72 – 0.97 |
+| YES-side favorite | 4 of 25 | 0.71 – 0.95 |
+
+So on a typical board the rule's candidate pool is ~84% of survivors, not
+a rare corner. What gates it down from 21 is the verdict, which is exactly
+the stage that did not run.
+
+**These are not bets and must not be reported as any.** The screen does
+not itself produce an edge (CLAUDE.md: never present unresearched screen
+output as a recommended bet unless `edge_basis='model'`, and this theory's
+is not). They are the candidate set the ratification decision would act
+on.
+
+**Cross-check on the evidence behind that decision** (verified from the
+ledger this session, not taken from the write-up): v3's registered slice
+`strong-moderate-no` is READY out of sample — n=321, 89 event clusters,
+43 settlement days, win 0.9159 vs implied 0.8654, roi_all +4.93%. Report
+it as a matched pair, because the report carries two differently-weighted
+statistics and mixing them flatters the result:
+
+- row-weighted **+4.31 net** with event-clustered SE 2.41 → **t = 1.79**
+- day-weighted **+8.06** with day-clustered SE 1.84 → **t = 4.38**
+
+The day-weighted mean being nearly double the row-weighted one says the
+heavy days did *worse* than the light ones — a caveat, not a bonus.
+Meanwhile the same-version aggregate is n=3,328 / 920 clusters / 70 days
+at **net −1.29**: aggregate dead, slice real.
+
+**Version note for whoever picks this up.** `theory_versions` records
+v2→v3 as `breaking` with justification *"pre-dates the carry ruling; not
+adjudicated"*, while this theory's own RUNBOOK states stages 1-6 never
+changed between v2 and v3 ("v3 exists as a version *number* ... without
+this theory's own procedure ever having changed since v2"). That is a
+`carry` candidate which would pool the 44 v2 live rows into v3's track
+record — but assertion is not the permission, a replay reproducing every
+recorded v2 decision is. Nobody has run that replay.
