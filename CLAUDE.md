@@ -539,8 +539,6 @@ through and must bump the version exactly like a threshold change would.
 - **C** — outcome judgment on pre-cutoff markets. Contaminated; excluded from
   credibility. Use the contamination probe before trusting anything from it.
 
-Web search stays off in every backtest judgment subagent.
-
 ### Structural gates keep tier A
 
 The tier exists for exactly one reason: a model may **remember how a market
@@ -552,42 +550,8 @@ this market require picking one team out of thirty?" is not: the answer sat
 in the sentence the day the market opened, and knowing where Davis actually
 went cannot change it.
 
-A judging stage is **structural** — and does not cost tier A — only when all
-of the following hold. This list is the whole point; a stage that misses any
-line is outcome judgment.
-
-- **Answerable from the market's own text as written at open.** The
-  classification would have been identical on day one and on settlement day.
-- **The payload carries no outcome-bearing data.** Rules and title only —
-  no price, result, settlement, volume, close date, or anything downstream
-  of what happened. This is a property of the prompt file, which is already
-  on disk and reviewable in `git diff`.
-- **It decides eligibility, never direction.** A structural gate answers
-  "is this market in the population?" It never assigns a probability, a
-  side, or a confidence bucket. Buckets still come only from a deep stage,
-  and any theory with a deep stage is tier B or C as before.
-- **It passes the contamination probe.** Run the probe against the gate's
-  own sample: given only what the prompt shows, can the model state the
-  outcome? If it can, the stage is not structural, whatever the prompt says.
-- **The payload is point-in-time where a capture exists.** Market text is
-  edited under live markets, and a compliant prompt shows which *fields*
-  it sends, never which *version* — so where a snapshot at or before the
-  decision point exists, rules and title come from it, never from a
-  current fetch. Where none exists (all history before 2026-08-24),
-  today's text may be used and the tier is kept, but the `backtest_runs`
-  notes must say so and cite the measured drift bound for the population
-  (currently one genuine resolution-criteria change across 156k
-  multi-capture markets in 5 days —
-  `studies/2026-08-29-structural-gate-payload-version/`; refresh the
-  bound as snapshot history grows).
-
-Record the claim where it can be checked: the `judgment_runs` row for a
-structural stage says so in its `notes`, alongside the probe result that
-supports it. **Everything else about LLM record-keeping is unchanged** —
-the theory still declares `uses_llm_judgment`, still records provenance for
-every judging stage, still keeps its prompts on disk, and still bumps its
-version when a prompt changes. This amendment moves the tier, not the
-paper trail.
+The five conditions a stage must meet to count as structural live in
+backtest-theory — load it before claiming the tier.
 
 **For a structural question, reaching for a model is still the second
 choice, and this does not soften that.** The division-of-labour rule — data,

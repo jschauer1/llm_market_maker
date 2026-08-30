@@ -14,13 +14,44 @@ Three facts decide it:
    by `registry.check_drift`, so it cannot silently disagree with the
    registry row. `THEORY.md` explains *why*; the class is the fact.
 2. If it does, is **every** judging stage a *structural gate* — a stage
-   whose answer cannot be influenced by the outcome? Test it against
-   CLAUDE.md's four conditions ("Structural gates keep tier A"), not
-   against the prompt's self-description. The decisive one is the
-   contamination probe: given only what the prompt shows, can the model
-   state the outcome? If it can, the stage is outcome judgment.
+   whose answer cannot be influenced by the outcome? Test it against the
+   five conditions below ("Structural gates keep tier A"), not against
+   the prompt's self-description. The decisive one is the contamination
+   probe: given only what the prompt shows, can the model state the
+   outcome? If it can, the stage is outcome judgment.
 3. Did the markets resolve before or after the judging model's knowledge
    cutoff?
+
+<!-- rule: structural-gate-conditions (moved from CLAUDE.md § Backtest tiers, 2026-08-29) -->
+A judging stage is **structural** — and does not cost tier A — only when all
+of the following hold. This list is the whole point; a stage that misses any
+line is outcome judgment.
+
+- **Answerable from the market's own text as written at open.** The
+  classification would have been identical on day one and on settlement day.
+- **The payload carries no outcome-bearing data.** Rules and title only —
+  no price, result, settlement, volume, close date, or anything downstream
+  of what happened. This is a property of the prompt file, which is already
+  on disk and reviewable in `git diff`.
+- **It decides eligibility, never direction.** A structural gate answers
+  "is this market in the population?" It never assigns a probability, a
+  side, or a confidence bucket. Buckets still come only from a deep stage,
+  and any theory with a deep stage is tier B or C as before.
+- **It passes the contamination probe.** Run the probe against the gate's
+  own sample: given only what the prompt shows, can the model state the
+  outcome? If it can, the stage is not structural, whatever the prompt says.
+- **The payload is point-in-time where a capture exists.** Market text is
+  edited under live markets, and a compliant prompt shows which *fields*
+  it sends, never which *version* — so where a snapshot at or before the
+  decision point exists, rules and title come from it, never from a
+  current fetch. Where none exists (all history before 2026-08-24),
+  today's text may be used and the tier is kept, but the `backtest_runs`
+  notes must say so and cite the measured drift bound for the population
+  (currently one genuine resolution-criteria change across 156k
+  multi-capture markets in 5 days —
+  `studies/2026-08-29-structural-gate-payload-version/`; refresh the
+  bound as snapshot history grows).
+<!-- /rule -->
 
 | Tier | Condition | Trust |
 |---|---|---|
@@ -34,6 +65,16 @@ itself. Run the probe, record its result in the `judgment_runs` row's
 `notes`, and treat an unrun probe as outcome judgment. A stage that
 assigns any bucket, side, or probability is outcome judgment whatever its
 prompt is titled — buckets come only from a deep stage.
+
+<!-- rule: record-the-tier-claim (moved from CLAUDE.md § Backtest tiers, 2026-08-29) -->
+Record the claim where it can be checked: the `judgment_runs` row for a
+structural stage says so in its `notes`, alongside the probe result that
+supports it. **Everything else about LLM record-keeping is unchanged** —
+the theory still declares `uses_llm_judgment`, still records provenance for
+every judging stage, still keeps its prompts on disk, and still bumps its
+version when a prompt changes. This amendment moves the tier, not the
+paper trail.
+<!-- /rule -->
 
 A tier A backtest of a judgment theory's *screen alone* is often the best
 available evidence: uncontaminated, and it measures whether the filter selects
@@ -99,6 +140,10 @@ also part of the decision path. Record the later of the two cutoffs as
   returns a candle after your `as_of_ts` — that property is the basis of a
   lookahead-free replay.
 - Price entries at the **historical ask** (`yes_ask_close`), not the mid.
+
+<!-- rule: backtest-web-search-off (moved from CLAUDE.md § Backtest tiers, 2026-08-29) -->
+Web search stays off in every backtest judgment subagent.
+<!-- /rule -->
 
 ## 3. Contamination probe (tier C only)
 

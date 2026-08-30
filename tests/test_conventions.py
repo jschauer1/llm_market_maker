@@ -404,7 +404,11 @@ def test_deliberately_absent_paths_stay_absent():
 #: per rule: the marked block must exist in the owning skill, and
 #: CLAUDE.md's skill map must still name that skill. Populated one entry
 #: per move commit; an entry here without its block is a dropped rule.
-_MOVED_RULES: dict[str, str] = {}
+_MOVED_RULES: dict[str, str] = {
+    "backtest-web-search-off": "backtest-theory",
+    "structural-gate-conditions": "backtest-theory",
+    "record-the-tier-claim": "backtest-theory",
+}
 
 
 def test_every_moved_rule_lives_in_its_owning_skill():
