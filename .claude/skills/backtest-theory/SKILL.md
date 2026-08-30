@@ -15,7 +15,7 @@ Three facts decide it:
    registry row. `THEORY.md` explains *why*; the class is the fact.
 2. If it does, is **every** judging stage a *structural gate* — a stage
    whose answer cannot be influenced by the outcome? Test it against the
-   five conditions below ("Structural gates keep tier A"), not against
+   structural-gate conditions (the five conditions below), not against
    the prompt's self-description. The decisive one is the contamination
    probe: given only what the prompt shows, can the model state the
    outcome? If it can, the stage is outcome judgment.
@@ -130,12 +130,6 @@ also part of the decision path. Record the later of the two cutoffs as
   keeps `point_in_time` and the attempt agreeing on which moment is being
   replayed, which is what makes a per-day price series reconstructable
   afterwards.
-- **Web search must be off** in any backtest judgment subagent, every tier.
-  Live search reveals historical outcomes trivially. This is no longer only
-  a discipline: `run_mode="backtest"` makes `finish()` record
-  `web_search=False` for every judging stage by construction — a live run
-  records `None` (unknown) instead, because only a live run could honestly
-  have used it.
 - Use `tools/kalshi/history.py` `point_in_time` for market state. It never
   returns a candle after your `as_of_ts` — that property is the basis of a
   lookahead-free replay.
@@ -144,6 +138,12 @@ also part of the decision path. Record the later of the two cutoffs as
 <!-- rule: backtest-web-search-off (moved from CLAUDE.md § Backtest tiers, 2026-08-29) -->
 Web search stays off in every backtest judgment subagent.
 <!-- /rule -->
+
+This holds at every tier. Live search reveals historical outcomes
+trivially. This is no longer only a discipline: `run_mode="backtest"`
+makes `finish()` record `web_search=False` for every judging stage by
+construction — a live run records `None` (unknown) instead, because only
+a live run could honestly have used it.
 
 ## 3. Contamination probe (tier C only)
 
