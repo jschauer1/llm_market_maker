@@ -333,16 +333,21 @@ def test_compute_score_invalid_pool_rejected(conn):
 
 
 def test_segment_report_pools_slice_evidence_across_a_proven_carry_chain(conn):
+    # R1 (v1) settles BEFORE registration -> in-sample; R2 (v2) settles
+    # AFTER -> out-of-sample. A bucket swap (either row landing in the
+    # wrong pile) must fail this, not just the total.
     slices.register_slice(
         conn, "t1", "strong-yes",
         predicate={"outcome": ["yes"], "confidence": ["strong"]},
         hypothesis="strong-confidence yes calls carry an edge",
         origin="test",
-        registered_at=TS,
+        registered_at="2026-08-25T00:00:00Z",
     )
 
     _record(conn, kalshi_ticker="KXTEST-R1", outcome="yes")
-    score.record_settlement(conn, "KXTEST-R1", "yes", resolved_at=TS)
+    score.record_settlement(
+        conn, "KXTEST-R1", "yes", resolved_at="2026-08-20T00:00:00Z"
+    )
 
     res = theories.prove_carry(conn, "t1", 1, _echo_decide)
     assert res.passed
@@ -352,23 +357,112 @@ def test_segment_report_pools_slice_evidence_across_a_proven_carry_chain(conn):
     )
 
     _record(conn, kalshi_ticker="KXTEST-R2", outcome="yes", theory_version=2)
-    score.record_settlement(conn, "KXTEST-R2", "yes", resolved_at=TS)
+    score.record_settlement(
+        conn, "KXTEST-R2", "yes", resolved_at="2026-08-27T00:00:00Z"
+    )
 
     by_version = slices.segment_report(conn, "t1", 2, pool="version")
     assert by_version["aggregate"]["n"] == 1, "v1's row must not pool in"
     slice_by_version = by_version["slices"][0]
-    assert (
-        slice_by_version["oos"]["n"] + slice_by_version["in_sample"]["n"]
-    ) == 1
+    # Only R2 (v2, out-of-sample) is visible under pool="version".
+    assert slice_by_version["oos"]["n"] == 1
+    assert slice_by_version["in_sample"]["n"] == 0
     assert "chain_versions" not in by_version
 
     by_chain = slices.segment_report(conn, "t1", 2, pool="chain")
     assert by_chain["aggregate"]["n"] == 2, "proven carry pools v1's row in"
     slice_by_chain = by_chain["slices"][0]
-    assert (
-        slice_by_chain["oos"]["n"] + slice_by_chain["in_sample"]["n"]
-    ) == 2
+    # Pooled: R1 (v1, in-sample) and R2 (v2, out-of-sample) land in the
+    # exact opposite piles -- a bucket swap would flip either count.
+    assert slice_by_chain["oos"]["n"] == 1, "R2 (v2) settled after registration"
+    assert slice_by_chain["in_sample"]["n"] == 1, "R1 (v1) settled before it"
     assert by_chain["chain_versions"] == [1, 2]
+
+
+def test_segment_report_chain_pools_a_slice_past_its_readiness_gates(conn):
+    # Neither version alone clears MIN_SLICE_CLUSTERS (10) or
+    # MIN_SLICE_DAYS (5) out of sample: 6 clusters / 3 days at v1, 6
+    # clusters / 3 days at v2. Only pool="chain" combines them into 12
+    # clusters across 6 distinct days -- past both gates -- so this drives
+    # the complement-widening partition path that inspection alone can't
+    # verify. Every settlement lands after the slice's registration day,
+    # so all matching rows are out-of-sample by construction.
+    slices.register_slice(
+        conn, "t1", "gate-crossing",
+        predicate={"outcome": ["yes"], "confidence": ["strong"]},
+        hypothesis="strong-confidence yes calls carry an edge",
+        origin="test",
+        registered_at="2026-08-24T00:00:00Z",
+    )
+
+    v1_days = [
+        "2026-08-28T00:00:00Z", "2026-08-29T00:00:00Z",
+        "2026-08-30T00:00:00Z",
+    ]
+    v2_days = [
+        "2026-08-31T00:00:00Z", "2026-09-01T00:00:00Z",
+        "2026-09-02T00:00:00Z",
+    ]
+
+    # v1: six matching clusters (two per day) + one non-matching row.
+    for i in range(6):
+        ticker = f"KXC{i}-A"
+        _record(conn, kalshi_ticker=ticker, outcome="yes")
+        score.record_settlement(
+            conn, ticker, "yes", resolved_at=v1_days[i // 2]
+        )
+    _record(conn, kalshi_ticker="KXNM1-A", outcome="no")
+    score.record_settlement(
+        conn, "KXNM1-A", "no", resolved_at=v1_days[0]
+    )
+
+    res = theories.prove_carry(conn, "t1", 1, _echo_decide)
+    assert res.passed
+    theories.bump_version(
+        conn, "t1", kind="carry", justification="no-op refactor",
+        equivalence=res,
+    )
+
+    # v2: six more matching clusters (two per day, distinct days from v1)
+    # + one more non-matching row.
+    for i in range(6):
+        ticker = f"KXD{i}-A"
+        _record(conn, kalshi_ticker=ticker, outcome="yes", theory_version=2)
+        score.record_settlement(
+            conn, ticker, "yes", resolved_at=v2_days[i // 2]
+        )
+    _record(conn, kalshi_ticker="KXNM2-A", outcome="no", theory_version=2)
+    score.record_settlement(
+        conn, "KXNM2-A", "no", resolved_at=v2_days[0]
+    )
+
+    by_version = slices.segment_report(conn, "t1", 2, pool="version")
+    entry_by_version = by_version["slices"][0]
+    assert entry_by_version["oos"]["n_clusters"] == 6
+    assert entry_by_version["oos"]["n_days"] == 3
+    assert entry_by_version["ready"] is False, (
+        "v2 alone is below both gates -- reports as accruing"
+    )
+    assert by_version["complement"] is None, (
+        "no ready slice under pool=\"version\" -> no partition"
+    )
+
+    by_chain = slices.segment_report(conn, "t1", 2, pool="chain")
+    entry_by_chain = by_chain["slices"][0]
+    assert entry_by_chain["oos"]["n_clusters"] == 12, (
+        "pooled across the proven carry, v1's six clusters join v2's six"
+    )
+    assert entry_by_chain["oos"]["n_days"] == 6
+    assert entry_by_chain["ready"] is True, (
+        "the gates clear only once the chain pools both versions' evidence"
+    )
+    assert by_chain["complement"] is not None, (
+        "a ready slice under pool=\"chain\" partitions the pooled pool"
+    )
+    assert by_chain["complement"]["n"] == 2, (
+        "the complement widened too -- one non-matching row from each "
+        "version, not just v2's own"
+    )
 
 
 def test_segment_report_chain_of_one_adds_no_key(conn):
