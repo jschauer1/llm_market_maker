@@ -58,7 +58,8 @@ def test_theories_register_creates_one(dbpath, capsys):
 
 
 def test_theories_bump_increments_version(dbpath, capsys):
-    code, payload = _run(capsys, "--db", dbpath, "theories", "bump", "t1")
+    code, payload = _run(capsys, "--db", dbpath, "theories", "bump", "t1",
+                         "--justification", "new gate")
     assert payload["version"] == 2
 
 
@@ -192,7 +193,8 @@ def test_score_report_includes_theory_version(dbpath, capsys):
 
 
 def test_score_report_theory_version_reflects_a_bump(dbpath, capsys):
-    _run(capsys, "--db", dbpath, "theories", "bump", "t1")
+    _run(capsys, "--db", dbpath, "theories", "bump", "t1",
+        "--justification", "new gate")
     code, payload = _run(capsys, "--db", dbpath, "score", "report", "t1")
     assert payload["theory_version"] == 2
 

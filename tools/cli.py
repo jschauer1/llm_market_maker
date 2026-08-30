@@ -77,7 +77,18 @@ def _cmd_theories(args) -> int:
         elif args.action == "pending-retirement":
             _emit(_rows(theories.list_pending_retirement(conn)))
         elif args.action == "bump":
-            version = theories.bump_version(conn, args.id)
+            if args.kind == "carry":
+                raise SystemExit(
+                    "a carry bump needs a passing equivalence proof, which "
+                    "only exists as a Python object -- run the replay with "
+                    "theories.prove_carry(...) and call "
+                    "theories.bump_version(kind='carry', "
+                    "equivalence=<result>) directly; the CLI cannot carry "
+                    "a proof object"
+                )
+            version = theories.bump_version(
+                conn, args.id, kind=args.kind, justification=args.justification
+            )
             _emit({"id": args.id, "version": version})
     finally:
         conn.close()
@@ -422,6 +433,18 @@ def build_parser() -> argparse.ArgumentParser:
     )
     bump = ts.add_parser("bump")
     bump.add_argument("id")
+    bump.add_argument(
+        "--kind", choices=("breaking", "carry"), default="breaking",
+        help=(
+            "breaking (default) resets the track record; carry pools "
+            "evidence forward and needs a passing equivalence proof, which "
+            "only exists from Python -- see theories.prove_carry"
+        ),
+    )
+    bump.add_argument(
+        "--justification", required=True,
+        help="what changed and why (recorded on the theory_versions row)",
+    )
 
     p = sub.add_parser(
         "provenance",

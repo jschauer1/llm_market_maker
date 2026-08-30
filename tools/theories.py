@@ -81,6 +81,19 @@ def register(
             """,
             (theory_id, name, status, path, stamp, stamp),
         )
+        # Re-registering (every scan that discovers theories on disk) must
+        # not touch a v1 row that already exists -- OR IGNORE keys off the
+        # (theory_id, version) primary key, so this is a no-op after the
+        # first call.
+        conn.execute(
+            """
+            INSERT OR IGNORE INTO theory_versions
+                (theory_id, version, kind, predecessor, justification,
+                 created_at)
+            VALUES (?, 1, 'breaking', NULL, 'initial version', ?)
+            """,
+            (theory_id, stamp),
+        )
 
 
 def get(conn: sqlite3.Connection, theory_id: str) -> sqlite3.Row | None:
@@ -267,17 +280,74 @@ def set_uses_llm_judgment(
         )
 
 
+#: Duck-typed stand-in for Task 2's real `EquivalenceResult` (enforcing-
+#: surfaces spec 2.4). Until that type lands, `bump_version` accepts any
+#: object exposing these two attributes:
+#:   .passed  -- bool, True iff the replay reproduced every recorded
+#:               decision exactly
+#:   .label   -- str, an identifier for the equivalence run, stored as
+#:               `theory_versions.equivalence_run`
+#: This is a comment, not an enforced Protocol -- `getattr` below is what
+#: actually reads it.
+_CarryProof = object
+
+
 def bump_version(
-    conn: sqlite3.Connection, theory_id: str, now: str | None = None
+    conn: sqlite3.Connection,
+    theory_id: str,
+    now: str | None = None,
+    *,
+    kind: str = "breaking",
+    justification: str,
+    equivalence: _CarryProof | None = None,
 ) -> int:
-    """Increment the theory's version and return the new value."""
+    """Increment the theory's version and record what kind of bump it was.
+
+    Every bump declares its relationship to its predecessor (spec 2.3):
+    `breaking` (the default) resets the track record; `carry` pools
+    evidence forward and is refused unless `equivalence` is a passing
+    proof that a replay over the predecessor's own attempts reproduces
+    every recorded decision exactly -- assertion does not qualify, the
+    proof is the permission (spec 2.4).
+    """
+    if kind not in ("breaking", "carry"):
+        raise ValueError(f"invalid kind {kind!r}; expected 'breaking' or 'carry'")
+    equivalence_run = None
+    if kind == "carry":
+        if equivalence is None or not getattr(equivalence, "passed", False):
+            raise ValueError(
+                "carry needs a passing equivalence proof -- the proof is "
+                "the permission (spec 2.4)"
+            )
+        equivalence_run = getattr(equivalence, "label", None)
     row = get(conn, theory_id)
     if row is None:
         raise KeyError(theory_id)
     new_version = row["version"] + 1
+    stamp = now or utcnow()
     with write(conn):
         conn.execute(
             "UPDATE theories SET version = ?, updated_at = ? WHERE id = ?",
-            (new_version, now or utcnow(), theory_id),
+            (new_version, stamp, theory_id),
+        )
+        conn.execute(
+            """
+            INSERT INTO theory_versions
+                (theory_id, version, kind, predecessor, justification,
+                 equivalence_run, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            """,
+            (theory_id, new_version, kind, row["version"], justification,
+             equivalence_run, stamp),
         )
     return new_version
+
+
+def list_versions(
+    conn: sqlite3.Connection, theory_id: str
+) -> list[sqlite3.Row]:
+    """A theory's version history, oldest first."""
+    return conn.execute(
+        "SELECT * FROM theory_versions WHERE theory_id = ? ORDER BY version",
+        (theory_id,),
+    ).fetchall()

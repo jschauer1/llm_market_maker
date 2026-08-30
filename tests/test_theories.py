@@ -36,7 +36,7 @@ def test_register_is_idempotent(conn):
 
 def test_register_does_not_reset_version(conn):
     theories.register(conn, "t1", "One", "theories/t1", now=TS)
-    theories.bump_version(conn, "t1", now=TS)
+    theories.bump_version(conn, "t1", now=TS, justification="new gate")
     theories.register(conn, "t1", "One", "theories/t1", now=TS)
     assert theories.get(conn, "t1")["version"] == 2
 
@@ -67,14 +67,14 @@ def test_set_status_rejects_invalid_status(conn):
 
 def test_bump_version_increments_and_returns(conn):
     theories.register(conn, "t1", "One", "theories/t1", now=TS)
-    assert theories.bump_version(conn, "t1", now=TS) == 2
-    assert theories.bump_version(conn, "t1", now=TS) == 3
+    assert theories.bump_version(conn, "t1", now=TS, justification="a") == 2
+    assert theories.bump_version(conn, "t1", now=TS, justification="b") == 3
     assert theories.get(conn, "t1")["version"] == 3
 
 
 def test_bump_version_rejects_unknown_theory(conn):
     with pytest.raises(KeyError):
-        theories.bump_version(conn, "nope")
+        theories.bump_version(conn, "nope", justification="a")
 
 
 def test_list_filters_by_status(conn):
@@ -203,3 +203,45 @@ def test_list_pending_retirement_surfaces_unruled_proposals(conn):
     theories.set_status(conn, "c", "retired", now=TS, authorized_by="user")
     # a is awaiting a ruling; b was never proposed; c has been ruled on.
     assert [r["id"] for r in theories.list_pending_retirement(conn)] == ["a"]
+
+
+# --- version bumps declare breaking/carry (enforcing-surfaces spec 2.3) ---
+
+
+def test_bump_requires_justification_and_defaults_breaking(conn):
+    theories.register(conn, "t1", "T1", "theories/t1")
+    v = theories.bump_version(conn, "t1", justification="new gate")
+    assert v == 2
+    rows = theories.list_versions(conn, "t1")
+    assert [(r["version"], r["kind"]) for r in rows] == [
+        (1, "breaking"), (2, "breaking")]
+    assert rows[-1]["predecessor"] == 1
+
+
+def test_carry_refuses_without_a_passing_proof(conn):
+    theories.register(conn, "t1", "T1", "theories/t1")
+    with pytest.raises(ValueError, match="proof"):
+        theories.bump_version(conn, "t1", kind="carry",
+                              justification="plumbing only")
+
+
+class _Proof:
+    passed = True
+    label = "carry-proof/t1-v1-to-v2"
+
+
+def test_carry_records_the_equivalence_run(conn):
+    theories.register(conn, "t1", "T1", "theories/t1")
+    v = theories.bump_version(conn, "t1", kind="carry",
+                              justification="plumbing only",
+                              equivalence=_Proof())
+    row = theories.list_versions(conn, "t1")[-1]
+    assert (v, row["kind"], row["equivalence_run"]) == (
+        2, "carry", "carry-proof/t1-v1-to-v2")
+
+
+def test_register_writes_the_v1_row(conn):
+    theories.register(conn, "t1", "T1", "theories/t1")
+    rows = theories.list_versions(conn, "t1")
+    assert [(r["version"], r["kind"], r["predecessor"]) for r in rows] == [
+        (1, "breaking", None)]

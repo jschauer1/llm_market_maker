@@ -518,6 +518,15 @@ Without this, tweaking a theory silently merges two different theories into
 one track record — which destroys the long-horizon testing this project exists
 for and invites tuning until the history looks good.
 
+**A bump declares whether it breaks the track record.** `breaking` is the
+default and resets it. `carry` — for a change that provably could not alter
+the decision on rows already recorded — keeps it, and is refused unless a
+replay over the predecessor's own attempts reproduces every recorded decision
+exactly. Assertion does not qualify; the proof is the permission. This does
+not soften the bump rule, it makes the rule affordable: a theory still being
+improved could otherwise never accumulate evidence, which is how three of
+the four running theories reached n=0.
+
 **The tiering split is part of that versioned procedure.** A cheap gate is
 prompts plus scan logic like anything else: turning a gate on or off, or
 changing what question it asks, changes the decision path a candidate travels

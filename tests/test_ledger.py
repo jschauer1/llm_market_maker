@@ -580,7 +580,7 @@ def test_resolve_ticker_version_fanout_resolves_to_newest(conn):
     # This is one theory whose procedure was bumped mid-track, and the
     # newest sighting is the position still open.
     _record(conn, kalshi_ticker="KXFOO-T1", theory_version=1, now=TS)
-    theories.bump_version(conn, "t1", now=LATER)
+    theories.bump_version(conn, "t1", now=LATER, justification="new gate")
     _record(conn, kalshi_ticker="KXFOO-T1", theory_version=2, now=LATER)
     row = ledger.resolve_ticker(conn, "KXFOO-T1")
     assert row["theory_version"] == 2

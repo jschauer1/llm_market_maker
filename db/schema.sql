@@ -397,3 +397,19 @@ CREATE TABLE IF NOT EXISTS rulings (
               CHECK (status IN ('binding', 'implemented', 'superseded')),
     log_entry TEXT
 );
+
+-- Every version bump's declared relationship to its predecessor
+-- (enforcing-surfaces spec 2.3). 'breaking' resets the track record and is
+-- the default; 'carry' pools evidence forward and is uninsertable without
+-- an equivalence_run -- the proof is the permission.
+CREATE TABLE IF NOT EXISTS theory_versions (
+    theory_id       TEXT NOT NULL,
+    version         INTEGER NOT NULL,
+    kind            TEXT NOT NULL CHECK (kind IN ('breaking','carry')),
+    predecessor     INTEGER,
+    justification   TEXT NOT NULL,
+    equivalence_run TEXT,
+    created_at      TEXT NOT NULL,
+    PRIMARY KEY (theory_id, version),
+    CHECK (kind <> 'carry' OR equivalence_run IS NOT NULL)
+);
