@@ -482,3 +482,94 @@ Additional limits still outstanding, unchanged from the phase-2 bar:
   measures the markup on parlays people *wanted*, which is the right
   population for "is retail paying a markup" and the wrong one for "is
   every possible parlay overpriced".
+
+---
+
+# Result — phase 2 pooled (4 creation slates)
+
+```
+3,231 parlays priced across 4 creation days
+
+  markup vs product-of-MIDS
+    day-clustered    : +7.06 pts   t=+17.47   k=4   MDE=1.13
+    legset-clustered : +7.09 pts   t=+24.81   k=3231 MDE=0.80
+
+  markup vs product-of-ASKS (buy every leg at the side actually payable)
+    day-clustered    : +6.64 pts   t=+16.10   k=4   MDE=1.15
+
+  per-day: 2026-08-06 +6.87 | 08-07 +6.01 | 08-09 +7.51 | 08-11 +7.85
+```
+
+`k=4` gives 3 df, where the two-sided 95% critical value is 3.18. The
+day-clustered `t` of 17.47 clears it by a wide margin, the MDE of 1.13
+pts is well inside the pre-registered 3-point floor, and **all four days
+are positive with a tight range (6.01–7.85)**.
+
+## VERDICT: CONFIRMATORY on the primary prediction
+
+Kalshi cross-game parlays trade materially above the product of their
+legs. The effect survives the benchmark that would most easily have
+manufactured it — leg bid-ask spreads compounding multiplicatively — at
++6.64 pts when every leg is priced at the side you would actually pay.
+
+## VERDICT: FAILED on the secondary prediction, as literally written
+
+The bar said the markup's *magnitude* **grows** with leg count. In
+percentage points it does the opposite, and strongly:
+
+| legs | n | parlay | product | markup pts | ratio |
+|---|---|---|---|---|---|
+| 2 | 354 | 0.3531 | 0.2481 | **+10.50** | 1.42x |
+| 5 | 439 | 0.1634 | 0.0711 | +9.23 | 2.30x |
+| 8 | 212 | 0.0716 | 0.0269 | +4.47 | 2.66x |
+| 12 | 95 | 0.0268 | 0.0093 | **+1.75** | 2.87x |
+
+`corr(legs, markup in points) = −0.920`. The pre-registered claim was
+positive. **It failed, and it is recorded as failed.**
+
+In *ratio* terms the gradient does run the predicted way
+(`corr = +0.682`; buyers pay 1.42x fair value on a 2-leg and ~2.9x on a
+12-leg). That framing is **not** what this study pre-registered, so it
+is a hypothesis for a separate pre-registered test, not a rescue of the
+failed one. Recording the distinction rather than quietly switching
+units is the whole discipline — swapping the metric after seeing the
+sign is exactly what `calibration_harvest` was retracted for on
+2026-08-29.
+
+**And the points reading is the economically relevant one for a fader.**
+What a seller captures is points per contract, not a ratio. So the
+usable form of this result inverts the spec's expectation: the largest
+absolute edge sits in **short (2–5 leg) parlays**, not the long
+lottery-ticket ones the thesis and the source paper emphasise.
+
+## What would still have to be true for this to become a theory
+
+The measurement is not the bet, and on current evidence the gap between
+them is the whole problem.
+
+1. **There is no fade side.** `active_quoters` is 0 across all 2,134
+   associated events in all three open collections. Capturing a markup
+   means *selling* parlays to the people paying it, which means
+   answering an RFQ within seconds — a workflow this user (manual,
+   human-hours) does not have. The spec's own kill criterion #7
+   anticipated exactly this.
+2. **The `last_price` timing gap is still unquantified.** `last_price`
+   is the last *trade*; leg marks are taken at `created_time`. For an
+   RFQ minted and immediately traded these coincide, but nothing here
+   proves they do, and it remains the largest unmeasured error.
+3. **~10% of parlays are dropped** for an unpriceable leg. If those are
+   the illiquid ones, the measured population is biased toward liquid
+   legs by an unknown amount.
+4. **The control was never run.** `same_game` parlays were specified as
+   the machinery check and only `cross_game` was collected. Note the
+   control is weaker than hoped in any case: positively correlated legs
+   make `P(all legs win) > Π(legs)`, so same-game *should* show a large
+   positive gap for a reason that is not markup — meaning it cannot
+   cleanly separate "machinery works" from "correlation". A better
+   validation is a leg-count-1 case, which the exchange does not offer
+   (`size_min = 2`).
+
+So the honest status is: **a real, robustly measured mispricing that
+this user probably cannot trade.** That is a valuable thing to know and
+a poor basis for a theory, and it should not be dressed up as the
+latter.
