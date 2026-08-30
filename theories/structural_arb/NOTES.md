@@ -519,3 +519,205 @@ minutes once a few days of captures accumulate. Run it before any real
 backtest leans on the cache; cache rows carry `established_at`, so a
 strict replay can also filter to entries established before its
 decision point.
+
+## 2026-08-26 — structural_arb implemented from backlog; first live riskless find recorded (migrated from RESEARCH_LOG.md)
+
+**Did:** Settled 15 newly finalized tickers (insider_judgment noscan
+weak rows 5W/1L; two of its Aug-23 rejects settled — one rejection
+correct, one missed win; mention_family preview 4W/2L, consistent with
+the standing retirement proposal). Then implemented `structural_arb`
+(backlog idea 4, priority 3/22): pure-code within-event consistency
+scanner — nested-pair (ladder monotonicity via YES-interval
+containment), geometry NO-baskets (weighted-interval-scheduling DP over
+provably disjoint strikes), flag NO-baskets (event mutually_exclusive
+envelope, persisted to theory_facts). 26 tests. Registered v1, status
+testing. Live scan: 108,820 markets → 1 verified find, recorded as
+**opp 9248**: KXNASDAQ100MINY-26DEC31H1600 T22800.01 YES@0.07 +
+T22600.01 NO@0.86 — $0.943 all-in vs $1.00 guaranteed floor (+6.0%
+riskless, +112% if the 2026 NDX low lands between strikes; crossed
+since Aug 24 per snapshots). Tier-A existence replay over all 6 stored
+snapshots recorded (backtest-2026-08-26-structarb-snap): 1–3 violations
+per snapshot, day-scale persistence. All 1,291 flag candidates fetched:
+zero ME.
+
+**Learned:** The first naive scan was a masterclass in why proofs must
+be conservative — three defects (414 on bulk re-quote; per-player
+strikes sharing one event; Kalshi strike metadata lying on exact-value
+markets, which would have recorded a losing "riskless" basket) all
+caught before anything hit the ledger; details in
+theories/structural_arb/NOTES.md. Also: Polymarket's whales filter
+returned a sub-threshold trade (live test now failing on filterAmount
+semantics) — needs a look before any whale-based theory trusts it.
+
+**Next:** Watch opp 9248 (mark-taken if entered). Re-run structural_arb
+each session — flag lookups are now nearly free. calendar-arb (idea 21)
+is the natural sibling: same interval machinery across events in a
+series (date ladders). mention_family retirement still awaits the
+user's ruling.
+
+## 2026-08-27 — structural_arb v2: depth gate mechanical; queue re-quoted, mostly decayed (migrated from RESEARCH_LOG.md)
+
+**Did:** Settle pass: 0 newly finalized (220 active, 5 closed awaiting
+finalization — most of the queue resolves tonight). Scores unchanged
+(insider_judgment n=12 +8.28 net; the two new theories n=0).
+insider_judgment and no_side_premium already saw today's date
+(last night's late session); not re-run. structural_arb re-run against
+a fresh 107,656-market board: 1 survivor (KXNCAAMBWINS-26SJU 24/27
+nested pair, 4.8% riskless at top-of-book), killed by the manual
+orderbook check — 0.47 contracts deep, ~$0.02 fillable (opp 9309,
+rejected). Second consecutive live finalist to die exactly this way,
+so promoted the depth check into stage 1 as **v2** (TDD, 10 tests,
+701 green): `implied_ask_ladder` + lockstep `fillable_floor` walk in
+scan.py, orderbook fetch per finalist leg in live price(), <$5
+fillable → recorded rejected, unreadable book → screened + `Depth
+UNVERIFIED`. Registry bumped. v2 validated live: same find,
+mechanically rejected with the hand-check's numbers (opp 9310).
+Details: theories/structural_arb/NOTES.md 2026-08-27.
+
+Queue re-quoted (9 endorsed untouched, none settled): GTA ladder
+converged to the endorsed [15,30) view (YES-10 0.93→0.97, YES-15
+0.87→0.96, NO-45 0.94→0.96; NO-30 moved 6pts against, 0.85→0.79);
+BB-DRE NO@0.82 broken (NO now 0.54 — house plan shifted, the risk the
+Aug-24 correction flagged); CANUSDEAL NO 0.97→0.98 and CMPS NO
+0.91→1.00 have no buyable edge left; NTLA NO 0.88→0.90 thinner,
+rules-divergence caution stands. Opp 9248's arb fully gone at
+top-of-book (YES leg 0.07→0.21), consistent with its dust rejection.
+
+**Learned:** Top-of-book existence vs fillable size is not an edge
+case for this theory — it is the *typical* failure of its finds
+(2 of 2). The book's implied-ask structure (`orderbook_fp` = resting
+bids; asks implied from the opposite side; fractional dust sizes) is
+now encoded and tested. Greedy lockstep ladder walk is exact for the
+riskless-fill question because the marginal basket always takes every
+leg's cheapest remaining level.
+
+**Next:** Tonight settles most of the queue (GTA video length ladder,
+both Big Brother legs) plus the two taken bets' markets soon after
+(Grok 4.7 by Sep 4, GTA trailer by Sep 1) — tomorrow's settle pass is
+the first real scorecard for insider_judgment v3's endorsed tier and
+no_side_premium's cells. calendar-arb (idea 21) remains the natural
+next build (same interval machinery, cross-event date ladders).
+Ask the user to mark-taken/skipped: 187, 188, 192, 9134, 9140, 9203,
+9204, 9238, 9239.
+
+## 2026-08-29 (cont.) — structural_arb: six violations in 11 snapshots, and all three kinds are sterile (migrated from RESEARCH_LOG.md)
+
+**Did:** Three live sessions had produced five `structural_arb` positions
+and five depth-gate rejections. Rather than guess whether the gate was
+too strict or the theory simply does not fire, replayed the theory's own
+geometry over all **11 stored board snapshots** (2026-08-24 → 2026-08-29,
+96k–117k markets each). No API calls, which mattered because the
+calibration_harvest collector was saturating the rate-limited history
+endpoint at the time. Study:
+`studies/2026-08-29-structural-arb-violation-liquidity/`.
+
+**Learned:**
+
+1. **Six distinct violations in 5 days, in three sterile classes.**
+   Untraded strikes (3, lifetime volume 0.0–0.1 — the 100–1992%/yr
+   figures are arithmetic on prices nobody will fill); one frozen thin
+   ladder (`KXNCAAMBWINS`, persisting **8 of 11 snapshots at unchanged
+   prices** on 6-contract legs, worth $0.02 fillable); and one long-dated
+   liquid ladder (`USCLIMATE` 2025/2030, 11,596 contracts, **1.5%/yr over
+   4.3 years** — below cash).
+2. **Exactly one was both liquid and attractive**, and it evaporated.
+   `KXNASDAQ100MINY` paid 36.4%/yr on a 3,918-contract leg, was recorded
+   as opp 9248, was **rejected as dust**, and by the next session its YES
+   leg had gone 0.07 → 0.21.
+3. **So the v2 depth gate is validated rather than too strict** — and
+   lifetime volume is not the right liquidity test, which is precisely
+   why v2 walks the order book instead.
+4. **The zero tradeable firing rate is structural, not unlucky.** A
+   violation both fillable and worth filling is by construction the one
+   someone else takes first; a periodic board pull sees the residue.
+   More sessions of the same scan will not change that.
+5. **`USCLIMATE` is calendar-arb's conclusion arrived at independently**
+   — cross-date nesting survives only at horizons where carry dwarfs it.
+   Two studies, two directions, same answer.
+6. **A method error worth remembering.** The probe's first draft grouped
+   by event alone and reported **10,799** violations instead of 6, a
+   1,800× inflation, because one Kalshi event holds several independent
+   ladders (spread per team, hits per player) whose strike numbers
+   compare numerically and mean nothing across subjects. `underlying_key`
+   exists to prevent that and says so; any replay must group by event
+   **and** underlying, as `scan.scan()` does. Recorded in the study
+   because the wrong answer was superficially far more exciting than the
+   right one.
+
+**No retirement proposal** — n=6, `testing`, 0 settled rows; this
+measures the population, not the edge. Two cheap changes are
+pre-registered in the study: screen the three sterile classes out in
+stage 1 (all identifiable before the depth fetch), and treat sub-daily
+decay as an execution-*cadence* question if it is confirmed.
+
+## 2026-08-29 (cont.) — structural_arb v3: the sterile classes screened at stage 1 (migrated from RESEARCH_LOG.md)
+
+**Did:** Implemented the cheap change the snapshot study pre-registered an
+hour earlier. `_drop_sterile` removes the three never-actionable violation
+classes before the orderbook walk: `MIN_LEG_VOLUME = 100` (untraded
+strikes and frozen thin ladders) and `MIN_ANNUALISED_RETURN = 0.05` over
+horizons ≥ 30 days (long-dated ladders). Version 3, TDD, suite **890**
+green.
+
+**Learned:**
+
+1. **The test that mattered was the keep-case, not the drop-cases.**
+   `test_the_one_liquid_short_dated_violation_survives` pins that
+   `KXNASDAQ100MINY` — the single violation in 11 snapshots that was both
+   liquid and attractively priced — still reaches the depth gate.
+   Screening it out would have produced a quieter scan and a worse
+   theory; writing that test first is what stopped the thresholds drifting
+   toward "remove everything".
+2. **Lifetime volume is not a liquidity proxy, and the code says so.**
+   `KXNASDAQ100MINY` had 3,918 contracts of lifetime volume and was still
+   dust at the prices that mattered. The new screen only removes what
+   lifetime volume *alone* already proves sterile.
+3. **Verified live:** today's board gives the same 3 findings as this
+   morning's v2 run, all now removed at stage 1, and **6 orderbook
+   fetches not spent** on the endpoint the collector is competing for.
+
+Not an edge change — all six historical finds were rejected either way.
+It buys a scan that stops announcing finds it will always throw away.
+
+## 2026-08-29 (cont.) — structural_arb v4: the guard is free, and now complete (migrated from RESEARCH_LOG.md)
+
+**Did:** Took the theory side of the envelope change above.
+`structural_arb` v3 → **v4**: `mutually_exclusive` now reads off the
+board, and `MAX_FLAG_FETCHES`, `_me_flag_fetch` and the `theory_facts`
+write-back are gone. Suite **964** green.
+
+**Learned:**
+
+1. **The gain is coverage, not speed.** v3 could afford to check the
+   **150 largest** of ~1,449 flag candidates; v4 checks **all 1,449**,
+   with zero network calls. Live verification: 1,449 candidates, 1,449
+   rejected as non-exclusive, 0 confirmed, 0 unknown, screen in 11.7s.
+   Previously the honest claim was "the 150 largest were all false";
+   now it is complete.
+2. **I was one step from cutting the path for the wrong reason.** The
+   all-false cache of 2,042 flags looked like Kalshi never setting the
+   flag. It isn't — **46% of open events are `true`**. The real cause is
+   *selection*: this theory only asks once the NO-basket arithmetic
+   clears, and on a genuine partition that arithmetic *is* an arbitrage,
+   so makers price it to sum correctly and it never clears. The
+   cross-reference confirmed it exactly — **0 of 1,445 candidates
+   exclusive**. So `0 confirmed` is the guard doing its job; without it
+   those 1,449 become 1,449 false arbitrage claims. A real observation,
+   a wrong inference, stopped only by a number I could not cheaply get
+   myself.
+3. **Tri-state, and `None` is not `False`.** A pre-2026-08-29 snapshot
+   carries no envelope; reading absence as False would let a replay
+   accept a partition it never verified. Unknown falls back to the 2,042
+   cached flags, then reports `flag_unknown`.
+4. **Two tests were deleted rather than adapted**, because both pinned
+   the fetch path itself. Adapting a test whose subject no longer exists
+   produces a test that passes and means nothing.
+
+**Process note.** Three sessions ran this repo today. What made it work
+was not the parallelism but that nobody was the last reader of their own
+numbers: 4f overturned my politics headline, I found the knob in their
+replacement, 78 supplied the one figure that stopped me cutting a working
+guard, and I found the API trap that would have bitten their validation.
+Every one of those was caught by someone reproducing an arithmetic claim
+before arguing with it.
+
