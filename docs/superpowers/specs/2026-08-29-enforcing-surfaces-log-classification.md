@@ -186,3 +186,38 @@ appended after this revision are out of scope for the migration pass (spec
 | 2026-08-27 (evening) — settlement-day clustering confounds both live theories... | the settlement-day-clustering confound as a methodological precedent (many same-day settlements are one effective observation; both live theories were confounded), `calibration_harvest`'s founding, and calendar-arb's kill (idea 21, `dead`), stated in the M-stub paragraph; not a ruling (no user-ruled language in the entry, and `rulings list` shows no matching row) — the precedent is already cited by CLAUDE.md's slice evidence-gate language ("≥10 event clusters and ≥5 settlement days"); the two live theories' 2026-08-27 evidence is pointed at by date into `insider_judgment/NOTES.md` and `no_side_premium/NOTES.md` (both already carry 2026-08-27 headings) | calibration_harvest NOTES.md, appended at end (widest split, ~892 words; the session-stop addendum, stop-state and suite lines moved with the body as one block, never separated) |
 | 2026-08-29 (session 3, item 4) — smile-smoothing killed at step one... | `tools/ladders.py` surviving the killed study (caller-count elevation, no version bump), stated in the M-stub paragraph (study-owned row, spec §6.6) | `studies/2026-08-29-smile-smoothing-ladder-flatness/STUDY.md`, appended at end |
 | 2026-08-29 (session 3, item 5) — series-bias-mining: not measured... | the bar-was-the-defect methodological correction (series count used as the power proxy instead of a power floor), stated in the M-stub paragraph (study-owned row, spec §6.6) | `studies/2026-08-29-series-bias-mining/STUDY.md`, appended at end |
+
+## Reconciliation (spec §6.8 step 8)
+
+Stub count equals moved-row count: **36** — this table's 22 T rows plus the
+M-split record's 14 rows above, no row added or dropped since the addendum
+(all 8 post-pin entries classified X, so the move set never grew past
+22 + 14). Words carried out of `RESEARCH_LOG.md`: **9,484** (T, 22 entries)
++ **5,958** (M, 14 entries) = **15,442** of the pinned table's 24,812 total
+(62%); the remaining 9,370 words (X, 28 entries) stayed untouched in place,
+per step 7.
+
+**One execution deviation from the table, found and fixed during
+reconciliation, not before:** `grep -c 'migrated from RESEARCH_LOG.md'
+RESEARCH_LOG.md` returned 32, not 36, on first count. The shortfall was not
+a missing stub — all 36 T+M rows above have one — but a word-wrap collision:
+4 of the M-split stub sentences (2026-08-24 mention_family-becomes-real,
+2026-08-25 Kalshi-archives, 2026-08-25 Pattern-mining-the-fullcov-rows,
+2026-08-29 all-three-theories-current) happened to break their prevailing
+~79-column wrap exactly between "migrated from" and "RESEARCH_LOG.md",
+so the single-line grep the migration's own convention depends on
+(¶1: "every stub's pointer names the migrated heading, so this counts
+stubs") silently missed all four. Rewrapped those four sentences
+(content unchanged, only the line-break position moved) so the phrase
+sits on one line in every stub; recount after the fix: **36**, matching
+this table exactly. No row's destination, heading, or wording changed.
+
+**Formatting cleanup riding along (deferred minor from the phase-4/5
+review):** 10 of the T-stubs written by commits `8f69127`, `10ad8a5`,
+`e2fcf33`, `87368f2` (mention_family ×3, structural_arb ×5, deadline_drift
+×1, no_side_premium ×1) had no blank line between the stub's last line and
+the following `## ` heading — every other stub in the file already carries
+one. Added the missing blank line at exactly those 10 sites; whitespace-only,
+verified against the file with a script rather than by eye, and the
+citation-heading test stays green (a `## ` heading's own line is unchanged,
+only the blank line above it is added).

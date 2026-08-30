@@ -176,6 +176,7 @@ Moved 2026-08-29 to `theories/insider_bias/insider_judgment/NOTES.md` under the 
 ## 2026-08-24 — Two follow-ups from user questions: a corrected Big Brother bet, and a new mechanical path for the MENTION-family edge
 
 Moved 2026-08-29 to `theories/insider_bias/mention_family/NOTES.md` under the heading `## 2026-08-24 — Two follow-ups from user questions: a corrected Big Brother bet, and a new mechanical path for the MENTION-family edge (migrated from RESEARCH_LOG.md)`, per the enforcing-surfaces migration (spec §6.8).
+
 ## 2026-08-24 — mention_family becomes a real, separate theory; insider_bias renamed insider_judgment and folded into a shared parent folder
 
 On 2026-08-24, mention_family split out of insider_bias to become its
@@ -200,11 +201,10 @@ insider_judgment's own remaining 84 non-mention rows scored
 already excludes (-11.12pts, n=47) and the gate-plausible slice that
 reaches judgment in the live pipeline (+4.40pts, n=37).
 
-Narrative moved 2026-08-29 to
-`theories/insider_bias/mention_family/NOTES.md` under `## 2026-08-24 —
-mention_family becomes a real, separate theory; insider_bias renamed
-insider_judgment and folded into a shared parent folder (migrated from
-RESEARCH_LOG.md)` (spec §6.8).
+Narrative moved 2026-08-29 to `theories/insider_bias/mention_family/NOTES.md`
+under `## 2026-08-24 — mention_family becomes a real, separate theory;
+insider_bias renamed insider_judgment and folded into a shared parent folder
+(migrated from RESEARCH_LOG.md)` (spec §6.8).
 
 ## 2026-08-24 — A researched theory-idea backlog: 12 implementable specs in docs/theory-specs/
 
@@ -427,6 +427,7 @@ remain open, unchanged, and are the user's call.
 ## 2026-08-25 — mention_family edge audited on user suspicion: mechanics clean, inference weak, live slate mismatched
 
 Moved 2026-08-29 to `theories/insider_bias/mention_family/NOTES.md` under the heading `## 2026-08-25 — mention_family edge audited on user suspicion: mechanics clean, inference weak, live slate mismatched (migrated from RESEARCH_LOG.md)`, per the enforcing-surfaces migration (spec §6.8).
+
 ## 2026-08-25 — Kalshi archives settled markets after ~60 days; backward extension impossible; full-coverage rerun launched instead
 
 Attempting to extend mention_family's tier-A evidence backward (closes
@@ -447,15 +448,15 @@ window instead (`run_id=backtest-2026-08-25-mention-fullcov`, tier A):
 every mention-family survivor, 11,084 rows across 379 series, replacing
 the original 600-of-18,430 systematic sample.
 
-Narrative moved 2026-08-29 to
-`theories/insider_bias/mention_family/NOTES.md` under `## 2026-08-25 —
-Kalshi archives settled markets after ~60 days; backward extension
-impossible; full-coverage rerun launched instead (migrated from
-RESEARCH_LOG.md)` (spec §6.8).
+Narrative moved 2026-08-29 to `theories/insider_bias/mention_family/NOTES.md`
+under `## 2026-08-25 — Kalshi archives settled markets after ~60 days;
+backward extension impossible; full-coverage rerun launched instead
+(migrated from RESEARCH_LOG.md)` (spec §6.8).
 
 ## 2026-08-25 — Full-coverage rerun: mention_family has no edge; under_review, retirement proposed
 
 Moved 2026-08-29 to `theories/insider_bias/mention_family/NOTES.md` under the heading `## 2026-08-25 — Full-coverage rerun: mention_family has no edge; under_review, retirement proposed (migrated from RESEARCH_LOG.md)`, per the enforcing-surfaces migration (spec §6.8).
+
 ## 2026-08-25 — Pattern-mining the fullcov rows: timing and price-level dead, but a side asymmetry survives every stress and feeds no-side-premium
 
 A structured slicing pass over the 3,441 settled fullcov rows (366
@@ -476,11 +477,10 @@ moved it to status `investigating`; mention_family's own retirement
 proposal stood unchanged, since its both-sides price-bin procedure is
 what was measured dead.
 
-Narrative moved 2026-08-29 to
-`theories/insider_bias/mention_family/NOTES.md` under `## 2026-08-25 —
-Pattern-mining the fullcov rows: timing and price-level dead, but a side
-asymmetry survives every stress and feeds no-side-premium (migrated from
-RESEARCH_LOG.md)` (spec §6.8).
+Narrative moved 2026-08-29 to `theories/insider_bias/mention_family/NOTES.md`
+under `## 2026-08-25 — Pattern-mining the fullcov rows: timing and price-level
+dead, but a side asymmetry survives every stress and feeds no-side-premium
+(migrated from RESEARCH_LOG.md)` (spec §6.8).
 
 ---
 
@@ -653,6 +653,7 @@ score the model's suggestion quality against the raw screen over time.
 ## 2026-08-26 — structural_arb implemented from backlog; first live riskless find recorded
 
 Moved 2026-08-29 to `theories/structural_arb/NOTES.md` under the heading `## 2026-08-26 — structural_arb implemented from backlog; first live riskless find recorded (migrated from RESEARCH_LOG.md)`, per the enforcing-surfaces migration (spec §6.8).
+
 ## 2026-08-26 (cont.) — no_side_premium forward test implemented and running; polymarket whale filter fixed
 
 This entry built and launched `no_side_premium` v1 (idea 14) as the
@@ -677,6 +678,7 @@ running; polymarket whale filter fixed (migrated from RESEARCH_LOG.md)`
 ## 2026-08-27 — structural_arb v2: depth gate mechanical; queue re-quoted, mostly decayed
 
 Moved 2026-08-29 to `theories/structural_arb/NOTES.md` under the heading `## 2026-08-27 — structural_arb v2: depth gate mechanical; queue re-quoted, mostly decayed (migrated from RESEARCH_LOG.md)`, per the enforcing-surfaces migration (spec §6.8).
+
 ## 2026-08-27 (later) — ledger defect: position identity, not a theory finding
 
 Not a research session. User asked whether duplicate suggestions are handled
@@ -821,10 +823,10 @@ finds, all rejected by the v2 depth gate) is recorded in its own
 `NOTES.md` under 2026-08-29 as well.
 
 Narrative moved 2026-08-29 to
-`theories/insider_bias/insider_judgment/NOTES.md` under `## 2026-08-29 —
-all three theories current; six endorsed bets settled (all won, one
-day); the bucket defect survives a 4x bigger sample (migrated from
-RESEARCH_LOG.md)` (spec §6.8).
+`theories/insider_bias/insider_judgment/NOTES.md` under `## 2026-08-29 — all
+three theories current; six endorsed bets settled (all won, one day); the
+bucket defect survives a 4x bigger sample (migrated from RESEARCH_LOG.md)`
+(spec §6.8).
 
 ## 2026-08-29 (cont.) — the bucket layer was differencing against the wrong price; insider_judgment v4
 
@@ -856,12 +858,15 @@ Moved 2026-08-29 to `theories/insider_bias/insider_judgment/NOTES.md` under the 
 ## 2026-08-29 (cont.) — deadline-drift's classifier audited three times; the spec is missing its biggest exclusion
 
 Moved 2026-08-29 to `theories/deadline_drift/NOTES.md` under the heading `## 2026-08-29 (cont.) — deadline-drift's classifier audited three times; the spec is missing its biggest exclusion (migrated from RESEARCH_LOG.md)`, per the enforcing-surfaces migration (spec §6.8).
+
 ## 2026-08-29 (cont.) — structural_arb: six violations in 11 snapshots, and all three kinds are sterile
 
 Moved 2026-08-29 to `theories/structural_arb/NOTES.md` under the heading `## 2026-08-29 (cont.) — structural_arb: six violations in 11 snapshots, and all three kinds are sterile (migrated from RESEARCH_LOG.md)`, per the enforcing-surfaces migration (spec §6.8).
+
 ## 2026-08-29 (cont.) — structural_arb v3: the sterile classes screened at stage 1
 
 Moved 2026-08-29 to `theories/structural_arb/NOTES.md` under the heading `## 2026-08-29 (cont.) — structural_arb v3: the sterile classes screened at stage 1 (migrated from RESEARCH_LOG.md)`, per the enforcing-surfaces migration (spec §6.8).
+
 ## 2026-08-29 (cont.) — two ledger defects found while taking stock, one urgent
 
 **Did:** Closing out the session's state check surfaced two real bugs, both
@@ -937,6 +942,7 @@ Narrative moved 2026-08-29 to
 ## 2026-08-29 (session 3, item 2) — no_side_premium: a sharper estimator, and a contaminated control caught
 
 Moved 2026-08-29 to `theories/no_side_premium/NOTES.md` under the heading `## 2026-08-29 (session 3, item 2) — no_side_premium: a sharper estimator, and a contaminated control caught (migrated from RESEARCH_LOG.md)`, per the enforcing-surfaces migration (spec §6.8).
+
 ## 2026-08-29 (cont.) — calibration_harvest's first population lands; weather is fairly priced; two defects fixed
 
 Moved 2026-08-29 to `theories/calibration_harvest/NOTES.md` under the heading `## 2026-08-29 (cont.) — calibration_harvest's first population lands; weather is fairly priced; two defects fixed (migrated from RESEARCH_LOG.md)`, per the enforcing-surfaces migration (spec §6.8).
@@ -1107,6 +1113,7 @@ Two findings fell out, both cross-session:
 ## 2026-08-29 (cont.) — structural_arb v4: the guard is free, and now complete
 
 Moved 2026-08-29 to `theories/structural_arb/NOTES.md` under the heading `## 2026-08-29 (cont.) — structural_arb v4: the guard is free, and now complete (migrated from RESEARCH_LOG.md)`, per the enforcing-surfaces migration (spec §6.8).
+
 ## 2026-08-29 (cont.) — the tier rule changed under three of my artifacts
 
 **Did:** The user amended the backtest tier rule (`0f06265`, CLAUDE.md +
@@ -1791,3 +1798,51 @@ the rule-delivery SDD ledger; session -91 inherits after its Task 15.
 live evidence at v1 reads n=38 clusters, `calibration_edge_net` −10.44 vs
 mean claimed −3.9 (credibility 0.655). Worth a `score-theories` diagnosis
 pass by a research session — recorded here so it is not lost in a ledger.
+
+---
+
+## 2026-08-30 — RESEARCH_LOG migration complete: the canon left the journal (spec 6.8)
+
+**Did (session -91, Task 15 — the migration's own reconciliation, spec §6.8
+steps 8–9):** Closed out the enforcing-surfaces log migration begun at
+`0e3d89a` (design: `docs/superpowers/specs/2026-08-29-enforcing-surfaces-
+design.md` §6.8; classification: `docs/superpowers/specs/2026-08-29-
+enforcing-surfaces-log-classification.md`). Against that pinned table, **22
+theory-local entries (9,484 words)** moved verbatim to their owners'
+notebooks under migrated headings, and **14 repo-fact-bearing entries
+(5,958 words)** split — the fact extracted upward, the narrative moved the
+same way — one theory or one split per commit across `0e3d89a..HEAD`. The
+28 cross-cutting entries (9,370 words) stayed in place untouched, per the
+procedure's step 7. 15,442 of the pinned table's 24,812 words (62%) left
+this file; every departure left a one-paragraph stub at its original date
+and heading, so a dated citation into this file still resolves.
+
+**Reconciled (step 8):** stub count equals moved-row count — **36** (22 T +
+14 M), cross-checked against the companion file's main table and its
+M-split record. First count came back 32, not because four stubs were
+missing but because four of the M-split sentences had their ordinary
+line-wrap fall exactly inside the stub's fixed anchor phrase, splitting it
+across two lines and hiding it from the single-line grep the convention
+depends on. Rewrapped those four — content unchanged, only the break point
+moved — and the count now matches. Fixed in the same pass, whitespace-only:
+10 of the phase-4 T-stubs were missing the blank line every other stub in
+this file carries before its following `## ` heading. Both fixes, and the
+full words-per-class accounting above, are recorded in the companion
+file's new "Reconciliation" section. `python -m tools.cli state` renders
+clean; the full suite is green.
+
+**Stood down, not notified:** the two peer sessions coordinating around
+this migration — `llm-market-identifier-21` (parked on this rewrite to
+make its go-skill rule-32 move) and `llm-market-identifier-c0`
+(rule-delivery, which left rule 32 and its own closeout open pending this
+commit) — both stood down before it landed. Nothing live to notify; the
+controller carries forward whatever either left open.
+
+**Ruled:** the §6.5 promotion bar is written into `CLAUDE.md`'s "What
+lives in a theory, and what gets elevated" (§6.7) as of this commit and
+**binds from here forward**, per the user's 2026-08-29 ruling — a log
+entry is earned by a fact that would change how a session that never
+touched this theory would act; a result inside one theory is a headline
+and a pointer into its `NOTES.md`, never a copy. See
+`docs/superpowers/specs/2026-08-29-enforcing-surfaces-log-classification.md`
+for the full row-by-row accounting this entry summarizes.

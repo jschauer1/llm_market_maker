@@ -239,8 +239,12 @@ the theory.
 Dead ends and why they died, data-source quirks, backtest narratives,
 hunches. `THEORY.md` carries only the distilled version and changes when
 the claim, the procedure, or the status changes. `RESEARCH_LOG.md` stays
-cross-theory: when a session's work sits inside one theory, the log entry
-is a pointer to that theory's `NOTES.md` entry, not a copy of it.
+cross-theory: a log entry is earned by a fact that changes how a session
+that never touched this theory would act — a mechanism, a ruling, a
+precedent, a constraint, a breakthrough, a correction. A result inside one
+theory is a headline and a pointer into its `NOTES.md`, never a copy. This
+was forward-only from 2026-08-25 and produced 5,838 words of copies anyway,
+because the log was what got read; it binds now because `state` is.
 
 **Reading is open; only writing is segregated.** Any session may read any
 theory's notes, code, or prompts at any time, and connecting dots across
