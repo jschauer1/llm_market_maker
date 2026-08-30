@@ -730,114 +730,33 @@ stays the fullcov run alone at -1.15.
 
 ## 2026-08-27 (evening) — settlement-day clustering confounds both live theories; calibration_harvest built; calendar-arb killed
 
-**Did:** Five items.
+On 2026-08-27, this entry established settlement-day clustering as a
+first-order confound in this ledger: many settlements sharing one
+close-day are one effective observation, not N independent ones. The
+day-level favorite edge on the shared screen moved +4.26 / -7.29 / +5.40
+net over three consecutive close-days, with the YES/NO split reversing
+between them, and both live theories' headline scores that day sat
+inside that single day's swing — insider_judgment v3's +11.85 net (n=17,
+all NO favorites) and no_side_premium's cell B +14.59 net (n=12, all YES
+favorites), recorded under their own 2026-08-27 entries in
+`theories/insider_bias/insider_judgment/NOTES.md` and
+`theories/no_side_premium/NOTES.md`. `score.settlement_day_clusters()`
+(n_days as effective sample size, between-day clustered SE) was shipped
+in response, and this entry is where `calibration_harvest` (backlog #1)
+was founded, registered `proposed` with nothing yet measured. The same
+session killed `calendar-arb` before building it (idea 21, status `dead`
+in the idea registry: zero cross-event violations across 295 near-dated
+date-ladder pairs, since Kalshi prices near-dated ladders as siblings
+inside one event). A same-session addendum (00:20Z) day-clustered the
+repo's existing settled evidence and found the tier-B judged runs flip
+sign under day weighting (s200 +0.67 → -0.35; s57 +1.90 → -1.36) —
+insider_judgment v3 must not be promoted to `active` on those
+pre-registered bucket-validation runs.
 
-1. **Settlement-day clustering study.** Both live theories posted their
-   first strong scores today on *opposite sides of the same screen*
-   (insider_judgment v3 screened +11.85 net n=17, all NO favorites;
-   no_side_premium cell B +14.59 net n=12, all YES favorites, and cell B
-   is the *avoid* list pre-registered at −3.9). All 29 rows settled on
-   one day. Rebuilt the whole population they drew from — the shared
-   screen over the 2026-08-27T01:06Z snapshot, priced before anything
-   settled — and fetched all 99 outcomes. Shipped
-   `score.settlement_day_clusters()` (n_days as effective sample size,
-   between-day clustered SE, `None` at one cluster) wired into
-   `score report`; amended no_side_premium's pre-registered bars to
-   require `n_days >= 8`. Full writeup:
-   `studies/2026-08-27-settlement-day-clustering/`.
-2. **structural_arb v2 re-run** on tonight's board: same single survivor
-   for the third run running, rejected on depth (~$0.02 fillable, opp
-   9311). Idea 26 `arb-dust-memory` recorded.
-3. **Built calibration_harvest** (backlog #1, never started). Registered
-   `proposed` — no cell measured, nothing recommendable. See its NOTES for
-   why the repo's 6,636 existing settled rows cannot serve it.
-4. **Fixed a defect in my own collector** — no volume floor, so it was
-   measuring a population the live screen would never trade. Discarded the
-   417 rows collected under it and restarted.
-5. **Killed calendar-arb before building it** (idea 21 → dead).
-   `studies/2026-08-27-calendar-arb-firing-rate/`.
-
-Settle pass: 21 markets finalized and recorded. All three running theories
-were already current for today (an earlier session), so §2's re-run half
-was a no-op except structural_arb, which was re-run against the fresh
-11h-newer board.
-
-**Learned:**
-
-- **Settlement-day clustering is a first-order confound in this ledger,
-  and nothing accounted for it.** The day-level favorite edge on the
-  shared screen swung **+4.26 / −7.29 / +5.40** net over three
-  consecutive close-days, and the YES/NO split *reversed* between days
-  (08-25: YES −1.42 / NO +7.98; 08-27: YES +12.15 / NO −3.05). On
-  2026-08-27 **all 55 YES favorites in the population won**. Both live
-  theories' headline numbers sit inside one day's swing; neither is
-  evidence. Any two theories scanning one board on one day will look good
-  together and bad together.
-- **The repo's existing full-coverage settled data is narrower than it
-  looks.** `backtest-2026-08-25-*-fullcov` was fetch-scoped by
-  `replay.NO_CATEGORIES` (no Weather, no Elections, no Sports/Crypto/
-  Economics/Financials/Commodities) and capped at 14 days to close. Any
-  future theory needing domain contrast or long horizons must fetch its
-  own population — assuming otherwise costs a session.
-- **calendar-arb's premise is false at every tradeable horizon.** Of 295
-  near-dated (≤90d) date-ladder pairs, **zero are cross-event**: Kalshi
-  lists near-dated ladders as siblings inside one event, where the same
-  crowd prices them exactly consistently (min cost 1.000, never below).
-  Cross-event ladders exist only at 1y+, where carry dwarfs a cent-scale
-  edge. A theory's premise about *how a venue lists its markets* is
-  checkable in an hour and worth checking first.
-- **Weather is structurally good for calibration measurement** — its
-  cells reach 32–49 distinct settlement days at n≈41–81 because weather
-  settles daily. Politics, clustering on event dates, will be much harder
-  to get `n_days` on.
-- A replay that *reimplements* its screen's predicates drifts from the
-  live screen invisibly (my collector dropped the volume floor). The
-  sibling `insider_bias.replay` avoids this by calling the real
-  `screen.screen()`; this collector should too.
-
-**Next:**
-
-- **Weather collection is running** (`backtest-2026-08-27-calharvest-weather`,
-  checkpoint `theories/calibration_harvest/backtests/weather.json`, ~11/154
-  series done). Resume with the RUNBOOK command; it is idempotent and
-  resumable. Politics+Elections (~2,504 series) not started — the larger job.
-- **Tomorrow's settle pass is the first real read on insider_judgment's
-  *endorsed* tier** (n=0 settled so far). The GTA video-length ladder has
-  fully converged in the market to the endorsed [15,30) view — all four
-  endorsed legs (187, 188, 9238, 9239) are winning at 1.00 — and both Big
-  Brother legs resolve tonight (TAY looks a win at NO 0.91; DRE looks a
-  loss, NO down to 0.44). Read it with `settlement_days`, not `n`: they all
-  settle the same night, so it will be `n_days=1`.
-- Idea 21's revisit angle (soft relative value / implied conditional
-  hazard between two deadlines) is the live successor to calendar-arb and
-  has a ready dataset.
-
-**Addendum (session stop, 00:20Z).** Two more things after the entry above:
-
-6. **Day-clustered the repo's historical evidence.** It had never been
-   possible — every backtest returned `n_days=0` because the replays
-   recorded settlements with no `resolved_at`. Recovered from `extra_json`
-   with no API call (`backfill_resolved_at.py`, 6,636 rows). The tier-A
-   backtests *survive* (they span 30–67 settlement days; SEs widen only
-   1.15–2.37×), but two things changed: `mention_family`'s retirement
-   rationale was stated more strongly than the data supports (−1.53 row →
-   −0.82 ± 0.79 day-weighted; conclusion stands, phrasing does not, and
-   nothing argues for un-retiring), and **the judged tier-B runs flip sign
-   under day weighting** (s200 +0.67 → −0.35; s57 +1.90 → −1.36, clustered
-   SEs 2.50/4.78). Those were `insider_judgment` v3's pre-registered bucket
-   validation, so **v3 must not be promoted to `active` on them**. Status
-   and version unchanged.
-
-**Stop state.** Weather collection stopped cleanly at **11/154 series, 531
-rows persisted**. `record()` is idempotent and the checkpoint only advances
-after a series completes, so resuming re-walks at most one series and
-double-counts nothing — resume with the RUNBOOK command. Note the collector
-is slow (~1 series/several minutes on large series); worth profiling the
-per-market candle call before committing to the ~2,504-series politics run.
-
-Suite: 754 passing. The 15 failures in `tests/test_position_dedup.py` belong
-to separate in-progress position-identity work (commit b6d1c25), not to
-anything in this session.
+Narrative moved 2026-08-29 to `theories/calibration_harvest/NOTES.md`
+under `## 2026-08-27 (evening) — settlement-day clustering confounds
+both live theories; calibration_harvest built; calendar-arb killed
+(migrated from RESEARCH_LOG.md)` (spec §6.8).
 
 ## 2026-08-28 — position identity + attempt fidelity: the migration ran
 
