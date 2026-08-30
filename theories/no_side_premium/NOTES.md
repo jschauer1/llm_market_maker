@@ -254,3 +254,11 @@ session — the series hits the `n_days >= 8` bar around 2026-09-01. Cell A's
 first settlements land 08-31. `deadline-drift`'s three-way user decision is
 still open.
 
+## 2026-08-25 — pointer: founding evidence (migrated entry lives in mention_family's notebook)
+
+The side-asymmetry pattern-mining pass that founded this theory (idea
+14, registered 2026-08-25) is recorded in full under `## 2026-08-25 —
+Pattern-mining the fullcov rows: timing and price-level dead, but a side
+asymmetry survives every stress and feeds no-side-premium (migrated from
+RESEARCH_LOG.md)` in `theories/insider_bias/mention_family/NOTES.md`,
+not here.

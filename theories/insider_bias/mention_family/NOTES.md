@@ -372,3 +372,51 @@ recording per series with a resumable checkpoint. When it lands:
 record the backtest_runs row, score fresh-rows-only (exclude the
 original 116 tickers) with the sub-family split from the 2026-08-25
 audit entry, update THEORY.md, and report against the audit's nulls.
+
+## 2026-08-25 — Pattern-mining the fullcov rows: timing and price-level dead, but a side asymmetry survives every stress and feeds no-side-premium (migrated from RESEARCH_LOG.md)
+
+**Did:** User pushed back on stopping at the dead aggregate — asked
+specifically whether the 0-4d timing marker or 80+ pricing still carries
+edge, and to hunt patterns at high effort. Ran a structured slicing pass
+over the 3,441 settled fullcov rows (366 events, 135 series): timing
+bins, fine price bins, side x price, dtc x price, volume quartiles,
+spread bands, sub-family interactions, per-series z-scores — every cell
+with exact heterogeneous-null binomial tails plus an event-clustered
+t so correlated sibling strikes can't fake significance. Then stressed
+the one survivor across sub-families, window halves, timing slices, and
+with the ended World Cup series excluded, and tested its mirror trade.
+
+**Learned:** (1) The 0-4d marker is dead at scale: -0.95 net (n=2,418);
+the bootstrap's entire timing table reverses (10-14d: +10.2 claimed,
+-3.06 measured). Only the literal last day (0-1d) is even breakeven
+(+0.29 net). (2) Price 0.80+ is dead as such (-0.51 net, n=1,767); the
+old 85plus bin lands perfectly calibrated (+0.11 net, n=1,231) — its
+meaning was always just "ask in $0.85-0.97", and price level alone
+carries nothing. (3) No series-level skill: z-variance 1.19 vs 1.0
+binomial across the 96 series with n>=10; the best series (KXMTPMENTION
+z=+2.27) is within the expected max for 96 draws of noise. (4) The one
+real survivor: **side x price.** YES favorites are overpriced in every
+band (-1.7 to -4.2 net; YES 0.80-0.90 is significantly *worse* than
+fair). NO favorites at ask>=0.90: +2.25pts net after fees (n=450,
+213 events, p_fair=0.0084), positive in all four sub-families, both
+window halves, both dtc slices, +1.86 excluding World Cup; NO 0.85+
+pooled +1.88 (n=685, p=0.011). The synthetic mirror — fading YES
+favorites by buying NO longshots at 1-yes_bid — is NEGATIVE at every
+band because the spread eats the mispricing: the optimism tax is only
+harvestable standing on the NO-favorite side near certainty. Honest
+status: found in a ~50-cell post-hoc scan, event-clustered t +1.4 —
+a hypothesis to pre-register, not a measured edge. Recorded on idea 14
+`no-side-premium` (status → investigating), whose Becker-based spec
+predicted exactly this asymmetry; mention_family's own retirement
+proposal stands, since its both-sides price-bin procedure is what was
+measured dead. Also added the repo standard the user asked for
+(CLAUDE.md): a dead headline number is not a dead dataset — mine the
+slices with honest statistics before moving on, and pre-register
+whatever the mining finds.
+
+**Next:** If the user wants it pursued: build no-side-premium as a
+pre-registered theory (NO favorites at ask>=0.90 on mention markets as
+the first population; 0.85-0.90 as a secondary bucket), bootstrap rates
+from the fullcov run, and require live settlements to confirm before
+any size. The forward test is nearly free — the screen already sees
+these markets daily.
