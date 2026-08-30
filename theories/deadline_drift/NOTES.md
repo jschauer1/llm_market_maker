@@ -192,3 +192,77 @@ rather than the median. Fixed to `statistics.median`. **209.6 days is
 canonical.** A reproducible script is only worth as much as its arithmetic,
 and this one was checked against a number written down before it existed —
 which is the only reason the bug surfaced.
+
+## 2026-08-29 (cont.) — deadline-drift's classifier audited three times; the spec is missing its biggest exclusion (migrated from RESEARCH_LOG.md)
+
+**Did:** Started backlog #2 (`deadline-drift`) with the piece its own spec
+calls "most of the work" and makes a kill criterion: the rules-text
+classifier and a 50-market hand audit. Ran the audit **three times** on
+disjoint systematic samples of the 117,272-market board. No API calls and
+no hazard bins collected — deliberately, because the bins are the
+expensive step (Kalshi rate-limits to ~4–5 req/s) and misclassification
+poisons them. Study, classifier and all three judged samples:
+`studies/2026-08-29-deadline-drift-classifier-audit/`.
+
+| round | population | misclassified /50 | rate |
+|---|---|---|---|
+| 1 | 7,613 | 20 | **40%** |
+| 2 | 5,155 | 10 | **20%** |
+| 3 | 4,792 | 6 | **12%** |
+
+**Learned:**
+
+1. **The spec's non-goal list is missing its largest contaminant.** It
+   names scheduled certainties and continuous thresholds; the dominant
+   family is neither. **Multi-destination "which branch" markets** — "X's
+   next team is Y before D", "Z is the first person confirmed as
+   Commissioner" — resolve YES only if the event happens *and* lands on
+   this branch, making them a hazard **times a conditional multinomial**.
+   At board scale that is **2,687 markets, 34% of the whole by-deadline
+   population**. Anyone implementing the spec as written pools all of it
+   into the hazard bins. Spec amended in place.
+2. **The classifier is a long tail of prose, not a pattern set.** Every
+   round found a family the previous one had not imagined — prose count
+   thresholds ("the number of X ... is at least 5"), role succession
+   ("becomes Chief Minister following the 2026 Manx general election"),
+   scheduled competition outcomes ("wins a tennis major"), and in round 3
+   a price threshold that said "strictly greater than" instead of
+   "above". The rate halves each round, which is either convergence or an
+   irreducible floor; one more cheap round distinguishes them.
+3. **Auditing before collecting was the right order and nearly wasn't
+   taken.** The instinct was to build the bins first. At 40%
+   misclassification the bins would have been meaningless, and they cost
+   hours of rate-limited API time that cannot be parallelised.
+4. **The theory itself looks good.** 4,792 markets in 859 series survive,
+   3,079 in the entry band, and the survivors are exactly the thesis:
+   traded / pardoned / charged / IPO-confirmed / legislation-passed
+   before a date.
+
+Idea 3 moved `considered` → `investigating` with all of this recorded.
+
+**Round 4, run immediately after: 16% — it went UP.** That is the
+answer. Every fix rounds 1–3 implied was folded in and the rate did not
+improve; at n=50 the SE on a 15% rate is ~5 points, so 12% and 16% are
+one number — **a plateau near 15%**, above the spec's own bar. Five of
+round 4's eight misses were multi-destination *again*, in phrasings no
+extension of the round-3 pattern anticipates: "the next club that
+Cristiano Ronaldo joins is CF Monterrey", "Russia is the first country to
+launch a manned mission", "the next new Secretary of Defense ... is Mike
+Pompeo", "leaves before any other Pro Football head coach", "a coalition
+that includes SPD make up the next elected ruling government".
+
+**The residue is semantic, not syntactic** — "does this condition on
+which branch the event takes?" is a meaning these share, not a string.
+That is exactly CLAUDE.md's line for when to reach past code: mechanics
+yield to a regex (the gate work earlier today), reading comprehension
+does not.
+
+**Next: a user decision, because every option costs something the spec
+promised.** (1) a cheap LLM gate — clears the bar, forfeits **tier A**,
+which was this theory's defining property; (2) a series allowlist of the
+~20 unambiguous recurring families — stays tier A, smaller population,
+and reintroduces the maintenance treadmill today's gate work moved away
+from; (3) drop it. Spec section 3 amended to say section 4 is not
+implementable as written. **No hazard bins under any option until this is
+settled.**
+
