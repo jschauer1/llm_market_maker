@@ -356,6 +356,38 @@ def list_versions(
     ).fetchall()
 
 
+def carry_chain(
+    conn: sqlite3.Connection, theory_id: str, version: int
+) -> list[int]:
+    """The maximal run of consecutive versions a proven carry links back
+    to `version` (spec 2.5) -- what `score.compute_score(pool="chain")`
+    widens its segment filter over.
+
+    Walks `theory_versions` backwards from `version`. A predecessor joins
+    the chain only while the CURRENT version's own row says
+    `kind='carry'` -- that row is what links a version to its
+    predecessor, so a carry row recorded at v3 (predecessor v2) pulls v2
+    in when walking from v3, not the other way round. A `breaking` row,
+    or no row at all (an unregistered version), stops the walk
+    immediately. `version` itself is always included, even when its own
+    row is missing or breaking, so a caller never has to special-case an
+    isolated version. The result is ascending.
+    """
+    chain = [version]
+    current = version
+    while True:
+        row = conn.execute(
+            "SELECT kind, predecessor FROM theory_versions"
+            " WHERE theory_id = ? AND version = ?",
+            (theory_id, current),
+        ).fetchone()
+        if row is None or row["kind"] != "carry" or row["predecessor"] is None:
+            break
+        current = row["predecessor"]
+        chain.append(current)
+    return sorted(chain)
+
+
 #: Top-level decision-output fields `prove_carry` compares (spec 2.4). The
 #: side lives on the parent `opportunities` row (`outcome`); everything
 #: else lives on the attempt itself. `decision_date` and `entry_price` are

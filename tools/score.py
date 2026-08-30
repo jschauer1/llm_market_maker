@@ -52,6 +52,7 @@ import statistics
 from tools.db import utcnow, write
 from tools.rank import realization as _realization
 from tools.sizing import fee_pts
+from tools import theories
 
 VALID_TIERS = ("A", "B", "C")
 
@@ -264,6 +265,7 @@ def observations(
     disposition: str = "all",
     *,
     run_id: str | None = None,
+    pool: str = "version",
 ) -> list[dict]:
     """Every settled observation for the segment, one dict per unit.
 
@@ -279,11 +281,22 @@ def observations(
     and calling `aggregate` on a part is exactly `compute_score` on that
     part — same identity, decision, and cluster semantics, because it is
     the same rows.
+
+    `pool="version"` (default) scopes to `theory_version` alone, exactly
+    as before this parameter existed. `pool="chain"` resolves
+    `theories.carry_chain` and widens the segment to every version a
+    proven `carry` bump links back to `theory_version` (spec 2.5).
     """
+    versions = (
+        theories.carry_chain(conn, theory_id, theory_version)
+        if pool == "chain" else None
+    )
     return _single_leg_observations(
-        conn, theory_id, theory_version, run_mode, disposition, run_id
+        conn, theory_id, theory_version, run_mode, disposition, run_id,
+        versions=versions,
     ) + _basket_observations(
-        conn, theory_id, theory_version, run_mode, disposition, run_id
+        conn, theory_id, theory_version, run_mode, disposition, run_id,
+        versions=versions,
     )
 
 
@@ -303,28 +316,61 @@ def compute_score(
     disposition: str = "all",
     *,
     run_id: str | None = None,
+    pool: str = "version",
 ) -> dict:
     """Score every settled opportunity matching the given segment.
 
     Pass `run_id` to score a single run. Without it every run of the same
     theory version pools together, so re-running a backtest over the same
     markets multiplies `n` without adding a single real bet.
+
+    `pool="version"` (default) is today's behaviour, unchanged — no
+    existing caller's meaning moves. `pool="chain"` widens the segment to
+    the maximal run of consecutive versions a proven `carry` bump links
+    back to `theory_version` (spec 2.5); the returned dict then gains
+    `chain_versions` so a pooled number can never be read without seeing
+    what was pooled into it. A chain of one version (nothing proven
+    carry) adds no key, since nothing was pooled.
     """
-    return _aggregate(
+    if pool not in ("version", "chain"):
+        raise ValueError(f"invalid pool {pool!r}; expected 'version' or 'chain'")
+    result = _aggregate(
         observations(
             conn, theory_id, theory_version, run_mode, disposition,
-            run_id=run_id,
+            run_id=run_id, pool=pool,
         )
     )
+    if pool == "chain":
+        chain = theories.carry_chain(conn, theory_id, theory_version)
+        if len(chain) > 1:
+            result["chain_versions"] = chain
+    return result
 
 
 def _segment_filter(
     theory_id: str, theory_version: int, run_mode: str,
     disposition: str, run_id: str | None,
+    *, versions: list[int] | None = None,
 ) -> tuple[str, list[object]]:
-    """The WHERE clause every observation query shares."""
-    sql = " WHERE o.theory_id = ? AND o.theory_version = ? AND o.run_mode = ?"
-    params: list[object] = [theory_id, theory_version, run_mode]
+    """The WHERE clause every observation query shares.
+
+    `versions`, when given (a proven carry-chain, spec 2.5), widens the
+    version predicate from an exact match to `IN (...)` over the whole
+    chain. `theory_version` alone -- the path every caller already used
+    -- builds the identical SQL text and params it always has, so
+    `pool="version"` stays byte-identical to before this parameter
+    existed.
+    """
+    if versions:
+        placeholders = ",".join("?" * len(versions))
+        sql = (
+            " WHERE o.theory_id = ? AND o.theory_version IN"
+            f" ({placeholders}) AND o.run_mode = ?"
+        )
+        params: list[object] = [theory_id, *versions, run_mode]
+    else:
+        sql = " WHERE o.theory_id = ? AND o.theory_version = ? AND o.run_mode = ?"
+        params = [theory_id, theory_version, run_mode]
     if disposition != "all":
         # Filtering is done by the decision join in the observation
         # builders, which yields one row per DECISION rather than one per
@@ -349,6 +395,7 @@ def _segment_filter(
 def _single_leg_observations(
     conn: sqlite3.Connection, theory_id: str, theory_version: int,
     run_mode: str, disposition: str, run_id: str | None,
+    *, versions: list[int] | None = None,
 ) -> list[dict]:
     """One observation per settled single-leg position.
 
@@ -360,7 +407,8 @@ def _single_leg_observations(
     instead of forking the aggregation into two nearly-identical copies.
     """
     where, params = _segment_filter(
-        theory_id, theory_version, run_mode, disposition, run_id
+        theory_id, theory_version, run_mode, disposition, run_id,
+        versions=versions,
     )
     # Pooled (run_id is None), n_attempts is the position's LIFETIME
     # attempt count across every run that ever proposed it -- the intended
@@ -522,6 +570,7 @@ def _single_leg_observations(
 def _basket_observations(
     conn: sqlite3.Connection, theory_id: str, theory_version: int,
     run_mode: str, disposition: str, run_id: str | None,
+    *, versions: list[int] | None = None,
 ) -> list[dict]:
     """One observation per fully-settled basket.
 
@@ -534,7 +583,8 @@ def _basket_observations(
     single position is: its payoff is not yet known.
     """
     where, params = _segment_filter(
-        theory_id, theory_version, run_mode, disposition, run_id
+        theory_id, theory_version, run_mode, disposition, run_id,
+        versions=versions,
     )
     # Same run/pooled split as _single_leg_observations, and the same
     # reason: pooled n_attempts must stay the position's lifetime count

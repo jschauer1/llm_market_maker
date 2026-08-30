@@ -12,7 +12,7 @@ import json
 
 import pytest
 
-from tools import db, ledger, slices, theories
+from tools import db, ledger, score, slices, theories
 
 TS = "2026-08-23T12:00:00Z"
 
@@ -183,3 +183,127 @@ def test_other_theory_version_is_excluded_from_the_fixture(conn):
 
     res = theories.prove_carry(conn, "t1", 1, _echo_decide)
     assert res.n_attempts == 1
+
+
+# --- theories.carry_chain (spec 2.5) ---
+
+
+def test_carry_chain_v1_alone(conn):
+    # v1's own row (from register()) is 'breaking' with no predecessor --
+    # the walk stops on its first row and never leaves the requested
+    # version.
+    assert theories.carry_chain(conn, "t1", 1) == [1]
+
+
+def test_carry_chain_missing_version_terminates(conn):
+    # No row at all for a version that was never bumped to -- the walk
+    # still returns the requested version itself, never raises.
+    assert theories.carry_chain(conn, "t1", 99) == [99]
+
+
+def test_carry_chain_carry_links_v2_to_v1(conn):
+    _record(conn, kalshi_ticker="KXTEST-K", outcome="yes")
+    res = theories.prove_carry(conn, "t1", 1, _echo_decide)
+    assert res.passed
+
+    theories.bump_version(
+        conn, "t1", kind="carry", justification="no-op refactor",
+        equivalence=res,
+    )
+
+    assert theories.carry_chain(conn, "t1", 2) == [1, 2]
+    # A chain requested from the predecessor itself never reaches forward.
+    assert theories.carry_chain(conn, "t1", 1) == [1]
+
+
+def test_carry_chain_breaking_isolates(conn):
+    theories.bump_version(conn, "t1", now=TS, justification="real change")
+
+    assert theories.carry_chain(conn, "t1", 2) == [2]
+
+
+def test_carry_chain_mixed_two_carries_reach_all_the_way_back(conn):
+    # v1 -> v2 is carry, v2 -> v3 is carry: the chain requested from v3
+    # is [1, 2, 3], NOT [2, 3] -- v2's own row (kind='carry') is what
+    # pulls v1 in while the walk passes through v2, exactly as it does
+    # when v2 is the requested version on its own (the case above).
+    _record(conn, kalshi_ticker="KXTEST-L", outcome="yes")
+    res_1_to_2 = theories.prove_carry(conn, "t1", 1, _echo_decide)
+    assert res_1_to_2.passed
+    theories.bump_version(
+        conn, "t1", kind="carry", justification="v1->v2 no-op",
+        equivalence=res_1_to_2,
+    )
+
+    _record(conn, kalshi_ticker="KXTEST-M", outcome="yes", theory_version=2)
+    res_2_to_3 = theories.prove_carry(conn, "t1", 2, _echo_decide)
+    assert res_2_to_3.passed
+    theories.bump_version(
+        conn, "t1", kind="carry", justification="v2->v3 no-op",
+        equivalence=res_2_to_3,
+    )
+
+    assert theories.carry_chain(conn, "t1", 3) == [1, 2, 3]
+    # A chain requested mid-run only sees what precedes it.
+    assert theories.carry_chain(conn, "t1", 2) == [1, 2]
+
+
+def test_carry_chain_breaking_in_the_middle_stops_the_walk(conn):
+    # v1 -> v2 carry, v2 -> v3 breaking: the chain from v3 stops at v3
+    # itself, because v3's own row is what the walk consults first and it
+    # says 'breaking' -- v1 and v2's earlier carry link never matters.
+    _record(conn, kalshi_ticker="KXTEST-N", outcome="yes")
+    res_1_to_2 = theories.prove_carry(conn, "t1", 1, _echo_decide)
+    assert res_1_to_2.passed
+    theories.bump_version(
+        conn, "t1", kind="carry", justification="v1->v2 no-op",
+        equivalence=res_1_to_2,
+    )
+    theories.bump_version(conn, "t1", now=TS, justification="real change")
+
+    assert theories.carry_chain(conn, "t1", 3) == [3]
+    assert theories.carry_chain(conn, "t1", 2) == [1, 2]
+
+
+# --- score.compute_score(pool=...) evidence pooling (spec 2.5) ---
+
+
+def test_compute_score_pools_across_a_proven_carry_chain(conn):
+    _record(conn, kalshi_ticker="KXTEST-O", outcome="yes")
+    score.record_settlement(conn, "KXTEST-O", "yes", resolved_at=TS)
+
+    res = theories.prove_carry(conn, "t1", 1, _echo_decide)
+    assert res.passed
+    theories.bump_version(
+        conn, "t1", kind="carry", justification="no-op refactor",
+        equivalence=res,
+    )
+
+    _record(conn, kalshi_ticker="KXTEST-P", outcome="yes", theory_version=2)
+    score.record_settlement(conn, "KXTEST-P", "yes", resolved_at=TS)
+
+    by_version = score.compute_score(conn, "t1", 2, pool="version")
+    assert by_version["n"] == 1
+    assert "chain_versions" not in by_version
+
+    by_chain = score.compute_score(conn, "t1", 2, pool="chain")
+    assert by_chain["n"] == 2
+    assert by_chain["chain_versions"] == [1, 2]
+
+
+def test_compute_score_chain_of_one_adds_no_key(conn):
+    # v2 is 'breaking' -- carry_chain(..., 2) == [2], nothing pooled -- so
+    # pool="chain" must report identically to pool="version" and must not
+    # claim a pooling that never happened.
+    theories.bump_version(conn, "t1", now=TS, justification="real change")
+    _record(conn, kalshi_ticker="KXTEST-Q", outcome="yes", theory_version=2)
+    score.record_settlement(conn, "KXTEST-Q", "yes", resolved_at=TS)
+
+    by_chain = score.compute_score(conn, "t1", 2, pool="chain")
+    assert by_chain["n"] == 1
+    assert "chain_versions" not in by_chain
+
+
+def test_compute_score_invalid_pool_rejected(conn):
+    with pytest.raises(ValueError):
+        score.compute_score(conn, "t1", 1, pool="bogus")

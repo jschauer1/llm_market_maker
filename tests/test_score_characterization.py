@@ -73,3 +73,20 @@ def test_unsettled_rows_are_excluded(conn):
     _bet(conn, "B", 0.50, 6.0)
     score.record_settlement(conn, "A", "yes", resolved_at=TS)
     assert score.compute_score(conn, "t1", 1)["n"] == 1
+
+
+def test_pool_version_is_byte_identical_to_before(conn):
+    # pool="chain" is new (spec 2.5); pool="version" -- the unchanged
+    # default -- must still be exactly what compute_score always
+    # returned, on the same fixture used above.
+    _bet(conn, "A", 0.50, 6.0)
+    _bet(conn, "B", 0.50, 6.0)
+    _bet(conn, "C", 0.80, 4.0)
+    _bet(conn, "D", 0.20, 8.0)
+    for ticker, result in (("A", "yes"), ("B", "yes"),
+                           ("C", "yes"), ("D", "no")):
+        score.record_settlement(conn, ticker, result, resolved_at=TS)
+
+    assert score.compute_score(conn, "t1", 1) == \
+        score.compute_score(conn, "t1", 1, pool="version")
+    assert "chain_versions" not in score.compute_score(conn, "t1", 1)
