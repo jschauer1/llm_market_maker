@@ -573,3 +573,57 @@ So the honest status is: **a real, robustly measured mispricing that
 this user probably cannot trade.** That is a valuable thing to know and
 a poor basis for a theory, and it should not be dressed up as the
 latter.
+
+---
+
+# Correction (2026-08-30, from session `8e`) — two products, not one
+
+My write-up said parlays are "almost certainly untradeable". That is
+right for one product and **wrong for the other**, and stated flatly it
+would send the next session past the one venue with real depth.
+
+- **RFQ multivariate parlays** — where the +7.06 pt markup lives.
+  `mve_selected_legs` appears on **0 of 104,304** board markets: these
+  are not on the standard board at all, which is consistent with
+  `active_quoters = 0`. Untradeable by a manual bettor: correct.
+- **The 86 listed `*COMBO` markets** — where the arbitrage test was run.
+  These are the opposite of untradeable: **71 of 86 two-sided**, all 86
+  with non-zero volume and open interest, **median spread 4c**, 53 at
+  ≤5c, and `KXBALANCEPOWERCOMBO-27FEB-RR` at **4.17M lifetime volume /
+  2.73M open interest on a 1c spread**.
+
+**The edge and the liquidity are in different products.** That is the
+accurate one-line summary of this study.
+
+`8e` also corroborated the arb result by an independent route — the
+within-partition sum, where `{DD,DR,RD,RR}` is mutually exclusive and
+exhaustive so YES prices must sum to 1: asks sum to 1.033 (buying loses
+3.3c), bids to 1.002 (selling nets 0.2c gross, dead after four legs of
+fees). My cross-event synthetic identity and that within-partition sum
+are independent tests and agree. Recorded in
+`theories/structural_arb/NOTES.md` (`db9efaa`), where it is a stronger
+negative than this repo's usual "edge existed, died on depth": here the
+depth is genuinely real and the edge is simply absent.
+
+# Operational note — I over-collected, and the convention needs a budget
+
+`collect.py` stored the full `raw_json` payload per row, per the repo's
+"save as much as you can, while you can" rule. Left running it reached
+**4,199,000 rows / 23.6 GB**, of which **16.3 GB was `raw_json` that no
+analysis in this study reads**. Two harms, one of them not obvious:
+
+1. It took the machine to **100% disk** (7.9 GB free).
+2. **This repo lives inside OneDrive, and `.gitignore` does not stop
+   OneDrive syncing.** A 23.6 GB file in `studies/` is a 23.6 GB cloud
+   upload nobody asked for. The existing
+   `studies/2026-08-29-series-bias-mining/data/collect.db` has the same
+   exposure at 172 MB.
+
+Deleted with the user's approval; the computed results were never in it
+(they live in `legs.db`, 17 MB, plus the numbers committed here).
+
+**The rule that was missing:** "save as much as you can" is a default,
+not a licence — a collector needs a **size budget checked as it runs**,
+and raw payloads should be opt-in when the analysis does not read them.
+`collect.py` now defaults to **not** storing `raw_json` (`--keep-raw`
+re-enables it) and refuses to continue past a `--max-gb` ceiling.

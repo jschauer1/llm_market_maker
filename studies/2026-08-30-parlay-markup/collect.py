@@ -121,7 +121,17 @@ def _f(value):
         return None
 
 
-def store_page(conn, series, markets, now):
+def db_size_gb():
+    total = 0
+    for suffix in ("", "-journal", "-wal"):
+        try:
+            total += os.path.getsize(DB_PATH + suffix)
+        except OSError:
+            pass
+    return total / 1e9
+
+
+def store_page(conn, series, markets, now, keep_raw=False):
     pop = population_of(series)
     rows = []
     for m in markets:
@@ -131,7 +141,14 @@ def store_page(conn, series, markets, now):
             m.get("event_ticker"), m.get("status"), m.get("result"),
             m.get("created_time"), m.get("close_time"),
             _f(m.get("last_price_dollars")), _f(m.get("open_interest_fp")),
-            len(legs), json.dumps(legs), json.dumps(m), now,
+            len(legs), json.dumps(legs),
+            # raw_json is OPT-IN. Storing it by default took this collector to
+            # 4,199,000 rows / 23.6 GB, of which 16.3 GB was payload no analysis
+            # in this study reads -- and, because the repo lives inside OneDrive
+            # (which does not honour .gitignore), that was also a 23.6 GB cloud
+            # upload nobody asked for. "Save as much as you can, while you can"
+            # is a default, not a licence to ignore a size budget.
+            json.dumps(m) if keep_raw else "", now,
         ))
     conn.executemany(
         "INSERT OR REPLACE INTO parlay_markets "
@@ -142,7 +159,8 @@ def store_page(conn, series, markets, now):
     return len(rows)
 
 
-def collect_series(conn, series, status_filter="settled", max_pages=10_000):
+def collect_series(conn, series, status_filter="settled", max_pages=10_000,
+                   keep_raw=False, max_gb=2.0):
     row = conn.execute(
         "SELECT cursor, pages, rows, done FROM collect_progress "
         "WHERE series_ticker=? AND status_filter=?", (series, status_filter)
@@ -174,7 +192,7 @@ def collect_series(conn, series, status_filter="settled", max_pages=10_000):
         if not markets:
             break
         now = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-        n = store_page(conn, series, markets, now)
+        n = store_page(conn, series, markets, now, keep_raw=keep_raw)
         pages += 1
         total += n
         added += n
@@ -188,6 +206,12 @@ def collect_series(conn, series, status_filter="settled", max_pages=10_000):
             "updated_at=excluded.updated_at",
             (series, status_filter, cursor, pages, total, now))
         conn.commit()                                  # per page, never at the end
+        size = db_size_gb()
+        if size > max_gb:
+            print(f"  {series} [{status_filter}]: STOPPING -- database is "
+                  f"{size:.2f} GB, over the {max_gb} GB budget. Progress is "
+                  f"checkpointed; raise --max-gb to continue deliberately.")
+            return added
         if pages % 5 == 0:
             print(f"  {series} [{status_filter}]: {pages} pages, {total} rows")
         if not cursor:
@@ -223,6 +247,11 @@ def main():
     ap.add_argument("--status", action="store_true", help="print progress and exit")
     ap.add_argument("--statuses", default="settled,closed",
                     help="comma-separated market statuses to sweep")
+    ap.add_argument("--keep-raw", action="store_true",
+                    help="also store the full raw payload per row (large: this "
+                         "is what took an earlier run to 23.6 GB)")
+    ap.add_argument("--max-gb", type=float, default=2.0,
+                    help="stop when the database exceeds this size (GB)")
     args = ap.parse_args()
 
     conn = connect()
@@ -236,7 +265,8 @@ def main():
     for status_filter in [s.strip() for s in args.statuses.split(",") if s.strip()]:
         print(f"\n=== status={status_filter} ===")
         for s in series:
-            grand += collect_series(conn, s, status_filter)
+            grand += collect_series(conn, s, status_filter,
+                                    keep_raw=args.keep_raw, max_gb=args.max_gb)
     print(f"\nadded {grand} rows in {time.time()-started:.0f}s -> {DB_PATH}")
     show_status(conn)
 
