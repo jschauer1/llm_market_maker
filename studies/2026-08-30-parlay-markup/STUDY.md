@@ -627,3 +627,31 @@ not a licence — a collector needs a **size budget checked as it runs**,
 and raw payloads should be opt-in when the analysis does not read them.
 `collect.py` now defaults to **not** storing `raw_json` (`--keep-raw`
 re-enables it) and refuses to continue past a `--max-gb` ceiling.
+
+---
+
+# FINAL — phase 2 pooled over 6 creation slates
+
+```
+4,808 parlays priced across 6 creation days
+
+  markup vs product-of-MIDS
+    day-clustered    : +6.60 pts   t=+14.20   k=6   MDE=1.30
+    legset-clustered : +6.63 pts   t=+29.32   k=4808 MDE=0.63
+
+  markup vs product-of-ASKS (every leg at the side actually payable)
+    day-clustered    : +6.16 pts   t=+12.82   k=6   MDE=1.35
+
+  per-day: 08-06 +6.87 | 08-07 +6.01 | 08-09 +7.51
+           08-11 +7.85 | 08-12 +6.69 | 08-13 +4.69
+```
+
+Six creation days, 5 df, two-sided 95% critical value 2.57 — `t` of
+14.20 clears it comfortably. MDE 1.30 pts sits well inside the
+pre-registered 3-point floor. **All six days positive**, range
+4.69–7.85.
+
+**Status: the primary prediction is CONFIRMED. The secondary prediction
+(magnitude grows with leg count) FAILED as written and is recorded as
+failed. The edge is in a product with no fade-side liquidity; the
+product with real liquidity (`*COMBO`) is flat.**
