@@ -435,6 +435,7 @@ def segment_report(
     disposition: str = "all",
     run_modes: tuple[str, ...] = DEFAULT_RUN_MODES,
     run_id: str | None = None,
+    pool: str = "version",
 ) -> dict:
     """Every ranking segment of one theory, from one shared evidence pool.
 
@@ -445,7 +446,22 @@ def segment_report(
     aggregate then, exactly as before slices existed). Tier-C rows are
     excluded from the entire pool — contaminated evidence feeds no
     segment — and counted in `tier_c_excluded_rows`.
+
+    `pool="version"` (default) is today's behaviour, unchanged — no
+    existing caller's meaning moves. `pool="chain"` widens the evidence
+    pool the same way `score.compute_score(pool="chain")` does (spec
+    2.5): every observation query runs over the maximal run of
+    consecutive versions a proven `carry` bump links back to
+    `theory_version` (`theories.carry_chain`), so a slice's segments —
+    aggregate, each slice's oos/in_sample, and the complement — pool a
+    predecessor's rows in too. The returned dict then gains
+    `chain_versions` so a pooled report can never be read without seeing
+    what was pooled into it; a chain of one version (nothing proven
+    carry) adds no key, since nothing was pooled.
     """
+    if pool not in ("version", "chain"):
+        raise ValueError(f"invalid pool {pool!r}; expected 'version' or 'chain'")
+
     if theory_version is None:
         trow = theories.get(conn, theory_id)
         if trow is None:
@@ -456,12 +472,12 @@ def segment_report(
         r["run_id"]: r["tier"]
         for r in conn.execute("SELECT run_id, tier FROM backtest_runs")
     }
-    pool: list[dict] = []
+    raw_obs: list[dict] = []
     for mode in run_modes:
-        pool.extend(
+        raw_obs.extend(
             score.observations(
                 conn, theory_id, theory_version, mode, disposition,
-                run_id=run_id,
+                run_id=run_id, pool=pool,
             )
         )
 
@@ -472,7 +488,7 @@ def segment_report(
         runs = o.get("run_ids") or ([o["run_id"]] if o.get("run_id") else [])
         return any(tiers.get(r) == "C" for r in runs)
 
-    obs = [o for o in pool if not _touched_by_tier_c(o)]
+    obs = [o for o in raw_obs if not _touched_by_tier_c(o)]
 
     evaluated: list[dict] = []
     ready_matchers: list[Callable[[Mapping], bool]] = []
@@ -488,16 +504,21 @@ def segment_report(
             [o for o in obs if not any(m(o) for m in ready_matchers)]
         )
 
-    return {
+    report = {
         "theory_id": theory_id,
         "theory_version": theory_version,
         "disposition": disposition,
         "run_modes": list(run_modes),
-        "tier_c_excluded_rows": len(pool) - len(obs),
+        "tier_c_excluded_rows": len(raw_obs) - len(obs),
         "aggregate": _with_days(obs),
         "slices": evaluated,
         "complement": complement,
     }
+    if pool == "chain":
+        chain = theories.carry_chain(conn, theory_id, theory_version)
+        if len(chain) > 1:
+            report["chain_versions"] = chain
+    return report
 
 
 def ranking_segment(

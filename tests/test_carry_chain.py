@@ -327,3 +327,80 @@ def test_compute_score_chain_of_one_adds_no_key(conn):
 def test_compute_score_invalid_pool_rejected(conn):
     with pytest.raises(ValueError):
         score.compute_score(conn, "t1", 1, pool="bogus")
+
+
+# --- slices.segment_report(pool=...) evidence pooling (spec 2.8) ---
+
+
+def test_segment_report_pools_slice_evidence_across_a_proven_carry_chain(conn):
+    slices.register_slice(
+        conn, "t1", "strong-yes",
+        predicate={"outcome": ["yes"], "confidence": ["strong"]},
+        hypothesis="strong-confidence yes calls carry an edge",
+        origin="test",
+        registered_at=TS,
+    )
+
+    _record(conn, kalshi_ticker="KXTEST-R1", outcome="yes")
+    score.record_settlement(conn, "KXTEST-R1", "yes", resolved_at=TS)
+
+    res = theories.prove_carry(conn, "t1", 1, _echo_decide)
+    assert res.passed
+    theories.bump_version(
+        conn, "t1", kind="carry", justification="no-op refactor",
+        equivalence=res,
+    )
+
+    _record(conn, kalshi_ticker="KXTEST-R2", outcome="yes", theory_version=2)
+    score.record_settlement(conn, "KXTEST-R2", "yes", resolved_at=TS)
+
+    by_version = slices.segment_report(conn, "t1", 2, pool="version")
+    assert by_version["aggregate"]["n"] == 1, "v1's row must not pool in"
+    slice_by_version = by_version["slices"][0]
+    assert (
+        slice_by_version["oos"]["n"] + slice_by_version["in_sample"]["n"]
+    ) == 1
+    assert "chain_versions" not in by_version
+
+    by_chain = slices.segment_report(conn, "t1", 2, pool="chain")
+    assert by_chain["aggregate"]["n"] == 2, "proven carry pools v1's row in"
+    slice_by_chain = by_chain["slices"][0]
+    assert (
+        slice_by_chain["oos"]["n"] + slice_by_chain["in_sample"]["n"]
+    ) == 2
+    assert by_chain["chain_versions"] == [1, 2]
+
+
+def test_segment_report_chain_of_one_adds_no_key(conn):
+    # v2 is 'breaking' -- carry_chain(..., 2) == [2], nothing pooled -- so
+    # pool="chain" must report identically to pool="version" and must not
+    # claim a pooling that never happened.
+    theories.bump_version(conn, "t1", now=TS, justification="real change")
+    _record(conn, kalshi_ticker="KXTEST-T", outcome="yes", theory_version=2)
+    score.record_settlement(conn, "KXTEST-T", "yes", resolved_at=TS)
+
+    by_chain = slices.segment_report(conn, "t1", 2, pool="chain")
+    assert by_chain["aggregate"]["n"] == 1
+    assert "chain_versions" not in by_chain
+
+
+def test_segment_report_invalid_pool_rejected(conn):
+    with pytest.raises(ValueError):
+        slices.segment_report(conn, "t1", 1, pool="bogus")
+
+
+def test_segment_report_pool_version_is_byte_identical_to_default(conn):
+    # pool="chain" is new (spec 2.8); the implicit default must still be
+    # exactly what segment_report always returned, byte for byte.
+    slices.register_slice(
+        conn, "t1", "strong-yes",
+        predicate={"outcome": ["yes"], "confidence": ["strong"]},
+        hypothesis="strong-confidence yes calls carry an edge",
+        origin="test",
+        registered_at=TS,
+    )
+    _record(conn, kalshi_ticker="KXTEST-U", outcome="yes")
+    score.record_settlement(conn, "KXTEST-U", "yes", resolved_at=TS)
+
+    assert slices.segment_report(conn, "t1", 1) == \
+        slices.segment_report(conn, "t1", 1, pool="version")
