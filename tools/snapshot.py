@@ -17,7 +17,7 @@ from __future__ import annotations
 import hashlib
 import json
 import sqlite3
-import zlib  # used from Task 4; harmless to import now
+import zlib
 
 from tools.db import utcnow, write
 from tools.kalshi import markets as kalshi_markets
@@ -53,9 +53,28 @@ _INSERT = """
 
 
 def payload_text(value):
-    """A payload column's JSON text. Identity for TEXT rows; Task 4
-    extends this to decode zlib BLOB rows."""
-    return value
+    """A payload column's JSON text, whatever its stored codec.
+
+    The cell's TYPE is the codec (spec 5.2 phase 3 allows a codec column
+    or a sniff; the sqlite value type is the sniff with no magic bytes):
+    TEXT rows are pre-compression plain JSON and pass through; BLOB rows
+    are zlib. None stays None. ALL reads of raw_json/event_json go
+    through here -- a direct json.loads() on the column breaks on any row
+    written after 2026-08-30.
+    """
+    if value is None or isinstance(value, str):
+        return value
+    return zlib.decompress(bytes(value)).decode("utf-8")
+
+
+def _encode(text: str | None):
+    """The write-side codec: plain JSON text -> a zlib BLOB, None -> None.
+
+    Every new write goes through this; `payload_text` above is its
+    inverse and is what every reader must go through instead of trusting
+    the column's stored type.
+    """
+    return None if text is None else zlib.compress(text.encode("utf-8"))
 
 
 def _payload_key(raw_text: str | None, event_text: str | None) -> bytes:
@@ -170,22 +189,36 @@ def _save(conn, platform: str, rows: list[tuple], stamp: str) -> int:
         latest = _latest_rows(conn, platform)
         inserts, bumps, retractions = [], [], []
         for r in rows:
+            # Incoming row layout (`save_kalshi`/`save_polymarket`): r[0:11]
+            # = platform..status (11 plain columns), r[11] = raw_json text,
+            # r[12] = event_json text -- always plain text at this point,
+            # never yet encoded. `_INSERT`'s columns are those 11, then
+            # raw_json, event_json, last_seen_at (14 total), so an insert
+            # tuple is r[:11] + (encoded raw, encoded event, stamp).
+            # Identity is decided on the DECODED text (cross-codec: a
+            # legacy TEXT row and a fresh compressed re-save of the same
+            # payload must hash equal), and only the surviving inserts pay
+            # to encode -- a bump never touches the payload columns at all.
             market_id, raw_text, event_text = r[1], r[11], r[12]
             new_key = _payload_key(raw_text, event_text)
             seen = latest.get(market_id)
             if seen is None:
-                inserts.append(r + (stamp,))
+                inserts.append(
+                    r[:11] + (_encode(raw_text), _encode(event_text), stamp))
                 continue
             row_id, cap, reach, key = seen
             if new_key == key and stamp >= cap:
                 bumps.append((stamp, row_id))
             elif new_key == key:                       # stamp < cap
-                inserts.append(r + (stamp,))
+                inserts.append(
+                    r[:11] + (_encode(raw_text), _encode(event_text), stamp))
             elif stamp == reach and reach > cap:
                 retractions.append((cap, row_id))
-                inserts.append(r + (stamp,))
+                inserts.append(
+                    r[:11] + (_encode(raw_text), _encode(event_text), stamp))
             else:                    # stamp == cap, or out-of-order+changed
-                inserts.append(r + (stamp,))
+                inserts.append(
+                    r[:11] + (_encode(raw_text), _encode(event_text), stamp))
         if retractions:
             conn.executemany(
                 "UPDATE market_snapshots SET last_seen_at = ? WHERE id = ?",
@@ -339,6 +372,23 @@ def dedup_history(conn: sqlite3.Connection, batch_markets: int = 2000) -> dict:
     fixed width) sorts chronologically, so plain `max()` on the text is
     exact.
 
+    Absorption never widens pre-existing interval ambiguity (carried
+    finding, Task 3 review). Out-of-order test-style writes (accepted by
+    controller ruling 2026-08-30 -- see `_save`'s own docstring) can leave
+    one row's last_seen_at already reaching past a *later*, different-key
+    row's captured_at: a point-in-time query at an instant in that overlap
+    already matches two rows before this function ever runs. The MAX()
+    above only ever carries forward a reach some row in the collapsed run
+    already carried -- it is never assembled from parts that individually
+    fell short of the contested instant -- so collapsing that run leaves
+    the same instant matching the same count of rows afterward, just via
+    the keeper instead of the row that gets deleted. This matters because
+    a widened ambiguity would be silent: nothing rejects an extra match,
+    it would simply make a point-in-time read (`test_point_in_time_
+    resolves_via_the_interval`'s whole guarantee) nondeterministic between
+    two payloads instead of one. See `test_dedup_history_absorption_
+    never_widens_interval_ambiguity` for the constructed regression.
+
     Incremental and idempotent (data conventions): commits per batch of
     markets, so an interrupted run resumes by simply re-running --
     already collapsed markets yield nothing on the second pass.
@@ -386,6 +436,50 @@ def dedup_history(conn: sqlite3.Connection, batch_markets: int = 2000) -> dict:
                         [(d,) for d in doomed])
                 stats["deleted"] += len(doomed)
                 stats["kept"] += len(rows) - len(doomed)
+    return stats
+
+
+def compress_history(conn: sqlite3.Connection, batch_rows: int = 20000) -> dict:
+    """Convert plain-text payload rows to zlib BLOBs, in batches.
+
+    Incremental and idempotent (data conventions): each batch selects only
+    rows still TEXT-typed via sqlite's own `typeof()`, so an interrupted
+    run resumes where it stopped rather than re-scanning or re-compressing
+    what an earlier batch already converted. `bytes_before`/`bytes_after`
+    are measured only over the rows this call actually touched, which is
+    what makes the JSON-only compression ratio it reports meaningful
+    (measured ~8x on this project's payloads) rather than diluted by rows
+    that were already BLOB.
+    """
+    stats = {"compressed": 0, "already": 0,
+             "bytes_before": 0, "bytes_after": 0}
+    while True:
+        rows = conn.execute(
+            "SELECT id, raw_json, event_json FROM market_snapshots"
+            " WHERE typeof(raw_json) = 'text'"
+            "    OR typeof(event_json) = 'text'"
+            " LIMIT ?", (batch_rows,)).fetchall()
+        if not rows:
+            break
+        updates = []
+        for row in rows:
+            raw, event = row["raw_json"], row["event_json"]
+            before = (len(raw) if isinstance(raw, str) else 0) + \
+                     (len(event) if isinstance(event, str) else 0)
+            raw_out = _encode(raw) if isinstance(raw, str) else raw
+            event_out = _encode(event) if isinstance(event, str) else event
+            after = (len(raw_out) if isinstance(raw_out, bytes) else 0) + \
+                    (len(event_out) if isinstance(event_out, bytes) else 0)
+            stats["bytes_before"] += before
+            stats["bytes_after"] += after
+            updates.append((raw_out, event_out, row["id"]))
+        with write(conn):
+            conn.executemany(
+                "UPDATE market_snapshots SET raw_json = ?, event_json = ?"
+                " WHERE id = ?", updates)
+        stats["compressed"] += len(updates)
+    stats["already"] = conn.execute(
+        "SELECT COUNT(*) FROM market_snapshots").fetchone()[0] - stats["compressed"]
     return stats
 
 

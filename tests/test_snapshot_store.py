@@ -1,4 +1,5 @@
 import json
+import zlib
 
 import pytest
 
@@ -95,7 +96,8 @@ def test_point_in_time_resolves_via_the_interval(conn):
         "   AND captured_at <= ? AND last_seen_at >= ?",
         (t, t),
     ).fetchone()
-    assert json.loads(row["raw_json"])["rules_primary"] == "v1"
+    assert json.loads(
+        snapshot.payload_text(row["raw_json"]))["rules_primary"] == "v1"
 
 
 def test_board_reports_the_pull_even_when_nothing_changed(conn):
@@ -275,7 +277,7 @@ def test_dedup_history_preserves_point_in_time_reads(conn):
     row = conn.execute(
         "SELECT raw_json FROM market_snapshots WHERE market_id='H-5'"
         " AND captured_at <= ? AND last_seen_at >= ?", (t, t)).fetchone()
-    assert json.loads(row["raw_json"])["r"] == "v1"
+    assert json.loads(snapshot.payload_text(row["raw_json"]))["r"] == "v1"
 
 
 def test_dedup_history_never_collapses_across_platforms(conn):
@@ -296,3 +298,94 @@ def test_dedup_history_never_collapses_across_platforms(conn):
     assert conn.execute(
         "SELECT COUNT(*) FROM market_snapshots WHERE market_id = 'H-6'"
     ).fetchone()[0] == 2
+
+
+def _insert_with_reach(conn, market_id, captured_at, raw, last_seen_at):
+    with db.write(conn):
+        conn.execute(
+            "INSERT INTO market_snapshots (platform, market_id, captured_at,"
+            " raw_json, last_seen_at) VALUES ('kalshi', ?, ?, ?, ?)",
+            (market_id, captured_at, raw, last_seen_at))
+
+
+def test_dedup_history_absorption_never_widens_interval_ambiguity(conn):
+    # Carried finding, Task 3 review: dedup_history's docstring now states
+    # the property this pins -- absorbing a doomed row's reach into its
+    # keeper must never make a point-in-time query MORE ambiguous than it
+    # already was. Out-of-order test-style writes (accepted by controller
+    # ruling 2026-08-30, see _save's own docstring) can leave a row's
+    # last_seen_at already reaching past a LATER, different-key row's
+    # captured_at -- an ambiguity that predates dedup_history entirely.
+    t1 = "2026-08-20T10:00:00Z"
+    t2 = "2026-08-20T11:00:00Z"
+    t3 = "2026-08-20T12:00:00Z"     # the contested instant
+    t4 = "2026-08-20T13:00:00Z"
+    _insert_with_reach(conn, "H-7", t1, '{"a":1}', t1)
+    # Out-of-order write: this row's own last_seen_at (t4) already reaches
+    # past H-7's later, different-payload row's captured_at (t3) -- before
+    # dedup_history ever runs, a point-in-time query at t3 already matches
+    # two rows (this one and the one below).
+    _insert_with_reach(conn, "H-7", t2, '{"a":1}', t4)
+    _insert_with_reach(conn, "H-7", t3, '{"a":2}', t3)
+
+    def matches_at(t):
+        return conn.execute(
+            "SELECT COUNT(*) FROM market_snapshots WHERE market_id='H-7'"
+            " AND captured_at <= ? AND last_seen_at >= ?", (t, t),
+        ).fetchone()[0]
+
+    before = matches_at(t3)
+    snapshot.dedup_history(conn)      # collapses t1/t2 (same payload)
+    after = matches_at(t3)
+    assert before == after == 2
+
+
+def test_payload_text_decodes_blob_and_passes_text_and_none(conn):
+    assert snapshot.payload_text(None) is None
+    assert snapshot.payload_text('{"a":1}') == '{"a":1}'
+    blob = zlib.compress('{"a":1}'.encode("utf-8"))
+    assert snapshot.payload_text(blob) == '{"a":1}'
+    assert snapshot.payload_text(memoryview(blob)) == '{"a":1}'
+
+
+def test_new_saves_store_compressed_payloads(conn):
+    snapshot.save_kalshi(conn, [_mk("C-0")], now=NOW)
+    row = conn.execute(
+        "SELECT raw_json FROM market_snapshots").fetchone()
+    assert isinstance(row["raw_json"], bytes)          # BLOB = zlib codec
+    assert json.loads(snapshot.payload_text(row["raw_json"]))["ticker"] == "C-0"
+
+
+def test_dedup_compares_across_codecs(conn):
+    # A plain-text legacy row and a compressed re-save of the SAME payload
+    # must still count as unchanged: identity is the decoded text.
+    raw = '{"ticker": "X-1", "v": 1}'
+    _insert_legacy(conn, "X-1", "2026-08-24T11:00:00Z", raw)
+    key_old = snapshot._payload_key(raw, None)
+    key_new = snapshot._payload_key(
+        snapshot.payload_text(zlib.compress(raw.encode("utf-8"))), None)
+    assert key_old == key_new
+
+
+def test_compress_history_converts_text_rows_in_place(conn):
+    _insert_legacy(conn, "C-1", "2026-08-24T11:00:00Z", '{"a": 1}', '{"e": 2}')
+    stats = snapshot.compress_history(conn)
+    assert stats["compressed"] == 1
+    row = conn.execute("SELECT raw_json, event_json FROM market_snapshots"
+                       " WHERE market_id='C-1'").fetchone()
+    assert isinstance(row["raw_json"], bytes)
+    assert json.loads(snapshot.payload_text(row["raw_json"]))["a"] == 1
+    assert json.loads(snapshot.payload_text(row["event_json"]))["e"] == 2
+    assert snapshot.compress_history(conn)["compressed"] == 0   # idempotent
+
+
+def test_board_rebuild_reads_mixed_codecs(conn):
+    # One legacy text row and one compressed row in the same board.
+    m0, m1 = _mk("C-2"), _mk("C-3")
+    snapshot.save_kalshi(conn, [m0, m1], now=NOW)     # compressed writes
+    with db.write(conn):                               # revert one to text
+        conn.execute(
+            "UPDATE market_snapshots SET raw_json = ? WHERE market_id='C-2'",
+            (json.dumps(m0.raw),))
+    got = board.get_board(conn, now=NOW)
+    assert sorted(m.ticker for m in got) == ["C-2", "C-3"]

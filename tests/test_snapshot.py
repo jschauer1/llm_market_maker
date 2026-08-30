@@ -97,7 +97,8 @@ def test_save_kalshi_maps_closed_but_unsettled_to_closed(conn):
 def test_save_kalshi_preserves_the_raw_payload(conn):
     snapshot.save_kalshi(conn, [KALSHI_MARKET], now=TS)
     row = conn.execute("SELECT raw_json FROM market_snapshots").fetchone()
-    assert json.loads(row["raw_json"])["volume_fp"] == "1000.00"
+    assert json.loads(
+        snapshot.payload_text(row["raw_json"]))["volume_fp"] == "1000.00"
 
 
 def test_save_polymarket_writes_a_row(conn):

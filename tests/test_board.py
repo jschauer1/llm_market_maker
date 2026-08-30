@@ -165,8 +165,8 @@ def test_unrebuildable_snapshot_fails_loudly(conn):
 
 def test_snapshot_stores_the_complete_raw_payload(conn):
     snapshot.save_kalshi(conn, _board(1), now=NOW)
-    stored = json.loads(conn.execute(
-        "SELECT raw_json FROM market_snapshots").fetchone()["raw_json"])
+    stored = json.loads(snapshot.payload_text(conn.execute(
+        "SELECT raw_json FROM market_snapshots").fetchone()["raw_json"]))
     # Nothing is dropped -- including fields no current code reads. An
     # earlier projection cost us momentum and order-book depth precisely by
     # scoping storage to what the code read at the time.

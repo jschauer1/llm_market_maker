@@ -131,3 +131,5 @@ the risk profile all differ.
 - Title-regex subject matching is coarser than the rules-text classifier
   the spec asks for. It is deliberately *over*-inclusive (1,944 pairs from
   325 families), so it cannot be hiding violations by under-matching.
+
+Note (2026-08-30): re-running this probe against post-compression snapshot rows requires routing raw_json/event_json reads through tools.snapshot.payload_text (spec 5.2 phase 3).

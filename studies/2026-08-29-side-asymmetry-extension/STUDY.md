@@ -132,3 +132,5 @@ strikes closing 08-31, so its first evidence arrives in two days.
 Re-run `measure.py` each session with a new `(close day, snapshot)` pair; the
 series reaches the theory's `n_days >= 8` bar around 2026-09-01 if days keep
 accruing at one per session.
+
+Note (2026-08-30): re-running this probe against post-compression snapshot rows requires routing raw_json/event_json reads through tools.snapshot.payload_text (spec 5.2 phase 3).

@@ -359,6 +359,13 @@ def _cmd_db(args) -> int:
             _emit(snapshot_mod.dedup_history(conn))
         finally:
             conn.close()
+    if args.action == "compress-snapshots":
+        from tools import snapshot as snapshot_mod
+        conn = _connect(args)
+        try:
+            _emit(snapshot_mod.compress_history(conn))
+        finally:
+            conn.close()
     return 0
 
 
@@ -715,6 +722,11 @@ def build_parser() -> argparse.ArgumentParser:
         "dedup-snapshots",
         help="collapse consecutive byte-identical snapshot rows into"
              " validity intervals (spec 5.2 phase 2, one-time)",
+    )
+    dbsub.add_parser(
+        "compress-snapshots",
+        help="zlib-compress plain-text raw_json/event_json rows in place"
+             " (spec 5.2 phase 3, incremental and idempotent)",
     )
 
     p = sub.add_parser(

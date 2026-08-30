@@ -133,3 +133,5 @@ python studies/2026-08-29-structural-arb-violation-liquidity/probe.py
 ```
 
 No network. Reads `market_snapshots`; writes `data/violations.csv`.
+
+Note (2026-08-30): re-running this probe against post-compression snapshot rows requires routing raw_json/event_json reads through tools.snapshot.payload_text (spec 5.2 phase 3).
