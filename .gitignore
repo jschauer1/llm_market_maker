@@ -12,7 +12,11 @@ db/*.db-shm
 
 # User-only deliverables — not part of the research corpus, not read by models
 user_reports/
-studies/2026-08-29-series-bias-mining/data/collect.db
+# series-bias-mining: the collected corpus and its run artifacts.
+# Ignored as a DIRECTORY, not one filename -- the -journal, the WAL
+# and the per-run logs beside collect.db were all still untracked,
+# so `git add -A` would have staged them. Regenerable via collect.py.
+studies/2026-08-29-series-bias-mining/data/
 STATE.md
 
 # parlay-markup study: 150k+ raw payloads, regenerable via collect.py
