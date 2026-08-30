@@ -448,32 +448,70 @@ _CITED_PATH = re.compile(
 )
 
 
+#: Strips a leading list marker (`-` or `*`, and any run of `-`/`*`/
+#: whitespace after it -- covers a bold marker glued onto a dash, e.g.
+#: `- **2026-08-26**: ...`) so the remainder can be checked for a
+#: date immediately at its front.
+_LIST_MARKER = re.compile(r"^[\-*\s]+")
+
+
 def _file_contains_date_heading(path, date):
-    """True when `date` appears anywhere in `path`.
+    """True when `date` sits on an entry-anchor line of `path`: a line
+    whose stripped text starts with '#' or '**' and contains the date
+    anywhere (a `## <date> -- ...` heading, or a bold-lead paragraph --
+    both short enough that "contains" and "leads with" coincide in
+    practice), OR a line led by another list marker (`-`, `*`) where the
+    date leads the text immediately after that marker (and after a bold
+    marker glued to it, e.g. `- **2026-08-26**: ...`). A body line that
+    merely mentions the date in passing -- inside a run id
+    (`` `backtest-2026-08-26-insider-judged-s200` ``), a parenthetical
+    aside ("see 2026-08-26 log"), or anywhere past the first few visible
+    characters of a list item -- does NOT satisfy this, on purpose: that
+    is the distinction between an entry citing its own date and an entry
+    merely mentioning one, which the plain-containment version below
+    could not tell apart.
 
-    Loosened from the brief's original heading-line heuristic (a line
-    starting with '#', or a bolded '**' section lead) to plain
-    containment -- the sanctioned relief valve, taken because the strict
-    heuristic false-positives on a real citation format already in use
-    across this repo: THEORY.md 'Learnings' entries are Markdown list
-    items, `- 2026-08-26 -- **headline text...**`, which start with `-`,
-    not `#` or `**` (see theories/insider_bias/insider_judgment/THEORY.md
-    and theories/insider_bias/mention_family/THEORY.md, both of which use
-    this format for every dated entry). Under the strict heuristic, the
-    slice-origin test flags theory_slices row
-    insider_judgment/strong-moderate-no -- whose origin cites
-    'THEORY.md Learnings 2026-08-26', a citation that plainly still
-    resolves -- as broken. Any-line containment fixes that false alarm.
+    History: first loosened from the brief's original `#`/`**`-only
+    heuristic to plain whole-file containment, because that heuristic
+    missed a real, repo-wide citation format -- THEORY.md 'Learnings'
+    entries are Markdown list items, `- 2026-08-26 -- **headline
+    text...**`, which start with `-`, not `#` or `**` (see
+    theories/insider_bias/insider_judgment/THEORY.md and
+    theories/insider_bias/mention_family/THEORY.md). Plain containment
+    fixed that false alarm but broke the test's actual job: reviewed and
+    rejected (2026-08-29) because it cannot tell an entry's own dated
+    anchor from an unrelated mention of the same date elsewhere in the
+    file. Reproduced concretely: insider_judgment/THEORY.md carries two
+    2026-08-26 Learnings bullets (~585, ~594) plus an incidental
+    2026-08-26 inside a run id in prose (~623); under plain containment,
+    silently deleting the entire cited bullet at ~594-613 left the date
+    still present via the other two mentions, and the slice-origin test
+    stayed green -- exactly the silent-move failure this test exists to
+    catch, undetected. This function restores anchor-line granularity
+    (list markers included, not just `#`/`**`) so that case fails again,
+    while still recognizing the Learnings bullet format that motivated
+    the original loosening.
 
-    This does not remove the test's teeth: a real silent move relocates
-    the entire dated entry (heading text and body together) out of the
-    file, so the date stops appearing in it at all, and containment still
-    catches that. What it gives up is precision about *where* in the file
-    the date appears -- acceptable because prose citations already name
-    the file loosely (see test_every_dated_cross_citation_still_resolves'
-    own docstring on bare NOTES.md/THEORY.md resolution), so this test
-    was never a byte-exact anchor check to begin with."""
-    return date in path.read_text(encoding="utf-8")
+    Accepted residual (spec 6.6's own bar: the cited file must "still
+    contain that date heading" -- a stub suffices, entry-content matching
+    is out of scope): when a file carries more than one anchor entry for
+    the same date, deleting one of them without a stub still passes, as
+    long as another anchor for that date survives elsewhere in the file
+    -- the check operates at date-anchor granularity, not per-entry
+    identity. `insider_judgment/THEORY.md`'s two 2026-08-26 bullets are
+    exactly this case, and are a deliberate limit, not a bug: telling
+    those two entries apart would mean matching entry *content*, which
+    this test was never designed to do and the controller ruling (2026-
+    08-29) explicitly declined to add."""
+    for line in path.read_text(encoding="utf-8").splitlines():
+        stripped = line.lstrip()
+        if stripped.startswith("#") or stripped.startswith("**"):
+            if date in line:
+                return True
+        elif stripped.startswith("-") or stripped.startswith("*"):
+            if _LIST_MARKER.sub("", stripped).startswith(date):
+                return True
+    return False
 
 
 def test_every_slice_origin_citation_still_resolves():
