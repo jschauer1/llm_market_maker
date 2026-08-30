@@ -389,3 +389,122 @@ def test_board_rebuild_reads_mixed_codecs(conn):
             (json.dumps(m0.raw),))
     got = board.get_board(conn, now=NOW)
     assert sorted(m.ticker for m in got) == ["C-2", "C-3"]
+
+
+# --- cross-codec identity through _save, end to end (task 5 review) --
+
+
+def test_cross_codec_bump_then_insert_through_save(conn):
+    # Controller ruling, task 5: pins the cross-codec identity path through
+    # _save end-to-end -- reviewed by probe during task 4, made permanent
+    # here. A legacy TEXT row and a fresh save_kalshi() call carrying the
+    # byte-identical payload must compare equal and BUMP (never insert a
+    # redundant second row); only a genuinely changed payload inserts, and
+    # the new row lands in the current write-side codec (BLOB).
+    t1 = "2026-08-24T10:00:00Z"
+    m = _mk("X-9")
+    raw_text = json.dumps(m.raw or {})
+    _insert_legacy(conn, "X-9", t1, raw_text)
+
+    n = snapshot.save_kalshi(conn, [m], now=NOW)
+    assert n == 1                                       # one decision: bump
+    rows = conn.execute(
+        "SELECT captured_at, last_seen_at, raw_json FROM market_snapshots"
+        " WHERE market_id = 'X-9' ORDER BY id"
+    ).fetchall()
+    assert len(rows) == 1                                # bump, not insert
+    assert rows[0]["captured_at"] == t1
+    assert rows[0]["last_seen_at"] == NOW
+    assert isinstance(rows[0]["raw_json"], str)          # a bump never re-encodes
+
+    t3 = "2026-08-24T13:00:00Z"
+    changed = _mk("X-9", yes_ask_dollars="0.77")
+    n2 = snapshot.save_kalshi(conn, [changed], now=t3)
+    assert n2 == 1
+    rows = conn.execute(
+        "SELECT captured_at, last_seen_at, raw_json FROM market_snapshots"
+        " WHERE market_id = 'X-9' ORDER BY id"
+    ).fetchall()
+    assert len(rows) == 2
+    new_row = rows[-1]
+    assert new_row["captured_at"] == new_row["last_seen_at"] == t3
+    assert isinstance(new_row["raw_json"], bytes)        # new insert is BLOB
+    assert json.loads(
+        snapshot.payload_text(new_row["raw_json"])
+    )["yes_ask_dollars"] == "0.77"
+
+
+# --- the split (spec 5.2 phase 4) -------------------------------------
+
+
+def test_fresh_db_puts_snapshots_in_the_attached_file(tmp_path):
+    c = db.connect(tmp_path / "test.db")
+    db.init_db(c)
+    snapshot.save_kalshi(c, [_mk("S-0")], now=NOW)
+    # Unqualified name resolves to the attached table...
+    assert c.execute("SELECT COUNT(*) FROM market_snapshots").fetchone()[0] == 1
+    # ...because main genuinely does not have one.
+    assert c.execute(
+        "SELECT COUNT(*) FROM main.sqlite_master WHERE name='market_snapshots'"
+    ).fetchone()[0] == 0
+    assert c.execute(
+        "SELECT COUNT(*) FROM snapdb.sqlite_master WHERE name='market_snapshots'"
+    ).fetchone()[0] == 1
+    assert (tmp_path / "test.snapshots.db").exists()
+    db.close(c)
+
+
+def test_unsplit_database_is_refused_loudly(tmp_path):
+    # Build a pre-split DB shape by hand: table in main, rows present.
+    import sqlite3 as raw_sqlite
+    legacy = raw_sqlite.connect(tmp_path / "old.db")
+    legacy.execute("CREATE TABLE market_snapshots (id INTEGER PRIMARY KEY,"
+                   " platform TEXT, market_id TEXT, captured_at TEXT,"
+                   " raw_json TEXT, last_seen_at TEXT)")
+    legacy.execute("INSERT INTO market_snapshots"
+                   " (platform, market_id, captured_at, raw_json)"
+                   " VALUES ('kalshi','L','2026-08-24T11:00:00Z','{}')")
+    legacy.commit(); legacy.close()
+    c = db.connect(tmp_path / "old.db")
+    with pytest.raises(RuntimeError, match="split-snapshots"):
+        db.init_db(c)
+    c.close()
+
+
+def test_split_snapshots_moves_rows_and_drops_main(tmp_path):
+    import sqlite3 as raw_sqlite
+    legacy = raw_sqlite.connect(tmp_path / "old.db")
+    legacy.execute("CREATE TABLE market_snapshots (id INTEGER PRIMARY KEY,"
+                   " platform TEXT, market_id TEXT, captured_at TEXT,"
+                   " title TEXT, implied_prob_yes REAL, yes_bid REAL,"
+                   " yes_ask REAL, volume REAL, open_interest REAL,"
+                   " close_time TEXT, status TEXT, raw_json TEXT,"
+                   " event_json TEXT, last_seen_at TEXT)")
+    legacy.execute("INSERT INTO market_snapshots"
+                   " (platform, market_id, captured_at, raw_json, last_seen_at)"
+                   " VALUES ('kalshi','M','2026-08-24T11:00:00Z','{\"a\":1}',"
+                   " '2026-08-24T11:00:00Z')")
+    legacy.commit(); legacy.close()
+    c = db.connect(tmp_path / "old.db")
+    stats = db.split_snapshots(c, tmp_path / "old.db")
+    assert stats["moved"] == 1
+    assert c.execute("SELECT COUNT(*) FROM snapdb.market_snapshots"
+                     ).fetchone()[0] == 1
+    assert c.execute("SELECT COUNT(*) FROM main.sqlite_master"
+                     " WHERE name='market_snapshots'").fetchone()[0] == 0
+    db.init_db(c)          # now passes: main is split
+    snapshot.save_kalshi(c, [_mk("S-1")], now=NOW)   # writes land attached
+    assert c.execute("SELECT COUNT(*) FROM market_snapshots"
+                     ).fetchone()[0] == 2
+    db.close(c)
+
+
+def test_db_close_checkpoints_the_wal(tmp_path):
+    c = db.connect(tmp_path / "test.db")
+    db.init_db(c)
+    snapshot.save_kalshi(c, [_mk("S-2")], now=NOW)
+    db.close(c)
+    # After a TRUNCATE checkpoint the -wal files are empty or gone.
+    for name in ("test.db-wal", "test.snapshots.db-wal"):
+        p = tmp_path / name
+        assert (not p.exists()) or p.stat().st_size == 0

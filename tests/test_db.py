@@ -14,10 +14,18 @@ def conn(tmp_path):
 
 
 def test_all_tables_created(conn):
-    rows = conn.execute(
-        "SELECT name FROM sqlite_master WHERE type='table'"
+    # market_snapshots lives in the attached snapdb file, not main, since
+    # the spec 5.2 phase 4 split -- an unqualified sqlite_master query
+    # only ever sees main's own catalog (confirmed behaviorally), so this
+    # checks both catalogs explicitly rather than assuming one query would
+    # cover a table split across two database files.
+    main_rows = conn.execute(
+        "SELECT name FROM main.sqlite_master WHERE type='table'"
     ).fetchall()
-    names = {r["name"] for r in rows}
+    snap_rows = conn.execute(
+        "SELECT name FROM snapdb.sqlite_master WHERE type='table'"
+    ).fetchall()
+    names = {r["name"] for r in main_rows} | {r["name"] for r in snap_rows}
     expected = {
         "theories",
         "ideas",

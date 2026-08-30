@@ -358,15 +358,84 @@ def _cmd_db(args) -> int:
         try:
             _emit(snapshot_mod.dedup_history(conn))
         finally:
-            conn.close()
+            db.close(conn)
     if args.action == "compress-snapshots":
         from tools import snapshot as snapshot_mod
         conn = _connect(args)
         try:
             _emit(snapshot_mod.compress_history(conn))
         finally:
-            conn.close()
+            db.close(conn)
+    if args.action == "split-snapshots":
+        # Deliberately NOT routed through `_connect`: that helper calls
+        # `init_db` (tools/cli.py:29), and `init_db` refuses an unsplit
+        # database on purpose. This is the command that fixes exactly that
+        # state, so it has to be reachable from it -- a plain db.connect()
+        # bypasses the refusal, matching the migrate-positions precedent.
+        main_path = args.db or db.DEFAULT_DB_PATH
+        backup_mod.backup_ledger(main_path)
+        conn = db.connect(args.db) if args.db else db.connect()
+        try:
+            _emit(db.split_snapshots(conn, main_path))
+        finally:
+            db.close(conn)
+    if args.action == "stats":
+        conn = db.connect(args.db) if args.db else db.connect()
+        try:
+            _emit(_db_stats(conn))
+        finally:
+            db.close(conn)
     return 0
+
+
+def _db_stats(conn) -> dict:
+    """Per attached database: file path, file bytes, and per-table size.
+
+    Per-table byte breakdown needs the `dbstat` virtual table, which is
+    not compiled into every SQLite build (it is not in this project's
+    bundled Python, confirmed by probe) -- when it is absent, the file's
+    total byte estimate (`page_count * page_size`) still stands for the
+    whole file, and `per_table_bytes` names the reason it cannot be split
+    further rather than silently reporting zero.
+    """
+    has_dbstat = conn.execute(
+        "SELECT name FROM pragma_module_list WHERE name='dbstat'"
+    ).fetchone() is not None
+    out = {}
+    for row in conn.execute("PRAGMA database_list"):
+        schema, path = row[1], row[2]
+        if not path:
+            continue
+        page_count = conn.execute(f"PRAGMA {schema}.page_count").fetchone()[0]
+        page_size = conn.execute(f"PRAGMA {schema}.page_size").fetchone()[0]
+        tables = [
+            r[0] for r in conn.execute(
+                f"SELECT name FROM {schema}.sqlite_master"
+                " WHERE type='table' AND name NOT LIKE 'sqlite_%'"
+            )
+        ]
+        table_rows = {
+            t: conn.execute(f'SELECT COUNT(*) FROM "{schema}"."{t}"'
+                            ).fetchone()[0]
+            for t in tables
+        }
+        if has_dbstat:
+            per_table_bytes = {
+                t: (conn.execute(
+                    f"SELECT SUM(pgsize) FROM {schema}.dbstat WHERE name = ?",
+                    (t,),
+                ).fetchone()[0] or 0)
+                for t in tables
+            }
+        else:
+            per_table_bytes = "unavailable (dbstat not compiled in)"
+        out[schema] = {
+            "path": path,
+            "file_bytes": page_count * page_size,
+            "table_rows": table_rows,
+            "per_table_bytes": per_table_bytes,
+        }
+    return out
 
 
 def _cmd_state(args) -> int:
@@ -378,7 +447,7 @@ def _cmd_state(args) -> int:
         if args.write:
             state_mod.write_state(conn, text=text)
     finally:
-        conn.close()
+        db.close(conn)
     return 0
 
 
@@ -727,6 +796,17 @@ def build_parser() -> argparse.ArgumentParser:
         "compress-snapshots",
         help="zlib-compress plain-text raw_json/event_json rows in place"
              " (spec 5.2 phase 3, incremental and idempotent)",
+    )
+    dbsub.add_parser(
+        "split-snapshots",
+        help="one-time move of market_snapshots out of the main database"
+             " file into db/snapshots.db, ATTACHed as snapdb (spec 5.2"
+             " phase 4) -- backs up the ledger first",
+    )
+    dbsub.add_parser(
+        "stats",
+        help="per-database (main/snapdb) file size and per-table size"
+             " (spec 5.2 phase 4)",
     )
 
     p = sub.add_parser(

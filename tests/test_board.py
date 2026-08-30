@@ -239,30 +239,52 @@ def test_unchanged_pull_extends_the_batch_rather_than_duplicating_it(conn):
     assert info["captured_at"] == "2026-08-24T11:00:01Z"
 
 
-def test_migration_dedupes_a_legacy_database(tmp_path):
-    # A database written before the unique index, holding the duplicates it
-    # allowed. CREATE UNIQUE INDEX would fail on these, so the migration must
-    # remove them first or the database becomes permanently un-migratable.
+def test_split_snapshots_dedupes_a_legacy_main_table(tmp_path):
+    # A database written before the unique index existed AND before the
+    # split (spec 5.2 phase 4), holding the duplicates that index would
+    # reject outright. Under the split architecture, market_snapshots can
+    # only ever hold duplicates while it still lives in MAIN -- the
+    # attached store gets its unique index at creation and no write path
+    # can put a duplicate past it (the store is "born deduped") -- so this
+    # builds the legacy shape by hand in main, the same idiom
+    # tests/test_snapshot_store.py uses for its own pre-split
+    # constructions, rather than manipulating an already-split database's
+    # attached table (which no code path would ever produce for real).
     import sqlite3
     path = tmp_path / "legacy.db"
-    c = db.connect(path)
-    db.init_db(c)
-    c.execute("DROP INDEX IF EXISTS idx_snapshots_unique")
-    c.execute("CREATE INDEX idx_snapshots_market"
-              " ON market_snapshots (platform, market_id, captured_at)")
+    legacy = sqlite3.connect(path)
+    legacy.execute(
+        "CREATE TABLE market_snapshots (id INTEGER PRIMARY KEY,"
+        " platform TEXT, market_id TEXT, captured_at TEXT,"
+        " status TEXT, raw_json TEXT, last_seen_at TEXT)"
+    )
+    legacy.execute(
+        "CREATE INDEX idx_snapshots_market"
+        " ON market_snapshots (platform, market_id, captured_at)"
+    )
     for _ in range(2):
-        c.execute(
+        legacy.execute(
             "INSERT INTO market_snapshots (platform, market_id, captured_at,"
             " status, raw_json) VALUES ('kalshi','T-0',?, 'open','{}')", (NOW,))
-    c.commit()
-    assert c.execute("SELECT COUNT(*) n FROM market_snapshots").fetchone()["n"] == 2
+    legacy.commit()
+    legacy.close()
 
-    db.init_db(c)   # migration runs
-    assert c.execute("SELECT COUNT(*) n FROM market_snapshots").fetchone()["n"] == 1
+    c = db.connect(path)
+    with pytest.raises(RuntimeError, match="split-snapshots"):
+        db.init_db(c)   # refused: main still holds live rows
+
+    stats = db.split_snapshots(c, path)
+    assert stats["moved"] == 1                  # the duplicate pair collapsed
+    assert c.execute(
+        "SELECT COUNT(*) n FROM snapdb.market_snapshots"
+    ).fetchone()["n"] == 1
+
+    db.init_db(c)   # now passes: main is split (and was deduped en route)
     idx = {r[0] for r in c.execute(
-        "SELECT name FROM sqlite_master WHERE type='index'")}
+        "SELECT name FROM snapdb.sqlite_master WHERE type='index'")}
     assert "idx_snapshots_unique" in idx
-    assert "idx_snapshots_market" not in idx   # redundant, same columns
+    assert "idx_snapshots_market" not in idx   # never copied, main-only
+
     with pytest.raises(sqlite3.IntegrityError):
         c.execute("INSERT INTO market_snapshots (platform, market_id,"
                   " captured_at, status) VALUES ('kalshi','T-0',?, 'open')",

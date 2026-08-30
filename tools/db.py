@@ -21,6 +21,7 @@ from typing import Iterator
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SCHEMA_PATH = REPO_ROOT / "db" / "schema.sql"
+SNAP_SCHEMA_PATH = REPO_ROOT / "db" / "schema_snapshots.sql"
 DEFAULT_DB_PATH = REPO_ROOT / "db" / "market_edge.db"
 
 
@@ -29,19 +30,51 @@ def utcnow() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+def snapshots_path_for(path: str | Path) -> Path:
+    """The sibling snapshot-store file ATTACHed alongside `path` as snapdb.
+
+    db/market_edge.db -> db/snapshots.db; any other name gets a
+    <stem>.snapshots.db sibling so test databases never collide.
+    """
+    path = Path(path)
+    if path.name == "market_edge.db":
+        return path.with_name("snapshots.db")
+    return path.with_name(path.stem + ".snapshots.db")
+
+
 def connect(path: str | Path = DEFAULT_DB_PATH) -> sqlite3.Connection:
     """Open a connection with foreign keys enforced and named row access.
 
     WAL journalling lets a reader run concurrently with a writer, which the
     market connectors need; the busy timeout covers the brief moments when
     two writers do collide.
+
+    The market-snapshot table lives in its own file, ATTACHed here as
+    `snapdb` (spec 5.2 phase 4): the precious-and-small ledger and the
+    large, re-fetchable history can then have different backup cadences.
+    Every unqualified reference to `market_snapshots` elsewhere in this
+    codebase resolves here because `main` no longer has a table of that
+    name once a database is split -- see `init_db`'s refusal below for the
+    unsplit case.
+
+    `:memory:` is special-cased (several tests use it for a disposable
+    schema): the attached side is its own private `:memory:` database
+    rather than a computed sibling file, since ":memory:" is not a real
+    path `snapshots_path_for` could derive a sibling from.
     """
-    path = Path(path)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(str(path), timeout=30.0)
+    is_memory = str(path) == ":memory:"
+    if is_memory:
+        snap = ":memory:"
+    else:
+        path = Path(path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        snap = str(snapshots_path_for(path))
+    conn = sqlite3.connect(":memory:" if is_memory else str(path), timeout=30.0)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     conn.execute("PRAGMA journal_mode = WAL")
+    conn.execute("ATTACH DATABASE ? AS snapdb", (snap,))
+    conn.execute("PRAGMA snapdb.journal_mode = WAL")
     return conn
 
 
@@ -69,10 +102,32 @@ def init_db(conn: sqlite3.Connection) -> None:
             "`python -m tools.cli migrate-positions --dry-run` to see what "
             "would change, then drop --dry-run to apply it."
         )
-    # Runs BEFORE the schema script, which contains CREATE UNIQUE INDEX on
-    # market_snapshots. A database holding the duplicates the old non-unique
-    # index allowed would fail that statement and be unable to open at all,
-    # so the duplicates have to go first.
+    # The snapshot store lives in the attached file (spec 5.2 phase 4).
+    # Unqualified references resolve there because main has no table of
+    # that name -- which is exactly why an unsplit main is refused rather
+    # than silently shadowing the attached one.
+    _init_snap_schema(conn)
+    unsplit = conn.execute(
+        "SELECT 1 FROM main.sqlite_master WHERE type='table'"
+        " AND name='market_snapshots'").fetchone()
+    if unsplit is not None:
+        n = conn.execute(
+            "SELECT COUNT(*) FROM main.market_snapshots").fetchone()[0]
+        if n:
+            raise RuntimeError(
+                "market_snapshots still lives in the main database file. "
+                "Run `python -m tools.cli db split-snapshots` once to move "
+                "it into db/snapshots.db -- refused here because a silent "
+                "second copy in the attached file would shadow "
+                f"{n} live rows."
+            )
+        with write(conn):
+            conn.execute("DROP TABLE main.market_snapshots")
+    # Runs BEFORE the schema script, which (pre-split) contained CREATE
+    # UNIQUE INDEX on market_snapshots. A database holding the duplicates
+    # the old non-unique index allowed would fail that statement and be
+    # unable to open at all, so the duplicates have to go first. Harmless
+    # after the split too -- see _dedupe_snapshots's own docstring.
     _dedupe_snapshots(conn)
     with write(conn):
         conn.executescript(SCHEMA_PATH.read_text(encoding="utf-8"))
@@ -139,6 +194,76 @@ def init_db(conn: sqlite3.Connection) -> None:
     _add_column_if_missing(conn, "scores", "clustered_se", "REAL")
 
 
+def _init_snap_schema(conn: sqlite3.Connection) -> None:
+    """Create the snapshot table/index in the attached file if missing.
+
+    executescript() runs against main, so the DDL is rewritten to target
+    snapdb explicitly rather than trusting name resolution.
+    """
+    ddl = SNAP_SCHEMA_PATH.read_text(encoding="utf-8")
+    ddl = ddl.replace("CREATE TABLE IF NOT EXISTS market_snapshots",
+                      "CREATE TABLE IF NOT EXISTS snapdb.market_snapshots")
+    ddl = ddl.replace("CREATE UNIQUE INDEX IF NOT EXISTS idx_snapshots_unique",
+                      "CREATE UNIQUE INDEX IF NOT EXISTS"
+                      " snapdb.idx_snapshots_unique")
+    with write(conn):
+        conn.executescript(ddl)
+
+
+def split_snapshots(conn: sqlite3.Connection, main_path: str | Path,
+                    batch_rows: int = 50000) -> dict:
+    """Move market_snapshots out of main into the attached snapdb file.
+
+    One-time, explicit (never from init_db -- migrate_positions
+    precedent). Copies in batches with per-batch commits (resumable: the
+    copy is keyed on id, so a re-run continues past MAX(snapdb id)),
+    then drops the main table and VACUUMs main to reclaim the bytes.
+    """
+    stats = {"moved": 0, "vacuumed_bytes_before": Path(main_path).stat().st_size}
+    _init_snap_schema(conn)
+    # A genuinely pre-unique-index legacy main table can still hold
+    # duplicate rows the snapdb table's own unique index would reject
+    # outright -- dedupe main's copy first so the bulk copy below can
+    # never hit a UNIQUE constraint violation partway through a batch.
+    # This is the "refusal path" _dedupe_snapshots's own docstring names:
+    # the only route left to a database init_db has already refused.
+    _dedupe_snapshots(conn)
+    cols = [r[1] for r in conn.execute(
+        "PRAGMA main.table_info(market_snapshots)")]
+    col_list = ", ".join(cols)
+    while True:
+        top = conn.execute(
+            "SELECT COALESCE(MAX(id), 0) FROM snapdb.market_snapshots"
+        ).fetchone()[0]
+        with write(conn):
+            cur = conn.execute(
+                f"INSERT INTO snapdb.market_snapshots ({col_list})"
+                f" SELECT {col_list} FROM main.market_snapshots"
+                f" WHERE id > ? ORDER BY id LIMIT ?", (top, batch_rows))
+        if cur.rowcount == 0:
+            break
+        stats["moved"] += cur.rowcount
+    with write(conn):
+        conn.execute("DROP TABLE main.market_snapshots")
+    conn.execute("VACUUM main")
+    stats["vacuumed_bytes_after"] = Path(main_path).stat().st_size
+    return stats
+
+
+def close(conn: sqlite3.Connection) -> None:
+    """Checkpoint both WALs, then close (spec 5.2 phase 4).
+
+    A long session's WAL can hold hundreds of MB; TRUNCATE folds it into
+    the database files so what sits on disk is the databases, not a
+    journal a crash would have to replay.
+    """
+    try:
+        conn.execute("PRAGMA main.wal_checkpoint(TRUNCATE)")
+        conn.execute("PRAGMA snapdb.wal_checkpoint(TRUNCATE)")
+    finally:
+        conn.close()
+
+
 def _dedupe_snapshots(conn: sqlite3.Connection) -> None:
     """Make an older snapshot table safe for the unique index.
 
@@ -147,11 +272,26 @@ def _dedupe_snapshots(conn: sqlite3.Connection) -> None:
     market duplicated. This removes those lowest-id-wins and drops the
     redundant non-unique index on the same three columns.
 
-    A no-op on a fresh database (no table yet) and on an already-migrated one.
+    A no-op on a fresh database (no table yet), on an already-migrated one,
+    and -- after the split (spec 5.2 phase 4) -- on every database, full
+    stop, because the query below is explicitly `main.sqlite_master`.
+    Unlike an ordinary unqualified table reference (which SQLite resolves
+    by searching main, then each ATTACHed database in turn), a bare or
+    schema-qualified `sqlite_master` reference is never resolved that way
+    -- `main.sqlite_master` names main's own catalog specifically and can
+    never see a table that lives only in the attached snapdb file
+    (confirmed behaviorally, spec 5.2 phase 4 review). So once a database
+    is split, main's catalog no longer has a `market_snapshots` entry to
+    find, and this becomes a permanent no-op -- the attached store is
+    born deduped. Its legacy behavior survives intact for the one case
+    that still matters: `split_snapshots` calls this on main's own copy,
+    before the bulk copy into the attached (uniquely indexed) table, so a
+    genuinely pre-unique-index database -- the only shape `init_db` still
+    refuses over -- can be migrated without a mid-copy UNIQUE violation.
     """
     objects = {
         r[0] for r in conn.execute(
-            "SELECT name FROM sqlite_master WHERE type IN ('table','index')"
+            "SELECT name FROM main.sqlite_master WHERE type IN ('table','index')"
         ).fetchall()
     }
     if "market_snapshots" not in objects:

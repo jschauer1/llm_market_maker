@@ -226,6 +226,17 @@ without the contract.
   summarized, and the raw entry stays as the audit trail. See CLAUDE.md,
   "What lives in a theory, and what gets elevated".
 
+### Backup cadence (ruled at spec 5.2 phase 4, 2026-08-30)
+
+`db/market_edge.db` (the ledger — small, irreplaceable; schema in
+`db/schema.sql`): `python -m tools.cli db backup` before any schema
+migration or destructive maintenance command (`split-snapshots` runs one
+itself), and at the start of any session that will settle or migrate.
+`db/snapshots.db` (large, prices re-fetchable in spirit; schema in
+`db/schema_snapshots.sql`, ATTACHed as `snapdb` by `db.connect()`): no
+automatic backup; copy the file manually if a study depends on a specific
+historical window.
+
 ## Writing a new tool
 
 Copy the shape of an existing one. `tools/ideas.py` is a good model for a
