@@ -1196,60 +1196,7 @@ both carried bets died at today's ask.
 Moved 2026-08-29 to `theories/no_side_premium/NOTES.md` under the heading `## 2026-08-29 (session 3, item 2) — no_side_premium: a sharper estimator, and a contaminated control caught (migrated from RESEARCH_LOG.md)`, per the enforcing-surfaces migration (spec §6.8).
 ## 2026-08-29 (cont.) — calibration_harvest's first population lands; weather is fairly priced; two defects fixed
 
-**NOTE: a second Claude session was working this repo in parallel today**
-(commits `edba7f7`, `7555bc8` are not from this session). Its work is
-complementary — it re-ran `insider_judgment` v4 and `structural_arb` v3
-after this session bumped them, and extended the `no_side_premium`
-within-day analysis. Nothing conflicted, but both sessions were writing
-one SQLite file and one git tree, which is worth knowing before it bites.
-
-**Did:** The Climate-and-Weather walk **finished** — 154/154 series, 3,267
-observations over 3,260 settled markets — so `calibration_harvest`'s first
-pre-registered population is complete and its cells may be read. Status
-`proposed` → `testing`; two defects found by actually running it, fixed;
-version → 2. Suite **900** green.
-
-**Learned:**
-
-1. **Short-horizon weather favorites are priced correctly.** Four `<=2d`
-   cells, n≈700–930 each, **59 settlement days** each, and every one
-   inside its own day-clustered noise band: +0.58±1.80, −1.09±1.97,
-   +1.63±1.29, −0.83±0.85. Net of fees and the bound, nothing is
-   recommendable in either direction — not a favorite buy, and not the
-   fade the spec expected from Le 2026's "short-horizon weather is too
-   extreme". A clean tier-A answer on a complete population.
-2. **The population cannot test the theory's actual claim.** Every
-   longer-horizon cell has n ≤ 8: weather markets list and settle within
-   days, so `2d-1w`, `1w-1mo` and `1mo+` are structurally empty. The
-   thesis is *horizon compression*. Weather tests one column of a
-   four-column claim, and was the right cheap first walk for proving the
-   collector, nothing more.
-3. **The contract had no channel for structured context.**
-   `record_opportunity` has always taken `extra_json`, but
-   `ScoredCandidate` had no field for it, so the live path wrote NULL —
-   and `collect.cell_rates` reads the cell *out of* `extra_json`. All
-   10,269 rows of the first live run, recorded expressly "so the cell
-   accrues settlements", were invisible to the grid they existed to grow.
-   Added `ScoredCandidate.extra`.
-4. **The same row-vs-day confound, for the fourth time today.**
-   `cell_edge` took its Wilson bound on the **row** count while the
-   theory refuses to call a cell measured below `MIN_CELL_DAYS` — because
-   rows are not independent draws. That undid the protection exactly
-   where it decides to commit money: 628/789 over 59 days claims +1.64pts
-   at an ask of 0.75; day-counted it is **−7.27pts**. Three live rows
-   priced positive on the row-counted bound; under v2, zero do. Today the
-   same error has now appeared in `buckets.py`, `no_side_premium`'s cell
-   B reading, `insider_judgment`'s pooled scores, and here. **It is the
-   repo's characteristic bug**, and any new statistic should be assumed
-   guilty of it until checked.
-5. **Politics is a 12-minute job, not a multi-session one.** The
-   enumeration everyone deferred says 3,392 candlestick fetches — because
-   politics has only 3,877 settled markets in the 60-day window, against
-   weather's 85,683. The 2,504-series count that made it look enormous is
-   series breadth, not depth. Running it now.
-
-**Next:** read the politics cells — that is where the horizon spread the
-theory actually claims lives.
+Moved 2026-08-29 to `theories/calibration_harvest/NOTES.md` under the heading `## 2026-08-29 (cont.) — calibration_harvest's first population lands; weather is fairly priced; two defects fixed (migrated from RESEARCH_LOG.md)`, per the enforcing-surfaces migration (spec §6.8).
 
 ## 2026-08-29 (session 3, item 3) — TWO SESSIONS ARE RUNNING CONCURRENTLY
 
@@ -1332,61 +1279,12 @@ endpoint; hold until the politics collection is done.
 
 ## 2026-08-29 (cont.) — politics: the horizon gradient is REAL, and nothing is bettable
 
-**Did:** Second pre-registered population complete — Politics/Elections,
-**2,507/2,507 series**, 1,541 observations over 916 settled markets. Read
-it against the bar fixed **before the data landed** (`4a01f9a`), which
-made the horizon *gradient* the test rather than any single cell. Both
-populations are now done and `calibration_harvest` has its first real
-answer.
+Moved 2026-08-29 to `theories/calibration_harvest/NOTES.md` under the heading `## 2026-08-29 (cont.) — politics: the horizon gradient is REAL, and nothing is bettable (migrated from RESEARCH_LOG.md)`, per the enforcing-surfaces migration (spec §6.8).
 
-**Learned:**
-
-1. **The gradient is confirmed, and it is the spec's own prediction.**
-   Day-clustered, price bands pooled: `<=2d` −1.21, `2d-1w` −4.26,
-   `1w-1mo` **+5.05** (t 2.44), `1mo+` **+9.38** (t 3.01). The
-   pre-registered long-vs-short contrast is **+9.18 ± 3.40 (t 2.70)**
-   unpaired and **+7.68 ± 2.20 (t 3.50)** paired within settlement day,
-   29/45 days positive, sign test **p = 0.036**. Le 2026's political
-   slopes said favorites are underpriced and the effect grows with
-   horizon; on a complete population, it does.
-2. **The paired estimator came in stronger than the unpaired one**
-   (t 2.70 → 3.50), which is what should happen when a common day-level
-   shock is removed. Same estimator `no_side_premium` adopted today, for
-   the same reason. 45 of 46 long-horizon days also carry short-horizon
-   data, so almost nothing is discarded to get it.
-3. **And not one of the sixteen cells is recommendable.** All are
-   net-negative at the Wilson bound (−5.68 to −29.92 pts), because
-   bounding on `n_days` of 16–47 gives an interval far wider than a
-   ~9-point effect. **The effect being real and the effect being bettable
-   are different questions, and today they have different answers.** What
-   closes that gap is more *settlement days* — the v2 bound is
-   deliberately insensitive to row count, so a cell with 45 days and 10k
-   rows is bounded no better than one with 45 days and 200.
-4. **Pre-registration is the only reason this is readable.** Sixteen
-   cells at 2 SE is roughly one false positive by chance; three cells
-   cleared it, but the largest is 2.83 SE where Holm over sixteen needs
-   about 3, so **no individual cell survives multiple comparisons**. The
-   gradient stands solely because it was written down as one contrast
-   before the data existed. Had the bar been set afterwards, the honest
-   reading and the flattering one would have been indistinguishable.
-5. **Weather's null is now interpretable rather than contradictory.**
-   Weather measured flat (four `<=2d` cells, n 692–926, 59 days each, all
-   inside noise) — and it has no long-horizon markets at all, so it never
-   sampled the region where the effect lives.
-6. **Not monotone.** `2d-1w` (−4.26) sits below `<=2d` (−1.21), so the
-   surviving claim is long-versus-short, not a clean four-step ramp. The
-   spec's "everything compresses at 1mo+" is the half that holds.
-
-**Status unchanged: `testing`.** The result is in-sample, and the bar for
-`active` is positive net calibration edge *out-of-sample*. That bar is
-untouched and should stay untouched.
-
-**Next:** the out-of-sample test is already running at zero extra cost —
-the live scan records ~10.3k rows per session and, since this morning's
-`ScoredCandidate.extra` fix, they carry their cell keys and will feed
-`cell_rates` as they settle. Read the live run's own cells once its
-`n_days` grows, and compare against these in-sample numbers rather than
-pooling them.
+Note: this entry is retracted by `## 2026-08-29 (CORRECTION) — the
+politics headline was wrong; the pre-registered test failed` (below in
+this log); the correction's narrative sits adjacent to this entry's in
+the notebook.
 
 ## 2026-08-29 (CORRECTION) — the politics headline was wrong; the pre-registered test failed
 
