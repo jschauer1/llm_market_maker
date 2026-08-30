@@ -19,7 +19,7 @@ import json
 import sqlite3
 import zlib  # used from Task 4; harmless to import now
 
-from tools.db import utcnow
+from tools.db import utcnow, write
 from tools.kalshi import markets as kalshi_markets
 from tools.polymarket import markets as poly_markets
 
@@ -316,6 +316,77 @@ def history_for(
         """,
         (platform, market_id),
     ).fetchall()
+
+
+def dedup_history(conn: sqlite3.Connection, batch_markets: int = 2000) -> dict:
+    """Collapse consecutive byte-identical rows per market (spec 5.2).
+
+    For each (platform, market_id) -- not market_id alone: `history_for`
+    and every other reader in this module scope a "market" by the pair,
+    and grouping on market_id alone would interleave a Kalshi and a
+    Polymarket row that happen to share an id string -- walk its rows
+    oldest-first; a row whose full payload (raw_json + event_json,
+    byte-exact -- the design gate ruled out field exclusions) equals its
+    immediate predecessor's is deleted and the predecessor's last_seen_at
+    absorbs its stamp. Only consecutive equals collapse: a reverted
+    payload is a new observation.
+
+    A collapsed keeper's last_seen_at is the MAX over every stamp in its
+    chain, including a reach a doomed row had already accumulated from
+    Task 2's write-path bumps (a row can carry last_seen_at > captured_at
+    before it is ever touched here) -- never just the chain's captured_at
+    values. String-max on ISO-8601 UTC stamps (`YYYY-MM-DDTHH:MM:SSZ`,
+    fixed width) sorts chronologically, so plain `max()` on the text is
+    exact.
+
+    Incremental and idempotent (data conventions): commits per batch of
+    markets, so an interrupted run resumes by simply re-running --
+    already collapsed markets yield nothing on the second pass.
+    """
+    stats = {"markets": 0, "deleted": 0, "kept": 0}
+    market_ids = [
+        (r[0], r[1]) for r in conn.execute(
+            "SELECT DISTINCT platform, market_id FROM market_snapshots"
+            " ORDER BY platform, market_id"
+        )
+    ]
+    for i in range(0, len(market_ids), batch_markets):
+        chunk = market_ids[i:i + batch_markets]
+        with write(conn):
+            for platform, mid in chunk:
+                rows = conn.execute(
+                    "SELECT id, captured_at, last_seen_at, raw_json,"
+                    " event_json FROM market_snapshots"
+                    " WHERE platform = ? AND market_id = ?"
+                    " ORDER BY captured_at, id",
+                    (platform, mid)).fetchall()
+                stats["markets"] += 1
+                keeper, keeper_key, keeper_reach = None, None, None
+                doomed, reaches = [], {}
+                for row in rows:
+                    key = _payload_key(payload_text(row["raw_json"]),
+                                       payload_text(row["event_json"]))
+                    if keeper is not None and key == keeper_key:
+                        doomed.append(row["id"])
+                        keeper_reach = max(keeper_reach,
+                                           row["last_seen_at"] or
+                                           row["captured_at"])
+                        reaches[keeper] = keeper_reach
+                    else:
+                        keeper, keeper_key = row["id"], key
+                        keeper_reach = (row["last_seen_at"] or
+                                        row["captured_at"])
+                for kid, reach in reaches.items():
+                    conn.execute(
+                        "UPDATE market_snapshots SET last_seen_at = ?"
+                        " WHERE id = ?", (reach, kid))
+                if doomed:
+                    conn.executemany(
+                        "DELETE FROM market_snapshots WHERE id = ?",
+                        [(d,) for d in doomed])
+                stats["deleted"] += len(doomed)
+                stats["kept"] += len(rows) - len(doomed)
+    return stats
 
 
 def capture_kalshi_open(

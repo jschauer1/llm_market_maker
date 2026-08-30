@@ -210,3 +210,89 @@ def test_contested_second_retracts_the_superseded_row_to_its_own_cap(conn):
     old, new = rows
     assert old["captured_at"] == old["last_seen_at"] == t1     # retracted
     assert new["captured_at"] == new["last_seen_at"] == t2     # alone on t2
+
+
+# --- dedup_history: retro-collapse of legacy rows (spec 5.2 phase 2) ---
+
+
+def _insert_legacy(conn, market_id, captured_at, raw, event=None):
+    with db.write(conn):
+        conn.execute(
+            "INSERT INTO market_snapshots (platform, market_id, captured_at,"
+            " raw_json, event_json, last_seen_at) VALUES"
+            " ('kalshi', ?, ?, ?, ?, ?)",
+            (market_id, captured_at, raw, event, captured_at))
+
+
+def test_dedup_history_collapses_consecutive_identical_rows(conn):
+    _insert_legacy(conn, "H-1", "2026-08-20T10:00:00Z", '{"a":1}')
+    _insert_legacy(conn, "H-1", "2026-08-20T11:00:00Z", '{"a":1}')
+    _insert_legacy(conn, "H-1", "2026-08-20T12:00:00Z", '{"a":1}')
+    _insert_legacy(conn, "H-1", "2026-08-20T13:00:00Z", '{"a":2}')
+    stats = snapshot.dedup_history(conn)
+    assert stats["deleted"] == 2
+    rows = conn.execute(
+        "SELECT captured_at, last_seen_at, raw_json FROM market_snapshots"
+        " ORDER BY captured_at").fetchall()
+    assert len(rows) == 2
+    # The survivor's interval absorbed both deleted stamps.
+    assert rows[0]["captured_at"] == "2026-08-20T10:00:00Z"
+    assert rows[0]["last_seen_at"] == "2026-08-20T12:00:00Z"
+    assert rows[1]["captured_at"] == "2026-08-20T13:00:00Z"
+
+
+def test_dedup_history_keeps_a_reverted_payload(conn):
+    # a -> b -> a is three observations, not two: only CONSECUTIVE equals
+    # collapse, or the reversion at 12:00 would be erased from history.
+    _insert_legacy(conn, "H-2", "2026-08-20T10:00:00Z", '{"p":"a"}')
+    _insert_legacy(conn, "H-2", "2026-08-20T11:00:00Z", '{"p":"b"}')
+    _insert_legacy(conn, "H-2", "2026-08-20T12:00:00Z", '{"p":"a"}')
+    stats = snapshot.dedup_history(conn)
+    assert stats["deleted"] == 0
+    assert conn.execute(
+        "SELECT COUNT(*) FROM market_snapshots").fetchone()[0] == 3
+
+
+def test_dedup_history_distinguishes_null_event_from_empty(conn):
+    _insert_legacy(conn, "H-3", "2026-08-20T10:00:00Z", '{"a":1}', None)
+    _insert_legacy(conn, "H-3", "2026-08-20T11:00:00Z", '{"a":1}', "{}")
+    assert snapshot.dedup_history(conn)["deleted"] == 0
+
+
+def test_dedup_history_is_idempotent(conn):
+    _insert_legacy(conn, "H-4", "2026-08-20T10:00:00Z", '{"a":1}')
+    _insert_legacy(conn, "H-4", "2026-08-20T11:00:00Z", '{"a":1}')
+    assert snapshot.dedup_history(conn)["deleted"] == 1
+    assert snapshot.dedup_history(conn)["deleted"] == 0
+
+
+def test_dedup_history_preserves_point_in_time_reads(conn):
+    _insert_legacy(conn, "H-5", "2026-08-20T10:00:00Z", '{"r":"v1"}')
+    _insert_legacy(conn, "H-5", "2026-08-20T11:00:00Z", '{"r":"v1"}')
+    _insert_legacy(conn, "H-5", "2026-08-20T12:00:00Z", '{"r":"v2"}')
+    snapshot.dedup_history(conn)
+    t = "2026-08-20T11:00:00Z"
+    row = conn.execute(
+        "SELECT raw_json FROM market_snapshots WHERE market_id='H-5'"
+        " AND captured_at <= ? AND last_seen_at >= ?", (t, t)).fetchone()
+    assert json.loads(row["raw_json"])["r"] == "v1"
+
+
+def test_dedup_history_never_collapses_across_platforms(conn):
+    # H-6 exists on both platforms with byte-identical payloads. Grouping
+    # by market_id alone (ignoring platform) would see them as one
+    # market's two consecutive observations and delete the later one --
+    # every other reader in this module (history_for, _latest_rows) scopes
+    # a "market" by (platform, market_id), and dedup_history must match.
+    _insert_legacy(conn, "H-6", "2026-08-20T10:00:00Z", '{"a":1}')
+    with db.write(conn):
+        conn.execute(
+            "INSERT INTO market_snapshots (platform, market_id,"
+            " captured_at, raw_json, event_json, last_seen_at) VALUES"
+            " ('polymarket', 'H-6', '2026-08-20T11:00:00Z', '{\"a\":1}',"
+            " NULL, '2026-08-20T11:00:00Z')")
+    stats = snapshot.dedup_history(conn)
+    assert stats["deleted"] == 0
+    assert conn.execute(
+        "SELECT COUNT(*) FROM market_snapshots WHERE market_id = 'H-6'"
+    ).fetchone()[0] == 2

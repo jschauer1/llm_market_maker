@@ -352,6 +352,13 @@ def _cmd_db(args) -> int:
         _emit(backup_mod.backup_ledger(
             args.db or db.DEFAULT_DB_PATH, dest_dir=args.dest
         ))
+    if args.action == "dedup-snapshots":
+        from tools import snapshot as snapshot_mod
+        conn = _connect(args)
+        try:
+            _emit(snapshot_mod.dedup_history(conn))
+        finally:
+            conn.close()
     return 0
 
 
@@ -703,6 +710,11 @@ def build_parser() -> argparse.ArgumentParser:
     dbackup.add_argument(
         "--dest", default=None,
         help=r"destination directory (default %LOCALAPPDATA%\market_edge\backups)",
+    )
+    dbsub.add_parser(
+        "dedup-snapshots",
+        help="collapse consecutive byte-identical snapshot rows into"
+             " validity intervals (spec 5.2 phase 2, one-time)",
     )
 
     p = sub.add_parser(
