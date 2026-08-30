@@ -185,6 +185,26 @@ def test_other_theory_version_is_excluded_from_the_fixture(conn):
     assert res.n_attempts == 1
 
 
+def test_theories_row_extra_agrees_with_slices_on_extra_json_rows():
+    # theories._row_extra is a deliberately narrower duplicate of
+    # slices._row_extra -- slices' version also accepts a pre-parsed
+    # "extra" mapping key (from score.observations dicts), which
+    # theories' version does not need because prove_carry's fixture is
+    # always a real opportunity_attempts row, which never carries one.
+    # Restricted to the extra_json-only shape both parsers must agree on,
+    # they need to return identically: two parsers silently disagreeing
+    # about extra_json is the silent-merge shape CLAUDE.md warns about --
+    # this test fails at the commit that forks them.
+    cases = [
+        {"extra_json": json.dumps({"family": "awards"})},  # valid extra_json
+        {"extra_json": None},                               # no payload
+        {"extra_json": "{not valid json"},                  # invalid JSON
+        {},                                                  # key missing
+    ]
+    for row in cases:
+        assert theories._row_extra(row) == slices._row_extra(row)
+
+
 # --- theories.carry_chain (spec 2.5) ---
 
 

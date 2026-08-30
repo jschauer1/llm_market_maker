@@ -420,9 +420,13 @@ _MAX_DIVERGENCES = 50
 def _row_extra(row: sqlite3.Row) -> dict:
     """An attempt row's extra-features dict, parsed from `extra_json`.
 
-    Mirrors `slices._row_extra`, duplicated rather than imported: that
-    module already imports `theories`, so importing it back here would
-    invert the dependency.
+    Deliberately narrower than `slices._row_extra`, which also accepts a
+    pre-parsed `extra` mapping key and falls back to `extra_json` only
+    when that is absent -- this one accepts only `extra_json`, because
+    `prove_carry`'s fixture is always a real `opportunity_attempts` row,
+    which never carries a pre-parsed `extra` key. Duplicated rather than
+    imported because `slices.py` already imports `theories`; importing it
+    back here would invert that dependency.
     """
     raw = row["extra_json"] if "extra_json" in row.keys() else None
     if not raw:
