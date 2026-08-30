@@ -2053,3 +2053,71 @@ Theory-level detail is in `theories/calibration_harvest/NOTES.md`
 (2026-08-30). This entry is here rather than there because rulings 13 and
 14, and the run_id hazard, change how a session that never opens that
 theory would read any score in this repo.
+
+## 2026-08-30 (item 3) — entry timing: a committed bar produced a false confirmation
+
+**Did:** Asked whether entry timing has a general direction, on 8,268
+paired rows already sitting in `series-bias-mining`'s `collect.db` (both
+entry prices stored, so zero marginal fetches). Pre-registered and
+committed the bar first (`fc52527`), ran it second (`33dbdd4`). Study:
+`studies/2026-08-30-entry-timing/`. Also resumed that study's stalled
+phase-2 collection in the background — 228 of 840 series were priced, both
+sessions that owned it had exited, and Kalshi archives settled markets out
+of reach ~60 days after close.
+
+**Learned:**
+
+1. **A pre-registered bar returned a clean confirmation that was an
+   artifact, and only the exploratory breakdown caught it.** The primary
+   statistic differenced two entry points defined by *different kinds of
+   rule* — one relative (25% of scheduled lifetime before close), one
+   absolute (24h before close). Which is *later* therefore depends on the
+   market's lifetime, and it inverts below 4 days: **5,156 of 8,268 rows,
+   62.4%**. As written the test read **−2.41 pts, t = −3.85** and scored
+   itself CONFIRMATORY in the predicted direction. Re-oriented so every
+   difference reads later-minus-earlier, it is **+2.97, t = +4.79** —
+   powered, significant, opposite sign. **Reported as a FAILED
+   PREDICTION**, which is the whole reason the sign was fixed in advance.
+
+   **The generalizable rule, and it is new:** *when two measurement points
+   are defined by different kinds of rule — one relative, one absolute —
+   verify their ordering is constant across the population before
+   differencing them.* Pre-registration does not protect against this;
+   the bar was committed, honest, and wrong. What caught it was reporting
+   the exploratory buckets next to the primary test.
+
+2. **Entry timing on a fixed side is worth about half a point, which is
+   nothing.** On the 92% of rows where the same side is bought at both
+   points, later-minus-earlier is **+0.56 (t = 1.86, MDE 0.85)** — below
+   the 2.0-pt floor the bar declared actionable. Waiting does not buy a
+   better price on the bet you were already making, so **entry should
+   follow liquidity and spread, not a timing rule** — in this population.
+   That is the genuinely useful half of the study and it is the
+   *secondary* statistic, not the headline.
+
+3. **The entire pooled effect is the 8% of rows whose favorite side
+   flipped (+31.43, t = 4.56).** There the later entry simply buys
+   whatever the market now favours, and the later favorite wins far more
+   often. That is price informativeness, not a harvestable edge — nobody
+   knows in advance which markets will flip. A first, buggy pass had this
+   backwards and looked like an overreaction signal; it is the opposite.
+
+4. **This does not contradict `insider_judgment`'s late-entry penalty**
+   (+5.10 first-qualifying vs +2.32 late) and must not be read as doing
+   so: that is LLM-selected NO favorites at mean ask 0.863; this is a
+   sports-dominated small-series tail. Two populations disagreeing about a
+   half-point effect is a reason not to generalize either.
+
+**Next:** the phase-2 collection is running and will add 612 series
+including politics and weather — a genuinely fresh population for any
+follow-up, and the one this study's own limits section names. Two
+independent populations measured favorites as overpriced today
+(`calibration_harvest` forward −3.88 gross; both entry points here −5.19 /
+−7.60), but **neither was collected to answer that question and neither may
+be cited as evidence for it** — a powered, pre-registered test belongs in
+its own study, and `no_side_premium` already holds the side-level version.
+
+This entry is here rather than in a theory's notes because rule 1 changes
+how any session in this repo should write a pre-registration, and because
+rule 2 is an execution finding that applies to every theory's entry rule,
+not to one.
