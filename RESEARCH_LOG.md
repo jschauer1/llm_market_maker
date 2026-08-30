@@ -287,8 +287,7 @@ simply join the new table rather than keep their own copy.
 
 ---
 
-## 2026-08-24 — First tier A backtest of the stage-1 screen, after a false
-## start that took 47 minutes to fail
+## 2026-08-24 — First tier A backtest of the stage-1 screen, after a false start that took 47 minutes to fail
 
 **Did:** Orient found nothing new to settle (all 44 v2 rows from yesterday
 still open) and no theory besides `insider_bias` on the board, so I picked
@@ -356,8 +355,7 @@ docstring both carry the account now, so it should not need rediscovering.
 
 ---
 
-## 2026-08-24 — Two follow-ups from user questions: a corrected Big Brother
-## bet, and a new mechanical path for the MENTION-family edge
+## 2026-08-24 — Two follow-ups from user questions: a corrected Big Brother bet, and a new mechanical path for the MENTION-family edge
 
 **Did:** Two direct challenges from the user, both acted on rather than just
 answered. (1) "Isn't Big Brother all live?" — checked, and the original
@@ -468,8 +466,7 @@ on that bin deserves more hedging than a bin that has actually lost a few.
 
 ---
 
-## 2026-08-24 — mention_family becomes a real, separate theory; insider_bias
-## renamed insider_judgment and folded into a shared parent folder
+## 2026-08-24 — mention_family becomes a real, separate theory; insider_bias renamed insider_judgment and folded into a shared parent folder
 
 **Did:** The user asked, twice, for the mechanical mention-family mechanism
 to stop being a sub-path of `insider_bias` and become its own theory —
