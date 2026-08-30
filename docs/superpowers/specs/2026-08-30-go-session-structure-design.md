@@ -44,11 +44,13 @@ promoted (or explicitly held at a recording-only rung). §4 is the
 existing value-menu loop, unchanged. Phase numbering below is what the
 rewritten SKILL.md will carry.
 
-**Scope guard: this spec edits exactly one skill — go.** find-edge,
-score-theories, backtest-theory, propose-theory and compare-theories are
-untouched; the new surfaces (key, evaluator, runbooks) are freestanding
-repo assets that go binds to. Other skills may adopt them later under
-their own approval.
+**Scope principle (user, 2026-08-30): a skill edit is in scope exactly
+when it makes sessions perform more consistently.** go is the primary
+target — the floor ordering above is the spec's centerpiece — and other
+skills are edited only where they would otherwise answer the same
+question a different way: find-edge adopts the same promotion path (§6),
+score-theories' settle step starts persisting the scores it computes
+(§6). No skill is edited for any other reason.
 
 | phase | name | consistency surface |
 |---|---|---|
@@ -179,8 +181,8 @@ Structural notes, part of the key:
   adopted it — adoption is a version-bump decision." That converts the
   strongest result in the repo from silently invisible to a standing item
   the user sees every session until ruled on.
-- **Executability** (a judgment find-edge §3 names but leaves unstated;
-  stated here for go's path, find-edge itself untouched): takeable means current spread < claimed net edge, and ask-side depth ≥
+- **Executability** (a judgment find-edge §3 names but leaves unstated —
+  both paths now use these stated thresholds): takeable means current spread < claimed net edge, and ask-side depth ≥
   the theory's stated minimum (from its RUNBOOK; default 1 contract —
   i.e. a quote exists). Fails → demote to R4 with `not_takeable` noted.
   Thresholds live in the key, so tightening them is a key-version bump,
@@ -214,12 +216,21 @@ table (eyeballing is where the documented row-mixing failures live).
   same output. The report cites the key version; auditability comes from
   determinism, not storage.
 
-The evaluator is a plain tools module, so find-edge *can* adopt it later
-for one promotion path across entry points — but that edit is explicitly
-out of this spec's scope (§2 scope guard). Likewise the carried
-"nothing writes `scores`" gap (`save_score` has no production caller, so
-`state` EVIDENCE renders empty): noted here as context, repaired
-elsewhere.
+Two consistency edits ride on the evaluator, both passing the §2 scope
+principle:
+
+- **find-edge §6–§7 switch to the same evaluator and rung vocabulary** —
+  one promotion path however the question arrives ("go" or "what's the
+  best bet right now"). Without this, the two entry points would rank
+  and report the same candidate differently, which is the exact
+  inconsistency this spec removes. find-edge's marked rule blocks
+  (`judge-blind`, `batch-and-dedupe`, `buckets-from-deep-stage`) stay
+  intact.
+- **The settle step persists its computed score rows via the existing
+  `save_score`** (one-line touch in score-theories), closing the carried
+  "nothing writes `scores`" gap so `state` EVIDENCE stops rendering
+  empty against what sessions compute by hand — the orientation surface
+  and the computed reality become the same number.
 
 ## 7. The report contract
 
@@ -283,10 +294,16 @@ candidates already judged.
 - `docs/promotion-key.md` — new; the key (§5), version 1.
 - `tools/promotion.py` — new; evaluator (§6).
 - `tools/cli.py` — `promote <opp_id> | --run <run_id>`.
-- `.claude/skills/go/SKILL.md` — **the only skill this spec touches** —
-  rewritten to the §2 phase structure; §0 peers, floor rewritten onto
-  runbooks, phase 3 promote, report contract, never-ask rule. The
-  `notes-theory-log-split` marked rule block moves intact.
+- `tools/score.py` settle-step call site — persist via `save_score`.
+- `.claude/skills/go/SKILL.md` — rewritten to the §2 phase structure;
+  §0 peers, floor rewritten onto runbooks, phase 3 promote, report
+  contract, never-ask rule. The `notes-theory-log-split` marked rule
+  block moves intact.
+- `.claude/skills/find-edge/SKILL.md` — §3 executability and §6–§7
+  ranking/report switch to the evaluator and rung vocabulary (§6's
+  consistency rationale); marked rule blocks intact.
+- `.claude/skills/score-theories/SKILL.md` — settle step persists
+  scores; no other change.
 - `theories/no_side_premium/RUNBOOK.md`,
   `theories/structural_arb/RUNBOOK.md` — new, to the §4 template;
   existing runbooks get the five headings (content is already there).
@@ -304,12 +321,11 @@ candidates already judged.
    `tools/promotion.py`, CLI) — usable standalone the day it lands.
 2. **Runbooks** — write the two missing, retrofit headings, conventions
    test.
-3. **Go skill rewrite** — against the shipped surfaces. No other skill
-   changes.
-4. Peer `session_claims` table — deferred; trigger per §3.
-
-Out of scope, future candidates under their own approval: find-edge
-adopting the evaluator; the `save_score` persistence repair.
+3. **Skill rewrites** — go first, then the two consistency adoptions
+   (find-edge onto the evaluator; score-theories' persist line),
+   against the shipped surfaces.
+4. **Score persistence** repair (`save_score` call site + its test).
+5. Peer `session_claims` table — deferred; trigger per §3.
 
 Each phase is independently landable; a session interrupted mid-rollout
 leaves working surfaces, not a half-wired contract.
