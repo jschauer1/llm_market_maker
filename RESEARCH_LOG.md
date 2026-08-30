@@ -1846,3 +1846,49 @@ touched this theory would act; a result inside one theory is a headline
 and a pointer into its `NOTES.md`, never a copy. See
 `docs/superpowers/specs/2026-08-29-enforcing-surfaces-log-classification.md`
 for the full row-by-row accounting this entry summarizes.
+
+---
+
+## 2026-08-30 — rule delivery complete: ten task-time rules live in their skills (spec 7, phases A+B)
+
+**Did:** Moved the tenth and final task-time rule — `notes-theory-log-split`,
+the `NOTES.md`/`RESEARCH_LOG.md` split — into `go`'s §4 "Log it", closing
+phases A and B of the rule-delivery plan
+(`.superpowers/sdd/2026-08-29-enforcing-surfaces-rule-delivery/`). All ten
+rules named in ruling 7 (task-time rules get one home — their skill, not
+CLAUDE.md) now live inside a `<!-- rule: slug (moved from CLAUDE.md § ...,
+2026-08-29) -->` marked block in the skill that owns the activity:
+
+- `backtest-web-search-off`, `structural-gate-conditions`,
+  `record-the-tier-claim` → `backtest-theory`
+- `judge-blind`, `batch-and-dedupe`, `buckets-from-deep-stage` → `find-edge`
+- `facts-are-data`, `search-the-registry`, `revisit-angle` → `propose-theory`
+- `notes-theory-log-split` → `go`
+
+`tests/test_conventions.py::test_every_moved_rule_lives_in_its_owning_skill`
+is the guard: it walks all ten manifest entries and fails at the commit
+that drops a marked block or lets CLAUDE.md's skill map stop naming the
+owner, so a rule losing its single home breaks the suite rather than
+sitting undetected. Full suite green: 1095 passed, `test_conventions.py`
+15 passed. Ruling 7 flipped `binding` → `implemented`.
+
+**Learned:** `wc -w CLAUDE.md` now reads 6,414 words, against the
+6,671-word post-consolidation baseline the spec's §0 names — a net
+**-257** words, even though every move left a one-line pointer sentence
+behind. The ten rules' bodies (prose, code fences, worked-example
+reasoning) outweighed the section furniture and full paragraphs they
+replaced.
+
+**Next:** Nothing outstanding on this spec. `backtest-theory`, `find-edge`,
+`propose-theory` and `go` each now carry their moved rules alongside their
+existing task guidance; a future session extending one of those skills
+should keep its marked block(s) intact rather than editing around them.
+
+This entry is a repo-level mechanism, not a theory result, so it passes the
+§6.5 promotion bar on its own terms: the manifest test and the single-home
+ruling change how any future session editing CLAUDE.md or a skill would
+act. See this file's 2026-08-29 "Carry chains shipped (spec phase 6); rule
+delivery nine-tenths done (phases A/B)" entry for the mid-flight status
+this completes, and
+`.superpowers/sdd/2026-08-29-enforcing-surfaces-rule-delivery/` for the
+full task-by-task plan.
