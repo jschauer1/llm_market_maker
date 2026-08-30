@@ -1062,57 +1062,28 @@ deciding before then.
 
 ## 2026-08-29 (session 3) — the version-bump gap, and what v4's clean gate revealed
 
-**Did:** Fresh board (111,102 markets). Settled 31 newly-resolved tickers.
-Found and closed a **§2 gap the date-based "already ran today" check cannot
-see**: `insider_judgment` v3→v4 and `structural_arb` v2→v3 both landed at
-~00:34Z *after* this morning's 00:21/00:44 runs, so both current procedures
-had never touched a board while the ledger showed them current for today. Ran
-both.
+The `go` skill's freshness check groups by `theory_id` and date but not
+by `theory_version`, so a theory that version-bumps after its daily run
+reads as current for the rest of that day even though its new procedure
+never touched a board: `insider_judgment` v3→v4 and `structural_arb`
+v2→v3 both landed at ~00:34Z, after that morning's 00:21/00:44 runs,
+and neither had actually run under its current version until this
+session forced both. This is the same silent-merge failure the
+versioning rule exists to prevent, arriving through the freshness check
+instead of the ledger, and it is the finding behind §2 ("Version bumps
+outrun settlements") of
+`docs/superpowers/specs/2026-08-29-enforcing-surfaces-design.md`.
+Re-running `insider_judgment` under v4's now-clean gate (23 events, 0
+recommended) surfaced a further result: the screen and its best signal
+point in opposite directions — the screen picked NO on 30 of 35 legs,
+while 15 of 23 events carry a rules divergence broader than their
+title, which favors YES, five of them confirmed by research rather
+than inferred.
 
-- `structural_arb` **v3: ran, 0 candidates.** Funnel 111,102 → 12,476
-  multi-market events → 2 geometry findings → 0. Both findings were removed by
-  the new v3 stage-1 sterile screen (`untraded or near-untraded leg`), and
-  1,445 arithmetic hits failed the mutual-exclusivity flag. This is v3 working
-  as designed: v2 would have spent orderbook fetches on those 2 and then
-  rejected them anyway.
-- `insider_judgment` **v4: ran, 35 legs / 23 events judged, 0 recommended.**
-  Stage 5 judged **inline by the main session (claude-opus-5)**, not by
-  subagents — this session was told not to spawn subagents — and the
-  `judgment_runs` row records that. 8 of 23 events web-researched.
-- `no_side_premium` v1 was already current at its own version; not re-run.
-
-**Learned:**
-
-1. **"Ran today" and "ran at its current version" are different questions, and
-   only the first is checked.** The `go` skill's snippet groups by
-   `theory_id` and date; it does not group by `theory_version`. A theory
-   version-bumped after its daily run looks current and is not — the exact
-   silent-merge failure the versioning rule exists to prevent, arriving
-   through the freshness check instead of through the ledger. Worth fixing in
-   the skill.
-2. **insider_judgment's screen and its best signal point in opposite
-   directions.** Detail in that theory's `NOTES.md`. In short: the screen
-   picked NO on 30 of 35 legs, while 15 of 23 events carry a rules divergence
-   that is *broader* than its title — which makes YES easier. Five of those
-   were confirmed by research, not inferred. Every final review since v2 has
-   declined for a version of this reason; v4 is the first run where the gate
-   is clean enough that it reads as structure rather than noise.
-3. **A live negative result for the `settled-but-trading` backlog idea**,
-   recorded against it. Five markets found trading at 0.77–0.96 *after* their
-   determining fact was public — and in every case the residual price is the
-   market pricing **rules ambiguity**, not a staleness window. A resolver
-   firing on "the determining fact is public" takes the wrong side of all
-   five. The idea survives only for *threshold* families (a published number
-   vs a stated bar), and that split was not in the spec. All five settle Sep
-   1–4, so they are a free forward test.
-4. **v4's gate leak rate is now measured, not assumed:** 4 of 23 survivors
-   (17%) were families the thesis excludes outright. Two KBO baseball events
-   leaked because **Kalshi's own rules text calls a Korean pro fixture a
-   "College Baseball game"** — the rules-reading matcher had nothing to catch.
-
-**Next:** the `deadline-drift` user decision is still open (three options, in
-the idea's `revisit_angle`). The queue is down to 0 live endorsed positions —
-both carried bets died at today's ask.
+Narrative moved 2026-08-29 to
+`theories/insider_bias/insider_judgment/NOTES.md` under `## 2026-08-29
+(session 3) — the version-bump gap, and what v4's clean gate revealed
+(migrated from RESEARCH_LOG.md)` (spec §6.8).
 
 ## 2026-08-29 (session 3, item 2) — no_side_premium: a sharper estimator, and a contaminated control caught
 
