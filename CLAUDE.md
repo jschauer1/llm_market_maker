@@ -699,8 +699,9 @@ keep this, but it's a hassle" resolves to keeping it.
   handful of prices before betting, use `markets.quotes(tickers)`.
 - **Snapshots keep the complete raw payload**, so a board rebuilt from cache
   is identical to a freshly fetched one and any field Kalshi sends stays
-  available to a future theory. ~400 MB per pull (measured 2026-08-29) is the
-  price of not deciding today which questions tomorrow may ask.
+  available to a future theory. A pull once cost ~400 MB (measured 2026-08-29);
+  dedup-on-write and zlib (spec 5.2, shipped 2026-08-30) now store only changed
+  payloads, compressed — completeness kept, the price no longer.
 - **Record while you collect — and while you spend.** Any collection
   running longer than a minute writes incrementally — per series, per page,
   per market — to the DB or a resumable checkpoint, never memory-only with

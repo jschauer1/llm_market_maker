@@ -1,7 +1,7 @@
 """First-party market history capture (spec section 5).
 
 kalshi_trader overwrote its raw market dump on every fetch, so it retained no
-history at all. This table accumulates instead — every capture is a new row.
+history at all. This table accumulates instead — a changed payload is a new row, and an unchanged capture extends the existing row's [captured_at, last_seen_at] interval (spec 5.2 phase 2), so history is complete without a row per pull.
 
 Two reasons it matters. It hedges against either platform's own historical
 API being too shallow, and it grows the clean (tier B) backtest window over
@@ -24,9 +24,10 @@ from tools.kalshi import markets as kalshi_markets
 from tools.polymarket import markets as poly_markets
 
 # Upsert on (platform, market_id, captured_at). Re-saving the same market
-# within the same capture second overwrites rather than duplicating: a batch
-# is one row per market, always. Last write wins, which is what a caller
-# re-saving a market mid-pull would mean.
+# within the same capture second overwrites rather than duplicating: at most
+# one row per (platform, market, capture second), and a pull may write NO row
+# for an unchanged market. Last write wins, which is what a caller re-saving
+# a market mid-pull would mean.
 _INSERT = """
     INSERT INTO market_snapshots (
         platform, market_id, captured_at, title, implied_prob_yes,
@@ -269,11 +270,13 @@ def _kalshi_snapshot_status(m) -> str:
 # executability filter actually wants) and `can_close_early` /
 # `early_close_condition` (whether the resolution source can miss the close).
 #
-# Kalshi sends 42 fields, ~2 KB per market. Storing all of them costs ~200 MB
-# per pull and keeps every future question answerable. If space ever does bind,
-# drop whole old snapshot BATCHES rather than trimming fields: losing a day of
-# history is a decision you can see and reverse by not repeating it, whereas a
-# field trimmed out of every row is gone silently and forever.
+# Kalshi sends 42 fields, ~2 KB per market. Complete payloads are still kept
+# for all future questions; dedup-on-write and zlib compression (spec 5.2,
+# shipped 2026-08-30) now reduce the stored cost while retaining everything.
+# If space ever does bind, drop whole old snapshot BATCHES rather than trimming
+# fields: losing a day of history is a decision you can see and reverse by not
+# repeating it, whereas a field trimmed out of every row is gone silently and
+# forever.
 
 
 def save_kalshi(
@@ -448,7 +451,7 @@ def compress_history(conn: sqlite3.Connection, batch_rows: int = 20000) -> dict:
     what an earlier batch already converted. `bytes_before`/`bytes_after`
     are measured only over the rows this call actually touched, which is
     what makes the JSON-only compression ratio it reports meaningful
-    (measured ~8x on this project's payloads) rather than diluted by rows
+    (measured ~2.33x on this project's payloads — per-row zlib on ~2 KB post-dedup JSON; see RESEARCH_LOG.md 2026-08-30) rather than diluted by rows
     that were already BLOB.
     """
     stats = {"compressed": 0, "already": 0,
