@@ -284,6 +284,16 @@ rather than repeating them; `THEORY.md` changes only when the claim, the
 procedure, or the status changes. This log is what makes a year of sessions
 accumulate instead of repeat.
 
+<!-- rule: notes-theory-log-split (moved from CLAUDE.md § What lives in a theory, 2026-08-29) -->
+`RESEARCH_LOG.md` stays cross-theory: a log entry is earned by a fact that
+changes how a session that never touched this theory would act — a
+mechanism, a ruling, a precedent, a constraint, a breakthrough, a
+correction. A result inside one theory is a headline and a pointer into
+its `NOTES.md`, never a copy. This was forward-only from 2026-08-25 and
+produced 5,838 words of copies anyway, because the log was what got read;
+it binds now because `state` is.
+<!-- /rule -->
+
 ## 5. Report for a human
 
 **A report lands after every §3 item, not once at the end.** Write it as

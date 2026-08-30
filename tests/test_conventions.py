@@ -414,6 +414,7 @@ _MOVED_RULES: dict[str, str] = {
     "facts-are-data": "propose-theory",
     "search-the-registry": "propose-theory",
     "revisit-angle": "propose-theory",
+    "notes-theory-log-split": "go",
 }
 
 

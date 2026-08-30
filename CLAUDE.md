@@ -238,13 +238,9 @@ the theory.
 **`NOTES.md` is each theory's lab notebook** — dated, append-only, raw.
 Dead ends and why they died, data-source quirks, backtest narratives,
 hunches. `THEORY.md` carries only the distilled version and changes when
-the claim, the procedure, or the status changes. `RESEARCH_LOG.md` stays
-cross-theory: a log entry is earned by a fact that changes how a session
-that never touched this theory would act — a mechanism, a ruling, a
-precedent, a constraint, a breakthrough, a correction. A result inside one
-theory is a headline and a pointer into its `NOTES.md`, never a copy. This
-was forward-only from 2026-08-25 and produced 5,838 words of copies anyway,
-because the log was what got read; it binds now because `state` is.
+the claim, the procedure, or the status changes. Where notes, theory docs
+and the log divide lives in go — the split is the promotion bar the user
+ruled 2026-08-29.
 
 **Reading is open; only writing is segregated.** Any session may read any
 theory's notes, code, or prompts at any time, and connecting dots across
