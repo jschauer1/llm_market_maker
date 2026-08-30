@@ -426,3 +426,145 @@ def test_every_moved_rule_lives_in_its_owning_skill():
     assert problems == [], (
         "a relocated rule lost its single home:\n" + "\n".join(problems)
     )
+
+
+_DATE = re.compile(r"20\d{2}-\d{2}-\d{2}")
+#: `\b` before the alternation (deviation from the brief's literal regex):
+#: without it, `re.findall` happily matches the *tail* of an unrelated word
+#: -- `backtests/RESULTS.md` contains `tests/RESULTS.md` as a substring
+#: (`backTESTS`), so the unanchored version reports a real, resolvable
+#: citation (theory_slices row insider_judgment/strong-moderate-no, whose
+#: origin reads "...backtests/RESULTS.md carries the Holm-corrected
+#: family...") as citing a nonexistent `tests/RESULTS.md`. `\b` requires a
+#: word boundary immediately before `theories|studies|docs|tools|tests`,
+#: which the `k`/`t` junction in `backtests` does not have, so the false
+#: match disappears while every genuine path mention (preceded by
+#: whitespace, punctuation, or start-of-string) still matches.
+_CITED_PATH = re.compile(
+    r"\b(?:theories|studies|docs|tools|tests)/[A-Za-z0-9_./\-]*[A-Za-z0-9_\-]"
+)
+
+
+def _file_contains_date_heading(path, date):
+    """True when `date` appears anywhere in `path`.
+
+    Loosened from the brief's original heading-line heuristic (a line
+    starting with '#', or a bolded '**' section lead) to plain
+    containment -- the sanctioned relief valve, taken because the strict
+    heuristic false-positives on a real citation format already in use
+    across this repo: THEORY.md 'Learnings' entries are Markdown list
+    items, `- 2026-08-26 -- **headline text...**`, which start with `-`,
+    not `#` or `**` (see theories/insider_bias/insider_judgment/THEORY.md
+    and theories/insider_bias/mention_family/THEORY.md, both of which use
+    this format for every dated entry). Under the strict heuristic, the
+    slice-origin test flags theory_slices row
+    insider_judgment/strong-moderate-no -- whose origin cites
+    'THEORY.md Learnings 2026-08-26', a citation that plainly still
+    resolves -- as broken. Any-line containment fixes that false alarm.
+
+    This does not remove the test's teeth: a real silent move relocates
+    the entire dated entry (heading text and body together) out of the
+    file, so the date stops appearing in it at all, and containment still
+    catches that. What it gives up is precision about *where* in the file
+    the date appears -- acceptable because prose citations already name
+    the file loosely (see test_every_dated_cross_citation_still_resolves'
+    own docstring on bare NOTES.md/THEORY.md resolution), so this test
+    was never a byte-exact anchor check to begin with."""
+    return date in path.read_text(encoding="utf-8")
+
+
+def test_every_slice_origin_citation_still_resolves():
+    """A slice's origin is its pre-registration provenance (CLAUDE.md,
+    'Subset edges'). It cites files and dated section headings in prose;
+    nothing else enforces them, so a notebook migration could silently
+    orphan the provenance of a registered slice. Every repo path named in
+    an origin must exist, and every date named must still appear as a
+    heading in at least one of the cited files. A stub or a migrated
+    heading satisfies this; a silent move does not. (spec 6.6)
+
+    Read-only against the working database, skipped where there is none --
+    same idiom as test_every_recorded_prompt_path_still_resolves."""
+    if not db.DEFAULT_DB_PATH.exists():
+        pytest.skip("no working database in this environment")
+    conn = db.connect(db.DEFAULT_DB_PATH)
+    try:
+        rows = list(conn.execute("SELECT theory_id, slug, origin FROM theory_slices"))
+    finally:
+        conn.close()
+    problems = []
+    for r in rows:
+        origin = r["origin"] or ""
+        cited = [p.rstrip(".") for p in _CITED_PATH.findall(origin)]
+        files = []
+        for p in cited:
+            if not (ROOT / p).exists():
+                problems.append(f"{r['theory_id']}/{r['slug']}: cites missing `{p}`")
+            elif (ROOT / p).is_file():
+                files.append(ROOT / p)
+        for date in set(_DATE.findall(origin)):
+            if files and not any(_file_contains_date_heading(f, date) for f in files):
+                problems.append(
+                    f"{r['theory_id']}/{r['slug']}: date {date} no longer a "
+                    f"heading in any cited file"
+                )
+    assert problems == [], (
+        "a registered slice's origin citation no longer resolves -- "
+        "restore the heading (a stub suffices) or repoint the origin's "
+        "citation deliberately:\n" + "\n".join(problems)
+    )
+
+
+#: Files whose prose cites other files' dated entries. RESEARCH_LOG.md is
+#: scanned for citations INTO notebooks; notebooks and THEORY.md files for
+#: citations into each other and back into the log.
+_CITING_GLOBS = ("RESEARCH_LOG.md", "theories/*/NOTES.md", "theories/*/*/NOTES.md",
+                 "theories/*/THEORY.md", "theories/*/*/THEORY.md")
+_CITE_LINE = re.compile(
+    r"(?P<file>[A-Za-z0-9_./\-]*(?:NOTES\.md|THEORY\.md|RESEARCH_LOG\.md))"
+)
+
+
+def test_every_dated_cross_citation_still_resolves():
+    """Notebooks, THEORY.md files and the log cite each other's entries by
+    date ('NOTES.md 2026-08-26'). A migration moves entries between these
+    files, and a date citation breaks silently because the date still
+    exists somewhere. Any line that names one of these files AND a date
+    must point at a file that still carries that date as a heading. A stub
+    keeps the heading, so stubs pass; a silent move fails. (spec 6.6)
+
+    Resolution: an explicit path in the citation wins; a bare NOTES.md /
+    THEORY.md resolves to the citing file's own directory when possible;
+    otherwise every file of that name is searched and ANY hit passes --
+    deliberately loose, because prose citations name theories in words
+    ('mention_family's NOTES.md') that a regex should not guess at."""
+    problems = []
+    for pattern in _CITING_GLOBS:
+        for doc in sorted(ROOT.glob(pattern)):
+            for line in doc.read_text(encoding="utf-8").splitlines():
+                m = _CITE_LINE.search(line)
+                dates = _DATE.findall(line)
+                if not m or not dates:
+                    continue
+                span = m.group("file")
+                if "/" in span and (ROOT / span).exists():
+                    targets = [ROOT / span]
+                elif "/" in span:
+                    problems.append(f"{doc.relative_to(ROOT)}: cites missing `{span}`")
+                    continue
+                elif (doc.parent / span).exists():
+                    targets = [doc.parent / span]
+                else:
+                    targets = sorted(ROOT.glob(f"**/{span}"))
+                for date in dates:
+                    if targets and not any(
+                        _file_contains_date_heading(t, date) for t in targets
+                    ):
+                        problems.append(
+                            f"{doc.relative_to(ROOT)}: `{span}` {date} -- no "
+                            f"target still carries that date as a heading"
+                        )
+    assert problems == [], (
+        "a dated cross-citation no longer resolves -- the entry it cites "
+        "was moved without a stub, or its heading was reworded:\n"
+        + "\n".join(problems)
+    )

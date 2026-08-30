@@ -1,0 +1,243 @@
+./.claude/skills/go/SKILL.md:270:Append to `RESEARCH_LOG.md`:
+./.superpowers/sdd/2026-08-29-enforcing-surfaces-rule-delivery/progress.md:15:- Coordination: peer session llm-market-identifier-50 owns RESEARCH_LOG.md
+./.superpowers/sdd/2026-08-29-research-log-migration/progress.md:19:| T2↔T4-14 | RESEARCH_LOG.md heading anchors | joins land before any stub anchors on a heading | ordered correctly (T2 first) |
+./.superpowers/sdd/2026-08-29-research-log-migration/progress.md:26:| T15 step 1 | stub-count grep `migrated from RESEARCH_LOG.md` | T15's own appended migration entry could contain the literal phrase and inflate the count | ruling below |
+./.superpowers/sdd/2026-08-29-research-log-migration/progress.md:37:"migrated from RESEARCH_LOG.md" (use different phrasing), so the stub-count grep
+./.superpowers/sdd/2026-08-29-research-log-migration/task-1-brief.md:12:grep -n '^## ' RESEARCH_LOG.md
+./.superpowers/sdd/2026-08-29-research-log-migration/task-1-brief.md:21:text = open("RESEARCH_LOG.md", encoding="utf-8").read()
+./.superpowers/sdd/2026-08-29-research-log-migration/task-1-report.md:12:3. Ran `grep -n '^## ' RESEARCH_LOG.md`. After the addendum's existing last
+./.superpowers/sdd/2026-08-29-research-log-migration/task-1-report.md:18:4. Read all 8 entries in full (`RESEARCH_LOG.md:2909-3099`).
+./.superpowers/sdd/2026-08-29-research-log-migration/task-1-report.md:24:   with `sed -n '<start>,<end>p' RESEARCH_LOG.md | wc -w` over the exact
+./.superpowers/sdd/2026-08-29-research-log-migration/task-1-report.md:32:7. Verified the edit: RESEARCH_LOG.md untouched (`git status --short` /
+./.superpowers/sdd/2026-08-29-research-log-migration/task-1-report.md:76:- `grep -n '^## ' RESEARCH_LOG.md` — 8 headings after line 2868, at exactly
+./.superpowers/sdd/2026-08-29-research-log-migration/task-1-report.md:81:  `sed -n '<range>p' RESEARCH_LOG.md | wc -w` for each entry's exact body
+./.superpowers/sdd/2026-08-29-research-log-migration/task-1-report.md:86:  modified (+12 lines), `RESEARCH_LOG.md` absent from the diff.
+./.superpowers/sdd/2026-08-29-research-log-migration/task-1-report.md:115:  files, not `RESEARCH_LOG.md`. A later task should re-check
+./.superpowers/sdd/2026-08-29-research-log-migration/task-1-report.md:116:  `git log RESEARCH_LOG.md` after this pin if the peer resumes appending —
+./.superpowers/sdd/2026-08-29-research-log-migration/task-1-report.md:125:- No RESEARCH_LOG.md content changed in this task, per the explicit
+./.superpowers/sdd/2026-08-29-research-log-migration/task-2-brief.md:4:- Modify: `RESEARCH_LOG.md` (three heading pairs; nothing else)
+./.superpowers/sdd/2026-08-29-research-log-migration/task-2-brief.md:41:- [ ] **Step 2: Verify the count.** `grep -c '^## ' RESEARCH_LOG.md` must drop by exactly 3 from the Task 1 measurement (77 → 74 as of `6fe567a`; if the peer appended N entries since, 77+N → 74+N).
+./.superpowers/sdd/2026-08-29-research-log-migration/task-2-brief.md:51:git add RESEARCH_LOG.md
+./.superpowers/sdd/2026-08-29-research-log-migration/task-2-report.md:11:All three replacements made using the Edit tool on RESEARCH_LOG.md:
+./.superpowers/sdd/2026-08-29-research-log-migration/task-2-report.md:28:$ grep -c '^## ' RESEARCH_LOG.md
+./.superpowers/sdd/2026-08-29-research-log-migration/task-2-report.md:47:$ git add RESEARCH_LOG.md
+./.superpowers/sdd/2026-08-29-research-log-migration/task-2-report.md:50: RESEARCH_LOG.md | 9 +++------
+./.superpowers/sdd/2026-08-29-research-log-migration/task-2-report.md:60:RESEARCH_LOG.md | 9 +++------
+./.superpowers/sdd/2026-08-29-research-log-migration/task-2-report.md:65:- Only RESEARCH_LOG.md modified
+./.superpowers/sdd/2026-08-29-research-log-migration/task-3-brief.md:17:{ grep -rn 'THEORY.md Learnings\|NOTES.md 20\|RESEARCH_LOG' --include='*.md' --include='*.py' . ; \
+./.superpowers/sdd/2026-08-29-research-log-migration/task-3-brief.md:18:  grep -n 'entry above\|entry two above\|entries above\|see above' RESEARCH_LOG.md ; \
+./.superpowers/sdd/2026-08-29-research-log-migration/task-3-brief.md:86:#: Files whose prose cites other files' dated entries. RESEARCH_LOG.md is
+./.superpowers/sdd/2026-08-29-research-log-migration/task-3-brief.md:89:_CITING_GLOBS = ("RESEARCH_LOG.md", "theories/*/NOTES.md", "theories/*/*/NOTES.md",
+./.superpowers/sdd/2026-08-29-research-log-migration/task-3-brief.md:92:    r"(?P<file>[A-Za-z0-9_./\-]*(?:NOTES\.md|THEORY\.md|RESEARCH_LOG\.md))"
+./.superpowers/sdd/2026-08-29-research-log-migration/task-3-brief.md:98:    date ('NOTES.md 2026-08-26'). A migration moves entries between these
+./attic/kalshi_trader_migration/README.md:5:can regenerate was deleted on the user's instruction (RESEARCH_LOG.md,
+./CLAUDE.md:211:suite), and cross-cutting session narrative (`RESEARCH_LOG.md`).
+./CLAUDE.md:244:the claim, the procedure, or the status changes. `RESEARCH_LOG.md` stays
+./CLAUDE.md:264:  or `RESEARCH_LOG.md`. A theory whose true status is discoverable only by
+./CLAUDE.md:682:- **`RESEARCH_LOG.md`** carries continuity between sessions — append when
+./docs/DEDUP_PLAN.md:253:- **`RESEARCH_LOG.md`** — an entry pointing here.
+./docs/superpowers/plans/2026-08-23-foundation.md:17:- **Plan 3 — Theory harness and operating modes:** `_TEMPLATE`, ported `insider_bias`, `migrate_kalshi_trader.py`, the six skills (`go`, `find-edge`, `propose-theory`, `backtest-theory`, `score-theories`, `compare-theories`), `RESEARCH_LOG.md`, `CLAUDE.md`, `tools/README.md`.
+./docs/superpowers/plans/2026-08-23-theory-harness.md:1502:- Create: `RESEARCH_LOG.md`
+./docs/superpowers/plans/2026-08-23-theory-harness.md:1524:Read the last ~30 lines of `RESEARCH_LOG.md` for what the previous session
+./docs/superpowers/plans/2026-08-23-theory-harness.md:1563:Append to `RESEARCH_LOG.md`:
+./docs/superpowers/plans/2026-08-23-theory-harness.md:1708:- [ ] **Step 3: Create `RESEARCH_LOG.md`**
+./docs/superpowers/plans/2026-08-23-theory-harness.md:1748:git add .claude/skills/go .claude/skills/find-edge RESEARCH_LOG.md
+./docs/superpowers/plans/2026-08-23-theory-harness.md:2243:- **`RESEARCH_LOG.md`** carries continuity between sessions — read its tail
+./docs/superpowers/plans/2026-08-24-theory-layer-oop.md:3981:- Modify: `docs/superpowers/specs/2026-08-24-theory-layer-oop-design.md` (status line), `RESEARCH_LOG.md`
+./docs/superpowers/plans/2026-08-24-theory-layer-oop.md:4072:- Append to `RESEARCH_LOG.md`: date, one paragraph — theory layer landed (domain types, contract, registry, both theories adapted then ported, shim removed), no version bumps, goldens held throughout, and the `Verdict` type now enforces category-not-number at the judge boundary.
+./docs/superpowers/plans/2026-08-24-theory-layer-oop.md:4077:git add tools/domain.py tests/ docs/superpowers/specs/2026-08-24-theory-layer-oop-design.md RESEARCH_LOG.md
+./docs/superpowers/plans/2026-08-25-theory-locality.md:22:- **No migration of existing notes.** Content already in `THEORY.md` Learnings and `RESEARCH_LOG.md` stays exactly where it is; the convention is forward-only and the seeded `NOTES.md` files point at the old locations rather than absorbing them.
+./docs/superpowers/plans/2026-08-25-theory-locality.md:84:> (`RESEARCH_LOG.md`).
+./docs/superpowers/plans/2026-08-25-theory-locality.md:112:- **`RESEARCH_LOG.md`** — the session narratives: the 2026-08-24 tier A
+./docs/superpowers/plans/2026-08-25-theory-locality.md:147:- **`RESEARCH_LOG.md`** — the session narratives: the 2026-08-24 split from
+./docs/superpowers/plans/2026-08-25-theory-locality.md:316:suite), and cross-cutting session narrative (`RESEARCH_LOG.md`).
+./docs/superpowers/plans/2026-08-25-theory-locality.md:345:the claim, the procedure, or the status changes. `RESEARCH_LOG.md` stays
+./docs/superpowers/plans/2026-08-25-theory-locality.md:360:`RESEARCH_LOG.md`. A theory whose true status is discoverable only by
+./docs/superpowers/plans/2026-08-25-theory-locality.md:484:  if it is a fact or a result, `RESEARCH_LOG.md` if it is session
+./docs/superpowers/plans/2026-08-25-theory-locality.md:659:Both skills routed theory-specific findings to THEORY.md Learnings, which
+./docs/superpowers/plans/2026-08-25-theory-locality.md:920:In `docs/superpowers/specs/2026-08-25-theory-locality-design.md`, `## 5. Concrete changes`, the list currently ends with item 9 (`RESEARCH_LOG.md`). Change the opening line of that section from:
+./docs/superpowers/plans/2026-08-25-theory-locality.md:986:- Modify: `RESEARCH_LOG.md` (append one entry at the end)
+./docs/superpowers/plans/2026-08-25-theory-locality.md:995:At the end of `RESEARCH_LOG.md`, append:
+./docs/superpowers/plans/2026-08-25-theory-locality.md:1063:# Criterion 2 -- no skill still routes findings to THEORY.md Learnings
+./docs/superpowers/plans/2026-08-25-theory-locality.md:1067:ls RESEARCH_LOG.md theories/*/*/THEORY.md
+./docs/superpowers/plans/2026-08-25-theory-locality.md:1083:Expected: `RESEARCH_LOG.md` modified, and nothing else from this plan left uncommitted. No `_violation_probe.py` — if the probe from Task 7 is present, delete it. `theories/insider_bias/mention_family/backtest.py` may still show as untracked; that is another session's in-flight work and **is not yours to commit or delete**.
+./docs/superpowers/plans/2026-08-25-theory-locality.md:1088:git add RESEARCH_LOG.md
+./docs/superpowers/plans/2026-08-25-theory-locality.md:1100:- **Do not migrate existing content.** Several tasks will tempt you to move a paragraph out of `THEORY.md` Learnings or `RESEARCH_LOG.md` into a `NOTES.md`. The spec forbids it: the convention is forward-only, and the seeds deliberately point at the old locations instead.
+./docs/superpowers/plans/2026-08-25-theory-locality.md:1103:- **Task 7 is gated and self-contained.** Never start it without the user's explicit approval, and never let waiting on that approval delay Tasks 1–6 or Task 8. If it is skipped, delete the marked paragraph from the `RESEARCH_LOG.md` entry in Task 8 Step 1 and report the deferred violation in the handoff.
+./docs/superpowers/plans/2026-08-27-position-identity.md:1792:- Modify: `RESEARCH_LOG.md`
+./docs/superpowers/plans/2026-08-27-position-identity.md:1801:grep -rn "4,759\|4759\|-0\.59\|-0\.588" theories/ RESEARCH_LOG.md
+./docs/superpowers/plans/2026-08-27-position-identity.md:1835:- [ ] **Step 4: Append a `RESEARCH_LOG.md` entry**
+./docs/superpowers/plans/2026-08-27-position-identity.md:1847:git add theories/ RESEARCH_LOG.md
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-foundation.md:329:grep -rn "migrate_kalshi_trader\|db/opportunities.json" --include='*.py' --include='*.md' . | grep -v RESEARCH_LOG.md | grep -v attic/
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-foundation.md:332:Fix any hit the grep returns outside `RESEARCH_LOG.md` (the log is append-only history and is never edited for this). Then create `attic/kalshi_trader_migration/README.md`:
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-foundation.md:339:can regenerate was deleted on the user's instruction (RESEARCH_LOG.md,
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-foundation.md:648:Replaces "read the last ~30 lines of RESEARCH_LOG.md": the log is the
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-foundation.md:866:In `CLAUDE.md`, replace the `RESEARCH_LOG.md` bullet under **Data conventions**:
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-foundation.md:869:- **`RESEARCH_LOG.md`** carries continuity between sessions — read its tail
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-foundation.md:874:- **`RESEARCH_LOG.md`** carries continuity between sessions — append when
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-foundation.md:883:Read the last ~30 lines of `RESEARCH_LOG.md` for what the previous session
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-foundation.md:1095:                      help="the RESEARCH_LOG.md date heading with the reasoning")
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-foundation.md:1125:python -m tools.cli rulings record "Theory-local RESEARCH_LOG.md content migrates into the owning theory's NOTES.md when possible: T entries wholesale, M entries split one at a time, X entries stay (reverses theory-locality plan §22)." --authority user --subject governance --ruled-at 2026-08-29T00:00:00Z --log-entry "2026-08-29 — Enforcing-surfaces spec reviewed and corrected; user ruled: migrate the log, adopt the bar"
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-foundation.md:1135:The four older ones live in the log at these headings (verified 2026-08-29): `RESEARCH_LOG.md:2696` "supervisor rulings: attempt-level scoring; the anchor rule at scale", `:2733` "scoring ruling completed: dedupe, non-decisions, clustering", `:2770` "attempt-level scoring landed; schema ruling for cluster-n" (this entry also carries the `bucket_rates` carve-out and the blocked skill edits). Read those three entries, extract per ruling: (1) attempt-level scoring, (2) the cluster-`n` schema ruling, (3) the `bucket_rates` out-of-scope carve-out (record the carve-out in `--scope-out` of the clustering ruling OR as its own row — its own row, `subject scoring`), (4) the blocked skill edits (subject `governance`, status stays `binding`). Record each with `--authority supervisor` (they were supervisor rulings under the standing delegation), the entry's date, and `--log-entry` set to the exact heading text. Then verify:
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-foundation.md:1204:Append a short entry to `RESEARCH_LOG.md` (it passes the bar: a repo-level operational change): what moved, where, which verification passed, and where the backup lives. Mark the relocation ruling implemented:
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-foundation.md:1209:git add RESEARCH_LOG.md
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-foundation.md:1233:Append the plan-completion entry to `RESEARCH_LOG.md`: one paragraph, phases 0/1/1b/2 shipped, pointer to this plan file. Commit:
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-foundation.md:1236:git add RESEARCH_LOG.md
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-rule-delivery.md:21:- **Coordination (shared tree with a peer session running the log migration):** before editing `tests/test_conventions.py` (Task 1) message the peer session llm-market-identifier-50; Task 6 (rule 32 → go) is HARD-GATED on the peer confirming their §6.7 CLAUDE.md rewrite has landed; RESEARCH_LOG.md appends also go through the peer. The peer owns RESEARCH_LOG.md, theories/*/NOTES.md, the log-classification companion file.
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-rule-delivery.md:37:| 32 | notes-theory-log-split | go | **GATED on peer's §6.7**: the (rewritten-by-peer) `RESEARCH_LOG.md stays cross-theory…` bullet in "What lives in a theory" |
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-rule-delivery.md:151:- [ ] **Step 0 (gate)**: Confirm via the peer session (llm-market-identifier-50) that their §6.7 rewrite of the `RESEARCH_LOG.md stays cross-theory…` bullet has been committed. Do not start before then; the move must carry their NEW text, not the old.
+./docs/superpowers/plans/2026-08-29-enforcing-surfaces-rule-delivery.md:160:- [ ] Message the peer, then append the phase-A/B completion entry to RESEARCH_LOG.md; commit.
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:1:# RESEARCH_LOG.md Migration Implementation Plan (spec §6.8, phases 3–5)
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:5:**Goal:** Execute the one-time RESEARCH_LOG.md migration — pin the classification, fix the three double-`##` headings, land the citation guard test, move the 22 T entries to their theories' notebooks, split the 14 M entries one at a time, reconcile, and make the §6.5 promotion bar bind via the §6.7 CLAUDE.md rewrite.
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:15:- **RESEARCH_LOG.md is append-only except for stubs.** A stub is an in-place edit that replaces an entry's *body*; the `## ` heading line is never reworded, reformatted, or deleted (except the three sanctioned joins in Task 2). Several `rulings.log_entry` rows cite headings verbatim; `tests/test_conventions.py::test_every_ruling_log_entry_resolves` enforces this.
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:19:- **Anything appended to RESEARCH_LOG.md after the Task 1 pin is out of scope for this pass.** Do not classify, move, or stub it.
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:23:- **Encoding:** RESEARCH_LOG.md contains em-dashes (—) and other non-ASCII. All Python snippets must read/write `encoding="utf-8"`. On this Windows checkout, do not pipe file content through PowerShell cmdlets that re-encode; use the Read/Edit tools or Python.
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:31:`## <date> — <heading> (migrated from RESEARCH_LOG.md)`, per the
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:38:## <date> — <heading> (migrated from RESEARCH_LOG.md)
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:55:`## <date> — <heading> (migrated from RESEARCH_LOG.md)` (spec §6.8).
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:84:grep -n '^## ' RESEARCH_LOG.md
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:93:text = open("RESEARCH_LOG.md", encoding="utf-8").read()
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:114:- Modify: `RESEARCH_LOG.md` (three heading pairs; nothing else)
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:151:- [ ] **Step 2: Verify the count.** `grep -c '^## ' RESEARCH_LOG.md` must drop by exactly 3 from the Task 1 measurement (77 → 74 as of `6fe567a`; if the peer appended N entries since, 77+N → 74+N).
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:161:git add RESEARCH_LOG.md
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:181:{ grep -rn 'THEORY.md Learnings\|NOTES.md 20\|RESEARCH_LOG' --include='*.md' --include='*.py' . ; \
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:182:  grep -n 'entry above\|entry two above\|entries above\|see above' RESEARCH_LOG.md ; \
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:250:#: Files whose prose cites other files' dated entries. RESEARCH_LOG.md is
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:253:_CITING_GLOBS = ("RESEARCH_LOG.md", "theories/*/NOTES.md", "theories/*/*/NOTES.md",
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:256:    r"(?P<file>[A-Za-z0-9_./\-]*(?:NOTES\.md|THEORY\.md|RESEARCH_LOG\.md))"
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:262:    date ('NOTES.md 2026-08-26'). A migration moves entries between these
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:326:- Modify: `RESEARCH_LOG.md` (10 stubs), `theories/insider_bias/insider_judgment/NOTES.md` (10 appended entries)
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:345:- [ ] **Step 3: Verify no content was lost.** For each moved entry, the word count of the appended notebook section must equal the word count of the original body (use the Task 1 Step 2 snippet on a pre-move copy, or `git show HEAD:RESEARCH_LOG.md`).
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:355:git add RESEARCH_LOG.md theories/insider_bias/insider_judgment/NOTES.md
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:362:- Modify: `RESEARCH_LOG.md` (3 stubs), `theories/insider_bias/mention_family/NOTES.md` (3 appended entries), `theories/insider_bias/insider_judgment/NOTES.md` (1 dated pointer)
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:379:MENTION-family edge (migrated from RESEARCH_LOG.md)` in
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:389:git add RESEARCH_LOG.md theories/insider_bias/mention_family/NOTES.md theories/insider_bias/insider_judgment/NOTES.md
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:396:- Modify: `RESEARCH_LOG.md` (5 stubs), `theories/structural_arb/NOTES.md` (5 appended entries)
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:410:git add RESEARCH_LOG.md theories/structural_arb/NOTES.md
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:417:- Modify: `RESEARCH_LOG.md` (1 stub), `theories/deadline_drift/NOTES.md` (1 appended entry)
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:424:git add RESEARCH_LOG.md theories/deadline_drift/NOTES.md
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:431:- Modify: `RESEARCH_LOG.md` (1 stub), `theories/no_side_premium/NOTES.md` (1 appended entry)
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:438:git add RESEARCH_LOG.md theories/no_side_premium/NOTES.md
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:445:- Modify: `RESEARCH_LOG.md` (2 stubs), `theories/calibration_harvest/NOTES.md` (2 appended entries)
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:467:git add RESEARCH_LOG.md theories/calibration_harvest/NOTES.md
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:474:- Modify: `RESEARCH_LOG.md` (1 M-stub), `theories/calibration_harvest/NOTES.md` (correction narrative appended adjacent to the politics entry)
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:497:- [ ] **Step 5: Run citation tests + full suite.** Expected: PASS — this is the commit the `RESEARCH_LOG.md:2242` positional reference was flagged for; the citation test plus the pairing handling above is its resolution.
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:502:git add RESEARCH_LOG.md theories/calibration_harvest/NOTES.md docs/superpowers/specs/2026-08-29-enforcing-surfaces-log-classification.md
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:509:- Modify: `RESEARCH_LOG.md` (M-stub), `theories/insider_bias/insider_judgment/NOTES.md` (narrative), companion file (M-split record row); possibly `python -m tools.cli rulings record` (DB, no file)
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:533:**Files (per entry):** `RESEARCH_LOG.md`, `theories/insider_bias/mention_family/NOTES.md`, companion file; entry 3 also touches `theories/no_side_premium/NOTES.md` (dated pointer)
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:547:**Files (per entry):** `RESEARCH_LOG.md`, owner notebook, companion file
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:557:**Files (per entry):** `RESEARCH_LOG.md`, the study's `STUDY.md`, companion file
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:570:- Modify: `RESEARCH_LOG.md` (one appended migration entry), `CLAUDE.md` (the §6.7 in-place rewrite), companion file (reconciliation numbers)
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:579:grep -c 'migrated from RESEARCH_LOG.md' RESEARCH_LOG.md
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:589:`RESEARCH_LOG.md` stays cross-theory: when a session's work sits inside one
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:597:`RESEARCH_LOG.md` stays cross-theory: a log entry is earned by a fact that
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:607:- [ ] **Step 4: Append the migration log entry** to RESEARCH_LOG.md — it must itself pass the §6.5 bar (it does: repo-level change). One entry: heading `## 2026-08-29 — RESEARCH_LOG migration complete: the canon left the journal (spec 6.8)`, body carrying the reconciliation numbers (entries moved per class, words, stub count, commits), the statement that the promotion bar binds from this commit forward, and the pointer to the companion file.
+./docs/superpowers/plans/2026-08-29-research-log-migration.md:614:git add RESEARCH_LOG.md CLAUDE.md docs/superpowers/specs/2026-08-29-enforcing-surfaces-log-classification.md
+./docs/superpowers/specs/2026-08-23-llm-market-edge-finder-design.md:111:  RESEARCH_LOG.md                  Append-only session log — continuity across "go" runs
+./docs/superpowers/specs/2026-08-23-llm-market-edge-finder-design.md:1005:retirement proposal awaiting the user, and the tail of `RESEARCH_LOG.md` for
+./docs/superpowers/specs/2026-08-23-llm-market-edge-finder-design.md:1037:**Always leave a trail.** A session ends by appending to `RESEARCH_LOG.md`: what
+./docs/superpowers/specs/2026-08-23-llm-market-edge-finder-design.md:1149:    `RESEARCH_LOG.md` carries continuity between sessions — read its tail when
+./docs/superpowers/specs/2026-08-25-theory-locality-design.md:29:   `RESEARCH_LOG.md`. Without a stated rule, session logs accumulate
+./docs/superpowers/specs/2026-08-25-theory-locality-design.md:53:   distilled version. `RESEARCH_LOG.md` stays repo-level and
+./docs/superpowers/specs/2026-08-25-theory-locality-design.md:80:| Session continuity | no | `RESEARCH_LOG.md` | always — it is the only cross-session, cross-theory narrative |
+./docs/superpowers/specs/2026-08-25-theory-locality-design.md:90:  into RESEARCH_LOG.md if it is session narrative. Raw notes never move;
+./docs/superpowers/specs/2026-08-25-theory-locality-design.md:193:- **`RESEARCH_LOG.md`** — session continuity: what a session did, across
+./docs/superpowers/specs/2026-08-25-theory-locality-design.md:227:- `RESEARCH_LOG.md`: what recent sessions did.
+./docs/superpowers/specs/2026-08-25-theory-locality-design.md:268:   (THEORY.md Learnings, RESEARCH_LOG.md entries). Existing content is
+./docs/superpowers/specs/2026-08-25-theory-locality-design.md:291:9. **`RESEARCH_LOG.md`** — this decision logged; future entries follow
+./docs/superpowers/specs/2026-08-25-theory-locality-design.md:298:- No migration of existing notes out of THEORY.md or RESEARCH_LOG.md.
+./docs/superpowers/specs/2026-08-25-theory-locality-design.md:313:   changes; RESEARCH_LOG.md gets a pointer, not a copy.
+./docs/superpowers/specs/2026-08-25-theory-locality-design.md:315:   completed from THEORY.md files, the CLI, and RESEARCH_LOG.md alone —
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-design.md:17:`RESEARCH_LOG.md` (§6).
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-design.md:402:`RESEARCH_LOG.md` is 171 KB / 24,812 words across 64 entries (the §6.1
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-design.md:467:    log_entry TEXT                    -- date heading in RESEARCH_LOG.md
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-design.md:485:> - **`RESEARCH_LOG.md`** carries continuity between sessions — append when
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-design.md:723:`RESEARCH_LOG.md` is **64 entries / 24,812 words**. Theory notebooks already
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-design.md:732:> `RESEARCH_LOG.md` stays cross-theory: when a session's work sits inside one
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-design.md:767:> and `RESEARCH_LOG.md` stays exactly where it is; the convention is
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-design.md:801:| **Journal** (`RESEARCH_LOG.md`) | forever, harmlessly | on demand, for one entry's reasoning | nothing — and that is fine |
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-design.md:882:- `theory_slices.origin` — cites `THEORY.md Learnings 2026-08-26` and
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-design.md:898:grep -rn 'THEORY.md Learnings\|NOTES.md 20\|RESEARCH_LOG' --include='*.md' --include='*.py' .
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-design.md:899:grep -n 'entry above\|entry two above\|entries above\|see above' RESEARCH_LOG.md
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-design.md:913:> `RESEARCH_LOG.md` stays cross-theory: a log entry is earned by a fact that
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-design.md:944:   `## <original date> — <original heading> (migrated from RESEARCH_LOG.md)`.
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-design.md:1174:`RESEARCH_LOG.md`.
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-design.md:1310:`RESEARCH_LOG.md` in particular **stays append-only and stays the audit
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-log-classification.md:1:# `RESEARCH_LOG.md` entry classification (evidence for §6.1)
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-log-classification.md:122:  the idea registry. The session-stop addendum (`RESEARCH_LOG.md:1511`)
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-log-classification.md:143:- `RESEARCH_LOG.md:68` — "See the entry above": X citing X, both stay.
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-log-classification.md:144:- `RESEARCH_LOG.md:1511` — the settlement-day-clustering entry's own
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-log-classification.md:149:- `RESEARCH_LOG.md:2242` — **the politics pair above. The one that
+./docs/superpowers/specs/2026-08-29-enforcing-surfaces-log-classification.md:151:- `RESEARCH_LOG.md:2682` — "the entry above": X citing X, both stay.
+./docs/superpowers/specs/2026-08-29-theory-slices-design.md:153:recorded in THEORY.md Learnings 2026-08-26 and
+./docs/superpowers/specs/theories/2026-08-24-theory-series-bias-mining-design.md:49:mention_family history (RESEARCH_LOG.md, 2026-08-24 entries) is the
+./docs/superpowers/specs/theories/2026-08-24-theory-series-bias-mining-design.md:120:- Repo history: RESEARCH_LOG.md 2026-08-24 mention_family entries.
+./docs/superpowers/specs/theories/evidence/2026-08-24-evidence-ledger.md:61:  n=116) — **A-internal** (repo's own DB and RESEARCH_LOG, 2026-08-24).
+./README.md:61:| `RESEARCH_LOG.md` | Session-to-session continuity — what was tried, found, and killed |
+./README.md:89:queryable rows instead of prose buried in `RESEARCH_LOG.md`'s tail.
+./RESEARCH_LOG.md:1345:Details: theories/structural_arb/NOTES.md 2026-08-27.
+./RESEARCH_LOG.md:2876:  exists. See its NOTES.md 2026-08-29 (cont.).
+./RESEARCH_LOG.md:2926:theory-local `RESEARCH_LOG.md` content into the owning theory's `NOTES.md`
+./tests/test_conventions.py:217:    """A ruling row points back at RESEARCH_LOG.md's reasoning for it, or it
+./tests/test_conventions.py:243:    log_text = (ROOT / "RESEARCH_LOG.md").read_text(encoding="utf-8")
+./tests/test_conventions.py:249:        "a ruling's log_entry no longer appears in RESEARCH_LOG.md -- the "
+./theories/calibration_harvest/read_cells.py:12:  this repo that skipped it has been wrong (see NOTES.md 2026-08-29).
+./theories/insider_bias/insider_judgment/backtests/RESULTS.md:7:narrative lives in RESEARCH_LOG.md (2026-08-25/26 entries).
+./theories/insider_bias/insider_judgment/NOTES.md:19:- **`RESEARCH_LOG.md`** — the session narratives: the 2026-08-24 tier A
+./theories/insider_bias/insider_judgment/RUNBOOK.md:166:   gate-rejected. See THEORY.md Learnings.
+./theories/insider_bias/mention_family/NOTES.md:32:- **`RESEARCH_LOG.md`** — the session narratives, in order: the
+./theories/insider_bias/mention_family/THEORY.md:285:  the headline reads.** Full detail in RESEARCH_LOG.md (2026-08-25).
+./theories/_TEMPLATE/NOTES.md:31:> (`RESEARCH_LOG.md`).
+./tools/cli.py:464:                      help="the RESEARCH_LOG.md date heading with the reasoning")
+./tools/README.md:224:  if it is a fact or a result, `RESEARCH_LOG.md` if it is session
+./tools/slices.py:346:    sign purely on how days were weighted (NOTES.md 2026-08-27): a
+./tools/state.py:3:Replaces "read the last ~30 lines of RESEARCH_LOG.md": the log is the
+./user_reports/2026-08-29-theory-status/mention_family.md:62:buckets, Learnings) and `NOTES.md`; `RESEARCH_LOG.md` 2026-08-25 entries;
+68:**Next:** See the entry above — the candle→market adapter for a tier A
+1508:**Addendum (session stop, 00:20Z).** Two more things after the entry above:
+2239:**Retracting the entry two above.** Peer review from the parallel session
+2679:  Supersedes the "standing proposal" status in the entry above. The
+[
+  {
+    "theory_id": "no_side_premium",
+    "slug": "cell-a-no-favorite",
+    "predicate_json": "{\"outcome\": [\"no\"], \"entry_price\": {\"min\": 0.85}}",
+    "hypothesis": "Optimism tax, side-level: retail flow buys YES, nobody's hope pushes into NO, so NO favorites at 0.85+ on mention-family series are underpriced ~+2.0 net. The theory's screen only records cell-A rows as outcome=no, so this predicate is the cell.",
+    "origin": "Pre-registered 2026-08-26: theories/no_side_premium/THEORY.md section 'Pre-registered outcomes (2026-08-26)' and idea 14 revisit angle. registered-at backdated to that documented date. No oos runs designated: the motivating tier-A fullcov measurements live in mention_family's and insider_judgment's ledgers, not this theory's, so this slice's pool is purely forward rows \u2014 all OOS by settlement date. The theory's own confirmation bars (n>=40 settled, n_days>=8, per the 2026-08-27 day amendment) are stricter than slice readiness gates and still govern status and edge_basis; slice readiness affects ranking only, and v1 rows stay edge_basis=prior and non-recommendable regardless.",
+    "registered_at": "2026-08-26T00:00:00Z",
+    "oos_run_ids": null,
+    "priority": 0,
+    "status": "registered",
+    "retired_at": null,
+    "retired_reason": null,
+    "created_at": "2026-08-29T18:29:53Z"
+  },
+  {
+    "theory_id": "no_side_premium",
+    "slug": "cell-b-yes-avoid",
+    "predicate_json": "{\"outcome\": [\"yes\"], \"entry_price\": {\"min\": 0.8, \"max\": 0.9}}",
+    "hypothesis": "The mirror avoid-list: YES favorites at 0.80-0.90 in the non-mention population are overpriced ~-3.9 net. Rows are recorded rejected as a free control; a ready slice here should show a NEGATIVE record, validating the avoid rule \u2014 its candidates are never recommendable.",
+    "origin": "Pre-registered 2026-08-26: theories/no_side_premium/THEORY.md section 'Pre-registered outcomes (2026-08-26)' and idea 14 revisit angle. registered-at backdated to that documented date. Same in-sample/OOS structure as cell-a-no-favorite: motivating fullcov evidence sits in sibling theories' ledgers, this slice's pool is forward rows only. THEORY.md's confirmation bar for cell B (calibration_edge_net < 0 at n>=60 AND n_days>=8) governs the claim; the slice supplies the segment bookkeeping and day-clustered SE.",
+    "registered_at": "2026-08-26T00:00:00Z",
+    "oos_run_ids": null,
+    "priority": 0,
+    "status": "registered",
+    "retired_at": null,
+    "retired_reason": null,
+    "created_at": "2026-08-29T18:29:53Z"
+  },
+  {
+    "theory_id": "insider_judgment",
+    "slug": "strong-moderate-no",
+    "predicate_json": "{\"outcome\": [\"no\"], \"confidence\": [\"strong\", \"moderate\"]}",
+    "hypothesis": "Optimism tax concentrates where judgment finds an informed group: retail YES flow overprices the affirmative side, so a strong-or-moderate insider verdict on a NO-side favorite marks exactly the rows where the screen's population-level breakeven hides a real edge. The NO bucket ladder is monotone (+6.50/+4.52/-1.96) while every YES cell is flat-to-negative.",
+    "origin": "Bet rule pre-registered 2026-08-26 after run backtest-2026-08-26-insider-judged-s200 (theories/insider_bias/insider_judgment/THEORY.md Learnings 2026-08-26; backtests/RESULTS.md carries the Holm-corrected family: bet rule and moderate-NO survive). registered-at is backdated to that documented pre-registration. oos runs s200b and s57 were judged AFTER the rule was registered: +4.92pts net, p=0.0008, 312 rows / 85 events, vs +5.34 on s200 which generated the rule and stays in-sample.",
+    "registered_at": "2026-08-26T02:30:22Z",
+    "oos_run_ids": "[\"backtest-2026-08-26-insider-judged-s200b\", \"backtest-2026-08-26-insider-judged-s57\"]",
+    "priority": 0,
+    "status": "registered",
+    "retired_at": null,
+    "retired_reason": null,
+    "created_at": "2026-08-29T18:02:05Z"
+  }
+]
