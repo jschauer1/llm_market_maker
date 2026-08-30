@@ -678,35 +678,25 @@ one timing wrinkle bounded (migrated from RESEARCH_LOG.md)` (spec §6.8).
 
 ## 2026-08-26 — First live scan under the campaign rule: 8 endorsed NO bets; board-cache identity bug found and fixed on the way
 
-**Did:** User asked whether anything qualifying for the edge exists
-today. Live pipeline: fresh board (110,590 markets) → screen (844) →
-gate (100 events) → 76 NO-favorite events → two live Sonnet judgment
-batches (research ON, per the live procedure; payloads blind, prices in
-a separate file the judges never see). All 125 NO-favorite rows
-recorded under run_id=live-2026-08-26-noscan with buckets, campaign-
-measured edges, and provenance; stage-3 dispositions applied per the
-RESULTS.md rules (strong any timing / moderate fresh only / judge
-flags honored). Found and fixed a real bug en route (commit 01e6792):
-rebuilt boards lost series_ticker (event-envelope enrichment is not in
-the market's raw payload), silently disabling the gate on cached
-boards — 349/349 passed vs 100/349 fetched; regression test added.
+The first live scan under the campaign rule ran the full pipeline
+(fresh 110,590-market board → screen 844 → gate 100 events → 76
+NO-favorite events → two live Sonnet judgment batches, payloads blind
+to price) and recorded all 125 NO-favorite rows under
+run_id=live-2026-08-26-noscan with buckets, campaign-measured edges,
+and provenance, endorsing 8 NO bets (4 strong, 4 moderate) as the first
+live rows of the pre-registered forward test. En route, a real defect
+was found and fixed (commit 01e6792): a board rebuilt from cache lost
+`series_ticker`, because event-envelope enrichment is not part of the
+market's raw payload, which silently disabled the gate on cached
+boards — 349/349 events passed the gate on a cached board vs 100/349 on
+a freshly fetched one; a regression test was added to catch a
+recurrence.
 
-**The slate:** 4 strong / 5 moderate / 67 weak events. ENDORSED (8):
-KXVIDEOLENGTH-26AUG27-GTA-30 NO@0.85 and -45 NO@0.94 (strong; Rockstar
-knows the runtime; closes ~Aug 27), KXGTATRAILER-26SEP NO@0.75
-(strong; vol 183k), KXNEWDRUGAPPNTLA-LONV NO@0.88 (strong, fresh;
-rolling-BLA rules caution), KXBIGBROTHERELIMINATION-26AUG27-TAY
-NO@0.65 (moderate, fresh), KXGROK-GROK47-26SEP04 NO@0.73 (moderate,
-fresh), KXNEWDRUGAPPLICATIONCMPS-360 NO@0.91 (moderate, fresh, same
-rules caution), KXCANUSDEAL-26 NO@0.97 (moderate, fresh; vol 660 —
-tiny size only). REJECTED with reasons in the ledger (9): all five
-KXTRUMPMEET strikes (judge: qualifying calls may already have
-occurred — a strong verdict means insiders KNOW, not that NO wins),
-Lisa Cook removal (same already-satisfied risk), and three stale
-moderates (Big Brother DRE 4.9d, two Grok strikes 14.9d, asks
-converged to 0.97 exactly as the timing analysis predicts).
-Settlements land within days; these are the first live rows of the
-pre-registered forward test.
+Narrative moved 2026-08-29 to
+`theories/insider_bias/insider_judgment/NOTES.md` under `## 2026-08-26 —
+First live scan under the campaign rule: 8 endorsed NO bets; board-cache
+identity bug found and fixed on the way (migrated from RESEARCH_LOG.md)`
+(spec §6.8).
 
 ## 2026-08-26 — User bets placed and tracked; stage-3 research made a mandatory, attributed step
 
