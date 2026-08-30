@@ -172,8 +172,13 @@ def _queue_panel(conn) -> list[str]:
 
 
 def _freshness_panel(conn, now: str) -> list[str]:
-    board = _one(conn, "SELECT MAX(captured_at) FROM market_snapshots"
-                       " WHERE platform = 'kalshi'")
+    # last_seen_at, not captured_at: an unchanged pull extends a row's
+    # interval without inserting (spec 5.2 phase 2), so captured_at alone
+    # can be stale even though the board was just re-pulled. COALESCE
+    # covers a row written before last_seen_at existed and not yet
+    # touched by init_db's backfill.
+    board = _one(conn, "SELECT MAX(COALESCE(last_seen_at, captured_at))"
+                       " FROM market_snapshots WHERE platform = 'kalshi'")
     settle = _one(conn, "SELECT MAX(computed_at) FROM scores")
     taken = _one(conn, "SELECT MAX(recorded_at) FROM opportunity_fills") \
         if _table_exists(conn, "opportunity_fills") else None

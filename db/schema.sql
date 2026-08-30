@@ -66,7 +66,12 @@ CREATE TABLE IF NOT EXISTS market_snapshots (
     -- envelope was not captured, which is NOT the same as an envelope
     -- saying mutually_exclusive=false. Every capture before 2026-08-29 is
     -- NULL, because list_open fetched the envelope and discarded it.
-    event_json       TEXT
+    event_json       TEXT,
+    -- Validity interval close (dedup-on-write, spec 5.2 phase 2): the last
+    -- pull at which this exact payload was observed. A row covers
+    -- [captured_at, last_seen_at]. Backfilled = captured_at for rows
+    -- written before dedup existed.
+    last_seen_at     TEXT
 );
 
 -- One row per market per capture. `captured_at` has one-second resolution

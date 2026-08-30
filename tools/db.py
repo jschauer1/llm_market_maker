@@ -91,6 +91,13 @@ def init_db(conn: sqlite3.Connection) -> None:
     # false one. Reading absent as false loses real structural_arb
     # violations; reading it as true manufactures riskless-looking baskets.
     _add_column_if_missing(conn, "market_snapshots", "event_json", "TEXT")
+    _add_column_if_missing(conn, "market_snapshots", "last_seen_at", "TEXT")
+    # Backfill: a pre-dedup row was seen exactly once, at its capture.
+    with write(conn):
+        conn.execute(
+            "UPDATE market_snapshots SET last_seen_at = captured_at"
+            " WHERE last_seen_at IS NULL"
+        )
     # Additive: every pre-existing row is a single-leg position, and these
     # defaults describe it exactly, so there is no backfill.
     _add_column_if_missing(

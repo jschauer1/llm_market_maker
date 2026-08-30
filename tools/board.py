@@ -54,51 +54,62 @@ def _parse(stamp: str) -> datetime:
 
 
 def board_info(conn: sqlite3.Connection, now: str | None = None) -> dict | None:
-    """Age and size of the freshest stored board, or None if there is none."""
+    """Age and size of the freshest stored board, or None if there is none.
+
+    A pull where nothing changed writes no rows (spec 5.2 phase 2), so
+    the board is not "rows sharing one captured_at": it is the rows
+    whose interval reaches the latest pull stamp. `captured_at` in the
+    returned dict is that pull stamp (kept under its old key: it is the
+    batch identity every caller already treats it as).
+    """
     row = conn.execute(
         """
-        SELECT captured_at, COUNT(*) AS n
+        SELECT MAX(last_seen_at) AS stamp, COUNT(*) AS n
           FROM market_snapshots
          WHERE platform = 'kalshi'
-           AND captured_at = (SELECT MAX(captured_at)
-                                FROM market_snapshots
-                               WHERE platform = 'kalshi')
-         GROUP BY captured_at
+           AND last_seen_at = (SELECT MAX(last_seen_at)
+                                 FROM market_snapshots
+                                WHERE platform = 'kalshi')
         """
     ).fetchone()
-    if row is None:
+    if row is None or row["stamp"] is None:
         return None
-    age = (_parse(now or utcnow()) - _parse(row["captured_at"])).total_seconds()
-    return {
-        "captured_at": row["captured_at"],
-        "markets": row["n"],
-        "age_minutes": age / 60.0,
-    }
+    age = (_parse(now or utcnow()) - _parse(row["stamp"])).total_seconds()
+    return {"captured_at": row["stamp"], "markets": row["n"],
+            "age_minutes": age / 60.0}
 
 
-def _rebuild(conn: sqlite3.Connection, captured_at: str) -> list[Market]:
-    """Reconstruct normalized markets from a stored snapshot batch."""
+def _rebuild(conn: sqlite3.Connection, stamp: str) -> list[Market]:
+    """Reconstruct normalized markets from the rows holding one pull stamp.
+
+    Under interval semantics a row's `last_seen_at` is the latest pull
+    that observed it, so the rows composing pull `stamp` are the ones
+    whose interval reaches exactly that stamp -- not the ones inserted at
+    that captured_at, which an unchanged pull may not have inserted any
+    of at all.
+    """
     rows = conn.execute(
         """
         SELECT raw_json, event_json FROM market_snapshots
-         WHERE platform = 'kalshi' AND captured_at = ?
+         WHERE platform = 'kalshi' AND last_seen_at = ?
         """,
-        (captured_at,),
+        (stamp,),
     ).fetchall()
     out = []
     for row in rows:
-        raw = json.loads(row["raw_json"] or "{}")
+        raw = json.loads(snapshot.payload_text(row["raw_json"]) or "{}")
         if not raw.get("ticker"):
             # A snapshot written before raw_json carried a ticker cannot be
             # rebuilt. Fail loudly rather than return a short board that
             # looks complete -- a screen reading it would silently under-run.
             raise ValueError(
-                f"snapshot batch {captured_at} has rows with no ticker in "
+                f"snapshot batch {stamp} has rows with no ticker in "
                 "raw_json and cannot be rebuilt into a board. Re-fetch with "
                 "get_board(conn, force=True)."
             )
         market = kalshi_markets.normalize(
-            raw, json.loads(row["event_json"] or "null"))
+            raw,
+            json.loads(snapshot.payload_text(row["event_json"]) or "null"))
         # `list_open` patches series/event identity onto each market from
         # its event envelope; the snapshot stores only the market's own raw
         # payload, where those fields are absent. Without this derivation a

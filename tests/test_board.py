@@ -218,19 +218,25 @@ def test_re_saving_updates_rather_than_duplicating(conn):
     moved = markets.normalize(_raw("T-0", yes_ask_dollars="0.91",
                                    yes_bid_dollars="0.89"))
     snapshot.save_kalshi(conn, [moved], now=NOW)
-    rows = conn.execute("SELECT yes_ask FROM market_snapshots").fetchall()
+    rows = conn.execute(
+        "SELECT yes_ask, last_seen_at FROM market_snapshots"
+    ).fetchall()
     assert len(rows) == 1
     assert rows[0]["yes_ask"] == pytest.approx(0.91)   # last write wins
+    assert rows[0]["last_seen_at"] == NOW
 
 
-def test_separate_seconds_are_separate_batches(conn):
+def test_unchanged_pull_extends_the_batch_rather_than_duplicating_it(conn):
+    # Pre-dedup, two identical pulls a second apart wrote 6 rows in 2
+    # batches. Now the second pull writes nothing and the stored board
+    # is simply re-stamped (spec 5.2 phase 2).
     snapshot.save_kalshi(conn, _board(3), now="2026-08-24T11:00:00Z")
     snapshot.save_kalshi(conn, _board(3), now="2026-08-24T11:00:01Z")
-    batches = conn.execute(
-        "SELECT COUNT(DISTINCT captured_at) n FROM market_snapshots"
-    ).fetchone()["n"]
-    assert batches == 2
-    assert board.board_info(conn, now=NOW)["markets"] == 3
+    assert conn.execute(
+        "SELECT COUNT(*) n FROM market_snapshots").fetchone()["n"] == 3
+    info = board.board_info(conn, now=NOW)
+    assert info["markets"] == 3
+    assert info["captured_at"] == "2026-08-24T11:00:01Z"
 
 
 def test_migration_dedupes_a_legacy_database(tmp_path):

@@ -14,8 +14,10 @@ ordinary use without any scheduler.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import sqlite3
+import zlib  # used from Task 4; harmless to import now
 
 from tools.db import utcnow, write
 from tools.kalshi import markets as kalshi_markets
@@ -29,8 +31,8 @@ _INSERT = """
     INSERT INTO market_snapshots (
         platform, market_id, captured_at, title, implied_prob_yes,
         yes_bid, yes_ask, volume, open_interest, close_time, status,
-        raw_json, event_json
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        raw_json, event_json, last_seen_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT (platform, market_id, captured_at) DO UPDATE SET
         title            = excluded.title,
         implied_prob_yes = excluded.implied_prob_yes,
@@ -41,8 +43,91 @@ _INSERT = """
         close_time       = excluded.close_time,
         status           = excluded.status,
         raw_json         = excluded.raw_json,
-        event_json       = excluded.event_json
+        event_json       = excluded.event_json,
+        last_seen_at     = excluded.last_seen_at
 """
+
+
+def payload_text(value):
+    """A payload column's JSON text. Identity for TEXT rows; Task 4
+    extends this to decode zlib BLOB rows."""
+    return value
+
+
+def _payload_key(raw_text: str | None, event_text: str | None) -> bytes:
+    """Byte-exact identity of one capture's full payload.
+
+    The design gate (2026-08-29, commit 6fe567a) measured dedup on the
+    complete raw_json+event_json and ruled out field exclusions: rules
+    text, close_time, everything counts. NULL event_json is distinct
+    from '{}' and from 'null' by construction here.
+    """
+    h = hashlib.sha256()
+    h.update(b"\x00" if raw_text is None else raw_text.encode("utf-8"))
+    h.update(b"\x1f")
+    h.update(b"\x00" if event_text is None else event_text.encode("utf-8"))
+    return h.digest()
+
+
+def _latest_rows(conn, platform: str) -> dict[str, tuple[str, bytes]]:
+    """market_id -> (captured_at, payload key) of each market's latest row."""
+    out = {}
+    for row in conn.execute(
+        """
+        SELECT market_id, captured_at, raw_json, event_json
+          FROM market_snapshots
+         WHERE platform = ? AND id IN (
+               SELECT MAX(id) FROM market_snapshots
+                WHERE platform = ? GROUP BY market_id)
+        """,
+        (platform, platform),
+    ):
+        out[row["market_id"]] = (
+            row["captured_at"],
+            _payload_key(payload_text(row["raw_json"]),
+                         payload_text(row["event_json"])),
+        )
+    return out
+
+
+def _save(conn, platform: str, rows: list[tuple], stamp: str) -> int:
+    """Dedup-aware write of one pull (spec 5.2 phase 2).
+
+    Each incoming row is compared byte-exactly against the market's
+    latest stored payload:
+      unchanged and stamp is not older -> UPDATE last_seen_at (interval
+        extends; no new row);
+      anything else -> INSERT (same-second re-save still lands on the
+        (platform, market_id, captured_at) upsert, last write wins).
+    An *older* stamp never extends an interval backwards: it inserts as
+    history, which is what a backfill save means.
+    Returns rows physically written or updated (unchanged bumps count).
+    """
+    latest = _latest_rows(conn, platform)
+    inserts, bumps = [], []
+    for r in rows:
+        market_id, raw_text, event_text = r[1], r[11], r[12]
+        seen = latest.get(market_id)
+        if (seen is not None and seen[1] == _payload_key(raw_text, event_text)
+                and stamp >= seen[0]):
+            bumps.append((stamp, platform, market_id))
+        else:
+            inserts.append(r + (stamp,))
+    with write(conn):
+        if inserts:
+            conn.executemany(_INSERT, inserts)
+        if bumps:
+            conn.executemany(
+                """
+                UPDATE market_snapshots SET last_seen_at = MAX(last_seen_at, ?)
+                 WHERE platform = ? AND market_id = ? AND id = (
+                       SELECT MAX(id) FROM market_snapshots
+                        WHERE platform = ? AND market_id = ?)
+                """,
+                [(s, p, m, p, m) for s, p, m in bumps],
+            )
+    return len(inserts) + len(bumps)
+
 
 # Kalshi's own status strings (see kalshi_markets.OPEN_STATUSES and
 # normalize()'s is_open) mapped onto the three-state open|closed|settled
@@ -111,9 +196,7 @@ def save_kalshi(
     ]
     if not rows:
         return 0
-    with write(conn):
-        conn.executemany(_INSERT, rows)
-    return len(rows)
+    return _save(conn, "kalshi", rows, stamp)
 
 
 def save_polymarket(
@@ -141,9 +224,7 @@ def save_polymarket(
     ]
     if not rows:
         return 0
-    with write(conn):
-        conn.executemany(_INSERT, rows)
-    return len(rows)
+    return _save(conn, "polymarket", rows, stamp)
 
 
 def history_for(

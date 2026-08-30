@@ -111,8 +111,16 @@ def test_save_polymarket_writes_a_row(conn):
 
 def test_snapshots_accumulate_rather_than_overwrite(conn):
     # This is the whole point: kalshi_trader overwrote its dump every fetch.
+    # `raw` must move with `yes_ask` here -- dedup-on-write (spec 5.2 phase
+    # 2) compares the full raw payload, byte-exact, never the material
+    # columns, so a "moved" market that only changed a derived field and
+    # left raw untouched is (correctly) an unchanged capture, not a new one.
     snapshot.save_kalshi(conn, [KALSHI_MARKET], now=TS)
-    snapshot.save_kalshi(conn, [replace(KALSHI_MARKET, yes_ask=0.55)], now=LATER)
+    moved = replace(
+        KALSHI_MARKET, yes_ask=0.55,
+        raw={**KALSHI_MARKET.raw, "yes_ask_dollars": "0.55"},
+    )
+    snapshot.save_kalshi(conn, [moved], now=LATER)
 
     history = snapshot.history_for(conn, "kalshi", "KXTEST-26")
     assert len(history) == 2
