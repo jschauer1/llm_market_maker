@@ -2055,3 +2055,35 @@ the rest of the 5.3 GB → ~0.5 GB projection. Zero information loss holds.
 
 **Next:** Write the storage plan (spec §5.2 phases 2–4) or the log
 migration plan (§6.8) — both unblocked; user to pick order.
+
+---
+
+## 2026-08-29 — Carry chains shipped (spec phase 6); rule delivery nine-tenths done (phases A/B)
+
+**Did (session llm-market-identifier-c0 and predecessors, via SDD):**
+Phase 6 complete — commits e376c83, 96d250e, 9a70a7a, 0109f38, c36a60a,
+bb33577, 9a77861, 2644d01, b1c96e0. Version bumps now declare
+`breaking`/`carry` (`theory_versions`; DB CHECK makes an unproven carry
+uninsertable); `prove_carry` replays a theory-supplied `decide` over the
+predecessor's stored attempts and compares decision outputs field-exactly
+(slice-predicated `extra_json` keys included); evidence pools across proven
+chains behind `pool="chain"` in `compute_score`, `settlement_day_clusters`,
+and `slices.segment_report`, all defaulting to today's per-version
+behaviour (characterization-locked); `score report --pool chain` is the
+adoption surface, documented in find-edge/score-theories. All 13 historical
+bumps backfilled `breaking`; disclosure table confirms **zero ranked-edge
+movement today, structurally** — the machinery arms only when a real
+`prove_carry` passes (first candidate: `insider_judgment` v3→v4, expected
+`breaking` per its own record).
+
+Phases A/B (rule delivery): nine of ten task-time rules moved atomically
+into their owning skills (backtest-theory 13/19/20, find-edge 10/11/12,
+propose-theory 17/35/36) with the single-home manifest test holding each;
+score-theories carries the rule-18 reading explainer. Remaining: rule 32 →
+go (gated on the migration's §6.7 rewrite) + closeout — parked resumable in
+the rule-delivery SDD ledger; session -91 inherits after its Task 15.
+
+**Research note surfaced by the phase-6 disclosure:** `no_side_premium`
+live evidence at v1 reads n=38 clusters, `calibration_edge_net` −10.44 vs
+mean claimed −3.9 (credibility 0.655). Worth a `score-theories` diagnosis
+pass by a research session — recorded here so it is not lost in a ledger.
