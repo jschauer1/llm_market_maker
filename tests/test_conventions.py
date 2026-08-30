@@ -612,3 +612,59 @@ def test_every_dated_cross_citation_still_resolves():
         "was moved without a stub, or its heading was reworded:\n"
         + "\n".join(problems)
     )
+
+
+def test_theory_versions_ledger_is_complete_and_proven():
+    """`theory_versions` is the carry-chain ledger (enforcing-surfaces spec
+    2.6, 10): every bump declares its lineage kind, and a `carry` claim
+    holds only with proof behind it. Two belt-and-braces checks the schema
+    and `bump_version` already enforce at write time, re-asserted here so a
+    raw INSERT or a stale schema cannot slip past unnoticed:
+
+    (a) every `carry` row has a non-null `equivalence_run` -- the proof is
+        the permission (spec 2.4); an assertion never qualifies.
+    (b) every theory in `theories` has a `theory_versions` row for every
+        version 1..current_version -- a gap means a bump landed on
+        `theories.version` with no matching row, which silently truncates
+        `carry_chain`'s walk and `score.compute_score(pool='chain')`.
+
+    Read-only against the working database, skipped where there is none --
+    same idiom as test_every_recorded_prompt_path_still_resolves."""
+    if not db.DEFAULT_DB_PATH.exists():
+        pytest.skip("no working database in this environment")
+    conn = db.connect(db.DEFAULT_DB_PATH)
+    try:
+        unproven_carries = list(conn.execute(
+            "SELECT theory_id, version FROM theory_versions"
+            " WHERE kind = 'carry' AND equivalence_run IS NULL"
+        ))
+        theories = list(conn.execute("SELECT id, version FROM theories"))
+        have = {
+            (r["theory_id"], r["version"])
+            for r in conn.execute(
+                "SELECT theory_id, version FROM theory_versions"
+            )
+        }
+    finally:
+        conn.close()
+
+    assert unproven_carries == [], (
+        "a theory_versions row claims kind='carry' with no equivalence_run "
+        "-- the proof is the permission (spec 2.4), never an assertion:\n"
+        + "\n".join(f"{r['theory_id']} v{r['version']}" for r in unproven_carries)
+    )
+
+    missing = [
+        (t["id"], v)
+        for t in theories
+        for v in range(1, t["version"] + 1)
+        if (t["id"], v) not in have
+    ]
+    assert missing == [], (
+        "a theory's version history has a gap in theory_versions -- every "
+        "version 1..current needs a row (backfilled once for pre-existing "
+        "bumps per spec 2.6; any bump since must go through bump_version, "
+        "never write theories.version directly), or carry_chain's walk and "
+        "score.compute_score(pool='chain') silently stop short:\n"
+        + "\n".join(f"{tid} v{v}" for tid, v in missing)
+    )
