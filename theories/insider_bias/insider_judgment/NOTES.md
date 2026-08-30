@@ -1338,3 +1338,103 @@ this theory's own procedure ever having changed since v2"). That is a
 `carry` candidate which would pool the 44 v2 live rows into v3's track
 record — but assertion is not the permission, a replay reproducing every
 recorded v2 decision is. Nobody has run that replay.
+
+## 2026-08-30 — live run `live-2026-08-30`, v4. 21 events judged, 0 endorsed.
+
+First full stages 1–6 run at v4 (the gate-reads-rules bump). Funnel against
+the 19:22Z board: 104,304 markets → 700 screened / 309 events → 288 gated out
+→ **21 events / 25 markets** survived. Gate removals: live sport 90,
+aggregate-of-many-people 44, weather 28, commodity/FX/rates 27, vendor panel
+27, scheduled indicator 25, compute/collectible 22, crypto 19, retail price
+index 6.
+
+Stage 5: two `opus` subagents, ~11 and ~10 events, web search on, blind to
+price. Buckets: **1 strong, 10 moderate, 10 weak**. Stage 6 (final review) run
+by the main session, claude-opus-5.
+
+**Result: every candidate declined.** Not generic pessimism — the reasons
+cluster on one mechanism, and it is the mechanism `prompts/final_review.md`
+criterion 1 predicts.
+
+### The finding: divergences broadened YES, and the screen was on NO
+
+The screen picked NO on 21 of 25 markets. The subagents found rules/title
+divergences on **15 of 21 events**, and in almost every case the rules were
+*broader* than the title — which makes YES easier and therefore cuts against
+exactly the leg the screen chose:
+
+- `KXTRUMPMEET-26AUG` — titles say "meet", rules count **phone calls**. Widens
+  all five legs at once.
+- `KXUAPFILES-26AUG10` — title says "Trump release", rules resolve on **any**
+  federal release; the DoW PURSUE pipeline has shipped 5 batches since May.
+- `KXTRYFIRECOOK-27JAN01` — "has tried to fire … before Sep 1, 2026" carries
+  **no start date**; the Aug 2025 dismissal letter and the Aug 2026 Scavino
+  "considering removal" notice may each already satisfy a literal reading.
+- `KXCLAUDE-NXTMYTH` — rules count **Mythos *or* Fable** branding (carving out
+  Fable 5); the title implies Mythos-named only.
+- `KXITALYBORDERCHECK-26`, `KXBIGBENDRESUME-27` — rules drop the title's
+  Source-Agency **reporting** predicate, so a quiet lapse resolves YES.
+- `KXGTATRAILER-26MAY` — the sharpest one. Rules require a "publicly and
+  officially released" video of **≥30s**; Rockstar's Aug 27 *"GTA VI: An
+  Extended Look"* (20+ min of official in-game footage) meets that text but
+  is not branded a trailer. The market is now **definitional, not
+  informational** — and no insider group resolves a definitional question, so
+  the thesis does not apply to it at all.
+
+That last category is worth naming as a recurring failure mode: **when a
+divergence turns a market definitional, the insider thesis stops being the
+right lens even though the screen and the gate both pass it through.**
+
+### The ladder check earned its keep
+
+Final-review criterion 4 (check siblings) killed the one `strong`.
+`KXCLAUDE-NXTMYTH` NO @ 0.73 looked like the best row on the board until the
+ladder was pulled:
+
+| strike | YES bid/ask |
+|---|---|
+| 26SEP01 | 0.27 / 0.32 |
+| 26OCT01 | 0.81 / 0.91 |
+| 26NOV01 | 0.89 / 0.95 |
+
+~30% on a **32-hour** window is not a diffuse base rate — that is a market
+that thinks something is scheduled. Sibling `KXCLAUDE-MYTH-26OCT01` at
+0.02/0.03 against `NXTMYTH-26OCT01` at 0.81/0.91 confirms the Mythos-or-Fable
+wording is precisely what lifts the NXTMYTH curve. So the informed flow
+appears to be sitting on the **YES** side, against our leg. Declined.
+
+Also disclosed to the user: this session's model is made by the company the
+market is about, which is a conflict of interest on that ticker regardless of
+how the judgment came out.
+
+### Two mechanical findings worth keeping
+
+1. **The ledger dedupes by ticker, so a re-sighted candidate is never
+   re-priced.** 18 of today's 25 candidates already had rows from
+   `live-2026-08-29b`; today's run incremented `times_seen` to 2 and left the
+   *original* `entry_price`, `confidence` and `disposition` untouched. Only 7
+   tickers got fresh rows at `run_id=live-2026-08-30`. Consequence: today's
+   verdicts for those 18 exist nowhere in the ledger, and a stale entry price
+   (e.g. `KXCLAUDE-NXTMYTH` recorded at 0.77 yesterday vs 0.73 today) is what
+   any later scoring will use. Not obviously wrong — the row *is* the
+   opportunity — but it means a multi-day scan cannot express "same ticker,
+   changed verdict", and yesterday's rows carry internally inconsistent pairs
+   (`KXGROK` moderate/4.0pts, `KXUAPFILES` moderate/0.0pts) that today's
+   bucket table would not produce.
+2. **`finish()` stamps every `Theory.prompts` entry with `ctx.judge_model`**,
+   so a run whose analysis and final-review stages ran on different models
+   gets one wrong provenance row. Left in place and annotated rather than
+   deleted — `judgment_runs` id=47 is the artifact, id=45 (`claude-opus-5`) is
+   the authoritative final_review record.
+
+### Ranking note
+
+The registered slice `strong-moderate-no` matched 15 of 25 candidates but is
+**not ready at v4** (`matched_slice_ready: false`, oos n=0) — v4 was a
+*breaking* bump, so v3's genuinely strong record (+4.31 pts net OOS, n=321 /
+89 clusters / 43 days) cannot pool and can only be cited manually. Had a
+moderate-NO been endorsed it would have ranked **0.5 pts** on v4's own
+aggregate (probation, credibility 0.25) versus **2.45 pts** citing the v3
+slice. Worth flagging that declining all 15 slice matches is a judgment
+override of the best-measured rule in the repo; `interpretation_value` will
+eventually say whether that override was worth anything.
