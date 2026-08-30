@@ -9,12 +9,19 @@ description: Formalize a new trading hypothesis into a theory folder, after chec
 
 Before any other work:
 
+<!-- rule: search-the-registry (moved from CLAUDE.md § Research memory, 2026-08-29) -->
+Search the idea registry **before** proposing anything:
+
 ```bash
 python -m tools.cli ideas search "<keyword>"
+```
+<!-- /rule -->
+
+Search several phrasings — the same idea wears different words:
+
+```bash
 python -m tools.cli ideas search "<another keyword>"
 ```
-
-Search several phrasings — the same idea wears different words.
 
 - **Matches a `dead` idea?** Read its `outcome` and `revisit_angle`. Without a
   genuinely different angle, stop and tell the user it was tried and why it
@@ -133,6 +140,12 @@ than silently merging two different procedures under one theory id. Write
 any stage-1 code in the theory folder, with tests. Theory-local code stays
 local until it earns promotion — see `tools/README.md`.
 
+<!-- rule: facts-are-data (moved from CLAUDE.md § The theory contract, 2026-08-29) -->
+**Facts are data, not procedure** — adding a confirmed pair to
+`theory_facts` does not bump a version; changing how facts are derived
+does.
+<!-- /rule -->
+
 **When the idea is a tweak of an existing theory rather than a new thesis**,
 skip this whole scaffold and start it as an `exp/` variant instead: subclass
 the existing `Theory`, override the one thing you're testing, and run it
@@ -176,6 +189,14 @@ it to `under_review`. A theory whose falsifying result you cannot name is not
 testable.
 
 ## If you drop the idea instead
+
+<!-- rule: revisit-angle (moved from CLAUDE.md § Research memory, 2026-08-29) -->
+Record every idea you consider, including ones you drop, with what you
+actually tried and why it did not work. Write a `revisit_angle` — the
+difference between "don't try this again" and "don't try this again *the same
+way*" — rather than closing a door permanently. Never retire a theory without
+recording why it failed.
+<!-- /rule -->
 
 ```bash
 python -m tools.cli ideas status <slug> dead \

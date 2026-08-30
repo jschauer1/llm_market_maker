@@ -181,9 +181,6 @@ yours to arrange.
   attributes, and `screen()`, `judgment_payload()`, and `price()` are
   callable individually. The contract composes conveniences; the only
   wall is the ledger.
-- **Facts are data, not procedure** — adding a confirmed pair to
-  `theory_facts` does not bump a version; changing how facts are derived
-  does.
 - **`Theory` is for things that produce bets.** A study produces theories
   (`STUDY.md` marks its folder); an execution policy decorates candidates.
 - Any theory fetching external data takes `fetch: Fetch | None = None`.
@@ -343,17 +340,9 @@ softenings of it:
 
 ## Research memory
 
-Search the idea registry **before** proposing anything:
-
-```bash
-python -m tools.cli ideas search "<keyword>"
-```
-
-Record every idea you consider, including ones you drop, with what you
-actually tried and why it did not work. Write a `revisit_angle` — the
-difference between "don't try this again" and "don't try this again *the same
-way*" — rather than closing a door permanently. Never retire a theory without
-recording why it failed.
+Idea-registry discipline — search before proposing, record what you tried,
+write a revisit_angle — lives in propose-theory; invoke it before proposing
+anything.
 
 ## How ranking works
 

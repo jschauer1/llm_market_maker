@@ -411,6 +411,9 @@ _MOVED_RULES: dict[str, str] = {
     "judge-blind": "find-edge",
     "batch-and-dedupe": "find-edge",
     "buckets-from-deep-stage": "find-edge",
+    "facts-are-data": "propose-theory",
+    "search-the-registry": "propose-theory",
+    "revisit-angle": "propose-theory",
 }
 
 
