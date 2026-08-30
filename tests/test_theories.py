@@ -1,3 +1,5 @@
+import sqlite3
+
 import pytest
 
 from tools import db, theories
@@ -245,3 +247,32 @@ def test_register_writes_the_v1_row(conn):
     rows = theories.list_versions(conn, "t1")
     assert [(r["version"], r["kind"], r["predecessor"]) for r in rows] == [
         (1, "breaking", None)]
+
+
+def test_db_check_refuses_a_carry_row_with_no_equivalence_run(conn):
+    # The CHECK constraint is the spec's load-bearing refusal (2.3) -- it
+    # must hold even if some future caller bypasses bump_version entirely
+    # and writes the row directly.
+    theories.register(conn, "t1", "T1", "theories/t1")
+    with pytest.raises(sqlite3.IntegrityError):
+        conn.execute(
+            """
+            INSERT INTO theory_versions
+                (theory_id, version, kind, predecessor, justification,
+                 equivalence_run, created_at)
+            VALUES ('t1', 2, 'carry', 1, 'x', NULL, '2026-08-29T00:00:00Z')
+            """
+        )
+
+
+def test_bump_rejects_unknown_theory_before_checking_carry_proof(conn):
+    # Whatever kind was requested, an unknown theory_id fails as KeyError,
+    # not as the carry-proof ValueError -- the row lookup gates first.
+    with pytest.raises(KeyError):
+        theories.bump_version(conn, "nope", kind="carry", justification="x")
+
+
+def test_bump_requires_justification(conn):
+    theories.register(conn, "t1", "T1", "theories/t1")
+    with pytest.raises(TypeError):
+        theories.bump_version(conn, "t1")

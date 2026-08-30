@@ -312,6 +312,9 @@ def bump_version(
     """
     if kind not in ("breaking", "carry"):
         raise ValueError(f"invalid kind {kind!r}; expected 'breaking' or 'carry'")
+    row = get(conn, theory_id)
+    if row is None:
+        raise KeyError(theory_id)
     equivalence_run = None
     if kind == "carry":
         if equivalence is None or not getattr(equivalence, "passed", False):
@@ -320,9 +323,6 @@ def bump_version(
                 "the permission (spec 2.4)"
             )
         equivalence_run = getattr(equivalence, "label", None)
-    row = get(conn, theory_id)
-    if row is None:
-        raise KeyError(theory_id)
     new_version = row["version"] + 1
     stamp = now or utcnow()
     with write(conn):
