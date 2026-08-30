@@ -331,7 +331,8 @@ probation flip.**
 The five existing theories' historical bumps are **not** retro-classified by an
 agent. Every pre-existing `(theory_id, version)` gets a row with
 `kind='breaking'` and `justification='pre-dates the carry ruling; not
-adjudicated'`. The registry stores only the *current* version and some past
+adjudicated'` (v1 rows say `'initial version'`, matching what `register()`
+writes, so the backfill stays idempotent against future registrations). The registry stores only the *current* version and some past
 versions recorded zero rows (`structural_arb` v3 has none), so the backfill
 does not mine rows for history: it enumerates `1..current_version` per theory
 and stamps every step `breaking`. If a past bump was genuinely a carry, it can be proven later by
