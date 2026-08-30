@@ -429,39 +429,29 @@ remain open, unchanged, and are the user's call.
 Moved 2026-08-29 to `theories/insider_bias/mention_family/NOTES.md` under the heading `## 2026-08-25 — mention_family edge audited on user suspicion: mechanics clean, inference weak, live slate mismatched (migrated from RESEARCH_LOG.md)`, per the enforcing-surfaces migration (spec §6.8).
 ## 2026-08-25 — Kalshi archives settled markets after ~60 days; backward extension impossible; full-coverage rerun launched instead
 
-**Did:** Tried to extend mention_family's tier-A evidence backward
-(closes 2025-08-25 .. 2026-05-26, abutting the original window) with a
-new family-scoped driver, `theories/insider_bias/mention_family/
-backtest.py`. The walk returned zero survivors, and systematic probing
-(windows bisected, every status value, unstatused listings, nested-event
-markets, reconstructed tickers against known old events) established why:
-**Kalshi's public API archives settled markets out of existence roughly
-60 days after close.** The markets listing serves only never-traded husks
-(`status='closed'`, empty result, zeroed volume) beyond the floor; events
-keep shells back to 2025 with no markets attached; candlesticks for
-archived tickers return empty. Corrected `list_settled`'s
-whole-lifetime docstring claim in place. Two corollaries: the original
-"90-day" backtest was effectively a ~60-day one (earliest close it could
-see was 2026-06-22ish), and the floor advances daily — historical
-evidence only survives if captured before it ages out, which is the same
-lesson as the record-while-collecting convention added to CLAUDE.md and
-tools/README.md today (user-prompted, after a previous session lost a
-long collection by holding it all in memory).
+Attempting to extend mention_family's tier-A evidence backward (closes
+2025-08-25..2026-05-26) with a new family-scoped driver returned zero
+survivors; systematic probing (bisected windows, every status value,
+unstatused listings, nested-event markets, reconstructed tickers against
+known old events) established that Kalshi's public API archives settled
+markets out of existence roughly 60 days after close — the markets
+listing serves only never-traded husks beyond the floor, events keep
+shells with no markets attached, and candlesticks for archived tickers
+return empty. This is the ~60-day archive constraint CLAUDE.md's data
+conventions now cite (`list_settled`'s docstring was corrected in
+place); a corollary is that the theory's original "90-day" backtest was
+effectively a ~60-day one, and the floor advances daily, so historical
+evidence only survives if captured before it ages out. Since backward
+extension was dead, this entry launched full coverage of the reachable
+window instead (`run_id=backtest-2026-08-25-mention-fullcov`, tier A):
+every mention-family survivor, 11,084 rows across 379 series, replacing
+the original 600-of-18,430 systematic sample.
 
-**Doing (pending as of this entry):** Since backward extension is dead,
-the strongest available move is **full coverage of the reachable
-window**: the original run replayed a 600-of-18,430 systematic sample;
-the new run (`run_id=backtest-2026-08-25-mention-fullcov`, tier A)
-replays *every* mention-family survivor — 11,084 across 379 series vs
-the 116 rows the price bins were fit on. This cannot test persistence
-across time (same window, same World Cup-summer regime); it tests
-whether the 116-row sample was lucky, on ~95x the markets. Persistence
-across time falls to the live preview rows settling Aug 28–Sep 15 and
-every live run after. The replay is running in the background,
-recording per series with a resumable checkpoint. When it lands:
-record the backtest_runs row, score fresh-rows-only (exclude the
-original 116 tickers) with the sub-family split from the 2026-08-25
-audit entry, update THEORY.md, and report against the audit's nulls.
+Narrative moved 2026-08-29 to
+`theories/insider_bias/mention_family/NOTES.md` under `## 2026-08-25 —
+Kalshi archives settled markets after ~60 days; backward extension
+impossible; full-coverage rerun launched instead (migrated from
+RESEARCH_LOG.md)` (spec §6.8).
 
 ## 2026-08-25 — Full-coverage rerun: mention_family has no edge; under_review, retirement proposed
 
