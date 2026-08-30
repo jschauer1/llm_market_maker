@@ -228,17 +228,34 @@ def _cmd_score(args) -> int:
         if args.action == "report":
             theory = theories.get(conn, args.theory_id)
             version = args.version or (theory["version"] if theory else 1)
+            if getattr(args, "save", False) and args.pool != "version":
+                raise SystemExit(
+                    "score report --save: the scores table has no column "
+                    "for what pooled; persist per-version scores only "
+                    "(drop --pool chain)"
+                )
+            results = {
+                disposition: score.compute_score(
+                    conn, args.theory_id, version, args.run_mode,
+                    disposition, run_id=args.run_id, pool=args.pool,
+                )
+                for disposition in ("all", "screened", "endorsed",
+                                    "rejected")
+            }
+            saved = None
+            if getattr(args, "save", False):
+                saved = {
+                    disposition: score.save_score(
+                        conn, args.theory_id, version, args.run_mode,
+                        disposition, result,
+                    )
+                    for disposition, result in results.items()
+                }
             _emit(
                 {
                     "theory_version": version,
-                    **{
-                        disposition: score.compute_score(
-                            conn, args.theory_id, version, args.run_mode,
-                            disposition, run_id=args.run_id, pool=args.pool,
-                        )
-                        for disposition in ("all", "screened", "endorsed",
-                                            "rejected")
-                    },
+                    **results,
+                    **({"saved_score_ids": saved} if saved else {}),
                     # Reported alongside, never instead: `all` above counts
                     # rows, and rows that settled the same day are one draw
                     # wearing many rows' clothes. `n_days` is the sample
@@ -708,6 +725,14 @@ def build_parser() -> argparse.ArgumentParser:
             "settlement-day segments to every version a proven carry bump "
             "links back to (spec 2.5); the response's chain_versions key "
             "shows what pooled, and is absent when nothing did"
+        ),
+    )
+    report.add_argument(
+        "--save", action="store_true",
+        help=(
+            "persist the computed per-version scores via save_score, so "
+            "`state` EVIDENCE renders them -- the settle step passes this "
+            "(per-version pool only; a chain-pooled result is refused)"
         ),
     )
     settle = ssub.add_parser("settle-one")

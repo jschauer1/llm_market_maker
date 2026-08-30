@@ -23,6 +23,42 @@ def _run(capsys, *args):
     return code, json.loads(out) if out.strip() else None
 
 
+def test_score_report_save_persists_score_rows(dbpath, capsys):
+    """--save closes the 'nothing writes scores' gap: state's EVIDENCE
+    renders what sessions compute instead of an empty table."""
+    conn = db.connect(dbpath)
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="TK1",
+        outcome="no", entry_price=0.85, edge_pts_net=4.0,
+        edge_basis="model", run_mode="live", run_id="live",
+        decision_date="2026-08-27", rationale="x",
+    )
+    score.record_settlement(conn, "TK1", "no",
+                            resolved_at="2026-09-01T00:00:00Z")
+    conn.close()
+
+    code, payload = _run(capsys, "--db", dbpath, "score", "report", "t1",
+                         "--save")
+    assert code == 0
+    assert payload["saved_score_ids"].keys() == {
+        "all", "screened", "endorsed", "rejected"}
+
+    conn = db.connect(dbpath)
+    rows = conn.execute(
+        "SELECT disposition, n FROM scores WHERE theory_id='t1'"
+    ).fetchall()
+    conn.close()
+    assert {r["disposition"] for r in rows} == {
+        "all", "screened", "endorsed", "rejected"}
+    assert {r["n"] for r in rows if r["disposition"] == "all"} == {1}
+
+
+def test_score_report_save_refuses_the_chain_pool(dbpath, capsys):
+    with pytest.raises(SystemExit):
+        cli.main(["--db", dbpath, "score", "report", "t1",
+                  "--save", "--pool", "chain"])
+
+
 def test_init_creates_the_database(tmp_path, capsys):
     path = tmp_path / "fresh.db"
     code, payload = _run(capsys, "--db", str(path), "init")

@@ -41,8 +41,15 @@ score.record_settlement(conn, ticker, result, resolved_at=...)
 ## 3. Recompute scores and bucket rates
 
 ```bash
-python -m tools.cli score report <theory_id> --pool chain
+python -m tools.cli score report <theory_id> --save        # persist per-version
+python -m tools.cli score report <theory_id> --pool chain  # read pooled evidence
 ```
+
+Run the `--save` form once per running theory whenever settlements
+landed: it persists the per-version scores via `save_score`, which is
+what keeps `state` EVIDENCE rendering reality instead of "scores never
+written". (`--save` refuses `--pool chain` — the scores table has no
+column for what pooled; save per-version, read chain-pooled.)
 
 `--pool chain` pools evidence across any proven carry-chain (spec 2.5) —
 a version bump proven equivalent (`theories.prove_carry`) carries its

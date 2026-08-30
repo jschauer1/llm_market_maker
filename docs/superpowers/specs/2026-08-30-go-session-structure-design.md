@@ -1,7 +1,11 @@
 # Go session structure — consistent decisions from structural surfaces
 
-Date: 2026-08-30. Status: **draft for user review** — nothing here is
-implemented yet; §11 is the rollout order once approved.
+Date: 2026-08-30. Status: **implemented 2026-08-30** (user approved same
+day; §11 phases 1–4 shipped — key + evaluator + `cli promote`,
+DB-discipline guards (`tests/test_db_discipline.py`, added by user
+direction mid-review), runbooks standardized + two written, go rewritten,
+find-edge/score-theories consistency edits, `score report --save`.
+Phase 5, the peer `session_claims` table, stays deferred per §3.)
 
 ## 0. The principle this spec exists to serve
 

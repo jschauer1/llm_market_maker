@@ -283,6 +283,7 @@ narrow context, then promote it once there is evidence it belongs.
 | `ledger.py` | `record_opportunity`, `record_basket`, interpretation, user actions |
 | `score.py` | Settlements, calibration edge, ROI, interpretation value |
 | `rank.py` | Credibility-weighted ranking |
+| `promotion.py` | The promotion-key evaluator (`docs/promotion-key.md`) — which rung a recorded candidate sits on, and orphaned-evidence escalations |
 | `slices.py` | Registered subset edges — per-slice out-of-sample credibility and the slice/complement ranking partition |
 | `buckets.py` | Confidence-bucket win rates → measured edge, not guessed |
 | `sizing.py` | Kalshi fee model, Kelly sizing |

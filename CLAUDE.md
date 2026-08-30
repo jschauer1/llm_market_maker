@@ -397,7 +397,10 @@ per segment, never on one row**:
 - The `ranked_edge` formula is untouched; slices only select **which
   score row feeds it** (`slices match <opportunity_id>` returns the
   segment and its rank inputs). Reports must show the segment next to
-  ranked edge. Slice evidence is **per theory version** like every
+  ranked edge. **What ranked evidence a candidate needs before it is
+  reported to the user at all is governed by `docs/promotion-key.md`**
+  (`python -m tools.cli promote`) — sessions cite its rungs; the go and
+  find-edge skills carry the procedure. Slice evidence is **per theory version** like every
   score; when a version bump adopted the slice's rule, the prior
   version's slice segment may be cited for ranking — say so explicitly
   in the report, and switch to the current version's own segment as

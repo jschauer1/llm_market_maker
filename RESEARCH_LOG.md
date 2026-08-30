@@ -2197,3 +2197,62 @@ markup). `parlay-fade` is `investigating` in the registry with all of it
 recorded. The question that decides whether it ever becomes a theory is
 **execution, not measurement**: whether any resting-order path exists to
 sell parlays without answering an RFQ.
+
+## 2026-08-30 — go restructured: the promotion key decides what the user is told
+
+**Did (user-directed):** Implemented
+`docs/superpowers/specs/2026-08-30-go-session-structure-design.md` end to
+end. The organizing principle: anything two sessions should decide the
+same way now has a structural surface the session cites, never a
+per-session judgment call.
+
+- **`docs/promotion-key.md` (v1) + `tools/promotion.py` + `cli promote`**:
+  six named rungs (R1 RECOMMENDED, R2 RISKLESS, R3 PROVISIONAL, R4
+  ACCRUING, R5 MEASURED-AGAINST, R6 CONTROL) decide report-worthiness
+  mechanically, on the same `slices.ranking_segment` row ranking already
+  uses (chain pool, no hand-mixed score rows). R1/R3 recompute at today's
+  ask and check executability; rulings 13 and 14 are encoded as rungs.
+  Sessions cite rungs; disagreement is a dissent in the report, never an
+  override. `promotion.orphaned_evidence` surfaces ready slices with no
+  bet path at the current version — verified live: it finds
+  insider_judgment v3 `strong-moderate-no` (89 clusters, 43 days, +4.31
+  net) orphaned under the breaking v4 bump, so the repo's best-evidenced
+  result is now a standing escalation instead of invisible-by-default.
+- **The go skill is rewritten** around six phases: 0 peers (one
+  authorized orientation message dividing floor ownership — carve-out to
+  the no-unprompted-messaging rule, user 2026-08-30), 1 orient, 2 the
+  floor (settle with `score report --save`, then every running theory by
+  its RUNBOOK through every stage, recording everything), 3 promote, 4
+  the value menu, 5 log & a five-section report contract (Floor / Bets /
+  Activity / For your ruling / Queue). Phases 0-3 complete and are
+  reported before any menu work. §7 binds: **never ask — escalate into
+  "For your ruling" and keep working**; the only exits are an empty menu
+  or everything-user-blocked.
+- **RUNBOOK.md is now a required, standardized surface** (Stages / Run /
+  Record / Report / Skip): written for `no_side_premium` and
+  `structural_arb`, retrofitted onto the other four, conventions-tested
+  (`tests/test_db_discipline.py`) so a theory cannot sit in a scannable
+  status without a written run procedure.
+- **DB discipline is enforced by tests, not memory**: AST-based guards —
+  no direct `list_open()`, no `get_board(force=True)` outside board.py,
+  every snapshot payload read through `payload_text`. The payload guard
+  caught four live offenders on its first run (all four study scripts
+  reading `market_snapshots` with direct `json.loads` — latent breakage
+  on zlib rows since the 5.2 overhaul); fixed in the same commit.
+- **`score report --save`** persists per-version scores (`save_score`
+  finally has a production caller), closing the carried gap where `state`
+  EVIDENCE rendered "scores never written" against numbers every session
+  computed by hand. find-edge adopts the evaluator and rung vocabulary,
+  so go and find-edge can no longer rank or report the same candidate
+  differently.
+
+**Learned:** the guard-tests-find-real-bugs pattern held immediately —
+the payload_text convention was two days old, already documented, already
+violated in four places nothing would have caught until a study rerun
+crashed months after the archive window closed.
+
+**Next:** first go session under the new floor exercises the whole path
+(peers -> runbooks -> promote -> report contract); the deferred
+`session_claims` table triggers only if sessions collide under the
+phase-0 protocol.
+

@@ -110,9 +110,12 @@ compares theories against each other, which no single-theory agent can do.
 
 ## 3. Filter for executability
 
-Drop candidates that are not really takeable — spread too wide relative to
-the claimed edge, or volume too thin to fill. **Report how many you dropped**
-so nothing disappears silently.
+Executability is no longer a judgment call: `tools/promotion.py` applies
+the promotion key's stated thresholds (spread must be smaller than the
+claimed net edge at today's ask; an ask must exist — see
+`docs/promotion-key.md`, "Preconditions") and demotes what fails to R4 with
+`not_takeable` in its reasons. **Report how many were demoted** so
+nothing disappears silently.
 
 ## 4. Collapse duplicates across theories
 
@@ -222,6 +225,21 @@ on it). Only a verdict from the deep analysis stage should ever move a row to
 
 ## 6. Rank
 
+**The evaluator does this whole section for you — prefer it.** One call
+per run classifies every recorded candidate onto a promotion-key rung
+with the correct segment, un-mixed rank inputs, today's ask, and the
+ranked edge already computed:
+
+```bash
+python -m tools.cli promote --run <run_id>     # re-quotes; add --no-quote offline
+python -m tools.cli promote <opportunity_id>
+```
+
+Its rung decides §7's report placement (R1/R2/R3 recommended; R4/R5/R6
+not), exactly as in `go` — one promotion path however the question
+arrives. The rest of this section explains what the evaluator computes,
+for diagnosis and for the rare candidate not yet in the ledger.
+
 Never sort on raw claimed edge. Use credibility shrinkage:
 
 ```bash
@@ -272,12 +290,17 @@ any other row.
 
 ## 7. Report recommendations, then the remainder
 
-**Recommended bets** — one ranked table across all theories: ticker, side,
-entry price, confidence bucket (blank for mechanical theories), claimed edge,
-**edge basis**, ranked edge, `n`, realization, theory, **segment** (the
-slice, complement, or aggregate row that ranked it — blank only for a
-theory with no registered slices), suggested size, and your
-interpretation (blank for mechanical theories).
+**Recommended bets** — one ranked table across all theories, citing the
+promotion-key version, with a **rung** column (only R1 RECOMMENDED, R2
+RISKLESS, and R3 PROVISIONAL belong in it; an R5 MEASURED-AGAINST or R4
+ACCRUING candidate is reported in the remainder, by rung, never as a
+bet): rung, ticker, side, entry price, confidence bucket (blank for
+mechanical theories), claimed edge, **edge basis**, ranked edge, `n`,
+realization, theory, **segment** (the slice, complement, or aggregate
+row that ranked it — blank only for a theory with no registered
+slices), suggested size, and your interpretation (blank for mechanical
+theories). Disagree with a rung by reporting the dissent as a proposed
+key amendment — never by moving the candidate.
 
 Two kinds of candidate belong in this table, and `edge_basis` is what tells
 them apart:
