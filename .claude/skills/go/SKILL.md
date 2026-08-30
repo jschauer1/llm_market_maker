@@ -278,11 +278,9 @@ Append to `RESEARCH_LOG.md`:
 **Next:** what is worth picking up next session.
 ```
 
-Keep this log cross-cutting. Theory-specific findings go in that theory's
-`NOTES.md` — dated, raw, append-only — and the log entry points at them
-rather than repeating them; `THEORY.md` changes only when the claim, the
-procedure, or the status changes. This log is what makes a year of sessions
-accumulate instead of repeat.
+Theory-specific findings go in that theory's `NOTES.md` — dated, raw,
+append-only. `THEORY.md` changes only when the claim, the procedure, or
+the status changes.
 
 <!-- rule: notes-theory-log-split (moved from CLAUDE.md § What lives in a theory, 2026-08-29) -->
 `RESEARCH_LOG.md` stays cross-theory: a log entry is earned by a fact that

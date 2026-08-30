@@ -418,17 +418,47 @@ _MOVED_RULES: dict[str, str] = {
 }
 
 
+#: The marker CLAUDE.md's own map paragraph opens with, under "How the
+#: user drives this" -- `_skill_map_paragraph` uses it to find that one
+#: paragraph among all the others.
+_SKILL_MAP_ANCHOR = "When a task has a skill, invoke it before starting."
+
+
+def _skill_map_paragraph(claude_md: str) -> str:
+    """Return the single paragraph in CLAUDE.md that maps activities to
+    skills via `->` arrows (e.g. `` Backtesting -> `backtest-theory`. ``),
+    isolated by splitting on blank lines and keeping the one that opens
+    with `_SKILL_MAP_ANCHOR`. Checking within just this paragraph -- rather
+    than a bare backtick-wrapped-name search over the whole file -- is what
+    makes the check below notice a skill's map entry going missing: the
+    skill's name legitimately turns up elsewhere in CLAUDE.md (prose,
+    worked examples) even after its own `-> \\`skill\\`` line is deleted, so
+    a whole-file substring search never trips."""
+    for para in claude_md.split("\n\n"):
+        if _SKILL_MAP_ANCHOR in para:
+            return para
+    raise AssertionError(
+        "CLAUDE.md has no paragraph opening with "
+        f"{_SKILL_MAP_ANCHOR!r} -- the skill map itself is gone"
+    )
+
+
 def test_every_moved_rule_lives_in_its_owning_skill():
     """Each relocated rule has exactly one home: its marked block exists
-    in the owning skill, and CLAUDE.md's skill map still names that
-    skill. A rule dropped in a move fails at the dropping commit."""
+    in the owning skill, and CLAUDE.md's skill-map paragraph (the
+    "-> `skill`" paragraph under "How the user drives this", see
+    `_skill_map_paragraph`) still carries that skill's own arrow entry --
+    not just a mention of the skill's name anywhere in the file. A rule
+    dropped in a move, or a skill dropped from the map itself, fails at
+    the dropping commit."""
     claude_md = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
+    map_paragraph = _skill_map_paragraph(claude_md)
     problems = []
     for slug, skill in sorted(_MOVED_RULES.items()):
         skill_file = ROOT / ".claude" / "skills" / skill / "SKILL.md"
         if f"<!-- rule: {slug} " not in skill_file.read_text(encoding="utf-8"):
             problems.append(f"{slug}: no marked block in {skill}/SKILL.md")
-        if f"`{skill}`" not in claude_md:
+        if not re.search(r"→\s*`" + re.escape(skill) + "`", map_paragraph):
             problems.append(f"{slug}: CLAUDE.md's map no longer names {skill}")
     assert problems == [], (
         "a relocated rule lost its single home:\n" + "\n".join(problems)
