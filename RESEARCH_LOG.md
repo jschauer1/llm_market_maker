@@ -1892,3 +1892,88 @@ delivery nine-tenths done (phases A/B)" entry for the mid-flight status
 this completes, and
 `.superpowers/sdd/2026-08-29-enforcing-surfaces-rule-delivery/` for the
 full task-by-task plan.
+
+---
+
+## 2026-08-30 — snapshot store overhauled: dedup intervals, zlib payloads, own database file (spec 5.2 complete)
+
+**Did:** Shipped spec 5.2's remaining phases (2-4) end to end against the
+live ledger, per the plan at
+`docs/superpowers/plans/2026-08-30-snapshot-store-overhaul.md` (`5771590`):
+write-path dedup (`72b1964`, review fix `be3c219`), the retro-dedup command
+(`fe351d0`), zlib compression (`1e2f7f0`), and the split into its own
+attached file (`42eb40c`, rerun-safety fix `db1efbd`). Spec
+`docs/superpowers/specs/2026-08-29-enforcing-surfaces-design.md` §5.2 now
+carries a done-marker naming this entry as its live-run record.
+
+**Measured (live run against `db/market_edge.db`, before/after):**
+
+- **Baseline, pre-work:** 1,390,328 rows across 13 batches; file
+  5,539,033,088 B, grown to 5,623,709,696 B by split time; payload text
+  3,047,953,692 B raw_json + 68,859,034 B event_json; a fresh ledger backup
+  taken first, gzipped to 4,242,630 B.
+- **Retro-dedup:** deleted 539,827 rows (38.83% of the pre-work total) —
+  matching the design gate's predicted byte-exact-duplicate rate to two
+  decimal places, not just in the right neighborhood. Kept 850,501 rows
+  across 202,690 distinct markets.
+- **Compression:** all 850,501 surviving rows converted; payload bytes
+  1,942,666,499 -> 834,288,422, ~2.33x. **Honest miss:** the spec projected
+  ~8x; that estimate assumed bulk compression over the whole corpus.
+  Per-row zlib against ~2 KB JSON documents, already stripped of
+  duplicates by the retro-dedup pass, tops out around 2.3x — a small
+  document compresses worse per-document than a large concatenated blob
+  would. Zero information loss either way; the ratio is a
+  resource-planning number, not a correctness one.
+- **Split:** the same 850,501 rows moved into `db/snapshots.db`. Main file
+  5,623,709,696 -> 66,539,520 B (66.5 MB); `db/snapshots.db` 1,292,386,304 B
+  (1.29 GB). Net 5.62 GB -> 1.36 GB total (76% smaller), and the file that
+  actually matters for disaster recovery — the ledger — is now 66 MB and
+  backs up in seconds instead of being inseparable from a 5+ GB blob.
+- **End state:** `db stats` renders both files; `state` renders clean; the
+  board rebuilds correctly (110,628 markets at `2026-08-29T13:14:32Z`);
+  full suite green at 1,125.
+
+**New invariants a future session must know:**
+
+- A `market_snapshots` row is a validity interval, `[captured_at,
+  last_seen_at]`, not a point-in-time snapshot — a market present but
+  unchanged extends the existing row's `last_seen_at` rather than writing
+  a new row.
+- "Unchanged" is decided by byte-exact comparison of the **full** payload
+  (`raw_json` + `event_json` concatenated) — the design gate ruled this
+  explicitly rather than the five material columns, so an edit to rules
+  text or `close_time` alone still forces a new row.
+- **Every** read of `raw_json`/`event_json` must go through
+  `tools.snapshot.payload_text` — the cell's SQLite storage class (`TEXT`
+  for legacy plain rows, `BLOB` for zlib-compressed ones) is now the codec
+  discriminator, and a direct `json.loads(row["raw_json"])` breaks the
+  moment it hits a compressed row.
+- The store lives in `db/snapshots.db`, `ATTACH`ed as `snapdb` by
+  `tools.db.connect()`; unqualified queries against `market_snapshots` keep
+  resolving there unchanged, because main no longer has a table by that
+  name.
+- `db split-snapshots`, `db dedup-snapshots`, and `db compress-snapshots`
+  are all idempotent and rerun-safe — each was proven so by a dedicated
+  test (`db1efbd`'s fix closed the one real gap found: a second
+  `split-snapshots` call, or a process that died between the `DROP TABLE`
+  and the `VACUUM`, used to crash rather than no-op).
+- Backup cadence is per `tools/README.md`'s "Backup cadence" section: the
+  ledger backs up before any schema migration or destructive command and
+  at the start of a session that will settle or migrate; `snapshots.db`
+  gets no automatic backup, copied by hand only if a study needs a
+  specific historical window preserved.
+
+**Pointers:** the full task-by-task plan is
+`docs/superpowers/plans/2026-08-30-snapshot-store-overhaul.md`; the four
+study write-ups repointed to read through `payload_text` are
+`studies/2026-08-27-calendar-arb-firing-rate/STUDY.md`,
+`studies/2026-08-29-side-asymmetry-extension/STUDY.md`,
+`studies/2026-08-29-structural-arb-violation-liquidity/STUDY.md`, and
+`studies/2026-08-29-structural-gate-payload-version/STUDY.md`.
+
+This entry is a repo-level mechanism plus a data-source constraint change
+(every `raw_json`/`event_json` reader's contract changed, and the store's
+physical location changed under `ATTACH`), so it passes the §6.5 promotion
+bar on its own terms — a session that never worked on this overhaul still
+needs the interval semantics and the `payload_text` rule the moment it
+touches a snapshot row.

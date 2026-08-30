@@ -688,6 +688,11 @@ Projected: 5.5 GB → ~3.3 GB (dedup) → ~0.5 GB (compressed). **Zero
 information loss** — `CLAUDE.md`'s "save as much as you can, while you can"
 stays correct and untouched.
 
+**Status: phases 0–4 all shipped** — 0–1 in the foundation plan
+(2026-08-29); 2–4 in docs/superpowers/plans/2026-08-30-snapshot-store-overhaul.md
+(2026-08-30), with the live-run numbers in RESEARCH_LOG.md's entry of that
+date.
+
 **The safety net — non-negotiable.** These four already exist and must pass
 **unchanged — assertions and fixtures both — at every phase**; they are
 precisely the golden tests for this migration. (The three batch-semantics
