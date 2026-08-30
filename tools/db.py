@@ -221,6 +221,25 @@ def split_snapshots(conn: sqlite3.Connection, main_path: str | Path,
     """
     stats = {"moved": 0, "vacuumed_bytes_before": Path(main_path).stat().st_size}
     _init_snap_schema(conn)
+    # Rerun-safety guard (review finding, 2026-08-30): once main no
+    # longer has the table -- either a prior run already finished, or the
+    # process died between the committed DROP TABLE and the VACUUM below
+    # -- `PRAGMA main.table_info(market_snapshots)` returns an EMPTY
+    # result with no error (a missing table is not a PRAGMA error), which
+    # would make `col_list` "" and the INSERT below malformed SQL
+    # (`OperationalError: near ")"`). Detecting the crash window
+    # explicitly, rather than letting that syntax error be the symptom,
+    # is what keeps the operator's obvious recovery step -- run
+    # split-snapshots again -- actually resumable: VACUUM is idempotent,
+    # so re-running it finishes whatever the interrupted run left undone.
+    if conn.execute(
+        "SELECT 1 FROM main.sqlite_master WHERE type='table'"
+        " AND name='market_snapshots'"
+    ).fetchone() is None:
+        conn.execute("VACUUM main")
+        stats["vacuumed_bytes_after"] = Path(main_path).stat().st_size
+        stats["note"] = "main already split; vacuum only"
+        return stats
     # A genuinely pre-unique-index legacy main table can still hold
     # duplicate rows the snapdb table's own unique index would reject
     # outright -- dedupe main's copy first so the bulk copy below can

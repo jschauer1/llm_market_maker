@@ -499,6 +499,88 @@ def test_split_snapshots_moves_rows_and_drops_main(tmp_path):
     db.close(c)
 
 
+# --- split_snapshots rerun-safety (review finding, 2026-08-30) --------
+
+
+def test_split_snapshots_is_rerun_safe_after_success(tmp_path):
+    # Any second invocation after a completed split -- including a fresh
+    # or already-split database -- must not crash. Pre-fix,
+    # `PRAGMA main.table_info(market_snapshots)` on the now-missing main
+    # table returned an EMPTY result with no error, so `col_list` became
+    # "" and the copy's INSERT was malformed SQL
+    # (`OperationalError: near ")"`).
+    import sqlite3 as raw_sqlite
+    legacy = raw_sqlite.connect(tmp_path / "old.db")
+    legacy.execute("CREATE TABLE market_snapshots (id INTEGER PRIMARY KEY,"
+                   " platform TEXT, market_id TEXT, captured_at TEXT,"
+                   " raw_json TEXT, last_seen_at TEXT)")
+    legacy.execute("INSERT INTO market_snapshots"
+                   " (platform, market_id, captured_at, raw_json)"
+                   " VALUES ('kalshi','L','2026-08-24T11:00:00Z','{}')")
+    legacy.commit(); legacy.close()
+
+    c = db.connect(tmp_path / "old.db")
+    first = db.split_snapshots(c, tmp_path / "old.db")
+    assert first["moved"] == 1
+
+    second = db.split_snapshots(c, tmp_path / "old.db")   # rerun: no crash
+    assert second["moved"] == 0
+    assert second["note"] == "main already split; vacuum only"
+    assert "vacuumed_bytes_after" in second
+    assert c.execute(
+        "SELECT COUNT(*) FROM snapdb.market_snapshots"
+    ).fetchone()[0] == 1               # nothing duplicated by the rerun
+    db.close(c)
+
+
+def test_split_snapshots_resumes_after_drop_before_vacuum(tmp_path):
+    # The realistic crash window: the DROP TABLE commits but the process
+    # dies before VACUUM runs, so main lacks the table yet was never
+    # vacuumed. Reproduced by hand -- driving the same copy-then-drop
+    # steps split_snapshots itself performs, stopping short of VACUUM --
+    # since letting split_snapshots reach that state naturally would
+    # require actually killing the process mid-call. The operator's
+    # obvious recovery step (run split-snapshots again) must finish the
+    # interrupted VACUUM rather than crash on the same malformed-INSERT
+    # bug as the plain rerun case above.
+    import sqlite3 as raw_sqlite
+    legacy = raw_sqlite.connect(tmp_path / "old.db")
+    legacy.execute("CREATE TABLE market_snapshots (id INTEGER PRIMARY KEY,"
+                   " platform TEXT, market_id TEXT, captured_at TEXT,"
+                   " raw_json TEXT, last_seen_at TEXT)")
+    legacy.execute("INSERT INTO market_snapshots"
+                   " (platform, market_id, captured_at, raw_json)"
+                   " VALUES ('kalshi','L','2026-08-24T11:00:00Z','{}')")
+    legacy.commit(); legacy.close()
+
+    c = db.connect(tmp_path / "old.db")
+    db._init_snap_schema(c)
+    cols = [r[1] for r in c.execute(
+        "PRAGMA main.table_info(market_snapshots)")]
+    col_list = ", ".join(cols)
+    with db.write(c):
+        c.execute(
+            f"INSERT INTO snapdb.market_snapshots ({col_list})"
+            f" SELECT {col_list} FROM main.market_snapshots"
+        )
+    with db.write(c):
+        c.execute("DROP TABLE main.market_snapshots")   # committed...
+    # ...but VACUUM never ran -- the exact crash window the guard exists
+    # for. Confirm the setup actually reproduces it before relying on it.
+    assert c.execute(
+        "SELECT COUNT(*) FROM main.sqlite_master WHERE name='market_snapshots'"
+    ).fetchone()[0] == 0
+
+    stats = db.split_snapshots(c, tmp_path / "old.db")   # the recovery call
+    assert stats["moved"] == 0
+    assert stats["note"] == "main already split; vacuum only"
+    assert "vacuumed_bytes_after" in stats
+    assert c.execute(
+        "SELECT COUNT(*) FROM snapdb.market_snapshots"
+    ).fetchone()[0] == 1
+    db.close(c)
+
+
 def test_db_close_checkpoints_the_wal(tmp_path):
     c = db.connect(tmp_path / "test.db")
     db.init_db(c)
