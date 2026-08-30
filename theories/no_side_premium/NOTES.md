@@ -262,3 +262,29 @@ Pattern-mining the fullcov rows: timing and price-level dead, but a side
 asymmetry survives every stress and feeds no-side-premium (migrated from
 RESEARCH_LOG.md)` in `theories/insider_bias/mention_family/NOTES.md`,
 not here.
+
+## 2026-08-26 (cont.) — no_side_premium forward test implemented and running; polymarket whale filter fixed (migrated from RESEARCH_LOG.md)
+
+**Did:** Second backlog implementation this session: `no_side_premium`
+v1 (idea 14, spec priority 6/22) — the pre-registered forward test of
+the optimism-tax finding, exactly as the idea's revisit angle states
+it. Cell A: mention-family NO favorites ask>=0.85, screened, prior
++2.0 net. Cell B: non-mention YES favorites 0.80-0.90, recorded
+REJECTED as an avoid-list so settlements test "these lose" as a free
+control. Population imported from insider_bias.screen (the exact
+screen both fullcov measurements drew from; parameters pinned by
+test). Live asks refreshed before recording. First run: population
+807 -> 8 A + 59 B -> 60 recorded at fresh asks (run
+live-2026-08-26-nsp). Confirmation/kill bars pre-registered in
+THEORY.md. All edges edge_basis='prior' — nothing recommendable until
+the cells' own settlements measure them. Also fixed
+tools/polymarket/trades.py: filterAmount without filterType=CASH
+filters on share count, not dollars (live-contract test caught it).
+
+**Learned:** Cell A today is entirely one event's strikes
+(KXTRUMPSAY-26AUG31) — early cell-A reads will be event-clustered;
+NOTES.md flags that the interim look must count events. Cell B is 30+
+distinct series — healthier immediately.
+
+**Next:** Both new theories accrue settlements automatically via the
+session settle pass. Nothing to do but run each session and wait.

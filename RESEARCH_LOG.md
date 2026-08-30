@@ -655,29 +655,24 @@ score the model's suggestion quality against the raw screen over time.
 Moved 2026-08-29 to `theories/structural_arb/NOTES.md` under the heading `## 2026-08-26 — structural_arb implemented from backlog; first live riskless find recorded (migrated from RESEARCH_LOG.md)`, per the enforcing-surfaces migration (spec §6.8).
 ## 2026-08-26 (cont.) — no_side_premium forward test implemented and running; polymarket whale filter fixed
 
-**Did:** Second backlog implementation this session: `no_side_premium`
-v1 (idea 14, spec priority 6/22) — the pre-registered forward test of
-the optimism-tax finding, exactly as the idea's revisit angle states
-it. Cell A: mention-family NO favorites ask>=0.85, screened, prior
-+2.0 net. Cell B: non-mention YES favorites 0.80-0.90, recorded
-REJECTED as an avoid-list so settlements test "these lose" as a free
-control. Population imported from insider_bias.screen (the exact
-screen both fullcov measurements drew from; parameters pinned by
-test). Live asks refreshed before recording. First run: population
-807 -> 8 A + 59 B -> 60 recorded at fresh asks (run
-live-2026-08-26-nsp). Confirmation/kill bars pre-registered in
-THEORY.md. All edges edge_basis='prior' — nothing recommendable until
-the cells' own settlements measure them. Also fixed
-tools/polymarket/trades.py: filterAmount without filterType=CASH
-filters on share count, not dollars (live-contract test caught it).
+This entry built and launched `no_side_premium` v1 (idea 14) as the
+pre-registered forward test of the optimism-tax finding: cell A
+(mention-family NO favorites, ask>=0.85, prior +2.0 net) screened, and
+cell B (non-mention YES favorites, 0.80-0.90) recorded REJECTED as a
+free avoid-list control, both drawn from `insider_bias.screen`'s
+population and pinned by test; the first run recorded 60 rows (8 A + 59
+B) at fresh asks under `run_id=live-2026-08-26-nsp`, all
+`edge_basis='prior'` until settlements measure the cells. En route it
+fixed a repo-tooling defect in `tools/polymarket/trades.py`:
+Polymarket's `filterAmount` without `filterType=CASH` filters on share
+count, not dollars, caught by a live-contract test — the fix is the
+durable fact, since any future Polymarket dollar-threshold query depends
+on it.
 
-**Learned:** Cell A today is entirely one event's strikes
-(KXTRUMPSAY-26AUG31) — early cell-A reads will be event-clustered;
-NOTES.md flags that the interim look must count events. Cell B is 30+
-distinct series — healthier immediately.
-
-**Next:** Both new theories accrue settlements automatically via the
-session settle pass. Nothing to do but run each session and wait.
+Narrative moved 2026-08-29 to `theories/no_side_premium/NOTES.md` under
+`## 2026-08-26 (cont.) — no_side_premium forward test implemented and
+running; polymarket whale filter fixed (migrated from RESEARCH_LOG.md)`
+(spec §6.8).
 
 ## 2026-08-27 — structural_arb v2: depth gate mechanical; queue re-quoted, mostly decayed
 
