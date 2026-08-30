@@ -178,66 +178,33 @@ Moved 2026-08-29 to `theories/insider_bias/insider_judgment/NOTES.md` under the 
 Moved 2026-08-29 to `theories/insider_bias/mention_family/NOTES.md` under the heading `## 2026-08-24 — Two follow-ups from user questions: a corrected Big Brother bet, and a new mechanical path for the MENTION-family edge (migrated from RESEARCH_LOG.md)`, per the enforcing-surfaces migration (spec §6.8).
 ## 2026-08-24 — mention_family becomes a real, separate theory; insider_bias renamed insider_judgment and folded into a shared parent folder
 
-**Did:** The user asked, twice, for the mechanical mention-family mechanism
-to stop being a sub-path of `insider_bias` and become its own theory —
-first a quick confirmation of the tradeoff (worth it: two genuinely
-different claims, informed-minority-by-judgment vs. mechanical-family-rate,
-had been sharing one version number), then, after a further steer on the
-layout, a specific directory shape: `theories/insider_bias/` as a shared
-parent, with the LLM-judged theory (renamed `insider_judgment`, since
-`insider_bias` was no longer its name once it stopped being a leaf folder)
-and `mention_family` as sibling subfolders underneath it, and the shared
-`screen.py` living at that parent level rather than in generic `tools/`.
+On 2026-08-24, mention_family split out of insider_bias to become its
+own theory at the user's direction: `theories/insider_bias/` became a
+shared parent folder, the LLM-judged theory was renamed
+`insider_judgment` (since `insider_bias` was no longer its name once it
+stopped being a leaf folder), `mention_family` became a sibling
+subfolder, and the shared favorite screen moved to
+`theories/insider_bias/screen.py` rather than generic `tools/` — the
+architecture CLAUDE.md now documents. `theory_id='insider_bias'` was
+renamed to `'insider_judgment'` across every referencing table (128
+opportunities, 4 judgment_runs, 1 backtest_runs row) with its version
+number (3) carried over unchanged, since it was the same decision
+procedure under a corrected name; `mention_family` kept its own
+`theory_id` throughout. Splitting the evidence apart changed what
+insider_judgment's own remaining tier-A backtest said: the original
++1.38pts headline (n=200) was mostly mention_family's positive edge
+canceling insider_judgment's own negative slice, and with
+mention_family's 116 rows properly attributed elsewhere,
+insider_judgment's own remaining 84 non-mention rows scored
+`calibration_edge_net=-4.28pts` — a blend of the family `gate.py`
+already excludes (-11.12pts, n=47) and the gate-plausible slice that
+reaches judgment in the live pipeline (+4.40pts, n=37).
 
-Executed as a real migration, not a fresh start:
-- Extracted the mechanical favorite screen to `tools/screen.py` first (the
-  textbook move per this repo's "moves to tools/ once there's a second
-  caller" convention), then relocated it to `theories/insider_bias/
-  screen.py` once the user clarified the directory shape they wanted —
-  `tools/` was the more generic-infrastructure-conventional home, but not
-  what was actually asked for once the fuller structure was clear.
-- Moved `gate.py`, `pipeline.py`, `backtest.py`, `prompts/`, and that
-  theory's `THEORY.md`/`RUNBOOK.md` into a new `insider_judgment/`
-  subfolder; moved the standalone `mention_family/` folder to become
-  `insider_bias/mention_family/`.
-- Renamed `theory_id='insider_bias'` → `'insider_judgment'` across every
-  table that references it (128 opportunities, 4 judgment_runs, 1
-  backtest_runs row) — version number carried over unchanged (3, not reset
-  to 1), since this is the same decision procedure and history under a
-  corrected name, not a new theory. `mention_family` kept its own
-  `theory_id` throughout; only its `path` column and package import path
-  changed.
-- Updated every import, CLI example, and prompt-path string across both
-  theories' `THEORY.md`/`RUNBOOK.md` and `CLAUDE.md` itself (which named
-  `insider_bias` as the reference theory in five places) to match. Left
-  historical log entries and already-recorded `judgment_runs.prompt_path`
-  values alone — they are accurate records of what was true when they were
-  written, not something to retcon.
-
-**Learned:** Splitting the evidence apart changed what insider_judgment's
-own remaining tier-A backtest evidence actually says. The original
-`+1.38pts` headline (n=200, everything the stage-1 screen touched) was
-mostly the mention family's positive edge canceling out insider_judgment's
-own negative slice. With mention_family's 116 rows now properly attributed
-elsewhere, insider_judgment's own remaining 84 non-mention rows score
-`calibration_edge_net=-4.28pts` — negative. That number is itself a
-blend of the "aggregate of many independent people" family `gate.py`
-already excludes (-11.12pts, n=47) and the genuinely gate-plausible slice
-that actually reaches judgment in the live pipeline (+4.40pts, n=37) — so
-the theory's `testing` status still rests on real footing (gate.py's
-filtering is doing real, measurable work), but the raw, ungated number is
-a more sobering thing to see next to `insider_judgment` now that it isn't
-diluted by a family that turned out to belong to a different theory.
-
-**Next:** Both theories are independently re-runnable and independently
-scoreable now (`score report insider_judgment` / `score report
-mention_family`), which was the actual point of the split — future
-sessions comparing theories or deciding what to backtest next should treat
-them as two unrelated entries on the board, sharing only a mechanical
-favorite filter, not one theory with an asterisk. `mention_family`'s live
-preview run (`...-preview30-v2`) and `insider_judgment`'s 44 v1/v2 rows are
-both still settling Aug 24–Sep 5 — check both when reporting on progress,
-not just one.
+Narrative moved 2026-08-29 to
+`theories/insider_bias/mention_family/NOTES.md` under `## 2026-08-24 —
+mention_family becomes a real, separate theory; insider_bias renamed
+insider_judgment and folded into a shared parent folder (migrated from
+RESEARCH_LOG.md)` (spec §6.8).
 
 ## 2026-08-24 — A researched theory-idea backlog: 12 implementable specs in docs/theory-specs/
 
