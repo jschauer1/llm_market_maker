@@ -325,3 +325,91 @@ approximation runs liberal at these cluster counts and skewed per-day
 distributions, so `|t| ≥ 2` is a slightly weak bar. It did not matter
 here — nothing came close — but a phase-2 result near the threshold
 should use a cluster bootstrap rather than the t.
+
+---
+
+# Phase 2 pre-registration — written BEFORE any markup number
+
+Phase 1 established that outcome-based calibration cannot resolve a
+bettable effect on this data source (262 settlement days needed, ~60
+reachable). Phase 2 is the outcome-free measurement that replaces it as
+the headline. **Written and committed before any leg price was
+fetched.**
+
+## The statistic
+
+For each parlay, at its own `created_time`:
+
+```
+markup_pts = 100 * ( parlay_last_price  -  PROD(leg_mid_i) )
+```
+
+- **Leg price is the mid**, `(yes_bid_close + yes_ask_close) / 2`, from
+  the hourly candle at or before `created_time`. Mid-to-mid is the
+  spec's own choice and is the right one here: `last_price` on the
+  parlay is a *traded* price, so comparing it to leg *asks* would charge
+  the parlay side a spread the leg side never paid and manufacture a
+  markup out of bid-ask asymmetry alone.
+- **A leg's side is honoured.** `mve_selected_legs` carries `side`; a
+  `no` leg contributes `1 - mid`, not `mid`. Ignoring side would
+  scramble the product entirely.
+- **Never a candle after `created_time`.** The candle used is the last
+  one ending at or before it. This is the spec's named lookahead trap
+  (stale leg marks manufacture fake gaps), and it is the only place
+  phase 2 can leak.
+
+## Inclusion (in addition to phase 1's rules, which carry over unchanged)
+
+- Every leg must have a candle at or before `created_time` with both
+  `yes_bid_close` and `yes_ask_close` present. A parlay with **any**
+  unpriceable leg is excluded whole — never priced on a subset of its
+  legs — and excluded parlays are counted and reported.
+- Leg mid must be strictly inside (0, 1).
+- The candle must be no more than **24 hours** before `created_time`.
+  A staler mark is not a contemporaneous price.
+
+## Clustering
+
+Report **both**, always as a pair, never one alone:
+
+- **day-clustered** — one observation per creation day;
+- **slate/leg-aware** — parlays sharing legs are not independent even
+  within a day, so also report the markup aggregated to one observation
+  per distinct **leg-set signature** before averaging.
+
+Phase 1's lesson is that the row count is an illusion of power; phase 2
+must not repeat it just because its statistic is quieter.
+
+## Pre-registered direction (unchanged from phase 1)
+
+**Parlays are overpriced relative to the product of their legs:
+`markup_pts > 0`, growing with leg count.** A negative markup is a
+FAILED prediction, not a discovery.
+
+## Power floor
+
+Same 3-point floor, same MDE reporting. Phase 2's precision is not
+limited by settlement days, so if this design is also underpowered, the
+thesis is unanswerable with Kalshi data and the study says so.
+
+## The control, and what it is for
+
+`same_game` parlays (`KXMVENBASINGLEGAME`, `KXMVENFLSINGLEGAME`) have
+genuinely correlated legs, so product-of-legs is **not** fair value
+there and they **must** show a large positive markup for a reason that
+is not a markup at all — it is correlation. Running them through the
+identical machinery is the check that the machinery works: if same-game
+comes back at zero, the pipeline is broken. It is **not** evidence about
+the thesis, and it is kept out of the headline entirely.
+
+## Known limits, fixed now
+
+- `last_price` is the parlay's last *trade*, whose timestamp is not
+  necessarily `created_time`. For a market minted via RFQ and traded
+  immediately, the two are close; for one that traded later, the leg
+  prices may be stale relative to the trade. This is the largest
+  unquantified error in phase 2, and it biases in an unknown direction.
+  A follow-up should restrict to parlays whose trade and creation are
+  provably close once a timestamp for the trade is available.
+- Hourly candles, not minute. A leg that moved sharply inside the hour
+  is mispriced by up to that hour's range.
