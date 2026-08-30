@@ -397,3 +397,28 @@ def test_deliberately_absent_paths_stay_absent():
         "drift silently past the docs that argue against it:\n"
         + "\n".join(present)
     )
+
+
+#: Task-time rules relocated out of CLAUDE.md into the skill that owns the
+#: activity (enforcing-surfaces spec 7.2, user-ruled 2026-08-29). One home
+#: per rule: the marked block must exist in the owning skill, and
+#: CLAUDE.md's skill map must still name that skill. Populated one entry
+#: per move commit; an entry here without its block is a dropped rule.
+_MOVED_RULES: dict[str, str] = {}
+
+
+def test_every_moved_rule_lives_in_its_owning_skill():
+    """Each relocated rule has exactly one home: its marked block exists
+    in the owning skill, and CLAUDE.md's skill map still names that
+    skill. A rule dropped in a move fails at the dropping commit."""
+    claude_md = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
+    problems = []
+    for slug, skill in sorted(_MOVED_RULES.items()):
+        skill_file = ROOT / ".claude" / "skills" / skill / "SKILL.md"
+        if f"<!-- rule: {slug} " not in skill_file.read_text(encoding="utf-8"):
+            problems.append(f"{slug}: no marked block in {skill}/SKILL.md")
+        if f"`{skill}`" not in claude_md:
+            problems.append(f"{slug}: CLAUDE.md's map no longer names {skill}")
+    assert problems == [], (
+        "a relocated rule lost its single home:\n" + "\n".join(problems)
+    )

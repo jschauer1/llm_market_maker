@@ -96,6 +96,14 @@ record.
 
 Both are normal.
 
+**When a task has a skill, invoke it before starting.** Backtesting →
+`backtest-theory`. Choosing bets → `find-edge`. New hypothesis →
+`propose-theory`. Settling and scoring → `score-theories`. Comparing →
+`compare-theories`. A session → `go`. The skills carry rules this file does
+not repeat, loaded at the moment they bind. **Prefer loading a skill to not
+loading one**: the cost of reading one you did not strictly need is a few
+hundred tokens, and the cost of skipping one is a rule you never saw.
+
 **The user places every bet manually.** This system never sees what actually
 happened unless told:
 
