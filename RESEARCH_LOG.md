@@ -3061,3 +3061,16 @@ earlier consolidation) marked implemented.
 **Next:** Plan 2 of the spec — §9 phases 3–5, the log migration (§6.8's
 procedure), now unblocked: `state` exists, `rulings` exists, the citation
 sweep is the first step.
+
+**Addendum, same session — final-review fix wave.** The whole-branch Opus
+review returned no Criticals and six Importants; one fix wave closed all of
+them (commit f16642a, suite 1,022 → 1,038). Substantive: `resolve_ticker`
+now matches only `run_mode='live', lane='main'` rows and refuses outcome
+ambiguity — it could previously land a fill on a backtest or experiment row
+(reproduced in review); `state` renders "scores never written" honestly and
+stops truncating rulings without notice; the backup's read-only ATTACH is
+now guarded by a test that fails on revert; `tools/README.md` maps the
+three new modules. **Carried to the next plan:** nothing writes `scores`
+(`save_score` has no production caller — EVIDENCE/rank/compare all read an
+empty table), and the docs-path test skips nested family THEORY.md files
+until spans resolve doc-relative.
