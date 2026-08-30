@@ -635,19 +635,22 @@ Moved 2026-08-29 to `theories/insider_bias/insider_judgment/NOTES.md` under the 
 
 ## 2026-08-26 — Formal multiplicity pass (user-prompted): Holm + event clustering
 
-Holm-Bonferroni over the pre-registered family (m=4, replication data
-only): bet rule p=0.0008 vs 0.0125 SURVIVES; moderate-NO p=0.0030 vs
-0.0167 SURVIVES; strong-NO p=0.0961 fails; divergence flag fails. The
-sterner event-clustered one-sided t (one observation per event, killing
-sibling-strike inflation): bet rule +5.21/event, t=2.26, p~0.012 on the
-85 replication events; +3.87, t=2.29, p~0.011 pooled over 162. So the
-defensible statistical claim after full correction: THE BET RULE AND
-MODERATE-NO ARE SIGNIFICANT; strong-NO alone and the divergence flag
-are directionally supported but unproven, and the exploratory scans
-(e.g. mention NO>=0.90 at p=0.0084 across ~50 cells vs Holm ~0.001)
-never survived formal correction — which is why they were sent to
-forward tests rather than believed. Report language downgraded
-accordingly: the edge is established at ~p=0.01 clustered, not p<0.0001.
+Holm-Bonferroni correction was applied over the pre-registered family
+(m=4, replication data only): the bet rule (p=0.0008 vs 0.0125) and
+moderate-NO (p=0.0030 vs 0.0167) survived; strong-NO (p=0.0961) and the
+divergence flag did not. The sterner event-clustered one-sided t-test
+(one observation per event, removing sibling-strike inflation) held the
+bet rule up independently: +5.21/event, t=2.26, p≈0.012 on 85
+replication events, and +3.87, t=2.29, p≈0.011 pooled over 162. Report
+language was downgraded accordingly, from the uncorrected p<0.0001 to
+~p=0.01 clustered — this established the Holm-plus-event-clustering
+precedent that CLAUDE.md's mining discipline now cites for any
+exploratory-scan claim.
+
+Narrative moved 2026-08-29 to
+`theories/insider_bias/insider_judgment/NOTES.md` under `## 2026-08-26 —
+Formal multiplicity pass (user-prompted): Holm + event clustering
+(migrated from RESEARCH_LOG.md)` (spec §6.8).
 
 ## 2026-08-26 — Contamination audit of the judged runs (user-prompted): no hints found; one timing wrinkle bounded
 
