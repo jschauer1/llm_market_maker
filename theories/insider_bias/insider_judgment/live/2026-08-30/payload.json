@@ -1,0 +1,345 @@
+[
+  {
+    "event_ticker": "KXACTBLUETOP-26SEP04",
+    "series_ticker": "KXACTBLUETOP",
+    "title": "Will James Talarico be the top ActBlue fundraiser on Sep 4 at 10:00 AM ET?",
+    "close_time": "2026-09-04T13:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXACTBLUETOP-26SEP04-JTAL",
+        "title": "Will James Talarico be the top ActBlue fundraiser on Sep 4 at 10:00 AM ET?",
+        "rules_primary": "If James Talarico is the top ActBlue fundraiser on Sep 4 at 10:00 AM ET, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-04T13:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXAGTELIMINATION-26SEP03",
+    "series_ticker": "KXAGTELIMINATION",
+    "title": "Will Elsie be eliminated from America's Got Talent Season 21 before Sep 3, 2026?",
+    "close_time": "2026-09-03T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXAGTELIMINATION-26SEP03-ELS",
+        "title": "Will Elsie be eliminated from America's Got Talent Season 21 before Sep 3, 2026?",
+        "rules_primary": "If Elsie is officially eliminated from America's Got Talent Season 21 before Sep 3, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-03T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXAKDROPOUTAUG-26",
+    "series_ticker": "KXAKDROPOUTAUG",
+    "title": "Will David B. Leslie drop out of the Alaska U.S. Senate race before Sep 1, 2026?",
+    "close_time": "2026-09-01T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXAKDROPOUTAUG-26-DLES",
+        "title": "Will David B. Leslie drop out of the Alaska U.S. Senate race before Sep 1, 2026?",
+        "rules_primary": "If David B. Leslie drops out of the 2026 Alaska U.S. Senate race before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXALBUMDEBUT-26SEP12-DON",
+    "series_ticker": "KXALBUMDEBUT",
+    "title": "Will Rod Wave's 'Don’t Look Down' debut at #1",
+    "close_time": "2026-09-07T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXALBUMDEBUT-26SEP12-DON",
+        "title": "Will Rod Wave's 'Don’t Look Down' debut at #1",
+        "rules_primary": "If Don’t Look Down is the #1 album on the Billboard 200 chart for the week of September 12, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-07T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXBIGBENDRESUME-27",
+    "series_ticker": "KXBIGBENDRESUME",
+    "title": "Will it be reported by any of the Source Agencies that physical construction work on federal border security infrastructure inside Big Bend National Park resumes before Sep 8, 2026?",
+    "close_time": "2026-09-08T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXBIGBENDRESUME-27-26SEP08",
+        "title": "Will it be reported by any of the Source Agencies that physical construction work on federal border security infrastructure inside Big Bend National Park resumes before Sep 8, 2026?",
+        "rules_primary": "If physical construction work on federal border security infrastructure inside Big Bend National Park resumes after Issuance and before Sep 8, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-08T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXCABLEAVE-26MAY22",
+    "series_ticker": "KXCABLEAVE",
+    "title": "Will any member of Trump's Cabinet leave before Sep 2026?",
+    "close_time": "2026-09-02T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXCABLEAVE-26MAY22-26SEP",
+        "title": "Will any member of Trump's Cabinet leave before Sep 2026?",
+        "rules_primary": "If any member of Trump's Cabinet leaves their office, or announces they will leave their office, from before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-02T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXCLAUDE-NXTMYTH",
+    "series_ticker": "KXCLAUDE",
+    "title": "Will Anthropic release next Mythos-Class model before Sep 1, 2026?",
+    "close_time": "2026-09-01T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXCLAUDE-NXTMYTH-26SEP01",
+        "title": "Will Anthropic release next Mythos-Class model before Sep 1, 2026?",
+        "rules_primary": "If Anthropic releases a model under Anthropic's Mythos tier — including models branded \"Mythos\" or \"Fable\" - excluding Claude Fable 5 (released June 9, 2026) before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXDEEPTOKEND-26AUG31",
+    "series_ticker": "KXDEEPTOKEND",
+    "title": "Will the DeepSeek average token price be above 0.10 at 10AM ET on Aug 31, 2026",
+    "close_time": "2026-08-31T14:00:00Z",
+    "markets": [
+      {
+        "ticker": "KXDEEPTOKEND-26AUG31-T0.10",
+        "title": "Will the DeepSeek average token price be above 0.10 at 10AM ET on Aug 31, 2026",
+        "rules_primary": "If the value of Ornn - DeepSeek average price per million tokens is above $0.10/mTok on Aug 31, 2026 at 10AM ET, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-08-31T14:00:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXGROK-GROK47",
+    "series_ticker": "KXGROK",
+    "title": "Will SpaceXAI release Grok 4.7 before Sep 4, 2026?",
+    "close_time": "2026-09-04T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXGROK-GROK47-26SEP04",
+        "title": "Will SpaceXAI release Grok 4.7 before Sep 4, 2026?",
+        "rules_primary": "If SpaceXAI releases Grok 4.7 before Sep 4, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-04T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXGTATRAILER-26MAY",
+    "series_ticker": "KXGTATRAILER",
+    "title": "Will another GTA VI trailer come out before Sep 2026?",
+    "close_time": "2026-09-01T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXGTATRAILER-26SEP",
+        "title": "Will another GTA VI trailer come out before Sep 2026?",
+        "rules_primary": "If a new (at least 30 second) GTA VI trailer is publicly and officially released before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXITALYBORDERCHECK-26",
+    "series_ticker": "KXITALYBORDERCHECK",
+    "title": "Will it be reported by any of the Source Agencies that Italy ends the additional border checks on non-EU travelers arriving from Spain by air or sea that began on August 1, 2026, without replacing them with materially equivalent checks before Sep 1, 2026?",
+    "close_time": "2026-09-01T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXITALYBORDERCHECK-26",
+        "title": "Will it be reported by any of the Source Agencies that Italy ends the additional border checks on non-EU travelers arriving from Spain by air or sea that began on August 1, 2026, without replacing them with materially equivalent checks before Sep 1, 2026?",
+        "rules_primary": "If Italy ends the additional border checks on non-EU travelers arriving from Spain by air or sea that began on August 1, 2026, without replacing them with materially equivalent checks after Issuance and before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXNEWDRUGAPPLICATIONCMPS-360",
+    "series_ticker": "KXNEWDRUGAPPLICATIONCMPS",
+    "title": "When will COMPASS Pathways plc submit a NDA for COMP360 psilocybin to the FDA?",
+    "close_time": "2026-09-01T14:00:00Z",
+    "markets": [
+      {
+        "ticker": "KXNEWDRUGAPPLICATIONCMPS-360-26SEP01",
+        "title": "When will COMPASS Pathways plc submit a NDA for COMP360 psilocybin to the FDA?",
+        "rules_primary": "If COMPASS Pathways plc submits a NDA for COMP360 psilocybin to the FDA before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T14:00:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXPAVIAPRESEASON-26",
+    "series_ticker": "KXPAVIAPRESEASON",
+    "title": "Diego Pavia to compete in any Pro Football preseason game in 2026?",
+    "close_time": "2026-09-08T14:00:00Z",
+    "markets": [
+      {
+        "ticker": "KXPAVIAPRESEASON-26-DPAV",
+        "title": "Diego Pavia to compete in any Pro Football preseason game in 2026?",
+        "rules_primary": "If Diego Pavia competes in any Pro Football preseason game in 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-08T14:00:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXPOTUSTWEETS-26SEP01",
+    "series_ticker": "KXPOTUSTWEETS",
+    "title": "How many Donald Trump posts on X the week ending on Sep 1, 2026?",
+    "close_time": "2026-09-01T16:00:00Z",
+    "markets": [
+      {
+        "ticker": "KXPOTUSTWEETS-26SEP01-0",
+        "title": "How many Donald Trump posts on X the week ending on Sep 1, 2026?",
+        "rules_primary": "If realDonaldTrump posts, quote posts, and reposts on X above 0 times (not including replies) from after Issuance and before Sep 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T16:00:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXPRESSSECANNOUNCE-26AUG",
+    "series_ticker": "KXPRESSSECANNOUNCE",
+    "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Sep 8, 2026?",
+    "close_time": "2026-09-08T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXPRESSSECANNOUNCE-26AUG-SEP08",
+        "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Sep 8, 2026?",
+        "rules_primary": "If Donald Trump has made any announcement (e.g., Truth Social post) naming the next White House Press Secretary (including acting/interim) before Sep 8, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-08T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXSNAPELECTIONRS-27",
+    "series_ticker": "KXSNAPELECTIONRS",
+    "title": "Will Serbia announce a snap election before Sep 1, 2026?",
+    "close_time": "2026-09-01T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXSNAPELECTIONRS-27-26SEP01",
+        "title": "Will Serbia announce a snap election before Sep 1, 2026?",
+        "rules_primary": "If Serbia officially announces a snap election for its national legislature or head of government before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXSPCXLAUNCH-CREW13",
+    "series_ticker": "KXSPCXLAUNCH",
+    "title": "When will SpaceX launch Dragon Crew-13?",
+    "close_time": "2026-09-13T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXSPCXLAUNCH-CREW13-26SEP13",
+        "title": "When will SpaceX launch Dragon Crew-13?",
+        "rules_primary": "If SpaceX launches Dragon Crew-13 After issuance and before Sep 13, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-13T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXSPEECHAI-26SEP04",
+    "series_ticker": "KXSPEECHAI",
+    "title": "Top Text to Speech AI this week?",
+    "close_time": "2026-09-04T14:00:00Z",
+    "markets": [
+      {
+        "ticker": "KXSPEECHAI-26SEP04-CART",
+        "title": "Top Text to Speech AI this week?",
+        "rules_primary": "If Cartesia is the #1 model on Artificial Analysis Speech Arena Leaderboard on Sep 4, 2026 at 10:00am ET, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-04T14:00:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXTRUMPMEET-26AUG",
+    "series_ticker": "KXTRUMPMEET",
+    "title": "Donald Trump and Benjamin Netanyahu meet before Sep 1, 2026?",
+    "close_time": "2026-09-01T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXTRUMPMEET-26AUG-BNET",
+        "title": "Donald Trump and Benjamin Netanyahu meet before Sep 1, 2026?",
+        "rules_primary": "If Donald Trump and Benjamin Netanyahu meet (including phone calls) before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      },
+      {
+        "ticker": "KXTRUMPMEET-26AUG-JHUA",
+        "title": "Donald Trump and Jensen Huang meet before Sep 1, 2026?",
+        "rules_primary": "If Donald Trump and Jensen Huang meet (including phone calls) before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      },
+      {
+        "ticker": "KXTRUMPMEET-26AUG-NMOD",
+        "title": "Donald Trump and Narendra Modi meet before Sep 1, 2026?",
+        "rules_primary": "If Donald Trump and Narendra Modi meet (including phone calls) before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      },
+      {
+        "ticker": "KXTRUMPMEET-26AUG-STAK",
+        "title": "Donald Trump and Sanae Takaichi meet before Sep 1, 2026?",
+        "rules_primary": "If Donald Trump and Sanae Takaichi meet (including phone calls) before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      },
+      {
+        "ticker": "KXTRUMPMEET-26AUG-XJIN",
+        "title": "Donald Trump and Xi Jinping meet before Sep 1, 2026?",
+        "rules_primary": "If Donald Trump and Xi Jinping meet (including phone calls) before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXTRYFIRECOOK-27JAN01",
+    "series_ticker": "KXTRYFIRECOOK",
+    "title": "Will the President try to fire the Lisa Cook as member of the Board of Governors of the Federal Reserve System before Sep 1, 2026?",
+    "close_time": "2026-09-01T14:00:00Z",
+    "markets": [
+      {
+        "ticker": "KXTRYFIRECOOK-27JAN01-26SEP01",
+        "title": "Will the President try to fire the Lisa Cook as member of the Board of Governors of the Federal Reserve System before Sep 1, 2026?",
+        "rules_primary": "If the President of the United States has tried to fire Lisa Cook as member of the Board of Governors of the Federal Reserve System before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T14:00:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXUAPFILES-26AUG10",
+    "series_ticker": "KXUAPFILES",
+    "title": "Will Trump release new UFO files before Sep 4, 2026?",
+    "close_time": "2026-09-04T14:00:00Z",
+    "markets": [
+      {
+        "ticker": "KXUAPFILES-26AUG10-26SEP04",
+        "title": "Will Trump release new UFO files before Sep 4, 2026?",
+        "rules_primary": "If the federal government has released, after Issuance and before Sep 4, 2026, previously unreleased documents, audio files, or video files regarding Unidentified Aerial Phenomena (“UAP”), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-04T14:00:00Z"
+      }
+    ]
+  }
+]

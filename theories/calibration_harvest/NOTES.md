@@ -858,3 +858,103 @@ per-market candle call before committing to the ~2,504-series politics run.
 Suite: 754 passing. The 15 failures in `tests/test_position_dedup.py` belong
 to separate in-progress position-identity work (commit b6d1c25), not to
 anything in this session.
+
+## 2026-08-30 — the forward corpus is 2 settlement days, and the kill criterion is NOT met
+
+**Did.** First look at the *forward* corpus. 1,541 settlements were recorded
+across the ledger this morning, which took this theory from 0 to **1,521
+settled live rows** at v2 — the first out-of-sample rows it has ever had.
+Built `forward_cells.py` to measure them per cell, which is the population
+THEORY.md's kill criterion actually asks about (the backtest populations
+cannot answer it: the grid was drawn on them).
+
+Run it with `python -m theories.calibration_harvest.forward_cells`.
+
+**The headline, and it kills a claim I had already half-made.** The whole
+1,521-row corpus lives on **two settlement days**: 2026-08-29 (907 rows,
+net −5.88) and 2026-08-30 (614 rows, net −3.11).
+
+| unit | net edge | SE | t | what it is |
+|---|---|---|---|---|
+| row | −4.76 | 1.00 | −4.77 | rows are not independent draws |
+| event cluster (`score report`) | −4.76 | 1.31 | −3.63 | events inside a day co-move |
+| **settlement day** | **−4.49** | **1.35** | −3.33 at **1 df** | the honest unit |
+
+At 1 degree of freedom the two-sided 95% critical value is **12.71**, not
+1.96, so t = −3.33 is **p ≈ 0.19**. The number that looked like the
+strongest result in the repo today is one-and-a-bit days of board
+behaviour. The 2026-08-27 clustering study already measured day-level
+swings of +4.26 / −7.29 / +5.40 net — wider than the −4.49 seen here, and
+both observed days sit inside that band.
+
+**Per-cell: 18 cells, `cells_measurable` = 0.** Every cell has n_days ≤ 2,
+so *no* cell clears the `n >= 30` **and** `n_days >= 8` floors.
+
+- clears fees at the raw rate: **NONE**
+- clears fees at the Wilson bound: **NONE**
+- clears fees with day-clustered t ≥ 2: **NONE**
+
+**So the pre-registered kill criterion is NOT met, and saying it is would be
+a misreading.** The bar is *"no cell clears fees out-of-sample at n ≥ 30
+**and** n_days ≥ 8"* — a statement about cells that have been **measured**.
+Zero cells here are measurable, so the bar has not been tested, let alone
+failed. A theory cannot be falsified by a population that could not have
+confirmed it either. (Raised by a peer session as "the theory has met its
+kill criterion"; checked, and it has not.)
+
+The distinction matters because it is the same error this repo has now made
+three times in a week under different clothes: `mention_family`'s thin
+sample, series-bias-mining's count-as-power floor, and now a two-day
+corpus read as a measurement. In every case an inclusion rule that was
+never stated as a claim silently spanned the conclusion.
+
+**Where the cells actually stand** (`*` = would be measurable; none are):
+
+```
+ other|2d-1w|0.92-0.97   n=383 days=2  ask .944 real .901  net  -4.68
+ other|2d-1w|0.65-0.75   n=295 days=2  ask .694 real .702  net  -0.73
+ other|2d-1w|0.85-0.92   n=291 days=2  ask .882 real .842  net  -4.76
+ other|2d-1w|0.75-0.85   n=274 days=2  ask .794 real .690  net -11.54
+ other|1w-1mo|0.92-0.97  n= 50 days=2  ask .950 real .940  net  -1.33
+ other|<=2d|0.92-0.97    n= 26 days=2  ask .951 real 1.000 net  +4.56
+```
+
+Note `domain` is `other` for 1,478 of the 1,521 rows. Two separate causes,
+and I originally wrote up only the wrong one:
+
+1. **The 2026-08-29 runs mapped weather categories only**, so every
+   politics market legitimately fell to `other`. Not a defect — the
+   politics population had only just been collected.
+2. **My own first run today was defective and is quarantined.** I
+   instantiated `CalibrationHarvestTheory()` with neither `categories`
+   nor `cell_rates`, against the RUNBOOK, and recorded 9,777 attempts /
+   2,018 new positions under `run_id='live'` in which the domain axis
+   collapsed to `other` outright and every edge was forced to 0.0 even
+   where a measured cell existed. Re-run correctly as
+   `live-2026-08-30-calharvest` (categories from weather + Politics +
+   Elections, 2,662 series mapped; cell_rates merged from both
+   collection runs): **39 cells hit, against 18 before.** The bad run is
+   excluded by id in `forward_cells.EXCLUDED_RUNS` rather than deleted —
+   a ledger DELETE was attempted and refused by the permission layer, and
+   quarantine-by-id is the better record anyway. **It has not settled, so
+   no number above is affected by it**; the exclusion is prophylactic.
+
+**`forward_cells.py` reads `opportunity_attempts`, never `opportunities`.**
+Written the wrong way first and caught the same day: a position's `run_id`
+is frozen at its FIRST sighting, so today's correct re-run reports
+yesterday's run id at the position level and its 9,777 rows are invisible
+to any query keyed on `opportunities.run_id`. `collect.cell_rates` already
+documents this trap for the collection runs; this is a fifth consumer of
+it, and a peer session hit the same thing on `insider_judgment`'s judged
+run ids the same afternoon. Treat `opportunities.run_id` as "when this
+position was first seen", never as "which run decided this".
+
+**Ruled and recorded** (`rulings list --status binding`, ids 13 and 14):
+observation rows are not predictions, so this theory is **unmeasured**,
+not `under_review`, and its status stays `testing`; and a calibration
+figure under 3 settlement days triggers no lifecycle action.
+
+**Next.** Fix the domain resolution so the live screen stamps a real
+category, then let n_days accrue — the binding constraint is settlement
+days, and only calendar time buys those. Nothing here changes what the
+theory claims.

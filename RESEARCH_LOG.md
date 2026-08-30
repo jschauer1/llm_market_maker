@@ -1977,3 +1977,79 @@ physical location changed under `ATTACH`), so it passes the §6.5 promotion
 bar on its own terms — a session that never worked on this overhaul still
 needs the interval semantics and the `payload_text` rule the moment it
 touches a snapshot row.
+
+---
+
+## 2026-08-30 — first forward settlements land; two scoring rulings; four sessions collide
+
+**Did:** Ran the `go` floor against the shared 104,304-market board (pulled
+19:22Z by peer session `ec`; nobody re-forced). Settled **10,460** awaiting
+tickers → **1,541 new settlements**, the first forward evidence three
+theories have ever had. Recomputed scores, bucket rates and slice segments.
+Ran `no_side_premium` v1 (63 candidates), `structural_arb` v4 (**ran clean,
+0 candidates** — 1,411 flag candidates all removed as
+`not_mutually_exclusive`), `calibration_harvest` v2 (9,777), and
+`insider_judgment` v4 stages 1-4 (700 screened → 309 events → 21 survivors).
+
+**Learned:**
+
+1. **Two settlement days is not a measurement, and this repo's headline
+   surface cannot tell you that.** `calibration_harvest` v2 went to n=1,521
+   settled with `calibration_edge_net` −4.76 and `clustered_se` 1.31 —
+   t ≈ −3.6, which reads as decisive. The entire corpus is **two settlement
+   days**. At 1 df the 95% critical value is **12.71**, so the honest p is
+   ≈ 0.19. `score.settlement_day_clusters` already computes `n_days` and
+   the CLI already emits it; nothing was broken except the reading. Ruling
+   **14** now binds: under 3 settlement days, report "not yet measurable"
+   and take no lifecycle action.
+
+2. **Observation rows are not predictions** (ruling **13**). Every settled
+   `calibration_harvest` row has claimed edge ≤ 0 — 1,478 at exactly 0.0
+   carrying the rationale *"Recorded so the cell accrues settlements; not a
+   recommendation"*. Its aggregate calibration edge measures the **board**,
+   not a decision procedure, and the n=20 `under_review` rule would
+   otherwise have flagged a theory that has never made a prediction. Its
+   pre-registered kill criterion is **not** met either: zero of 18 cells
+   clear `n>=30` **and** `n_days>=8`, so the bar has not been tested, let
+   alone failed. Theory stays `testing`.
+
+3. **`opportunities.run_id` is "first sighted", never "which run decided
+   this".** A position's run id freezes at first sighting, so a re-run's
+   rows are invisible to any query keyed on it. `collect.cell_rates`
+   documented this trap for collection runs; it bit
+   `theories/calibration_harvest/forward_cells.py` (written wrong, fixed
+   same day, now reads `opportunity_attempts`) and a peer session hit it
+   independently on `insider_judgment`'s judged run ids the same afternoon.
+   Third occurrence — treat it as a standing hazard of the position rollup,
+   not a one-off.
+
+4. **The repo's best-evidenced result is real, and it is not on any running
+   theory.** `insider_judgment` **v3**'s registered slice
+   `strong-moderate-no` is READY out-of-sample: n=321, 89 event clusters,
+   43 settlement days, win 0.916 vs implied 0.865. Verified independently
+   from the ledger. Report it as a **pair**, because the two available
+   statistics are weighted differently and mixing them flatters it:
+   row-weighted **+4.31 net** with event-clustered t **1.79**, or
+   day-weighted **+8.06** with day-clustered t **4.38**. Quoting "+4.31,
+   t=4.38" pairs a row-weighted estimate with a day-weighted error bar. The
+   gap between the two also says heavy days did *worse* than light days,
+   which is a caveat and not a bonus. It is invisible by default: `score
+   report` and `slices report` scope to the current version (v4, n=2), and
+   v4 is a `breaking` bump, so v4 is not entitled to this evidence and has
+   not adopted the NO-side rule.
+
+**Next:** (a) `insider_judgment` v2→v3 is recorded `breaking` with
+justification *"pre-dates the carry ruling; not adjudicated"*, while its own
+RUNBOOK says stages 1-6 never changed between them — a `carry` candidate
+that would pool the v2 live cohort, needing a replay as proof, not the
+assertion. (b) `calibration_harvest`'s binding constraint is settlement
+days, which only calendar time buys. (c) A defective run of mine
+(`run_id='live'`, 9,777 attempts / 2,018 positions recorded with no
+categories and no cell_rates) is quarantined by id in
+`forward_cells.EXCLUDED_RUNS`; a ledger DELETE was refused by the
+permission layer and needs the user's call.
+
+Theory-level detail is in `theories/calibration_harvest/NOTES.md`
+(2026-08-30). This entry is here rather than there because rulings 13 and
+14, and the run_id hazard, change how a session that never opens that
+theory would read any score in this repo.
