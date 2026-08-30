@@ -152,6 +152,18 @@ one crosses a move boundary:
 
 ## Addendum — entries after `ff4318a` (not in the totals above)
 
+Pinned 2026-08-29 against `ddce706c6ccf3e6e700fe0dca2f98f1d13b4fb9b`; entries
+appended after this revision are out of scope for the migration pass (spec
+§6.8 step 1).
+
 | class | owner | words | entry |
 |---|---|---:|---|
 | X | — | 325 | 2026-08-29 (cont.) — slice sweep: the subset-edge mechanism applied across the portfolio |
+| X | — | 243 | 2026-08-29 — Enforcing-surfaces spec reviewed and corrected; user ruled: migrate the log, adopt the bar |
+| X | — | 97 | 2026-08-29 — Three more user rulings on the enforcing-surfaces spec |
+| X | — | 169 | 2026-08-29 — RULING: the prefer-mechanical rule reframed as a division of labour, consolidation performed |
+| X | — | 140 | 2026-08-29 — RULING: task-time rules get one home — their skill, not CLAUDE.md |
+| X | — | 150 | 2026-08-29 — RULING: the expert-agent architecture — theory-level context and skills |
+| X | — | 110 | 2026-08-29 — Expert-agent architecture written into CLAUDE.md; the two locality rules renamed as its contracts |
+| X | — | 312 | 2026-08-29 — Foundation plan shipped: backup, hygiene, --ticker, force floor, state, rulings; db/ relocated out of OneDrive |
+| X | — | 149 | 2026-08-29 — Storage design gate measured: byte-exact dedup is 38.8%, and the "jitter" is mostly real data |
