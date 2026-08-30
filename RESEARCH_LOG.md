@@ -3074,3 +3074,26 @@ three new modules. **Carried to the next plan:** nothing writes `scores`
 (`save_score` has no production caller — EVIDENCE/rank/compare all read an
 empty table), and the docs-path test skips nested family THEORY.md files
 until spans resolve doc-relative.
+
+---
+
+## 2026-08-29 — Storage design gate measured: byte-exact dedup is 38.8%, and the "jitter" is mostly real data
+
+**Did:** Ran the enforcing-surfaces spec §5.2 design gate against the live
+snapshot store (1,390,328 rows): full-payload (raw_json + event_json)
+byte-exact comparison finds **539,827 unchanged repeats (38.8%)** vs the
+56.5% measured on the five material columns. Sampling 4,000 of the
+materially-unchanged-but-byte-different pairs, the divergence is:
+`previous_yes_ask_dollars` 40%, event envelope 32%, `yes_ask_size_fp` 26%,
+`previous_yes_bid_dollars` 20%, `yes_bid_size_fp` 13%, `volume_24h_fp` 6%,
+`updated_time` 1%.
+
+**Learned / design ruling for the storage plan:** top-of-book depth
+(`*_size_fp`) is load-bearing data — structural_arb's depth gate reads it —
+and the `previous_*` / `volume_24h` fields are real rolling references, so
+**dedup stays byte-exact with no field exclusions**. 38.8% (~2 GB) is the
+dedup contribution; compression (phase 3, ~8× on remaining JSON) carries
+the rest of the 5.3 GB → ~0.5 GB projection. Zero information loss holds.
+
+**Next:** Write the storage plan (spec §5.2 phases 2–4) or the log
+migration plan (§6.8) — both unblocked; user to pick order.
