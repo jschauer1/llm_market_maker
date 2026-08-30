@@ -14,3 +14,6 @@ db/*.db-shm
 user_reports/
 studies/2026-08-29-series-bias-mining/data/collect.db
 STATE.md
+
+# parlay-markup study: 150k+ raw payloads, regenerable via collect.py
+studies/2026-08-30-parlay-markup/data/
