@@ -1,5 +1,15 @@
 # deadline_drift — run procedure
 
+## Stages
+
+| # | stage | who decides | artifact |
+|---|---|---|---|
+| 1 | settled capture top-up | code | `collect_settled` — time-critical, resumable |
+| 2 | hazard estimate | code | `python -m theories.deadline_drift.hazard` |
+| 3 | screen | code | `THEORY.screen(ctx)` — `price()` inert until `data/hazard_bins.json` exists |
+
+No judgment stage.
+
 ## The standing obligation: top up the settled capture
 
 **This is the only thing in this theory that is time-critical, and missing
@@ -68,3 +78,21 @@ on **3 YES outcomes**, and wiring that into live pricing would manufacture
 bets out of noise. Do not create that file until the capture has run long
 enough for a cell to carry a defensible `n` — see THEORY.md's status
 section for what promotion requires.
+
+## Record
+
+Nothing records while the theory is `proposed`. When it promotes, rows go
+through the contract (`start(ctx).finish()`) like every mechanical theory.
+
+## Report
+
+Every session's floor reports `days_since_capture` — the capture is the
+one time-critical item here, and > 14 days (or `None`) means it must run
+before the session ends. Data missed past the ~60-day archive window is
+gone upstream permanently.
+
+## Skip
+
+The screen does not run in a session's floor while status is `proposed`.
+The capture (stage 1) is never skipped when its marker is stale — cost is
+seconds, the alternative is unrecoverable loss.

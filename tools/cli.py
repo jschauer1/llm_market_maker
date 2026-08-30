@@ -346,6 +346,58 @@ def _cmd_rank(args) -> int:
     return 0
 
 
+def _cmd_promote(args) -> int:
+    from dataclasses import asdict
+
+    from tools import promotion
+
+    conn = _connect(args)
+    if args.run is None and args.opportunity_id is None:
+        raise SystemExit("promote: pass an opportunity id or --run <run_id>")
+
+    markets_by_ticker = None
+    if not args.no_quote:
+        from tools.kalshi import markets as kalshi_markets
+
+        if args.run is not None:
+            tickers = [
+                r["kalshi_ticker"] for r in conn.execute(
+                    "SELECT DISTINCT o.kalshi_ticker FROM opportunities o"
+                    " JOIN opportunity_attempts a ON a.opportunity_id = o.id"
+                    " WHERE a.run_id = ? AND o.position_kind = 'single'",
+                    (args.run,),
+                )
+            ]
+        else:
+            row = ledger.get_opportunity(conn, args.opportunity_id)
+            tickers = [row["kalshi_ticker"]] if (
+                row and row["position_kind"] == "single") else []
+        markets_by_ticker = kalshi_markets.quotes(tickers)
+
+    if args.run is not None:
+        results = promotion.promote_run(
+            conn, args.run, markets=markets_by_ticker
+        )
+    else:
+        market = None
+        if markets_by_ticker:
+            row = ledger.get_opportunity(conn, args.opportunity_id)
+            market = markets_by_ticker.get(row["kalshi_ticker"])
+        results = [
+            promotion.promote(conn, args.opportunity_id, market=market)
+        ]
+
+    escalations = []
+    for theory_id in sorted({r.theory_id for r in results}):
+        escalations.extend(promotion.orphaned_evidence(conn, theory_id))
+    _emit({
+        "key_version": promotion.KEY_VERSION,
+        "results": [asdict(r) for r in results],
+        "escalations": escalations,
+    })
+    return 0
+
+
 def _cmd_db(args) -> int:
     from tools import backup as backup_mod
     if args.action == "backup":
@@ -775,6 +827,20 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p.add_argument("--mean-claimed-edge", dest="mean_claimed_edge",
                    type=float, default=None)
+
+    p = sub.add_parser(
+        "promote",
+        help="classify recorded candidates onto docs/promotion-key.md rungs",
+    )
+    p.set_defaults(func=_cmd_promote)
+    p.add_argument("opportunity_id", type=int, nargs="?", default=None)
+    p.add_argument("--run", default=None,
+                   help="promote every position this run_id touched "
+                        "(keyed on opportunity_attempts, never the "
+                        "first-seer opportunities.run_id)")
+    p.add_argument("--no-quote", action="store_true",
+                   help="skip the live re-quote; rungs are then computed "
+                        "on recorded entry prices and flagged unquoted")
 
     p = sub.add_parser("db", help="database operations")
     p.set_defaults(func=_cmd_db)

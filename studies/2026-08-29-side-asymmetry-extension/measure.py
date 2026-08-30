@@ -25,7 +25,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from tools import db                                   # noqa: E402
+from tools import db, snapshot                         # noqa: E402
 from tools.kalshi import markets as km                 # noqa: E402
 from theories.insider_bias import screen as scr        # noqa: E402
 
@@ -52,7 +52,8 @@ def population(conn, captured_at: str, close_day: str):
     mkts = []
     for r in rows:
         try:
-            mkts.append(km.normalize(json.loads(r["raw_json"])))
+            mkts.append(km.normalize(
+                json.loads(snapshot.payload_text(r["raw_json"]))))
         except Exception:
             continue
     # `now` MUST be the snapshot's own capture time. screen() filters on

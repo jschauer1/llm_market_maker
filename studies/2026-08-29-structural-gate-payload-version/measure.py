@@ -19,7 +19,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from tools import db                                   # noqa: E402
+from tools import db, snapshot                         # noqa: E402
 
 
 def norm(s: str) -> str:
@@ -32,7 +32,7 @@ def main() -> None:
     nonopen_rows = 0
     for r in conn.execute("SELECT market_id, captured_at, raw_json, status "
                           "FROM market_snapshots ORDER BY market_id, captured_at"):
-        d = json.loads(r["raw_json"])
+        d = json.loads(snapshot.payload_text(r["raw_json"]))
         mid = r["market_id"]
         caps[mid] += 1
         if r["status"] not in ("active", "open"):

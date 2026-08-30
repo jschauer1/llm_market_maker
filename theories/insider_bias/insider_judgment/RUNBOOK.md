@@ -37,7 +37,9 @@ stages 1–6 will be the first one legitimately recorded at v3 — and since
 the procedure is unchanged, it should be directly comparable to the v2
 rows, not treated as a break in the cohort.
 
-## The LLM-judged path (v1–v2, stages 1–6)
+## Stages
+
+The LLM-judged path (unchanged since v1–v2, stages 1–6):
 
 | # | stage | who decides | artifact | recorded as |
 |---|---|---|---|---|
@@ -50,7 +52,14 @@ rows, not treated as a break in the cohort.
 
 Stages 1–4 are one call. Stages 5–6 are judgment and cannot be scripted.
 
-## 1–4. Mechanical (reproducible by execution)
+## Run
+
+"Run the theory" means all six stages, in order — a session that runs the
+screen and skips the judgment stages has not run the theory; if a stage is
+blocked (no judge budget, API down), the floor report names the stage and
+why.
+
+### 1–4. Mechanical (reproducible by execution)
 
 ```python
 from tools import board as board_tool, db
@@ -72,7 +81,7 @@ on every opportunity is only true because this function guarantees it.
 Report `gate_counts` when reporting a run. A gate that drops candidates
 without saying what it dropped lets a scan claim coverage it never had.
 
-## 5. Deep analysis — subagents
+### 5. Deep analysis — subagents
 
 - **Prompt:** `prompts/analysis.md` (substitute `{input_path}`, `{n_events}`,
   `{n_markets}`, `{today}`, `{output_path}`)
@@ -91,14 +100,14 @@ into the prompt, or the prompt text stops matching the recorded sha.
 > alias, not a pinned id nobody verified — an alias that silently remaps is
 > exactly the drift the record exists to expose.
 
-## 6. Final review — the main session
+### 6. Final review — the main session
 
 Follow `prompts/final_review.md`. This stage is required: no candidate
 reaches the user as a suggested bet without it. It may lower a bucket and may
 decline a candidate whose bucket implies positive edge; it may **not** raise a
 bucket, because it has seen the price and the subagent had not.
 
-## Recording — before any opportunity is written
+## Record — before any opportunity is written
 
 `insider_judgment` declares `uses_llm_judgment`, so `record_opportunity`
 refuses rows for a run with no provenance.
@@ -120,6 +129,21 @@ Then record opportunities with `edge_pts_net` from `buckets.edge_for`,
 `judged_blind=True`, and `extra_json.final_recommendation` per
 `prompts/final_review.md`. `disposition='endorsed'` means *the main model
 recommends this bet*, not that arithmetic produced a positive number.
+
+## Report
+
+The floor line carries the full funnel (board → screened → events → gated
+out → survivors → judged → endorsed/rejected) **and the gate breakdown by
+category** — a gate that drops candidates without saying what it dropped
+lets a scan claim coverage it never had. "Judged N, endorsed 0" is a
+normal, honest line.
+
+## Skip
+
+Skip only when the ledger shows a live run today at the current version
+(the go freshness check), or the session log says today's run completed
+clean. A run that stopped after stage 4 is not "ran today" — the judgment
+stages are the theory.
 
 ## Observed funnel — 2026-08-23, v2
 

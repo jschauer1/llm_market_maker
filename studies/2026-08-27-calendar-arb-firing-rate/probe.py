@@ -14,7 +14,7 @@ import json
 import re
 import sys
 
-from tools import db
+from tools import db, snapshot
 from tools.sizing import fee_pts
 
 TEMP = re.compile(
@@ -102,7 +102,8 @@ def main():
         "WHERE platform='kalshi' ORDER BY captured_at")]
     total = []
     for cap in caps:
-        rows = [json.loads(r["raw_json"]) for r in conn.execute(
+        rows = [json.loads(snapshot.payload_text(r["raw_json"]))
+                for r in conn.execute(
             "SELECT raw_json FROM market_snapshots "
             "WHERE platform='kalshi' AND captured_at=?", (cap,))]
         checked, findings = scan(rows)

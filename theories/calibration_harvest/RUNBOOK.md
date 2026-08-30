@@ -1,5 +1,16 @@
 # Calibration Harvest — runbook
 
+## Stages
+
+| # | stage | who decides | artifact |
+|---|---|---|---|
+| 1 | settled-history collection | code | `collect run` — checkpointed, resumable, tier A |
+| 2 | cell rates | code | `read_cells` / `collect rates` |
+| 3 | live screen + record | code | `theory.start(ctx).finish()` — observation rows so cells accrue forward settlements |
+
+No judgment stage. "Run the theory" in a session's floor means stage 3;
+stages 1–2 are the measurement campaign behind it.
+
 ## Collect (the tier-A measurement)
 
 Checkpointed and resumable. Safe to interrupt at any point: each series is
@@ -59,8 +70,9 @@ day-clustered SE, never the row-level one.
 
 ## Run the live screen
 
-The theory is `proposed` and records nothing until a population is complete.
-Once it is, build it with the measured rates and the session board:
+Build the theory with the measured rates and the session board (it is
+`testing` at v2; its live rows are observation rows — ruling 13 — recorded
+so the cells accrue forward settlements, never recommendations):
 
 ```python
 from datetime import datetime, timezone
@@ -80,3 +92,28 @@ ctx = TheoryContext.build(conn, board, datetime.now(timezone.utc),
 run = theory.start(ctx)
 run.finish()
 ```
+
+## Record
+
+Live rows record claimed edge ≤ 0 with the observation rationale — they
+are measurements of the board, never bets (ruling 13), and the promotion
+key routes them to R6 CONTROL. Never read forward cells through
+`opportunities.run_id` — a re-run's rows are invisible to it; read
+`opportunity_attempts` (`forward_cells.py` does; the trap bit three times
+by 2026-08-30). Defective runs are quarantined by id in
+`forward_cells.EXCLUDED_RUNS`, never deleted silently.
+
+## Report
+
+The floor line carries markets screened, rows recorded, and the cell
+status against the pre-registered bars (`n >= 30` and `n_days >= 8` per
+cell) with day-clustered SEs — and under 3 settlement days the honest
+words are "not yet measurable" (ruling 14), whatever the t-statistic
+reads.
+
+## Skip
+
+Skip stage 3 only when the ledger shows a live run today at the current
+version (the go freshness check). Stages 1–2 re-run only when extending
+a population — a partial walk in API order is a non-random slice, so
+never read a cell mid-collection.

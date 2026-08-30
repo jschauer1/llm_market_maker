@@ -24,7 +24,7 @@ from collections import defaultdict
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
 
-from tools import db                                    # noqa: E402
+from tools import db, snapshot                          # noqa: E402
 from tools.domain import Market                         # noqa: E402
 from tools.kalshi import markets as kmarkets            # noqa: E402
 from theories.structural_arb import scan                # noqa: E402
@@ -54,7 +54,8 @@ def board_at(conn, captured_at: str) -> list[Market]:
         "SELECT raw_json FROM market_snapshots "
         "WHERE platform = 'kalshi' AND captured_at = ?", (captured_at,)
     ):
-        out.append(kmarkets.normalize(json.loads(row["raw_json"])))
+        out.append(kmarkets.normalize(
+            json.loads(snapshot.payload_text(row["raw_json"]))))
     return out
 
 
