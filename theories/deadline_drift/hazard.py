@@ -75,8 +75,6 @@ def estimate(anchors: dict, candles: dict, *, anchor: str) -> dict:
 
 def main() -> None:
     anchors, candles = load()
-    early = [a["closed_early_days"] for a in anchors.values()
-             if a.get("closed_early_days") is not None]
     by_res = {"yes": [], "no": []}
     for a in anchors.values():
         if a.get("closed_early_days") is not None:

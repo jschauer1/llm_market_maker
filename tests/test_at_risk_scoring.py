@@ -6,8 +6,6 @@ lottery alone is what makes a floor basket scoreable at all -- see the
 multi-leg spec's sections 3.6 and 3.6.1.
 """
 
-import sqlite3
-
 import pytest
 
 from tools import db, ledger, score, theories

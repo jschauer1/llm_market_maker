@@ -35,7 +35,6 @@ false negatives cost nothing.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime, timezone
 
 from tools.domain import Leg, Market
 from tools.timeutil import days_until  # noqa: F401  (re-exported)

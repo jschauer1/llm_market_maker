@@ -4,7 +4,7 @@ import pytest
 
 from tests.characterization import conftest as cz
 from theories.insider_bias.mention_family import mention_bucket
-from tools import db, ledger, theories
+from tools import db, theories
 from tools.domain import Market
 from tools.theory import TheoryContext
 

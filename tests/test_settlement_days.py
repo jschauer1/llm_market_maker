@@ -9,8 +9,6 @@ Rows settling the same day are not independent draws, so `n` overstates the
 evidence. These tests pin the reporting that makes that visible.
 """
 
-import sqlite3
-
 import pytest
 
 from tools import db, ledger, score, theories

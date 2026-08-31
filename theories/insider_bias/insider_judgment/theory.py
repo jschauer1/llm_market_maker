@@ -14,7 +14,7 @@ _last_funnel post-mortem, section 4.4).
 from __future__ import annotations
 
 from theories.insider_bias.insider_judgment import gate, pipeline
-from tools.domain import Edge, ScoredCandidate, ScreenResult, Verdict
+from tools.domain import Edge, ScoredCandidate, ScreenResult
 from tools.theory import Theory, TheoryContext
 
 #: THEORY.md "Confidence buckets": conservative priors, standing in only

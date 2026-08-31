@@ -34,7 +34,7 @@ approvals) too.
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import datetime
 
 from tools.timeutil import days_until  # noqa: F401  (re-exported)
 

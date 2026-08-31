@@ -34,9 +34,7 @@ points — the honest common currency for a position with no win rate.
 from __future__ import annotations
 
 from dataclasses import replace as dc_replace
-from datetime import datetime, timezone
 
-from tools import db
 from tools.domain import Candidate, Edge, Fetch, ScoredCandidate, ScreenResult
 from tools.theory import Theory, TheoryContext
 

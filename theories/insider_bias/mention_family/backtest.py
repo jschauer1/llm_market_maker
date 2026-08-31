@@ -74,7 +74,6 @@ from pathlib import Path
 
 from tools import db, ledger, score
 from tools.kalshi import history
-from theories.insider_bias import screen
 from theories.insider_bias import replay as sibling
 from theories.insider_bias.mention_family.mention_bucket import (
     THEORY_ID,

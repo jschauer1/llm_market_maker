@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from tools import cli, db, ideas, ledger, score, theories
+from tools import cli, db, ledger, score, theories
 
 TS = "2026-08-23T12:00:00Z"
 

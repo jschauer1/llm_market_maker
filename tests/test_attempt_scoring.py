@@ -94,8 +94,8 @@ def test_repeated_attempts_at_one_disposition_count_ONCE(conn):
     `screened` four times across three days at four prices; scoring it
     four times against one settlement would inflate n and over-weight
     markets merely for staying open longer."""
-    opp = _record(conn, "KXD-1", disposition="screened", price=0.91,
-                  day="2026-08-27", run_id="r1")
+    _record(conn, "KXD-1", disposition="screened", price=0.91,
+            day="2026-08-27", run_id="r1")
     for day, price, run in (("2026-08-28", 0.88, "r2"),
                             ("2026-08-29", 0.95, "r3"),
                             ("2026-08-29", 0.94, "r4")):

@@ -43,10 +43,9 @@ import json
 import random
 import sqlite3
 from collections import defaultdict
-from datetime import datetime, timezone
 from pathlib import Path
 
-from tools import db, ledger, provenance, score
+from tools import db, ledger, provenance
 from tools.http import get_json
 from tools.kalshi import cache as history_cache
 from tools.kalshi.markets import BASE_URL
