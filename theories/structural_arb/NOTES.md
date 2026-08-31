@@ -779,3 +779,13 @@ absent.
 Today's scan is consistent: 1,411 flag candidates all removed as
 `not_mutually_exclusive` on Kalshi's own envelope field, 1 nested
 violation killed by an untraded leg, 0 recorded.
+
+## 2026-08-31 (UTC) - clean run, v4
+
+Floor run per RUNBOOK on the shared board (99,064 markets, pull
+2026-08-31T00:38Z). Funnel: 10,473 multi-market events / 2,788 scalar
+events -> 2 raw nested violations -> 1,362 flag candidates. Gate removed:
+1,362 not_mutually_exclusive, 2 nested violations with an untraded or
+near-untraded leg. 0 survivors, 0 recorded. Same shape as 2026-08-30
+(1,411 flags, all removed). Ran clean; this note is the record, the
+ledger has no rows to carry it.

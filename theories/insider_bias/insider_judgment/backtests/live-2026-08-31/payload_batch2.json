@@ -1,0 +1,259 @@
+[
+  {
+    "event_ticker": "KXMUSKNW-26AUG31",
+    "series_ticker": "KXMUSKNW",
+    "title": "Will Elon Musk's net worth for August be above $800 billion?",
+    "close_time": "2026-08-31T22:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXMUSKNW-26AUG31-T800",
+        "title": "Will Elon Musk's net worth for August be above $800 billion?",
+        "rules_primary": "If Elon Musk's net worth is above $800 billion in the Bloomberg Billionaires Index update for Aug 31, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-08-31T22:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXNEWDRUGAPPLICATIONCMPS-360",
+    "series_ticker": "KXNEWDRUGAPPLICATIONCMPS",
+    "title": "When will COMPASS Pathways plc submit a NDA for COMP360 psilocybin to the FDA?",
+    "close_time": "2026-09-01T14:00:00Z",
+    "markets": [
+      {
+        "ticker": "KXNEWDRUGAPPLICATIONCMPS-360-26SEP01",
+        "title": "When will COMPASS Pathways plc submit a NDA for COMP360 psilocybin to the FDA?",
+        "rules_primary": "If COMPASS Pathways plc submits a NDA for COMP360 psilocybin to the FDA before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T14:00:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXPRESSSECANNOUNCE-26AUG",
+    "series_ticker": "KXPRESSSECANNOUNCE",
+    "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Sep 8, 2026?",
+    "close_time": "2026-09-08T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXPRESSSECANNOUNCE-26AUG-SEP08",
+        "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Sep 8, 2026?",
+        "rules_primary": "If Donald Trump has made any announcement (e.g., Truth Social post) naming the next White House Press Secretary (including acting/interim) before Sep 8, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-08T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXSKEXPYOY-26AUG31",
+    "series_ticker": "KXSKEXPYOY",
+    "title": "Will South Korea exports YoY for August 2026 be above 65.0%?",
+    "close_time": "2026-08-31T23:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXSKEXPYOY-26AUG31-T65.0",
+        "title": "Will South Korea exports YoY for August 2026 be above 65.0%?",
+        "rules_primary": "If the South Korea exports YoY for August 2026 is above 65.0%, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-08-31T23:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXSNAPELECTIONRS-27",
+    "series_ticker": "KXSNAPELECTIONRS",
+    "title": "Will Serbia announce a snap election before Sep 1, 2026?",
+    "close_time": "2026-09-01T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXSNAPELECTIONRS-27-26SEP01",
+        "title": "Will Serbia announce a snap election before Sep 1, 2026?",
+        "rules_primary": "If Serbia officially announces a snap election for its national legislature or head of government before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXSPEECHAI-26SEP04",
+    "series_ticker": "KXSPEECHAI",
+    "title": "Top Text to Speech AI this week?",
+    "close_time": "2026-09-04T14:00:00Z",
+    "markets": [
+      {
+        "ticker": "KXSPEECHAI-26SEP04-CART",
+        "title": "Top Text to Speech AI this week?",
+        "rules_primary": "If Cartesia is the #1 model on Artificial Analysis Speech Arena Leaderboard on Sep 4, 2026 at 10:00am ET, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-04T14:00:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXTECHRANKLISTAICODE-26AUG31",
+    "series_ticker": "KXTECHRANKLISTAICODE",
+    "title": "Top Coding AI this month (Arena.ai)?",
+    "close_time": "2026-08-31T14:00:00Z",
+    "markets": [
+      {
+        "ticker": "KXTECHRANKLISTAICODE-26AUG31-CLAU",
+        "title": "Top Coding AI this month (Arena.ai)?",
+        "rules_primary": "If Claude is the #1 model on LM Code Arena Leaderboard on Aug 31, 2026 at 10:00am ET, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-08-31T14:00:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXTRUMPMEET-26AUG",
+    "series_ticker": "KXTRUMPMEET",
+    "title": "Donald Trump and Andy Burnham meet before Sep 1, 2026?",
+    "close_time": "2026-09-01T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXTRUMPMEET-26AUG-ABUR",
+        "title": "Donald Trump and Andy Burnham meet before Sep 1, 2026?",
+        "rules_primary": "If Donald Trump and Andy Burnham meet (including phone calls) before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      },
+      {
+        "ticker": "KXTRUMPMEET-26AUG-BNET",
+        "title": "Donald Trump and Benjamin Netanyahu meet before Sep 1, 2026?",
+        "rules_primary": "If Donald Trump and Benjamin Netanyahu meet (including phone calls) before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      },
+      {
+        "ticker": "KXTRUMPMEET-26AUG-DROD",
+        "title": "Donald Trump and Delcy Rodriguez meet before Sep 1, 2026?",
+        "rules_primary": "If Donald Trump and Delcy Rodriguez meet (including phone calls) before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      },
+      {
+        "ticker": "KXTRUMPMEET-26AUG-JHUA",
+        "title": "Donald Trump and Jensen Huang meet before Sep 1, 2026?",
+        "rules_primary": "If Donald Trump and Jensen Huang meet (including phone calls) before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      },
+      {
+        "ticker": "KXTRUMPMEET-26AUG-NMOD",
+        "title": "Donald Trump and Narendra Modi meet before Sep 1, 2026?",
+        "rules_primary": "If Donald Trump and Narendra Modi meet (including phone calls) before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      },
+      {
+        "ticker": "KXTRUMPMEET-26AUG-RDES",
+        "title": "Donald Trump and Ron DeSantis meet before Sep 1, 2026?",
+        "rules_primary": "If Donald Trump and Ron DeSantis meet (including phone calls) before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      },
+      {
+        "ticker": "KXTRUMPMEET-26AUG-STAK",
+        "title": "Donald Trump and Sanae Takaichi meet before Sep 1, 2026?",
+        "rules_primary": "If Donald Trump and Sanae Takaichi meet (including phone calls) before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      },
+      {
+        "ticker": "KXTRUMPMEET-26AUG-VPUT",
+        "title": "Donald Trump and Vladimir Putin meet before Sep 1, 2026?",
+        "rules_primary": "If Donald Trump and Vladimir Putin meet (including phone calls) before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      },
+      {
+        "ticker": "KXTRUMPMEET-26AUG-VZEL",
+        "title": "Donald Trump and Volodymyr Zelenskyy meet before Sep 1, 2026?",
+        "rules_primary": "If Donald Trump and Volodymyr Zelenskyy meet (including phone calls) before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      },
+      {
+        "ticker": "KXTRUMPMEET-26AUG-ZMAM",
+        "title": "Donald Trump and Zohran Mamdani meet before Sep 1, 2026?",
+        "rules_primary": "If Donald Trump and Zohran Mamdani meet (including phone calls) before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXTRUMPNOMNUM-26AUG30",
+    "series_ticker": "KXTRUMPNOMNUM",
+    "title": "Will there be at least 1 presidential nominations sent to the Senate in the week of Aug 30, 2026?",
+    "close_time": "2026-09-06T14:00:00Z",
+    "markets": [
+      {
+        "ticker": "KXTRUMPNOMNUM-26AUG30-T1",
+        "title": "Will there be at least 1 presidential nominations sent to the Senate in the week of Aug 30, 2026?",
+        "rules_primary": "If Donald Trump has sent at least 1 nominations to the U.S. Senate from Aug 30, 2026 through Sep 5, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Sep 6, 2026), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-06T14:00:00Z"
+      },
+      {
+        "ticker": "KXTRUMPNOMNUM-26AUG30-T3",
+        "title": "Will there be at least 3 presidential nominations sent to the Senate in the week of Aug 30, 2026?",
+        "rules_primary": "If Donald Trump has sent at least 3 nominations to the U.S. Senate from Aug 30, 2026 through Sep 5, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Sep 6, 2026), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-06T14:00:00Z"
+      },
+      {
+        "ticker": "KXTRUMPNOMNUM-26AUG30-T5",
+        "title": "Will there be at least 5 presidential nominations sent to the Senate in the week of Aug 30, 2026?",
+        "rules_primary": "If Donald Trump has sent at least 5 nominations to the U.S. Senate from Aug 30, 2026 through Sep 5, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Sep 6, 2026), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-06T14:00:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXTRYFIRECOOK-27JAN01",
+    "series_ticker": "KXTRYFIRECOOK",
+    "title": "Will the President try to fire the Lisa Cook as member of the Board of Governors of the Federal Reserve System before Sep 1, 2026?",
+    "close_time": "2026-09-01T14:00:00Z",
+    "markets": [
+      {
+        "ticker": "KXTRYFIRECOOK-27JAN01-26SEP01",
+        "title": "Will the President try to fire the Lisa Cook as member of the Board of Governors of the Federal Reserve System before Sep 1, 2026?",
+        "rules_primary": "If the President of the United States has tried to fire Lisa Cook as member of the Board of Governors of the Federal Reserve System before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T14:00:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXUAPFILES-26AUG10",
+    "series_ticker": "KXUAPFILES",
+    "title": "Will Trump release new UFO files before Sep 4, 2026?",
+    "close_time": "2026-09-04T14:00:00Z",
+    "markets": [
+      {
+        "ticker": "KXUAPFILES-26AUG10-26SEP04",
+        "title": "Will Trump release new UFO files before Sep 4, 2026?",
+        "rules_primary": "If the federal government has released, after Issuance and before Sep 4, 2026, previously unreleased documents, audio files, or video files regarding Unidentified Aerial Phenomena (\u201cUAP\u201d), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-04T14:00:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXZECMAXMON-ZEC-26AUG31",
+    "series_ticker": "KXZECMAXMON",
+    "title": "Will ZEC trimmed mean be above $900.00 by 11:59 PM ET on Aug 31, 2026?",
+    "close_time": "2026-09-01T03:59:59Z",
+    "markets": [
+      {
+        "ticker": "KXZECMAXMON-ZEC-26AUG31-90000",
+        "title": "Will ZEC trimmed mean be above $900.00 by 11:59 PM ET on Aug 31, 2026?",
+        "rules_primary": "If the price of ZEC after issuance and through 11:59 PM ET on Aug 31, 2026 is ever above $\n900.00, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:59Z"
+      }
+    ]
+  }
+]

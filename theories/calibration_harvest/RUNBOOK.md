@@ -27,12 +27,25 @@ python -m theories.calibration_harvest.collect run \
     --run-id backtest-2026-08-27-calharvest-weather \
     --checkpoint theories/calibration_harvest/backtests/weather.json
 
-# politics is the big one: ~2,504 series, expect multiple sessions
+# politics: COMPLETE since 2026-08-31 (2,508/2,508 series). The data
+# lives under run-id backtest-2026-08-29-calharvest-politics (the
+# earlier -08-27- name in this file was never the one used; corrected
+# 2026-08-31). Re-running only extends to newly listed series.
 python -m theories.calibration_harvest.collect run \
     --categories "Politics,Elections" \
-    --run-id backtest-2026-08-27-calharvest-politics \
+    --run-id backtest-2026-08-29-calharvest-politics \
     --checkpoint theories/calibration_harvest/backtests/politics.json
 ```
+
+Since 2026-08-31 the live screen (stage 3) runs **twice per floor** — once
+per complete population, with distinct run ids so same-day attempts never
+double-count a market:
+
+- weather: rates from `backtest-2026-08-27-calharvest-weather`,
+  categories `{"Climate and Weather"}`, run id `live-YYYY-MM-DD-calharvest`
+- politics: rates from `backtest-2026-08-29-calharvest-politics`,
+  categories `{"Politics", "Elections"}`, run id
+  `live-YYYY-MM-DD-calharvest-politics`
 
 ## Read the cells
 

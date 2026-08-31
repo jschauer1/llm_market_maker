@@ -2256,3 +2256,54 @@ crashed months after the archive window closed.
 `session_claims` table triggers only if sessions collide under the
 phase-0 protocol.
 
+
+## 2026-08-31 - go floor: 850 settlements, all four theories run, 0 promotable bets, slice orphan escalated again
+
+**Did:** Full go floor. Two live peer sessions found at start; orientation
+sent per the go phase-0 protocol, no claims returned, all floor items run
+here. Settled 850 (559 no / 279 yes / 12 scalar); first score save for
+all four running theories (scores table was empty before today).
+structural_arb v4 ran clean (0 recorded; see its NOTES). no_side_premium
+v1 recorded 66 (cell A 10 -> R4, cell B 56 -> R6). calibration_harvest v2
+recorded 9,269 observation rows -> R6. insider_judgment v4 ran all six
+stages (24 events judged by opus subagents, 35 markets, endorsed 0; see
+its NOTES). Promotion key v1 over all runs: zero R1/R2/R3 - an honestly
+empty bets table.
+
+**Learned:** no_side_premium cell B (avoid-YES-favorites) is accruing in
+the pre-registered direction: OOS n=64, -8.0 net (the avoid claim wants
+negative), 54 clusters, but only 4/5 settlement days toward its gate.
+Cell A is nearly empty (n=2). insider_judgment's orphaned-evidence
+escalation fired mechanically for the second day: strong-moderate-no
+proven at v3 (+4.31 net OOS, n=321/43 days) with no bet path at v4 -
+user ruling needed on adoption. calibration_harvest settled rows sit at
+-2.6 net day-clustered over 3 days (SE 2.0) - below ruling-14's
+measurability floor, not yet a verdict on the cells.
+
+**Next:** user rulings on the slice orphan; deadline_drift is the top
+unbuilt spec (classifier at 12% vs 10% bar, round 5); cell-A drought in
+no_side_premium worth a look (population screen finds few 0.85+ mention
+NO favorites).
+
+## 2026-08-31 - bug-window residue: pre-fix attempts keep 'screened' under non-screened positions; two theories repaired, one escalated
+
+**Did:** Reconciling no_side_premium's screened pool against its cell-a
+slice exposed 112 attempts recorded 2026-08-28T23:45Z..2026-08-29T02:30Z
+(between the attempt-table migration and 37f0f2a's interpret-stamps-
+attempt fix) whose disposition never got stamped: rejected positions,
+screened attempts. Repaired the two deterministic cases with the intended
+value written in the row itself: no_side_premium 106 (avoid-cell marker)
+and structural_arb 6 (dust rejects, the theory's only non-screened
+disposition). Re-saved both theories' scores. insider_judgment's 280
+same-window attempts are NOT repaired - mapping each to that day's
+final-review verdict needs per-day reconstruction, and its pools feed
+interpretation_value - escalated for a ruling instead.
+
+**Learned:** disposition pools for rows recorded before 2026-08-29T02:30Z
+can misstate what a run decided; slice segments (predicate-based) were
+never affected. When a score pool and a slice pool disagree, the slice is
+the one reading recorded facts.
+
+**Next:** ruling on the insider_judgment attempt repair rule (stamp
+pre-fix screened attempts with their position's same-day interpretation;
+never touch attempts whose position was re-judged later).

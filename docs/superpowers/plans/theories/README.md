@@ -24,7 +24,14 @@ since it was written.
 
 | theory | spec | plan | status |
 |---|---|---|---|
-| *(none built yet)* | | | |
+| calibration_harvest | 2026-08-24-theory-calibration-harvest-design.md | (built without a plan file) | `testing` v2; weather + politics populations complete |
+| structural_arb | 2026-08-24-theory-structural-arb-design.md | (built without a plan file) | `testing` v4 |
+| no_side_premium | 2026-08-24-theory-no-side-premium-design.md | (built without a plan file) | `testing` v1 |
+| deadline_drift | 2026-08-24-theory-deadline-drift-design.md | (built without a plan file) | `proposed` v1; hazard-bin accrual is the step to `testing` |
+| mention_family | (discovered, no spec) | — | `retired` 2026-08-27 by user |
+
+(Backfilled 2026-08-31 — the table had never been updated after the first
+builds. `insider_judgment` predates the spec backlog and is not listed.)
 
 Update this table when a plan is written, when implementation starts,
 and when the theory reaches `testing` — it is the quick answer to

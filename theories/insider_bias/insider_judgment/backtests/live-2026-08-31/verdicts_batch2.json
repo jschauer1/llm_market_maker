@@ -1,0 +1,122 @@
+[
+  {
+    "event_ticker": "KXMUSKNW-26AUG31",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "Depends on Bloomberg publishing an Aug 31 index update; the index refreshes after the US close, and the private-company (SpaceX/xAI) marks inside it are Bloomberg's own estimates rather than an observable print.",
+    "rationale": "This is a future price question in disguise: Musk's net worth is dominated by the mark-to-market value of publicly traded Tesla plus Bloomberg's private-company valuations. No identifiable group knows tomorrow's close. The only party with genuinely private information is Bloomberg's index team on its private-asset methodology, which is not the kind of concrete informed group the thesis requires.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXNEWDRUGAPPLICATIONCMPS-360",
+    "insider_group": "COMPASS Pathways regulatory affairs and executive team, plus the FDA reviewers receiving the filing - they know exactly what has and has not been submitted.",
+    "bucket": "moderate",
+    "rules_diverge_from_title": true,
+    "rules_note": "The rules ask whether COMPASS 'submits a NDA' before Sep 1, but the actual regulatory posture is a rolling NDA submission that FDA already granted, with sections submitted and final submission publicly guided to Q4 2026. Whether a partial rolling submission counts as 'submits a NDA' is genuinely ambiguous and is the whole market.",
+    "resolution_source_risk": "A rolling submission generates no single public filing event; there may be no announcement at all before close, so the resolver may be reading company PR that never comes.",
+    "rationale": "A specific named group - COMPASS's regulatory team and the FDA - knows the submission status precisely, which is textbook 'company knows its own filing date'. What lowers it: the company has already told the public its answer (final NDA on track for Q4 2026), so the knowledge is not actually private, and the live uncertainty is a definitional question about rolling submissions rather than a hidden fact. Not strong.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXPRESSSECANNOUNCE-26AUG",
+    "insider_group": "Trump plus senior White House staff (chief of staff, Steven Cheung) who would know whether an interim designation is queued as Leavitt departs at month end.",
+    "bucket": "moderate",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "The rules require an announcement by Donald Trump personally (e.g. a Truth Social post). A White House press office or communications-director statement naming an acting press secretary arguably would not count, which is narrower than the natural reading of 'will a new press secretary be named'.",
+    "rationale": "Karoline Leavitt's departure was announced Aug 12 and takes effect at the end of August, so the White House necessarily has an internal plan for who staffs the podium on Sep 1, and a small group knows it. What holds this to moderate: reporting says Trump intends to replace her but is 'in no hurry' and may leave the permanent job open until after the November midterms - so the decision that resolves this is one that genuinely has not been made, and nobody can know an unmade decision.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXSKEXPYOY-26AUG31",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "The MOTIE/Korea Customs full-month figure publishes on Sep 1 KST, essentially at or just after the market's close time - the resolving print may not exist when the market closes.",
+    "rationale": "This is a scheduled economic indicator computed from data that is not complete until the month ends, which the thesis lists explicitly as NO-ish. Korea Customs releases a 20-day provisional figure mid-month, so the trend is public rather than private, and the compilers only hold the final number for hours. No durable informed group with a knowledge advantage over the window.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXSNAPELECTIONRS-27",
+    "insider_group": "Aleksandar Vucic and the SNS leadership, who control the timing of the formal decree calling the election.",
+    "bucket": "moderate",
+    "rules_diverge_from_title": true,
+    "rules_note": "The rules require Serbia to 'officially announce' a snap election. Vucic publicly said on Aug 21 that the parliamentary vote will be Oct 18 or Oct 25 - which reads as an announcement in plain English - but an official announcement plausibly requires dissolution of parliament and a formal decree calling the election, which is a separate act. Title and rules can point in opposite directions here.",
+    "resolution_source_risk": "Whether a presidential/parliamentary decree issues and is gazetted before Sep 1 is the crux, and the resolver's threshold for 'officially' is not specified.",
+    "rationale": "A small named group - Vucic and the ruling coalition - controls and knows the decree timetable, which is the classic 'discretionary decision a small group has already made but not announced'. It stays at moderate rather than strong because as of Aug 21 Vucic himself said the exact date would only be known 'in a few days', meaning the final decision was still open, and because the official-announcement definition is the real risk rather than any hidden fact.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXSPEECHAI-26SEP04",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "Leaderboard composition can shift with new model entries between now and Sep 4, and the Artificial Analysis Speech Arena standings are a live-updating third-party page with no guarantee of a stable snapshot at 10:00am ET.",
+    "rationale": "The resolving fact is a public leaderboard that anyone can read right now, so there is no group holding private knowledge of the answer - only ordinary uncertainty about elo drift and unreleased entrants. Labs know their own unreleased models, but that is a diffuse and speculative informed group, not a named one that knows this outcome.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXTECHRANKLISTAICODE-26AUG31",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "The rules do not say which Claude model counts - whether 'Claude' means any Claude variant holding #1 or one specific checkpoint is unspecified, and the title names 'Arena.ai' while the rules name the 'LM Code Arena Leaderboard'.",
+    "rationale": "The market resolves off a public leaderboard read at 10:00am ET on Aug 31, which is the market's own close time, so the resolving state is essentially observable now by anyone. Nobody holds private knowledge of a public ranking. The only genuine uncertainty is the model-family ambiguity in the rules, which is a definitional risk rather than an insider edge.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXTRUMPMEET-26AUG",
+    "insider_group": "The White House scheduling office and the president's daily-schedule staff, plus the counterparty governments' own staffs, who know planned calls and meetings for the remaining day of the window.",
+    "bucket": "moderate",
+    "rules_diverge_from_title": true,
+    "rules_note": "The titles ask whether Trump and each figure 'meet', which reads as an in-person meeting, but the rules count phone calls. That materially broadens every one of the ten markets and is the single most important detail in the event.",
+    "resolution_source_risk": "Large. A private phone call that actually occurs may never be publicly confirmed before close, so a YES event can fail to resolve YES for lack of a readout. Conversely readouts sometimes appear days later.",
+    "rationale": "With roughly one day left in the window, most of the answer is already fixed in a schedule that a specific, identifiable group - White House scheduling and the counterparties' foreign-ministry staff - can read. That is a real informed group. It is held to moderate because phone calls are frequently unscheduled and, more damagingly, are only observable through a readout that may not publish before close, so even genuine insider knowledge does not cleanly determine resolution.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXTRUMPNOMNUM-26AUG30",
+    "insider_group": "The White House Presidential Personnel Office and Office of Legislative Affairs, who know the nomination queue - but not a decision already made about this specific week's count.",
+    "bucket": "weak",
+    "rules_diverge_from_title": true,
+    "rules_note": "The title asks how many nominations were 'sent to the Senate' during the week, but the rules bind resolution to what appears on the whitehouse.gov 'Presidential Actions' page as checked at 10:00 AM ET on Sep 6. A nomination genuinely transmitted but not posted to that page by that moment does not count, and the page's posting cadence is not the same as the transmittal record on congress.gov.",
+    "resolution_source_risk": "Yes - whitehouse.gov posting lag around a holiday weekend can leave real nominations off the page at the check time.",
+    "rationale": "This is a rate-and-count question over a forward week, not a knowledge question: nobody has made a decision about how many nominations will be transmitted, and the Senate's session calendar drives much of it. The personnel office knows its pipeline, but a pipeline is not a decided outcome. The webpage-snapshot resolution rule adds a second layer of uncertainty that no insider can resolve.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXTRYFIRECOOK-27JAN01",
+    "insider_group": "White House counsel and Trump himself, who would know whether a formal removal notice is drafted and imminent.",
+    "bucket": "weak",
+    "rules_diverge_from_title": true,
+    "rules_note": "The rules ask whether the President 'has tried to fire Lisa Cook ... before Sep 1, 2026' with no 'after issuance' qualifier, yet Trump purported to fire her in August 2025 and the Supreme Court ruled on that attempt in June 2026. A literal reading is already satisfied by a public past event; the series ticker (27JAN01) implies an issuance-relative reading the rules text does not state. This ambiguity dominates the market.",
+    "resolution_source_risk": "The threshold for 'tried to fire' is unspecified - the August 2026 White House letter saying Trump is 'considering' removal and demanding a response within three weeks may or may not qualify as an attempt.",
+    "rationale": "Two warning signs fire at once. The rules diverge sharply from the forward-looking title because a prior, fully public 2025 removal attempt arguably already satisfies them, so any knowledge here is public rather than insider. And to the extent the market is about a fresh attempt, it turns on a decision Trump has explicitly framed as still under consideration pending Cook's response - nobody can know an unmade decision. No real private-knowledge edge.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXUAPFILES-26AUG10",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": true,
+    "rules_note": "The title asks whether Trump releases new UFO files, but the rules resolve on whether the federal government - any part of it - released previously unreleased UAP documents, audio or video after issuance and before Sep 4. That is vastly broader than a presidential action and could be satisfied by a routine AARO, DoD, NASA or FOIA release.",
+    "resolution_source_risk": "Ambiguous. 'Previously unreleased' and 'regarding UAP' are undefined, and small FOIA or agency postings may or may not be noticed by the resolver before close.",
+    "rationale": "There is no named group here - 'the federal government' spans dozens of agencies with independent release calendars, so this is a rate question over a four-day window rather than a knowledge question. Individual agency staff know their own pending postings, but that is exactly the vague 'someone probably knows' story the thesis warns against, and the broad rules make the resolving event impossible to attach to any one informed group.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXZECMAXMON-ZEC-26AUG31",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": true,
+    "rules_note": "The title reads as a level check ('trimmed mean be above $900.00 by 11:59 PM ET'), but the rules resolve YES if the price is EVER above $900 between issuance and the deadline - a touch/maximum market, not a closing value. The title also says 'trimmed mean' while the rules say 'the price of ZEC', leaving the pricing methodology unstated.",
+    "resolution_source_risk": "The rules do not name the price feed or the trimmed-mean construction, so the exact series that decides a near-threshold touch is unspecified.",
+    "rationale": "A crypto price is a future price, which the thesis lists explicitly as NO-ish, and no identifiable group knows where ZEC trades. The only structural feature worth noting is that the rules make this a maximum-over-window question rather than a terminal-level question, which changes the market materially but has nothing to do with insider knowledge.",
+    "researched": false
+  }
+]

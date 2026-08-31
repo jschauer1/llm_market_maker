@@ -1,0 +1,122 @@
+[
+  {
+    "event_ticker": "KXACTBLUETOP-26SEP04",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "The rules never define what 'top ActBlue fundraiser' means (all-time, cycle-to-date, trailing window) or which ActBlue-published surface is authoritative; the leaderboard is also a live public feed, so any snapshot dispute is a settlement risk rather than a knowledge asymmetry.",
+    "rationale": "Resolution turns on the aggregate donation behavior of a very large number of independent small donors, sampled at one instant. No small group decides it and no one can know it in advance; the ActBlue leaderboard is itself public in near-real-time, so whatever is knowable is knowable to everyone. This is the thesis's explicit NO-ish case of many independent actors.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXAGTELIMINATION-26SEP03",
+    "insider_group": "AGT producers and the vote tabulator (Telescope) — but only after public voting closes on the morning of Sep 2, hours before air",
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "Results are announced live on the Sep 2 results telecast; no source-timing risk, but also no pre-announcement publication.",
+    "rationale": "This is the competition-TV trap rather than the competition-TV edge. AGT Season 21's audition rounds were pre-taped, but the live shows began Aug 18: Quarterfinal Round 3 performs live Tuesday Sep 1 with a live results show Wednesday Sep 2, inside this market's window (close Sep 2 11:59 PM ET). The outcome is decided by public audience voting that has not happened yet, so as of Aug 31 literally nobody knows — the tabulators learn it only hours before the reveal, and there is no taping date already past and no leak community with anything to leak.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXAKDROPOUTAUG-26",
+    "insider_group": "David B. Leslie himself and his immediate campaign staff",
+    "bucket": "moderate",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "A withdrawal by a minor candidate may not be reported by any outlet before the Sep 1 close even if it occurs; the rules name no resolution source.",
+    "rationale": "The knower here is genuinely specific and small — a candidate knows his own intention to withdraw before anyone else does, and that is exactly the discretionary-decision case the thesis favors. What holds it below strong is that there is no evidence any such decision has been made, and nobody can know an unmade decision; with roughly one day left this is closer to a base-rate question about a low-profile candidate than to a knowledge asymmetry. The recurring monthly series structure (KXAKDROPOUTAUG) confirms it is designed as a rate market.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXALBUMDEBUT-26SEP12-DON",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": true,
+    "rules_note": "The title asks whether the album will 'debut at #1', but the rule only requires that 'Don't Look Down' be the #1 album on the Billboard 200 dated Sep 12, 2026 — the debut condition is absent from the operative text, so a non-debut #1 would still settle YES on the rule as written.",
+    "resolution_source_risk": "Billboard normally reveals the #1 album on the Sunday before the chart date (Sep 6), and the market closes Sep 6 11:59 PM ET — a delayed or rescheduled chart announcement would leave the market closing before the number is public.",
+    "rationale": "The album was released Aug 28, 2026, so the Billboard 200 chart dated Sep 12 covers the tracking week Aug 28 – Sep 3, which is still in progress as of today. The result is the aggregate streaming and purchase behavior of millions of independent listeners over days that have not yet happened, so no group can already know it. Label and Luminate mid-week projections are forecasts, not knowledge, and this is squarely the thesis's aggregate-behavior exclusion.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXBIGBENDRESUME-27",
+    "insider_group": "CBP/DHS and Army Corps contracting officers and the awarded construction contractor, who hold the mobilization schedule",
+    "bucket": "moderate",
+    "rules_diverge_from_title": true,
+    "rules_note": "The title conditions resolution on a report 'by any of the Source Agencies', but rules_primary states only that construction resumes after Issuance and before Sep 8 — the reporting requirement, and the definition of the Source Agencies, appear nowhere in the supplied operative text.",
+    "resolution_source_risk": "Big Bend is remote; a quiet mobilization could occur without a Source Agency reporting it inside the window, so the market can settle NO on reporting even if the underlying event happens.",
+    "rationale": "A real and identifiable group holds the answer: federal contracting officers and the contractor know the mobilization date, because construction restarts are scheduled and awarded, not spontaneous. It stays below strong because there is no evidence a resume decision has been taken and dated, and because the title layers a media-reporting requirement on top of the physical event, converting a knowledge question into a reporting-timing question over a one-week window.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXCABLEAVE-26MAY22",
+    "insider_group": "whichever Cabinet secretary is contemplating departure, plus the White House Presidential Personnel Office — but no identifiable individual",
+    "bucket": "weak",
+    "rules_diverge_from_title": true,
+    "rules_note": "The title says 'leave', but the rule counts a mere announcement of intent to leave as sufficient, which is a materially easier bar. The rule's deadline is 'before Sep 1, 2026' while the market close is Sep 2 03:59 UTC, so the last day of trading is after the condition window has already shut.",
+    "resolution_source_risk": null,
+    "rationale": "This is the vague-insider pattern the warning list calls out: somebody somewhere would know about an imminent Cabinet resignation, but no specific person or body can be named in advance, and the question ranges over roughly two dozen independent officials. It is a rate question over a window rather than a knowledge question about a decided fact, and with the condition window effectively expired there is no unannounced decision left to be ahead of.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXCLAUDE-NXTMYTH",
+    "insider_group": "Anthropic's model launch, research and comms teams, plus launch-partner and early-access customers under embargo",
+    "bucket": "strong",
+    "rules_diverge_from_title": true,
+    "rules_note": "The title says 'next Mythos-Class model', but the rule broadens the class to any model 'branded \"Mythos\" or \"Fable\"' and then explicitly carves out Claude Fable 5 (released June 9, 2026) — neither the Fable inclusion nor the Fable 5 exclusion is visible from the title.",
+    "resolution_source_risk": null,
+    "rationale": "The resolution is entirely inside one named company's control and the window closes in about a day (Aug 31 11:59 PM ET). Whether Anthropic ships a Mythos-tier model in the next twenty-four hours is a decision that has necessarily already been made and internally communicated — launches at this scale require a fixed date, prepared model cards, comms and embargoed partners weeks ahead. This is the product-launch case at its cleanest: a specific named group holds a settled answer the public does not have.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXEGGS-AUG26",
+    "insider_group": "BLS staff compiling the August CPI average-price series, who see the figure before the 8:30 AM ET release",
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "The rules name no source or index; the close (Sep 11, 8:25 AM ET) sits five minutes before the scheduled CPI release, so any BLS delay or schedule change leaves the market closed with no published number.",
+    "rationale": "This is a scheduled statistical release measuring an aggregate market price — both items sit on the thesis's NO-ish list. BLS technically holds the number before publication, but that is a locked-down statistical embargo with no leak channel and no tradeable informed community, which is precisely why the thesis excludes scheduled indicators. The underlying quantity is set by the independent pricing behavior of thousands of retailers, not by any group's decision.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXGROK-GROK47",
+    "insider_group": "xAI/SpaceX's model release team and Elon Musk",
+    "bucket": "moderate",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "The rules do not define what counts as 'releases' — a limited/beta rollout versus general availability is left open.",
+    "rationale": "The company plainly knows its own roadmap, which is the right shape of insider group, and a four-day horizon is short enough that anything shipping is already built. It stays at moderate rather than strong because xAI's release timing is characteristically decided late and announced impulsively rather than locked to a communicated date, so the internal answer may genuinely still be undetermined — and the undefined release bar means even insiders could disagree on the resolution.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXINXU-26AUG31H1000",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": null,
+    "rationale": "A future index level at a specific timestamp is the thesis's flat exclusion: no group can know where the S&P 500 prints, because it is the continuously aggregated behavior of the entire market. There is no decision, no announcement and no privileged holder of the answer.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXISRAELJOINTLIST-26",
+    "insider_group": "Itamar Ben Gvir, Bezalel Smotrich and the small negotiating circles around Otzma Yehudit and the Religious Zionist Party",
+    "bucket": "moderate",
+    "rules_diverge_from_title": true,
+    "rules_note": "The operative rule requires The Times of Israel to report it 'after Issuance' — a report published before the market was issued does not count, so an already-reported agreement would need to be re-reported. The rule also stacks two clocks: the submission must occur by Sep 8 10:00 PM Israel time, while the report must land before Sep 10.",
+    "resolution_source_risk": "Resolution depends on one named outlet; The Times of Israel covers Israeli party registration closely, so publication risk is low, but a single-source requirement plus the after-Issuance qualifier is a genuine settlement hazard.",
+    "rationale": "The knowers are a handful of named politicians and their negotiators, which is the right kind of small identifiable group, and merger talks are conducted privately before any filing. Ben Gvir has publicly said Otzma Yehudit will not run with the Religious Zionist Party, while Netanyahu is pressing them to unite — so the state of play is contested and in flux rather than settled. A deadline negotiation that runs to the statutory filing hour is a decision not yet made, which caps this below strong.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXITALYBORDERCHECK-26",
+    "insider_group": "Italy's Ministero dell'Interno, which must formally notify the European Commission of any extension or lapse of Schengen internal border controls",
+    "bucket": "moderate",
+    "rules_diverge_from_title": true,
+    "rules_note": "The title conditions on a report 'by any of the Source Agencies', while rules_primary requires only that Italy ends the checks after Issuance and before Sep 1 — the reporting requirement and the list of Source Agencies are absent from the operative text. The rule also hinges on the undefined judgment of whether replacement measures are 'materially equivalent'.",
+    "resolution_source_risk": "A quiet expiry is less newsworthy than an extension, so a lapse could go unreported by the Source Agencies inside a window that closes in about a day.",
+    "rationale": "The controls were imposed on Aug 1, 2026 for a stated one-month duration with a mid-August review, so the natural expiry lands essentially on this market's close, and the decision to extend or let them lapse is one named ministry's to make and must be notified to the European Commission in advance — a specific group holding a made decision. Two things cap it at moderate: reporting already indicates Italy moved to extend, meaning much of the information is public rather than private, and the 'without replacing them with materially equivalent checks' qualifier means even the ministry's own decision does not cleanly determine the resolution.",
+    "researched": true
+  }
+]

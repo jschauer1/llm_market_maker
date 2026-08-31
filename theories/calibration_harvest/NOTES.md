@@ -958,3 +958,40 @@ figure under 3 settlement days triggers no lifecycle action.
 category, then let n_days accrue — the binding constraint is settlement
 days, and only calendar time buys those. Nothing here changes what the
 theory claims.
+
+## 2026-08-31 (UTC) - politics population COMPLETE; 16 measured cells; three significant raw cells; live observation extended to politics
+
+The Politics/Elections collection reached population-complete today:
+2,508/2,508 enumerated series walked (resume added the 1 straggler;
+"done: 2508 series, 1541 observations"). Data run-id is
+backtest-2026-08-29-calharvest-politics - the RUNBOOK named an -08-27-
+run-id that was never used; corrected there today.
+
+read_cells on the complete population: 16 cells, ALL past the measured
+bar (n>=30, n_days>=8). Headline pattern - the raw (gross) edge is
+positive and monotone-ish with horizon in the 0.75-0.85 band, matching
+Le 2026's published Politics calibration (price 0.75 -> 0.886 realized):
+
+  1w-1mo|0.75-0.85  meanask 0.7988 realized 0.8889  raw +9.01  day-cl +11.14 +/- 3.93 (29d)  SIGNIFICANT
+  1mo+ |0.75-0.85   meanask 0.7992 realized 0.9400  raw +14.08 day-cl +13.16 +/- 5.15 (19d)  SIGNIFICANT
+  1mo+ |0.92-0.97   meanask 0.9465 realized 0.9592  raw +1.27  day-cl +3.59 +/- 1.31 (16d)   SIGNIFICANT
+
+Everything at <=2d and 2d-1w is flat-to-negative gross. BUT: the
+Wilson-bounded net that price() would claim is negative in every cell
+(-5.68 best) - the conservative bound plus fees eats the whole point
+estimate at these n's. So per the theory's own pricing rule NOTHING is
+bettable yet; the pre-registered bar stands unmet and no post-hoc
+re-pricing is proposed (the 2026-08-29 retraction binds: the horizon
+claim died once as a pre-registration failure; today's numbers are the
+same directional story on a complete population, and the honest path is
+more forward n, not a friendlier estimator).
+
+Consequence taken today: stage 3 now records politics observations so
+these cells accrue forward settlements. Ran with distinct run id
+live-2026-08-31-calharvest-politics (9,245 attempts, 32 cells hit, all
+R6 by design; separate run id keeps same-day attempts from
+double-counting weather markets). Judgment call, recorded here: the
+screen code is untouched and cell rates/categories are DATA from a
+complete campaign, so no version bump was taken; flagged in today's
+report for veto, with the RUNBOOK updated to say the floor runs stage 3
+twice (weather + politics).

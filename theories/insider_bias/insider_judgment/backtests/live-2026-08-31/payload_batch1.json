@@ -1,0 +1,182 @@
+[
+  {
+    "event_ticker": "KXACTBLUETOP-26SEP04",
+    "series_ticker": "KXACTBLUETOP",
+    "title": "Will James Talarico be the top ActBlue fundraiser on Sep 4 at 10:00 AM ET?",
+    "close_time": "2026-09-04T13:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXACTBLUETOP-26SEP04-JTAL",
+        "title": "Will James Talarico be the top ActBlue fundraiser on Sep 4 at 10:00 AM ET?",
+        "rules_primary": "If James Talarico is the top ActBlue fundraiser on Sep 4 at 10:00 AM ET, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-04T13:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXAGTELIMINATION-26SEP03",
+    "series_ticker": "KXAGTELIMINATION",
+    "title": "Will Elsie be eliminated from America's Got Talent Season 21 before Sep 3, 2026?",
+    "close_time": "2026-09-03T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXAGTELIMINATION-26SEP03-ELS",
+        "title": "Will Elsie be eliminated from America's Got Talent Season 21 before Sep 3, 2026?",
+        "rules_primary": "If Elsie is officially eliminated from America's Got Talent Season 21 before Sep 3, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-03T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXAKDROPOUTAUG-26",
+    "series_ticker": "KXAKDROPOUTAUG",
+    "title": "Will David B. Leslie drop out of the Alaska U.S. Senate race before Sep 1, 2026?",
+    "close_time": "2026-09-01T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXAKDROPOUTAUG-26-DLES",
+        "title": "Will David B. Leslie drop out of the Alaska U.S. Senate race before Sep 1, 2026?",
+        "rules_primary": "If David B. Leslie drops out of the 2026 Alaska U.S. Senate race before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXALBUMDEBUT-26SEP12-DON",
+    "series_ticker": "KXALBUMDEBUT",
+    "title": "Will Rod Wave's 'Don\u2019t Look Down' debut at #1",
+    "close_time": "2026-09-07T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXALBUMDEBUT-26SEP12-DON",
+        "title": "Will Rod Wave's 'Don\u2019t Look Down' debut at #1",
+        "rules_primary": "If Don\u2019t Look Down is the #1 album on the Billboard 200 chart for the week of September 12, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-07T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXBIGBENDRESUME-27",
+    "series_ticker": "KXBIGBENDRESUME",
+    "title": "Will it be reported by any of the Source Agencies that physical construction work on federal border security infrastructure inside Big Bend National Park resumes before Sep 8, 2026?",
+    "close_time": "2026-09-08T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXBIGBENDRESUME-27-26SEP08",
+        "title": "Will it be reported by any of the Source Agencies that physical construction work on federal border security infrastructure inside Big Bend National Park resumes before Sep 8, 2026?",
+        "rules_primary": "If physical construction work on federal border security infrastructure inside Big Bend National Park resumes after Issuance and before Sep 8, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-08T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXCABLEAVE-26MAY22",
+    "series_ticker": "KXCABLEAVE",
+    "title": "Will any member of Trump's Cabinet leave before Sep 2026?",
+    "close_time": "2026-09-02T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXCABLEAVE-26MAY22-26SEP",
+        "title": "Will any member of Trump's Cabinet leave before Sep 2026?",
+        "rules_primary": "If any member of Trump's Cabinet leaves their office, or announces they will leave their office, from before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-02T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXCLAUDE-NXTMYTH",
+    "series_ticker": "KXCLAUDE",
+    "title": "Will Anthropic release next Mythos-Class model before Sep 1, 2026?",
+    "close_time": "2026-09-01T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXCLAUDE-NXTMYTH-26SEP01",
+        "title": "Will Anthropic release next Mythos-Class model before Sep 1, 2026?",
+        "rules_primary": "If Anthropic releases a model under Anthropic's Mythos tier \u2014 including models branded \"Mythos\" or \"Fable\" - excluding Claude Fable 5 (released June 9, 2026) before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXEGGS-AUG26",
+    "series_ticker": "KXEGGS",
+    "title": "Will egg prices rise by more than 0% in Aug 2026?",
+    "close_time": "2026-09-11T12:25:00Z",
+    "markets": [
+      {
+        "ticker": "KXEGGS-AUG26-0",
+        "title": "Will egg prices rise by more than 0% in Aug 2026?",
+        "rules_primary": "If the price of eggs rises by Above 0% in Aug 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-11T12:25:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXGROK-GROK47",
+    "series_ticker": "KXGROK",
+    "title": "Will SpaceXAI release Grok 4.7 before Sep 4, 2026?",
+    "close_time": "2026-09-04T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXGROK-GROK47-26SEP04",
+        "title": "Will SpaceXAI release Grok 4.7 before Sep 4, 2026?",
+        "rules_primary": "If SpaceXAI releases Grok 4.7 before Sep 4, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-04T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXINXU-26AUG31H1000",
+    "series_ticker": "KXINXU",
+    "title": "Will the S&P 500 be above 7709.9999 on Aug 31, 2026 at 10am EDT?",
+    "close_time": "2026-08-31T14:00:00Z",
+    "markets": [
+      {
+        "ticker": "KXINXU-26AUG31H1000-T7709.9999",
+        "title": "Will the S&P 500 be above 7709.9999 on Aug 31, 2026 at 10am EDT?",
+        "rules_primary": "If the S&P 500 index value on Aug 31, 2026 at 10am EDT is above 7709.9999, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-08-31T14:00:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXISRAELJOINTLIST-26",
+    "series_ticker": "KXISRAELJOINTLIST",
+    "title": "Will it be reported by The Times of Israel that Otzma Yehudit and the Religious Zionist Party submit a joint candidate list for the 2026 Israeli Knesset election no later than September 8, 2026 at 10:00 PM Israel time before Sep 10, 2026?",
+    "close_time": "2026-09-10T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXISRAELJOINTLIST-26",
+        "title": "Will it be reported by The Times of Israel that Otzma Yehudit and the Religious Zionist Party submit a joint candidate list for the 2026 Israeli Knesset election no later than September 8, 2026 at 10:00 PM Israel time before Sep 10, 2026?",
+        "rules_primary": "If it is reported by The Times of Israel after Issuance and before Sep 10, 2026 that Otzma Yehudit and the Religious Zionist Party submit a joint candidate list for the 2026 Israeli Knesset election no later than September 8, 2026 at 10:00 PM Israel time, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-10T03:59:00Z"
+      }
+    ]
+  },
+  {
+    "event_ticker": "KXITALYBORDERCHECK-26",
+    "series_ticker": "KXITALYBORDERCHECK",
+    "title": "Will it be reported by any of the Source Agencies that Italy ends the additional border checks on non-EU travelers arriving from Spain by air or sea that began on August 1, 2026, without replacing them with materially equivalent checks before Sep 1, 2026?",
+    "close_time": "2026-09-01T03:59:00Z",
+    "markets": [
+      {
+        "ticker": "KXITALYBORDERCHECK-26",
+        "title": "Will it be reported by any of the Source Agencies that Italy ends the additional border checks on non-EU travelers arriving from Spain by air or sea that began on August 1, 2026, without replacing them with materially equivalent checks before Sep 1, 2026?",
+        "rules_primary": "If Italy ends the additional border checks on non-EU travelers arriving from Spain by air or sea that began on August 1, 2026, without replacing them with materially equivalent checks after Issuance and before Sep 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "close_time": "2026-09-01T03:59:00Z"
+      }
+    ]
+  }
+]

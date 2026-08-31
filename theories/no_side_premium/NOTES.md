@@ -288,3 +288,21 @@ distinct series — healthier immediately.
 
 **Next:** Both new theories accrue settlements automatically via the
 session settle pass. Nothing to do but run each session and wait.
+
+## 2026-08-31 (UTC) - 106 cell-B attempts were mislabeled screened; repaired
+
+Found while reconciling the score CLI's screened pool (n=19 settled)
+against the cell-a slice (n=2): 17 of the 19 were YES-side avoid-cell
+rows. Mechanism, pinned in git: the attempt INSERT hardcodes
+disposition='screened' and relies on finish() calling ledger.interpret()
+to stamp non-screened rows - but interpret only started stamping the
+attempt at commit 37f0f2a (2026-08-29T02:29Z). Rows recorded between the
+attempt-table migration (2026-08-28T23:45Z) and that fix - run
+live-2026-08-29 (recorded 00:13Z) and part of the generic 'live' run -
+kept rejected positions over screened attempts. The rows' own rationale
+text says "Recorded rejected", and confidence='yes_fav_8090_avoid' marks
+the cell deterministically, so all 106 were repaired to rejected
+(ledger backed up 2026-08-31T00:43Z before today's settle). Corrected
+saved pools: screened n=2 +7.02 net (1 day), rejected n=64 -8.00 net
+(4 days) - now identical to the slice partition. Slice evidence was
+never affected (predicate-based); only the disposition pools misread.

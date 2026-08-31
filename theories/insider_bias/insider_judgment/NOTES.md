@@ -1438,3 +1438,40 @@ aggregate (probation, credibility 0.25) versus **2.45 pts** citing the v3
 slice. Worth flagging that declining all 15 slice matches is a judgment
 override of the best-measured rule in the repo; `interpretation_value` will
 eventually say whether that override was worth anything.
+
+## 2026-08-31 (UTC) - full six-stage live run, v4, judged 24 events / 35 markets, endorsed 0
+
+Funnel on the shared board (99,064 markets): 687 screened / 282 events ->
+gate removed 258 (66 live sport/esport, 43 aggregate-of-many-people, 29
+future price commodity/FX, 28 scheduled indicator, 25 vendor panel metric,
+23 future price compute/collectible, 20 weather, 17 future price crypto,
+7 retail price index) -> 24 events / 35 markets survived. Payload split
+into 2 batches of 12 events; judged by opus-tier subagents (web search
+on, blind to price); final review by claude-fable-5 (this session).
+Run artifacts in backtests/live-2026-08-31/ (payload + verdicts).
+
+Buckets: 1 strong (KXCLAUDE-NXTMYTH), 9 moderate events, 14 weak.
+13 events carried a rules/title divergence - the densest crop yet;
+notable: KXTRUMPMEET counts phone calls as "meeting"; KXTRYFIRECOOK has
+no after-issuance qualifier so the public 2025 Cook removal attempt
+arguably already satisfies it; KXSNAPELECTIONRS may already be satisfied
+by Vucic's Aug 21 public date announcement; KXZECMAXMON is a touch
+market wearing a level-check title.
+
+Final review declined all 35 (records as rejected, the control lane).
+Recurrent pattern in the declines: the divergences mostly broaden YES
+while the screen picks NO ~80% of the time, and the moderate insider
+stories all failed the "has the decision actually been made?" test
+(press secretary, Grok 4.7, Israel joint list, AK dropout). NXTMYTH
+lowered strong->moderate in review: rules include any Fable-branded
+model (carving out only Claude Fable 5), which broadens YES against the
+NO leg; also noted for the record that this session runs on an Anthropic
+model while judging an Anthropic-release market - judged on rules
+structure only.
+
+Standing tension, second consecutive run: 19 of today's 35 were
+strong-or-moderate NO - slice matches for the v3-proven rule (+4.31 net
+OOS, n=321) - and all were declined at final review. The
+interpretation_value ledger is accruing the answer to whether these
+overrides add or destroy value; the orphaned-evidence escalation for
+adopting the slice rule at v4 went to the user again today.
