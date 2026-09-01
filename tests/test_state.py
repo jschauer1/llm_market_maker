@@ -171,7 +171,7 @@ def test_evidence_shows_a_sub_theory_with_its_own_record(conn):
         score.record_settlement(
             conn, f"SUB{i}", "no",
             resolved_at=f"2026-09-{(i % 6) + 1:02d}T00:00:00Z")
-    score.save_segment_scores(conn, "t", 1, "live", "all")
+    score.save_segment_scores(conn, "t", 1)
 
     text = state.render_state(conn, now="2026-09-10T12:00:00Z")
     assert "strong-moderate-no" in text, (

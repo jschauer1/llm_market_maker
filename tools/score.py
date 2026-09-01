@@ -1031,9 +1031,10 @@ def save_segment_scores(
     conn: sqlite3.Connection,
     theory_id: str,
     theory_version: int,
-    run_mode: str = "live",
     disposition: str = "all",
     now: str | None = None,
+    *,
+    run_modes: tuple[str, ...] | None = None,
 ) -> dict[str, int | None]:
     """Persist every segment's score: the theory and each sub-theory.
 
@@ -1057,34 +1058,45 @@ def save_segment_scores(
     gates — and "invisible until it matters" is how a proven subset ends
     up orphaned.
 
+    **Every segment comes from one pool.** The parent's score is taken
+    from the same `segment_report` as its sub-theories', never from a
+    separate `compute_score` — a parent measured over live rows beside a
+    sub-theory measured over live+backtest is two different questions
+    answered side by side, and the sub-theory would appear to hold
+    evidence the parent somehow lacked. `run_modes` defaults to live +
+    backtest, matching what `slices.ranking_segment` ranks on, so what
+    `state` displays is what `promote` will decide from. A pooled row is
+    labelled `run_mode='pooled'` rather than claiming to be a live-only
+    measurement.
+
     Returns {segment: row id}. Sub-theory scores are the OUT-OF-SAMPLE
     ones, which is the only evidence a slice is ever credited with.
     """
     from tools import slices as slices_mod
 
+    modes = tuple(run_modes or slices_mod.DEFAULT_RUN_MODES)
+    label = modes[0] if len(modes) == 1 else "pooled"
+
     saved: dict[str, int | None] = {}
-    aggregate = compute_score(
-        conn, theory_id, theory_version, run_mode, disposition
+    report = slices_mod.segment_report(
+        conn, theory_id, theory_version, disposition=disposition,
+        run_modes=modes,
     )
     saved["aggregate"] = save_score(
-        conn, theory_id, theory_version, run_mode, disposition, aggregate,
-        now=now, segment="aggregate",
-    )
-
-    report = slices_mod.segment_report(
-        conn, theory_id, theory_version, disposition=disposition
+        conn, theory_id, theory_version, label, disposition,
+        report["aggregate"], now=now, segment="aggregate",
     )
     for entry in report["slices"]:
         oos = entry["oos"]
         saved[f"slice:{entry['slug']}"] = (
             save_score(
-                conn, theory_id, theory_version, run_mode, disposition, oos,
+                conn, theory_id, theory_version, label, disposition, oos,
                 now=now, segment=f"slice:{entry['slug']}",
             ) if oos.get("n") else None
         )
     if report.get("complement"):
         saved["complement"] = save_score(
-            conn, theory_id, theory_version, run_mode, disposition,
+            conn, theory_id, theory_version, label, disposition,
             report["complement"], now=now, segment="complement",
         )
     return saved

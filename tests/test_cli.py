@@ -630,3 +630,36 @@ def test_opportunities_list_with_legs_includes_them(dbpath, capsys):
     assert all(leg["kalshi_ticker"] for leg in basket["legs"])
     single = [r for r in payload if r["position_kind"] == "single"][0]
     assert single["legs"] == []
+
+
+def test_score_report_save_pools_live_and_backtest_by_default(dbpath, capsys):
+    """What `state` displays must be what `promote` decides from, and
+    promote ranks on the pooled live+backtest segment. A saved score
+    scoped to live alone would show less evidence than the bet actually
+    rests on -- and after the 2026-08-31 ruling a backtested edge is
+    evidence in full."""
+    conn = db.connect(dbpath)
+    db.init_db(conn)
+    theories.register(conn, "t1", "T1", "theories/t1", status="testing")
+    score.record_backtest_run(conn, "bt-1", "t1", 1, tier="B")
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="BT1",
+        outcome="no", entry_price=0.8, edge_pts_net=3.0, edge_basis="model",
+        run_mode="backtest", run_id="bt-1", decision_date="2026-06-01",
+        rationale="x",
+    )
+    score.record_settlement(conn, "BT1", "no",
+                            resolved_at="2026-06-05T00:00:00Z")
+    conn.close()
+
+    code, _ = _run(capsys, "--db", dbpath, "score", "report", "t1", "--save")
+    assert code == 0
+
+    conn = db.connect(dbpath)
+    row = conn.execute(
+        "SELECT run_mode, n FROM scores"
+        " WHERE theory_id='t1' AND disposition='all' AND segment='aggregate'"
+    ).fetchone()
+    conn.close()
+    assert row["run_mode"] == "pooled"
+    assert row["n"] == 1, "the backtest settlement is evidence in full"

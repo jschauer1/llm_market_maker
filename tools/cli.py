@@ -265,7 +265,8 @@ def _cmd_score(args) -> int:
                 )
             results = {
                 disposition: score.compute_score(
-                    conn, args.theory_id, version, args.run_mode,
+                    conn, args.theory_id, version,
+                    args.run_mode or "live",
                     disposition, run_id=args.run_id, pool=args.pool,
                 )
                 for disposition in ("all", "screened", "endorsed",
@@ -279,8 +280,8 @@ def _cmd_score(args) -> int:
                 # kept proven subsets out of `state` entirely.
                 saved = {
                     disposition: score.save_segment_scores(
-                        conn, args.theory_id, version, args.run_mode,
-                        disposition,
+                        conn, args.theory_id, version, disposition,
+                        run_modes=(args.run_mode,) if args.run_mode else None,
                     )
                     for disposition in results
                 }
@@ -297,7 +298,8 @@ def _cmd_score(args) -> int:
                     # next to a per-version day count (spec 2.5).
                     "settlement_days": {
                         disposition: score.settlement_day_clusters(
-                            conn, args.theory_id, version, args.run_mode,
+                            conn, args.theory_id, version,
+                            args.run_mode or "live",
                             disposition, run_id=args.run_id, pool=args.pool,
                         )
                         for disposition in ("all", "screened", "endorsed",
@@ -763,7 +765,12 @@ def build_parser() -> argparse.ArgumentParser:
     report = ssub.add_parser("report")
     report.add_argument("theory_id")
     report.add_argument("--version", type=int, default=None)
-    report.add_argument("--run-mode", dest="run_mode", default="live")
+    report.add_argument(
+        "--run-mode", dest="run_mode", default=None,
+        help="scope to one run mode. The printed figures default to live; "
+             "--save without this pools live and backtest, matching what "
+             "promote ranks on",
+    )
     report.add_argument(
         "--run-id", dest="run_id", default=None,
         help=(

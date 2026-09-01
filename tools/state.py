@@ -118,7 +118,7 @@ def _evidence_panel(conn) -> list[str]:
                 """
                 SELECT calibration_edge_net, n, n_clusters FROM scores
                  WHERE theory_id = ? AND theory_version = ?
-                   AND run_mode = 'live' AND disposition = 'all'
+                   AND disposition = 'all'
                    AND segment = 'aggregate'
                  ORDER BY computed_at DESC LIMIT 1
                 """,
@@ -162,7 +162,7 @@ def _sub_theory_lines(conn, t) -> list[str]:
                MAX(computed_at) AS computed_at
           FROM scores
          WHERE theory_id = ? AND theory_version = ?
-           AND run_mode = 'live' AND disposition = 'all'
+           AND disposition = 'all'
            AND segment != 'aggregate'
          GROUP BY segment
          ORDER BY segment
