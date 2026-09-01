@@ -2824,3 +2824,117 @@ fee-eaten.
   Polymarket-side structure, Kalshi's newly listed series as a cohort
   (KXTRUMPSAYMONTH and KXNETFLIXRANKMOVIE are both <30 days old with real
   volume), and resolution-source behaviour beyond noting the field exists.
+
+## 2026-09-01 — maintenance: two surfaces that were lying (session llm-market-identifier-df)
+
+Lane: `maintenance`. Floor was already done (0.3h before), `new-theory`
+held by a peer on series-bias, and the user ruled `insider_bias` off
+limits (another session).
+
+**Chose maintenance over the theory lane** after comparing four options.
+`structural_arb`'s replay — the last floor's "cheapest evidence on the
+board" — was rejected as runner-up because
+`studies/2026-08-29-structural-arb-violation-liquidity/` already replayed
+its geometry over 11 boards and found 6 violations in 5 days, *all six*
+rejected by the v3/v4 thresholds; a fuller replay confirms an absence.
+`deadline_drift` is calendar-bound, not replay-bound: its 112 settled
+markets are already the entire fetchable history (~60 closes/month
+forward), and its capture marker was fresh at 1.1 days against a 14-day
+bar. `no_side_premium` is calendar-bound too. The calharvest defect won
+because it **compounds** — ~9,200 doubled attempt rows per floor.
+
+**Did.**
+
+1. **`calibration_harvest` v3 (`continues`) — the domain axis had been
+   collapsing since the theory started recording.** Ticket asked about a
+   double-run; the root cause was wider and is a *vocabulary* bug.
+   `domain_for` returned `other` both for a category the grid does not
+   bin and for a series the run's map never covered. The RUNBOOK claimed
+   two runs per floor covering "one complete population" each;
+   `screen()` has no population filter, so both screened the whole board
+   and each labelled the other's population `other`. Measured
+   2026-09-01: 9,247 attempts per run, **100% overlap**, and 99.4% of the
+   weather run in one `other` bucket.
+
+   The fix cost nothing and always could have: `/series` returns all
+   13,687 series in one response with no cursor, so
+   `all_series_categories()` — the complete map — costs exactly what the
+   partial one cost. Nobody was paying for the collapse. Today's board
+   now bins into **11 real domains** with `other` at 102 (1.1%) instead
+   of 9,123 (99.4%). `unmapped` is now a separate domain, so a partial
+   map produces a conspicuous cell instead of a plausible one.
+
+   Quarantine is **per cell, not per run**: `other|*` below v3, plus the
+   exact-duplicate run `live-2026-08-29-calharvest-v2` by id. Per-cell
+   because `weather|*` on the weather run and `politics|*` on the
+   politics run were always correct — a run-level exclusion would have
+   discarded 2,704 clean politics rows to punish the `other` rows beside
+   them. Corpus 6,960 → 100 rows, 21 → 6 cells, and it **costs no
+   conclusion**: 0 of 21 cells were measurable before, 0 of 6 now.
+
+2. **`state` reported zero evidence for every theory after a `continues`
+   bump.** Found by watching my own bump blank the panel. The 2026-08-31
+   ruling flipped the default from `breaking` to `continues`; three
+   panels in `tools/state.py` still counted at `theory_version =
+   <current>` exactly, which was correct only while a bump severed.
+   Live at the time: `calibration_harvest` (chain [1,2,3], 28,909 rows)
+   and `insider_judgment` (chain [1,2,3,4,5], 4,275 rows) both rendered
+   `rows 0` / `no live score`, and **`strong-moderate-no` — +3.76 net
+   over 90 clusters, the best-evidenced result in this repo —
+   disappeared from EVIDENCE entirely**, on the one surface CLAUDE.md
+   tells every session to orient with. All three panels now count over
+   `carry_chain` (which stops at `breaking`, so severing still works —
+   pinned by a test), and an aggregate borrowed from a predecessor is
+   labelled `[scored at vN]`.
+
+3. Closed `state-md-stale` as **not a bug**: STATE.md is gitignored, has
+   never been tracked, and does not exist. The spec says why — "a
+   tracked generated file drifts the moment someone edits it" — which is
+   the exact drift the ticket feared.
+
+4. Grouped `lanes.py` and `tickets.py` under "starting a session" in the
+   toolkit surface; they are two of the four cheap reads `go`'s Orient
+   mandates and were in the ungrouped fallback.
+
+**Learned.**
+
+- **CLAUDE.md's "when a default changes, check what reads it" is not
+  hypothetical, and the reader can be the orientation surface itself.**
+  The `breaking`→`continues` flip was recorded as a ruling and applied
+  in `carry_chain` and `score.py`, but `state.py` was never swept. I
+  swept the rest of the repo afterwards and it is clean — `score.py` is
+  already parameterized (`pool="chain"`), `theories.py`'s carry-proof
+  replay must read exactly one version, and `ledger.py`/`provenance.py`
+  use the version as part of a row-identity key. `state.py` was the only
+  stale reader, but it was the highest-traffic one.
+- **A vocabulary that means two things fails silently and takes three
+  incidents to notice.** `other` meaning both "unbinned category" and
+  "map missed it" is why the collapse survived the 2026-08-30 `live`
+  quarantine — that run was caught only because it was *total*. Two
+  partial versions of the same bug then ran for three days looking
+  legitimate. The split is cheap and makes the next one loud.
+- **Checked before reporting: `no_side_premium`'s complement showing
+  identical numbers to `cell-a-no-favorite` is correct, not a bug.**
+  The complement is of the *ready* slices; `cell-a` is not ready (2
+  clusters against a bar of 10), so its rows are the complement.
+
+**Note on `ecb07b6`.** A peer's insider_judgment v5 commit swept in my
+`tests/test_registry.py` edit via `git add -A` — the same failure the
+2026-09-01 floor logged a lesson about, now recurring. Left standing for
+the same reason: rewriting a shared commit while seven sessions are live
+swaps one misattribution for another. Nothing lost; my own two commits
+stage explicit paths.
+
+**Next.**
+
+- `calharvest-recover-quarantined-other-rows` (theory lane, filed in
+  the theory's own folder): the 6,860 quarantined rows are
+  **recoverable** — every attempt carries `series_ticker` in
+  `extra_json` and the complete map re-derives the true domain. That is
+  ~69x the current corpus and the only forward rows the nine
+  never-labelled domains have. It needs a dedup rule decided, which is
+  why maintenance did not just do it.
+- `structural_arb` shows **5 rows**, not 0 — the old panel was hiding
+  those too. Worth someone checking what they were before treating the
+  theory as never having fired.
+- The maintenance backlog is now **empty**.

@@ -80,3 +80,19 @@ def test_every_tool_has_a_docstring_to_summarize():
     than a formatting nit -- it is a tool nobody can tell the purpose of."""
     missing = [t["module"] for t in toolkit.list_tools() if not t["summary"]]
     assert not missing, f"tools with no module docstring: {missing}"
+
+
+def test_the_orient_reads_are_all_grouped_as_starting_a_session():
+    """`go`'s Orient runs four cheap reads before anything else: floor
+    status, lane status, tickets list, state. A session skimming the
+    toolkit should find all four together, not two of them in the
+    ungrouped fallback.
+
+    Grouping is still a nicety, not a gate (see the module docstring) --
+    this pins the four that `go` actually mandates, and nothing more.
+    """
+    from tools import toolkit
+    groups = {e["module"]: e["group"] for e in toolkit.list_tools()}
+    for module in ("tools/floor.py", "tools/lanes.py",
+                   "tools/tickets.py", "tools/state.py"):
+        assert groups[module] == "starting a session", module

@@ -42,6 +42,11 @@ GROUPS = {
     "tools/state.py": "starting a session",
     "tools/floor.py": "starting a session",
     "tools/board.py": "starting a session",
+    # `go`'s Orient runs exactly four cheap reads -- floor status, lane
+    # status, tickets list, state -- so these two belong beside the other
+    # three rather than in the ungrouped fallback.
+    "tools/lanes.py": "starting a session",
+    "tools/tickets.py": "starting a session",
     "tools/kalshi/markets.py": "getting data",
     "tools/kalshi/history.py": "getting data",
     "tools/kalshi/cache.py": "getting data",
