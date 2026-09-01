@@ -179,10 +179,15 @@ def test_the_gate_v3_rules_reading_is_visible_in_the_goldens():
     """2026-08-29: gate.py started reading resolution rules, not only
     series-ticker prefixes.
 
-    `gate_partition.json`, `blind_payload.json` and
-    `run_mechanical_stages.json` are kept unmodified as the record of the
+    `gate_partition.json` is kept unmodified as the record of the
     prefix-only gate; the rules-reading behaviour got `_v3` files rather
     than overwriting them. This test locks the difference.
+
+    Its two former companions -- `blind_payload.json` and
+    `run_mechanical_stages.json` -- were deleted 2026-08-31: no test ever
+    loaded them, so they cost 754K to assert nothing. `git show
+    0b761b9:tests/characterization/goldens/blind_payload.json` retrieves
+    either one if the pre-v3 payload shape is ever needed again.
 
     On the fixture board the old gate classified **every** screened event
     as PLAUSIBLE -- it recognised none of these families -- which is
