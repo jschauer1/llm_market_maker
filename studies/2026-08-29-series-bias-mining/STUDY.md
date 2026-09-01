@@ -660,3 +660,23 @@ on the collection state at the moment the sweep stops**, whether it
 stopped by completing or by running out of session. Any earlier
 execution is a smoke test of the pipeline, and its per-series numbers
 are not reported.
+
+### The family is size-truncated, and that is disclosed, not discovered
+
+`eligible_series` walks **ascending by settled-market count**, on the
+collector's own reasoning: phase 2 is ~174k candle fetches at Kalshi's
+~4–5/s, so it *will* be interrupted, and cheapest-first maximises the
+number of **complete** series at any stopping point — a series is the
+miner's unit of analysis and half of one is worth nothing to it.
+
+The consequence for pass 3, stated before the run: **the tested family is
+the smaller half of the eligible population.** Settlement count is not an
+outcome, so this does not admit on the answer the way pass 2's MDE floor
+did — but it is not neutral with respect to *kind*, because a series
+settling 800 markets in 60 days is typically a daily or intraday product
+and one settling 50 is typically weekly or event-driven. So a pass-3
+result generalizes to **lower-frequency recurring series**, and the
+high-frequency tail is *unmeasured*, not measured-and-null.
+
+The stopping point is recorded with the result, and the remaining series
+stay on disk in `progress` for a later pass to extend rather than redo.
