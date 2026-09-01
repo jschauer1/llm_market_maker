@@ -3683,3 +3683,72 @@ have lost the lot.
   the client exists: `is_block_trade` as a whale-follow signal needing no
   Polymarket wallet, and single-name-vs-broad-based as a free structural
   gate for `insider_judgment`. Both ticketed.
+
+## 2026-09-01 (second floor) — the promotion key has no staleness check for superseded versions
+
+**Did.** A second floor at the user's request, 19.3h after the first and
+inside the 24h window (`floor claim --force`, claim 2, session
+`llm-market-identifier-c0`). Board 110,121. 757 settlements recorded.
+All four running theories and all four registered sub-theories ran;
+`insider_judgment` re-judged at v6 by two opus subagents (26 events:
+1 strong / 8 moderate / 17 weak). One R1:
+`KXBIGBROTHERELIMINATION-26SEP03-TAY` NO @ 0.85 on the
+`strong-moderate-no` segment. Report: `user_reports/2026-09-01/floor-2.md`.
+
+**Learned — a version bump forks a position, it does not supersede it,
+and nothing ages the old row out.** `opportunities` keys on
+`(theory_id, theory_version, kalshi_ticker, outcome)`, so re-judging a
+market after a bump writes a *second* live row. Today both existed for
+`KXPRESSSECANNOUNCE-26AUG-SEP08`: id 13663 (v4, moderate, endorsed,
+`prior` +2.0) promoting **R1 RECOMMENDED**, and id 109994 (v6, weak,
+`measured`, −1.02) promoting **R6**, from the same board on the same day.
+`promote`'s staleness checks are all about price — today's ask,
+executability — and none about whether the interpretation behind a row is
+still the current procedure's. The failure is silent, persists until the
+market settles, and **preferentially strands endorsements**, because v5
+deleted the only path to `disposition='endorsed'`, so every endorsed row
+in the ledger is frozen at v4 or earlier. A session reading `promote`
+output without this context reports the stale row as a bet. Ticketed
+`tickets/maintenance/open/2026-09-01-superseded-version-row-keeps-promoting-r1.md`;
+escalated to the user because the fix changes the promotion key.
+
+**Learned — the `n=20 → under_review` trigger reads the wrong number on a
+partitioned theory.** `insider_judgment` (−1.188, n 3,529) and
+`taker_flow` (−0.487, n 1,436) both meet the literal trigger; neither was
+moved. The parent aggregate is exactly the number CLAUDE.md says not to
+read once a theory has registered slices — `insider_judgment`'s slice is
+READY, positive, and produced today's only bet — and `taker_flow`'s
+aggregate is t = −0.46, inside the noise. Amendment proposed to the user:
+trigger on the **complement**, not the aggregate, once any slice is
+registered. Under that rule `insider_judgment` would move
+(complement −2.324 over 882 clusters, t = −2.5) and `taker_flow` would
+not.
+
+**Learned — a pre-registered avoid claim can be falsified by drifting
+*up* through zero, and nothing was watching for that direction.**
+`no_side_premium`'s `cell-b-yes-avoid` went −8.00 (n 64) → −0.98 (n 109)
+→ **+0.46 (n 150)** across three readings. The runbook says a negative
+number here confirms the claim; the corollary — a positive one falsifies
+it — had never had to be applied. `score-theories` tells sessions to
+report a ready slice whose edge has "gone negative"; for an avoid slice
+the alarming direction is the opposite one, and the skill's wording does
+not cover it. At se 3.18 the honest reading is "the −3.9 effect is not
+there; the cell is priced about fairly" — the same conclusion
+`mention_family` reached on the same population. Ticketed to the theory.
+
+**Learned — `insider_judgment` recorded its first `edge_basis='measured'`
+rows.** v6's fix works: 42 of 42 rows carry measured edges where every
+prior row in the theory's history carried a `prior` placeholder.
+Chain-pooled bucket ladder stays monotone: strong +4.15 (n 234),
+moderate +2.12 (n 612), weak −0.12 (n 968). Also note the earlier
+`save_bucket_rates` call in the floor's scoring step writes **nothing**
+for this theory at the defaults (`run_mode='live'`, `pool='version'`
+returns `{}`) — it must be called with `("live","backtest")` and
+`pool="chain"`, which is what the theory itself does.
+
+**Next.** The maintenance ticket above is the highest-value item on the
+board: it is the only known defect that can put a wrong bet in front of
+the user, and it will recur every session until fixed. After that,
+`no_side_premium` needs two more settlement days to rule on cell B, and
+`taker_flow`'s `extreme-imbalance` slice needs its penny-longshot pricing
+fixed before it clears its gates (already ticketed).
