@@ -1475,3 +1475,69 @@ OOS, n=321) - and all were declined at final review. The
 interpretation_value ledger is accruing the answer to whether these
 overrides add or destroy value; the orphaned-evidence escalation for
 adopting the slice rule at v4 went to the user again today.
+
+## 2026-09-01 — live run (floor), v4, run_id `live-2026-09-01`
+
+Funnel: 105,104 board → 499 screened → 202 events → 187 gated out →
+**15 events / 20 markets** judged. Gate breakdown: live sport 47,
+aggregate-of-many-people 31, scheduled indicator 28, vendor panel metric
+22, weather 21, commodity/FX/rates 15, crypto 14, compute/collectible 9.
+
+Stage 5 (opus subagent, web search on): strong 1, moderate 3, weak 11;
+8 of 15 researched. Six rules/title divergences flagged.
+
+Final review (claude-opus-5) endorsed 1, rejected 19. Decisions on the
+four non-weak events:
+
+- **KXPRESSSECANNOUNCE-26AUG-SEP08** (NO) — held moderate, *recommended*.
+  The divergence favours the chosen leg for once: the rules require an
+  announcement actually naming a person, so a "pick coming soon" post
+  does not resolve YES. Decision visibly unmade (Wiles still meeting
+  Jennings at the WH's request; Habba ruled herself out), and nobody can
+  announce an unmade pick. Sibling ladder monotone
+  (SEP01 0.02 < SEP08 0.12 < SEP15 0.37 < OCT01 0.55). Principal risk:
+  the rules count acting/interim, and the seat went empty Sep 1.
+- **KXBIGBROTHERELIMINATION-26SEP03** (2 NO legs) — **lowered
+  strong→moderate, declined.** This is the first time the pre-taped-TV
+  sub-case has been talked *down* here, and the reason is worth keeping:
+  BB28 feed spoilers are republished same-day by Parade, GoldDerby,
+  TVInsider and Hollywood Outbreak, so the "informed group" holds nothing
+  the attentive public lacks — and this market's traders *are* those
+  readers. Rule 2 is about asymmetry, not expertise, and a paid-feed
+  leak community fails it. Verification also broke the subagent's
+  premise: it described the block as LaTrice + Taylor + a replacement,
+  but the nominees were LaTrice, Taylor and **Yash**, with Yash winning
+  his second veto. Vote is cast live Thursday, so it is not in the can.
+- **KXGROK-GROK47-26SEP04** (NO) — lowered moderate→weak, declined. The
+  insider fact (4.7 slipped past Musk's Aug 4 guidance) is already
+  public. "Releases" is undefined — API vs consumer app vs model card —
+  and every liberal reading makes YES easier against the NO leg.
+- **KXTRUMPMEET-26AUG-ZMAM** (NO) — lowered moderate→weak, declined.
+  Rules count phone calls where the title says "meet": broader than the
+  title, so it cuts against the NO favorite. Ask moved 0.95→0.97 between
+  screen and fresh quote with ~1.5h to close.
+
+**The pattern from the last two runs held again and now has a name.**
+Of 20 markets judged, 5 were strong-or-moderate NO — slice matches — and
+the final review declined 4 of them. Third consecutive run where the
+override rate on slice matches is high; `interpretation_value` is the
+ledger that will eventually say whether this stage adds or destroys
+value, and it is still `None` for v4.
+
+**The orphan escalation is resolved and the RUNBOOK is now stale on it.**
+`promote` ranked the endorsed row on `segment=slice:strong-moderate-no`
+with `chain_versions=[1,2,3,4]` — the 2026-08-31 relinking ruling means
+v4 *does* inherit the slice's evidence, so the "v4 carries no bet path to
+this slice" paragraph in RUNBOOK.md (Sub-theories) and the orphaned-
+evidence escalation it mandates are both out of date. Filed as a ticket.
+
+**The endorsement still did not become a bet, and the reason is price.**
+`promote` returned **R4 ACCRUING**, not R1: the slice's evidence is real
+and past its gates (90 clusters, +3.757 net, 314/328 rows backtested,
+tier A/B — counts in full), but the position was first seen at 0.85 on
+2026-08-29 and today's ask is 0.92, so the claim recomputes to **-4.62
+pts at today's ask**. Edge gone. This is the third distinct way a
+slice-matching NO candidate has failed to reach the user, after "gate
+removed it" and "final review declined it" — worth watching whether the
+screen is systematically finding these *after* the price has already
+moved.

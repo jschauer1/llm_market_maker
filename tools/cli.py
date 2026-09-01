@@ -321,7 +321,7 @@ def _cmd_score(args) -> int:
             results = {
                 disposition: score.compute_score(
                     conn, args.theory_id, version,
-                    args.run_mode or "live",
+                    args.run_mode or slices.DEFAULT_RUN_MODES,
                     disposition, run_id=args.run_id, pool=args.pool,
                 )
                 for disposition in ("all", "screened", "endorsed",
@@ -340,10 +340,28 @@ def _cmd_score(args) -> int:
                     )
                     for disposition in results
                 }
+            # "How is this theory doing" is not answered by the parent
+            # alone: a sub-theory can be strongly supported while the
+            # theory around it is flat, and that is the case the whole
+            # partition exists for. Report both, always.
+            seg_report = slices.segment_report(
+                conn, args.theory_id, version, disposition="all",
+                pool=args.pool,
+            )
+            segments = {
+                f"slice:{s['slug']}": {
+                    **s["oos"], "ready": s["ready"], "status": s["status"],
+                    "hypothesis": s["hypothesis"],
+                }
+                for s in seg_report["slices"]
+            }
+            if seg_report.get("complement"):
+                segments["complement"] = seg_report["complement"]
             _emit(
                 {
                     "theory_version": version,
                     **results,
+                    "segments": segments,
                     **({"saved_score_ids": saved} if saved else {}),
                     # Reported alongside, never instead: `all` above counts
                     # rows, and rows that settled the same day are one draw
@@ -869,9 +887,9 @@ def build_parser() -> argparse.ArgumentParser:
     report.add_argument("--version", type=int, default=None)
     report.add_argument(
         "--run-mode", dest="run_mode", default=None,
-        help="scope to one run mode. The printed figures default to live; "
-             "--save without this pools live and backtest, matching what "
-             "promote ranks on",
+        help="scope to one run mode. The default pools live and backtest, "
+             "because a replayed settlement and a forward one are the same "
+             "evidence -- n_backtest says how much is which",
     )
     report.add_argument(
         "--run-id", dest="run_id", default=None,
@@ -882,10 +900,11 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     report.add_argument(
-        "--pool", choices=("version", "chain"), default="version",
+        "--pool", choices=("version", "chain"), default="chain",
         help=(
-            "'version' (default) scopes to theory_version alone, exactly "
-            "as before this flag existed. 'chain' widens the score and "
+            "'chain' (default) pools every version the evidence carries "
+            "across, which is what a bump does unless it declared itself "
+            "breaking. 'version' scopes to theory_version alone and "
             "settlement-day segments to every version a proven carry bump "
             "links back to (spec 2.5); the response's chain_versions key "
             "shows what pooled, and is absent when nothing did"

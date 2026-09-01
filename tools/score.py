@@ -159,6 +159,7 @@ EMPTY_SCORE = {
     "n_clusters": 0,
     "clustered_se": None,
     "unclustered_rows": 0,
+    "n_backtest": 0,
 }
 
 
@@ -312,7 +313,7 @@ def compute_score(
     conn: sqlite3.Connection,
     theory_id: str,
     theory_version: int,
-    run_mode: str = "live",
+    run_mode: str | tuple[str, ...] | list[str] = "live",
     disposition: str = "all",
     *,
     run_id: str | None = None,
@@ -324,22 +325,32 @@ def compute_score(
     theory version pools together, so re-running a backtest over the same
     markets multiplies `n` without adding a single real bet.
 
-    `pool="version"` (default) is today's behaviour, unchanged — no
-    existing caller's meaning moves. `pool="chain"` widens the segment to
-    the maximal run of consecutive versions a proven `carry` bump links
-    back to `theory_version` (spec 2.5); the returned dict then gains
-    `chain_versions` so a pooled number can never be read without seeing
-    what was pooled into it. A chain of one version (nothing proven
-    carry) adds no key, since nothing was pooled.
+    `run_mode` takes one mode or several. Several pools them into one
+    score — a backtested settlement and a forward one are the same
+    evidence (user ruling 2026-08-31), so the pooled figure is usually
+    the honest answer to "how is this theory doing". The result carries
+    `n_backtest` either way, so what the record rests on stays visible.
+
+    `pool="version"` scopes to one theory version. `pool="chain"` widens
+    to every version the evidence carries across — which, since a bump
+    `continues` unless it declares otherwise, is normally all of them;
+    the returned dict then gains `chain_versions` so a pooled number can
+    never be read without seeing what was pooled into it. A chain of one
+    adds no key, since nothing was pooled.
     """
     if pool not in ("version", "chain"):
         raise ValueError(f"invalid pool {pool!r}; expected 'version' or 'chain'")
-    result = _aggregate(
-        observations(
-            conn, theory_id, theory_version, run_mode, disposition,
+    modes = (run_mode,) if isinstance(run_mode, str) else tuple(run_mode)
+    rows: list[dict] = []
+    for mode in modes:
+        batch = observations(
+            conn, theory_id, theory_version, mode, disposition,
             run_id=run_id, pool=pool,
         )
-    )
+        for row in batch:
+            row.setdefault("run_mode", mode)
+        rows.extend(batch)
+    result = _aggregate(rows)
     if pool == "chain":
         chain = theories.carry_chain(conn, theory_id, theory_version)
         if len(chain) > 1:
@@ -964,6 +975,11 @@ def _aggregate(rows: list[dict]) -> dict:
         # Conservative (never merges two events) but does not shrink n,
         # so it is reported rather than hidden.
         "unclustered_rows": unclustered,
+        # Disclosure, never a discount: a replayed settlement is evidence
+        # in full (user ruling 2026-08-31). It is here so a reader can see
+        # what a record rests on without going back to the ledger -- and
+        # so the value backtesting adds to a theory is visible.
+        "n_backtest": sum(1 for r in rows if r.get("run_mode") == "backtest"),
     }
 
 

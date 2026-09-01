@@ -40,7 +40,7 @@ def test_a_maintenance_ticket_lands_under_its_lane(repo):
         created="2026-08-31", created_by="llm-7a",
     )
     assert path.relative_to(repo).as_posix() == (
-        "tickets/maintenance/2026-08-31-fix-state-encoding.md"
+        "tickets/maintenance/open/2026-08-31-fix-state-encoding.md"
     )
     assert path.read_text(encoding="utf-8").startswith("---")
 
@@ -53,7 +53,7 @@ def test_a_theory_ticket_lands_in_that_theorys_folder(repo):
         created_by="llm-7a",
     )
     assert path.relative_to(repo).as_posix() == (
-        "theories/insider_judgment/tickets/"
+        "theories/insider_judgment/tickets/open/"
         "2026-08-31-adopt-strong-moderate-no.md"
     )
 
@@ -106,25 +106,76 @@ def test_a_theory_ticket_reports_which_theory_it_belongs_to(repo):
     assert entry["theory"] == "insider_judgment"
 
 
-def test_closed_tickets_leave_the_backlog_but_not_the_repo(repo):
-    """A finished ticket is the record of what was done and why it was
-    asked for. Deleting it loses the only trace of the request."""
-    path = tickets.create(repo, lane="maintenance", slug="a", title="A",
-                          body="x")
-    tickets.close(path, resolution="fixed in 21b3fe4")
-
-    assert tickets.backlog(repo) == []
-    assert path.exists()
-    assert "fixed in 21b3fe4" in path.read_text(encoding="utf-8")
-    assert tickets.backlog(repo, status="done")[0]["slug"] == "a"
-
-
 def test_a_malformed_ticket_is_reported_not_skipped(repo):
     """A ticket nobody can parse is work nobody will do. Silently
     dropping it is the one behaviour a backlog must not have."""
-    bad = repo / "tickets" / "maintenance" / "2026-08-31-broken.md"
+    (repo / "tickets" / "maintenance" / "open").mkdir(parents=True)
+    bad = repo / "tickets" / "maintenance" / "open" / "2026-08-31-broken.md"
     bad.write_text("no frontmatter here", encoding="utf-8")
 
     entry = [t for t in tickets.backlog(repo) if t["slug"] == "broken"][0]
     assert entry["malformed"] is True
     assert entry["lane"] == "maintenance", "the directory still says the lane"
+
+
+# --- open / completed layout ----------------------------------------------
+
+
+def test_a_new_ticket_lands_in_open(repo):
+    path = tickets.create(repo, lane="maintenance", slug="a", title="A",
+                          body="do a", created="2026-09-01")
+    assert path.relative_to(repo).as_posix() == (
+        "tickets/maintenance/open/2026-09-01-a.md"
+    )
+
+
+def test_a_theory_ticket_also_lands_in_open(repo):
+    path = tickets.create(repo, lane="theory", theory="insider_judgment",
+                          slug="c", title="C", body="do c",
+                          created="2026-09-01")
+    assert path.relative_to(repo).as_posix() == (
+        "theories/insider_judgment/tickets/open/2026-09-01-c.md"
+    )
+
+
+def test_closing_moves_the_file_into_completed(repo):
+    """The backlog is a directory listing, so a done ticket has to leave
+    it physically -- a status field alone means every session reads every
+    ticket ever filed to find the few that are open."""
+    path = tickets.create(repo, lane="maintenance", slug="a", title="A",
+                          body="do a", created="2026-09-01")
+    done = tickets.close(path, resolution="fixed in 21b3fe4")
+
+    assert not path.exists()
+    assert done.relative_to(repo).as_posix() == (
+        "tickets/maintenance/completed/2026-09-01-a.md"
+    )
+    assert tickets.backlog(repo) == []
+    assert tickets.backlog(repo, status="done")[0]["slug"] == "a"
+    assert "fixed in 21b3fe4" in done.read_text(encoding="utf-8")
+
+
+# --- the filing session's context ------------------------------------------
+
+
+def test_a_ticket_records_what_its_author_was_doing(repo):
+    """`created_by: llm-market-identifier-86` alone says who, not what.
+    The lane and task the author was on is most of what makes a ticket
+    readable later -- it says what they were looking at when they hit
+    this, which is the context a reader cannot reconstruct."""
+    path = tickets.create(
+        repo, lane="maintenance", slug="a", title="A", body="do a",
+        created="2026-09-01", created_by="llm-market-identifier-86",
+        author_lane="theory", author_focus="insider_judgment",
+        author_context="backtesting the v4 screen over 90 days when the "
+                       "payload reader crashed on a zlib row",
+    )
+    text = path.read_text(encoding="utf-8")
+    assert "created_by: llm-market-identifier-86" in text
+    assert "author_lane: theory" in text
+    assert "author_focus: insider_judgment" in text
+    assert "backtesting the v4 screen" in text
+
+    entry = tickets.backlog(repo)[0]
+    assert entry["author_lane"] == "theory"
+    assert entry["author_focus"] == "insider_judgment"

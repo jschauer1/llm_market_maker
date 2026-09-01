@@ -384,6 +384,17 @@ theory it lives inside is flat or negative.** When that happens the
 sub-theory's bet is reported as a supported bet, on the same footing as
 any other, because the evidence behind it is real evidence.
 
+**By this definition a sub-theory *is* a theory, and it counts exactly as
+much as one.** It is not a footnote to its parent, a lead, or a
+half-result waiting to become real. It clears the same gates, is scored
+by the same code, ranks through the same `ranked_edge` formula, and
+produces bets at the same rungs. A sub-theory past its gates with a
+positive record outranks a parent theory that has not cleared them —
+evidence is evidence, and where it sits in the folder structure changes
+nothing about what it demonstrates. Any report that lists theories lists
+their sub-theories on the same terms, and "the theory is flat" is never
+a reason to omit a subset that is not.
+
 `insider_judgment` is the worked example and the reason this rule
 exists: the screen as a whole is breakeven, while its `strong-moderate-no`
 subset is the best-evidenced result in this repo (+3.76 net, 90 event

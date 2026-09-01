@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from tools import cli, db, ledger, score, theories
+from tools import cli, db, ledger, score, slices, theories
 
 TS = "2026-08-23T12:00:00Z"
 
@@ -318,19 +318,18 @@ def test_score_report_pool_chain_pools_across_a_proven_carry(dbpath, capsys):
     )
     conn.close()
 
-    # Default (--pool version, implicit): v1's proven-carry predecessor
-    # never joins -- exactly today's behaviour.
-    code, payload = _run(capsys, "--db", dbpath, "score", "report", "t1")
+    # --pool version: v1's predecessor never joins.
+    code, payload = _run(capsys, "--db", dbpath, "score", "report", "t1",
+                         "--pool", "version")
     assert payload["all"]["n"] == 1
     assert "chain_versions" not in payload["all"]
     assert payload["settlement_days"]["all"]["n"] == 1
     assert "chain_versions" not in payload["settlement_days"]["all"]
 
-    # --pool chain: the proven carry pools v1's row in, for both the score
-    # and the settlement-day clusters alike -- no silent segment mismatch.
-    code, payload = _run(
-        capsys, "--db", dbpath, "score", "report", "t1", "--pool", "chain",
-    )
+    # Default (--pool chain since the 2026-08-31 ruling): the carry pools
+    # v1's row in, for both the score and the settlement-day clusters
+    # alike -- no silent segment mismatch.
+    code, payload = _run(capsys, "--db", dbpath, "score", "report", "t1")
     assert payload["all"]["n"] == 2
     assert payload["all"]["chain_versions"] == [1, 2]
     assert payload["settlement_days"]["all"]["n"] == 2
@@ -673,3 +672,97 @@ def test_score_report_save_pools_live_and_backtest_by_default(dbpath, capsys):
     conn.close()
     assert row["run_mode"] == "pooled"
     assert row["n"] == 1, "the backtest settlement is evidence in full"
+
+
+def test_score_report_shows_all_the_evidence_a_theory_has(dbpath, capsys):
+    """`score report <id>` is the obvious command for "how is this theory
+    doing", so it must not answer a narrower question than it appears to.
+
+    Defaulting to live-only and version-only made it print n=9 for a
+    theory holding 3,484 observations, 3,279 of them replayed. An agent
+    reading that concludes the theory has no evidence and passes up a
+    backtest that already exists -- which is the exact way a version bump
+    used to silently discard a track record.
+    """
+    conn = db.connect(dbpath)
+    db.init_db(conn)
+    theories.register(conn, "t1", "T1", "theories/t1", status="testing")
+    score.record_backtest_run(conn, "bt-1", "t1", 1, tier="A")
+    for i in range(6):
+        ledger.record_opportunity(
+            conn, theory_id="t1", theory_version=1, kalshi_ticker=f"BT{i}-X",
+            outcome="no", entry_price=0.8, edge_pts_net=3.0,
+            edge_basis="model", run_mode="backtest", run_id="bt-1",
+            decision_date="2026-06-01", rationale="x",
+        )
+        score.record_settlement(conn, f"BT{i}-X", "no",
+                                resolved_at=f"2026-06-0{i + 1}T00:00:00Z")
+    theories.bump_version(conn, "t1", justification="tightened a threshold")
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=2, kalshi_ticker="LIVE1-X",
+        outcome="no", entry_price=0.8, edge_pts_net=3.0, edge_basis="model",
+        run_mode="live", run_id="live", decision_date="2026-08-27",
+        rationale="x",
+    )
+    score.record_settlement(conn, "LIVE1-X", "no",
+                            resolved_at="2026-09-01T00:00:00Z")
+    conn.close()
+
+    code, payload = _run(capsys, "--db", dbpath, "score", "report", "t1")
+    assert code == 0
+    assert payload["all"]["n"] == 7, (
+        "six replayed settlements at v1 plus one live at v2 -- a bump does "
+        "not discard evidence, and a backtest is evidence"
+    )
+
+
+def test_score_report_can_still_be_narrowed_explicitly(dbpath, capsys):
+    conn = db.connect(dbpath)
+    db.init_db(conn)
+    theories.register(conn, "t1", "T1", "theories/t1", status="testing")
+    score.record_backtest_run(conn, "bt-1", "t1", 1, tier="A")
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="BT0-X",
+        outcome="no", entry_price=0.8, edge_pts_net=3.0, edge_basis="model",
+        run_mode="backtest", run_id="bt-1", decision_date="2026-06-01",
+        rationale="x",
+    )
+    score.record_settlement(conn, "BT0-X", "no",
+                            resolved_at="2026-06-01T00:00:00Z")
+    conn.close()
+
+    code, payload = _run(capsys, "--db", dbpath, "score", "report", "t1",
+                         "--run-mode", "live")
+    assert payload["all"]["n"] == 0, "live-only is still available, by asking"
+
+
+def test_score_report_includes_sub_theory_performance(dbpath, capsys):
+    """"How is this theory doing" is not answered by the parent alone. A
+    sub-theory can be strongly supported while the theory around it is
+    flat, so the command that answers that question must show both."""
+    conn = db.connect(dbpath)
+    db.init_db(conn)
+    theories.register(conn, "t1", "T1", "theories/t1", status="testing")
+    slices.register_slice(
+        conn, "t1", "strong-no",
+        predicate={"outcome": ["no"], "confidence": ["strong"]},
+        hypothesis="the NO subset carries the edge", origin="test",
+        registered_at="2026-08-26T00:00:00Z",
+    )
+    for i in range(12):
+        ledger.record_opportunity(
+            conn, theory_id="t1", theory_version=1, kalshi_ticker=f"SUB{i}-X",
+            outcome="no", entry_price=0.85, edge_pts_net=4.0,
+            edge_basis="model", run_mode="live", run_id="live",
+            decision_date="2026-08-27", confidence="strong", rationale="x",
+        )
+        score.record_settlement(conn, f"SUB{i}-X", "no",
+                                resolved_at=f"2026-09-{(i % 6) + 1:02d}T00:00:00Z")
+    conn.close()
+
+    code, payload = _run(capsys, "--db", dbpath, "score", "report", "t1")
+    assert code == 0
+    segments = payload["segments"]
+    assert "slice:strong-no" in segments
+    assert segments["slice:strong-no"]["n"] == 12
+    assert segments["slice:strong-no"]["ready"] is True

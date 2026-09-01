@@ -2493,3 +2493,82 @@ until backfilled, and the candles expire).
 `insider_judgment` ticket to adopt `strong-moderate-no` at v5 is still
 open and is the best-evidenced unclaimed work in the repo (+4.37 net,
 89 event clusters, 43 settlement days, READY at v4).
+
+## 2026-09-01 — floor (session `llm-market-identifier-cc`, claim 1)
+
+**Did.** First floor ever completed (`floor status` had "no floor has
+ever completed"). Board pulled 105,104 markets. Settlement pass re-quoted
+10,715 awaiting tickers in 107 chunks and landed **775 new settlements**
+(ledger now 14,043). Scored and saved every segment for all four running
+theories. Ran all four per their RUNBOOKs, every stage:
+`insider_judgment` v4 all six stages including the opus analysis subagent
+and a stage-6 final review; `no_side_premium` v1 all four;
+`calibration_harvest` v2 stage 3 twice; `structural_arb` v4 all five.
+18,558 rows recorded. Report at `user_reports/2026-09-01/README.md`.
+
+**Learned.**
+
+1. **No bets today, and the near-miss is instructive.**
+   `KXPRESSSECANNOUNCE-26AUG-SEP08` NO matched `strong-moderate-no`, the
+   repo's best-evidenced segment (90 clusters, +3.757 net, chain 1–4),
+   and the final review recommended it — but `promote` returned **R4**,
+   not R1, because the position was first seen at 0.85 on 2026-08-29 and
+   today's ask is 0.92, recomputing the claim to −4.62 pts. That is now
+   the *third* distinct way a slice-matching NO candidate has failed to
+   reach the user (gate removed it / final review declined it / price
+   moved first). Worth someone asking whether the screen systematically
+   finds these after the move.
+
+2. **The orphaned-evidence escalation is over.** `promote` ranked a v4
+   candidate directly on `slice:strong-moderate-no` with
+   `chain_versions=[1,2,3,4]` — the 2026-08-31 relinking ruling took
+   effect. `insider_judgment`'s RUNBOOK still says the opposite and still
+   mandates escalating it every session; ticketed, not fixed (theory
+   lane).
+
+3. **`calibration_harvest` double-counts every market, every floor.**
+   Its runbook says the two stage-3 runs cover distinct complete
+   populations; `screen()` has no population filter — `categories` is
+   only a cell-key *label* map. Measured: 9,247 attempts per run, **100%
+   overlap**, 6,944 with an identical cell key. `politics|*` and
+   `weather|*` cells are clean; the `other|*` cells (which hold nearly
+   all the data) get the same market twice plus each run labelling the
+   other's population as `other`. Same failure `EXCLUDED_RUNS` quarantines
+   the 2026-08-30 run for. Present since 2026-08-31. Ticketed with both
+   candidate fixes; quarantine decision left to the user.
+
+4. **`tickets new --theory` writes to a phantom folder for any
+   family-nested theory.** `ticket_dir` hardcodes
+   `theories/<slug>/tickets`, ignoring the registry `path`, so
+   insider_judgment's tickets land in `theories/insider_judgment/` — a
+   directory containing nothing but `tickets/` — while the theory itself
+   lives at `theories/insider_bias/insider_judgment/`. Invisible from the
+   supervisor side because `tickets list` globs; breaks the expert
+   contract exactly. Ticketed.
+
+5. **The pre-taped-TV sub-case got talked down for the first time.** The
+   subagent graded Big Brother 28 `strong`; final review lowered it to
+   `moderate` and declined, because BB feed spoilers are republished
+   same-day by Parade/GoldDerby/TVInsider and this market's traders are
+   those readers — the thesis is asymmetry, not expertise. Verification
+   also broke the subagent's stated block (nominees were LaTrice, Taylor
+   and **Yash**, with Yash winning the veto). If that reasoning is right
+   it applies to every live-feed reality show, which is a meaningful
+   narrowing of the theory's flagship family.
+
+6. `no_side_premium` moved hard on settlements: aggregate −7.54 → −0.16
+   (n 66 → 129). `cell-b-yes-avoid` is READY at −0.98 — still confirming
+   its avoid claim, but far weaker than the −3.9 it was written against.
+   `calibration_harvest` cells: **0 of 21 measurable**, best is 4
+   settlement days against a bar of 8.
+
+**Next.**
+
+- Fix the `calibration_harvest` double-run (maintenance ticket) — it is
+  corrupting the cell grid every day it runs, so it compounds.
+- Fix `ticket_dir` and move the two stranded insider_judgment tickets.
+- The `adopt-strong-moderate-no` question now has a concrete argument
+  behind it: today the slice matched, the review endorsed, and the bet
+  still died on price because the *procedure* has no NO-side entry rule.
+- Nobody has run a replay for `structural_arb` (n=0 at v4, tier A, all
+  history fetchable) — that remains the cheapest evidence on the board.

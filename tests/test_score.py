@@ -356,3 +356,24 @@ def test_record_backtest_run_leaves_no_open_transaction_on_failure(conn):
     with pytest.raises(sqlite3.IntegrityError):
         score.record_backtest_run(conn, "run-d", "no_such_theory", 1, now=TS)
     assert conn.in_transaction is False
+
+
+def test_every_score_says_how_much_of_it_is_replayed(conn):
+    """n_backtest is disclosure, never a discount -- a replayed
+    settlement is evidence in full. But a reader must be able to see what
+    a record rests on without going back to the ledger, and the aggregate
+    was the one score that did not carry it."""
+    score.record_backtest_run(conn, "bt-1", "t1", 1, tier="A")
+    _bet(conn, "LIVEA", 0.50, 6.0)
+    score.record_settlement(conn, "LIVEA", "yes")
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=1, kalshi_ticker="BTA",
+        outcome="yes", entry_price=0.50, edge_pts_net=6.0,
+        edge_basis="model", run_mode="backtest", run_id="bt-1",
+        decision_date="2026-06-01", rationale="x",
+    )
+    score.record_settlement(conn, "BTA", "yes")
+
+    result = score.compute_score(conn, "t1", 1, ("live", "backtest"))
+    assert result["n"] == 2
+    assert result["n_backtest"] == 1
