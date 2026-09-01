@@ -13,13 +13,14 @@ kind of evidence and they pool** — a backtested edge feeds a theory's
 gates, its ranking, and its sub-theories' gates exactly as forward
 settlements do, and is never described as weaker for being backtested.
 
-What differs is the *rate*. Forward evidence accrues at the speed of
-settlement days, and the gates need five of them: `no_side_premium` has
-spent a week reaching four. A replay can clear the same gates in an
-afternoon and re-runs for free. So a theory sitting at n=0 with fetchable
-history is not short of evidence — **it is short of somebody running the
-replay**, and running it is often worth more than another live scan that
-adds unproven suggestions.
+Backtesting and settlement data are the two ways a theory earns
+evidence, and what separates them is **time**. Settlements arrive at the
+speed of the calendar and the gates want five settlement days —
+`no_side_premium` has spent a week reaching four. A replay buys the same
+evidence in an afternoon and re-runs for free. So a theory sitting at
+n=0 with fetchable history is not short of evidence — **it is short of
+somebody running the replay**, and running it is often worth more than
+another live scan that adds unproven suggestions.
 
 This cuts both ways, which is the point: a replay can also show an edge
 is not there, cheaply, before the theory spends months proving it slowly.
