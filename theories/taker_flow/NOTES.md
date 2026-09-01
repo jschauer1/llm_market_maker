@@ -150,3 +150,85 @@ Pre-registered before looking at the full ~6,000-market sample:
 Entry is at the last trade price throughout, which **flatters** the
 strategy by the half-spread. Any positive result must clear that before it
 means anything.
+
+## 2026-09-01 (cont.) — the pre-registered test failed; what replaced it
+
+**Result of the pre-registration above: FAILED.** At |imb|>0.6 with a 24h
+buffer over 3,585 usable decisions (58 settlement days, 1,931 event
+clusters): all +0.70 (t=+0.62, CI [−1.51,+2.91]), single-name +0.71
+(t=+0.46), broad-based +0.69 (t=+0.42). The single-name localisation —
+the one part of the Stanford claim I had not already contaminated by
+sweeping — shows **no difference whatsoever**. Net of fees the population
+is −0.17. By the stated kill criterion the pre-registered rule is dead.
+
+The pre-registered structural proxy has known impurities (city-coded
+weather `KXRAIN-…-BOS` and outcome-coded games `…-TIE` both classify as
+single-name). I left it exactly as registered rather than re-tuning it
+after seeing the result. It measured no difference either way, so the
+impurity decided nothing.
+
+**What is actually in the data is a discontinuity, not a gradient.**
+Splitting at 0.9: `strong` (0.6–0.9) is −0.78 over 618 clusters, `extreme`
+(≥0.9) is +4.29 over 280 clusters (t=+2.04). Moderate one-sidedness is
+worth nothing and near-total one-sidedness is worth something — which is
+what the mechanism actually predicts, and is a sharper claim than the one
+I pre-registered.
+
+I then tried to kill it and could not: top series is 3% of the cell,
+positive in all five price bands, positive on both flow sides, stable
+across time (+4.46 / +4.21), leave-one-series-out worst case +3.50. See
+`backtests/RESULTS.md` for the tables.
+
+**It is still post-hoc, so it is registered as a slice, not bet.**
+`extreme-imbalance`, predicate `{"extra": {"flow_bucket": "extreme"}}`,
+with `backtest-2026-09-01-takerflow` declared in `mined_from_run_ids`. Its
+out-of-sample n is 0 and it is not `ready` — it must earn ≥10 clusters and
+≥5 settlement days forward before it can rank anything. That is the whole
+point: the run that suggested it can never vouch for it.
+
+**Honest size of the prize, if it survives.** Mean entry in the tail is
+0.405, where the fee alone is 1.68 pts. So +4.29 gross is ~+2.6 net of
+fees, and a realistic half-spread on top leaves perhaps +1.1 to +2.1.
+Thin. Worth testing forward; not worth claiming.
+
+### A defect found by running it, and fixed the same day (v1 → v2)
+
+The first live run produced 816 candidates and 18 of them claimed a
+`model_prob` above 1.0, with entries at an ask of **1.000**. Two distinct
+bugs with one root cause — applying a flat population average at prices
+where it is arithmetically impossible:
+
+- an ask of 1.00 costs exactly what it can pay, so its maximum profit is
+  zero and it is not a position at all;
+- the most a position bought at `entry` can gain is `(1-entry)` in points,
+  so a 4.29-point claim on a 0.97 ask is unpayable by construction.
+
+v2 excludes an unpayable ask in `screen` (funnel key `unpayable_ask`) and
+caps the claim at the headroom in `price`. Bumped `continues`: neither
+changes any decision on a payable candidate at a normal price, so the tier
+A replay stays valid evidence, but both change the decision path.
+
+Worth noting **how** this was caught: not by reading the code but by
+looking at the extreme values of what the live run recorded. The screen's
+liquidity filters (spread ≤ 0.05, OI ≥ 500) pass an ask of 1.00 happily,
+because a one-cent-wide book at 1.00 is *liquid* — it is just not
+*profitable*. Liquidity filters do not imply payability, and any theory
+pricing from a population average should check both.
+
+### Data-conventions incident worth recording
+
+Two collector processes ended up appending to one JSONL concurrently (a
+`nohup … &` inside a backgrounded tool call detached and survived, then a
+second run was launched against the same file). The result was interleaved
+writes: one headless fragment whose ticker and outcome were unrecoverable,
+plus ~2,600 duplicate records. Recovered by scanning the raw text with a
+streaming `JSONDecoder` for complete objects and keeping the copy of each
+ticker with the most trades — 5,184 distinct markets survived, and only
+one record was lost outright.
+
+The lesson is not "be careful": it is that **per-record `flush()` is not
+atomicity**, and an append-only checkpoint is only single-writer-safe. The
+resume logic happened to make this recoverable — the dropped market simply
+gets re-fetched next run, because the resume set is built from parseable
+lines. A collector that had instead written one final blob would have lost
+everything.

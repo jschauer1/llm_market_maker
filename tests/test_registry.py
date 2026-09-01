@@ -56,6 +56,16 @@ def _register_matching(conn):
         conn.execute("UPDATE theories SET version=4, status='testing'"
                      " WHERE id='calibration_harvest'")
     theories.set_uses_llm_judgment(conn, "calibration_harvest", False, now=TS)
+    # taker_flow registered 2026-09-01 and is `testing`: fully mechanical,
+    # its tier A replay over 3,585 settled decisions is recorded, and the
+    # only positive population is the `extreme-imbalance` slice, which is
+    # still accruing out-of-sample evidence.
+    theories.register(conn, "taker_flow", "Taker Flow",
+                      "theories/taker_flow", now=TS)
+    with db.write(conn):
+        conn.execute("UPDATE theories SET version=2, status='testing'"
+                     " WHERE id='taker_flow'")
+    theories.set_uses_llm_judgment(conn, "taker_flow", False, now=TS)
     # deadline_drift registered 2026-08-29 and stays `proposed`: its screen
     # runs and reproduces the audited population, but the hazard bins that
     # define its edge have never been collected, so price() returns nothing.
@@ -107,7 +117,8 @@ def test_running_returns_scannable_theories_and_raises_on_drift(conn):
     _register_matching(conn)
     ids = [t.id for t in registry.running(conn)]
     assert ids == ["calibration_harvest", "insider_judgment",
-                   "mention_family", "no_side_premium", "structural_arb"]
+                   "mention_family", "no_side_premium", "structural_arb",
+                   "taker_flow"]
     with db.write(conn):
         conn.execute("UPDATE theories SET version=99"
                      " WHERE id='mention_family'")
