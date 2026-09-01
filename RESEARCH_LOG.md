@@ -3348,7 +3348,39 @@ exactly that. **A one-cent spread is not a book, and half this dataset
 is quotes nobody could fill.** Any theory reading `obs` must filter
 before reading a level. Cross-referenced into that study's STUDY.md.
 
-**The surviving half is a better thesis than the one that died**, and
+**Then the successor died too, on arithmetic, in fifteen minutes.**
+Idea 36's mirror trade was priced before the ticket was handed over. The
+favorite's ask and the underdog's ask sum to **1 + spread**, not 1 —
+taking either side crosses the book — so the legs are bound by an
+identity rather than by symmetry:
+
+```
+fav_net + dog_net == -(spread + fee_fav + fee_dog)
+  -3.8989 + -1.0411 = -4.9400   vs round trip 4.9400   (agreement 1e-6)
+```
+
+The underdog leg measures **−1.04**, not +3.90. **Both sides lose, and
+they must.** Separating the market's error from the toll (`mid = ask −
+spread/2`) shows there was little error to start with: mid-relative
+mispricing in 0.50–0.80 is **−1.45, t=−1.23, not significant**, against a
+4.94 round-trip cost. About three-quarters of the −3.90 headline was
+never mispricing. Idea 36 is `dead`; its ticket is closed.
+
+**The trap is repo-wide and is the thing to keep.** *A one-sided net edge
+of −N does not imply +N on the other side — it implies −(round_trip − N),
+and both sides lose whenever the mispricing is smaller than the round
+trip* (2.2–5.3 pts here, by price). `net = (win rate − ask) − fee` stays
+the right quantity for a bet actually placed; what is wrong is the step
+from "do not buy this" to "so buy the other one", and every theory that
+reports a signed cell edge is one step from making it.
+
+Deliberately **not** promoted: 0.80–0.90 is *under*priced at mid by
++3.54 (t=+2.23), opposite to favorite-longshot. At ask it nets +1.73
+(t=+1.10), it came from scanning six bands post hoc, and pre-registering
+it on the data that suggested it is the failure this repo has already
+made twice.
+
+**The surviving half looked like a better thesis than the one that died**, and
 its mandatory composition control was run before the ticket was released
 rather than after: pooled −3.90 (t=−3.30), series-equal −2.51, **LOO
 negative in 171/171**, present in sport lines (−2.90) and non-sport
@@ -3371,5 +3403,7 @@ not the negation.
   (`backfill-restart-loop`): put collection freshness in `cli state`,
   which is the 90% fix; do not build an auto-restarter first, because
   two concurrent runs lock the SQLite.
-- `mid-band-favorite-fade` is the strongest unbuilt thesis this session
-  saw, and the first thing it needs is arithmetic, not data.
+- `mid-band-favorite-fade` is **dead**, killed the same session it was
+  filed. Net effect of the lane: two theses eliminated, one on evidence
+  and one on arithmetic, and no new theory built — which is the correct
+  outcome when both fail their own pre-registered bars.

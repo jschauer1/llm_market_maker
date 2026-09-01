@@ -303,3 +303,94 @@ Two corollaries worth carrying:
 
 That last number is the answer to why the sweep and the screen disagreed:
 the sweep's population is majority-untradeable, the screen's is not.
+
+---
+
+# Addendum, same session: the successor thesis was priced, and it is not a trade either
+
+Idea 36 (`mid-band-favorite-fade`) came out of the band table above:
+buying the favorite at 0.50–0.80 loses **−3.90 pts net (t=−3.30)** even
+with a real book, and unlike the 0.80+ bands that number survives every
+composition control (series-equal −2.51, **leave-one-series-out negative
+in 171/171**). The obvious trade is the mirror — buy the underdog.
+
+**It is not.** The mirror was priced before the ticket was handed over,
+because it is arithmetic and needs no new data.
+
+## The favorite's ask and the underdog's ask do not sum to 1
+
+They sum to **1 + spread**, because taking either side crosses the book:
+
+```
+favorite_bid  = favorite_ask - spread
+underdog_ask  = 1 - favorite_bid = 1 - favorite_ask + spread
+```
+
+So the two legs' net edges are bound by an identity, not by symmetry:
+
+```
+fav_net + dog_net  ==  -(spread + fee_fav + fee_dog)
+
+measured, 0.50-0.80, n=2,609:
+  -3.8989 + -1.0411 = -4.9400   vs  -4.9400    (agreement to 1e-6)
+```
+
+**Both sides lose, and they must.** The naive mirror of −3.90 is +3.90;
+the real underdog leg is **−1.04**, and the 4.94-point gap is the
+round-trip cost (1.68 of spread plus 1.59 + 1.67 of fees).
+
+```
+favorite ask   BUY FAVORITE      naive mirror     BUY UNDERDOG
+0.50-0.65      -4.21 (t=-1.65)      +4.21           -1.08 (t=-0.42)
+0.65-0.80      -3.65 (t=-2.57)      +3.65           -1.01 (t=-0.70)
+0.50-0.80      -3.90 (t=-3.30)      +3.90           -1.04 (t=-0.88)
+0.80-0.90      +1.73 (t=+1.10)      -1.73           -5.43 (t=-3.39)
+0.90-0.97      +0.44 (t=+0.45)      -0.44           -3.06 (t=-3.17)
+```
+
+## How much of the "favorites lose" headline is mispricing at all
+
+Separating the market's error from the toll for acting on it —
+`mid = ask − spread/2`, gross of fees:
+
+```
+fav ask       GROSS @ mid          round-trip cost
+0.50-0.65     -1.57  (t=-0.62)          5.29
+0.65-0.80     -1.35  (t=-0.95)          4.66
+0.50-0.80     -1.45  (t=-1.23)          4.94
+0.80-0.90     +3.54  (t=+2.23)          3.69
+0.90-0.97     +1.70  (t=+1.77)          2.62
+0.97-1.01     +0.90  (t=+1.61)          2.15
+```
+
+**In the mid band the market is close to efficient.** The true
+mid-relative mispricing is −1.45 and *not significant* (t=−1.23); roughly
+three-quarters of the −3.90 headline is the round trip. Idea 36's
+mechanism claim — a favorite-longshot bias big enough to fade — is not
+supported once the toll is separated out, and no side of it is bettable.
+
+**Idea 36 is recorded dead.** It cost about fifteen minutes to kill,
+against the session it would have cost a peer who took the ticket at
+face value.
+
+## The generalizable trap, which is why this is in the study and not only the ticket
+
+> **A one-sided net edge of −N does NOT imply an edge of +N on the other
+> side.** It implies the other side is at −(round trip − N). Both sides
+> lose whenever the mispricing is smaller than the round-trip cost, which
+> on this population is ~2.2–5.3 points depending on price.
+
+`net = (win rate − ask) − fee` is the right decision quantity for a bet
+that is actually placed, and nothing above changes that. What is wrong is
+reading a *negative* cell as an *opportunity on the complement* — the
+step from "do not buy this" to "so buy the other one". On this dataset
+that step is worth −4.94 points in the mid band, and it is available to
+make anywhere a theory reports a signed cell edge.
+
+The one cell where the sign is genuinely favourable is **0.80–0.90**,
+underpriced at mid by +3.54 (t=+2.23) — the *opposite* of
+favorite-longshot bias. That is noted, deliberately, as an observation
+and **not** promoted to a thesis: it was found by looking at a table of
+six bands after the fact, its at-ask net is +1.73 (t=+1.10, not
+significant), and pre-registering it on the same data that suggested it
+is the exact failure this repo has already made twice.

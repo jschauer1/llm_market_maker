@@ -6,7 +6,9 @@ created_by: llm-market-identifier-b3
 author_lane: new-theory
 author_focus: no-favorite-high-band
 author_context: Found while running the deciding experiment that killed idea 33 (no-favorite-high-band); the liquidity filter that dissolved the high-band effect left the mid-band one standing. Measured on 37% backfill coverage, NOT yet composition-controlled.
-status: open
+status: done
+closed: 2026-09-01
+resolution: Killed by its own item (1), run before release. The composition control PASSED -- buying the mid-band favorite really does lose -3.90 (t=-3.30), LOO negative in 171/171 -- but the mirrored trade is not +3.90. Favorite ask and underdog ask sum to 1+spread, so fav_net + dog_net == -(spread + fees) exactly (-3.8989 + -1.0411 = -4.9400, verified to 1e-6). The underdog leg measures -1.04: BOTH SIDES LOSE. Mid-relative mispricing is only -1.45 (t=-1.23, not significant) against a 4.94 round-trip cost, so ~3/4 of the headline was toll rather than error. Idea 36 recorded dead. Generalizable lesson kept in the study and the registry: a one-sided net edge of -N does not imply +N on the other side, it implies -(round_trip - N).
 ---
 MECHANISM AND MEASUREMENT. studies/2026-09-01-liquidity-filtered-side-split/mechanism.py applied the series-bias study's own pre-registered tradeable-book filter (spread<=0.07 AND open_interest>=100 -- the correction in that study's STUDY.md, which makes open_interest load-bearing and spread explicitly not) to the WHOLE price range rather than just the 0.90-0.97 cell. The population splits cleanly in two, day-clustered over 61 close days:
 
@@ -101,3 +103,55 @@ Scripts: `studies/2026-09-01-liquidity-filtered-side-split/measure.py`
 (filter, `day_stat`, `control`) and `mechanism.py` (the band table). The
 control above was ad hoc against those helpers and is reproducible from
 them; it is not yet checked in as its own file.
+
+---
+
+## CLOSED, same session: both sides lose. Do not spend a session on this.
+
+Item (1) of the parent list — "the mirrored trade is not simply +3.65,
+recompute from the underdog side directly" — was run before release,
+because it is arithmetic over data already on disk. **It kills the
+thesis.**
+
+The composition control passed, so the −3.90 is real: buying the mid-band
+favorite genuinely loses, and it is not composition. But the mirror is
+not +3.90, because the favorite's ask and the underdog's ask sum to
+**1 + spread**, not 1 — taking either side crosses the book:
+
+```
+underdog_ask = 1 - favorite_ask + spread
+
+  =>  fav_net + dog_net  ==  -(spread + fee_fav + fee_dog)
+  measured: -3.8989 + -1.0411 = -4.9400  vs round trip 4.9400  (1e-6)
+```
+
+```
+favorite ask   BUY FAVORITE      naive mirror     BUY UNDERDOG
+0.50-0.65      -4.21 (t=-1.65)      +4.21           -1.08 (t=-0.42)
+0.65-0.80      -3.65 (t=-2.57)      +3.65           -1.01 (t=-0.70)
+0.50-0.80      -3.90 (t=-3.30)      +3.90           -1.04 (t=-0.88)
+```
+
+And separating the market's error from the toll for acting on it —
+`mid = ask − spread/2`, gross of fees — shows there was not much error to
+begin with: **the mid-relative mispricing in 0.50–0.80 is −1.45, t=−1.23,
+not significant**, against a round-trip cost of 4.94. About
+three-quarters of the headline was never mispricing.
+
+**Idea 36 recorded `dead`.** Nothing here changes with more data: the
+round-trip cost is structural and the residual was insignificant before
+any multiple-comparison penalty.
+
+**What to take from it instead** — the trap is repo-wide and worth more
+than the thesis was:
+
+> A one-sided net edge of **−N** does not imply **+N** on the other side.
+> It implies the other side sits at **−(round_trip − N)**. Both sides
+> lose whenever the mispricing is smaller than the round trip, which on
+> this population is 2.2–5.3 points depending on price.
+
+Every theory that reports a signed cell edge is one step from making it —
+the step from "do not buy this" to "so buy the other one".
+
+Full working: `studies/2026-09-01-liquidity-filtered-side-split/STUDY.md`,
+"Addendum, same session".

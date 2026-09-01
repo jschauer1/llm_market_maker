@@ -246,9 +246,17 @@ The liquidity filter turns out to explain the *series-bias study's*
 headline, not just this cell: above 0.80 the population's famous
 negativity is entirely an empty-book artifact (0.98–1.01 goes −14.03 →
 +0.45), while **below 0.80 it survives the filter unchanged** (−4.90 →
-−4.21, −3.30 → −3.65, on n=2,609 with a real book). That surviving half
-is filed as idea 36 / ticket `2026-09-01-mid-band-favorite-fade`, and its
-mandatory composition control has already been run and **passed**
-(pooled −3.90 t=−3.30, series-equal −2.51, LOO negative in 171/171) —
-the opposite signature to this thesis. Cross-referenced into
+−4.21, −3.30 → −3.65, on n=2,609 with a real book). That surviving half was
+filed as idea 36 / `2026-09-01-mid-band-favorite-fade`. Its composition
+control **passed** (pooled −3.90 t=−3.30, series-equal −2.51, LOO negative
+in 171/171) — the opposite signature to this thesis — **but the idea is
+nonetheless dead and its ticket closed, killed the same session on
+arithmetic**: the mirrored underdog leg is −1.04, not +3.90, because the
+two asks sum to 1 + spread and `fav_net + dog_net == −(spread + fees)`
+exactly. Both sides lose. Mid-relative mispricing there is −1.45
+(t=−1.23, not significant) against a 4.94 round-trip cost.
+
+So the reusable output of this ticket is **two eliminations and one
+repo-wide caution**: a one-sided net edge of −N does not imply +N on the
+other side; it implies −(round_trip − N). Cross-referenced into
 `studies/2026-08-29-series-bias-mining/STUDY.md`.
