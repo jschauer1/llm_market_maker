@@ -766,3 +766,150 @@ def test_score_report_includes_sub_theory_performance(dbpath, capsys):
     assert "slice:strong-no" in segments
     assert segments["slice:strong-no"]["n"] == 12
     assert segments["slice:strong-no"]["ready"] is True
+
+
+def test_cli_bump_default_kind_matches_the_python_api_default(dbpath, capsys):
+    """The CLI's default bump kind must BE the Python API's default.
+
+    These drifted: `theories.bump_version` took `kind='continues'` as its
+    default from the 2026-08-31 ruling, while the CLI kept `breaking` --
+    the pre-ruling default -- and did not even offer `continues` as a
+    choice. A session bumping through the CLI therefore severed its
+    theory's evidence by accident, which is the exact failure the ruling
+    was made to stop; three of four running theories reached n=0 that way
+    before it. Pinned here so the two cannot drift apart again silently.
+    """
+    import inspect
+
+    api_default = inspect.signature(theories.bump_version).parameters["kind"].default
+    assert api_default == "continues"
+
+    code, payload = _run(capsys, "--db", dbpath, "theories", "bump", "t1",
+                         "--justification", "changed a threshold")
+    assert code == 0
+    assert payload["version"] == 2
+
+    conn = db.connect(dbpath)
+    kind = conn.execute(
+        "SELECT kind FROM theory_versions WHERE theory_id='t1' AND version=2"
+    ).fetchone()["kind"]
+    conn.close()
+    assert kind == api_default
+
+
+def test_cli_bump_can_record_continues_explicitly(dbpath, capsys):
+    """`continues` must be an accepted --kind choice, not just the default.
+
+    A session following a ticket that says "bump, kind 'continues'" passes
+    the flag explicitly. Before the fix argparse rejected the value
+    outright, so the documented instruction was unrunnable.
+    """
+    code, payload = _run(capsys, "--db", dbpath, "theories", "bump", "t1",
+                         "--kind", "continues",
+                         "--justification", "widened the population")
+    assert code == 0
+
+    conn = db.connect(dbpath)
+    kind = conn.execute(
+        "SELECT kind FROM theory_versions WHERE theory_id='t1' AND version=2"
+    ).fetchone()["kind"]
+    conn.close()
+    assert kind == "continues"
+
+
+def test_cli_bump_breaking_still_available_as_an_explicit_sever(dbpath, capsys):
+    """Severing stays available and absolute -- it just has to be asked for."""
+    code, payload = _run(capsys, "--db", dbpath, "theories", "bump", "t1",
+                         "--kind", "breaking",
+                         "--justification", "population is unrecognisable")
+    assert code == 0
+
+    conn = db.connect(dbpath)
+    kind = conn.execute(
+        "SELECT kind FROM theory_versions WHERE theory_id='t1' AND version=2"
+    ).fetchone()["kind"]
+    conn.close()
+    assert kind == "breaking"
+
+
+def test_score_report_flags_a_riskless_bucket_that_is_entirely_rejections(
+        dbpath, capsys):
+    """A riskless return nobody could have taken must not read as a headline.
+
+    `structural_arb`'s report showed `riskless_roi=+0.550` on `all` --
+    +55% -- from two KXWTAGTOTAL findings whose own rationales read
+    "~0.01 baskets fillable at riskless prices, ~$0.00 floor profit".
+    Every row the theory has ever recorded was rejected, so `all` and
+    `rejected` were identical, while `state`'s EVIDENCE line showed
+    "n 0" and hid it in the other direction.
+
+    This is narrower than "rejections count in roi_all", which is
+    deliberate and documented: for a judgment theory a rejected winner is
+    real counterfactual information -- the screen was right and the
+    judgment cost you. A depth rejection is different in kind. "Not
+    fillable at any size" means there was no position to take, so the
+    counterfactual is IMPOSSIBLE rather than merely untaken.
+
+    Report-only by design (option (a) of the ticket): no stored score
+    changes, no vocabulary is redefined, and `riskless_roi` still means
+    what every recorded row was written under.
+    """
+    conn = db.connect(dbpath)
+    opp, _ = ledger.record_basket(
+        conn, theory_id="t1", theory_version=1,
+        legs=[{"kalshi_ticker": "ARB-A", "outcome": "yes", "entry_price": 0.40},
+              {"kalshi_ticker": "ARB-B", "outcome": "no", "entry_price": 0.50}],
+        max_payout=1.0, min_payout=1.0, edge_pts_net=5.0,
+        edge_basis="model", run_mode="live", run_id="live",
+        decision_date="2026-08-27", rationale="~0.01 baskets fillable",
+    )
+    ledger.interpret(conn, opp, "rejected", "not fillable at any size")
+    score.record_settlement(conn, "ARB-A", "yes",
+                            resolved_at="2026-09-01T00:00:00Z")
+    score.record_settlement(conn, "ARB-B", "yes",
+                            resolved_at="2026-09-01T00:00:00Z")
+    conn.close()
+
+    code, payload = _run(capsys, "--db", dbpath, "score", "report", "t1")
+    assert code == 0
+    assert payload["all"]["riskless_n"] == 1
+    assert payload["all"]["riskless_roi"] is not None
+
+    notes = payload.get("notes") or []
+    assert any("riskless" in n.lower() and "reject" in n.lower()
+               for n in notes), f"no annotation on the riskless bucket: {notes}"
+
+
+def test_score_report_does_not_flag_a_riskless_bucket_with_live_rows(
+        dbpath, capsys):
+    """The annotation must fire only when EVERY riskless row was rejected.
+
+    A theory with a genuinely takeable arbitrage alongside a rejected one
+    is reporting real money, and warning about it would train readers to
+    ignore the note.
+    """
+    conn = db.connect(dbpath)
+    for i, disp in enumerate(("rejected", None)):
+        opp, _ = ledger.record_basket(
+            conn, theory_id="t1", theory_version=1,
+            legs=[{"kalshi_ticker": f"ARB{i}-A", "outcome": "yes",
+                   "entry_price": 0.40},
+                  {"kalshi_ticker": f"ARB{i}-B", "outcome": "no",
+                   "entry_price": 0.50}],
+            max_payout=1.0, min_payout=1.0, edge_pts_net=5.0,
+            edge_basis="model", run_mode="live", run_id="live",
+            decision_date="2026-08-27", rationale="x",
+        )
+        if disp:
+            ledger.interpret(conn, opp, disp, "not fillable")
+        score.record_settlement(conn, f"ARB{i}-A", "yes",
+                                resolved_at="2026-09-01T00:00:00Z")
+        score.record_settlement(conn, f"ARB{i}-B", "yes",
+                                resolved_at="2026-09-01T00:00:00Z")
+    conn.close()
+
+    code, payload = _run(capsys, "--db", dbpath, "score", "report", "t1")
+    assert code == 0
+    assert payload["all"]["riskless_n"] == 2
+    notes = payload.get("notes") or []
+    assert not any("riskless" in n.lower() for n in notes), notes

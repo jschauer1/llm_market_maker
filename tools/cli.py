@@ -405,10 +405,38 @@ def _cmd_score(args) -> int:
             }
             if seg_report.get("complement"):
                 segments["complement"] = seg_report["complement"]
+            # Report-only annotation. A riskless bucket built entirely
+            # from rejected rows states a return nobody could have taken:
+            # `structural_arb` showed riskless_roi=+0.550 on `all` from
+            # two findings whose own rationales read "~0.01 baskets
+            # fillable at riskless prices, ~$0.00 floor profit", while
+            # `state`'s EVIDENCE line showed "n 0" and hid it the other
+            # way. This is NARROWER than "rejections count in roi_all",
+            # which is deliberate and documented -- for a judgment theory
+            # a rejected winner is real counterfactual information. A
+            # DEPTH rejection differs in kind: "not fillable at any size"
+            # means there was no position to take, so the counterfactual
+            # is impossible rather than merely untaken. Annotating rather
+            # than changing the number keeps `riskless_roi` meaning what
+            # every recorded row was written under (CLAUDE.md: prefer a
+            # new name to a redefined one).
+            notes = []
+            rl = (results["all"] or {}).get("riskless_n") or 0
+            if rl and rl == ((results["rejected"] or {}).get("riskless_n") or 0):
+                notes.append(
+                    f"riskless_roi covers {rl} position(s), all of them "
+                    "REJECTED. If they were rejected for depth ('not "
+                    "fillable at any size') the counterfactual is "
+                    "impossible rather than untaken -- there was no "
+                    "position to take -- so this is not a return the "
+                    "theory could have earned. Check the rows' "
+                    "rejection rationales before quoting it."
+                )
             _emit(
                 {
                     "theory_version": version,
                     **results,
+                    "notes": notes,
                     "segments": segments,
                     **({"saved_score_ids": saved} if saved else {}),
                     # Reported alongside, never instead: `all` above counts
@@ -746,11 +774,17 @@ def build_parser() -> argparse.ArgumentParser:
     bump = ts.add_parser("bump")
     bump.add_argument("id")
     bump.add_argument(
-        "--kind", choices=("breaking", "carry"), default="breaking",
+        "--kind", choices=("continues", "carry", "breaking"),
+        default="continues",
         help=(
-            "breaking (default) resets the track record; carry pools "
-            "evidence forward and needs a passing equivalence proof, which "
-            "only exists from Python -- see theories.prove_carry"
+            "how this bump relates to the predecessor's EVIDENCE. "
+            "continues (default) -- the procedure changed and the evidence "
+            "stands, no proof required. carry -- the change provably could "
+            "not alter any recorded decision; refused without a passing "
+            "equivalence proof, which only exists as a Python object (see "
+            "theories.prove_carry). breaking -- an explicit sever that "
+            "resets the track record; --justification must say what makes "
+            "the old evidence inapplicable."
         ),
     )
     bump.add_argument(

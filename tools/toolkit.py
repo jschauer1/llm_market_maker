@@ -73,6 +73,7 @@ GROUPS = {
     "tools/registry.py": "the theory contract",
     "tools/domain.py": "the theory contract",
     "tools/cli.py": "plumbing",
+    "tools/atomic_write.py": "plumbing",
     "tools/http.py": "plumbing",
     "tools/timeutil.py": "plumbing",
     "tools/toolkit.py": "plumbing",
