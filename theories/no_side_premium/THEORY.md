@@ -154,8 +154,90 @@ land at YES **-4.42** (claimed -3.9) and NO **+3.83** (claimed +2.0). Full
 write-up: `studies/2026-08-29-side-asymmetry-extension/`; report this
 theory on the paired statistic first, `compute_score` alongside.
 
+**2026-09-01 — the `n_days >= 8` bar is reached, and the paired claim is
+null.** `n_days=8` (close days 08-24 through 08-31; 09-01 excluded at 18%
+settled under a >=90% rule fixed before the numbers). Mean `NO - YES` =
+**+2.91 pts**, day-clustered SE **5.51**, t = +0.53 on 7 df, 95% CI
+**[-7.89, +13.72]**, sign test 5/8 (p=0.727). Per-side: YES **-2.16**
+(claimed -3.9), NO **+0.75** (claimed +2.0). Pass 1's +8.25 at 5 days, and
+both of its per-side estimates, moved toward zero as days were added.
+**Unconfirmed, not disproven** — the CI still contains +2.
+
+**And the paired estimator turns out to be the wrong instrument, measured
+rather than argued.** It was adopted because the day effect "is a common
+shock to both sides, so it cancels". It is not: the YES and NO favorites
+in this screen are different markets on different subjects, not two sides
+of one contract. Between-day SD, and days needed to detect +2.0 at 80%
+power:
+
+| estimator | SD | days |
+|---|---|---|
+| paired NO-YES, all bands | 15.59 | **477** |
+| NO 0.90-0.97, single side | **5.64** | **62** |
+| NO all bands, single side | 6.90 | 93 |
+| YES all bands, single side | 12.46 | 304 |
+
+The pooled paired claim is therefore **unresolvable on any practical
+horizon** (477 settlement days against a ~60-day archive window). **Report
+this theory on the single-side `NO 0.90+` figure first**, `compute_score`
+alongside; the paired statistic is retained only as the 5-day-vintage
+comparison. Like the 08-27 day amendment this changes the reading, not the
+procedure — population, cells, sides, bands and recording are untouched —
+so there is no version bump.
+
+Where the structure sits, day-clustered over 868 settled favorites:
+`NO 0.90-0.97` (**cell A's mechanism, pre-registered**) reads **+1.70 +/-
+1.99, 7/8 days positive** against a +2.25 fullcov measurement and a +2.0
+prior — the tightest cell on the board and the only one whose size, sign
+and stability all match a prior fixed before the data, but t=0.85 and *not
+significant*. `YES 0.80-0.90` (cell B's mechanism) reads **-0.86 +/- 5.64**
+— the -3.9 prior is not reproduced.
+
+**Cell A's population is 15 rows on 2 of 8 days** (zero mention-family YES
+rows at all). Its own bars (`n>=40`, `n_days>=8`) are a long way off, and
+**the band carries the signal while the family restriction starves it**:
+`NO 0.90-0.97` across the whole screen is 275 rows over 8 days, 18x the
+population, at a comparable point estimate. Cell A is **not** widened in
+response — that is the move a pre-registration exists to prevent — and the
+wide version is filed as its own pre-registered theory (idea and ticket
+`no-favorite-high-band`), exactly as this theory came off `mention_family`.
+
+Neither cell is killable by its own rule (cell A kills at <=0 with n>=150,
+sits at n=20/+4.33; cell B kills at >=0 with n>=150, sits at n=109/-0.98),
+so no retirement is proposed. Status stays `testing`, `edge_basis='prior'`,
+nothing recommendable. Full write-up:
+`studies/2026-08-29-side-asymmetry-extension/` "Pass 2".
+
 ## Version
 
 1 — initial: the two pre-registered cells exactly as idea 14's revisit
 angle states them; population pinned to insider_bias screen defaults;
 live ask refresh before recording.
+
+**2026-09-01 (cont.) — the largest test of this theory's direction claim
+ever run, and it is negative on its own terms.** A 61-close-day,
+72,010-observation out-of-population dataset (the series-bias sweep) was
+split by side for the first time. In band 0.90–0.97 the pooled gap
+replicated hard — **+3.95 pts, t=3.03, 41/61 days**, identical
+out-of-sample (+3.94 over 51 clean days), stronger in the on-time stratum
+(+8.62), larger at an independent 24h decision point (+11.02), positive in
+every band but the cheapest. **All of it is composition:** NO favorites
+outnumber YES 5:2 there and the sides are largely different series, so
+differencing within (series, close day) gives **−1.85 (t=−1.40)**, robust
+across weightings (−1.04 to −1.85) and to dropping any series (−2.58 to
+−1.23), with 61/138 series leaning positive.
+
+**But the same control on this theory's own screen population does not
+reverse** (+7.69, t=1.75 in the same band; 30 series, 7 days — too thin to
+read as a magnitude). The populations disagree, and the candidate reason is
+that `insider_bias.screen` filters `spread ≤ 0.07` and `volume ≥ 500` while
+the sweep filters neither — every level in the sweep runs −3.7 to −40,
+which is a book nobody would fill rather than a mispricing.
+
+Consequences: the sweep result is **out-of-population**, so it does not
+trigger this theory's own kill bars — a strong prior against, not a
+verdict, and status stays `testing`. **A composition control is now
+mandatory for any side comparison in this repo**, this theory's included.
+The deciding experiment is the series-bias liquidity backfill completing,
+after which the sweep can be filtered to the screen's own bar and the
+control re-run. Write-up: `studies/2026-09-01-side-split-60day-obs/`.

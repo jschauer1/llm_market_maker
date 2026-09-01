@@ -306,3 +306,372 @@ the cell deterministically, so all 106 were repaired to rejected
 saved pools: screened n=2 +7.02 net (1 day), rejected n=64 -8.00 net
 (4 days) - now identical to the slice partition. Slice evidence was
 never affected (predicate-based); only the disposition pools misread.
+
+## 2026-09-01 — the n_days>=8 bar is reached; the paired claim is null, and the paired estimator was the wrong one
+
+Session `llm-market-identifier-57`, theory lane. Full write-up and data:
+`studies/2026-08-29-side-asymmetry-extension/` ("Pass 2").
+
+**The bar the 08-27 amendment set is met.** `n_days = 8`, and the answer
+is **null**: mean `NO - YES` = **+2.91 pts**, day-clustered SE 5.51,
+t = +0.53 on 7 df, 95% CI **[-7.89, +13.72]**, sign test 5/8 positive
+(p = 0.727). Per-side day-equal-weighted: YES **-2.16** (cell B claims
+-3.9), NO **+0.75** (cell A claims +2.0).
+
+Pass 1 at 5 days read +8.25 with sides at -4.42 / +3.83 and called it
+"right sign, not significant". **Three more days moved every one of those
+numbers toward zero.** The two-point-estimates-agree-with-their-priors
+observation, which pass 1 was careful not to call significance, did not
+survive. Worth remembering as the concrete instance: it *felt* like
+converging evidence and it was noise settling.
+
+### How the 8 days were assembled, including a temptation refused
+
+Days measured: 08-24, 08-25, 08-26, 08-27, 08-28, 08-29, 08-30, 08-31.
+Excluded: **2026-09-01, 27 of 148 settled (18%)**.
+
+- **Inclusion rule fixed before the numbers: >= 90% settled.** 08-29 is
+  why — it entered pass 1 at 24-of-70 reading **+9.49** and reads
+  **+4.10** complete. Early settlers are finished sports.
+- That rule left **7** days against a bar of **8**, and admitting 09-01
+  at 18% would have reached the bar. It was not admitted. Instead
+  close-day **2026-08-24** was added — a complete day (155/156) the
+  series had never used, from the earliest capture on disk
+  (`2026-08-24T01:34:44Z`), same method. **The decision to add it was
+  written down before its number was computed** (+14.11).
+- **All 8 days re-measured at one vintage.** Not cosmetic: 08-28 moved
+  +32.60 -> +28.97 and 08-27 -15.20 -> -19.56 as their stragglers
+  settled. 08-25 (+9.40) and 08-26 (+4.95) reproduced the 2026-08-27
+  study exactly, which is the check that the method is unchanged.
+
+### A silent data defect that had to be fixed first
+
+`measure.py` rebuilt its point-in-time board with `WHERE captured_at = ?`.
+**Dedup-on-write (spec 5.2 phase 2, 2026-08-30) makes that wrong**: a pull
+writes no row for an unchanged market, so an exact-stamp filter returns
+"markets that moved at this pull" — correlated with liquidity, hence with
+price and side, which is exactly what this study measures. No error, just
+a plausible board of the wrong markets. It costs **46% of the 2026-08-31
+board** (53,613 rows vs 99,064 markets) and 24% of 09-01's.
+
+Fixed by `tools.snapshot.board_as_of(conn, platform, at)`, promoted to
+`tools/` under the caller-count rule (three study probes had open-coded
+the broken query). Six tests in `tests/test_snapshot_store.py`. The
+reconstruction returns exactly 105,104 for the 09-01 capture, which is the
+market count that floor reported pulling. Suite 1,287 green.
+
+### The finding: pairing was the wrong instrument, and it is measured now
+
+Pass 1 adopted `NO - YES` because "the day effect is a common shock to
+both sides, so it cancels". Eight days let that be tested:
+
+```
+paired NO-YES, all bands : between-day SD 15.59 -> 477 days to detect +2.0
+NO 0.90-0.97, single side: between-day SD  5.64 ->  62 days
+NO all bands,  single side: between-day SD  6.90 ->  93 days
+YES all bands, single side: between-day SD 12.46 -> 304 days
+```
+
+The paired estimator is the **worst of the four**. Independent sides would
+give SD sqrt(6.90^2+12.46^2) = 14.24; observed is 15.59, so the sides are
+if anything negatively correlated day to day. **Differencing imports the
+YES side's variance rather than cancelling it.**
+
+Obvious in hindsight, and that is the point: the YES favorites and NO
+favorites in this screen are *different markets on different subjects*,
+not two sides of one contract. There is no shared shock. Pass 1's
+reasoning would have been right for a long/short pair on one market.
+
+**Consequence: the pooled paired claim cannot be resolved on any practical
+horizon** — 477 settlement days against a ~60-day Kalshi archive window.
+Report this theory on the **single-side NO 0.90+** figure instead; same
+claim, ~8x less data.
+
+### Where the structure is — and what starves it
+
+Day-clustered over the 8 days (868 settled favorites):
+
+| cell | n | days | mean | SE | t | sign |
+|---|---|---|---|---|---|---|
+| YES 0.65-0.80 | 97 | 8 | -0.09 | 6.96 | -0.01 | 4/8 |
+| NO 0.65-0.80 | 124 | 8 | +1.31 | 5.73 | +0.23 | 4/8 |
+| YES 0.80-0.90 (cell-B mech) | 90 | 7 | **-0.86** | 5.64 | -0.15 | 4/7 |
+| NO 0.80-0.90 | 125 | 8 | -8.30 | 11.48 | -0.72 | 5/8 |
+| YES 0.90-0.97 | 157 | 8 | -0.80 | 3.69 | -0.22 | 5/8 |
+| NO 0.90-0.97 (cell-A mech) | 275 | 8 | **+1.70** | **1.99** | +0.85 | **7/8** |
+
+1. **`NO 0.90-0.97` is the only cell that looks like anything** — +1.70
+   against a +2.25 fullcov measurement and a +2.0 prior, 7/8 days positive
+   (p = 0.070), tightest SE on the board by 2x. Not significant (t=0.85),
+   and one of 13 cells inspected — but unlike the other 12 it was
+   *pre-registered* (idea 14's mechanism, the cell both fullcov backtests
+   measured). It is the one place where size, sign and stability all agree
+   with a prior fixed before the data.
+2. **Cell B's -3.89 prior is not reproduced**: YES 0.80-0.90 reads -0.86
+   +/- 5.64. Consistent with the ledger's cell-B drift (-8.00 at n=64 ->
+   -0.98 at n=109).
+3. **Cell A's population is 15 rows on 2 of 8 days.** The mention family
+   barely appears in this screen — 15 NO rows, zero YES rows. Its own bars
+   (`n>=40`, `n_days>=8`) are far off, and its +3.72 at 2 days is exactly
+   the one-cluster non-result the 08-27 amendment exists to refuse. **The
+   band carries the signal; the family restriction starves it** —
+   `NO 0.90-0.97` across the whole screen is 275 rows over 8 days, 18x the
+   population, at a comparable point estimate.
+
+### What was deliberately NOT done
+
+**Cell A was not widened.** Dropping the mention-family restriction
+because the narrow cell is thin, *after* seeing that the wide one looks
+better, is precisely the move the pre-registration exists to prevent. It
+is filed as a separate pre-registered theory instead (ticket + idea
+`no-favorite-high-band`), which is how this theory came off
+`mention_family` in the first place.
+
+**No retirement proposed.** Neither cell is killable by its own rule:
+cell A kills at `<= 0` with `n >= 150` and sits at n=20 / +4.33; cell B
+kills at `>= 0` with `n >= 150` and sits at n=109 / -0.98 (negative =
+claim confirming). The pre-registration governs, not the null pooled
+number.
+
+**No new slice registered.** Cell A and cell B already exhaust what this
+theory records; the band structure was measured on the clean snapshot
+population precisely because the ledger holds only those two cells. There
+is nothing further to partition here that would not be post-hoc mining of
+109 rows.
+
+**Status stays `testing`, `edge_basis='prior'`, nothing recommendable.**
+
+### Next
+
+- Re-run `measure.py` each session; 09-01 enters by itself once it clears
+  90% settled.
+- Read the theory on single-side NO 0.90+, not paired.
+- The live question is now `no-favorite-high-band`, not this theory.
+
+### Robustness, run after the headline — and it matters in both directions
+
+**1. The day added to reach the bar was not carrying the result.** 08-24 was
+added to reach `n_days=8` without admitting a partial day, and it is also the
+one day that could overlap the window the founding fullcov backtests were run
+over (they ran 2026-08-25). Dropping it makes the result **more** null, not
+less:
+
+| | 8 days | without 08-24 |
+|---|---|---|
+| paired NO-YES | +2.91, SE 5.51, t=0.53 | **+1.31, SE 6.09, t=0.22** |
+| NO 0.90+ single side | +1.70, SE 1.99, t=0.85 | **+1.22, SE 2.23, t=0.55** |
+
+So the null conclusion does not depend on it, and if anything 08-24 flattered
+the thesis. (The overlap is in any case at most a handful of rows — the
+mention family supplies 15 NO rows across all 8 days.)
+
+**2. Leave-one-out says the paired statistic is one day.** Drop 08-28
+(+28.97) and the pooled paired mean goes **negative**, -0.81. Nothing else
+moves it much. An 8-day mean that flips sign on one day is not a measurement,
+which is the same thing the power calculation says in another language.
+
+**3. The NO 0.90+ cell, per day — and a weighting trap caught in the act.**
+
+| close day | n | wins | win rate | mean ask | net |
+|---|---|---|---|---|---|
+| 2026-08-24 | 47 | 47 | 1.000 | 0.946 | +5.05 |
+| 2026-08-25 | 29 | 28 | 0.966 | 0.950 | +1.19 |
+| **2026-08-26** | **6** | **5** | 0.833 | 0.945 | **-11.53** |
+| 2026-08-27 | 26 | 26 | 1.000 | 0.945 | +5.18 |
+| 2026-08-28 | 71 | 70 | 0.986 | 0.944 | +3.82 |
+| 2026-08-29 | 24 | 24 | 1.000 | 0.938 | +5.80 |
+| 2026-08-30 | 27 | 26 | 0.963 | 0.950 | +1.00 |
+| 2026-08-31 | 45 | 44 | 0.978 | 0.943 | +3.10 |
+
+Seven of eight days sit between +1.00 and +5.80. The single negative day is
+a **6-row day** whose whole deficit is one loss.
+
+Day sizes run 6 to 71, so the weighting choice moves this cell a lot:
+
+```
+row-pooled (n=275)              +3.32
+day-equal weighted              +1.70   SE 1.99   t=0.85     <- reported
+days with >= 10 rows (7 days)   +3.59   SE 0.73   t=4.93
+```
+
+**The third line is not a finding and must not be quoted as one.** A >=10
+rows/day floor drops exactly one day — the only negative one — and the only
+reason to reach for that floor is having already seen that the negative day
+was the small one. That is precisely the failure the calibration_harvest
+gradient review caught on 2026-08-29 (`studies/2026-08-29-calibration-harvest-
+gradient-review/`, peer review by llm-market-identifier-4f): **the inclusion
+rule was the result.** It is recorded here because it was tempting, not
+because it is evidence.
+
+The honest reading: **+1.70 +/- 1.99 is the number**, and this cell is *not
+yet weighting-robust* — a spread of +1.70 to +3.59 across defensible
+weightings, driven by one thin day. The correct response is to fix a
+minimum-rows-per-day rule **before** collecting more, which is now part of
+what `no-favorite-high-band` must pre-register.
+
+### Considered and declined: a `NO >= 0.90` sub-slice on cell A
+
+It is expressible over recorded fields (`{outcome: no, entry_price: {min:
+0.90}}`), it is a genuine subset of what this theory records, and the
+0.90+ band is where the structure sits — so registering it as a slice was
+the obvious move and it was declined on purpose.
+
+Why: cell A holds **20 settled rows across 2 event clusters**, so the
+0.90+ subset of it is a handful of rows accruing at ~2-4 per session from
+a family that appeared on 2 of the last 8 close-days. Registering it would
+start an out-of-sample clock that cannot reach the 10-cluster / 5-day
+gates on any horizon that matters, and would put a third segment into
+every report of this theory carrying no information. The same predicate
+over the **whole screen** is 275 rows in 8 days — which is not a slice of
+this theory, because this theory does not record that population. It is
+`no-favorite-high-band`, filed as its own pre-registered theory.
+
+The rule this follows: a slice re-weights output the parent already
+produces. Where the population the mechanism needs is one the parent never
+records, a slice is the wrong instrument no matter how well the predicate
+is expressed.
+
+## 2026-09-01 (cont.) — the 60-day out-of-population test: the side gap replicates, and it is composition
+
+Same session. Answers the ticket `llm-market-identifier-0e` filed against
+this theory mid-session (`tickets/open/2026-09-01-side-split-on-series-bias-obs.md`).
+Full write-up: `studies/2026-09-01-side-split-60day-obs/`.
+
+**The prize was real: 72,010 priced settled markets over 61 close days,
+already on disk** in `studies/2026-08-29-series-bias-mining/data/collect.db`,
+with a `side` column nobody had split. This theory's own series has 8 days.
+Worked on a *copy* — a peer session is running a multi-hour backfill against
+the live file.
+
+### It replicated, and it replicated everywhere
+
+Cell `ask in [0.90, 0.97)` — the band `insider_bias.screen` itself caps at,
+so not a cap chosen here:
+
+```
+NO   n=9831  days=61   -6.66  SE 0.80  t -8.33
+YES  n=2821  days=61  -10.61  SE 1.35  t -7.88
+PAIRED NO-YES         +3.95  SE 1.31  t +3.03   41/61 days positive
+```
+
+and it survived every robustness view the ticket asked for:
+
+| view | NO-YES |
+|---|---|
+| full window, 61 days | **+3.95** |
+| close < 2026-08-20 (51 days, clean of the mining window) | **+3.94** |
+| on-time settling stratum | **+8.62** |
+| early-settled stratum | +1.34 |
+| alternative decision point (24h pre-close) | **+11.02** |
+| every band except 0.50-0.65 | positive |
+
+Out-of-sample identical to in-sample. *Stronger* in the on-time stratum,
+which is the direction the source study's pre-registered caution wanted.
+Present and larger at an independent decision point. Monotone in price.
+**I was ready to write this up as the strongest evidence the theory had.**
+
+### Then the composition control killed it
+
+NO favorites outnumber YES **5:2** here and the two sides are largely
+**different series**, so a pooled gap can be a fact about which markets
+happen to be NO-favorite. Of 584 series in the cell, 140 carry >= 5 rows on
+both sides. Restrict to those, then difference within (series, close day):
+
+```
+all series, pooled by day              +3.95   t +3.03
+both-sides series only, pooled by day  +1.92
+WITHIN SERIES, WITHIN DAY              -1.85   SE 1.31  t -1.40   29/61 days+
+```
+
+Robust to weighting and to dropping any series:
+
+```
+day-clustered          k=61   -1.85  SE 1.31  t -1.40
+series-equal-weighted  k=138  -1.04  SE 1.89  t -0.55
+pair-equal-weighted    k=790  -1.68
+leave-one-series-out          -2.58 .. -1.23   (base -1.85)
+series leaning positive: 61/138  -- a coin flip
+```
+
+**The entire +3.95 is which series sit on which side.** Same failure the
+calibration_harvest gradient review found on 2026-08-29 (38% of its
+one-week step was composition); here composition is more than 100% of the
+effect.
+
+### Two things that are NOT findings, recorded so they are not re-read as ones
+
+1. **Every level is deeply negative** — every band, both sides, -3.7 to
+   -40. That is a board-wide sweep where much of the "ask" is a quote
+   nobody would fill, not a signal to sell favorites. Only the *contrast*
+   is readable here.
+2. **The liquidity control is unusable and its apparent sign reversal
+   means nothing.** Only 11% of cell rows carry backfilled spread/OI, the
+   backfill has reached 59 of 659 series **in collection order**, so the
+   subset is series-selected rather than random; and its YES arm is 71
+   rows with 71 wins (21 from one boxing series), which is what produced
+   the "t = +23.59". Open question, not an answer. Completing the backfill
+   is what settles it.
+
+### What it changes
+
+- This is the strongest single piece of evidence about this theory to
+  date and it is **negative** — 61 days and 72,010 observations against
+  the 8 days of its own series.
+- It does **not** kill the theory by its own rules: out-of-population, and
+  the pre-registered kill bars are about its own cells on its own screen.
+  A strong prior against, not a verdict. Status stays `testing`; no
+  retirement proposed.
+- **The composition control is now mandatory for any side comparison
+  here**, including the proposed `no-favorite-high-band` — whose 8-day
+  +1.70 has never had it applied. Added to that ticket as a
+  pre-registration requirement, and it must be run *before* anything is
+  pre-registered, not after.
+
+## The same control on the SCREEN population — it does not reverse there
+
+Run immediately after, on `studies/2026-08-29-side-asymmetry-extension/data/`
+(868 settled favorites, 132 series, the 8 complete close days). Same
+estimator: difference NO minus YES within (series, close day).
+
+```
+ALL BANDS (868 rows)
+  >= 1 row/side:  65 series,  94 pairs, 8 days   NO-YES = +15.02  SE 14.55  t +1.03   6/8+
+  >= 3 rows/side: 17 series,  51 pairs, 7 days   NO-YES =  +4.71  SE  8.18  t +0.58   3/7+
+
+BAND 0.90-0.97 (333 rows)
+  >= 1 row/side:  30 series,  45 pairs, 7 days   NO-YES =  +7.69  SE  4.38  t +1.75   5/7+
+  >= 3 rows/side:   5 series, 19 pairs, 6 days   NO-YES = +11.44  SE  5.65  t +2.03   5/6+
+```
+
+**The sign does not flip.** On the screen population the within-series
+contrast is positive at every cut, where on the sweep population it went
+from +3.95 to −1.85. The two datasets disagree about the same question.
+
+**Do not read the magnitudes.** These rest on 5 to 30 series over 6 to 7
+days; the ≥3-rows/side line in the band is **five series**. The t of +2.03
+is not significance after the number of cuts taken across this session, and
+the estimator is the paired one that the 8-day pass measured to be the
+noisiest available. Treat this as "the control does not kill it here",
+nothing more.
+
+**The likely reason the populations disagree is the obvious one, and it is
+testable.** `insider_bias.screen` filters on `spread <= 0.07` and
+`volume >= 500`; the board-wide sweep filters on neither, which is why
+every level in it is −3.7 to −40 and why 23% of it sits at 0.98+ realizing
+0.801. If the sweep's side gap is composition among *unfillable* quotes and
+the screen's is not, both results are true and they are about different
+populations.
+
+**That makes the peer's backfill the decisive experiment, not a chore.**
+Once `spread`/`open_interest` are populated across all 659 series rather
+than the current alphabetically-reached 59, the sweep can be filtered to
+the screen's own liquidity bar and the composition control re-run on it.
+That single run decides between:
+
+- the gap is composition everywhere, and the screen result is small-sample
+  noise -> `no-favorite-high-band` should not be built; or
+- the gap survives within series once quotes are fillable -> the screen
+  result is the real one, on 61 days instead of 8.
+
+Nothing should be pre-registered until that is known, and the cost of
+waiting is a few hours of someone else's already-running job.

@@ -1,0 +1,1592 @@
+{
+ "close_day": "2026-08-31",
+ "captured_at": "2026-08-31T00:38:34Z",
+ "n_population": 198,
+ "n_settled": 180,
+ "markets": [
+  {
+   "ticker": "KXAAAGASD-26AUG31-4.0750",
+   "side": "yes",
+   "ask": 0.92,
+   "title": "Will average **gas prices** be above $4.0750?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASD-26AUG31-4.0800",
+   "side": "no",
+   "ask": 0.79,
+   "title": "Will average **gas prices** be above $4.0800?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASD-26AUG31-4.0850",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will average **gas prices** be above $4.0850?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDCA-26AUG31-5.6700",
+   "side": "yes",
+   "ask": 0.94,
+   "title": "Will average **gas prices** be above $5.6700?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDCA-26AUG31-5.6750",
+   "side": "yes",
+   "ask": 0.94,
+   "title": "Will average **gas prices** be above $5.6750?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDCA-26AUG31-5.6850",
+   "side": "yes",
+   "ask": 0.87,
+   "title": "Will average **gas prices** be above $5.6850?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDCA-26AUG31-5.6950",
+   "side": "no",
+   "ask": 0.78,
+   "title": "Will average **gas prices** be above $5.6950?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDFL-26AUG31-3.8700",
+   "side": "yes",
+   "ask": 0.96,
+   "title": "Will average **gas prices** be above $3.8700?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDFL-26AUG31-3.8750",
+   "side": "yes",
+   "ask": 0.95,
+   "title": "Will average **gas prices** be above $3.8750?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDFL-26AUG31-3.8850",
+   "side": "no",
+   "ask": 0.88,
+   "title": "Will average **gas prices** be above $3.8850?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDIL-26AUG31-4.2850",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Will average **gas prices** be above $4.2850?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDNJ-26AUG31-4.0850",
+   "side": "yes",
+   "ask": 0.97,
+   "title": "Will average **gas prices** be above $4.0850?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDNJ-26AUG31-4.0900",
+   "side": "yes",
+   "ask": 0.91,
+   "title": "Will average **gas prices** be above $4.0900?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDNY-26AUG31-4.2100",
+   "side": "yes",
+   "ask": 0.95,
+   "title": "Will average **gas prices** be above $4.2100?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDTX-26AUG31-3.5900",
+   "side": "yes",
+   "ask": 0.96,
+   "title": "Will average **gas prices** be above $3.5900?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDTX-26AUG31-3.6100",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Will average **gas prices** be above $3.6100?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDTX-26AUG31-3.6150",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will average **gas prices** be above $3.6150?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASM-26AUG31-4.07",
+   "side": "yes",
+   "ask": 0.97,
+   "title": "Will average **gas prices** be above $4.07?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASM-26AUG31-4.08",
+   "side": "no",
+   "ask": 0.87,
+   "title": "Will average **gas prices** be above $4.08?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASW-26AUG31-4.076",
+   "side": "yes",
+   "ask": 0.89,
+   "title": "Will average **gas prices** be above $4.076?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASW-26AUG31-4.080",
+   "side": "no",
+   "ask": 0.89,
+   "title": "Will average **gas prices** be above $4.080?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASWNJ-26AUG31-4.1000",
+   "side": "no",
+   "ask": 0.79,
+   "title": "Will average **gas prices** be above $4.1000?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBNB15M-26AUG302045-45",
+   "side": "yes",
+   "ask": 0.83,
+   "title": "BNB price up in next 15 mins?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBRENTD-26AUG3117-T87",
+   "side": "yes",
+   "ask": 0.91,
+   "title": "Will the brent crude oil close price be above 87 USD/Bbl on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBRENTD-26AUG3117-T87.50",
+   "side": "yes",
+   "ask": 0.84,
+   "title": "Will the brent crude oil close price be above 87.50 USD/Bbl on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBRENTD-26AUG3117-T88",
+   "side": "yes",
+   "ask": 0.77,
+   "title": "Will the brent crude oil close price be above 88 USD/Bbl on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBRENTD-26AUG3117-T88.50",
+   "side": "yes",
+   "ask": 0.68,
+   "title": "Will the brent crude oil close price be above 88.50 USD/Bbl on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBRENTD-26AUG3117-T90",
+   "side": "no",
+   "ask": 0.7,
+   "title": "Will the brent crude oil close price be above 90 USD/Bbl on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBRENTD-26AUG3117-T90.50",
+   "side": "no",
+   "ask": 0.8,
+   "title": "Will the brent crude oil close price be above 90.50 USD/Bbl on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBRENTD-26AUG3117-T91",
+   "side": "no",
+   "ask": 0.89,
+   "title": "Will the brent crude oil close price be above 91 USD/Bbl on August 31, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBRENTD-26AUG3117-T91.50",
+   "side": "no",
+   "ask": 0.92,
+   "title": "Will the brent crude oil close price be above 91.50 USD/Bbl on August 31, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBRENTD-26AUG3117-T92",
+   "side": "no",
+   "ask": 0.95,
+   "title": "Will the brent crude oil close price be above 92 USD/Bbl on August 31, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBRENTMON-26AUG3117-T86.99",
+   "side": "yes",
+   "ask": 0.93,
+   "title": "Will the brent crude oil close price be above 86.99 USD/Bbl on August 31, 2026 at 5:00 PM EDT?",
+   "result": null,
+   "status": "closed"
+  },
+  {
+   "ticker": "KXBRENTMON-26AUG3117-T92.99",
+   "side": "no",
+   "ask": 0.92,
+   "title": "Will the brent crude oil close price be above 92.99 USD/Bbl on August 31, 2026 at 5:00 PM EDT?",
+   "result": null,
+   "status": "closed"
+  },
+  {
+   "ticker": "KXBTC-26AUG3021-B77650",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Bitcoin price range on Aug 30, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTC-26AUG3021-B77750",
+   "side": "no",
+   "ask": 0.93,
+   "title": "Bitcoin price range on Aug 30, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTC-26AUG3021-B77850",
+   "side": "no",
+   "ask": 0.88,
+   "title": "Bitcoin price range on Aug 30, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTC-26AUG3021-B77950",
+   "side": "no",
+   "ask": 0.83,
+   "title": "Bitcoin price range on Aug 30, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTC-26AUG3021-B78050",
+   "side": "no",
+   "ask": 0.83,
+   "title": "Bitcoin price range on Aug 30, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTC-26AUG3021-B78150",
+   "side": "no",
+   "ask": 0.87,
+   "title": "Bitcoin price range on Aug 30, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTC-26AUG3021-B78350",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Bitcoin price range on Aug 30, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTC-26AUG3117-B78375",
+   "side": "no",
+   "ask": 0.95,
+   "title": "Bitcoin price range on Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTC15M-26AUG302045-45",
+   "side": "yes",
+   "ask": 0.84,
+   "title": "BTC price up in next 15 mins?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3021-T77599.99",
+   "side": "yes",
+   "ask": 0.97,
+   "title": "Bitcoin price on Aug 30, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3021-T77699.99",
+   "side": "yes",
+   "ask": 0.93,
+   "title": "Bitcoin price on Aug 30, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3021-T77799.99",
+   "side": "yes",
+   "ask": 0.85,
+   "title": "Bitcoin price on Aug 30, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3021-T77899.99",
+   "side": "yes",
+   "ask": 0.72,
+   "title": "Bitcoin price on Aug 30, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3021-T78099.99",
+   "side": "no",
+   "ask": 0.66,
+   "title": "Bitcoin price on Aug 30, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3021-T78199.99",
+   "side": "no",
+   "ask": 0.81,
+   "title": "Bitcoin price on Aug 30, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3021-T78299.99",
+   "side": "no",
+   "ask": 0.92,
+   "title": "Bitcoin price on Aug 30, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3021-T78399.99",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Bitcoin price on Aug 30, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T74999.99",
+   "side": "yes",
+   "ask": 0.97,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T75249.99",
+   "side": "yes",
+   "ask": 0.95,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T75499.99",
+   "side": "yes",
+   "ask": 0.95,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T75749.99",
+   "side": "yes",
+   "ask": 0.93,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T75999.99",
+   "side": "yes",
+   "ask": 0.92,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T76249.99",
+   "side": "yes",
+   "ask": 0.89,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T76499.99",
+   "side": "yes",
+   "ask": 0.86,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T76749.99",
+   "side": "yes",
+   "ask": 0.81,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T76999.99",
+   "side": "yes",
+   "ask": 0.76,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T77249.99",
+   "side": "yes",
+   "ask": 0.71,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T77499.99",
+   "side": "yes",
+   "ask": 0.65,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T78749.99",
+   "side": "no",
+   "ask": 0.7,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T78999.99",
+   "side": "no",
+   "ask": 0.75,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T79249.99",
+   "side": "no",
+   "ask": 0.8,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T79499.99",
+   "side": "no",
+   "ask": 0.84,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T79749.99",
+   "side": "no",
+   "ask": 0.88,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T79999.99",
+   "side": "no",
+   "ask": 0.9,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T80249.99",
+   "side": "no",
+   "ask": 0.93,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T80499.99",
+   "side": "no",
+   "ask": 0.95,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG3117-T80749.99",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Bitcoin price on Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXCBDISRAEL-26AUG31-C25",
+   "side": "no",
+   "ask": 0.94,
+   "title": "Will the Bank of Israel Cut 1-25bps at the August Monetary Committee meeting?",
+   "result": null,
+   "status": "active"
+  },
+  {
+   "ticker": "KXCBDISRAEL-26AUG31-HOLD",
+   "side": "yes",
+   "ask": 0.89,
+   "title": "Will the Bank of Israel Maintain current rate at the August Monetary Committee meeting?",
+   "result": null,
+   "status": "active"
+  },
+  {
+   "ticker": "KXCOPPERD-26AUG3117-T6.70",
+   "side": "no",
+   "ask": 0.95,
+   "title": "Will the copper close price be above 6.70 USD/Lbs on August 31, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXCOPPERMON-26AUG3117-T6.45",
+   "side": "yes",
+   "ask": 0.96,
+   "title": "Will the copper close price be above 6.45 USD/Lbs on August 31, 2026 at 5:00 PM EDT?",
+   "result": null,
+   "status": "closed"
+  },
+  {
+   "ticker": "KXCOPPERMON-26AUG3117-T6.87",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Will the copper close price be above 6.87 USD/Lbs on August 31, 2026 at 5:00 PM EDT?",
+   "result": null,
+   "status": "closed"
+  },
+  {
+   "ticker": "KXDIESELD-26AUG31-T5.595",
+   "side": "yes",
+   "ask": 0.83,
+   "title": "Will Diesel Price on August 31, 2026 be above $5.595?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXDIESELD-26AUG31-T5.600",
+   "side": "yes",
+   "ask": 0.71,
+   "title": "Will Diesel Price on August 31, 2026 be above $5.600?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXDIESELD-26AUG31-T5.605",
+   "side": "no",
+   "ask": 0.65,
+   "title": "Will Diesel Price on August 31, 2026 be above $5.605?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXDIESELD-26AUG31-T5.620",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will Diesel Price on August 31, 2026 be above $5.620?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXDIESELMON-26AUG31-T5.60",
+   "side": "yes",
+   "ask": 0.66,
+   "title": "Will Diesel Price on August 31, 2026 be above $5.60?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXDOGE15M-26AUG302045-45",
+   "side": "yes",
+   "ask": 0.86,
+   "title": "DOGE price up in next 15 mins?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETH-26AUG3021-B2417",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Ethereum price at Aug 30, 2026 at 9pm EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETH-26AUG3117-B2390",
+   "side": "no",
+   "ask": 0.83,
+   "title": "Ethereum price at Aug 31, 2026 at 5pm EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETH-26AUG3117-B2430",
+   "side": "no",
+   "ask": 0.76,
+   "title": "Ethereum price at Aug 31, 2026 at 5pm EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETH-26AUG3117-B2470",
+   "side": "no",
+   "ask": 0.81,
+   "title": "Ethereum price at Aug 31, 2026 at 5pm EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETH15M-26AUG302045-45",
+   "side": "yes",
+   "ask": 0.75,
+   "title": "ETH price up in next 15 mins?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG3021-T2414.99",
+   "side": "yes",
+   "ask": 0.97,
+   "title": "Ethereum price at Aug 30, 2026 at 9pm EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG3021-T2419.99",
+   "side": "yes",
+   "ask": 0.93,
+   "title": "Ethereum price at Aug 30, 2026 at 9pm EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG3021-T2424.99",
+   "side": "yes",
+   "ask": 0.84,
+   "title": "Ethereum price at Aug 30, 2026 at 9pm EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG3021-T2439.99",
+   "side": "no",
+   "ask": 0.76,
+   "title": "Ethereum price at Aug 30, 2026 at 9pm EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG3021-T2444.99",
+   "side": "no",
+   "ask": 0.91,
+   "title": "Ethereum price at Aug 30, 2026 at 9pm EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG3021-T2449.99",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Ethereum price at Aug 30, 2026 at 9pm EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG3117-T2329.99",
+   "side": "yes",
+   "ask": 0.96,
+   "title": "Ethereum price at Aug 31, 2026 at 5pm EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG3117-T2369.99",
+   "side": "yes",
+   "ask": 0.84,
+   "title": "Ethereum price at Aug 31, 2026 at 5pm EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG3117-T2409.99",
+   "side": "yes",
+   "ask": 0.66,
+   "title": "Ethereum price at Aug 31, 2026 at 5pm EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG3117-T2489.99",
+   "side": "no",
+   "ask": 0.82,
+   "title": "Ethereum price at Aug 31, 2026 at 5pm EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG3117-T2529.99",
+   "side": "no",
+   "ask": 0.92,
+   "title": "Ethereum price at Aug 31, 2026 at 5pm EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG3117-T2569.99",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Ethereum price at Aug 31, 2026 at 5pm EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDD-26AUG3117-T4402",
+   "side": "yes",
+   "ask": 0.94,
+   "title": "Will the gold close price be above 4402 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDD-26AUG3117-T4412",
+   "side": "yes",
+   "ask": 0.85,
+   "title": "Will the gold close price be above 4412 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDD-26AUG3117-T4422",
+   "side": "yes",
+   "ask": 0.86,
+   "title": "Will the gold close price be above 4422 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDD-26AUG3117-T4432",
+   "side": "yes",
+   "ask": 0.81,
+   "title": "Will the gold close price be above 4432 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDD-26AUG3117-T4442",
+   "side": "yes",
+   "ask": 0.74,
+   "title": "Will the gold close price be above 4442 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDD-26AUG3117-T4452",
+   "side": "yes",
+   "ask": 0.65,
+   "title": "Will the gold close price be above 4452 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDD-26AUG3117-T4492",
+   "side": "no",
+   "ask": 0.69,
+   "title": "Will the gold close price be above 4492 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDD-26AUG3117-T4502",
+   "side": "no",
+   "ask": 0.76,
+   "title": "Will the gold close price be above 4502 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDD-26AUG3117-T4512",
+   "side": "no",
+   "ask": 0.82,
+   "title": "Will the gold close price be above 4512 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDD-26AUG3117-T4522",
+   "side": "no",
+   "ask": 0.91,
+   "title": "Will the gold close price be above 4522 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDD-26AUG3117-T4532",
+   "side": "no",
+   "ask": 0.92,
+   "title": "Will the gold close price be above 4532 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDD-26AUG3117-T4542",
+   "side": "no",
+   "ask": 0.95,
+   "title": "Will the gold close price be above 4542 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDH-26AUG3021-T4463.99",
+   "side": "yes",
+   "ask": 0.84,
+   "title": "Will the gold close price be above 4463.99 USD/ounce on August 30, 2026 at 9:00 PM ET?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDMON-26AUG3117-T4371.99",
+   "side": "yes",
+   "ask": 0.93,
+   "title": "Will the gold close price be above 4371.99 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": null,
+   "status": "closed"
+  },
+  {
+   "ticker": "KXGOLDMON-26AUG3117-T4411.99",
+   "side": "yes",
+   "ask": 0.87,
+   "title": "Will the gold close price be above 4411.99 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": null,
+   "status": "closed"
+  },
+  {
+   "ticker": "KXGOLDMON-26AUG3117-T4491.99",
+   "side": "no",
+   "ask": 0.69,
+   "title": "Will the gold close price be above 4491.99 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": null,
+   "status": "closed"
+  },
+  {
+   "ticker": "KXGOLDMON-26AUG3117-T4531.99",
+   "side": "no",
+   "ask": 0.91,
+   "title": "Will the gold close price be above 4531.99 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": null,
+   "status": "closed"
+  },
+  {
+   "ticker": "KXHYPE15M-26AUG302045-45",
+   "side": "yes",
+   "ask": 0.73,
+   "title": "HYPE price up in next 15 mins?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXINXU-26AUG31H1000-T7709.9999",
+   "side": "no",
+   "ask": 0.78,
+   "title": "Will the S&P 500 be above 7709.9999 on Aug 31, 2026 at 10am EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTPHX-26AUG30-B79.5",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will the minimum temperature be 79-80\u00b0 on Aug 30, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTPHX-26AUG30-B83.5",
+   "side": "no",
+   "ask": 0.78,
+   "title": "Will the minimum temperature be 83-84\u00b0 on Aug 30, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTPHX-26AUG30-B85.5",
+   "side": "no",
+   "ask": 0.9,
+   "title": "Will the minimum temperature be 85-86\u00b0 on Aug 30, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTSFO-26AUG30-B55.5",
+   "side": "no",
+   "ask": 0.92,
+   "title": "Will the minimum temperature be 55-56\u00b0 on Aug 30, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTSFO-26AUG30-B57.5",
+   "side": "yes",
+   "ask": 0.89,
+   "title": "Will the minimum temperature be 57-58\u00b0 on Aug 30, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXMUSKNW-26AUG31-T800",
+   "side": "yes",
+   "ask": 0.96,
+   "title": "Will Elon Musk's net worth for August be above $800 billion?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXNATGASD-26AUG3117-T2.865",
+   "side": "no",
+   "ask": 0.75,
+   "title": "Will the natural gas close price be above 2.865 USD/MMBtu on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXNATGASD-26AUG3117-T2.870",
+   "side": "no",
+   "ask": 0.78,
+   "title": "Will the natural gas close price be above 2.870 USD/MMBtu on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXNATGASD-26AUG3117-T2.875",
+   "side": "no",
+   "ask": 0.81,
+   "title": "Will the natural gas close price be above 2.875 USD/MMBtu on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXNATGASD-26AUG3117-T2.880",
+   "side": "no",
+   "ask": 0.84,
+   "title": "Will the natural gas close price be above 2.880 USD/MMBtu on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXNATGASD-26AUG3117-T2.900",
+   "side": "no",
+   "ask": 0.9,
+   "title": "Will the natural gas close price be above 2.900 USD/MMBtu on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXNATGASMON-26AUG3117-T2.799",
+   "side": "yes",
+   "ask": 0.87,
+   "title": "Will the natural gas close price be above 2.799 USD/MMBtu on August 31, 2026 at 5:00 PM EDT?",
+   "result": null,
+   "status": "closed"
+  },
+  {
+   "ticker": "KXNEAR15M-26AUG302045-45",
+   "side": "yes",
+   "ask": 0.97,
+   "title": "NEAR price up in next 15 mins?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXRAIN-26AUG30-BOS",
+   "side": "no",
+   "ask": 0.88,
+   "title": "Will it rain in Boston on Aug 30, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXRAIN-26AUG30-DEN",
+   "side": "no",
+   "ask": 0.94,
+   "title": "Will it rain in Denver on Aug 30, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXRAIN-26AUG30-EWR",
+   "side": "no",
+   "ask": 0.74,
+   "title": "Will it rain in Newark on Aug 30, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXRAIN-26AUG30-NYC",
+   "side": "yes",
+   "ask": 0.65,
+   "title": "Will it rain in New York City on Aug 30, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXRAIN-26AUG30-PHIL",
+   "side": "no",
+   "ask": 0.71,
+   "title": "Will it rain in Philadelphia on Aug 30, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXRAIN-26AUG30-PHX",
+   "side": "no",
+   "ask": 0.8,
+   "title": "Will it rain in Phoenix on Aug 30, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXRAIN-26AUG30-TTN",
+   "side": "no",
+   "ask": 0.71,
+   "title": "Will it rain in Trenton on Aug 30, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXRT-BUD-87",
+   "side": "yes",
+   "ask": 0.79,
+   "title": "Buddy Rotten Tomatoes score?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXRT-DOG-40",
+   "side": "no",
+   "ask": 0.67,
+   "title": "The Dog Stars Rotten Tomatoes score?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXRT-ITE-92",
+   "side": "yes",
+   "ask": 0.91,
+   "title": "It Ends Rotten Tomatoes score?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSILVER15M-26AUG302045-45",
+   "side": "yes",
+   "ask": 0.966,
+   "title": "Silver price up in next 15 mins?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSILVERD-26AUG3117-T65",
+   "side": "yes",
+   "ask": 0.94,
+   "title": "Will the silver close price be above 65 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSILVERD-26AUG3117-T65.25",
+   "side": "yes",
+   "ask": 0.95,
+   "title": "Will the silver close price be above 65.25 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSILVERD-26AUG3117-T65.50",
+   "side": "yes",
+   "ask": 0.91,
+   "title": "Will the silver close price be above 65.50 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSILVERD-26AUG3117-T65.75",
+   "side": "yes",
+   "ask": 0.87,
+   "title": "Will the silver close price be above 65.75 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSILVERD-26AUG3117-T66",
+   "side": "yes",
+   "ask": 0.75,
+   "title": "Will the silver close price be above 66 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSILVERD-26AUG3117-T66.25",
+   "side": "yes",
+   "ask": 0.72,
+   "title": "Will the silver close price be above 66.25 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSILVERD-26AUG3117-T67.25",
+   "side": "no",
+   "ask": 0.67,
+   "title": "Will the silver close price be above 67.25 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSILVERD-26AUG3117-T67.50",
+   "side": "no",
+   "ask": 0.75,
+   "title": "Will the silver close price be above 67.50 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSILVERD-26AUG3117-T67.75",
+   "side": "no",
+   "ask": 0.81,
+   "title": "Will the silver close price be above 67.75 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSILVERD-26AUG3117-T68",
+   "side": "no",
+   "ask": 0.9,
+   "title": "Will the silver close price be above 68 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSILVERD-26AUG3117-T68.25",
+   "side": "no",
+   "ask": 0.93,
+   "title": "Will the silver close price be above 68.25 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSILVERMON-26AUG3117-T64.99",
+   "side": "yes",
+   "ask": 0.93,
+   "title": "Will the silver close price be above 64.99 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": null,
+   "status": "closed"
+  },
+  {
+   "ticker": "KXSILVERMON-26AUG3117-T65.99",
+   "side": "yes",
+   "ask": 0.75,
+   "title": "Will the silver close price be above 65.99 USD/t.oz on August 31, 2026 at 5:00 PM EDT?",
+   "result": null,
+   "status": "closed"
+  },
+  {
+   "ticker": "KXSKEXPYOY-26AUG31-T65.0",
+   "side": "no",
+   "ask": 0.8,
+   "title": "Will South Korea exports YoY for August 2026 be above 65.0%?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSOL15M-26AUG302045-45",
+   "side": "yes",
+   "ask": 0.87,
+   "title": "SOL price up in next 15 mins?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSOLD-26AUG3021-T101.9999",
+   "side": "yes",
+   "ask": 0.81,
+   "title": "SOL price on Aug 30, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSOLD-26AUG3117-T103.9999",
+   "side": "no",
+   "ask": 0.68,
+   "title": "SOL price on Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSOLD-26AUG3117-T105.9999",
+   "side": "no",
+   "ask": 0.85,
+   "title": "SOL price on Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSOLD-26AUG3117-T97.9999",
+   "side": "yes",
+   "ask": 0.9,
+   "title": "SOL price on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTECHRANKLISTAICODE-26AUG31-CLAU",
+   "side": "yes",
+   "ask": 0.97,
+   "title": "Top Coding AI this month (Arena.ai)?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTENCENTSHARE-26AUG24-1.5",
+   "side": "no",
+   "ask": 0.95,
+   "title": "Tencent market share this week?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTENCENTSHARE-26AUG24-2.0",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Tencent market share this week?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTOPMODEL-26AUG31-CLAUM",
+   "side": "yes",
+   "ask": 0.97,
+   "title": "What will be the top AI model this month?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTRUMPSAY-26AUG31-AUTO",
+   "side": "no",
+   "ask": 0.87,
+   "title": "Will Trump say \"Autopen / Auto Pen\" before Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTRUMPSAY-26AUG31-BARA",
+   "side": "no",
+   "ask": 0.83,
+   "title": "Will Trump say \"Barack Hussein Obama\" before Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTRUMPSAY-26AUG31-BIBI",
+   "side": "no",
+   "ask": 0.93,
+   "title": "Will Trump say \"Bibi / Netanyahu\" before Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTRUMPSAY-26AUG31-CRYP",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will Trump say \"Crypto / Bitcoin\" before Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTRUMPSAY-26AUG31-KAMA",
+   "side": "no",
+   "ask": 0.89,
+   "title": "Will Trump say \"Kamala\" before Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTRUMPSAY-26AUG31-LAND",
+   "side": "no",
+   "ask": 0.76,
+   "title": "Will Trump say \"Landslide\" before Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTRUMPSAY-26AUG31-NEWS",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Will Trump say \"Newscum\" before Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTRUMPSAY-26AUG31-PEAC",
+   "side": "no",
+   "ask": 0.95,
+   "title": "Will Trump say \"Peace in the Middle East\" before Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTRUMPSAY-26AUG31-RIGG",
+   "side": "no",
+   "ask": 0.71,
+   "title": "Will Trump say \"Rigged Election / Stolen Election\" before Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTRUMPSAY-26AUG31-SOLE",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Will Trump say \"Soleimani\" before Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTRUMPSAY-26AUG31-TDS",
+   "side": "no",
+   "ask": 0.9,
+   "title": "Will Trump say \"TDS / Trump Derangement Syndrome\" before Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTRUMPSAY-26AUG31-WIND",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Will Trump say \"Windmill\" before Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTRUMPSAY-26AUG31-ZOHR",
+   "side": "no",
+   "ask": 0.93,
+   "title": "Will Trump say \"Zohran / Mamdani\" before Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXURYPDGAME-26AUG29RCMALB-TIE",
+   "side": "no",
+   "ask": 0.73,
+   "title": "Tie is the result",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXUST10AM-26AUG31-T4.66",
+   "side": "yes",
+   "ask": 0.94,
+   "title": "Will the 10Y U.S. Treasury yield be above 4.66% on Aug 31, 2026?",
+   "result": null,
+   "status": "closed"
+  },
+  {
+   "ticker": "KXUST10AM-26AUG31-T4.68",
+   "side": "yes",
+   "ask": 0.87,
+   "title": "Will the 10Y U.S. Treasury yield be above 4.68% on Aug 31, 2026?",
+   "result": null,
+   "status": "closed"
+  },
+  {
+   "ticker": "KXUST10AM-26AUG31-T4.76",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will the 10Y U.S. Treasury yield be above 4.76% on Aug 31, 2026?",
+   "result": null,
+   "status": "closed"
+  },
+  {
+   "ticker": "KXUST30AM-26AUG31-T5.16",
+   "side": "yes",
+   "ask": 0.97,
+   "title": "Will the 30Y U.S. Treasury yield be above 5.16% on Aug 31, 2026?",
+   "result": null,
+   "status": "closed"
+  },
+  {
+   "ticker": "KXUST30AM-26AUG31-T5.18",
+   "side": "yes",
+   "ask": 0.79,
+   "title": "Will the 30Y U.S. Treasury yield be above 5.18% on Aug 31, 2026?",
+   "result": null,
+   "status": "closed"
+  },
+  {
+   "ticker": "KXWTI-26AUG3114-T81.49",
+   "side": "yes",
+   "ask": 0.97,
+   "title": "Will the WTI crude oil settlement price be above 81.49 USD/Bbl on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG3114-T81.99",
+   "side": "yes",
+   "ask": 0.96,
+   "title": "Will the WTI crude oil settlement price be above 81.99 USD/Bbl on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG3114-T82.49",
+   "side": "yes",
+   "ask": 0.88,
+   "title": "Will the WTI crude oil settlement price be above 82.49 USD/Bbl on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG3114-T82.99",
+   "side": "yes",
+   "ask": 0.81,
+   "title": "Will the WTI crude oil settlement price be above 82.99 USD/Bbl on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG3114-T83.49",
+   "side": "yes",
+   "ask": 0.7,
+   "title": "Will the WTI crude oil settlement price be above 83.49 USD/Bbl on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG3114-T84.99",
+   "side": "no",
+   "ask": 0.7,
+   "title": "Will the WTI crude oil settlement price be above 84.99 USD/Bbl on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG3114-T85.49",
+   "side": "no",
+   "ask": 0.81,
+   "title": "Will the WTI crude oil settlement price be above 85.49 USD/Bbl on Aug 31, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG3114-T85.99",
+   "side": "no",
+   "ask": 0.88,
+   "title": "Will the WTI crude oil settlement price be above 85.99 USD/Bbl on Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG3114-T86.49",
+   "side": "no",
+   "ask": 0.94,
+   "title": "Will the WTI crude oil settlement price be above 86.49 USD/Bbl on Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG3114-T86.99",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Will the WTI crude oil settlement price be above 86.99 USD/Bbl on Aug 31, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI15M-26AUG302045-45",
+   "side": "no",
+   "ask": 0.88,
+   "title": "WTI Oil price up in next 15 mins?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXXRP15M-26AUG302045-45",
+   "side": "yes",
+   "ask": 0.925,
+   "title": "XRP price up in next 15 mins?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXXRPD-26AUG3117-T1.4199",
+   "side": "no",
+   "ask": 0.89,
+   "title": "Ripple price at Aug 31, 2026 at 5pm EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXZEC15M-26AUG302045-45",
+   "side": "yes",
+   "ask": 0.72,
+   "title": "ZEC price up in next 15 mins?",
+   "result": "yes",
+   "status": "finalized"
+  }
+ ]
+}

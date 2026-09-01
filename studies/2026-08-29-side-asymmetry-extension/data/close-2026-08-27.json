@@ -1,0 +1,880 @@
+{
+ "close_day": "2026-08-27",
+ "captured_at": "2026-08-27T01:06:07Z",
+ "n_population": 109,
+ "n_settled": 109,
+ "markets": [
+  {
+   "ticker": "KXAAAGASD-26AUG27-4.0950",
+   "side": "yes",
+   "ask": 0.97,
+   "title": "Will average **gas prices** be above $4.0950?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASD-26AUG27-4.1050",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will average **gas prices** be above $4.1050?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDCA-26AUG27-5.6150",
+   "side": "yes",
+   "ask": 0.95,
+   "title": "Will average **gas prices** be above $5.6150?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDCA-26AUG27-5.6200",
+   "side": "yes",
+   "ask": 0.94,
+   "title": "Will average **gas prices** be above $5.6200?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDCA-26AUG27-5.6300",
+   "side": "yes",
+   "ask": 0.85,
+   "title": "Will average **gas prices** be above $5.6300?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDCA-26AUG27-5.6450",
+   "side": "no",
+   "ask": 0.93,
+   "title": "Will average **gas prices** be above $5.6450?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDFL-26AUG27-3.9300",
+   "side": "yes",
+   "ask": 0.95,
+   "title": "Will average **gas prices** be above $3.9300?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDFL-26AUG27-3.9650",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will average **gas prices** be above $3.9650?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDIL-26AUG27-4.3550",
+   "side": "no",
+   "ask": 0.94,
+   "title": "Will average **gas prices** be above $4.3550?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDIL-26AUG27-4.3600",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will average **gas prices** be above $4.3600?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDNJ-26AUG27-4.0350",
+   "side": "yes",
+   "ask": 0.95,
+   "title": "Will average **gas prices** be above $4.0350?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDNJ-26AUG27-4.0600",
+   "side": "no",
+   "ask": 0.92,
+   "title": "Will average **gas prices** be above $4.0600?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDNY-26AUG27-4.1650",
+   "side": "yes",
+   "ask": 0.96,
+   "title": "Will average **gas prices** be above $4.1650?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDNY-26AUG27-4.1700",
+   "side": "yes",
+   "ask": 0.92,
+   "title": "Will average **gas prices** be above $4.1700?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDNY-26AUG27-4.1750",
+   "side": "yes",
+   "ask": 0.88,
+   "title": "Will average **gas prices** be above $4.1750?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDNY-26AUG27-4.1950",
+   "side": "no",
+   "ask": 0.95,
+   "title": "Will average **gas prices** be above $4.1950?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDTX-26AUG27-3.6050",
+   "side": "yes",
+   "ask": 0.97,
+   "title": "Will average **gas prices** be above $3.6050?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDTX-26AUG27-3.6100",
+   "side": "yes",
+   "ask": 0.94,
+   "title": "Will average **gas prices** be above $3.6100?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDTX-26AUG27-3.6150",
+   "side": "yes",
+   "ask": 0.89,
+   "title": "Will average **gas prices** be above $3.6150?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDTX-26AUG27-3.6200",
+   "side": "yes",
+   "ask": 0.79,
+   "title": "Will average **gas prices** be above $3.6200?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXAAAGASDTX-26AUG27-3.6250",
+   "side": "yes",
+   "ask": 0.75,
+   "title": "Will average **gas prices** be above $3.6250?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBNB15M-26AUG262115-15",
+   "side": "no",
+   "ask": 0.67,
+   "title": "BNB price up in next 15 mins?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBRENTD-26AUG2717-T85",
+   "side": "yes",
+   "ask": 0.84,
+   "title": "Will the brent crude oil close price be above 85 USD/Bbl on August 27, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBRENTD-26AUG2717-T85.50",
+   "side": "yes",
+   "ask": 0.76,
+   "title": "Will the brent crude oil close price be above 85.50 USD/Bbl on August 27, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBRENTD-26AUG2717-T89.50",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Will the brent crude oil close price be above 89.50 USD/Bbl on August 27, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTC-26AUG2622-B78650",
+   "side": "no",
+   "ask": 0.83,
+   "title": "Bitcoin price range on Aug 26, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTC-26AUG2717-B78875",
+   "side": "no",
+   "ask": 0.93,
+   "title": "Bitcoin price range on Aug 27, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2622-T78299.99",
+   "side": "yes",
+   "ask": 0.96,
+   "title": "Bitcoin price on Aug 26, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2622-T78399.99",
+   "side": "yes",
+   "ask": 0.92,
+   "title": "Bitcoin price on Aug 26, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2622-T78499.99",
+   "side": "yes",
+   "ask": 0.85,
+   "title": "Bitcoin price on Aug 26, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2622-T78599.99",
+   "side": "yes",
+   "ask": 0.76,
+   "title": "Bitcoin price on Aug 26, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2622-T78899.99",
+   "side": "no",
+   "ask": 0.78,
+   "title": "Bitcoin price on Aug 26, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2622-T78999.99",
+   "side": "no",
+   "ask": 0.87,
+   "title": "Bitcoin price on Aug 26, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2622-T79099.99",
+   "side": "no",
+   "ask": 0.93,
+   "title": "Bitcoin price on Aug 26, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2622-T79199.99",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Bitcoin price on Aug 26, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2717-T76249.99",
+   "side": "yes",
+   "ask": 0.96,
+   "title": "Bitcoin price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2717-T76499.99",
+   "side": "yes",
+   "ask": 0.95,
+   "title": "Bitcoin price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2717-T76749.99",
+   "side": "yes",
+   "ask": 0.94,
+   "title": "Bitcoin price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2717-T76999.99",
+   "side": "yes",
+   "ask": 0.9,
+   "title": "Bitcoin price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2717-T77249.99",
+   "side": "yes",
+   "ask": 0.88,
+   "title": "Bitcoin price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2717-T77499.99",
+   "side": "yes",
+   "ask": 0.84,
+   "title": "Bitcoin price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2717-T77749.99",
+   "side": "yes",
+   "ask": 0.79,
+   "title": "Bitcoin price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2717-T77999.99",
+   "side": "yes",
+   "ask": 0.72,
+   "title": "Bitcoin price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2717-T78249.99",
+   "side": "yes",
+   "ask": 0.65,
+   "title": "Bitcoin price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2717-T79249.99",
+   "side": "no",
+   "ask": 0.68,
+   "title": "Bitcoin price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2717-T79499.99",
+   "side": "no",
+   "ask": 0.74,
+   "title": "Bitcoin price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2717-T79749.99",
+   "side": "no",
+   "ask": 0.77,
+   "title": "Bitcoin price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2717-T79999.99",
+   "side": "no",
+   "ask": 0.82,
+   "title": "Bitcoin price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2717-T80249.99",
+   "side": "no",
+   "ask": 0.88,
+   "title": "Bitcoin price on Aug 27, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2717-T80499.99",
+   "side": "no",
+   "ask": 0.92,
+   "title": "Bitcoin price on Aug 27, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2717-T80749.99",
+   "side": "no",
+   "ask": 0.93,
+   "title": "Bitcoin price on Aug 27, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2717-T80999.99",
+   "side": "no",
+   "ask": 0.95,
+   "title": "Bitcoin price on Aug 27, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXBTCD-26AUG2717-T81249.99",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Bitcoin price on Aug 27, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXCOPPERD-26AUG2717-T6.50",
+   "side": "yes",
+   "ask": 0.93,
+   "title": "Will the copper close price be above 6.50 USD/Lbs on August 27, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXCRYPTOLEAD15M-26AUG262115-HYPE",
+   "side": "yes",
+   "ask": 0.79,
+   "title": "Which of these cryptocurrencies will have the highest return from Aug 26 - 9:00PM EDT to 9:15PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXDIESELD-26AUG27-T5.625",
+   "side": "no",
+   "ask": 0.76,
+   "title": "Will Diesel Price on August 27, 2026 be above $5.625?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG2622-T2479.99",
+   "side": "yes",
+   "ask": 0.88,
+   "title": "Ethereum price at Aug 26, 2026 at 10pm EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG2622-T2484.99",
+   "side": "yes",
+   "ask": 0.75,
+   "title": "Ethereum price at Aug 26, 2026 at 10pm EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG2622-T2499.99",
+   "side": "no",
+   "ask": 0.8,
+   "title": "Ethereum price at Aug 26, 2026 at 10pm EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG2622-T2504.99",
+   "side": "no",
+   "ask": 0.9,
+   "title": "Ethereum price at Aug 26, 2026 at 10pm EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG2622-T2509.99",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Ethereum price at Aug 26, 2026 at 10pm EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG2717-T2409.99",
+   "side": "yes",
+   "ask": 0.94,
+   "title": "Ethereum price at Aug 27, 2026 at 5pm EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG2717-T2449.99",
+   "side": "yes",
+   "ask": 0.78,
+   "title": "Ethereum price at Aug 27, 2026 at 5pm EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG2717-T2529.99",
+   "side": "no",
+   "ask": 0.76,
+   "title": "Ethereum price at Aug 27, 2026 at 5pm EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG2717-T2569.99",
+   "side": "no",
+   "ask": 0.91,
+   "title": "Ethereum price at Aug 27, 2026 at 5pm EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXETHD-26AUG2717-T2609.99",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Ethereum price at Aug 27, 2026 at 5pm EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLD15M-26AUG262115-15",
+   "side": "yes",
+   "ask": 0.88,
+   "title": "Gold price up in next 15 mins?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDD-26AUG2717-T4529",
+   "side": "yes",
+   "ask": 0.97,
+   "title": "Will the gold close price be above 4529 USD/t.oz on August 27, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDD-26AUG2717-T4569",
+   "side": "yes",
+   "ask": 0.85,
+   "title": "Will the gold close price be above 4569 USD/t.oz on August 27, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDD-26AUG2717-T4589",
+   "side": "yes",
+   "ask": 0.69,
+   "title": "Will the gold close price be above 4589 USD/t.oz on August 27, 2026 at 5:00 PM EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDD-26AUG2717-T4659",
+   "side": "no",
+   "ask": 0.86,
+   "title": "Will the gold close price be above 4659 USD/t.oz on August 27, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXGOLDD-26AUG2717-T4669",
+   "side": "no",
+   "ask": 0.89,
+   "title": "Will the gold close price be above 4669 USD/t.oz on August 27, 2026 at 5:00 PM EDT?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHYPE15M-26AUG262115-15",
+   "side": "yes",
+   "ask": 0.8,
+   "title": "HYPE price up in next 15 mins?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXJOBLESSCLAIMS-26AUG27-210000",
+   "side": "no",
+   "ask": 0.74,
+   "title": "How many initial jobless claims will there be the week ending Aug 22, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTATL-26AUG26-B71.5",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Will the minimum temperature be 71-72\u00b0 on Aug 26, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTATL-26AUG26-B73.5",
+   "side": "yes",
+   "ask": 0.95,
+   "title": "Will the minimum temperature be 73-74\u00b0 on Aug 26, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTDAL-26AUG26-B76.5",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will the minimum temperature be 76-77\u00b0 on Aug 26, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTMIA-26AUG26-B75.5",
+   "side": "no",
+   "ask": 0.95,
+   "title": "Will the minimum temperature be 75-76\u00b0 on Aug 26, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTMIA-26AUG26-B77.5",
+   "side": "yes",
+   "ask": 0.94,
+   "title": "Will the minimum temperature be 77-78\u00b0 on Aug 26, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTMIN-26AUG26-T65",
+   "side": "yes",
+   "ask": 0.95,
+   "title": "Will the minimum temperature be >65\u00b0 on Aug 26, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXNEAR15M-26AUG262115-15",
+   "side": "no",
+   "ask": 0.67,
+   "title": "NEAR price up in next 15 mins?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXRAIN-26AUG26-DAL",
+   "side": "no",
+   "ask": 0.91,
+   "title": "Will it rain in Dallas on Aug 26, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXRAIN-26AUG26-NOLA",
+   "side": "no",
+   "ask": 0.94,
+   "title": "Will it rain in New Orleans on Aug 26, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSILVER15M-26AUG262115-15",
+   "side": "yes",
+   "ask": 0.953,
+   "title": "Silver price up in next 15 mins?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSOL15M-26AUG262115-15",
+   "side": "no",
+   "ask": 0.66,
+   "title": "SOL price up in next 15 mins?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSOLD-26AUG2622-T100.2499",
+   "side": "yes",
+   "ask": 0.78,
+   "title": "SOL price on Aug 26, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSOLD-26AUG2622-T99.7499",
+   "side": "yes",
+   "ask": 0.95,
+   "title": "SOL price on Aug 26, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSOLD-26AUG2717-T101.9999",
+   "side": "no",
+   "ask": 0.66,
+   "title": "SOL price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSOLD-26AUG2717-T102.9999",
+   "side": "no",
+   "ask": 0.76,
+   "title": "SOL price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSOLD-26AUG2717-T95.9999",
+   "side": "yes",
+   "ask": 0.96,
+   "title": "SOL price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSOLD-26AUG2717-T96.9999",
+   "side": "yes",
+   "ask": 0.9,
+   "title": "SOL price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSOLD-26AUG2717-T97.9999",
+   "side": "yes",
+   "ask": 0.81,
+   "title": "SOL price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXSOLD-26AUG2717-T98.9999",
+   "side": "yes",
+   "ask": 0.72,
+   "title": "SOL price on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTEMPNYCH-26AUG2622-T72.99",
+   "side": "yes",
+   "ask": 0.76,
+   "title": "Will the temp in New York City be above 72.99\u00b0 on Aug 26, 2026 at 10pm EDT?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTVSTATSHULU-26AUG26-FUR",
+   "side": "yes",
+   "ask": 0.95,
+   "title": "Will Furious be #1 on Television Stats\u2019 'Top Hulu Shows Today' list for Aug 26, 2026 ranked by attention score?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTVSTATSNFLX-26AUG26-OUT",
+   "side": "yes",
+   "ask": 0.95,
+   "title": "Will Outer Banks be #1 on Television Stats\u2019 'Top Netflix Shows Today' list for Aug 26, 2026 ranked by attention score?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTVSTATSSHOW-26AUG26-LAN",
+   "side": "yes",
+   "ask": 0.9,
+   "title": "Will Lanterns be #1 on Television Stats\u2019 'The Most Popular TV Shows Right Now' list for Aug 26, 2026 ranked by attention score?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXUST2AD-26AUG27-T4.22",
+   "side": "no",
+   "ask": 0.75,
+   "title": "Will the 2Y U.S. Treasury yield be above 4.22% on Aug 27, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG2714-T78.99",
+   "side": "yes",
+   "ask": 0.96,
+   "title": "Will the WTI crude oil settlement price be above 78.99 USD/Bbl on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG2714-T79.49",
+   "side": "yes",
+   "ask": 0.95,
+   "title": "Will the WTI crude oil settlement price be above 79.49 USD/Bbl on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG2714-T79.99",
+   "side": "yes",
+   "ask": 0.9,
+   "title": "Will the WTI crude oil settlement price be above 79.99 USD/Bbl on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG2714-T80.49",
+   "side": "yes",
+   "ask": 0.82,
+   "title": "Will the WTI crude oil settlement price be above 80.49 USD/Bbl on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG2714-T80.99",
+   "side": "yes",
+   "ask": 0.75,
+   "title": "Will the WTI crude oil settlement price be above 80.99 USD/Bbl on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG2714-T82.49",
+   "side": "no",
+   "ask": 0.7,
+   "title": "Will the WTI crude oil settlement price be above 82.49 USD/Bbl on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG2714-T82.99",
+   "side": "no",
+   "ask": 0.8,
+   "title": "Will the WTI crude oil settlement price be above 82.99 USD/Bbl on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG2714-T83.49",
+   "side": "no",
+   "ask": 0.87,
+   "title": "Will the WTI crude oil settlement price be above 83.49 USD/Bbl on Aug 27, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG2714-T83.99",
+   "side": "no",
+   "ask": 0.94,
+   "title": "Will the WTI crude oil settlement price be above 83.99 USD/Bbl on Aug 27, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXWTI-26AUG2714-T84.49",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Will the WTI crude oil settlement price be above 84.49 USD/Bbl on Aug 27, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXXRPD-26AUG2622-T1.3999",
+   "side": "yes",
+   "ask": 0.75,
+   "title": "Ripple price at Aug 26, 2026 at 10pm EDT?",
+   "result": "yes",
+   "status": "finalized"
+  }
+ ]
+}

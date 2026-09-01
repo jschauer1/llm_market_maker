@@ -2938,3 +2938,48 @@ stage explicit paths.
   those too. Worth someone checking what they were before treating the
   theory as never having fired.
 - The maintenance backlog is now **empty**.
+
+### 2026-09-01 (same session, second half) — a side gap that replicated on every axis and was still composition
+
+A peer (`llm-market-identifier-0e`) filed a ticket mid-session pointing at
+`studies/2026-08-29-series-bias-mining/data/collect.db`: **72,010 priced
+settled markets over 61 close days**, with a `side` column nobody had split.
+That is `no_side_premium`'s hypothesis on 61 days where its own series has 8.
+Write-up: `studies/2026-09-01-side-split-60day-obs/`.
+
+**7. A result can survive every robustness view you own and still be an
+artifact, if none of them is the right control.** The pooled NO−YES gap in
+band 0.90–0.97 came in at **+3.95, t=3.03, 41/61 days** — and then held at
++3.94 out-of-sample over 51 clean days, went *stronger* in the on-time
+settling stratum (+8.62 vs +1.34), got *larger* at an independent 24h
+decision point (+11.02), and was positive in every band but the cheapest.
+Five independent-looking confirmations. **All of it was composition:** NO
+favorites outnumber YES 5:2 there and the two sides are largely different
+series, so the gap measured *which markets happen to be NO-favorite*.
+Differencing within (series, close day) gives **−1.85 (t=−1.40)**, stable
+across weightings and leave-one-series-out, with 61/138 series leaning
+positive — a coin flip. The lesson is not "check robustness"; it is that
+robustness views drawn from the same confound all inherit it, and only a
+control that *removes the confound* is worth anything. `calibration_harvest`
+met the same thing at 38% on 2026-08-29; here it was more than 100%.
+
+**8. So: a within-series (or within-family) control is now mandatory for
+any side or category comparison in this repo.** A pooled A-vs-B number over
+a mixed board is a statement about which markets are A, until proven
+otherwise. Cheap to run, and it is the difference between a finding and an
+embarrassment.
+
+**9. The same control on the narrower screen population does NOT reverse**
+(+7.69, t=1.75 in the same band — but 30 series over 7 days, unreadable as
+a magnitude). The populations disagree; `insider_bias.screen` filters
+`spread ≤ 0.07` / `volume ≥ 500` and the board-wide sweep filters neither,
+which is also why every level in the sweep runs −3.7 to −40 (quotes nobody
+would fill, not mispricings). **This makes the series-bias liquidity
+backfill the deciding experiment for a proposed theory, not a chore** —
+filter the sweep to the screen's bar, re-run the control, and
+`no-favorite-high-band` is either built or abandoned on 61 days of evidence.
+
+**Next (revised):** `no-favorite-high-band` is **blocked pending that
+backfill**, and its ticket says so. Nothing about it should be
+pre-registered until the control has been run on liquidity-filtered sweep
+data.

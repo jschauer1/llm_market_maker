@@ -2,7 +2,7 @@
  "close_day": "2026-08-28",
  "captured_at": "2026-08-27T23:18:30Z",
  "n_population": 175,
- "n_settled": 158,
+ "n_settled": 175,
  "markets": [
   {
    "ticker": "KXAAAGASD-26AUG28-4.0900",
@@ -1193,136 +1193,136 @@
    "side": "yes",
    "ask": 0.96,
    "title": "Will the WTI crude oil settlement price be above 80.99 USD/Bbl on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXWTI-26AUG2814-T81.49",
    "side": "yes",
    "ask": 0.92,
    "title": "Will the WTI crude oil settlement price be above 81.49 USD/Bbl on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXWTI-26AUG2814-T81.99",
    "side": "yes",
    "ask": 0.86,
    "title": "Will the WTI crude oil settlement price be above 81.99 USD/Bbl on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXWTI-26AUG2814-T82.49",
    "side": "yes",
    "ask": 0.79,
    "title": "Will the WTI crude oil settlement price be above 82.49 USD/Bbl on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXWTI-26AUG2814-T82.99",
    "side": "yes",
    "ask": 0.66,
    "title": "Will the WTI crude oil settlement price be above 82.99 USD/Bbl on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXWTI-26AUG2814-T84.49",
    "side": "no",
    "ask": 0.75,
    "title": "Will the WTI crude oil settlement price be above 84.49 USD/Bbl on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXWTI-26AUG2814-T84.99",
    "side": "no",
    "ask": 0.84,
    "title": "Will the WTI crude oil settlement price be above 84.99 USD/Bbl on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXWTI-26AUG2814-T85.49",
    "side": "no",
    "ask": 0.91,
    "title": "Will the WTI crude oil settlement price be above 85.49 USD/Bbl on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXWTI-26AUG2814-T85.99",
    "side": "no",
    "ask": 0.95,
    "title": "Will the WTI crude oil settlement price be above 85.99 USD/Bbl on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXWTI-26AUG2814-T86.49",
    "side": "no",
    "ask": 0.97,
    "title": "Will the WTI crude oil settlement price be above 86.49 USD/Bbl on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXWTIW-26AUG2814-B80.50",
    "side": "no",
    "ask": 0.97,
    "title": "Will the WTI crude oil settlement price be between 80.00 and 80.99 USD/Bbl on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXWTIW-26AUG2814-B81.50",
    "side": "no",
    "ask": 0.92,
    "title": "Will the WTI crude oil settlement price be between 81.00 and 81.99 USD/Bbl on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXWTIW-26AUG2814-B82.50",
    "side": "no",
    "ask": 0.82,
    "title": "Will the WTI crude oil settlement price be between 82.00 and 82.99 USD/Bbl on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXWTIW-26AUG2814-B83.50",
    "side": "no",
    "ask": 0.75,
    "title": "Will the WTI crude oil settlement price be between 83.00 and 83.99 USD/Bbl on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXWTIW-26AUG2814-B84.50",
    "side": "no",
    "ask": 0.79,
    "title": "Will the WTI crude oil settlement price be between 84.00 and 84.99 USD/Bbl on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXWTIW-26AUG2814-B85.50",
    "side": "no",
    "ask": 0.91,
    "title": "Will the WTI crude oil settlement price be between 85.00 and 85.99 USD/Bbl on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXWTIW-26AUG2814-B86.50",
    "side": "no",
    "ask": 0.95,
    "title": "Will the WTI crude oil settlement price be between 86.00 and 86.99 USD/Bbl on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXXRP-26AUG2817-B1.4099500",

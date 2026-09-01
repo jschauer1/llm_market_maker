@@ -2,95 +2,95 @@
  "close_day": "2026-08-29",
  "captured_at": "2026-08-29T00:06:13Z",
  "n_population": 70,
- "n_settled": 24,
+ "n_settled": 70,
  "markets": [
   {
    "ticker": "KXAAAGASD-26AUG29-4.0700",
    "side": "yes",
    "ask": 0.92,
    "title": "Will average **gas prices** be above $4.0700?",
-   "result": null,
-   "status": "closed"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXAAAGASD-26AUG29-4.0750",
    "side": "yes",
    "ask": 0.75,
    "title": "Will average **gas prices** be above $4.0750?",
-   "result": null,
-   "status": "closed"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXAAAGASD-26AUG29-4.0850",
    "side": "no",
    "ask": 0.95,
    "title": "Will average **gas prices** be above $4.0850?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXAAAGASDCA-26AUG29-5.6450",
    "side": "yes",
    "ask": 0.93,
    "title": "Will average **gas prices** be above $5.6450?",
-   "result": null,
-   "status": "closed"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXAAAGASDCA-26AUG29-5.6500",
    "side": "yes",
    "ask": 0.95,
    "title": "Will average **gas prices** be above $5.6500?",
-   "result": null,
-   "status": "closed"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXAAAGASDCA-26AUG29-5.6550",
    "side": "yes",
    "ask": 0.68,
    "title": "Will average **gas prices** be above $5.6550?",
-   "result": null,
-   "status": "closed"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXAAAGASDFL-26AUG29-3.9200",
    "side": "yes",
    "ask": 0.82,
    "title": "Will average **gas prices** be above $3.9200?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXAAAGASDNJ-26AUG29-4.0500",
    "side": "yes",
    "ask": 0.93,
    "title": "Will average **gas prices** be above $4.0500?",
-   "result": null,
-   "status": "closed"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXAAAGASDTX-26AUG29-3.6100",
    "side": "yes",
    "ask": 0.95,
    "title": "Will average **gas prices** be above $3.6100?",
-   "result": null,
-   "status": "closed"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXAAAGASDTX-26AUG29-3.6200",
    "side": "no",
    "ask": 0.75,
    "title": "Will average **gas prices** be above $3.6200?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXAAAGASDTX-26AUG29-3.6300",
    "side": "no",
    "ask": 0.94,
    "title": "Will average **gas prices** be above $3.6300?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXBNB15M-26AUG282015-15",
@@ -105,24 +105,24 @@
    "side": "no",
    "ask": 0.97,
    "title": "Bitcoin price range on Aug 29, 2026?",
-   "result": null,
-   "status": "active"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXBTC-26AUG2917-B77375",
    "side": "no",
    "ask": 0.9,
    "title": "Bitcoin price range on Aug 29, 2026?",
-   "result": null,
-   "status": "active"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXBTC-26AUG2917-B77875",
    "side": "no",
    "ask": 0.86,
    "title": "Bitcoin price range on Aug 29, 2026?",
-   "result": null,
-   "status": "active"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXBTC15M-26AUG282015-15",
@@ -185,112 +185,112 @@
    "side": "yes",
    "ask": 0.96,
    "title": "Bitcoin price on Aug 29, 2026?",
-   "result": null,
-   "status": "active"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXBTCD-26AUG2917-T76749.99",
    "side": "yes",
    "ask": 0.93,
    "title": "Bitcoin price on Aug 29, 2026?",
-   "result": null,
-   "status": "active"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXBTCD-26AUG2917-T76999.99",
    "side": "yes",
    "ask": 0.89,
    "title": "Bitcoin price on Aug 29, 2026?",
-   "result": null,
-   "status": "active"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXBTCD-26AUG2917-T77249.99",
    "side": "yes",
    "ask": 0.81,
    "title": "Bitcoin price on Aug 29, 2026?",
-   "result": null,
-   "status": "active"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXBTCD-26AUG2917-T77499.99",
    "side": "yes",
    "ask": 0.69,
    "title": "Bitcoin price on Aug 29, 2026?",
-   "result": null,
-   "status": "active"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXBTCD-26AUG2917-T78249.99",
    "side": "no",
    "ask": 0.76,
    "title": "Bitcoin price on Aug 29, 2026?",
-   "result": null,
-   "status": "active"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXBTCD-26AUG2917-T78499.99",
    "side": "no",
    "ask": 0.86,
    "title": "Bitcoin price on Aug 29, 2026?",
-   "result": null,
-   "status": "active"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXBTCD-26AUG2917-T78749.99",
    "side": "no",
    "ask": 0.91,
    "title": "Bitcoin price on Aug 29, 2026?",
-   "result": null,
-   "status": "active"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXBTCD-26AUG2917-T78999.99",
    "side": "no",
    "ask": 0.94,
    "title": "Bitcoin price on Aug 29, 2026?",
-   "result": null,
-   "status": "active"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXBTCD-26AUG2917-T79249.99",
    "side": "no",
    "ask": 0.96,
    "title": "Bitcoin price on Aug 29, 2026?",
-   "result": null,
-   "status": "active"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXBTCD-26AUG2917-T79499.99",
    "side": "no",
    "ask": 0.97,
    "title": "Bitcoin price on Aug 29, 2026?",
-   "result": null,
-   "status": "active"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXDIESELD-26AUG29-T5.610",
    "side": "no",
    "ask": 0.96,
    "title": "Will Diesel Price on August 29, 2026 be above $5.610?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXETH-26AUG2917-B2390",
    "side": "no",
    "ask": 0.91,
    "title": "Ethereum price at Aug 29, 2026 at 5pm EDT?",
-   "result": null,
-   "status": "active"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXETH-26AUG2917-B2510",
    "side": "no",
    "ask": 0.97,
    "title": "Ethereum price at Aug 29, 2026 at 5pm EDT?",
-   "result": null,
-   "status": "active"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXETHD-26AUG2821-T2434.99",
@@ -329,16 +329,16 @@
    "side": "yes",
    "ask": 0.88,
    "title": "Ethereum price at Aug 29, 2026 at 5pm EDT?",
-   "result": null,
-   "status": "active"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXETHD-26AUG2917-T2489.99",
    "side": "no",
    "ask": 0.95,
    "title": "Ethereum price at Aug 29, 2026 at 5pm EDT?",
-   "result": null,
-   "status": "active"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXGOLD15M-26AUG282015-15",
@@ -361,16 +361,16 @@
    "side": "no",
    "ask": 0.86,
    "title": "Will the minimum temperature be 68-69\u00b0 on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXLOWTBOS-26AUG28-B70.5",
    "side": "yes",
    "ask": 0.85,
    "title": "Will the minimum temperature be 70-71\u00b0 on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXLOWTDC-26AUG28-B71.5",
@@ -385,24 +385,24 @@
    "side": "yes",
    "ask": 0.97,
    "title": "Will the minimum temperature be 59-60\u00b0 on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXLOWTHOU-26AUG28-B75.5",
    "side": "no",
    "ask": 0.94,
    "title": "Will the minimum temperature be 75-76\u00b0 on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXLOWTHOU-26AUG28-B77.5",
    "side": "yes",
    "ask": 0.81,
    "title": "Will the minimum temperature be 77-78\u00b0 on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXLOWTNOLA-26AUG28-B76.5",
@@ -410,23 +410,23 @@
    "ask": 0.97,
    "title": "Will the minimum temperature be 76-77\u00b0 on Aug 28, 2026?",
    "result": "yes",
-   "status": "determined"
+   "status": "finalized"
   },
   {
    "ticker": "KXLOWTPHX-26AUG28-B90.5",
    "side": "no",
    "ask": 0.91,
    "title": "Will the minimum temperature be 90-91\u00b0 on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXLOWTPHX-26AUG28-T91",
    "side": "yes",
    "ask": 0.93,
    "title": "Will the minimum temperature be >91\u00b0 on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXLOWTSATX-26AUG28-B75.5",
@@ -434,7 +434,7 @@
    "ask": 0.92,
    "title": "Will the minimum temperature be 75-76\u00b0 on Aug 28, 2026?",
    "result": "no",
-   "status": "determined"
+   "status": "finalized"
   },
   {
    "ticker": "KXLOWTSATX-26AUG28-B77.5",
@@ -442,7 +442,7 @@
    "ask": 0.89,
    "title": "Will the minimum temperature be 77-78\u00b0 on Aug 28, 2026?",
    "result": "no",
-   "status": "determined"
+   "status": "finalized"
   },
   {
    "ticker": "KXNATGAS15M-26AUG282015-15",
@@ -465,32 +465,32 @@
    "side": "no",
    "ask": 0.9,
    "title": "Will it rain in Atlanta on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXRAIN-26AUG28-DEN",
    "side": "no",
    "ask": 0.91,
    "title": "Will it rain in Denver on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXRAIN-26AUG28-LV",
    "side": "no",
    "ask": 0.97,
    "title": "Will it rain in Las Vegas on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXRAIN-26AUG28-MIA",
    "side": "no",
    "ask": 0.94,
    "title": "Will it rain in Miami on Aug 28, 2026?",
-   "result": null,
-   "status": "closed"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXSILVER15M-26AUG282015-15",
@@ -513,24 +513,24 @@
    "side": "yes",
    "ask": 0.93,
    "title": "SOL price on Aug 29, 2026?",
-   "result": null,
-   "status": "active"
+   "result": "yes",
+   "status": "finalized"
   },
   {
    "ticker": "KXTRUMPENDORSEMENTS-26AUG28-A10",
    "side": "no",
    "ask": 0.91,
    "title": "Will Trump endorse at least 10 people on Truth Social this week?",
-   "result": null,
-   "status": "active"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXTRUMPENDORSEMENTS-26AUG28-A15",
    "side": "no",
    "ask": 0.95,
    "title": "Will Trump endorse at least 15 people on Truth Social this week?",
-   "result": null,
-   "status": "active"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXXRP15M-26AUG282015-15",
@@ -545,16 +545,16 @@
    "side": "no",
    "ask": 0.82,
    "title": "Ripple price at Aug 29, 2026 at 5pm EDT?",
-   "result": null,
-   "status": "active"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXXRPD-26AUG2917-T1.4399",
    "side": "no",
    "ask": 0.92,
    "title": "Ripple price at Aug 29, 2026 at 5pm EDT?",
-   "result": null,
-   "status": "active"
+   "result": "no",
+   "status": "finalized"
   },
   {
    "ticker": "KXZEC15M-26AUG282015-15",

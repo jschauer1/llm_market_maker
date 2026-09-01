@@ -354,6 +354,44 @@ def history_for(
     ).fetchall()
 
 
+def board_as_of(
+    conn: sqlite3.Connection, platform: str, at: str
+) -> list[sqlite3.Row]:
+    """Every market on `platform`'s board at instant `at`, one row each.
+
+    **Use this, never `WHERE captured_at = <pull stamp>`.** Dedup-on-write
+    (spec 5.2 phase 2) means a pull writes NO row for a market whose
+    payload did not change, so filtering on an exact capture stamp
+    stopped returning the board on 2026-08-30 and started returning "the
+    markets that moved at that pull" -- a subset correlated with
+    liquidity, and therefore with price and side, returned silently and
+    without error. Measured on this project's DB the day the reconstructor
+    landed: the 2026-08-31T00:38:34Z capture holds 53,613 rows against a
+    99,064-market board (46% missing); 2026-09-01T02:06:51Z holds 79,961
+    against 105,104, which is exactly the market count that floor
+    reported pulling.
+
+    Each row carries a validity interval [captured_at, last_seen_at], and
+    a market's intervals never overlap, so "the board at `at`" is the row
+    per market whose interval contains `at`. A market last seen before
+    `at` has left the board and is correctly absent.
+
+    Rows come back with all columns; read `raw_json`/`event_json` through
+    `payload_text` as everywhere else.
+    """
+    return conn.execute(
+        """
+        SELECT * FROM market_snapshots
+         WHERE platform = ? AND id IN (
+               SELECT MAX(id) FROM market_snapshots
+                WHERE platform = ? AND captured_at <= ? AND last_seen_at >= ?
+                GROUP BY market_id)
+         ORDER BY market_id
+        """,
+        (platform, platform, at, at),
+    ).fetchall()
+
+
 def dedup_history(conn: sqlite3.Connection, batch_markets: int = 2000) -> dict:
     """Collapse consecutive byte-identical rows per market (spec 5.2).
 

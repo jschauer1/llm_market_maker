@@ -590,3 +590,90 @@ def test_db_close_checkpoints_the_wal(tmp_path):
     for name in ("test.db-wal", "test.snapshots.db-wal"):
         p = tmp_path / name
         assert (not p.exists()) or p.stat().st_size == 0
+
+
+# --- board_as_of: point-in-time reconstruction across dedup intervals ---
+#
+# Added 2026-09-01. Dedup-on-write (spec 5.2 phase 2) means a pull writes
+# NO row for an unchanged market, so `WHERE captured_at = <pull stamp>`
+# stopped returning the board and started returning "markets that moved
+# at that pull" -- a liquidity-correlated subset, silently. Measured on
+# the live DB the day this landed: the 2026-08-31T00:38:34Z capture holds
+# 53,613 rows against a 99,064-market board (46% missing).
+
+def test_board_as_of_returns_unchanged_markets_the_capture_row_omits(conn):
+    # T-0 moves at the second pull; T-1 does not, so the second pull
+    # writes no row for it at all.
+    snapshot.save_kalshi(
+        conn,
+        [_mk("T-0", yes_ask_dollars="0.82"), _mk("T-1")],
+        now="2026-08-24T11:00:00Z",
+    )
+    snapshot.save_kalshi(
+        conn,
+        [_mk("T-0", yes_ask_dollars="0.90"), _mk("T-1")],
+        now=NOW,
+    )
+
+    exact = conn.execute(
+        "SELECT COUNT(*) FROM market_snapshots WHERE captured_at = ?", (NOW,)
+    ).fetchone()[0]
+    assert exact == 1, "precondition: the unchanged market wrote no row"
+
+    got = snapshot.board_as_of(conn, "kalshi", NOW)
+    assert {r["market_id"] for r in got} == {"T-0", "T-1"}
+
+
+def test_board_as_of_picks_the_row_whose_interval_covers_the_instant(conn):
+    snapshot.save_kalshi(
+        conn, [_mk("T-0", yes_ask_dollars="0.82")], now="2026-08-24T11:00:00Z")
+    snapshot.save_kalshi(
+        conn, [_mk("T-0", yes_ask_dollars="0.90")], now=NOW)
+
+    assert [r["yes_ask"]
+            for r in snapshot.board_as_of(conn, "kalshi", "2026-08-24T11:00:00Z")]         == [0.82]
+    assert [r["yes_ask"] for r in snapshot.board_as_of(conn, "kalshi", NOW)]         == [0.90]
+
+
+def test_board_as_of_does_not_carry_a_changed_price_across_the_gap(conn):
+    # Deliberate, and the reason callers should pass a real capture stamp.
+    # An interval is KNOWN validity, not assumed validity: T-0 was 0.82 at
+    # 11:00 and 0.90 at 12:00, so its price at 11:30 is genuinely unknown
+    # and the market is absent rather than reported at a stale price. At an
+    # actual pull stamp this never bites -- every market in that pull has an
+    # interval covering it, either a fresh row or a bumped last_seen_at.
+    snapshot.save_kalshi(
+        conn, [_mk("T-0", yes_ask_dollars="0.82")], now="2026-08-24T11:00:00Z")
+    snapshot.save_kalshi(
+        conn, [_mk("T-0", yes_ask_dollars="0.90")], now=NOW)
+
+    assert snapshot.board_as_of(conn, "kalshi", "2026-08-24T11:30:00Z") == []
+
+    # An UNCHANGED market, by contrast, is carried across the gap, because
+    # its single row's interval genuinely spans it.
+    snapshot.save_kalshi(conn, [_mk("T-1")], now="2026-08-24T11:00:00Z")
+    snapshot.save_kalshi(conn, [_mk("T-1")], now=NOW)
+    assert [r["market_id"]
+            for r in snapshot.board_as_of(conn, "kalshi", "2026-08-24T11:30:00Z")]         == ["T-1"]
+
+
+def test_board_as_of_excludes_a_market_whose_interval_ended(conn):
+    # T-1 is last seen at 11:00 and never again -- it had left the board
+    # by NOW, and must not be resurrected into it.
+    snapshot.save_kalshi(
+        conn, [_mk("T-0"), _mk("T-1")], now="2026-08-24T11:00:00Z")
+    snapshot.save_kalshi(conn, [_mk("T-0", yes_ask_dollars="0.90")], now=NOW)
+
+    assert {r["market_id"] for r in snapshot.board_as_of(conn, "kalshi", NOW)} \
+        == {"T-0"}
+
+
+def test_board_as_of_is_empty_before_any_capture(conn):
+    snapshot.save_kalshi(conn, [_mk("T-0")], now=NOW)
+    assert snapshot.board_as_of(conn, "kalshi", "2026-08-24T10:00:00Z") == []
+
+
+def test_board_as_of_payloads_decode_through_payload_text(conn):
+    snapshot.save_kalshi(conn, [_mk("T-0")], now=NOW)
+    row = snapshot.board_as_of(conn, "kalshi", NOW)[0]
+    assert json.loads(snapshot.payload_text(row["raw_json"]))["ticker"] == "T-0"

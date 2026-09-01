@@ -1,0 +1,512 @@
+{
+ "close_day": "2026-08-30",
+ "captured_at": "2026-08-29T13:14:32Z",
+ "n_population": 63,
+ "n_settled": 63,
+ "markets": [
+  {
+   "ticker": "KXAAAGASD-26AUG30-4.0850",
+   "side": "no",
+   "ask": 0.84,
+   "title": "Will average **gas prices** be above $4.0850?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LON26AUG27-40K",
+   "side": "yes",
+   "ask": 0.88,
+   "title": "Will Long Way Home by STELLA LEFTY have above 40000 Album Equivalent Units during the August 21, 2026 - August 27, 2026 tracking week?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXALBUMEQUIV-LON26AUG27-45K",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will Long Way Home by STELLA LEFTY have above 45000 Album Equivalent Units during the August 21, 2026 - August 27, 2026 tracking week?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHAUS-26AUG29-B101.5",
+   "side": "no",
+   "ask": 0.84,
+   "title": "Will the maximum temperature be 101-102\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHAUS-26AUG29-B97.5",
+   "side": "no",
+   "ask": 0.8,
+   "title": "Will the maximum temperature be 97-98\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHCHI-26AUG29-B84.5",
+   "side": "no",
+   "ask": 0.95,
+   "title": "Will the maximum temperature be 84-85\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHCHI-26AUG29-T80",
+   "side": "no",
+   "ask": 0.86,
+   "title": "Will the maximum temperature be <80\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHDEN-26AUG29-B94.5",
+   "side": "no",
+   "ask": 0.95,
+   "title": "Will the maximum temperature be 94-95\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHDEN-26AUG29-T90",
+   "side": "no",
+   "ask": 0.86,
+   "title": "Will the maximum temperature be <90\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHLAX-26AUG29-B81.5",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will the maximum temperature be 81-82\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHLAX-26AUG29-B83.5",
+   "side": "no",
+   "ask": 0.72,
+   "title": "Will the maximum temperature be 83-84\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHLAX-26AUG29-T86",
+   "side": "no",
+   "ask": 0.71,
+   "title": "Will the maximum temperature be >86\u00b0 on Aug 29, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHMIA-26AUG29-B88.5",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will the maximum temperature be 88-89\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHMIA-26AUG29-B90.5",
+   "side": "no",
+   "ask": 0.66,
+   "title": "Will the maximum temperature be 90-91\u00b0 on Aug 29, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHMIA-26AUG29-B94.5",
+   "side": "no",
+   "ask": 0.92,
+   "title": "Will the maximum temperature be 94-95\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHMIA-26AUG29-T88",
+   "side": "no",
+   "ask": 0.92,
+   "title": "Will the maximum temperature be <88\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHNY-26AUG29-B79.5",
+   "side": "no",
+   "ask": 0.72,
+   "title": "Will the maximum temperature be 79-80\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHNY-26AUG29-B81.5",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will the maximum temperature be 81-82\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHNY-26AUG29-T79",
+   "side": "yes",
+   "ask": 0.68,
+   "title": "Will the maximum temperature be <79\u00b0 on Aug 29, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHPHIL-26AUG29-B83.5",
+   "side": "no",
+   "ask": 0.83,
+   "title": "Will the maximum temperature be 83-84\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHPHIL-26AUG29-T81",
+   "side": "no",
+   "ask": 0.74,
+   "title": "Will the maximum temperature be <81\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTATL-26AUG29-B84.5",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will the maximum temperature be 84-85\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTATL-26AUG29-B86.5",
+   "side": "no",
+   "ask": 0.74,
+   "title": "Will the maximum temperature be 86-87\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTATL-26AUG29-B90.5",
+   "side": "no",
+   "ask": 0.89,
+   "title": "Will the maximum temperature be 90-91\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTBOS-26AUG29-B78.5",
+   "side": "no",
+   "ask": 0.9,
+   "title": "Will the maximum temperature be 78-79\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTDAL-26AUG29-B100.5",
+   "side": "no",
+   "ask": 0.74,
+   "title": "Will the maximum temperature be 100-101\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTDAL-26AUG29-B102.5",
+   "side": "yes",
+   "ask": 0.7,
+   "title": "Will the maximum temperature be 102-103\u00b0 on Aug 29, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTDAL-26AUG29-B104.5",
+   "side": "no",
+   "ask": 0.95,
+   "title": "Will the maximum temperature be 104-105\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTDC-26AUG29-B83.5",
+   "side": "no",
+   "ask": 0.79,
+   "title": "Will the maximum temperature be 83-84\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTDC-26AUG29-B87.5",
+   "side": "no",
+   "ask": 0.91,
+   "title": "Will the maximum temperature be 87-88\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTHOU-26AUG29-B92.5",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will the maximum temperature be 92-93\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTHOU-26AUG29-B94.5",
+   "side": "no",
+   "ask": 0.8,
+   "title": "Will the maximum temperature be 94-95\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTHOU-26AUG29-B98.5",
+   "side": "no",
+   "ask": 0.91,
+   "title": "Will the maximum temperature be 98-99\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTLV-26AUG29-B107.5",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will the maximum temperature be 107-108\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTMIN-26AUG29-B80.5",
+   "side": "no",
+   "ask": 0.73,
+   "title": "Will the maximum temperature be 80-81\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTMIN-26AUG29-T80",
+   "side": "no",
+   "ask": 0.73,
+   "title": "Will the maximum temperature be <80\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTOKC-26AUG29-B104.5",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Will the maximum temperature be 104-105\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTPHX-26AUG29-B108.5",
+   "side": "no",
+   "ask": 0.93,
+   "title": "Will the maximum temperature be 108-109\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTSATX-26AUG29-B100.5",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will the maximum temperature be 100-101\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTSATX-26AUG29-B96.5",
+   "side": "yes",
+   "ask": 0.68,
+   "title": "Will the maximum temperature be 96-97\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTSATX-26AUG29-B98.5",
+   "side": "no",
+   "ask": 0.74,
+   "title": "Will the maximum temperature be 98-99\u00b0 on Aug 29, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTSATX-26AUG29-T96",
+   "side": "no",
+   "ask": 0.95,
+   "title": "Will the maximum temperature be <96\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTSEA-26AUG29-B66.5",
+   "side": "no",
+   "ask": 0.92,
+   "title": "Will the maximum temperature be 66-67\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTSEA-26AUG29-B70.5",
+   "side": "no",
+   "ask": 0.7,
+   "title": "Will the maximum temperature be 70-71\u00b0 on Aug 29, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTSFO-26AUG29-B65.5",
+   "side": "no",
+   "ask": 0.93,
+   "title": "Will the maximum temperature be 65-66\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTSFO-26AUG29-B71.5",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will the maximum temperature be 71-72\u00b0 on Aug 29, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXHIGHTSFO-26AUG29-T65",
+   "side": "no",
+   "ask": 0.95,
+   "title": "Will the maximum temperature be <65\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTATL-26AUG29-T72",
+   "side": "yes",
+   "ask": 0.86,
+   "title": "Will the minimum temperature be >72\u00b0 on Aug 29, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTAUS-26AUG29-B70.5",
+   "side": "yes",
+   "ask": 0.97,
+   "title": "Will the minimum temperature be 70-71\u00b0 on Aug 29, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTBOS-26AUG29-B64.5",
+   "side": "yes",
+   "ask": 0.81,
+   "title": "Will the minimum temperature be 64-65\u00b0 on Aug 29, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTDAL-26AUG29-B76.5",
+   "side": "no",
+   "ask": 0.85,
+   "title": "Will the minimum temperature be 76-77\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTDEN-26AUG29-B60.5",
+   "side": "no",
+   "ask": 0.88,
+   "title": "Will the minimum temperature be 60-61\u00b0 on Aug 29, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTHOU-26AUG29-B74.5",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Will the minimum temperature be 74-75\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTHOU-26AUG29-B76.5",
+   "side": "yes",
+   "ask": 0.93,
+   "title": "Will the minimum temperature be 76-77\u00b0 on Aug 29, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTPHX-26AUG29-B83.5",
+   "side": "no",
+   "ask": 0.96,
+   "title": "Will the minimum temperature be 83-84\u00b0 on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXLOWTSFO-26AUG29-B55.5",
+   "side": "yes",
+   "ask": 0.95,
+   "title": "Will the minimum temperature be 55-56\u00b0 on Aug 29, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXRAIN-26AUG29-HOU",
+   "side": "no",
+   "ask": 0.78,
+   "title": "Will it rain in Houston on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXRAIN-26AUG29-LV",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will it rain in Las Vegas on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXRAIN-26AUG29-NOLA",
+   "side": "no",
+   "ask": 0.88,
+   "title": "Will it rain in New Orleans on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXRAIN-26AUG29-OKC",
+   "side": "no",
+   "ask": 0.97,
+   "title": "Will it rain in Oklahoma City on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXRAIN-26AUG29-PHX",
+   "side": "no",
+   "ask": 0.71,
+   "title": "Will it rain in Phoenix on Aug 29, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTRUTHSOCIAL-26AUG29-B230",
+   "side": "no",
+   "ask": 0.89,
+   "title": "Will Donald Trump make between 220 and 240 Truth Social posts the week of Aug 23, 2026?",
+   "result": "no",
+   "status": "finalized"
+  },
+  {
+   "ticker": "KXTRUTHSOCIAL-26AUG29-T240",
+   "side": "yes",
+   "ask": 0.89,
+   "title": "Will Donald Trump make above 240 Truth Social posts the week of Aug 23, 2026?",
+   "result": "yes",
+   "status": "finalized"
+  }
+ ]
+}

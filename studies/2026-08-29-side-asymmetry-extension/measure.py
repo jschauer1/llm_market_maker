@@ -34,8 +34,30 @@ DATA = Path(__file__).resolve().parent / "data"
 #: (close day, snapshot captured_at). Each snapshot precedes its day's
 #: settlements, which is what makes the price point-in-time.
 TARGETS = [
+    # The earliest capture in the DB, and the only close-day before 08-25
+    # it can price. Added 2026-09-01 to reach an 8th day WITHOUT admitting
+    # a partial one -- the decision to add it was recorded before its
+    # number was computed (NOTES.md 2026-09-01).
+    ("2026-08-24", "2026-08-24T01:34:44Z"),
+    # 2026-09-01: the 2026-08-27 study's three days, re-measured here with
+    # ITS OWN snapshot pairs (STUDY.md lines 30-34) so the whole series
+    # carries one vintage. Re-measuring matters: 08-28 moved +32.60 ->
+    # +28.97 and 08-29 +9.49 -> +4.10 once their remaining markets settled,
+    # so days frozen at an older settlement state are not comparable to
+    # days measured today.
+    ("2026-08-25", "2026-08-24T22:34:54Z"),
+    ("2026-08-26", "2026-08-24T22:34:54Z"),
+    ("2026-08-27", "2026-08-27T01:06:07Z"),
     ("2026-08-28", "2026-08-27T23:18:30Z"),
+    # Re-measured 2026-09-01: this day was 24-of-70 settled when first
+    # written and the study flagged it "will move". It is complete now.
     ("2026-08-29", "2026-08-29T00:06:13Z"),
+    # Added 2026-09-01, per the study's pre-registered follow-on ("re-run
+    # with a new (close day, snapshot) pair each session"). The snapshot is
+    # always the latest capture preceding the day's settlements.
+    ("2026-08-30", "2026-08-29T13:14:32Z"),
+    ("2026-08-31", "2026-08-31T00:38:34Z"),
+    ("2026-09-01", "2026-09-01T02:06:51Z"),
 ]
 
 
@@ -44,11 +66,13 @@ def fee_pts(price: float) -> float:
 
 
 def population(conn, captured_at: str, close_day: str):
-    rows = conn.execute(
-        "SELECT raw_json FROM market_snapshots "
-        "WHERE captured_at = ? AND platform = 'kalshi'",
-        (captured_at,),
-    ).fetchall()
+    # NOT `WHERE captured_at = ?`. Dedup-on-write (spec 5.2 phase 2,
+    # 2026-08-30) stopped writing a row for a market whose payload did not
+    # change, so an exact-stamp filter returns "markets that moved at this
+    # pull" -- a liquidity-correlated subset, silently. It costs 46% of the
+    # 2026-08-31 board and 24% of 2026-09-01's, and the bias runs straight
+    # through side and price, which is exactly what this study measures.
+    rows = snapshot.board_as_of(conn, "kalshi", captured_at)
     mkts = []
     for r in rows:
         try:
