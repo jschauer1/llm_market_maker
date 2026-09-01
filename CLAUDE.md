@@ -99,10 +99,21 @@ Both are normal.
 **When a task has a skill, invoke it before starting.** Backtesting →
 `backtest-theory`. Choosing bets → `find-edge`. New hypothesis →
 `propose-theory`. Settling and scoring → `score-theories`. Comparing →
-`compare-theories`. A session → `go`. The skills carry rules this file does
+`compare-theories`. A session → `go`, which chooses one lane and hands
+off: today's floor → `go-floor`, building out an existing theory →
+`go-theory`, getting a new thesis running → `go-new-theory`, the repo
+itself → `go-maintenance`. The skills carry rules this file does
 not repeat, loaded at the moment they bind. **Prefer loading a skill to not
 loading one**: the cost of reading one you did not strictly need is a few
 hundred tokens, and the cost of skipping one is a rule you never saw.
+
+**A session takes exactly one lane and stays in it.** Work you notice in
+another lane becomes a **ticket** (`python -m tools.cli tickets list`) —
+theory tickets live in that theory's own folder, everything else under
+`tickets/<lane>/`. That is what makes staying focused affordable, and it
+is also the low-interrupt way to tell a working peer something, since a
+message costs them their focus and a ticket does not. Maintenance is the
+only lane free to move between tickets.
 
 **The user places every bet manually.** This system never sees what actually
 happened unless told:

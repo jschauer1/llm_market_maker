@@ -11,10 +11,11 @@ from __future__ import annotations
 
 import argparse
 import json
+import pathlib
 import sys
 
-from tools import (db, floor, ideas, ledger, provenance, rank, score,
-                   slices, theories, toolkit)
+from tools import (db, floor, ideas, lanes, ledger, provenance, rank,
+                   score, slices, theories, tickets, toolkit)
 
 
 def _emit(payload) -> None:
@@ -146,6 +147,50 @@ def _cmd_tools(args) -> int:
     else:
         print(toolkit.render())
     return 0
+
+
+def _cmd_tickets(args) -> int:
+    root = db.REPO_ROOT
+    if args.action == "list":
+        _emit(tickets.backlog(
+            root, lane=args.lane, status=args.status, theory=args.theory))
+    elif args.action == "new":
+        path = tickets.create(
+            root, lane=args.lane, slug=args.slug, title=args.title,
+            body=args.body, theory=args.theory, created_by=args.session,
+        )
+        _emit({"created": str(path.relative_to(root)).replace("\\", "/")})
+    elif args.action == "close":
+        path = tickets.close(pathlib.Path(args.path),
+                             resolution=args.resolution)
+        _emit({"closed": str(path)})
+    return 0
+
+
+def _cmd_lane(args) -> int:
+    conn = _connect(args)
+    try:
+        if args.action == "status":
+            _emit(lanes.status(conn))
+        elif args.action == "claim":
+            try:
+                got = lanes.claim(conn, args.lane, args.session,
+                                  focus=args.focus, join=args.join)
+            except lanes.LaneHeld as held:
+                # Held is an answer, not a crash: the session reads who has
+                # it and goes and takes an open lane.
+                _emit({"claimed": False, "reason": str(held),
+                       "status": lanes.status(conn)})
+                return 0
+            _emit({"claimed": True, "claim": dict(got),
+                   "status": lanes.status(conn)})
+        elif args.action == "release":
+            _emit(dict(lanes.release(conn, args.id, summary=args.summary)))
+        elif args.action == "recent":
+            _emit(_rows(lanes.recent(conn, limit=args.limit)))
+        return 0
+    finally:
+        conn.close()
 
 
 def _cmd_floor(args) -> int:
@@ -692,6 +737,47 @@ def build_parser() -> argparse.ArgumentParser:
     rst = rsub.add_parser("status")
     rst.add_argument("id", type=int)
     rst.add_argument("value", choices=("binding", "implemented", "superseded"))
+
+    p = sub.add_parser(
+        "tickets", help="the work backlog: one .md per task, oldest first")
+    p.set_defaults(func=_cmd_tickets)
+    tsub = p.add_subparsers(dest="action", required=True)
+    tls = tsub.add_parser("list", help="the backlog a session chooses from")
+    tls.add_argument("--lane", default=None, choices=tickets.LANES)
+    tls.add_argument("--theory", default=None)
+    tls.add_argument("--status", default="open")
+    tnew = tsub.add_parser("new", help="file work you are not going to do now")
+    tnew.add_argument("--lane", required=True, choices=tickets.LANES)
+    tnew.add_argument("--slug", required=True)
+    tnew.add_argument("--title", required=True)
+    tnew.add_argument("--body", required=True,
+                      help="what to do, for a session that was not here")
+    tnew.add_argument("--theory", default=None,
+                      help="required for --lane theory; it lives in that "
+                           "theory's folder")
+    tnew.add_argument("--session", default=None)
+    tcl = tsub.add_parser("close")
+    tcl.add_argument("path")
+    tcl.add_argument("--resolution", required=True)
+
+    p = sub.add_parser(
+        "lane", help="who is working on what; claim a lane and stay in it")
+    p.set_defaults(func=_cmd_lane)
+    lsub = p.add_subparsers(dest="action", required=True)
+    lsub.add_parser("status", help="every lane and who holds it")
+    lcl = lsub.add_parser("claim")
+    lcl.add_argument("--lane", required=True, choices=lanes.LANES)
+    lcl.add_argument("--session", required=True)
+    lcl.add_argument("--focus", default=None,
+                     help="which theory, on the theory lane")
+    lcl.add_argument("--join", default=None,
+                     help="join a lane someone already holds -- discouraged; "
+                          "the reason is recorded")
+    lrl = lsub.add_parser("release")
+    lrl.add_argument("id", type=int)
+    lrl.add_argument("--summary", default=None)
+    lrc = lsub.add_parser("recent")
+    lrc.add_argument("--limit", type=int, default=20)
 
     p = sub.add_parser(
         "tools", help="what a session can reach, and what each tool is for")

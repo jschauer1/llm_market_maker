@@ -390,6 +390,38 @@ CREATE TABLE IF NOT EXISTS floor_runs (
 CREATE INDEX IF NOT EXISTS idx_floor_runs_completed
     ON floor_runs(completed_at);
 
+-- Lane claims: who is working on what (user ruling 2026-08-31). `go`
+-- dispatches a session to one of four lanes and asks it to stay there;
+-- this makes the choice visible so a peer can pick something else
+-- without anyone sending a message about it.
+--
+-- ADVISORY, not a lock. The floor must happen exactly once a day and
+-- floor_runs enforces that; a lane claim does not. Two sessions on
+-- maintenance is wasteful rather than harmful, and a session that judges
+-- the work important enough may JOIN a held lane -- discouraged, never
+-- blocked, and joined=1 with a recorded join_reason. What keeps it rare
+-- is having to write down why.
+--
+-- focus narrows a claim (which theory, on the theory lane): two sessions
+-- on different theories are not colliding, and treating the lane itself
+-- as exclusive would block the most parallel work in the repo.
+-- See tools/lanes.py.
+CREATE TABLE IF NOT EXISTS lane_claims (
+    id          INTEGER PRIMARY KEY,
+    lane        TEXT NOT NULL
+                CHECK (lane IN ('floor','theory','new-theory','maintenance')),
+    session     TEXT NOT NULL,
+    focus       TEXT,
+    claimed_at  TEXT NOT NULL,
+    released_at TEXT,
+    summary     TEXT,
+    joined      INTEGER NOT NULL DEFAULT 0,
+    join_reason TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_lane_claims_open
+    ON lane_claims(lane, released_at);
+
 -- Durable per-theory facts: confirmed market pairings, implication edges,
 -- per-wallet scores -- things a theory establishes once and reuses on
 -- every run. One shared table rather than five theories inventing five

@@ -1,0 +1,250 @@
+---
+name: go-floor
+description: Run today's floor — settle and score, run every theory and its sub-theories against today's board, and report. Invoked by go when the floor lane is claimed.
+---
+
+# go-floor — the daily floor
+
+Invoked by `go` once you hold the floor claim. **If you do not hold it,
+you are in the wrong skill** — `floor claim` is what makes this run
+exactly once a day, and a second unclaimed run is the collision it
+exists to prevent.
+
+This lane is **focused**. Everything you notice that is not the floor
+gets a ticket, not your attention:
+
+```bash
+python -m tools.cli tickets new --lane maintenance --slug <slug> \
+    --title "<one line>" --body "<what to do>" --session <you>
+```
+
+The floor's own procedure follows. It is fixed: the user must be able to
+say `go`, walk away, and come back knowing every running theory saw
+today's board through its complete procedure.
+
+## 1. Rebuild the board
+
+```python
+from tools import board as board_tool, db
+
+conn = db.connect(); db.init_db(conn)
+board = board_tool.get_board(conn, force=True)   # ~100k markets, ~13s
+```
+
+`force=True` **only here, and only with the claim in hand.** Every other
+call this session — and every theory, and every subagent — uses
+`board_tool.get_board(conn)` with no force, which reuses this pull. One
+session, one board; every number downstream is only as current as this
+fetch. Enforced by `tests/test_db_discipline.py`.
+
+Sessions in every other lane never force. Plain `get_board(conn)` reuses
+this pull for four hours — two boards means two sessions reasoning over
+different prices.
+
+## 2. Settle and score — the theory *and* each sub-theory
+
+Evidence does not exist until settlements land and scores are written.
+
+1. Run `score-theories` to settle what resolved.
+2. Persist scores: `python -m tools.cli score report <id> --save`.
+
+**A sub-theory is a theory run over a subset of another theory's data,
+and its evidence is its own.** It accrues separately, clears its own
+gates, and can be strongly supported while the theory around it is flat
+or negative. So scoring is not one number per theory: `--save` writes one
+row per **segment** — `aggregate`, `slice:<slug>` for each sub-theory,
+and `complement` (what is left once every ready sub-theory is removed,
+scored separately so the remainder never borrows what a subset earned).
+
+`state`'s EVIDENCE panel then shows sub-theories under their parent:
+
+```
+no_side_premium     edge_net -7.54   n 66  clusters 55
+    sub: cell-a-no-favorite    edge_net  7.02  n 2   clusters 1
+    sub: cell-b-yes-avoid      edge_net -8.00  n 64  clusters 54
+```
+
+A negative parent with a positive subset is not a contradiction to
+explain away — it is the normal case this partition exists for.
+
+## 3. Run every theory, explicitly
+
+**Run every theory whose status is `testing`, `active`, or `under_review`
+— by its `RUNBOOK.md`, through every stage.** Get the list from
+`python -m tools.cli theories list --running`.
+
+"Ran the theory" means every row of its runbook's Stages table. A
+judgment theory whose screen ran but whose judgment stages did not has
+**not** run: name the stage and why, and count it blocked, not run.
+`under_review` runs too — pulling a theory you suspect is broken
+guarantees you never learn whether it was broken or merely unlucky.
+
+**Delegating is allowed and encouraged when the list is long.** Give one
+theory to one Sonnet subagent, hand it the theory's folder and its
+RUNBOOK, and have it run every stage and report back. Rules that make
+delegation safe:
+
+- **Findings go to disk before they reach you** — each subagent writes
+  its own dated entry to that theory's `NOTES.md`. Reasoning that exists
+  only in a reply dies with the session.
+- **Numbers come from code, not from a model.** `score report`,
+  `promote`, `bucket_rates` print exact figures; asking a model to read
+  them is the expensive way to get them subtly wrong.
+- **Subagents share your board** — `get_board(conn)`, never a force.
+- A subagent running a theory *is* in that theory's decision path, so any
+  LLM judging stage it performs records provenance exactly as you would.
+  A subagent merely *diagnosing* is not, and records none.
+
+**Record everything.** Every candidate a theory's procedure produces gets
+recorded — probation theories, `under_review` theories, n=0 theories,
+rejections included. Recording and reporting are different acts: the
+ledger takes everything, and 1.5 decides what the user is shown. Never
+decline to record because a theory looks weak, and never report because
+one looks strong.
+
+**A theory that runs clean says so.** A scan that legitimately finds
+nothing writes no rows, so silence is indistinguishable from not having
+run. State it: "`structural_arb` v4: ran per RUNBOOK, 0 candidates."
+
+**Running a theory includes evaluating its sub-theories.** Every runbook
+carries a `## Sub-theories` section naming them — or saying none are
+registered, which is itself a checked fact rather than an omission. For
+each one:
+
+```bash
+python -m tools.cli slices report <theory>
+```
+
+Report where its evidence stands against its own gates and whether it
+produced anything today. **A sub-theory past its gates with a positive
+record produces a reportable bet even when its parent theory has none** —
+that is the whole reason it is scored separately, and the case is live:
+`insider_judgment`'s screen is breakeven while its `strong-moderate-no`
+subset is the best-evidenced result in the repo.
+
+A sub-theory proven at a prior theory version with no bet path at the
+current one is **orphaned evidence**. `promote` raises it mechanically;
+it goes to "For your ruling" every session until the user decides on
+adoption. Never rank a current-version candidate on a prior version's
+record without saying so explicitly.
+
+## 4. Report the results
+
+Write the report to **`user_reports/<YYYY-MM-DD>/`** and summarize it in
+the terminal with the path. Two things go in it, and the second is not
+optional.
+
+#### Bets that are well evidenced
+
+A bet is reported when three things hold together:
+
+1. **Theory success or sub-theory success** — the segment it ranks on has
+   a positive net calibration edge.
+2. **Proper data behind it** — that segment is past its evidence gates
+   (at least 10 event clusters and 5 settlement days; never fewer than 3
+   settlement days, which carry no usable error bar).
+3. **The edge survives today** — positive net edge recomputed at today's
+   ask, and executable at that ask.
+
+**Backtested evidence counts the same as forward evidence.** A tier A or
+tier B backtest that measured an edge is evidence exactly as a run of
+live settlements is — for a sub-theory as much as for a whole theory —
+and it feeds the gates in step 2 on the same terms. Never describe a
+backtested edge as weaker for being backtested; sample size is already
+priced into the t-statistic and into credibility, and charging a second
+time for it teaches theories to avoid the honest instrument.
+
+Two exclusions, and only these two. **Tier C never counts** — a model
+judging markets whose outcomes it may remember measures recall, not
+edge. And **rows a sub-theory was mined from never vouch for it** — a
+pattern found by slicing settled data is a hypothesis to register and
+then test, not a result; `mention_family`'s +5.48 became −1.53 on full
+coverage. Everything else a backtest measured is evidence.
+
+`python -m tools.cli promote --run <run_id>` computes all three and
+returns a rung. **R1 RECOMMENDED, R2 RISKLESS and R3 PROVISIONAL are the
+reportable bets** (R3 labeled with exactly what is missing). R4, R5 and
+R6 are not bets and go in the second section. You never decide
+report-worthiness — you cite the rung. Disagree by dissent: report the
+rung's verdict *and* your objection as a proposed key amendment, never by
+moving the candidate yourself.
+
+For each bet: ticker, side, today's ask, claimed net edge, ranked edge,
+**the segment that earned it**, n and settlement days behind it, edge
+basis, theory, and suggested size. A basket lists every leg with its own
+ask and the instruction to verify all legs before entering.
+
+**A sub-theory that succeeds is evidence exactly as much as a theory
+is.** A registered slice past its gates ranks on its own record, and a
+bet resting on one is reported on the same footing as a bet resting on
+the whole theory — not hedged, not discounted, not called provisional
+because the parent theory is flat. State which segment carried it, so
+"the slice earned this" is visible rather than implied. The converse
+binds too: the remainder never borrows what a slice earned.
+
+#### Every theory that produced no bet — and why
+
+One short section per running theory, in plain language: **what it did
+today and why nothing came of it.** This is the floor's main output on
+most days, and it is what makes a flat day informative instead of silent.
+
+Say which of these it was:
+
+- **Found nothing** — the screen ran clean, no candidates. Say what the
+  screen was looking for and, if a gate dropped candidates, how many and
+  in what categories.
+- **Found candidates, not yet evidenced** (R4) — how many, and what they
+  are waiting on: settlements, settlement days, a judging stage that has
+  not run.
+- **Measured against** (R5) — the segment is past its gates with a
+  negative record. Say so plainly; this is a diagnosis queue, not a
+  verdict. Fees eating a real edge, inverted judgment over a sound
+  screen, and one profitable slice inside a broad screen all look
+  identical from outside.
+- **Blocked** — which stage, and why.
+
+**Sub-theories are reported here on the same terms.** If a slice has a
+record, give it its own line: what it claims, where its evidence stands
+against its gates, and whether it produced anything today. A slice proven
+at a prior version with no bet path at the current one is *orphaned
+evidence* — the evaluator raises it, and it goes to the ruling section
+every session until the user decides whether to adopt it.
+
+#### Then the two sections that carry decisions
+
+- **For your ruling** — everything escalated instead of asked: pending
+  retirements with their diagnosis, orphaned evidence, gaps in the
+  promotion key, permission-blocked actions. Carried every session until
+  ruled.
+- **Queue** — endorsed positions still open and untouched, re-promoted at
+  today's ask: which still stand, which are closed as stale. Then ask
+  about each **by id**, and remind the user:
+  `python -m tools.cli opportunities mark-taken <id> taken --theory <slug> --size <N> --reason "<why>"`
+  (or `skipped`). Until a bet is marked, `roi_taken` stays `null`.
+
+**The report is a deliverable, not the record.** The audit trail stays in
+`RESEARCH_LOG.md` and each theory's `NOTES.md`; the report is written for
+the user to read.
+
+## 5. Close the claim, and stop
+
+```bash
+python -m tools.cli floor complete <claim id> \
+    --report user_reports/<YYYY-MM-DD>/README.md \
+    --summary "<one line>"
+```
+
+This is what starts the 24-hour clock and tells every later session the
+floor is done. **Do it as soon as the report lands** — an uncompleted
+claim expires after four hours and invites a duplicate run.
+
+**Then the session is over.** A floor session does the floor and nothing
+else: it does not pick up a research item, does not chase an interesting
+thread the run surfaced, does not "just check one thing" afterward. Write
+what the run suggested into `RESEARCH_LOG.md` under **Next** and let the
+next session pick it up with a clear head.
+
+If the floor was blocked partway, say so plainly in the report and
+**leave the claim open** — do not complete a floor that did not run. The
+lease expires on its own and the next session takes it over, which is the
+correct outcome: the guarantee is unmet, and the record should say so.

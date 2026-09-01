@@ -414,7 +414,10 @@ _MOVED_RULES: dict[str, str] = {
     "facts-are-data": "propose-theory",
     "search-the-registry": "propose-theory",
     "revisit-angle": "propose-theory",
-    "notes-theory-log-split": "go",
+    # Rehomed 2026-09-01: `go` became a dispatcher that chooses a lane
+    # and hands off, so the rule about what a theory writes where
+    # belongs with the lane that writes it.
+    "notes-theory-log-split": "go-theory",
 }
 
 
