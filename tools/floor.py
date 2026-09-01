@@ -34,6 +34,7 @@ from __future__ import annotations
 
 import sqlite3
 from datetime import datetime, timedelta
+from pathlib import Path
 
 from tools.db import utcnow, write
 
@@ -157,18 +158,72 @@ def claim(
     return get(conn, claim_id)
 
 
+def required_coverage(conn: sqlite3.Connection) -> list[dict]:
+    """Everything a floor report must account for: theories AND sub-theories.
+
+    A sub-theory is a theory run over a subset of another theory's data,
+    and by this repo's definition it *is* a theory — its evidence is its
+    own, it clears its own gates, and it can be strongly supported while
+    the theory around it is flat. So the floor's work list is not the
+    running theories; it is the running theories **and every registered
+    sub-theory of them**.
+
+    A RETIRED sub-theory stays on the list. Retirement must never hide a
+    record, which is the whole reason a retired slice keeps reporting.
+    """
+    from tools import slices as slices_mod, theories as theories_mod
+
+    out: list[dict] = []
+    for row in theories_mod.list_theories(conn, running_only=True):
+        out.append({"kind": "theory", "name": row["id"], "theory": row["id"]})
+        for s in slices_mod.list_slices(conn, row["id"]):
+            out.append({
+                "kind": "sub-theory",
+                "name": s["slug"],
+                "theory": row["id"],
+                "status": s["status"],
+            })
+    return out
+
+
+def coverage_gaps(conn: sqlite3.Connection, report_text: str) -> list[dict]:
+    """What `required_coverage` names that the report never mentions.
+
+    A name test, deliberately crude: it cannot tell a good line from a
+    bad one, only a present name from an absent one. That is the failure
+    worth catching mechanically — the 2026-09-01 floor reported all four
+    theories carefully and simply never mentioned `strong-moderate-no`,
+    the best-evidenced result in the repo.
+    """
+    text = (report_text or "").lower()
+    return [c for c in required_coverage(conn) if c["name"].lower() not in text]
+
+
 def complete(
     conn: sqlite3.Connection,
     claim_id: int,
     *,
     now: str | None = None,
     report_path: str | None = None,
+    report_text: str | None = None,
     summary: str | None = None,
 ) -> sqlite3.Row:
     """Record that the floor ran and the report landed.
 
     This is what starts the 24-hour clock — claiming does not, because a
     claim is an intention and the guarantee is about work actually done.
+
+    If a report is given (as `report_text`, or a readable `report_path`)
+    it is **checked**: every running theory and every registered
+    sub-theory must be named in it, or this refuses and says which are
+    missing. Sub-theories were being dropped from reports while every
+    theory was covered carefully, and a rule asking sessions to remember
+    did not hold — so the omission is made impossible instead, the same
+    way `record_opportunity` refuses a judged row with no provenance.
+
+    Completing with no report at all still works: a blocked floor has to
+    be able to close out, and this check must never become a reason not
+    to write a report.
     """
     row = get(conn, claim_id)
     if row is None:
@@ -178,6 +233,27 @@ def complete(
             f"floor run {claim_id} was already completed at "
             f"{row['completed_at']}"
         )
+    text = report_text
+    if text is None and report_path:
+        candidate = Path(report_path)
+        if candidate.is_file():
+            text = candidate.read_text(encoding="utf-8")
+    if text is not None:
+        gaps = coverage_gaps(conn, text)
+        if gaps:
+            listed = ", ".join(
+                f"{g['name']} ({g['kind']}"
+                + (f" of {g['theory']}" if g["kind"] == "sub-theory" else "")
+                + ")"
+                for g in gaps
+            )
+            raise ValueError(
+                "the floor report does not mention: " + listed +
+                ". Every running theory and every registered sub-theory "
+                "gets a line — a sub-theory's evidence is its own and can "
+                "be strong while its parent is flat, so leaving one out "
+                "hides exactly the result most worth reporting."
+            )
     with write(conn):
         conn.execute(
             "UPDATE floor_runs SET completed_at = ?, report_path = ?,"

@@ -133,3 +133,85 @@ def test_a_floor_cannot_be_completed_twice(conn):
 def test_completing_an_unknown_claim_raises(conn):
     with pytest.raises(KeyError):
         floor.complete(conn, 999, now="2026-08-31T02:00:00Z")
+
+
+# --- the report must cover every theory AND every sub-theory ---------------
+
+
+def _running_theory_with_subtheory(conn):
+    from tools import slices, theories
+    theories.register(conn, "insider_judgment", "IJ", "theories/ij",
+                      status="testing")
+    theories.register(conn, "structural_arb", "SA", "theories/sa",
+                      status="testing")
+    slices.register_slice(
+        conn, "insider_judgment", "strong-moderate-no",
+        predicate={"outcome": ["no"], "confidence": ["strong", "moderate"]},
+        hypothesis="the NO subset carries the edge", origin="test",
+        registered_at="2026-08-26T00:00:00Z",
+    )
+
+
+def test_required_coverage_lists_theories_and_sub_theories(conn):
+    _running_theory_with_subtheory(conn)
+
+    names = {c["name"] for c in floor.required_coverage(conn)}
+    assert names == {"insider_judgment", "structural_arb",
+                     "strong-moderate-no"}
+
+
+def test_a_report_missing_a_sub_theory_is_refused(conn):
+    """The 2026-09-01 floor reported all four theories and missed
+    `strong-moderate-no` -- the best-evidenced result in the repo, READY
+    at +3.76 over 90 clusters. Prose asking sessions to remember was not
+    enough, so the omission is made impossible instead."""
+    _running_theory_with_subtheory(conn)
+    claim = floor.claim(conn, "sess-a", now="2026-09-02T01:00:00Z")
+
+    report = "insider_judgment ran six stages. structural_arb ran clean."
+    with pytest.raises(ValueError, match="strong-moderate-no"):
+        floor.complete(conn, claim["id"], report_text=report,
+                       now="2026-09-02T02:00:00Z")
+
+
+def test_a_report_covering_everything_completes(conn):
+    _running_theory_with_subtheory(conn)
+    claim = floor.claim(conn, "sess-a", now="2026-09-02T01:00:00Z")
+
+    report = (
+        "insider_judgment ran six stages; its sub-theory "
+        "strong-moderate-no is READY at +3.76. structural_arb ran clean."
+    )
+    row = floor.complete(conn, claim["id"], report_text=report,
+                         now="2026-09-02T02:00:00Z")
+    assert row["completed_at"] == "2026-09-02T02:00:00Z"
+
+
+def test_coverage_gaps_names_exactly_what_is_missing(conn):
+    _running_theory_with_subtheory(conn)
+
+    gaps = floor.coverage_gaps(conn, "structural_arb ran clean.")
+    assert {g["name"] for g in gaps} == {"insider_judgment",
+                                         "strong-moderate-no"}
+    assert any(g["kind"] == "sub-theory" for g in gaps)
+
+
+def test_completing_without_a_report_still_works(conn):
+    """A blocked floor still closes out. The check binds a report that
+    exists, and cannot become a reason not to write one."""
+    _running_theory_with_subtheory(conn)
+    claim = floor.claim(conn, "sess-a", now="2026-09-02T01:00:00Z")
+    row = floor.complete(conn, claim["id"], now="2026-09-02T02:00:00Z")
+    assert row["completed_at"] is not None
+
+
+def test_a_retired_sub_theory_still_has_to_be_reported(conn):
+    """Retirement must never hide a record -- that is the whole reason a
+    retired slice keeps reporting."""
+    from tools import slices
+    _running_theory_with_subtheory(conn)
+    slices.retire_slice(conn, "insider_judgment", "strong-moderate-no",
+                        reason="superseded")
+
+    names = {c["name"] for c in floor.required_coverage(conn)}
+    assert "strong-moderate-no" in names

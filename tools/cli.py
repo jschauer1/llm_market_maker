@@ -226,11 +226,23 @@ def _cmd_floor(args) -> int:
                 "status": floor.status(conn),
             })
         elif args.action == "complete":
-            row = floor.complete(
-                conn, args.id, report_path=args.report_path,
-                summary=args.summary,
-            )
+            try:
+                row = floor.complete(
+                    conn, args.id, report_path=args.report_path,
+                    summary=args.summary,
+                )
+            except ValueError as gap:
+                # A refusal here is the point: the report is missing a
+                # theory or a sub-theory, and the fix is to write the
+                # line, not to skip the check.
+                raise SystemExit(str(gap))
             _emit(dict(row))
+        elif args.action == "checklist":
+            _emit(floor.required_coverage(conn))
+        elif args.action == "check-report":
+            text = pathlib.Path(args.report_path).read_text(encoding="utf-8")
+            gaps = floor.coverage_gaps(conn, text)
+            _emit({"covered": not gaps, "missing": gaps})
         elif args.action == "recent":
             _emit(_rows(floor.recent(conn, limit=args.limit)))
         return 0
@@ -851,6 +863,13 @@ def build_parser() -> argparse.ArgumentParser:
     fco.add_argument("--report", dest="report_path", default=None,
                      help="path to the report written for the user")
     fco.add_argument("--summary", default=None)
+    fck = fsub.add_parser(
+        "checklist",
+        help="every theory AND sub-theory the report must cover -- read "
+             "this before writing it")
+    fchk = fsub.add_parser(
+        "check-report", help="what a drafted report is still missing")
+    fchk.add_argument("report_path")
     frc = fsub.add_parser("recent", help="the last few floor runs")
     frc.add_argument("--limit", type=int, default=10)
 

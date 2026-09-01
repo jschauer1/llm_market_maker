@@ -414,6 +414,14 @@ scored distinctly, evaluated whenever the theory runs, ranked on their
 own record, and versioned with the parent. The procedure is in
 `score-theories` and each theory's `RUNBOOK.md`.
 
+**So the unit of work is never "the running theories".** It is
+`python -m tools.cli floor checklist` — every running theory *and* every
+registered sub-theory of them. Each one gets run, and each one gets a
+line in the report; `floor complete` refuses a report that omits any.
+That guard exists because it had to: a floor report covered all four
+theories carefully and never mentioned `strong-moderate-no`, the
+best-evidenced result in the repo.
+
 A subset that needs its own screen, entry rule, or population is **not**
 a sub-theory — it is a sibling theory (`no_side_premium` is what that
 looks like). A sub-theory only re-weights output the parent already

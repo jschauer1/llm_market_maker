@@ -76,9 +76,33 @@ explain away — it is the normal case this partition exists for.
 
 ## 3. Run every theory, explicitly
 
+**Get your work list from the checklist, not from the theory table:**
+
+```bash
+python -m tools.cli floor checklist
+```
+
+```
+  calibration_harvest
+  insider_judgment
+    sub: strong-moderate-no        <- this is a line in your report too
+  no_side_premium
+    sub: cell-a-no-favorite
+    sub: cell-b-yes-avoid
+  structural_arb
+```
+
+**Every row on that list gets run, and every row gets a line in the
+report.** Sub-theories included, and that is not a nicety: a sub-theory
+IS a theory by this repo's definition, its evidence is its own, and it
+can be the best-evidenced thing in the repo while its parent reads
+breakeven. `insider_judgment`'s `strong-moderate-no` is exactly that, and
+a floor report that covered all four theories carefully and never
+mentioned it (2026-09-01) missed the single most important number on the
+board. `floor complete` now refuses a report that leaves one out.
+
 **Run every theory whose status is `testing`, `active`, or `under_review`
-— by its `RUNBOOK.md`, through every stage.** Get the list from
-`python -m tools.cli theories list --running`.
+— by its `RUNBOOK.md`, through every stage.**
 
 "Ran the theory" means every row of its runbook's Stages table. A
 judgment theory whose screen ran but whose judgment stages did not has
@@ -238,11 +262,36 @@ Say which of these it was:
   identical from outside.
 - **Blocked** — which stage, and why.
 
-**Sub-theories are reported here on the same terms.** If a slice has a
-record, give it its own line: what it claims, where its evidence stands
-against its gates, and whether it produced anything today. A ready
-sub-theory needs no adoption to drive a bet — it is already the decision
-point for the rows it matches, and that is what its line should say.
+**Every sub-theory gets its own line, indented under its parent.** Not
+"if it has a record" — every one on the checklist, every day. A
+sub-theory *is* a theory here: its evidence is its own, it clears its own
+gates, and it is routinely the most important number on the board while
+its parent reads flat. `floor complete` refuses a report that omits one.
+
+The shape, so nothing has to be invented:
+
+```markdown
+### insider_judgment v4
+Ran all six stages. 15 events judged, 1 endorsed / 19 rejected.
+
+- **strong-moderate-no** — READY, and the best-evidenced result in the
+  repo: +3.76 net over n=328, 90 event clusters, 44 settlement days,
+  pooled v1–v4 (314 rows replayed). It is already the decision point for
+  strong/moderate NO rows; nothing needs adopting. Produced no candidate
+  today because [reason].
+
+### no_side_premium v1
+Recorded 63. Aggregate moved −7.54 → −0.16 as n went 66 → 129.
+
+- **cell-b-yes-avoid** — READY at −0.98, still confirming its avoid
+  claim, but far weaker than the −3.9 it was written against.
+- **cell-a-no-favorite** — accruing, n=2. Nothing yet.
+```
+
+Say for each: what it claims, where its evidence stands **against its own
+gates**, and whether it produced anything today. A ready sub-theory needs
+no adoption to drive a bet — it is already the decision point for the rows
+it matches, and that is what its line should say.
 
 A slice proven at a prior version with no bet path at the current one is
 *orphaned evidence* — the evaluator raises it, and it goes to the ruling
@@ -281,11 +330,21 @@ is right.
 
 ## 5. Close the claim, and stop
 
+Check the report covers everything before you close:
+
 ```bash
+python -m tools.cli floor check-report user_reports/<YYYY-MM-DD>/README.md
 python -m tools.cli floor complete <claim id> \
     --report user_reports/<YYYY-MM-DD>/README.md \
     --summary "<one line>"
 ```
+
+`complete` **refuses a report that omits a running theory or a registered
+sub-theory**, and names what is missing. That is not a formality to route
+around: the omission it catches is a real one that already happened, and
+the fix is always to write the missing line rather than to skip the
+check. `check-report` asks the same question early, so you find out while
+you are still writing.
 
 This is what starts the 24-hour clock and tells every later session the
 floor is done. **Do it as soon as the report lands** — an uncompleted

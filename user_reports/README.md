@@ -35,11 +35,17 @@ The order is what you act on first, not what happened first.
    A day with no bet is not a day with no information — section 2 is
    where the information is.
 
-2. **Theories** — one short block per running theory: what it did today
-   and why nothing came of it. Found nothing / found candidates not yet
-   evidenced / measured against / blocked at a stage. Sub-theories get
-   their own line on the same terms, because a sub-theory's evidence is
-   its own and can be strong while its parent is flat.
+2. **Theories and sub-theories** — one short block per running theory:
+   what it did today and why nothing came of it. Found nothing / found
+   candidates not yet evidenced / measured against / blocked at a stage.
+
+   **Every sub-theory gets its own line, indented under its parent, every
+   day.** A sub-theory is a theory run over a subset of another theory's
+   data, and by this repo's definition it *is* a theory — its evidence is
+   its own, it clears its own gates, and it is routinely the most
+   important number on the board while its parent reads flat. Nothing is
+   omitted for being "just" a subset; `floor complete` refuses a report
+   that leaves one out.
 
 3. **For your ruling** — everything escalated instead of asked: pending
    retirements with their diagnosis, orphaned evidence, gaps in the
