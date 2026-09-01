@@ -588,9 +588,30 @@ was never recorded**, and the runs a sub-theory was **mined from**.
 Scores carry `n_backtest` and R1/R3 promotions disclose it, so a record
 built mostly by replay says so — disclosure, never a discount.
 
-The practical consequence — a theory at n=0 with fetchable history is
-short of someone running the replay, not short of evidence — is
-`backtest-theory`'s to act on.
+### Backtesting is how a theory earns its evidence
+
+That rule has a consequence worth stating outright, because it decides
+what work is worth doing: **backtesting is the fastest and cheapest way
+a theory has to become bettable, and running one is usually the
+highest-value work on the board.**
+
+Forward evidence accrues at the speed of settlement days, and the gates
+want five of them plus ten event clusters — `no_side_premium` has spent
+a week reaching four days. A replay clears the same gates in an
+afternoon, costs CPU rather than calendar time, and re-runs for free
+when the procedure changes. **A theory sitting at n=0 with fetchable
+history is not short of evidence. It is short of someone running the
+replay.** That is true of its sub-theories too, which need their own
+gates cleared and get there the same way.
+
+The value is symmetric, which is the real argument for it: a replay that
+finds nothing kills a bad theory in an afternoon instead of letting it
+spend months proving itself slowly on live rows. Either outcome is worth
+more than another live scan that adds unproven suggestions to the pile.
+
+So when a session is choosing work and a running theory has claims but
+no evidence, the replay is the default answer — `backtest-theory` has
+the procedure, the tiers, and the traps.
 
 ## Backtest tiers
 
