@@ -308,6 +308,11 @@ the sweep's population is majority-untradeable, the screen's is not.
 
 # Addendum, same session: the successor thesis was priced, and it is not a trade either
 
+*Reproduce with `mirror.py <copy.db>` — it regenerates every table in this
+section and **asserts** the identity below rather than printing it, so the
+file fails loudly if the book-side arithmetic is ever changed to something
+that violates it.*
+
 Idea 36 (`mid-band-favorite-fade`) came out of the band table above:
 buying the favorite at 0.50–0.80 loses **−3.90 pts net (t=−3.30)** even
 with a real book, and unlike the 0.80+ bands that number survives every
