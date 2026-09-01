@@ -3390,6 +3390,23 @@ the warning that it measures the *favorite* losing 3.9 pts and nobody
 has yet priced the mirrored underdog leg, which pays its own fee and is
 not the negation.
 
+**A convergence worth recording, found on landing the commit.** A peer
+session (`llm-market-identifier-9e`, commit 612080a) killed
+`deadline_drift` the same hour, independently, on the same structural
+fact from the opposite direction: `hazard.py` priced a NO-buying strategy
+against `yes_ask` when a NO buyer pays `1 − yes_bid`, which credited the
+strategy with the entire spread. Same 95 markets — **+9.5 gap, z=2.60 off
+the ask; +2.3, z=0.64 off the bid.** Two theories, two populations, two
+different mistakes, one cause: **on Kalshi the round trip is 2–5 points
+and it is usually larger than the effect being measured.** Both errors
+produced plausible, significant-looking results that survived until
+someone specifically checked which side of the book they were priced on,
+and no test caught either, because both were arithmetically
+self-consistent against the wrong price. The helper that would make this
+hard to get wrong now has two real callers in different theories, which
+is CLAUDE.md's elevation bar exactly — ticketed as
+`book-side-arithmetic-helper`.
+
 **Next.**
 
 - **Re-run on completion** — coverage was 37% and alphabetical (A–E
