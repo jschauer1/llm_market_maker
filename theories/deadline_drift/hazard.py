@@ -88,6 +88,26 @@ def load() -> tuple[dict, dict, dict]:
     return anchors, {k: v for k, v in candles.items() if isinstance(v, list)}, rules
 
 
+def event_map() -> dict:
+    """ticker -> event_ticker, the clustering unit for the SE."""
+    raw = json.loads((DATA / "settled_raw.json").read_text(encoding="utf-8"))
+    return {m["ticker"]: m.get("event_ticker")
+            for v in raw.values() if isinstance(v, list) for m in v}
+
+
+def market_volume() -> dict:
+    """Lifetime volume per settled market.
+
+    `screen.py`'s MIN_VOLUME floor is a LIFETIME volume on the market, not
+    the volume of one day -- so reproducing the screen with a candle's
+    daily `volume` would apply a filter ~20x tighter than the one the
+    theory ships.
+    """
+    raw = json.loads((DATA / "settled_raw.json").read_text(encoding="utf-8"))
+    return {m["ticker"]: float(m.get("volume_fp") or 0.0)
+            for v in raw.values() if isinstance(v, list) for m in v}
+
+
 def stratum(rules_text: str) -> str:
     """Which population a settled market belongs to, from its rules alone."""
     if THRESHOLD.search(rules_text):
@@ -101,11 +121,22 @@ def stratum(rules_text: str) -> str:
 
 #: A NO market in a per-subject hazard family runs to its deadline; a NO
 #: market in a "which branch" family dies the moment a SIBLING resolves
-#: YES. Measured 2026-09-01 the two families separate almost perfectly --
-#: 98.0% of regex-identified multi-destination NO markets closed >3 days
-#: early against 0.0% of the exhaustively-audited allowlist -- which makes
-#: this a sharper family detector than five rounds of rules-text regex
-#: managed (they plateaued near 15% misclassification).
+#: YES.
+#:
+#: The separation is real but ASYMMETRIC, and the first reading of it was
+#: wrong. On a partial capture (~200 multi-destination NO markets) the
+#: split looked near-perfect at 98.0% vs 0.0%; at ~525 it is **43.4% vs
+#: 0.0%**. The 98% was an artifact of the walk being alphabetical, so the
+#: early series were not a random sample of families -- a partial capture
+#: is not a small capture, it is a BIASED one, and no number should be
+#: quoted from one without saying so.
+#:
+#: What survives is one-directional and still useful: an early NO close
+#: nearly implies a branch family (the audited allowlist is 0/78), but a
+#: late NO close does NOT imply a hazard family, since branch families run
+#: to the deadline whenever no sibling wins in time. So this detects
+#: contamination it finds; it cannot certify a population clean. Run
+#: `main()` for the current numbers rather than trusting these.
 BRANCH_EARLY_SHARE = 0.5
 EARLY_DAYS = 3.0
 
@@ -174,8 +205,19 @@ def observe(rows, anchor_row, *, side, anchor="days_to_deadline",
     return s / n, anchor_row["result"] == "yes"
 
 
-def estimate(anchors, candles, *, tickers=None, **kw):
-    """Pooled estimate, clustered by market (one observation per market)."""
+def estimate(anchors, candles, *, tickers=None, events=None, **kw):
+    """Pooled estimate, one observation per market.
+
+    Two standard errors are returned and the clustered one is the honest
+    one. `se_pts` is the naive binomial SE on P(YES), which assumes every
+    market is an independent draw. It is not: this population is full of
+    events holding many sibling markets (a "which team" event can carry
+    30 legs of which exactly one can win), so sibling outcomes are
+    mechanically dependent and the naive SE understates. `se_cl_pts`
+    is the cluster-robust SE of mean(price - outcome) over EVENTS, which
+    also picks up variation in the price leg that the binomial SE ignores
+    entirely. Report `z_cl`.
+    """
     per = {}
     for tk, rows in candles.items():
         if tickers is not None and tk not in tickers:
@@ -194,30 +236,44 @@ def estimate(anchors, candles, *, tickers=None, **kw):
     p_yes = yes_n / n
     gap = (mean_p - p_yes) * 100.0
     se = math.sqrt(p_yes * (1 - p_yes) / n) * 100.0
+
+    # Cluster-robust SE of mean(d), d_i = price_i - outcome_i, by event.
+    d = {tk: (p - (1.0 if y else 0.0)) for tk, (p, y) in per.items()}
+    dbar = sum(d.values()) / n
+    groups: dict[str, float] = {}
+    for tk, di in d.items():
+        g = (events or {}).get(tk) or tk
+        groups[g] = groups.get(g, 0.0) + (di - dbar)
+    n_clusters = len(groups)
+    se_cl = (math.sqrt(sum(v * v for v in groups.values())) / n) * 100.0
+
     # Kalshi's fee is 0.07*P*(1-P) per contract, P the price paid.
     no_entry = 1.0 - mean_p
     fee = FEE_RATE * no_entry * (1 - no_entry) * 100.0
     return {"markets": n, "yes_n": yes_n, "mean_p": mean_p, "p_yes": p_yes,
             "gap_pts": gap, "se_pts": se,
             "z": gap / se if se else float("nan"),
+            "n_clusters": n_clusters, "se_cl_pts": se_cl,
+            "z_cl": gap / se_cl if se_cl else float("nan"),
             "fee_pts": fee, "net_pts": gap - fee}
 
 
-HDR = ("{:<30}{:>6}{:>5}{:>8}{:>8}{:>8}{:>7}{:>7}{:>8}".format(
-    "", "mkts", "YES", "price", "P(YES)", "gap", "SE", "z", "net"))
+HDR = ("{:<30}{:>6}{:>5}{:>5}{:>8}{:>8}{:>8}{:>8}{:>7}{:>8}".format(
+    "", "mkts", "evts", "YES", "price", "P(YES)", "gap", "SEcl", "zcl", "net"))
 
 
 def _row(label, r, floor=5):
     if not r or r["markets"] < floor:
         print("{:<30}{:>6}   (too few)".format(label, (r or {}).get("markets", 0)))
         return
-    print("{:<30}{:>6}{:>5}{:>8.3f}{:>8.3f}{:>+8.1f}{:>7.1f}{:>7.2f}{:>+8.1f}".format(
-        label, r["markets"], r["yes_n"], r["mean_p"], r["p_yes"],
-        r["gap_pts"], r["se_pts"], r["z"], r["net_pts"]))
+    print("{:<30}{:>6}{:>5}{:>5}{:>8.3f}{:>8.3f}{:>+8.1f}{:>8.1f}{:>7.2f}{:>+8.1f}".format(
+        label, r["markets"], r["n_clusters"], r["yes_n"], r["mean_p"],
+        r["p_yes"], r["gap_pts"], r["se_cl_pts"], r["z_cl"], r["net_pts"]))
 
 
 def main() -> None:
     anchors, candles, rules = load()
+    events = event_map()
     strata = {}
     for tk in candles:
         strata.setdefault(stratum(rules.get(tk, "")), []).append(tk)
@@ -249,7 +305,7 @@ def main() -> None:
     print(HDR); print("-" * len(HDR))
     for anchor, label in (("days_to_close", "actual close (BAD)"),
                           ("days_to_deadline", "stated deadline")):
-        _row(label, estimate(anchors, candles, tickers=hazard,
+        _row(label, estimate(anchors, candles, events=events, tickers=hazard,
                              side="ask", anchor=anchor))
 
     print("\n=== CORRECTION 2: the side of the book (same {} markets) ===".format(
@@ -259,13 +315,13 @@ def main() -> None:
         for side, label in (("ask", "YES ask (optimistic)"),
                             ("bid", "YES bid (what NO pays)")):
             _row("{}  entry={}".format(label, entry),
-                 estimate(anchors, candles, tickers=matched, side=side,
+                 estimate(anchors, candles, events=events, tickers=matched, side=side,
                           entry=entry))
 
     print("\n=== strata, priced off YES bid (a code gate must say what it removed) ===")
     print(HDR); print("-" * len(HDR))
     for name, tks in sorted(strata.items(), key=lambda x: -len(x[1])):
-        _row(name, estimate(anchors, candles, tickers=tks, side="bid"))
+        _row(name, estimate(anchors, candles, events=events, tickers=tks, side="bid"))
     # The allowlist is the only population whose purity was established
     # EXHAUSTIVELY rather than by sample: round 5b inspected all 70 series
     # and found 70/70 per-subject, so it carries no sampling error at all
@@ -276,9 +332,9 @@ def main() -> None:
     allow = [tk for tk in candles
              if in_allowlist((anchors.get(tk) or {}).get("series"))]
     _row("ALLOWLIST (audited 70/70)",
-         estimate(anchors, candles, tickers=allow, side="bid"))
+         estimate(anchors, candles, events=events, tickers=allow, side="bid"))
     _row("  ...same, off YES ask",
-         estimate(anchors, candles, tickers=allow, side="ask"))
+         estimate(anchors, candles, events=events, tickers=allow, side="ask"))
     branch = branch_families(anchors)
     clean = [tk for tk in hazard
              if (anchors.get(tk) or {}).get("series") not in branch]
@@ -286,9 +342,9 @@ def main() -> None:
           "hazard stratum {} -> {} markets]".format(
               len(branch), len({(a or {}).get("series") for a in anchors.values()}),
               len(hazard), len(clean)))
-    _row("hazard MINUS branch families", estimate(anchors, candles,
+    _row("hazard MINUS branch families", estimate(anchors, candles, events=events,
                                                   tickers=clean, side="bid"))
-    _row("  ...same, off YES ask", estimate(anchors, candles,
+    _row("  ...same, off YES ask", estimate(anchors, candles, events=events,
                                             tickers=clean, side="ask"))
 
     # Early close on a NO market is a free structural tell for
@@ -313,29 +369,52 @@ def main() -> None:
 
     print("\n=== liquidity cuts on the hazard stratum, priced off YES bid ===")
     print(HDR); print("-" * len(HDR))
-    _row("all", estimate(anchors, candles, tickers=hazard, side="bid"))
+    _row("all", estimate(anchors, candles, events=events, tickers=hazard, side="bid"))
     for ms in (10, 6, 4, 2):
         _row("spread <= {}pts".format(ms),
-             estimate(anchors, candles, tickers=hazard, side="bid", max_spread=ms))
+             estimate(anchors, candles, events=events, tickers=hazard, side="bid", max_spread=ms))
     for mv in (100, 1000):
         _row("volume >= {}".format(mv),
-             estimate(anchors, candles, tickers=hazard, side="bid", min_volume=mv))
+             estimate(anchors, candles, events=events, tickers=hazard, side="bid", min_volume=mv))
     for oi in (100, 1000):
         _row("open interest >= {}".format(oi),
-             estimate(anchors, candles, tickers=hazard, side="bid", min_oi=oi))
+             estimate(anchors, candles, events=events, tickers=hazard, side="bid", min_oi=oi))
 
     print("\n=== horizon sweep, hazard stratum, priced off YES bid ===")
     print(HDR); print("-" * len(HDR))
     for dlo, dhi in [(0, 7), (7, 14), (14, 21), (21, 30), (30, 45), (0, 21), (0, 45)]:
         _row("{}-{}d".format(dlo, dhi),
-             estimate(anchors, candles, tickers=hazard, side="bid", dlo=dlo, dhi=dhi))
+             estimate(anchors, candles, events=events, tickers=hazard, side="bid", dlo=dlo, dhi=dhi))
 
     print("\n=== price sweep, hazard stratum, 0-21d, priced off YES bid ===")
     print(HDR); print("-" * len(HDR))
     for lo, hi in [(0.01, 0.05), (0.05, 0.15), (0.15, 0.30), (0.30, 0.60),
                    (0.60, 0.90), (0.05, 0.60), (0.01, 0.99)]:
         _row("ask ${:.2f}-${:.2f}".format(lo, hi),
-             estimate(anchors, candles, tickers=hazard, side="bid", band=(lo, hi)))
+             estimate(anchors, candles, events=events, tickers=hazard, side="bid", band=(lo, hi)))
+
+    # THE PRE-REGISTERED CELL. THEORY.md's decision procedure, exactly:
+    # allowlist population; days-to-deadline <= 21; YES ask $0.05-0.60;
+    # lifetime volume >= 100; edge = (1 - P(YES)) - no_ask - fees, i.e.
+    # priced off yes_bid; entered when the screen first fires. Every other
+    # table here is exploration and must be read as such -- this is the
+    # one number the theory committed to before any data was collected.
+    vol = market_volume()
+    liquid_allow = [tk for tk in allow if vol.get(tk, 0.0) >= 100.0]
+    print("\n=== THE PRE-REGISTERED CELL (THEORY.md's own procedure) ===")
+    print("allowlist | <=21d to stated deadline | ask $0.05-0.60 |"
+          " lifetime volume >= 100 | entry=first")
+    print(HDR); print("-" * len(HDR))
+    _row("priced off YES bid (real)",
+         estimate(anchors, candles, events=events, tickers=liquid_allow, side="bid",
+                  entry="first"))
+    _row("priced off YES ask (old)",
+         estimate(anchors, candles, events=events, tickers=liquid_allow, side="ask",
+                  entry="first"))
+    liquid_haz = [tk for tk in hazard if vol.get(tk, 0.0) >= 100.0]
+    _row("same, wide hazard stratum",
+         estimate(anchors, candles, events=events, tickers=liquid_haz, side="bid",
+                  entry="first"))
 
     spreads = [(r["yes_ask"] - r["yes_bid"]) * 100.0
                for tk in hazard for r in candles[tk]
