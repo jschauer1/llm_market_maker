@@ -14,7 +14,7 @@ import json
 import sys
 
 from tools import (db, floor, ideas, ledger, provenance, rank, score,
-                   slices, theories)
+                   slices, theories, toolkit)
 
 
 def _emit(payload) -> None:
@@ -135,6 +135,16 @@ def _cmd_rulings(args) -> int:
             _emit({"id": args.id, "status": args.value})
     finally:
         conn.close()
+    return 0
+
+
+def _cmd_tools(args) -> int:
+    """What a session can reach. Text by default -- this is written to be
+    read, like `state` -- with --json for anything parsing it."""
+    if getattr(args, "json", False):
+        _emit(toolkit.list_tools())
+    else:
+        print(toolkit.render())
     return 0
 
 
@@ -682,6 +692,12 @@ def build_parser() -> argparse.ArgumentParser:
     rst = rsub.add_parser("status")
     rst.add_argument("id", type=int)
     rst.add_argument("value", choices=("binding", "implemented", "superseded"))
+
+    p = sub.add_parser(
+        "tools", help="what a session can reach, and what each tool is for")
+    p.set_defaults(func=_cmd_tools)
+    p.add_argument("--json", action="store_true",
+                   help="machine-readable, for anything parsing this")
 
     p = sub.add_parser(
         "floor", help="floor duty: is it due, who holds it, mark it done")

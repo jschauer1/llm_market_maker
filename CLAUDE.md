@@ -450,50 +450,25 @@ per segment, never on one row**:
 
 ## Toolkit
 
-`python -m tools.cli --help` for the command line. See `tools/README.md`
-for conventions and the full map. Everything in `tools/` is available to
-every theory and every session:
+```bash
+python -m tools.cli tools      # what you can reach, and what each is for
+python -m tools.cli --help     # the command line
+```
 
-**Starting a session**
-- `tools/state.py` — the orientation surface; renders current state from the DB
-- `tools/floor.py` — floor duty: is it due, who holds it, marking it done
-- `tools/board.py` — **the session's Kalshi board; every theory starts here**
+**Run that at the start of any session that will touch code.** It reads
+`tools/` off disk and prints each module with its own one-line summary,
+grouped by what a session is doing — starting a session, getting data,
+recording, measuring, deciding what the user is told, governance, the
+theory contract. It is generated rather than written down here because
+this file used to carry the list by hand and named ten modules out of
+twenty-five: everything added afterwards was invisible to any session
+that trusted the file. `tools/README.md` has the conventions and the
+detail.
 
-**Getting data**
-- `tools/kalshi/markets.py` — open/settled markets, quotes, resolution rules
-- `tools/kalshi/history.py` — candlesticks with historical bid/ask, ~12 months
-- `tools/polymarket/markets.py`, `trades.py` — markets, whales, holders
-- `tools/snapshot.py` — first-party history; every board pull is kept
-- `tools/match_market.py` — non-Kalshi finding → Kalshi ticker shortlist
-- `tools/ladders.py` — strike ladders and sibling-market structure
-
-**Recording**
-- `tools/ledger.py` — the opportunity contract (`record_opportunity`, `record_basket`, `interpret`)
-- `tools/db.py` — connections, schema, migrations, `write()`
-- `tools/provenance.py` — which model judged, and with which prompt
-- `tools/backup.py` — ledger backups, taken before settling or migrating
-
-**Measuring**
-- `tools/score.py` — settlements, calibration, ROI, per-segment scores
-- `tools/slices.py` — sub-theories: their evidence, gates, and the ranking partition
-- `tools/buckets.py` — confidence label → measured probability
-- `tools/rank.py`, `tools/sizing.py` — ranking, credibility, Kalshi fee/Kelly math
-
-**Deciding what the user is told**
-- `tools/promotion.py` — the promotion key evaluator; rungs R1–R6
-
-**Governance and memory**
-- `tools/theories.py` — lifecycle, versions, carry chains, retirement proposals
-- `tools/rulings.py` — binding rulings, surfaced in `state`
-- `tools/ideas.py` — the idea registry; search before proposing
-
-**The theory contract**
-- `tools/theory.py` — `Theory`, `TheoryRun`, `TheoryContext`
-- `tools/registry.py` — discovery and drift checks
-- `tools/domain.py` — the frozen dataclasses domain values are made of
-
-**Plumbing** — `tools/cli.py` (the front door, `python -m tools.cli`),
-`tools/http.py` (retries and rate limits), `tools/timeutil.py`.
+Three that are worth knowing before you look: `tools/board.py` is the
+session's one Kalshi board and **every theory starts there**;
+`tools/ledger.py` is the opportunity contract every recorded bet passes
+through; `tools/state.py` is what `python -m tools.cli state` renders.
 
 ### These names are an interface, so changing their meaning is a breaking change
 

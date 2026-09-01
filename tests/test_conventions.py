@@ -701,29 +701,21 @@ def test_theory_versions_ledger_is_complete_and_proven():
     )
 
 
-def test_claude_md_names_every_tool_a_session_can_reach():
-    """CLAUDE.md's Toolkit is the list an autonomous session works from.
+def test_claude_md_points_at_the_generated_toolkit_listing():
+    """CLAUDE.md must tell a session how to find out what tools exist.
 
-    A tool absent from it is a tool that will not be used: nothing else
-    enumerates `tools/`, and a session reasons from this file before it
-    opens anything. A stale list is therefore not cosmetic -- it silently
-    narrows what every future session believes it has.
-
-    `tools/backtest.py` is the deliberate exception. CLAUDE.md names it to
-    say it must never be built (there is no shared replay engine), so it
-    is referenced precisely because it does not exist.
+    It deliberately does NOT enumerate them any more: it carried the list
+    by hand and named ten modules out of twenty-five, so everything added
+    afterwards was invisible to any session that trusted the file. The
+    guarantee moved from "the list is complete" (which nothing could
+    enforce) to "the way to get the list is named here" (which this can),
+    with `tools/toolkit.py` generating it off disk. Losing this pointer
+    would leave a session with no route to the toolkit at all.
     """
     claude = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
-    named = set(re.findall(r"`(tools/[\w/]+\.py)`", claude))
-    on_disk = {
-        f"tools/{p.name}"
-        for p in (ROOT / "tools").glob("*.py")
-        if p.name != "__init__.py"
-    }
-    missing = sorted(on_disk - named)
-    assert not missing, (
-        "these tools exist but CLAUDE.md's Toolkit does not name them, so "
-        f"no session will know they are there: {missing}"
+    assert "tools.cli tools" in claude, (
+        "CLAUDE.md must name `python -m tools.cli tools` -- it is the only "
+        "route a session has to what tools exist"
     )
 
 
