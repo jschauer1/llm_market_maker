@@ -2392,3 +2392,104 @@ score records its span in `pooled_versions` and its replay share in
 sub-theory partition is now visible in `state`, so a session can see
 strong-moderate-no without asking -- worth watching whether it produces
 an R1 on the next floor.
+
+## 2026-09-01 - series-bias pass 3: the breadth problem is solved, and the negative control caught the next one
+
+**Lane:** new-theory, focus `series-bias-mining`. Chosen over the
+`insider_judgment` v5 adoption ticket on one argument: the adoption
+decision is worth exactly as much next week, while this study's input
+*perishes* — Kalshi archives settled markets out of its API ~60 days
+after close, and the broad sweep was 76% done and stalled since 08-30.
+
+**Did:** Resumed the phase-2 price sweep (658 -> 664 of 840 series,
+~71k observations). Pre-registered pass 3's analysis bar in `STUDY.md`
+and committed it **before** computing any per-series number, then built
+`pass3.py` with 10 fixture tests and ran it once against a frozen
+snapshot. Verdict by its own bar: **NOT MEASURED** — 347 series tested
+against a floor of 30, but median MDE 12.16 against a bar of 8.0.
+Diagnosed the nine flags, found the cause, fixed the collector, filed
+two tickets and pre-registered pass 4.
+
+**Learned:**
+
+1. **347 series tested, against pass 1's seven and pass 2's one — and
+   it still is not measured.** The breadth problem this study has
+   carried since 08-25 is genuinely solved; the collector works and is
+   resumable. What breadth did *not* fix is power: median MDE 12.16
+   says the median recurring series cannot resolve a 3-6pt effect from
+   60 days of history, and **more series will never fix that — only
+   longer per-series history will.** That reframes the study's real
+   output as a *standing capture* rather than another one-shot sweep,
+   which is the shape `deadline_drift`'s RUNBOOK already uses.
+
+2. **The negative control did its job for the first time, and that is
+   the session's most valuable result.** Nine series cleared all four
+   gates at -10 to -45 points. None is reported as a finding, because
+   5 of 11 mention_family control series tripped the gates too — the
+   same ten-series control pass 1 ran on the screened population with
+   *all ten* non-significant. Same series, same statistic, different
+   population, so what moved is the population. Pass 1 wrote that a
+   flag among the control means the guard is too loose; this is the
+   first pass that had to cash that sentence, and it is why a -45pt
+   "bias" got written up as an artifact instead of a discovery.
+
+3. **A population without a liquidity filter cannot be mined for
+   bias.** The gap grows monotonically with the ask: -2.6pts at
+   0.50-0.70 rising to **-18.6 at 0.980-0.995, where 23% of the
+   population sits**, priced 0.987 and realizing 0.801. That is an
+   absent offer, not a mispricing. Passes 1-2 never saw it because
+   their population came through `insider_bias/screen.py`
+   (spread <= 0.07, volume >= 500); pass 3 widened the population and
+   threw the liquidity filter out along with the screen. Capping the
+   ask moves the control from 5/11 to 2/9 — so extreme asks are about
+   *half* of it, and the residue was undiagnosable from what had been
+   stored.
+
+4. **The root cause was a data-conventions failure, and it is the
+   worked example of why that rule exists.** `candlesticks` returns
+   `yes_bid_close`, `volume` and `open_interest`. `collect.py` fetched
+   all three, used the bid to pick the favorite side, and persisted
+   only the derived ask — distilling at write time and discarding
+   exactly the fields that later decided whether the distillate meant
+   anything. CLAUDE.md's "raw payloads over distillates" is aimed at
+   precisely this, and the cost is not recoverable at leisure: the
+   fields can only be re-derived from candles inside the archive
+   window. **Stopped the running sweep mid-flight to land the fix**,
+   because every further series priced without them would have been
+   another to re-fetch against a closing window.
+
+5. **An SE-based power floor is not outcome-neutral, and pass 3
+   reversed pass 2 on it.** For binomial data variance is p(1-p), so an
+   MDE floor preferentially admits extreme-win-rate series — exactly
+   where a large gap can sit. Pass 2 found this itself: its one flag
+   was the most extreme-win-rate series in its population *and* had
+   the lowest MDE. Pass 3 admits on counts alone and *reports* the
+   win-rate composition by stratum (0.796 at MDE<=8 vs 0.732 above)
+   rather than filtering on it. Cost: Holm over 347 series. Checked
+   before running that this does not exclude an effect of the size
+   being looked for — pass 2's KXLOWTLV at p<1e-5 would still clear a
+   family that size.
+
+6. **Carried candidates, both signs fixed before looking.** `KXRT`
+   predicted negative: -2.76, t -0.76, p 0.47 — right sign, nowhere
+   near significant, **not confirmed**, still a hypothesis. `KXLOWTLV`
+   predicted positive: did not clear the count floors here, so
+   **untested, not refuted**. Neither is re-read in light of the
+   result.
+
+**Next:** Pass 4 is pre-registered in `STUDY.md` — the pass-3 bar plus a
+tradeable-book requirement at passes 1-2's own thresholds
+(spread <= 0.07, volume >= 500), with the negative control as the
+**acceptance test** rather than commentary: if mention_family still
+trips under the filter, the population is still wrong. Two ticketed
+prerequisites, and the second is the more urgent of the two because it
+is work already done that expires: `2026-09-01-series-bias-sweep-finish`
+(~180 series left, all large) and
+`2026-09-01-series-bias-backfill-liquidity` (the 660 series priced
+before the fix read NULL for spread/volume; pass 4 cannot run on them
+until backfilled, and the candles expire).
+
+**Untouched, for whoever takes the theory lane:** the
+`insider_judgment` ticket to adopt `strong-moderate-no` at v5 is still
+open and is the best-evidenced unclaimed work in the repo (+4.37 net,
+89 event clusters, 43 settlement days, READY at v4).
