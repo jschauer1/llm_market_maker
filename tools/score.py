@@ -975,8 +975,17 @@ def save_score(
     disposition: str,
     result: dict,
     now: str | None = None,
+    segment: str = "aggregate",
 ) -> int:
-    """Persist a computed score. Returns the new row id."""
+    """Persist a computed score. Returns the new row id.
+
+    `segment` says which part of the theory this score describes, in
+    `slices.ranking_segment`'s vocabulary: `aggregate` (the whole
+    theory), `slice:<slug>` (one sub-theory), or `complement` (what is
+    left once every ready sub-theory is removed). It defaults to
+    `aggregate` because that is what every score written before
+    sub-theory scoring existed already was.
+    """
     if "chain_versions" in result:
         raise ValueError(
             "the scores table has no column for what pooled; persist "
@@ -990,8 +999,8 @@ def save_score(
                 price_implied_rate, calibration_edge, calibration_edge_net,
                 mean_claimed_edge, realization, roi_all, roi_taken,
                 riskless_n, riskless_roi, computed_at, n_clusters,
-                clustered_se
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                clustered_se, segment
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 theory_id,
@@ -1012,9 +1021,73 @@ def save_score(
                 now or utcnow(),
                 result.get("n_clusters"),
                 result.get("clustered_se"),
+                segment,
             ),
         )
     return cursor.lastrowid
+
+
+def save_segment_scores(
+    conn: sqlite3.Connection,
+    theory_id: str,
+    theory_version: int,
+    run_mode: str = "live",
+    disposition: str = "all",
+    now: str | None = None,
+) -> dict[str, int | None]:
+    """Persist every segment's score: the theory and each sub-theory.
+
+    A **sub-theory** is a theory run over a subset of another theory's
+    data — a registered slice. Its evidence is its own: it accrues
+    separately, clears its own gates, and can be strong while the parent
+    it sits inside is flat. `insider_judgment` is the worked example, a
+    breakeven screen whose strong/moderate-NO subset is the
+    best-evidenced result in this repo. So a sub-theory's record cannot
+    live inside its parent's row, and this is what writes it separately.
+
+    Three kinds of segment come out, matching `slices.ranking_segment`:
+    `aggregate` (the whole theory), `slice:<slug>` for each registered
+    sub-theory, and `complement` (what remains once every *ready*
+    sub-theory is removed) when a partition is in force. The complement
+    is scored on its own so the remainder never borrows what a subset
+    earned.
+
+    An unready sub-theory is saved too. It drives no ranking yet, but a
+    record nobody can see is a record nobody can watch approach its
+    gates — and "invisible until it matters" is how a proven subset ends
+    up orphaned.
+
+    Returns {segment: row id}. Sub-theory scores are the OUT-OF-SAMPLE
+    ones, which is the only evidence a slice is ever credited with.
+    """
+    from tools import slices as slices_mod
+
+    saved: dict[str, int | None] = {}
+    aggregate = compute_score(
+        conn, theory_id, theory_version, run_mode, disposition
+    )
+    saved["aggregate"] = save_score(
+        conn, theory_id, theory_version, run_mode, disposition, aggregate,
+        now=now, segment="aggregate",
+    )
+
+    report = slices_mod.segment_report(
+        conn, theory_id, theory_version, disposition=disposition
+    )
+    for entry in report["slices"]:
+        oos = entry["oos"]
+        saved[f"slice:{entry['slug']}"] = (
+            save_score(
+                conn, theory_id, theory_version, run_mode, disposition, oos,
+                now=now, segment=f"slice:{entry['slug']}",
+            ) if oos.get("n") else None
+        )
+    if report.get("complement"):
+        saved["complement"] = save_score(
+            conn, theory_id, theory_version, run_mode, disposition,
+            report["complement"], now=now, segment="complement",
+        )
+    return saved
 
 
 def record_backtest_run(

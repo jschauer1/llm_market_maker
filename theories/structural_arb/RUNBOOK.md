@@ -47,6 +47,23 @@ header plus legs, scored as a single joint payoff. Sub-$5 fillable finds
 record `rejected`, never dropped. Execution risk across legs is
 *reported* to the user, never modelled.
 
+## Sub-theories
+
+A **sub-theory** is a theory run over a *subset* of this theory's data --
+a registered slice with its own evidence and its own gates, which may be
+strong while the parent is flat.
+
+**None registered**, and the shape of this theory argues against them:
+every find is riskless net of fees, so it is scored on return in the
+riskless bucket and makes no calibration claim at all. A slice
+partitions a *calibration* record; there is none here to partition.
+
+Check anyway when running, so a later registration is never missed:
+
+```bash
+python -m tools.cli slices report structural_arb
+```
+
 ## Report
 
 The floor line must carry the funnel with **removals by category** —

@@ -116,6 +116,25 @@ key routes them to R6 CONTROL. Never read forward cells through
 by 2026-08-30). Defective runs are quarantined by id in
 `forward_cells.EXCLUDED_RUNS`, never deleted silently.
 
+## Sub-theories
+
+A **sub-theory** is a theory run over a *subset* of this theory's data --
+a registered slice with its own evidence, its own gates, and its own
+record, which may be strong while the parent is flat.
+
+**None registered.** This theory's cells are not slices: they are the
+population it observes, recorded with claimed edge 0.0 as observation
+rows (ruling 13), so there is no subset making a bet claim to score
+separately. Its per-cell measurement lives in `forward_cells.py` and is
+reported from there.
+
+Check anyway when running -- a slice registered later must not go
+unreported because this section said none existed:
+
+```bash
+python -m tools.cli slices report calibration_harvest
+```
+
 ## Report
 
 The floor line carries markets screened, rows recorded, and the cell

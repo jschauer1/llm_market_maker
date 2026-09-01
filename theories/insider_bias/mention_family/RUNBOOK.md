@@ -53,6 +53,19 @@ still read `mention_bucket.py`'s module docstring caveats (the
 `mention_family_85plus` bin's 100% win rate especially) before treating the
 number as more certain than it is.
 
+## Sub-theories
+
+A **sub-theory** is a theory run over a *subset* of this theory's data --
+a registered slice with its own evidence and gates.
+
+**None registered, and none will be.** This theory is retired (user,
+2026-08-27). Its one real residue -- NO favorites at high asks -- was
+pre-registered as a sub-theory of a *different* theory,
+`no_side_premium`'s `cell-a-no-favorite`, because it needed its own
+screen and population rather than a re-weighting of this one. That is
+the line: a subset that needs its own entry rule is a sibling theory, not
+a slice.
+
 ## Report
 
 The floor line carries candidates found, how many recorded, and the bins

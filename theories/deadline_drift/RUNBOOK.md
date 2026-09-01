@@ -84,6 +84,18 @@ section for what promotion requires.
 Nothing records while the theory is `proposed`. When it promotes, rows go
 through the contract (`start(ctx).finish()`) like every mechanical theory.
 
+## Sub-theories
+
+A **sub-theory** is a theory run over a *subset* of this theory's data --
+a registered slice with its own evidence, gates and record, which may be
+strong while the parent is flat.
+
+**None registered.** The theory is `proposed` and has recorded no rows,
+so there is nothing to partition yet. If the classifier ships, the
+obvious candidates to pre-register are by deadline horizon and by
+resolution-source family -- register them with a mechanism before any
+mining, never after.
+
 ## Report
 
 Every session's floor reports `days_since_capture` — the capture is the

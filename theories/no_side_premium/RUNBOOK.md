@@ -45,6 +45,33 @@ pre-registered avoid claim, recorded so settlements test it for free).
 Both cells are also registered slices (`cell-a-no-favorite`,
 `cell-b-yes-avoid`), so their evidence partitions automatically.
 
+## Sub-theories
+
+A **sub-theory** is a theory run over a *subset* of this theory's data:
+same rows, narrower population, its own evidence, its own gates. It can
+be strong while the parent is flat, so it is reported on its own terms.
+
+This theory is *entirely* two sub-theories -- the cells are the claim:
+
+| slug | claim | direction wanted |
+|---|---|---|
+| `cell-a-no-favorite` | mention-family NO favorites at ask >= 0.85 are underpriced (~+2.0 net) | positive |
+| `cell-b-yes-avoid` | YES favorites at 0.80-0.90 elsewhere are overpriced (~-3.9 net) | **negative** -- it is an avoid list, and its candidates are never recommendable |
+
+Cell B is the case where a good result looks like a bad number. A
+negative record there *confirms* the claim; do not report it as a
+failing segment.
+
+```bash
+python -m tools.cli slices report no_side_premium
+python -m tools.cli score report no_side_premium --save
+```
+
+THEORY.md's own confirmation bars (cell A n>=40 and n_days>=8; cell B
+calibration_edge_net < 0 at n>=60 and n_days>=8) are stricter than slice
+readiness gates and still govern status and `edge_basis`. Slice
+readiness affects ranking only.
+
 ## Report
 
 The floor line must carry the funnel and the gate: `board_markets`,

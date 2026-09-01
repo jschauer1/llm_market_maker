@@ -273,12 +273,16 @@ def _cmd_score(args) -> int:
             }
             saved = None
             if getattr(args, "save", False):
+                # Every segment, not just the parent: a sub-theory's
+                # evidence is its own and can be strong while the theory
+                # around it is flat. Saving only the aggregate is what
+                # kept proven subsets out of `state` entirely.
                 saved = {
-                    disposition: score.save_score(
+                    disposition: score.save_segment_scores(
                         conn, args.theory_id, version, args.run_mode,
-                        disposition, result,
+                        disposition,
                     )
-                    for disposition, result in results.items()
+                    for disposition in results
                 }
             _emit(
                 {
@@ -973,6 +977,18 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
+    # Every command here prints prose written with em dashes and arrows,
+    # and Windows consoles default to cp1252, which cannot encode them.
+    # That was cosmetic for a while -- `state` rendered "[tier ?]" -- and
+    # then it was not: any character with no cp1252 mapping raises
+    # UnicodeEncodeError and takes the whole command down. `state` is the
+    # surface every session orients on, so it must not be able to crash
+    # on its own output.
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8")
+        except (AttributeError, ValueError):  # not a real TextIO (captured)
+            pass
     args = build_parser().parse_args(argv)
     return args.func(args)
 

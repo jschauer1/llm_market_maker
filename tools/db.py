@@ -147,6 +147,12 @@ def init_db(conn: sqlite3.Connection) -> None:
     # means "nothing declared", which is exactly right for those rows:
     # their oos_run_ids already say which replays were designated.
     _add_column_if_missing(conn, "theory_slices", "mined_from_run_ids", "TEXT")
+    # Additive with a default that preserves meaning: every pre-existing
+    # score row is the theory's own aggregate, which is what 'aggregate'
+    # says. Sub-theory rows are new, never a reinterpretation of old ones.
+    _add_column_if_missing(
+        conn, "scores", "segment", "TEXT NOT NULL DEFAULT 'aggregate'"
+    )
     # Additive and nullable for the same reason: a capture taken before the
     # event envelope was kept has an UNKNOWN mutually_exclusive, not a
     # false one. Reading absent as false loses real structural_arb

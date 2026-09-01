@@ -218,7 +218,19 @@ CREATE TABLE IF NOT EXISTS scores (
     roi_taken          REAL,
     riskless_n         INTEGER NOT NULL DEFAULT 0,
     riskless_roi       REAL,
-    computed_at        TEXT NOT NULL
+    computed_at        TEXT NOT NULL,
+    -- Which SEGMENT of the theory this score describes (user ruling
+    -- 2026-08-31). A sub-theory -- a theory run over a subset of another
+    -- theory's data -- accrues its own evidence, clears its own gates,
+    -- and can be strong while the parent it sits inside is flat, so its
+    -- record cannot live in the parent's row. Vocabulary matches
+    -- slices.ranking_segment exactly: 'aggregate' (the whole theory),
+    -- 'slice:<slug>' (one sub-theory, out-of-sample), 'complement'
+    -- (what is left once every ready sub-theory is removed -- scored
+    -- separately so the remainder never borrows what a subset earned).
+    -- Defaulted, because every score written before segments existed was
+    -- the parent's aggregate and still means exactly that.
+    segment            TEXT NOT NULL DEFAULT 'aggregate'
 );
 
 CREATE TABLE IF NOT EXISTS bucket_rates (

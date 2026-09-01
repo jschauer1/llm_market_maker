@@ -46,7 +46,14 @@ PAYLOAD_RE = re.compile(
     r"json\.loads\(\s*[\w\.]+\[[\"'](?:raw_json|event_json)[\"']\]"
 )
 
-RUNBOOK_HEADINGS = ("## Stages", "## Run", "## Record", "## Report", "## Skip")
+# "## Sub-theories" is required even when a theory has none, and the
+# section then says so. A sub-theory -- a theory over a SUBSET of this
+# theory's data -- accrues its own evidence and can be strong while its
+# parent is flat, so "run the theory" has to include evaluating them or a
+# proven subset stays invisible. An absent section reads as "not
+# applicable"; a section saying "none registered" reads as "checked".
+RUNBOOK_HEADINGS = ("## Stages", "## Run", "## Record", "## Sub-theories",
+                    "## Report", "## Skip")
 
 
 def _calls_in_source(source: str, func_name: str, keyword: str | None = None):

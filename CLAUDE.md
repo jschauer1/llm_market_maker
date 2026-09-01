@@ -360,6 +360,45 @@ measured at n=40 that delivered nothing ranks at zero; the floor does not
 protect a theory that has been tested and found wanting. Show claimed and
 ranked edge side by side. Do not game this.
 
+### Sub-theories — what they are
+
+**A sub-theory is a theory run over a subset of another theory's data.**
+Same rows, narrower population, and — this is the whole point — **its
+own evidence.** A sub-theory accrues separately, clears its own gates,
+and carries its own record, so it can be **strongly supported while the
+theory it lives inside is flat or negative.** When that happens the
+sub-theory's bet is reported as a supported bet, on the same footing as
+any other, because the evidence behind it is real evidence.
+
+`insider_judgment` is the worked example and the reason this rule
+exists: the screen as a whole is breakeven, while its `strong-moderate-no`
+subset is the best-evidenced result in this repo (+4.31 net, 89 event
+clusters, 43 settlement days, out of sample at v3). One number for the
+theory would bury the proven subset under the aggregate *and* let the
+unproven remainder borrow what the subset earned. Both directions are
+wrong; the partition fixes both.
+
+Sub-theories are first-class everywhere the parent is:
+
+- **Settling and scoring runs on both, distinctly.**
+  `score.save_segment_scores` persists one row per segment —
+  `aggregate`, `slice:<slug>` for each sub-theory, and `complement` —
+  and `score report --save` calls it. `state`'s EVIDENCE panel renders
+  sub-theory lines under their parent, so a strong subset is visible
+  while orienting rather than only to whoever thought to ask.
+- **Running a theory includes evaluating its sub-theories.** Every
+  `RUNBOOK.md` carries a required `## Sub-theories` section — naming
+  them, or saying none are registered — enforced by
+  `tests/test_db_discipline.py`.
+- **Ranking and reporting already partition.** `slices.ranking_segment`
+  picks which score row feeds `ranked_edge`, and `promote` returns the
+  rung with the segment that earned it.
+
+A subset that needs its own screen, entry rule, or population is **not**
+a sub-theory — it is a sibling theory (`no_side_premium` is what that
+looks like). A sub-theory only re-weights output the parent already
+produced.
+
 ### Subset edges — registered slices
 
 One credibility number per theory is a lie whenever a defined subset of

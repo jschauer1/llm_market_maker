@@ -130,6 +130,38 @@ Then record opportunities with `edge_pts_net` from `buckets.edge_for`,
 `prompts/final_review.md`. `disposition='endorsed'` means *the main model
 recommends this bet*, not that arithmetic produced a positive number.
 
+## Sub-theories
+
+A **sub-theory** is a theory run over a *subset* of this theory's data:
+same rows, narrower population, its own evidence. It accrues, clears its
+gates and is scored separately, and it can be strong while this theory is
+flat -- which is exactly the case here.
+
+| slug | claim |
+|---|---|
+| `strong-moderate-no` | a strong-or-moderate insider verdict on a NO-side favorite is where the screen's population-level breakeven hides a real edge |
+
+**This theory's sub-theory is its best-evidenced result.** At v3 the
+slice is READY out of sample -- n=321, 89 event clusters, 43 settlement
+days, +4.31 net -- while the aggregate screen is breakeven. Reporting
+only the parent buries it.
+
+Evaluating them is part of running this theory:
+
+```bash
+python -m tools.cli slices report insider_judgment
+python -m tools.cli score report insider_judgment --save   # saves every segment
+```
+
+`mined_from_run_ids` names `backtest-2026-08-26-insider-judged-s200`, the
+replay that generated the rule; it can never vouch for the slice. The
+confirming replays do.
+
+**v4 carries no bet path to this slice** -- the v3->v4 bump was
+`breaking`, so v4 is not entitled to v3's evidence. `promote` raises it
+as *orphaned evidence* every session until the user rules on adoption.
+Report it; never quietly rank a v4 candidate on v3's record.
+
 ## Report
 
 The floor line carries the full funnel (board → screened → events → gated

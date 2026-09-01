@@ -107,11 +107,19 @@ def _evidence_panel(conn) -> list[str]:
     for t in theories.list_theories(conn, running_only=True):
         row = None
         if scores_written:
+            # `segment = 'aggregate'` is load-bearing, not decoration: a
+            # sub-theory's score lives in this same table, and without the
+            # filter a subset written a second later is served as the
+            # theory's own record -- a strong slice would read as a strong
+            # theory, which is the precise confusion sub-theory scoring
+            # exists to prevent. Pre-segment rows default to 'aggregate',
+            # so this never hides a legacy score.
             row = conn.execute(
                 """
                 SELECT calibration_edge_net, n, n_clusters FROM scores
                  WHERE theory_id = ? AND theory_version = ?
                    AND run_mode = 'live' AND disposition = 'all'
+                   AND segment = 'aggregate'
                  ORDER BY computed_at DESC LIMIT 1
                 """,
                 (t["id"], t["version"]),
@@ -133,7 +141,55 @@ def _evidence_panel(conn) -> list[str]:
                 f"  n {row['n']}  clusters {row['n_clusters']}"
                 f"  [tier {tier or '—'}]"
             )
+        lines.extend(_sub_theory_lines(conn, t))
     return lines or ["  (no running theories)"]
+
+
+def _sub_theory_lines(conn, t) -> list[str]:
+    """One line per sub-theory under its parent.
+
+    A sub-theory's record is its own — it can be strong while the parent
+    it sits inside is flat, which is exactly the case a session must not
+    miss. Showing only the parent is how a proven subset goes unbet:
+    `insider_judgment`'s strong/moderate-NO slice was the repo's
+    best-evidenced result while its parent read as breakeven.
+    """
+    if not _column_exists(conn, "scores", "segment"):
+        return []
+    rows = conn.execute(
+        """
+        SELECT segment, calibration_edge_net, n, n_clusters,
+               MAX(computed_at) AS computed_at
+          FROM scores
+         WHERE theory_id = ? AND theory_version = ?
+           AND run_mode = 'live' AND disposition = 'all'
+           AND segment != 'aggregate'
+         GROUP BY segment
+         ORDER BY segment
+        """,
+        (t["id"], t["version"]),
+    ).fetchall()
+    out = []
+    for r in rows:
+        label = r["segment"]
+        if label.startswith("slice:"):
+            label = "  sub: " + label[len("slice:"):]
+        else:
+            label = "  sub: " + label
+        out.append(
+            f"    {label:<28} edge_net {r['calibration_edge_net']}"
+            f"  n {r['n']}  clusters {r['n_clusters']}"
+        )
+    return out
+
+
+def _column_exists(conn, table: str, column: str) -> bool:
+    if not _table_exists(conn, table):
+        return False
+    return any(
+        row[1] == column
+        for row in conn.execute(f"PRAGMA table_info({table})").fetchall()
+    )
 
 
 def _windows_panel(conn) -> list[str]:
