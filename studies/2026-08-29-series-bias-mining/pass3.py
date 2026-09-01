@@ -120,9 +120,10 @@ def win_rate(rows) -> float:
     return sum(w for _, w, _ in rows) / len(rows)
 
 
-def run(by_series: dict[str, list[tuple]] | None = None) -> dict:
+def run(by_series: dict[str, list[tuple]] | None = None,
+        path: Path = DB) -> dict:
     """The pre-registered pass-3 analysis. No filtering by outcome."""
-    by_series = load_collect() if by_series is None else by_series
+    by_series = load_collect(path) if by_series is None else by_series
     admitted = [(s, rows, st) for s, rows in sorted(by_series.items())
                 if (st := M.stat_for(s, rows)) is not None]
 
@@ -175,7 +176,14 @@ def run(by_series: dict[str, list[tuple]] | None = None) -> dict:
 
 
 def main() -> None:
-    r = run()
+    # An explicit path lets the analysis run against a FROZEN
+    # snapshot while the sweep keeps collecting: the views must all
+    # read one consistent population, and the sweep only ever adds
+    # series, so reading the live file mid-run could give different
+    # views different families.
+    path = Path(sys.argv[1]) if len(sys.argv) > 1 else DB
+    print("population: %s" % path.name)
+    r = run(path=path)
     print("=" * 72)
     print("PASS 3 -- broad sweep, bar pre-registered in STUDY.md 2026-09-01")
     print("=" * 72)
@@ -239,7 +247,7 @@ def main() -> None:
     if r["flagged"]:
         print()
         print("-- robustness (declared before results; never promotes) --")
-        rb = robustness(r["flagged"])
+        rb = robustness(r["flagged"], path)
         for st in sorted(r["flagged"], key=lambda x: -abs(x.t)):
             print("  %s   primary %+.2f (t %+.2f, n=%d)"
                   % (st.series, st.edge, st.t, st.n))

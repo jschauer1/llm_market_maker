@@ -161,6 +161,13 @@ CREATE TABLE IF NOT EXISTS obs (
     ask_24h       REAL,
     side_24h      TEXT,
     won_24h       INTEGER,
+    -- Book quality AT the decision point. Added 2026-09-01 after pass 3
+    -- found it could not distinguish a tradeable ask from a one-sided
+    -- book; NULL for every observation captured before that date.
+    spread        REAL,
+    volume        REAL,
+    open_interest REAL,
+    spread_24h    REAL,
     -- Outcome-independence: a "by D" market that resolves early has its
     -- OBSERVED span truncated by the outcome itself. Anchoring to
     -- scheduled close removes that; this flag says when they differ.
@@ -177,11 +184,24 @@ CREATE TABLE IF NOT EXISTS progress (
 """
 
 
+#: Columns added after the first collection ran. `CREATE TABLE IF NOT
+#: EXISTS` is a no-op on an existing file, so widening the row needs an
+#: explicit ALTER -- additive only, so every row captured earlier keeps
+#: exactly the values it was written with and simply reads NULL here.
+LATE_COLUMNS = (("spread", "REAL"), ("volume", "REAL"),
+                ("open_interest", "REAL"), ("spread_24h", "REAL"))
+
+
 def connect() -> sqlite3.Connection:
     DB.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(DB)
     conn.row_factory = sqlite3.Row
     conn.executescript(SCHEMA)
+    have = {r["name"] for r in conn.execute("PRAGMA table_info(obs)")}
+    for col, typ in LATE_COLUMNS:
+        if col not in have:
+            conn.execute("ALTER TABLE obs ADD COLUMN %s %s" % (col, typ))
+    conn.commit()
     return conn
 
 
@@ -356,7 +376,21 @@ def prices(conn, limit_series: int | None = None) -> None:
                 lifetime = max(cs[-1]["end_ts"] - cs[0]["end_ts"], 0)
 
             def price_at(target_ts):
-                """(side, ask, won, offset_h) at the last candle <= target."""
+                """(side, ask, won, offset_h, spread, vol, oi) at the last
+                candle <= target.
+
+                ADDED 2026-09-01: spread, volume and open interest. The
+                candle already carried all three and this collector was
+                throwing them away, keeping only the derived ask -- and
+                pass 3 then could not tell a tradeable price from a
+                one-sided book. 23% of its observations sat at asks of
+                0.98-0.995 realizing 0.80, which is not a mispricing but
+                an absent offer, and the mention_family negative control
+                fired because of it. Re-deriving these later means
+                re-fetching candles that Kalshi archives at ~60 days, so
+                they are persisted at capture time. See STUDY.md
+                "Pass 3 result".
+                """
                 elig = [c for c in cs if c["end_ts"] <= target_ts]
                 c0 = elig[-1] if elig else None
                 if c0 is None:
@@ -373,8 +407,12 @@ def prices(conn, limit_series: int | None = None) -> None:
                     side_, ask_ = "no", 1.0 - yb
                 if not (0.0 < ask_ < 1.0):
                     return None
+                # Spread is side-independent: it is the same book either
+                # way, and it is the field that says whether `ask_` was a
+                # price anyone was actually offering.
                 return (side_, ask_, 1 if side_ == r["result"] else 0,
-                        (close_ts - c0["end_ts"]) / 3600.0)
+                        (close_ts - c0["end_ts"]) / 3600.0,
+                        ya - yb, c0.get("volume"), c0.get("open_interest"))
 
             # THE amended pre-registered point: 25% of scheduled lifetime.
             main = price_at(sched_ts - max(3600.0, DECISION_FRACTION * lifetime))
@@ -384,7 +422,7 @@ def prices(conn, limit_series: int | None = None) -> None:
                 main = price_at(cs[0]["end_ts"])
             if main is None:
                 continue
-            side, ask, won, offset_h = main
+            side, ask, won, offset_h, spread, vol, oi = main
 
             # The ORIGINAL rule, priced from the same candles for free.
             # Undefined (NULL) where the market lived under 24h -- which
@@ -394,12 +432,14 @@ def prices(conn, limit_series: int | None = None) -> None:
             conn.execute(
                 "INSERT OR REPLACE INTO obs(ticker,series_ticker,close_time,"
                 "result,side,ask,won,offset_h,n_candles,ask_24h,side_24h,"
-                "won_24h,early_settled) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                "won_24h,early_settled,spread,volume,open_interest,"
+                "spread_24h) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 (r["ticker"], series_ticker, r["close_time"], r["result"],
                  side, ask, won, offset_h, len(cs),
                  alt[1] if alt else None, alt[0] if alt else None,
                  alt[2] if alt else None,
-                 1 if (sched_ts - close_ts) > 3600 else 0))
+                 1 if (sched_ts - close_ts) > 3600 else 0,
+                 spread, vol, oi, alt[4] if alt else None))
             got += 1
         note = f"{got}/{len(rows)} priced"
         if noshed:
