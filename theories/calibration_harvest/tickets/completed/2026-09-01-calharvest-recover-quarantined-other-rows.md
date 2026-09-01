@@ -6,7 +6,9 @@ created: 2026-09-01
 created_by: llm-market-identifier-df
 author_lane: maintenance
 author_context: Fixing the v3 double-run/domain-collapse defect; found the quarantined rows are recoverable but decided the migration is a theory-lane judgment call.
-status: open
+status: done
+closed: 2026-09-01
+resolution: Closed unactioned: theory RETIRED 2026-09-01. The migration this ticket proposed is moot -- there is no forward corpus to grow. Its analytical content was used, though: the read-only relabel it describes (extra_json.series_ticker + the complete /series map) was run as ANALYSIS this session and produced the finding that 87% of the forward corpus is sports reading -6.69 gross, which was the last input to the retirement decision. The measurement appended to this ticket earlier -- that the 6,856 rows span exactly 4 settlement days and are worth n_eff=17, not the '69x the corpus' unlock the ticket claimed -- stands as the general lesson: when a gate has two floors, work the one that binds.
 ---
 The v3 fix (2026-09-01, see NOTES.md and THEORY.md Version) quarantines every `other|*` cell below v3, because `other` used to mean both 'a category the grid does not bin' and 'a series this run's map never covered'. That took the forward corpus from 6,960 rows to 100, and 21 cells to 6.
 

@@ -1548,3 +1548,93 @@ Status moved `testing` → `under_review`, which keeps it running and
 recording. Pulling a theory you suspect is broken is how you guarantee
 never finding out whether it was broken or merely unlucky; that logic
 applies to a diagnosed theory awaiting a user ruling exactly as much.
+
+## 2026-09-01 (final) — checked Sports before retiring; it points the same way, and it is not walkable
+
+The retirement proposal named Sports as the one thing that could still
+surprise, so it was checked rather than waved through. Two ways, both
+cheap, and they agree.
+
+### 1. The forward corpus IS sports, and read that way it is negative
+
+Re-derived the true domain for all 7,000 settled live rows from
+`extra_json.series_ticker` plus the complete `/series` map — **read-only,
+no migration**, so this is analysis and not the recovery ticket:
+
+    domain          n   days    gross      SE      t
+    sports       6102      4    -6.69    3.93   -1.70
+    economics     200      1    -4.93      --      --
+    weather       194      2    -1.04    1.48   -0.70
+    crypto        191      3    -4.29    6.71   -0.64
+    sci_tech      118      1   +10.10      --      --
+    politics       26      2   -10.55   20.05   -0.53
+
+**87% of this theory's forward corpus is sports, and sports reads
+−6.69 gross — the wrong sign for the thesis.** Underpowered at 4
+settlement days (t = −1.70 at 3 df proves nothing on its own), but for
+sports to rescue the theory the sign would have to **flip and then reach
++3.5** to clear the v4 frontier at 0.95. Nothing in any of this data
+suggests that, and the mechanism gives no reason to expect it: lottery
+appetite and capital-lockup aversion are domain-agnostic, and sports is
+Kalshi's most liquid, most heavily traded, ESPN-settled category — the
+prior is *more* efficient pricing, not less.
+
+This also settles a loose end honestly: calibration_harvest's −2.87
+headline was essentially an unlabelled sports number, and now it is a
+labelled one. It did not become more favourable when labelled.
+
+### 2. The Sports walk is not affordable, and the API says so
+
+`collect size` on Sports **hit a 429 after 21 series** and stopped.
+Those 21 already cost 9,270 candlestick-fetches — 8,911 of them from
+`KXMLBKS` alone (MLB strikeout markets, 10,274 settled in the window).
+
+Naive extrapolation says ~1.4M fetches / ~88h, and that number should
+**not** be quoted as an estimate — it is exactly the skew the 2026-08-29
+profiling note warns about, where five weather series were 40% of the
+walk. What is safe to say is the ranking: Sports is **an order of
+magnitude** more expensive than any population walked so far
+(weather 28,336 fetches, politics far less), it is rate-limited in
+practice as well as in theory, and it is not a session's work.
+
+**New operational fact worth carrying: sustained `list_settled` probing
+earns a 429.** The 2026-08-29 profiling established the ~4–5 req/s
+serialization and that concurrency buys nothing; this adds that a long
+single-threaded probe still trips the limiter. `tools/http.py`'s 4
+retries did not clear it. Any future collector that walks thousands of
+series needs backoff-and-resume on 429 rather than 4 retries — ticketed.
+
+### The call: retire
+
+The user delegated this decision explicitly on 2026-09-01 ("if you think
+it should be retired do it"), having been given the full proposal
+including the Sports counter-argument. Retiring on that authorization.
+
+The argument, complete:
+
+  - The theory's **own pre-registered kill criterion is met**, out of
+    sample, at the sample size it named: 27 cells past both floors, zero
+    clearing fees.
+  - The test is **fair**, because v4 removed the "the bound can never
+    fire" excuse first, on a structural argument, without changing
+    anything bettable.
+  - **Six domains, ~7,500 collected rows, three complete populations, 47
+    cells past both floors, zero positive net edges.**
+  - The one axis that ever showed structure **reverses sign** out of
+    sample.
+  - **0 of 27 cells survives Holm**; the liquidity split shows no
+    ordering; and the one unwalked domain that mattered reads **negative
+    on 6,102 rows.**
+
+What is *not* claimed: proof of absence. Sports and Entertainment are
+unwalked at tier A, 12 of 20 domain-band cells are underpowered, and a
+future session with days of budget could still walk them. The retirement
+record says so, so a revival is a matter of evidence rather than
+archaeology.
+
+**What survives this theory**, and it is not nothing: `cells.effective_n`
+and the design-effect argument; the `collect size` cost probe; the
+liquidity fields the collector now persists; the finding that a
+conservative default can silently disable the thing it protects; and
+three complete tier-A calibration populations that any future theory can
+read for free.

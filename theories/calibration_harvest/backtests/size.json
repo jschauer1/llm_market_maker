@@ -1049,6 +1049,136 @@
    "n_settled": 0,
    "fetches": 0,
    "category": "Exotics"
+  },
+  "KXFEATUREKENDRICK": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Entertainment"
+  },
+  "KXLIGAMX2HSPREAD": {
+   "n_settled": 18,
+   "fetches": 5,
+   "category": "Sports"
+  },
+  "KXNBAPIADVANCE": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Sports"
+  },
+  "KXRELOCATIONCHI": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Sports"
+  },
+  "KXBRASILEIROBTEAMTOTAL": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Sports"
+  },
+  "KXNBAPLAYERSPECIALS": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Sports"
+  },
+  "KXUAEPLGAME": {
+   "n_settled": 63,
+   "fetches": 63,
+   "category": "Sports"
+  },
+  "KXMLBKS": {
+   "n_settled": 10274,
+   "fetches": 8911,
+   "category": "Sports"
+  },
+  "KXSOCCERJOIN": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Sports"
+  },
+  "KXRANKLISTAICODE": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Sports"
+  },
+  "KXNBADRAFTINT": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Sports"
+  },
+  "KXCOPADOBRASILBTTS": {
+   "n_settled": 20,
+   "fetches": 20,
+   "category": "Sports"
+  },
+  "KXISRNLTOTAL": {
+   "n_settled": 172,
+   "fetches": 137,
+   "category": "Sports"
+  },
+  "KXSIXKINGSQUARTER": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Sports"
+  },
+  "KXFEATURELILWAYNE": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Entertainment"
+  },
+  "KXPERFORMSTYLESMSG": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Entertainment"
+  },
+  "KXWC1HTOTAL": {
+   "n_settled": 56,
+   "fetches": 56,
+   "category": "Sports"
+  },
+  "KXTACAPORT1HBTTS": {
+   "n_settled": 45,
+   "fetches": 1,
+   "category": "Sports"
+  },
+  "KXBSLGAME": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Sports"
+  },
+  "KXVMARNB": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Entertainment"
+  },
+  "KXFIFAADVANCE": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Sports"
+  },
+  "KXRTPREDATORBADLANDS": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Entertainment"
+  },
+  "KXNFLAFCSOUTH": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Sports"
+  },
+  "KXNBAPTSALLGAMES": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Sports"
+  },
+  "KXGER3LSPREAD": {
+   "n_settled": 98,
+   "fetches": 64,
+   "category": "Sports"
+  },
+  "KXLIVTOP10": {
+   "n_settled": 179,
+   "fetches": 13,
+   "category": "Sports"
   }
  }
 }

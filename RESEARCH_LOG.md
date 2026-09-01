@@ -3236,3 +3236,44 @@ rationale rather than buried here.
 
 **For the user: this is a retirement decision awaiting a ruling.** It
 surfaces in `state` under STANDING.
+
+### 2026-09-01 (final) — calibration_harvest RETIRED
+
+The user delegated the call after being shown the full proposal
+including its own counter-argument. Checked that counter-argument first
+rather than taking the delegation as permission to stop thinking.
+
+**Sports was the open question, and it closed both ways.** Re-derived
+the true domain for all 7,000 settled live rows, read-only, from
+`extra_json.series_ticker` plus the complete `/series` map: **6,102 of
+them (87%) are sports, reading −6.69 gross** — the wrong sign. For
+sports to have rescued the theory the sign would have had to flip *and*
+reach +3.5. And the tier-A walk that would have settled it properly is
+unaffordable: `collect size` **hit a 429 after 21 series**, which had
+already cost 9,270 candlestick fetches (8,911 from `KXMLBKS` alone).
+
+**A new operational fact, ticketed as `http-429-needs-backoff`.**
+calibration_harvest's profiling had already established that Kalshi
+serializes at ~4–5 req/s and that concurrency buys nothing. What is new:
+**a long single-threaded walk still earns a 429**, so the limiter has a
+sustained-volume component and staying under the instantaneous rate is
+not sufficient. `tools/http.py` retries a 429 four times and then
+raises, which is wrong for a multi-hour collector in both directions —
+hammering a limiter that wants you to stop, then aborting instead of
+backing off and continuing. Every tier-A replay in this repo is a long
+single-threaded walk and inherits this.
+
+**The retirement record deliberately says what is not proven.** Sports
+and Entertainment are unwalked at tier A and 12 of 20 domain-band cells
+are underpowered, so a revival is a matter of evidence rather than
+archaeology.
+
+**What survives the theory**, and it is the reason the session was worth
+more than a deletion: `cells.effective_n` and the design-effect
+argument; the `collect size` cost probe; the liquidity fields the
+collector now persists; and **three complete tier-A calibration
+populations** (weather, politics, econ/fin/scitech — ~7,500 rows over
+60+ settlement days) that any future theory can read for free. A theory
+that dies having measured its domain properly leaves the board better
+mapped than it found it, which is what the instrument metaphor in
+CLAUDE.md is for.

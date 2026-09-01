@@ -58,8 +58,28 @@ All in-repo, no external feeds, no LLM:
 
 ## Status
 
-`under_review` — 2026-09-01. **The pre-registered kill criterion is met
-and retirement is proposed for the user's ruling.**
+`retired` — 2026-09-01, on the user's explicit delegation after being
+shown the full case including the Sports counter-argument.
+
+**The pre-registered kill criterion was met**, and the test was fair
+because v4 removed the "the bound can never fire" excuse first. Six
+domains, ~7,500 collected rows, three complete populations, 47 cells past
+both floors, **zero positive net edges**. The only axis that ever showed
+structure (horizon) reverses sign out of sample. Sports — the one open
+counter-argument — was checked read-only on the forward corpus and reads
+**−6.69 gross on 6,102 rows**, the wrong sign, and its tier-A walk is
+rate-limited and an order of magnitude dearer than any population walked.
+
+**Not proof of absence**, and a revival should be a matter of evidence
+rather than archaeology: Sports (3,274 series) and Entertainment (598)
+are unwalked at tier A, and 12 of 20 domain-band cells are underpowered.
+
+**What survives and is used elsewhere:** `cells.effective_n` and the
+design-effect argument; `collect size`; the liquidity fields the
+collector now persists; and three complete tier-A calibration
+populations any future theory can read for free.
+
+Full account: `NOTES.md` 2026-09-01 (four entries).
 
 Third population complete (`backtest-2026-09-01-calharvest-econfin`,
 1,181/1,181 series, 2,666 observations, five mapped domains). It is
