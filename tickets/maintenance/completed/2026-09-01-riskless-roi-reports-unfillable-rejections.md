@@ -6,7 +6,9 @@ created_by: llm-market-identifier-af
 author_lane: theory
 author_focus: structural_arb
 author_context: Found while reading structural_arb's score report at the start of a theory-lane session; it is a scoring-vocabulary question, so not mine to change.
-status: open
+status: done
+closed: 2026-09-01
+resolution: Fixed with option (a), report-only, as the ticket recommended. 'cli score report' now emits a 'notes' list; when the riskless bucket on 'all' is non-empty AND every one of its positions is also in 'rejected', it carries a note saying so and telling the reader to check the rejection rationales before quoting the number. structural_arb's report now ships that note beside its +55%. NO vocabulary changed and no stored score moved: riskless_roi, disposition and edge_basis still mean exactly what every recorded row was written under, which is what CLAUDE.md's 'prefer a new name to a redefined one' asks for -- the misleading part was the headline, not the arithmetic. Deliberately NOT option (b) (a depth-rejected marker distinct from a judgment rejection): the ticket recommends holding that until a second theory records an unfillable position, and it needs a migration for the 5 existing rows. Deliberately not (c) either -- excluding unfillable rows from riskless_roi would discard the record that the scan did find them. Two tests in tests/test_cli.py: one pins the annotation on an all-rejected riskless bucket (failed before the change), one pins that it does NOT fire when a takeable riskless row sits alongside a rejected one, because a note that cries wolf trains readers to skip it. Confirmed unchanged for theories with no riskless rows.
 ---
 WHAT IT LOOKS LIKE. python -m tools.cli score report structural_arb:
 

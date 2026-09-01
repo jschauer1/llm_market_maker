@@ -35,11 +35,11 @@ from __future__ import annotations
 
 import datetime as dt
 import json
-import os
 import re
 import time
 from pathlib import Path
 
+from tools import atomic_write
 from tools.kalshi import history
 from tools.kalshi import markets as km
 
@@ -74,41 +74,17 @@ def _load(name: str) -> dict:
 
 
 def _save(name: str, obj) -> None:
-    """Write via a temp file and an atomic replace, retrying on OSError.
+    """Atomic whole-file write, via `tools.atomic_write`.
 
-    Two failures made this necessary on 2026-09-01, both from the plain
-    `write_text` this replaces.
-
-    **OneDrive.** The repo lives under `OneDrive/Documents`, and the
-    sync client intermittently holds a handle on a file being rewritten:
-    a walk died at 874/960 series with `OSError: [Errno 22] Invalid
-    argument` on open-for-write. It cost nothing that time only because
-    the open failed BEFORE truncating and the collector is resumable.
-
-    **Truncation windows.** `write_text` opens with mode "w", so a reader
-    -- another session, or an analysis script in this one -- can catch
-    the file empty or half-written partway through. Writing to `.tmp`
-    and calling `os.replace` (atomic on Windows within a volume) means a
-    reader always sees either the old file or the new one.
-
-    Neither fix helps against a SECOND WRITER; that needs a lock, and is
-    ticketed as `maintenance/collector-concurrent-write-race`.
+    Was a local implementation: two failures on 2026-09-01 (a OneDrive
+    handle killing a walk at 874/960 series, and a reader catching a
+    half-written file) proved the shape here first. It is now shared —
+    every collector built to the record-while-you-collect convention had
+    the same exposure. Still no defence against a SECOND WRITER; that
+    needs a lock, ticketed as
+    `maintenance/collector-write-lock`.
     """
-    DATA.mkdir(parents=True, exist_ok=True)
-    dest = DATA / name
-    tmp = dest.with_name(dest.name + ".tmp")
-    payload = json.dumps(obj)
-    last: Exception | None = None
-    for attempt in range(6):
-        try:
-            tmp.write_text(payload, encoding="utf-8")
-            os.replace(tmp, dest)
-            return
-        except OSError as exc:            # transient sync/AV lock
-            last = exc
-            time.sleep(0.5 * (attempt + 1))
-    raise RuntimeError(
-        f"could not write {dest} after 6 attempts: {last}") from last
+    atomic_write.write_json(DATA / name, obj)
 
 
 def _ts(iso: str) -> int:
@@ -287,3 +263,15 @@ if __name__ == "__main__":
     print(collect(series))
     mark_captured(conn)
     print("capture date stamped in theory_facts")
+
+    # The live screen's learned exclusions are derived from exactly the
+    # data this walk just changed, so rebuilding them here is what keeps
+    # them from going stale in the one direction that matters: a family
+    # that starts settling like a partition stays in the population until
+    # somebody remembers to rebuild. Coupling it to the capture means
+    # nobody has to remember. Seconds, against a walk that takes minutes.
+    from theories.deadline_drift import population as pop_facts
+    f = pop_facts.save()
+    print(f"population facts rebuilt from {f['built_from_markets']} markets: "
+          f"{len(f['partition_families'])} partition families, "
+          f"{len(f['branch_families'])} branch families")

@@ -372,3 +372,108 @@ def test_every_rung_in_the_key_document_exists_in_code():
         assert rung in text and name in text, (
             f"{rung} {name} missing from docs/promotion-key.md"
         )
+
+
+# --- superseded positions (key v4) ------------------------------------------
+#
+# Incident 2026-09-01: opportunity 13663 (insider_judgment v4,
+# KXPRESSSECANNOUNCE-26AUG-SEP08 NO, endorsed, edge_basis='prior' +2.0)
+# returned R1 RECOMMENDED while the SAME market, re-judged that hour at v6
+# with fresh research, recorded as 109994 -- `weak`, edge_basis='measured',
+# -1.02 -- and returned R6. Two live rows on one market, promoting R1 and R6
+# at once, and the R1 was the stale one.
+#
+# The position rollup keys on (theory_id, theory_version, ...), so a version
+# bump does not supersede a position, it FORKS it. The old row stops
+# receiving attempts and freezes at its last interpretation, and promote's
+# staleness checks were all about PRICE, never about whether the
+# interpretation behind the row is still the current procedure's. It also
+# preferentially preserves ENDORSEMENTS: v5 deleted the only path to
+# disposition='endorsed', so every endorsed row is stranded at v4 or
+# earlier -- exactly the rows most likely to clear R1.
+
+
+def _record_at(
+    c, ticker, *, version, outcome="no", confidence="strong", price=0.85,
+    edge=4.0, run_mode="live", run_id="live", disposition=None,
+):
+    """Record one row at an explicit theory version."""
+    ledger.record_opportunity(
+        c, theory_id="t", theory_version=version, kalshi_ticker=ticker,
+        outcome=outcome, entry_price=price, edge_pts_net=edge,
+        edge_basis="model", run_mode=run_mode, run_id=run_id,
+        decision_date="2026-08-27", confidence=confidence, rationale="x",
+    )
+    return c.execute(
+        "SELECT id FROM opportunities WHERE kalshi_ticker = ? AND "
+        "theory_version = ? AND run_mode = ?",
+        (ticker, version, run_mode),
+    ).fetchone()["id"]
+
+
+def test_superseded_row_at_an_old_version_is_not_recommended(conn):
+    """The 13663/109994 shape: the stale fork must not outrank its successor.
+
+    Without this, the stale row promotes R1 forever -- it never settles
+    while the market is open, nothing ages it out, and every further
+    version bump strands another one behind it.
+    """
+    _evidence(conn)                       # segment past its gates, positive
+    stale = _record_at(conn, "FORK", version=1, edge=4.0)
+    theories.bump_version(conn, "t", kind="continues",
+                          justification="re-decided the population")
+    fresh = _record_at(conn, "FORK", version=2, edge=4.0)
+
+    p = promotion.promote(conn, stale)
+    assert p.rung == "R6", f"stale fork promoted {p.rung}"
+    assert any(str(fresh) in r for r in p.reasons), p.reasons
+    assert any("supersede" in r.lower() for r in p.reasons), p.reasons
+
+    # the successor is the row that carries the decision
+    assert promotion.promote(conn, fresh).rung == "R1"
+
+
+def test_old_version_row_without_a_successor_is_still_promotable(conn):
+    """Fix (a), not the blunter fix (b) the ticket warned against.
+
+    Suppressing every row merely behind the registry's current version
+    would silently bin candidates whose market simply was not screened
+    today -- a market that stopped qualifying, or a run that did not
+    reach it. Only a REAL replacement supersedes.
+    """
+    _evidence(conn)
+    old = _record_at(conn, "LONELY", version=1, edge=4.0)
+    theories.bump_version(conn, "t", kind="continues",
+                          justification="re-decided the population")
+
+    assert promotion.promote(conn, old).rung == "R1"
+
+
+def test_a_backtest_row_never_supersedes_a_live_position(conn):
+    """A replay is not a decision about today's market.
+
+    Positions are identified by (theory, version, run_mode, lane, ticker,
+    outcome). A tier A/B replay row landing at the current version says
+    nothing about whether the live position is still the procedure's
+    answer, so it must not suppress one.
+    """
+    _evidence(conn)
+    live_old = _record_at(conn, "REPLAY", version=1, edge=4.0)
+    theories.bump_version(conn, "t", kind="continues",
+                          justification="re-decided the population")
+    _record_at(conn, "REPLAY", version=2, run_mode="backtest",
+               run_id="bt/2026-09-01", edge=4.0)
+
+    assert promotion.promote(conn, live_old).rung == "R1"
+
+
+def test_supersession_is_per_outcome_side(conn):
+    """A fresh YES row does not supersede a live NO position on the
+    same ticker -- they are different positions, not two views of one."""
+    _evidence(conn)
+    no_old = _record_at(conn, "SIDES", version=1, outcome="no", edge=4.0)
+    theories.bump_version(conn, "t", kind="continues",
+                          justification="re-decided the population")
+    _record_at(conn, "SIDES", version=2, outcome="yes", edge=4.0)
+
+    assert promotion.promote(conn, no_old).rung == "R1"

@@ -21,7 +21,7 @@ from typing import Mapping
 
 from tools import ledger, rank, sizing, slices, theories
 
-KEY_VERSION = 3
+KEY_VERSION = 4
 
 RUNGS = {
     "R1": "RECOMMENDED",
@@ -108,6 +108,48 @@ def _is_settled(conn: sqlite3.Connection, row: sqlite3.Row) -> bool:
     return hit is not None
 
 
+def _superseded_by(
+    conn: sqlite3.Connection, row: sqlite3.Row
+) -> sqlite3.Row | None:
+    """The row at the theory's CURRENT version that replaces this one.
+
+    A position is identified by (theory_id, theory_version, run_mode,
+    lane, kalshi_ticker, outcome), so a version bump does not supersede a
+    position -- it FORKS it. The old row stops receiving attempts and
+    freezes at whatever the superseded procedure last thought, while
+    nothing ages it out: every staleness check here is about PRICE, and a
+    frozen row re-quotes fine. It is worse than a stale price, because it
+    preferentially preserves ENDORSEMENTS -- when a version deletes the
+    stage that could endorse, every endorsed row in the ledger is
+    stranded at a version whose procedure no longer exists, and those are
+    exactly the rows most likely to clear R1.
+
+    So a row is superseded when the current version has re-decided the
+    same position. Matching is on the full identity minus the version:
+    a replay (`run_mode`) or an experiment (`lane`) is not a decision
+    about today's market and never suppresses a live one, and the two
+    sides of a ticker are different positions rather than two views of
+    one. Absence of a successor is NOT supersession -- a market that
+    simply was not screened today keeps its rung.
+    """
+    trow = theories.get(conn, row["theory_id"])
+    if trow is None or row["theory_version"] >= trow["version"]:
+        return None
+    return conn.execute(
+        """
+        SELECT id, theory_version, disposition, confidence, edge_pts_net
+        FROM opportunities
+        WHERE theory_id = ? AND kalshi_ticker = ? AND outcome = ?
+          AND run_mode = ? AND lane = ? AND theory_version = ?
+          AND id != ?
+        ORDER BY id DESC
+        LIMIT 1
+        """,
+        (row["theory_id"], row["kalshi_ticker"], row["outcome"],
+         row["run_mode"], row["lane"], trow["version"], row["id"]),
+    ).fetchone()
+
+
 def _basket_cost_with_fees(conn: sqlite3.Connection, row: sqlite3.Row) -> float:
     cost = row["entry_price"]
     if row["fee_pts"] is not None:
@@ -166,6 +208,16 @@ def promote(
     if row["edge_pts_net"] is None or row["edge_pts_net"] <= 0:
         return result("R6", reasons=[
             "no positive claimed edge — observation/control row (ruling 13)"
+        ])
+    superseder = _superseded_by(conn, row)
+    if superseder is not None:
+        return result("R6", claimed=row["edge_pts_net"], reasons=[
+            f"superseded — the same position was re-decided at v"
+            f"{superseder['theory_version']} as opportunity "
+            f"{superseder['id']} ("
+            f"{superseder['confidence'] or superseder['disposition']}); "
+            f"this row is frozen at v{row['theory_version']}, a procedure "
+            "the theory no longer runs"
         ])
 
     # --- R2: an arbitrage is not a forecast --------------------------------

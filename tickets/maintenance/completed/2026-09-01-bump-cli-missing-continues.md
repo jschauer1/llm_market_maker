@@ -6,7 +6,9 @@ created_by: unknown
 author_lane: theory
 author_focus: insider_judgment
 author_context: Hit while bumping insider_judgment to v5; had to drop to the Python API because the CLI cannot express the default kind.
-status: open
+status: done
+closed: 2026-09-01
+resolution: Fixed. --kind now offers {continues,carry,breaking} with continues as the default, matching theories.bump_version's Python default since the 2026-08-31 ruling; help text reworded from that function's docstring. Three tests in tests/test_cli.py pin it: one asserts the CLI default IS the API default by reflecting on the signature (so they cannot drift apart silently again), one that --kind continues is accepted explicitly, one that breaking still severs when asked for. The first two failed before the change.
 ---
 `python -m tools.cli theories bump` still says:
 

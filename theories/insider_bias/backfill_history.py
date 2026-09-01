@@ -29,6 +29,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
+from tools import atomic_write
 from tools.kalshi import cache as history_cache
 from theories.insider_bias import replay as sibling
 from theories.insider_bias.families import is_mention_family
@@ -98,9 +99,7 @@ def main() -> None:
                 "n_survivors": len(survivors), "payloads": stored,
                 "candles_fetched": fetched, "candles_cached": skipped,
             }
-            args.checkpoint.parent.mkdir(parents=True, exist_ok=True)
-            args.checkpoint.write_text(json.dumps(state, indent=1),
-                                       encoding="utf-8")
+            atomic_write.write_json(args.checkpoint, state, indent=1)
             if survivors:
                 print(f"  {ticker:30s} survivors={len(survivors):4d} "
                       f"fetched={fetched:4d} already_cached={skipped:4d}")

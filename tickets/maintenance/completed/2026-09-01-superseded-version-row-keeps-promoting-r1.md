@@ -5,7 +5,9 @@ created: 2026-09-01
 created_by: llm-market-identifier-c0
 author_lane: floor
 author_context: Hit during the 2026-09-01 second floor: promote returned R1 on a position the same run had just re-judged as weak.
-status: open
+status: done
+closed: 2026-09-01
+resolution: Fixed with candidate (a), the ticket's own recommendation. promotion._superseded_by returns the row at the theory's CURRENT version that re-decided the same position; a match sends the stale fork to R6 naming its successor. Match is on the full position identity minus the version (theory, ticker, outcome, run_mode, lane), so a tier A/B replay or an exp/ row never suppresses a live position and the two sides of a ticker stay distinct. Absence of a successor is NOT supersession -- that is what separates (a) from the blunter (b), and the live numbers show why it mattered: 19,895 live unsettled rows sit behind their theory's current version, but only 656 have a real successor, and only 335 change rung (334 taker_flow v1 rows forked by the v1->v2 bump, plus opportunity 13663 itself). Evaluation order is preserved, so a rejected row still reports 'rejected at stage 2 -- control group'. Promotion key bumped to v4: docs/promotion-key.md gains a Supersession section, the R6 criteria row, and a changelog entry recording the 13663/109994 incident; promotion.KEY_VERSION mirrors it and tests/test_promotion.py holds the two together. Four tests pin the shape -- the incident itself (failed before the change, 'stale fork promoted R1'), plus three guards against over-suppression that must keep passing: no-successor stays promotable, a backtest row never supersedes a live one, and supersession is per outcome side. Suite 1364 green.
 ---
 WHAT HAPPENED, CONCRETELY. Opportunity 13663 is KXPRESSSECANNOUNCE-26AUG-SEP08 NO at 0.85, recorded 2026-08-29 at insider_judgment v4, confidence=moderate, disposition=endorsed, edge_basis=prior (+2.0 placeholder). `cli promote 13663` today returns R1 RECOMMENDED, segment slice:strong-moderate-no, ranked_edge 2.46.
 

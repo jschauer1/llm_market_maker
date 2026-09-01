@@ -39,7 +39,7 @@ import json
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from tools import db, ledger, score
+from tools import atomic_write, db, ledger, score
 from tools.kalshi import history, markets
 from tools.http import get_json
 from theories.calibration_harvest import cells
@@ -323,8 +323,7 @@ def load_checkpoint(path: Path) -> dict:
 
 
 def save_checkpoint(path: Path, state: dict) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(state, indent=1), encoding="utf-8")
+    atomic_write.write_json(path, state, indent=1)
 
 
 def all_series_categories() -> dict[str, str]:

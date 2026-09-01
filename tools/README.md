@@ -56,6 +56,40 @@ without the contract.
   worth keeping go through `tools/kalshi/cache.py`
   (`db/history_cache.db`) so a variant re-test never re-walks the
   network.
+- **Write whole files through `tools/atomic_write.py`, never
+  `Path.write_text`.** The load-mutate-save shape the rule above produces
+  has a failure mode the rule does not: `write_text` opens mode `"w"`,
+  which *empties the destination before the new bytes land*. Two real
+  losses on 2026-09-01 — a `deadline_drift` walk killed at 874/960 series
+  by OneDrive holding a handle (`OSError: [Errno 22]`), and a reader
+  catching a half-written file (`JSONDecodeError: line 1 column 1`).
+  `atomic_write.write_json` / `write_text` write a sibling `.tmp` and
+  `os.replace` onto the destination, retrying a transient `OSError`, so a
+  reader always sees the whole old file or the whole new one and a sync
+  lock costs a retry instead of a run. It does **not** make concurrent
+  collection safe — see the next bullet.
+- **Two collectors on one file silently erase each other.** Each process
+  holds a snapshot from its own start time, so whichever saves last drops
+  everything the other added — no error, no warning, no trace in the
+  file. Measured here: `anchors.json` went 332 → 294 markets *while the
+  walk was still adding*, and markets cannot un-settle. This is not bad
+  luck but the documented procedure colliding with itself: several
+  sessions run at once and CLAUDE.md tells each to top up a stale
+  capture. Until a lock ships (the collector-write-lock ticket in
+  `tickets/maintenance/`), **check for a live collector before starting
+  one** — and note that the obvious check
+  lies. Git Bash `ps -ef` shows only the interpreter path, never the
+  arguments, so `ps -ef | grep collect_settled` returns nothing while the
+  process is running. The check that works:
+
+  ```powershell
+  Get-CimInstance Win32_Process -Filter "Name='python.exe'" |
+      Select-Object ProcessId, CommandLine
+  ```
+
+  Stopping the harness task is also not enough: killing a background task
+  stops the *shell*, not the detached child. A stopped task's python.exe
+  was still fetching and writing nine minutes later.
 - **Prices are decimal dollars in [0, 1]. Edge is in percentage points.**
   Conversion happens at the API boundary; no provider's wire format escapes
   its client module.
