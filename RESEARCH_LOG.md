@@ -3861,3 +3861,73 @@ were left alone as append-only records of what was true when written.
 **Next.** `maker-mode-execution` is the recommendation, for the reasons
 above. Nothing here changes any theory's decision procedure, so no
 version bumps; suite 1337 passed.
+
+## 2026-09-01 — studies become a lane, and the floor gets a study guard (maintenance, user-directed)
+
+**Ruling (user, 2026-09-01): studies are first-class in the `go`
+pipeline, what a study *is* must be well defined, and a ticket about a
+particular theory **or study** lives in that theory or study.** `go` now
+dispatches six lanes; `go-study` is the sixth.
+
+**The definition, now stated in CLAUDE.md, `studies/README.md` and
+`go-study`.** *A study is a measurement that answers a question. It
+never bets* — no `record_opportunity`, no ticker, no ledger row, no
+score. It was already true: **14 of 14 studies hold the line**, and the
+only matches for `ledger` anywhere under `studies/` are disclaimers
+saying they never write it. But it was one clause in CLAUDE.md, and a
+study's verdict was reachable only by opening the study — fourteen files
+to read before anyone could say what had been measured, which breaks the
+supervisor contract this repo states for itself.
+
+**`cli studies` surveys rather than indexes.** Every field is read from
+each `STUDY.md` header at display time. That choice is the direct lesson
+of the same day's spec migration: a hand-maintained index of documents
+that live elsewhere goes stale, and 22 specs all reading "not yet
+proposed as a theory" is what that looks like. There is no second copy
+to rot.
+
+**Learned — checking the claim rather than assuming it, three studies
+are not what the folder implies.** Commits and data on disk:
+`series-bias-mining` 21 commits / 353 MB / four passes / a multi-hour
+collector whose 72,010-row corpus *other studies now read*;
+`deadline-drift-classifier-audit` 11 commits across five rounds of
+classifier tuning; `parlay-markup` still `collecting`. The other eleven
+are genuine one-shot experiments (1–5 commits, ≤236 KB). **A study that
+grows a dataset other work depends on has become infrastructure and
+needs an owner** — and because nothing treated `series-bias-mining` as
+one, its collector stalled twice and both times somebody noticed by
+accident.
+
+**The floor now reports studies and is barred from re-running them.**
+The split is the point. `floor complete` **refuses a report that omits
+an unfinished study**, the same guard sub-theories needed and for the
+same reason — a collector against Kalshi's ~60-day archive window is
+losing rows *upstream* while it sits, so a daily name check turns a
+silent stall into a one-day lag. But the floor never re-runs a study's
+analysis: running one test on a daily schedule is multiple comparisons
+by calendar, and a study is run once against a bar written first.
+`required_coverage` and `coverage_gaps` take a `root` so the study half
+of the list can be isolated in tests.
+
+**Ticket locality now has two owned lanes, not one.** `--lane study
+--study <slug>` lands in `studies/<date>-<slug>/tickets/`, and a study
+name it cannot find is **refused** rather than created — the theory-path
+phantom-directory bug, pre-empted in its second home rather than
+rediscovered there.
+
+**Reviewed the new-theory backlog. None malformed; three needed action.**
+`series-bias-sweep-finish` and `series-bias-backfill-liquidity` were
+study work filed as new-theory purely because no study lane existed when
+they were written — both moved to the study, with author context saying
+so. `kalshi-taker-flow-toxicity` was **stale**: `taker_flow` was built
+from it the same day it was filed, and it stayed open because nothing
+links a ticket to the theory it becomes. Closed with the full outcome
+(the feed shipped; the archive-floor claim was falsified; the
+pre-registered rule failed at +0.70/t=0.62; the surviving tail is
+post-hoc and oos n=0).
+
+**Next.** Unchanged: `maker-mode-execution` is still the recommendation
+in the new-theory lane. In the study lane the first pick is the one the
+skill's own ordering names — a study in flight whose data perishes,
+which is `series-bias-mining` and its two now-correctly-filed tickets.
+1355 tests pass.
