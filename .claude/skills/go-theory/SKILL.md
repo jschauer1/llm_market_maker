@@ -3,12 +3,23 @@ name: go-theory
 description: Continue building out one existing theory — its tickets, its evidence, its sub-theories, its runbook. Invoked by go when the theory lane is claimed.
 ---
 
-# go-theory — build out one theory
+# go-theory — build out one theory until it yields or is exhausted
 
 Invoked by `go` once you hold the theory lane with a `--focus`. **One
 theory, this whole session.** You are that theory's expert for the
 duration: its folder holds everything you need, and its `NOTES.md` is
 where what you learn goes.
+
+**You are not here to do one task. You are here to find an edge in this
+theory**, and to keep going until you have one or until you can honestly
+say the theory is exhausted. Finishing a ticket is not finishing the
+session — when one avenue closes, take the next one. A report is a
+checkpoint, never a finish line.
+
+Persistence is the whole point of this lane. An edge is rarely the first
+thing you try: the screen is usually close and the profitable part is
+usually a subset, so the session that finds it is the one that kept
+slicing after the headline number came back flat.
 
 ## 1. Read yourself in
 
@@ -27,11 +38,12 @@ append-only, and usually where the real state is).
 most expensive thing in its folder, and re-running one is the most common
 way a session wastes itself.
 
-## 2. Pick the work
+## 2. Work it, and keep working it
 
 A ticket against this theory is the strongest signal — somebody wrote it
 for whoever came next, and that is you. Absent one, in rough order of
-value:
+value. **This is a menu you work down, not a menu you pick one item
+from:**
 
 - **Evidence it does not have.** A claim with no measurement, or a
   sub-theory short of its gates, and history you can fetch → run the
@@ -53,6 +65,40 @@ value:
   tightening a threshold. Default to `continues` so the evidence carries;
   `breaking` only when the old evidence genuinely does not apply, and say
   what makes that true.
+
+Then go back to the top of the list and look again. Each thing you do
+changes what the next-best thing is — a backtest that lands turns "no
+evidence" into "a segment to slice", and a slice you register turns into
+a gate to watch. **Work down the list until the list is empty**, not
+until you have done one thing.
+
+### A dead headline number is not a dead theory
+
+When the aggregate comes back flat or negative, that is the *beginning*
+of the analysis. Almost every real edge in this repo was a subset of
+something that looked dead in total, and the interesting failures all
+look identical from outside: a real edge eaten by fees, judgment
+inverted on top of a sound screen, one profitable slice buried in a broad
+screen, a sample too small to reject zero.
+
+So before you conclude there is nothing here, **mine the settled rows**:
+slice by side, price band, entry timing, sub-family, volume, confidence
+bucket, and whatever structure the thesis itself implies. With honest
+p-values, event-clustered checks, and awareness that you are running many
+comparisons.
+
+`mention_family` is the worked example twice over. Its aggregate was dead
+— −1.53 net over n=3,441 — and the slicing pass still found a real,
+mechanism-backed asymmetry (NO favorites at 0.90+ underpriced, +2.25 net,
+stable across every partition) that became a registered sub-theory. The
+headline number would have ended the session; the slicing pass is what
+found the edge.
+
+The discipline that keeps this honest: a pattern found post-hoc is a
+**hypothesis to pre-register**, never an edge to bet on the data that
+suggested it. Register it as a slice (`cli slices register`) and the
+out-of-sample clock starts the same day. And a pattern that fails a small
+sample is *unconfirmed*, not disproven — say which one you mean.
 
 ## 3. Do it, and record it as you go
 
@@ -94,17 +140,58 @@ The one exception is a maintenance problem that makes progress **truly
 impossible** — not slower, not uglier, impossible. File the ticket, say
 in your report that you pivoted and why, then go fix it.
 
-## 5. Finish
+## 5. Stopping — and the bar for it
+
+There are exactly two honest reasons to stop working this theory.
+
+**You found an edge**, and it is recorded, evidenced and reportable. Say
+so, and say which segment carries it.
+
+**You exhausted it** — which is a high bar, not a feeling. Before you may
+claim it, all of these must be true:
+
+- Every ticket against this theory is closed, or blocked on something
+  outside this lane and ticketed accordingly.
+- The evidence it could have, it has. If history is fetchable and the
+  replay has not been run, **you are not finished** — that is days of
+  calendar time bought in an afternoon, and it is usually the answer.
+- The settled rows have actually been mined, not glanced at: sliced by
+  side, price band, timing, sub-family, volume, and the structure the
+  thesis implies.
+- Every pattern that survived that pass is registered as a sub-theory, so
+  its out-of-sample clock is running.
+- If the numbers are bad, you have a *cause* rather than a verdict —
+  `score-theories` §5 turns "the numbers look bad" into fees, or inverted
+  judgment, or a subset, or an inadequate sample.
+
+"I ran the thing and it did not work" is not exhaustion. "I could not
+think of anything else to try" is not exhaustion either — write down what
+you did try, then try the next thing on the list.
+
+**When a theory really is exhausted, that is a finding and it gets
+recorded**, not a shrug: a dated `NOTES.md` entry saying what was ruled
+out and how, and — if the evidence genuinely says the thesis is dead —
+`theories propose-retirement <id> --rationale "<what you diagnosed and
+what you ruled out>"`. Retiring is the user's call, never yours; you
+diagnose and put it in front of them.
+
+Running out of session before running out of theory is the third case,
+and it is normal. **Leave a ticket saying exactly where you got to and
+what you would do next** — that is the difference between a session that
+made progress and a session that has to be repeated.
+
+## 6. Close out
 
 ```bash
 python -m tools.cli lane release <claim id> --summary "<what you did>"
 ```
 
-Report: what you worked on and why, what the theory's evidence looks like
-now (segment by segment — the parent and each sub-theory), what you
-recorded, what tickets you filed, and anything for the user's ruling.
-Then append Did / Learned / Next to `RESEARCH_LOG.md`.
+Report: what you worked on and why, everything you tried including what
+failed, what the theory's evidence looks like now (segment by segment —
+the parent and each sub-theory), what you recorded, what tickets you
+filed, and anything for the user's ruling. Then append Did / Learned /
+Next to `RESEARCH_LOG.md`.
 
-**If the work is unfinished, leave a ticket for the next session** saying
-exactly where you got to. That is the difference between a session that
-made progress and a session that has to be repeated.
+**Report what did not work as carefully as what did.** The next session
+on this theory will otherwise spend its first hour re-running your dead
+ends, and that is the most common way this lane wastes itself.

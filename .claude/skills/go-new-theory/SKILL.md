@@ -10,6 +10,14 @@ whole session.** The goal is a theory that *runs* and records, not a
 design document: a specced idea nobody built is worth nothing, and this
 repo has more of those than it has theories.
 
+**Stay with it until it runs.** A thesis that is half-built when the
+session ends is worth roughly nothing to the next session, because
+half a theory nobody can find gets started over rather than picked up.
+Pushing one thesis all the way to "it ran and recorded" beats sketching
+three. If the first shape of it does not work, reshape it — a screen
+that returns nothing usually wants a different threshold, not a
+different session.
+
 ## 1. Check it has not been tried
 
 ```bash

@@ -93,6 +93,12 @@ picked until it is done or genuinely blocked.
   a maintenance problem that makes progress *truly impossible* — not
   annoying, not slower, impossible. Then file the ticket, say plainly in
   your report that you pivoted and why, and go fix it.
+
+  Focused does not mean brief. On the research lanes you keep working the
+  thing you picked until you have an edge or have genuinely exhausted it
+  — finishing one ticket is not finishing the session, and a flat
+  headline number is where the analysis starts rather than where it
+  stops. `go-theory` carries the bar for what "exhausted" has to mean.
 - **`maintenance`** — the only lane free to move between tickets, and
   free to do unfocused work nobody filed. That is what the lane is for.
 
