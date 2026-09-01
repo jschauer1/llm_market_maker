@@ -2572,3 +2572,25 @@ and a stage-6 final review; `no_side_premium` v1 all four;
   still died on price because the *procedure* has no NO-side entry rule.
 - Nobody has run a replay for `structural_arb` (n=0 at v4, tier A, all
   history fetchable) — that remains the cheapest evidence on the board.
+
+**Correction to the commit above (same session).** Commit `9302b82`
+carries more than the floor run. I staged with `git add -A` while four
+peer sessions were live, so it also swept in a concurrent session's
+in-progress work: `tools/cli.py`, `tools/score.py`, `tools/tickets.py`,
+`tests/test_cli.py`, `tests/test_score.py`, `tests/test_tickets.py`, a
+`CLAUDE.md` edit, the tickets reorganization into `open/` subdirectories,
+and two `series-bias` tickets this session did not file. None of that is
+floor work and the commit message does not describe it.
+
+Nothing was lost and the commit was never pushed. It was left standing
+rather than rewritten because that peer was still editing `tools/
+tickets.py` at the time, and a soft reset would have restaged their
+partial work under whichever session committed next — swapping one
+misattribution for the same one in the other direction. The floor's own
+changes in that commit are `RESEARCH_LOG.md`, the `insider_judgment`
+`NOTES.md` entry, and the three tickets named above; `user_reports/` is
+gitignored, so the report itself is untracked by design.
+
+Lesson for later floors: stage explicit paths. A floor session shares a
+working tree with every other lane, so `git add -A` cannot mean "my
+work".
