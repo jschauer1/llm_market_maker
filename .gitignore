@@ -10,8 +10,12 @@ db/*.db-shm
 # SDD isolated worktrees
 .worktrees/
 
-# User-only deliverables — not part of the research corpus, not read by models
-user_reports/
+# Daily floor reports are deliverables, not the record -- the audit
+# trail is the DB, NOTES.md and RESEARCH_LOG.md, and a report is
+# regenerable from the ledger. The folder README is tracked so the
+# report's shape survives a fresh clone.
+user_reports/*
+!user_reports/README.md
 # series-bias-mining: the collected corpus and its run artifacts.
 # Ignored as a DIRECTORY, not one filename -- the -journal, the WAL
 # and the per-run logs beside collect.db were all still untracked,

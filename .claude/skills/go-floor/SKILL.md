@@ -98,7 +98,7 @@ delegation safe:
 **Record everything.** Every candidate a theory's procedure produces gets
 recorded — probation theories, `under_review` theories, n=0 theories,
 rejections included. Recording and reporting are different acts: the
-ledger takes everything, and 1.5 decides what the user is shown. Never
+ledger takes everything, and step 4 decides what the user is shown. Never
 decline to record because a theory looks weak, and never report because
 one looks strong.
 
@@ -130,11 +130,28 @@ record without saying so explicitly.
 
 ## 4. Report the results
 
-Write the report to **`user_reports/<YYYY-MM-DD>/`** and summarize it in
-the terminal with the path. Two things go in it, and the second is not
-optional.
+Write **`user_reports/<YYYY-MM-DD>/README.md`** — one directory per day —
+and summarize it in the terminal with the path. Put anything the report
+cites but should not inline (a wide funnel table, a judged payload, a
+subagent's raw output) in that same directory beside it; most days there
+will be nothing but the README, which is the expected case.
 
-#### Bets that are well evidenced
+Five sections, in this order. **The order is what the user acts on
+first, not what happened first** — the floor's own receipt comes last,
+because it is the least actionable thing in the file.
+`user_reports/README.md` carries the same contract for the reader.
+
+1. Bets
+2. Theories — what each did, and why nothing came of it
+3. For your ruling
+4. Queue
+5. Floor record
+
+Sections 1 and 2 are below in full; 3 and 4 follow them; section 5 is the
+receipt — which theories ran through which stages, what the gates removed
+by category, what settled, and how the scores moved.
+
+#### 1. Bets — the ones that are well evidenced
 
 A bet is reported when three things hold together:
 
@@ -182,7 +199,7 @@ because the parent theory is flat. State which segment carried it, so
 "the slice earned this" is visible rather than implied. The converse
 binds too: the remainder never borrows what a slice earned.
 
-#### Every theory that produced no bet — and why
+#### 2. Theories — what each did, and why nothing came of it
 
 One short section per running theory, in plain language: **what it did
 today and why nothing came of it.** This is the floor's main output on
@@ -210,21 +227,36 @@ at a prior version with no bet path at the current one is *orphaned
 evidence* — the evaluator raises it, and it goes to the ruling section
 every session until the user decides whether to adopt it.
 
-#### Then the two sections that carry decisions
+#### 3. For your ruling
 
-- **For your ruling** — everything escalated instead of asked: pending
-  retirements with their diagnosis, orphaned evidence, gaps in the
-  promotion key, permission-blocked actions. Carried every session until
-  ruled.
-- **Queue** — endorsed positions still open and untouched, re-promoted at
-  today's ask: which still stand, which are closed as stale. Then ask
-  about each **by id**, and remind the user:
-  `python -m tools.cli opportunities mark-taken <id> taken --theory <slug> --size <N> --reason "<why>"`
-  (or `skipped`). Until a bet is marked, `roi_taken` stays `null`.
+Everything escalated instead of asked: pending retirements with their
+diagnosis, orphaned evidence, gaps in the promotion key,
+permission-blocked actions. **Carried every day until the user rules** —
+a standing proposal nobody mentions is not a proposal.
+
+#### 4. Queue
+
+Endorsed positions still open and untouched, re-quoted at today's ask:
+which still stand (the *same* position, not a re-endorsement), which you
+closed as stale. Then ask about each **by id**, so the user can answer in
+one line:
+
+`python -m tools.cli opportunities mark-taken <id> taken --theory <slug> --size <N> --reason "<why>"`
+
+(or `skipped`). Until a bet is marked, `roi_taken` stays `null` and the
+divergence signal never accumulates.
+
+#### 5. Floor record
+
+The receipt, and last on purpose. One line per running theory in a fixed
+shape — `<id> v<n> — ran per RUNBOOK (<stages>), <n> recorded, gate
+removed <counts by category>`, or `blocked at <stage>: <why>`, or
+`skipped: <condition>`. Then what settled and how the scores moved.
 
 **The report is a deliverable, not the record.** The audit trail stays in
-`RESEARCH_LOG.md` and each theory's `NOTES.md`; the report is written for
-the user to read.
+the database, each theory's `NOTES.md`, and `RESEARCH_LOG.md`; a report
+is regenerable from the ledger, and where the two disagree the database
+is right.
 
 ## 5. Close the claim, and stop
 
