@@ -113,6 +113,17 @@ python -m tools.cli tickets new --lane maintenance --slug <slug> \
 python -m tools.cli tickets new --lane theory --theory <slug> ...
 ```
 
+**An idea for a theory always gets a ticket**, whatever lane you are in —
+the research lanes and maintenance both throw them off constantly, and an
+idea nobody wrote down is an idea nobody has. One question routes it: is
+it a **subset** of an existing theory — the same screen and population,
+re-weighted? Then it belongs to that theory (`--lane theory --theory
+<slug>`, or register it as a slice if it is the theory you are already
+on). Anything needing its own screen, entry rule or population is a new
+theory (`--lane new-theory`). File `ideas record` alongside either one:
+the ticket is the work, the registry entry is what stops it being
+re-proposed in three weeks.
+
 ## Talking to other sessions
 
 **Talk to peers who are working — that is encouraged.** Tell them what

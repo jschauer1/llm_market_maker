@@ -133,8 +133,46 @@ you, an idea for a new thesis — all of these are tickets:
 ```bash
 python -m tools.cli tickets new --lane maintenance --slug <slug> \
     --title "<one line>" --body "<what to do>" --session <you>
-python -m tools.cli tickets new --lane new-theory --slug <slug> ...
 ```
+
+### An idea for a theory: is it a subset of the one you are on?
+
+Working a theory is the most productive place to have this idea, and it
+happens constantly — the data suggests something the current thesis does
+not cover. **One question decides what you do with it**, and both answers
+keep you in your lane:
+
+**Is it a subset of the theory you are working — the same screen, the
+same population, re-weighted?**
+
+- **Yes → it is a sub-theory.** Register it as a slice right now
+  (`cli slices register`) with its mechanism and its provenance. It is
+  *your* work, in *this* lane, and registering it starts its
+  out-of-sample clock today rather than whenever someone gets to it.
+- **No → it is a new theory. File a `new-theory` ticket.** Anything
+  needing its own screen, its own entry rule, or a different population
+  is a different theory, whatever it borrowed from this one. That is the
+  same line CLAUDE.md draws between a sub-theory and a sibling theory —
+  `no_side_premium` split off from `mention_family` exactly here.
+
+```bash
+python -m tools.cli tickets new --lane new-theory --slug <slug> \
+    --title "<the thesis in one line>" --session <you> \
+    --body "<the mechanism, what suggested it, and why it needs its own screen>"
+python -m tools.cli ideas record <slug> "<title>" --description "<the thesis>"
+```
+
+**File both.** The ticket is the work; the registry entry is the memory
+that stops someone re-proposing it in three weeks, and it deduplicates
+across theories in a way a ticket does not.
+
+Write the ticket while the idea is fresh and say *what suggested it* —
+"the settled rows at 0.90+ behaved differently" is the part that will be
+impossible to reconstruct later, and it is the part that makes the ticket
+worth picking up.
+
+Then go back to your theory. The idea is safe now; that is the point of
+writing it down.
 
 The one exception is a maintenance problem that makes progress **truly
 impossible** — not slower, not uglier, impossible. File the ticket, say

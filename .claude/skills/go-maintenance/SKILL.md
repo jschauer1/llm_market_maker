@@ -69,6 +69,27 @@ already gone wrong.
 about what a theory should claim belongs to `go-theory` with that
 theory's context loaded. File the ticket instead.
 
+**An idea for a theory is a ticket, not a detour.** Maintenance work
+reads across the whole repo, so it is a common place to notice a thesis
+nobody has proposed — a pattern in the schema, a regularity in the
+ledger, something a study half-answered. That is valuable and it is not
+this lane's job:
+
+```bash
+python -m tools.cli tickets new --lane new-theory --slug <slug> \
+    --title "<the thesis in one line>" \
+    --body "<the mechanism, and what suggested it>" --session <you>
+python -m tools.cli ideas record <slug> "<title>" --description "..."
+```
+
+If it is a subset of an existing theory — the same screen and population,
+re-weighted — it is a **sub-theory** of that theory, so the ticket goes
+to `--lane theory --theory <slug>` and lands in that theory's own folder,
+where its expert will see it. Anything needing its own screen, entry rule
+or population is a new theory. File both the ticket and the registry
+entry: the ticket is the work, the registry entry is what stops it being
+re-proposed in three weeks.
+
 ## 4. Close what you finish
 
 ```bash

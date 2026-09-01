@@ -18,6 +18,13 @@ python -m tools.cli tickets new --lane maintenance --slug <slug> \
     --title "<one line>" --body "<what to do>" --session <you>
 ```
 
+The floor sees every theory's output in one pass, which makes it the best
+place in the repo to notice a thesis nobody has proposed — and the worst
+place to chase one. File it: `--lane new-theory` for a thesis needing its
+own screen or population, `--lane theory --theory <slug>` when it is a
+subset of an existing theory's own output. Add `ideas record` alongside,
+so it cannot be re-proposed in three weeks. Then finish the floor.
+
 The floor's own procedure follows. It is fixed: the user must be able to
 say `go`, walk away, and come back knowing every running theory saw
 today's board through its complete procedure.
