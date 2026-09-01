@@ -135,3 +135,79 @@ python studies/2026-08-29-structural-arb-violation-liquidity/probe.py
 No network. Reads `market_snapshots`; writes `data/violations.csv`.
 
 Note (2026-08-30): re-running this probe against post-compression snapshot rows requires routing raw_json/event_json reads through tools.snapshot.payload_text (spec 5.2 phase 3).
+
+---
+
+## Amendment 2026-09-01 — the probe's board reconstruction was wrong, and the conclusion survives anyway
+
+Session `llm-market-identifier-af`, theory lane, focus `structural_arb`.
+Full working in `theories/structural_arb/NOTES.md`, 2026-09-01.
+
+**`probe.py` reads a board with `WHERE captured_at = ?`.** That was
+correct when this study ran and stopped being correct on 2026-08-30, when
+dedup-on-write landed: a pull now writes no row for a market whose
+payload did not change, so an exact-stamp filter returns *the markets
+that moved at that pull*. `snapshot.board_as_of` exists for exactly this
+and its docstring names the trap.
+
+The bias is not random. Markets that move are the liquid ones, so the
+instrument was skewed along the very axis this study measures. Measured
+both ways over the same 17 captures:
+
+```
+2026-08-27T11:47:05Z   exact:  3,254 markets   as_of: 107,656 markets
+2026-08-30T19:22:32Z   exact: 55,433 markets   as_of: 104,304 markets
+raw nested violations  exact:     24 total     as_of:      36 total
+```
+
+**A third of all violations were invisible to the original probe.**
+
+**The conclusion is unchanged, and the direction of the error is why.**
+The violations the old probe missed are the ones in markets that did
+*not* move — the more illiquid half. Correcting the reconstruction finds
+more violations and they are deader than the ones already counted, so
+"real, rare, and sterile" is strengthened rather than overturned.
+
+### Re-run over 17 captures / 8 days, with open interest added
+
+`probe.py` recorded lifetime `volume` only. Open interest is the better
+sterility signal — volume is cumulative and backward-looking, OI is
+contracts outstanding now — and it was on every snapshot row already.
+
+**16 distinct violations. 14 removed by `MIN_LEG_VOLUME = 100`. Of those
+14, zero have both legs at open interest >= 100**; the largest min-leg OI
+among them is 6.0, so the verdict holds at any cutoff above 6. The v3
+threshold, fit on this study's original six violations, is well placed on
+an axis it was never fit on.
+
+The two survivors are both genuinely liquid, which is the screen working:
+
+| violation | captures | min leg vol | min leg OI | what removes it |
+|---|---|---|---|---|
+| `KXNASDAQ100MINY-26DEC31H1600` T22600/T22800 | 5 | 3,918 | 2,388 | the depth gate (0.32-contract book, opp 9248) |
+| `USCLIMATE-2025 + USCLIMATE-2030` | 4 | 11,596 | 2,263 | `MIN_ANNUALISED_RETURN` (1.5%/yr over 4.3 years) |
+
+### New: the firing population is one series, and it is untraded
+
+**12 of the 16 distinct violations are `KXWTAGTOTAL`** — WTA tennis match
+totals — with min-leg open interest of 0.00 in nine of the twelve. Each
+shows up in one or two captures and disappears.
+
+That is the mechanism behind the theory's daily "2-3 raw violations, 0
+survivors": these are not opportunities an arb bot compressed away, they
+are **nominal ladders on markets nobody has ever traded**. Nothing forces
+untouched quotes to be mutually consistent.
+
+## Reproduce (superseding)
+
+```bash
+python studies/2026-08-29-structural-arb-violation-liquidity/probe_volume_threshold.py
+```
+
+No network. Reads `market_snapshots` through `snapshot.board_as_of` and
+`payload_text`; writes `data/violations_v2.csv`. Prints exact-stamp and
+reconstructed counts side by side so the distortion above stays visible.
+
+`probe.py` is **kept, not fixed** — it is the record of what the v3
+thresholds were actually fit on, and rewriting it would erase that. Use
+the new probe for any fresh measurement.

@@ -789,3 +789,241 @@ events -> 2 raw nested violations -> 1,362 flag candidates. Gate removed:
 near-untraded leg. 0 survivors, 0 recorded. Same shape as 2026-08-30
 (1,411 flags, all removed). Ran clean; this note is the record, the
 ledger has no rows to carry it.
+
+## 2026-09-01 — the two standing checks run, and the v3 threshold survives an independent axis
+
+Session `llm-market-identifier-af`, theory lane, focus `structural_arb`.
+No procedure changed, so **no version bump** — everything here is
+measurement against v4 as it stands.
+
+Picked this theory because the 2026-09-01 floor's last Next line called
+its replay "the cheapest evidence on the board". That framing turned out
+to be wrong in an interesting way, and the correction is finding 4 below.
+
+### 1. Flag stability is now MEASURED, not assumed (closes correction #3)
+
+The 2026-08-29 supervisor-review entry left this open:
+
+> "Flag stability is assumed, never measured. The `theory_facts` fallback
+>  in a replay consults a 2026-08-2x observation at an earlier decision
+>  point, justified only by 'the flag is a stable property of an event'.
+>  ... Run it before any real backtest leans on the cache."
+
+It was not runnable then — envelopes only started riding on captures at
+`09a66f7` (2026-08-29). Four envelope-bearing captures now exist, so it
+is runnable, and it has been run:
+
+| capture | markets | events | ME=true |
+|---|---|---|---|
+| 2026-08-29T13:14:32Z | 110,628 | 14,078 | 6,414 |
+| 2026-08-30T17:41:41Z | 105,346 | 12,726 | 5,901 |
+| 2026-08-31T00:38:34Z |  99,064 | 11,844 | 5,687 |
+| 2026-09-01T02:06:51Z | 105,104 | 12,566 | 6,042 |
+
+```
+events seen in >= 2 captures               : 12,000
+events whose mutually_exclusive CHANGED    :      0
+events inconsistent within a single capture:      0
+```
+
+**Zero drift across 12,000 events and four days.** The `theory_facts`
+fallback is justified, and a replay may lean on the cache. Note the
+window is four days: this says the flag does not drift week to week, not
+that it never changes over a market's whole life.
+
+The 6,414 reproduces session 78's recorded figure on the same board
+exactly, which is the check that the reconstruction is faithful.
+
+### 2. `probe.py`'s board reconstruction has been silently broken since 2026-08-30
+
+The study this theory's v3 thresholds were fit on reads a board with
+`WHERE captured_at = ?`. `snapshot.board_as_of` exists precisely because
+that stopped being the board when dedup-on-write landed on 2026-08-30: a
+pull writes no row for a market whose payload did not change, so an
+exact-stamp filter returns *the markets that moved at that pull*.
+
+That is not a random subset — moving markets are the liquid ones, so the
+instrument was biased along the exact axis the study measures. Measured
+size of the distortion, same captures both ways:
+
+```
+2026-08-27T11:47:05Z    exact:  3,254 markets    as_of: 107,656 markets
+2026-08-30T19:22:32Z    exact: 55,433 markets    as_of: 104,304 markets
+raw nested violations   exact:     24 total      as_of:      36 total
+```
+
+**The old probe missed a third of all violations.** Direction matters and
+it cuts the reassuring way: the missed ones sit in markets that did *not*
+move, i.e. the more illiquid population, so the corrected read finds more
+violations and they are *deader* than the ones already counted. The
+sterility conclusion is strengthened, not overturned.
+
+Superseded by `probe_volume_threshold.py` rather than edited in place —
+`probe.py` stays as the record of what the v3 thresholds were actually
+fit on.
+
+### 3. `MIN_LEG_VOLUME = 100` is well-placed — checked on an axis it was not fit on
+
+The open question: v3 set that threshold from six violations, and it now
+removes *every* raw violation the live scan finds (2 on 08-31, 3 on
+09-01, all "untraded or near-untraded leg"). A daily "0 survivors" is
+therefore indistinguishable from "the threshold ate them", and nobody had
+looked at the distribution it cuts through.
+
+Re-ran the geometry over all **17 captures / 8 calendar days**, recording
+lifetime volume *and* open interest — OI being the better sterility
+signal and the one the threshold was not fit on.
+
+**16 distinct violations. 14 removed by the threshold. Of those 14, the
+number with both legs carrying open interest >= 100 is ZERO** — the
+largest min-leg OI among all 14 is **6.0**, so any cutoff above 6 gives
+the same answer. The verdict does not depend on where the line is drawn.
+
+The two survivors are both genuinely liquid, which is the threshold
+behaving correctly:
+
+| violation | captures | min leg vol | min leg OI | disposition |
+|---|---|---|---|---|
+| `KXNASDAQ100MINY-26DEC31H1600` T22600/T22800 | 5 | 3,918 | 2,388 | reaches the depth gate — killed there (opp 9248, 0.32-contract book) |
+| `USCLIMATE-2025 + USCLIMATE-2030` | 4 | 11,596 | 2,263 | removed by `MIN_ANNUALISED_RETURN` — 1.5%/yr over 4.3 years |
+
+So the threshold is validated, and the depth gate and the cash floor are
+each doing the job they were added for. **No change proposed.**
+
+### 4. What the firing population actually is: one series, and it is dead
+
+12 of the 16 distinct violations are `KXWTAGTOTAL` — WTA tennis match
+totals — and **every one of them has zero or near-zero open interest**
+(min leg OI of 0.00 in nine of the twelve). Each appears in one or two
+captures and then goes away.
+
+That is the mechanism behind this theory's daily "2-3 raw violations, 0
+survivors": the violations are not compressed-away opportunities, they
+are **nominal ladders on markets nobody has ever traded**. A maker posts
+a total-points ladder for a tennis match, no one takes any of it, and the
+untouched quotes are mutually inconsistent because nothing forces them
+not to be.
+
+This also corrects the framing the floor inherited. "Nobody has run a
+replay for structural_arb — the cheapest evidence on the board" is not
+right, and it is worth writing down why so the next session does not
+re-derive it:
+
+- A replay of this theory **cannot measure what decides its outcomes.**
+  The depth gate is live-only because **Kalshi archives no historical
+  order books**, and depth is what rejected all five live findings and
+  the one liquid violation in the whole dataset.
+- What a replay *can* measure is violation **existence**, which is what
+  the study measures and what this entry extends. That is worth having
+  and is now done over the full snapshot history.
+- What it must **not** do is record `backtest-*` ledger rows. Those would
+  enter as riskless positions with large claimed returns — the WTA rows
+  price at `profit_floor` up to 0.42/basket — that were never fillable at
+  any size, and nothing in a recorded row carries "the book was 0.01
+  contracts deep". See finding 5: the ledger is already showing +55% on
+  exactly this kind of row at n=2, and a replay would scale that.
+
+### 5. The reported `riskless_roi` of +55% is entirely rejected, unfillable rows
+
+`score report structural_arb` currently reads:
+
+```
+all      : n=0  n_attempts=4  riskless_n=2  riskless_roi=+0.550  roi_all=+0.550
+rejected : n=0  n_attempts=4  riskless_n=2  riskless_roi=+0.550  roi_all=+0.550
+screened : empty        endorsed: empty
+```
+
+`all` and `rejected` are the same rows because **every row this theory
+has ever recorded was rejected.** The +55% comes from the two
+`KXWTAGTOTAL` findings whose own rationales say `~0.01 baskets fillable
+at riskless prices, ~$0.00 floor profit`.
+
+Not a ranking bug — `riskless_roi` does not feed `ranked_edge`, and
+`promotion.py` never reads it. It is a **reporting** hazard, and a
+specific one worth naming: for a judgment theory a rejected winner is
+real counterfactual information ("the screen was right, the judgment cost
+you"), but here the rejection reason is *not fillable at any size*, so
+the counterfactual is **impossible rather than merely untaken**. A
+supervisor reading the headline sees a theory returning 55% riskless.
+
+Ticketed rather than fixed: `roi_all` counting rejections is documented,
+deliberate behaviour (CLAUDE.md, "they still count toward `roi_all`
+unconditionally"), and changing what a load-bearing field means is not a
+theory-lane call.
+
+### 6. The partition-gap standing check does not reproduce, and over-triggers
+
+Correction #2 left this as a standing check:
+
+> "Recompute the three numbers from the board ... before repeating
+>  'nothing to find' as settled."
+
+Session 78's record on the 08-29 board: 53 priced as a partition, 43
+flagged exclusive, 10 unflagged, **0** of the gap intersecting clearing
+candidates.
+
+Re-running the recipe **as written** — ">=3 legs sharing one deadline,
+sum in [0.90, 1.05]" — does not reproduce it under any price field:
+
+| board | field | partition | flagged | gap | gap n candidates |
+|---|---|---|---|---|---|
+| 08-29 | ask | 913 | 848 | 65 | 2 |
+| 08-29 | bid | 1,566 | 1,376 | 190 | 0 |
+| 08-29 | mid | 1,840 | 1,739 | 101 | 0 |
+| 08-29 | last | 928 | 708 | 220 | 55 |
+| **09-01** | **ask** | **777** | **730** | **47** | **2** |
+| 09-01 | last | 774 | 599 | 175 | 47 |
+
+An order of magnitude more partition events than 53 on the same board, so
+**session 78 used a narrower definition than the one it recorded.** The
+recipe as written is not a usable instrument, and `flag_candidates`
+reproduces exactly (1,449 on 08-29, 1,480 on 09-01), so the divergence is
+in the partition definition, not the reconstruction.
+
+**The two 09-01 ask-side hits are both false alarms, and obviously so:**
+
+- `KXLEADERSOUT-27JAN01` — 30 legs, each a **different world leader**
+  being out by Jan 1 2027. Several can go at once.
+- `KXRAIN-26AUG31` — 22 legs, each a **different city**. It can rain in
+  Chicago and Miami on the same day. The five legs that summed to 1.04
+  did so by coincidence (four cities at 0.01, PHX at 1.00).
+
+Kalshi flags both `False` and Kalshi is right both times. So the
+substantive claim — **no real arb is being rejected today** — survives,
+and now for a better reason than the check gave: the heuristic's
+false-positive rate is what is high, not the guard's.
+
+What the check needs is a definition that means exclusivity rather than
+correlating with it (legs partitioning one underlying quantity, as
+`underlying_key` already computes, rather than "asks happen to sum near
+1"). Ticketed; not attempted here, because a research check that
+over-triggers is worse than none and I would rather leave it named than
+half-replaced.
+
+### Status: idle and correct, and NOT a retirement candidate
+
+Every check this session either confirmed the procedure or found the
+defect in the *instrument* rather than the theory. Against its own stated
+kill criteria — "the arithmetic cannot be wrong, only idle. If it fires
+zero times in 60 days of sessions, record that in NOTES.md and leave it
+running" — this is day 6 of 60, and the criteria say leave it running.
+Recorded here as that criterion requires.
+
+What would change the verdict, for whoever picks this up: a violation
+appearing in a market with real open interest and a short horizon. One
+has appeared in 8 days (`KXNASDAQ100MINY`) and its book was 0.32
+contracts deep. The COMBO entry of 2026-08-30 is the strongest negative
+in this folder and still stands — the one venue where the thesis *could*
+pay at size prices coherently.
+
+### Dead ends, so nobody re-runs them
+
+- **Recording `backtest-*` ledger rows from a snapshot replay.** Finding
+  4. The replay cannot see depth, so the rows would be phantom riskless
+  positions.
+- **The partition-gap recipe as recorded.** Finding 6. Over-triggers by
+  ~15x; do not spend a session tuning the [0.90, 1.05] band, the band is
+  not the problem.
+- **Inverting the search to start from ME events.** Already measured and
+  dead (2026-08-29): 1 of 6,414 has a NO-basket under its payout, at
+  0.125c/leg against a 1c/leg buffer.

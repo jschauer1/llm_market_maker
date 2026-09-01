@@ -2983,3 +2983,114 @@ filter the sweep to the screen's bar, re-run the control, and
 backfill**, and its ticket says so. Nothing about it should be
 pre-registered until the control has been run on liquidity-filtered sweep
 data.
+
+---
+
+## 2026-09-01 — a snapshot-reading defect that outlived its correctness, and structural_arb's two standing checks
+
+Session `llm-market-identifier-af`, theory lane, focus `structural_arb`.
+Theory-level detail stays in `theories/structural_arb/NOTES.md`
+(2026-09-01) and the study's own amendment; what follows is only what a
+session that never touches this theory needs.
+
+**Did.** Ran the two standing checks `structural_arb`'s notebook leaves
+open, extended its violation study from 11 captures to all 17, and
+measured flag stability for the first time. No procedure changed and no
+version was bumped — every finding was about an instrument, not a
+decision.
+
+### 1. A study that was correct when it ran can be wrong when re-run — snapshot reads are the case (cross-cutting)
+
+**`WHERE captured_at = <stamp>` stopped meaning "the board" on
+2026-08-30**, when dedup-on-write landed: a pull writes no row for a
+market whose payload did not change, so the filter now returns *the
+markets that moved at that pull*. `snapshot.board_as_of` exists for this
+and its docstring names the trap.
+
+The failure is quiet and it is **biased, not random** — markets that move
+are the liquid ones, so any study measuring liquidity, price or side
+gets a subset correlated with its own dependent variable. Measured on
+`structural_arb`'s probe, same 17 captures both ways:
+
+```
+2026-08-27T11:47:05Z   exact:  3,254 markets   as_of: 107,656 markets
+2026-08-30T19:22:32Z   exact: 55,433 markets   as_of: 104,304 markets
+raw violations found   exact:     24 total     as_of:      36 total
+```
+
+**A third of the findings were invisible.** Both probes carrying this
+were correct on the day they ran; the defect bites only on re-runs, which
+is exactly what a "Reproduce" section invites.
+
+**The constraint, for anyone writing or re-running a study:** read a
+stored board through `snapshot.board_as_of`, never by exact stamp, and
+route payloads through `payload_text`. A number produced by an
+exact-stamp read after 2026-08-30 is not comparable to the same number
+produced before it.
+
+Swept the repo. One other live instance:
+`studies/2026-08-27-calendar-arb-firing-rate/probe.py:108` — ticketed,
+and it matters because that study's zero-violation result is what
+falsified calendar-arb's premise, and the open
+`calendar-arb-soft-relative-value` ticket sends a future session straight
+back into it.
+`studies/2026-08-29-side-asymmetry-extension/measure.py:69` is already
+correct and carries a comment naming the trap — the counter-example to
+copy.
+
+### 2. `mutually_exclusive` does not drift (constraint, useful to any snapshot replay)
+
+Four envelope-bearing captures now exist, so the stability that
+`structural_arb`'s `theory_facts` fallback had only *assumed* is now
+measured: **12,000 events seen in two or more captures, zero flag
+changes, zero within-capture inconsistencies.** A replay may lean on a
+cached flag. The window is four days — this says the flag does not drift
+week to week, not that it never changes over a market's life.
+
+### 3. A rejected position that could not be filled is not the same counterfactual as one you declined (precedent, for scoring)
+
+`score report structural_arb` reads **+55% `riskless_roi`**, and every
+row behind it was rejected as unfillable — the two contributing findings'
+own rationales say `~0.01 baskets fillable, ~$0.00 floor profit`. Not a
+ranking bug: `riskless_roi` never reaches `ranked_edge` and
+`promotion.py` does not read it.
+
+The distinction worth having in the vocabulary: rejections counting
+toward `roi_all` is deliberate and right for a **judgment** theory, where
+a rejected winner means the screen was right and the judgment cost you.
+Where the rejection reason is *not fillable at any size*, the
+counterfactual is **impossible rather than merely untaken** — there was
+no position. Filed with three options rather than patched, because
+`disposition` and the riskless bucket are load-bearing vocabulary and
+redefining a recorded field rewrites every row already written under the
+old meaning.
+
+**Learned.** `structural_arb` is idle and correct, not broken: 16
+distinct violations in 8 days, 14 of them removed by `MIN_LEG_VOLUME`,
+and **none of those 14 has a leg carrying open interest above 6.0** — so
+the threshold, fit on six violations back in August, is well placed on an
+axis it was never fit on. Twelve of the sixteen are one series
+(`KXWTAGTOTAL`, WTA match totals) at zero open interest: the theory's
+daily "violations found, none survive" is **nominal ladders on markets
+nobody has ever traded**, not opportunities an arb bot beat us to.
+
+Also learned, and worth flagging because the floor's Next line said the
+opposite: **a replay is not this theory's missing evidence.** Kalshi
+archives no historical order books, and depth is what killed all five
+live findings and the single liquid violation in the dataset. A replay
+can measure violation *existence* — now done over the full history — but
+must not record `backtest-*` ledger rows, which would be phantom riskless
+positions carrying nothing that says the book was a hundredth of a
+contract deep.
+
+**Next.**
+
+- Neither standing check should be repeated as recorded: the
+  partition-gap recipe over-triggers ~15x and does not reproduce session
+  78's numbers (ticketed, with the fix — group by
+  `scan.underlying_key`, not by "asks sum near 1").
+- `structural_arb` needs nothing else right now. Against its own kill
+  criteria it is on day 6 of 60 and they say leave it running; it is
+  **not** a retirement candidate, and no retirement is proposed.
+- The `calendar-arb-firing-rate` probe should be fixed before anyone
+  works `calendar-arb-soft-relative-value` off its dataset.
