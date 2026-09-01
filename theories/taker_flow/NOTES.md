@@ -232,3 +232,33 @@ resume logic happened to make this recoverable — the dropped market simply
 gets re-fetched next run, because the resume set is built from parseable
 lines. A collector that had instead written one final blob would have lost
 everything.
+
+### v2 live run, and a defect left deliberately unfixed
+
+802 rows recorded (1,768 liquid → 482 thin flow → 471 below threshold →
+13 unpayable ask → 802 candidates; 421 `extreme`, 381 `strong`). The new
+`unpayable_ask` exclusion fired 13 times, so the v1 bug was real and is
+now closed at the top of the price range.
+
+**The bottom of the range has the mirror problem, and I left it.** Every
+one of the ten highest-edge rows is an ask of 0.00–0.01, because a flat
+points-edge is largest in relative terms where the price is smallest —
+while the same replay measures only **+1.06 (t=+0.36)** in the
+[0.00,0.15) band against the pooled +4.29. The pooled number is dominated
+by mid prices.
+
+Not hotfixed, for a reason worth stating: the obvious fix is per-band
+constants, and those bands come from the run that produced the pooled
+number. Adopting them is another post-hoc parameter choice on the data
+that suggested it — the exact move the pre-registration above exists to
+prevent. Ticketed
+(`flat-edge-overstates-penny-longshots`) with three legitimate routes,
+none of which is "hard-code the five band numbers".
+
+**It has no live consequence today**, which is what makes waiting
+affordable. Checked rather than assumed: `cli promote` puts the top row at
+**R5 MEASURED-AGAINST**, `quoted: false`, reasoning "matches slice
+'extreme-imbalance', which is registered but below its evidence gates" and
+"the record outranks the claim". The theory recommends nothing, so the
+defect only decides which suppressed rows sort highest. It becomes real
+the moment the slice clears its gates — fix it before then.
