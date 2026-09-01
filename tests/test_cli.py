@@ -53,10 +53,21 @@ def test_score_report_save_persists_score_rows(dbpath, capsys):
     assert {r["n"] for r in rows if r["disposition"] == "all"} == {1}
 
 
-def test_score_report_save_refuses_the_chain_pool(dbpath, capsys):
-    with pytest.raises(SystemExit):
-        cli.main(["--db", dbpath, "score", "report", "t1",
-                  "--save", "--pool", "chain"])
+def test_score_report_save_accepts_the_chain_pool(dbpath, capsys):
+    """The refusal here was correct while the scores table could not say
+    what a row pooled. It can now (`pooled_versions`), and since the
+    2026-08-31 ruling a bump carries evidence forward by default, so
+    --save pools the chain as a matter of course."""
+    code, _ = _run(capsys, "--db", dbpath, "score", "report", "t1",
+                   "--save", "--pool", "chain")
+    assert code == 0
+
+    conn = db.connect(dbpath)
+    row = conn.execute(
+        "SELECT pooled_versions FROM scores WHERE segment = 'aggregate'"
+    ).fetchone()
+    conn.close()
+    assert row["pooled_versions"] == "1"
 
 
 def test_init_creates_the_database(tmp_path, capsys):

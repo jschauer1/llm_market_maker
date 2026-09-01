@@ -299,21 +299,43 @@ def bump_version(
     theory_id: str,
     now: str | None = None,
     *,
-    kind: str = "breaking",
+    kind: str = "continues",
     justification: str,
     equivalence: _CarryProof | None = None,
 ) -> int:
     """Increment the theory's version and record what kind of bump it was.
 
-    Every bump declares its relationship to its predecessor (spec 2.3):
-    `breaking` (the default) resets the track record; `carry` pools
-    evidence forward and is refused unless `equivalence` is a passing
-    proof that a replay over the predecessor's own attempts reproduces
-    every recorded decision exactly -- assertion does not qualify, the
-    proof is the permission (spec 2.4).
+    Every bump declares its relationship to its predecessor's EVIDENCE:
+
+    - `continues` (the default) -- the decision procedure changed and the
+      evidence still stands. No proof required.
+    - `carry` -- the change provably could not alter any recorded
+      decision. Refused unless `equivalence` is a passing replay over the
+      predecessor's own attempts; assertion does not qualify, the proof
+      is the permission (spec 2.4). Strictly stronger than `continues`
+      and pools identically, so it is worth recording when it is true.
+    - `breaking` -- an explicit sever. The new version starts from zero,
+      and `justification` must say what makes the old evidence
+      inapplicable.
+
+    **`breaking` used to be the default** (spec 2.3), on the reasoning
+    that a changed procedure is a different theory whose history should
+    not be merged. That guarded against a real failure -- tuning a theory
+    until its history looks good -- but it priced the guard wrong: the
+    proof bar was high enough that almost nobody cleared it, and three of
+    the four running theories reached n=0 discarding genuine evidence to
+    prevent a merge nobody had attempted. Under the 2026-08-31 user
+    ruling a version bump is no longer, by itself, a reason to disbelieve
+    what a theory has demonstrated -- including a backtest run against an
+    earlier version. Severing is still available and still honoured
+    absolutely; it now has to argue for itself, which is the direction
+    that deserves the burden.
     """
-    if kind not in ("breaking", "carry"):
-        raise ValueError(f"invalid kind {kind!r}; expected 'breaking' or 'carry'")
+    if kind not in ("breaking", "carry", "continues"):
+        raise ValueError(
+            f"invalid kind {kind!r}; expected 'breaking', 'carry' or "
+            "'continues'"
+        )
     row = get(conn, theory_id)
     if row is None:
         raise KeyError(theory_id)
@@ -345,6 +367,80 @@ def bump_version(
     return new_version
 
 
+def reclassify_bump(
+    conn: sqlite3.Connection,
+    theory_id: str,
+    version: int,
+    *,
+    kind: str,
+    reason: str,
+    equivalence: _CarryProof | None = None,
+    now: str | None = None,
+) -> sqlite3.Row:
+    """Correct how a recorded bump relates to its predecessor's evidence.
+
+    Exists for one situation and should stay rare: a bump whose `kind`
+    records the old default rather than a decision anyone made. Every
+    multi-version theory in this repo carries rows justified
+    "pre-dates the carry ruling; not adjudicated" -- which is not a
+    finding that the evidence was inapplicable, it is the absence of a
+    finding, frozen into the schema because `breaking` used to be what
+    you got for saying nothing. Under the 2026-08-31 ruling that default
+    is wrong, and leaving those rows would mean the ruling changed
+    nothing for any theory that already exists.
+
+    **It never erases the original justification.** The prior wording is
+    kept and the reason appended, because a correction to a governance
+    record whose earlier text is gone cannot be audited -- and the point
+    of correcting a default is that someone can see it was a default.
+
+    `carry` keeps its full bar here: a correction is not a side door
+    around the equivalence replay.
+    """
+    if kind not in ("breaking", "carry", "continues"):
+        raise ValueError(
+            f"invalid kind {kind!r}; expected 'breaking', 'carry' or "
+            "'continues'"
+        )
+    if not reason or not reason.strip():
+        raise ValueError(
+            "a reason is required: say what makes the recorded kind wrong"
+        )
+    row = conn.execute(
+        "SELECT * FROM theory_versions WHERE theory_id = ? AND version = ?",
+        (theory_id, version),
+    ).fetchone()
+    if row is None:
+        raise KeyError((theory_id, version))
+    equivalence_run = row["equivalence_run"]
+    if kind == "carry":
+        if not isinstance(equivalence, EquivalenceResult) or not equivalence.passed:
+            raise ValueError(
+                "carry needs a passing equivalence proof -- the proof is "
+                "the permission, and a reclassification is no exception"
+            )
+        equivalence_run = equivalence.label
+    elif row["kind"] == "carry":
+        # Dropping a carry claim drops the proof that licensed it; leaving
+        # the label behind would credit a replay the row no longer rests on.
+        equivalence_run = None
+    stamp = now or utcnow()
+    justification = (
+        f"{row['justification']} [reclassified {row['kind']} -> {kind} on "
+        f"{stamp[:10]}: {reason}]"
+    )
+    with write(conn):
+        conn.execute(
+            "UPDATE theory_versions SET kind = ?, justification = ?,"
+            " equivalence_run = ? WHERE theory_id = ? AND version = ?",
+            (kind, justification, equivalence_run, theory_id, version),
+        )
+    return conn.execute(
+        "SELECT * FROM theory_versions WHERE theory_id = ? AND version = ?",
+        (theory_id, version),
+    ).fetchone()
+
+
 def list_versions(
     conn: sqlite3.Connection, theory_id: str
 ) -> list[sqlite3.Row]:
@@ -358,19 +454,28 @@ def list_versions(
 def carry_chain(
     conn: sqlite3.Connection, theory_id: str, version: int
 ) -> list[int]:
-    """The maximal run of consecutive versions a proven carry links back
-    to `version` (spec 2.5) -- what `score.compute_score(pool="chain")`
-    widens its segment filter over.
+    """The versions whose evidence pools with `version` (spec 2.5) --
+    what `score.compute_score(pool="chain")` widens its segment filter
+    over.
 
-    Walks `theory_versions` backwards from `version`. A predecessor joins
-    the chain only while the CURRENT version's own row says
-    `kind='carry'` -- that row is what links a version to its
-    predecessor, so a carry row recorded at v3 (predecessor v2) pulls v2
-    in when walking from v3, not the other way round. A `breaking` row,
-    or no row at all (an unregistered version), stops the walk
-    immediately. `version` itself is always included, even when its own
-    row is missing or breaking, so a caller never has to special-case an
+    Walks `theory_versions` backwards from `version`, and **keeps walking
+    until an explicit `breaking` row stops it** (user ruling
+    2026-08-31). A predecessor joins while the CURRENT version's own row
+    says `kind='carry'` or `kind='continues'` -- that row is what links a
+    version to its predecessor, so a row recorded at v3 (predecessor v2)
+    pulls v2 in when walking from v3, not the other way round.
+
+    Three things stop the walk: a `breaking` row, a missing predecessor,
+    or no row at all. That last case is an unregistered version, whose
+    relationship to its predecessor was never recorded -- unknown is not
+    the same as continuous, and it resolves against pooling. `version`
+    itself is always included, so a caller never has to special-case an
     isolated version. The result is ascending.
+
+    A bump is no longer by itself a reason to discard evidence: a
+    backtest run against an earlier version stays valid evidence for
+    the current one unless a `breaking` bump says otherwise. See
+    `bump_version` for why the default flipped.
 
     `bump_version` only ever writes a predecessor strictly less than the
     version being bumped to, so a well-formed table can never cycle. A
@@ -391,7 +496,8 @@ def carry_chain(
             " WHERE theory_id = ? AND version = ?",
             (theory_id, current),
         ).fetchone()
-        if row is None or row["kind"] != "carry" or row["predecessor"] is None:
+        if (row is None or row["kind"] == "breaking"
+                or row["predecessor"] is None):
             break
         predecessor = row["predecessor"]
         if predecessor >= current or predecessor in visited:

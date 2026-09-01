@@ -252,7 +252,8 @@ def test_orphaned_evidence_surfaces_prior_version_slices(conn):
         hypothesis="optimism tax", origin="test",
         registered_at="2026-08-26T00:00:00Z",
     )
-    theories.bump_version(conn, "t", justification="test bump")
+    theories.bump_version(conn, "t", kind="breaking",
+                          justification="new population")
     orphans = promotion.orphaned_evidence(conn, "t")
     assert [o["slug"] for o in orphans] == ["strong-moderate-no"]
     assert orphans[0]["ready_at_version"] == 1
@@ -322,7 +323,8 @@ def test_cli_promote_run_batches_and_escalates(tmp_path, capsys):
         hypothesis="optimism tax", origin="test",
         registered_at="2026-08-26T00:00:00Z",
     )
-    theories.bump_version(c, "t", justification="test bump")
+    theories.bump_version(c, "t", kind="breaking",
+                          justification="new population")
     c.close()
     code = cli.main(["--db", path, "promote", "--run", "live", "--no-quote"])
     payload = _json.loads(capsys.readouterr().out)

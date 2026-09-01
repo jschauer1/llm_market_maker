@@ -208,3 +208,23 @@ def test_evidence_never_shows_a_sub_theorys_numbers_as_the_theorys(conn):
     parent = [ln for ln in evidence if "sub:" not in ln][0]
     assert "-9.0" in parent, f"parent line took the subset's number: {parent}"
     assert "42.0" not in parent
+
+
+def test_evidence_shows_what_share_of_a_record_is_backtested(conn):
+    """Backtesting is worth doing and the panel should show it paying
+    off. A replayed edge counts in full, so this is disclosure, not a
+    caveat -- but a theory whose evidence exists BECAUSE someone ran a
+    backtest should visibly say so."""
+    from tools import score, theories
+
+    theories.register(conn, "t", "T", "theories/t", status="testing")
+    result = dict(
+        n=40, win_rate=0.6, price_implied_rate=0.5, calibration_edge=10.0,
+        calibration_edge_net=8.0, mean_claimed_edge=5.0, realization=1.0,
+        roi_all=0.1, roi_taken=None, riskless_n=0, riskless_roi=None,
+        n_clusters=30, clustered_se=1.0, n_backtest=32,
+    )
+    score.save_score(conn, "t", 1, "pooled", "all", result)
+
+    text = state.render_state(conn, now="2026-09-10T12:00:00Z")
+    assert "32 backtested" in text

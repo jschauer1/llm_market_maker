@@ -133,6 +133,7 @@ def init_db(conn: sqlite3.Connection) -> None:
         conn.executescript(SCHEMA_PATH.read_text(encoding="utf-8"))
     _migrate_theories(conn)
     _migrate_judgment_runs(conn)
+    _migrate_theory_versions(conn)
     _add_column_if_missing(
         conn, "theories", "uses_llm_judgment", "INTEGER NOT NULL DEFAULT 0"
     )
@@ -153,6 +154,12 @@ def init_db(conn: sqlite3.Connection) -> None:
     _add_column_if_missing(
         conn, "scores", "segment", "TEXT NOT NULL DEFAULT 'aggregate'"
     )
+    # Additive and nullable: a score written before evidence could span
+    # versions covered exactly the one version its row names, and a score
+    # written before backtest rows were counted has an UNKNOWN backtest
+    # share, not a zero.
+    _add_column_if_missing(conn, "scores", "pooled_versions", "TEXT")
+    _add_column_if_missing(conn, "scores", "n_backtest", "INTEGER")
     # Additive and nullable for the same reason: a capture taken before the
     # event envelope was kept has an UNKNOWN mutually_exclusive, not a
     # false one. Reading absent as false loses real structural_arb
@@ -391,6 +398,57 @@ def _migrate_judgment_runs(conn: sqlite3.Connection) -> None:
                 "CREATE INDEX IF NOT EXISTS idx_judgment_runs_run"
                 " ON judgment_runs (theory_id, theory_version, run_id)"
             )
+            conn.commit()
+        except BaseException:
+            conn.rollback()
+            raise
+    finally:
+        conn.execute("PRAGMA legacy_alter_table = OFF")
+        conn.execute("PRAGMA foreign_keys = ON")
+
+
+def _migrate_theory_versions(conn: sqlite3.Connection) -> None:
+    """Widen an old `theory_versions` kind CHECK to accept 'continues'.
+
+    Databases created before the 2026-08-31 ruling carry the two-value
+    CHECK ('breaking','carry') baked into their DDL, and `CREATE TABLE IF
+    NOT EXISTS` will not touch an existing table. SQLite cannot alter a
+    CHECK in place, so the table is rebuilt exactly as
+    `_migrate_judgment_runs` rebuilds its own. Rows carry over unchanged:
+    every legacy kind is still valid under the new set, and a bump
+    recorded `breaking` keeps saying `breaking` until somebody
+    deliberately reclassifies it (`theories.reclassify_bump`). Widening
+    what MAY be recorded is not the same as rewriting what WAS.
+    """
+    row = conn.execute(
+        "SELECT sql FROM sqlite_master WHERE type='table'"
+        " AND name='theory_versions'"
+    ).fetchone()
+    if row is None or "continues" in (row[0] or ""):
+        return
+
+    ddl = schema_statement("theory_versions")
+    conn.commit()
+    conn.execute("PRAGMA foreign_keys = OFF")
+    conn.execute("PRAGMA legacy_alter_table = ON")
+    try:
+        conn.execute("BEGIN")
+        try:
+            conn.execute(
+                "ALTER TABLE theory_versions RENAME TO theory_versions_legacy"
+            )
+            conn.execute(ddl)
+            conn.execute(
+                """
+                INSERT INTO theory_versions
+                    (theory_id, version, kind, predecessor, justification,
+                     equivalence_run, created_at)
+                SELECT theory_id, version, kind, predecessor, justification,
+                       equivalence_run, created_at
+                FROM theory_versions_legacy
+                """
+            )
+            conn.execute("DROP TABLE theory_versions_legacy")
             conn.commit()
         except BaseException:
             conn.rollback()

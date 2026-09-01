@@ -257,12 +257,12 @@ def _cmd_score(args) -> int:
         if args.action == "report":
             theory = theories.get(conn, args.theory_id)
             version = args.version or (theory["version"] if theory else 1)
-            if getattr(args, "save", False) and args.pool != "version":
-                raise SystemExit(
-                    "score report --save: the scores table has no column "
-                    "for what pooled; persist per-version scores only "
-                    "(drop --pool chain)"
-                )
+            # The old refusal here ("the scores table has no column for
+            # what pooled") is obsolete: `scores.pooled_versions` records
+            # the span, and since the 2026-08-31 ruling a bump carries
+            # evidence forward by default, so --save always pools the
+            # version chain. `--pool` now only scopes the PRINTED
+            # figures.
             results = {
                 disposition: score.compute_score(
                     conn, args.theory_id, version,

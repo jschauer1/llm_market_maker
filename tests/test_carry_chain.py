@@ -282,7 +282,8 @@ def test_carry_chain_carry_links_v2_to_v1(conn):
 
 
 def test_carry_chain_breaking_isolates(conn):
-    theories.bump_version(conn, "t1", now=TS, justification="real change")
+    theories.bump_version(conn, "t1", now=TS, kind="breaking",
+                          justification="real change")
 
     assert theories.carry_chain(conn, "t1", 2) == [2]
 
@@ -324,7 +325,8 @@ def test_carry_chain_breaking_in_the_middle_stops_the_walk(conn):
         conn, "t1", kind="carry", justification="v1->v2 no-op",
         equivalence=res_1_to_2,
     )
-    theories.bump_version(conn, "t1", now=TS, justification="real change")
+    theories.bump_version(conn, "t1", now=TS, kind="breaking",
+                          justification="real change")
 
     assert theories.carry_chain(conn, "t1", 3) == [3]
     assert theories.carry_chain(conn, "t1", 2) == [1, 2]
@@ -381,7 +383,8 @@ def test_compute_score_chain_of_one_adds_no_key(conn):
     # v2 is 'breaking' -- carry_chain(..., 2) == [2], nothing pooled -- so
     # pool="chain" must report identically to pool="version" and must not
     # claim a pooling that never happened.
-    theories.bump_version(conn, "t1", now=TS, justification="real change")
+    theories.bump_version(conn, "t1", now=TS, kind="breaking",
+                          justification="real change")
     _record(conn, kalshi_ticker="KXTEST-Q", outcome="yes", theory_version=2)
     score.record_settlement(conn, "KXTEST-Q", "yes", resolved_at=TS)
 
@@ -434,7 +437,8 @@ def test_settlement_day_clusters_chain_of_one_adds_no_key(conn):
     # v2 is 'breaking' -- carry_chain(..., 2) == [2], nothing pooled -- so
     # pool="chain" must report identically to pool="version" and must not
     # claim a pooling that never happened.
-    theories.bump_version(conn, "t1", now=TS, justification="real change")
+    theories.bump_version(conn, "t1", now=TS, kind="breaking",
+                          justification="real change")
     _record(conn, kalshi_ticker="KXTEST-Q2", outcome="yes", theory_version=2)
     score.record_settlement(conn, "KXTEST-Q2", "yes", resolved_at=TS)
 
@@ -598,7 +602,8 @@ def test_segment_report_chain_of_one_adds_no_key(conn):
     # v2 is 'breaking' -- carry_chain(..., 2) == [2], nothing pooled -- so
     # pool="chain" must report identically to pool="version" and must not
     # claim a pooling that never happened.
-    theories.bump_version(conn, "t1", now=TS, justification="real change")
+    theories.bump_version(conn, "t1", now=TS, kind="breaking",
+                          justification="real change")
     _record(conn, kalshi_ticker="KXTEST-T", outcome="yes", theory_version=2)
     score.record_settlement(conn, "KXTEST-T", "yes", resolved_at=TS)
 

@@ -41,22 +41,46 @@ score.record_settlement(conn, ticker, result, resolved_at=...)
 ## 3. Recompute scores and bucket rates
 
 ```bash
-python -m tools.cli score report <theory_id> --save        # persist per-version
-python -m tools.cli score report <theory_id> --pool chain  # read pooled evidence
+python -m tools.cli score report <theory_id> --save
 ```
 
-Run the `--save` form once per running theory whenever settlements
-landed: it persists the per-version scores via `save_score`, which is
-what keeps `state` EVIDENCE rendering reality instead of "scores never
-written". (`--save` refuses `--pool chain` — the scores table has no
-column for what pooled; save per-version, read chain-pooled.)
+Run this once per running theory whenever settlements landed. It is what
+keeps `state` EVIDENCE rendering reality instead of "scores never
+written" — and it does more than persist one number.
 
-`--pool chain` pools evidence across any proven carry-chain (spec 2.5) —
-a version bump proven equivalent (`theories.prove_carry`) carries its
-predecessor's rows forward instead of resetting `n` to zero; the
-response's `chain_versions` key shows what pooled, and is absent when
-nothing did. Without it (`--pool version`, the default) the report scopes
-to the current version alone, exactly as before this flag existed.
+**`--save` writes one row per segment, not one per theory.** A
+sub-theory (a registered slice — a theory over a *subset* of this
+theory's data) has evidence of its own: it accrues separately, clears
+its own gates, and can be strong while the parent around it is flat.
+`save_segment_scores` therefore persists:
+
+| segment | what it is |
+|---|---|
+| `aggregate` | the whole theory |
+| `slice:<slug>` | one sub-theory, out-of-sample |
+| `complement` | what remains once every *ready* sub-theory is removed |
+
+The complement is scored separately so the remainder never borrows what
+a subset earned. Unready sub-theories are saved too — a record nobody
+can see is a record nobody can watch approach its gates, and "invisible
+until it matters" is how a proven subset ends up orphaned.
+
+**Every segment comes from one pool**, spanning live *and* backtest rows
+and the theory's whole version chain — the same pool
+`slices.ranking_segment` ranks on, so what `state` shows is what
+`promote` will decide from. A pooled row is labelled `run_mode='pooled'`
+and records its version span in `pooled_versions`; scope to one mode
+with `--run-mode` when you want a single-mode measurement.
+
+Read the partition back with:
+
+```bash
+python -m tools.cli slices report <theory_id>
+```
+
+`--pool chain` on `score report` scopes the **printed** figures; the
+saved rows always pool the chain, because a bump carries evidence
+forward unless it explicitly broke (see CLAUDE.md, theory versioning).
 
 Then recompute what each confidence bucket is actually worth — this is what
 replaces guessed probabilities with measured ones:

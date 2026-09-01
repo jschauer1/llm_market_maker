@@ -211,14 +211,19 @@ def test_list_pending_retirement_surfaces_unruled_proposals(conn):
 # --- version bumps declare breaking/carry (enforcing-surfaces spec 2.3) ---
 
 
-def test_bump_requires_justification_and_defaults_breaking(conn):
+def test_bump_requires_justification_and_defaults_continues(conn):
+    """Ruling 2026-08-31: a bump no longer discards the track record by
+    default. Severing is still available and still absolute; it just has
+    to be asked for, because it is the consequential direction."""
     theories.register(conn, "t1", "T1", "theories/t1")
     v = theories.bump_version(conn, "t1", justification="new gate")
     assert v == 2
     rows = theories.list_versions(conn, "t1")
+    # v1's own row has no predecessor, so its kind never gates a walk.
     assert [(r["version"], r["kind"]) for r in rows] == [
-        (1, "breaking"), (2, "breaking")]
+        (1, "breaking"), (2, "continues")]
     assert rows[-1]["predecessor"] == 1
+    assert theories.carry_chain(conn, "t1", 2) == [1, 2]
 
 
 def test_carry_refuses_without_a_passing_proof(conn):

@@ -5,6 +5,33 @@ description: Replay a theory against historical markets without lookahead bias, 
 
 # Backtest a Theory
 
+## 0. Why this is usually the highest-value work available
+
+A replay is not a weaker substitute for real settlements. Under the
+2026-08-31 ruling, **settled outcomes and tier A/B replays are the same
+kind of evidence and they pool** — a backtested edge feeds a theory's
+gates, its ranking, and its sub-theories' gates exactly as forward
+settlements do, and is never described as weaker for being backtested.
+
+What differs is the *rate*. Forward evidence accrues at the speed of
+settlement days, and the gates need five of them: `no_side_premium` has
+spent a week reaching four. A replay can clear the same gates in an
+afternoon and re-runs for free. So a theory sitting at n=0 with fetchable
+history is not short of evidence — **it is short of somebody running the
+replay**, and running it is often worth more than another live scan that
+adds unproven suggestions.
+
+This cuts both ways, which is the point: a replay can also show an edge
+is not there, cheaply, before the theory spends months proving it slowly.
+
+Two things this does not license. **Tier C never counts**, and a replay
+whose tier was never recorded counts for nothing — so record the run
+(`score.record_backtest_run`) with its tier, or the evidence you just
+bought is invisible. And for a **sub-theory**, the runs it was *mined
+from* never vouch for it (`mined_from_run_ids` at registration): a
+pattern found by slicing a replay's own rows is a hypothesis to test on
+other rows, not a result.
+
 ## 1. Determine the tier — derived, never self-reported
 
 Three facts decide it:

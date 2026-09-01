@@ -116,7 +116,8 @@ def _evidence_panel(conn) -> list[str]:
             # so this never hides a legacy score.
             row = conn.execute(
                 """
-                SELECT calibration_edge_net, n, n_clusters FROM scores
+                SELECT calibration_edge_net, n, n_clusters, n_backtest,
+                       pooled_versions FROM scores
                  WHERE theory_id = ? AND theory_version = ?
                    AND disposition = 'all'
                    AND segment = 'aggregate'
@@ -138,8 +139,9 @@ def _evidence_panel(conn) -> list[str]:
         else:
             lines.append(
                 f"  {t['id']:<22} edge_net {row['calibration_edge_net']}"
-                f"  n {row['n']}  clusters {row['n_clusters']}"
-                f"  [tier {tier or '—'}]"
+                f"  n {row['n']}{_backtest_note(row)}"
+                f"  clusters {row['n_clusters']}"
+                f"{_pooled_note(row)}  [tier {tier or '—'}]"
             )
         lines.extend(_sub_theory_lines(conn, t))
     return lines or ["  (no running theories)"]
@@ -158,7 +160,7 @@ def _sub_theory_lines(conn, t) -> list[str]:
         return []
     rows = conn.execute(
         """
-        SELECT segment, calibration_edge_net, n, n_clusters,
+        SELECT segment, calibration_edge_net, n, n_clusters, n_backtest,
                MAX(computed_at) AS computed_at
           FROM scores
          WHERE theory_id = ? AND theory_version = ?
@@ -178,9 +180,38 @@ def _sub_theory_lines(conn, t) -> list[str]:
             label = "  sub: " + label
         out.append(
             f"    {label:<28} edge_net {r['calibration_edge_net']}"
-            f"  n {r['n']}  clusters {r['n_clusters']}"
+            f"  n {r['n']}{_backtest_note(r)}"
+            f"  clusters {r['n_clusters']}"
         )
     return out
+
+
+def _backtest_note(row) -> str:
+    """How much of a record came from replay, shown beside n.
+
+    Disclosure, never a discount: a backtested edge counts in full (user
+    ruling 2026-08-31). It is here because backtesting is often the
+    reason a theory has any evidence at all, and a single total hides
+    that -- a session should be able to see which theories are earning
+    their record by being replayed, and go do the same for the others.
+    """
+    try:
+        n_backtest = row["n_backtest"]
+    except (IndexError, KeyError):
+        return ""
+    return f" ({n_backtest} backtested)" if n_backtest else ""
+
+
+def _pooled_note(row) -> str:
+    """Which versions a score pooled, shown only when it spans more than
+    one -- a pooled number and a single-version one are different claims."""
+    try:
+        pooled = row["pooled_versions"]
+    except (IndexError, KeyError):
+        return ""
+    if not pooled or "," not in str(pooled):
+        return ""
+    return f"  [v{pooled.replace(',', '+v')}]"
 
 
 def _column_exists(conn, table: str, column: str) -> bool:

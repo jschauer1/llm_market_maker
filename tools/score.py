@@ -976,6 +976,7 @@ def save_score(
     result: dict,
     now: str | None = None,
     segment: str = "aggregate",
+    pooled_versions: tuple[int, ...] | list[int] | None = None,
 ) -> int:
     """Persist a computed score. Returns the new row id.
 
@@ -985,12 +986,20 @@ def save_score(
     left once every ready sub-theory is removed). It defaults to
     `aggregate` because that is what every score written before
     sub-theory scoring existed already was.
+
+    `pooled_versions` records which theory versions the score spans. A
+    bump no longer discards evidence by default (user ruling
+    2026-08-31), so a chain-pooled score is the normal case rather than
+    the exception it used to be — and the span has to be on the row,
+    because a number pooled over three versions and one measured at a
+    single version are different claims. It defaults to the single
+    `theory_version` named, which is what an unpooled score has always
+    meant.
     """
-    if "chain_versions" in result:
-        raise ValueError(
-            "the scores table has no column for what pooled; persist "
-            "per-version (pool='version') scores only"
-        )
+    versions = (
+        list(pooled_versions) if pooled_versions else
+        list(result.get("chain_versions") or [theory_version])
+    )
     with write(conn):
         cursor = conn.execute(
             """
@@ -999,8 +1008,9 @@ def save_score(
                 price_implied_rate, calibration_edge, calibration_edge_net,
                 mean_claimed_edge, realization, roi_all, roi_taken,
                 riskless_n, riskless_roi, computed_at, n_clusters,
-                clustered_se, segment
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                clustered_se, segment, pooled_versions, n_backtest
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                      ?, ?)
             """,
             (
                 theory_id,
@@ -1022,6 +1032,8 @@ def save_score(
                 result.get("n_clusters"),
                 result.get("clustered_se"),
                 segment,
+                ",".join(str(v) for v in sorted(versions)),
+                result.get("n_backtest"),
             ),
         )
     return cursor.lastrowid
@@ -1076,15 +1088,22 @@ def save_segment_scores(
 
     modes = tuple(run_modes or slices_mod.DEFAULT_RUN_MODES)
     label = modes[0] if len(modes) == 1 else "pooled"
+    # A sub-theory is versioned with its parent: whatever evidence the
+    # theory carries across a bump, its subsets carry too. Pooling the
+    # chain here is what makes that true -- scoping to one version would
+    # orphan every subset at every bump, which is the failure that left
+    # this repo's best-evidenced result unbettable.
+    chain = theories.carry_chain(conn, theory_id, theory_version)
 
     saved: dict[str, int | None] = {}
     report = slices_mod.segment_report(
         conn, theory_id, theory_version, disposition=disposition,
-        run_modes=modes,
+        run_modes=modes, pool="chain",
     )
     saved["aggregate"] = save_score(
         conn, theory_id, theory_version, label, disposition,
         report["aggregate"], now=now, segment="aggregate",
+        pooled_versions=chain,
     )
     for entry in report["slices"]:
         oos = entry["oos"]
@@ -1092,12 +1111,14 @@ def save_segment_scores(
             save_score(
                 conn, theory_id, theory_version, label, disposition, oos,
                 now=now, segment=f"slice:{entry['slug']}",
+                pooled_versions=chain,
             ) if oos.get("n") else None
         )
     if report.get("complement"):
         saved["complement"] = save_score(
             conn, theory_id, theory_version, label, disposition,
             report["complement"], now=now, segment="complement",
+            pooled_versions=chain,
         )
     return saved
 

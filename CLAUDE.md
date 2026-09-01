@@ -378,21 +378,10 @@ theory would bury the proven subset under the aggregate *and* let the
 unproven remainder borrow what the subset earned. Both directions are
 wrong; the partition fixes both.
 
-Sub-theories are first-class everywhere the parent is:
-
-- **Settling and scoring runs on both, distinctly.**
-  `score.save_segment_scores` persists one row per segment —
-  `aggregate`, `slice:<slug>` for each sub-theory, and `complement` —
-  and `score report --save` calls it. `state`'s EVIDENCE panel renders
-  sub-theory lines under their parent, so a strong subset is visible
-  while orienting rather than only to whoever thought to ask.
-- **Running a theory includes evaluating its sub-theories.** Every
-  `RUNBOOK.md` carries a required `## Sub-theories` section — naming
-  them, or saying none are registered — enforced by
-  `tests/test_db_discipline.py`.
-- **Ranking and reporting already partition.** `slices.ranking_segment`
-  picks which score row feeds `ranked_edge`, and `promote` returns the
-  rung with the segment that earned it.
+**Sub-theories are first-class everywhere the parent is** — settled and
+scored distinctly, evaluated whenever the theory runs, ranked on their
+own record, and versioned with the parent. The procedure is in
+`score-theories` and each theory's `RUNBOOK.md`.
 
 A subset that needs its own screen, entry rule, or population is **not**
 a sub-theory — it is a sibling theory (`no_side_premium` is what that
@@ -554,19 +543,54 @@ Without this, tweaking a theory silently merges two different theories into
 one track record — which destroys the long-horizon testing this project exists
 for and invites tuning until the history looks good.
 
-**A bump declares whether it breaks the track record.** `breaking` is the
-default and resets it. `carry` — for a change that provably could not alter
-the decision on rows already recorded — keeps it, and is refused unless a
-replay over the predecessor's own attempts reproduces every recorded decision
-exactly. Assertion does not qualify; the proof is the permission. This does
-not soften the bump rule, it makes the rule affordable: a theory still being
-improved could otherwise never accumulate evidence, which is how three of
-the four running theories reached n=0.
+**A bump declares its relationship to the predecessor's evidence, and
+`continues` is the default** (user ruling 2026-08-31). **A version bump is
+not by itself a reason to disbelieve what a theory has demonstrated — a
+backtest run against an earlier version stays valid evidence for the
+current one unless a bump explicitly says otherwise.** Three kinds:
+
+| kind | meaning | evidence |
+|---|---|---|
+| `continues` | **default** — the procedure changed, the evidence stands | pools |
+| `carry` | provably could not alter any recorded decision; refused without a replay reproducing every decision exactly — assertion does not qualify, the proof is the permission | pools |
+| `breaking` | an explicit sever; `justification` must say what makes the old evidence inapplicable | resets |
+
+`breaking` used to be the default, on the reasoning that a changed
+procedure is a different theory. That guards against something real —
+tuning a theory until its history looks good — but it priced the guard
+wrong: almost nobody cleared the proof bar, and **three of the four
+running theories reached n=0** discarding genuine evidence to prevent a
+merge nobody had attempted. Severing is still absolute; it now has to
+argue for itself, which is the direction that deserves the burden.
+
+**Sub-theories are versioned with their parent** — they carry what it
+carries and reset when it breaks. Scores record their span in
+`pooled_versions`: a number pooled over three versions and one measured
+at a single version are different claims.
 
 **The tiering split is part of that versioned procedure.** A cheap gate is
 prompts plus scan logic like anything else: turning a gate on or off, or
 changing what question it asks, changes the decision path a candidate travels
 through and must bump the version exactly like a threshold change would.
+
+## What counts as evidence
+
+**Settled outcomes and backtested replays are the same kind of evidence,
+and they pool** (user ruling 2026-08-31). A settlement that arrived
+forward and a tier A/B replay of one that already happened both tell you
+whether the theory was right; neither outranks the other, and a
+backtested edge is never called weaker for being backtested. Sample size
+is already priced into the t-statistic and into credibility — charging a
+second time for it taught theories to avoid the honest instrument.
+
+Three things still count for nothing: **tier C**, a replay whose **tier
+was never recorded**, and the runs a sub-theory was **mined from**.
+Scores carry `n_backtest` and R1/R3 promotions disclose it, so a record
+built mostly by replay says so — disclosure, never a discount.
+
+The practical consequence — a theory at n=0 with fetchable history is
+short of someone running the replay, not short of evidence — is
+`backtest-theory`'s to act on.
 
 ## Backtest tiers
 

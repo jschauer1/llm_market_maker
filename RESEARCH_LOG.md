@@ -2353,3 +2353,42 @@ research) and phase 1's report contract is drafted; the ruling above is
 what makes a sub-theory's backtested edge reportable at all, which that
 draft depends on. `insider_judgment`'s orphaned-evidence escalation is
 unchanged and still needs a user call on adoption at v4.
+
+## 2026-08-31 - evidence carries across versions; sub-theories versioned with parents (user ruling 16)
+
+**Did:** Implemented three linked user rulings. (a) Settled outcomes and
+tier A/B replays are the same kind of evidence and pool -- for theories
+and sub-theories alike. (b) A version bump no longer invalidates evidence
+by itself: `continues` is the new default bump kind and pools forward;
+only an explicit `breaking` resets. (c) Sub-theories are versioned with
+their parent -- `save_segment_scores` pools the version chain, and every
+score records its span in `pooled_versions` and its replay share in
+`n_backtest`.
+
+**Learned:**
+
+1. **The old default had discarded every theory's history, and nobody
+   had adjudicated any of it.** All seven multi-version rows in this repo
+   read `breaking` with the justification *"pre-dates the carry ruling;
+   not adjudicated"* -- the absence of a finding, frozen into the schema
+   because `breaking` was what you got for saying nothing. Reclassifying
+   exactly those rows (`theories.reclassify_bump`, which appends its
+   reason and never erases the original wording) relinked
+   insider_judgment to [1,2,3,4] and structural_arb to [1,2,3,4].
+2. **That resolved the repo's longest-standing escalation mechanically.**
+   `strong-moderate-no` had been proven at v3 and orphaned at v4 for
+   three sessions running, reported to the user every time. It is now
+   READY at the current version: n=325, 89 event clusters, +4.37 net,
+   with the complement separately at -2.51 -- the partition doing exactly
+   what it exists for. `promotion.orphaned_evidence` returns empty.
+3. **Widening what MAY be recorded is not rewriting what WAS.** The
+   `theory_versions` CHECK migration accepts `continues` but carries every
+   legacy row across unchanged; the reclassification was a separate,
+   explicit, per-row act with its own audit trail. Worth keeping distinct
+   -- a migration that silently reinterpreted old governance rows would
+   be indistinguishable from tampering.
+
+**Next:** phase 2 of the `go` restructure is still undefined. The
+sub-theory partition is now visible in `state`, so a session can see
+strong-moderate-no without asking -- worth watching whether it produces
+an R1 on the next floor.

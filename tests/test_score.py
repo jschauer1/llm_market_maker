@@ -282,17 +282,22 @@ def test_save_score_persists_a_row(conn):
     )
 
 
-def test_save_score_refuses_a_chain_pooled_result(conn):
-    # I4: the scores table has no column for what pooled -- persisting a
-    # pool="chain" result would silently drop which versions fed it.
-    # save_score is per-version only; a caller must save the pool="version"
-    # score.
+def test_a_chain_pooled_score_records_which_versions_fed_it(conn):
+    # Was I4: save_score refused a pooled result outright, because the
+    # table had no column for what pooled and dropping it silently would
+    # make a multi-version number indistinguishable from a single-version
+    # one. Since the 2026-08-31 ruling a bump carries evidence by default,
+    # so pooling is the normal case -- and the fix is to record the span,
+    # not to refuse the save.
     _bet(conn, "A", 0.50, 6.0)
     score.record_settlement(conn, "A", "yes")
     result = score.compute_score(conn, "t1", 1)
     result["chain_versions"] = [1, 2]
-    with pytest.raises(ValueError, match="no column for what pooled"):
-        score.save_score(conn, "t1", 1, "live", "all", result, now=TS)
+
+    score.save_score(conn, "t1", 1, "live", "all", result, now=TS)
+
+    row = conn.execute("SELECT pooled_versions FROM scores").fetchone()
+    assert row["pooled_versions"] == "1,2"
 
 
 def test_record_settlement_is_idempotent(conn):

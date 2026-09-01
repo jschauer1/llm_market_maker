@@ -230,7 +230,23 @@ CREATE TABLE IF NOT EXISTS scores (
     -- separately so the remainder never borrows what a subset earned).
     -- Defaulted, because every score written before segments existed was
     -- the parent's aggregate and still means exactly that.
-    segment            TEXT NOT NULL DEFAULT 'aggregate'
+    segment            TEXT NOT NULL DEFAULT 'aggregate',
+    -- Which theory versions this score pooled, comma-separated ascending
+    -- (user ruling 2026-08-31). A bump no longer discards evidence by
+    -- default, so a score routinely spans versions -- and a number pooled
+    -- over three of them is a different claim from one measured at a
+    -- single version. Recording the span is what keeps the two
+    -- distinguishable; without it, pooling would be exactly the silent
+    -- merge versioning exists to prevent. NULL on rows written before
+    -- this column, whose span was always the one version they name.
+    pooled_versions    TEXT,
+    -- How many of this score's rows came from a backtest replay rather
+    -- than settlements that arrived forward. Backtested evidence counts
+    -- in FULL (user ruling 2026-08-31) and nothing reads this to discount
+    -- it -- it exists so a report can say what the record rests on, and
+    -- so the value backtesting adds to a theory is visible rather than
+    -- buried inside a single total.
+    n_backtest         INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS bucket_rates (
@@ -421,7 +437,19 @@ CREATE TABLE IF NOT EXISTS rulings (
 CREATE TABLE IF NOT EXISTS theory_versions (
     theory_id       TEXT NOT NULL,
     version         INTEGER NOT NULL,
-    kind            TEXT NOT NULL CHECK (kind IN ('breaking','carry')),
+    -- How this version relates to its predecessor's EVIDENCE (user
+    -- ruling 2026-08-31):
+    --   carry     -- proven identical; equivalence replay on file
+    --   continues -- the DEFAULT: procedure changed, evidence stands
+    --   breaking  -- an explicit sever, argued for in justification
+    -- Only 'breaking' stops carry_chain. The default used to be
+    -- 'breaking', with a proof required to keep evidence; almost
+    -- nobody cleared that bar, and three of four running theories
+    -- reached n=0 discarding real evidence to guard against a merge
+    -- nobody had attempted. A bump is not by itself a reason to
+    -- disbelieve what a theory already demonstrated.
+    kind            TEXT NOT NULL
+                    CHECK (kind IN ('breaking','carry','continues')),
     predecessor     INTEGER,
     justification   TEXT NOT NULL,
     equivalence_run TEXT,

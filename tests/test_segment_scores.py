@@ -201,3 +201,81 @@ def test_scoring_can_still_be_scoped_to_one_run_mode(conn):
         "SELECT n, run_mode FROM scores WHERE segment = 'aggregate'"
     ).fetchone()
     assert row["n"] == 1 and row["run_mode"] == "live"
+
+
+def test_sub_theory_evidence_follows_the_theory_version_chain(conn):
+    """A sub-theory is versioned with its parent. When a bump continues
+    the theory's evidence, it continues the sub-theory's too -- otherwise
+    every bump silently orphans every subset, which is the failure that
+    left the repo's best-evidenced result unbettable."""
+    _sub_theory(conn)
+    for i in range(12):
+        _settled(conn, f"V1SUB{i}",
+                 resolved=f"2026-09-{(i % 6) + 1:02d}T00:00:00Z")
+    theories.bump_version(conn, "t", justification="tightened a threshold")
+
+    score.save_segment_scores(conn, "t", 2)
+
+    row = conn.execute(
+        "SELECT n, pooled_versions FROM scores"
+        " WHERE segment = 'slice:strong-moderate-no'"
+        " ORDER BY computed_at DESC LIMIT 1"
+    ).fetchone()
+    assert row is not None, "the sub-theory must carry into the new version"
+    assert row["n"] == 12
+    assert row["pooled_versions"] == "1,2"
+
+
+def test_an_explicit_break_orphans_the_sub_theory_too(conn):
+    """Severing is still absolute, and it severs the whole theory --
+    parent and every subset alike. A slice cannot outlive a break its
+    parent declared."""
+    _sub_theory(conn)
+    for i in range(12):
+        _settled(conn, f"V1SUB{i}",
+                 resolved=f"2026-09-{(i % 6) + 1:02d}T00:00:00Z")
+    theories.bump_version(conn, "t", kind="breaking",
+                          justification="different population")
+
+    score.save_segment_scores(conn, "t", 2)
+
+    row = conn.execute(
+        "SELECT n FROM scores WHERE segment = 'slice:strong-moderate-no'"
+        " ORDER BY computed_at DESC LIMIT 1"
+    ).fetchone()
+    assert row is None, "a broken chain starts the subset from zero too"
+
+
+def test_a_score_records_which_versions_it_pooled(conn):
+    """A number pooled over three versions and one measured at a single
+    version are different claims, and a row that cannot tell them apart
+    invites exactly the silent merge versioning exists to prevent."""
+    _settled(conn, "ONE")
+    score.save_segment_scores(conn, "t", 1)
+
+    row = conn.execute(
+        "SELECT pooled_versions FROM scores WHERE segment = 'aggregate'"
+    ).fetchone()
+    assert row["pooled_versions"] == "1"
+
+
+def test_a_saved_score_records_how_much_of_it_is_backtested(conn):
+    """The value backtesting adds to a theory must be visible, not buried
+    inside a single total. Nothing discounts it -- a replayed edge counts
+    in full -- but a reader must be able to see what the record rests on."""
+    _sub_theory(conn)
+    score.record_backtest_run(conn, "bt-1", "t", 1, tier="B")
+    _settled(conn, "LIVE1")
+    for i in range(4):
+        _backtest_settled(conn, f"BT{i}", "bt-1",
+                          resolved=f"2026-06-{i + 1:02d}T00:00:00Z")
+
+    score.save_segment_scores(conn, "t", 1)
+
+    row = conn.execute(
+        "SELECT n, n_backtest FROM scores WHERE segment = 'aggregate'"
+    ).fetchone()
+    assert row["n"] == 5
+    assert row["n_backtest"] == 4, (
+        "four of the five settlements behind this record were replayed"
+    )
