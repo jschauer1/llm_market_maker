@@ -1541,3 +1541,75 @@ slice-matching NO candidate has failed to reach the user, after "gate
 removed it" and "final review declined it" — worth watching whether the
 screen is systematically finding these *after* the price has already
 moved.
+
+## 2026-09-01 -- v5: stage 6 removed, and the number that argues against it
+
+Removed the final review at the user's direction. The reasoning is in
+THEORY.md; what belongs here is the measurement that prompted it and the
+one that cuts the other way, because both were cheap to get and neither
+was written down anywhere before today.
+
+**The funnel nobody had cross-tabbed.** Live rows by bucket x side x
+disposition:
+
+```
+moderate no   endorsed    4   avg claimed +4.39
+moderate no   rejected   70   avg claimed +2.39
+moderate yes  endorsed    2
+moderate yes  rejected    6
+strong   no   endorsed    3   avg claimed +5.67
+strong   no   rejected    2   avg claimed +4.25
+weak     no   rejected  265
+weak     no   screened   60
+weak     yes  rejected  104
+```
+
+Rows matching the proven slice predicate (strong-or-moderate on a NO
+favorite): **7 endorsed, 72 rejected.** That is the number that decided
+it. The slice is the best-evidenced result in this repo and stage 6 was
+killing 91% of what it produced, with each rejection landing on R6
+CONTROL -- unbettable forever, not deferred.
+
+**And every backtest row was produced without stage 6.** 3,759 of them,
+including all 314 out-of-sample rows behind the slice. So the measured
+record described a five-stage procedure while the live path ran six. Nobody
+had noticed because the two were never put side by side.
+
+**The number that argues the other way, kept here on purpose.** On settled
+live rows:
+
+```
+              n   clusters  win     net edge
+endorsed      6      2      1.000   +14.81
+rejected    109     61      0.780    -8.06
+screened     22      -      0.955   +10.95
+```
+
+Slice-matching only: 4 endorsed went 4/4 (+18.5 gross); 11 rejected went
+63.6% (-25.4 gross). Stage 6 looks like it was discriminating. n=6 over 2
+event clusters clears nothing here, so it is unconfirmed rather than
+evidence -- but it is the honest reading that the removal argument is
+structural, not empirical, and I would rather a future session find this
+paragraph than rediscover the table and think it was hidden. Ticket
+`2026-09-01-did-stage-6-add-value` carries the question; the 456
+interpreted rows are frozen at v2-v4 so it stays askable.
+
+**Watch for, when the answer comes in:** if stage 6 really was reading
+something, it will be rules-divergence-against-the-chosen-side, sibling
+coherence, or resolution-source timing -- all three are recordable fields
+or gate rules. The fix would be to mechanize what it read, never to put a
+session veto back.
+
+**Mechanics, for whoever does the next bump.** The R4 gate had to move
+first: it demanded `disposition='endorsed'` while its own rationale in
+docs/promotion-key.md said it was holding candidates whose *stage 2 had
+not run*. Those had come apart, and only insider_judgment (the sole
+`uses_llm_judgment` theory) was affected. Key v2 -> v3 reads the bucket
+instead. Verified on a copy of the real DB: unsettled live rows went R1 3
+-> 57, with 67 landing at R5 suppressed on the complement's -2.39 and 187
+at R6 on non-positive claimed edge -- the gate opens for the proven
+subset and stays shut for the rest, which is the whole point.
+
+Also hit: `cli theories bump` still offers only breaking/carry and calls
+breaking the default, so the v5 bump had to go through the Python API.
+Filed as a maintenance ticket.

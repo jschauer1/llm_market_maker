@@ -271,8 +271,11 @@ its parent reads flat. `floor complete` refuses a report that omits one.
 The shape, so nothing has to be invented:
 
 ```markdown
-### insider_judgment v4
-Ran all six stages. 15 events judged, 1 endorsed / 19 rejected.
+### insider_judgment v5
+Ran all five stages. 15 events judged: 2 strong, 4 moderate, 9 weak.
+Rungs: R1 2, R5 4, R6 9. (v5 removed the final-review stage — a bucket
+is the interpretation and `promote` says what it is worth. Do not
+endorse or reject this theory's rows by hand.)
 
 - **strong-moderate-no** — READY, and the best-evidenced result in the
   repo: +3.76 net over n=328, 90 event clusters, 44 settlement days,

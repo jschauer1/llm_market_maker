@@ -185,7 +185,8 @@ def test_settled_rows_never_promote(conn):
     assert any("settled" in r for r in result.reasons)
 
 
-def test_judgment_theory_screened_row_awaits_endorsement(conn):
+def _judgment_theory(conn):
+    """Theory `t` as an LLM-judged theory with stage-2 provenance on file."""
     from tools import provenance
 
     theories.set_uses_llm_judgment(conn, "t", True)
@@ -193,11 +194,34 @@ def test_judgment_theory_screened_row_awaits_endorsement(conn):
         conn, run_id="live", theory_id="t", theory_version=1,
         stage="analysis", model="test-model", prompt_text="p",
     )
+
+
+def test_judgment_theory_row_without_a_bucket_awaits_stage_two(conn):
+    """The gate asks whether stage 2 ran, which is what a bucket records.
+
+    A row carrying no confidence bucket never reached the judging stage,
+    so nothing interpretable is being withheld -- it is waiting.
+    """
+    _judgment_theory(conn)
     _evidence(conn)
-    opp = _record(conn, "OPEN1")            # screened, never interpreted
+    opp = _record(conn, "OPEN1", confidence=None)       # stage 2 never ran
     result = promotion.promote(conn, opp)
     assert result.rung == "R4"
-    assert any("endorse" in r for r in result.reasons)
+    assert any("stage 2" in r for r in result.reasons)
+
+
+def test_judgment_theory_bucketed_row_is_not_held_at_the_gate(conn):
+    """A bucket IS the interpretation; no endorsement is owed on top of it.
+
+    Key v3 (2026-09-01): the gate reads the bucket, not the disposition,
+    so a judged row falls through to its segment and is ranked on the
+    evidence rather than held for a second model's approval.
+    """
+    _judgment_theory(conn)
+    _evidence(conn)
+    opp = _record(conn, "OPEN1")            # screened, bucket 'strong'
+    result = promotion.promote(conn, opp)
+    assert result.rung == "R1"
 
 
 # --- riskless --------------------------------------------------------------

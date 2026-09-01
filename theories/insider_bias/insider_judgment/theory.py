@@ -29,13 +29,22 @@ FUNNEL_KEYS = ("board_markets", "screened_markets", "events", "gated_out",
 class InsiderJudgmentTheory(Theory):
     id = "insider_judgment"
     name = "Insider Judgment"
-    version = 4
+    version = 5
     uses_llm_judgment = True
+    #: Stage 5 is the only judging stage. v5 removed stage 6, the main
+    #: session's price-aware final review, which had been the sole path to
+    #: `disposition='endorsed'` and so the sole path to a bet. It was never
+    #: part of the procedure that earned this theory's evidence -- every
+    #: backtest row, including the 314 out-of-sample rows behind the
+    #: `strong-moderate-no` slice, was produced without it -- while on live
+    #: rows it rejected 72 of the 79 candidates that slice's record
+    #: entitled. What a bucketed candidate is worth is now decided by its
+    #: segment's measured record via the promotion key (key v3), which is
+    #: the mechanism built for exactly that call. `prompts/final_review.md`
+    #: stays on disk, marked retired: eleven `judgment_runs` rows name it.
     prompts = {
         "analysis":
             "theories/insider_bias/insider_judgment/prompts/analysis.md",
-        "final_review":
-            "theories/insider_bias/insider_judgment/prompts/final_review.md",
     }
 
     def screen(self, ctx: TheoryContext) -> ScreenResult:

@@ -10,7 +10,9 @@ see `THEORY.md` Hypothesis section for why). The package path is
 `theories.insider_bias.insider_judgment`; `theories/insider_bias/` is now a
 shared parent folder, not this theory's own name.
 
-Current version: **4** (2026-08-29 — `gate.py` now reads resolution rules
+Current version: **5** (2026-09-01 — **stage 6, the main session's price-aware final review, is removed.** A bucket from stage 5 is now the whole interpretation, and what it is worth is decided by the candidate's segment record through the promotion key (key v3). Bumped `continues`: every backtest row this theory holds was generated without stage 6, so v5 is closer to the measured procedure than v4 was. See THEORY.md Version 5.)
+
+Previous version: 4 (2026-08-29 — `gate.py` now reads resolution rules
 as well as ticker prefixes, cutting survivors 130 -> 18 on a full board;
 and a confidence bucket now supplies its own realized edge rather than a
 probability, and must span `buckets.MIN_BUCKET_DAYS` settlement days
@@ -39,7 +41,7 @@ rows, not treated as a break in the cohort.
 
 ## Stages
 
-The LLM-judged path (unchanged since v1–v2, stages 1–6):
+Five stages since v5. Exactly one of them uses a model:
 
 | # | stage | who decides | artifact | recorded as |
 |---|---|---|---|---|
@@ -48,13 +50,30 @@ The LLM-judged path (unchanged since v1–v2, stages 1–6):
 | 3 | **gate** | code (no model) | `gate.py` | `stage='gate'` |
 | 4 | blind payload build | code | `pipeline.build_blind_payload` | — |
 | 5 | **deep analysis** | subagents | `prompts/analysis.md` | `stage='analysis'` |
-| 6 | **final review** | main session | `prompts/final_review.md` | `stage='final_review'` |
 
-Stages 1–4 are one call. Stages 5–6 are judgment and cannot be scripted.
+Stages 1–4 are one call. Stage 5 is judgment and cannot be scripted.
+
+**There is no stage 6 any more, and nothing replaces it.** Until v5 the main
+session read the judged batch *with prices visible* and endorsed or rejected
+each candidate, and `disposition='endorsed'` was the only route to a bet.
+That stage is gone. Rows now record `disposition='screened'` — read it as
+"the bucket is the interpretation", exactly as `edge_basis='model'` theories
+already do, not as "not yet assessed".
+
+**What decides a bet instead:** the promotion key. A bucketed row falls
+through key v3's R4 gate to its ranking segment, and the segment's own
+measured record classifies it — R1 where the record is past its evidence
+gates and positive, R5 where it is past them and negative, R6 where today's
+claimed edge is not positive. For this theory that means the
+`strong-moderate-no` slice routes its own candidates on its own +3.76, and
+the complement's −2.39 suppresses the rest. Judgment classifies;
+measurement quantifies. **Do not re-introduce a session-level veto** — that
+is the stage that was removed, and reinstating it by hand is a
+decision-procedure change that needs a version bump and a reason.
 
 ## Run
 
-"Run the theory" means all six stages, in order — a session that runs the
+"Run the theory" means all five stages, in order — a session that runs the
 screen and skips the judgment stages has not run the theory; if a stage is
 blocked (no judge budget, API down), the floor report names the stage and
 why.
@@ -100,12 +119,12 @@ into the prompt, or the prompt text stops matching the recorded sha.
 > alias, not a pinned id nobody verified — an alias that silently remaps is
 > exactly the drift the record exists to expose.
 
-### 6. Final review — the main session
+### 6. — removed at v5
 
-Follow `prompts/final_review.md`. This stage is required: no candidate
-reaches the user as a suggested bet without it. It may lower a bucket and may
-decline a candidate whose bucket implies positive edge; it may **not** raise a
-bucket, because it has seen the price and the subagent had not.
+There is no stage 6. Once stage 5's verdicts are applied, `finish()` writes
+the rows and the run is done; `python -m tools.cli promote --run $RUN` then
+says what each row is worth. `prompts/final_review.md` is retired history
+kept on disk for the `judgment_runs` rows that name it — do not run it.
 
 ## Record — before any opportunity is written
 
@@ -114,21 +133,20 @@ refuses rows for a run with no provenance.
 
 ```bash
 RUN=live-$(date -u +%Y-%m-%d)
-python -m tools.cli provenance record --theory insider_judgment --version 4 \
+python -m tools.cli provenance record --theory insider_judgment --version 5 \
     --run $RUN --stage gate --model "none (deterministic)" \
     --prompt-path theories/insider_bias/insider_judgment/gate.py --web-search 0
-python -m tools.cli provenance record --theory insider_judgment --version 4 \
+python -m tools.cli provenance record --theory insider_judgment --version 5 \
     --run $RUN --stage analysis --model "opus (Agent tool alias)" \
     --prompt-path theories/insider_bias/insider_judgment/prompts/analysis.md --web-search 1
-python -m tools.cli provenance record --theory insider_judgment --version 4 \
-    --run $RUN --stage final_review --model "<main session model id>" \
-    --prompt-path theories/insider_bias/insider_judgment/prompts/final_review.md --web-search 1
 ```
 
-Then record opportunities with `edge_pts_net` from `buckets.edge_for`,
-`judged_blind=True`, and `extra_json.final_recommendation` per
-`prompts/final_review.md`. `disposition='endorsed'` means *the main model
-recommends this bet*, not that arithmetic produced a positive number.
+Two stages record, not three: `gate` and `analysis`. Then record
+opportunities with `edge_pts_net` from `buckets.edge_for` and
+`judged_blind=True`. There is no `extra_json.final_recommendation` any more
+and no `disposition` to set — rows stay `screened`, which for this theory
+now means *the bucket is the interpretation*. Report what each row is worth
+with `promote`, never by re-judging the batch yourself.
 
 ## Sub-theories
 
@@ -184,10 +202,12 @@ untouched. **An orphan is a versioning fact; relink the chain.**
 ## Report
 
 The floor line carries the full funnel (board → screened → events → gated
-out → survivors → judged → endorsed/rejected) **and the gate breakdown by
-category** — a gate that drops candidates without saying what it dropped
-lets a scan claim coverage it never had. "Judged N, endorsed 0" is a
-normal, honest line.
+out → survivors → judged → bucket distribution → rungs) **and the gate
+breakdown by category** — a gate that drops candidates without saying what
+it dropped lets a scan claim coverage it never had. Since v5 the tail of
+that funnel is rungs from `promote`, not endorsements: "judged N: 2 strong,
+5 moderate, 11 weak → R1 2, R5 5, R6 11" is the shape. "Judged N, R1 0" is
+a normal, honest line.
 
 ## Skip
 

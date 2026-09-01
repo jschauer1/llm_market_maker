@@ -307,6 +307,13 @@ them apart:
 
 - **Researched picks** — a judgment theory's candidates that you endorsed at
   stage 2 (`disposition='endorsed'`, `edge_basis` `measured` or `prior`).
+  **A judgment theory need not have an endorsement stage at all.** Where it
+  does not, its judged rows stay `screened` carrying a confidence bucket,
+  and the bucket is the interpretation — read them like mechanical picks
+  below, and let `promote` rank them. `insider_judgment` is that case since
+  v5. Never run `ledger.interpret` on such a theory's rows to make them
+  look endorsed: since key v3 the R4 gate reads the bucket, so it buys no
+  different bet, and it fabricates a control group that measures nothing.
 - **Mechanical picks** — a code-only theory's candidates
   (`uses_llm_judgment = False`). `edge_basis` is `model` for a pure
   calculation (e.g. arbitrage) or `measured` when the theory mechanically

@@ -21,7 +21,7 @@ from typing import Mapping
 
 from tools import ledger, rank, sizing, slices, theories
 
-KEY_VERSION = 2
+KEY_VERSION = 3
 
 RUNGS = {
     "R1": "RECOMMENDED",
@@ -178,12 +178,20 @@ def promote(
             ])
 
     # --- gate: a judgment theory's candidate needs stage 2 -----------------
+    # The gate asks whether stage 2 RAN, and a confidence bucket is the
+    # record that it did. It used to ask for `disposition='endorsed'`
+    # instead -- a second model's approval on top of the bucket -- which
+    # made the criterion and the rung's own rationale ("stage 2 has not
+    # run, so nothing interpretable is being withheld") disagree. Key v3
+    # settles it toward the rationale: the bucket is the interpretation,
+    # and what the candidate is worth is then decided by its segment's
+    # measured record, not by a further judgment. See docs/promotion-key.md.
     trow = theories.get(conn, row["theory_id"])
     if trow is not None and trow["uses_llm_judgment"] \
-            and row["disposition"] != "endorsed":
+            and not row["confidence"]:
         return result("R4", claimed=row["edge_pts_net"], reasons=[
-            "awaiting stage-2 endorsement — judgment theory, "
-            f"disposition {row['disposition']!r}"
+            "awaiting stage 2 -- judgment theory, no confidence bucket "
+            "recorded"
         ])
 
     # --- the segment that ranks this candidate -----------------------------

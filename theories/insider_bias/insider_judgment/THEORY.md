@@ -112,6 +112,24 @@ What's left to settle the theory as a whole, roughly in order of value:
 
 ## Version
 
+**5** (2026-09-01) — **stage 3, the main session's price-aware final
+review, is removed.** It was never part of the procedure that produced this
+theory's evidence (every backtest row was generated without it) and it was
+rejecting 72 of the 79 live rows the `strong-moderate-no` slice's record
+entitled, each landing on R6 and so unbettable. Stage 2's bucket is now the
+whole interpretation; what it is worth is decided by the candidate's
+segment record through the promotion key, whose R4 gate was amended the
+same day (key v3) to read the bucket rather than a disposition. Rows record
+`disposition='screened'` — for this theory read that as "the bucket is the
+interpretation", not "not yet assessed". Full argument, and why this is not
+a return to v1's mechanical disposition, under Stage 3 below.
+
+Bumped **`continues`**, and unusually well founded: since every backtest
+row was produced by a five-stage procedure, v5 sits *closer* to the
+measured evidence than v4 did. Nothing about stages 1–2, the screen, the
+gate, the prompt or the buckets changed.
+
+
 **4** (2026-08-29) — *Two changes, both in this version because no v4 row
 had been recorded when the second landed.*
 
@@ -400,70 +418,78 @@ whether this judgment is worth anything, and they are also what teaches the
 `weak` bucket its rate. Candidates never reached within the scan budget are
 reported as a count, not recorded.
 
-## Stage 3 — the main research model makes the final call
+## Stage 3 — removed at v5
 
-**A subagent verdict is an initial recommendation, never a bet.** No candidate
-from this theory may be put in front of the user as a suggested bet unless the
-**main research session** — the model actually running this repo — has reviewed
-it and recommends it in its own right. Added at v2.
+**There is no stage 3.** From v2 to v4 this theory ended with the main
+research session reading the judged batch *with prices visible* and
+endorsing or declining each candidate; `disposition='endorsed'` was the
+only path from a bucket to a bet. v5 removes it. A bucket from stage 2 is
+the whole interpretation, and what a bucketed candidate is worth is decided
+by its ranking segment's measured record through the promotion key.
 
-Why this exists: at v1 the disposition was mechanical (`endorsed` whenever the
-bucket implied positive edge), so a `moderate` verdict became a suggested bet
-with nothing standing between the subagent and the user. The first live run
-showed why that fails. Deep analysis returned 25 mechanically-endorsable
-markets; reading them together, most carried a resolution-rules divergence
-that cut *against* the very side the screen had selected — a defect visible
-only when comparing candidates side by side, which is precisely what a
-per-candidate subagent cannot do. The batch view is the main model's job.
+### Why it went
 
-**What the final review must do**, per candidate reaching it:
+**It was never in the procedure that earned the evidence.** All 3,759
+backtest rows this theory holds — including the 314 out-of-sample rows
+behind the `strong-moderate-no` slice at +3.76 net, the best-evidenced
+result in this repo — were generated with no final review. So the live
+path ran a six-stage procedure while every number used to justify it
+described a five-stage one. That is the silent merge the versioning rules
+exist to prevent, arriving through a side door: not two prompts under one
+version, but two *stage counts* under one track record.
 
-- Re-read the subagent's `rules_note`. Ask which *side* a divergence favours,
-  not merely that one exists. A rule broader than its title makes YES easier,
-  which damages a NO favourite — and this screen picks NO most of the time.
-- Check whether the "informed group" actually knows something **the public does
-  not**. A group that knows a fact already carried by the mainstream press
-  supplies no asymmetry, and the thesis is asymmetry, not expertise.
-- Check the candidate against its siblings. On a strike ladder, confirm the
-  recommended legs are jointly coherent and identify which survive *every*
-  live reading of the rules.
-- Verify any post-cutoff factual claim a subagent made before relying on it.
-- **Verify the resolution *mechanism* itself, not just the facts fed into
-  it.** A subagent can correctly report that an informed group knows X and
-  still miss that the market resolves on a step *after* X that is genuinely
-  live — see Learnings, 2026-08-24 (`KXBIGBROTHERELIMINATION`). Read how the
-  outcome is actually produced before accepting "no rules divergence" as
-  "already decided."
-- Confirm the resolution source can publish before close.
+**It was rejecting the rows the evidence entitled.** Of 79 live candidates
+matching the proven slice's predicate (a strong-or-moderate verdict on a NO
+favorite), stage 3 endorsed 7 and rejected 72 — 91%. A rejected row is R6
+CONTROL under the promotion key, so each of those was unbettable forever.
+The mechanism that routes a proven sub-theory's candidates onto its own
+record was working exactly as designed, and a second, unmeasured veto sat
+downstream of it cancelling the result.
 
-The final review may **lower** a bucket (the warning-sign rules above apply to
-it exactly as they do to the subagent) and may decline to recommend a
-candidate whose bucket implies positive edge. It should not raise a bucket:
-the subagent judged blind to price and the main session has not.
+**The machinery it predates now exists.** Stage 3 was added at v2 for a
+real reason: at v1 the disposition was mechanical — `endorsed` whenever the
+*bucket's own claimed edge* was positive — and the first live run turned 25
+`moderate` verdicts into suggested bets with nothing between a subagent and
+the user. **v5 is not a return to v1**, and the difference is the whole
+argument. v1 deferred to a claimed number from a bucket with no settled
+history; v5 defers to a *segment's measured record* — evidence gates, an
+out-of-sample split, `mined_from_run_ids`, the complement as control. None
+of that existed at v2. The batch-level defects stage 3 was built to catch
+now show up where they should: as a segment whose measured
+`calibration_edge_net` goes negative, which suppresses its own candidates at
+R5 without anyone reading them.
 
-**Recording — required.** Every opportunity carries, in `extra_json`:
+### What decides a bet now
 
-```json
-"final_recommendation": {
-  "decided_by": "<model id of the main research session>",
-  "subagent_model": "<model id that produced the initial verdict>",
-  "subagent_bucket": "strong|moderate|weak",
-  "final_bucket": "strong|moderate|weak",
-  "action": "recommended|declined|override_down",
-  "note": "why the main model reached a different conclusion, if it did"
-}
-```
+Judgment classifies; measurement quantifies. Stage 2 assigns a bucket blind
+to price, `buckets.edge_for` turns it into points from that bucket's own
+realized history, and `promote` classifies the row on its segment:
 
-`disposition='endorsed'` now means **the main research model recommends this
-bet**, not merely that arithmetic produced a positive number. Anything it
-declines is `rejected` with the reason, which keeps the control group that
-`score.interpretation_value` measures meaningful.
+- the `strong-moderate-no` slice routes its own candidates on its own
+  +3.76 net (90 event clusters, 44 settlement days, out of sample) → **R1**
+- the complement, at −2.39 net past its gates, suppresses the rest → **R5**
+- a bucket whose claimed edge is not positive at today's ask → **R6**
 
-**Name the deciding model when reporting to the user.** A recommendation is
-not complete without saying which model made the final call — the user is
-entitled to know whose judgment they are being asked to act on, and a later
-session comparing track records needs it to tell whether a change in results
-came from a change in procedure or a change in model.
+No model is in that path. The key-v3 amendment that made it possible is in
+`docs/promotion-key.md`: the R4 gate now asks whether a *bucket* was
+recorded rather than whether a second model endorsed, which is what the
+rung's own rationale always said it was asking.
+
+### What this does not claim
+
+**It does not claim stage 3 was measured and found harmful.** Its endorsed
+cohort settled 6/6 at +14.81 net against −8.06 for its rejections — which
+points the *other* way. But n=6 over 2 event clusters clears no gate in this
+repo; the endorsed cohort could not reach even R3's three-day floor. By this
+project's own standard that is unconfirmed, not evidence. The argument for
+removal is structural, not empirical: the stage was outside the measured
+procedure and was vetoing the measured result.
+
+The 456 interpreted live rows (9 endorsed, 447 rejected) stay exactly as
+recorded at v2–v4 and remain a readable control for whether stage 3 added
+value. The question is open and a ticket carries it; if the cohort ever
+reaches a size that can answer it, the answer is worth having.
+
 
 ## Prompts and provenance
 
@@ -471,7 +497,8 @@ came from a change in procedure or a change in model.
 stage, which artifact decides it, the model and prompt for each
 judging stage, and the provenance commands to run before any
 opportunity is written. Stages 1-4 are executable via
-`pipeline.run_mechanical_stages(board)`; stages 5-6 are judgment.
+`pipeline.run_mechanical_stages(board)`; stage 5 is the only judgment
+stage (stage 6 was removed at v5).
 
 This theory declares `uses_llm_judgment`, so `record_opportunity` refuses any
 row for a run whose model and prompt were not recorded first.
@@ -480,7 +507,7 @@ row for a run whose model and prompt were not recorded first.
 |---|---|---|
 | gate | `gate.py` (deterministic — no model) | none |
 | analysis | `prompts/analysis.md` | `opus` — an Agent-tool **alias**, web search on, effort not set |
-| final_review | `prompts/final_review.md` | `claude-opus-5[1m]` (main session) |
+| ~~final_review~~ | `prompts/final_review.md` — **retired at v5**, kept on disk only because eleven `judgment_runs` rows name it | `claude-opus-5[1m]` (main session), v2–v4 |
 
 **Subagent model ids are aliases, not pins.** The Agent tool takes `opus` /
 `sonnet` / `haiku` / `fable` and resolves them harness-side without reporting

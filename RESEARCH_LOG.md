@@ -2594,3 +2594,58 @@ gitignored, so the report itself is untracked by design.
 Lesson for later floors: stage explicit paths. A floor session shares a
 working tree with every other lane, so `git add -A` cannot mean "my
 work".
+
+## 2026-09-01 -- insider_judgment v5 and promotion key v3: the endorsement gate comes out
+
+**User-directed refactor.** Removed `insider_judgment`'s stage 6, the main
+session's price-aware final review, and with it the endorsement gate that
+was the only path from a bucketed candidate to a bet.
+
+**Why it matters beyond one theory.** Two things had drifted apart without
+anyone putting them side by side:
+
+1. **The live procedure was not the measured procedure.** All 3,759 of this
+   theory's backtest rows -- including the 314 out-of-sample rows behind
+   `strong-moderate-no` at +3.76 net, the best-evidenced result in the repo
+   -- were generated with no final review. The live path ran six stages
+   while every number justifying it described five. That is the silent
+   merge the versioning rules exist to prevent, arriving as two *stage
+   counts* under one track record rather than two prompts under one version.
+2. **The promotion key's R4 gate contradicted its own rationale.** It
+   required `disposition='endorsed'`, while its stated reason was that the
+   rung holds candidates whose *stage 2 has not run*. A bucketed row has had
+   stage 2 run. Consequence: 72 of the 79 live rows the proven slice
+   entitled were rejected by stage 6 and landed on R6 CONTROL --
+   unbettable forever. The sub-theory routing machinery worked exactly as
+   designed and a second, unmeasured veto downstream cancelled it.
+
+**Key v3** re-expresses the R4 gate as "no confidence bucket recorded".
+Rungs, their order and every other criterion are unchanged;
+`insider_judgment` is the only `uses_llm_judgment` theory, so nothing else
+moved. Rows already recorded `rejected` stay R6 -- this governs what is
+judged from here and rewrites no history.
+
+**Verified on a copy of the real DB** (real ledger untouched): unsettled
+live rows went R1 3 -> 57, R5 0 -> 67, R6 308 -> 187. The proven subset
+gets a bet path; the complement is suppressed at R5 on its own -2.39.
+
+**Bumped `continues`**, and worth noting why the label is easy here: since
+every backtest row came from a five-stage procedure, v5 sits *closer* to
+the measured evidence than v4 did. A bump that removes a stage is not
+automatically a sever.
+
+**What was NOT established, stated plainly.** Stage 6 was not measured and
+found harmful. Its endorsed cohort settled 6/6 at +14.81 net against -8.06
+for its 109 settled rejections -- which points the other way. n=6 over 2
+event clusters clears no gate here, so it is unconfirmed, and the argument
+for removal is structural: the stage sat outside the measured procedure and
+was vetoing the measured result. The 456 interpreted live rows are frozen
+at v2-v4 so the question stays askable; ticket
+`insider_judgment/2026-09-01-did-stage-6-add-value` carries it, including
+the instruction that a confirmed finding would be mechanized as a field or
+gate rule, never reinstated as a session veto.
+
+**Filed separately:** `cli theories bump` still offers only breaking/carry
+and advertises breaking as the default, so it cannot record the kind the
+2026-08-31 ruling made default. The v5 bump went through the Python API.
+Maintenance ticket `2026-09-01-bump-cli-missing-continues`.

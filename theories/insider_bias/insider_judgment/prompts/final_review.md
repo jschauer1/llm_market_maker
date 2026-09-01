@@ -8,6 +8,31 @@ later session can tell whether a change in results came from a change in
 procedure or a change in model.
 -->
 
+> **RETIRED AT v5 (2026-09-01). This stage no longer runs.**
+>
+> This file is kept on disk because eleven `judgment_runs` rows name it as
+> the prompt that judged, and a recorded prompt path that stops resolving
+> turns a reproducibility record into a dangling pointer
+> (`tests/test_conventions.py::test_every_recorded_prompt_path_still_resolves`).
+> It is history, not procedure. **Do not run it.**
+>
+> Why it went: this stage was never part of the procedure that earned this
+> theory's evidence. All 3,759 backtest rows -- including the 314
+> out-of-sample rows behind the `strong-moderate-no` slice at +3.76 net --
+> were generated without it, so the live path was running a six-stage
+> procedure while the measured record described a five-stage one. Meanwhile
+> its veto was rejecting 72 of the 79 live rows that slice's evidence
+> entitled, each landing on R6 CONTROL and so unbettable forever. What a
+> bucketed candidate is worth is now decided by its segment's measured
+> record through the promotion key (key v3), which is the mechanism built
+> for that call. See `THEORY.md` Version 5 and `RUNBOOK.md`.
+>
+> What this does NOT claim: that the stage was measured and found harmful.
+> Its endorsed cohort settled 6/6 at +14.81 net, against -8.06 for its
+> rejections -- suggestive, but n=6 over 2 event clusters clears no gate in
+> this repo. The 456 interpreted live rows stay as recorded so that question
+> stays askable; a ticket carries it.
+
 # Stage 3 — final review
 
 A subagent verdict is an **initial recommendation**, never a bet. Nothing from
