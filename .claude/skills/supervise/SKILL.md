@@ -25,9 +25,11 @@ and the reason is written down.
   back. It does not get you finishing its afternoon.
 - **Steer what a worker works on.** Not a lane, not a theory, not a
   ticket, and not a hint about which is worth picking. `go` chooses.
-- **Tell a worker it is being supervised.** No fleet, no slots, no
-  supervisor, nothing about what reads its report or decides what
-  happens next. It is a `go` session and should believe nothing else.
+- **Tell a worker it is being supervised.** No supervisor, no slots, no
+  replacement, nothing about what reads its report or decides what
+  happens next. It *does* know it works alongside parallel sessions —
+  the brief says so, and a session that thinks it has the tree to itself
+  will step on someone. Peers yes, hierarchy no.
 
 Your judgment is spent on three things: is this report real, is the
 fleet still three, and does this commit say what actually happened.
@@ -134,10 +136,12 @@ slots, or you. Two failure modes, and the quiet one is worse:
   lever in a session". A hint spends that lever to save you some
   bookkeeping, and because a hint is not visibly a decision, nothing
   downstream records that the choice was yours rather than the worker's.
-- **Revealing.** A session told it is being watched writes for the
-  watcher — it reports to satisfy a reader instead of recording to
-  satisfy the repo, which is the exact failure the conclusive test in
+- **Revealing the hierarchy.** A session told it is being watched writes
+  for the watcher — it reports to satisfy a reader instead of recording
+  to satisfy the repo, which is the exact failure the conclusive test in
   §4 exists to catch. Do not create the incentive and then test for it.
+  The brief already tells the worker it runs alongside peers, which is
+  the part it needs; what it does not need is a rung above it.
 
 `go` and CLAUDE.md contextualize the worker. You add the session name and
 step back.

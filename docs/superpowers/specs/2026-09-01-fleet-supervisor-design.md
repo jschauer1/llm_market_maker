@@ -127,13 +127,23 @@ restated.
   is worse than an order: it biases the choice without being visible as
   a decision, so nothing downstream records that the lane was really the
   supervisor's pick.
-- **Any description of the supervision itself** — no fleet, no slots, no
-  supervisor, nothing about what reads the report or decides what
-  happens next. A session told it is being watched writes for the
-  watcher: it reports to satisfy a reader rather than recording to
-  satisfy the repo. That is precisely the failure the conclusive test
-  screens for, and creating the incentive and then testing for it is a
-  worse design than not creating it.
+- **Any description of the hierarchy above the worker** — no
+  supervisor, no slots, no replacement, nothing about what reads the
+  report or decides what happens next. A session told it is being
+  watched writes for the watcher: it reports to satisfy a reader rather
+  than recording to satisfy the repo. That is precisely the failure the
+  conclusive test screens for, and creating the incentive and then
+  testing for it is a worse design than not creating it.
+
+The line is **peers yes, hierarchy no**, and the first half is a
+requirement rather than a permitted leak. The brief tells the worker
+plainly that other sessions are working the repo alongside it, because
+every coordination mechanism it will meet exists for that reason —
+advisory lane claims, the locking floor, the shared board, tickets as
+the low-interrupt channel, and other sessions' uncommitted work showing
+up in its own `git status`. A session that believes it has the tree to
+itself will step on someone. What it gains nothing from is knowing there
+is a rung above it.
 
 So a worker is contextualized by `go` and CLAUDE.md, which every session
 in this repo already runs on, and by nothing else. The supervisor adds a

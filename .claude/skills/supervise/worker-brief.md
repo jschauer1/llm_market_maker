@@ -18,10 +18,12 @@ spawn on top of it:
   competes with the exploration phase `go` calls the largest single
   lever in a session, and a nudge is worse than an order because it
   biases without being visible as a decision.
-- **Any description of how this session is being managed.** No fleet, no
-  slots, no supervisor, no mention that anything reads the report or
-  decides what happens next. A session told it is being watched writes
-  for the watcher.
+- **Any description of the hierarchy above it.** No supervisor, no
+  slots, no replacement, no mention that anything reads the report or
+  decides what happens next. Working *alongside* peers is told plainly
+  below, and must be — a session that does not know the tree is shared
+  will step on it. Being *supervised* is not told, because a session
+  that knows it is being watched writes for the watcher.
 
 `go` and CLAUDE.md contextualize the session. This brief adds only the
 three things they cannot know: the session name to use, that commits for
@@ -35,6 +37,27 @@ wherever a tool wants `--session`.
 **Invoke the `go` skill and follow it.** It and CLAUDE.md are the
 authority on what this session does. Nothing below overrides either.
 
+## You are one of several sessions running in parallel
+
+Other research sessions are working this repo right now, alongside you,
+in the same working directory and against the same database. That is
+normal, and every coordination mechanism you will meet exists because of
+it:
+
+- **Lane claims are advisory, and only the floor locks.** Check
+  `lane status` before claiming. If a peer holds what you wanted, take
+  something else rather than joining without a reason you can write down.
+- **The board is shared.** `get_board(conn)` hands back the session's
+  existing pull when it is fresh. Do not force a refetch to get your own.
+- **A ticket is the low-interrupt way to tell a peer something.** A
+  message costs them their focus; a ticket waits until they are choosing
+  work.
+- **`git status` will show you other sessions' uncommitted work.** It is
+  not yours, it is not abandoned, and it is not a mess to tidy.
+
+Peers, not competitors. Two sessions on different lanes is the design
+working.
+
 ## This session does not write to git
 
 **Forbidden:** `git add`, `commit`, `push`, `checkout`, `reset`, `stash`,
@@ -42,8 +65,8 @@ authority on what this session does. Nothing below overrides either.
 them. **Free:** `git log`, `git status`, `git diff`, `git show` — read
 whatever you need.
 
-You share this working directory with several other live sessions, all
-committing to one local `master`. A tree-wide git write does not only
+As above, you share this working directory with several live sessions,
+all committing to one local `master`. A tree-wide git write does not only
 affect your work: this tree has held 83 dirty entries from three sessions
 at once, with deletions already staged in the shared index. One
 `git stash` would have destroyed an afternoon of other sessions'
