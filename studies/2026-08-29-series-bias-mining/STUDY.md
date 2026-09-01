@@ -680,3 +680,153 @@ high-frequency tail is *unmeasured*, not measured-and-null.
 
 The stopping point is recorded with the result, and the remaining series
 stay on disk in `progress` for a later pass to extend rather than redo.
+
+## Pass 3 result — NOT MEASURED, and the negative control is why
+
+Run 2026-09-01 against `data/pass3-frozen.db`, a snapshot taken while the
+sweep continued: **658 series priced, 69,874 observations, 648 series
+with usable rows.** One run, on one frozen population, per the rule
+above.
+
+```
+series clearing floors      : 358   (of which 11 mention control)
+series TESTED (Holm family) : 347
+expected false positives    : 17.4
+median MDE over tested      : 12.16 pts
+
+PRE-REGISTERED 'MEASURED'?  : NO -- not measured
+                              (needs >=30 tested AND median MDE <=8.0)
+FLAGGED (all four gates)    : 9
+```
+
+**The count gate passed and the power gate failed.** 347 tested against a
+floor of 30 — the breadth problem is solved, and this is the first pass
+with a real family. But median MDE is **12.16** against a bar of 8.0, so
+by the criterion fixed before the data this pass is *not measured*, for
+the third time running. Breadth was necessary and was not sufficient:
+the median series here still cannot resolve a theory-grade 3–6 point
+effect.
+
+### Nine flags, and none of them is a finding
+
+The four gates fired on nine series, most of them enormous:
+
+| series | n | days | gross | t | p |
+|---|---|---|---|---|---|
+| KXNFL4Q | 141 | 10 | −10.18 | −12.48 | 5.5e-07 |
+| KXNPBRFI | 204 | 38 | **−40.85** | −11.46 | 1.0e-13 |
+| KXATPCHALLENGERDOUBLES | 276 | 15 | −26.09 | −8.02 | 1.3e-06 |
+| KXUELFTTS | 162 | 10 | −24.74 | −7.45 | 3.9e-05 |
+| KXT20TEAMTOTAL | 113 | 13 | −33.54 | −7.25 | 1.0e-05 |
+| KXKBORFI | 188 | 42 | −25.47 | −6.67 | 4.9e-08 |
+| KXNFL2H | 141 | 10 | −9.69 | −6.53 | 1.1e-04 |
+| KXCPLTEAMTOTAL | 93 | 16 | **−44.97** | −5.95 | 2.6e-05 |
+| KXATP | 77 | 36 | +5.91 | +5.46 | 3.9e-06 |
+
+A −45 point systematic bias is not a bias. **The negative control says so
+independently**: 5 of the 11 admitted mention_family series trip the
+split-sample and t gates. Pass 1 ran the same control on the screened
+population and *all ten* came back non-significant. Same series, same
+statistic, different population — so what changed is the population, and
+a flag here cannot be read as a property of a series.
+
+This is the control earning its keep. Pass 1 wrote that a flag among the
+control means "the guard is too loose"; this is the first pass where that
+sentence has had to be cashed.
+
+### The mechanism: without a liquidity filter the ask is not a price
+
+The gap grows monotonically with the ask, across all 69,874 observations:
+
+| ask band | n | mean ask | realized | gap |
+|---|---|---|---|---|
+| 0.50–0.70 | 15,799 | 0.606 | 0.581 | −2.6 |
+| 0.70–0.80 | 11,528 | 0.746 | 0.713 | −3.3 |
+| 0.80–0.90 | 11,395 | 0.845 | 0.801 | −4.4 |
+| 0.90–0.95 | 7,668 | 0.922 | 0.863 | −5.9 |
+| 0.95–0.98 | 7,238 | 0.961 | 0.883 | −7.7 |
+| **0.980–0.995** | **16,075** | **0.987** | **0.801** | **−18.6** |
+| 0.995–1.01 | 171 | 0.999 | 0.988 | −1.1 |
+
+**23% of the population sits in that 0.980–0.995 band**, priced at 0.987
+and realizing 0.801. That is not a market that is wrong by 18 points; it
+is a market with no offer, whose top-of-book ask is a placeholder. Thin
+history says the same thing from another angle: markets with under 10
+candles show −16.9, against −3.0 for those with 500+.
+
+Passes 1–2 never saw this because their population came through
+`insider_bias/screen.py`, which requires **spread ≤ 0.07 and volume ≥
+500**. Pass 3 dropped the screen to widen the population and dropped the
+liquidity filter with it. Capping the ask confirms the direction and also
+its limits:
+
+| ask cap | admitted | tested | flagged | control tripping |
+|---|---|---|---|---|
+| none | 358 | 347 | 9 | **5 / 11** |
+| ≤ 0.98 | 322 | 311 | 7 | 6 / 11 |
+| ≤ 0.95 | 288 | 279 | 4 | **2 / 9** |
+| ≤ 0.90 | 269 | 260 | 3 | 2 / 9 |
+
+So the extreme-ask band explains roughly *half* the problem and not all
+of it: at a 0.95 cap the control still fires on two series. **The residue
+cannot be diagnosed from what was collected**, because a price cap is a
+poor proxy for a liquidity filter and the real fields were never stored.
+
+### The defect, and it was a data-conventions failure
+
+`tools/kalshi/history.candlesticks` returns `yes_bid_close`, `volume` and
+`open_interest`. `collect.py` fetched all three, used the bid to pick the
+favorite side, and **persisted only the derived ask** — distilling at
+write time and discarding the fields that turned out to decide whether
+the distillate meant anything. CLAUDE.md's rule is raw payloads over
+distillates precisely against this, and the cost is not theoretical:
+re-deriving them means re-fetching candles Kalshi archives ~60 days after
+close.
+
+Fixed the same day (`3cc5317`): `spread`, `volume`, `open_interest` and
+`spread_24h` are captured at the decision point. The running sweep was
+**stopped mid-flight** to land it, since every further series priced
+without the fields would have been another to re-fetch inside a window
+that closes. Additive migration; the 660 series already priced read NULL
+and are a backfill ticket, not a silent rewrite.
+
+### The carried candidates
+
+- **`KXRT`**, predicted **negative**: −2.76 gross, t −0.76, p 0.47, n=262
+  over 9 days. Right sign, nowhere near significance — **not confirmed**,
+  and pass 1's caution stands. It remains a hypothesis.
+- **`KXLOWTLV`**, predicted positive: **not in the admitted family** this
+  pass — it does not clear the count floors in this population. Untested,
+  not refuted.
+
+Neither prediction is resolved, and neither is re-read in light of the
+result.
+
+### What pass 3 actually establishes
+
+1. **The breadth problem is solved.** 347 tested versus pass 1's seven
+   and pass 2's one. The collector works, is resumable, and the family is
+   now large enough that Holm is the binding constraint rather than
+   sample size.
+2. **Breadth alone does not make a population measurable.** Median MDE
+   12.16 says the median recurring series still cannot resolve a
+   theory-grade effect at 60 days of history. More series did not fix
+   that and more series will not; only longer per-series history will.
+3. **A population without a liquidity filter cannot be mined for bias**,
+   and the negative control detects that on its own. This is the most
+   useful thing the pass produced, and it is a *method* result rather
+   than a market result.
+4. **Nothing here is promotable.** No follow-on theory is proposed on
+   these nine flags. Any of them may be real; none can be told apart from
+   the artifact with the fields on hand.
+
+### Pass 4, pre-registered now
+
+Same bar as pass 3 with one addition, fixed here before the data exists:
+**observations must carry a tradeable book at the decision point** —
+`spread <= 0.07` and `volume >= 500`, the same thresholds
+`insider_bias/screen.py` uses, so pass 4's population is the broad sweep
+under passes 1–2's liquidity standard rather than a third thing. The
+negative control is the acceptance test: **if mention_family still trips
+the gates under that filter, the population is still wrong and pass 4 is
+not measured either**, whatever else it flags.
