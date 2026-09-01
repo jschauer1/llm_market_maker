@@ -164,6 +164,44 @@ def branch_families(anchors: dict, *, min_no: int = 3) -> set[str]:
             if len(v) >= min_no and sum(v) / len(v) > BRANCH_EARLY_SHARE}
 
 
+def partition_families(anchors: dict, events: dict, *, min_legs: int = 3,
+                       min_events: int = 2) -> set[str]:
+    """Series whose settled events pay exactly one winner -- partitions.
+
+    Sharper than `branch_families` and it catches what that one misses.
+    `KXBIGBROTHERELIMINATION` is the worked example: 8 events of 11-17
+    legs, EXACTLY ONE YES EACH ("which houseguest goes this week"), no
+    early closes at all because an elimination resolves on schedule. The
+    rules-text regex misses it, Kalshi's `mutually_exclusive` flag is not
+    on the settled payload, and the early-close tell is blind to it -- but
+    the settled outcomes say it outright.
+
+    Same series-level discipline as `branch_families`, and the same
+    limits: it reads settlement, so it cleans history and cannot screen a
+    live board. A series counts when its multi-leg settled events pay one
+    winner apiece.
+    """
+    per_event: dict[str, list[str]] = {}
+    ev_series: dict[str, str] = {}
+    for tk, a in anchors.items():
+        ev = events.get(tk)
+        if not ev:
+            continue
+        per_event.setdefault(ev, []).append(a.get("result"))
+        ev_series[ev] = a.get("series") or ""
+    hits: dict[str, list[bool]] = {}
+    for ev, res in per_event.items():
+        if len(res) < min_legs:
+            continue
+        hits.setdefault(ev_series[ev], []).append(res.count("yes") == 1)
+    # A share rather than `all`: an event whose legs partly fall outside
+    # the 60-day archive window can show zero winners simply because the
+    # winning leg was not captured. KXBIGBROTHERELIMINATION is 7-of-8
+    # one-winner events for exactly that reason, and `all` misses it.
+    return {s for s, v in hits.items()
+            if len(v) >= min_events and sum(v) / len(v) >= 0.6}
+
+
 def observe(rows, anchor_row, *, side, anchor="days_to_deadline",
             dlo=0, dhi=LATE_WINDOW_DAYS, band=ENTRY_BAND,
             max_spread=None, min_volume=None, min_oi=None, entry="mean"):
@@ -205,7 +243,8 @@ def observe(rows, anchor_row, *, side, anchor="days_to_deadline",
     return s / n, anchor_row["result"] == "yes"
 
 
-def estimate(anchors, candles, *, tickers=None, events=None, **kw):
+def estimate(anchors, candles, *, tickers=None, events=None,
+             weight="market", **kw):
     """Pooled estimate, one observation per market.
 
     Two standard errors are returned and the clustered one is the honest
@@ -231,14 +270,28 @@ def estimate(anchors, candles, *, tickers=None, events=None, **kw):
     n = len(per)
     if not n:
         return {"markets": 0}
+    if weight == "event":
+        # One vote per EVENT, not per market. A 17-leg "which houseguest"
+        # ladder and a 7-leg date ladder are one question each, and
+        # market-weighting lets a single event dominate the pooled number
+        # in proportion to how finely Kalshi chose to slice it. Averaging
+        # within the event first is the honest unit; the clustered SE
+        # already treats it as one.
+        buckets: dict[str, list] = {}
+        for tk, (p, y) in per.items():
+            buckets.setdefault((events or {}).get(tk) or tk, []).append((p, y))
+        per = {g: (sum(p for p, _ in v) / len(v),
+                   sum(1 for _, y in v if y) / len(v))
+               for g, v in buckets.items()}
+        n = len(per)
     mean_p = sum(p for p, _ in per.values()) / n
-    yes_n = sum(1 for _, y in per.values() if y)
-    p_yes = yes_n / n
+    p_yes = sum(float(y) for _, y in per.values()) / n
+    yes_n = round(sum(float(y) for _, y in per.values()))
     gap = (mean_p - p_yes) * 100.0
     se = math.sqrt(p_yes * (1 - p_yes) / n) * 100.0
 
     # Cluster-robust SE of mean(d), d_i = price_i - outcome_i, by event.
-    d = {tk: (p - (1.0 if y else 0.0)) for tk, (p, y) in per.items()}
+    d = {tk: (p - float(y)) for tk, (p, y) in per.items()}
     dbar = sum(d.values()) / n
     groups: dict[str, float] = {}
     for tk, di in d.items():
@@ -411,10 +464,31 @@ def main() -> None:
     _row("priced off YES ask (old)",
          estimate(anchors, candles, events=events, tickers=liquid_allow, side="ask",
                   entry="first"))
+    _row("  ...event-weighted",
+         estimate(anchors, candles, events=events, tickers=liquid_allow,
+                  side="bid", entry="first", weight="event"))
     liquid_haz = [tk for tk in hazard if vol.get(tk, 0.0) >= 100.0]
     _row("same, wide hazard stratum",
          estimate(anchors, candles, events=events, tickers=liquid_haz, side="bid",
                   entry="first"))
+    _row("  ...event-weighted",
+         estimate(anchors, candles, events=events, tickers=liquid_haz, side="bid",
+                  entry="first", weight="event"))
+    # The wide stratum's apparent edge is contamination the rules-text
+    # screen cannot see. Strip the series whose settled events pay exactly
+    # one winner and it goes away -- which is the point of measuring it.
+    part = partition_families(anchors, events)
+    clean_haz = [tk for tk in liquid_haz
+                 if (anchors.get(tk) or {}).get("series") not in part]
+    print("  [series settling as one-winner partitions: {}; "
+          "liquid hazard {} -> {} markets]".format(
+              len(part), len(liquid_haz), len(clean_haz)))
+    _row("  ...minus partition families",
+         estimate(anchors, candles, events=events, tickers=clean_haz,
+                  side="bid", entry="first"))
+    _row("  ...minus partitions, ev-weighted",
+         estimate(anchors, candles, events=events, tickers=clean_haz,
+                  side="bid", entry="first", weight="event"))
 
     spreads = [(r["yes_ask"] - r["yes_bid"]) * 100.0
                for tk in hazard for r in candles[tk]
