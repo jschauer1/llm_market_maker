@@ -32,9 +32,15 @@ better brief than a fresh idea — `calendar-arb`'s hard-arbitrage premise
 was falsified outright, and its revisit angle is a fully specified
 successor nobody has built.
 
-Also read `tickets/new-theory/README.md`: far more theses are
-specced than built, and a spec with a ticket against it is the strongest
-signal in this lane.
+**Every open ticket in `tickets/new-theory/open/` is a spec** — that is
+what this lane's backlog is. If you are working one, you already have
+your spec and should not write a second; read it, and close it with a
+resolution when the theory exists. Read
+`tickets/new-theory/README.md` first either way: its rules 0 through 0f
+are the shared contracts every spec in the lane inherits, and rule 0 (an
+edge between siblings of one Kalshi event finds nothing) and rule 0f
+(measure at *executable* prices, never the mid) between them account for
+most of the backlog's dead entries.
 
 ## 2. Decide what kind of thesis it is
 
@@ -62,6 +68,13 @@ code, then a structural gate, then outcome judgment, in that order.
 Invoke `propose-theory` — it carries the registry discipline and the
 folder contract. What must exist before the theory is real:
 
+- **a spec, and the spec is a `new-theory` ticket.** If you picked this
+  thesis off the backlog, that ticket *is* it — do not write another. If
+  the thesis is yours, file it before writing procedure code: mechanism,
+  who is on the other side and why they keep being wrong, the Kalshi
+  population counted on a real board, what would falsify it, mechanical
+  or interpretive, and the cheapest decisive first step. There is no
+  separate spec tree and there should not be one.
 - `THEORY.md` — the claim, the procedure, the status, the pre-registered
   bar it must clear and what would kill it
 - `RUNBOOK.md` — Stages / Run / Record / **Sub-theories** / Report / Skip

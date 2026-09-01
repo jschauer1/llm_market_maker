@@ -7,7 +7,7 @@ effect was computed · **Tier:** A (no model in the measurement path) ·
 
 ## Why this study exists
 
-Ticket `tickets/research/open/2026-09-01-no-favorite-high-band.md` ends by
+Ticket `tickets/new-theory/open/2026-09-01-no-favorite-high-band.md` ends by
 naming one experiment as the thing that decides whether that theory is
 built at all, and forbids pre-registering the theory until it has run:
 

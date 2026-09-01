@@ -74,7 +74,7 @@ notes single-name spreads are only modestly wider, which cuts against
 the pure-thinness reading but does not rule it out.
 
 RELATED: filed the same session,
-tickets/research/open/2026-09-01-kalshi-taker-flow-toxicity.md, which
+tickets/new-theory/open/2026-09-01-kalshi-taker-flow-toxicity.md, which
 covers the same paper's flow-toxicity result and the capability finding
 behind it -- Kalshi's public trades endpoint exposes per-trade taker
 side, unauthenticated, retained after settlement.

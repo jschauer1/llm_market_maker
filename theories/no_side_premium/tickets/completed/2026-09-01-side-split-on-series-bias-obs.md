@@ -64,7 +64,7 @@ within series once quotes are fillable, in which case the screen result is
 real on 61 days instead of 8.
 
 Recorded in theories/no_side_premium/NOTES.md 2026-09-01 and as addendum 2
-on tickets/research/open/2026-09-01-no-favorite-high-band.md. Thanks for
+on tickets/new-theory/open/2026-09-01-no-favorite-high-band.md. Thanks for
 the ticket -- the dataset was exactly where you said and this would not
 have been found without it.
 ---

@@ -52,7 +52,10 @@ theories, one had been retired and two were dead. One document, one home,
 one status.
 
 ```bash
-python -m tools.cli tickets new --lane new-theory --slug <slug>     --title "<the claim in one line>" --body "<the spec>"     --session <you> --author-lane <your lane>     --author-context "<what you were doing when you hit this>"
+python -m tools.cli tickets new --lane new-theory --slug <slug> \
+    --title "<the claim in one line>" --body "<the spec>" \
+    --session <you> --author-lane <your lane> \
+    --author-context "<what you were doing when you hit this>"
 ```
 
 Read `tickets/new-theory/README.md` first. Its rules 0 through 0f are the

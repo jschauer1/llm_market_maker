@@ -25,7 +25,7 @@ from tools import tickets
 @pytest.fixture()
 def repo(tmp_path):
     (tmp_path / "tickets" / "maintenance").mkdir(parents=True)
-    (tmp_path / "tickets" / "research").mkdir(parents=True)
+    (tmp_path / "tickets" / "new-theory").mkdir(parents=True)
     # The real shape: a theory folder is wherever its registry row
     # says, and insider_judgment sits under a shared family parent.
     (tmp_path / "theories" / "insider_bias"

@@ -66,6 +66,16 @@ is "somebody said so" cannot be evaluated later.
 
 ## 3. The bar every idea must clear before you file it
 
+**What you file here is a spec.** A `new-theory` ticket is the design
+document a theory gets built from — there is no separate spec tree — so
+the four things below are not a filing checklist, they are the spec's
+contents. Read `tickets/new-theory/README.md` before writing one: its
+rules 0 through 0f are the shared contracts every spec inherits, and two
+of them kill ideas at this stage for free. Rule 0: an edge living
+between siblings of one Kalshi event should expect to find nothing.
+Rule 0f: measure the effect at *executable* prices, never the mid and
+never gross of fees — that one has killed or gutted seven ideas here.
+
 Volume is the goal; slop is not. An idea is worth filing only when you
 can write all four:
 
@@ -102,8 +112,10 @@ python -m tools.cli ideas record <slug> "<title>" \
     --description "<the same, in the registry>" --source claude
 ```
 
-The ticket is the work; the registry entry is the memory that
-deduplicates across theories and survives the ticket being closed.
+The ticket is the spec and the work; the registry entry is the memory
+that deduplicates across theories and survives the ticket being closed.
+A ticket body that could not be handed to a session as its build
+document is not finished yet.
 
 **If it is a subset of an existing theory** — the same screen and
 population, re-weighted — it is a **sub-theory**, not a new one: file it
