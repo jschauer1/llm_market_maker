@@ -3277,3 +3277,99 @@ populations** (weather, politics, econ/fin/scitech — ~7,500 rows over
 that dies having measured its domain properly leaves the board better
 mapped than it found it, which is what the instrument metaphor in
 CLAUDE.md is for.
+
+## 2026-09-01 — the deciding experiment for `no-favorite-high-band`: do not build, and the liquidity filter was the real finding (session llm-market-identifier-b3)
+
+Lane: `new-theory`, focus `no-favorite-high-band`. Floor was done (8.7h
+before); `theory` was held by a peer on `calibration_harvest`, and a
+second peer took `new-theory` on `kalshi-taker-flow-toxicity`.
+
+**Why this lane over the runner-up, since the comparison is the reusable
+part.** `aggregation-gap` was the alternative: fully specified,
+board-measured, tier A, buildable that day. It lost on two counts —
+its own filing names its likely killer *untested* (+0.07–0.32 seats
+spread over 12–28 legs against per-leg fees and a >1-year hold), and
+nothing about it is perishable. The series-bias liquidity backfill was
+**the only work on the board whose value strictly decreases with time**:
+Kalshi ages settled markets out at ~60 days, it had stalled 5.7 hours
+earlier at 213/647 series, and it gates a build/don't-build decision.
+**When one candidate is perishable and the other is not, the perishable
+one wins unless it is clearly worse** — and this one was also the
+gate on the repo's most reachable unbuilt thesis.
+
+**Did.** Resumed the backfill, then built
+`studies/2026-09-01-liquidity-filtered-side-split/` — the experiment the
+`no-favorite-high-band` ticket named as the precondition for
+pre-registering anything. Wrote the pre-registration (filter,
+open-interest threshold, the control's rows-per-side floor, sensitivity
+ladder, decision rule) to disk **before computing any effect**, choosing
+the threshold from the open-interest distribution alone.
+
+**The verdict: do not build.** NO−YES within (series, close day), inside
+`spread <= 0.07 AND open_interest >= 100`: **−1.02, t=−0.35**. Not a
+sampling accident — the liquidity ladder is monotone the *wrong* way
+(−1.02 → −2.81 as the book requirement rises), leave-one-series-out is
+negative in **134/137**, and out of sample (before the 2026-08-25 fullcov
+window the cells were mined from) it is **−5.44, t=−2.13** against
++16.68 inside it.
+
+**The methodological point worth keeping, because it will recur.** The
+one positive reading was series-equal weighting at +9.11 (t=1.93), and
+it looked like the result the thesis wanted. It was a weighting artifact:
+**23 of 40 series contributed exactly one (series, close day) pair** —
+one NO market against one YES market, which can only land near 0 or
+±100 — and those 23 averaged +15.73 while the 17 series pairing more than
+once averaged **+0.16, median −0.47**. *When two weightings of the same
+data disagree in sign, look at how many units carry a single
+observation before believing either.* Equal-weighting units is not a
+neutral choice; it up-weights the noisiest cells by construction. Same
+family of error as the `>= 10 rows/day` floor the parent ticket warned
+about and as calibration_harvest's rho=1 design effect — a defensible
+default that silently decides the answer.
+
+**Learned, and it outranks the verdict.** The tradeable-book filter
+explains the *series-bias study's* headline, not just this cell.
+Day-clustered over 61 close days, all rows vs a real book:
+
+```
+0.50-0.65   -4.90 -> -4.21      0.90-0.97   -4.50 -> +0.44
+0.65-0.80   -3.30 -> -3.65      0.97-0.98   -6.76 -> -1.66
+0.80-0.90   -3.58 -> +1.73      0.98-1.01  -14.03 -> +0.45
+```
+
+**Above 0.80 the famous negativity is entirely an empty-book artifact;
+below 0.80 it survives the filter unchanged.** Two consequences. The
+pass-3 artifact was never confined to 0.980–0.995 — it reached down
+*inside* `insider_bias.screen`'s own 0.97 cap, so that cap never
+excluded it. And `open_interest` is load-bearing exactly as that study's
+correction argued: rows passing `spread <= 0.07` while holding **zero**
+open interest are −2.47 (n=1,929), and 55% of the NO side of the cell is
+exactly that. **A one-cent spread is not a book, and half this dataset
+is quotes nobody could fill.** Any theory reading `obs` must filter
+before reading a level. Cross-referenced into that study's STUDY.md.
+
+**The surviving half is a better thesis than the one that died**, and
+its mandatory composition control was run before the ticket was released
+rather than after: pooled −3.90 (t=−3.30), series-equal −2.51, **LOO
+negative in 171/171**, present in sport lines (−2.90) and non-sport
+(−3.30) alike. That is the opposite signature to the thesis this session
+killed. Filed as idea 36 / `2026-09-01-mid-band-favorite-fade` — with
+the warning that it measures the *favorite* losing 3.9 pts and nobody
+has yet priced the mirrored underdog leg, which pays its own fee and is
+not the negation.
+
+**Next.**
+
+- **Re-run on completion** — coverage was 37% and alphabetical (A–E
+  complete, nothing after F; 72 series under L, 58 under U absent). The
+  pre-registration is frozen; append run-2 under run-1 and move idea 33
+  to `dead` if it holds. Instructions are in the ticket, which stays
+  open for exactly this.
+- The backfill has now stalled twice because the session running it
+  ended, and the **first aged-out rows appeared during this run**
+  (KXFIGHTMENTION, 2 of 311) — the window is actively closing. Ticketed
+  (`backfill-restart-loop`): put collection freshness in `cli state`,
+  which is the 90% fix; do not build an auto-restarter first, because
+  two concurrent runs lock the SQLite.
+- `mid-band-favorite-fade` is the strongest unbuilt thesis this session
+  saw, and the first thing it needs is arithmetic, not data.

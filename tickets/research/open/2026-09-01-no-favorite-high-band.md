@@ -162,3 +162,93 @@ section 7 already does it, it just needs the columns. That one run decides:
 
 Do not pre-register anything until that is known. The cost of waiting is a
 few hours of a job that is already running.
+
+---
+
+## RESOLVED (preliminary): the deciding experiment ran, and the answer is DO NOT BUILD
+
+Session `llm-market-identifier-b3`, 2026-09-01, new-theory lane.
+Study: `studies/2026-09-01-liquidity-filtered-side-split/`.
+Registry: idea 33 moved to `investigating` with the full numbers.
+
+This ticket ended by naming one experiment as the precondition for
+pre-registering anything, and forbidding the theory until it ran. It has
+run. The addendum-2 branch it laid out —
+
+> * composition everywhere, screen result is small-sample noise
+>   -> DO NOT BUILD this theory; record the negative against idea 33.
+
+— is the branch the data took.
+
+**Pre-registered primary** (NO−YES within (series, close day), inside
+`spread <= 0.07 AND open_interest >= 100`): **−1.02 pts, t=−0.35**,
+16/35 days positive, 40 series / 100 pairs.
+
+Three checks say that is not an artifact of the filter or the sample:
+
+1. **The liquidity ladder runs the wrong way** — −1.02 / −1.66 / −1.90 /
+   −2.11 / −2.81 at OI ≥ 100 / 250 / 500 / 1000 / 2000. The thesis
+   survives only where the book is thinnest.
+2. **Out of sample it is significantly negative** — rows closing before
+   2026-08-20 (clear of the 2026-08-25 fullcov runs the cells were mined
+   from) give **−5.44, t=−2.13**; the overlapping window gives +16.68,
+   t=+2.29. That is the in-sample shine the split exists to expose.
+3. **134 of 137 leave-one-series-out estimates are negative** (range
+   −2.34 .. +0.31).
+
+The one positive reading — series-equal weighting at +9.11 — is a
+weighting artifact: **23 of 40 series contribute exactly one
+(series, close day) pair**, one NO market against one YES market, which
+can only land near 0 or ±100; those 23 average +15.73 while the 17 series
+pairing more than once average **+0.16, median −0.47**.
+
+### What this does NOT say
+
+It does **not** refute the +1.70 that motivated the ticket. That was
+measured on the `insider_bias.screen` population; this measured the
+board-wide sweep *under the screen's liquidity standard*, which is the
+comparison the addendum asked for but is not the same population. What
+has changed is the **burden**: the sweep's within-series control is
+significantly negative out of sample, so the screen's +7.69 on 30 series
+over 6–7 days is now the number needing replication rather than the one
+providing corroboration. Nobody should build on it as it stands.
+
+### Still open — one thing, and it is small
+
+**Coverage was 37%** (227/659 series) and alphabetical: A–E complete, F
+partial, essentially nothing after. Whole families are absent (72 series
+under L, 58 under U, 50 under S), so the population question is not fully
+settled even though the direction is stable across every cut tried.
+
+> **RE-RUN ON COMPLETION.** The backfill was resumed by this session
+> (213 → 234+ of 647 and running; ~4h tail at the observed 1.6
+> series/min). When `collect.py status` shows it done:
+>
+> ```
+> cp studies/2026-08-29-series-bias-mining/data/collect.db <scratch>/c.db
+> python studies/2026-09-01-liquidity-filtered-side-split/measure.py <scratch>/c.db
+> python studies/2026-09-01-liquidity-filtered-side-split/mechanism.py <scratch>/c.db
+> ```
+>
+> The pre-registration is frozen in that study's STUDY.md — **do not
+> retune the threshold, the control's rows-per-side floor, or the
+> decision rule.** Append the run-2 numbers under the run-1 section and
+> move idea 33 to `dead` if the verdict holds. If run 2 *reverses* the
+> primary, that is a finding about coverage and must be reported as one,
+> not quietly adopted.
+
+This ticket stays **open** until that re-run lands. Everything else it
+asked for is done.
+
+### What came out of it that was worth more than the thesis
+
+The liquidity filter turns out to explain the *series-bias study's*
+headline, not just this cell: above 0.80 the population's famous
+negativity is entirely an empty-book artifact (0.98–1.01 goes −14.03 →
++0.45), while **below 0.80 it survives the filter unchanged** (−4.90 →
+−4.21, −3.30 → −3.65, on n=2,609 with a real book). That surviving half
+is filed as idea 36 / ticket `2026-09-01-mid-band-favorite-fade`, and its
+mandatory composition control has already been run and **passed**
+(pooled −3.90 t=−3.30, series-equal −2.51, LOO negative in 171/171) —
+the opposite signature to this thesis. Cross-referenced into
+`studies/2026-08-29-series-bias-mining/STUDY.md`.

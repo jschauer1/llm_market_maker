@@ -885,3 +885,71 @@ under the filter, the population is still wrong and pass 4 is not
 measured**, whatever else it flags. That is the check that caught this
 in pass 3, and no amount of reasoning about which field to threshold
 substitutes for it.
+
+---
+
+## Cross-reference, 2026-09-01: the pass-4 threshold has been set, and the filter's effect on this population is now measured
+
+Added by session `llm-market-identifier-b3` (new-theory lane, focus
+`no-favorite-high-band`). **This section adds a measurement and changes
+no conclusion above it** — everything before this line stands exactly as
+run.
+
+`studies/2026-09-01-liquidity-filtered-side-split/` needed pass 4's
+filter for a different question and therefore had to fix its threshold.
+It did so under this study's own rule — from the population's
+distribution, before any per-series number, with the removal count
+recorded:
+
+> **`spread <= 0.07` AND `open_interest >= 100`.** In the 0.90–0.97 cell
+> the open-interest distribution is p50 = **0**, p75 = 110, p90 = 1201;
+> 100 is the first round level that separates "somebody holds this" from
+> "nobody does". It removes **78.0%** of the cell (3,825 of 4,904 rows),
+> of which the great majority is the zero-open-interest mass rather than
+> the spread condition.
+
+That threshold is offered to pass 4 rather than imposed on it — pass 4
+may set its own, and its acceptance test (does `mention_family` still
+trip the gates?) is unchanged and still decides.
+
+**What the filter does to this study's headline, measured on 227 of 659
+series backfilled:**
+
+```
+band          ALL rows              TRADEABLE (spread<=0.07, oi>=100)
+0.50-0.65     -4.90  t=-2.59        -4.21  t=-1.65   n=1285
+0.65-0.80     -3.30  t=-3.65        -3.65  t=-2.57   n=1324
+0.80-0.90     -3.58  t=-3.59        +1.73  t=+1.10   n= 939
+0.90-0.97     -4.50  t=-4.50        +0.44  t=+0.45   n=1079
+0.97-0.98     -6.76  t=-3.84        -1.66  t=-0.80   n= 271
+0.98-1.01    -14.03  t=-7.37        +0.45  t=+1.32   n= 793
+```
+
+Three things follow, and the first two qualify how "Pass 3 result" and
+"The mechanism: without a liquidity filter the ask is not a price" should
+be read:
+
+1. **The artifact was never confined to 0.980–0.995.** It pervades
+   everything above 0.80. The 0.90–0.97 band — *inside*
+   `insider_bias.screen`'s own 0.97 cap, and therefore not excluded by
+   it — is −4.50 unfiltered and **+0.44** filtered. Pass 3's reading that
+   the 0.98+ band was the contaminated part was correct but too narrow.
+2. **"Every level is deeply negative" is true only of untradeable
+   quotes, and only above 0.80.** Below 0.80 the negativity survives the
+   filter essentially unchanged (−4.90→−4.21, −3.30→−3.65). So this
+   dataset contains one real effect and one artifact, and the price
+   boundary between them is ~0.80. The real half is filed as idea 36 /
+   ticket `2026-09-01-mid-band-favorite-fade`.
+3. **`open_interest` is load-bearing exactly as the correction argued.**
+   Rows passing `spread <= 0.07` while holding *zero* open interest are
+   **−2.47** (n=1,929); the same spread test with `oi >= 100` is
+   **+0.44**. 55% of the NO side of the 0.90–0.97 cell is zero-OI. The
+   correction's reasoning is confirmed by measurement, not just by the
+   three KXA100WS rows that motivated it.
+
+**Backfill state when this was measured:** 227/659 series, alphabetical
+(A–E complete, F partial, ~nothing after), so these numbers carry this
+study's own one-run rule and are due a re-run on completion. The backfill
+was resumed by this session after stalling at 213 series; **the first
+aged-out rows have now appeared** (KXFIGHTMENTION, 2 of 311), which is
+the cost this ticket predicted starting to be paid.
