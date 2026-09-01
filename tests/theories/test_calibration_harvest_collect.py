@@ -164,6 +164,49 @@ def test_record_writes_rows_and_settlements(conn):
     assert settled["resolved_at"] == "2026-08-20T00:00:00Z"
 
 
+# --- the two liquidity fields, kept from 2026-09-01 ---------------------
+#
+# `observations_for` computes volume-at-entry and spread-at-entry in order
+# to APPLY the screen's liquidity floor, then threw both away. They are the
+# two fields any liquidity slice of this theory would need, they are
+# point-in-time by construction, and they are UNRECOVERABLE later -- Kalshi
+# archives settled markets out of the API at ~58 days, so the window a walk
+# sees today is not the window a re-walk sees tomorrow. There is no
+# backfill for a collection run, only capture-or-lose.
+
+
+def test_observation_keeps_the_liquidity_it_filtered_on():
+    candles = [_candle(CLOSE_TS - 4 * DAY, bid=0.78, ask=0.82, volume=900)]
+    out = collect.observations_for(
+        ticker="KXPOL-1", series="KXPOL", category="Politics",
+        close_ts=CLOSE_TS, result="yes", candles=candles,
+    )
+    assert out, "the fixture must clear the floor or it tests nothing"
+    assert out[0]["volume_at_entry"] == 900
+    assert out[0]["spread_at_entry"] == pytest.approx(0.04)
+
+
+def test_record_persists_volume_and_spread_as_first_class_columns(conn):
+    """Not extra_json: `opportunity_attempts` already has typed columns for
+    both, and a slice predicate over a JSON blob is a query nobody writes."""
+    obs = [{
+        "ticker": "KXPOL-9", "series": "KXPOL", "category": "Politics",
+        "cell": "politics|2d-1w|0.75-0.85", "horizon_bin": "2d-1w",
+        "price_bin": "0.75-0.85", "domain": "politics",
+        "entry_price": 0.80, "outcome": "yes", "won": True,
+        "result": "yes", "days_to_close": 4.0,
+        "close_iso": "2026-08-20T00:00:00Z",
+        "entry_day_iso": "2026-08-16T00:00:00Z",
+        "volume_at_entry": 1234.0, "spread_at_entry": 0.04,
+    }]
+    collect.record(conn, obs, run_id="backtest-liq")
+    row = conn.execute(
+        "SELECT volume_at_call, spread_at_call FROM opportunity_attempts "
+        "WHERE run_id = 'backtest-liq'").fetchone()
+    assert row["volume_at_call"] == 1234.0
+    assert row["spread_at_call"] == pytest.approx(0.04)
+
+
 def test_collected_rows_cluster_by_settlement_day(conn):
     obs = []
     # entry_day_iso is close_iso minus the 4-day 2d-1w offset.

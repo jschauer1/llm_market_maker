@@ -1304,3 +1304,46 @@ Two things for whoever runs the next floor:
     worth of information, not 303 independent draws. `effective_n` now
     says so explicitly; read the cell with `forward_cells`, never by row
     count.
+
+### Kept two fields the collector had been computing and discarding
+
+`observations_for` computes **volume-at-entry** and **spread-at-entry**
+in order to apply the screen's liquidity floor, and then dropped both on
+the floor. Every collected row since 2026-08-27 has a NULL
+`volume_at_call` and `spread_at_call` -- verified, 0 of 3,267 weather rows
+and 0 of 1,541 politics rows carry either.
+
+That cost a slice this session wanted and could not run. The
+favorite-longshot premium should be *stronger* in thin, retail-facing
+books and weaker in liquid ones; that is a mechanism, not a fishing
+expedition, and it is expressible over recorded fields, which is exactly
+what a registered slice needs. It was untestable because the fields were
+gone.
+
+Fixed: both are now persisted as first-class `opportunity_attempts`
+columns (they already existed on the table -- a slice predicate over a
+JSON blob is a query nobody writes). Two tests pin it.
+
+**Not a version bump.** Nothing about which rows exist, which cell they
+land in, or what edge is computed changed -- the two numbers were already
+computed and already decided the filter. Exact precedent: v2 added the
+cell key to `extra_json` and recorded it as not a decision change.
+
+**Why it was worth stopping the running walk to do this.** The data is
+perishable in the strongest sense: Kalshi archives settled markets out of
+the public API at ~58 days, so **the window a walk sees today is not the
+window a re-walk sees tomorrow**. Weather was collected 2026-08-27 over
+closes back to ~2026-06-30; that population no longer exists to be
+re-fetched. There is no backfill for a collection run -- only
+capture-or-lose -- so the econfin walk was stopped at 121 series, the 22
+that had produced rows were dropped from the checkpoint, and it was
+restarted. Confirmed the re-walk **upserts rather than duplicates**:
+`opportunity_attempts` is keyed on `(opportunity_id, decision_date,
+run_id)`, and after the re-walk 523 attempts had 523 distinct
+`(opportunity_id, decision_date)` pairs and 0 duplicates.
+
+**Weather and politics cannot be backfilled** and should not be
+re-walked to try -- a re-walk today collects a shifted 58-day window,
+which is a different population, not the same one with more columns. Any
+liquidity slice of this theory will have to be built on econfin and
+later walks. Stated here so nobody spends 1.7 hours discovering it.

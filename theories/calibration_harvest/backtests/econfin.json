@@ -133,13 +133,6 @@
    "no_candles": 0,
    "below_floor": 0
   },
-  "KXECONSTATCPIYOY": {
-   "n_settled": 52,
-   "n_obs": 22,
-   "written": 11,
-   "no_candles": 0,
-   "below_floor": 5
-  },
   "KXBEPIROVIRSEN": {
    "n_settled": 0,
    "n_obs": 0,
@@ -209,13 +202,6 @@
    "written": 0,
    "no_candles": 0,
    "below_floor": 0
-  },
-  "KXUST10AD": {
-   "n_settled": 414,
-   "n_obs": 2,
-   "written": 2,
-   "no_candles": 0,
-   "below_floor": 129
   },
   "KXJOINUBER": {
    "n_settled": 0,
@@ -308,13 +294,6 @@
    "no_candles": 0,
    "below_floor": 0
   },
-  "KXSPOT": {
-   "n_settled": 23,
-   "n_obs": 4,
-   "written": 2,
-   "no_candles": 0,
-   "below_floor": 5
-  },
   "KXMNST": {
    "n_settled": 0,
    "n_obs": 0,
@@ -335,20 +314,6 @@
    "written": 0,
    "no_candles": 0,
    "below_floor": 0
-  },
-  "KXCBDECISIONKOREA": {
-   "n_settled": 10,
-   "n_obs": 10,
-   "written": 6,
-   "no_candles": 0,
-   "below_floor": 2
-  },
-  "KXUSRETAIL": {
-   "n_settled": 17,
-   "n_obs": 11,
-   "written": 8,
-   "no_candles": 0,
-   "below_floor": 3
   },
   "KXMARA": {
    "n_settled": 0,
@@ -382,13 +347,6 @@
    "n_settled": 0,
    "n_obs": 0,
    "written": 0,
-   "no_candles": 0,
-   "below_floor": 0
-  },
-  "KXA100MS": {
-   "n_settled": 14,
-   "n_obs": 4,
-   "written": 4,
    "no_candles": 0,
    "below_floor": 0
   },
@@ -441,13 +399,6 @@
    "no_candles": 0,
    "below_floor": 0
   },
-  "KXCPINDEX": {
-   "n_settled": 38,
-   "n_obs": 13,
-   "written": 8,
-   "no_candles": 0,
-   "below_floor": 3
-  },
   "KXNVVISIT": {
    "n_settled": 0,
    "n_obs": 0,
@@ -487,13 +438,6 @@
    "n_settled": 0,
    "n_obs": 0,
    "written": 0,
-   "no_candles": 0,
-   "below_floor": 0
-  },
-  "KXPAYROLLS": {
-   "n_settled": 13,
-   "n_obs": 29,
-   "written": 11,
    "no_candles": 0,
    "below_floor": 0
   },
@@ -581,20 +525,6 @@
    "no_candles": 0,
    "below_floor": 0
   },
-  "KXEURUSDAW": {
-   "n_settled": 100,
-   "n_obs": 18,
-   "written": 18,
-   "no_candles": 0,
-   "below_floor": 0
-  },
-  "KXCTCQ": {
-   "n_settled": 16,
-   "n_obs": 16,
-   "written": 8,
-   "no_candles": 0,
-   "below_floor": 0
-  },
   "KXILNUCLEAR": {
    "n_settled": 0,
    "n_obs": 0,
@@ -623,13 +553,6 @@
    "no_candles": 0,
    "below_floor": 0
   },
-  "KXSTEALTHSHARE": {
-   "n_settled": 11,
-   "n_obs": 1,
-   "written": 1,
-   "no_candles": 0,
-   "below_floor": 0
-  },
   "KXCEOGS": {
    "n_settled": 0,
    "n_obs": 0,
@@ -643,20 +566,6 @@
    "written": 0,
    "no_candles": 0,
    "below_floor": 0
-  },
-  "KXCRITICALITY": {
-   "n_settled": 8,
-   "n_obs": 12,
-   "written": 5,
-   "no_candles": 0,
-   "below_floor": 0
-  },
-  "KXECONSTATCORECPIYOY": {
-   "n_settled": 32,
-   "n_obs": 15,
-   "written": 9,
-   "no_candles": 0,
-   "below_floor": 4
   },
   "KXWENCC": {
    "n_settled": 0,
@@ -686,13 +595,6 @@
    "no_candles": 0,
    "below_floor": 0
   },
-  "KXDIESELMON": {
-   "n_settled": 21,
-   "n_obs": 1,
-   "written": 1,
-   "no_candles": 0,
-   "below_floor": 20
-  },
   "KXTOBACCPI": {
    "n_settled": 0,
    "n_obs": 0,
@@ -707,31 +609,10 @@
    "no_candles": 0,
    "below_floor": 0
   },
-  "KXSP500REMOVEQ": {
-   "n_settled": 2,
-   "n_obs": 1,
-   "written": 1,
-   "no_candles": 0,
-   "below_floor": 0
-  },
-  "KXAUTODELQ": {
-   "n_settled": 8,
-   "n_obs": 3,
-   "written": 3,
-   "no_candles": 0,
-   "below_floor": 5
-  },
   "KXHIVISITORSPEND": {
    "n_settled": 0,
    "n_obs": 0,
    "written": 0,
-   "no_candles": 0,
-   "below_floor": 0
-  },
-  "KXLAUNCHES": {
-   "n_settled": 8,
-   "n_obs": 8,
-   "written": 6,
    "no_candles": 0,
    "below_floor": 0
   },
@@ -741,13 +622,6 @@
    "written": 0,
    "no_candles": 0,
    "below_floor": 0
-  },
-  "KXWCPRICE": {
-   "n_settled": 69,
-   "n_obs": 74,
-   "written": 49,
-   "no_candles": 4,
-   "below_floor": 3
   },
   "KXNJDRONES": {
    "n_settled": 0,
@@ -784,26 +658,12 @@
    "no_candles": 0,
    "below_floor": 0
   },
-  "KXINTC": {
-   "n_settled": 9,
-   "n_obs": 6,
-   "written": 3,
-   "no_candles": 0,
-   "below_floor": 0
-  },
   "KXKLARNAA": {
    "n_settled": 0,
    "n_obs": 0,
    "written": 0,
    "no_candles": 0,
    "below_floor": 0
-  },
-  "KXDIESELW": {
-   "n_settled": 94,
-   "n_obs": 12,
-   "written": 11,
-   "no_candles": 0,
-   "below_floor": 34
   },
   "KXDIESELD": {
    "n_settled": 619,
@@ -819,12 +679,915 @@
    "no_candles": 0,
    "below_floor": 0
   },
-  "KXFAOFPI": {
-   "n_settled": 10,
-   "n_obs": 3,
-   "written": 1,
+  "KXAAAGASDIL": {
+   "n_settled": 102,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 81,
+   "below_floor": 21
+  },
+  "KXUSACOMPANYSTAKE": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXATZ": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCCCHGOFF": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXBKFT": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXWSM": {
+   "n_settled": 9,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 8
+  },
+  "KXWK": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXOPENDOORCEO": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXFDAAPPROVALDATENTLA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLMNDA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLAOILGASEMP": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXTESLADELIVERYBY": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXRDUVISITS": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXNEWDRUGAPPBEAM": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXTGTA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLMTA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXMKTSHAREAI": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCBDCZECH": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXAAAGASMINTX": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHOUHOMEVAL": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCREDITRATING": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXDDR5WS": {
+   "n_settled": 100,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 100
+  },
+  "KXZMA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXWKA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXNIOA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXMOA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXTOPAI": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXPRICEINCREASESPOTIFYFAMILY": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXAXPA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXTXERCOTPEAKD": {
+   "n_settled": 35,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 2
+  },
+  "KXNEWROLEJP": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXALVEHICLEPROD": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXAAAGASMINCA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCCLA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXIPOOURA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXSEZL": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXMSCATFISH": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXIPOSKIMS": {
+   "n_settled": 1,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXANTHROPICBANKPUBLIC": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXRUCRUDEX": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXSBUXA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCAVAFT": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXINXDIRY": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXNTRAA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXMARCELLUSGAS": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXMNMEDDEVEMP": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXWHCA2": {
+   "n_settled": 1,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXNARCOLEPSY": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXWIMFGEMP": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXWSMA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCOSTFT": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXPLTRA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXMUSKX": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXZM": {
+   "n_settled": 5,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 2
+  },
+  "KXABNBA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXZSA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXNMCOIL": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXIRSHEAD": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCAHPIYOY": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXDUOLA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXACQANNOUNCEWDAY": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXIPOAIRTABLE": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXGTLB": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXTOPUSAGEAI": {
+   "n_settled": 14,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXIPOBEASTINDUSTRIES": {
+   "n_settled": 1,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 1
+  },
+  "KXBROS": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXTOLA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHIMSCC": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXIACORN": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXTARGETA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXTRUFBFST": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXMPOXCOUNT": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXVAPORTTEU": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXYOUTHUN": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXKR": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXROCC": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXUTHOMEPRICE": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXUSHOMEVAL": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCHWY": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXRUSFERTIDE": {
+   "n_settled": 1,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXBROSA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXRIVN": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXNEWROLEFAZE": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXBULLA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCEOASTRONOMER": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXULTAA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXPBR": {
+   "n_settled": 12,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXTRUFAIDP": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXTESLACAR": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHIGHINFLATION": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXDELLNW": {
+   "n_settled": 5,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 4
+  },
+  "KXSTUB": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLULUA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXANTHTOKENM": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXWALMARTA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXUSGASCPI": {
+   "n_settled": 50,
+   "n_obs": 5,
+   "written": 3,
    "no_candles": 0,
    "below_floor": 7
+  },
+  "KXIPORAMP": {
+   "n_settled": 1,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 1
+  },
+  "KXCHIKCOUNT": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXSPEECHAI": {
+   "n_settled": 51,
+   "n_obs": 2,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 39
+  },
+  "KXYOU": {
+   "n_settled": 6,
+   "n_obs": 14,
+   "written": 5,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLANDSPACELAUNCH": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXRUT": {
+   "n_settled": 15,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 1,
+   "below_floor": 9
+  },
+  "KXUSTESTSREADING": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXAALCC": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXIPOBREX": {
+   "n_settled": 1,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 1
+  },
+  "KXMTN": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXA100MON": {
+   "n_settled": 40,
+   "n_obs": 10,
+   "written": 8,
+   "no_candles": 0,
+   "below_floor": 25
+  },
+  "KXCBDECISIONMEXICO": {
+   "n_settled": 7,
+   "n_obs": 3,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXEBAYA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCOSTCOHOTDOG": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXFABLEDISABLED": {
+   "n_settled": 3,
+   "n_obs": 1,
+   "written": 1,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXAAAGASDNC": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXNBAFINALSPRICE": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXBBYA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXB200AVGTEST": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLFPRATE": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXROBOTAXIOUT": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXDKNGA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXA100WS": {
+   "n_settled": 65,
+   "n_obs": 13,
+   "written": 9,
+   "no_candles": 0,
+   "below_floor": 1
+  },
+  "KXNEWDRUGAPPNTLA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXAAPLA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXUSRETAIL": {
+   "n_settled": 17,
+   "n_obs": 11,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 3
+  },
+  "KXORSEMICONEMP": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCBDECISIONAUSTRALIA": {
+   "n_settled": 5,
+   "n_obs": 3,
+   "written": 2,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXFEDFREQ": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXKR200": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXAFRM": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXKVYO": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXPHXHOMEVAL": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLIF": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
   }
  }
 }

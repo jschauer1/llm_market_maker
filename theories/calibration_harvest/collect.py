@@ -181,6 +181,17 @@ def observations_for(
             "days_to_close": offset,
             "close_iso": close_iso,
             "entry_day_iso": entry_day_iso,
+            # Both are computed above to APPLY the screen's liquidity
+            # floor and then were thrown away until 2026-09-01. They are
+            # point-in-time by construction (`_candle_at` sums only
+            # candles at or before the entry moment), they are the two
+            # fields a liquidity slice of this theory would need, and
+            # they are unrecoverable later: Kalshi archives settled
+            # markets out of the API at ~58 days, so the window this walk
+            # sees today is not the window a re-walk sees tomorrow. There
+            # is no backfill, only capture-or-lose.
+            "volume_at_entry": volume_at_entry,
+            "spread_at_entry": spread,
         })
     return out
 
@@ -219,6 +230,8 @@ def record(conn, observations: list[dict], run_id: str) -> int:
             run_mode="backtest",
             run_id=run_id,
             decision_date=obs["entry_day_iso"][:10],
+            volume_at_call=obs.get("volume_at_entry"),
+            spread_at_call=obs.get("spread_at_entry"),
             rationale=(
                 f"tier-A collection row for cell {obs['cell']} "
                 f"(entry {obs['days_to_close']:.0f}d before close); "
