@@ -35,6 +35,7 @@ from __future__ import annotations
 
 import datetime as dt
 import json
+import os
 import re
 import time
 from pathlib import Path
@@ -73,8 +74,41 @@ def _load(name: str) -> dict:
 
 
 def _save(name: str, obj) -> None:
+    """Write via a temp file and an atomic replace, retrying on OSError.
+
+    Two failures made this necessary on 2026-09-01, both from the plain
+    `write_text` this replaces.
+
+    **OneDrive.** The repo lives under `OneDrive\Documents`, and the
+    sync client intermittently holds a handle on a file being rewritten:
+    a walk died at 874/960 series with `OSError: [Errno 22] Invalid
+    argument` on open-for-write. It cost nothing that time only because
+    the open failed BEFORE truncating and the collector is resumable.
+
+    **Truncation windows.** `write_text` opens with mode "w", so a reader
+    -- another session, or an analysis script in this one -- can catch
+    the file empty or half-written partway through. Writing to `.tmp`
+    and calling `os.replace` (atomic on Windows within a volume) means a
+    reader always sees either the old file or the new one.
+
+    Neither fix helps against a SECOND WRITER; that needs a lock, and is
+    ticketed as `maintenance/collector-concurrent-write-race`.
+    """
     DATA.mkdir(parents=True, exist_ok=True)
-    (DATA / name).write_text(json.dumps(obj), encoding="utf-8")
+    dest = DATA / name
+    tmp = dest.with_name(dest.name + ".tmp")
+    payload = json.dumps(obj)
+    last: Exception | None = None
+    for attempt in range(6):
+        try:
+            tmp.write_text(payload, encoding="utf-8")
+            os.replace(tmp, dest)
+            return
+        except OSError as exc:            # transient sync/AV lock
+            last = exc
+            time.sleep(0.5 * (attempt + 1))
+    raise RuntimeError(
+        f"could not write {dest} after 6 attempts: {last}") from last
 
 
 def _ts(iso: str) -> int:

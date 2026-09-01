@@ -21,3 +21,36 @@ WHY THIS IS WORTH A SESSION. This repo runs several sessions at once (four were 
 WHAT TO DO. A lock beside the data file is enough -- O_EXCL create with the pid, refuse to start if held and unstale, remove on exit. tools/ is the right home since every theory needs it: something like tools/filelock.py, then have each collector take it. Cheap. Alternatively make the collectors append-only (JSONL per record) so concurrent writers interleave instead of overwriting, which also removes the O(n^2) whole-file rewrite; bigger change, better end state.
 
 NOTE FOR WHOEVER TAKES THIS: deadline_drift's own data is not at risk from this incident. Its collector is resumable and skips what is on disk, so a re-run refills anything the race dropped, and I am re-running it. The ticket is about the pattern, not that file.
+
+## Addendum, same session: the same write pattern also fails on OneDrive, and that half is now fixed locally
+
+Two more failures of `_load()/mutate/_save(whole file)`, both hit for real
+while the ticket was open.
+
+**OneDrive interference.** This repo lives under `OneDrive\Documents`, and
+the sync client intermittently holds a handle on a file being rewritten.
+The wide walk died at **874 of 960 series** with
+`OSError: [Errno 22] Invalid argument` on open-for-write. It cost nothing
+only because the open failed *before* truncating and the collector is
+resumable — a failure a moment later would have left a truncated file
+where 1,859 markets of capture used to be, and ~60 days of that is
+unrecoverable upstream.
+
+**Truncation windows for readers.** `Path.write_text` opens mode `"w"`,
+so any reader — a peer session, or an analysis script in the same session
+— can catch the file empty or half-written. I hit this too: a `json.load`
+mid-walk raised `JSONDecodeError: Expecting value: line 1 column 1`.
+
+**Fixed in `theories/deadline_drift/collect_settled.py::_save`**: write to
+`<name>.tmp`, then `os.replace` (atomic on Windows within a volume), with
+six retries on `OSError` and a backoff. A reader now always sees either
+the old file or the new one, and a transient sync lock costs a retry
+instead of a run.
+
+**That is one collector.** Every other collector built to the
+record-while-you-collect convention still uses the plain whole-file
+rewrite and is exposed to both failure modes. This is a stronger argument
+for promoting the write helper to `tools/` than the original race was:
+the atomic-replace part is ~10 lines, needs no lock protocol, is
+obviously correct, and fixes a failure that is already happening. The
+lock for concurrent writers is the harder half and can follow.
