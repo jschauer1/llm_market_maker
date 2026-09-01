@@ -3,15 +3,22 @@
 ```
 tickets/
   maintenance/
-    open/        2026-09-01-state-md-stale.md
+    open/        2026-09-01-backfill-restart-loop.md
     completed/   2026-09-01-ticket-dir-ignores-registry-path.md
-  research/                       <- new-theory lane
-    open/
-    completed/
+  new-theory/
+    README.md    <- shared contracts every spec in this lane inherits
+    evidence/    <- the graded ledger behind their claims
+    open/        2026-08-24-maker-mode-execution.md
+    completed/   2026-08-24-calendar-arb.md
 theories/<registry path>/tickets/ <- theory work, in that theory's folder
     open/
     completed/
 ```
+
+**The directory is named for the lane.** `new-theory/` used to be called
+`research/`, which meant every session had to know the two were the same
+thing and a reader looking for "the new-theory backlog" had to be told
+where it was.
 
 **Open and completed are directories, not a field.** The backlog is read
 by listing, so a finished ticket has to leave it physically — with a
@@ -24,6 +31,27 @@ and why.
 A theory's tickets live at its **registry path**, not `theories/<slug>` —
 `insider_judgment` sits under a shared family parent. `cli tickets new`
 resolves this for you.
+
+## A new-theory ticket is a spec
+
+**Making a theory requires writing its spec first, and the ticket is the
+spec.** There is no separate spec tree — there was one, and all 22 of its
+documents still read "Status: backlog — not yet proposed as a theory"
+weeks after four had become running theories, one had been retired and two
+were dead. A second home for a document means a second status field, and
+the second one is always the stale one.
+
+So a `new-theory` ticket is not a one-line idea. It states the mechanism,
+who is on the other side and why they keep being wrong, the Kalshi
+population, what would falsify it, whether it is mechanical or
+interpretive, and what the cheapest decisive first step is. Read
+`tickets/new-theory/README.md` before writing one: its rules 0–0f are the
+shared contracts, and they have killed more ideas here than any single
+spec's own kill criteria have.
+
+**An idea to try on an *existing* theory is not this.** It belongs in that
+theory's own folder (`--lane theory --theory <slug>`), because a theory
+folder is supposed to hold everything its expert needs.
 
 ## The bar: a ticket is a commitment, not a note
 
@@ -105,6 +133,20 @@ python -m tools.cli tickets new --lane maintenance \
 ```bash
 python -m tools.cli tickets close <path> --resolution "<what happened>"
 ```
+
+## Reading the backlog
+
+```bash
+python -m tools.cli tickets list                  # one line per ticket
+python -m tools.cli tickets list --lane new-theory
+python -m tools.cli tickets list --full           # every field, as JSON
+```
+
+**The default listing is deliberately the cheap one.** A ticket carries
+its whole design, so a listing that included the bodies ran to 114 KB and
+grew with every ticket ever filed — while being the single most repeated
+read in the repo, at the start of every session. Open the file when you
+have chosen; do not pay for 38 designs to pick one.
 
 The resolution is required and is read by whoever wonders later. **"No
 change needed" is a valid resolution** and closing a ticket that turned

@@ -1,22 +1,25 @@
-# News Drift — Theory Design Spec
+---
+title: Sharp Kalshi price moves underreact: enter with the move and hold
+lane: new-theory
+created: 2026-08-24
+created_by: theory-backlog-2026-08-24
+author_lane: find-theories
+author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
+status: open
+---
+Effort: M · LLM in decision path: no · Backtest tier: A
 
-Date: 2026-08-24
-Status: backlog — not yet proposed as a theory
-Registry slug: `news-drift` · Priority: 5 of 22 · Effort: M ·
-LLM in decision path: no · Backtest tier: A
-
-Part of the theory backlog
-([index](2026-08-24-theory-backlog-index.md)). Before implementing: check
-`python -m tools.cli ideas search "news-drift"` for status changes, then
-formalize via the `propose-theory` skill. **Read section 3 — this spec
-shares a signal with overreaction-fade and the two must be built against
-one joint measurement.**
+**This ticket is the spec.** Before starting, run
+`python -m tools.cli ideas search "news-drift"` in case the status
+moved, and read [the backlog's shared contracts](../README.md)
+first — rules 0 through 0e there have killed more ideas in this
+repo than any single spec's own kill criteria have.
 
 ## Assessment
 
 **Applicability 4/5 · Implementability 4/5 · Likelihood of success 2/5 ·
 Composite 10/15** (rubric in the
-[index](2026-08-24-theory-backlog-index.md); ordinal priors, not
+[index](../README.md); ordinal priors, not
 calibrated probabilities)
 
 - *Applicability 4:* frequent signals across active categories with
@@ -55,7 +58,7 @@ the backtest exists to check.
 
 ## 3. Non-goals and exclusions — the overreaction-fade boundary
 
-[overreaction-fade](2026-08-24-theory-overreaction-fade-design.md) bets
+[overreaction-fade](2026-08-24-overreaction-fade.md) bets
 *reversal* of the same signal in political markets, backed by Clinton &
 Huang's negative daily autocorrelation. Continuation and reversal are the
 two signs of one measured object, so:

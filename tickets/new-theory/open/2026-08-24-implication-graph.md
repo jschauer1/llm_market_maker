@@ -1,23 +1,25 @@
-# Implication Graph — Theory Design Spec
+---
+title: Distinct events carry logical implications; when P(A) > P(B) at executable quotes but A implies B, B is cheap
+lane: new-theory
+created: 2026-08-24
+created_by: theory-backlog-2026-08-24
+author_lane: find-theories
+author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
+status: open
+---
+Effort: L · LLM in decision path: construction time only (per-trade mechanical) · Backtest tier: B for the whole procedure (see section 6)
 
-Date: 2026-08-24
-Status: backlog — not yet proposed as a theory
-Registry slug: `implication-graph` · Priority: 21 of 22 · Effort: L ·
-LLM in decision path: construction time only (per-trade mechanical) ·
-Backtest tier: B for the whole procedure (see section 6)
-
-Part of the theory backlog
-([index](2026-08-24-theory-backlog-index.md)). Before implementing: check
-`python -m tools.cli ideas search "implication-graph"` for status
-changes, then formalize via the `propose-theory` skill. **Provenance
-obligations apply** — the only spec in this backlog with an LLM anywhere
-near the procedure.
+**This ticket is the spec.** Before starting, run
+`python -m tools.cli ideas search "implication-graph"` in case the status
+moved, and read [the backlog's shared contracts](../README.md)
+first — rules 0 through 0e there have killed more ideas in this
+repo than any single spec's own kill criteria have.
 
 ## Assessment
 
 **Applicability 2/5 · Implementability 2/5 · Likelihood of success 3/5 ·
 Composite 7/15** (rubric in the
-[index](2026-08-24-theory-backlog-index.md); ordinal priors, not
+[index](../README.md); ordinal priors, not
 calibrated probabilities)
 
 - *Applicability 2:* the edge inventory is small and cycle-dependent;
@@ -53,7 +55,7 @@ is as hard as a ladder monotonicity violation.
   probabilistic/correlational relations ("if X then probably Y"), which
   are forecasts wearing a constraint's clothes.
 - Within-event constraints belong to
-  [structural-arb](2026-08-24-theory-structural-arb-design.md).
+  [structural-arb](../completed/2026-08-24-structural-arb.md).
 - No edge goes live un-verified: every LLM-proposed edge is confirmed by
   the session reading both rule texts before it enters the store.
 
@@ -68,7 +70,7 @@ Hybrid, with judgment quarantined at construction time:
   both rule texts — a wrong implication is this theory's poison, and the
   graph is small enough to review by hand. Confirmed edges are stored as
   static facts with the confirming evidence (the pair-store pattern from
-  [cross-venue-fair-value](2026-08-24-theory-cross-venue-fair-value-design.md)).
+  [cross-venue-fair-value](2026-08-24-cross-venue-fair-value.md)).
 - Per-trade decisions are mechanical: scan confirmed edges for
   `ask(A_yes) + ask(B_no) < 1 − fees`-type violations.
   `edge_basis="model"`.

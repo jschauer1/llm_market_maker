@@ -32,7 +32,7 @@ better brief than a fresh idea — `calendar-arb`'s hard-arbitrage premise
 was falsified outright, and its revisit angle is a fully specified
 successor nobody has built.
 
-Also check `docs/superpowers/specs/theories/`: far more theses are
+Also read `tickets/new-theory/README.md`: far more theses are
 specced than built, and a spec with a ticket against it is the strongest
 signal in this lane.
 

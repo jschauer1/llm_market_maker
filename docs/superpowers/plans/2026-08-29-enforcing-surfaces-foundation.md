@@ -304,7 +304,7 @@ In `README.md`, change line 60:
 ```
 to
 ```
-| `docs/superpowers/specs/theories/` | Sketches of proposed theories not yet built |
+| `tickets/new-theory/` | The backlog: one spec per proposed theory (moved here from `docs/superpowers/specs/theories/` on 2026-09-01) |
 ```
 
 In `docs/DEDUP_PLAN.md`, change the header lines 3–4 from:

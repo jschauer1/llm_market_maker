@@ -1,20 +1,26 @@
-# Structural Arbitrage Scanner — Theory Design Spec
+---
+title: Within-event logical violations -- non-monotone ladders, NO-baskets below their payout -- are riskless when they exceed fees
+lane: new-theory
+created: 2026-08-24
+created_by: theory-backlog-2026-08-24
+author_lane: find-theories
+author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
+status: done
+closed: 2026-09-01
+resolution: BUILT. Theory `structural_arb` v1-v4, status `testing`. The geometry is correct and the violations are real; the TRADEABLE firing rate is zero. An exhaustive check of all 6,414 mutually-exclusive events on one board found exactly 1 NO-basket below its payout, at 0.125c/leg against a 1c/leg buffer. Across 17 board captures, 12 of 16 violations were KXWTAGTOTAL at zero open interest. Day 6 of its own 60-day kill clock; no retirement proposed. See studies/2026-08-29-structural-arb-violation-liquidity/.
+---
+Effort: S · LLM in decision path: no · Backtest tier: A
 
-Date: 2026-08-24
-Status: backlog — not yet proposed as a theory
-Registry slug: `structural-arb` · Priority: 3 of 22 · Effort: S ·
-LLM in decision path: no · Backtest tier: A
-
-Part of the theory backlog
-([index](2026-08-24-theory-backlog-index.md)). Before implementing: check
-`python -m tools.cli ideas search "structural-arb"` for status changes,
-then formalize via the `propose-theory` skill.
+**This spec was acted on; the `resolution` field above says what
+came of it.** Kept rather than deleted, because a completed ticket
+is the record of what was asked for and why — which is what a
+future session re-deriving the same idea needs.
 
 ## Assessment
 
 **Applicability 3/5 · Implementability 5/5 · Likelihood of success 3/5 ·
 Composite 11/15** (rubric in the
-[index](2026-08-24-theory-backlog-index.md); ordinal priors, not
+[index](../README.md); ordinal priors, not
 calibrated probabilities)
 
 - *Applicability 3:* when it fires it is the best bet on the board, but
@@ -57,7 +63,7 @@ when it fires: real.
   scanner must verify exhaustiveness from event metadata before applying
   the sum rule.
 - Cross-*event* logical constraints are out of scope here; they belong to
-  [implication-graph](2026-08-24-theory-implication-graph-design.md).
+  [implication-graph](../open/2026-08-24-implication-graph.md).
 
 ## 4. Decision procedure
 
@@ -94,7 +100,7 @@ leave it running; it costs nothing.
 `theories/structural_arb/{THEORY.md,scan.py}` + tests with constructed
 violation fixtures. Effort S. Natural home for a shared
 "group siblings by event" helper that
-[smile-smoothing](2026-08-24-theory-smile-smoothing-design.md) will want —
+[smile-smoothing](2026-08-24-smile-smoothing.md) will want —
 build it theory-local first per the repo's promotion rule.
 
 ## 9. Testing approach

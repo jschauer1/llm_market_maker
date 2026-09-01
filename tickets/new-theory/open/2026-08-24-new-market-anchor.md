@@ -1,20 +1,25 @@
-# New Market Anchor — Theory Design Spec
+---
+title: Newly listed markets open anchored near $0.50 and take days to find fair value (measurement study first)
+lane: new-theory
+created: 2026-08-24
+created_by: theory-backlog-2026-08-24
+author_lane: find-theories
+author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
+status: open
+---
+Effort: S · LLM in decision path: no · Backtest tier: A
 
-Date: 2026-08-24
-Status: backlog — measurement study; becomes a theory only if bias found
-Registry slug: `new-market-anchor` · Priority: 15 of 22 · Effort: S ·
-LLM in decision path: no · Backtest tier: A
-
-Part of the theory backlog
-([index](2026-08-24-theory-backlog-index.md)). Before implementing: check
-`python -m tools.cli ideas search "new-market-anchor"`. Formalize via
-`propose-theory` only if the study finds a bias.
+**This ticket is the spec.** Before starting, run
+`python -m tools.cli ideas search "new-market-anchor"` in case the status
+moved, and read [the backlog's shared contracts](../README.md)
+first — rules 0 through 0e there have killed more ideas in this
+repo than any single spec's own kill criteria have.
 
 ## Assessment
 
 **Applicability 3/5 · Implementability 5/5 · Likelihood of success 2/5 ·
 Composite 10/15** (rubric in the
-[index](2026-08-24-theory-backlog-index.md); ordinal priors, not
+[index](../README.md); ordinal priors, not
 calibrated probabilities)
 
 - *Applicability 3:* until the study reports, this produces no bets; if a
@@ -62,7 +67,7 @@ registry entry.
 
 In-repo: settled markets with listing times and candlesticks. Note the
 overlap with
-[calibration-harvest](2026-08-24-theory-calibration-harvest-design.md)'s
+[calibration-harvest](../completed/2026-08-24-calibration-harvest.md)'s
 1mo+ cells — if that theory is built first, this study is nearly free as
 a byproduct: add a listing-age dimension to its cell matrix.
 

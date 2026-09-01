@@ -1,15 +1,36 @@
-# Theory Backlog — Index
+# The new-theory backlog — shared contracts
 
-Date: 2026-08-24 (superseded docs/theory-specs/, same content migrated to
-official spec format and extended after a second literature pass)
+**Every ticket in `open/` is a spec.** A theory does not get built from a
+one-line idea here: the ticket carries the mechanism, the population, the
+kill criteria, the backtest tier and the relation to existing work, written
+so a session with no context beyond CLAUDE.md can pick it up. Filing the
+spec *is* proposing the theory.
 
-Twenty-two researched, implementable theory design specs, one file per
-theory, each written so a fresh session (no context beyond CLAUDE.md and
-the spec) can pick it up and implement it. (Rounds: 12 from the first
-literature pass, 5 from the second, 5 from the third — parlay-fade,
-weather-model-gap, calendar-arb, attention-model, metaculus-gap.) This index holds the shared
-contracts, the priority ranking, the parked ideas, and the shared
-sources; every spec links back here instead of repeating them.
+This file holds what all of them share — the pre-implementation rules, the
+assessment rubric, the scoreboard, the parked ideas and the sources. A
+ticket links here instead of repeating any of it.
+
+## Where things live
+
+| | |
+|---|---|
+| `open/` | proposed theories, one spec each — the backlog a session chooses from |
+| `completed/` | specs that were built, turned into a study, or killed; the `resolution` field says which |
+| `evidence/` | the graded evidence ledger and full reading notes behind the claims these specs make |
+
+An idea to try **on an existing theory** is not a new-theory ticket — it
+belongs in that theory's own folder (`cli tickets new --lane theory
+--theory <slug>`), because a theory folder is supposed to hold everything
+its expert needs.
+
+**History.** Twenty-two of these came from the 2026-08-24 literature
+passes (12 from the first, 5 from the second, 5 from the third) and lived
+in `docs/superpowers/specs/theories/` until 2026-09-01. They were moved
+here because the split had gone exactly as badly as a duplicated status
+field always does: **all 22 still read "Status: backlog — not yet proposed
+as a theory"** — including the one that had been retired, the two that were
+dead, and the four that had become running theories. One document, one
+home, one status.
 
 ## Before implementing any spec
 
@@ -20,13 +41,13 @@ sources; every spec links back here instead of repeating them.
    they come out internally consistent by construction. Three independent measurements in 2026-08, from different
    directions, and no spec anticipated it:
 
-   - **`calendar-arb`** (#12, now `dead`): zero violations at its own
+   - **`calendar-arb`** (dead): zero violations at its own
      1c/leg buffer across 10 snapshots. Near-dated date ladders are
      siblings inside ONE event, so basket cost never fell below 1.000;
      cross-event ladders exist only at 1y+ where carry dwarfs a
      cent-scale edge. Study:
      `studies/2026-08-27-calendar-arb-firing-rate/`.
-   - **`smile-smoothing`** (#11, now `dead`): at a tradeable liquidity
+   - **`smile-smoothing`** (dead): at a tradeable liquidity
      floor, **97.6% of 959 strike rungs sat *exactly* on their own
      isotonic fit**, max deviation 1.5c, zero candidates. Deviations
      appeared only in rungs with median volume **0**, where the "mid" is
@@ -178,13 +199,48 @@ sources; every spec links back here instead of repeating them.
    small to measure, that is the finding — the signal is unvalidated
    where it counts, not confirmed.
 
+0f. **Measure the effect at *executable* prices before building
+   anything — not at the mid, and not gross of fees.** This is the single
+   most common way an idea dies here, and it has now killed or gutted
+   seven of them. It is not seven findings; it is one finding, seven
+   times:
+
+   - `calendar-arb` — basket cost never fell below 1.000 at executable
+     quotes, though mid-price violations existed.
+   - `smile-smoothing` — ladder deviations appeared **only** in rungs
+     whose median volume was 0, where the "mid" is an empty book.
+   - `structural_arb` — 1 NO-basket violation in 6,414 events, 0
+     tradeable; 12 of 16 observed violations at zero open interest.
+   - **combo-vs-leg** — mid gaps up to 6.4 pts on an exact synthetic,
+     sitting entirely inside the spread; 0 profitable at a 1c/leg buffer.
+   - `series-bias-mining` pass 3 — 23% of observations at asks of
+     0.980–0.995 realizing 0.801, because the ask was a placeholder
+     rather than an offer.
+   - `mid-band-favorite-fade` — the composition control *passed*
+     (−3.90, t=−3.30) and the idea still died on arithmetic: two asks
+     sum to 1 + spread, so `fav_net + dog_net == −(spread + fees)`
+     exactly. **A one-sided net edge of −N does not imply +N on the
+     other side; it implies −(round_trip − N).** Both sides lose.
+   - `calibration_harvest` — 47 cells cleared both floors across three
+     complete populations and **zero** cleared fees.
+
+   Two consequences worth stating separately. **A liquidity filter must
+   be a real one** — spread *and* open interest, never a price cap, and
+   never a candle's per-period `volume` mistaken for a lifetime figure.
+   And **the literature this backlog was built on mostly measures at
+   mid or gross**: two of its own sources say so outright, Angelini &
+   De Angelis verbatim ("executable-style returns … are negative") and
+   Becker's −1.12% per taker trade. An effect reported in a paper is a
+   reason to look, never a reason to expect it to survive the ask.
+
 1. `python -m tools.cli ideas search "<slug>"` — confirm nothing has
    changed since the spec was written (each is registered under its slug;
    check `status` and `outcome`).
 2. Use the `propose-theory` skill to formalize the chosen idea into
    `theories/<slug>/` with a THEORY.md before writing procedure code
-   (exceptions noted in a spec's Status line, e.g. maker-mode-execution
-   lands as tooling changes, new-market-anchor starts as a study).
+   (some tickets say otherwise in their own opening line —
+   `maker-mode-execution` lands as changes to `tools/` rather than a
+   theory, and `new-market-anchor` starts as a measurement study).
 3. Follow the repo contracts in CLAUDE.md. Most-missed: entry prices are
    the **ask**, never the mid; every recorded edge carries an
    `edge_basis` (`measured`/`model`/`prior` — never a felt sense); any
@@ -227,54 +283,92 @@ likelihood 2/5 because the best available evidence points against them.
   argument), threat of fee/spread erosion, competition, and how much
   sample it takes to prove.
 
-## Priority ranking (effort S/M/L; A/I/L scores from each spec's Assessment)
+## The scoreboard
 
-| # | spec | lens | A | I | L | Σ | tier | effort |
-|---|------|------|---|---|---|---|------|--------|
-| 1 | [calibration-harvest](2026-08-24-theory-calibration-harvest-design.md) | signed price/horizon/domain cells | 5 | 5 | 4 | 14 | A | S |
-| 2 | [deadline-drift](2026-08-24-theory-deadline-drift-design.md) | affirmative-event hazard | 4 | 3 | 3 | 10 | A | M |
-| 3 | [structural-arb](2026-08-24-theory-structural-arb-design.md) | within-event logic | 3 | 5 | 3 | 11 | A | S |
-| 4 | [series-bias-mining](2026-08-24-theory-series-bias-mining-design.md) | per-series base rates | 4 | 4 | 4 | 12 | A | M |
-| 5 | [news-drift](2026-08-24-theory-news-drift-design.md) | underreaction continuation | 4 | 4 | 2 | 10 | A | M |
-| 6 | [no-side-premium](2026-08-24-theory-no-side-premium-design.md) | YES/NO side bias (optimism tax) | 4 | 4 | 3 | 11 | A | S–M |
-| 7 | [overreaction-fade](2026-08-24-theory-overreaction-fade-design.md) | political move reversal | 4 | 4 | 3 | 11 | A | M |
-| 8 | [parlay-fade](2026-08-24-theory-parlay-fade-design.md) | combo markup vs product-of-legs | 3 | 3 | 4 | 10 | A | M |
-| 9 | [weather-model-gap](2026-08-24-theory-weather-model-gap-design.md) | ensemble forecast vs market | 4 | 3 | 3 | 10 | A | M |
-| 10 | [cross-venue-fair-value](2026-08-24-theory-cross-venue-fair-value-design.md) | cross-venue convergence | 3 | 3 | 3 | 9 | A | M |
-| 11 | ~~[smile-smoothing](2026-08-24-theory-smile-smoothing-design.md)~~ **DEAD 2026-08-29** | ladder shape | 4 | 3 | 3 | 10 | A | M |
-| 12 | ~~[calendar-arb](2026-08-24-theory-calendar-arb-design.md)~~ **DEAD 2026-08-27** | date-ladder nesting logic | 3 | 4 | 3 | 10 | A | S |
-| 13 | [econ-anchoring](2026-08-24-theory-econ-anchoring-design.md) | consensus anchoring on releases | 3 | 3 | 3 | 9 | A | M |
-| 14 | [settled-but-trading](2026-08-24-theory-settled-but-trading-design.md) | resolution-source staleness | 4 | 3 | 3 | 10 | A | M–L |
-| 15 | [new-market-anchor](2026-08-24-theory-new-market-anchor-design.md) | issuance mispricing (study) | 3 | 5 | 2 | 10 | A | S |
-| 16 | [maker-mode-execution](2026-08-24-theory-maker-mode-execution-design.md) | execution layer: spread capture | 5 | 4 | 3 | 12 | A | M |
-| 17 | [attention-model](2026-08-24-theory-attention-model-design.md) | Wikipedia attention vs box office | 3 | 3 | 3 | 9 | A | M |
-| 18 | [metaculus-gap](2026-08-24-theory-metaculus-gap-design.md) | forecaster aggregate vs market | 2 | 3 | 3 | 8 | A | M |
-| 19 | [whale-follow](2026-08-24-theory-whale-follow-design.md) | proven-wallet mirroring | 3 | 2 | 3 | 8 | A (PM leg) | L |
-| 20 | [vol-crossing](2026-08-24-theory-vol-crossing-design.md) | barrier-option model | 3 | 3 | 2 | 8 | A | M |
-| 21 | [implication-graph](2026-08-24-theory-implication-graph-design.md) | cross-event logic | 2 | 2 | 3 | 7 | B | L |
-| 22 | [insider-flow-radar](2026-08-24-theory-insider-flow-radar-design.md) | anomalous fresh flow | 2 | 2 | 2 | 6 | A (detector) | L |
+A/I/L are each spec's own Assessment scores under the rubric above —
+ordinal priors with stated reasoning, never calibrated probabilities.
+**The priority column is gone.** It was a second numbering for the same
+22 ideas, and the registry's insertion order is the one every ticket
+already cites (`idea 17 (maker-mode-execution)` is row 16 of the old
+table). Slugs are the identity; there are no numbers.
 
-**Where priority diverges from the composite score, sequencing is why:**
-series-bias-mining (Σ12) and maker-mode-execution (Σ12) sit below
-deadline-drift (Σ10) because the miner's value routes through *future*
-theories rather than immediate bets, and maker-mode needs at least one
-measured theory live before its paired backtest has anything to run on —
-while deadline-drift's design is already user-agreed and adds a second
-*lens* (time structure) early, which diversifies what the board scan can
-see. news-drift (Σ10, L=2) ranks 5 despite the low likelihood because its
-backtest is cheap, shared with overreaction-fade, and decisive either
-way — high information per effort, not high expected edge. parlay-fade
-(Σ10) ranks 8 on the strength of its evidence (L=4, the highest-quality
-new measurement in the backlog) despite workflow friction; calendar-arb
-(Σ10) sits at 12 rather than beside structural-arb because its firing
-rate is even less known and its two legs span separate event pages.
+Sorted by composite, then by outcome.
+
+| spec | lens | A | I | L | Σ | effort | what happened |
+|------|------|---|---|---|---|--------|---------------|
+| [calibration-harvest](completed/2026-08-24-calibration-harvest.md) | signed price/horizon/domain cells | 5 | 5 | 4 | 14 | S | **retired** — 0 of 47 cells cleared fees |
+| [series-bias-mining](completed/2026-08-24-series-bias-mining.md) | per-series base rates | 4 | 4 | 4 | 12 | M | **study** — pass 3 not measured by its own bar |
+| [maker-mode-execution](open/2026-08-24-maker-mode-execution.md) | execution layer: spread capture | 5 | 4 | 3 | 12 | M | **open — see the note below** |
+| [structural-arb](completed/2026-08-24-structural-arb.md) | within-event logic | 3 | 5 | 3 | 11 | S | **built** — 0 tradeable violations |
+| [no-side-premium](completed/2026-08-24-no-side-premium.md) | YES/NO side bias (optimism tax) | 4 | 4 | 3 | 11 | S–M | **built** — null at its 8-day bar |
+| [overreaction-fade](open/2026-08-24-overreaction-fade.md) | political move reversal | 4 | 4 | 3 | 11 | M | open |
+| [deadline-drift](completed/2026-08-24-deadline-drift.md) | affirmative-event hazard | 4 | 3 | 3 | 10 | M | **built** — shipping allowlist uninformative |
+| [parlay-fade](completed/2026-08-24-parlay-fade.md) | combo markup vs product-of-legs | 3 | 3 | 4 | 10 | M | **study** — 0 tradeable at a 1c buffer |
+| ~~[smile-smoothing](completed/2026-08-24-smile-smoothing.md)~~ | ladder shape | 4 | 3 | 3 | 10 | M | **DEAD 2026-08-29** |
+| ~~[calendar-arb](completed/2026-08-24-calendar-arb.md)~~ | date-ladder nesting logic | 3 | 4 | 3 | 10 | S | **DEAD 2026-08-27** |
+| [news-drift](open/2026-08-24-news-drift.md) | underreaction continuation | 4 | 4 | 2 | 10 | M | open |
+| [weather-model-gap](open/2026-08-24-weather-model-gap.md) | ensemble forecast vs market | 4 | 3 | 3 | 10 | M | open |
+| [settled-but-trading](open/2026-08-24-settled-but-trading.md) | resolution-source staleness | 4 | 3 | 3 | 10 | M–L | open — see `accumulation-decay` |
+| [new-market-anchor](open/2026-08-24-new-market-anchor.md) | issuance mispricing (study) | 3 | 5 | 2 | 10 | S | open |
+| [cross-venue-fair-value](open/2026-08-24-cross-venue-fair-value.md) | cross-venue convergence | 3 | 3 | 3 | 9 | M | open |
+| [econ-anchoring](open/2026-08-24-econ-anchoring.md) | consensus anchoring on releases | 3 | 3 | 3 | 9 | M | open |
+| [attention-model](open/2026-08-24-attention-model.md) | Wikipedia attention vs box office | 3 | 3 | 3 | 9 | M | open |
+| [metaculus-gap](open/2026-08-24-metaculus-gap.md) | forecaster aggregate vs market | 2 | 3 | 3 | 8 | M | open |
+| [whale-follow](open/2026-08-24-whale-follow.md) | proven-wallet mirroring | 3 | 2 | 3 | 8 | L | open — see `block-trade-whale-follow` |
+| [vol-crossing](open/2026-08-24-vol-crossing.md) | barrier-option model | 3 | 3 | 2 | 8 | M | open |
+| [implication-graph](open/2026-08-24-implication-graph.md) | cross-event logic | 2 | 2 | 3 | 7 | L | open — see `aggregation-gap` |
+| [insider-flow-radar](open/2026-08-24-insider-flow-radar.md) | anomalous fresh flow | 2 | 2 | 2 | 6 | L | open |
+
+### Read this table honestly: it has been anti-predictive so far
+
+Eight of the 22 have been acted on, and **not one has produced a bettable
+edge.** The four highest-composite specs are retired, not-measured, open,
+and sterile respectively. Meanwhile every result this repo actually has
+came from somewhere else: `insider_judgment` (the only positive segment,
+`strong-moderate-no` at +3.76 net over 90 clusters) predates this backlog
+entirely; `mention_family` was found by accident while backtesting that
+screen; `taker_flow` came from a find-theories session reading an outside
+paper. Even `no_side_premium`, which *is* from this backlog, got its
+founding evidence from the mention and insider full-coverage backtests
+rather than from the literature its spec cites.
+
+Fourteen untouched specs is a real selection caveat — the top ones were
+built first and so had more chances to fail. But the pattern is one to
+weigh before treating a high composite as a reason to build: **an idea
+sourced from a paper and an idea sourced from this repo's own settled
+rows are not equally likely to survive contact with the ask.** Rule 0f is
+the mechanism behind most of it.
+
+### Two consequences for what to pick up next
+
+**`maker-mode-execution` is the most undervalued ticket here.** It is the
+only spec that attacks rule 0f directly — its opening line is *"Every spec
+in this backlog prices entries at the ask, paying the spread"* — it scores
+Applicability 5/5, it is tier A, and section 5 reads *"Data requirements:
+None new."* It sat at row 16 purely on a sequencing argument: *"maker-mode
+needs at least one measured theory live before its paired backtest has
+anything to run on."* **That blocker is cleared.** There are 3,394 settled
+`insider_judgment` rows (328 in the proven slice), 1,908 from the
+`deadline_drift` walk, and 72,010 priced settled markets in the
+series-bias corpus. Its stated hard part — an honest fill simulator —
+also got easier than the spec assumed: `tools/kalshi/trades.py` did not
+exist on 2026-08-24, and the per-trade aggressor feed lets a replay check
+real crossing prints rather than inferring fills from a candle bid path.
+
+**Four open tickets are already successors to specs in this table** and
+should be read together, not twice: `aggregation-gap` is the part of
+`implication-graph` that needs no model; `accumulation-decay` is category
+(a) of `settled-but-trading` made concrete; `block-trade-whale-follow` is
+`whale-follow` without the cross-venue matching; `kalshi-taker-flow-toxicity`
+is the other side of `maker-mode-execution`'s coin (that one collects the
+spread, this one pays it to trade with informed flow).
 
 Paired designs: news-drift ↔ overreaction-fade share one joint
 sign-measurement (each claims only the cells measured its way);
 cross-venue-fair-value's pair store is reused by whale-follow and
 insider-flow-radar; structural-arb's sibling grouping is reused by
-smile-smoothing; new-market-anchor can ride calibration-harvest's cell
-matrix.
+smile-smoothing. (new-market-anchor was to ride calibration-harvest's
+cell matrix; that theory is retired, so it needs its own population.)
 
 ## Considered and parked (with why)
 
@@ -287,25 +381,32 @@ matrix.
   structural ideas are exhausted. Keyless public polling data exists.
 - **Order-book market making / continuous spread capture** — wrong shape
   for a manual bettor; the one-sided, theory-gated version is
-  maker-mode-execution (#13).
-- **Kalshi leaderboard copying** — Kalshi exposes no per-trader identity;
-  impossible by construction (Polymarket's transparency is why #14 and
-  #17 exist).
+  [maker-mode-execution](open/2026-08-24-maker-mode-execution.md).
+- **Kalshi leaderboard copying** — Kalshi exposes no per-trader *identity*,
+  which is why the wallet-based ideas
+  ([whale-follow](open/2026-08-24-whale-follow.md),
+  [insider-flow-radar](open/2026-08-24-insider-flow-radar.md)) route
+  through Polymarket. **Partly overturned 2026-09-01:** "impossible by
+  construction" was too strong. Kalshi publishes `taker_side` on every
+  executed trade and an `is_block_trade` flag on negotiated size — not
+  identity, but enough for a whale signal with no cross-venue matching
+  at all. See the open tickets `kalshi-taker-flow-toxicity` (which
+  became theory `taker_flow`) and `block-trade-whale-follow`.
 - **LLM forecast-gap betting** — puts an introspected probability at the
-  center of the procedure; the compliant reframing is `insider_bias`,
-  which already exists. Parked as redundant, not wrong.
+  center of the procedure; the compliant reframing is `insider_judgment`
+  (formerly `insider_bias`), which already exists. Parked as redundant, not wrong.
 - **Settlement spillover** (round 3) — when market A settles, related
   markets (same entity, same series family) may reprice slowly; trade
   the lag. Parked because the related-market identification is either
   LLM-judgment (implication-graph's cost profile) or so conservative it
   rarely fires, and the clean mechanical subset — date ladders — is
-  exactly [calendar-arb](2026-08-24-theory-calendar-arb-design.md).
+  exactly [calendar-arb](completed/2026-08-24-calendar-arb.md).
   Revisit angle: mine candlestick history for *measured* co-movement
   pairs first, then trade only pairs with demonstrated propagation lag.
 - **Same-game parlay correlation pricing** (round 3) — pricing
   correlated legs properly is a real modeling edge (an AMM-design
   literature exists), but it is the hard version of
-  [parlay-fade](2026-08-24-theory-parlay-fade-design.md); parked until
+  [parlay-fade](completed/2026-08-24-parlay-fade.md); parked until
   the cross-game version has evidence.
 
 ## Evidence folder — for reviewers

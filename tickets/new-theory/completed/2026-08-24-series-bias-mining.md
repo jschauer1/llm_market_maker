@@ -1,20 +1,26 @@
-# Series Bias Mining — Theory Design Spec
+---
+title: Mine per-series historical base rates for market families whose own price is persistently wrong
+lane: new-theory
+created: 2026-08-24
+created_by: theory-backlog-2026-08-24
+author_lane: find-theories
+author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
+status: done
+closed: 2026-09-01
+resolution: BUILT AS A STUDY, per the spec's own section 3 (the miner produces measurements, not bets): studies/2026-08-29-series-bias-mining/. Three passes run. Pass 3 declared itself NOT MEASURED by its own pre-registered bar -- 347 series tested against a floor of 30, so breadth was solved, but median MDE was 12.16 against a bar of 8.0. Its 72,010-row priced settled corpus is now the most reused dataset in the repo. Remaining work is tracked in its own open tickets: series-bias-sweep-finish and series-bias-backfill-liquidity.
+---
+Effort: M · LLM in decision path: no · Backtest tier: A
 
-Date: 2026-08-24
-Status: backlog — not yet proposed as a theory
-Registry slug: `series-bias-mining` · Priority: 4 of 22 · Effort: M ·
-LLM in decision path: no · Backtest tier: A
-
-Part of the theory backlog
-([index](2026-08-24-theory-backlog-index.md)). Before implementing: check
-`python -m tools.cli ideas search "series-bias-mining"` for status
-changes, then formalize via the `propose-theory` skill.
+**This spec was acted on; the `resolution` field above says what
+came of it.** Kept rather than deleted, because a completed ticket
+is the record of what was asked for and why — which is what a
+future session re-deriving the same idea needs.
 
 ## Assessment
 
 **Applicability 4/5 · Implementability 4/5 · Likelihood of success 4/5 ·
 Composite 12/15** (rubric in the
-[index](2026-08-24-theory-backlog-index.md); ordinal priors, not
+[index](../README.md); ordinal priors, not
 calibrated probabilities)
 
 - *Applicability 4:* indirect — it produces bettable *families*, not

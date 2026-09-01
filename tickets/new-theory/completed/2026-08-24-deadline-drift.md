@@ -1,20 +1,26 @@
-# Deadline Drift — Theory Design Spec
+---
+title: Markets needing a discrete unscheduled event by a deadline overprice YES as the clock runs out: buy NO late
+lane: new-theory
+created: 2026-08-24
+created_by: theory-backlog-2026-08-24
+author_lane: find-theories
+author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
+status: done
+closed: 2026-09-01
+resolution: BUILT. Theory `deadline_drift` v1, status `proposed`. The 2026-09-01 walk widened settled capture from a 68-series allowlist to all 962 by-deadline series (1,908 markets) and found that the allowlist -- what the theory actually ships -- is uninformative (-1.0, CI [-9.8, +5.7], 22 clusters), while the wide hazard stratum is +4.6 at the tradeable price (CI [+1.0, +8.0], 94 clusters) and post-hoc. price() stays inert and DD-1/DD-2 are pre-registered in its THEORY.md. Live work continues in theories/deadline_drift/tickets/.
+---
+Effort: M · LLM in decision path: no · Backtest tier: A
 
-Date: 2026-08-24
-Status: backlog — design agreed with the user in the 2026-08-24 session;
-ready for `propose-theory`
-Registry slug: `deadline-drift` · Priority: 2 of 22 · Effort: M ·
-LLM in decision path: no · Backtest tier: A
-
-Part of the theory backlog
-([index](2026-08-24-theory-backlog-index.md)). Before implementing: check
-`python -m tools.cli ideas search "deadline-drift"` for status changes.
+**This spec was acted on; the `resolution` field above says what
+came of it.** Kept rather than deleted, because a completed ticket
+is the record of what was asked for and why — which is what a
+future session re-deriving the same idea needs.
 
 ## Assessment
 
 **Applicability 4/5 · Implementability 3/5 · Likelihood of success 3/5 ·
 Composite 10/15** (rubric in the
-[index](2026-08-24-theory-backlog-index.md); ordinal priors, not
+[index](../README.md); ordinal priors, not
 calibrated probabilities)
 
 - *Applicability 4:* direct NO-side bets with clear entry windows and
@@ -42,7 +48,7 @@ Three mechanisms, two documented:
 
 - **Longshot bias:** late-window YES on a quiet market *is* a longshot,
   and longshots are overpriced (see the
-  [calibration-harvest spec](2026-08-24-theory-calibration-harvest-design.md)).
+  [calibration-harvest spec](2026-08-24-calibration-harvest.md)).
 - **Capital asymmetry:** Intrade evidence (500k+ transactions; Berg,
   Nelson & Rietz) — high-likelihood events underpriced and low-likelihood
   events overpriced specifically at long horizon, driven by NO locking
@@ -66,7 +72,7 @@ per-category report:
   about its outcome, not its occurrence.
 - **Continuous-threshold markets** ("BTC above X by date", weather) —
   level-crossing processes with different math; owned by
-  [vol-crossing](2026-08-24-theory-vol-crossing-design.md).
+  [vol-crossing](../open/2026-08-24-vol-crossing.md).
 
 One direction only: no symmetric YES-side bet (an undocumented thesis
 that would muddy the track record).

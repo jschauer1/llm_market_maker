@@ -152,8 +152,16 @@ def _cmd_tools(args) -> int:
 def _cmd_tickets(args) -> int:
     root = db.REPO_ROOT
     if args.action == "list":
-        _emit(tickets.backlog(
-            root, lane=args.lane, status=args.status, theory=args.theory))
+        # Brief is the DEFAULT read. A ticket carries its design in
+        # full, so the bodies dominate any listing that includes them --
+        # and this is the command every session runs at orient.
+        rows = tickets.backlog(
+            root, lane=args.lane, status=args.status, theory=args.theory,
+            brief=not args.full)
+        if args.full:
+            _emit(rows)
+        else:
+            print(tickets.render(rows), end="")
     elif args.action == "new":
         # A theory's folder is wherever its registry row says, never
         # theories/<slug>: insider_judgment sits under a shared family
@@ -793,6 +801,11 @@ def build_parser() -> argparse.ArgumentParser:
     tls.add_argument("--lane", default=None, choices=tickets.LANES)
     tls.add_argument("--theory", default=None)
     tls.add_argument("--status", default="open")
+    tls.add_argument(
+        "--full", action="store_true",
+        help="every field including the body, as JSON. The default is a "
+             "one-line-per-ticket table: a ticket carries its whole "
+             "design, so the bodies swamp any listing that includes them")
     tnew = tsub.add_parser("new", help="file work you are not going to do now")
     tnew.add_argument("--lane", required=True, choices=tickets.LANES)
     tnew.add_argument("--slug", required=True)

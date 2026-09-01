@@ -1,21 +1,25 @@
-# Cross-Venue Fair Value — Theory Design Spec
+---
+title: Treat the Polymarket mid as fair value and buy the Kalshi side that converges toward it
+lane: new-theory
+created: 2026-08-24
+created_by: theory-backlog-2026-08-24
+author_lane: find-theories
+author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
+status: open
+---
+Effort: M · LLM in decision path: match-time only (per-trade mechanical) · Backtest tier: A on the mechanical rule; pairs are confirmed facts
 
-Date: 2026-08-24
-Status: backlog — not yet proposed as a theory
-Registry slug: `cross-venue-fair-value` · Priority: 10 of 22 · Effort: M ·
-LLM in decision path: match-time only (per-trade mechanical) ·
-Backtest tier: A on the mechanical rule; pairs are confirmed facts
-
-Part of the theory backlog
-([index](2026-08-24-theory-backlog-index.md)). Before implementing: check
-`python -m tools.cli ideas search "cross-venue-fair-value"` for status
-changes, then formalize via the `propose-theory` skill.
+**This ticket is the spec.** Before starting, run
+`python -m tools.cli ideas search "cross-venue-fair-value"` in case the status
+moved, and read [the backlog's shared contracts](../README.md)
+first — rules 0 through 0e there have killed more ideas in this
+repo than any single spec's own kill criteria have.
 
 ## Assessment
 
 **Applicability 3/5 · Implementability 3/5 · Likelihood of success 3/5 ·
 Composite 9/15** (rubric in the
-[index](2026-08-24-theory-backlog-index.md); ordinal priors, not
+[index](../README.md); ordinal priors, not
 calibrated probabilities)
 
 - *Applicability 3:* throughput is bounded by the confirmed-pair
@@ -103,8 +107,8 @@ pairs. Two measurements, in order:
 
 `theories/cross_venue/{THEORY.md,pairs.py,divergence.py}` + tests. The
 pair store is shared infrastructure —
-[whale-follow](2026-08-24-theory-whale-follow-design.md) and
-[insider-flow-radar](2026-08-24-theory-insider-flow-radar-design.md)
+[whale-follow](2026-08-24-whale-follow.md) and
+[insider-flow-radar](2026-08-24-insider-flow-radar.md)
 reuse it. Effort M.
 
 ## 9. Testing approach

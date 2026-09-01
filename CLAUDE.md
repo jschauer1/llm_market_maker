@@ -124,6 +124,28 @@ is also the low-interrupt way to tell a working peer something, since a
 message costs them their focus and a ticket does not. Maintenance is the
 only lane free to move between tickets.
 
+**Making a theory requires writing a spec first, and the spec is that
+ticket.** A `new-theory` ticket is not a one-line idea: it states the
+mechanism, who is on the other side and why they keep being wrong, the
+Kalshi population counted on a real board, what would falsify it, whether
+it is mechanical or interpretive, and the cheapest decisive first step.
+`propose-theory` carries the full list and will not scaffold a theory
+without one. The shared contracts every spec in that lane inherits —
+including rule 0 (an edge between siblings of one Kalshi event finds
+nothing) and rule 0f (measure at *executable* prices, never the mid) —
+live in `tickets/new-theory/README.md`, alongside a graded evidence
+ledger for the claims those specs make.
+
+There is no separate spec tree, and there should not be one. There was
+one under docs/ until 2026-09-01: it held 22 designs, and every one of
+them still read "Status: backlog — not yet proposed as a theory" weeks after
+four had become running theories, one had been retired and two were dead.
+A second home for a document means a second status field, and the second
+one is always the stale one. **One document, one home, one status** — a
+proposed theory in `tickets/new-theory/open/`, a built or killed one in
+`completed/` with the resolution saying which, and an idea to try on an
+*existing* theory in that theory's own folder rather than either.
+
 **The user places every bet manually.** This system never sees what actually
 happened unless told:
 
@@ -362,7 +384,9 @@ softenings of it:
 
 Idea-registry discipline — search before proposing, record what you tried,
 write a revisit_angle — lives in propose-theory; invoke it before proposing
-anything.
+anything. The spec that discipline produces is a `new-theory` ticket; see
+"A session takes exactly one lane" above for why it lives there and
+nowhere else.
 
 ## How ranking works
 

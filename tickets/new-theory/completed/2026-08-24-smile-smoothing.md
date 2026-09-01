@@ -1,20 +1,26 @@
-# Smile Smoothing — Theory Design Spec
+---
+title: Individual strikes get pushed off the smooth implied distribution: fit a monotone curve and bet the deviant rung
+lane: new-theory
+created: 2026-08-24
+created_by: theory-backlog-2026-08-24
+author_lane: find-theories
+author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
+status: done
+closed: 2026-08-29
+resolution: DEAD 2026-08-29, killed at step one before the theory was ever registered. At a tradeable liquidity floor, 97.6% of 959 strike rungs sat EXACTLY on their own isotonic fit, maximum deviation 1.5c, zero candidates. Deviations appeared only in rungs whose median volume was 0, where the mid is an empty book rather than a price. Study: studies/2026-08-29-smile-smoothing-ladder-flatness/. Generalized into rule 0 of this backlog -- an edge living between siblings of one Kalshi event should expect to find nothing, and should measure before it builds.
+---
+Effort: M · LLM in decision path: no · Backtest tier: A
 
-Date: 2026-08-24
-Status: backlog — not yet proposed as a theory
-Registry slug: `smile-smoothing` · Priority: 11 of 22 · Effort: M ·
-LLM in decision path: no · Backtest tier: A
-
-Part of the theory backlog
-([index](2026-08-24-theory-backlog-index.md)). Before implementing: check
-`python -m tools.cli ideas search "smile-smoothing"` for status changes,
-then formalize via the `propose-theory` skill.
+**This spec was acted on; the `resolution` field above says what
+came of it.** Kept rather than deleted, because a completed ticket
+is the record of what was asked for and why — which is what a
+future session re-deriving the same idea needs.
 
 ## Assessment
 
 **Applicability 4/5 · Implementability 3/5 · Likelihood of success 3/5 ·
 Composite 10/15** (rubric in the
-[index](2026-08-24-theory-backlog-index.md); ordinal priors, not
+[index](../README.md); ordinal priors, not
 calibrated probabilities)
 
 - *Applicability 4:* ladders are everywhere on the board; capped at one
@@ -30,7 +36,7 @@ calibrated probabilities)
 ## 1. Hypothesis
 
 Even when a strike ladder is monotone (no hard
-[structural-arb](2026-08-24-theory-structural-arb-design.md) violation),
+[structural-arb](2026-08-24-structural-arb.md) violation),
 individual strikes get pushed off the smooth implied distribution by
 uninformed flow. Fit a monotone probability curve across the ladder; bet
 the strike whose price deviates most from the fit, toward the fit, when
@@ -102,7 +108,7 @@ with a planted off-curve strike that does/doesn't revert.
   (the largest deviation) or the ledger fills with internally-hedged
   rows.
 - CPI/econ ladders overlap
-  [econ-anchoring](2026-08-24-theory-econ-anchoring-design.md)'s turf: if
+  [econ-anchoring](../open/2026-08-24-econ-anchoring.md)'s turf: if
   both run, the anchoring signal is *directional* while this one is
   *shape-based*; they can disagree legitimately, but `find-edge`'s dedup
   must collapse same-ticker conflicts rather than presenting both.

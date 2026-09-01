@@ -1,20 +1,26 @@
-# Calendar Arbitrage — Theory Design Spec
+---
+title: Date-monotonicity is a hard logical constraint: buy the later-deadline YES and the earlier-deadline NO when quotes violate it
+lane: new-theory
+created: 2026-08-24
+created_by: theory-backlog-2026-08-24
+author_lane: find-theories
+author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
+status: done
+closed: 2026-08-27
+resolution: DEAD 2026-08-27, killed by its own first deliverable before anything was built. Ten stored board snapshots showed zero violations at its own 1c/leg buffer. Near-dated date ladders are siblings inside ONE event, so basket cost never fell below 1.000, and cross-event ladders exist only at 1y+ horizons where carry dwarfs a cent-scale edge. Study: studies/2026-08-27-calendar-arb-firing-rate/. A soft relative-value successor is open as calendar-arb-soft-relative-value.
+---
+Effort: S · LLM in decision path: no · Backtest tier: A
 
-Date: 2026-08-24
-Status: backlog — not yet proposed as a theory
-Registry slug: `calendar-arb` · Priority: 12 of 22 · Effort: S ·
-LLM in decision path: no · Backtest tier: A
-
-Part of the theory backlog
-([index](2026-08-24-theory-backlog-index.md)). Before implementing: check
-`python -m tools.cli ideas search "calendar-arb"` for status changes,
-then formalize via the `propose-theory` skill.
+**This spec was acted on; the `resolution` field above says what
+came of it.** Kept rather than deleted, because a completed ticket
+is the record of what was asked for and why — which is what a
+future session re-deriving the same idea needs.
 
 ## Assessment
 
 **Applicability 3/5 · Implementability 4/5 · Likelihood of success 3/5 ·
 Composite 10/15** (rubric in the
-[index](2026-08-24-theory-backlog-index.md); ordinal priors, not
+[index](../README.md); ordinal priors, not
 calibrated probabilities)
 
 - *Applicability 3:* like structural-arb, near-riskless when it fires
@@ -56,7 +62,7 @@ spec's first deliverable and costs little.
   window structure from rules text, and anything ambiguous is skipped
   loudly.
 - Semantic implications between *different* propositions stay with
-  [implication-graph](2026-08-24-theory-implication-graph-design.md);
+  [implication-graph](../open/2026-08-24-implication-graph.md);
   this spec's pairs must be verifiable by code alone.
 - Soft relative value between date siblings (later trading only 1¢ above
   earlier, implying an absurd conditional hazard) is a v2 — v1 trades
@@ -126,6 +132,6 @@ report is tested, not incidental.
 ## 11. Sources
 
 Mechanism shared with
-[structural-arb](2026-08-24-theory-structural-arb-design.md); cross-event
+[structural-arb](2026-08-24-structural-arb.md); cross-event
 inconsistency context in
 [Clinton & Huang 2025](https://ideas.repec.org/p/osf/socarx/d5yx2_v1.html).

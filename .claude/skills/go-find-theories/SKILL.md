@@ -25,7 +25,7 @@ all four:
 python -m tools.cli theories list                  # built, at any status
 python -m tools.cli ideas search ""                # the registry, incl. dead
 python -m tools.cli tickets list --lane new-theory # already queued
-ls docs/superpowers/specs/theories/                # specced, unbuilt
+python -m tools.cli tickets list --lane new-theory  # specced, unbuilt
 ```
 
 **A dead idea is not a free slot.** The registry records what was tried

@@ -1,20 +1,26 @@
-# No-Side Premium (Optimism Tax Harvesting) — Theory Design Spec
+---
+title: Retail flow buys YES, so at equal prices the affirmative side underperforms the negative side
+lane: new-theory
+created: 2026-08-24
+created_by: theory-backlog-2026-08-24
+author_lane: find-theories
+author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
+status: done
+closed: 2026-09-01
+resolution: BUILT. Theory `no_side_premium` v1, status `testing`, with slices cell-a-no-favorite and cell-b-yes-avoid accruing separately. Reached its 8-close-day bar on 2026-09-01 and the paired claim is null (+2.91, t=0.53). A 61-day out-of-population split replicated the pooled gap at +3.95 (t=3.03) and it was ENTIRELY COMPOSITION: -1.85 controlling within series and close day. The same control does not reverse on the screen population, so the series-bias liquidity backfill is now the deciding experiment.
+---
+Effort: S–M · LLM in decision path: no · Backtest tier: A
 
-Date: 2026-08-24
-Status: backlog — not yet proposed as a theory
-Registry slug: `no-side-premium` · Priority: 6 of 22 · Effort: S–M ·
-LLM in decision path: no · Backtest tier: A
-
-Part of the theory backlog
-([index](2026-08-24-theory-backlog-index.md)). Before implementing: check
-`python -m tools.cli ideas search "no-side-premium"` for status changes,
-then formalize via the `propose-theory` skill.
+**This spec was acted on; the `resolution` field above says what
+came of it.** Kept rather than deleted, because a completed ticket
+is the record of what was asked for and why — which is what a
+future session re-deriving the same idea needs.
 
 ## Assessment
 
 **Applicability 4/5 · Implementability 4/5 · Likelihood of success 3/5 ·
 Composite 11/15** (rubric in the
-[index](2026-08-24-theory-backlog-index.md); ordinal priors, not
+[index](../README.md); ordinal priors, not
 calibrated probabilities)
 
 - *Applicability 4:* frequent candidates in the entertainment/world
@@ -52,7 +58,7 @@ needing any view on the event itself.
   longshot bias* on Polymarket once side is accounted for — evidence the
   side effect and the price effect are partially distinct phenomena.
 - The repo's calibration work (see the
-  [calibration-harvest spec](2026-08-24-theory-calibration-harvest-design.md))
+  [calibration-harvest spec](2026-08-24-calibration-harvest.md))
   measures the *price*-conditional bias; this theory measures the
   *side*-conditional bias at the same price. They overlap but are not the
   same measurement, and section 6 separates them.

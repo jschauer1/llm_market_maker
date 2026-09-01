@@ -5,7 +5,7 @@ measurement path) · **Verdict:** do not build the spec as written
 
 ## Question
 
-[calendar-arb](../../docs/superpowers/specs/theories/2026-08-24-theory-calendar-arb-design.md)
+[calendar-arb](../../tickets/new-theory/completed/2026-08-24-calendar-arb.md)
 (backlog #12, effort S) proposes trading date-monotonicity violations:
 P(X by June) ≤ P(X by July) is a hard logical constraint, so buying the
 later-deadline YES and the earlier-deadline NO locks a profit whenever

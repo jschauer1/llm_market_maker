@@ -16,8 +16,7 @@ Public arb bots compress the lifetime of violations, which caps the firing
 rate, not the validity — the scanner costs nothing per session and only
 needs a violation to exist at the moment it looks.
 
-Full design rationale: `docs/superpowers/specs/theories/
-2026-08-24-theory-structural-arb-design.md` (registry idea
+Full design rationale: `tickets/new-theory/completed/2026-08-24-structural-arb.md` (registry idea
 `structural-arb`).
 
 ## Decision procedure (fully mechanical, edge_basis="model")

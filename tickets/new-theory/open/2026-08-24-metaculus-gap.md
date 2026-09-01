@@ -1,21 +1,25 @@
-# Metaculus Gap — Theory Design Spec
+---
+title: Where a fresh Metaculus community forecast diverges from a matched Kalshi price, the forecaster side is more often right
+lane: new-theory
+created: 2026-08-24
+created_by: theory-backlog-2026-08-24
+author_lane: find-theories
+author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
+status: open
+---
+Effort: M · LLM in decision path: match-time only (question pairing) · Backtest tier: A on the mechanical rule; pairs are confirmed facts
 
-Date: 2026-08-24
-Status: backlog — not yet proposed as a theory
-Registry slug: `metaculus-gap` · Priority: 18 of 22 · Effort: M ·
-LLM in decision path: match-time only (question pairing) ·
-Backtest tier: A on the mechanical rule; pairs are confirmed facts
-
-Part of the theory backlog
-([index](2026-08-24-theory-backlog-index.md)). Before implementing: check
-`python -m tools.cli ideas search "metaculus-gap"` for status changes,
-then formalize via the `propose-theory` skill.
+**This ticket is the spec.** Before starting, run
+`python -m tools.cli ideas search "metaculus-gap"` in case the status
+moved, and read [the backlog's shared contracts](../README.md)
+first — rules 0 through 0e there have killed more ideas in this
+repo than any single spec's own kill criteria have.
 
 ## Assessment
 
 **Applicability 2/5 · Implementability 3/5 · Likelihood of success 3/5 ·
 Composite 8/15** (rubric in the
-[index](2026-08-24-theory-backlog-index.md); ordinal priors, not
+[index](../README.md); ordinal priors, not
 calibrated probabilities)
 
 - *Applicability 2:* the binding constraint is question overlap —

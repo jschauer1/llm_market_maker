@@ -1,7 +1,7 @@
 # Evidence Ledger — theory backlog claims and their verification status
 
 Date: 2026-08-24. Companion to the
-[backlog index](../2026-08-24-theory-backlog-index.md).
+[backlog index](../README.md).
 
 Every load-bearing quantitative claim in the 22 specs, mapped to its
 source and graded by **how it was verified during research** — so a

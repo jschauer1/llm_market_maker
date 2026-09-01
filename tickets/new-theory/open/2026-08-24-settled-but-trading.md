@@ -1,21 +1,25 @@
-# Settled But Trading — Theory Design Spec
+---
+title: Between the determining fact becoming public and the market repricing to $0.99, the determined side is cheap
+lane: new-theory
+created: 2026-08-24
+created_by: theory-backlog-2026-08-24
+author_lane: find-theories
+author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
+status: open
+---
+Effort: M first family, S per additional · LLM in decision path: no · Backtest tier: A
 
-Date: 2026-08-24
-Status: backlog — not yet proposed as a theory
-Registry slug: `settled-but-trading` · Priority: 14 of 22 · Effort: M
-first family, S per additional · LLM in decision path: no ·
-Backtest tier: A
-
-Part of the theory backlog
-([index](2026-08-24-theory-backlog-index.md)). Before implementing: check
-`python -m tools.cli ideas search "settled-but-trading"` for status
-changes, then formalize via the `propose-theory` skill.
+**This ticket is the spec.** Before starting, run
+`python -m tools.cli ideas search "settled-but-trading"` in case the status
+moved, and read [the backlog's shared contracts](../README.md)
+first — rules 0 through 0e there have killed more ideas in this
+repo than any single spec's own kill criteria have.
 
 ## Assessment
 
 **Applicability 4/5 · Implementability 3/5 · Likelihood of success 3/5 ·
 Composite 10/15** (rubric in the
-[index](2026-08-24-theory-backlog-index.md); ordinal priors, not
+[index](../README.md); ordinal priors, not
 calibrated probabilities)
 
 - *Applicability 4:* when the window exists, the flagged bet is

@@ -1,21 +1,25 @@
-# Insider Flow Radar — Theory Design Spec
+---
+title: Insider accumulation leaves a signature on Polymarket's ledger: sudden size into a longshot by wallets with no history
+lane: new-theory
+created: 2026-08-24
+created_by: theory-backlog-2026-08-24
+author_lane: find-theories
+author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
+status: open
+---
+Effort: L · LLM in decision path: no (screening); session judgment on alerts · Backtest tier: A for the detector; alert follow-through is judgment
 
-Date: 2026-08-24
-Status: backlog — not yet proposed as a theory
-Registry slug: `insider-flow-radar` · Priority: 22 of 22 · Effort: L ·
-LLM in decision path: no (screening); session judgment on alerts ·
-Backtest tier: A for the detector; alert follow-through is judgment
-
-Part of the theory backlog
-([index](2026-08-24-theory-backlog-index.md)). Before implementing: check
-`python -m tools.cli ideas search "insider-flow-radar"` for status
-changes, then formalize via the `propose-theory` skill.
+**This ticket is the spec.** Before starting, run
+`python -m tools.cli ideas search "insider-flow-radar"` in case the status
+moved, and read [the backlog's shared contracts](../README.md)
+first — rules 0 through 0e there have killed more ideas in this
+repo than any single spec's own kill criteria have.
 
 ## Assessment
 
 **Applicability 2/5 · Implementability 2/5 · Likelihood of success 2/5 ·
 Composite 6/15** (rubric in the
-[index](2026-08-24-theory-backlog-index.md); ordinal priors, not
+[index](../README.md); ordinal priors, not
 calibrated probabilities) — lowest-ranked spec in the backlog; kept
 because its payoff profile is uncorrelated with everything else here.
 
@@ -37,7 +41,7 @@ size-aggressive accumulation of a *longshot* side by wallets with little
 or no history, in a market with a discrete revelation event ahead. Detect
 that signature within hours, and mirror the position on the matched Kalshi
 market while the price still says "longshot." This differs from
-[whale-follow](2026-08-24-theory-whale-follow-design.md) in kind:
+[whale-follow](2026-08-24-whale-follow.md) in kind:
 whale-follow trusts *long track records*; this flags *anomalous fresh
 flow* precisely because it has no track record.
 

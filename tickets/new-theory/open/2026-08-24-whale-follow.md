@@ -1,21 +1,25 @@
-# Whale Follow — Theory Design Spec
+---
+title: Score Polymarket wallets on realized PnL and mirror the persistently profitable ones into matched Kalshi markets
+lane: new-theory
+created: 2026-08-24
+created_by: theory-backlog-2026-08-24
+author_lane: find-theories
+author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
+status: open
+---
+Effort: L · LLM in decision path: match-time only (via the shared pair store) · Backtest tier: A on the Polymarket signal; Kalshi leg measured separately
 
-Date: 2026-08-24
-Status: backlog — not yet proposed as a theory
-Registry slug: `whale-follow` · Priority: 19 of 22 · Effort: L ·
-LLM in decision path: match-time only (via the shared pair store) ·
-Backtest tier: A on the Polymarket signal; Kalshi leg measured separately
-
-Part of the theory backlog
-([index](2026-08-24-theory-backlog-index.md)). Before implementing: check
-`python -m tools.cli ideas search "whale-follow"` for status changes,
-then formalize via the `propose-theory` skill.
+**This ticket is the spec.** Before starting, run
+`python -m tools.cli ideas search "whale-follow"` in case the status
+moved, and read [the backlog's shared contracts](../README.md)
+first — rules 0 through 0e there have killed more ideas in this
+repo than any single spec's own kill criteria have.
 
 ## Assessment
 
 **Applicability 3/5 · Implementability 2/5 · Likelihood of success 3/5 ·
 Composite 8/15** (rubric in the
-[index](2026-08-24-theory-backlog-index.md); ordinal priors, not
+[index](../README.md); ordinal priors, not
 calibrated probabilities)
 
 - *Applicability 3:* bounded by the Kalshi match rate (unknown, possibly
@@ -53,7 +57,7 @@ buys what they already skimmed); top wallets rotate addresses.
 - Scores decay and re-earn (wallet rotation); no permanent whitelist.
 - No mirror without a confirmed pair (resolution criteria, not topic) —
   the pair-store discipline from
-  [cross-venue-fair-value](2026-08-24-theory-cross-venue-fair-value-design.md),
+  [cross-venue-fair-value](2026-08-24-cross-venue-fair-value.md),
   reused.
 - Sports-heavy wallets discounted: wash trading is worst there (see
   section 10) and contaminates their apparent PnL.
@@ -95,7 +99,7 @@ shows where the edge dies if it dies.
 `theories/whale_follow/{THEORY.md,wallets.py,signal.py}` + tests. Build
 after cross-venue-fair-value's pair store exists. The wash filter (shared
 with
-[insider-flow-radar](2026-08-24-theory-insider-flow-radar-design.md)) is
+[insider-flow-radar](2026-08-24-insider-flow-radar.md)) is
 a `tools/` promotion candidate. Effort L — the largest data pipeline in
 this backlog.
 

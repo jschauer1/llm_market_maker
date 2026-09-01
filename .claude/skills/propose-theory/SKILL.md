@@ -42,7 +42,48 @@ python -m tools.cli ideas record <slug> "<title>" \
 Record it even if you end up dropping it — an idea investigated and abandoned
 is exactly what a future session needs to know about.
 
-## 3. Interrogate the hypothesis
+## 3. Write the spec — and the spec is a ticket
+
+**A theory is not made without a spec, and the spec is a `new-theory`
+ticket.** Write it before any procedure code. There is no separate spec
+tree: there was one, and every document in it still read "Status: backlog
+— not yet proposed as a theory" weeks after four had become running
+theories, one had been retired and two were dead. One document, one home,
+one status.
+
+```bash
+python -m tools.cli tickets new --lane new-theory --slug <slug>     --title "<the claim in one line>" --body "<the spec>"     --session <you> --author-lane <your lane>     --author-context "<what you were doing when you hit this>"
+```
+
+Read `tickets/new-theory/README.md` first. Its rules 0 through 0f are the
+shared contracts every spec in that lane inherits, and they have killed
+more ideas in this repo than any single spec's own kill criteria have —
+rule 0 (an edge between siblings of one Kalshi event finds nothing) and
+rule 0f (measure at *executable* prices, never the mid) between them
+account for most of the backlog's dead entries.
+
+What the body must carry, because a session with no other context has to
+be able to pick it up and work it:
+
+- **Mechanism** — what mistake is the market making, who is on the other
+  side, and **why it persists** rather than being arbitraged away.
+- **Kalshi population** — which series and how many markets, counted on a
+  real board, not estimated.
+- **What would kill it**, stated before any measurement, with the
+  cheapest decisive test named first.
+- **Mechanical or interpretive**, and the backtest tier that follows.
+- **Relation to existing work** — the registry slugs it overlaps, checked
+  in step 1, and why this is a sibling rather than a duplicate.
+
+**An idea to try on an *existing* theory is not a new-theory ticket.** It
+goes in that theory's own folder (`--lane theory --theory <slug>`),
+because a theory folder is supposed to hold everything its expert needs.
+
+When the theory gets built, close the spec ticket with a resolution
+saying where it went; it moves to `completed/` and stays as the record of
+what was asked for and why.
+
+## 4. Interrogate the hypothesis
 
 - What mistake is the market making, and **why does it persist** rather than
   being arbitraged away? A thesis with no answer here is usually wrong.
@@ -51,7 +92,7 @@ is exactly what a future session needs to know about.
 - Which data sources? Does anything exist to support it?
 - If the signal is not from Kalshi, how does it reach a Kalshi ticker?
 
-## 4. Split stage 1 from stage 2
+## 5. Split stage 1 from stage 2
 
 **Ask first whether this theory needs a stage 2 at all.** If the thesis can be
 decided by code — a monotonicity violation, a NO-basket summing below its
@@ -91,7 +132,7 @@ tier see, and what single question does the gate answer? Write the split down
 in `THEORY.md` — `_TEMPLATE/THEORY.md`'s stage 2 section says what to state.
 A theory whose decision path is fully deterministic can skip this and say so.
 
-## 5. Scaffold
+## 6. Scaffold
 
 ```bash
 mkdir -p theories/<slug>
@@ -168,7 +209,7 @@ prompt were never recorded — that check runs automatically as part of
 on disk are diffable, reviewable, and reproducible; a prompt living inside a
 tool call is a decision procedure nobody wrote down.
 
-## 6. Start at `proposed`, move to `testing` when it runs
+## 7. Start at `proposed`, move to `testing` when it runs
 
 A theory is `proposed` while its procedure is still being written. Once the
 screen actually runs end to end and starts recording opportunities, move it

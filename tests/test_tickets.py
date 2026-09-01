@@ -269,3 +269,101 @@ def test_the_cli_files_a_theory_ticket_under_its_registry_path(
             ).exists(), "the ticket must land inside the theory's folder"
     assert not (root / "theories" / "child").exists(), (
         "filing by slug would create a phantom directory beside the theory")
+
+
+# --- the lane's directory is named for the lane ----------------------------
+
+
+def test_the_new_theory_lane_lives_in_a_directory_named_for_it(repo):
+    """`--lane new-theory` files into `tickets/new-theory/`, not `research/`.
+
+    The directory used to be called `research`, so every session had to
+    know that the lane `new-theory` and the folder `research` were the
+    same thing. Nothing gained by the translation, and a reader looking
+    for "the new-theory backlog" had to be told where it was.
+    """
+    path = tickets.create(
+        repo, lane="new-theory", slug="vol-crossing",
+        title="barrier-option model for crossing markets",
+        body="Mechanism, population, kill criteria.",
+        created="2026-08-24", created_by="llm-7a",
+    )
+    assert path.relative_to(repo).as_posix() == (
+        "tickets/new-theory/open/2026-08-24-vol-crossing.md"
+    )
+
+
+def test_closing_a_new_theory_ticket_stays_inside_its_lane(repo):
+    path = tickets.create(
+        repo, lane="new-theory", slug="smile-smoothing", title="ladder shape",
+        body="Fit a monotone curve; bet the deviant strike.",
+        created="2026-08-24", created_by="llm-7a",
+    )
+    done = tickets.close(path, resolution="Dead: 97.6% of rungs sat on the fit.",
+                         now="2026-08-29")
+    assert done.relative_to(repo).as_posix() == (
+        "tickets/new-theory/completed/2026-08-24-smile-smoothing.md"
+    )
+
+
+# --- the brief listing -----------------------------------------------------
+
+
+def test_the_brief_backlog_carries_identity_without_bodies(repo):
+    """A session choosing work needs to see every ticket, not read them.
+
+    The backlog is read at the start of every session. Once tickets
+    carry full spec content it runs to hundreds of KB, so the listing
+    that everyone runs must be the cheap one: what each ticket is, and
+    enough to decide whether to open it.
+    """
+    tickets.create(
+        repo, lane="new-theory", slug="whale-follow",
+        title="mirror proven Polymarket wallets into matched Kalshi markets",
+        body="X" * 8000, created="2026-08-24", created_by="llm-7a",
+        author_context="found while surveying the board",
+    )
+    brief = tickets.backlog(repo, brief=True)
+    assert len(brief) == 1
+    entry = brief[0]
+    assert entry["slug"] == "whale-follow"
+    assert entry["title"].startswith("mirror proven Polymarket")
+    assert entry["lane"] == "new-theory"
+    assert entry["created"] == "2026-08-24"
+    assert "body" not in entry
+    assert entry["body_chars"] == 8000
+
+
+def test_the_brief_backlog_reports_a_malformed_ticket_too(repo):
+    """A ticket nobody can parse is still work nobody will do."""
+    bad = repo / "tickets" / "new-theory" / "open" / "2026-08-24-broken.md"
+    bad.parent.mkdir(parents=True, exist_ok=True)
+    bad.write_text("no frontmatter here", encoding="utf-8")
+    brief = tickets.backlog(repo, brief=True)
+    assert [e["slug"] for e in brief] == ["broken"]
+    assert brief[0]["malformed"] is True
+
+
+def test_the_full_backlog_still_carries_the_body(repo):
+    tickets.create(
+        repo, lane="new-theory", slug="vol-crossing", title="barrier model",
+        body="The whole spec.", created="2026-08-24", created_by="llm-7a",
+    )
+    full = tickets.backlog(repo)
+    assert full[0]["body"] == "The whole spec."
+
+
+def test_the_brief_render_is_one_line_per_ticket(repo):
+    for n, slug in enumerate(("aggregation-gap", "vol-crossing")):
+        tickets.create(
+            repo, lane="new-theory", slug=slug, title=f"title {n}",
+            body="Y" * 5000, created="2026-08-24", created_by="llm-7a",
+        )
+    tickets.create(
+        repo, lane="maintenance", slug="http-429", title="backoff",
+        body="Z" * 5000, created="2026-08-31", created_by="llm-7a",
+    )
+    text = tickets.render(tickets.backlog(repo, brief=True))
+    assert "aggregation-gap" in text and "http-429" in text
+    # Cheap is the whole point: the three bodies alone are 15,000 chars.
+    assert len(text) < 1000

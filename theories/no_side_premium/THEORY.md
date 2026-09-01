@@ -12,8 +12,7 @@ Why it persists: the tax is a behavioral flow imbalance, not a
 mispricing anyone can see on one market; and at favorite prices the
 per-contract profit is small enough that pros don't queue to collect it.
 
-Full design rationale: `docs/superpowers/specs/theories/
-2026-08-24-theory-no-side-premium-design.md` (registry idea
+Full design rationale: `tickets/new-theory/completed/2026-08-24-no-side-premium.md` (registry idea
 `no-side-premium`); external evidence (Becker microstructure; Reichenbach
 & Walther 2025) cited there.
 

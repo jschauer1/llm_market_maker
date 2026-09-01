@@ -1,20 +1,25 @@
-# Vol Crossing — Theory Design Spec
+---
+title: Above/below-by-date markets on BTC and index levels are digital barrier options: price them and bet the deviation
+lane: new-theory
+created: 2026-08-24
+created_by: theory-backlog-2026-08-24
+author_lane: find-theories
+author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
+status: open
+---
+Effort: M · LLM in decision path: no · Backtest tier: A
 
-Date: 2026-08-24
-Status: backlog — not yet proposed as a theory
-Registry slug: `vol-crossing` · Priority: 20 of 22 · Effort: M ·
-LLM in decision path: no · Backtest tier: A
-
-Part of the theory backlog
-([index](2026-08-24-theory-backlog-index.md)). Before implementing: check
-`python -m tools.cli ideas search "vol-crossing"` for status changes,
-then formalize via the `propose-theory` skill.
+**This ticket is the spec.** Before starting, run
+`python -m tools.cli ideas search "vol-crossing"` in case the status
+moved, and read [the backlog's shared contracts](../README.md)
+first — rules 0 through 0e there have killed more ideas in this
+repo than any single spec's own kill criteria have.
 
 ## Assessment
 
 **Applicability 3/5 · Implementability 3/5 · Likelihood of success 2/5 ·
 Composite 8/15** (rubric in the
-[index](2026-08-24-theory-backlog-index.md); ordinal priors, not
+[index](../README.md); ordinal priors, not
 calibrated probabilities)
 
 - *Applicability 3:* crypto ladders are numerous and recurring, so
@@ -55,7 +60,7 @@ longer-dated touches.
 - No drift estimation, no vol-surface modeling in v1: driftless EWMA
   realized vol only, with the buffer absorbing model error.
 - Unscheduled-event by-date markets belong to
-  [deadline-drift](2026-08-24-theory-deadline-drift-design.md), the
+  [deadline-drift](../completed/2026-08-24-deadline-drift.md), the
   complementary exclusion.
 
 ## 4. Decision procedure
@@ -90,7 +95,7 @@ need its own justification, not a sign flip.
 
 `theories/vol_crossing/{THEORY.md,model.py,underlying.py}` + tests.
 Effort M. Note: daily-recurring crypto range markets also feed
-[series-bias-mining](2026-08-24-theory-series-bias-mining-design.md); if
+[series-bias-mining](../completed/2026-08-24-series-bias-mining.md); if
 the miner flags them first with a pure base-rate edge, that is the
 cheaper capture and this model becomes its v2.
 
@@ -114,6 +119,6 @@ known hit outcomes.
 ## 11. Sources
 
 - Longshot/touch overpricing: see
-  [calibration-harvest](2026-08-24-theory-calibration-harvest-design.md)
+  [calibration-harvest](../completed/2026-08-24-calibration-harvest.md)
   sources; [Le 2026](https://arxiv.org/pdf/2602.19520) crypto horizon
   slopes.

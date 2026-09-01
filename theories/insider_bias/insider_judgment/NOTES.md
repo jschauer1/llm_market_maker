@@ -1212,7 +1212,7 @@ before replacing its prior; `bucket_rates` reports and persists
 **Next:** `gate.py` is now the clear top item for `insider_judgment` —
 the families it misses are a ticker question, not a judgment question, so
 the fix is code and it bumps the version again. Beyond that: 22 specced
-theories remain unbuilt (`docs/superpowers/specs/theories/`), and idea 21's
+theories remain unbuilt (`tickets/new-theory/open/`), and idea 21's
 soft relative-value successor still has a ready dataset.
 
 ## 2026-08-29 (session 3) — the version-bump gap, and what v4's clean gate revealed (migrated from RESEARCH_LOG.md)

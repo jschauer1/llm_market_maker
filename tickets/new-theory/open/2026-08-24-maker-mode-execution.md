@@ -1,22 +1,25 @@
-# Maker-Mode Execution — Design Spec (cross-cutting execution layer)
+---
+title: Every theory here pays the ask, and the measured transfer runs to makers: rest a limit order instead of crossing
+lane: new-theory
+created: 2026-08-24
+created_by: theory-backlog-2026-08-24
+author_lane: find-theories
+author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
+status: open
+---
+Effort: M · LLM in decision path: no · Backtest tier: A (measurement design below)
 
-Date: 2026-08-24
-Status: backlog — infrastructure spec, not a standalone theory
-Registry slug: `maker-mode-execution` · Priority: 16 of 22 · Effort: M ·
-LLM in decision path: no · Backtest tier: A (measurement design below)
-
-Part of the theory backlog
-([index](2026-08-24-theory-backlog-index.md)). Before implementing: check
-`python -m tools.cli ideas search "maker-mode-execution"`. This one is
-**not** formalized via `propose-theory` — it is an execution layer that
-serves every theory, and it changes ledger conventions, so it lands as a
-versioned change to `tools/` plus an addendum in each affected THEORY.md.
+**This ticket is the spec.** Before starting, run
+`python -m tools.cli ideas search "maker-mode-execution"` in case the status
+moved, and read [the backlog's shared contracts](../README.md)
+first — rules 0 through 0e there have killed more ideas in this
+repo than any single spec's own kill criteria have.
 
 ## Assessment
 
 **Applicability 5/5 · Implementability 4/5 · Likelihood of success 3/5 ·
 Composite 12/15** (rubric in the
-[index](2026-08-24-theory-backlog-index.md); ordinal priors, not
+[index](../README.md); ordinal priors, not
 calibrated probabilities)
 
 - *Applicability 5:* not a theory but a points-per-trade improvement to

@@ -5,7 +5,7 @@ Raw, dated, append-only. Distilled findings graduate to `THEORY.md`.
 ## 2026-08-27 — built; the repo's existing settled data cannot serve this theory
 
 Built from the backlog spec
-(`docs/superpowers/specs/theories/2026-08-24-theory-calibration-harvest-design.md`,
+(`tickets/new-theory/completed/2026-08-24-calibration-harvest.md`,
 priority 1 of 22). Registered `proposed`, deliberately not `testing`: no
 cell is measured, so the theory records nothing on the board yet.
 

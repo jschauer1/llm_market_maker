@@ -1,20 +1,26 @@
-# Parlay Fade — Theory Design Spec
+---
+title: Cross-game parlays are overpriced against the product of their legs, and the markup grows with leg count
+lane: new-theory
+created: 2026-08-24
+created_by: theory-backlog-2026-08-24
+author_lane: find-theories
+author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
+status: done
+closed: 2026-09-01
+resolution: BUILT AS A STUDY: studies/2026-08-30-parlay-markup/, pre-registration committed before any markup figure was computed. Its rule-0 probe is the important output and it came back NEGATIVE. Kalshi's 92 *COMBO markets are 2x2 partitions whose legs sit in separate events, which makes {DD, DR} an EXACT synthetic of the standalone leg market -- an identity that holds whatever the correlation between legs. Result: 34 exact riskless constructions at executable prices, 1 profitable at zero buffer (+0.05 pts), 0 at a 1c/leg buffer. Mid-price gaps up to 6.4 pts exist and sit entirely inside the spread.
+---
+Effort: M · LLM in decision path: no · Backtest tier: A
 
-Date: 2026-08-24
-Status: backlog — not yet proposed as a theory
-Registry slug: `parlay-fade` · Priority: 8 of 22 · Effort: M ·
-LLM in decision path: no · Backtest tier: A
-
-Part of the theory backlog
-([index](2026-08-24-theory-backlog-index.md)). Before implementing: check
-`python -m tools.cli ideas search "parlay-fade"` for status changes, then
-formalize via the `propose-theory` skill.
+**This spec was acted on; the `resolution` field above says what
+came of it.** Kept rather than deleted, because a completed ticket
+is the record of what was asked for and why — which is what a
+future session re-deriving the same idea needs.
 
 ## Assessment
 
 **Applicability 3/5 · Implementability 3/5 · Likelihood of success 4/5 ·
 Composite 10/15** (rubric in the
-[index](2026-08-24-theory-backlog-index.md); ordinal priors, not
+[index](../README.md); ordinal priors, not
 calibrated probabilities)
 
 - *Applicability 3:* the edge is real but the natural expression —

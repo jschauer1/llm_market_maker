@@ -556,7 +556,8 @@ the budget.
 ### 5.1 Doc drift, and a test that catches the next one
 
 - `README.md` points at `docs/theory-specs/`, which does not exist. The real
-  path is `docs/superpowers/specs/theories/`.
+  path is `tickets/new-theory/` (was `docs/superpowers/specs/theories/`
+  until 2026-09-01).
 - `docs/DEDUP_PLAN.md` reads "implementation not started" for work that landed
   in `f6a1047`. It is already superseded by
   `2026-08-27-position-identity-design.md`; its header should say so.

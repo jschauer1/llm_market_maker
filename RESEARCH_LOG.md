@@ -3752,3 +3752,112 @@ the user, and it will recur every session until fixed. After that,
 `no_side_premium` needs two more settlement days to rule on cell B, and
 `taker_flow`'s `extreme-imbalance` slice needs its penny-longshot pricing
 fixed before it clears its gates (already ticketed).
+
+## 2026-09-01 — the spec tree becomes the backlog: one document, one home, one status (maintenance, user-directed)
+
+**Ruling (user, 2026-09-01): making a theory requires writing a spec, and
+the spec is a `new-theory` ticket.** There is no separate spec tree.
+An idea to try on an *existing* theory is a ticket in that theory's own
+folder instead. Recorded in CLAUDE.md, `propose-theory` §3, and
+`tickets/README.md`.
+
+**What moved.** `docs/superpowers/specs/theories/` held 22 researched
+design specs from the 2026-08-24 literature passes, plus a backlog index
+and a graded evidence folder. All of it is now
+`tickets/new-theory/` — 14 untouched specs as open tickets, 8 acted-on
+ones in `completed/` carrying real resolutions, the index as the lane's
+`README.md`, and `evidence/` beside it. The 22 spec bodies were verified
+byte-identical from their first `## ` heading onward before the originals
+were deleted, and every relative link in the lane resolves.
+
+**Why, and this is the generalizable part.** Every one of the 22 specs
+still read **"Status: backlog — not yet proposed as a theory"** —
+including `calibration-harvest`, retired that morning; `smile-smoothing`
+and `calendar-arb`, dead for days; and the four that had become running
+theories. The specs delegated status to the idea registry by design
+("run `ideas search <slug>`"), which is defensible, and it still went
+stale, because **a second home for a document means a second status field
+and the second one is always the one nobody updates.** The backlog index
+had the same failure at one remove: it marked the two dead specs with
+strikethrough but still ranked the retired `calibration-harvest` #1 with
+no marker.
+
+**A second numbering system was in active use and nobody had noticed.**
+The index ranked the specs 1–22 by priority; every ticket in the repo
+cites the idea registry's insertion order instead (`"idea 17
+(maker-mode-execution)"` is row 16 of that table; `"idea 13 /
+implication-graph"` is row 21). Both appeared across the repo and they
+disagreed. The priority column is gone — slugs are the identity.
+
+**Learned — the backlog's own ranking has been anti-predictive so far,
+and it is worth saying why.** Eight of 22 acted on, **zero bettable
+edges**. The four highest-composite specs are retired, not-measured,
+open, and sterile. Every result the repo actually has came from
+elsewhere: `insider_judgment` predates the backlog, `mention_family` was
+found by accident backtesting its screen, `taker_flow` came from a
+find-theories session reading an outside paper, and `no_side_premium` —
+which *is* from the backlog — got its founding evidence from the mention
+and insider full-coverage backtests rather than the literature its spec
+cites. Fourteen untouched specs is a real selection caveat. The pattern
+still deserves weighing: an idea sourced from a paper and an idea sourced
+from this repo's own settled rows are not equally likely to survive
+contact with the ask.
+
+**Learned — one failure mode has killed or gutted seven ideas here, and
+only two narrow corners of it were written down.** Recorded as rule 0f in
+the lane README: *measure the effect at executable prices before building
+anything.* `calendar-arb` (basket cost never below 1.000), `smile-smoothing`
+(deviations only where median volume 0), `structural_arb` (1 violation in
+6,414 events, 0 tradeable), combo-vs-leg (mid gaps to 6.4 pts entirely
+inside the spread), `series-bias-mining` pass 3 (23% of obs at asks
+0.980–0.995 realizing 0.801), `mid-band-favorite-fade` (`fav_net +
+dog_net == −(spread + fees)`; both sides lose), `calibration_harvest`
+(47 cells past both floors, 0 past fees). Rule 0 covered the within-event
+corner and rule 0d the gross/net corner; the general statement did not
+exist. Two of the backlog's own sources say it outright — Angelini & De
+Angelis verbatim ("executable-style returns … are negative") and Becker's
+−1.12% per taker trade.
+
+**`maker-mode-execution` is the most undervalued ticket in the lane, and
+its stated blocker is cleared.** It is the only spec that attacks rule 0f
+directly (*"Every spec in this backlog prices entries at the ask, paying
+the spread"*), scores Applicability 5/5, is tier A, and needs no new
+data. It sat at row 16 purely on sequencing — *"needs at least one
+measured theory live before its paired backtest has anything to run
+on"* — and there are now 3,394 settled `insider_judgment` rows (328 in
+the proven slice), 1,908 from the `deadline_drift` walk, and 72,010
+priced settled markets in the series-bias corpus. Its hard part, an
+honest fill simulator, also got easier than the spec assumed:
+`tools/kalshi/trades.py` did not exist on 2026-08-24, and the per-trade
+aggressor feed lets a replay check real crossing prints instead of
+inferring fills from a candle bid path. Noted in the lane README.
+
+**`tickets list` is now brief by default, and that was not optional.**
+Adding 89 KB of spec bodies to a listing already at 114 KB would have
+made the single most repeated read in the repo — step 1 of every `go`
+session, described there as a "cheap read" — cost ~50k tokens and grow
+with every ticket ever filed. The default is one line per ticket grouped
+by lane (**5.6 KB for all 41 open**, against 217 KB for `--full`). Open
+the file once you have chosen; do not pay for 38 designs to pick one.
+
+**`tickets/research/` renamed to `tickets/new-theory/`.** The lane was
+`new-theory` and the directory was `research`, so every session had to
+know the two were the same thing. `ROOT_LANES` now maps each lane to a
+directory of its own name.
+
+**Repaired while in there:** the parked-ideas list cited spec numbers
+from a superseded ranking (`maker-mode-execution (#13)`, "why #14 and #17
+exist") that pointed at the wrong specs after a renumber; "Kalshi
+leaderboard copying — impossible by construction" was partly overturned
+on 2026-09-01 (Kalshi publishes `taker_side` and `is_block_trade`; not
+identity, but enough for a whale signal with no cross-venue matching) and
+now says so; "new-market-anchor can ride calibration-harvest's cell
+matrix" named a retired theory. `docs/superpowers/plans/theories/` — a
+build tracker holding one stale README that said `calibration_harvest`
+was "`testing` v2" — was folded in and removed. 13 external references
+repointed; `RESEARCH_LOG.md` and the 2026-08-29 citation-sweep artifact
+were left alone as append-only records of what was true when written.
+
+**Next.** `maker-mode-execution` is the recommendation, for the reasons
+above. Nothing here changes any theory's decision procedure, so no
+version bumps; suite 1337 passed.

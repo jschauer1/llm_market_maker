@@ -29,7 +29,8 @@ down instead of lost.
 ```bash
 python -m tools.cli floor status     # has today's floor been done?
 python -m tools.cli lane status      # who is working on what
-python -m tools.cli tickets list     # the backlog, oldest first
+python -m tools.cli tickets list     # the backlog, oldest first (one
+                                     # line each; --full for bodies)
 python -m tools.cli state            # theories, evidence, rulings, queue
 ```
 
@@ -60,7 +61,7 @@ and run anything:
   `promote --run <run>`, `bucket_rates`, `compare-theories`. Numbers are
   free and reading them is faster than guessing.
 - Query the database directly. Open the ticket files. Read
-  `docs/superpowers/specs/theories/` for what is specced and unbuilt, and
+  `tickets/new-theory/open/` for what is specced and unbuilt, and
   `studies/` for what has already been measured.
 - Look at the board (`get_board(conn)` — no force, that is the floor's).
 - Check `git log`, run the tests, read `RESEARCH_LOG.md` for a ruling

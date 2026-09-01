@@ -1,20 +1,26 @@
-# Calibration Harvest — Theory Design Spec
+---
+title: Signed price x horizon x domain calibration cells: bet the side each cell's own measured rate says is cheap
+lane: new-theory
+created: 2026-08-24
+created_by: theory-backlog-2026-08-24
+author_lane: find-theories
+author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
+status: done
+closed: 2026-09-01
+resolution: BUILT then RETIRED. Theory `calibration_harvest` ran v1-v4 and was retired 2026-09-01 on its own pre-registered kill criterion. Across three complete populations -- weather, politics, and econfin (1,181/1,181 series, 2,666 observations) -- 47 cells cleared both floors and ZERO cleared fees. The horizon axis reversed sign out of sample (1mo+ +9.38 -> -5.09), 0 of 27 econfin cells survived Holm, and 87% of the forward corpus turned out to be sports reading -6.69 gross. This was the highest-scoring spec in the backlog (composite 14/15). Full record in theories/calibration_harvest/.
+---
+Effort: S · LLM in decision path: no · Backtest tier: A
 
-Date: 2026-08-24
-Status: backlog — not yet proposed as a theory
-Registry slug: `calibration-harvest` · Priority: 1 of 22 · Effort: S ·
-LLM in decision path: no · Backtest tier: A
-
-Part of the theory backlog
-([index](2026-08-24-theory-backlog-index.md)). Before implementing: check
-`python -m tools.cli ideas search "calibration-harvest"` for status
-changes, then formalize via the `propose-theory` skill.
+**This spec was acted on; the `resolution` field above says what
+came of it.** Kept rather than deleted, because a completed ticket
+is the record of what was asked for and why — which is what a
+future session re-deriving the same idea needs.
 
 ## Assessment
 
 **Applicability 5/5 · Implementability 5/5 · Likelihood of success 4/5 ·
 Composite 14/15** (rubric in the
-[index](2026-08-24-theory-backlog-index.md); ordinal priors for
+[index](../README.md); ordinal priors for
 prioritization, not calibrated probabilities)
 
 - *Applicability 5:* scans the whole board every session; output is
@@ -75,7 +81,7 @@ decay slowly if at all.
   trade.
 - The side-conditional (YES vs NO at equal price) effect is a different
   measurement owned by
-  [no-side-premium](2026-08-24-theory-no-side-premium-design.md); the two
+  [no-side-premium](2026-08-24-no-side-premium.md); the two
   screens stay disjoint by construction (favorite-side band here,
   YES-longshot band there).
 
