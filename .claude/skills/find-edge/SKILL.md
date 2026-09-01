@@ -253,12 +253,19 @@ also in that report and useful for diagnosis, but only the net figure is
 comparable to a claim, which is net of fees by definition.
 
 **`--n`, `--calibration-edge-net`, and `--mean-claimed-edge` must all come
-from the same disposition-matched `score report` row.** Ranking an endorsed
-opportunity means all three come from the *endorsed* row — never mix `n` from
-one row (e.g. `all`) with realization figures from another (e.g.
-`endorsed`). Mixing rows is how a `n=29` sample from `all` ends up shrinking
-an edge whose realization was measured on a completely different, unrelated
-sample.
+from the same `score report` row.** Never mix `n` from one row (e.g. `all`)
+with realization figures from another (e.g. `endorsed`). Mixing rows is how
+a `n=29` sample from `all` ends up shrinking an edge whose realization was
+measured on a completely different, unrelated sample.
+
+**Which row is the matching one depends on whether the theory endorses at
+all.** Where it does, match the disposition: ranking an endorsed
+opportunity means all three come from the *endorsed* row. Where it does not
+— a mechanical theory, or a judgment theory with no endorsement stage, as
+`insider_judgment` has been since v5 — there is no endorsed row and there
+never will be one; the row that matches is the one covering the rows the
+theory actually writes. Do not read an empty or stale `endorsed` row as
+"this theory has no evidence".
 
 **If the theory has registered slices, one score row is the wrong unit —
 rank per segment.** Check with `python -m tools.cli slices list --theory
