@@ -4,7 +4,9 @@ lane: theory
 theory: insider_judgment
 created: 2026-09-01
 created_by: llm-market-identifier-cc
-status: open
+status: done
+closed: 2026-09-01
+resolution: Fixed in 5ce5558: the RUNBOOK's Sub-theories section now carries real numbers (n=328, 90 clusters, 44 days, +3.76 net, pooled v1-v4, 314 replayed), plus the 'maintained, not absorbed' rule and a historical note on how the orphan was actually resolved (reclassify_bump relinking the chain, not adoption).
 ---
 Found by the 2026-09-01 floor. theories/insider_bias/insider_judgment/RUNBOOK.md, section 'Sub-theories', still carries:
 

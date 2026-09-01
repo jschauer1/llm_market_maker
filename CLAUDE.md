@@ -113,7 +113,13 @@ hundred tokens, and the cost of skipping one is a rule you never saw.
 **A session takes exactly one lane and stays in it.** Work you notice in
 another lane becomes a **ticket** (`python -m tools.cli tickets list`) —
 theory tickets live in that theory's own folder, everything else under
-`tickets/<lane>/`. That is what makes staying focused affordable, and it
+`tickets/<lane>/`. **A theory's folder is wherever its registry row says,
+which is not always `theories/<slug>`** — `insider_judgment` lives at
+`theories/insider_bias/insider_judgment`, under a shared family parent —
+so always file through `cli tickets new --theory <slug>`, which looks the
+path up. Writing one by hand at `theories/<slug>/tickets/` creates a
+phantom directory next to the real theory, where that theory's expert
+will never look. That is what makes staying focused affordable, and it
 is also the low-interrupt way to tell a working peer something, since a
 message costs them their focus and a ticket does not. Maintenance is the
 only lane free to move between tickets.

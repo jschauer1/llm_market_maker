@@ -52,8 +52,28 @@ STATES = ("open", "completed")
 
 def ticket_dir(
     root: Path, lane: str, theory: str | None = None, state: str = "open",
+    theory_path: str | None = None,
 ) -> Path:
-    """Where a ticket for this lane and state belongs."""
+    """Where a ticket for this lane and state belongs.
+
+    **A theory ticket lives inside that theory's own folder**, at
+    `<theory path>/tickets/<state>/` -- never under the repo-level
+    `tickets/` tree, and never at `theories/<slug>/`.
+
+    `theory_path` is REQUIRED for the theory lane and must come from the
+    theory's registry row (`theories.get(conn, slug)["path"]`), because a
+    theory's folder is wherever that row says it is. `insider_judgment`
+    lives at `theories/insider_bias/insider_judgment`, under a shared
+    family parent, so its slug is not its path.
+
+    This used to fall back to `theories/{theory}` when the caller omitted
+    the path, and the fallback did real damage: it silently created
+    `theories/insider_judgment/`, a phantom directory holding nothing but
+    tickets, sitting beside the real theory and invisible as an error.
+    A missing path now raises instead, so a caller that forgets gets told
+    at once rather than filing work where its theory's expert will never
+    look.
+    """
     if state not in STATES:
         raise ValueError(f"unknown state {state!r}; expected one of {STATES}")
     if lane == "theory":
@@ -62,7 +82,16 @@ def ticket_dir(
                 "a theory ticket needs its theory: theory work lives in that "
                 "theory's own folder, never in the main tickets directory"
             )
-        return Path(root) / "theories" / theory / "tickets" / state
+        if not theory_path:
+            raise ValueError(
+                f"a theory ticket needs the registry path for {theory!r}, not its "
+                "slug: pass theory_path=theories.get(conn, slug)['path']. "
+                "A theory folder is wherever its row says -- insider_judgment "
+                "lives at theories/insider_bias/insider_judgment -- so "
+                "deriving it from the slug creates a phantom directory "
+                "beside the real theory."
+            )
+        return Path(root) / theory_path / "tickets" / state
     if lane not in ROOT_LANES:
         raise ValueError(f"unknown lane {lane!r}; expected one of {LANES}")
     return Path(root) / "tickets" / ROOT_LANES[lane] / state
@@ -76,6 +105,7 @@ def create(
     title: str,
     body: str,
     theory: str | None = None,
+    theory_path: str | None = None,
     created: str | None = None,
     created_by: str | None = None,
     author_lane: str | None = None,
@@ -107,7 +137,8 @@ def create(
             "not here when you filed this"
         )
     day = created or _today()
-    directory = ticket_dir(root, lane, theory)
+    directory = ticket_dir(root, lane, theory,
+                           theory_path=theory_path)
     directory.mkdir(parents=True, exist_ok=True)
     path = directory / f"{day}-{slug}.md"
     if path.exists():

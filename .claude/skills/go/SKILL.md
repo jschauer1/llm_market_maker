@@ -164,16 +164,37 @@ picked until it is done or genuinely blocked.
 - **`maintenance`** — the only lane free to move between tickets, and
   free to do unfocused work nobody filed. That is what the lane is for.
 
-**File tickets liberally.** It costs you a minute and it is how the thing
-you noticed survives your session:
+**File tickets for what you are not going to do** — it is how the thing
+you noticed survives your session. Always pass what you were *doing*
+(`--author-lane`, `--author-focus`, `--author-context`): a crash hit
+mid-backtest and the same crash hit while reading docs are different
+reports, and the reader cannot reconstruct which one this was.
+
+**But a ticket spends someone's session, so it is a commitment rather
+than a note.** Filing feels free and is not: the backlog is read top to
+bottom by sessions choosing work, so **a backlog full of nice-to-haves is
+one where the genuinely blocking work never gets picked up.** The bar is
+not "is this true" — it is *"would a session be right to spend its time
+on this instead of research?"* If the honest answer is no, do not file
+it. If it is in your lane and takes five minutes, just do it.
+`tickets/README.md` has the file-it / do-not-file-it split.
 
 ```bash
 python -m tools.cli tickets new --lane maintenance --slug <slug> \
     --title "<one line>" --body "<what to do, for someone who was not here>" \
     --session <you>
-# a theory ticket lands in that theory's own folder:
+# a theory ticket lands INSIDE that theory's own folder:
 python -m tools.cli tickets new --lane theory --theory <slug> ...
 ```
+
+**Always file theory tickets through the CLI, never by writing the file
+yourself.** A theory's folder is wherever its registry row says, and that
+is not always `theories/<slug>`: `insider_judgment` lives at
+`theories/insider_bias/insider_judgment`, under a shared family parent.
+`--theory` looks the path up; guessing it from the slug creates a phantom
+directory beside the real theory, holding nothing but tickets its expert
+will never read. `tickets.ticket_dir` now refuses rather than guessing,
+so a hand-rolled path is the only way left to get this wrong.
 
 **An idea for a theory always gets a ticket**, whatever lane you are in —
 the research lanes and maintenance both throw them off constantly, and an

@@ -3,7 +3,9 @@ title: tickets.ticket_dir hardcodes theories/<slug>/, so family-nested theories 
 lane: maintenance
 created: 2026-09-01
 created_by: llm-market-identifier-cc
-status: open
+status: done
+closed: 2026-09-01
+resolution: Fixed. ticket_dir takes theory_path and the CLI resolves it from the registry row; the two misfiled insider_judgment tickets moved to theories/insider_bias/insider_judgment/tickets/open/ and the phantom directory is gone. Regression test: tests/test_tickets.py::test_a_theory_ticket_follows_the_registry_path.
 ---
 Found by the 2026-09-01 floor while filing a theory ticket.
 

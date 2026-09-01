@@ -155,9 +155,26 @@ def _cmd_tickets(args) -> int:
         _emit(tickets.backlog(
             root, lane=args.lane, status=args.status, theory=args.theory))
     elif args.action == "new":
+        # A theory's folder is wherever its registry row says, never
+        # theories/<slug>: insider_judgment sits under a shared family
+        # parent, and deriving the path from the slug filed its tickets
+        # into a phantom directory holding nothing else.
+        theory_path = None
+        if args.theory:
+            conn = _connect(args)
+            try:
+                trow = theories.get(conn, args.theory)
+                if trow is None:
+                    raise SystemExit(f"unknown theory {args.theory!r}")
+                theory_path = trow["path"]
+            finally:
+                conn.close()
         path = tickets.create(
             root, lane=args.lane, slug=args.slug, title=args.title,
-            body=args.body, theory=args.theory, created_by=args.session,
+            body=args.body, theory=args.theory, theory_path=theory_path,
+            created_by=args.session, author_lane=args.author_lane,
+            author_focus=args.author_focus,
+            author_context=args.author_context,
         )
         _emit({"created": str(path.relative_to(root)).replace("\\", "/")})
     elif args.action == "close":
@@ -773,7 +790,20 @@ def build_parser() -> argparse.ArgumentParser:
     tnew.add_argument("--theory", default=None,
                       help="required for --lane theory; it lives in that "
                            "theory's folder")
-    tnew.add_argument("--session", default=None)
+    tnew.add_argument("--session", default=None,
+                      help="your session name, as ListAgents reports it")
+    tnew.add_argument(
+        "--author-lane", dest="author_lane", default=None,
+        choices=("floor", "theory", "new-theory", "find-theories",
+                 "maintenance"),
+        help="the lane YOU are in as you file this")
+    tnew.add_argument(
+        "--author-focus", dest="author_focus", default=None,
+        help="what you are focused on -- the theory, the ticket slug")
+    tnew.add_argument(
+        "--author-context", dest="author_context", default=None,
+        help="one line on what you were doing when you hit this; it is "
+             "the context a reader cannot reconstruct")
     tcl = tsub.add_parser("close")
     tcl.add_argument("path")
     tcl.add_argument("--resolution", required=True)

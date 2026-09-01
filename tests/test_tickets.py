@@ -26,7 +26,10 @@ from tools import tickets
 def repo(tmp_path):
     (tmp_path / "tickets" / "maintenance").mkdir(parents=True)
     (tmp_path / "tickets" / "research").mkdir(parents=True)
-    (tmp_path / "theories" / "insider_judgment").mkdir(parents=True)
+    # The real shape: a theory folder is wherever its registry row
+    # says, and insider_judgment sits under a shared family parent.
+    (tmp_path / "theories" / "insider_bias"
+     / "insider_judgment").mkdir(parents=True)
     return tmp_path
 
 
@@ -48,12 +51,13 @@ def test_a_maintenance_ticket_lands_under_its_lane(repo):
 def test_a_theory_ticket_lands_in_that_theorys_folder(repo):
     path = tickets.create(
         repo, lane="theory", theory="insider_judgment",
+        theory_path="theories/insider_bias/insider_judgment",
         slug="adopt-strong-moderate-no", title="Adopt the NO rule at v5",
         body="The slice is ready at v4.", created="2026-08-31",
         created_by="llm-7a",
     )
     assert path.relative_to(repo).as_posix() == (
-        "theories/insider_judgment/tickets/open/"
+        "theories/insider_bias/insider_judgment/tickets/open/"
         "2026-08-31-adopt-strong-moderate-no.md"
     )
 
@@ -84,6 +88,7 @@ def test_the_backlog_spans_theory_and_main_tickets(repo):
     tickets.create(repo, lane="new-theory", slug="b", title="B",
                    body="do b", created="2026-08-31")
     tickets.create(repo, lane="theory", theory="insider_judgment", slug="c",
+                   theory_path="theories/insider_bias/insider_judgment",
                    title="C", body="do c", created="2026-08-29")
 
     found = tickets.backlog(repo)
@@ -101,6 +106,7 @@ def test_the_backlog_filters_by_lane(repo):
 
 def test_a_theory_ticket_reports_which_theory_it_belongs_to(repo):
     tickets.create(repo, lane="theory", theory="insider_judgment", slug="c",
+                   theory_path="theories/insider_bias/insider_judgment",
                    title="C", body="x")
     entry = tickets.backlog(repo)[0]
     assert entry["theory"] == "insider_judgment"
@@ -131,10 +137,11 @@ def test_a_new_ticket_lands_in_open(repo):
 
 def test_a_theory_ticket_also_lands_in_open(repo):
     path = tickets.create(repo, lane="theory", theory="insider_judgment",
+                          theory_path="theories/insider_bias/insider_judgment",
                           slug="c", title="C", body="do c",
                           created="2026-09-01")
     assert path.relative_to(repo).as_posix() == (
-        "theories/insider_judgment/tickets/open/2026-09-01-c.md"
+        "theories/insider_bias/insider_judgment/tickets/open/2026-09-01-c.md"
     )
 
 
@@ -179,3 +186,86 @@ def test_a_ticket_records_what_its_author_was_doing(repo):
     entry = tickets.backlog(repo)[0]
     assert entry["author_lane"] == "theory"
     assert entry["author_focus"] == "insider_judgment"
+
+
+def test_a_theory_ticket_follows_the_registry_path(repo):
+    """A theory's folder is wherever its registry row says, not
+    theories/<slug>. insider_judgment moved under a shared family parent
+    when mention_family split off, so hardcoding the slug filed its
+    tickets into a phantom directory holding nothing else."""
+    (repo / "theories" / "insider_bias" / "insider_judgment").mkdir(
+        parents=True, exist_ok=True)
+    path = tickets.create(
+        repo, lane="theory", theory="insider_judgment",
+        theory_path="theories/insider_bias/insider_judgment",
+        slug="c", title="C", body="do c", created="2026-09-01",
+    )
+    assert path.relative_to(repo).as_posix() == (
+        "theories/insider_bias/insider_judgment/tickets/open/2026-09-01-c.md"
+    )
+    entry = tickets.backlog(repo)[0]
+    assert entry["theory"] == "insider_judgment", (
+        "the owning theory is read from the ticket, not from the folder "
+        "name, so a nested path still reports the right theory"
+    )
+
+
+def test_a_theory_ticket_without_its_registry_path_is_refused(tmp_path):
+    """The phantom-directory guard, and it must stay a refusal.
+
+    `ticket_dir` used to fall back to `theories/<slug>` when a caller
+    omitted `theory_path`. That silently created
+    `theories/insider_judgment/` -- a directory holding nothing but
+    tickets, sitting beside the real theory at
+    `theories/insider_bias/insider_judgment`, where that theory's expert
+    would never look. Nothing failed and nothing warned; the work simply
+    went somewhere nobody reads.
+
+    Refusing is what makes the wrong location impossible rather than
+    merely documented, so this test pins the refusal, not the message.
+    """
+    with pytest.raises(ValueError, match="registry path"):
+        tickets.ticket_dir(tmp_path, "theory", theory="insider_judgment")
+
+    with pytest.raises(ValueError, match="registry path"):
+        tickets.create(tmp_path, lane="theory", theory="insider_judgment",
+                       slug="x", title="x", body="x")
+
+    assert not (tmp_path / "theories" / "insider_judgment").exists(), (
+        "a refused theory ticket must not leave a phantom directory behind")
+
+
+def test_the_cli_files_a_theory_ticket_under_its_registry_path(
+        tmp_path, monkeypatch, capsys):
+    """The other half of the guard, end to end.
+
+    `ticket_dir` can only refuse what reaches it. This pins that the CLI
+    -- the one production caller -- looks the theory up in the registry
+    instead of assuming its folder is named after its slug, by filing a
+    real ticket for a theory whose path does NOT match its slug and
+    checking where it lands.
+    """
+    from tools import cli, db, theories
+
+    root = tmp_path / "repo"
+    (root / "theories" / "fam" / "child").mkdir(parents=True)
+    monkeypatch.setattr(db, "REPO_ROOT", root)
+
+    dbpath = tmp_path / "t.db"
+    conn = db.connect(dbpath)
+    db.init_db(conn)
+    # Path deliberately unlike the slug, as insider_judgment's is.
+    theories.register(conn, "child", "Child", "theories/fam/child",
+                      now="2026-09-01T00:00:00Z")
+    conn.close()
+
+    assert cli.main(["--db", str(dbpath), "tickets", "new",
+                     "--lane", "theory", "--theory", "child",
+                     "--slug", "s", "--title", "T", "--body", "B",
+                     "--session", "test"]) == 0
+    capsys.readouterr()
+
+    assert (root / "theories" / "fam" / "child" / "tickets" / "open"
+            ).exists(), "the ticket must land inside the theory's folder"
+    assert not (root / "theories" / "child").exists(), (
+        "filing by slug would create a phantom directory beside the theory")

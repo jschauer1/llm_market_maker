@@ -69,5 +69,13 @@ The order is what you act on first, not what happened first.
 they are regenerable from the ledger — if a report and the database
 disagree, the database is right.
 
+**Sessions may read past reports; they may never cite one as evidence.**
+Reading yesterday's report to see what was already said is useful and
+allowed. But a report is a *rendering* of the ledger at a moment, so any
+number a session acts on comes from `score report`, `slices report` or
+`promote` — never from a report file. Citing a report as evidence would
+let a stale figure launder itself into a new decision, and the whole
+point of computing rungs mechanically is that nothing gets to do that.
+
 The day directories are git-ignored; this README is not, so the shape
 survives a fresh clone.

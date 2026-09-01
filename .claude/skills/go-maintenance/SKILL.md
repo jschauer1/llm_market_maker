@@ -65,6 +65,13 @@ question — silently, and only in production.
 wrote it has proven nothing. The suite is the repo's memory of what has
 already gone wrong.
 
+**Filing is not free, and this lane sees everything.** Maintenance reads
+across the whole repo, which makes it the biggest potential source of
+backlog noise: every session turns up a dozen things that could be
+better. File the ones a session would be right to spend its time on, do
+the five-minute ones yourself — you are the lane that is allowed to —
+and let the rest go. A backlog of nice-to-haves buries the blockers.
+
 **Never fix a theory's thesis from this lane.** Tooling, yes; judgment
 about what a theory should claim belongs to `go-theory` with that
 theory's context loaded. File the ticket instead.
