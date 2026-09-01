@@ -182,12 +182,31 @@ def _freshness_panel(conn, now: str) -> list[str]:
     settle = _one(conn, "SELECT MAX(computed_at) FROM scores")
     taken = _one(conn, "SELECT MAX(recorded_at) FROM opportunity_fills") \
         if _table_exists(conn, "opportunity_fills") else None
-    return [
+    lines = [
         f"  last board pull:  {_age_days(board, now)}",
         f"  last settle run:  {_age_days(settle, now)}",
         f"  last mark-taken:  {_age_days(taken, now)}",
         "  last bets render: (not yet tracked — raise-lane spec)",
     ]
+    # The first thing a session needs to know: run the floor, or research?
+    # It reads from a row rather than from a peer's message, so a session
+    # that received no message at all still gets the right answer.
+    if _table_exists(conn, "floor_runs"):
+        from tools import floor
+
+        st = floor.status(conn, now=now)
+        flag = "DUE — claim it" if st["due"] else "not due"
+        lines.append(f"  floor duty:       {flag} — {st['reason']}")
+        if st["last_completed_by"]:
+            lines.append(
+                f"    last floor:     {st['last_completed_by']} at "
+                f"{st['last_completed_at']}"
+                + (f" -> {st['last_report_path']}"
+                   if st["last_report_path"] else "")
+            )
+    else:
+        lines.append("  floor duty:       (not yet tracked — table floor_runs)")
+    return lines
 
 
 def render_state(conn: sqlite3.Connection, now: str | None = None) -> str:

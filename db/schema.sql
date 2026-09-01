@@ -336,6 +336,32 @@ CREATE TABLE IF NOT EXISTS theory_slices (
     PRIMARY KEY (theory_id, slug)
 );
 
+-- Floor duty: which session ran `go`'s floor, and when (user ruling
+-- 2026-08-31). The floor runs ONCE per 24 hours -- one session does it
+-- and nothing else, and every other session must be able to answer
+-- "has it already run?" from here rather than from a peer's message.
+-- Four sessions collided on 2026-08-30 under a message-only protocol
+-- and the defective duplicate run is still quarantined in the ledger.
+--
+-- claimed_at starts a LEASE, completed_at starts the 24-hour INTERVAL.
+-- They answer different questions: a claim that never completes expires
+-- (a dead session must not cost a day of evidence) and its row stays as
+-- the audit trail; only real completion satisfies the daily guarantee.
+-- forced=1 records a floor the user explicitly asked for inside the
+-- interval. See tools/floor.py.
+CREATE TABLE IF NOT EXISTS floor_runs (
+    id           INTEGER PRIMARY KEY,
+    session      TEXT NOT NULL,
+    claimed_at   TEXT NOT NULL,
+    completed_at TEXT,
+    report_path  TEXT,
+    summary      TEXT,
+    forced       INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE INDEX IF NOT EXISTS idx_floor_runs_completed
+    ON floor_runs(completed_at);
+
 -- Durable per-theory facts: confirmed market pairings, implication edges,
 -- per-wallet scores -- things a theory establishes once and reuses on
 -- every run. One shared table rather than five theories inventing five

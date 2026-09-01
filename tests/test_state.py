@@ -129,3 +129,20 @@ def test_theories_panel_stubs_when_theory_versions_is_absent(conn):
         conn.execute("DROP TABLE theory_versions")
     text = state.render_state(conn, now="2026-08-29T12:00:00Z")
     assert "[chain n/a]" in text
+
+
+def test_freshness_says_the_floor_is_due_when_none_has_run(conn):
+    text = state.render_state(conn, now="2026-08-31T12:00:00Z")
+    assert "floor duty:" in text
+    assert "DUE" in text
+
+
+def test_freshness_reports_a_completed_floor_and_when_the_next_is_due(conn):
+    from tools import floor
+    claim = floor.claim(conn, "sess-a", now="2026-08-31T01:00:00Z")
+    floor.complete(conn, claim["id"], now="2026-08-31T02:00:00Z")
+
+    text = state.render_state(conn, now="2026-08-31T06:00:00Z")
+    assert "floor duty:" in text
+    assert "DUE" not in text, "a floor that ran 4h ago is not due"
+    assert "sess-a" in text

@@ -13,7 +13,8 @@ import argparse
 import json
 import sys
 
-from tools import db, ideas, ledger, provenance, rank, score, slices, theories
+from tools import (db, floor, ideas, ledger, provenance, rank, score,
+                   slices, theories)
 
 
 def _emit(payload) -> None:
@@ -135,6 +136,34 @@ def _cmd_rulings(args) -> int:
     finally:
         conn.close()
     return 0
+
+
+def _cmd_floor(args) -> int:
+    conn = _connect(args)
+    try:
+        if args.action == "status":
+            _emit(floor.status(conn))
+        elif args.action == "claim":
+            got = floor.claim(conn, args.session, force=args.force)
+            # None is an answer, not a failure: the floor already ran or
+            # someone else is running it. Exit 0 and let the session read
+            # the status it also gets back.
+            _emit({
+                "claimed": got is not None,
+                "claim": dict(got) if got is not None else None,
+                "status": floor.status(conn),
+            })
+        elif args.action == "complete":
+            row = floor.complete(
+                conn, args.id, report_path=args.report_path,
+                summary=args.summary,
+            )
+            _emit(dict(row))
+        elif args.action == "recent":
+            _emit(_rows(floor.recent(conn, limit=args.limit)))
+        return 0
+    finally:
+        conn.close()
 
 
 def _cmd_ideas(args) -> int:
@@ -647,6 +676,27 @@ def build_parser() -> argparse.ArgumentParser:
     rst = rsub.add_parser("status")
     rst.add_argument("id", type=int)
     rst.add_argument("value", choices=("binding", "implemented", "superseded"))
+
+    p = sub.add_parser(
+        "floor", help="floor duty: is it due, who holds it, mark it done")
+    p.set_defaults(func=_cmd_floor)
+    fsub = p.add_subparsers(dest="action", required=True)
+    fsub.add_parser("status", help="is the floor due? ask before claiming")
+    fcl = fsub.add_parser(
+        "claim", help="take floor duty; prints null if it is not yours to take")
+    fcl.add_argument("--session", required=True,
+                     help="this session's name, as ListAgents reports it")
+    fcl.add_argument(
+        "--force", action="store_true",
+        help="the user explicitly asked for a floor inside the 24h window; "
+             "still refuses to cut in on a live claim")
+    fco = fsub.add_parser("complete", help="the floor ran and the report landed")
+    fco.add_argument("id", type=int, help="the claim id from `floor claim`")
+    fco.add_argument("--report", dest="report_path", default=None,
+                     help="path to the report written for the user")
+    fco.add_argument("--summary", default=None)
+    frc = fsub.add_parser("recent", help="the last few floor runs")
+    frc.add_argument("--limit", type=int, default=10)
 
     p = sub.add_parser("ideas", help="research memory")
     p.set_defaults(func=_cmd_ideas)
