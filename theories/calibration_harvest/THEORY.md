@@ -142,6 +142,60 @@ rule below).
 
 ## Version
 
+3 — 2026-09-01: **one run per floor, against a complete category map — and
+`other` no longer means two different things.**
+
+The domain axis had been collapsing silently since the theory started
+recording live rows. `categories` is only a label map for
+`cells.cell_key`; `screen()` has no population filter and always walked
+the whole board. The RUNBOOK nevertheless said the live screen ran twice
+per floor, "once per complete population, with distinct run ids so
+same-day attempts never double-count a market", with a weather-only map
+and a politics-only map. Both runs therefore screened everything, and each
+labelled the other's population `other`.
+
+Measured on the 2026-09-01 board: **9,247 attempts per run, 100% overlap,
+6,944 with an identical cell key.** The `other|*` cells — which held
+nearly all the data — got the same market twice from one board *and* a
+blend of every domain the theory exists to separate. Politics is claimed
+compressed toward 50% and weather has the opposite sign inside 12h, so
+pooling them measures exactly what the hypothesis says cancels.
+
+Two changes, both to the decision path:
+
+- **The map is complete.** `collect.all_series_categories()` returns all
+  13,687 series in a single `/series` fetch with no cursor, so a market's
+  cell follows its true Kalshi category. On the 2026-09-01 board that is
+  9,220 survivors across **11 real domains**, with `other` falling from
+  9,123 (99.4%) to **102 (1.1%)**. `target_series` is not reused for this:
+  it filters to the categories being *collected* and drops anything
+  untouched in 58 days, which is right for a settled-history walk and is
+  precisely what stripped the domains here.
+- **`unmapped` is split from `other`.** `other` now means only "a real
+  Kalshi category the grid does not bin" — Commodities, Social,
+  Transportation, Exotics, Education. A series the run's map never covered
+  is `unmapped`, a defect in the run rather than a fact about the market.
+  Conflated, a partial map was indistinguishable from a legitimate
+  residual; split, it produces a conspicuous `unmapped|*` cell. `screen()`
+  also reports `uncategorized` in its funnel, which is 0 on a correct run.
+
+**Evidence: `continues`.** No grid boundary, bin, floor, Wilson bound or
+screen threshold moved, so both tier-A collection runs measured exactly
+the cells v3 prices against and stand unchanged — they walked their own
+categories with correct labels throughout. The defective *live* rows are
+quarantined on their own merits rather than by the bump, because `other`
+changed meaning and every row already written was recorded under the old
+one: `other|*` below v3 is excluded by
+`forward_cells.OTHER_QUARANTINED_BELOW_VERSION`, and the exact-duplicate
+run `live-2026-08-29-calharvest-v2` by `EXCLUDED_RUNS`. The quarantine is
+per **cell**, so the clean `weather|*` and `politics|*` rows from those
+same runs keep counting; what survives is one correctly labelled row per
+market per day.
+
+Nothing was measurable when this landed (0 of 21 cells cleared both
+floors, the best at 4 settlement days against a bar of 8), so the
+quarantine costs no conclusion — it prevents one.
+
 2 — 2026-08-29: **the Wilson bound counts settlement days, not rows.**
 
 This theory already refused to call a cell `measured` below

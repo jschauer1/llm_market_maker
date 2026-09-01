@@ -995,3 +995,108 @@ screen code is untouched and cell rates/categories are DATA from a
 complete campaign, so no version bump was taken; flagged in today's
 report for veto, with the RUNBOOK updated to say the floor runs stage 3
 twice (weather + politics).
+
+## 2026-09-01 — the domain axis had been collapsing since day one (v3)
+
+Maintenance lane, from the floor's ticket
+`2026-09-01-calharvest-double-run-contaminates-other-cells`.
+
+**What the ticket said.** The RUNBOOK claims the live screen runs twice per
+floor, "once per complete population, with distinct run ids so same-day
+attempts never double-count a market". `screen()` has no population filter
+— `categories` is only a label map for `cells.cell_key` — so both runs
+screen the whole board.
+
+**Confirmed, and it is worse than double-counting.** Measured across every
+live run:
+
+```
+2026-08-29: A=10269 B=10269 overlap=10269 same_cell=10269 diff=0
+2026-08-31: A= 9269 B= 9245 overlap= 9245 same_cell= 6749 diff=2496
+2026-09-01: A= 9247 B= 9247 overlap= 9247 same_cell= 6944 diff=2303
+```
+
+The `diff` rows are the real damage. Per-run domain counts on 2026-09-01:
+
+```
+live-2026-09-01-calharvest           other=9188  weather=59
+live-2026-09-01-calharvest-politics  other=7003  politics=2244
+```
+
+So the weather run labelled **2,244 politics markets `other`** and the
+politics run labelled **59 weather markets `other`**. `other|*` was not a
+residual, it was 99.4% of the board pooled into one bucket — and this
+theory's whole claim is that domains have *different signed*
+miscalibration (politics compressed toward 50%, weather the opposite sign
+inside 12h). Pooling them measures exactly what the hypothesis says
+cancels.
+
+**Root cause, and it is a vocabulary bug.** `domain_for` returned `"other"`
+for two different facts: a category the grid deliberately does not bin
+(Commodities, Social, Transportation, Exotics, Education) and *a series
+this run's map never covered*. Conflated, a partial map is
+indistinguishable from a legitimate residual — which is why three separate
+runs collapsed the axis before anyone noticed. The distinction was always
+available at the call site: `screen.py` does `categories.get(...)`, so an
+uncovered series arrives as `None` and a covered-but-unbinned one arrives
+as its real category string.
+
+**The fix that was available all along.** `target_series` filters `/series`
+to the categories being *collected* and drops anything untouched in 58
+days. Both are right for a settled-history walk and both are wrong for a
+label map. `/series` returns **all 13,687 series in one response with no
+cursor**, so `all_series_categories()` — the complete map — costs exactly
+what the partial one cost. Nobody was paying for the collapse.
+
+Measured on today's board, complete map vs the two partial ones:
+
+```
+weather-only   survivors=9220  other=9123 weather=97
+politics-only  survivors=9220  other=6516 politics=2704
+COMPLETE       survivors=9220  sports=3103 politics=2704 entertainment=1358
+                               economics=681 financials=681 sci_tech=235
+                               crypto=175 other=102 weather=97 companies=83
+                               world=1
+```
+
+Eleven real domains, and `other` back to 1.1%.
+
+**v3 (`continues`).** One run per floor against the complete map;
+`unmapped` split from `other`; `screen()` reports `uncategorized` in its
+funnel. `continues` because no grid boundary, bin, floor, Wilson bound or
+screen threshold moved — both tier-A collection runs walked their own
+categories with correct labels and measured exactly the cells v3 prices
+against, so they stand. Rates now merge from both collection runs; their
+keys are disjoint by domain prefix (weather 12 cells, politics 16, overlap
+∅), so the merge is clean.
+
+**Quarantine, per cell rather than per run.** `other|*` below v3 is
+excluded (`OTHER_QUARANTINED_BELOW_VERSION`) because the value changed
+meaning and every row already written was recorded under the old one. The
+exact-duplicate run `live-2026-08-29-calharvest-v2` is excluded by id.
+Per-cell matters: `weather|*` on the weather run and `politics|*` on the
+politics run were always correct — each populated by exactly one run from
+a map that did cover it — and a run-level exclusion would have thrown away
+2,704 clean politics rows to punish the `other` rows beside them.
+
+The forward corpus goes 6,960 rows → 100, and 21 cells → 6. **It costs no
+conclusion**: 0 of 21 cells were measurable before (best 4 settlement days
+against a bar of 8) and 0 of 6 are now. It prevents one.
+
+Six `(ticker, day)` pairs still appear twice after the quarantine. Checked:
+all six are the 08-30 and 08-31 runs observing the same market on
+different days at different prices, which is the design (one observation
+per floor per horizon bin) and is what `n_days` absorbs. No same-day
+duplicates remain.
+
+**Not done, and ticketed** (`theory` lane): the 6,860 quarantined rows are
+**recoverable**, not lost. Every attempt carries `series_ticker` in
+`extra_json` (verified: 9,269 of 9,269 on `live-2026-08-31-calharvest`),
+and the complete category map re-derives the true domain for each. That is
+a corpus migration and a judgment call about what this theory's evidence
+is, so it belongs to the theory's own lane, not to maintenance.
+
+**Checked it does not turn the theory into a bet-producer.** Under v3 with
+merged rates, 2,754 rows price against a `measured` cell — but 0 have
+`edge_pts_net > 0` (max −0.95). Observation rows under ruling 13, as
+before.

@@ -22,12 +22,23 @@ from theories.calibration_harvest import cells, screen as screen_mod
 class CalibrationHarvestTheory(Theory):
     id = "calibration_harvest"
     name = "Calibration Harvest"
+    # v3 (2026-09-01): ONE run per floor against a COMPLETE category map.
+    # The domain axis had been collapsing silently -- `categories` is only
+    # a label map, `screen()` has no population filter, and the floor drove
+    # it twice a day with a weather-only then a politics-only map. Each run
+    # screened the whole board and labelled the other's population `other`:
+    # 9,220 markets recorded twice, 9,123 of them domain-collapsed. The map
+    # now comes from `collect.all_series_categories()` (one `/series`
+    # fetch, all 13,687 series), and `other` is split from `unmapped` so a
+    # partial map can never again pass for a residual. See THEORY.md
+    # Version and forward_cells.OTHER_QUARANTINED_BELOW_VERSION.
+    #
     # v2 (2026-08-29): the Wilson bound counts SETTLEMENT DAYS, not rows.
     # The theory already refused to call a cell measured below
     # MIN_CELL_DAYS because rows are not independent draws; computing the
     # bound on n undid that exactly where it decides to commit money.
     # See cells.cell_edge and THEORY.md Version.
-    version = 2
+    version = 3
     uses_llm_judgment = False
     prompts: dict = {}
 

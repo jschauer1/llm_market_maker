@@ -9,7 +9,7 @@ anyone re-runs it.
 """
 
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 
 import pytest
 
@@ -351,3 +351,47 @@ def test_settled_market_below_the_floor_is_skipped_before_any_candle_call():
     assert collect.worth_fetching(volume=10.0) is False
     assert collect.worth_fetching(volume=5000.0) is True
     assert collect.worth_fetching(volume=None) is False
+
+
+# ---- the complete category map ------------------------------------------
+#
+# `target_series` filters `/series` down to the categories being COLLECTED.
+# Reusing it to label a board-wide live screen is what collapsed the domain
+# axis: every series outside the collected categories arrived with no
+# category at all. The label map and the collection population are two
+# different questions, so they get two different functions.
+
+_SERIES_PAYLOAD = {"series": [
+    {"ticker": "KXWEATHER", "category": "Climate and Weather",
+     "last_updated_ts": "2026-08-26T00:00:00Z"},
+    {"ticker": "KXPOL", "category": "Politics",
+     "last_updated_ts": "2026-08-26T00:00:00Z"},
+    {"ticker": "KXOIL", "category": "Commodities",
+     "last_updated_ts": "2026-08-26T00:00:00Z"},
+    {"ticker": "KXSTALE", "category": "Sports",
+     "last_updated_ts": "2020-01-01T00:00:00Z"},
+]}
+
+
+def test_all_series_categories_covers_every_category(monkeypatch):
+    """One `/series` fetch returns all 13,687 series with no cursor, so a
+    complete map costs exactly what the partial one cost."""
+    monkeypatch.setattr(collect, "get_json",
+                        lambda *a, **k: _SERIES_PAYLOAD)
+    m = collect.all_series_categories()
+    assert m == {"KXWEATHER": "Climate and Weather", "KXPOL": "Politics",
+                 "KXOIL": "Commodities", "KXSTALE": "Sports"}
+
+
+def test_all_series_categories_keeps_stale_series(monkeypatch):
+    """`target_series` drops series untouched in 58 days because they
+    cannot contribute settled history. A LABEL map must keep them: a stale
+    series can still have an open market on today's board, and dropping it
+    is exactly how a market loses its domain."""
+    monkeypatch.setattr(collect, "get_json",
+                        lambda *a, **k: _SERIES_PAYLOAD)
+    assert "KXSTALE" in collect.all_series_categories()
+    now = datetime(2026, 8, 27, tzinfo=timezone.utc)
+    assert "KXSTALE" not in {
+        s["ticker"] for s in collect.target_series({"Sports"}, now=now)
+    }

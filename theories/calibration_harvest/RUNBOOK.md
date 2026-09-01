@@ -37,15 +37,20 @@ python -m theories.calibration_harvest.collect run \
     --checkpoint theories/calibration_harvest/backtests/politics.json
 ```
 
-Since 2026-08-31 the live screen (stage 3) runs **twice per floor** — once
+**Since v3 (2026-09-01) the live screen runs ONCE per floor.** It did not
+always; from 2026-08-29 to 2026-09-01 this file said it ran twice, "once
 per complete population, with distinct run ids so same-day attempts never
-double-count a market:
+double-count a market". The code has no population filter — `categories`
+is only a label map for `cells.cell_key`, and `screen()` always walked the
+whole board — so both runs screened everything and each labelled the
+other's population `other`. Measured on the 2026-09-01 board: 9,247
+attempts per run, **100% overlap**, 6,944 with an identical cell key.
 
-- weather: rates from `backtest-2026-08-27-calharvest-weather`,
-  categories `{"Climate and Weather"}`, run id `live-YYYY-MM-DD-calharvest`
-- politics: rates from `backtest-2026-08-29-calharvest-politics`,
-  categories `{"Politics", "Elections"}`, run id
-  `live-YYYY-MM-DD-calharvest-politics`
+The fix is the one run, driven by a **complete** map:
+`collect.all_series_categories()` returns all 13,687 series in one
+`/series` fetch, so every market carries its true domain and the map costs
+exactly what the partial one did. Rates merge from both collection runs;
+their keys are disjoint by domain prefix.
 
 ## Read the cells
 
@@ -96,15 +101,35 @@ from theories.calibration_harvest.theory import CalibrationHarvestTheory
 
 conn = db.connect()
 board = board_tool.get_board(conn)          # never force=True outside go's orient
-rates = collect.cell_rates(conn, run_id="backtest-2026-08-27-calharvest-weather")
-categories = {s["ticker"]: s["category"]
-              for s in collect.target_series({"Climate and Weather"})}
+# rates from BOTH complete collection runs; keys are disjoint by domain
+rates = {**collect.cell_rates(conn,
+             run_id="backtest-2026-08-27-calharvest-weather"),
+         **collect.cell_rates(conn,
+             run_id="backtest-2026-08-29-calharvest-politics")}
+
+# the COMPLETE label map -- never target_series(), which filters to the
+# categories being COLLECTED and drops anything stale. That is the right
+# answer to a different question, and reusing it here is what collapsed
+# the domain axis on every live run before v3.
+categories = collect.all_series_categories()
+
 theory = CalibrationHarvestTheory(categories=categories, cell_rates=rates)
 ctx = TheoryContext.build(conn, board, datetime.now(timezone.utc),
                           run_id="live-YYYY-MM-DD-calharvest")
 run = theory.start(ctx)
 run.finish()
 ```
+
+**Check the funnel before recording anything.** `screen()` reports
+`uncategorized` — survivors whose series the map did not cover.
+
+A **handful is normal**: 50 of 9,220 survivors (0.5%) on the 2026-09-01
+board, all series listed after the board pull that `/series` had not seen
+yet. **Hundreds or thousands means the map is partial** and the run is
+reproducing the pre-v3 defect — stop and fix the map rather than
+recording. Either way those markets land in a conspicuous `unmapped|*`
+cell instead of silently in `other|*`, so it shows in the grid as well as
+the funnel.
 
 ## Record
 
@@ -115,6 +140,20 @@ key routes them to R6 CONTROL. Never read forward cells through
 `opportunity_attempts` (`forward_cells.py` does; the trap bit three times
 by 2026-08-30). Defective runs are quarantined by id in
 `forward_cells.EXCLUDED_RUNS`, never deleted silently.
+
+**Two quarantines are in force**, both in `forward_cells.py`:
+
+| what | why |
+|---|---|
+| run `live` (2026-08-30) | no map and no rates passed; total domain collapse |
+| run `live-2026-08-29-calharvest-v2` | exact duplicate of that day's first run — same board, same map, 100% identical cell keys |
+| every `other\|*` cell below v3 | `other` meant "this run's map missed it" as well as "the grid does not bin it"; the cells pool every domain the theory exists to separate |
+
+The third is per **cell**, not per run, on purpose: `weather|*` on the
+weather run and `politics|*` on the politics run were always correct, and
+dropping the runs wholesale would discard 2,704 clean politics rows to
+punish the `other` rows beside them. What survives is exactly one
+correctly labelled row per market per day.
 
 ## Sub-theories
 

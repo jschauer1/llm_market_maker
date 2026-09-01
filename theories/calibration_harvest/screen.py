@@ -101,6 +101,12 @@ def screen(
 
     removed: dict[str, int] = {}
     out: list[Candidate] = []
+    #: Survivors whose series the caller's map did not cover. These land in
+    #: the `unmapped` domain rather than `other`, and the count is reported
+    #: because a silent collapse is the failure mode: three runs collapsed
+    #: the domain axis before anyone noticed, and nothing counted it. On a
+    #: correctly driven run this is 0.
+    uncategorized = 0
 
     def drop(reason: str) -> None:
         removed[reason] = removed.get(reason, 0) + 1
@@ -134,6 +140,8 @@ def screen(
         side, price = fav
 
         category = categories.get(market.series_ticker or "")
+        if category is None:
+            uncategorized += 1
         key = cells.cell_key(price=price, days_to_close=days,
                              category=category)
         if key is None:
@@ -152,6 +160,7 @@ def screen(
             "board_markets": len(board),
             "survivors": len(out),
             "cells_hit": len(set(_cell_cache.values())),
+            "uncategorized": uncategorized,
         },
         gate_removed=removed,
     )

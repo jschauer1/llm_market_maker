@@ -314,6 +314,28 @@ def save_checkpoint(path: Path, state: dict) -> None:
     path.write_text(json.dumps(state, indent=1), encoding="utf-8")
 
 
+def all_series_categories() -> dict[str, str]:
+    """Every Kalshi series ticker -> its category. The live screen's label map.
+
+    Distinct from `target_series`, which answers a different question:
+    *which series should this collection walk?* Reusing that answer as a
+    label map is what collapsed the domain axis. `target_series` filters to
+    the categories being collected and drops anything untouched in
+    `REACHABLE_DAYS`, both correct for a settled-history walk and both
+    wrong for labelling a board -- an uncollected or stale series can still
+    have an open market today, and dropping it strips that market's domain.
+
+    Cheap: `/series` returns all 13,687 series in one response with no
+    cursor, so the complete map costs exactly what the partial one did.
+    Mention-family series are kept; `screen.py` drops them by ticker
+    pattern, and a label map that quietly omits rows is the bug this
+    function exists to prevent.
+    """
+    payload = get_json(f"{markets.BASE_URL}/series", params={"limit": 1000})
+    return {s["ticker"]: s.get("category")
+            for s in payload.get("series", []) if s.get("ticker")}
+
+
 def target_series(categories: set[str], now: datetime | None = None,
                   recency_days: float = REACHABLE_DAYS) -> list[dict]:
     """Series in the target categories, touched recently enough to matter."""

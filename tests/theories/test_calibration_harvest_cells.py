@@ -67,8 +67,15 @@ def test_weather_is_its_own_domain_because_its_sign_is_opposite():
 
 
 def test_unmapped_category_falls_to_other_not_to_a_guess():
+    # The `None` half of this assertion used to read `== "other"`. That was
+    # the old meaning, and changing it is a deliberate vocabulary change
+    # rather than a test fix: `other` now means only "a category the grid
+    # does not bin", and a series the run's map never covered is
+    # `unmapped`. The rows written under the old meaning are quarantined in
+    # `forward_cells.OTHER_QUARANTINED_BELOW_VERSION`; see the three
+    # `other`/`unmapped` tests at the end of this file.
     assert cells.domain_for("Transportation") == "other"
-    assert cells.domain_for(None) == "other"
+    assert cells.domain_for(None) == "unmapped"
 
 
 # ---- cell keys ------------------------------------------------------------
@@ -193,3 +200,39 @@ def test_a_cell_with_no_settlement_days_cannot_claim_a_bound():
     edge = cells.cell_edge(wins=50, n=60, n_days=0, ask=0.50)
     assert edge.basis == "model"
     assert edge.model_prob == 0.0
+
+
+# ---- `other` vs `unmapped`: two different facts, two different names -----
+#
+# Until 2026-09-01 `domain_for` returned "other" for both, which is how the
+# domain axis collapsed silently on three separate runs. The distinction is
+# available at the call site and always was: `screen.py` looks the series up
+# with `categories.get(...)`, so a series the map does not cover arrives as
+# None, while a mapped-but-unbinned category arrives as its real string.
+
+def test_a_category_the_grid_does_not_map_is_other():
+    """Commodities, Social, Transportation, Exotics and Education are real
+    Kalshi categories the grid deliberately does not bin. They are what
+    `other` was designed to hold -- 102 of 9,220 survivors on the
+    2026-09-01 board."""
+    assert cells.domain_for("Commodities") == "other"
+    assert cells.domain_for("Exotics") == "other"
+
+
+def test_a_series_missing_from_the_map_is_unmapped_not_other():
+    """A series the run's category map never covered is a defect in the
+    RUN, not a fact about the market. Naming it `other` made a partial map
+    indistinguishable from a complete one -- the weather run's 9,123
+    `other` rows looked exactly like a legitimate residual."""
+    assert cells.domain_for(None) == "unmapped"
+    assert cells.cell_key(price=0.90, days_to_close=1.0,
+                          category=None).startswith("unmapped|")
+
+
+def test_unmapped_and_other_are_distinct_cells():
+    """The point of the split: a partial-map run now produces a visibly
+    wrong cell instead of a plausible-looking one."""
+    missing = cells.cell_key(price=0.90, days_to_close=1.0, category=None)
+    unbinned = cells.cell_key(price=0.90, days_to_close=1.0,
+                              category="Commodities")
+    assert missing != unbinned

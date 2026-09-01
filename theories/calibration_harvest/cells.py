@@ -42,7 +42,7 @@ __all__ = [
     "price_bin", "horizon_bin", "domain_for", "cell_key",
     "wilson_lower", "cell_edge", "fee_pts",
     "PRICE_BINS", "HORIZON_BINS", "DOMAINS",
-    "MIN_CELL_N", "MIN_CELL_DAYS",
+    "MIN_CELL_N", "MIN_CELL_DAYS", "UNMAPPED",
 ]
 
 #: Favorite-side bins plus the mirrored fade band. Half-open [lo, hi) except
@@ -97,6 +97,11 @@ DOMAINS: dict[str, str] = {
 MIN_CELL_N = 30
 MIN_CELL_DAYS = 8
 
+#: Domain for a series the run's category map did not cover. Deliberately
+#: NOT `other` -- see `domain_for`. Rows carrying it are a run defect made
+#: visible, never a measurement.
+UNMAPPED = "unmapped"
+
 #: 1.96 -> a one-sided 97.5% lower bound. Deliberately not a tunable: a
 #: confidence level chosen per cell is a free parameter to overfit with.
 _Z = 1.959963984540054
@@ -127,8 +132,30 @@ def horizon_bin(days_to_close: float | None) -> str | None:
 
 
 def domain_for(category: str | None) -> str:
-    """Kalshi's series category collapsed to an evidence domain."""
-    return DOMAINS.get(category or "", "other")
+    """Kalshi's series category collapsed to an evidence domain.
+
+    `other` and `unmapped` are two different facts and must never share a
+    name. `other` is a category this grid deliberately does not bin --
+    Commodities, Social, Transportation, Exotics, Education -- a real,
+    small residual (102 of 9,220 survivors on the 2026-09-01 board).
+    `unmapped` means the *run's* category map never covered this series,
+    which is a defect in the run, not a fact about the market.
+
+    They were both `other` until 2026-09-01, and that is how the domain
+    axis collapsed silently three times: the 2026-08-30 `live` run passed
+    no map at all, and the 2026-08-29..09-01 floors drove the screen twice
+    with a weather-only and a politics-only map, each labelling the other's
+    population `other`. 9,123 of 9,220 survivors in the weather run looked
+    exactly like a legitimate residual. Split, a partial map produces a
+    conspicuous `unmapped|*` cell instead.
+
+    Callers already carry the distinction and always did: `screen.py` looks
+    the series up with `categories.get(...)`, so an uncovered series arrives
+    as None while a covered-but-unbinned one arrives as its real string.
+    """
+    if not category:
+        return UNMAPPED
+    return DOMAINS.get(category, "other")
 
 
 def cell_key(

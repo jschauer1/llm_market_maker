@@ -202,3 +202,56 @@ def test_priced_rows_carry_their_cell_as_queryable_context():
     assert extra["horizon_bin"] == "2d-1w"
     assert extra["price_bin"] == "0.75-0.85"
     assert extra["series_ticker"] == "KXPOL"
+
+
+# ---- the partial category map, which is what actually went wrong ---------
+
+def test_a_partial_category_map_lands_in_unmapped_never_other():
+    """The 2026-08-29..09-01 incident, in miniature.
+
+    The live screen was driven twice per floor with a weather-only map and
+    a politics-only map, on the belief each covered "one complete
+    population". It has no population filter, so each run screened the
+    whole board and labelled the other run's markets `other`. On the
+    2026-09-01 board that was 9,123 of 9,220 survivors in the weather run.
+
+    A partial map must now be visible in the grid, not disguised as the
+    residual `other` bucket.
+    """
+    board = [
+        m("KXWEATHER-1", yes_ask=0.90, yes_bid=0.87, no_ask=0.13,
+          series="KXWEATHER"),
+        m("KXPOL-1", yes_ask=0.90, yes_bid=0.87, no_ask=0.13,
+          series="KXPOL"),
+    ]
+    partial = {"KXWEATHER": "Climate and Weather"}   # politics missing
+    res = S.screen(board, now=NOW, categories=partial)
+    assert len(res.candidates) == 2
+    by_ticker = {S.cell_of(c).split("|")[0]: c for c in res.candidates}
+    assert set(by_ticker) == {"weather", "unmapped"}
+
+
+def test_a_complete_map_puts_an_unbinned_category_in_other():
+    """With every series covered, `other` regains its designed meaning:
+    a real Kalshi category the grid does not bin."""
+    board = [
+        m("KXOIL-1", yes_ask=0.90, yes_bid=0.87, no_ask=0.13,
+          series="KXOIL"),
+    ]
+    res = S.screen(board, now=NOW, categories={"KXOIL": "Commodities"})
+    assert S.cell_of(res.candidates[0]).startswith("other|")
+
+
+def test_screen_reports_how_many_survivors_its_map_did_not_cover():
+    """A silent collapse is the failure mode; the funnel is what makes it
+    loud. Three separate runs collapsed the domain axis before anyone
+    noticed, because nothing counted it."""
+    board = [
+        m("KXWEATHER-1", yes_ask=0.90, yes_bid=0.87, no_ask=0.13,
+          series="KXWEATHER"),
+        m("KXPOL-1", yes_ask=0.90, yes_bid=0.87, no_ask=0.13,
+          series="KXPOL"),
+    ]
+    res = S.screen(board, now=NOW,
+                   categories={"KXWEATHER": "Climate and Weather"})
+    assert res.funnel["uncategorized"] == 1

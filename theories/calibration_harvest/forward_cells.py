@@ -56,7 +56,37 @@ _CELL_RE = re.compile(r"^cell ([a-z_]+\|[^|]+\|[0-9.\-]+):")
 EXCLUDED_RUNS: dict[str, str] = {
     "live": "no categories/cell_rates passed; domain axis collapsed to "
             "'other' and every edge forced to 0.0 (2026-08-30)",
+    "live-2026-08-29-calharvest-v2":
+        "exact re-run of live-2026-08-29-calharvest on the same board with "
+        "the same map: 10,269 attempts each, 100% ticker overlap, 100% "
+        "identical cell keys. Nothing is mislabelled -- it is the second "
+        "copy, and both counted into every cell (2026-09-01)",
 }
+
+#: `other` cells recorded before this theory version are quarantined.
+#:
+#: Not a defect in any one run -- a change of MEANING, which is why it is
+#: keyed on version rather than listed by run id. Below v3, `domain_for`
+#: returned `other` both for a category the grid does not bin and for a
+#: series the run's map never covered, and the live screen was driven with
+#: partial maps throughout: the 2026-08-29..09-01 floors ran it twice per
+#: day, weather-only then politics-only, each labelling the other's
+#: population `other`. Measured on the 2026-09-01 board, that is 9,123 of
+#: 9,220 survivors in the weather run and 7,003 in the politics run, for a
+#: board holding 9,220 markets -- the same market twice, under a label that
+#: pools every domain the theory exists to separate.
+#:
+#: Quarantine is per CELL, not per run, because the two runs' `weather|*`
+#: and `politics|*` cells were always correct: each was populated by
+#: exactly one run, from a map that did cover it. Dropping the runs
+#: wholesale would discard 2,704 clean politics rows to punish the `other`
+#: rows beside them. What survives is exactly one correctly labelled row
+#: per market per day.
+#:
+#: From v3 the live screen runs ONCE per floor against
+#: `collect.all_series_categories()`, so `other` regains its designed
+#: meaning and needs no quarantine.
+OTHER_QUARANTINED_BELOW_VERSION = 3
 
 #: Reads ATTEMPTS, never the position rollup. A position's `run_id` is
 #: frozen at its FIRST sighting, so a market screened yesterday and
@@ -69,34 +99,52 @@ EXCLUDED_RUNS: dict[str, str] = {
 ROWS_SQL = """
 SELECT a.run_id, a.decision_date, a.entry_price, a.rationale,
        a.edge_pts_net, a.edge_basis,
-       o.kalshi_ticker, o.outcome,
+       o.kalshi_ticker, o.outcome, o.theory_version,
        s.result, s.resolved_at
 FROM opportunity_attempts a
 JOIN opportunities o ON o.id = a.opportunity_id
 JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker
 WHERE o.theory_id = 'calibration_harvest'
-  AND o.theory_version = ?
   AND o.run_mode = 'live'
 """
 
 
-def load(conn, version: int = 2, *, include_excluded: bool = False,
-         ) -> list[dict]:
+def load(conn, version: int | None = None, *,
+         include_excluded: bool = False) -> list[dict]:
+    """Settled live rows, quarantines applied. `version=None` means all.
+
+    The default used to be `version=2`, hardcoded. The v3 bump is
+    `continues`, so the corpus pools across it -- and a hardcoded 2 would
+    have made every row the v3 fix records invisible to the very
+    measurement that fix exists to protect.
+    """
+    sql = ROWS_SQL
+    params: tuple = ()
+    if version is not None:
+        sql += " AND o.theory_version = ?"
+        params = (version,)
+
     out = []
-    for r in conn.execute(ROWS_SQL, (version,)):
+    for r in conn.execute(sql, params):
         if not include_excluded and r["run_id"] in EXCLUDED_RUNS:
             continue
         m = _CELL_RE.match(r["rationale"] or "")
         if not m or r["result"] not in ("yes", "no"):
             continue
+        cell = m.group(1)
+        if (not include_excluded
+                and cell.startswith("other|")
+                and r["theory_version"] < OTHER_QUARANTINED_BELOW_VERSION):
+            continue
         out.append({
-            "cell": m.group(1),
+            "cell": cell,
             "ask": float(r["entry_price"]),
             "won": 1 if r["outcome"] == r["result"] else 0,
             "day": (r["resolved_at"] or "")[:10],
             "basis": r["edge_basis"],
             "run_id": r["run_id"],
             "ticker": r["kalshi_ticker"],
+            "version": r["theory_version"],
         })
     return out
 
@@ -117,7 +165,7 @@ def _day_clustered(rows: list[dict]) -> tuple[float | None, float | None, int]:
     return mean, se, n_days
 
 
-def cells(conn, version: int = 2) -> list[dict]:
+def cells(conn, version: int | None = None) -> list[dict]:
     """Per-cell forward measurement, richest cells first."""
     rows = load(conn, version)
     by_cell: dict[str, list[dict]] = defaultdict(list)
@@ -151,7 +199,7 @@ def cells(conn, version: int = 2) -> list[dict]:
     return sorted(out, key=lambda c: -c["n"])
 
 
-def kill_criterion(conn, version: int = 2) -> dict:
+def kill_criterion(conn, version: int | None = None) -> dict:
     """THEORY.md's bar: does ANY cell clear fees out-of-sample at both floors?
 
     Reported three ways on purpose. `clears_raw` is the loosest reading
@@ -183,8 +231,10 @@ def _fmt(v, spec=".2f"):
 def main() -> None:
     conn = db.connect()
     res = kill_criterion(conn)
-    print(f"forward per-cell measurement -- calibration_harvest v2 "
-          f"(live rows, out of sample)\n")
+    print("forward per-cell measurement -- calibration_harvest, all versions "
+          "(live rows, out of sample)")
+    print(f"quarantined: runs {sorted(EXCLUDED_RUNS)}; `other|*` cells "
+          f"below v{OTHER_QUARANTINED_BELOW_VERSION}\n")
     hdr = (f"{'cell':38} {'n':>5} {'days':>5} {'ask':>6} {'real':>6} "
            f"{'gross':>7} {'net':>7} {'daymean':>8} {'t':>6} {'netWil':>8}")
     print(hdr); print("-" * len(hdr))
