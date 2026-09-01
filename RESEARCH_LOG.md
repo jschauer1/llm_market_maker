@@ -3094,3 +3094,97 @@ contract deep.
   **not** a retirement candidate, and no retirement is proposed.
 - The `calendar-arb-firing-rate` probe should be fixed before anyone
   works `calendar-arb-soft-relative-value` off its dataset.
+
+## 2026-09-01 — calibration_harvest v4: the pricing rule could not fire, and it was the estimator (session llm-market-identifier-d8)
+
+Lane: `theory`, focus `calibration_harvest`. Floor was already done
+(0.9h before); the `no_side_premium`, `structural_arb` and
+`series-bias-mining` lanes were held by peers.
+
+**Chose calibration_harvest over its own top ticket**, and the
+comparison is the reusable part. The ticket
+(`calharvest-recover-quarantined-other-rows`) offered ~6,860 recoverable
+rows, "69x the corpus". Measured it: those rows span **exactly four
+settlement days**, and the gate is `n >= 30` **AND** `n_days >= 8`.
+Recovery buys `n` on a gate that binds on days. A tier-A domain walk
+buys ~58 settlement days in an afternoon. **When a gate has two floors,
+work the one that binds** — that is the whole comparison, and it is
+worth making explicitly before picking work anywhere in this repo.
+
+**The finding, which is not about this theory's data at all.**
+`cell_edge` bounded on the settlement-day count. That is not a neutral
+estimator: it is the design effect `n/(1+(mbar-1)·rho)` evaluated at
+**rho = 1**, total within-day dependence. At that value the rule was
+**infeasible at the theory's own gate** — `MIN_CELL_DAYS` is 8, but a
+cell priced at 0.80 needs 17 settlement days before a positive edge is
+arithmetically possible at *any* realized rate, 0.92 needs 48, and 0.95
+needs 79 against a 58-day reachable history. **The gate awarded
+`measured` — the label that authorizes a bet — to cells the pricing rule
+provably could not emit on, and the 0.92–0.97 band could never fire from
+a backtest at all.** Every "0 cells recommendable" this theory has
+produced is partly that, and none of it was about the markets.
+
+Measured rho instead of assuming it: median **0.027**, mean 0.067, over
+the 20 cells of both complete populations. Weather cells measure ~0,
+because a weather cell's fourteen same-day rows are fourteen different
+cities — close to independent draws. v4 ships the design effect with one
+pooled `CLUSTER_RHO = 0.2326`, the 90th percentile, deliberately
+pessimistic and deliberately not per-cell. rho=1 reproduces v3 exactly
+and rho=0 reproduces v1; both pinned by tests. `continues`.
+
+**The integrity check is that it changes nothing bettable**: across all
+20 cells day-Wilson fires 0, DEFF-Wilson 1, row-Wilson 2, and the one
+cell is in-sample, n=50, and belongs to a claim retracted 2026-08-29.
+A fix motivated by making history look good would have made history look
+good. What it buys is the frontier — required gross edge at the 58-day
+ceiling falls from +14.5/+11.4/+10.3/impossible to +7.9/+6.9/+5.5/+3.5.
+
+**The repo-level lesson, which is why this is in the log.** *A
+conservative default is a modelling assumption, and an unmeasured one
+can be wrong in the direction that silently disables the thing it
+protects.* v2 adopted day-clustering for a good reason, from a real
+study — but that study measured `insider_bias`'s population, a
+near-term board of correlated events, and the transfer was never
+checked. The failure mode is nasty because it is invisible: a theory
+that never fires looks like a theory with no edge, and both produce the
+same empty report. **When a bound decides whether anything can ever be
+recommended, compute what it would take to clear it and check that the
+answer is reachable.** Cheap, and nobody here had done it for any theory.
+
+**Also: what does a positive `measured` row do now?** v4 turns on 303 of
+them on today's board where v3 emitted zero. Checked with `cli promote`
+rather than by eye: they land on **R5 MEASURED-AGAINST** and are
+suppressed, because the theory's own aggregate is past both gates at
+−2.45. The key works; a floor session should report them at R5 and not
+read them as the theory coming good.
+
+**Learned, and it changes what other theories should do.** The collector
+computed volume-at-entry and spread-at-entry to apply its liquidity
+floor and then **discarded both** — 0 of 4,808 collected rows carry
+either, so a liquidity slice was untestable. Now persisted. The reason
+it was worth stopping a running walk for is general: **Kalshi archives
+settled markets at ~58 days, so the window a walk sees today is not the
+window a re-walk sees tomorrow. There is no backfill for a collection
+run, only capture-or-lose.** Weather and politics can never have these
+fields. Any theory with a collector should check what its filters
+compute and throw away.
+
+**Where the theory stands.** The mining pass go-theory mandates found:
+horizon is the only axis with structure and it is the retracted one;
+both walked domains are flat; and **in weather a bettable price effect
+is now excluded at 95% in all four bands** (3,267 rows, 59 days) — the
+cleanest negative result the theory owns. Politics is *underpowered*
+rather than null, and pooling the two to narrow the intervals is not
+available because the thesis says their signs are opposite. Two of
+eleven domains walked, both flat; the thesis now rests entirely on
+direction varying by domain.
+
+**Next.** `finish-econfin-walk` (filed, theory lane): the
+Economics/Financials/SciTech/Companies/World walk is ~a quarter done,
+checkpointed and resumable, run id
+`backtest-2026-09-01-calharvest-econfin`. It is the pre-registered
+out-of-sample test of v4 and the first population that will carry
+liquidity fields. **If those cells are flat and excluded at the
+frontier, that is three domains dead and the theory goes to the user for
+retirement rather than to a fourth walk** — pre-committed in NOTES.md so
+the next session is not the one deciding it alone.

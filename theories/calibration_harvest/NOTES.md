@@ -1347,3 +1347,80 @@ re-walked to try -- a re-walk today collects a shifted 58-day window,
 which is a different population, not the same one with more columns. Any
 liquidity slice of this theory will have to be built on econfin and
 later walks. Stated here so nobody spends 1.7 hours discovering it.
+
+### Mining pass on the two complete populations: what the grid's three axes actually say
+
+4,808 rows over 60 settlement days, both complete populations, gross
+edge, day-clustered. This is the pass go-theory mandates and nobody had
+run on this corpus.
+
+**By horizon** -- the only axis with structure, and it is the retracted
+one:
+
+    1mo+     n= 184  31d   +9.38  SE 3.12  t +3.01
+    1w-1mo   n= 394  43d   +4.51  SE 2.06  t +2.18
+    2d-1w    n= 579  56d   -4.77  SE 2.99  t -1.60
+    <=2d     n=3651  59d   -0.19  SE 0.66  t -0.28
+
+Reproduces the 2026-08-29 numbers exactly (+9.38 at 1mo+), which is the
+check that this reader agrees with `gradient.py`. It is also the contrast
+that was **retracted** as a pre-registration failure and shown to be ~38%
+composition. Nothing new; recorded because a reader of this section will
+otherwise re-derive it.
+
+**By domain:** politics -1.16 (SE 2.45), weather -0.06 (SE 0.66). Both
+flat. The domain-dependence claim shows nothing on the two domains that
+have been walked.
+
+**By price band -- the theory's core claim -- and here I made and caught
+an error worth recording.** Pooled across both domains all four bands
+came out flat with upper CI bounds below the v4 frontier, which reads as
+"a bettable price effect is excluded". **That pooling is exactly the
+mistake v3's own note warns about**: politics is claimed compressed and
+weather claimed opposite inside 12h, so averaging them measures what the
+hypothesis says cancels. Split by domain the answer is narrower and less
+flattering to the conclusion:
+
+    domain     band          n  days    ask   real   gross      95% CI        vs frontier
+    weather    0.65-0.75   829    59  0.695  0.696   +0.45  [-3.05, +3.94]  EXCLUDED (+7.9)
+    weather    0.75-0.85   794    59  0.794  0.793   -1.42  [-5.25, +2.41]  EXCLUDED (+6.9)
+    weather    0.85-0.92   703    59  0.880  0.890   +1.29  [-1.20, +3.78]  EXCLUDED (+5.5)
+    weather    0.92-0.97   941    59  0.949  0.942   -0.88  [-2.55, +0.78]  EXCLUDED (+3.5)
+    politics   0.65-0.75   229    46  0.699  0.738   +2.78  [-6.79,+12.36]  not excluded (+7.9)
+    politics   0.75-0.85   349    45  0.799  0.808   -0.26  [-8.22, +7.70]  not excluded (+6.9)
+    politics   0.85-0.92   345    49  0.883  0.872   -1.48  [-8.09, +5.13]  EXCLUDED (+5.5)
+    politics   0.92-0.97   618    57  0.950  0.911   -3.15  [-8.47, +2.16]  EXCLUDED (+3.5)
+
+"vs frontier" asks whether the 95% upper bound sits below the true gross
+edge v4 would need to emit a positive net edge at that ask -- i.e.
+whether a *bettable* effect is ruled out, which is a much more useful
+question than whether zero is ruled out.
+
+**What this establishes, stated at the strength it earns:**
+
+  - **Weather is not merely "priced correctly" -- a bettable price-level
+    effect is EXCLUDED at 95% in all four bands**, on 3,267 rows over 59
+    settlement days. That is stronger than THEORY.md's existing wording
+    and it is the cleanest negative result this theory owns.
+  - **Politics is UNDERPOWERED at the band level, not null.** Its CIs run
+    +/- 8-12 points because 45-57 settlement days carry only 229-618
+    rows. The two lower bands cannot exclude a bettable effect, so
+    "politics shows nothing" would be an overstatement -- it shows
+    nothing *measurable*, which is a different claim.
+  - The pooled-across-domains version of this table would have said all
+    eight cells were excluded. It is wrong for the reason the theory has
+    already been bitten by twice, and it is recorded here rather than
+    quietly deleted because the next person to run this query will be
+    tempted by the same shortcut.
+
+**Consequence for the econfin walk running now:** its value is unchanged
+but the prior should be lower. Two of eleven domains are walked and both
+are flat; the thesis survives on the claim that *direction varies by
+domain*, which is precisely what domains 3-7 test. Economics and
+Financials are also two of the domains Le 2026 measured, so they are the
+right next test rather than merely the next cheapest.
+
+**A liquidity split was wanted here and could not be run** -- see the
+entry above on volume/spread having been discarded until today. It is
+the most obvious unexplored axis on this corpus and it is now capturable
+going forward, but not backwards.

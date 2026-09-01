@@ -79,6 +79,24 @@ and the Wilson bound all four are negative, so the theory emits **nothing**
 on this domain — neither a favorite buy nor the mirrored fade. A live run
 producing zero candidates from weather is correct behaviour, not a fault.
 
+**Strengthened 2026-09-01: in weather a bettable price effect is now
+*excluded*, not merely absent.** Day-clustered 95% intervals on the gross
+edge, per band, against the gross edge v4 would need to fire at that ask
+(the frontier in Version 4): `0.65-0.75` +0.45 [−3.05, +3.94] vs +7.9;
+`0.75-0.85` −1.42 [−5.25, +2.41] vs +6.9; `0.85-0.92` +1.29 [−1.20,
++3.78] vs +5.5; `0.92-0.97` −0.88 [−2.55, +0.78] vs +3.5. Every upper
+bound sits below its threshold, on 3,267 rows over 59 settlement days.
+This is the cleanest negative result the theory owns.
+
+**Politics, by contrast, is underpowered at the band level rather than
+null** — its intervals run ±8–12 points because 45–57 settlement days
+carry only 229–618 rows, and the two lower bands cannot exclude a
+bettable effect. "Politics shows nothing" would overstate it. Pooling the
+two domains to narrow the intervals is *not* available: the thesis says
+their signs are opposite, so pooling measures what it claims cancels.
+See `NOTES.md` 2026-09-01 for the full table and for the pooled version
+of it, which is wrong and is kept as a warning.
+
 **The claim that population could not test.** Every longer-horizon
 weather cell has n ≤ 8: weather markets list and settle within days, so
 `2d-1w`, `1w-1mo` and `1mo+` are structurally empty there. The thesis is
