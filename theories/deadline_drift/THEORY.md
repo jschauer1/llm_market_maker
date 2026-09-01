@@ -56,6 +56,16 @@ in the decision path; `edge_basis="model"`; tier A.
 3. **Edge**: `(1 - P(YES | price bin, days bin)) - no_ask - fees`, with the
    probability from hazard bins over settled allowlist history.
 
+**`no_ask` is `1 - yes_bid`, and that is not a detail.** The step above
+was always written correctly; the *measurement* script was not, and
+priced the trade off `yes_ask` from 2026-08-29 until 2026-09-01. That
+credits the strategy with the whole bid-ask spread, which on this
+population runs a 4-point median and a 6-point mean — enough to roughly
+double the apparent edge (wide stratum: +11.9 off the ask, +6.3 off the
+bid). Anything measuring this theory reconstructs prices from raw
+candles, which steps outside the `Market`/`no_ask` types that enforce the
+convention everywhere else in the repo. Use `hazard.observe(side="bid")`.
+
 ### Why an allowlist rather than a board-wide rules-text screen
 
 Five audit rounds established that a *board-wide* mechanical screen cannot
@@ -78,13 +88,64 @@ markets, a pure partition the suffix rule would otherwise admit.
 
 ## Status
 
-`proposed` — 2026-08-29. The screen runs and reproduces the audited
-population exactly, but **the hazard bins that define the edge have never
-been collected**, so `price()` returns nothing rather than inventing a
-prior. Collecting them is the only step between here and `testing`.
+`proposed` — still, as of 2026-09-01, and now for a better-evidenced
+reason than on 2026-08-29. The bins have been collected twice over; what
+is missing is a population this theory is entitled to bet.
 
-To reach `testing`: bins collected, screen recording opportunities.
-To reach `active`: a tier A backtest with positive `calibration_edge_net`.
+**What 2026-09-01 measured** (`python -m theories.deadline_drift.hazard`
+and `.bootstrap`, over ~1,400 settled markets — the entire fetchable
+by-deadline history, not a sample):
+
+| population | gap at the tradeable price | 95% CI | events |
+|---|---|---|---|
+| **allowlist — what this theory ships** | **−1.7 pts** | [−10.7, +5.1] | 21 |
+| wide by-deadline hazard stratum | **+6.3 pts** | [+2.1, +10.3] | 64 |
+
+Read those two rows together, because neither means much alone:
+
+- **The allowlist result is not evidence against the thesis. It is no
+  evidence at all** — 70 series is too thin a slice of the board to
+  measure anything inside a 60-day archive window, and its interval spans
+  12 points.
+- **The wide result is a real signal at the price a NO buyer actually
+  pays**, and it survives every cut: it *grows* under tighter spread
+  filters (+6.3 → +7.3 at ≤2pts, where a spread artifact must shrink),
+  survives removing one-winner partition families, and survives an
+  open-interest floor.
+
+**So the binding constraint was never the thesis — it was the allowlist**,
+adopted to preserve tier A back when a structural LLM gate was thought to
+cost it. CLAUDE.md's "Structural gates keep tier A" removed that price on
+the same day the allowlist was adopted, and nobody revisited the trade.
+
+**Why this is still not bettable, and `price()` stays inert.** The +6.3
+is **post-hoc**: the wide population was chosen and measured in the same
+session, after a dozen cuts. CLAUDE.md's pairing discipline makes that a
+hypothesis to pre-register, never an edge to bet on the data that
+suggested it. It also inherits the audit's ~15% misclassification.
+
+### The pre-registration (written 2026-09-01, before any out-of-sample data)
+
+**DD-1.** On the by-deadline **hazard stratum** (`hazard.stratum() ==
+"hazard"`, minus `hazard.partition_families()`), lifetime volume ≥ 100,
+entering the first day a market is within 21 days of its **stated
+deadline** with YES ask in $0.05–0.60, buying NO at `no_ask = 1 −
+yes_bid`: realized P(YES) sits **at least 3 points below** the implied
+`yes_bid`, event-clustered, net of fees.
+
+- **Out-of-sample set:** markets settling **after 2026-09-01**. Nothing
+  in today's capture counts.
+- **Power:** today's estimate rests on 64 event clusters. The same
+  population produces roughly that many per two months, so this is a
+  ~60-day test, and the standing capture obligation in `RUNBOOK.md` is
+  what collects it — that obligation is now the experiment, not
+  housekeeping.
+- **Kill:** a CI covering zero at comparable n, or an out-of-sample point
+  estimate below +3 net.
+
+To reach `testing`: widen the population past the allowlist (a version
+bump, and the structural-gate decision the notebook left open), then
+record. To reach `active`: DD-1 confirmed out of sample.
 To `under_review`: n=20 with `calibration_edge_net` <= 0.
 
 ## Candidate flow

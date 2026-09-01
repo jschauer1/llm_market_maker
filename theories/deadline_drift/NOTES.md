@@ -405,3 +405,110 @@ child**, and `ps -ef` in this Git Bash shows no arguments, so
 works. Two load-modify-save collectors then silently overwrite each
 other. Ticketed (`maintenance/collector-concurrent-write-race`); this
 theory's own data is fine because the walk is resumable and was re-run.
+
+## 2026-09-01 (later) — CORRECTION to the entry above: the spread explains HALF the edge, not all of it. What is left survives every cut I could throw at it
+
+Same session. **Retract the framing of the previous entry**, not its
+central fact. The bid/ask correction is right and stands. The conclusion
+I drew from it — "the bid row is the same markets ... and it is noise",
+"the entire measured edge is the bid-ask spread" — was drawn at n=95
+markets on a capture that was **one quarter done**, and it does not
+survive the finished walk.
+
+Numbers below are from `hazard.py` and `bootstrap.py` at ~1,300 settled
+markets. Both are canonical; re-run them.
+
+### What actually happened to the estimate
+
+Three estimator defects, found in this order, each one changing the
+answer:
+
+| # | defect | effect on the gap |
+|---|---|---|
+| 1 | priced off `yes_ask`, but a NO buyer's breakeven is `yes_bid` | roughly halves it |
+| 2 | one vote per MARKET, when the independent unit is the EVENT | raises it |
+| 3 | normal-approximation z on a skewed, mostly-zero outcome | z was not a p-value |
+
+Defect 2 is why the first entry was wrong. Market-weighting let single
+events dominate in proportion to how finely Kalshi had sliced them:
+`KXBIGBROTHERELIMINATION` is 8 events of 11–17 legs paying **exactly one
+winner each** (a "which houseguest" partition), and `KXGEMINI` is one
+7-leg date ladder on a single unresolved question that was contributing
+**30% of the pooled gap by itself**. Averaging within the event first
+gives each independent question one vote.
+
+### The current numbers, event-clustered and bootstrapped
+
+```
+cut                                  evts     gap        95% CI      P(<=0)
+ALLOWLIST (pre-registered), bid        21    -1.7   [-10.7,  +5.1]    0.622
+ALLOWLIST, ask (the old view)          23    +5.7   [ -2.4, +12.0]    0.074
+wide hazard, bid                       64    +6.3   [ +2.1, +10.3]    0.003
+wide hazard, ask (the old view)        66   +11.9   [ +7.9, +15.7]    0.000
+  bid, spread<=4pts                    57    +7.3   [ +2.2, +12.1]    0.003
+  bid, spread<=2pts                    46    +7.3   [ +0.3, +13.5]    0.021
+  bid, minus partition families        56    +6.6   [ +1.8, +11.1]    0.004
+  bid, open interest>=100              62    +7.2   [ +3.3, +10.9]    0.001
+```
+
+**The decisive diagnostic is the spread ladder, and it runs the other
+way from what I claimed.** A gap that IS the spread must shrink as the
+spread filter tightens — that is precisely how the `yes_ask` view was
+convicted. The bid-side gap **grows**: +6.3 → +7.3 as the filter goes to
+2 points. It also survives removing one-winner partition families and an
+open-interest floor. That is not the signature of an artifact.
+
+### So the real finding is about the ALLOWLIST, not about the thesis
+
+The two populations disagree, and the disagreement is the point:
+
+- **Wide by-deadline hazard population: +6.3 pts at the tradeable
+  price**, CI excluding zero, 64 event clusters.
+- **The allowlist the theory actually ships: −1.7, CI [−10.7, +5.1]**,
+  21 event clusters. Not evidence against the thesis — it is *no
+  evidence either way*, because 70 series is too thin a slice of the
+  board to measure anything in a 60-day archive window.
+
+The allowlist was adopted on 2026-08-29 to keep tier A when a structural
+LLM gate still cost it. It cut the population ~5x. **That restriction,
+not the thesis, is what has kept this theory unmeasurable** — and per
+CLAUDE.md's "Structural gates keep tier A" it has been unnecessary since
+the day it was adopted.
+
+### What must NOT be concluded from this
+
+The +6.3 is **post-hoc**. I chose the wide population today, measured it
+today, and tried a dozen cuts on the way. CLAUDE.md's pairing discipline
+is explicit: a pattern found this way is a hypothesis to pre-register,
+never an edge to bet on the data that suggested it. It also inherits the
+audit's known contamination — the wide population measured ~15%
+misclassified, and `partition_families` only removes the part that
+settles as a one-winner family.
+
+So: no `hazard_bins.json`, `price()` stays inert, status stays
+`proposed`. The pre-registration is written into THEORY.md, and the
+out-of-sample test is markets settling **after 2026-09-01**, which the
+standing capture obligation now exists to collect rather than merely to
+tidy.
+
+### Method notes worth keeping
+
+- **A partial capture is not a small sample, it is a biased one.** The
+  walk is alphabetical by series, so the early-close family detector read
+  98.0% vs 0.0% at ~200 multi-destination markets and 43.4% vs 0.0% at
+  ~525. I committed the 98% into a docstring before noticing. Quote
+  nothing from a running walk without saying it is running.
+- **The early-close tell is one-directional.** An early NO close nearly
+  implies a branch family (allowlist: 0/78); a late one implies nothing,
+  because branch families also run to the deadline when no sibling wins
+  in time. It finds contamination; it cannot certify a population clean.
+  `partition_families` (events paying exactly one winner) catches what it
+  misses, including `KXBIGBROTHERELIMINATION`.
+- **Two collectors racing lose data silently, and `ps` here cannot see
+  it.** `TaskStop` stops the shell, not the detached child; `ps -ef` in
+  this Git Bash prints no arguments, so `ps -ef | grep collect_settled`
+  reports zero while the process runs. Use
+  `Get-CimInstance Win32_Process | Select CommandLine`. I then made the
+  same mistake a second time, writing an `until ! ps -ef | grep ...` wait
+  loop that exited immediately against a still-running collector.
+  Ticketed as `maintenance/collector-concurrent-write-race`.
