@@ -3424,3 +3424,69 @@ is CLAUDE.md's elevation bar exactly — ticketed as
   filed. Net effect of the lane: two theses eliminated, one on evidence
   and one on arithmetic, and no new theory built — which is the correct
   outcome when both fail their own pre-registered bars.
+
+### 2026-09-01 (final) — insider_judgment v6: a measurement nobody had ever read
+
+Retired `calibration_harvest`, then took the theory lane on
+`insider_judgment` because the repo's one proven edge
+(`strong-moderate-no`, +3.76 net / 90 clusters / 44 days) produced **zero
+bets** on today's board. Two findings, and the second is the one that
+generalises.
+
+**The scare was a clock, not a bug.** Today's floor recorded at
+02:35–02:37Z; **v5 landed at 03:06:39Z**. So today's rows are v4 with
+stage 6 still active, and its 19-of-20 rejection rate is v4 doing exactly
+what v5 was created to stop. Worth knowing that "the proven slice
+produced no bets" can have a boring explanation, and worth checking the
+timestamps before diagnosing.
+
+**The real finding: `price()` had never once read a bucket rate.** It
+called `ctx.bucket_rates(id, version)` and took the defaults — one exact
+`theory_version`, `run_mode='live'` — which returned `{}` for this
+theory's entire life. So `buckets.edge_for` fell through to `PRIORS` every
+time and **every judged row ever recorded carried `edge_basis='prior'`**,
+while 1,564 settled bucketed rows sat in the ledger — `moderate` alone
+565 rows over 58 settlement days, against floors of 10 and 5.
+
+Two independent causes, either sufficient: an **exact version match** that
+a `continues` bump should never have reset, and a **live-only default**
+that contradicts the 2026-08-31 ruling on backtested evidence. Fixed by
+rebuilding `score.bucket_rates` on `observations()` — the seam
+`compute_score` already uses — with the same `run_mode`/`pool` arguments.
+Two copies of one selection had drifted apart; now there is one.
+
+**The repo-level lesson, and it is the second instance in one day.** The
+2026-09-01 `state.py` incident produced the note "when a default changes,
+check what reads it", and the sweep that followed concluded *"`score.py`
+is already parameterized (`pool='chain'`)"*. That was true of
+`compute_score` and **false of `bucket_rates`, 1,200 lines down the same
+file.** A sweep that checks a module rather than every function in it is
+not a sweep. The `breaking`→`continues` flip has now silently broken two
+readers; assume there are more, and grep for `theory_version = ?` rather
+than for module names.
+
+**Measured, the buckets are +4.07 / +2.03 / −0.36 against priors of
++4.00 / +2.00 / 0.00.** The priors were well chosen and the numbers barely
+move — which is *not* a reason the bug was cosmetic. `edge_basis` is the
+field that tells a reader whether a number was measured or assumed, and it
+said `prior` on every row while the data sat in the same database. (Note
+`weak` measures *negative* where its prior was flat zero.)
+
+**A third instance of one pattern, worth naming.** Today turned up three
+places where a stage received or computed a field, used it, and threw it
+away: `calibration_harvest/collect.py` (volume and spread at entry, used
+to apply its own liquidity floor), `backtest_judged.py` (title and
+`rules_primary`, written into every judging payload), and
+`bucket_rates` (a measurement computed and then not asked for).
+**A stage that uses a value and does not persist it is this repo's most
+common data loss**, and it is invisible until someone needs the field
+months later. The saving grace was the "record while you collect"
+convention: the judging payloads were still on disk, so titles are
+recoverable for 2,571 of 4,275 opportunities (60.1%) with no re-judging.
+
+**Next.** `backfill-titles-from-judging-payloads` (filed) unblocks three
+separate questions at once. Stage 5 needs judging subagents, which this
+session was not authorised to spawn, so **no v5/v6 live run was
+recorded** — that is the one thing between here and today's Big Brother
+candidate being a properly recorded R1 bet rather than a read-only
+calculation, and it is the floor's to run.

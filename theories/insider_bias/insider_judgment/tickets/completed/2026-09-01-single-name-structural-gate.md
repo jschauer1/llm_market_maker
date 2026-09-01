@@ -6,7 +6,19 @@ created: 2026-09-01
 created_by: llm-market-identifier-0e
 author_lane: find-theories
 author_context: Found while reading outside literature in the find-theories lane; not acted on because another session holds insider_bias work.
-status: open
+status: done
+closed: 2026-09-01
+resolution: Tested 2026-09-01; see NOTES.md same date. The ticket's binding condition ('do NOT write a prompt -- if the rule cannot be written mechanically the finding does not apply') is what decided it, in two parts.
+
+TITLES WERE NOT STORED, and that is fixable: only 381 of 1,770 bucketed settled rows (21.5%) have a title reachable from market_snapshots, and they are the live ones -- the backtest rows carrying the evidence were fetched by the replay and never snapshotted. backtest_judged.py HAD the title (it writes one into every judging payload) and did not persist it: the same defect as calibration_harvest's collector, found the same day. It IS recoverable without re-judging -- the payloads are still on disk under backtests/*/batch_*.payload.json with title, rules_primary, event_ticker and every market ticker, and an index built from them covers 2,571 of 4,275 opportunities (60.1%). Ticketed separately as backfill-titles-from-judging-payloads.
+
+BUT EVEN WITH TITLES the rule cannot be mechanical: 'does this name one entity or a broad field' is reading comprehension, which CLAUDE.md routes to a model and this ticket forbids. A hand-written classification of 261 series tickers is a prompt with extra steps, fitted on the rows it would be scored on.
+
+SO I TESTED THE MECHANICAL THING THAT IS FREE -- sibling count per event, 'one named entity' vs 'one of N', structure rather than comprehension. It does NOT separate. All bucketed rows: 1 sibling +1.95 (t 0.66), 2-3 -3.33, 4-8 -1.33, 9+ -2.99. Slice rows: +6.49 / -1.95 / +7.98 / +3.45 -- ordering scrambles, nothing past 2 SE except a middle cell with no story. Unconfirmed, not disproven; NO slice registered, because registering this would be pre-registering noise.
+
+LIMITATION that weakens my own test and should be fixed by whoever retries: the count is len(event['markets']) from the judging payload, which is built from post-screen survivors, so it counts SURVIVING markets per event rather than the event's true size. The real count is free on the board's event envelope -- use that.
+
+Also inherits the live successor of did-stage-6-add-value (closed same day): mine the 362 stage-6-rejected rows' rationales for a mechanizable predicate. Same shape as this ticket -- a structural, free proxy for what judgment was doing -- and the rationales are a written record of what a price-aware reader objected to.
 ---
 NOT URGENT, and filed from another lane -- a session was working
 insider_bias when this surfaced, so it is written down rather than

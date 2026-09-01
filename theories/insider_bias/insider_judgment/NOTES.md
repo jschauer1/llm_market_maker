@@ -1722,3 +1722,90 @@ spawn them, so **no v5/v6 live run was recorded**. That is the one thing
 between here and the Big Brother candidate being a properly recorded R1
 bet rather than a read-only calculation. It is the floor's to run, and
 the RUNBOOK's procedure is unchanged by v6.
+
+## 2026-09-01 (cont.) — the two remaining tickets, answered
+
+### `did-stage-6-add-value`: permanently unanswerable, and that is the answer
+
+`interpretation_value` is a *comparison*, and **one arm is frozen at 6
+settled rows on ONE settlement day**. Stage 6 was removed at v5, so no
+new `endorsed` row will ever exist; ruling 14 says under three settlement
+days there is no usable error bar. Waiting grows only the rejected arm
+(251 still unsettled), sharpening a number that must still be differenced
+against a single day's board.
+
+    endorsed (stage 6 said yes)   n=  6  days=1   6/6     net +14.81  SE undefined
+    rejected (stage 6 said no)    n=111  days=8   86/111  net -10.05  SE  9.52
+    slice-matching endorsed       n=  4  days=1   4/4     net +17.52  SE undefined
+    slice-matching rejected       n= 12  days=4   8/12    net -32.53  SE 20.95
+    (slice baseline: +3.76 over 90 clusters / 44 days)
+
+Directionally stage 6 does look like it was selecting on something. Every
+measurable arm is inside its noise (t −1.06 and −1.55). **Unconfirmed,
+not disproven — and now unfalsifiable.** Closed on those grounds, with
+the guidance intact: do not reinstate a session veto by hand, because
+there is now no way to demonstrate it helps.
+
+The live successor is the ticket's own step 4 — mine the 362 rejected
+rows' stage-6 rationales for a *mechanizable* predicate. That needs no
+endorsed arm.
+
+### `single-name-structural-gate`: the free proxy was tested and found nothing
+
+The ticket's binding condition was "do NOT write a prompt for it — if the
+rule cannot be written mechanically the finding does not apply."
+
+**First problem, and it is fixable: the titles were not stored.** Only
+**381 of 1,770** bucketed settled rows (21.5%) have a title reachable
+from `market_snapshots`, and they are the live ones — the backtest rows
+that carry this theory's evidence were fetched through the replay and
+never snapshotted. `backtest_judged.py` *had* the title (it puts one in
+every judging payload) and did not persist it. **Same defect as
+calibration_harvest's collector, found the same day: a stage receives a
+field, uses it, and drops it.**
+
+**It is recoverable, and this is the "save while you collect" convention
+paying off.** The judging payloads are still on disk under
+`backtests/*/batch_*.payload.json` and carry `title`, `rules_primary`,
+`event_ticker` and every market ticker. An index built from them covers
+**2,571 of 4,275 opportunities (60.1%)**, against 381 (21.5%) from
+snapshots. No re-judging, no spend.
+
+**Second problem, and it is not fixable as the ticket specifies.** Even
+with titles, "does this name one entity or a broad field" is *reading
+comprehension* — precisely what CLAUDE.md says to reach for a model for,
+and precisely what this ticket forbids. A hand-written classification of
+261 series tickers is a prompt with extra steps, and one fitted while
+looking at the rows it would be scored on.
+
+**So I tested the mechanical thing that IS available free: sibling count
+per event** — "one named entity" versus "one of N" — which is structure,
+not comprehension.
+
+    ALL bucketed rows            n    days     net     SE      t
+      1  (binary)              183      55   +1.95   2.97   +0.66
+      2-3                      329      46   -3.33   3.65   -0.91
+      4-8                      560      51   -1.33   2.55   -0.52
+      9+ (broad field)         492      34   -2.99   4.50   -0.67
+
+    Slice rows only (outcome=no, strong/moderate)
+      1  (binary)               47      22   +6.49   4.42   +1.47
+      2-3                       88      22   -1.95   5.08   -0.38
+      4-8                      173      27   +7.98   3.90   +2.05
+      9+ (broad field)         245      19   +3.45   4.29   +0.81
+
+**It does not separate.** On all rows the single-name cell is the only
+positive one, which is the direction the paper predicts — but t=+0.66,
+and on the slice rows the ordering scrambles completely (4-8 highest at
++7.98, then 1, then 9+, then 2-3 negative). Four cells, no monotonicity,
+nothing past 2 SE except a middle cell with no story attached.
+**Unconfirmed, not disproven. No slice registered** — registering this
+would be pre-registering noise.
+
+**A real limitation, stated because it weakens my own test.** The
+sibling count comes from `len(event["markets"])` in the *judging
+payload*, which is built from candidates that already survived the
+screen. So it counts **surviving** markets per event, not the event's
+true size. That makes it a noisier proxy than it looks, and a genuine
+"how many markets does this event have" is available free on the board's
+event envelope. Anyone retrying this should use that, not this.
