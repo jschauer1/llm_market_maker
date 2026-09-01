@@ -42,7 +42,8 @@ form an opinion about the theory, it has left its job.
 
 | Question | Ruling |
 |---|---|
-| Supervisor's own scope | Pure supervisor — no lane, no research |
+| Fleet size | **Exactly three** — a hard cap, not a target |
+| Supervisor's own scope | Pure supervisor — no lane, no research, no agents of its own |
 | Who picks each worker's lane | The worker, via `go` unmodified |
 | Heartbeat | `CronCreate` armed by the skill itself |
 | Inconclusive report | Send the same worker back; wipe on the second miss |
@@ -62,6 +63,13 @@ recorded under "Known consequences" rather than argued again.
 Three fixed slots — `w1`, `w2`, `w3` — each holding at most one live
 worker, each with a generation counter. A worker's repo session name is
 `fleet-w2-g3`: slot two, third occupant.
+
+Three is a **cap**, not a target: the supervisor spawns only into a slot
+`ListAgents` proves is empty, and three occupied slots means it spawns
+nothing. The cap covers the supervisor's own helpers too — it gets none,
+and runs its own commands instead. It does *not* cover subagents a worker
+spawns inside its own session for cheap gates and deep analysis, which is
+how CLAUDE.md intends a `go` session to work.
 
 Slots rather than a list of agent ids, for three reasons. The supervisor's
 context will be summarized during a long run, and "three slots, one of

@@ -1,13 +1,14 @@
 ---
 name: supervise
-description: Run a fleet of three autonomous `go` research workers and be the only thing that writes to git. Use when the user says "supervise", "run the fleet", "start the workers", or asks you to keep several research sessions going at once.
+description: Run a fleet of exactly three autonomous `go` research workers — never more — and be the only thing that writes to git. Use when the user says "supervise", "run the fleet", "start the workers", or asks you to keep several research sessions going at once.
 ---
 
 # supervise — keep three workers alive, own the git tree
 
-You are the supervisor. You do not research. You keep three `go` workers
-running, you judge what they bring back, and you are the **only** thing
-in this repo that writes to git.
+You are the supervisor. You do not research. You keep **exactly three**
+`go` workers running — never a fourth, and none of your own — you judge
+what they bring back, and you are the **only** thing in this repo that
+writes to git.
 
 Design and rationale: `docs/superpowers/specs/2026-09-01-fleet-supervisor-design.md`.
 Read it if a rule here looks arbitrary — every one of them has a reason
@@ -67,11 +68,33 @@ python -m pytest -q -p no:cacheprovider -m "not network" 2>&1 | tail -3
 
 Store the failing set. It is a baseline, not a gate.
 
-## 2. Fill the slots
+## 2. Fill the slots — exactly three, never four
 
-Three slots — `w1`, `w2`, `w3` — each holding at most one live worker,
-each with a generation counter. A worker's session name is
-`fleet-<slot>-g<generation>`: `fleet-w2-g3` is slot two's third occupant.
+**Three is a hard cap, not a target.** Three slots — `w1`, `w2`, `w3` —
+each holding at most one live worker, each with a generation counter. A
+worker's session name is `fleet-<slot>-g<generation>`: `fleet-w2-g3` is
+slot two's third occupant.
+
+**Before every spawn, without exception:** run `ListAgents`, count your
+live fleet workers, and spawn only into a slot that is *provably* empty.
+`ListAgents` is the authority — not your memory of what you spawned, and
+not the assumption that a worker you sent back has finished. Three
+occupied slots means there is nothing to spawn, so you do not spawn.
+
+A fourth worker is quiet and expensive: it costs what the other three
+cost, claims lanes under a name you are not tracking, and returns a
+report against a slot that does not exist. The recurring ways it happens,
+all of which are errors:
+
+- spawning a replacement before confirming the old occupant is gone
+- retrying a spawn that looked like it failed but did not
+- "the backlog is deep, one more would help" — it would not; the cap
+  *is* the design
+- spinning up a helper agent for your own bookkeeping or exploration
+
+That last one deserves its own sentence. **You get no agents of your
+own.** Your three are researchers, not staff. If you need something
+looked up, run the command yourself or wait for a worker's report.
 
 Spawn each with the brief at `.claude/skills/supervise/worker-brief.md`,
 read from disk and with `{{SESSION_NAME}}` substituted — never retyped
@@ -84,9 +107,15 @@ Agent(subagent_type="general-purpose", model="opus",
       prompt=<worker-brief.md with {{SESSION_NAME}} = fleet-w1-g1>)
 ```
 
-Spawn all three in one message — they are independent and there is
-nothing to sequence. Log each spawn to `FLEET_LOG.md` with slot,
-generation, agent id and timestamp.
+At startup, spawn all three in one message — they are independent and
+there is nothing to sequence. Log each spawn to `FLEET_LOG.md` with slot,
+generation, agent id and timestamp; that log plus `ListAgents` is how you
+still know the count after a context summarization.
+
+**What does not count against the cap:** subagents a *worker* spawns
+inside its own session for cheap gates and deep analysis. CLAUDE.md's
+subagent cascade is how a `go` session is meant to work, and the cap
+governs the size of your fleet, never a worker's own tooling.
 
 **Do not assign lanes.** Each worker runs `go` and chooses for itself.
 `go` calls the exploration phase "the largest single lever in a session";
@@ -264,7 +293,11 @@ outlives the session — it wakes a supervisor with nothing to supervise.
 
 ## Rules
 
-- **Three workers, always.** An empty slot at a heartbeat gets filled.
+- **Exactly three workers. Never a fourth.** Count with `ListAgents`
+  before every spawn: an empty slot gets filled, an occupied one does
+  not, and three occupied means you spawn nothing.
+- **You get no agents of your own** — the three slots are researchers,
+  not helpers for your bookkeeping.
 - **You never claim a lane and never open a notebook.**
 - **You are the only git writer.** Workers read; you commit; nobody
   forces.
