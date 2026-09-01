@@ -733,3 +733,58 @@ def test_claude_md_does_not_name_a_tool_that_is_gone():
     named.discard("tools/backtest.py")
     absent = sorted(n for n in named if not (ROOT / n).exists())
     assert not absent, f"CLAUDE.md names tools that do not exist: {absent}"
+
+
+#: Like `_PATH_LIKE`, but a leading dot is allowed. A skill naming
+#: another skill's own file -- `.claude/skills/supervise/worker-brief.md`
+#: -- would otherwise be skipped by the anchor and never checked, which
+#: is exactly the citation most worth checking: it is read at runtime.
+_SKILL_PATH_LIKE = re.compile(
+    r"^\.?[A-Za-z0-9_][A-Za-z0-9_.\-]*(/[A-Za-z0-9_.\-]+)+/?$"
+)
+
+
+def _skill_paths():
+    for skill_md in sorted(ROOT.glob(".claude/skills/*/*.md")):
+        text = skill_md.read_text(encoding="utf-8")
+        for span in re.findall(r"`([^`\n]+)`", text):
+            # Same filter as `_doc_paths`: bare repo paths only, no
+            # flags, placeholders, globs or URLs.
+            if " " in span or "://" in span or "<" in span or "*" in span:
+                continue
+            if not _SKILL_PATH_LIKE.match(span):
+                continue
+            yield skill_md, span
+
+
+def _skill_path_resolves(span: str) -> bool:
+    if (ROOT / span).exists():
+        return True
+    # propose-theory names the theory template relative to `theories/`
+    # (`_TEMPLATE/THEORY.md`), which is how a session reads it in
+    # context. Resolving that fallback keeps the citation honest without
+    # hardcoding an exception -- if the template moves, this still fails.
+    return (ROOT / "theories" / span).exists()
+
+
+def test_every_repo_path_named_in_a_skill_resolves():
+    """Skills carry the operating procedure for every session, and a
+    skill citing a file it no longer ships is invisible until a session
+    tries to open it -- mid-run, with no way to recover the instruction.
+
+    `_DOC_FILES` covers only README.md, CLAUDE.md and tools/README.md,
+    so nothing watched `.claude/skills/` at all. Same failure mode
+    `test_every_recorded_prompt_path_still_resolves` guards for judging
+    prompts, applied to the skills that read a second file at runtime.
+    """
+    missing = [
+        f"{md.parent.name}/{md.name}: `{span}`"
+        for md, span in _skill_paths()
+        if not _skill_path_resolves(span)
+        and not _ALLOWED_MISSING.match(span)
+        and span not in _DELIBERATELY_ABSENT
+    ]
+    assert missing == [], (
+        "a skill names a repo path that does not resolve -- fix the skill "
+        "or add a deliberate exception:\n" + "\n".join(missing)
+    )

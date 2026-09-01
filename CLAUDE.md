@@ -95,8 +95,11 @@ record.
   one lane, focus on it, log it, report.
 - **Just asking** — "how is insider_judgment holding up?", "what's the best
   bet right now?" Answer directly with the tools. No loop, no ceremony.
+- **`supervise`** — a fleet. Three `go` workers run in parallel while a
+  supervisor keeps the slots full, judges what they bring back, and is the
+  only thing that writes to git. It claims no lane and opens no notebook.
 
-Both are normal.
+All three are normal.
 
 **When a task has a skill, invoke it before starting.** Backtesting →
 `backtest-theory`. Choosing bets → `find-edge`. New hypothesis →
@@ -105,7 +108,8 @@ Both are normal.
 off: today's floor → `go-floor`, building out an existing theory →
 `go-theory`, getting a new thesis running → `go-new-theory`, going looking for
 theses nobody has proposed → `go-find-theories`, the repo
-itself → `go-maintenance`. The skills carry rules this file does
+itself → `go-maintenance`. Running several sessions at once →
+`supervise`. The skills carry rules this file does
 not repeat, loaded at the moment they bind. **Prefer loading a skill to not
 loading one**: the cost of reading one you did not strictly need is a few
 hundred tokens, and the cost of skipping one is a rule you never saw.
