@@ -613,3 +613,50 @@ reported as a **failed** forward test for that series, not as a finding.
 Nothing in this pass promotes anything to a theory. Survivors become
 pre-registered proposals for follow-on theories, on a forward or
 out-of-sample population — never bets on the data that suggested them.
+
+### Robustness views — declared now, still before any per-series number
+
+Two strata exist in the collected data for free, and *choosing to look at
+them after seeing the headline would be exactly the post-hoc move this
+study keeps catching itself in*. Both are therefore fixed here. Again the
+only numbers consulted are counts: 69,236 observations, of which 51,604
+carry the alternative decision point across 611 series, and 47,497
+(**68.6%**) are flagged `early_settled`.
+
+1. **The alternative decision point.** `collect.py` priced every market
+   at *both* 25% of scheduled lifetime and the original pre-registered
+   24h-before-scheduled-close, from the same candles at no extra API
+   cost — deliberately, so the 2026-08-29 amendment could be *measured*
+   rather than argued. A flag that survives at both decision points is a
+   property of the series; one that appears at only one is a property of
+   the timing choice, and must be reported as such. `ask_24h` is NULL
+   where the market lived under 24h, so this view runs on a subset and
+   its family is re-corrected over that subset, never borrowed.
+
+2. **Early settlement.** 68.6% of observations come from markets whose
+   observed close ran ahead of the scheduled one. The decision point is
+   already anchored to *scheduled* close precisely so the information
+   state is not a function of the answer — that is the lookahead bug
+   that flipped `deadline_drift`'s sign (−3.4 → +4.7) and it is fixed
+   here by construction, not by inspection. What is still open is
+   whether the measured bias *differs* between early- and on-time
+   settling markets. Reported as a split, on the pre-registered reading
+   that **a flag driven only by the early-settling stratum is suspect**
+   and is reported as such rather than as a find.
+
+Neither view can promote anything on its own. They exist to say whether
+a headline flag is robust, and a flag that fails both is reported as
+fragile.
+
+### The population is whatever the sweep has finished
+
+Phase 2 is resumable and per-series atomic: a series is either fully
+priced and recorded in `progress`, or absent. So the family grows by
+*adding series*, never by revising one — but a larger family means a
+harsher Holm divisor, so two runs over two collection states are two
+different tests. To keep that from becoming a choice made after seeing
+both, the rule is fixed here: **the reported primary result is the run
+on the collection state at the moment the sweep stops**, whether it
+stopped by completing or by running out of session. Any earlier
+execution is a smoke test of the pipeline, and its per-series numbers
+are not reported.
