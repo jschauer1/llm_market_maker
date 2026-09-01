@@ -35,21 +35,51 @@ def _one(conn, sql, params=()):
     return row[0] if row else None
 
 
+def _evidence_versions(conn, theory_id: str, version: int) -> list[int]:
+    """The versions whose evidence counts toward `version`, ascending.
+
+    Every panel below counts over this rather than over the current
+    version alone. Until the 2026-08-31 ruling they counted at
+    `theory_version = <current>` exactly, which was right while
+    `breaking` was the default bump kind: a bump severed, so a theory's
+    record genuinely did restart. `continues` is the default now, a bump
+    no longer discards evidence, and those queries kept running against
+    the old vocabulary -- reporting a whole record as zero the moment
+    anyone bumped.
+
+    Measured on the real DB the day two `continues` bumps landed:
+    `calibration_harvest` (chain [1,2,3], 14,473 + 14,436 ledger rows) and
+    `insider_judgment` (chain [1,2,3,4,5], 128 + 4,084 + 63) both rendered
+    `rows 0`, and `insider_judgment`'s `strong-moderate-no` sub-theory --
+    the best-evidenced result in the repo -- vanished from EVIDENCE.
+
+    `carry_chain` stops at an explicit `breaking` row, so a severed
+    predecessor is still correctly excluded; this widens what pools, it
+    does not pool everything. Falls back to the bare version on a DB
+    predating `theory_versions`, matching every other panel's stub
+    behaviour.
+    """
+    if not _table_exists(conn, "theory_versions"):
+        return [version]
+    return theories.carry_chain(conn, theory_id, version)
+
+
 def _theories_panel(conn) -> list[str]:
     lines = []
     for t in theories.list_theories(conn):
-        settled = _one(conn, """
+        versions = _evidence_versions(conn, t["id"], t["version"])
+        marks = ",".join("?" * len(versions))
+        settled = _one(conn, f"""
             SELECT COUNT(DISTINCT o.kalshi_ticker) FROM opportunities o
               JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker
-             WHERE o.theory_id = ? AND o.theory_version = ?
-        """, (t["id"], t["version"]))
+             WHERE o.theory_id = ? AND o.theory_version IN ({marks})
+        """, (t["id"], *versions))
         rows = _one(conn,
                     "SELECT COUNT(*) FROM opportunities"
-                    " WHERE theory_id = ? AND theory_version = ?",
-                    (t["id"], t["version"]))
+                    f" WHERE theory_id = ? AND theory_version IN ({marks})",
+                    (t["id"], *versions))
         chain = "chain n/a"
         if _table_exists(conn, "theory_versions"):
-            versions = theories.carry_chain(conn, t["id"], t["version"])
             chain = f"chain {len(versions)}"
         lines.append(
             f"  {t['id']:<22} {t['status']:<13} v{t['version']}"
@@ -114,16 +144,26 @@ def _evidence_panel(conn) -> list[str]:
             # theory, which is the precise confusion sub-theory scoring
             # exists to prevent. Pre-segment rows default to 'aggregate',
             # so this never hides a legacy score.
+            # Newest score anywhere in the evidence chain, current
+            # version first. A `continues` bump keeps the predecessor's
+            # score standing -- reporting "no live score" there would
+            # hide a record the ruling says still counts -- but the
+            # reader is told which version produced the number, because
+            # "the evidence pools" and "this was measured at the
+            # procedure now running" are different claims.
+            versions = _evidence_versions(conn, t["id"], t["version"])
+            marks = ",".join("?" * len(versions))
             row = conn.execute(
-                """
+                f"""
                 SELECT calibration_edge_net, n, n_clusters, n_backtest,
-                       pooled_versions FROM scores
-                 WHERE theory_id = ? AND theory_version = ?
+                       pooled_versions, theory_version FROM scores
+                 WHERE theory_id = ? AND theory_version IN ({marks})
                    AND disposition = 'all'
                    AND segment = 'aggregate'
-                 ORDER BY computed_at DESC LIMIT 1
+                 ORDER BY theory_version = ? DESC, computed_at DESC
+                 LIMIT 1
                 """,
-                (t["id"], t["version"]),
+                (t["id"], *versions, t["version"]),
             ).fetchone()
         tier = _one(conn,
                     "SELECT tier FROM backtest_runs WHERE theory_id = ?"
@@ -137,11 +177,13 @@ def _evidence_panel(conn) -> list[str]:
             lines.append(f"  {t['id']:<22} no live score at v{t['version']}"
                          f"  [best backtest tier {tier or '—'}]")
         else:
+            at = ("" if row["theory_version"] == t["version"]
+                  else f"  [scored at v{row['theory_version']}]")
             lines.append(
                 f"  {t['id']:<22} edge_net {row['calibration_edge_net']}"
                 f"  n {row['n']}{_backtest_note(row)}"
                 f"  clusters {row['n_clusters']}"
-                f"{_pooled_note(row)}  [tier {tier or '—'}]"
+                f"{_pooled_note(row)}{at}  [tier {tier or '—'}]"
             )
         lines.extend(_sub_theory_lines(conn, t))
     return lines or ["  (no running theories)"]
@@ -158,18 +200,30 @@ def _sub_theory_lines(conn, t) -> list[str]:
     """
     if not _column_exists(conn, "scores", "segment"):
         return []
+    # Over the evidence chain, not the current version: a `continues`
+    # bump made `insider_judgment`'s `strong-moderate-no` disappear from
+    # this panel, and that slice is the best-evidenced result in the repo.
+    # A sub-theory is versioned with its parent, so it carries exactly
+    # what the parent carries.
+    versions = _evidence_versions(conn, t["id"], t["version"])
+    marks = ",".join("?" * len(versions))
     rows = conn.execute(
-        """
+        f"""
+        -- exactly ONE min/max aggregate, deliberately: SQLite only
+        -- guarantees the bare columns come from the matching row when
+        -- there is a single min()/max() in the select list. A second one
+        -- (MAX(theory_version), say) silently forfeits that and can pair
+        -- one row's edge with another row's timestamp.
         SELECT segment, calibration_edge_net, n, n_clusters, n_backtest,
                MAX(computed_at) AS computed_at
           FROM scores
-         WHERE theory_id = ? AND theory_version = ?
+         WHERE theory_id = ? AND theory_version IN ({marks})
            AND disposition = 'all'
            AND segment != 'aggregate'
          GROUP BY segment
          ORDER BY segment
         """,
-        (t["id"], t["version"]),
+        (t["id"], *versions),
     ).fetchall()
     out = []
     for r in rows:

@@ -228,3 +228,137 @@ def test_evidence_shows_what_share_of_a_record_is_backtested(conn):
 
     text = state.render_state(conn, now="2026-09-10T12:00:00Z")
     assert "32 backtested" in text
+
+
+# ---- a `continues` bump must not blank the orientation surface ----------
+#
+# The 2026-08-31 ruling flipped the default bump kind from `breaking` to
+# `continues`, so a bump no longer discards evidence. These three panels
+# were written when `breaking` was the default, and each counts at
+# `theory_version = <current>` exactly. Under the old default that was
+# right; under the new one it reports a theory's whole record as zero the
+# moment anybody bumps it.
+#
+# Measured on the real DB, 2026-09-01, immediately after two `continues`
+# bumps landed:
+#
+#   calibration_harvest  chain [1,2,3]      rows v1=14,473 v2=14,436 -> "rows 0"
+#   insider_judgment     chain [1,2,3,4,5]  rows v2=128 v3=4,084 v4=63 -> "rows 0"
+#
+# and insider_judgment's `strong-moderate-no` sub-theory -- the repo's
+# best-evidenced result -- disappeared from EVIDENCE entirely.
+
+def _bump(conn, tid, n=1):
+    from tools import theories
+    for _ in range(n):
+        theories.bump_version(conn, tid, kind="continues",
+                              justification="procedure changed")
+
+
+def _score(conn, tid, version, *, segment="aggregate", edge=3.5, n=90):
+    from tools import db as db_mod
+    with db_mod.write(conn):
+        conn.execute(
+            "INSERT INTO scores (theory_id, theory_version, disposition,"
+            " segment, run_mode, calibration_edge_net, n, n_clusters,"
+            " computed_at)"
+            " VALUES (?, ?, 'all', ?, 'live', ?, ?, ?,"
+            " '2026-08-30T00:00:00Z')",
+            (tid, version, segment, edge, n, n),
+        )
+
+
+def _opportunity(conn, tid, version, ticker):
+    from tools import ledger
+    ledger.record_opportunity(
+        conn, theory_id=tid, theory_version=version, kalshi_ticker=ticker,
+        outcome="yes", entry_price=0.9, edge_pts_net=1.0, run_mode="live",
+        run_id=f"live-{ticker}", edge_basis="model",
+    )
+
+
+def test_ledger_rows_survive_a_continues_bump_in_the_theories_panel(conn):
+    from tools import theories
+    theories.register(conn, "demo_theory", "Demo", "theories/demo")
+    _opportunity(conn, "demo_theory", 1, "KX-1")
+    _opportunity(conn, "demo_theory", 1, "KX-2")
+    _bump(conn, "demo_theory")            # v1 -> v2, evidence pools
+    text = state.render_state(conn, now="2026-08-29T12:00:00Z")
+    assert "rows 0" not in text
+    assert "rows 2" in text
+
+
+def test_settled_count_survives_a_continues_bump(conn):
+    from tools import score, theories
+    theories.register(conn, "demo_theory", "Demo", "theories/demo")
+    _opportunity(conn, "demo_theory", 1, "KX-1")
+    score.record_settlement(conn, "KX-1", "yes",
+                            resolved_at="2026-08-28T00:00:00Z")
+    _bump(conn, "demo_theory")
+    text = state.render_state(conn, now="2026-08-29T12:00:00Z")
+    assert "settled 1" in text
+
+
+def test_a_breaking_bump_does_reset_the_counts(conn):
+    """The complement, and the reason this cannot just count everything:
+    `breaking` severs, so its predecessor's rows must NOT be pooled."""
+    from tools import theories
+    theories.register(conn, "demo_theory", "Demo", "theories/demo")
+    _opportunity(conn, "demo_theory", 1, "KX-1")
+    theories.bump_version(conn, "demo_theory", kind="breaking",
+                          justification="different population entirely")
+    text = state.render_state(conn, now="2026-08-29T12:00:00Z")
+    assert "rows 0" in text
+
+
+def test_evidence_falls_back_to_the_newest_score_in_the_chain(conn):
+    from tools import theories
+    theories.register(conn, "demo_theory", "Demo", "theories/demo")
+    theories.set_status(conn, "demo_theory", "testing")
+    _score(conn, "demo_theory", 1, edge=3.5, n=90)
+    _bump(conn, "demo_theory")            # v1 -> v2; no v2 score yet
+    text = state.render_state(conn, now="2026-08-29T12:00:00Z")
+    assert "no live score at v2" not in text
+    assert "edge_net 3.5" in text
+    # and it says where the number came from, rather than implying v2
+    assert "scored at v1" in text
+
+
+def test_evidence_prefers_the_current_versions_own_score(conn):
+    from tools import theories
+    theories.register(conn, "demo_theory", "Demo", "theories/demo")
+    theories.set_status(conn, "demo_theory", "testing")
+    _score(conn, "demo_theory", 1, edge=3.5, n=90)
+    _bump(conn, "demo_theory")
+    _score(conn, "demo_theory", 2, edge=-1.25, n=10)
+    text = state.render_state(conn, now="2026-08-29T12:00:00Z")
+    assert "edge_net -1.25" in text
+    assert "scored at v1" not in text
+
+
+def test_a_breaking_bump_does_not_borrow_the_predecessors_score(conn):
+    from tools import theories
+    theories.register(conn, "demo_theory", "Demo", "theories/demo")
+    theories.set_status(conn, "demo_theory", "testing")
+    _score(conn, "demo_theory", 1, edge=3.5, n=90)
+    theories.bump_version(conn, "demo_theory", kind="breaking",
+                          justification="severed")
+    text = state.render_state(conn, now="2026-08-29T12:00:00Z")
+    assert "no live score at v2" in text
+    assert "edge_net 3.5" not in text
+
+
+def test_a_sub_theory_survives_a_continues_bump(conn):
+    """The one that actually bit. insider_judgment's `strong-moderate-no`
+    is the best-evidenced result in the repo, and the v5 bump made it
+    vanish from the surface every session orients with."""
+    from tools import theories
+    theories.register(conn, "demo_theory", "Demo", "theories/demo")
+    theories.set_status(conn, "demo_theory", "testing")
+    _score(conn, "demo_theory", 1, segment="aggregate", edge=-1.3, n=900)
+    _score(conn, "demo_theory", 1, segment="slice:proven-subset",
+           edge=3.76, n=328)
+    _bump(conn, "demo_theory")
+    text = state.render_state(conn, now="2026-08-29T12:00:00Z")
+    assert "sub: proven-subset" in text
+    assert "edge_net 3.76" in text
