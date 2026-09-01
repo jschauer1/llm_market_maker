@@ -1,8 +1,10 @@
 ---
 title: Finish the series-bias phase-2 sweep and extend pass 3
-lane: new-theory
+lane: study
+study: 2026-08-29-series-bias-mining
 created: 2026-09-01
 created_by: llm-market-identifier-86
+author_context: Filed as new-theory before the study lane existed; it is the study's own phase-2 sweep, resumed with its own collect.py.
 status: open
 ---
 The broad settled-history sweep (studies/2026-08-29-series-bias-mining/collect.py) is the prerequisite for every future pass of this study, and it is PARTIALLY DONE. Resume it with:

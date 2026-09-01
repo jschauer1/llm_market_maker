@@ -13,7 +13,28 @@ tickets/
 theories/<registry path>/tickets/ <- theory work, in that theory's folder
     open/
     completed/
+studies/<date>-<slug>/tickets/    <- study work, in that study's folder
+    open/
+    completed/
 ```
+
+**A ticket lives inside the thing it is about.** That is the rule, and it
+has two owned lanes:
+
+| the work is about | lane | it lands in |
+|---|---|---|
+| an existing theory | `--lane theory --theory <slug>` | `theories/<registry path>/tickets/` |
+| an existing study | `--lane study --study <slug>` | `studies/<date>-<slug>/tickets/` |
+| a theory that does not exist yet | `--lane new-theory` | `tickets/new-theory/` — **and it is a spec** |
+| the repo itself | `--lane maintenance` | `tickets/maintenance/` |
+
+A theory folder and a study folder are each supposed to hold everything
+their expert needs, and queued work against them is part of that. Both
+paths are resolved for you and both refuse a name they cannot find — a
+theory's folder comes from its registry row (it is not always
+`theories/<slug>`), and a study's is its dated folder name exactly.
+Guessing either by hand creates a phantom directory beside the real one,
+holding nothing but tickets its owner will never read.
 
 **The directory is named for the lane.** `new-theory/` used to be called
 `research/`, which meant every session had to know the two were the same
@@ -49,9 +70,9 @@ interpretive, and what the cheapest decisive first step is. Read
 shared contracts, and they have killed more ideas here than any single
 spec's own kill criteria have.
 
-**An idea to try on an *existing* theory is not this.** It belongs in that
-theory's own folder (`--lane theory --theory <slug>`), because a theory
-folder is supposed to hold everything its expert needs.
+**An idea to try on an *existing* theory or study is not this.** It
+belongs in that theory's or study's own folder — see the table above.
+A new-theory ticket is for a theory that does not exist yet.
 
 ## The bar: a ticket is a commitment, not a note
 

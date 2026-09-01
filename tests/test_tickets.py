@@ -30,6 +30,11 @@ def repo(tmp_path):
     # says, and insider_judgment sits under a shared family parent.
     (tmp_path / "theories" / "insider_bias"
      / "insider_judgment").mkdir(parents=True)
+    # A study owns its tickets the same way a theory does; its folder is
+    # its slug, dated, under studies/.
+    study = tmp_path / "studies" / "2026-08-29-series-bias-mining"
+    study.mkdir(parents=True)
+    (study / "STUDY.md").write_text("# series bias", encoding="utf-8")
     return tmp_path
 
 
@@ -367,3 +372,102 @@ def test_the_brief_render_is_one_line_per_ticket(repo):
     assert "aggregation-gap" in text and "http-429" in text
     # Cheap is the whole point: the three bodies alone are 15,000 chars.
     assert len(text) < 1000
+
+
+# --- a study owns its tickets, exactly as a theory does --------------------
+
+
+def test_a_study_ticket_lands_in_that_studys_folder(repo):
+    """Work about a study belongs to the study, not the main backlog.
+
+    Same rule as a theory, for the same reason: a study folder holds its
+    question, its scripts, its data and its verdict, and queued work
+    against it is part of that. `series-bias-mining` is why this matters
+    — it grew a 353MB corpus and a multi-hour collector that other work
+    depends on, and its stalls were noticed twice by accident because
+    nothing about it was anybody's.
+    """
+    path = tickets.create(
+        repo, lane="study", slug="finish-the-price-sweep",
+        study="2026-08-29-series-bias-mining",
+        title="phase 2 stopped at 664 of 840 series",
+        body="Resume with collect.py prices; it is per-series atomic.",
+        created="2026-09-01", created_by="llm-7a",
+    )
+    assert path.relative_to(repo).as_posix() == (
+        "studies/2026-08-29-series-bias-mining/tickets/open/"
+        "2026-09-01-finish-the-price-sweep.md"
+    )
+
+
+def test_a_study_ticket_without_its_study_is_refused(repo):
+    with pytest.raises(ValueError, match="needs its study"):
+        tickets.create(
+            repo, lane="study", slug="x", title="t", body="b",
+            created="2026-09-01",
+        )
+
+
+def test_a_study_ticket_for_an_unknown_study_is_refused(repo):
+    """A typo must fail loudly rather than build a phantom folder.
+
+    This is the theory-path bug in a second place: deriving a folder
+    from a name and creating it on demand produced a directory beside
+    the real one, holding nothing but tickets nobody would ever read.
+    """
+    with pytest.raises(ValueError, match="no study"):
+        tickets.create(
+            repo, lane="study", slug="x", study="2026-08-29-series-bais-mining",
+            title="t", body="b", created="2026-09-01",
+        )
+
+
+def test_the_backlog_carries_study_tickets_and_names_their_study(repo):
+    tickets.create(
+        repo, lane="study", slug="finish-the-price-sweep",
+        study="2026-08-29-series-bias-mining", title="resume the sweep",
+        body="...", created="2026-09-01", created_by="llm-7a",
+    )
+    tickets.create(
+        repo, lane="maintenance", slug="http-429", title="backoff",
+        body="...", created="2026-09-01", created_by="llm-7a",
+    )
+    found = {t["slug"]: t for t in tickets.backlog(repo)}
+    assert set(found) == {"finish-the-price-sweep", "http-429"}
+    entry = found["finish-the-price-sweep"]
+    assert entry["lane"] == "study"
+    assert entry["study"] == "2026-08-29-series-bias-mining"
+    assert entry["theory"] is None
+
+
+def test_the_backlog_filters_to_one_study(repo):
+    tickets.create(
+        repo, lane="study", slug="a", study="2026-08-29-series-bias-mining",
+        title="a", body="...", created="2026-09-01",
+    )
+    assert len(tickets.backlog(repo, study="2026-08-29-series-bias-mining")) == 1
+    assert tickets.backlog(repo, study="2026-08-30-parlay-markup") == []
+
+
+def test_closing_a_study_ticket_stays_in_the_studys_folder(repo):
+    path = tickets.create(
+        repo, lane="study", slug="a", study="2026-08-29-series-bias-mining",
+        title="a", body="...", created="2026-09-01",
+    )
+    done = tickets.close(path, resolution="Swept to 840/840.", now="2026-09-02")
+    assert done.relative_to(repo).as_posix() == (
+        "studies/2026-08-29-series-bias-mining/tickets/completed/"
+        "2026-09-01-a.md"
+    )
+
+
+def test_the_brief_render_groups_studies(repo):
+    tickets.create(
+        repo, lane="study", slug="finish-the-price-sweep",
+        study="2026-08-29-series-bias-mining", title="resume the sweep",
+        body="Q" * 4000, created="2026-09-01",
+    )
+    text = tickets.render(tickets.backlog(repo, brief=True))
+    assert "STUDY" in text
+    assert "2026-08-29-series-bias-mining" in text
+    assert len(text) < 400

@@ -36,7 +36,7 @@ import sqlite3
 from datetime import datetime, timedelta
 from pathlib import Path
 
-from tools.db import utcnow, write
+from tools.db import REPO_ROOT, utcnow, write
 
 #: A completed floor satisfies the daily requirement for this long.
 FLOOR_INTERVAL_HOURS = 24
@@ -158,8 +158,11 @@ def claim(
     return get(conn, claim_id)
 
 
-def required_coverage(conn: sqlite3.Connection) -> list[dict]:
-    """Everything a floor report must account for: theories AND sub-theories.
+def required_coverage(conn: sqlite3.Connection,
+                      root=None) -> list[dict]:
+    """Everything a floor report must account for.
+
+    Theories, sub-theories, AND every study still in flight.
 
     A sub-theory is a theory run over a subset of another theory's data,
     and by this repo's definition it *is* a theory — its evidence is its
@@ -170,8 +173,18 @@ def required_coverage(conn: sqlite3.Connection) -> list[dict]:
 
     A RETIRED sub-theory stays on the list. Retirement must never hide a
     record, which is the whole reason a retired slice keeps reporting.
+
+    An **unfinished study** is on the list for a different reason. The
+    floor never re-runs a study -- doing that on a schedule is multiple
+    comparisons by calendar -- but a study collecting against perishable
+    data is losing rows *upstream* while it sits, since Kalshi ages
+    settled markets out of its public API after ~60 days. That stall has
+    happened twice and both times somebody noticed by accident. A
+    COMPLETE study is not required: it needs no daily mention, and
+    `cli studies` renders the whole set on demand.
     """
-    from tools import slices as slices_mod, theories as theories_mod
+    from tools import slices as slices_mod, studies as studies_mod
+    from tools import theories as theories_mod
 
     out: list[dict] = []
     for row in theories_mod.list_theories(conn, running_only=True):
@@ -183,10 +196,20 @@ def required_coverage(conn: sqlite3.Connection) -> list[dict]:
                 "theory": row["id"],
                 "status": s["status"],
             })
+    for study in studies_mod.survey(root if root is not None else REPO_ROOT):
+        if study["complete"]:
+            continue
+        out.append({
+            "kind": "study",
+            "name": study["slug"],
+            "theory": None,
+            "status": study["status"],
+        })
     return out
 
 
-def coverage_gaps(conn: sqlite3.Connection, report_text: str) -> list[dict]:
+def coverage_gaps(conn: sqlite3.Connection, report_text: str,
+                  root=None) -> list[dict]:
     """What `required_coverage` names that the report never mentions.
 
     A name test, deliberately crude: it cannot tell a good line from a
@@ -196,7 +219,8 @@ def coverage_gaps(conn: sqlite3.Connection, report_text: str) -> list[dict]:
     the best-evidenced result in the repo.
     """
     text = (report_text or "").lower()
-    return [c for c in required_coverage(conn) if c["name"].lower() not in text]
+    return [c for c in required_coverage(conn, root=root)
+            if c["name"].lower() not in text]
 
 
 def complete(
@@ -207,6 +231,7 @@ def complete(
     report_path: str | None = None,
     report_text: str | None = None,
     summary: str | None = None,
+    root=None,
 ) -> sqlite3.Row:
     """Record that the floor ran and the report landed.
 
@@ -239,7 +264,7 @@ def complete(
         if candidate.is_file():
             text = candidate.read_text(encoding="utf-8")
     if text is not None:
-        gaps = coverage_gaps(conn, text)
+        gaps = coverage_gaps(conn, text, root=root)
         if gaps:
             listed = ", ".join(
                 f"{g['name']} ({g['kind']}"

@@ -152,10 +152,12 @@ def _running_theory_with_subtheory(conn):
     )
 
 
-def test_required_coverage_lists_theories_and_sub_theories(conn):
+def test_required_coverage_lists_theories_and_sub_theories(conn, tmp_path):
     _running_theory_with_subtheory(conn)
 
-    names = {c["name"] for c in floor.required_coverage(conn)}
+    # `root` isolates the study half of the coverage list; this test is
+    # about theories, so it points at a repo with no studies in it.
+    names = {c["name"] for c in floor.required_coverage(conn, root=tmp_path)}
     assert names == {"insider_judgment", "structural_arb",
                      "strong-moderate-no"}
 
@@ -174,7 +176,7 @@ def test_a_report_missing_a_sub_theory_is_refused(conn):
                        now="2026-09-02T02:00:00Z")
 
 
-def test_a_report_covering_everything_completes(conn):
+def test_a_report_covering_everything_completes(conn, tmp_path):
     _running_theory_with_subtheory(conn)
     claim = floor.claim(conn, "sess-a", now="2026-09-02T01:00:00Z")
 
@@ -183,14 +185,15 @@ def test_a_report_covering_everything_completes(conn):
         "strong-moderate-no is READY at +3.76. structural_arb ran clean."
     )
     row = floor.complete(conn, claim["id"], report_text=report,
-                         now="2026-09-02T02:00:00Z")
+                         now="2026-09-02T02:00:00Z", root=tmp_path)
     assert row["completed_at"] == "2026-09-02T02:00:00Z"
 
 
-def test_coverage_gaps_names_exactly_what_is_missing(conn):
+def test_coverage_gaps_names_exactly_what_is_missing(conn, tmp_path):
     _running_theory_with_subtheory(conn)
 
-    gaps = floor.coverage_gaps(conn, "structural_arb ran clean.")
+    gaps = floor.coverage_gaps(conn, "structural_arb ran clean.",
+                               root=tmp_path)
     assert {g["name"] for g in gaps} == {"insider_judgment",
                                          "strong-moderate-no"}
     assert any(g["kind"] == "sub-theory" for g in gaps)

@@ -106,7 +106,8 @@ All three are normal.
 `propose-theory`. Settling and scoring → `score-theories`. Comparing →
 `compare-theories`. A session → `go`, which chooses one lane and hands
 off: today's floor → `go-floor`, building out an existing theory →
-`go-theory`, getting a new thesis running → `go-new-theory`, going looking for
+`go-theory`, settling a question with a measurement → `go-study`,
+getting a new thesis running → `go-new-theory`, going looking for
 theses nobody has proposed → `go-find-theories`, the repo
 itself → `go-maintenance`. Running several sessions at once →
 `supervise`. The skills carry rules this file does
@@ -116,8 +117,12 @@ hundred tokens, and the cost of skipping one is a rule you never saw.
 
 **A session takes exactly one lane and stays in it.** Work you notice in
 another lane becomes a **ticket** (`python -m tools.cli tickets list`) —
-theory tickets live in that theory's own folder, everything else under
-`tickets/<lane>/`. **A theory's folder is wherever its registry row says,
+**a ticket lives inside the thing it is about.** Work on a theory goes
+in that theory's folder (`--lane theory --theory <slug>`); work on a
+study goes in that study's folder (`--lane study --study <slug>`);
+everything else goes under `tickets/<lane>/`. A theory folder and a
+study folder are each supposed to hold everything their expert needs,
+and queued work against them is part of that. **A theory's folder is wherever its registry row says,
 which is not always `theories/<slug>`** — `insider_judgment` lives at
 `theories/insider_bias/insider_judgment`, under a shared family parent —
 so always file through `cli tickets new --theory <slug>`, which looks the
@@ -227,8 +232,28 @@ yours to arrange.
   attributes, and `screen()`, `judgment_payload()`, and `price()` are
   callable individually. The contract composes conveniences; the only
   wall is the ledger.
-- **`Theory` is for things that produce bets.** A study produces theories
-  (`STUDY.md` marks its folder); an execution policy decorates candidates.
+- **`Theory` is for things that produce bets.** An execution policy
+  decorates candidates. And **a study is a measurement that answers a
+  question — it never bets**: no `record_opportunity`, no ticker, no
+  ledger row, no score. `STUDY.md` marks its folder, it lives at
+  `studies/<date>-<slug>/`, and it exists to settle something *before*
+  anyone acts on it — whether an idea is worth building, whether a
+  theory's number is real, how something should work for everything at
+  once. The payoff is asymmetric: a study that finds nothing has still
+  stopped you building the wrong thing, at a day's cost instead of a
+  month's, which is why `calendar-arb` and `smile-smoothing` both died
+  in an afternoon. Its rules — write the bar before looking, never
+  touch the ledger, report the verdict in the header so nobody has to
+  read the study to learn what it concluded — are in `studies/README.md`,
+  and the lane that runs one is `go-study`. `python -m tools.cli studies`
+  renders every study and its verdict, read live from the files.
+  **A study that grows a dataset other work depends on has become
+  infrastructure and needs an owner** — `series-bias-mining` is 353 MB,
+  four passes and a collector other studies read, and its stalls were
+  both noticed by accident. The floor reports every unfinished study and
+  `floor complete` refuses a report that omits one; the floor never
+  re-runs a study, because running one test on a daily schedule is
+  multiple comparisons by calendar.
 - Any theory fetching external data takes `fetch: Fetch | None = None`.
 
 ## What lives in a theory, and what gets elevated

@@ -17,7 +17,7 @@ who to talk to and that it could join if it really means to.
 The theory lane carries a `focus` — which theory. Two sessions on that
 lane are only colliding if they picked the same one, and treating the
 lane itself as exclusive would stop the most obviously parallel work in
-the repo.
+the repo. The `study` lane works the same way, focused on a study slug.
 """
 
 from __future__ import annotations
@@ -30,7 +30,8 @@ from tools.db import utcnow, write
 #: doing-what is complete, but the floor's own exclusivity lives in
 #: `tools/floor.py` -- claiming the floor lane does not substitute for
 #: `floor.claim`, which is what actually enforces once-a-day.
-LANES = ("floor", "theory", "new-theory", "find-theories", "maintenance")
+LANES = ("floor", "theory", "study", "new-theory", "find-theories",
+         "maintenance")
 
 #: How long a lane claim stands before it is treated as abandoned. Longer
 #: than the floor's, because a research lane is a whole session's work

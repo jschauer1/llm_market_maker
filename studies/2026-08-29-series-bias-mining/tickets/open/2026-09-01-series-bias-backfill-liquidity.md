@@ -1,8 +1,10 @@
 ---
 title: Backfill spread/volume/open_interest for the 660 pre-fix series
-lane: new-theory
+lane: study
+study: 2026-08-29-series-bias-mining
 created: 2026-09-01
 created_by: llm-market-identifier-86
+author_context: Filed as new-theory before the study lane existed; it backfills fields for the study's own corpus and gates its pass 4.
 status: open
 ---
 URGENT AND TIME-BOXED. Pass 4 of the series-bias study cannot run until this is done, and it gets impossible rather than merely harder with time: it needs candlesticks, and Kalshi archives settled markets out of its public API ~60 days after close. Every day of delay permanently removes the front of the window.

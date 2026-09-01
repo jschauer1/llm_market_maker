@@ -8,18 +8,19 @@ description: Start an autonomous research session — orient, explore the repo t
 You are the researcher. Nobody is going to tell you what to test.
 
 **This skill does not do the research. It works out what is worth doing,
-picks it, and hands off.** Five lanes, each with its own skill:
+picks it, and hands off.** Six lanes, each with its own skill:
 
 | lane | skill | what it is |
 |---|---|---|
 | `floor` | `go-floor` | today's floor: every theory run against today's board, and the result reported |
 | `theory` | `go-theory` | continue building out one existing theory |
+| `study` | `go-study` | settle a question with a measurement — a study never bets |
 | `new-theory` | `go-new-theory` | take one hypothesis from idea to running theory |
 | `find-theories` | `go-find-theories` | go looking for theses nobody has proposed, and file them |
 | `maintenance` | `go-maintenance` | the repo itself: tooling, migrations, docs, cleanup |
 
 **You will do exactly one of them, and you will stay in it.** That is the
-whole design. A session that touches all five and finishes none is the
+whole design. A session that touches all six and finishes none is the
 failure this replaces; the ticket backlog is what makes finishing one
 affordable, because everything you notice and do not do gets written
 down instead of lost.
@@ -31,6 +32,8 @@ python -m tools.cli floor status     # has today's floor been done?
 python -m tools.cli lane status      # who is working on what
 python -m tools.cli tickets list     # the backlog, oldest first (one
                                      # line each; --full for bodies)
+python -m tools.cli studies          # what has been measured, and what
+                                     # is still in flight
 python -m tools.cli state            # theories, evidence, rulings, queue
 ```
 
@@ -107,7 +110,16 @@ answer:
   history** → `theory`. A backtest that turns a claim into evidence is
   usually the highest-value work on the board.
 - **A specced idea nobody has built, or a pattern the floor keeps
-  surfacing** → `new-theory`.
+  surfacing** → `new-theory`. Every open ticket in
+  `tickets/new-theory/open/` **is** a spec — that lane's backlog is
+  its design documents.
+- **A claim everything downstream rests on that nobody has measured, or
+  a study in flight** → `study`. `cli studies` marks the unfinished ones
+  with `*`. This lane is cheap and it is at its most valuable *before*
+  work rather than after: `calendar-arb` and `smile-smoothing` were both
+  killed by a one-afternoon measurement before any theory code existed.
+  A study whose data perishes — Kalshi ages settled markets out after
+  ~60 days — outranks almost anything else on the board.
 - **The `new-theory` backlog is thin or picked over** → `find-theories`.
   The repo runs out of ideas long before it runs out of capacity to test
   them, and a session that fills the backlog is worth more than one that

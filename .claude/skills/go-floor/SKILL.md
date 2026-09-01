@@ -178,16 +178,17 @@ cites but should not inline (a wide funnel table, a judged payload, a
 subagent's raw output) in that same directory beside it; most days there
 will be nothing but the README, which is the expected case.
 
-Five sections, in this order. **The order is what the user acts on
+Six sections, in this order. **The order is what the user acts on
 first, not what happened first** — the floor's own receipt comes last,
 because it is the least actionable thing in the file.
 `user_reports/README.md` carries the same contract for the reader.
 
 1. Bets
 2. Theories — what each did, and why nothing came of it
-3. For your ruling
-4. Queue
-5. Floor record
+3. Studies in flight
+4. For your ruling
+5. Queue
+6. Floor record
 
 Sections 1 and 2 are below in full; 3 and 4 follow them; section 5 is the
 receipt — which theories ran through which stages, what the gates removed
@@ -325,6 +326,39 @@ The receipt, and last on purpose. One line per running theory in a fixed
 shape — `<id> v<n> — ran per RUNBOOK (<stages>), <n> recorded, gate
 removed <counts by category>`, or `blocked at <stage>: <why>`, or
 `skipped: <condition>`. Then what settled and how the scores moved.
+
+### Section 3 — Studies in flight
+
+```bash
+python -m tools.cli studies
+```
+
+Report **only the studies marked `*`** — the ones not complete — as a
+short list: slug, status, and what it is waiting on. A finished study
+needs no daily mention; `cli studies` renders the whole set on demand.
+
+**The floor reports studies. It never re-runs one.** Re-running a
+study's analysis on a schedule is multiple comparisons by calendar: run
+the same test sixty times and one comes up significant. A study is run
+once against a bar written first, and extending it is deliberate work in
+the `study` lane with its own statement of what changed.
+
+**What the floor is for here is noticing a stall.** A study collecting
+against perishable data is losing rows *upstream* while it sits —
+Kalshi ages settled markets out of its public API after ~60 days — so an
+unfinished collector is not delayed, it is decaying. That failure has
+already happened twice and both times somebody noticed by accident. A
+daily line in the report is the cheap fix: **say it is in flight, say
+how long it has been, and say it is study-lane work.** Do not start a
+multi-hour collector from the floor; the floor is a bounded daily
+procedure and a collector outlives it.
+
+If an in-flight study has no ticket saying what it is waiting on, file
+one against the study itself:
+
+```bash
+python -m tools.cli tickets new --lane study --study <slug> ...
+```
 
 **The report is a deliverable, not the record.** The audit trail stays in
 the database, each theory's `NOTES.md`, and `RESEARCH_LOG.md`; a report

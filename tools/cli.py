@@ -15,7 +15,8 @@ import pathlib
 import sys
 
 from tools import (db, floor, ideas, lanes, ledger, provenance, rank,
-                   score, slices, theories, tickets, toolkit)
+                   score, slices, studies, theories, tickets,
+                   toolkit)
 
 
 def _emit(payload) -> None:
@@ -149,6 +150,15 @@ def _cmd_tools(args) -> int:
     return 0
 
 
+def _cmd_studies(args) -> int:
+    rows = studies.survey(db.REPO_ROOT)
+    if getattr(args, "json", False):
+        _emit(rows)
+    else:
+        print(studies.render(rows), end="")
+    return 0
+
+
 def _cmd_tickets(args) -> int:
     root = db.REPO_ROOT
     if args.action == "list":
@@ -157,7 +167,7 @@ def _cmd_tickets(args) -> int:
         # and this is the command every session runs at orient.
         rows = tickets.backlog(
             root, lane=args.lane, status=args.status, theory=args.theory,
-            brief=not args.full)
+            study=args.study, brief=not args.full)
         if args.full:
             _emit(rows)
         else:
@@ -180,6 +190,7 @@ def _cmd_tickets(args) -> int:
         path = tickets.create(
             root, lane=args.lane, slug=args.slug, title=args.title,
             body=args.body, theory=args.theory, theory_path=theory_path,
+            study=args.study,
             created_by=args.session, author_lane=args.author_lane,
             author_focus=args.author_focus,
             author_context=args.author_context,
@@ -794,12 +805,18 @@ def build_parser() -> argparse.ArgumentParser:
     rst.add_argument("value", choices=("binding", "implemented", "superseded"))
 
     p = sub.add_parser(
+        "studies", help="what has been measured: every study and its verdict")
+    p.set_defaults(func=_cmd_studies)
+    p.add_argument("--json", action="store_true")
+
+    p = sub.add_parser(
         "tickets", help="the work backlog: one .md per task, oldest first")
     p.set_defaults(func=_cmd_tickets)
     tsub = p.add_subparsers(dest="action", required=True)
     tls = tsub.add_parser("list", help="the backlog a session chooses from")
     tls.add_argument("--lane", default=None, choices=tickets.LANES)
     tls.add_argument("--theory", default=None)
+    tls.add_argument("--study", default=None)
     tls.add_argument("--status", default="open")
     tls.add_argument(
         "--full", action="store_true",
@@ -815,12 +832,16 @@ def build_parser() -> argparse.ArgumentParser:
     tnew.add_argument("--theory", default=None,
                       help="required for --lane theory; it lives in that "
                            "theory's folder")
+    tnew.add_argument("--study", default=None,
+                      help="required for --lane study; it lives in that "
+                           "study's folder. Name the folder exactly, dated "
+                           "prefix and all: 2026-08-29-series-bias-mining")
     tnew.add_argument("--session", default=None,
                       help="your session name, as ListAgents reports it")
     tnew.add_argument(
         "--author-lane", dest="author_lane", default=None,
-        choices=("floor", "theory", "new-theory", "find-theories",
-                 "maintenance"),
+        choices=("floor", "theory", "study", "new-theory",
+                 "find-theories", "maintenance"),
         help="the lane YOU are in as you file this")
     tnew.add_argument(
         "--author-focus", dest="author_focus", default=None,

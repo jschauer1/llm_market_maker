@@ -5,7 +5,9 @@ created: 2026-09-01
 created_by: llm-market-identifier-0e
 author_lane: find-theories
 author_context: Found by reading outside literature (Stanford/Kalshi adverse-selection study) then probing Kalshi's public API for the data it implies; endpoint reachability tested live on 2026-09-01.
-status: open
+status: done
+closed: 2026-09-01
+resolution: BUILT as theory taker_flow (v2, testing) the same day this was filed; session llm-market-identifier-70 recorded 'Built taker_flow from ticket kalshi-taker-flow-toxicity'. Left open by accident because the work landed in a different lane and nothing links a ticket to the theory it becomes. What shipped: tools/kalshi/trades.py, the repo's first reader of Kalshi's per-trade aggressor side, with the feed's three measured quirks documented. The ticket's headline claim that trades predate the archive floor was FALSIFIED (hard global retention floor 2026-06-26, ~67d). The pre-registered rule FAILED (+0.70 pts, t=+0.62; the single-name localisation the Stanford paper predicted showed no difference, +0.71 vs +0.69). What survived is a post-hoc tail discontinuity registered as slice extreme-imbalance with its mining run declared -- oos n=0, not ready, not bettable. Both spin-offs it named got their own tickets: block-trade-whale-follow and single-name-gate-from-trades.
 ---
 THE CAPABILITY FINDING COMES FIRST, because it is worth more than this
 one thesis. **Kalshi's public trades endpoint is unauthenticated and

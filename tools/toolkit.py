@@ -47,6 +47,7 @@ GROUPS = {
     # three rather than in the ungrouped fallback.
     "tools/lanes.py": "starting a session",
     "tools/tickets.py": "starting a session",
+    "tools/studies.py": "starting a session",
     "tools/kalshi/markets.py": "getting data",
     "tools/kalshi/history.py": "getting data",
     "tools/kalshi/cache.py": "getting data",

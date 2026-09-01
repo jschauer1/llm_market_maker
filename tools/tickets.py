@@ -27,7 +27,12 @@ from pathlib import Path
 
 #: The lanes a session can be in. `floor` files no tickets -- it runs a
 #: fixed procedure daily -- but may write them for any other lane.
-LANES = ("theory", "new-theory", "maintenance")
+#:
+#: `theory` and `study` are the OWNED lanes: their tickets live inside
+#: the thing they are about, never in the repo-level backlog. A theory
+#: folder and a study folder are each supposed to hold everything their
+#: expert needs, and queued work against them is part of that.
+LANES = ("theory", "study", "new-theory", "maintenance")
 
 #: Lanes whose tickets live at the repo root, one directory each.
 #: **The directory is named for the lane.** `new-theory` used to file
@@ -56,7 +61,7 @@ STATES = ("open", "completed")
 
 def ticket_dir(
     root: Path, lane: str, theory: str | None = None, state: str = "open",
-    theory_path: str | None = None,
+    theory_path: str | None = None, study: str | None = None,
 ) -> Path:
     """Where a ticket for this lane and state belongs.
 
@@ -80,6 +85,25 @@ def ticket_dir(
     """
     if state not in STATES:
         raise ValueError(f"unknown state {state!r}; expected one of {STATES}")
+    if lane == "study":
+        if not study:
+            raise ValueError(
+                "a study ticket needs its study: study work lives in that "
+                "study's own folder, never in the main tickets directory"
+            )
+        # A study's folder IS its slug -- studies/<date>-<slug>/ -- so
+        # unlike a theory there is no registry to consult. But the folder
+        # is checked rather than assumed, because deriving a path from a
+        # name and creating it on demand is exactly how the theory lane
+        # grew a phantom directory beside the real theory.
+        target = Path(root) / "studies" / study
+        if not (target / "STUDY.md").is_file():
+            raise ValueError(
+                f"no study {study!r}: expected studies/{study}/STUDY.md. "
+                "A study ticket names the study's folder exactly, dated "
+                "prefix and all (e.g. 2026-08-29-series-bias-mining)"
+            )
+        return target / "tickets" / state
     if lane == "theory":
         if not theory:
             raise ValueError(
@@ -110,6 +134,7 @@ def create(
     body: str,
     theory: str | None = None,
     theory_path: str | None = None,
+    study: str | None = None,
     created: str | None = None,
     created_by: str | None = None,
     author_lane: str | None = None,
@@ -142,7 +167,7 @@ def create(
         )
     day = created or _today()
     directory = ticket_dir(root, lane, theory,
-                           theory_path=theory_path)
+                           theory_path=theory_path, study=study)
     directory.mkdir(parents=True, exist_ok=True)
     path = directory / f"{day}-{slug}.md"
     if path.exists():
@@ -154,6 +179,8 @@ def create(
     ]
     if theory:
         head.append(f"theory: {theory}")
+    if study:
+        head.append(f"study: {study}")
     head += [
         f"created: {day}",
         f"created_by: {created_by or 'unknown'}",
@@ -174,7 +201,7 @@ def create(
 
 
 def _parse(path: Path, lane: str, theory: str | None,
-           brief: bool = False) -> dict:
+           brief: bool = False, study: str | None = None) -> dict:
     """One ticket as a dict. A file that cannot be parsed is REPORTED.
 
     Never skipped: a ticket nobody can read is work nobody will do, and
@@ -192,6 +219,7 @@ def _parse(path: Path, lane: str, theory: str | None,
         "created": created,
         "lane": lane,
         "theory": theory,
+        "study": study,
         "title": "",
         "status": "open",
         "created_by": "",
@@ -210,7 +238,7 @@ def _parse(path: Path, lane: str, theory: str | None,
         key, _, value = line.partition(":")
         key, value = key.strip(), value.strip()
         if key in ("title", "status", "created_by", "created", "theory",
-                   "resolution", "author_lane", "author_focus",
+                   "study", "resolution", "author_lane", "author_focus",
                    "author_context"):
             entry[key] = value
     body = front.group(2).strip()
@@ -226,11 +254,11 @@ def _parse(path: Path, lane: str, theory: str | None,
 
 
 def _scan(directory: Path, lane: str, theory: str | None,
-          brief: bool = False) -> list[dict]:
+          brief: bool = False, study: str | None = None) -> list[dict]:
     if not directory.is_dir():
         return []
     return [
-        _parse(p, lane, theory, brief=brief)
+        _parse(p, lane, theory, brief=brief, study=study)
         for p in sorted(directory.glob("*.md"))
         if p.name != "README.md"
     ]
@@ -243,6 +271,7 @@ def backlog(
     status: str = "open",
     theory: str | None = None,
     brief: bool = False,
+    study: str | None = None,
 ) -> list[dict]:
     """Every ticket, oldest first — the list a session chooses work from.
 
@@ -269,10 +298,19 @@ def backlog(
                 continue
             owner = candidate.parent.parent.name
             found += _scan(candidate, "theory", owner, brief=brief)
+    studies_dir = root / "studies"
+    if studies_dir.is_dir():
+        for owner_dir in sorted(studies_dir.iterdir()):
+            if not (owner_dir / "STUDY.md").is_file():
+                continue
+            found += _scan(owner_dir / "tickets" / state, "study", None,
+                           brief=brief, study=owner_dir.name)
     if lane:
         found = [t for t in found if t["lane"] == lane]
     if theory:
         found = [t for t in found if t["theory"] == theory]
+    if study:
+        found = [t for t in found if t["study"] == study]
     if status:
         found = [t for t in found if t["status"] == status]
     found.sort(key=lambda t: (t["created"], t["slug"]))
@@ -341,13 +379,14 @@ def render(entries: list[dict]) -> str:
     for entry in entries:
         by_lane.setdefault(entry["lane"], []).append(entry)
     out: list[str] = []
-    for lane in ("new-theory", "theory", "maintenance"):
+    for lane in ("new-theory", "theory", "study", "maintenance"):
         rows = by_lane.pop(lane, [])
         if not rows:
             continue
         out.append(f"{lane.upper()}  ({len(rows)})")
         for row in rows:
-            owner = f" [{row['theory']}]" if row.get("theory") else ""
+            owner = row.get("theory") or row.get("study") or ""
+            owner = f" [{owner}]" if owner else ""
             head = f"  {row['created']}  {row['slug']}{owner}"
             flag = "  !! MALFORMED" if row.get("malformed") else ""
             out.append(head + flag)
