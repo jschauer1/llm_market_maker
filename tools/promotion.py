@@ -317,10 +317,20 @@ def orphaned_evidence(
     """Ready slices whose evidence has no bet path at the current version.
 
     A slice READY out of sample at a prior theory version, while the
-    current version's own segment is not ready and no proven carry pools
-    the two, is a demonstrated edge the current procedure is not entitled
-    to and has not adopted (worked example: insider_judgment v3
-    `strong-moderate-no` under the breaking v4 bump). Every entry is an
+    current version's own segment is not ready and no chain pools the
+    two, is a demonstrated edge the current procedure cannot reach.
+
+    **The fix is to relink the chain, not to adopt the rule.** An orphan
+    is a versioning fact -- almost always a bump recorded `breaking`
+    under the pre-2026-08-31 default, correctable with
+    `theories.reclassify_bump`, after which the sub-theory is ready at
+    the current version and routes its own bets unchanged.
+    insider_judgment's `strong-moderate-no` was the worked example and is
+    the worked resolution: reclassifying v2-v4 to `continues` relinked
+    v1-v4 and the orphan disappeared without touching the screen.
+    Absorbing a slice into the parent buys no different bet and costs the
+    complement and the out-of-sample split (CLAUDE.md, "A sub-theory is
+    maintained, not absorbed"). Every entry is an
     escalation for the report's "For your ruling" section — adoption is a
     version-bump decision, never a session's.
     """

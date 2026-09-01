@@ -66,10 +66,19 @@ them is replayed; that is disclosure, and no rung reads it.
 ## Escalations the evaluator raises
 
 - **Orphaned evidence** — a slice READY out of sample at a prior theory
-  version while the current version's segment is not ready and no proven
-  carry pools them (`promotion.orphaned_evidence`). The proven edge has no
-  bet path; adopting the rule is a version-bump decision. Goes in "For
-  your ruling" every session until ruled.
+  version while the current version's segment is not ready and no chain
+  pools them (`promotion.orphaned_evidence`). The proven edge has no bet
+  path.
+
+  **The fix is to relink the evidence chain, never to adopt the rule
+  into the parent's screen.** An orphan is a *versioning* fact: almost
+  always a bump recorded `breaking` under the old default, correctable
+  with `theories.reclassify_bump`, after which the sub-theory is ready at
+  the current version and routes its own bets with nothing else changed.
+  Folding the predicate into the parent buys no different bet and costs
+  the complement and the out-of-sample bookkeeping — see CLAUDE.md,
+  "A sub-theory is maintained, not absorbed". Goes in "For your ruling"
+  every session until ruled.
 - **Below-gates slice match** — a candidate matching a registered slice
   still short of its gates ranks on the complement/aggregate with the
   match noted, exactly as `ranking_segment` reports it.

@@ -110,7 +110,17 @@ readiness gates** (≥ 10 out-of-sample clusters and ≥ 5 settlement days)
 candidates on the slice's record and the rest on the complement — and a
 ready slice whose out-of-sample `calibration_edge_net` has **gone
 negative**, which is a real falsification of a pre-registered claim, not
-noise to sit on. Diagnose it like any underperforming theory, and if the
+noise to sit on.
+
+**Crossing the gates is the mechanism completing, not a prompt to change
+the theory.** A ready sub-theory is already the decision point for the
+rows it matches; nothing is adopted, promoted or merged. Never fold a
+proven slice's predicate into its parent's screen — the bet is identical
+and it destroys the complement and the out-of-sample split that make the
+slice's number mean anything (CLAUDE.md, "A sub-theory is maintained, not
+absorbed"). A slice that looks unreachable at the current version is an
+**orphan**, fixed by relinking the evidence chain
+(`theories.reclassify_bump`), not by adoption. Diagnose it like any underperforming theory, and if the
 slice is dead, propose retiring it (`slices retire` is
 user/supervisor-authorized, like theory retirement; a retired slice
 keeps reporting, so the record survives).

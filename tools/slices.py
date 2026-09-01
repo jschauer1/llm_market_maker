@@ -65,6 +65,21 @@ mechanical subset of one theory's output has its own edge:
   its own candidates down. `rank.credibility` is untouched; this module
   only selects which score row feeds it.
 
+**A slice is MAINTAINED, not absorbed.** Once ready it is already the
+decision point for the rows its predicate matches: `ranking_segment`
+routes a matching candidate to the slice's own score row and `promote`
+ranks it there. So there is nothing to promote a proven slice to, and
+the parent's screen is never rewritten to produce only the slice's
+population. Folding the predicate into the parent buys an identical bet
+and costs two things that cannot be recovered -- the complement (the
+control group that says whether the slice is still the part that works)
+and the out-of-sample split below (`registered_at`,
+`mined_from_run_ids`), without which the slice's own number means
+nothing. A slice orphaned by a version bump is fixed by relinking the
+chain (`theories.reclassify_bump`), never by adoption; a slice whose
+parent is retired is proposed as its own theory, starting at n=0 and
+citing its measurements rather than inheriting them.
+
 The evidence pool spans live and backtest run modes by default, because
 for a judgment theory the demonstrated slice evidence usually *is*
 tier-B backtest rows; every segment in one report comes from the same

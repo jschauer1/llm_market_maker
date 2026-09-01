@@ -141,10 +141,11 @@ flat -- which is exactly the case here.
 |---|---|
 | `strong-moderate-no` | a strong-or-moderate insider verdict on a NO-side favorite is where the screen's population-level breakeven hides a real edge |
 
-**This theory's sub-theory is its best-evidenced result.** At v3 the
-slice is READY out of sample -- n=321, 89 event clusters, 43 settlement
-days, +4.31 net -- while the aggregate screen is breakeven. Reporting
-only the parent buries it.
+**This theory's sub-theory is its best-evidenced result.** As of
+2026-09-01 the slice is READY out of sample at the current version --
+**n=328, 90 event clusters, 44 settlement days, +3.76 net**, pooled over
+v1-v4, of which 314 rows are replayed history -- while the aggregate
+screen is breakeven. Reporting only the parent buries it.
 
 Evaluating them is part of running this theory:
 
@@ -157,10 +158,28 @@ python -m tools.cli score report insider_judgment --save   # saves every segment
 replay that generated the rule; it can never vouch for the slice. The
 confirming replays do.
 
-**v4 carries no bet path to this slice** -- the v3->v4 bump was
-`breaking`, so v4 is not entitled to v3's evidence. `promote` raises it
-as *orphaned evidence* every session until the user rules on adoption.
-Report it; never quietly rank a v4 candidate on v3's record.
+### It is maintained, not absorbed
+
+**The slice being ready is the whole mechanism working.** A candidate
+matching its predicate already ranks on the slice's own record --
+`ranking_segment` routes it and `promote` uses it -- so a proven
+sub-theory drives its bets with nothing adopted, merged or promoted.
+
+**Never rewrite this theory's screen to produce only strong/moderate-NO
+rows, and never fold the predicate into the decision procedure.** The bet
+would be identical, and it would cost the complement (nobody could check
+again whether the NO subset is still the part that works) and the
+out-of-sample split that makes the +3.76 trustworthy at all. See
+CLAUDE.md, "A sub-theory is maintained, not absorbed".
+
+**Historical note, because it is instructive.** This slice spent two days
+as *orphaned evidence*: v2-v4 were recorded `breaking` under the old
+default, so v4 was not entitled to v3's evidence and `promote` escalated
+it every session. It was not fixed by adoption. Reclassifying those bumps
+to `continues` (`theories.reclassify_bump`, after the 2026-08-31 ruling
+that a bump continues the evidence unless it says otherwise) relinked
+v1-v4, and the slice became ready at the current version with the screen
+untouched. **An orphan is a versioning fact; relink the chain.**
 
 ## Report
 

@@ -386,11 +386,11 @@ any other, because the evidence behind it is real evidence.
 
 `insider_judgment` is the worked example and the reason this rule
 exists: the screen as a whole is breakeven, while its `strong-moderate-no`
-subset is the best-evidenced result in this repo (+4.31 net, 89 event
-clusters, 43 settlement days, out of sample at v3). One number for the
-theory would bury the proven subset under the aggregate *and* let the
-unproven remainder borrow what the subset earned. Both directions are
-wrong; the partition fixes both.
+subset is the best-evidenced result in this repo (+3.76 net, 90 event
+clusters, 44 settlement days, out of sample, pooled over v1–v4). One
+number for the theory would bury the proven subset under the aggregate
+*and* let the unproven remainder borrow what the subset earned. Both
+directions are wrong; the partition fixes both.
 
 **Sub-theories are first-class everywhere the parent is** — settled and
 scored distinctly, evaluated whenever the theory runs, ranked on their
@@ -401,6 +401,45 @@ A subset that needs its own screen, entry rule, or population is **not**
 a sub-theory — it is a sibling theory (`no_side_premium` is what that
 looks like). A sub-theory only re-weights output the parent already
 produced.
+
+### A sub-theory is maintained, not absorbed
+
+**A ready sub-theory is already the decision point for the rows its
+predicate matches.** That is what "its own evidence" buys, and it is
+automatic: `slices.ranking_segment` routes a matching candidate to the
+slice's own score row, and `promote` ranks it there. Nothing needs to be
+adopted, promoted, or merged for a proven subset to drive a bet.
+
+So **never rewrite the parent's screen to produce only the sub-theory's
+population**, and never fold a slice's predicate into the parent's
+decision procedure. It is a recurring temptation — a proven subset looks
+like something that ought to be "promoted into" the theory — and it is
+always wrong:
+
+- **It buys nothing.** The bet placed is identical either way, because
+  the routing already happened.
+- **It costs the control group.** The complement stops accruing, so you
+  can never again check whether the slice is still the part that works.
+  A subset that silently stops working looks exactly like a theory that
+  is fine.
+- **It destroys the out-of-sample bookkeeping.** `registered_at` and
+  `mined_from_run_ids` are what make a slice's evidence trustworthy;
+  absorbed rows are ordinary parent rows with none of it.
+
+**There is nothing to promote a sub-theory to.** Its result is already
+first-class.
+
+Two legitimate exits, and only two. A sub-theory whose evidence is
+**orphaned** — proven at a version the current one is not entitled to —
+is fixed by *relinking the evidence chain*, not by adoption:
+`theories.reclassify_bump` corrects a bump recorded `breaking` under the
+old default, and the slice becomes ready at the current version by
+itself. And a sub-theory whose **parent is retired** does not die with
+it: it is proposed as a theory in its own right (`propose-theory`), the
+way `no_side_premium` came off `mention_family`. Note what that does and
+does not carry — ledger rows are keyed to `theory_id`, so the new theory
+starts at n=0 and **cites** the subset's measurements as founding
+evidence rather than inheriting them as its track record.
 
 ### Subset edges — registered slices
 

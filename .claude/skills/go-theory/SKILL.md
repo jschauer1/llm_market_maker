@@ -61,16 +61,49 @@ from:**
   out-of-sample clock the same day.
 - **A stage worth mechanising.** A stage-2 heuristic that has proven
   itself moves into stage-1 code — and bumps the version.
-- **A version bump it has earned.** Adopting a proven sub-theory's rule,
-  tightening a threshold. Default to `continues` so the evidence carries;
-  `breaking` only when the old evidence genuinely does not apply, and say
-  what makes that true.
+- **A version bump it has earned.** Tightening a threshold, mechanising a
+  stage, changing what a prompt asks. Default to `continues` so the
+  evidence carries; `breaking` only when the old evidence genuinely does
+  not apply, and say what makes that true.
+
+  **Not this:** folding a proven sub-theory's rule into the parent's
+  screen. See below — it is the most common wrong turn on this lane.
 
 Then go back to the top of the list and look again. Each thing you do
 changes what the next-best thing is — a backtest that lands turns "no
 evidence" into "a segment to slice", and a slice you register turns into
 a gate to watch. **Work down the list until the list is empty**, not
 until you have done one thing.
+
+### Do not absorb a sub-theory into the theory
+
+**This is the most common wrong turn on this lane**, and it looks like
+progress: the theory is flat, one sub-theory is clearly working, so the
+screen "should" be rewritten to produce that population — or the
+predicate folded into the decision procedure and the version bumped.
+
+**Don't.** A ready sub-theory is *already* the decision point for the
+rows it matches. `ranking_segment` routes a matching candidate to the
+slice's own score row and `promote` ranks it there, so **the bet placed
+is identical either way.** There is nothing to promote it to.
+
+What absorbing costs is real:
+
+- **The control group.** The complement stops accruing, so nobody can
+  ever check again whether the slice is still the part that works.
+- **The out-of-sample bookkeeping.** `registered_at` and
+  `mined_from_run_ids` are what make the slice's evidence trustworthy.
+  Absorbed rows are ordinary parent rows carrying none of it.
+
+If the sub-theory's evidence looks unavailable at the current version,
+that is an **orphan**, and the fix is to relink the evidence chain —
+`theories.reclassify_bump` on a bump recorded `breaking` under the old
+default — not to adopt the rule. If the parent genuinely should not
+exist, that is a retirement proposal for the user, after which the
+sub-theory is proposed as its own theory (`propose-theory`), starting at
+n=0 and citing its measurements as founding evidence.
+
+Maintain the sub-theory. Report it. Do not merge it.
 
 ### A dead headline number is not a dead theory
 

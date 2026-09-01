@@ -130,10 +130,21 @@ that is the whole reason it is scored separately, and the case is live:
 subset is the best-evidenced result in the repo.
 
 A sub-theory proven at a prior theory version with no bet path at the
-current one is **orphaned evidence**. `promote` raises it mechanically;
-it goes to "For your ruling" every session until the user decides on
-adoption. Never rank a current-version candidate on a prior version's
-record without saying so explicitly.
+current one is **orphaned evidence**. `promote` raises it mechanically
+and it goes to "For your ruling" every session until it is resolved.
+
+**An orphan is a versioning fact, and the fix is to relink the evidence
+chain** — almost always a bump recorded `breaking` under the old
+default, correctable with `theories.reclassify_bump`, after which the
+sub-theory is ready at the current version and routes its own bets with
+nothing else changed. It is **never** fixed by folding the sub-theory's
+rule into the parent's screen: that buys no different bet and costs the
+complement and the out-of-sample split (CLAUDE.md, "A sub-theory is
+maintained, not absorbed"). Relinking a chain is a governance change, so
+report it rather than doing it from this lane.
+
+Never rank a current-version candidate on a prior version's record
+without saying so explicitly.
 
 ## 4. Report the results
 
@@ -229,10 +240,13 @@ Say which of these it was:
 
 **Sub-theories are reported here on the same terms.** If a slice has a
 record, give it its own line: what it claims, where its evidence stands
-against its gates, and whether it produced anything today. A slice proven
-at a prior version with no bet path at the current one is *orphaned
-evidence* — the evaluator raises it, and it goes to the ruling section
-every session until the user decides whether to adopt it.
+against its gates, and whether it produced anything today. A ready
+sub-theory needs no adoption to drive a bet — it is already the decision
+point for the rows it matches, and that is what its line should say.
+
+A slice proven at a prior version with no bet path at the current one is
+*orphaned evidence* — the evaluator raises it, and it goes to the ruling
+section as a chain to relink, never as a rule to adopt.
 
 #### 3. For your ruling
 
