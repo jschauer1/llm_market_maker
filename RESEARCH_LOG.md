@@ -3567,3 +3567,115 @@ validate it against `partition_families` rather than another hand audit,
 bump the version, promote to `testing`, and record **observation rows**
 under the 2026-08-30 ruling so cells accrue without claiming an edge
 DD-1 has not yet earned out of sample.
+
+## 2026-09-01 — taker_flow: a capability, a failed pre-registration, and the tail that survived (session llm-market-identifier-70)
+
+Lane: `new-theory`, focus `kalshi-taker-flow-toxicity` (ticket / idea 32).
+Floor was done 8.8h earlier; the `theory` lane was held by a session that
+was no longer live, and three peers started within two minutes of me, so I
+took an unheld lane rather than contest it.
+
+**Chose it over `aggregation-gap`**, and the comparison is the reusable
+part: `aggregation-gap` had already spent its cheap measurement and come
+back ambiguous (the NFL bid/ask band straddles the 272 conservation floor,
+both executable baskets fail after fees), whereas this one was a
+*capability* nobody had tested. A thesis that needs a new data source is
+worth more than a thesis that has already had its best shot, because the
+source outlives the thesis. That turned out to be exactly right: the
+thesis mostly failed and the capability is what shipped.
+
+**The capability, and the correction to the claim that motivated it.**
+Kalshi's `/markets/trades` is unauthenticated and publishes the aggressor
+side of every trade; `tools/kalshi/trades.py` now reads it. But the
+ticket's highest-value hypothesis — that trades might predate the ~60-day
+settled-market archive floor and recover history the repo treats as lost —
+is **false**. There is a hard global retention floor at
+2026-06-26T00:00:00Z: six long-lived markets (2028 nomination markets
+trading for over a year) all page to exhaustion and bottom out within
+minutes of it. The ticket had read one market's oldest *retained* trade as
+its open. The feed reaches ~67 days against `/markets`' ~60 — one week,
+not a recovery route.
+
+**Generalizable: a feed's oldest returned row is not evidence of when its
+subject began.** It is the floor of retention until something rules that
+out, and the way to rule it out is to probe a subject that provably
+predates any plausible floor. Cheap, and it inverted a headline finding.
+
+**The pre-registration is the methodological point.** I had already swept
+8 decision buffers × 3 thresholds looking for signal, which contaminates
+everything it touches — the best cell was t=+1.74, and one |t|>1.7 in 24
+draws is what chance produces. So I wrote the rule down, committed it
+(`faf78ac`), and only then ran the full sample. **It failed**: |imb|>0.6 at
+a 24h buffer is +0.70 pts (t=+0.62) over 813 clusters, and the single-name
+localisation the rule existed to test showed *no difference whatsoever*
+(+0.71 vs +0.69). Net of fees the population is −0.17.
+
+The pre-registered structural proxy had known impurities (city-coded
+weather and outcome-coded games classify as single-name). I left it exactly
+as registered rather than re-tuning after seeing the result; it measured no
+difference either way, so the impurity decided nothing.
+
+**What is actually in the data is a discontinuity, not a gradient**:
+`strong` (0.6–0.9) is −0.78 over 618 clusters, `extreme` (≥0.9) is +4.29
+over 280 (t=+2.04). Moderate one-sidedness is worth nothing; near-total
+one-sidedness is worth something — which is what the mechanism predicts and
+is a sharper claim than the one I pre-registered. I then tried to kill it
+and could not: top series 3% of the cell, positive in all five price bands,
+positive on both flow sides, stable across time, leave-one-series-out worst
+case +3.50.
+
+**It is still post-hoc, so it is a registered slice and not a bet.**
+`extreme-imbalance`, with `backtest-2026-09-01-takerflow` in
+`mined_from_run_ids`: out-of-sample n=0, `ready: False`. The slice
+machinery did exactly what it exists for — the run that suggested the
+threshold cannot vouch for it, enforced in code rather than by my
+discipline. Honest size of the prize if it survives: mean entry 0.405 where
+fees alone are 1.68 pts, so +4.29 gross is ~+2.6 net of fees and maybe
++1.1 to +2.1 after a realistic half-spread. Thin.
+
+**Ledger treatment worth reusing.** The replay's rows are recorded as
+*observations* — `edge_pts_net=0.0`, `edge_basis='prior'` — because this
+run **produced** the bucket rates the live theory claims. Letting it also
+claim them would make `realization` ≈ 1.0 by construction and credibility
+would look earned when nothing was demonstrated. `rank.realization` treats
+a non-positive claimed edge as neutral, so recording no claim is the honest
+way to say "this run measures, it does not predict". Any first replay of a
+mechanical theory that fits its own constants has this problem.
+
+**Learned, and it is not about this theory.** *Liquidity filters do not
+imply payability.* The first live run emitted 18 rows claiming a
+`model_prob` above 1.0, at an ask of **1.000** — a contract costing exactly
+what it can pay, whose maximum profit is zero. It passed every liquidity
+test the screen has (spread ≤ 0.05, OI ≥ 500) because a one-cent-wide book
+at 1.00 genuinely is liquid. Two bugs, one root cause: applying a flat
+population average at prices where it is arithmetically impossible. v2
+excludes an unpayable ask and caps the claim at `(1-entry)` headroom.
+**Any theory pricing from a population average needs the headroom cap** —
+and the way this was caught was looking at the extreme values of what a
+live run recorded, not reading the code.
+
+**Also learned, on the data conventions.** Two collectors ended up
+appending to one JSONL concurrently (a `nohup … &` inside a backgrounded
+tool call detached and outlived its wrapper, then a second run was launched
+at the same file). Interleaved writes cost one unrecoverable record and
+produced ~2,600 duplicates; recovered by scanning the raw text with a
+streaming `JSONDecoder`. **Per-record `flush()` is not atomicity, and an
+append-only checkpoint is only single-writer-safe.** The resume logic made
+it survivable — the lost market simply gets re-fetched, because the resume
+set is built from parseable lines. A collector writing one final blob would
+have lost the lot.
+
+**Next.**
+
+- `extreme-imbalance` needs ≥10 event clusters and ≥5 settlement days
+  out-of-sample. It accrues from the next floor run onward; nothing to do
+  but let it settle, and **it must not be reported as a bet until then**.
+- **Re-measure `trades.retention_floor()` in a few days.** If the floor is
+  still 2026-06-26 it is FIXED and the usable window grows without bound,
+  which would make this feed far more valuable than it looks today; if it
+  has advanced, it is a rolling ~67 days. One call decides it, and the
+  answer changes how much history every future flow theory can reach.
+- Two spin-offs the ticket named are still untouched and now cheap, since
+  the client exists: `is_block_trade` as a whale-follow signal needing no
+  Polymarket wallet, and single-name-vs-broad-based as a free structural
+  gate for `insider_judgment`. Both ticketed.
