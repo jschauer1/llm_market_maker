@@ -3931,3 +3931,304 @@ in the new-theory lane. In the study lane the first pick is the one the
 skill's own ordering names — a study in flight whose data perishes,
 which is `series-bias-mining` and its two now-correctly-filed tickets.
 1355 tests pass.
+
+## 2026-09-01 (study) — the anchor bug was measured in the wrong population, and in the right one it is costing the bettable slice rather than inventing it
+
+**Did.** Study lane, session `fleet-w3-g1`. Extended
+`studies/2026-08-29-early-close-exposure-existing-backtests` with
+`studies/2026-09-01-early-close-exposure-in-the-bettable-slice`:
+pre-registration written first, all 1,564 tickers of `insider_judgment`'s
+three judged campaign runs fetched with complete raw payloads, exposure
+classified from published fields, and the registered slice's rows split
+into exposed and clean arms. Verdict: **the bug is real and its direction
+is confirmed on both sides of the book, but it depresses
+`strong-moderate-no` rather than inflating it.** Clean arm +5.20 net over
+77 event clusters against a +4.37 headline; exposed arm +0.69 on 7
+clusters. Two theory tickets filed, one maintenance ticket filed, one
+blocker fixed.
+
+**Learned — a study can be complete, correct, and pointed at the wrong
+population, and nothing in the repo notices.** The 2026-08-29 study
+sampled 70 tickers from each of the two *full-coverage* runs and answered
+"which existing backtests are exposed" for them. But the 314 backtested
+rows that vouch for `strong-moderate-no` — the only R1-eligible segment in
+the repo, and the source of that day's only bet — come from
+`insider-judged-s200b` and `s57`, which it never sampled. Same
+`replay.py`, same `settled.close_time` anchor, entirely unmeasured. The
+generalizable lesson is the tracing step, and it took one query: **before
+measuring a theory's exposure to anything, ask which run_ids actually feed
+the score you care about.** `opportunity_attempts.run_id` answers it;
+`opportunities.run_id` does not, because a position's own run_id is
+first-sighting only and the first sighting here was the mechanical screen
+run, not the judged campaign that labelled it. The DB-discipline rule
+about attempts vs `opportunities.run_id` already says this — it just had
+never been applied to the question "whose evidence is this?"
+
+**Learned — the bias flips sign with the side of the bet, which is what
+makes it identifiable.** Four pre-registered directional comparisons, all
+four in the predicted direction (one-tailed sign test p = 0.0625):
+exposure moves NO-side measured edge down (−4.51 out of sample, −9.22
+in-sample) and YES-side measured edge up (+4.98, +24.9). A liquidity or
+family confound would not flip with the side; an outcome-dependent time
+anchor must. **The YES-side distortion measured several times larger than
+the NO-side one**, so any future slice drawn from the YES side of this
+population inherits a bias that flatters it — recorded in
+`insider_judgment`'s NOTES.md and in the ticket filed against
+`no_side_premium`, whose cell B is exactly such a YES-side claim.
+
+**Learned — the formal contrast failed its own power floor, and the floor
+was worth having.** The exposed arm holds 7 event clusters against a
+pre-committed floor of 10, so the study reports EXPOSED − CLEAN as **NOT
+MEASURED** and claims no p-value for it. Writing that floor before the
+split is what stopped a 7-cluster arm from being narrated into a
+reassuring null. The load-bearing pre-registered read is the separate kill
+criterion, which was **not triggered**: the clean arm at +5.20 is above the
++2.0 bar and above the exposed arm, so the falsifying pattern is absent.
+**This removes an alternative explanation for the slice; it does not raise
+its number,** and the write-up says so explicitly — +5.20 is a
+post-classification subset on a parser and must not be re-cited as the
+slice's edge.
+
+**Learned — the archive is closing measurably faster than anyone has been
+pricing.** 9.7% of the 1,564-ticker population had already aged out of
+Kalshi's public API, against 2.9% unreachable in an overlapping window
+measured **three days earlier**. Kalshi's ~60-day floor is not a distant
+horizon for this repo's existing evidence; it is actively eating the
+populations behind results already recorded. Complete raw payloads for all
+1,413 reachable markets are captured at that study's `raw_markets.jsonl`,
+which is now the only source for the titles, rules text and close times of
+`insider_judgment`'s judged-campaign population. The open
+`backfill-titles-from-judging-payloads` ticket was amended to read that
+file rather than re-fetch. **The two `*-fullcov` populations (6,520
+tickers, older) have not been captured and are aging out faster** — that
+is the cheapest high-value collection on the board and is noted below.
+
+**Learned — a published field is not automatically the better instrument,
+and this one under-delivered.** The classifier preferred
+`custom_strike.Date` over a rules-text regex on CLAUDE.md's
+division-of-labour grounds. It resolved **61 of 625** classifications; the
+inherited parser did the other 90%. The ordering was still right — a field
+is exact where it exists — but "prefer the field" is a rule about
+precedence, not a promise of coverage, and a design that *relies* on
+`custom_strike` for a by-deadline population should size against 61/625.
+Deadline coverage still improved from 22% to 44% by trying four text
+fields rather than one.
+
+**Learned — the parse-free sibling heuristic is chance.** Labelling a
+market exposed if it closed >3 days before the latest close among its event
+siblings agrees with the deadline classification on 333/625 = **53.3%**.
+Recorded so nobody reaches for it as a cheap shortcut: in a by-deadline
+event where every sibling can close early, the sibling max is itself
+contaminated.
+
+**Fixed — the `study` lane was unclaimable in every database.** The first
+thing this session tried to do raised a bare
+`sqlite3.IntegrityError: CHECK constraint failed`. The lane had been added
+to `tools.lanes.LANES`, to `go`'s lane table, and given a whole skill,
+`tools/studies.py`, `studies/README.md` and `tests/test_studies.py` — but
+`db/schema.sql` was never widened. **The generalizable half is the
+migration's guard:** `_migrate_lane_claims` short-circuited on
+`"find-theories" in ddl`, a hardcoded sentinel naming the lane it was
+written for, so it self-disabled the moment that lane landed and every lane
+added afterwards silently failed to migrate. It now diffs the lane set the
+live DDL accepts against schema.sql's, so each future lane migrates itself.
+`tests/test_lanes.py` gained a test that iterates `lanes.LANES` rather than
+naming lanes one at a time — a per-lane test cannot catch this class of
+bug, because the missing lane is by definition the one nobody wrote a test
+for. **`tools/db.py` carries several migrations in the same style and they
+have not been swept**; ticketed.
+
+**Learned — `observations()` promised an identity field it did not
+carry.** Its docstring offers "the identity fields a slice predicate and
+its out-of-sample split key on," but the dict had no `kalshi_ticker`, so a
+consumer partitioning by any per-**market** property could only reach the
+event through `cluster` — which merges precisely the siblings that differ
+on the property being tested (in a by-deadline event the YES market closes
+early and its NO siblings do not). Added, additively; `_aggregate` ignores
+it; suite unchanged.
+
+**Learned — a status field outside its vocabulary is invisible, not
+approximate.** The 2026-08-29 study's header read "measurement complete,
+remediation is not mine to decide", which `tools/studies.py` cannot
+classify, so a finished study showed as in-flight in every `cli studies`
+listing and every floor report for three days. The distinction it was
+reaching for was real and now lives in the **verdict**; the **status**
+field takes only the vocabulary the floor reads.
+
+**Next.**
+
+- **Capture the two `*-fullcov` populations before they age out** — 6,520
+  tickers, older than the judged runs and therefore disappearing faster,
+  and the evidence base for `mention_family`'s retirement and
+  `insider_judgment`'s headline. `collect.py` needs only its `RUNS` tuple
+  changed. Capture is the perishable half; classification can wait.
+- `no_side_premium` cells A and B are the last untouched thread of the
+  original study, and cell B sits on the side where the anchor bias
+  measured largest. Ticketed to that theory, and it should be answered
+  together with the open cell-B direction-flip ticket rather than after it.
+- Sweep `tools/db.py`'s other `_migrate_*` guards for the sentinel shape,
+  and consider a convention test asserting that every `CHECK (<col> IN
+  (...))` in schema.sql is accepted by the migrated DB — that generalizes
+  to every enumerated vocabulary CLAUDE.md calls an interface.
+
+## 2026-09-01 — maintenance: four defects, and the one that could have put a wrong bet in front of the user (fleet-w2-g1)
+
+**Did.** Four maintenance tickets closed, one split and re-filed. Suite
+1380 green.
+
+**1. `theories bump` could not record the default bump kind.** The CLI
+offered `{breaking,carry}` and defaulted to `breaking`; the Python API
+had defaulted to `continues` since the 2026-08-31 ruling, and `continues`
+was not even an accepted choice. So a session bumping through the front
+door severed its theory's evidence by accident — the exact failure the
+ruling was made to stop, and the one that had already taken three of four
+running theories to n=0. Fixed to `{continues,carry,breaking}` defaulting
+to `continues`. The pinning test reflects on `bump_version`'s signature
+rather than hardcoding the string, so the CLI default and the API default
+cannot drift apart again silently.
+
+**This was live-blocking when it was fixed.** `deadline_drift`'s open
+ticket instructed the theory-lane session to bump with kind `continues`,
+and that session was working while this shipped; its v2 row now reads
+`kind='continues'`.
+
+**2. A superseded endorsement kept promoting to R1 forever.** Promotion
+key → **v4**. A position is keyed on `(theory_id, theory_version,
+run_mode, lane, kalshi_ticker, outcome)`, so a version bump does not
+supersede a position — it **forks** it. Opportunity 13663
+(`insider_judgment` v4, endorsed, `edge_basis='prior'` +2.0) returned
+**R1 RECOMMENDED** while the same market, re-judged that hour at v6 with
+fresh research, recorded as 109994 — `weak`, `measured`, −1.02 — and
+returned R6. Two live rows on one market promoting R1 and R6 at once, and
+the R1 was the stale one, claiming a placeholder edge the current
+procedure would never claim.
+
+**Learned — the failure preferentially preserves endorsements, which is
+what makes it dangerous.** v5 deleted stage 6, the only path to
+`disposition='endorsed'`. So *every* endorsed row in the ledger is by
+construction stranded at v4 or earlier, at a version whose procedure no
+longer exists — and those are exactly the rows most likely to clear R1.
+Nothing errors, nothing ages them out (every staleness check in the key
+is about **price**, and a frozen row re-quotes perfectly well), and each
+further bump strands another one behind it.
+
+**Learned — the narrow fix was worth the extra work, and the live numbers
+say by how much.** Fix (b), suppressing anything behind the registry's
+current version, would have binned **19,895** live unsettled rows. Fix
+(a), requiring a real successor, touches **656**, of which only **335**
+change rung (334 `taker_flow` v1 rows forked by its v1→v2 bump, plus
+13663 itself). Absence of a successor is not supersession: a market that
+simply was not screened today has not been re-decided.
+
+**3. `tools/atomic_write.py`** — elevated from
+`deadline_drift/collect_settled.py::_save`, which proved the shape under
+a real failing walk. `Path.write_text` opens mode `"w"`, which empties
+the destination *before* the new bytes land; two real losses came from
+that on 2026-09-01 (OneDrive holding a handle killed a walk at 874/960
+series; a reader caught a half-written file). Migrated all four whole-file
+writers and deleted the local copy.
+
+**Learned — atomicity does not fix the race, and arguably hides it
+better.** Two collectors doing load-mutate-save each hold a snapshot from
+their own start time, so whichever replaces last still erases the other's
+rows — now always leaving a well-formed file. Re-filed as
+collector-write-lock. Two operational facts are now in `tools/README.md`
+because each cost a session to learn: Git Bash `ps -ef` shows no
+arguments, so `ps -ef | grep collect_settled` returns **zero** while the
+collector runs (use `Get-CimInstance Win32_Process` with `CommandLine`),
+and stopping a background task stops the **shell**, not the detached
+child — a stopped task's python.exe was still fetching nine minutes
+later.
+
+**4. `score report` annotates a riskless bucket that is entirely
+rejections.** `structural_arb` reported `riskless_roi=+0.550` — +55% —
+from two findings whose own rationales read "~0.01 baskets fillable at
+riskless prices, ~$0.00 floor profit", while `state`'s EVIDENCE line
+showed `n 0` and hid it the other way. Report-only (option (a)): no
+stored score moved and no vocabulary was redefined. The distinction worth
+keeping is that this is **narrower** than "rejections count in
+`roi_all`", which is deliberate — for a judgment theory a rejected winner
+is real counterfactual information. A **depth** rejection differs in
+kind: "not fillable at any size" means there was no position to take, so
+the counterfactual is impossible rather than merely untaken.
+
+**Next.** `collector-write-lock` is the successor ticket and the
+remaining silent-data-loss risk, which matters more while several
+sessions run at once. Of what is left in the lane,
+`snapshot-exact-stamp-readers` and `calendar-arb-probe-exact-stamp-board`
+are the same defect in two places (dedup-on-write made `captured_at = ?`
+readers silently return partial boards) and are worth doing together.
+
+## 2026-09-01 — deadline_drift starts recording; a pre-registration is an asset you can spend by "improving" the thing it describes (theory lane)
+
+Session `fleet-w1-g1`, focus `deadline_drift`. Detail in that theory's
+`NOTES.md` (2026-09-01, "v2 ships"); this is the part that changes how a
+session elsewhere would act.
+
+**Did.** Widened the population from the 70-series allowlist to DD-1's
+pre-registered one, re-anchored the live horizon on the deadline stated
+in the rules, bumped v1 -> v2 (`continues`), promoted `proposed` ->
+`testing`, recorded **46 observation rows** — the theory's first ever —
+and registered DD-2 as slice `dd2-one-off`. Suite 1381 green.
+
+**Learned — the ticket asked for an LLM gate and building it would have
+been wrong, for a reason that generalizes past this theory.** The ticket's
+step 1 was a ~960-call series-level structural gate to clean a residual
+~15% misclassification. But DD-1's population is *defined in code with no
+gate in it*, so shipping one would have made the live population
+something the pre-registration does not name — the forward test would no
+longer be the test that was pre-registered. **A pre-registration is an
+asset, and the ordinary way to destroy it is to improve the thing it
+describes.** The gate's information was kept as recorded *fields*
+instead: fixed at listing time, carrying no outcome information, and
+legal as slice predicates later. **The cheapest version of a gate is
+usually a field** — filtering discards the complement, recording keeps it
+and defers the decision to when settled rows can actually settle it.
+
+**Learned — "a theory with fetchable history and no replay is short of a
+replay" has an exception, and this is it.** The replay here has already
+been run as analysis, and *the population was chosen on its results*.
+Every settled market this theory can reach is in-sample for that choice,
+so recording it as a tier A backtest run would let the data that
+suggested the population vouch for it — and under the 2026-08-31 ruling a
+tier A/B backtest counts as evidence **by default**, so the run would
+silently become credibility rather than being caught. `mined_from_run_ids`
+is the mechanism that exists for this, and it only helps if someone
+remembers the replay is contaminated. Written into that theory's
+`THEORY.md` Status and `RUNBOOK.md` Skip sections for the next session
+that reaches for `backtest-theory`. **Generalizable check: before
+replaying, ask whether the population definition was chosen using the
+same history.**
+
+**Learned — `extra_json` is where a theory's own test criteria go to
+die.** Three separate near-misses in one session, all the same shape: the
+ledger's typed columns get reviewed and `extra_json` does not.
+(1) `open_interest` was not recorded at all, which would have made this
+theory's own kill criterion 3 — a liquidity gradient — permanently
+uncheckable, since the ledger has `spread_at_call` and `volume_at_call`
+and no column for it. (2) The event was recorded as `event` while
+`score.cluster_key` reads `event_ticker`; the fallback was wrong on 4 of
+46 rows and on one of them **split a real event into several**, which
+manufactures precision rather than losing it. (3) `extra_json` is written
+only at row creation and never on a re-sighting, so a field added after a
+row lands is missing from it forever. **Add every field a theory's
+pre-registered criteria will need before its first run, or backfill the
+same day** — the board moves and none of it is recoverable. This is the
+third theory to lose liquidity fields this way (`calibration_harvest` and
+this theory's own collector were the first two), which makes it a repo
+pattern rather than an accident.
+
+**Learned — a NO theory's first run is 20 event clusters, not 46 rows.**
+One event supplied 22 of the 46. Nothing new in principle, but it is the
+concrete reason the `event_ticker` bug above mattered more here than it
+would almost anywhere else.
+
+**Next.** DD-1 is now accruing and needs calendar time, not attention:
+~46 rows/day over ~20 event clusters, gates at >= 10 clusters and >= 5
+settlement days. Do **not** re-run its screen expecting new information
+daily — the entry rule is first-qualifying-day and the ledger enforces
+it. The open question worth a future session is
+`fixed-k-elimination-families` (filed): `KXAGTELIMINATION` is in the
+population and is a "exactly 7 of 11 go" partition that no existing
+detector catches, and it cannot be told apart from the genuinely
+independent `KXTRUMPSAY` until more elimination events settle.
