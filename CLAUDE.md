@@ -89,8 +89,10 @@ record.
 
 ## How the user drives this
 
-- **`go`** — an autonomous research session. Orient, choose the highest-value
-  work, do it, log it, report.
+- **`go`** — an autonomous research session. Orient, then **explore the repo
+  to find the highest-ROI action available** — read any theory, run any
+  measurement, whatever it takes to know what is worth doing. Then claim
+  one lane, focus on it, log it, report.
 - **Just asking** — "how is insider_judgment holding up?", "what's the best
   bet right now?" Answer directly with the tools. No loop, no ceremony.
 

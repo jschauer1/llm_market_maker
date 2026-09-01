@@ -1,14 +1,14 @@
 ---
 name: go
-description: Start an autonomous research session — orient on the floor, the lanes and the ticket backlog, choose one lane, and hand off to its skill. Use when the user says "go", or asks you to work on finding edge without specifying what to do.
+description: Start an autonomous research session — orient, explore the repo to find the highest-ROI action available, claim one lane, and hand off to its skill. Use when the user says "go", or asks you to work on finding edge without specifying what to do.
 ---
 
-# go — choose a lane, then stay in it
+# go — explore, pick the highest-ROI lane, then stay in it
 
 You are the researcher. Nobody is going to tell you what to test.
 
-**This skill does not do research. It picks what you will do, and hands
-off.** Five lanes, each with its own skill:
+**This skill does not do the research. It works out what is worth doing,
+picks it, and hands off.** Five lanes, each with its own skill:
 
 | lane | skill | what it is |
 |---|---|---|
@@ -24,7 +24,7 @@ failure this replaces; the ticket backlog is what makes finishing one
 affordable, because everything you notice and do not do gets written
 down instead of lost.
 
-## 1. Orient — four commands
+## 1. Orient — the cheap reads, always
 
 ```bash
 python -m tools.cli floor status     # has today's floor been done?
@@ -36,18 +36,71 @@ python -m tools.cli state            # theories, evidence, rulings, queue
 Then `ListAgents`, so you know who is actually live rather than who left
 a stale claim.
 
-Read the backlog properly before choosing. A ticket is a task somebody
-wrote for whoever came next, and picking the *right* one is most of the
-value this skill adds — `tickets list --lane <lane>` and open the files
-that look plausible. Cheap now, expensive to get wrong.
+**If the floor is due and nobody holds it, take it and skip to §4.** It
+is the one thing that must happen every day, every other lane's evidence
+depends on it having run, and it is the only forced choice in this skill.
 
-## 2. Choose
+Everything below is what you do when the floor is settled.
 
-**If the floor is due and nobody holds it, take it.** It is the one thing
-that must happen every day, and every other lane's evidence depends on
-it having run. That is the only forced choice here.
+## 2. Explore — find the highest-ROI action
 
-Otherwise, choose on what will change a decision. Roughly:
+**Always do this. It is not optional and it is not a formality.** The
+four commands above tell you the state of things; they do not tell you
+what is *worth doing*, and the gap between the best available action and
+a plausible-looking one is the largest single lever in a session. A
+session that picks the first reasonable ticket and starts is usually
+leaving the real work on the table.
+
+**Explore as widely as you need to.** In this phase you may go anywhere
+and run anything:
+
+- Read any theory's `THEORY.md`, `NOTES.md`, `RUNBOOK.md` — including
+  theories you are not going to work on. Nothing here is private.
+- Run any measurement: `score report <id>`, `slices report <id>`,
+  `promote --run <run>`, `bucket_rates`, `compare-theories`. Numbers are
+  free and reading them is faster than guessing.
+- Query the database directly. Open the ticket files. Read
+  `docs/superpowers/specs/theories/` for what is specced and unbuilt, and
+  `studies/` for what has already been measured.
+- Look at the board (`get_board(conn)` — no force, that is the floor's).
+- Check `git log`, run the tests, read `RESEARCH_LOG.md` for a ruling
+  that `state` named.
+
+Use whatever the repo can do. The cost of an hour spent choosing well is
+recovered many times over by not spending a session on the third-best
+thing.
+
+**What "highest ROI" means here:** how much it changes a decision, per
+unit of session spent. Concretely, the questions worth asking:
+
+- **Which theory is closest to bettable?** A segment one settlement day
+  short of its gates, or a claim with fetchable history and no replay
+  run, is worth more than a theory that needs a month.
+- **What is blocked, and what unblocks it?** A tooling bug stopping three
+  theories outranks a clean new idea.
+- **What is the evidence actually saying?** A sub-theory quietly past its
+  gates, an orphan escalation, an `under_review` nobody diagnosed —
+  these hide in plain sight in `state` and repay a look.
+- **What is cheap and unreasonably valuable?** A replay that converts
+  months of waiting into an afternoon is the recurring example.
+- **What did the last session say to do next?** `RESEARCH_LOG.md`'s
+  **Next** lines and open tickets are somebody's considered answer to
+  this exact question, written with more context than you have now.
+
+You are done exploring when you can **name the highest-ROI action and say
+why it beats the runner-up.** That is the exit condition — not a clock,
+and not "I have read enough". If you cannot state the comparison, you
+have not found it yet.
+
+**This is the only phase where ranging widely is right.** Once you
+choose, you focus, and the focus rules below are strict. The freedom is
+front-loaded on purpose: a session that explored properly does not need
+to wander later, because it already knows what it is not doing and why.
+
+## 3. Choose
+
+Choose on what you found. Roughly, in order of how often it is the
+answer:
 
 - **A theory with tickets against it, or an unproven claim and fetchable
   history** → `theory`. A backtest that turns a claim into evidence is
@@ -64,9 +117,12 @@ Otherwise, choose on what will change a decision. Roughly:
   with the most decision-changing work anyway. An empty backlog is a
   finding, not a reason to stop.
 
-State the lane you picked and why, in one line, before you start.
+**State the lane you picked, and what you compared it against**, in a
+line or two, before you start. That is the record of the exploration
+having happened — and the next session reads it to know what was
+already weighed and rejected.
 
-## 3. Claim it
+## 4. Claim it
 
 ```bash
 python -m tools.cli lane claim --lane <lane> --session <your name> \
@@ -84,7 +140,7 @@ the reason, that is your answer.
 The floor is different: it locks. `floor claim` refuses a second holder
 outright, because it must happen exactly once.
 
-## 4. Hand off
+## 5. Hand off
 
 Invoke the lane's skill and follow it. **Everything after this point
 belongs to that skill** — this one is finished once you have chosen.
