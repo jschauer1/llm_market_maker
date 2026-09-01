@@ -2649,3 +2649,178 @@ gate rule, never reinstated as a session veto.
 and advertises breaking as the default, so it cannot record the kind the
 2026-08-31 ruling made default. The v5 bump went through the Python API.
 Maintenance ticket `2026-09-01-bump-cli-missing-continues`.
+
+## 2026-09-01 (session llm-market-identifier-57, theory lane / no_side_premium) — a snapshot reader that silently returns the wrong board; and pairing measured as the wrong estimator
+
+**Did:** Took the theory lane on `no_side_premium` (maintenance and
+new-theory were held; `insider_judgment` was another session's). Extended
+the within-day side-asymmetry series from 5 close-days to its
+pre-registered `n_days >= 8` bar, then mined it. Detail in
+`theories/no_side_premium/NOTES.md` 2026-09-01 and
+`studies/2026-08-29-side-asymmetry-extension/` "Pass 2". Suite 1,287 green.
+
+**Learned:**
+
+1. **`WHERE captured_at = ?` on `market_snapshots` stopped returning the
+   board on 2026-08-30 and nothing failed.** Dedup-on-write (spec 5.2
+   phase 2) writes no row for a market whose payload did not change, so an
+   exact-stamp filter returns *the markets that moved at that pull* — a
+   liquidity-correlated subset. It costs **46% of the 2026-08-31 board**
+   (53,613 rows against 99,064 markets) and 24% of 2026-09-01's. Any
+   session replaying a post-2026-08-30 snapshot has been measuring a
+   biased sample without an error to warn it. Fixed by
+   **`tools.snapshot.board_as_of(conn, platform, at)`** (the row per market
+   whose `[captured_at, last_seen_at]` interval contains the instant;
+   6 tests). It returns exactly 105,104 for the 09-01 capture — the board
+   size that floor reported pulling. Two study probes still carry the old
+   query and are ticketed (`snapshot-exact-stamp-readers`); **their
+   published results stand**, having run against pre-dedup captures.
+
+2. **A variance-cancelling estimator can import variance instead, and this
+   one did.** `no_side_premium` has been read since 2026-08-29 on a paired
+   within-day `NO - YES` statistic, adopted because "the day effect is a
+   common shock to both sides, so it cancels". Eight days let the premise
+   be tested: between-day SD is **15.59** paired, versus **6.90** for the
+   NO side alone and 5.64 for NO at 0.90+. The paired estimator is the
+   worst of the four — the sides are different markets on different
+   subjects, not two sides of one contract, so there is no shared shock to
+   cancel. In days-to-detect-2.0-points: **477 paired, 62 single-side.**
+   Generalisable: pairing only cancels a shock the two arms actually
+   share; check that rather than assuming it.
+
+3. **The bar was reached and the claim is null** — `NO - YES` = +2.91,
+   day-clustered SE 5.51, t=0.53, 95% CI [-7.89, +13.72], 5/8 days
+   positive. Pass 1's +8.25 at 5 days, and both its per-side estimates,
+   moved toward zero as days were added. **Unconfirmed, not disproven**;
+   the CI still contains +2. Leave-one-out: drop 08-28 and the mean goes
+   negative, so the 8-day paired mean is one day.
+
+4. **A pre-registration bar can be reached honestly or dishonestly, and
+   the difference is a decision made before a number.** The >=90%-settled
+   inclusion rule left 7 days against a bar of 8, and admitting the 18%-
+   settled 2026-09-01 would have reached it. Instead an unused *complete*
+   day (2026-08-24, 155/156 settled) was added, and the decision was
+   written down before its value was computed. It then turned out to
+   flatter the thesis — dropping it moves the result further toward null
+   (+2.91 -> +1.31) — which is the check worth running whenever a day is
+   added to reach a bar.
+
+5. **"The inclusion rule is the result", caught a second time.** The one
+   cell that looks alive (`NO 0.90-0.97`, +1.70 +/- 1.99, 7/8 days
+   positive) reads **+3.59 with t=4.93** under a >=10-rows-per-day floor —
+   because that floor drops exactly one day, the only negative one, which
+   had 6 rows and one loss. Recorded as a trap, not a finding, and the fix
+   is a rows-per-day rule fixed *before* collection. Same failure the
+   calibration_harvest gradient review caught on 2026-08-29; it is
+   evidently a repeating shape rather than a one-off.
+
+6. **A theory can be starved by its own population restriction while its
+   mechanism is fine.** `no_side_premium`'s cell A is mention-family NO
+   favorites — **15 rows on 2 of 8 close-days**. The same band across the
+   whole screen is 275 rows over 8 days at a comparable point estimate.
+   The band carries what signal there is; the family restriction starves
+   it. Cell A was **not** widened — that is the move a pre-registration
+   exists to prevent — and the wide version is filed as its own theory
+   (idea 33 / ticket `no-favorite-high-band`), the way `no_side_premium`
+   itself came off `mention_family`.
+
+**Next:** `no-favorite-high-band` is the live question, not
+`no_side_premium`; it is reachable (62 settlement days, or a tier-A replay)
+where the parent's paired claim is not (477). Read `no_side_premium` on the
+single-side NO 0.90+ figure from now on. Re-run `measure.py` each session;
+2026-09-01 enters the series by itself once it clears 90% settled. No
+retirement proposed — neither cell is killable by its own pre-registered
+rule.
+
+## 2026-09-01 — find-theories: five theses filed, and Kalshi turns out to publish per-trade taker side
+
+Session `llm-market-identifier-0e`, find-theories lane (claim 5). The
+user asked for a session that avoided the insider_bias family. First and
+second choices (`theory`/no_side_premium, then `maintenance`) were both
+claimed by peers within the two minutes it took to explore, so this took
+the open lane.
+
+**Did.** Filed five new-theory theses (tickets + idea registry, 30–32,
+34–35) and three theory tickets. Worked two of the skill's sources: the
+board, and outside literature. Every board claim below was measured on
+the 2026-09-01 board before filing.
+
+**Learned — the one that outranks the theses.** `GET /trade-api/v2/
+markets/trades` is **unauthenticated and returns the aggressor side of
+every trade** (`taker_side`, `taker_outcome_side`, `taker_book_side`,
+`count_fp`, `is_block_trade`). The repo has no client for it and no
+theory reads it. Verified live: ticker filtering, `min_ts` and cursor
+paging all work, and **12 of 12 archived-settled markets (close
+2026-06-30) still return full trade history** — so it survives
+settlement and replays at tier A for free.
+
+CLAUDE.md's "Polymarket … exposes per-trade wallet identity and holder
+positions that Kalshi does not" is true about *wallet identity* and is
+easy to over-read into "Kalshi exposes no flow data". It does. Nothing
+in the flow thesis needs a wallet.
+
+One loose end worth someone's time: the trade span on an open market
+reached 2026-06-25, **8 days older than the ~60-day settled-market
+archive floor**. If trades generally predate that floor, this is a route
+to history the repo currently treats as permanently lost.
+
+**Learned — the rest.**
+
+1. **`rules_secondary` is on 95.4% of markets and almost nothing reads
+   it.** `grep -rn rules_secondary --include=*.py .` returns two hits,
+   both inside `insider_judgment`, both reaching into `.raw`; it is not
+   on the typed `Market` object at all. 12,806 markets (12.2%) carry a
+   timing/revision clause there. `deadline_drift` parses its stated
+   deadline from `rules_primary` alone, and that anchor is its whole
+   theory — flagged in the ticket, unverified against its allowlist.
+2. **Cross-event aggregation identities are unscanned.** `structural_arb`
+   groups strictly by `event_ticker`, so anything spanning events is
+   invisible to it by construction. Two measured instances, same sign:
+   NFL win totals imply 274.25 wins against a hard ceiling of 272 (not
+   significant — the bid/ask band [264.0, 284.5] straddles it); and over
+   the five states with complete district coverage, summed district
+   P(Dem) exceeds the state seat market's E[seats] by +0.320 at mid,
+   5/5 positive, **+0.073 with districts at bid and state E at ask, 4/5
+   positive**. This is the cross-event successor idea 8 explicitly asked
+   for in its revisit angle.
+3. **Seven of series-bias pass 3's nine flagged series are niche or
+   foreign leagues** (NPB, KBO, ATP Challenger, CPL, T20, Europa League).
+   Pass 3 rightly declined to call them, since its negative control
+   fired 5/11 on a contaminated population — but contaminated is not
+   disproven. Filed as **one** pre-registered grouping rather than 347
+   mined series, which is the whole statistical point: no Holm divisor,
+   and it pools rows that per-series tests waste.
+4. **An outside paper independently confirms `no_side_premium`.**
+   "Adverse Selection in Prediction Markets: Evidence from Kalshi"
+   (Stanford Law, 2026-04-21, 41.6M trades) finds traders "systematically
+   overbet YES in markets that predominantly settle NO" — arrived at from
+   microstructure, not behavioural priors. That theory currently cites
+   Becker and Reichenbach & Walther; this is worth adding, and it
+   materially raises the prior on a theory sitting at n_days=5.
+5. **`settlement_sources` is a populated published field on every event
+   envelope** (ESPN 46,440; Fox Sports 20,208; …) that no cell axis uses.
+
+**Ranking, since a list of five gets triaged by whoever reads it:**
+`kalshi-taker-flow-toxicity` is the best — it is the only one carrying an
+independent 41.6M-trade empirical basis, its data is confirmed reachable
+*and* backtestable at tier A, and it opens a data source rather than a
+single thesis. `fine-print-divergence` is second on evidence-per-effort.
+`aggregation-gap` is the most rigorously measured but most likely
+fee-eaten.
+
+**Next.**
+
+- Nobody has run the `structural_arb` replay (n=0 at v4, tier A) — still
+  the cheapest evidence on the board, and untouched since the 2026-09-01
+  floor named it.
+- The `calibration_harvest` double-run defect compounds daily and was
+  claimed this session by `llm-market-identifier-df`; check it landed.
+- `no_side_premium` is calendar-blocked at n_days=5 against its own bar
+  of 8, while ~60 settlement days of settled history sit unused in
+  `studies/2026-08-29-series-bias-mining/data/collect.db` — never split
+  by side, which is that theory's entire hypothesis. Ticketed into its
+  folder.
+- Sources NOT worked this session, for whoever takes this lane next:
+  Polymarket-side structure, Kalshi's newly listed series as a cohort
+  (KXTRUMPSAYMONTH and KXNETFLIXRANKMOVIE are both <30 days old with real
+  volume), and resolution-source behaviour beyond noting the field exists.
