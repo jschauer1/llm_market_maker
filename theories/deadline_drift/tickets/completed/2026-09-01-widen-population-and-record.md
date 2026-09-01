@@ -7,7 +7,9 @@ created_by: llm-market-identifier-9e
 author_lane: theory
 author_focus: deadline_drift
 author_context: Filed at the end of the 2026-09-01 session that found the allowlist, not the thesis, is what makes this theory unmeasurable.
-status: open
+status: done
+closed: 2026-09-01
+resolution: Done, with one deliberate deviation. SHIPPED: population widened from the 70-series allowlist to DD-1's (by-deadline, rules stratum 'hazard', minus partitions) = 4,404 markets on the 2026-09-01 board; live horizon re-anchored on the deadline STATED IN THE RULES rather than close_time; version bumped 1->2 kind 'continues'; status proposed->testing; 46 DD-1 observation rows recorded on the first run (the theory had n=0 for its entire prior existence); DD-2 registered as slice 'dd2-one-off'. NOT DONE, DELIBERATELY: steps 1-3, the series-level structural LLM gate and its contamination probe. Reason: DD-1's pre-registered population is defined in code with no gate in it, so adding one would make the shipped population something DD-1 does not name and the forward test would stop being the test that was pre-registered. The gate's information is recorded per row as features instead (branch_family, in_allowlist, recurring, event_legs, event_ask_sum) -- all fixed at listing time, all legal slice predicates -- so purity becomes a v3 decision made on settled rows rather than a guess made before any exist. Steps 4 and 5 done as written. ALSO FIXED IN PASSING: open_interest was not being recorded at all, which would have made the theory's own kill criterion 3 (a liquidity gradient) permanently uncheckable; yes_bid_implied was briefly written as yes_ask, correction 2 recurring in new code, now pinned by a test. See NOTES.md 2026-09-01 (v2).
 ---
 WHY. Measured 2026-09-01 over the full fetchable by-deadline history (~1,400 settled markets), at the price a NO buyer actually pays, event-clustered and bootstrapped:
 

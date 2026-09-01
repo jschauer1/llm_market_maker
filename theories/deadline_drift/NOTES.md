@@ -628,3 +628,152 @@ reads −1.4, anchored on the stated deadline +3.0. The gap between those
 two rows is smaller than it was on the allowlist-only data, because the
 wide population is much shorter-dated — the YES early-settlement median
 falls from 209.6 days (allowlist) to 10.2 days (wide).
+
+## 2026-09-01 (later still) — v2 ships, the theory records for the first time, and the LLM gate the ticket asked for was deliberately not built
+
+Session `fleet-w1-g1`, theory lane, focus `deadline_drift`. This closes
+`widen-population-and-record`.
+
+**What shipped.** Population widened from the 70-series allowlist to
+DD-1's — by-deadline, rules stratum `hazard`, minus partitions — the live
+horizon re-anchored on the **stated deadline** instead of `close_time`,
+version bumped 1 -> 2 (`continues`; v1 recorded no rows, so nothing pools
+either way and this is not a sever), status `proposed` -> `testing`, and
+**46 observation rows recorded** on the first run. The theory had n=0 for
+its entire existence until today.
+
+```
+board 110,121 -> population 4,404 -> 46 candidates
+gate removed: not_by_deadline 102,366 | stratum_multi_destination 2,601
+              | mutually_exclusive_flag 333 | stratum_threshold 324
+              | priced_as_partition 48 | stratum_scheduled 29
+              | partition_family_learned 16
+```
+
+### The ticket asked for an LLM gate. Building it would have been wrong.
+
+Step 1 of `widen-population-and-record` was a series-level structural
+gate (~960 calls) to remove the residual ~15% multi-destination
+misclassification. I did not build it, and the reason generalizes:
+
+**DD-1's pre-registered population is defined in code, with no gate in
+it** — `hazard.stratum() == "hazard"` minus `hazard.partition_families()`,
+volume >= 100, entry band, 21 days to the stated deadline. Adding a gate
+makes the shipped population something DD-1 does not name, so the forward
+test would no longer be the test that was pre-registered. The
+pre-registration is the asset here; spending tokens to invalidate it is a
+bad trade twice over.
+
+What the gate's information is worth is not zero, so it is **recorded
+rather than filtered**: `branch_family`, `in_allowlist`, `recurring`,
+`event_legs`, `event_ask_sum`. All are fixed at listing time, carry no
+outcome information, and are legal slice predicates ("data over recorded
+fields"). If purity turns out to matter, that is a v3 decision made on
+settled rows instead of a guess made before any exist. **The cheapest
+version of a gate is usually a field.**
+
+### `partition_families` "cannot screen a live board" — the answers can
+
+Both `partition_families` and `branch_families` say so in their own
+docstrings, and it is true of the *functions*: they read settlement
+outcomes. It is not true of their *answers*, which are sets of **series**,
+and a series' construction is a structural fact that outlives any one
+settlement. `population.py` is the bridge — it runs them once over the
+capture and persists the answers as a 4 KB JSON the live screen reads
+instead of 9.5 MB of candles. Rebuilt automatically at the end of
+`collect_settled`, because the walk is the only thing that changes its
+inputs and "somebody remembers to rebuild" is not a mechanism.
+
+### Three things nearly lost, and one general lesson under them
+
+1. **`yes_bid_implied` was briefly recorded as `yes_ask`.** I wrote the
+   feature dict, dry-ran it, and the sample row said `yes_bid_implied:
+   0.2` on a market whose NO ask was 0.87 — i.e. yes_bid 0.13. That is
+   **correction 2 reappearing inside the same session that documented
+   it**, in new code, written by someone who had just read the warning.
+   Now `1 - no_ask`, with `yes_ask_optimistic` recorded beside it and
+   `test_the_implied_probability_recorded_is_the_bid_not_the_ask`
+   pinning it. The notebook's own lesson holds and deserves restating:
+   reading `yes_ask` does not look like a bug, it looks like following
+   the rule.
+2. **`open_interest` was not being recorded at all.** Kill criterion 3 is
+   "the effect exists only where liquidity is worst" and the in-sample
+   gradient that has to be re-checked was measured on open interest — but
+   the ledger has `spread_at_call` and `volume_at_call` and no column for
+   it. Without this the theory could never have checked its own kill
+   criterion. Caught after the first 46 rows landed and backfilled from
+   the same board pull (median 1,107, matching the in-sample ~1,100).
+   **This is the third time this theory has lost this exact field** to
+   code that read liquidity, used it, and persisted none of it.
+3. **The event was recorded as `event`, and scoring reads
+   `event_ticker`.** `score.cluster_key` looks up exactly that key and
+   otherwise falls back to stripping the ticker's last dash-segment. On
+   these 46 rows the fallback is wrong 4 times, and for
+   `KXMEDIARELEASEDATEAHS-26-SEP19-AME` (event
+   `KXMEDIARELEASEDATEAHS-26`) it **splits one event into several** --
+   the dangerous direction, because it manufactures precision instead of
+   losing it. Renamed and backfilled; pinned by
+   `test_the_event_is_recorded_under_the_key_scoring_reads`. **This
+   theory's first run is 20 event clusters, not 46 rows** -- one event
+   (`KXTRUMPSAY-26SEP07`) supplies 22 of them, so anything reading these
+   settlements uncluttered will read one question as twenty-two.
+4. **`extra_json` is written only at row creation**, never on a
+   re-sighting. That is right — it should record the decision point — but
+   it means a feature added after a row lands is missing from it forever.
+   Add fields before the first run, or backfill the same day.
+
+The general lesson under all three: **the ledger's typed columns are the
+part that gets reviewed, and `extra_json` is the part that gets
+forgotten.** Everything a theory will need in order to test its own
+pre-registered criteria has to be in the row on the day it is written,
+because the board moves and none of it is recoverable afterwards.
+
+### There is no clean backtest here, and that is the finding
+
+Standing advice says a theory with fetchable history and no replay is
+short of a replay. Not this one. The replay has already been run as
+analysis — `hazard.py` and `bootstrap.py` over the full 1,908-market
+capture — and **the population was chosen on its results**. Every settled
+market this theory can reach is in-sample for that choice, so recording it
+as a tier A backtest run would let the data that suggested the population
+vouch for it. Under the 2026-08-31 ruling a tier A/B backtest counts as
+evidence *by default*, which makes this a live hazard rather than a
+theoretical one: the run would silently become credibility.
+
+So the forward test is not the slow path here, it is the only honest one,
+and the thing that was actually blocking it was that nobody had made the
+theory record. Recorded in THEORY.md's Status section for the next
+session that reaches for `backtest-theory`.
+
+### DD-2 registered as a slice
+
+`dd2-one-off` — `{"outcome": ["no"], "extra": {"recurring": false}}`,
+where `recurring` is "series has >= 3 settled events", fixed at listing
+time. Pre-registered in THEORY.md before any out-of-sample data;
+registering it starts the clock today rather than whenever someone gets
+to it. Today's 46 rows split 23 one-off / 23 recurring, which is a better
+balance than the in-sample 72/22 and means both arms accrue at a usable
+rate. No `mined_from_run_ids`: the suggesting analysis wrote no ledger
+rows, so there is no run to exclude, and the origin says so explicitly.
+
+### Population purity: what today's board shows
+
+`KXAGTELIMINATION` is 4 of the 46 candidates and is **not** a per-subject
+hazard — 11 legs, 2 settled events, **7 YES each**. It is a fixed-k
+elimination ("exactly 7 of these 11 acts go"), so the legs are negatively
+correlated and P(YES) is structurally ~k/n. `partition_families` misses it
+because that requires exactly *one* winner; the price test misses it
+because 11 legs sum to 6.67, not ~1.00; the rules regex misses it because
+the shape is semantic.
+
+I did **not** invent a rule for it. Two settled events is not enough to
+fit "fixed-k" against `KXTRUMPSAY`, which is the same superficial shape
+(34 legs, many YES) and *is* genuinely independent — Trump saying
+"Antifa" does not preclude "Uranium" — with 7-21 YES per event and real
+variance. Distinguishing them needs variance across events, and AGT has
+n=2. Recorded as `event_legs` / `event_ask_sum` per row and ticketed;
+decide it on settled rows.
+
+**One event supplies 22 of today's 46 rows** (`KXTRUMPSAY-26SEP07`). The
+rows are legitimate, but anything reading these settlements must cluster
+by event or it will read one question as twenty-two.

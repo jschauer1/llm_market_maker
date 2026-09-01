@@ -44,17 +44,45 @@ rules text, candlesticks for point-in-time replay, fee math.
 ## Decision procedure
 
 **Stage 1 only. There is no stage 2 and none is planned.** No LLM anywhere
-in the decision path; `edge_basis="model"`; tier A.
+in the decision path; tier A.
 
-1. **Population** (`screen.py`): allowlist series families, by-deadline
-   phrasing, minus the structural guard — Kalshi's `mutually_exclusive`
-   flag, and events priced as a partition (>=3 siblings sharing one
-   deadline summing $0.90–1.05). **981 markets in 70 series** on the
-   2026-08-29 board.
-2. **Candidates**: open, days-to-close <= 21, YES ask in $0.05–0.60, NO ask
-   available, volume >= 100.
+**v2 (2026-09-01) ships DD-1's population.** v1's allowlist is described
+below under "Why an allowlist rather than a board-wide screen" and is no
+longer what the screen selects; `screen.in_allowlist` survives as a
+recorded feature, not a filter.
+
+1. **Population** (`screen.wide_population`): by-deadline phrasing, rules
+   stratum `hazard` (i.e. not `threshold`, `scheduled` or
+   `multi_destination` — `hazard.stratum`), minus partitions. The
+   partition exclusion is one exclusion applied with the three
+   instruments each population affords: the **series** set
+   `hazard.partition_families` returned over settled history (persisted
+   by `population.py`, since that function reads settlements and cannot
+   screen a live board), Kalshi's `mutually_exclusive` envelope flag, and
+   the price-partition test (>=3 siblings sharing one deadline summing
+   $0.90–1.05). **4,404 markets** on the 2026-09-01 board, against 981 in
+   70 series for v1.
+2. **Candidates**: open, **days to the deadline stated in the rules** <= 21
+   (never `close_time` — see correction 1), YES ask in $0.05–0.60, NO ask
+   available, volume >= 100. Entry is the **first** qualifying day, which
+   the ledger's dedup key enforces by preserving `entry_price` and
+   `first_seen_at` from the first sighting.
 3. **Edge**: `(1 - P(YES | price bin, days bin)) - no_ask - fees`, with the
-   probability from hazard bins over settled allowlist history.
+   probability from hazard bins over settled history. **`hazard_bins.json`
+   does not exist and must not be written until DD-1 clears**, so
+   `price()` instead emits **observation rows** — claimed edge 0,
+   `disposition='screened'`, a rationale saying outright that they are not
+   recommendations — under the 2026-08-30 ruling. Zero is load-bearing:
+   `ranked_edge = edge_pts_net × credibility`, so no row this theory
+   currently produces can promote to a bet.
+
+**Recorded per row, never filtered on** (`screen.features`): `recurring`
+and `settled_events` (DD-2's split), `branch_family`, `in_allowlist`,
+`event_legs` and `event_ask_sum` (the fixed-k elimination shape),
+`open_interest` (kill criterion 3, which the ledger has no column for and
+which cannot be recovered after the fact), and `yes_bid_implied` — which
+is `1 - no_ask`, the side a NO buyer actually bets against, never the
+field named `yes_ask`.
 
 **`no_ask` is `1 - yes_bid`, and that is not a detail.** The step above
 was always written correctly; the *measurement* script was not, and
@@ -88,9 +116,27 @@ markets, a pure partition the suffix rule would otherwise admit.
 
 ## Status
 
-`proposed` — still, as of 2026-09-01, and now for a better-evidenced
-reason than on 2026-08-29. The bins have been collected twice over; what
-is missing is a population this theory is entitled to bet.
+**`testing`, v2, since 2026-09-01.** It records — 46 observation rows on
+its first run — and it claims no edge while it does so. Read those two
+facts together: the theory is now *accruing DD-1's out-of-sample set*,
+which is the only thing that was ever between it and evidence, and it is
+doing so without asserting anything it has not earned.
+
+What changed was the population, not the thesis. v1 shipped the
+70-series allowlist, recorded nothing, and was therefore unmeasurable;
+the widening is argued below and in the version-2 bump justification.
+
+**There is no clean backtest for this theory, and that is a finding
+rather than an omission.** The usual advice — history is fetchable, so
+run the replay — does not apply here, because the replay has already been
+run as analysis (`hazard.py`, `bootstrap.py`) and *the population was
+chosen on its results*. Every settled market this theory can reach is
+in-sample for that choice. Recording it as a tier A backtest run would
+make the data that suggested the population vouch for it, which is
+exactly what CLAUDE.md's pairing discipline forbids and what
+`mined_from_run_ids` exists to prevent. **The forward test is not the
+slow path here; it is the only honest one.** A future session reaching
+for `backtest-theory` on this theory should read this paragraph first.
 
 **What 2026-09-01 measured** (`python -m theories.deadline_drift.hazard`
 and `.bootstrap`, over **1,908 settled markets in 962 series** — the
@@ -189,10 +235,30 @@ one-winner partition, ~6% of the gap) shows the population is still not
 clean. The bootstrap prices the sampling uncertainty; it cannot price the
 contamination.
 
-To reach `testing`: widen the population past the allowlist (a version
-bump, and the structural-gate decision the notebook left open), then
-record. To reach `active`: DD-1 confirmed out of sample.
-To `under_review`: n=20 with `calibration_edge_net` <= 0.
+**Reached `testing` 2026-09-01** by widening the population past the
+allowlist (v2, `continues`) and recording. To reach `active`: DD-1
+confirmed out of sample.
+
+**`under_review` is NOT reachable from these rows, and the distinction
+matters.** The n=20-with-negative-edge trigger reads rows the theory
+claims positive edge on, and every row it currently writes claims zero.
+Per the 2026-08-30 ruling, the aggregate calibration edge over
+observation rows measures *the board*, not this decision procedure, so it
+can carry no verdict — a theory with zero settled bettable rows is
+**unmeasured**, never `under_review`. The trigger arms when
+`hazard_bins.json` is written, which DD-1 clearing is what licenses.
+
+**No LLM gate was built, and the widen-population ticket's step 1 was
+deliberately not followed.** That step asked for a series-level
+structural gate to remove the residual ~15% multi-destination
+misclassification. Three reasons it was dropped: DD-1's population is
+defined without one, so adding it would test a population nobody
+pre-registered; the ~960 judging calls buy purity the pre-registration
+does not ask for; and the same information is now recorded per row as
+features, which makes the cleaner subset available later as a registered
+slice — data over recorded fields — without changing what DD-1 measures.
+If purity turns out to matter, that is a v3 decision made on settled
+rows, not a guess made before any of them exist.
 
 ## Candidate flow
 

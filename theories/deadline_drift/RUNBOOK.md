@@ -4,11 +4,11 @@
 
 | # | stage | who decides | artifact |
 |---|---|---|---|
-| 1 | settled capture top-up | code | `collect_settled` — time-critical, resumable |
+| 1 | settled capture top-up | code | `collect_settled` — time-critical, resumable; rebuilds `data/population_facts.json` when it finishes |
 | 2 | hazard estimate | code | `python -m theories.deadline_drift.hazard` |
-| 3 | screen | code | `THEORY.screen(ctx)` — `price()` inert until `data/hazard_bins.json` exists |
+| 3 | screen + record | code | `THEORY.start(ctx).finish()` — records DD-1 observation rows |
 
-No judgment stage.
+No judgment stage. **Current version: 2 (`testing`).**
 
 ## The standing obligation: top up the settled capture
 
@@ -58,7 +58,37 @@ retained deliberately and is **wrong** — it is the contaminated view from
 the 2026-08-29 correction, kept so the retraction is runnable rather than
 merely asserted. Use `stated deadline`.
 
-## Run the screen
+## Run the theory — this is what a floor does
+
+Since v2 this theory is `testing`, so it runs in every floor and appears
+on `floor checklist` alongside its sub-theory `dd2-one-off`.
+
+```python
+from datetime import datetime, timezone
+from tools import board as bt, db
+from theories.deadline_drift import THEORY
+from tools.theory import TheoryContext
+
+conn = db.connect()
+ctx = TheoryContext.build(conn=conn, board=bt.get_board(conn),
+                          now=datetime.now(timezone.utc))
+res = THEORY.start(ctx).finish()      # records DD-1 observation rows
+```
+
+**Every row it writes claims edge 0 and is not a bet.** That is the
+2026-08-30 observation-row ruling, and it is what lets this theory
+collect DD-1's out-of-sample set without asserting an edge it has not
+earned. `promote` refuses them by design ("no positive claimed edge —
+observation/control row"), so **there is nothing here to report to the
+user as a recommendation** and a floor report should say the theory ran,
+how many rows it accrued, and nothing more.
+
+**What to report each run:** rows recorded, the split by `recurring`
+(DD-2's two arms), and the gate removals by category — a code gate drops
+silently inside families it thinks it knows, so `ScanResult.gate_removed`
+is reported every time.
+
+## Run the screen directly
 
 ```python
 from datetime import datetime, timezone
@@ -72,17 +102,28 @@ ctx = TheoryContext.build(conn=conn, board=bt.get_board(conn),
 result = THEORY.screen(ctx)
 ```
 
-`price()` returns nothing while `data/hazard_bins.json` is absent, and it
-is absent on purpose: the theory is `proposed`, the corrected estimate rests
-on **3 YES outcomes**, and wiring that into live pricing would manufacture
-bets out of noise. Do not create that file until the capture has run long
-enough for a cell to carry a defensible `n` — see THEORY.md's status
-section for what promotion requires.
+`price()` emits observation rows while `data/hazard_bins.json` is absent,
+and it is absent on purpose. **Do not create that file until DD-1
+clears.** Writing it is what turns this theory from one that observes into
+one that bets, and it also arms the `under_review` trigger — until then a
+theory with zero settled *bettable* rows is unmeasured, not failing. See
+THEORY.md's status section.
 
 ## Record
 
-Nothing records while the theory is `proposed`. When it promotes, rows go
-through the contract (`start(ctx).finish()`) like every mechanical theory.
+Rows go through the contract (`start(ctx).finish()`) like every mechanical
+theory. Two things about them that are easy to get wrong:
+
+- **Entry is the FIRST qualifying day, and that is part of the
+  hypothesis.** Entering the first day inside the window measures +3.4 in
+  sample; averaging over every qualifying day measures −1.7. The ledger
+  enforces it for free — its dedup key preserves `entry_price` and
+  `first_seen_at` from the first sighting — so re-running the screen daily
+  is correct and does not corrupt the entry price. **Do not "refresh"
+  entry prices.**
+- **`extra_json` is written only at row creation.** A feature added after
+  a row lands is missing from that row forever. Add fields before a run,
+  or backfill the same day from the same board pull.
 
 ## Sub-theories
 
@@ -90,11 +131,29 @@ A **sub-theory** is a theory run over a *subset* of this theory's data --
 a registered slice with its own evidence, gates and record, which may be
 strong while the parent is flat.
 
-**None registered.** The theory is `proposed` and has recorded no rows,
-so there is nothing to partition yet. If the classifier ships, the
-obvious candidates to pre-register are by deadline horizon and by
-resolution-source family -- register them with a mechanism before any
-mining, never after.
+**`dd2-one-off`** (registered 2026-09-01) -- DD-2, pre-registered in
+THEORY.md before any out-of-sample data. Predicate
+`{"outcome": ["no"], "extra": {"recurring": false}}`, where `recurring`
+means the series has >= 3 settled events, a property fixed at listing
+time. Mechanism: a recurring family teaches its own base rate, a one-off
+question has no reference class on the board, so the premium should track
+NON-RECURRENCE rather than subject matter.
+
+Below its gates (>= 10 event clusters and >= 5 settlement days, out of
+sample), so it is reported as accruing and changes no ranking yet. It
+carries no `mined_from_run_ids` because the analysis that suggested it
+wrote no ledger rows.
+
+**Report it every run** -- `floor complete` refuses a report that omits a
+registered sub-theory, and the guard exists because a floor report once
+covered four theories carefully and never mentioned the best-evidenced
+result in the repo.
+
+Candidates NOT registered, deliberately: the `branch_family` and
+`in_allowlist` subsets, and the fixed-k elimination shape. All three are
+recorded as fields, so any of them can be registered later from settled
+rows -- registering several slices at once on a theory with no
+settlements would be multiple comparisons dressed as pre-registration.
 
 ## Report
 
@@ -105,6 +164,13 @@ gone upstream permanently.
 
 ## Skip
 
-The screen does not run in a session's floor while status is `proposed`.
-The capture (stage 1) is never skipped when its marker is stale — cost is
+Nothing. The screen runs in every floor now that status is `testing`, and
+the capture (stage 1) is never skipped when its marker is stale — cost is
 seconds, the alternative is unrecoverable loss.
+
+**Do not reach for `backtest-theory` on this theory without reading
+THEORY.md's Status section first.** There is no clean replay available:
+the population was chosen on the results of analysing the entire
+fetchable history, so every settled market it can reach is in-sample for
+that choice, and recording it as a tier A run would let the data that
+suggested the population vouch for it.

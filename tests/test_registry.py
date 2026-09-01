@@ -66,11 +66,19 @@ def _register_matching(conn):
         conn.execute("UPDATE theories SET version=2, status='testing'"
                      " WHERE id='taker_flow'")
     theories.set_uses_llm_judgment(conn, "taker_flow", False, now=TS)
-    # deadline_drift registered 2026-08-29 and stays `proposed`: its screen
-    # runs and reproduces the audited population, but the hazard bins that
-    # define its edge have never been collected, so price() returns nothing.
+    # deadline_drift went `testing` at v2 on 2026-09-01: v1 shipped the
+    # 70-series allowlist and recorded nothing, which measured -1.0 pts
+    # over 22 event clusters -- no evidence either way rather than
+    # evidence against. v2 ships DD-1's pre-registered population (the
+    # by-deadline hazard stratum minus partition families, +4.6 in sample
+    # over 94 clusters) and records observation rows so the out-of-sample
+    # set accrues. `hazard_bins.json` is still absent by design, so
+    # price() claims edge 0 and nothing here can promote to a bet.
     theories.register(conn, "deadline_drift", "Deadline Drift",
                       "theories/deadline_drift", now=TS)
+    with db.write(conn):
+        conn.execute("UPDATE theories SET version=2, status='testing'"
+                     " WHERE id='deadline_drift'")
     theories.set_uses_llm_judgment(conn, "deadline_drift", False, now=TS)
 
 
@@ -116,9 +124,9 @@ def test_a_proposed_row_without_code_is_not_drift(conn):
 def test_running_returns_scannable_theories_and_raises_on_drift(conn):
     _register_matching(conn)
     ids = [t.id for t in registry.running(conn)]
-    assert ids == ["calibration_harvest", "insider_judgment",
-                   "mention_family", "no_side_premium", "structural_arb",
-                   "taker_flow"]
+    assert ids == ["calibration_harvest", "deadline_drift",
+                   "insider_judgment", "mention_family", "no_side_premium",
+                   "structural_arb", "taker_flow"]
     with db.write(conn):
         conn.execute("UPDATE theories SET version=99"
                      " WHERE id='mention_family'")
