@@ -44,23 +44,75 @@ MAX_MEDIAN_MDE_FOR_MEASURED = 8.0
 PREREGISTERED_SIGNS = {"KXRT": -1, "KXLOWTLV": +1}
 
 
-def load_collect(path: Path = DB) -> dict[str, list[tuple]]:
+#: The populations STUDY.md declares. "primary" is the bar; the rest
+#: are the robustness views, which can never promote anything on
+#: their own and exist only to say whether a flag is robust.
+VIEWS = ("primary", "at_24h", "early", "ontime")
+
+
+def load_collect(path: Path = DB, view: str = "primary"
+                 ) -> dict[str, list[tuple]]:
     """{series: [(day, won, ask), ...]} from the broad sweep.
 
     One observation per market, already priced at 25% of scheduled
     lifetime by `collect.py`. The settlement day is the market's close
     date -- the same day-clustering unit the miner uses everywhere.
+
+    `view` selects one of STUDY.md's declared populations:
+
+      primary  -- the bar: every priced observation at 25% of lifetime.
+      at_24h   -- the ORIGINAL decision point, 24h before scheduled
+                  close, captured from the same candles. NULL where the
+                  market lived under 24h, so this runs on a subset whose
+                  Holm family is re-corrected over that subset.
+      early    -- observations whose observed close ran ahead of the
+                  scheduled one (68.6% of the population).
+      ontime   -- the complement of `early`.
     """
+    if view not in VIEWS:
+        raise ValueError("unknown view %r; declared views are %s"
+                         % (view, ", ".join(VIEWS)))
+    ask_col, won_col = ("ask", "won")
+    where = "ask IS NOT NULL AND won IS NOT NULL"
+    if view == "at_24h":
+        ask_col, won_col = ("ask_24h", "won_24h")
+        where = "ask_24h IS NOT NULL AND won_24h IS NOT NULL"
+    elif view == "early":
+        where += " AND early_settled = 1"
+    elif view == "ontime":
+        where += " AND (early_settled = 0 OR early_settled IS NULL)"
+
     conn = sqlite3.connect("file:%s?mode=ro" % path, uri=True)
     conn.row_factory = sqlite3.Row
     out: dict[str, list[tuple]] = {}
     for r in conn.execute(
-            "SELECT series_ticker, DATE(close_time) AS day, won, ask "
-            "FROM obs WHERE ask IS NOT NULL AND won IS NOT NULL "
-            "AND close_time IS NOT NULL"):
+            "SELECT series_ticker, DATE(close_time) AS day, "
+            "%s AS won, %s AS ask FROM obs "
+            "WHERE %s AND close_time IS NOT NULL"
+            % (won_col, ask_col, where)):
         out.setdefault(r["series_ticker"], []).append(
             (r["day"], float(r["won"]), float(r["ask"])))
     conn.close()
+    return out
+
+
+def robustness(flagged, path: Path = DB) -> dict:
+    """For each primary flag, the same statistic under each other view.
+
+    Reported, never promoting: STUDY.md's rule is that a flag surviving
+    at both decision points is a property of the SERIES, one appearing at
+    only one is a property of the timing choice, and one driven only by
+    the early-settling stratum is suspect.
+    """
+    want = {st.series for st in flagged}
+    if not want:
+        return {}
+    out: dict[str, dict] = {s: {} for s in want}
+    for view in ("at_24h", "early", "ontime"):
+        by_series = load_collect(path, view=view)
+        for s in want:
+            rows = by_series.get(s)
+            out[s][view] = M.stat_for(s, rows) if rows else None
     return out
 
 
@@ -183,6 +235,23 @@ def main() -> None:
     print("  control series admitted : %d" % len(r["control"]))
     print("  control tripping split+t: %d  %s"
           % (len(bad), [s.series for s in bad]))
+
+    if r["flagged"]:
+        print()
+        print("-- robustness (declared before results; never promotes) --")
+        rb = robustness(r["flagged"])
+        for st in sorted(r["flagged"], key=lambda x: -abs(x.t)):
+            print("  %s   primary %+.2f (t %+.2f, n=%d)"
+                  % (st.series, st.edge, st.t, st.n))
+            for view in ("at_24h", "early", "ontime"):
+                v = rb[st.series][view]
+                if v is None:
+                    print("      %-8s -- below the floors in this view"
+                          % view)
+                else:
+                    same = "same sign" if (v.edge > 0) == (st.edge > 0)                         else "SIGN FLIPS"
+                    print("      %-8s %+7.2f  t %+6.2f  n=%-5d days=%-4d %s"
+                          % (view, v.edge, v.t, v.n, v.n_days, same))
 
 
 if __name__ == "__main__":

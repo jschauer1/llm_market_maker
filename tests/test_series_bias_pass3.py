@@ -155,3 +155,72 @@ def test_the_loader_shapes_collect_db_rows_for_the_miner(tmp_path):
         ("2026-06-01", 0.0, 0.70),
         ("2026-06-01", 1.0, 0.80),
         ("2026-06-02", 1.0, 0.90)]
+
+
+def _collect_db(tmp_path, rows):
+    """A collect.db with the columns the robustness views read."""
+    import sqlite3
+    db = tmp_path / "collect.db"
+    conn = sqlite3.connect(db)
+    conn.execute(
+        "CREATE TABLE obs (ticker TEXT PRIMARY KEY, series_ticker TEXT, "
+        "close_time TEXT, result TEXT, side TEXT, ask REAL, won INTEGER, "
+        "offset_h REAL, n_candles INTEGER, ask_24h REAL, side_24h TEXT, "
+        "won_24h INTEGER, early_settled INTEGER)")
+    conn.executemany(
+        "INSERT INTO obs (ticker, series_ticker, close_time, ask, won, "
+        "ask_24h, won_24h, early_settled) VALUES (?,?,?,?,?,?,?,?)", rows)
+    conn.commit()
+    conn.close()
+    return db
+
+
+def test_each_declared_view_selects_its_own_population(tmp_path):
+    """The four views in STUDY.md must each read what they claim to."""
+    db = _collect_db(tmp_path, [
+        # ticker, series, close, ask, won, ask_24h, won_24h, early
+        ("A-1", "KXA", "2026-06-01T00:00:00Z", 0.80, 1, 0.70, 1, 1),
+        ("A-2", "KXA", "2026-06-02T00:00:00Z", 0.60, 0, None, None, 0),
+        ("A-3", "KXA", "2026-06-03T00:00:00Z", 0.90, 1, 0.85, 0, 1),
+    ])
+    prim = pass3.load_collect(db, view="primary")["KXA"]
+    assert sorted(prim) == [("2026-06-01", 1.0, 0.80),
+                            ("2026-06-02", 0.0, 0.60),
+                            ("2026-06-03", 1.0, 0.90)]
+
+    # at_24h reads the OTHER columns, and drops the row lacking them.
+    at24 = pass3.load_collect(db, view="at_24h")["KXA"]
+    assert sorted(at24) == [("2026-06-01", 1.0, 0.70),
+                            ("2026-06-03", 0.0, 0.85)]
+
+    early = pass3.load_collect(db, view="early")["KXA"]
+    assert {d for d, _, _ in early} == {"2026-06-01", "2026-06-03"}
+    ontime = pass3.load_collect(db, view="ontime")["KXA"]
+    assert {d for d, _, _ in ontime} == {"2026-06-02"}
+
+
+def test_early_and_ontime_partition_the_primary_population(tmp_path):
+    """No observation may be double-counted or lost between the strata."""
+    rows = [(f"A-{i}", "KXA", f"2026-06-{i % 28 + 1:02d}T00:00:00Z",
+             0.8, i % 2, 0.7, i % 2, i % 3 == 0) for i in range(60)]
+    db = _collect_db(tmp_path, rows)
+    prim = pass3.load_collect(db, view="primary")["KXA"]
+    early = pass3.load_collect(db, view="early").get("KXA", [])
+    ontime = pass3.load_collect(db, view="ontime").get("KXA", [])
+    assert len(early) + len(ontime) == len(prim)
+
+
+def test_an_unknown_view_is_refused_rather_than_silently_primary(tmp_path):
+    """A typo must fail loudly: silently returning the bar's population
+    would report a robustness check that never ran."""
+    import pytest
+    db = _collect_db(tmp_path, [
+        ("A-1", "KXA", "2026-06-01T00:00:00Z", 0.8, 1, 0.7, 1, 1)])
+    with pytest.raises(ValueError, match="unknown view"):
+        pass3.load_collect(db, view="at_48h")
+
+
+def test_robustness_is_empty_when_nothing_flagged(tmp_path):
+    db = _collect_db(tmp_path, [
+        ("A-1", "KXA", "2026-06-01T00:00:00Z", 0.8, 1, 0.7, 1, 1)])
+    assert pass3.robustness([], db) == {}
