@@ -26,17 +26,34 @@ mechanical subset of one theory's output has its own edge:
 - **Credibility is out-of-sample only.** A pattern found by mining
   settled rows is a hypothesis, never an edge on the data that
   suggested it. An observation matching the predicate feeds the
-  slice's credibility only if its **settlement day is strictly after
-  the registration day** — an outcome unknowable when the hypothesis
-  was registered cannot have suggested it — or one of its runs was
-  designated out-of-sample at registration (`oos_run_ids`, with the
-  argument recorded in `origin`; designation matches ANY run that
-  proposed the position, because the first seer is often a mechanical
-  screen and the designated run is the judged re-proposal). Tier-C
-  runs never count, here as everywhere. Everything else lands in
-  `in_sample` — visible for diagnosis, never in the credibility path.
-  A backtest over already-settled history is in-sample *by default*,
-  however recently it ran.
+  slice's credibility if any of three things holds: its **settlement
+  day is strictly after the registration day** (an outcome unknowable
+  when the hypothesis was registered cannot have suggested it); one of
+  its runs was **designated out-of-sample at registration**
+  (`oos_run_ids`, with the argument recorded in `origin`; designation
+  matches ANY run that proposed the position, because the first seer is
+  often a mechanical screen and the designated run is the judged
+  re-proposal); or it was **replayed by a tier A or tier B backtest**.
+  That third clause is the 2026-08-31 user ruling: a backtested edge is
+  evidence exactly as a forward-settled one is, for a slice as much as
+  for a whole theory, and it must never be described as weaker for
+  being backtested. Tier-C runs never count, here as everywhere, and
+  neither does a replay whose tier was never recorded — unknown
+  provenance resolves against the slice, as an ambiguous settlement
+  date does.
+
+  What the ruling did *not* relax: **the runs a slice was mined from,
+  named in `mined_from_run_ids` at registration, never vouch for it**,
+  whatever their tier. Before the ruling that guard was implicit — a
+  replay of settled history always failed the date test — so the
+  bookkeeping is now inverted: declare the mining run rather than
+  designating the confirming ones. Everything excluded lands in
+  `in_sample`: visible for diagnosis, never in the credibility path.
+
+  Every segment score carries `n_backtest`, the count of its rows that
+  came from a replay. That is **disclosure, not a discount** — the user
+  asked to be told when a bet rests on replayed history, and the
+  reporting surfaces say so; nothing in the ranking math reads it.
 - **Readiness gates, then a partition.** A slice drives ranking only
   once its out-of-sample evidence clears `MIN_SLICE_CLUSTERS` event
   clusters and `MIN_SLICE_DAYS` distinct settlement days. Below the
@@ -213,6 +230,7 @@ def register_slice(
     hypothesis: str,
     origin: str,
     oos_run_ids: tuple[str, ...] | list[str] = (),
+    mined_from_run_ids: tuple[str, ...] | list[str] = (),
     priority: int = 0,
     registered_at: str | None = None,
     now: str | None = None,
@@ -228,6 +246,14 @@ def register_slice(
     likewise the argument for every run in `oos_run_ids`. Slices are
     immutable: a duplicate slug raises, because changing a registered
     predicate would merge two hypotheses into one track record.
+
+    `mined_from_run_ids` names the runs whose rows *suggested* this
+    slice. They are excluded from its credibility permanently — a
+    pattern cannot vouch for itself — and naming them is the whole
+    discipline now that a tier A/B backtest counts as evidence by
+    default (user ruling 2026-08-31). If the pattern came out of a
+    replay, say so here; `origin` should carry the same citation in
+    prose.
     """
     if theories.get(conn, theory_id) is None:
         raise ValueError(f"unknown theory {theory_id!r}")
@@ -246,6 +272,18 @@ def register_slice(
     ids = list(oos_run_ids)
     if not all(isinstance(r, str) and r for r in ids):
         raise ValueError(f"oos_run_ids must be run-id strings, got {ids!r}")
+    mined = list(mined_from_run_ids)
+    if not all(isinstance(r, str) and r for r in mined):
+        raise ValueError(
+            f"mined_from_run_ids must be run-id strings, got {mined!r}"
+        )
+    overlap = set(ids) & set(mined)
+    if overlap:
+        raise ValueError(
+            f"run(s) {sorted(overlap)} are named both out-of-sample and "
+            "mined-from; a run cannot both vouch for a slice and be the "
+            "data that suggested it"
+        )
     stamp = now or utcnow()
     try:
         with write(conn):
@@ -253,13 +291,15 @@ def register_slice(
                 """
                 INSERT INTO theory_slices (
                     theory_id, slug, predicate_json, hypothesis, origin,
-                    registered_at, oos_run_ids, priority, created_at
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    registered_at, oos_run_ids, mined_from_run_ids,
+                    priority, created_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     theory_id, slug, json.dumps(predicate), hypothesis,
                     origin, registered_at or stamp,
-                    json.dumps(ids) if ids else None, priority, stamp,
+                    json.dumps(ids) if ids else None,
+                    json.dumps(mined) if mined else None, priority, stamp,
                 ),
             )
     except sqlite3.IntegrityError as exc:
@@ -301,6 +341,66 @@ def retire_slice(
             """,
             (now or utcnow(), reason, theory_id, slug),
         )
+
+
+def declare_mined_from(
+    conn: sqlite3.Connection,
+    theory_id: str,
+    slug: str,
+    run_ids: tuple[str, ...] | list[str],
+) -> list[str]:
+    """Declare runs whose rows suggested this slice. Returns the new set.
+
+    Slices are immutable, and this is the one field that may be set
+    after registration — because it can only ever *restrict* a slice's
+    evidence, never widen it. Declaring a mining run takes rows out of
+    the credibility path; nothing here can put one back. That invariant
+    is what makes a late declaration safe, so it is enforced: the call
+    is additive, and withdrawing a declared run raises.
+
+    It exists for the 2026-08-31 ruling. Slices registered before it
+    named their mining run only in `origin` prose, because the field did
+    not exist and the old default excluded every replay anyway. Flipping
+    that default would silently promote exactly those rows into the
+    evidence they were never allowed to be — so a pre-ruling slice with
+    a documented mining run declares it here, and the registration means
+    afterwards what it always said it meant.
+    """
+    row = get_slice(conn, theory_id, slug)
+    if row is None:
+        raise ValueError(f"no slice {theory_id}/{slug}")
+    ids = list(run_ids)
+    if not all(isinstance(r, str) and r for r in ids):
+        raise ValueError(f"run ids must be non-empty strings, got {ids!r}")
+    if not ids:
+        # The only way to ask for less. There is no call that removes a
+        # declared run, so an empty declaration is either a mistake or an
+        # attempt at one; both deserve the same answer.
+        raise ValueError(
+            f"nothing to declare for {theory_id}/{slug}: mining runs are "
+            "never withdrawn. A slice may only ever exclude more of its "
+            "own evidence, never reclaim what it already gave up"
+        )
+    existing = set(
+        json.loads(row["mined_from_run_ids"])
+        if row["mined_from_run_ids"] else []
+    )
+    merged = sorted(existing | set(ids))
+    oos = set(json.loads(row["oos_run_ids"]) if row["oos_run_ids"] else [])
+    overlap = oos & set(merged)
+    if overlap:
+        raise ValueError(
+            f"run(s) {sorted(overlap)} are designated out-of-sample for "
+            f"{theory_id}/{slug}; a run cannot both vouch for a slice and "
+            "be the data that suggested it"
+        )
+    with write(conn):
+        conn.execute(
+            "UPDATE theory_slices SET mined_from_run_ids = ?"
+            " WHERE theory_id = ? AND slug = ?",
+            (json.dumps(merged), theory_id, slug),
+        )
+    return merged
 
 
 def get_slice(
@@ -349,6 +449,13 @@ def _with_days(obs: list[dict]) -> dict:
     """
     result = score.aggregate(obs)
     result["n_days"] = _n_days(obs)
+    # Disclosure, not a discount. A backtested edge counts exactly as a
+    # forward one does (user ruling 2026-08-31), but the user asked to be
+    # told when a bet rests on replayed history, so every segment score
+    # carries the split and the report surfaces it.
+    result["n_backtest"] = sum(
+        1 for o in obs if o.get("run_mode") == "backtest"
+    )
     by_day: dict[str, list[float]] = {}
     for o in obs:
         day = o.get("resolved_day")
@@ -373,14 +480,25 @@ def _with_days(obs: list[dict]) -> dict:
 
 
 def _evaluate(
-    srow: sqlite3.Row, obs: list[dict]
+    srow: sqlite3.Row, obs: list[dict], ab_run_ids: frozenset[str] = frozenset()
 ) -> tuple[dict, Callable[[Mapping], bool]]:
-    """One slice's evidence split over an already-tier-filtered pool."""
+    """One slice's evidence split over an already-tier-filtered pool.
+
+    `ab_run_ids` are the backtest runs recorded at tier A or B — the
+    replays that count as evidence under the 2026-08-31 ruling.
+    """
     predicate = json.loads(srow["predicate_json"])
     matcher = build_matcher(predicate)
     oos_ids = set(
         json.loads(srow["oos_run_ids"]) if srow["oos_run_ids"] else []
     )
+    # A row read from a database migrated only to the previous schema has
+    # no such column; treat that as "nothing declared", never as a crash.
+    mined_raw = (
+        srow["mined_from_run_ids"]
+        if "mined_from_run_ids" in srow.keys() else None
+    )
+    mined_ids = set(json.loads(mined_raw) if mined_raw else [])
     registered_day = str(srow["registered_at"])[:10]
 
     oos: list[dict] = []
@@ -392,12 +510,29 @@ def _evaluate(
         if not runs and o.get("run_id"):
             runs = {o["run_id"]}
         day = o.get("resolved_day")
-        # Out-of-sample means the outcome could not have suggested the
-        # hypothesis: settled strictly after the registration day, or
-        # proposed by a run designated at registration. Settlement ON
-        # the registration day is ambiguous, and ambiguity — like a
-        # missing settlement date — resolves against the slice.
-        if (runs & oos_ids) or (day and str(day) > registered_day):
+        # Out-of-sample means the row is evidence rather than the data
+        # that suggested the hypothesis. Three ways to qualify:
+        # settled strictly after the registration day; proposed by a run
+        # designated at registration; or replayed by a tier A/B backtest
+        # (user ruling 2026-08-31 — a backtested edge is evidence
+        # exactly as a forward-settled one is, and the tier is what
+        # already rules out a model recalling outcomes it was trained
+        # on). An untiered replay qualifies for none of these: unknown
+        # provenance resolves against the slice, exactly as a settlement
+        # ON the registration day does.
+        #
+        # The mining exception overrides all three. A pattern found by
+        # slicing a run's own rows can never cite that run, however good
+        # its tier — that is the whole of what the old
+        # backtests-are-in-sample default was protecting, kept explicit
+        # now that the default is gone.
+        if runs & mined_ids:
+            in_sample.append(o)
+        elif (
+            (runs & oos_ids)
+            or (day and str(day) > registered_day)
+            or (o.get("run_mode") == "backtest" and (runs & ab_run_ids))
+        ):
             oos.append(o)
         else:
             in_sample.append(o)
@@ -474,12 +609,17 @@ def segment_report(
     }
     raw_obs: list[dict] = []
     for mode in run_modes:
-        raw_obs.extend(
-            score.observations(
-                conn, theory_id, theory_version, mode, disposition,
-                run_id=run_id, pool=pool,
-            )
+        rows = score.observations(
+            conn, theory_id, theory_version, mode, disposition,
+            run_id=run_id, pool=pool,
         )
+        # The mode is known only here, where it was queried. Tagging it
+        # onto the row is what lets a slice tell a replayed settlement
+        # from one that came in forward -- and what lets a segment score
+        # disclose how much of its evidence is which.
+        for o in rows:
+            o["run_mode"] = mode
+        raw_obs.extend(rows)
 
     def _touched_by_tier_c(o: dict) -> bool:
         # ANY touching run, not just the first seer: a position's rollup
@@ -489,11 +629,12 @@ def segment_report(
         return any(tiers.get(r) == "C" for r in runs)
 
     obs = [o for o in raw_obs if not _touched_by_tier_c(o)]
+    ab_run_ids = frozenset(r for r, t in tiers.items() if t in ("A", "B"))
 
     evaluated: list[dict] = []
     ready_matchers: list[Callable[[Mapping], bool]] = []
     for srow in list_slices(conn, theory_id):
-        result, matcher = _evaluate(srow, obs)
+        result, matcher = _evaluate(srow, obs, ab_run_ids)
         evaluated.append(result)
         if result["ready"]:
             ready_matchers.append(matcher)

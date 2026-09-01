@@ -384,9 +384,18 @@ per segment, never on one row**:
   settled rows is registered with its mechanism (`hypothesis`) and
   provenance (`origin`); its credibility then counts only
   **out-of-sample** evidence — settlements after the registration day,
-  or runs explicitly designated at registration with the argument
-  recorded (tier C never counts). The data that suggested a slice can
-  never vouch for it; the split is enforced in code, not by discipline.
+  runs explicitly designated at registration, or **any tier A/B
+  backtest**. That last clause is the user ruling of 2026-08-31:
+  **backtested evidence counts exactly as forward evidence does**, for
+  a slice as much as for a whole theory, and a backtested edge is never
+  called weaker for being backtested. What still vouches for nothing:
+  tier C, a replay with no recorded tier, and the runs a slice was
+  **mined from** (`mined_from_run_ids`, declared at registration). The
+  data that suggested a slice can never vouch for it; the split is
+  enforced in code, not by discipline. Every segment score carries
+  `n_backtest` and every R1/R3 promotion discloses it — the user asked
+  to be told when a bet rests on replayed history, which is disclosure,
+  never a discount.
 - A slice drives ranking only past its **evidence gates** (≥ 10 event
   clusters and ≥ 5 settlement days, out of sample). Then the theory's
   evidence is **partitioned**: candidates matching a ready slice rank

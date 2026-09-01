@@ -2307,3 +2307,49 @@ the one reading recorded facts.
 **Next:** ruling on the insider_judgment attempt repair rule (stamp
 pre-fix screened attempts with their position's same-day interpretation;
 never touch attempts whose position was re-judged later).
+
+## 2026-08-31 - backtested evidence counts as forward evidence (user ruling 15)
+
+**Did:** Implemented the user's ruling that a backtested edge is evidence
+exactly as a forward-settled one is -- for a registered slice as much as
+for a whole theory. Before this, `tools/slices.py` filed every replay of
+already-settled history as `in_sample` "by default, however recently it
+ran", so a sub-theory could carry a clean tier-A/B backtested edge and
+still promote as R4 ACCRUING, invisible to the user. Now a tier A/B
+replay feeds a slice's out-of-sample score and its readiness gates with
+no designation required. Promotion key v1 -> v2; `mined_from_run_ids`
+added to `theory_slices`; `n_backtest` added to every segment score and
+disclosed on every R1/R3 promotion.
+
+**Learned:**
+
+1. **Flipping that default silently hands a slice back the rows that
+   suggested it.** The date test was doing double duty -- "is this
+   forward evidence" *and* "is this the data the hypothesis was fitted
+   to" -- and only the first was intended. `strong-moderate-no` proved
+   it live: with the new default and nothing declared, its out-of-sample
+   pool jumped from n=321 to **n=560** (166 clusters, 52 days) because
+   `backtest-2026-08-26-insider-judged-s200`, the run its own `origin`
+   names as having *generated the rule*, started vouching for it. The
+   guard had to become explicit at exactly the moment the default was
+   removed, not later.
+2. **The declaration can only ever restrict, which is what makes a
+   post-registration write safe on an immutable row.**
+   `slices.declare_mined_from` is additive and refuses withdrawal, so a
+   slice may give up more of its own evidence and never reclaim any.
+   That invariant is the whole argument for touching a registered slice
+   at all; without it this would be an edit to a pre-registration.
+   Declaring s200 restored `strong-moderate-no` to exactly the n=321 /
+   89 clusters / 43 days / +4.31 net this log has been citing all along
+   -- the registration now means in data what it always said in prose.
+3. **An untiered replay vouches for nothing.** Only a run recorded in
+   `backtest_runs` at tier A or B counts; unknown provenance resolves
+   against the slice, exactly as a settlement on the registration day
+   does. Without that, any row written with `run_mode='backtest'` and no
+   tier record would have become evidence for free.
+
+**Next:** `go` is being restructured into two phases (floor, then
+research) and phase 1's report contract is drafted; the ruling above is
+what makes a sub-theory's backtested edge reportable at all, which that
+draft depends on. `insider_judgment`'s orphaned-evidence escalation is
+unchanged and still needs a user call on adoption at v4.

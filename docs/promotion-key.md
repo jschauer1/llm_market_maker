@@ -1,6 +1,6 @@
 # The promotion key
 
-Key version: 1
+Key version: 2
 (Spec: `docs/superpowers/specs/2026-08-30-go-session-structure-design.md` §5.
 Evaluator: `tools/promotion.py`; `python -m tools.cli promote --help`.)
 
@@ -24,6 +24,20 @@ its rung. "Segment" always means the row `tools/slices.py::ranking_segment`
 returns under the chain pool — the ready-slice / complement / aggregate
 partition, never a hand-picked score row. All three rank inputs come from
 that one segment row.
+
+**Backtested evidence counts exactly as forward evidence does** (user
+ruling 2026-08-31). A segment's out-of-sample record pools settlements
+that came in forward with rows replayed by a tier A or tier B backtest,
+and the gates below are applied to that pool — for a registered slice as
+much as for a whole theory. A backtested edge is never described as
+weaker for being backtested; sample size is already priced into the
+t-statistic and into credibility, and charging for it twice taught
+theories to avoid the honest instrument. Three things still count for
+nothing: **tier C** (a model may recall outcomes it was trained on), a
+replay whose **tier was never recorded**, and the run a slice was
+**mined from** (`mined_from_run_ids` — a pattern cannot vouch for
+itself). R1 and R3 results **disclose** how much of the record behind
+them is replayed; that is disclosure, and no rung reads it.
 
 | rung | name | criteria |
 |---|---|---|
@@ -71,4 +85,12 @@ proposed amendment; it never overrides the rung in the report.
 
 ## Changelog
 
+- v2 (2026-08-31) — backtested evidence counts toward a segment's
+  gates exactly as forward evidence does, for a registered slice as
+  much as for a whole theory (user ruling). A tier A/B replay no
+  longer has to be designated at registration; what is declared
+  instead is the run a slice was *mined from*, which never vouches
+  for it. Tier C still counts for nothing, and so does a replay with
+  no recorded tier. R1/R3 results now disclose how much of the record
+  behind them is replayed. Rungs and their order are unchanged.
 - v1 (2026-08-30) — initial six rungs, per the go-session-structure spec.

@@ -21,7 +21,7 @@ from typing import Mapping
 
 from tools import ledger, rank, sizing, slices, theories
 
-KEY_VERSION = 1
+KEY_VERSION = 2
 
 RUNGS = {
     "R1": "RECOMMENDED",
@@ -198,6 +198,18 @@ def promote(
     reasons: list[str] = []
     if seg.get("note"):
         reasons.append(seg["note"])
+    # Disclosure, never a discount: a backtested edge counts exactly as a
+    # forward-settled one (ruling 2026-08-31), and no rung below reads
+    # this. It is here because the user asked to be told when the record
+    # promoting a bet is replayed history rather than settlements that
+    # came in forward.
+    n_backtest = seg_score.get("n_backtest") or 0
+    if n_backtest:
+        rows_total = seg_score.get("n") or 0
+        reasons.append(
+            f"evidence is {n_backtest}/{rows_total} rows replayed from "
+            "backtest history (tier A/B; counts as evidence in full)"
+        )
 
     def ranked(claimed):
         return rank.ranked_edge(claimed, n, cal, mean_claimed)

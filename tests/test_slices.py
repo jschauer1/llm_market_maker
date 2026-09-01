@@ -155,10 +155,11 @@ def test_retire_requires_a_reason_and_happens_once(conn):
 
 
 def test_oos_split_by_settlement_day_designation_and_tier(conn):
-    """The core discipline: an outcome unknowable at registration
-    (settled after it) or an explicitly designated run vouches for a
-    slice; everything else is in-sample, and tier C vouches for
-    nothing."""
+    """The core discipline: a row vouches for a slice when it is
+    evidence rather than the data that suggested it — settled after
+    registration, designated at registration, or replayed by a tier A/B
+    backtest (ruling 2026-08-31). A live row settled on or before the
+    registration day does not, and tier C vouches for nothing."""
     score.record_backtest_run(conn, "bt-oos", "t", 1, tier="B")
     score.record_backtest_run(conn, "bt-in", "t", 1, tier="B")
     score.record_backtest_run(conn, "bt-c", "t", 1, tier="C")
@@ -178,8 +179,9 @@ def test_oos_split_by_settlement_day_designation_and_tier(conn):
     # Designated run -> out of sample despite historical settlement.
     _settled(conn, "KXC-1", day="2026-06-01", run_id="bt-oos",
              run_mode="backtest", resolved="2026-06-05T00:00:00Z")
-    # Undesignated backtest over settled history -> in sample BY
-    # DEFAULT, however recently the replay ran.
+    # Undesignated tier-B backtest -> out of sample. A replayed edge is
+    # evidence exactly as a forward-settled one is; the tier is what
+    # rules out a model recalling outcomes it was trained on.
     _settled(conn, "KXD-1", day="2026-06-02", run_id="bt-in",
              run_mode="backtest", resolved="2026-06-06T00:00:00Z")
     # Tier C -> excluded from every segment.
@@ -191,14 +193,114 @@ def test_oos_split_by_settlement_day_designation_and_tier(conn):
 
     report = slices.segment_report(conn, "t")
     entry = report["slices"][0]
-    assert entry["oos"]["n"] == 2, "KXA (forward) + KXC (designated)"
-    assert entry["in_sample"]["n"] == 3, "KXB + KXG + KXD"
+    assert entry["oos"]["n"] == 3, (
+        "KXA (forward) + KXC (designated) + KXD (tier-B replay)"
+    )
+    assert entry["in_sample"]["n"] == 2, (
+        "KXB (settled pre-registration) + KXG (settled ON it)"
+    )
     assert report["tier_c_excluded_rows"] == 1
     assert report["aggregate"]["n"] == 6, "everything but the tier-C row"
     assert entry["ready"] is False
     assert report["complement"] is None, (
         "no ready slice -> no partition; rank on the aggregate as before"
     )
+
+
+def test_an_undesignated_tier_ab_backtest_counts_as_out_of_sample(conn):
+    """User ruling 2026-08-31: a backtested edge is evidence exactly as
+    a forward-settled one is. A tier A/B replay no longer has to be
+    hand-designated at registration to reach the credibility path."""
+    score.record_backtest_run(conn, "bt-plain", "t", 1, tier="B")
+    _register(conn)
+
+    _settled(conn, "KXD-1", day="2026-06-02", run_id="bt-plain",
+             run_mode="backtest", resolved="2026-06-06T00:00:00Z")
+
+    entry = slices.segment_report(conn, "t")["slices"][0]
+    assert entry["oos"]["n"] == 1
+    assert entry["in_sample"]["n"] == 0
+
+
+def test_the_run_a_slice_was_mined_from_never_vouches_for_it(conn):
+    """The one exception the ruling keeps: a pattern found by slicing a
+    run's own rows cannot cite that run as its evidence."""
+    score.record_backtest_run(conn, "bt-mine", "t", 1, tier="B")
+    score.record_backtest_run(conn, "bt-confirm", "t", 1, tier="B")
+    _register(conn, mined_from_run_ids=["bt-mine"])
+
+    _settled(conn, "KXM-1", day="2026-06-02", run_id="bt-mine",
+             run_mode="backtest", resolved="2026-06-06T00:00:00Z")
+    _settled(conn, "KXN-1", day="2026-06-03", run_id="bt-confirm",
+             run_mode="backtest", resolved="2026-06-07T00:00:00Z")
+
+    entry = slices.segment_report(conn, "t")["slices"][0]
+    assert entry["oos"]["n"] == 1, "the confirming replay counts"
+    assert entry["in_sample"]["n"] == 1, "the mining replay never does"
+
+
+def test_a_mining_run_can_be_declared_after_registration(conn):
+    """Slices registered before the 2026-08-31 ruling documented their
+    mining run only in `origin` prose, because the field did not exist —
+    and the old default excluded every replay anyway. Declaring it later
+    restores the exclusion the registration always meant."""
+    score.record_backtest_run(conn, "bt-mine", "t", 1, tier="B")
+    _register(conn)
+    _settled(conn, "KXM-1", day="2026-06-02", run_id="bt-mine",
+             run_mode="backtest", resolved="2026-06-06T00:00:00Z")
+    assert slices.segment_report(conn, "t")["slices"][0]["oos"]["n"] == 1
+
+    slices.declare_mined_from(conn, "t", "strong-moderate-no", ["bt-mine"])
+
+    entry = slices.segment_report(conn, "t")["slices"][0]
+    assert entry["oos"]["n"] == 0
+    assert entry["in_sample"]["n"] == 1
+
+
+def test_a_declared_mining_run_can_never_be_withdrawn(conn):
+    """The declaration only ever restricts a slice's evidence, which is
+    what makes setting it after registration safe at all. Removing one
+    would hand a slice back the rows that suggested it."""
+    _register(conn, mined_from_run_ids=["bt-mine"])
+
+    with pytest.raises(ValueError, match="never withdrawn"):
+        slices.declare_mined_from(conn, "t", "strong-moderate-no", [])
+
+    slices.declare_mined_from(conn, "t", "strong-moderate-no", ["bt-other"])
+    row = slices.get_slice(conn, "t", "strong-moderate-no")
+    assert sorted(json.loads(row["mined_from_run_ids"])) == [
+        "bt-mine", "bt-other"
+    ], "declaring is additive — a second call widens the exclusion"
+
+
+def test_a_backtest_run_with_no_recorded_tier_does_not_vouch(conn):
+    """Only a run whose tier was actually recorded as A or B counts. An
+    untiered replay has unknown provenance, and unknown resolves against
+    the slice exactly as an ambiguous settlement date does."""
+    _register(conn)
+
+    _settled(conn, "KXU-1", day="2026-06-02", run_id="bt-untiered",
+             run_mode="backtest", resolved="2026-06-06T00:00:00Z")
+
+    entry = slices.segment_report(conn, "t")["slices"][0]
+    assert entry["oos"]["n"] == 0
+    assert entry["in_sample"]["n"] == 1
+
+
+def test_segment_score_discloses_how_much_evidence_is_backtested(conn):
+    """The user must be told when a bet rests on replayed history rather
+    than on settlements that came in forward."""
+    score.record_backtest_run(conn, "bt-plain", "t", 1, tier="A")
+    _register(conn)
+
+    _settled(conn, "KXD-1", day="2026-06-02", run_id="bt-plain",
+             run_mode="backtest", resolved="2026-06-06T00:00:00Z")
+    _settled(conn, "KXA-1", day="2026-08-27",
+             resolved="2026-09-01T00:00:00Z")
+
+    entry = slices.segment_report(conn, "t")["slices"][0]
+    assert entry["oos"]["n"] == 2
+    assert entry["oos"]["n_backtest"] == 1, "one replayed, one forward"
 
 
 def test_designation_reaches_a_position_first_seen_by_a_screen_run(conn):

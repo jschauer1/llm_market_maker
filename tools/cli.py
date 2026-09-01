@@ -311,6 +311,7 @@ def _cmd_slices(args) -> int:
                 predicate=json.loads(args.predicate),
                 hypothesis=args.hypothesis, origin=args.origin,
                 oos_run_ids=args.oos_run or (),
+                mined_from_run_ids=args.mined_from_run or (),
                 priority=args.priority,
                 registered_at=args.registered_at,
             )
@@ -787,6 +788,16 @@ def build_parser() -> argparse.ArgumentParser:
     slreg.add_argument(
         "--oos-run", dest="oos_run", action="append", default=[],
         help="run_id designated out-of-sample at registration (repeatable)",
+    )
+    slreg.add_argument(
+        "--mined-from-run", dest="mined_from_run", action="append", default=[],
+        help=(
+            "run_id whose rows SUGGESTED this slice; excluded from its "
+            "credibility permanently, whatever its tier (repeatable). A "
+            "tier A/B backtest otherwise counts as evidence by default, so "
+            "this is the declaration that keeps a pattern from vouching "
+            "for itself"
+        ),
     )
     slreg.add_argument("--priority", type=int, default=0)
     slreg.add_argument(

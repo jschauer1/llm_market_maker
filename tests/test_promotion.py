@@ -82,6 +82,33 @@ def test_measured_segment_recommends(conn):
     assert result.rank_inputs["n"] >= 10
 
 
+def test_a_recommendation_resting_on_replayed_history_says_so(conn):
+    """Ruling 2026-08-31: backtested evidence promotes exactly as
+    forward evidence does — and the user is told when it did."""
+    score.record_backtest_run(conn, "bt-1", "t", 1, tier="A")
+    for i in range(12):
+        ticker = f"BT{i}"
+        _record(conn, ticker, run_id="bt-1", run_mode="backtest")
+        _settle(conn, ticker, "no",
+                resolved=f"2026-06-{(i % 6) + 1:02d}T00:00:00Z")
+
+    opp = _record(conn, "OPEN1")
+    result = promotion.promote(conn, opp)
+
+    assert result.rung == "R1", "a replayed edge promotes like any other"
+    assert any("backtest" in r.lower() for r in result.reasons), (
+        "the user must be told the evidence behind this is replayed"
+    )
+
+
+def test_a_recommendation_on_forward_evidence_makes_no_backtest_claim(conn):
+    _evidence(conn)
+    opp = _record(conn, "OPEN1")
+    result = promotion.promote(conn, opp)
+    assert result.rung == "R1"
+    assert not any("backtest" in r.lower() for r in result.reasons)
+
+
 def test_measured_against_suppresses_even_a_positive_claim(conn):
     _evidence(conn, win=False)            # measured and negative, past gates
     opp = _record(conn, "OPEN1", edge=6.0)

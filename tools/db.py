@@ -141,6 +141,12 @@ def init_db(conn: sqlite3.Connection) -> None:
     # `buckets.measured_gross` fails closed on unknown, so a legacy row
     # can never be mistaken for a measurement.
     _add_column_if_missing(conn, "bucket_rates", "n_days", "INTEGER")
+    # Additive and nullable: a slice registered before the 2026-08-31
+    # ruling declared no mining run because it did not have to -- under
+    # the old default every backtest was in-sample anyway. NULL therefore
+    # means "nothing declared", which is exactly right for those rows:
+    # their oos_run_ids already say which replays were designated.
+    _add_column_if_missing(conn, "theory_slices", "mined_from_run_ids", "TEXT")
     # Additive and nullable for the same reason: a capture taken before the
     # event envelope was kept has an UNKNOWN mutually_exclusive, not a
     # false one. Reading absent as false loses real structural_arb

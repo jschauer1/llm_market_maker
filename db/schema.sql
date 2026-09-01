@@ -309,8 +309,15 @@ CREATE INDEX IF NOT EXISTS idx_judgment_runs_run
 -- oos_run_ids (JSON array) are the runs designated out-of-sample AT
 -- registration; the argument for why lives in `origin`, alongside the
 -- citation for any registered_at earlier than the row's created_at.
--- Everything else matching the predicate counts as in-sample unless its
--- decision date postdates registration -- see tools/slices.py.
+--
+-- mined_from_run_ids (JSON array) is the inverse, and since the
+-- 2026-08-31 user ruling it is the field carrying the discipline: a
+-- tier A/B backtest counts as evidence BY DEFAULT, exactly as a forward
+-- settlement does, so what must be declared is the run whose rows
+-- SUGGESTED the slice -- that run can never vouch for it. A live row
+-- settled on or before the registration day is still in-sample by the
+-- date test, and a backtest run with no recorded tier vouches for
+-- nothing -- see tools/slices.py.
 CREATE TABLE IF NOT EXISTS theory_slices (
     theory_id      TEXT NOT NULL REFERENCES theories(id),
     slug           TEXT NOT NULL,
@@ -319,6 +326,7 @@ CREATE TABLE IF NOT EXISTS theory_slices (
     origin         TEXT NOT NULL,
     registered_at  TEXT NOT NULL,
     oos_run_ids    TEXT,
+    mined_from_run_ids TEXT,
     priority       INTEGER NOT NULL DEFAULT 0,
     status         TEXT NOT NULL DEFAULT 'registered'
                    CHECK (status IN ('registered','retired')),
