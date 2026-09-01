@@ -116,10 +116,35 @@ nowhere on disk cannot be reviewed in a diff.
 The brief is deliberately thin. It hands over a session name, forbids git
 writes, requires a path manifest, and says *run `go`*. Everything else —
 orient, explore, choose the lane, stay in it — is `go`'s job and is not
-restated. The exploration phase in particular is left entirely alone:
-`go` calls it "the largest single lever in a session", and a supervisor
-that pre-assigned lanes would spend that lever to save itself some
-bookkeeping.
+restated.
+
+**Two things the brief and the spawn must never carry** (user ruling,
+2026-09-01):
+
+- **Any steer toward a lane, theory or ticket.** `go` calls the
+  exploration phase "the largest single lever in a session". A hint
+  spends that lever to save the supervisor some bookkeeping, and a hint
+  is worse than an order: it biases the choice without being visible as
+  a decision, so nothing downstream records that the lane was really the
+  supervisor's pick.
+- **Any description of the supervision itself** — no fleet, no slots, no
+  supervisor, nothing about what reads the report or decides what
+  happens next. A session told it is being watched writes for the
+  watcher: it reports to satisfy a reader rather than recording to
+  satisfy the repo. That is precisely the failure the conclusive test
+  screens for, and creating the incentive and then testing for it is a
+  worse design than not creating it.
+
+So a worker is contextualized by `go` and CLAUDE.md, which every session
+in this repo already runs on, and by nothing else. The supervisor adds a
+session name and steps back.
+
+One residual tell is accepted knowingly: the session name itself reads
+`fleet-w2-g3`. It stays because it is load-bearing — it makes a
+`lane status` row traceable to the spawn that made it and distinguishes a
+slot's occupants across generations — and because a name is an
+identifier rather than an explanation. Nothing in the brief tells a
+worker what it means.
 
 ### Conclusive is verified, not read
 

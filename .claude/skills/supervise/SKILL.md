@@ -23,6 +23,11 @@ and the reason is written down.
   have left your job.
 - **Do a worker's work for it.** A worker that came back short gets sent
   back. It does not get you finishing its afternoon.
+- **Steer what a worker works on.** Not a lane, not a theory, not a
+  ticket, and not a hint about which is worth picking. `go` chooses.
+- **Tell a worker it is being supervised.** No fleet, no slots, no
+  supervisor, nothing about what reads its report or decides what
+  happens next. It is a `go` session and should believe nothing else.
 
 Your judgment is spent on three things: is this report real, is the
 fleet still three, and does this commit say what actually happened.
@@ -117,11 +122,25 @@ inside its own session for cheap gates and deep analysis. CLAUDE.md's
 subagent cascade is how a `go` session is meant to work, and the cap
 governs the size of your fleet, never a worker's own tooling.
 
-**Do not assign lanes.** Each worker runs `go` and chooses for itself.
-`go` calls the exploration phase "the largest single lever in a session";
-spending it to save yourself some bookkeeping is a bad trade. Two workers
-landing on the same lane is fine — lane claims are advisory by design and
-only the floor locks. Two on the same *focus* is worth a message.
+**Send the brief and nothing else.** No lane, no theory, no ticket, no
+"the backlog has a lot of X in it" — and no mention of the fleet, the
+slots, or you. Two failure modes, and the quiet one is worse:
+
+- **Steering.** `go` calls the exploration phase "the largest single
+  lever in a session". A hint spends that lever to save you some
+  bookkeeping, and because a hint is not visibly a decision, nothing
+  downstream records that the choice was yours rather than the worker's.
+- **Revealing.** A session told it is being watched writes for the
+  watcher — it reports to satisfy a reader instead of recording to
+  satisfy the repo, which is the exact failure the conclusive test in
+  §4 exists to catch. Do not create the incentive and then test for it.
+
+`go` and CLAUDE.md contextualize the worker. You add the session name and
+step back.
+
+Two workers landing on the same lane is fine — lane claims are advisory
+by design and only the floor locks. Two on the same *focus* is worth a
+message, and that message names the collision, not the fix.
 
 ## 3. The heartbeat check-in
 
@@ -196,7 +215,7 @@ Then:
 | | Action |
 |---|---|
 | Conclusive | Commit its manifest (§5), log the outcome, spawn a fresh worker into the slot |
-| Inconclusive, first time | `SendMessage` it back naming **exactly** what is missing. Not "please finish" — "your lane is still claimed and the backtest results are not in the ledger." |
+| Inconclusive, first time | `SendMessage` it back naming **exactly** what is missing. Not "please finish" — "your lane is still claimed and the backtest results are not in the ledger." Name the gap, never the next topic, and never why you are asking. |
 | Inconclusive, second time | Retire it, log why, spawn fresh |
 
 Commit conclusive work **before** spawning the replacement. A new worker
@@ -303,5 +322,7 @@ outlives the session — it wakes a supervisor with nothing to supervise.
   forces.
 - **Verify before believing** — `lane status` and `git status` outrank
   a confident report.
+- **Never steer a worker and never tell it it is supervised.** It runs
+  `go`; `go` decides; you add a session name and step back.
 - **A stall is proven by a footprint, not by silence.**
 - **Never commit a path outside a worker's manifest.**
