@@ -981,10 +981,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="comma-separated evidence pool; tier-C rows are always excluded",
     )
     slrep.add_argument(
-        "--pool", choices=("version", "chain"), default="version",
+        "--pool", choices=("version", "chain"), default="chain",
         help=(
-            "'version' (default) scopes to theory_version alone, exactly "
-            "as before this flag existed. 'chain' widens every segment -- "
+            "'chain' (default) pools every version the evidence carries "
+            "across, which is what a bump does unless it declared itself "
+            "breaking. 'version' scopes to theory_version alone -- "
             "aggregate, each slice's oos/in_sample, and the complement -- "
             "to every version a proven carry bump links back to (spec "
             "2.8); the response's chain_versions key shows what pooled, "
@@ -995,9 +996,9 @@ def build_parser() -> argparse.ArgumentParser:
     slmatch.add_argument("opportunity_id", type=int)
     slmatch.add_argument("--disposition", default="all")
     slmatch.add_argument(
-        "--pool", choices=("version", "chain"), default="version",
+        "--pool", choices=("version", "chain"), default="chain",
         help=(
-            "same widening as 'slices report --pool chain', threaded "
+            "same pooling as 'slices report', threaded "
             "into the segment this candidate ranks on"
         ),
     )

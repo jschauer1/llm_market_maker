@@ -29,11 +29,11 @@ def conn():
 def _settled(
     c, ticker, *, outcome="no", confidence="strong", price=0.85,
     day="2026-08-27", run_id="live", run_mode="live", result=None,
-    resolved="2026-09-01T00:00:00Z", extra=None,
+    resolved="2026-09-01T00:00:00Z", extra=None, theory_version=1,
 ):
     """One settled single-leg position with one attempt."""
     ledger.record_opportunity(
-        c, theory_id="t", theory_version=1, kalshi_ticker=ticker,
+        c, theory_id="t", theory_version=theory_version, kalshi_ticker=ticker,
         outcome=outcome, entry_price=price, edge_pts_net=4.0,
         edge_basis="model", run_mode=run_mode, run_id=run_id,
         decision_date=day, confidence=confidence, rationale="x",
@@ -454,3 +454,41 @@ def test_slice_scores_agree_with_compute_score_on_the_same_rows(conn):
     entry = report["slices"][0]
     assert entry["oos"]["n"] + entry["in_sample"]["n"] + \
         report["complement"]["n"] == whole["n"]
+
+
+def test_segment_report_pools_the_version_chain_by_default(conn):
+    """After the 2026-08-31 ruling a bump CONTINUES the evidence, so
+    version-scoping is the special case and the chain is the default.
+
+    Left as it was, the default told a session a proven sub-theory was
+    `ready: False` on one row -- while the chain-pooled truth was 328 rows
+    past every gate. A tool that reports a ready sub-theory as unready is
+    how an agent concludes the sub-theory mechanism does not work and
+    starts folding its rule into the parent screen.
+    """
+    _register(conn)
+    for i in range(12):
+        _settled(conn, f"V1{i}-X",
+                 resolved=f"2026-09-{(i % 6) + 1:02d}T00:00:00Z")
+    theories.bump_version(conn, "t", justification="tightened a threshold")
+    _settled(conn, "V2A-X", resolved="2026-09-20T00:00:00Z",
+             theory_version=2)
+
+    report = slices.segment_report(conn, "t", 2)
+    assert report["slices"][0]["oos"]["n"] == 13, (
+        "the default must see the evidence the chain carries forward"
+    )
+    assert report["slices"][0]["ready"] is True
+
+
+def test_segment_report_can_still_be_scoped_to_one_version(conn):
+    _register(conn)
+    for i in range(12):
+        _settled(conn, f"V1{i}-X",
+                 resolved=f"2026-09-{(i % 6) + 1:02d}T00:00:00Z")
+    theories.bump_version(conn, "t", justification="tightened a threshold")
+    _settled(conn, "V2A-X", resolved="2026-09-20T00:00:00Z",
+             theory_version=2)
+
+    report = slices.segment_report(conn, "t", 2, pool="version")
+    assert report["slices"][0]["oos"]["n"] == 1

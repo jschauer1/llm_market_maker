@@ -661,17 +661,17 @@ def test_ranking_segment_pool_chain_widens_the_segment_and_discloses_it(conn):
     )
     row = ledger.get_opportunity(conn, opp_id)
 
-    # Default (pool="version"): only v2's own row counts -- distinct
-    # ticker prefixes (KXALPHA vs KXBETA) so n_clusters, not just n,
-    # actually differs between the two calls.
-    default_seg = slices.ranking_segment(conn, row)
-    assert default_seg["segment"] == "aggregate"
-    assert default_seg["rank_inputs"]["n"] == 1
-    assert "chain_versions" not in default_seg
+    # pool="version": only v2's own row counts -- distinct ticker
+    # prefixes (KXALPHA vs KXBETA) so n_clusters, not just n, actually
+    # differs between the two calls.
+    scoped_seg = slices.ranking_segment(conn, row, pool="version")
+    assert scoped_seg["segment"] == "aggregate"
+    assert scoped_seg["rank_inputs"]["n"] == 1
+    assert "chain_versions" not in scoped_seg
 
-    # pool="chain": v1's proven-carry predecessor pools in too, and the
-    # widening is disclosed on the returned dict itself.
-    chained_seg = slices.ranking_segment(conn, row, pool="chain")
+    # Default (pool="chain", since the 2026-08-31 ruling): v1 pools in
+    # too, and the widening is disclosed on the returned dict itself.
+    chained_seg = slices.ranking_segment(conn, row)
     assert chained_seg["rank_inputs"]["n"] == 2
     assert chained_seg["chain_versions"] == [1, 2]
 

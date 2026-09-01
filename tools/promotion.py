@@ -348,7 +348,11 @@ def orphaned_evidence(
     orphans: list[dict] = []
     seen: set[str] = set()
     for version in versions:
-        report = slices.segment_report(conn, theory_id, version)
+        # Deliberately per-version: this scan is looking at versions
+        # OUTSIDE the current chain, so pooling would fold them back
+        # into the pool whose readiness we just measured.
+        report = slices.segment_report(
+            conn, theory_id, version, pool="version")
         for s in report["slices"]:
             if (s["status"] == "registered" and s["ready"]
                     and s["slug"] not in ready_now

@@ -380,16 +380,15 @@ def test_slices_report_pool_chain_pools_across_a_proven_carry(dbpath, capsys):
     )
     conn.close()
 
-    # Default (--pool version, implicit): v1's proven-carry predecessor
-    # never joins.
-    code, payload = _run(capsys, "--db", dbpath, "slices", "report", "t1")
+    # --pool version: v1's predecessor never joins.
+    code, payload = _run(capsys, "--db", dbpath, "slices", "report", "t1",
+                         "--pool", "version")
     assert payload["aggregate"]["n"] == 1
     assert "chain_versions" not in payload
 
-    # --pool chain: the proven carry pools v1's row in.
-    code, payload = _run(
-        capsys, "--db", dbpath, "slices", "report", "t1", "--pool", "chain",
-    )
+    # Default (--pool chain since the 2026-08-31 ruling): the carry pools
+    # v1's row in.
+    code, payload = _run(capsys, "--db", dbpath, "slices", "report", "t1")
     assert payload["aggregate"]["n"] == 2
     assert payload["chain_versions"] == [1, 2]
 
@@ -420,20 +419,20 @@ def test_slices_match_pool_chain_pools_across_a_proven_carry(dbpath, capsys):
     )
     conn.close()
 
-    # Default (--pool version, implicit): v1's proven-carry predecessor
-    # never joins the ranking segment -- distinct ticker prefixes so
-    # n_clusters (what rank_inputs reports) really does differ below.
+    # --pool version: v1's predecessor never joins the ranking segment
+    # -- distinct ticker prefixes so n_clusters (what rank_inputs
+    # reports) really does differ below.
     code, payload = _run(
         capsys, "--db", dbpath, "slices", "match", str(opp_id2),
+        "--pool", "version",
     )
     assert payload["rank_inputs"]["n"] == 1
     assert "chain_versions" not in payload
 
-    # --pool chain: the proven carry pools v1's row in, and the ranking
-    # segment discloses it.
+    # Default (--pool chain since the 2026-08-31 ruling): the carry pools
+    # v1's row in, and the ranking segment discloses it.
     code, payload = _run(
         capsys, "--db", dbpath, "slices", "match", str(opp_id2),
-        "--pool", "chain",
     )
     assert payload["rank_inputs"]["n"] == 2
     assert payload["chain_versions"] == [1, 2]

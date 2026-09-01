@@ -570,7 +570,7 @@ def segment_report(
     disposition: str = "all",
     run_modes: tuple[str, ...] = DEFAULT_RUN_MODES,
     run_id: str | None = None,
-    pool: str = "version",
+    pool: str = "chain",
 ) -> dict:
     """Every ranking segment of one theory, from one shared evidence pool.
 
@@ -671,7 +671,7 @@ def ranking_segment(
     disposition: str = "all",
     run_modes: tuple[str, ...] = DEFAULT_RUN_MODES,
     report: dict | None = None,
-    pool: str = "version",
+    pool: str = "chain",
 ) -> dict:
     """Which evidence row ranks this candidate, and why.
 
