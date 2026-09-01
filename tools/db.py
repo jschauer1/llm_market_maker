@@ -134,6 +134,7 @@ def init_db(conn: sqlite3.Connection) -> None:
     _migrate_theories(conn)
     _migrate_judgment_runs(conn)
     _migrate_theory_versions(conn)
+    _migrate_lane_claims(conn)
     _add_column_if_missing(
         conn, "theories", "uses_llm_judgment", "INTEGER NOT NULL DEFAULT 0"
     )
@@ -449,6 +450,56 @@ def _migrate_theory_versions(conn: sqlite3.Connection) -> None:
                 """
             )
             conn.execute("DROP TABLE theory_versions_legacy")
+            conn.commit()
+        except BaseException:
+            conn.rollback()
+            raise
+    finally:
+        conn.execute("PRAGMA legacy_alter_table = OFF")
+        conn.execute("PRAGMA foreign_keys = ON")
+
+
+def _migrate_lane_claims(conn: sqlite3.Connection) -> None:
+    """Widen an old `lane_claims` lane CHECK to accept 'find-theories'.
+
+    Databases created before the find-theories lane existed carry the
+    four-value CHECK in their DDL, and `CREATE TABLE IF NOT EXISTS` will
+    not touch an existing table. Rebuilt exactly as
+    `_migrate_theory_versions` rebuilds its own; every legacy row is still
+    valid under the wider set.
+    """
+    row = conn.execute(
+        "SELECT sql FROM sqlite_master WHERE type='table'"
+        " AND name='lane_claims'"
+    ).fetchone()
+    if row is None or "find-theories" in (row[0] or ""):
+        return
+
+    ddl = schema_statement("lane_claims")
+    conn.commit()
+    conn.execute("PRAGMA foreign_keys = OFF")
+    conn.execute("PRAGMA legacy_alter_table = ON")
+    try:
+        conn.execute("BEGIN")
+        try:
+            conn.execute(
+                "ALTER TABLE lane_claims RENAME TO lane_claims_legacy")
+            conn.execute(ddl)
+            conn.execute(
+                """
+                INSERT INTO lane_claims
+                    (id, lane, session, focus, claimed_at, released_at,
+                     summary, joined, join_reason)
+                SELECT id, lane, session, focus, claimed_at, released_at,
+                       summary, joined, join_reason
+                FROM lane_claims_legacy
+                """
+            )
+            conn.execute("DROP TABLE lane_claims_legacy")
+            conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_lane_claims_open"
+                " ON lane_claims(lane, released_at)"
+            )
             conn.commit()
         except BaseException:
             conn.rollback()

@@ -101,7 +101,8 @@ Both are normal.
 `propose-theory`. Settling and scoring → `score-theories`. Comparing →
 `compare-theories`. A session → `go`, which chooses one lane and hands
 off: today's floor → `go-floor`, building out an existing theory →
-`go-theory`, getting a new thesis running → `go-new-theory`, the repo
+`go-theory`, getting a new thesis running → `go-new-theory`, going looking for
+theses nobody has proposed → `go-find-theories`, the repo
 itself → `go-maintenance`. The skills carry rules this file does
 not repeat, loaded at the moment they bind. **Prefer loading a skill to not
 loading one**: the cost of reading one you did not strictly need is a few

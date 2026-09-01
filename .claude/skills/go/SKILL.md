@@ -8,19 +8,21 @@ description: Start an autonomous research session — orient on the floor, the l
 You are the researcher. Nobody is going to tell you what to test.
 
 **This skill does not do research. It picks what you will do, and hands
-off.** Four lanes, each with its own skill:
+off.** Five lanes, each with its own skill:
 
 | lane | skill | what it is |
 |---|---|---|
 | `floor` | `go-floor` | today's floor: every theory run against today's board, and the result reported |
 | `theory` | `go-theory` | continue building out one existing theory |
-| `new-theory` | `go-new-theory` | take a new hypothesis from idea to running theory |
+| `new-theory` | `go-new-theory` | take one hypothesis from idea to running theory |
+| `find-theories` | `go-find-theories` | go looking for theses nobody has proposed, and file them |
 | `maintenance` | `go-maintenance` | the repo itself: tooling, migrations, docs, cleanup |
 
 **You will do exactly one of them, and you will stay in it.** That is the
-whole design. Four half-finished threads is the failure this replaces;
-the ticket backlog is what makes finishing one affordable, because
-everything you notice and do not do gets written down instead of lost.
+whole design. A session that touches all five and finishes none is the
+failure this replaces; the ticket backlog is what makes finishing one
+affordable, because everything you notice and do not do gets written
+down instead of lost.
 
 ## 1. Orient — four commands
 
@@ -52,6 +54,10 @@ Otherwise, choose on what will change a decision. Roughly:
   usually the highest-value work on the board.
 - **A specced idea nobody has built, or a pattern the floor keeps
   surfacing** → `new-theory`.
+- **The `new-theory` backlog is thin or picked over** → `find-theories`.
+  The repo runs out of ideas long before it runs out of capacity to test
+  them, and a session that fills the backlog is worth more than one that
+  builds the least-bad thing left in it.
 - **Tooling that is wrong, missing, or lying** → `maintenance`. Take it
   seriously: everything else runs on it.
 - **Nothing in the backlog is worth doing** → say so and pick the lane
@@ -88,7 +94,7 @@ belongs to that skill** — this one is finished once you have chosen.
 Every lane except maintenance is **focused**: you work the thing you
 picked until it is done or genuinely blocked.
 
-- **`theory`, `new-theory`, `floor`** — do not pivot. Something else that
+- **Every lane but maintenance** — do not pivot. Something else that
   needs doing gets a **ticket**, not your attention. The one exception:
   a maintenance problem that makes progress *truly impossible* — not
   annoying, not slower, impossible. Then file the ticket, say plainly in

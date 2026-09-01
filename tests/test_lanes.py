@@ -120,3 +120,14 @@ def test_the_same_theory_twice_is_held_like_any_other_lane(conn):
 def test_an_unknown_lane_is_refused(conn):
     with pytest.raises(ValueError, match="lane"):
         lanes.claim(conn, "wandering", "sess-a")
+
+
+def test_find_theories_is_a_lane(conn):
+    """Sourcing theses is not the same work as building one. go-new-theory
+    takes ONE thesis all the way to running; this lane goes looking for
+    theses nobody has proposed and files them. Different output, different
+    session, so it needs its own claim."""
+    claim = lanes.claim(conn, "find-theories", "sess-a",
+                        now="2026-09-01T01:00:00Z")
+    assert claim["lane"] == "find-theories"
+    assert "find-theories" in lanes.status(conn, now="2026-09-01T01:30:00Z")

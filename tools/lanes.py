@@ -1,6 +1,6 @@
 """Lane claims — who is working on what, visible but not locked.
 
-`go` gives a session four lanes and asks it to pick one and stay in it.
+`go` gives a session five lanes and asks it to pick one and stay in it.
 This records the choice so every other session can see it: a peer
 choosing its own lane can tell that maintenance is covered and go find
 something else, without anyone having to send a message about it.
@@ -30,7 +30,7 @@ from tools.db import utcnow, write
 #: doing-what is complete, but the floor's own exclusivity lives in
 #: `tools/floor.py` -- claiming the floor lane does not substitute for
 #: `floor.claim`, which is what actually enforces once-a-day.
-LANES = ("floor", "theory", "new-theory", "maintenance")
+LANES = ("floor", "theory", "new-theory", "find-theories", "maintenance")
 
 #: How long a lane claim stands before it is treated as abandoned. Longer
 #: than the floor's, because a research lane is a whole session's work
