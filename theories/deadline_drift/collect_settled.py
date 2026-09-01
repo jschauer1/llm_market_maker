@@ -79,7 +79,7 @@ def _save(name: str, obj) -> None:
     Two failures made this necessary on 2026-09-01, both from the plain
     `write_text` this replaces.
 
-    **OneDrive.** The repo lives under `OneDrive\Documents`, and the
+    **OneDrive.** The repo lives under `OneDrive/Documents`, and the
     sync client intermittently holds a handle on a file being rewritten:
     a walk died at 874/960 series with `OSError: [Errno 22] Invalid
     argument` on open-for-write. It cost nothing that time only because
