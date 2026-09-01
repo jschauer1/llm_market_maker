@@ -1,0 +1,830 @@
+{
+ "series": {
+  "KXLEAVITTVIEW": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXORDPAX": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXORBOFHARVEST": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXME": {
+   "n_settled": 1,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 1
+  },
+  "KX30YMORTW": {
+   "n_settled": 13,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 11
+  },
+  "KXCANEUINFL": {
+   "n_settled": 1,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXAAAGASMINFL": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCEOAMAZON": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXNYT": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXNERIVISITS": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXRATECUTCOUNT": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCPICOREHEAD": {
+   "n_settled": 2,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXBRINNW": {
+   "n_settled": 4,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 4
+  },
+  "KXBBP418": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXPBRA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXJFKFLYCAN": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXACQUANNOUNCEBANCOS": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXWMTA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXDOTPLOT": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXECONSTATCPIYOY": {
+   "n_settled": 52,
+   "n_obs": 22,
+   "written": 11,
+   "no_candles": 0,
+   "below_floor": 5
+  },
+  "KXBEPIROVIRSEN": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXFINDEXACCOUNT": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXA100Q": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHLENDHALT": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXDASHA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXTECHRANKLISTAI2": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXTRUFGAS": {
+   "n_settled": 15,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 15
+  },
+  "KXAISPEND10": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXPRICEINCREASESPOTIFYDUO": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXHIMSA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXUST10AD": {
+   "n_settled": 414,
+   "n_obs": 2,
+   "written": 2,
+   "no_candles": 0,
+   "below_floor": 129
+  },
+  "KXJOINUBER": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXPAGAS": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXDG": {
+   "n_settled": 7,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 5
+  },
+  "KXCVXCC": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXTARIFFREVENUE": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCANCTRTARIFF": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXUSDEBTMON": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXIPOKLARNA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXNEXTATLFED": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXPATH": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXSEA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLUCEDELIVERY": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXESPNAPP": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXSPOT": {
+   "n_settled": 23,
+   "n_obs": 4,
+   "written": 2,
+   "no_candles": 0,
+   "below_floor": 5
+  },
+  "KXMNST": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXTRUFEGGS": {
+   "n_settled": 10,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 10
+  },
+  "KXSAVTEU": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCBDECISIONKOREA": {
+   "n_settled": 10,
+   "n_obs": 10,
+   "written": 6,
+   "no_candles": 0,
+   "below_floor": 2
+  },
+  "KXUSRETAIL": {
+   "n_settled": 17,
+   "n_obs": 11,
+   "written": 8,
+   "no_candles": 0,
+   "below_floor": 3
+  },
+  "KXMARA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXUST10": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXKYCOAL": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXYUMTBFT": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXOFAC": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXA100MS": {
+   "n_settled": 14,
+   "n_obs": 4,
+   "written": 4,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXUCTUITION": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXTECHLAYOFF": {
+   "n_settled": 1,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 1
+  },
+  "KXTSLAA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXSNOWA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXRIVNA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXKYBOURBONBARRELS": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXGTLBA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCPINDEX": {
+   "n_settled": 38,
+   "n_obs": 13,
+   "written": 8,
+   "no_candles": 0,
+   "below_floor": 3
+  },
+  "KXNVVISIT": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXBOSHOMEVAL": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXINSTAGRAMAPP": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXAAAGASED": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXRELY": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXALK": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXPAYROLLS": {
+   "n_settled": 13,
+   "n_obs": 29,
+   "written": 11,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXFSLRA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXRDDTA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXBALLMERNW": {
+   "n_settled": 5,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 5
+  },
+  "KXWHA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXUSDMXNAW": {
+   "n_settled": 170,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 169
+  },
+  "KXCAKEA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXTSLAYOFF": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXNFLXAPP": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXDOL": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXSAGDPQOQ": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXGDPYEAR": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXMANHATTANRENT": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXEURUSDAW": {
+   "n_settled": 100,
+   "n_obs": 18,
+   "written": 18,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCTCQ": {
+   "n_settled": 16,
+   "n_obs": 16,
+   "written": 8,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXILNUCLEAR": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXNEWROLEOPENDOOR": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXEURUSDHA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXZYNPOS": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXSTEALTHSHARE": {
+   "n_settled": 11,
+   "n_obs": 1,
+   "written": 1,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCEOGS": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXPATHA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCRITICALITY": {
+   "n_settled": 8,
+   "n_obs": 12,
+   "written": 5,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXECONSTATCORECPIYOY": {
+   "n_settled": 32,
+   "n_obs": 15,
+   "written": 9,
+   "no_candles": 0,
+   "below_floor": 4
+  },
+  "KXWENCC": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXYUMA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXUSDIRR": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXCDEA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXDIESELMON": {
+   "n_settled": 21,
+   "n_obs": 1,
+   "written": 1,
+   "no_candles": 0,
+   "below_floor": 20
+  },
+  "KXTOBACCPI": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXAISPEND1": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXSP500REMOVEQ": {
+   "n_settled": 2,
+   "n_obs": 1,
+   "written": 1,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXAUTODELQ": {
+   "n_settled": 8,
+   "n_obs": 3,
+   "written": 3,
+   "no_candles": 0,
+   "below_floor": 5
+  },
+  "KXHIVISITORSPEND": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXLAUNCHES": {
+   "n_settled": 8,
+   "n_obs": 8,
+   "written": 6,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXPPIVSCPI": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXWCPRICE": {
+   "n_settled": 69,
+   "n_obs": 74,
+   "written": 49,
+   "no_candles": 4,
+   "below_floor": 3
+  },
+  "KXNJDRONES": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXFACEBOOKAPP": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXQATARLNGPROD": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXWIMILK": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXSTRIPEIPO": {
+   "n_settled": 1,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXINTC": {
+   "n_settled": 9,
+   "n_obs": 6,
+   "written": 3,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXKLARNAA": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXDIESELW": {
+   "n_settled": 94,
+   "n_obs": 12,
+   "written": 11,
+   "no_candles": 0,
+   "below_floor": 34
+  },
+  "KXDIESELD": {
+   "n_settled": 619,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 235
+  },
+  "KXMOMFGEMP": {
+   "n_settled": 0,
+   "n_obs": 0,
+   "written": 0,
+   "no_candles": 0,
+   "below_floor": 0
+  },
+  "KXFAOFPI": {
+   "n_settled": 10,
+   "n_obs": 3,
+   "written": 1,
+   "no_candles": 0,
+   "below_floor": 7
+  }
+ }
+}

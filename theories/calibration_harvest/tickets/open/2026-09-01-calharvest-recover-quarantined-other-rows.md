@@ -22,3 +22,59 @@ WHAT IT IS WORTH. ~6,860 settled observations, roughly 69x the current corpus. A
 SUGGESTED SHAPE. A migration script, not a change to `forward_cells.load`: read the quarantined attempts, re-derive `domain` from `extra_json.series_ticker` + the category map, write the corrected cell into a NEW column or a new table rather than overwriting `rationale`/`extra_json` -- the old value is the audit trail for why the quarantine existed. Then `load` can prefer the corrected label where it exists. Pin it with a test, and record the dedup rule you chose and why.
 
 DO NOT drop `OTHER_QUARANTINED_BELOW_VERSION` when this lands. It is what protects the corpus if a partial map is ever driven again; the recovery should make the quarantine unnecessary for these specific rows, not remove the guard.
+
+---
+
+## MEASURED 2026-09-01 (session llm-market-identifier-d8, theory lane): the headline "69x the corpus" is true and does not mean what it says
+
+Do this if you want it, but not for the reason written above. **The
+6,856 quarantined `other|*` rows span exactly FOUR settlement days** --
+2026-08-29, 08-30, 08-31, 09-01. They are four floors' worth of the same
+board, relabelled.
+
+The gate is `n >= 30` **AND** `n_days >= 8`. Recovery moves `n` and
+**cannot move `n_days` at all**: it relabels rows that already exist, on
+days that already exist. Not one cell crosses the day floor as a result.
+
+Per cell, if every quarantined row were recovered and correctly
+relabelled (v4 `effective_n` in the last column):
+
+    cell                          n   days   mbar   n_eff(v4)
+    other|2d-1w|0.92-0.97      1504      4  376.0          17
+    other|2d-1w|0.65-0.75      1130      4  282.5          17
+    other|2d-1w|0.85-0.92      1118      4  279.5          17
+    other|2d-1w|0.75-0.85      1102      4  275.5          17
+    other|1w-1mo|0.65-0.75      316      4   79.0          17
+    other|<=2d|0.92-0.97        313      3  104.3          13
+    ...
+
+1,504 rows on 4 days is worth **17** effective observations, because
+they are ~376 markets from one board settling together. That is the
+v4 design-effect treatment (NOTES.md 2026-09-01 later), and it is
+already the *generous* reading -- v3 valued the same rows at 4.
+
+**So this is not "the difference between a readable grid within weeks
+and within months."** Nothing here is close to readable, and no
+relabelling makes it so. What buys a readable grid is settlement DAYS,
+and there are exactly two sources of those: calendar time going
+forward (~1 day per day), and a tier-A walk of settled history (up to
+58 days in one afternoon, `collect run`). The walk dominates this
+ticket on the only axis that binds.
+
+**What the recovery is still genuinely worth**, stated honestly so the
+next session can price it:
+
+  - The nine never-labelled domains (sports, entertainment, economics,
+    financials, ...) get four days of forward rows they otherwise do not
+    have. That is a real head start, just a four-day one.
+  - It removes a standing 6,856-row hole in the audit trail.
+  - It is cheap, and the dedup question it raises is worth settling once
+    rather than re-encountering.
+
+It is a good tidy-up. It is not an unlock, and a session should not pick
+it over a domain walk expecting to get a measurable cell out of it.
+
+The two open questions this ticket raises are both still open and still
+correct to raise: whether relabelling a recorded row is legitimate for a
+measurement corpus, and what the dedup key should be. Neither is
+affected by the above.

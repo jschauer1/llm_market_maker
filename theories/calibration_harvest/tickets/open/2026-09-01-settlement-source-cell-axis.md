@@ -75,3 +75,92 @@ Fix that first -- a source axis read off contaminated cells inherits the
 contamination.
 
 SOURCE: own board inspection, 2026-09-01.
+
+---
+
+## RAN THE CHEAP FIRST CHECK, 2026-09-01 (session llm-market-identifier-d8, theory lane)
+
+The ticket asked for exactly this and it cost nothing, so it is done.
+**The answer is neither "flat" nor "signal" — it is "this corpus cannot
+answer the question", and the reason is the one that binds everything
+else in this theory: settlement days.**
+
+### Coverage
+
+Joined every settled `calibration_harvest` attempt (11,830 rows, 7,293
+distinct tickers) to `settlement_sources` from the stored snapshot
+`event_json`. **41.2% ticker coverage (3,006 of 7,293).**
+
+That number is structural, not a gap to fill. `market_snapshots` holds
+markets seen on a *live board*; the two tier-A collection populations
+(weather 3,267 obs / 59 days, politics 1,541 / 47 days) were fetched
+through `list_settled` and were **never snapshotted**, so they carry no
+event envelope. The source axis is therefore readable *only* on the
+forward corpus — and the forward corpus is four settlement days old.
+
+### What it looks like, day-clustered
+
+    settlement source                n   day    ask   real     net  daySE      t
+    DAZN                            60     3  0.848  0.567  -46.03  25.40  -1.81
+    MLB                            216     4  0.831  0.778  -26.45  19.42  -1.36
+    MLS                             70     3  0.767  0.657  -24.36  11.01  -2.21
+    WTA                            242     4  0.800  0.793  -23.92  15.85  -1.51
+    ESPN                          2502     4  0.838  0.815  -13.55  10.95  -1.24
+    the Governing League           608     4  0.828  0.796   -8.78   4.12  -2.13
+    FIFA                           146     3  0.848  0.795   -5.42   1.50  -3.63
+    CF Benchmarks                  191     3  0.863  0.848   -5.05   6.71  -0.75
+    Fox Sports                    1214     4  0.855  0.802   -3.55   2.21  -1.61
+    ATP                            300     3  0.789  0.760   -2.70   3.00  -0.90
+    Sofascore                       78     4  0.777  0.923  +13.10   6.34  +2.07
+
+**Do not read this table as a result.** Every row spans 3-4 settlement
+days, so each t has 2-3 degrees of freedom, where the two-sided 95%
+critical value is 3.18-4.30, not 1.96. On that bar exactly one row
+clears — FIFA at -3.63 — and it is one of eleven comparisons, so it
+clears nothing after Holm. The apparent spread from -46 to +13 is what
+eleven noisy four-day estimates look like; it is not evidence of a
+source effect. This is the same error the 2026-08-30 ruling was made
+about (a calibration figure under 3 settlement days carries no usable
+error bar), one day above the floor rather than below it.
+
+Sofascore's +13.10 is the one positive and it is **not** significant
+(t=2.07 at 3 df). Recorded here so nobody rediscovers it in a fortnight
+and thinks it was overlooked.
+
+### What is real in the table, and it is not about sources
+
+The corpus is dominated by **sports** (ESPN 2,502 rows, Fox Sports
+1,214, plus MLB/ATP/WTA/FIFA/MLS/DAZN). Those are the quarantined
+`other|*` live rows seen through a different lens: the theory has been
+screening a mostly-sports board and labelling it `other`. So
+calibration_harvest's -2.87 headline is, to a first approximation, a
+**sports-favorite** number, and the theory has never had a sports cell
+to put it in. That is an argument for walking Sports as a domain, not
+for a source slice.
+
+### Verdict: do not register a slice yet, and here is what would change that
+
+The ticket's own instruction was "if the spread across sources is flat,
+drop it; if not, it is a pre-registerable slice axis." Neither branch
+fires, because the check is underpowered rather than informative. Do
+**not** register a slice on this — a slice registered off a four-day
+read is a pre-registration of noise, and its `mined_from_run_ids` would
+poison the very rows it needs to prove itself on.
+
+**Re-run this check once the forward corpus clears ~15 settlement days**
+(one line: the query is in this ticket's git history at this commit).
+The ticket's core argument still stands and is untouched by the above —
+resolution source is a published field, free, exact, no model, stable
+over a market's life, and a plausible mechanism rather than a random
+cut. It is a good idea waiting on calendar time, like everything else
+here.
+
+**One concrete thing worth doing before then**, and it is cheap: have
+`price()` stamp the settlement source into `extra_json` alongside the
+cell key. Precedent is exact — v2 added the cell key to `extra_json` for
+this same reason and recorded it as *not* a decision change, since
+nothing decides on it. Today the axis is only reachable by a snapshot
+join that covers 41% of tickers and depends on dedup-on-write having
+kept an envelope; stamped at attempt time it is 100% and permanent.
+"Save as much as you can, while you can" — the source is on the board
+today and the join may not be there later.

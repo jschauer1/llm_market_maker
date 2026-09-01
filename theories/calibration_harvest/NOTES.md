@@ -1257,3 +1257,50 @@ today) exists to avoid paying for rows that buy nothing. Crypto is the
 trap - `KXBTC15M` alone is 5,497 settled markets / 5,491 candlestick
 fetches (~20 min) on 15-minute BTC markets, all landing on the same ~58
 days.
+
+### Operational consequence of v4, checked before reporting: 303 rows the floor has not seen before
+
+Priced today's board (105,104 markets, the floor's own 02:06Z pull,
+`max_age_minutes=600`, no force) through v4 with the merged weather +
+politics rates:
+
+    screened candidates                     9,191
+    positive-edge rows                        303   (v3: 0)
+    of which edge_basis='measured'            303
+    all in one cell: politics|1mo+|0.75-0.85
+
+**The next floor will see 303 positive `measured` rows where yesterday
+there were zero. That is expected, it is v4 working, and it is not a
+bet.** It is the same in-sample cell flagged above — n=50, n_days=19,
+the thinnest long-horizon cell, part of the claim retracted 2026-08-29.
+
+**Checked what the key does with them rather than trusting restraint**
+(`cli promote`, and `slices.ranking_segment` + `promotion.py` directly —
+the promotion key says never to eyeball this):
+
+    segment              aggregate
+    n_clusters           2,822   (gate 10)   -> met
+    n_days                  63   (gate  5)   -> met
+    calibration_edge_net  -2.45
+    => gates_met AND cal <= 0   =>  R5 MEASURED-AGAINST
+
+**They land on R5 and are suppressed from the bets table**, by the rung
+whose whole purpose is this case: "suppressed even when today's claimed
+edge is positive — the measured record outranks the claim." So v4 cannot
+leak an unproven bet to the user, and the reason is structural rather
+than my say-so. They go to the diagnosis queue and they accrue
+settlements, which is exactly the out-of-sample test v4 was
+pre-registered against.
+
+Two things for whoever runs the next floor:
+
+  - **Do not read 303 positive rows as the theory coming good.** Report
+    them as R5. If a future floor sees them at R1, something changed that
+    is worth stopping for — it would mean the aggregate turned positive,
+    which is a real event and not a rendering detail.
+  - **They are one cell on one board, so they are heavily day-clustered**
+    — 303 rows that will largely settle together. When they do, they land
+    in `politics|1mo+|0.75-0.85`'s forward record as roughly one day's
+    worth of information, not 303 independent draws. `effective_n` now
+    says so explicitly; read the cell with `forward_cells`, never by row
+    count.
