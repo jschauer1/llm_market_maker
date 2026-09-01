@@ -3551,12 +3551,16 @@ with no error — and past the ~60-day archive floor they are
 unrecoverable upstream. Ticketed: `maintenance/collector-concurrent-write-race`.
 
 **Where the theory stands.** Two populations, and the disagreement is the
-finding: the shipped **allowlist** measures −1.7 pts, CI [−10.7, +5.1],
-21 event clusters — *no evidence either way*, because 70 series is too
+finding: the shipped **allowlist** measures −1.0 pts, CI [−9.8, +5.7],
+22 event clusters — *no evidence either way*, because 70 series is too
 thin a slice of the board for a 60-day window. The **wide by-deadline
-hazard stratum** measures **+6.3 pts at the tradeable price**, CI [+2.1,
-+10.3], 64 clusters, and it *grows* under tighter spread filters where a
-spread artifact must shrink. So the allowlist, not the thesis, is what
+hazard stratum** measures **+4.6 pts at the tradeable price**, CI [+1.0,
++8.0], 94 clusters, and it does not shrink under tighter spread filters
+(+5.3 at ≤4pts) where a spread artifact must. Final capture: 962 series,
+1,908 settled markets. Three caveats travel with that number and are in
+`NOTES.md`: concentration got *worse* with more data (5 series, 46% of
+the gap, 13 of 72 clusters), the gap vanishes at open interest ≥ 5,000,
+and neither half of the window clears alone. So the allowlist, not the thesis, is what
 made this theory unmeasurable. Full detail in its `NOTES.md`; the
 pre-registration (DD-1, out-of-sample set = markets settling after
 2026-09-01) is in its `THEORY.md`.
