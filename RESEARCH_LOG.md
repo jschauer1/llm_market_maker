@@ -3490,3 +3490,80 @@ session was not authorised to spawn, so **no v5/v6 live run was
 recorded** — that is the one thing between here and today's Big Brother
 candidate being a properly recorded R1 bet rather than a read-only
 calculation, and it is the floor's to run.
+
+## 2026-09-01 — deadline_drift: the NO-side entry price, and three ways a measurement script escapes the repo's own conventions (session llm-market-identifier-9e)
+
+Lane: `theory`, focus `deadline_drift`. Floor was already done (8.7h
+before); peers held `calibration_harvest`, `kalshi-taker-flow-toxicity`
+and `no-favorite-high-band`.
+
+**Picked a `proposed` theory that had never recorded a row, because its
+stated blocker had expired.** Its notebook said the population was cut
+5x (4,792 markets/859 series → 981/70) to avoid an LLB gate that "forfeits
+**tier A**, which was this theory's defining property". CLAUDE.md's
+"Structural gates keep tier A" removed that price **the same day the cut
+was made**, and nobody revisited it. Worth generalising: *a theory parked
+on a constraint is worth re-reading whenever the constraint is a repo
+rule, because rules here change faster than theory folders do.*
+
+**Learned 1 — the entry-price convention is enforced by the types, and a
+measurement script steps outside that enforcement with no signal.**
+This theory buys NO, so its breakeven is `yes_bid`; `hazard.py` compared
+realized P(YES) against `yes_ask` and thereby credited the strategy with
+the entire bid-ask spread. Roughly halved the estimate when fixed
+(+11.9 → +6.3 on the wide population). **The repo is otherwise clean** —
+`insider_bias/replay.py:244`, `calibration_harvest/collect.py:151`,
+`no_side_premium/theory.py:135` and both `screen.py`s all price a NO leg
+off `no_ask`, three of them with a comment. That is the point: the
+convention holds wherever the *domain types* carry it, and it broke in
+the one place that rebuilt prices out of raw JSON. **Backtests, mining
+passes and study probes are exactly the code that does that**, and
+CLAUDE.md's "the ask you would actually pay" reads as satisfied by a
+field literally named `yes_ask`.
+
+**Learned 2 — a partial capture is a biased sample, not a small one.**
+Collectors here walk series alphabetically, so an in-flight capture is a
+*prefix of the alphabet*, not a random subset. A family detector read
+98.0% vs 0.0% at ~200 markets and 43.4% vs 0.0% at ~525; the 98% reached
+a committed docstring before the walk finished. Quote nothing from a
+running walk without saying it is running.
+
+**Learned 3 — one event sliced N ways gets N votes unless you stop it.**
+Market-weighting let `KXBIGBROTHERELIMINATION` (8 events × 11–17 legs,
+exactly one winner each) and `KXGEMINI` (one 7-leg date ladder on a
+single unresolved question, 30% of the pooled gap by itself) dominate.
+Averaging within `event_ticker` first, then bootstrapping over events,
+is the honest unit. Related and free: **a family whose settled events pay
+exactly one winner is detectable from outcomes alone**
+(`hazard.partition_families`), which catches what five rounds of
+rules-text regex missed — an exhaustive check where the audit had been
+hand-judging samples of 50.
+
+**Learned 4 — two collectors racing lose data silently, and neither
+obvious check sees it.** `TaskStop` stops the shell, not the detached
+child; `ps -ef` in this repo's Git Bash prints no arguments, so
+`ps -ef | grep <script>` reports zero while the process runs. I made that
+second mistake **twice**, the second time in a wait loop that exited
+instantly against a live collector. Use
+`Get-CimInstance Win32_Process | Select CommandLine`. The load-modify-save
+pattern every collector here uses has no lock, so the loser's rows vanish
+with no error — and past the ~60-day archive floor they are
+unrecoverable upstream. Ticketed: `maintenance/collector-concurrent-write-race`.
+
+**Where the theory stands.** Two populations, and the disagreement is the
+finding: the shipped **allowlist** measures −1.7 pts, CI [−10.7, +5.1],
+21 event clusters — *no evidence either way*, because 70 series is too
+thin a slice of the board for a 60-day window. The **wide by-deadline
+hazard stratum** measures **+6.3 pts at the tradeable price**, CI [+2.1,
++10.3], 64 clusters, and it *grows* under tighter spread filters where a
+spread artifact must shrink. So the allowlist, not the thesis, is what
+made this theory unmeasurable. Full detail in its `NOTES.md`; the
+pre-registration (DD-1, out-of-sample set = markets settling after
+2026-09-01) is in its `THEORY.md`.
+
+**Next.** `theories/deadline_drift/tickets/open/2026-09-01-widen-population-and-record.md`:
+build the series-level structural gate, run the contamination probe,
+validate it against `partition_families` rather than another hand audit,
+bump the version, promote to `testing`, and record **observation rows**
+under the 2026-08-30 ruling so cells accrue without claiming an edge
+DD-1 has not yet earned out of sample.
