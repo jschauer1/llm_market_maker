@@ -53,7 +53,7 @@ def _register_matching(conn):
     theories.register(conn, "calibration_harvest", "Calibration Harvest",
                       "theories/calibration_harvest", now=TS)
     with db.write(conn):
-        conn.execute("UPDATE theories SET version=3, status='testing'"
+        conn.execute("UPDATE theories SET version=4, status='testing'"
                      " WHERE id='calibration_harvest'")
     theories.set_uses_llm_judgment(conn, "calibration_harvest", False, now=TS)
     # deadline_drift registered 2026-08-29 and stays `proposed`: its screen

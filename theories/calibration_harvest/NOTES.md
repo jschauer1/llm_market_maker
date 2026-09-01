@@ -1100,3 +1100,160 @@ is, so it belongs to the theory's own lane, not to maintenance.
 merged rates, 2,754 rows price against a `measured` cell — but 0 have
 `edge_pts_net > 0` (max −0.95). Observation rows under ruling 13, as
 before.
+
+## 2026-09-01 (later) - the pricing rule could not fire, and the reason is the estimator, not the data
+
+Written BEFORE the change lands, because this theory has already been
+burned once by choosing a contrast after seeing the numbers (2026-08-29
+retraction). The argument below has to stand on its own, and the test of
+that is stated here in advance: **if the fix were motivated by making
+history look good, it would make history look good.** It does not. Under
+the corrected estimator exactly one of twenty measured cells crosses
+zero, in-sample, at +1.25 pts, and it belongs to the horizon claim that
+was already retracted. That is recorded up front as *not a result*.
+
+### The finding: v3's bound is infeasible at v3's own gate
+
+`cell_edge` bounds on the settlement-day count
+(`wilson_lower(round(p*n_days), n_days)`). Ask what true gross edge a
+cell would need before `price()` emits anything positive:
+
+    minimum n_days at which ANY positive edge is possible,
+    even at a realized rate of 100%:
+
+        ask 0.65  ->   8 days      ask 0.88  ->  31 days
+        ask 0.70  ->  10 days      ask 0.92  ->  48 days
+        ask 0.75  ->  13 days      ask 0.95  ->  79 days
+        ask 0.80  ->  17 days      ask 0.97  -> 134 days
+
+`MIN_CELL_DAYS` is **8**. So the gate calls a cell `measured` - the label
+that authorizes a bet - at a day count where the pricing rule provably
+cannot emit a positive edge at any realized rate, for every ask above
+0.65. The gate and the estimator disagree about what the theory is doing,
+and the gate is the one that says "measured".
+
+**And Kalshi's reachable history is 58 days.** So the 0.92-0.97 band -
+the favorite-longshot band, where this theory's whole thesis says the
+effect is *strongest* - is unreachable by any tier-A backtest this theory
+can ever run. Not "hard": arithmetically impossible. Required true gross
+edge at the 58-day ceiling:
+
+        ask 0.70 -> +14.5    ask 0.88 -> +10.3
+        ask 0.80 -> +11.4    ask 0.95 -> IMPOSSIBLE at any realized rate
+
+Le 2026's headline politics effect is +13.6 pts gross. The best cell this
+repo has ever measured is +14.08. **v3 can only fire on effects at or
+above the largest number in the literature**, and only outside the band
+the literature says is richest. That is not conservatism; it is a dead
+branch, and it explains every "0 cells measurable / nothing recommendable"
+result this theory has produced without any of them being about the data.
+
+### Why the bound is wrong: rho is not 1, it is ~0.03
+
+Day-Wilson is not a neutral choice. It is the design-effect correction
+`n_eff = n / (1 + (mbar - 1) * rho)` evaluated at **rho = 1** - total
+within-day dependence, every market on a settlement day carrying one
+draw's worth of information. v2 adopted it citing the 2026-08-27
+clustering study, and hedged correctly at the time: "a proper
+cluster-robust interval would sit somewhere between n_days and n."
+
+Measured it. ANOVA intracluster correlation, per cell, on both complete
+populations (20 cells clearing n>=30 and n_days>=8):
+
+    pooled rho:  mean 0.0667   median 0.0266   90th pct 0.2326   max 0.3151
+
+    weather cells (mbar 12-16):  rho -0.007 to +0.016  ->  DEFF 1.00-1.20
+    politics cells (mbar 2-5):   rho -0.34  to +0.32   ->  DEFF 1.00-1.97
+
+Weather is the sharp case: `<=2d|0.92-0.97` has n=926 over 59 days and
+rho=0.008, so n_eff is **824**, not 59. Day-Wilson discards a factor of
+**14** in effective sample size there.
+
+The mechanism is obvious once stated, and it is why the 2026-08-27 study
+does not transfer. That study measured day clustering on the
+`insider_bias` population - a near-term board of *correlated events*
+settling together. A calibration_harvest cell is (domain x horizon x
+price bin), and the ~14 rows it holds on one settlement day are ~14
+different cities' temperature markets. Those are close to independent
+draws. Politics has the smaller mbar (2.6-5.3) and the higher rho, which
+is the right direction: same-day politics markets far more often share an
+underlying event. **The clustering is real; assuming it is total is what
+was wrong.**
+
+### The change (v4, `continues`)
+
+`cell_edge` bounds on a design-effect-corrected effective n:
+
+    mbar  = n / n_days
+    DEFF  = max(1, 1 + (mbar - 1) * CLUSTER_RHO)
+    n_eff = clamp(round(n / DEFF), 1, n)
+
+with **one pooled `CLUSTER_RHO = 0.2326`** - the 90th percentile of the
+20 measured cells, ~3.5x the mean and ~9x the median. Deliberately
+pessimistic, and deliberately **one number**: a per-cell rho would be a
+free parameter per cell, which is the thing this grid must never have.
+The floors `MIN_CELL_N` and `MIN_CELL_DAYS` are untouched.
+
+Note the endpoints, because they are what makes this a correction rather
+than a loosening: rho=1 returns exactly `n_days` (v3), rho=0 returns
+exactly `n` (v1). v3 and v1 are the two extreme special cases of the
+formula, and the measurement says the truth is near the v1 end for
+weather and about a quarter of the way for politics. The fix does not
+invent an estimator; it stops pinning a measurable parameter at a value
+the data rejects.
+
+### What it changes today: nothing bettable
+
+    cells firing:  day-Wilson (v3) 0  |  DEFF-Wilson (v4) 1  |  row-Wilson (v1) 2
+
+The single cell is `politics|1mo+|0.75-0.85`, n=50, n_days=19, ask 0.799,
+realized 0.940, +1.25 net. It is **not a result and must not be bet**:
+
+  - **in-sample** - it is the population the grid was drawn on;
+  - the *thinnest* long-horizon cell in the grid (n=50);
+  - 1 of 20 cells, no multiple-comparison correction survives that;
+  - it is the same cell whose horizon claim was **retracted on
+    2026-08-29** as a pre-registration failure. It does not get to come
+    back through a new estimator.
+
+The pre-registered kill criterion is still **not met and still not
+tested**: it asks whether a cell clears fees *out-of-sample* at n>=30 and
+n_days>=8, and the forward corpus still has no measurable cell.
+
+### What this buys, and the bar for it
+
+The point of the change is the frontier, not today's cells. Required true
+gross edge at the 58-day ceiling, v3 versus v4:
+
+    ask    v3 (day)    v4 (DEFF, mbar 14)
+    0.70     +14.5          +7.9
+    0.80     +11.4          +6.9
+    0.88     +10.3          +5.5
+    0.95   IMPOSSIBLE       +3.5
+
+That is the difference between a theory that can never fire and one that
+can fire on an effect the size the literature actually reports - and it
+re-opens the 0.92-0.97 band, which v3 had closed by arithmetic.
+
+**Pre-registered, now:** v4 is confirmed only by a cell clearing fees
+**out-of-sample** at n>=30 and n_days>=8 under the DEFF bound - a forward
+cell, or a walk of a domain that did not exist when this was written.
+A cell that fires only in weather or politics is in-sample and confirms
+nothing. If a full further domain walk plus forward accrual produces no
+out-of-sample firing cell, the honest reading is that Kalshi carries no
+harvestable calibration edge at these price bands after fees, and the
+theory should be put to the user for retirement - the estimator excuse
+will have been spent.
+
+### Also learned, and it changes the walk plan
+
+The DEFF correction **saturates in rows**. Holding the 58-day ceiling and
+varying rows-per-day from 3 to 170, the requirement at ask 0.70 moves
+only 9.6 -> 7.4 pts, because DEFF grows with mbar and cancels the extra
+rows almost exactly. **Only settlement days buy real power, and they are
+capped at 58 upstream.** So walking a *huge* domain is worth little more
+than walking a moderate one: the sizing probe (`collect size`, added
+today) exists to avoid paying for rows that buy nothing. Crypto is the
+trap - `KXBTC15M` alone is 5,497 settled markets / 5,491 candlestick
+fetches (~20 min) on 15-minute BTC markets, all landing on the same ~58
+days.

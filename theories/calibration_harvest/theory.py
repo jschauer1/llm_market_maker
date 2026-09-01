@@ -38,7 +38,7 @@ class CalibrationHarvestTheory(Theory):
     # MIN_CELL_DAYS because rows are not independent draws; computing the
     # bound on n undid that exactly where it decides to commit money.
     # See cells.cell_edge and THEORY.md Version.
-    version = 3
+    version = 4
     uses_llm_judgment = False
     prompts: dict = {}
 

@@ -142,6 +142,62 @@ rule below).
 
 ## Version
 
+4 — 2026-09-01: **the bound was a design effect pinned at rho = 1, and at
+that value the pricing rule could not fire at the theory's own gate.**
+
+`cell_edge` bounded on the settlement-day count. That is not a neutral
+choice of estimator — it is the standard design-effect correction
+`n_eff = n / (1 + (mbar - 1) * rho)` evaluated at **rho = 1**, total
+within-day dependence. v2 adopted it deliberately and hedged correctly at
+the time: "a proper cluster-robust interval would sit somewhere between
+`n_days` and `n`."
+
+**Measured, it does.** ANOVA intracluster correlation over the 20 cells of
+both complete populations clearing n>=30 and n_days>=8: median **0.027**,
+mean 0.067, max 0.315. Weather cells (mbar 12–16) measure rho ≈ 0 — their
+same-day rows are fourteen different cities, close to independent draws —
+while politics cells (mbar 2.6–5.3) run higher, which is the right
+direction, since same-day politics markets often share an underlying
+event. The clustering is real; assuming it was *total* is what was wrong.
+
+**What rho = 1 cost: feasibility.** The minimum settlement-day count at
+which any positive edge was arithmetically possible, at *any* realized
+rate — ask 0.70 → 10 days, 0.80 → 17, 0.88 → 31, 0.92 → 48, 0.95 → **79**.
+`MIN_CELL_DAYS` is **8**, so the gate awarded the `measured` label — the
+label that authorizes a bet — to cells the pricing rule provably could not
+emit on. And Kalshi's reachable history is **58 days**, so the 0.92–0.97
+band, the band this theory's own thesis says is richest, could never fire
+from a tier-A backtest at all. Every "0 cells recommendable" result this
+theory has produced is partly this, and none of it was about the data.
+
+The change: `effective_n(n, n_days)` applies the design effect with one
+pooled `CLUSTER_RHO = 0.2326` — the **90th percentile** of the measured
+cells, ~3.5x the mean, deliberately pessimistic and deliberately a single
+number, because a per-cell rho is a free parameter per cell. `n_eff` is
+clamped to `[1, n]`. `MIN_CELL_N` and `MIN_CELL_DAYS` are untouched, and
+rho = 1 still reproduces v3 exactly while rho = 0 reproduces v1 — both
+pinned by tests.
+
+**Evidence: `continues`.** No grid boundary, bin, floor or screen
+threshold moved, and both tier-A collection runs measured exactly the
+cells v4 prices against. What changed is how a cell's interval is
+computed, not which cells exist or what was observed.
+
+**It changes nothing bettable, and that is the integrity check.** Across
+all 20 measured cells: day-Wilson fires 0, DEFF-Wilson fires **1**,
+row-Wilson fires 2. The one cell is `politics|1mo+|0.75-0.85` at +1.25
+net — **in-sample**, n=50 (the thinnest long-horizon cell), 1 of 20
+comparisons, and part of the horizon claim **retracted on 2026-08-29**.
+It is recorded as not a result and must not be bet. A fix motivated by
+making history look good would have made history look good.
+
+What v4 buys is the frontier: required true gross edge at the 58-day
+ceiling falls from +14.5/+11.4/+10.3/impossible (asks 0.70/0.80/0.88/0.95)
+to **+7.9/+6.9/+5.5/+3.5** — from "larger than anything in the
+literature" to "the size the literature reports". Full derivation,
+tables and the pre-registered bar for confirming v4: `NOTES.md`
+2026-09-01 (later).
+
 3 — 2026-09-01: **one run per floor, against a complete category map — and
 `other` no longer means two different things.**
 
@@ -252,7 +308,9 @@ Fully deterministic; the whole decision path is code.
      carry no side claim; where the two screens would fire on the same
      contract, this one yields.
    - A gate report names what each exclusion removed, by category.
-5. **Edge.** `edge = wilson_lower(cell) − ask − fees`. `edge_basis =
+5. **Edge.** `edge = wilson_lower(cell, n_eff) − ask − fees`, where
+   `n_eff` discounts the cell's rows for within-day dependence by a
+   measured design effect (v4; `cells.effective_n`). `edge_basis =
    "measured"` only for cells with n >= 30 **and** n_days >= 8 under full
    coverage of their population; `"model"` for thinner cells, which are
    reported but never recommended.

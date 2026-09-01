@@ -118,12 +118,14 @@ def test_wilson_lower_handles_the_all_wins_case_mention_family_flagged():
 # ---- edge arithmetic ------------------------------------------------------
 
 def test_edge_is_wilson_bound_minus_ask_minus_fees():
-    """The bound is taken on the SETTLEMENT-DAY count, not the row count
-    -- changed 2026-08-29, see cell_edge. Here 90/100 over 10 days is
-    read as 9/10, which is the whole point: ten days of evidence buys a
-    ten-day-wide interval however many rows those days held."""
+    """The bound is taken on the DESIGN-EFFECT-CORRECTED sample size
+    -- changed 2026-09-01 (v4), see cell_edge and effective_n. Not the row
+    count (v1, too tight) and not the settlement-day count (v2/v3, which
+    is this same formula pinned at rho = 1)."""
+    n_eff = cells.effective_n(n=100, n_days=10)
     e = cells.cell_edge(wins=90, n=100, n_days=10, ask=0.80)
-    expected = (cells.wilson_lower(9, 10) - 0.80) * 100 - cells.fee_pts(0.80)
+    expected = ((cells.wilson_lower(round(0.9 * n_eff), n_eff) - 0.80) * 100
+                - cells.fee_pts(0.80))
     assert e.pts_net == pytest.approx(expected)
     assert e.basis == "measured"
 
@@ -167,15 +169,71 @@ def test_edge_never_claims_measured_without_both_floors():
 # and all three flip negative under the day-counted one.
 
 
-def test_the_bound_counts_settlement_days_not_rows():
-    # 628/789 (79.6%) over 59 days, bought at 0.75.
+def test_the_bound_discounts_rows_for_within_day_dependence():
+    # 628/789 (79.6%) over 59 days, bought at 0.75. The cell that made
+    # v2 abandon row-counting: row-counted the bound was
+    # wilson_lower(628, 789) = 0.7664, claiming +1.64pts on a cell whose
+    # gross edge is +0.2. It must still not fire.
     edge = cells.cell_edge(wins=628, n=789, n_days=59, ask=0.75)
     assert edge.basis == "measured"
-    # Row-counted this was wilson_lower(628, 789) = 0.7664 -> +1.64pts.
-    assert edge.model_prob < 0.72, (
-        "the bound must widen for 59 independent days, not 789 rows"
+    assert edge.model_prob < cells.wilson_lower(628, 789), (
+        "the bound must discount 789 rows that arrived on 59 days"
     )
-    assert edge.pts_net < 0
+    assert edge.pts_net < 0, "this cell has no edge and must not price one"
+
+
+# --- v4: the day count was a design effect pinned at rho = 1 -------------
+#
+# NOTES.md 2026-09-01 (later). Bounding on `n_days` is
+# `n / (1 + (mbar - 1) * rho)` at rho = 1. Measured rho over the 20 cells
+# of both complete populations is 0.027 (median) / 0.067 (mean), so the
+# assumption was wrong by enough to make the rule INFEASIBLE at the
+# theory's own gate: at MIN_CELL_DAYS = 8 no cell priced above 0.65 could
+# emit a positive edge at any realized rate whatsoever.
+
+
+def test_effective_n_endpoints_recover_both_shipped_estimators(monkeypatch):
+    """rho = 1 must reproduce v3 exactly, rho = 0 must reproduce v1."""
+    monkeypatch.setattr(cells, "CLUSTER_RHO", 1.0)
+    assert cells.effective_n(n=789, n_days=59) == 59
+    monkeypatch.setattr(cells, "CLUSTER_RHO", 0.0)
+    assert cells.effective_n(n=789, n_days=59) == 789
+
+
+def test_effective_n_sits_between_the_day_count_and_the_row_count():
+    n_eff = cells.effective_n(n=789, n_days=59)
+    assert 59 < n_eff < 789
+
+
+def test_effective_n_never_exceeds_the_rows_it_has():
+    assert cells.effective_n(n=30, n_days=30) == 30
+    assert cells.effective_n(n=5, n_days=99) <= 5
+
+
+def test_a_cell_at_the_measurement_floor_can_actually_fire():
+    """The v3 defect, pinned. `basis == 'measured'` is the label that
+    authorizes a bet, so a cell carrying it must be able to price a
+    positive edge at SOME realized rate. Under v3 a cell at 0.80 needed
+    17 settlement days before that was arithmetically possible, and at
+    0.95 it needed 79 -- more than the 58 days Kalshi's archive reaches,
+    so the richest price band could never fire at all."""
+    for ask in (0.70, 0.80, 0.88, 0.95):
+        perfect = cells.cell_edge(
+            wins=30 * 14, n=30 * 14, n_days=30, ask=ask,
+        )
+        assert perfect.basis == "measured"
+        assert perfect.pts_net > 0, (
+            f"a flawless cell at ask {ask} must be able to price an edge"
+        )
+
+
+def test_the_correction_does_not_resurrect_a_flat_cell():
+    """The integrity check on v4: loosening the bound must not turn a cell
+    with no gross edge into a bettable one. All four complete-population
+    weather cells are flat gross (+0.2 to +1.3) and must stay negative."""
+    for wins, n, ask in ((575, 824, 0.695), (628, 789, 0.794),
+                         (618, 692, 0.880), (872, 926, 0.949)):
+        assert cells.cell_edge(wins, n, n_days=59, ask=ask).pts_net < 0
 
 
 def test_many_rows_on_one_day_buy_almost_no_confidence():

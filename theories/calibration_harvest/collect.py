@@ -372,6 +372,30 @@ def _parse_ts(iso: str | None) -> int | None:
         return None
 
 
+def size_series(series: dict, min_close_ts: int, max_close_ts: int) -> dict:
+    """Cost of walking one series, without walking it.
+
+    One `list_settled` call (~82ms) answers how many candlestick calls the
+    real walk would make, because `worth_fetching` reads the settlement
+    snapshot's final volume and cumulative volume only grows. The 2026-08-29
+    profiling note asks for exactly this before committing to a population:
+    the per-series distribution is brutally skewed (five weather series were
+    40% of that walk), so sampling a few series and extrapolating is wrong by
+    an order of magnitude in either direction.
+    """
+    ticker = series.get("ticker")
+    settled = markets.list_settled(
+        limit=1000, min_close_ts=min_close_ts, max_close_ts=max_close_ts,
+        series_ticker=ticker,
+    )
+    fetches = sum(
+        1 for m in settled
+        if m.result and _parse_ts(m.close_time) is not None
+        and worth_fetching(m.volume)
+    )
+    return {"n_settled": len(settled), "fetches": fetches}
+
+
 def collect_series(conn, series: dict, min_close_ts: int, max_close_ts: int,
                    run_id: str) -> dict:
     """Walk one series' settled markets and persist their observations."""
@@ -420,7 +444,8 @@ def collect_series(conn, series: dict, min_close_ts: int, max_close_ts: int,
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("mode", choices=["enumerate", "run", "rates"])
+    parser.add_argument("mode",
+                        choices=["enumerate", "size", "run", "rates"])
     parser.add_argument("--categories", default="Politics,Elections",
                         help="comma-separated Kalshi series categories")
     parser.add_argument("--run-id", default="backtest-2026-08-27-calharvest")
@@ -448,12 +473,39 @@ def main() -> None:
                       f"{series.get('category')}")
             return
 
-        if args.checkpoint is None:
-            parser.error("--checkpoint is required for mode=run")
-
         now = datetime.now(timezone.utc)
         max_close = int(now.timestamp())
         min_close = int(max_close - REACHABLE_DAYS * 86400)
+
+        if args.mode == "size":
+            # Persisted per series as it goes: the probe is minutes long on a
+            # big category and a killed run must not restart from zero.
+            path = args.checkpoint or Path(
+                "theories/calibration_harvest/backtests/size.json")
+            state = load_checkpoint(path)
+            for series in series_list:
+                ticker = series.get("ticker")
+                if not ticker or ticker in state["series"]:
+                    continue
+                out = size_series(series, min_close, max_close)
+                out["category"] = series.get("category")
+                state["series"][ticker] = out
+                save_checkpoint(path, state)
+            rows = [(k, v) for k, v in state["series"].items()
+                    if v.get("category") in cats]
+            fetches = sum(v["fetches"] for _, v in rows)
+            settled = sum(v["n_settled"] for _, v in rows)
+            print(f"  settled in window: {settled}")
+            print(f"  candlestick fetches: {fetches}")
+            print(f"  est wall clock: {fetches * 0.22 / 3600:.2f} h "
+                  f"(at the measured, irreducible 220ms)")
+            for tick, v in sorted(rows, key=lambda kv: -kv[1]["fetches"])[:8]:
+                print(f"    {tick:32s} settled={v['n_settled']:6d} "
+                      f"fetches={v['fetches']:6d}")
+            return
+
+        if args.checkpoint is None:
+            parser.error("--checkpoint is required for mode=run")
 
         state = load_checkpoint(args.checkpoint)
         for series in series_list:

@@ -40,7 +40,8 @@ from tools.sizing import fee_pts
 
 __all__ = [
     "price_bin", "horizon_bin", "domain_for", "cell_key",
-    "wilson_lower", "cell_edge", "fee_pts",
+    "wilson_lower", "effective_n", "cell_edge", "fee_pts",
+    "CLUSTER_RHO",
     "PRICE_BINS", "HORIZON_BINS", "DOMAINS",
     "MIN_CELL_N", "MIN_CELL_DAYS", "UNMAPPED",
 ]
@@ -105,6 +106,23 @@ UNMAPPED = "unmapped"
 #: 1.96 -> a one-sided 97.5% lower bound. Deliberately not a tunable: a
 #: confidence level chosen per cell is a free parameter to overfit with.
 _Z = 1.959963984540054
+
+#: Intracluster correlation of outcomes within one settlement day, used to
+#: turn a cell's row count into an effective sample size. ONE pooled number
+#: for the whole grid, for the same reason `_Z` is not tunable: a rho chosen
+#: per cell is a free parameter per cell.
+#:
+#: Measured 2026-09-01 by ANOVA ICC over the 20 cells of both complete
+#: populations that clear both floors -- mean 0.0667, median 0.0266, max
+#: 0.3151. This is the **90th percentile**, ~3.5x the mean and ~9x the
+#: median, chosen deliberately pessimistic: under-claiming is the safe
+#: direction for the number that decides a bet.
+#:
+#: Weather cells (mbar 12-16) measured rho -0.007..+0.016; politics cells
+#: (mbar 2.6-5.3) measured -0.34..+0.32. The ordering is the mechanism: a
+#: weather cell's same-day rows are different cities, close to independent
+#: draws, while same-day politics markets often share an underlying event.
+CLUSTER_RHO = 0.2326
 
 
 def price_bin(price: float | None) -> str | None:
@@ -189,6 +207,42 @@ def wilson_lower(wins: int, n: int) -> float:
     return max(0.0, (centre - margin) / denom)
 
 
+def effective_n(n: int, n_days: int) -> int:
+    """A cell's rows discounted to an effective sample size.
+
+    The standard survey design effect. Rows inside one settlement day are
+    not independent draws, so the honest sample size is
+
+        mbar  = n / n_days                 rows per settlement day
+        DEFF  = 1 + (mbar - 1) * rho       Kish's design effect
+        n_eff = n / DEFF
+
+    **The two estimators this theory has already shipped are the endpoints
+    of this formula, not alternatives to it.** At rho = 1 (total within-day
+    dependence) DEFF is exactly mbar and `n_eff` collapses to `n_days` --
+    that is v2/v3's day-Wilson. At rho = 0 (independence) DEFF is 1 and
+    `n_eff` is `n` -- that is v1's row-Wilson. v3 did not choose a
+    conservative bound so much as pin a measurable parameter at 1.0, and
+    the measurement (`CLUSTER_RHO`) says the truth is nowhere near it.
+
+    Why that mattered: at rho = 1 the bound was *infeasible at this
+    theory's own gate*. `MIN_CELL_DAYS` is 8, but a cell priced at 0.80
+    needs 17 settlement days before a positive edge is arithmetically
+    possible at ANY realized rate, 0.92 needs 48, and 0.95 needs 79 --
+    against a reachable history of 58 days. The whole 0.92-0.97 band, the
+    band this theory's thesis says is richest, could never fire from a
+    backtest. See NOTES.md 2026-09-01 (later) for the frontier tables.
+
+    Clamped into `[1, n]`: DEFF below 1 would claim more information than
+    there are rows, which no amount of negative measured rho earns.
+    """
+    if n <= 0 or n_days <= 0:
+        return 0
+    mbar = n / n_days
+    deff = max(1.0, 1.0 + (mbar - 1.0) * CLUSTER_RHO)
+    return max(1, min(int(n), int(round(n / deff))))
+
+
 @dataclass(frozen=True)
 class CellEdge:
     """A cell's edge in points, with the basis it has actually earned."""
@@ -214,32 +268,31 @@ def cell_edge(wins: int, n: int, n_days: int, ask: float) -> CellEdge:
     the theory's most interesting output, since it names the mirrored fade
     trade the spec asks for.
     """
-    # The bound counts SETTLEMENT DAYS, not rows.
+    # The bound counts an EFFECTIVE sample size, not rows and not days.
     #
-    # This theory already refuses to call a cell `measured` below
-    # MIN_CELL_DAYS, because rows are not independent draws: a screen's
+    # Rows inside one settlement day are not independent draws: a screen's
     # whole near-term board settles within hours of itself, and the
     # 2026-08-27 clustering study measured the resulting day-level swings
-    # directly. Computing the bound on `n` undid that protection at the
-    # one point where it decides whether to commit money.
+    # directly. v1 ignored that and bounded on `n`. v2 over-corrected and
+    # bounded on `n_days`, which is the same design-effect formula pinned
+    # at rho = 1 -- total within-day dependence.
     #
-    # Measured on the first complete population (weather, 2026-08-29):
-    # `<=2d|0.75-0.85` went 628/789 over 59 days. Row-counted, the bound
-    # claimed +1.64pts at an ask of 0.75; day-counted it says -7.27pts.
-    # Three live rows priced positive on the row-counted bound, and all
-    # three flip negative here.
+    # v4 measures rho instead of assuming it (`effective_n`). This is the
+    # refinement v2's own comment booked as owed: "a proper cluster-robust
+    # interval would sit somewhere between `n_days` and `n`." It does, and
+    # for weather it sits near the `n` end -- that cell's same-day rows are
+    # different cities, not one event seen fourteen times.
     #
-    # Deliberately conservative rather than clever: collapsing to the day
-    # count under-uses genuine within-day information, and a proper
-    # cluster-robust interval would sit somewhere between `n_days` and
-    # `n`. Under-claiming is the safe direction for the number that
-    # decides a bet, so the cheap version ships and the refinement is a
-    # later version's job.
-    effective_n = int(n_days)
-    if effective_n <= 0 or n <= 0:
+    # Worked example, weather `<=2d|0.75-0.85`: 628/789 over 59 days at an
+    # ask of 0.794. Row-counted the bound claimed +1.64pts; day-counted
+    # -7.27; DEFF-counted -7.18. The fix is a correction, not a loosening:
+    # across all 20 measured cells it moves exactly one across zero, and
+    # that one is in-sample, thin, and belongs to a retracted claim.
+    n_eff = effective_n(n, n_days)
+    if n_eff <= 0 or n <= 0:
         prob = 0.0
     else:
-        prob = wilson_lower(round((wins / n) * effective_n), effective_n)
+        prob = wilson_lower(round((wins / n) * n_eff), n_eff)
     gross = (prob - ask) * 100.0
     fee = fee_pts(ask)
     measured = n >= MIN_CELL_N and n_days >= MIN_CELL_DAYS

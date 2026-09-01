@@ -1,0 +1,134 @@
+{
+ "series": {
+  "KXSOLANAATH": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Crypto"
+  },
+  "KXAAAGASMINFL": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Economics"
+  },
+  "KXBTCMINMAXY": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Crypto"
+  },
+  "KXCORNW": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Commodities"
+  },
+  "KXMTCATTLE": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Economics"
+  },
+  "KXMIAUTOEMP": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Economics"
+  },
+  "ETHATH": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Crypto"
+  },
+  "KXBCHD": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Crypto"
+  },
+  "KXCVNAA": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Companies"
+  },
+  "KXFA": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Companies"
+  },
+  "KXXINDIA": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Economics"
+  },
+  "KXEIP3540": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Crypto"
+  },
+  "KXBUILDPERMS": {
+   "n_settled": 14,
+   "fetches": 9,
+   "category": "Economics"
+  },
+  "KXBTC15M": {
+   "n_settled": 5497,
+   "fetches": 5491,
+   "category": "Crypto"
+  },
+  "KXCTINSURANCEJOBS": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Economics"
+  },
+  "KXFDVLINEA": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Crypto"
+  },
+  "KXAAAGASDTX": {
+   "n_settled": 136,
+   "fetches": 83,
+   "category": "Economics"
+  },
+  "KXDIESELD": {
+   "n_settled": 619,
+   "fetches": 384,
+   "category": "Economics"
+  },
+  "KXBTC75VS100": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Crypto"
+  },
+  "KXLTCD": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Crypto"
+  },
+  "KXCBDECISIONJAPAN": {
+   "n_settled": 5,
+   "fetches": 5,
+   "category": "Economics"
+  },
+  "KXTRUFPDEBT": {
+   "n_settled": 15,
+   "fetches": 1,
+   "category": "Economics"
+  },
+  "KXMSTRSELL": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Economics"
+  },
+  "KXORBOFHARVEST": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Economics"
+  },
+  "KXPHXHOMEVAL": {
+   "n_settled": 0,
+   "fetches": 0,
+   "category": "Economics"
+  },
+  "KXEGGS": {
+   "n_settled": 2,
+   "fetches": 2,
+   "category": "Economics"
+  }
+ }
+}
