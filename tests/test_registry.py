@@ -8,7 +8,7 @@ TS = "2026-08-24T12:00:00Z"
 def test_discover_finds_both_real_theories():
     found = registry.discover()
     assert set(found) >= {"insider_judgment", "mention_family"}
-    assert found["insider_judgment"].version == 5
+    assert found["insider_judgment"].version == 6
     assert found["insider_judgment"].uses_llm_judgment is True
     assert found["mention_family"].uses_llm_judgment is False
 
@@ -35,7 +35,7 @@ def conn(tmp_path):
 
 def _register_matching(conn):
     for tid, name, version, uses in (
-        ("insider_judgment", "Insider Judgment", 5, True),
+        ("insider_judgment", "Insider Judgment", 6, True),
         ("mention_family", "Mention Family", 1, False),
         ("structural_arb", "Structural Arb", 4, False),
         ("no_side_premium", "No-Side Premium", 1, False),

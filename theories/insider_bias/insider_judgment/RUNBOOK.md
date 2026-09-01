@@ -10,7 +10,9 @@ see `THEORY.md` Hypothesis section for why). The package path is
 `theories.insider_bias.insider_judgment`; `theories/insider_bias/` is now a
 shared parent folder, not this theory's own name.
 
-Current version: **5** (2026-09-01 — **stage 6, the main session's price-aware final review, is removed.** A bucket from stage 5 is now the whole interpretation, and what it is worth is decided by the candidate's segment record through the promotion key (key v3). Bumped `continues`: every backtest row this theory holds was generated without stage 6, so v5 is closer to the measured procedure than v4 was. See THEORY.md Version 5.)
+Current version: **6** (2026-09-01 — **the confidence buckets now supply their own measured edge.** `price()` was asking `score.bucket_rates` for one exact version and `run_mode='live'`, which returned `{}` for this theory's whole life, so every judged row claimed a `PRIORS` placeholder while 1,564 settled bucketed rows sat unread at v3/backtest. `bucket_rates` is rebuilt on `observations()` and now takes `run_mode`/`pool` like `compute_score`; the theory passes `("live","backtest")` and `pool="chain"`. Measured buckets: strong +4.07, moderate +2.03, weak −0.36, against priors of +4.00/+2.00/0.00. Bumped `continues` — nothing in the decision path moved except that it now reads a measurement it already had. **Nothing in the run procedure below changes.** See THEORY.md Version 6.)
+
+Previous version: **5** (2026-09-01 — **stage 6, the main session's price-aware final review, is removed.** A bucket from stage 5 is now the whole interpretation, and what it is worth is decided by the candidate's segment record through the promotion key (key v3). Bumped `continues`: every backtest row this theory holds was generated without stage 6, so v5 is closer to the measured procedure than v4 was. See THEORY.md Version 5.)
 
 Previous version: 4 (2026-08-29 — `gate.py` now reads resolution rules
 as well as ticker prefixes, cutting survivors 130 -> 18 on a full board;

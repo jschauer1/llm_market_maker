@@ -112,6 +112,37 @@ What's left to settle the theory as a whole, roughly in order of value:
 
 ## Version
 
+**6** (2026-09-01) — **the confidence buckets finally speak for
+themselves.** `price()` asked `score.bucket_rates` for its defaults —
+one exact `theory_version`, `run_mode='live'` — and got `{}` for this
+theory's entire life, so `buckets.edge_for` fell through to `PRIORS`
+every time and every judged row ever recorded carried
+`edge_basis='prior'`. The measurement was there the whole time: 1,564
+settled bucketed rows, `moderate` alone **565 rows over 58 settlement
+days** against floors of 10 and 5.
+
+Two independent causes, either sufficient, both fixed in
+`tools/score.py`: an **exact version match** that a `continues` bump
+should never have reset (the same defect class as the 2026-09-01
+`state.py` incident — the sweep after it checked `compute_score` and
+missed `bucket_rates` in the same file), and a **live-only default**
+that contradicts the 2026-08-31 ruling that backtested evidence counts
+exactly as forward-settled evidence does. `bucket_rates` is now built on
+`observations()`, the same seam `compute_score` uses, and takes the same
+`run_mode`/`pool` arguments; `price()` passes `("live","backtest")` and
+`pool="chain"`.
+
+Measured, the buckets are **+4.07 / +2.03 / −0.36** against priors of
++4.00 / +2.00 / 0.00. The priors were well chosen and the numbers barely
+move — which is not a reason the change is cosmetic. `edge_basis` is the
+field that tells a reader whether a number was measured or assumed, and
+until now it said `prior` on every row while the data sat unread. Note
+`weak` measures *negative* where its prior was flat zero.
+
+`continues` — no screen, gate, prompt, bucket scale or threshold moved;
+the procedure now reads a measurement it already had. Full account:
+`NOTES.md` 2026-09-01.
+
 **5** (2026-09-01) — **stage 3, the main session's price-aware final
 review, is removed.** It was never part of the procedure that produced this
 theory's evidence (every backtest row was generated without it) and it was

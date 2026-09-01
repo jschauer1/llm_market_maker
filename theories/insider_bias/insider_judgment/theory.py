@@ -29,8 +29,18 @@ FUNNEL_KEYS = ("board_markets", "screened_markets", "events", "gated_out",
 class InsiderJudgmentTheory(Theory):
     id = "insider_judgment"
     name = "Insider Judgment"
-    version = 5
+    version = 6
     uses_llm_judgment = True
+    #: v6 (2026-09-01): the confidence buckets finally speak for
+    #: themselves. `price()` asked `bucket_rates` for one version and one
+    #: run mode and got nothing, so every judged row this theory has ever
+    #: recorded claimed a PRIOR -- the placeholder CLAUDE.md permits only
+    #: "until a bucket has settled results" -- while 1,564 settled
+    #: bucketed rows sat unread. Measured, the buckets say +4.07 /
+    #: +2.03 / -0.36 against priors of +4.00 / +2.00 / 0.00: the priors
+    #: were well chosen, and that is a result rather than a reason the
+    #: change does not matter, because `edge_basis` is what tells a
+    #: reader whether a number was measured or assumed.
     #: Stage 5 is the only judging stage. v5 removed stage 6, the main
     #: session's price-aware final review, which had been the sole path to
     #: `disposition='endorsed'` and so the sole path to a bet. It was never
@@ -66,7 +76,19 @@ class InsiderJudgmentTheory(Theory):
 
     def price(self, ctx, cands, verdicts=None):
         verdicts = verdicts or {}
-        rates = (ctx.bucket_rates(self.id, self.version)
+        # Pooled over the carry chain and over both run modes (v6).
+        # Asking for `(self.version, run_mode='live')` -- the defaults --
+        # returned `{}` for this theory's entire life, so every judged row
+        # ever priced carried `edge_basis='prior'`, a placeholder, while
+        # 1,564 settled bucketed rows sat in the ledger at v3/backtest
+        # (`moderate` alone: 565 rows over 58 settlement days). Two causes,
+        # both fixed in `score.bucket_rates` on 2026-09-01: an exact
+        # version match that a `continues` bump should never have reset,
+        # and a live-only default that contradicts the 2026-08-31 ruling
+        # that backtested evidence counts exactly as forward-settled
+        # evidence does. See NOTES.md 2026-09-01.
+        rates = (ctx.bucket_rates(self.id, self.version,
+                                  ("live", "backtest"), pool="chain")
                  if ctx.bucket_rates else {})
         out = []
         for c in cands:

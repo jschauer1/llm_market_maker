@@ -324,3 +324,97 @@ def test_saved_bucket_rates_carry_the_day_count(conn):
         "SELECT n, n_days FROM bucket_rates WHERE confidence = 'strong'"
     ).fetchone()
     assert (row["n"], row["n_days"]) == (2, 2)
+
+
+# --- bucket_rates must select the rows compute_score scores (2026-09-01) ---
+#
+# It carried its own copy of the scoring SQL and the copy fell behind
+# twice: run_mode was a single mode defaulting to "live", and the version
+# was matched exactly. Together those made insider_judgment price every
+# judged row off a placeholder while 1,564 settled bucketed rows sat at
+# v3/backtest -- `moderate` alone 565 rows over 58 settlement days.
+
+
+def _bet_at(conn, ticker, bucket, won, *, version=1, run_mode="live",
+            run_id=None, entry_price=0.80, decision_date=None):
+    ledger.record_opportunity(
+        conn, theory_id="t1", theory_version=version, kalshi_ticker=ticker,
+        outcome="yes", entry_price=entry_price, edge_pts_net=4.0,
+        confidence=bucket, run_mode=run_mode, run_id=run_id, now=TS,
+        # backtest rows must date the day being decided about, not the
+        # wall clock -- the ledger refuses otherwise (attempt-fidelity).
+        decision_date=decision_date or (TS[:10] if run_mode == "backtest"
+                                        else None),
+    )
+    score.record_settlement(conn, ticker, "yes" if won else "no",
+                            resolved_at=TS)
+
+
+def test_bucket_rates_can_pool_live_and_backtest(conn):
+    """A backtested settlement is the same evidence as a forward one
+    (user ruling 2026-08-31). compute_score counts both; this must too."""
+    _bet_at(conn, "L-1", "strong", True)
+    _bet_at(conn, "B-1", "strong", True, run_mode="backtest",
+            run_id="backtest-x")
+    _bet_at(conn, "B-2", "strong", False, run_mode="backtest",
+            run_id="backtest-x")
+
+    live_only = score.bucket_rates(conn, "t1", 1)
+    assert live_only["strong"]["n"] == 1, "default stays live-only"
+
+    pooled = score.bucket_rates(conn, "t1", 1, ("live", "backtest"))
+    assert pooled["strong"]["n"] == 3
+    assert pooled["strong"]["win_rate"] == pytest.approx(2 / 3)
+
+
+def test_bucket_rates_can_pool_a_carry_chain(conn):
+    """A `continues` bump carries the evidence, so the buckets it measured
+    must carry too. Matching the version exactly reset every bucket to its
+    prior at each bump -- the same defect that hit tools/state.py."""
+    _bet_at(conn, "V1-1", "strong", True, version=1)
+    theories.bump_version(conn, "t1", kind="continues",
+                          justification="procedure changed, evidence stands")
+    _bet_at(conn, "V2-1", "strong", False, version=2)
+
+    exact = score.bucket_rates(conn, "t1", 2)
+    assert exact["strong"]["n"] == 1, "pool='version' is unchanged"
+
+    chained = score.bucket_rates(conn, "t1", 2, pool="chain")
+    assert chained["strong"]["n"] == 2
+    assert chained["strong"]["win_rate"] == pytest.approx(0.5)
+
+
+def test_a_breaking_bump_still_severs_the_buckets(conn):
+    """pool='chain' must not resurrect evidence an explicit sever cut."""
+    _bet_at(conn, "V1-1", "strong", True, version=1)
+    theories.bump_version(conn, "t1", kind="breaking",
+                          justification="the old evidence does not apply")
+    _bet_at(conn, "V2-1", "strong", False, version=2)
+
+    chained = score.bucket_rates(conn, "t1", 2, pool="chain")
+    assert chained["strong"]["n"] == 1, "a breaking bump resets the buckets"
+
+
+def test_bucket_rates_and_compute_score_see_the_same_rows(conn):
+    """The regression that made this rewrite necessary: two copies of the
+    same selection drifting apart. Pin that they agree."""
+    for i in range(4):
+        _bet_at(conn, f"L-{i}", "strong", i % 2 == 0)
+    for i in range(3):
+        _bet_at(conn, f"B-{i}", "strong", True, run_mode="backtest",
+                run_id="backtest-x")
+    modes = ("live", "backtest")
+    rates = score.bucket_rates(conn, "t1", 1, modes, pool="chain")
+    scored = score.compute_score(conn, "t1", 1, modes, pool="chain")
+    assert rates["strong"]["n"] == scored["n"]
+
+
+def test_bucket_rates_still_ignore_experiment_runs(conn):
+    """`lane='main'` was enforced by the old SQL and must survive the
+    rewrite -- a variant being tried must not contaminate the record it
+    will be judged against."""
+    _bet_at(conn, "MAIN-1", "strong", True)
+    _bet_at(conn, "EXP-1", "strong", False, run_id="exp/variant")
+    rates = score.bucket_rates(conn, "t1", 1)
+    assert rates["strong"]["n"] == 1
+    assert rates["strong"]["win_rate"] == pytest.approx(1.0)

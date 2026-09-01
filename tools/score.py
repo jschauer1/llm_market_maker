@@ -1223,69 +1223,84 @@ def bucket_rates(
     conn: sqlite3.Connection,
     theory_id: str,
     theory_version: int,
-    run_mode: str = "live",
+    run_mode: str | tuple[str, ...] | list[str] = "live",
     *,
     run_id: str | None = None,
+    pool: str = "version",
 ) -> dict[str, dict]:
     """Realized win rate per confidence bucket (spec section 7).
 
-    This is what a theory's confidence labels actually MEAN, measured rather
-    than asserted. Only settled opportunities carrying a bucket count. As
-    with `compute_score`, pass `run_id` to measure a single run rather than
-    every run of this theory version pooled together.
-    """
-    # Baskets are excluded deliberately: a basket's header carries the
-    # synthetic BASKET:<hash> ticker, which never appears in `settlements`,
-    # so this join could only ever drop them. The predicate says so out
-    # loud rather than leaving the exclusion to be inferred from the join.
-    sql = """
-        SELECT o.confidence, o.outcome, o.entry_price, s.result,
-               s.resolved_at
-        FROM opportunities o
-        JOIN settlements s ON s.kalshi_ticker = o.kalshi_ticker
-        WHERE o.theory_id = ? AND o.theory_version = ? AND o.run_mode = ?
-          AND o.position_kind = 'single'
-          AND o.confidence IS NOT NULL AND o.confidence != ''
-    """
-    params: list[object] = [theory_id, theory_version, run_mode]
-    if run_id is not None:
-        sql += (
-            " AND EXISTS (SELECT 1 FROM opportunity_attempts a"
-            " WHERE a.opportunity_id = o.id AND a.run_id = ?)"
-        )
-        params.append(run_id)
-    else:
-        # Pooled scoring never sees experiments (OOP spec section 3.3a):
-        # a variant being tried must not contaminate the record it will
-        # be judged against. Keyed on lane, not on the run_id prefix --
-        # after a merge the surviving row's run_id is whichever run saw
-        # the position first.
-        sql += " AND o.lane = 'main'"
+    This is what a theory's confidence labels actually MEAN, measured
+    rather than asserted. Only settled opportunities carrying a bucket
+    count. As with `compute_score`, pass `run_id` to measure a single run
+    rather than every run pooled together.
 
-    rows = conn.execute(sql, params).fetchall()
+    Built on `observations` so it selects **exactly** the rows
+    `compute_score` scores. It used to carry its own copy of that SQL, and
+    the copy fell behind twice over (fixed 2026-09-01):
+
+    - **`run_mode` was a single mode defaulting to `"live"`**, so every
+      backtested settlement was invisible here while
+      `calibration_edge_net` counted it in full. That contradicts the
+      2026-08-31 ruling that backtested evidence counts exactly as
+      forward-settled evidence does. `run_mode` now takes one mode or
+      several, like `compute_score`.
+    - **The version was matched exactly**, so a bump reset every bucket to
+      its prior even when the bump was `continues` and the evidence
+      carried. `pool="chain"` widens to the carry chain, same as
+      everywhere else.
+
+    Together those two made `insider_judgment` price every judged row off
+    a placeholder: 1,564 settled bucketed rows sat at v3/backtest — the
+    `moderate` bucket alone 565 rows over 58 settlement days — while
+    `price()` asked for `(v5, live)` and got `{}`. See that theory's
+    NOTES.md 2026-09-01.
+
+    Baskets are excluded deliberately: a basket's header carries the
+    synthetic BASKET:<hash> ticker, which never appears in `settlements`.
+    `observations` returns them separately and they are dropped here by
+    `position_kind`, which says the exclusion out loud rather than leaving
+    it to be inferred from a join.
+
+    **No tier filter, matching `compute_score`.** Tier C exclusion is the
+    slices layer's job (`tools/slices.py`), and inventing a second
+    convention here would make two functions disagree about what a
+    theory's evidence is. A caller pricing live decisions off buckets
+    should check its theory has no tier-C runs — `insider_judgment` has
+    none; all its judged replays are tier B.
+    """
+    modes = (run_mode,) if isinstance(run_mode, str) else tuple(run_mode)
+    rows: list[dict] = []
+    for mode in modes:
+        rows.extend(observations(
+            conn, theory_id, theory_version, mode,
+            run_id=run_id, pool=pool,
+        ))
 
     grouped: dict[str, list] = {}
     for row in rows:
-        grouped.setdefault(row["confidence"], []).append(row)
+        if row.get("position_kind") != "single":
+            continue
+        bucket = row.get("confidence")
+        if not bucket:
+            continue
+        grouped.setdefault(bucket, []).append(row)
 
     def _n_days(members: list) -> int | None:
         """Distinct settlement days behind a bucket's rate, or None.
 
-        None when no member carries a `resolved_at` -- older backtest rows
+        None when no member carries a resolved day -- older backtest rows
         settled without one. Unknown must read as unknown rather than as
         zero or one, because `buckets.measured_gross` fails closed on it:
         a day count that cannot be checked is not a day count.
         """
-        days = {m["resolved_at"][:10] for m in members if m["resolved_at"]}
+        days = {m["resolved_day"] for m in members if m.get("resolved_day")}
         return len(days) or None
 
     return {
         bucket: {
             "n": len(members),
-            "win_rate": sum(
-                1 for m in members if _won(m["outcome"], m["result"])
-            )
-            / len(members),
+            "win_rate": sum(1 for m in members if m["won"]) / len(members),
             "mean_entry_price": sum(m["entry_price"] for m in members)
             / len(members),
             # Rows are not independent draws; a bucket measured on one

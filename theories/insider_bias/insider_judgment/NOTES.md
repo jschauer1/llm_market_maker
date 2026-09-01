@@ -1613,3 +1613,112 @@ subset and stays shut for the rest, which is the whole point.
 Also hit: `cli theories bump` still offers only breaking/carry and calls
 breaking the default, so the v5 bump had to go through the Python API.
 Filed as a maintenance ticket.
+
+## 2026-09-01 — v6: the confidence buckets had never once spoken for themselves
+
+Came here to find out why the repo's one proven edge produced no bets
+today. It turned out today's run was fine and something older was not.
+
+### What today's run actually was
+
+The 2026-09-01 floor run recorded at **02:35-02:37Z**; **v5 landed at
+03:06:39Z**. So today's rows are v4, with stage 6 still active, and its
+19-of-20 rejection rate is v4 behaving exactly as v5 was created to stop.
+**Not a live defect** -- the next floor at v5+ will not do this. Recorded
+because "the proven slice produced no bets today" looks alarming and has
+a boring explanation, and the next session should not re-derive it.
+
+Three rows on today's board match the slice predicate
+(`outcome='no'`, confidence in strong/moderate). Read-only, flipping only
+the disposition v5 would have left as `screened`, all three route to
+`slice:strong-moderate-no` (90 clusters, 44 days, +3.76) and reach
+**R1** on the segment test. At today's re-quoted asks only one survives
+the executability precondition:
+
+    KXBIGBROTHERELIMINATION-26SEP03-LAT  NO  0.74 -> 0.69  spread 3.0pts  live
+    KXBIGBROTHERELIMINATION-26SEP03-TAY  NO  0.80 -> 0.83  edge gone
+    KXPRESSSECANNOUNCE-26AUG-SEP08       NO  0.92 -> 0.92  spread 2.0 >= edge
+
+Not recorded as bets: they are v4 rows and rewriting a recorded
+disposition would falsify what v4 decided. The v5+ run that records them
+properly is the floor's.
+
+### The real finding: every judged row this theory ever priced claimed a PRIOR
+
+`price()` calls `ctx.bucket_rates(self.id, self.version)` -- and took the
+defaults, `run_mode='live'` and an exact version match. That returned
+**`{}` for this theory's entire life**, so `buckets.edge_for` fell through
+to `PRIORS` every single time and stamped `edge_basis='prior'`.
+
+Meanwhile the measurement existed. All 1,564 settled bucketed rows:
+
+    theory_version  run_mode   bucket      n
+                 2  live       moderate    8
+                 3  backtest   moderate  565     <- 58 settlement days
+                 3  backtest   strong    229
+                 3  backtest   weak      770
+                 3  live       weak      171
+                 4  live       weak        8
+
+`moderate` alone is 565 rows over 58 settlement days, against floors of
+`MIN_BUCKET_N=10` and `MIN_BUCKET_DAYS=5`. It cleared them fifty times
+over and was never once read.
+
+**Two independent causes, either sufficient:**
+
+1. **`o.theory_version = ?` exactly.** After the 2026-08-31 ruling a
+   `continues` bump carries the evidence -- but this query resets every
+   bucket to its prior at each bump. **This is the same defect class as
+   the 2026-09-01 `state.py` incident**, and the sweep that followed it
+   concluded "`score.py` is already parameterized (`pool='chain'`)". That
+   was true of `compute_score` and false of `bucket_rates`, twelve
+   hundred lines down the same file.
+2. **`run_mode='live'` by default.** Excludes every backtested
+   settlement, contradicting the same ruling's other half. This theory's
+   evidence is 3,279 backtest rows against 206 live ones, so this alone
+   emptied it.
+
+### The fix, and why it is a version bump
+
+`score.bucket_rates` is rebuilt on `observations()` -- the same seam
+`compute_score` uses -- and gains `run_mode` as str-or-tuple plus
+`pool`, matching `compute_score`'s signature exactly. Two copies of one
+selection had drifted apart; now there is one. `theory.py` asks for
+`("live","backtest")` and `pool="chain"`.
+
+Five tests pin it, including that a **`breaking` bump still severs** the
+buckets (`pool="chain"` must not resurrect evidence an explicit sever
+cut) and that `bucket_rates` and `compute_score` now see the same rows.
+
+**v6, `continues`:** no screen, gate, prompt, bucket scale or threshold
+moved. The procedure now reads a measurement it already had.
+
+### What the buckets actually say -- and why "barely anything changes" is the point
+
+    bucket      n  days  win_rate  mean_ask   measured   PRIOR
+    strong    232    17    0.8922    0.8516    +4.07     +4.00
+    moderate  583    64    0.8731    0.8527    +2.03     +2.00
+    weak      955    71    0.8545    0.8581    -0.36      0.00
+
+**The priors were well chosen** -- within 0.4 points on every bucket.
+It would be easy to read that as "the bug did not matter". That is the
+wrong reading, and it is worth stating plainly: CLAUDE.md's whole
+division of labour is *a model categorizes, measurement quantifies*, and
+`edge_basis` is the field that tells a reader which of those produced a
+number. Every row this theory recorded said `prior` -- "a placeholder
+awaiting data" -- while the data sat in the same database. The claim was
+right by luck of good judgment in writing THEORY.md's bucket table, not
+by measurement, and nobody reading the ledger could tell the difference.
+
+Note also that `weak` measures **negative** (-0.36) where its prior was a
+flat 0.00. Small, but it is the bucket the screen produces most of, and
+"weak is slightly worse than nothing" is a different statement from
+"weak is nothing".
+
+### Not done, and why
+
+Stage 5 needs judging subagents and this session was not authorized to
+spawn them, so **no v5/v6 live run was recorded**. That is the one thing
+between here and the Big Brother candidate being a properly recorded R1
+bet rather than a read-only calculation. It is the floor's to run, and
+the RUNBOOK's procedure is unchanged by v6.
