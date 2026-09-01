@@ -480,3 +480,136 @@ Study: `studies/2026-08-29-series-bias-mining/`. Suite **955** green.
 sweep, then re-run — budgeting for the per-series `list_settled` walk, not
 the candlestick fetches. Pre-register a **power floor** (MDE ≤ 5pts), not a
 count floor, and keep mention_family out of the Holm family.
+
+## Pass 3 analysis bar — fixed 2026-09-01, BEFORE any per-series number
+
+Pass 3's *collection* rule (the 40–1,000 combinatorial cap) was fixed
+above before any price was fetched. This section fixes the *analysis*
+bar, and it is written under the same discipline: at the time of writing
+I had looked at exactly four numbers, all of them counts —
+68,243 priced observations across 642 series, of which **358 clear the
+n/n_days floors**, median n 115, median 13 settlement days. No win rate,
+no ask mean, no edge, no split, no MDE has been computed on this
+population. Counts are outcome-independent; that claim is checkable
+because the collector computes `won` but this section quotes none of it.
+
+### Population — and it is NOT passes 1–2's population
+
+`data/collect.db`, phase-2 observations: every settled market in an
+eligible series (40–1,000 settlements in the ~60-day archive window),
+priced at **25% of scheduled lifetime before close**, favorite side, one
+observation per market.
+
+The difference from earlier passes is material and must not be papered
+over when results are read:
+
+| | passes 1–2 | pass 3 |
+|---|---|---|
+| population | `insider_bias/screen.py` survivors | **no screen** |
+| price filter | favorites 0.65–0.97 | none — the favorite at whatever it costs |
+| liquidity filter | spread ≤ 0.07, volume ≥ 500 | none |
+| horizon | ≤ 14 days to close | any |
+| decision point | first screen-qualifying day | 25% of scheduled lifetime |
+
+So a bias found here generalizes to **"the favorite side of a recurring
+series at 25% of its lifetime"** — not to any tradeable screen. Whether
+such a bias is *bettable* is a separate question: it is reported net of
+fees beside every gross figure, and it is never what the guard scores.
+
+### Inclusion floors — outcome-neutral, and that is the point
+
+Unchanged from pass 1, because they are pure counts: `n >= 40` and
+`n_days >= 8`; alive in both halves at `n >= 15` and `n_days >= 3`.
+
+### No MDE filter on admission — a deliberate reversal of pass 2
+
+Pass 2 admitted only series with `MDE <= 5`, and then found the flaw
+itself: **an SE-based floor is not outcome-neutral for binomial data.**
+Variance is `p(1−p)`, so an extreme-win-rate series has a low SE and
+therefore a low MDE, and the floor preferentially admits exactly the
+series where a large price-vs-outcome gap can sit. Pass 2 measured the
+channel (mean win rate 0.864 among MDE ≤ 8 versus 0.829 above it) and
+`KXLOWTLV`, its one flag, was the most extreme-win-rate series in the
+population *and* had the lowest MDE. Its admission to the family was not
+independent of its outcome.
+
+Pass 2's own correction says how to fix it: *"State it as a floor on `n`
+and `n_days` where possible, or report the win-rate composition of who
+passed, so the selection channel is visible rather than silent."*
+**Pass 3 does the first, and reports the second.** Admission is by count
+alone. This is affordable now and was not before: the power problem that
+motivated the MDE floor was really a *breadth* problem, and 358 admitted
+series is a different regime from 28.
+
+The cost is paid honestly: a large family makes Holm severe
+(0.05/358 ≈ 1.4e-4). That is the true price of testing hundreds of
+series and it is not negotiable downward. For calibration, pass 2's
+`KXLOWTLV` at p < 1e-5 would still clear Holm over a family this size —
+so the correction does not, by construction, exclude a real effect of
+the magnitude this study is looking for.
+
+**The power-floored view is still reported, second and labelled.** The
+`MDE <= 5` cut is run as a *secondary* view beside the primary, marked
+as outcome-correlated in admission, so pass 2's numbers stay comparable.
+The primary result is the outcome-neutral one.
+
+### The Holm family, and the control
+
+The family is **every admitted non-control series**. mention_family
+series are excluded from the family and measured separately as the
+negative control — spending correction budget on series nobody would
+promote only dilutes the result, and their behaviour is the check on
+whether the guard is too loose (pass 1: all ten non-significant, as they
+should be on data known to be fairly priced).
+
+### When this pass counts as "measured"
+
+Fixed now, because passes 1 and 2 both had to declare themselves
+uninformative *after* running and that is only credible when the bar
+predates the data:
+
+> This pass is **informative** iff at least **30 non-control series**
+> clear the floors **and** the median MDE over admitted series is
+> **≤ 8 points**. Otherwise it is "not measured" again, whatever it
+> flags.
+
+The count condition is already met on the partial collection (358); the
+MDE condition is not yet knowable and is deliberately left as a real
+gate rather than a formality.
+
+**This is the first pass able to state a genuine negative.** If ≥30
+series are tested at median MDE ≤ 8 and nothing flags, that is evidence
+*against* persistent per-series bias in recurring Kalshi series at this
+decision point — a real finding, not an absence of one. Passes 1 and 2
+could never have said that.
+
+### The flag — four gates, unchanged
+
+Split-sample same sign; both halves ≥ 1.0 pt **gross**; `|t| >= 2`;
+survives Holm-Bonferroni over the family. Gross, not net, per the
+2026-08-29 amendment: fees are a ~constant −1 to −3 pt offset, so a
+net-scored guard flags every calibrated series as negatively biased.
+
+### Pre-registered signs for the two carried candidates
+
+Both arrive from earlier passes and are genuinely out of sample here —
+different population, different decision point, different screen. Their
+signs are fixed **now**, so that a result of the opposite sign cannot be
+re-read as "a bias exists":
+
+- **`KXRT`** (Rotten Tomatoes): **negative** — pass 1 gave −4.23 gross,
+  halves −4.68/−3.86. Pass 1's own caution stands and is repeated: those
+  halves came from the same 11 settlement days, so the split guarded
+  against regime change, not against noise.
+- **`KXLOWTLV`** (Tel Aviv daily low): **positive** — pass 2 gave +9.50
+  gross, t +5.44, 36/38 days positive.
+
+Confirmation for either requires the pre-registered sign, `|t| >= 2`,
+and Holm survival in the pass-3 family. A flag of the opposite sign is
+reported as a **failed** forward test for that series, not as a finding.
+
+### What is deliberately NOT decided here
+
+Nothing in this pass promotes anything to a theory. Survivors become
+pre-registered proposals for follow-on theories, on a forward or
+out-of-sample population — never bets on the data that suggested them.
