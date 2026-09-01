@@ -450,19 +450,79 @@ per segment, never on one row**:
 
 ## Toolkit
 
-`python -m tools.cli --help` for the command line. See `tools/README.md` for
-conventions and the full map. Highlights:
+`python -m tools.cli --help` for the command line. See `tools/README.md`
+for conventions and the full map. Everything in `tools/` is available to
+every theory and every session:
 
+**Starting a session**
+- `tools/state.py` — the orientation surface; renders current state from the DB
+- `tools/floor.py` — floor duty: is it due, who holds it, marking it done
+- `tools/board.py` — **the session's Kalshi board; every theory starts here**
+
+**Getting data**
 - `tools/kalshi/markets.py` — open/settled markets, quotes, resolution rules
 - `tools/kalshi/history.py` — candlesticks with historical bid/ask, ~12 months
 - `tools/polymarket/markets.py`, `trades.py` — markets, whales, holders
+- `tools/snapshot.py` — first-party history; every board pull is kept
 - `tools/match_market.py` — non-Kalshi finding → Kalshi ticker shortlist
-- `tools/ledger.py` — the opportunity contract
-- `tools/score.py` — calibration, ROI, interpretation value
-- `tools/rank.py`, `tools/sizing.py` — ranking and Kalshi fee/Kelly math
-- `tools/board.py` — **the session's Kalshi board; every theory starts here**
-- `tools/snapshot.py` — first-party history
+- `tools/ladders.py` — strike ladders and sibling-market structure
+
+**Recording**
+- `tools/ledger.py` — the opportunity contract (`record_opportunity`, `record_basket`, `interpret`)
+- `tools/db.py` — connections, schema, migrations, `write()`
 - `tools/provenance.py` — which model judged, and with which prompt
+- `tools/backup.py` — ledger backups, taken before settling or migrating
+
+**Measuring**
+- `tools/score.py` — settlements, calibration, ROI, per-segment scores
+- `tools/slices.py` — sub-theories: their evidence, gates, and the ranking partition
+- `tools/buckets.py` — confidence label → measured probability
+- `tools/rank.py`, `tools/sizing.py` — ranking, credibility, Kalshi fee/Kelly math
+
+**Deciding what the user is told**
+- `tools/promotion.py` — the promotion key evaluator; rungs R1–R6
+
+**Governance and memory**
+- `tools/theories.py` — lifecycle, versions, carry chains, retirement proposals
+- `tools/rulings.py` — binding rulings, surfaced in `state`
+- `tools/ideas.py` — the idea registry; search before proposing
+
+**The theory contract**
+- `tools/theory.py` — `Theory`, `TheoryRun`, `TheoryContext`
+- `tools/registry.py` — discovery and drift checks
+- `tools/domain.py` — the frozen dataclasses domain values are made of
+
+**Plumbing** — `tools/cli.py` (the front door, `python -m tools.cli`),
+`tools/http.py` (retries and rate limits), `tools/timeutil.py`.
+
+### These names are an interface, so changing their meaning is a breaking change
+
+**Be careful editing the semantics of anything here.** This repo is
+operated by autonomous agents that will never ask you what a field meant
+— they read a name, believe it, and act. A vocabulary that quietly
+changes meaning does not produce an error; it produces months of
+confidently wrong decisions on top of data nobody re-reads.
+
+The load-bearing vocabularies: `disposition`
+(`screened`/`endorsed`/`rejected`), `edge_basis`
+(`measured`/`model`/`prior`), `run_mode` (`live`/`backtest`/`pooled`),
+`segment` (`aggregate`/`slice:<slug>`/`complement`), version `kind`
+(`continues`/`carry`/`breaking`), backtest tiers (A/B/C), promotion rungs
+(R1–R6), and theory `status`. Each is defined once in this file or in the
+module that owns it, and recorded rows are only interpretable through
+those definitions.
+
+So: **prefer a new name to a redefined one.** Widening what a field may
+hold is safe; changing what an existing value means rewrites the past,
+because every row already written was recorded under the old meaning. When
+a change genuinely must alter meaning, migrate the rows explicitly and
+separately from the schema change, say so in `RESEARCH_LOG.md`, and leave
+the old wording visible — `theories.reclassify_bump` is the worked
+example. And when a default changes, check what reads it: a query written
+against the old vocabulary keeps running and starts answering a different
+question. That is not hypothetical — adding sub-theory rows to `scores`
+made an unfiltered EVIDENCE query serve a subset's numbers as the
+theory's, silently, until a test pinned it.
 
 **New code starts in the theory that needs it** and moves to `tools/` only
 once it has more than one real caller. That is a judgment call, not an

@@ -699,3 +699,42 @@ def test_theory_versions_ledger_is_complete_and_proven():
         "score.compute_score(pool='chain') silently stop short:\n"
         + "\n".join(f"{tid} v{v}" for tid, v in missing)
     )
+
+
+def test_claude_md_names_every_tool_a_session_can_reach():
+    """CLAUDE.md's Toolkit is the list an autonomous session works from.
+
+    A tool absent from it is a tool that will not be used: nothing else
+    enumerates `tools/`, and a session reasons from this file before it
+    opens anything. A stale list is therefore not cosmetic -- it silently
+    narrows what every future session believes it has.
+
+    `tools/backtest.py` is the deliberate exception. CLAUDE.md names it to
+    say it must never be built (there is no shared replay engine), so it
+    is referenced precisely because it does not exist.
+    """
+    claude = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
+    named = set(re.findall(r"`(tools/[\w/]+\.py)`", claude))
+    on_disk = {
+        f"tools/{p.name}"
+        for p in (ROOT / "tools").glob("*.py")
+        if p.name != "__init__.py"
+    }
+    missing = sorted(on_disk - named)
+    assert not missing, (
+        "these tools exist but CLAUDE.md's Toolkit does not name them, so "
+        f"no session will know they are there: {missing}"
+    )
+
+
+def test_claude_md_does_not_name_a_tool_that_is_gone():
+    """The mirror failure: a session told to use a module that no longer
+    exists wastes a turn discovering the file is missing, and a rule
+    written around it is unenforceable."""
+    claude = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
+    named = set(re.findall(r"`(tools/[\w/]+\.py)`", claude))
+    # Named to forbid it, not to offer it -- see "there is no
+    # tools/backtest.py replay engine ... and neither gets built".
+    named.discard("tools/backtest.py")
+    absent = sorted(n for n in named if not (ROOT / n).exists())
+    assert not absent, f"CLAUDE.md names tools that do not exist: {absent}"
