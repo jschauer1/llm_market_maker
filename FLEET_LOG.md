@@ -116,3 +116,23 @@ goes to be found.
   26e80e4 (tools/cli.py, tools/toolkit.py, tests/test_cli.py) pushed.
   Working tree now clean apart from this log.
 - 23:46 round 1 closed: 3/3 workers conclusive, 5 commits pushed, 0 orphans.
+- 23:59 w1-g2 completed — CONCLUSIVE (study released, liquidity-filtered-side-split
+  complete with verdict, idea 33 dead, 2 tickets closed, 1 filed)
+- 00:01 commit c850452 "study: the side split is zero, not negative -- same kill,
+  honest reason" (9 paths, w1-g2) pushed
+- 00:01 RULINGS recorded in RESEARCH_LOG.md (delegated authority):
+  * prefix bias on a partway-through series-ordered collection is a FIRST-ORDER
+    caveat, not a footnote — run 1 drew 3 conclusions on a 37% alphabetical
+    prefix and 2 reversed at full coverage. Placement rule, not a diligence ask:
+    the study carried the caveat honestly and everything downstream read past it.
+  * supersede-don't-rewrite UPHELD on the series-bias pass-4 correction. Pass 4
+    still runs as pre-registered; only the attribution of its result changes.
+  * standing consequence: no price band on the 659-series corpus shows a
+    mid-relative gross mispricing clearing |t|>2 at fillable quotes, so any
+    new-theory spec whose edge is an unconditional price level must cite this.
+- 00:01 6 failures in tests/test_collectors.py are w3-g2's in-flight untracked
+  tools/collectors.py — a LIVE worker's work in progress, not a regression and
+  not attributable. Deliberately not committed, not blamed; recheck when w3-g2
+  reports.
+- 00:02 spawn  w1-g3 a6dc0080 (w2-g2 and w3-g2 confirmed still running via
+  ListAgents — 2 live, only w1 empty, exactly one spawned)
