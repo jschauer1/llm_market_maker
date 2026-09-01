@@ -3188,3 +3188,51 @@ liquidity fields. **If those cells are flat and excluded at the
 frontier, that is three domains dead and the theory goes to the user for
 retirement rather than to a fourth walk** — pre-committed in NOTES.md so
 the next session is not the one deciding it alone.
+
+### 2026-09-01 (same session, continued) — the walk finished, and it killed the theory
+
+The econfin walk completed within the session: **1,181/1,181 series,
+2,666 observations**, population-complete. **THEORY.md's pre-registered
+kill criterion is MET** — 27 cells clear both floors, zero clear fees,
+net −6.57 to −25.29, on a population walked *after* the grid was drawn.
+`calibration_harvest` moved `testing` → `under_review` and **retirement
+is proposed for the user's ruling.**
+
+**Why this is a fair test and not a tired one — the reusable point.**
+The session's main work was removing the theory's excuse *before*
+testing it. A theory whose pricing rule cannot fire and a theory with no
+edge produce **identical empty reports**, and calibration_harvest had
+been producing them for six weeks. v4 fixed the estimator on a
+structural argument, and the fix demonstrably changed nothing bettable —
+then the fresh population came back empty anyway. **Fix the instrument
+first, on its own merits, then read the result. A negative obtained that
+way is worth something; a negative from an instrument nobody checked is
+worth nothing.**
+
+**The most informative single number: the horizon gradient reverses sign
+out of sample.** `1mo+` was **+9.38** on weather+politics — this
+theory's most durable-looking finding, already retracted once as a
+pre-registration failure and shown ~38% composition — and comes back
+**−5.09** on econfin. A finding that survives retraction on
+methodological grounds can still be dead on replication grounds, and
+those are separate tests. It is worth remembering that this repo caught
+it twice by different routes.
+
+Also: 0 of 27 cells survives Holm; 0 of 20 domain-band cells across all
+six walked domains shows a bettable effect (8 exclude one, 12
+underpowered); and the liquidity split — newly capturable because the
+collector had been discarding the volume and spread it computed to run
+its own filter — shows no ordering in either direction.
+
+**Not proof of absence, and the proposal says so.** Sports (3,274
+series) and Entertainment (598) are mapped and unwalked. If the user
+wants one more walk before ruling, **Sports is the right one**: the
+settlement-source check found the forward corpus is overwhelmingly
+sports already (ESPN 2,502 rows, Fox Sports 1,214, MLB/ATP/WTA/FIFA),
+so calibration_harvest's −2.87 headline is essentially an *unlabelled
+sports number* and the theory has never had a sports cell to put it in.
+That is the strongest argument against retiring now and it is in the
+rationale rather than buried here.
+
+**For the user: this is a retirement decision awaiting a ruling.** It
+surfaces in `state` under STANDING.

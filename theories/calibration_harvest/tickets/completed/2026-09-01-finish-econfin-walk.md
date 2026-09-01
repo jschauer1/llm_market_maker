@@ -7,7 +7,9 @@ created_by: llm-market-identifier-d8
 author_lane: theory
 author_focus: calibration_harvest
 author_context: Started the walk this session after the v4 estimator fix; ran out of session before it completed. It is checkpointed and resumable.
-status: open
+status: done
+closed: 2026-09-01
+resolution: Done same session. Walk completed population-complete: 1,181/1,181 series, 2,666 observations, run backtest-2026-09-01-calharvest-econfin. 27 cells clear both floors and ZERO clear fees (net -6.57 to -25.29), so the pre-registered kill criterion is MET on an out-of-sample population. Horizon axis reverses sign (1mo+ +9.38 -> -5.09). 0 of 27 cells survives Holm. The liquidity split this population made possible is also flat -- no ordering in either direction. Theory moved to under_review and retirement proposed for the user's ruling; the ticket's own step 4 pre-committed to exactly this. Sports remains the one walk worth doing if the user wants more evidence before ruling, and the rationale says so.
 ---
 STATE. Run id `backtest-2026-09-01-calharvest-econfin`, checkpoint `theories/calibration_harvest/backtests/econfin.json`. Started 2026-09-01 by llm-market-identifier-d8. Categories: Economics, Financials, Science and Technology, Companies, World (1,181 series after the 58-day recency filter). Roughly a quarter walked when the session ended.
 

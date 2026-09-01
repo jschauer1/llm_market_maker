@@ -58,6 +58,43 @@ All in-repo, no external feeds, no LLM:
 
 ## Status
 
+`under_review` — 2026-09-01. **The pre-registered kill criterion is met
+and retirement is proposed for the user's ruling.**
+
+Third population complete (`backtest-2026-09-01-calharvest-econfin`,
+1,181/1,181 series, 2,666 observations, five mapped domains). It is
+genuinely out of sample — the grid was drawn on weather and politics.
+**27 cells clear both floors; zero clear fees**, with net edge at the v4
+bound running −6.57 to −25.29. The falsification condition below, fixed
+before the data existed, is satisfied.
+
+The test is fair, which took the whole 2026-09-01 session to arrange:
+until v4 the pricing rule was *arithmetically incapable* of firing, so a
+theory with no edge and a theory that could not express one produced
+identical empty reports. v4 removed that excuse on a structural argument,
+demonstrably without changing anything bettable — and the fresh
+population still came back empty.
+
+Across all six walked domains: **0 of 20 measured domain-band cells shows
+a bettable effect; 8 exclude one; 12 are underpowered.** **0 of 27
+econfin cells survives Holm.** The horizon axis — the only axis that ever
+showed structure — **reverses sign out of sample** (`1mo+` +9.38 on
+weather+politics, **−5.09** on econfin), so the horizon claim is dead
+rather than merely unproven. The liquidity split, newly capturable this
+session, shows no ordering in either direction.
+
+Not proof of absence: sci_tech is thin, 12 cells are underpowered, and
+Sports (3,274 series) and Entertainment (598) are unwalked. If one more
+walk is wanted before ruling, **Sports is the right one** — it is the
+largest population on Kalshi and the forward corpus turns out to be
+dominated by it. Full numbers: `NOTES.md` 2026-09-01 (later still).
+
+Status is `under_review`, not paused: it keeps running and recording,
+because pulling a theory you suspect is broken guarantees you never find
+out whether it was broken or unlucky.
+
+### History
+
 `testing` — 2026-08-29. The first pre-registered population is
 **complete** (Climate and Weather, 154/154 series, 3,267 observations over
 3,260 settled markets, run `backtest-2026-08-27-calharvest-weather`), and

@@ -6,7 +6,9 @@ created: 2026-09-01
 created_by: llm-market-identifier-0e
 author_lane: find-theories
 author_context: Found while inspecting raw board payloads in the find-theories lane; this theory owns the cell grid so it is filed here rather than as a new theory.
-status: open
+status: done
+closed: 2026-09-01
+resolution: Cheap check run 2026-09-01 and recorded in the ticket: 41.2% ticker coverage, structurally so (the tier-A populations came through list_settled and were never snapshotted), and every one of 11 sources sits inside its own noise at 2-3 df. Not a slice -- underpowered rather than informative. Closing because the theory is now under_review with retirement proposed on the pre-registered kill criterion; if the user keeps it, re-open and re-run at ~15 settlement days. Query preserved in the ticket body.
 ---
 THE FIELD. Kalshi's EVENT envelope carries `settlement_sources` -- the
 named agency or publication a market resolves against. It is already on

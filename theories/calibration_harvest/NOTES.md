@@ -1424,3 +1424,127 @@ right next test rather than merely the next cheapest.
 entry above on volume/spread having been discarded until today. It is
 the most obvious unexplored axis on this corpus and it is now capturable
 going forward, but not backwards.
+
+## 2026-09-01 (later still) — the econfin walk completed, and the pre-registered kill criterion is MET
+
+Third population **complete**: 1,181/1,181 enumerated series, **2,666
+observations**, run `backtest-2026-09-01-calharvest-econfin`, covering
+five mapped domains (economics, financials, sci_tech, companies, world).
+Checkpoint series count equals the enumerate count, so the RUNBOOK's
+precondition is satisfied and the cells may be read.
+
+**THEORY.md's kill criterion, fixed before any of this data existed:**
+*"No cell clears fees out-of-sample at n >= 30 **and** n_days >= 8."*
+
+**27 cells clear both floors. Zero clear fees.** Net edge at the v4
+Wilson bound runs **−6.57 to −25.29** across all 27. Not one is
+positive. This population is genuinely out of sample: the grid was drawn
+on weather and politics, and econfin was walked afterwards.
+
+The criterion is met. It was not met on 2026-08-30 (a two-settlement-day
+corpus could not have confirmed the theory either, which is why calling
+it met then was wrong). It is met now, on the population type the
+criterion asks about, at the sample size it asks for.
+
+### And this is a fair test, which is the part that took the whole session
+
+Until today the theory had an excuse, and it was a real one: the pricing
+rule was **arithmetically incapable of firing** (v4 above — at
+`MIN_CELL_DAYS`=8 no cell above ask 0.65 could emit a positive edge at
+any realized rate, and 0.92–0.97 needed 79 days against a 58-day
+history). A theory that never fires and a theory with no edge produce
+identical empty reports. **v4 removed the excuse, and the answer did not
+change.** That sequencing matters: the estimator was fixed *first*, on a
+structural argument, with the fix demonstrably changing nothing bettable
+— and only then did the fresh population come back empty.
+
+### Every axis, on the largest corpus this theory will ever cheaply have
+
+**Domain × price band, all six walked domains, day-clustered 95% CI
+against the v4 frontier** (does the interval exclude a *bettable*
+effect, not merely zero):
+
+    0 of 20 measured domain-band cells shows a bettable effect.
+    8 of 20 EXCLUDE one. The other 12 are underpowered, not null.
+
+    weather    all four bands EXCLUDED  (829-941 rows, 59 days each)
+    politics   0.85-0.92 and 0.92-0.97 EXCLUDED; lower bands underpowered
+    economics  0.75-0.85 EXCLUDED; rest underpowered
+    financials 0.92-0.97 EXCLUDED; rest underpowered
+    sci_tech   all underpowered (48-193 rows)
+
+**The horizon axis — the only axis that ever had structure — REVERSES
+SIGN out of sample.** This is the single most informative number of the
+session:
+
+    weather+politics:  <=2d -0.19  2d-1w -4.77  1w-1mo +4.51  1mo+ +9.38
+    econfin:           <=2d +1.41  2d-1w -7.52  1w-1mo -3.15  1mo+ -5.09
+
+The +9.38 at `1mo+` that survived as this theory's most durable-looking
+finding comes back **−5.09** on a fresh population. The 2026-08-29
+retraction already showed the gradient was not pre-registered and ~38%
+composition; this shows it does not replicate at all. Treat the horizon
+claim as dead, not merely unproven.
+
+**Multiple comparisons: 0 of 27 cells survives Holm.** Smallest p is
+0.0363 (`economics|<=2d|0.65-0.75`, +10.52 ± 5.03) against a threshold
+of 0.05/27 = 0.0019. The handful of cells `read_cells` flags
+"SIGNIFICANT" at 2 SE are what a 27-cell grid produces by chance, and
+every one of them is still net-negative after the Wilson bound and fees.
+
+**The liquidity split — the axis this session made capturable — is also
+dead.** 2,666 rows, 100% carrying `volume_at_call`, split at the median
+volume-at-entry of 2,299:
+
+    band        thin            liquid
+    0.65-0.75   +0.88           -2.26
+    0.75-0.85   -5.64           -1.21
+    0.85-0.92   -1.20           -3.70
+    0.92-0.97   -4.45           -1.61
+
+The mechanism predicted thin books carry the stronger premium. The signs
+do not order that way, or any way — thin is worse in two bands and
+better in two. 6 of 8 sub-cells exclude a bettable effect. **Recorded as
+a genuine negative for the mechanism**, not as "no result": this was the
+most promising unexplored axis on the corpus and it was tested properly
+on its first available population.
+
+### What this does NOT establish
+
+  - **Not proof of absence.** 12 of 20 domain-band cells are
+    underpowered, and sci_tech is thin throughout. The claim is that
+    three complete walks produced zero bettable cells, not that no
+    effect exists anywhere at any size.
+  - **Sports (3,274 series) and Entertainment (598) are unwalked.** They
+    are mapped domains and a fourth walk is physically possible. The
+    argument against spending it is stated below rather than hidden.
+  - **Nothing here indicts the machinery.** The collector, the grid, the
+    day-clustering discipline and v4's estimator all work; they were
+    used to reach a clean negative, which is what they are for.
+
+### Recommendation: retirement, put to the user
+
+Proposed via `theories propose-retirement`. The reasoning, so the user
+is ruling on an argument and not a mood:
+
+  - The theory's **own pre-registered kill criterion is met**, on an
+    out-of-sample population, at the sample size it specified.
+  - The **estimator excuse is spent.** That was the one live alternative
+    explanation for six weeks of empty output, and this session removed
+    it before testing.
+  - Its **one structured finding reversed sign** on fresh data.
+  - **Six domains, ~7,500 collected rows, 60+ settlement days, 47 cells
+    past both floors across three populations, zero positive net edges.**
+  - A fourth walk (Sports) would cost hours and tests the same claim that
+    five domains have now declined to support. **If the user wants one
+    more before ruling, Sports is the right one** — it is the largest
+    population on Kalshi and the one this theory's live rows have been
+    unknowingly dominated by (the settlement-source check above found
+    ESPN/Fox/MLB dominating the forward corpus). That is the strongest
+    argument for a fourth walk, and it is why the retirement is
+    *proposed* rather than assumed.
+
+Status moved `testing` → `under_review`, which keeps it running and
+recording. Pulling a theory you suspect is broken is how you guarantee
+never finding out whether it was broken or merely unlucky; that logic
+applies to a diagnosed theory awaiting a user ruling exactly as much.
