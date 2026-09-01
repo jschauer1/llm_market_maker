@@ -45,3 +45,15 @@ terminal report and, when they concern research governance,
 goes to be found.
 
 ---
+
+## 2026-09-01 — supervisor session llm-market-identifier-41
+
+- 22:56 armed heartbeat cron a8b7b58e at 7,27,47
+- 22:56 baseline: 3 failing, all tests/test_studies.py (untracked peer work in
+  llm-market-identifier-12's go-study lane) — peer-caused, not a fleet regression
+- 22:56 spawn  w1-g1 afe53b59
+- 22:56 spawn  w2-g1 a23f5ab4
+- 22:56 w3-g1 never spawned — user stopped the fleet mid-startup
+- 22:56 wind down: w1-g1 and w2-g1 killed by the interrupt before either
+  claimed a lane or wrote a file; 0 lanes to release, 0 manifests to commit,
+  cron a8b7b58e deleted
