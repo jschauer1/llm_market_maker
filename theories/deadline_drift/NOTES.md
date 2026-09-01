@@ -266,3 +266,142 @@ from; (3) drop it. Spec section 3 amended to say section 4 is not
 implementable as written. **No hazard bins under any option until this is
 settled.**
 
+
+## 2026-09-01 — CORRECTION 2: the edge was the bid-ask spread. Measured against the price a NO buyer actually pays, it is gone
+
+Session `llm-market-identifier-9e`, theory lane, focus `deadline_drift`.
+**Numbers below are provisional** — the wide capture was still walking when
+they were taken. `python -m theories.deadline_drift.hazard` is canonical;
+re-run it before quoting anything here.
+
+### Why this theory was picked up at all
+
+It sat at `proposed`, recording nothing, because the corrected 2026-08-29
+estimate rested on **3 YES outcomes of 48 markets**. It rested on 3
+because the population had been cut from 4,792 markets / 859 series to
+981 / 70 on the same day, to keep tier A — this notebook's own words:
+*"a cheap LLM gate — clears the bar, forfeits **tier A**, which was this
+theory's defining property."*
+
+**That premise stopped being true the day it was written.** CLAUDE.md's
+"Structural gates keep tier A" and backtest-theory's five structural-gate
+conditions say a gate whose answer cannot be influenced by the outcome
+costs the tier nothing. "Does this market condition on which branch the
+event takes?" is answerable from the market's text as written at open, so
+the allowlist was paying a price that no longer exists. Widening the
+capture was therefore the obvious unblock, and it is what surfaced the
+finding below — which has nothing to do with the population size.
+
+### The finding: `hazard.py` priced the trade off the wrong side of the book
+
+This theory **buys NO**. A NO buyer pays `no_ask = 1 - yes_bid`, so the
+breakeven probability is **`yes_bid`**. `hazard.py` compared realized
+P(YES) against **`yes_ask`**, which credits the strategy with the entire
+bid-ask spread. On the same 95 markets:
+
+```
+                        mkts  YES   price  P(YES)     gap    SE     z     net
+YES ask (optimistic)      95   14   0.242   0.147    +9.5   3.6  2.60    +8.2
+YES bid (what NO pays)    95   14   0.171   0.147    +2.3   3.6  0.64    +1.4
+```
+
+The ask row is not a near miss — at z=2.60 it reads like a demonstrated
+edge. The bid row is the same markets, the same outcomes, the same
+window, and it is noise. By linearity the mid sits at **+5.9, z=1.65**,
+also not significant, so no reading of the book rescues it.
+
+**The spread is big enough to explain all of it.** Over the 358 in-window
+daily observations: median 3.0 pts, mean 5.6, p75 5.0, max 43. And the
+live board says the same thing from a completely independent direction —
+today's 967 allowlist markets have a **median 6.0 pt** spread in the
+$0.05–0.60 entry band (5.0 even restricting to volume >= 100), against a
+claimed gross edge of +4.7. **The spread was always larger than the
+edge.**
+
+The cleanest confirmation is that the ask-side result *dies as the spread
+shrinks*, which is what an artifact does and what a real edge does not:
+
+```
+priced off YES ASK        mkts   gap      z
+all                         63  +8.5   1.73
+spread <= 10pts             56  +1.9   0.34
+spread <= 6pts              53  +0.9   0.16
+spread <= 2pts              41  +2.2   0.33
+```
+
+Where the book is tight, ask ≈ bid and both agree the market is priced
+about right. The whole +8.5 lives on wide-spread markets, i.e. on the
+half of the quote nobody will sell you.
+
+### What this does NOT say
+
+- **Not that the hazard is mispriced in the other direction.** Bid-side
+  gap +2.3 ± 3.6 is consistent with zero and with a couple of points
+  either way.
+- **Not that every slice is dead.** `open interest >= 100` reads +5.1
+  (z=1.24) and `volume >= 1000` +4.3 (z=0.82) on the bid side — the only
+  cuts that move the number up rather than down. Underpowered, in-sample,
+  and one of many cuts tried, so this is a **hypothesis, not a finding**.
+  It is also the *opposite* sign to kill criterion 3 ("the effect exists
+  only where liquidity is worst"), which makes it worth a proper look
+  once the capture finishes.
+- **Not a verdict on the 2026-08-29 correction.** Correction 1 (anchor on
+  the stated deadline, never actual close) stands and is unaffected;
+  `hazard.py` still prints both rows.
+
+### Lesson, and it is not specific to this theory
+
+**The optimistic field is the one named "ask".** CLAUDE.md says entry
+prices are "the ask you would actually pay" — and for a NO position that
+ask is `1 - yes_bid`, so the rule binds through the field that is *not*
+called ask. Reading `yes_ask` does not look like a bug; it looks like
+following the rule.
+
+**Checked, and the repo is clean — which sharpens the lesson rather than
+softening it.** Every other NO-taking path here gets it right, and three
+of them say so in a comment: `insider_bias/replay.py:244`
+(`no_ask=1.0 - yes_bid`), `calibration_harvest/collect.py:151` ("to buy
+NO you lift the resting YES bid from the other side of the book"),
+`no_side_premium/theory.py:135`, and both `screen.py`s price a NO leg off
+`market.no_ask`. So the convention exists, is documented, and holds
+everywhere it is *used*.
+
+The bug appeared in the one place that bypassed it: an **analysis
+script** doing its own arithmetic on raw candle fields instead of going
+through `no_ask`. `hazard.py` never touched the domain types — it read
+`yes_ask_close` out of a JSON file and compared it to an outcome. That is
+the transferable warning: the entry-price convention is enforced by the
+*types*, and a measurement script that reconstructs prices from raw
+payloads steps outside that enforcement without any signal that it has.
+Backtests and mining scripts are exactly the code that does this.
+
+It is also the second collector-throws-away-the-evidence finding in two
+days. `calibration_harvest` learned on 2026-09-01 that its collector
+computed volume and spread, filtered on them, and persisted neither.
+Here the collector fetched `yes_bid_close` and `open_interest` on every
+candle and stored neither, so the defect was **unfalsifiable from disk**
+— and would have stayed so, because Kalshi archives this data at ~60 days.
+Both are now persisted (`_rows`), and legacy rows the archive can no
+longer re-serve are stamped `bid_unavailable` rather than dropped: 33 of
+the 2026-08-29 markets had already aged past today's floor, so a
+wipe-and-refetch would have destroyed them.
+
+### Capture widened, and why the walk is the superset rather than the screen
+
+`collect_settled --wide` now walks **every series holding a by-deadline
+market (960)**, not the 68 allowlist ones, and applies no exclusions at
+all. **Capture is not classification, and only capture is perishable**:
+the screen can be revisited any day, the payloads cannot. Exclusions are
+applied offline in `hazard.py`'s `stratum()`, which also reports each
+excluded population rather than dropping it silently.
+
+### Also learned, the hard way: two collectors racing lose data silently
+
+Mid-walk, `anchors.json` went 332 -> 294 markets. A collector I had
+stopped was still running: **TaskStop stops the shell, not the detached
+child**, and `ps -ef` in this Git Bash shows no arguments, so
+`ps -ef | grep collect_settled` reports zero while it runs.
+`Get-CimInstance Win32_Process | Select CommandLine` is the check that
+works. Two load-modify-save collectors then silently overwrite each
+other. Ticketed (`maintenance/collector-concurrent-write-race`); this
+theory's own data is fine because the walk is resumable and was re-run.

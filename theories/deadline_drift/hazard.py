@@ -1,28 +1,38 @@
-"""Reproduce the hazard estimate from disk, under BOTH time anchors.
+"""Reproduce the hazard estimate from disk, under both anchors AND both
+sides of the book.
 
-The whole point of keeping both is that the difference between them is the
-correction recorded in NOTES.md on 2026-08-29. Run it and the retraction is
-a number you can see rather than a claim you have to trust:
+Two corrections are baked in here, and both are runnable rather than
+asserted -- each is a row you can see next to the number it replaced.
 
-    python -m theories.deadline_drift.hazard
+**Correction 1 (2026-08-29): the time anchor.** On a "does X happen by D"
+market, actual close is a FUNCTION OF THE OUTCOME -- a NO market runs to
+its deadline, a YES market stops the moment the event fires (measured:
+median 210 days early, 32/34). Anchoring on it puts the two arms on
+different clocks and measures "prices rise before events happen".
 
-**Why "days to close" is wrong.** On a "does X happen by D" market, actual
-close is a FUNCTION OF THE OUTCOME -- a NO market runs to its deadline, a
-YES market stops the moment the event fires (measured: median 210 days
-early, 32/34). Anchoring on it puts the two arms on different clocks and
-measures "prices rise before events happen".
+**Correction 2 (2026-09-01): the side of the book.** This theory BUYS NO.
+The price a NO buyer pays is `no_ask = 1 - yes_bid`, so the breakeven is
+`yes_bid`, not `yes_ask`. Measuring the gap against `yes_ask` credits the
+strategy with the entire bid-ask spread -- which on this population has a
+median of 5-6 points in the entry band, larger than the edge that was
+being claimed. CLAUDE.md's "entry prices are the ask you would actually
+pay" binds here through the far side of the book, which is easy to miss:
+the optimistic field is the one named "ask".
 
 **Why dropping early-YES markets is not survivorship bias.** Conditioning
-on "still open at deadline − h" is the hazard-analysis *at-risk set*: a
-market that already resolved YES is not available to bet at that moment, so
-excluding it is exactly what makes P(YES) the right conditional. The number
-this produces answers "given I can still buy NO here, how often does YES
-come in?", which is the only question a bettor can act on.
+on "still open at deadline - h" is the hazard-analysis *at-risk set*: a
+market that already resolved YES is not available to bet at that moment,
+so excluding it is exactly what makes P(YES) the right conditional. The
+number this produces answers "given I can still buy NO here, how often
+does YES come in?", which is the only question a bettor can act on.
+
+    python -m theories.deadline_drift.hazard
 """
 from __future__ import annotations
 
 import json
 import math
+import re
 import statistics
 from pathlib import Path
 
@@ -32,76 +42,221 @@ LATE_WINDOW_DAYS = 21
 ENTRY_BAND = (0.05, 0.60)
 FEE_RATE = 0.07
 
+#: Rules-text exclusions from the round-4 classifier
+#: (`studies/2026-08-29-deadline-drift-classifier-audit/classifier.py`),
+#: inlined so this script reads nothing outside the theory folder. A
+#: market matching any of these is not a per-subject hazard, and the
+#: strata table below reports each as its own population rather than
+#: silently dropping it -- a code gate must always say what it removed.
+THRESHOLD = re.compile(
+    r"\bis (?:above|below|at or above|at or below|between)\b"
+    r"|\bcloses? (?:above|below)\b|\bhigher than\b|\blower than\b"
+    r"|\brise[s]? (?:more|less) than\b|\bprice .{0,40}\b(?:above|below)\b"
+    r"|\bthe number of\b"
+    r"|\b(?:has|have|is|are)\s+(?:above|below|at least|at most|exactly)\s+\d"
+    r"|\bif above \d|\bachieves? an? (?:accuracy|score)\b|\bscores? at least\b",
+    re.IGNORECASE)
+SCHEDULED = re.compile(
+    r"originally scheduled for"
+    r"|\bprofessional .{0,60}(?:soccer|basketball|football|cricket|hockey"
+    r"|tennis|baseball) (?:game|match)\b|\bearnings call\b"
+    r"|Consumer Price Index|Producer Price Index"
+    r"|Carbon Arc|OpenRouter|\bMetascore\b"
+    r"|\bwins? (?:a|the) (?:tennis major|major|grand slam|championship"
+    r"|tournament)\b|\bwins? the .{0,40}(?:Open|Championship|Cup|Series)\b",
+    re.IGNORECASE)
+MULTI_DESTINATION = re.compile(
+    r"\bnext (?:team|club|franchise) is\b|\bnext (?:team|club) is the\b"
+    r"|\bis the first\b.{0,80}\bto (?:announce|sell|declare|reach|leave|do so)\b"
+    r"|\bis the first (?:person|such subject)\b"
+    r"|\bis appointed, elected, named, designated\b"
+    r"|\bis,? or is announced to be in the future,? the first\b"
+    r"|\band is the first such subject\b"
+    r"|\bbecomes .{0,50}\bas a result of government formation\b"
+    r"|\bthe 51st state is\b|\bbacks a challenger to\b",
+    re.IGNORECASE)
 
-def load() -> tuple[dict, dict]:
+
+def load() -> tuple[dict, dict, dict]:
     anchors = json.loads((DATA / "anchors.json").read_text(encoding="utf-8"))
     candles = json.loads((DATA / "candles.json").read_text(encoding="utf-8"))
-    return anchors, {k: v for k, v in candles.items() if isinstance(v, list)}
+    raw = json.loads((DATA / "settled_raw.json").read_text(encoding="utf-8"))
+    rules = {m["ticker"]: (m.get("rules_primary") or "")
+             for v in raw.values() if isinstance(v, list) for m in v}
+    return anchors, {k: v for k, v in candles.items() if isinstance(v, list)}, rules
 
 
-def estimate(anchors: dict, candles: dict, *, anchor: str) -> dict:
-    """Pooled late-window estimate, clustered by market.
+def stratum(rules_text: str) -> str:
+    """Which population a settled market belongs to, from its rules alone."""
+    if THRESHOLD.search(rules_text):
+        return "threshold"
+    if SCHEDULED.search(rules_text):
+        return "scheduled"
+    if MULTI_DESTINATION.search(rules_text):
+        return "multi_destination"
+    return "hazard"
 
-    `anchor` is "days_to_deadline" (correct) or "days_to_close"
-    (contaminated -- kept so the difference is reproducible).
+
+def observe(rows, anchor_row, *, side, anchor="days_to_deadline",
+            dlo=0, dhi=LATE_WINDOW_DAYS, band=ENTRY_BAND,
+            max_spread=None, min_volume=None, min_oi=None):
+    """One market -> (mean price paid against, resolved YES) or None.
+
+    `side` is "bid" (what a NO buyer's breakeven actually is) or "ask"
+    (the optimistic view kept so correction 2 stays reproducible).
     """
-    lo, hi = ENTRY_BAND
-    per_market: dict[str, tuple[float, int, bool]] = {}
-    for tk, rows in candles.items():
-        a = anchors.get(tk)
-        if not a:
+    lo, hi = band
+    s = n = 0
+    for r in rows:
+        d, ask, bid = r[anchor], r["yes_ask"], r.get("yes_bid")
+        if not (dlo <= d <= dhi) or not (lo <= ask <= hi):
             continue
-        yes = a["result"] == "yes"
-        for r in rows:
-            d, ask = r[anchor], r["yes_ask"]
-            if not 0 <= d <= LATE_WINDOW_DAYS or not lo <= ask <= hi:
-                continue
-            s, n, _ = per_market.get(tk, (0.0, 0, yes))
-            per_market[tk] = (s + ask, n + 1, yes)
-    n = len(per_market)
+        p = ask if side == "ask" else bid
+        if p is None:
+            continue
+        if max_spread is not None and bid is not None \
+                and (ask - bid) * 100.0 > max_spread:
+            continue
+        if min_volume is not None and (r.get("volume") or 0) < min_volume:
+            continue
+        if min_oi is not None and (r.get("open_interest") or 0) < min_oi:
+            continue
+        s += p
+        n += 1
+    if not n:
+        return None
+    return s / n, anchor_row["result"] == "yes"
+
+
+def estimate(anchors, candles, *, tickers=None, **kw):
+    """Pooled estimate, clustered by market (one observation per market)."""
+    per = {}
+    for tk, rows in candles.items():
+        if tickers is not None and tk not in tickers:
+            continue
+        a = anchors.get(tk)
+        if not a or a.get("deadline") is None:
+            continue
+        got = observe(rows, a, **kw)
+        if got:
+            per[tk] = got
+    n = len(per)
     if not n:
         return {"markets": 0}
-    mean_ask = sum(s / c for s, c, _ in per_market.values()) / n
-    p_yes = sum(1 for _, _, y in per_market.values() if y) / n
-    gap = (mean_ask - p_yes) * 100.0
+    mean_p = sum(p for p, _ in per.values()) / n
+    yes_n = sum(1 for _, y in per.values() if y)
+    p_yes = yes_n / n
+    gap = (mean_p - p_yes) * 100.0
     se = math.sqrt(p_yes * (1 - p_yes) / n) * 100.0
-    no_entry = 1.0 - mean_ask
+    # Kalshi's fee is 0.07*P*(1-P) per contract, P the price paid.
+    no_entry = 1.0 - mean_p
     fee = FEE_RATE * no_entry * (1 - no_entry) * 100.0
-    return {"markets": n, "mean_ask": mean_ask, "p_yes": p_yes,
-            "gap_pts": gap, "se_pts": se, "z": gap / se if se else float("nan"),
-            "fee_pts": fee, "net_pts": gap - fee,
-            "yes_n": sum(1 for _, _, y in per_market.values() if y)}
+    return {"markets": n, "yes_n": yes_n, "mean_p": mean_p, "p_yes": p_yes,
+            "gap_pts": gap, "se_pts": se,
+            "z": gap / se if se else float("nan"),
+            "fee_pts": fee, "net_pts": gap - fee}
+
+
+HDR = ("{:<30}{:>6}{:>5}{:>8}{:>8}{:>8}{:>7}{:>7}{:>8}".format(
+    "", "mkts", "YES", "price", "P(YES)", "gap", "SE", "z", "net"))
+
+
+def _row(label, r, floor=5):
+    if not r or r["markets"] < floor:
+        print("{:<30}{:>6}   (too few)".format(label, (r or {}).get("markets", 0)))
+        return
+    print("{:<30}{:>6}{:>5}{:>8.3f}{:>8.3f}{:>+8.1f}{:>7.1f}{:>7.2f}{:>+8.1f}".format(
+        label, r["markets"], r["yes_n"], r["mean_p"], r["p_yes"],
+        r["gap_pts"], r["se_pts"], r["z"], r["net_pts"]))
 
 
 def main() -> None:
-    anchors, candles = load()
-    by_res = {"yes": [], "no": []}
+    anchors, candles, rules = load()
+    strata = {}
+    for tk in candles:
+        strata.setdefault(stratum(rules.get(tk, "")), []).append(tk)
+    hazard = strata.get("hazard", [])
+    # The matched set is the only honest bid-vs-ask comparison: markets
+    # captured before 2026-09-01 have no stored bid, so comparing an
+    # all-markets ask row against a has-bid bid row compares two samples.
+    matched = [tk for tk in hazard
+               if any(r.get("yes_bid") is not None for r in candles[tk])]
+
+    by_res = {}
     for a in anchors.values():
         if a.get("closed_early_days") is not None:
-            by_res[a["result"]].append(a["closed_early_days"])
-    print(f"{len(anchors)} settled markets, {len(candles)} with candles\n")
+            by_res.setdefault(a["result"], []).append(a["closed_early_days"])
+    print("{} settled markets, {} with candles".format(len(anchors), len(candles)))
+    print("  strata: " + ", ".join(
+        "{}={}".format(k, len(v))
+        for k, v in sorted(strata.items(), key=lambda x: -len(x[1]))))
+    print("  hazard markets carrying both sides of the book: {}\n".format(len(matched)))
+
     print("early settlement (deadline - actual close), days:")
     for k, v in by_res.items():
         if v:
-            # statistics.median, not v[len(v)//2]: for even n the latter
-            # returns the upper-middle element, not the median. That bug
-            # printed 212.9 against the data's true 209.6 and was caught in
-            # review -- a reproducible script is only worth as much as its
-            # arithmetic.
-            print(f"  {k.upper():>4} n={len(v):>3}  median {statistics.median(v):7.1f}"
-                  f"   closed >3d early: {sum(1 for x in v if x > 3)}/{len(v)}")
-    print()
-    hdr = f"{'anchor':<20}{'mkts':>6}{'mean_ask':>10}{'P(YES)':>9}{'gap':>9}{'SE':>7}{'z':>7}{'net':>8}"
-    print(hdr); print("-" * len(hdr))
+            print("  {:>4} n={:>4}  median {:7.1f}   closed >3d early: {}/{}".format(
+                k.upper(), len(v), statistics.median(v),
+                sum(1 for x in v if x > 3), len(v)))
+
+    print("\n=== CORRECTION 1: the time anchor (hazard stratum, YES ask) ===")
+    print(HDR); print("-" * len(HDR))
     for anchor, label in (("days_to_close", "actual close (BAD)"),
                           ("days_to_deadline", "stated deadline")):
-        r = estimate(anchors, candles, anchor=anchor)
-        print(f"{label:<20}{r['markets']:>6}{r['mean_ask']:>10.3f}"
-              f"{r['p_yes']:>9.3f}{r['gap_pts']:>+9.1f}{r['se_pts']:>7.1f}"
-              f"{r['z']:>7.2f}{r['net_pts']:>+8.1f}")
-    r = estimate(anchors, candles, anchor="days_to_deadline")
-    print(f"\ncorrected estimate rests on {r['yes_n']} YES outcomes of "
-          f"{r['markets']} markets -- far too few to reject zero.")
+        _row(label, estimate(anchors, candles, tickers=hazard,
+                             side="ask", anchor=anchor))
+
+    print("\n=== CORRECTION 2: the side of the book (same {} markets) ===".format(
+        len(matched)))
+    print(HDR); print("-" * len(HDR))
+    for side, label in (("ask", "YES ask (optimistic)"),
+                        ("bid", "YES bid (what NO pays)")):
+        _row(label, estimate(anchors, candles, tickers=matched, side=side))
+
+    print("\n=== strata, priced off YES bid (a code gate must say what it removed) ===")
+    print(HDR); print("-" * len(HDR))
+    for name, tks in sorted(strata.items(), key=lambda x: -len(x[1])):
+        _row(name, estimate(anchors, candles, tickers=tks, side="bid"))
+
+    print("\n=== liquidity cuts on the hazard stratum, priced off YES bid ===")
+    print(HDR); print("-" * len(HDR))
+    _row("all", estimate(anchors, candles, tickers=hazard, side="bid"))
+    for ms in (10, 6, 4, 2):
+        _row("spread <= {}pts".format(ms),
+             estimate(anchors, candles, tickers=hazard, side="bid", max_spread=ms))
+    for mv in (100, 1000):
+        _row("volume >= {}".format(mv),
+             estimate(anchors, candles, tickers=hazard, side="bid", min_volume=mv))
+    for oi in (100, 1000):
+        _row("open interest >= {}".format(oi),
+             estimate(anchors, candles, tickers=hazard, side="bid", min_oi=oi))
+
+    print("\n=== horizon sweep, hazard stratum, priced off YES bid ===")
+    print(HDR); print("-" * len(HDR))
+    for dlo, dhi in [(0, 7), (7, 14), (14, 21), (21, 30), (30, 45), (0, 21), (0, 45)]:
+        _row("{}-{}d".format(dlo, dhi),
+             estimate(anchors, candles, tickers=hazard, side="bid", dlo=dlo, dhi=dhi))
+
+    print("\n=== price sweep, hazard stratum, 0-21d, priced off YES bid ===")
+    print(HDR); print("-" * len(HDR))
+    for lo, hi in [(0.01, 0.05), (0.05, 0.15), (0.15, 0.30), (0.30, 0.60),
+                   (0.60, 0.90), (0.05, 0.60), (0.01, 0.99)]:
+        _row("ask ${:.2f}-${:.2f}".format(lo, hi),
+             estimate(anchors, candles, tickers=hazard, side="bid", band=(lo, hi)))
+
+    spreads = [(r["yes_ask"] - r["yes_bid"]) * 100.0
+               for tk in hazard for r in candles[tk]
+               if r.get("yes_bid") is not None
+               and 0 <= r["days_to_deadline"] <= LATE_WINDOW_DAYS
+               and ENTRY_BAND[0] <= r["yes_ask"] <= ENTRY_BAND[1]]
+    if spreads:
+        spreads.sort()
+        q = statistics.quantiles(spreads, n=4)
+        print("\nbid-ask spread over {} in-window daily observations, points:".format(
+            len(spreads)))
+        print("  median {:.1f}  mean {:.1f}  p25 {:.1f}  p75 {:.1f}  max {:.1f}".format(
+            statistics.median(spreads), statistics.mean(spreads),
+            q[0], q[2], spreads[-1]))
 
 
 if __name__ == "__main__":

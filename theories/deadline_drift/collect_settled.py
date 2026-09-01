@@ -16,7 +16,18 @@ Writes three things, incrementally and resumably:
                             fires, a median of 210 days earlier.
   data/candles.json         daily candles per market, with days measured
                             from BOTH anchors so the contaminated and
-                            corrected views are both reconstructable.
+                            corrected views are both reconstructable, and
+                            BOTH SIDES OF THE BOOK plus open interest.
+
+**Why `yes_bid` is stored and not just `yes_ask`.** This theory buys NO.
+The price a NO buyer actually pays is `no_ask = 1 - yes_bid`, so an edge
+measured against `yes_ask` is optimistic by exactly the bid-ask spread --
+on illiquid longshots that is the whole claimed edge. CLAUDE.md's rule
+("entry prices are the ask you would actually pay, never the mid") binds
+here through the *other* side of the book, which is easy to miss.
+`open_interest` is stored for the same reason `calibration_harvest`
+learned to on 2026-09-01: a liquidity slice is untestable if the
+collector computes liquidity, filters on it, and throws it away.
 
 Run: python -m theories.deadline_drift.collect_settled
 """
@@ -70,6 +81,51 @@ def _ts(iso: str) -> int:
     return int(dt.datetime.fromisoformat(iso.replace("Z", "+00:00")).timestamp())
 
 
+def _rows(cs: list[dict], close_ts: int, dl_ts: int) -> list[dict]:
+    """One stored row per candle. Both sides of the book, both anchors."""
+    return [
+        {"end_ts": c["end_ts"],
+         "yes_ask": c["yes_ask_close"],
+         # The side a NO buyer actually pays: no_ask = 1 - yes_bid.
+         "yes_bid": c.get("yes_bid_close"),
+         "volume": c["volume"],
+         "open_interest": c.get("open_interest"),
+         # Both anchors kept, so the contaminated and corrected
+         # views are each reconstructable from disk.
+         "days_to_close": round((close_ts - c["end_ts"]) / 86400.0, 2),
+         "days_to_deadline": round((dl_ts - c["end_ts"]) / 86400.0, 2)}
+        for c in cs
+        if c.get("yes_ask_close") is not None
+    ]
+
+
+def _needs_bid_upgrade(stored) -> bool:
+    """True for rows captured before `yes_bid` was persisted (pre-2026-09-01).
+
+    Re-fetching is cheap and the upgrade is worth a second walk, but the
+    ~60-day archive floor means some of these tickers no longer return
+    candles at all. Those rows are STAMPED rather than dropped -- see
+    `_stamp_unupgradable` -- so the schema is uniform, the missing value
+    is explicit, and a later run does not retry them forever.
+    """
+    return (isinstance(stored, list) and bool(stored)
+            and "yes_bid" not in stored[0])
+
+
+def _stamp_unupgradable(stored: list[dict]) -> list[dict]:
+    """Mark legacy rows the archive can no longer re-serve.
+
+    Keeping them beats wiping: 33 of the 2026-08-29 capture's markets had
+    already fallen past today's floor, so a wipe-and-refetch would have
+    destroyed data no longer obtainable upstream from anyone.
+    """
+    for r in stored:
+        r.setdefault("yes_bid", None)
+        r.setdefault("open_interest", None)
+        r["bid_unavailable"] = True
+    return stored
+
+
 def collect(series: list[str], *, fetch=None) -> dict:
     """Walk each series, persisting after every one. Resumable by design."""
     raw = _load("settled_raw.json")
@@ -100,7 +156,9 @@ def collect(series: list[str], *, fetch=None) -> dict:
                         if dl and m.get("close_time") else None),
                 }
                 _save("anchors.json", anchors)
-            if tk in candles or not anchors[tk].get("deadline"):
+            if not anchors[tk].get("deadline"):
+                continue
+            if tk in candles and not _needs_bid_upgrade(candles[tk]):
                 continue
             close_ts = _ts(anchors[tk]["close_time"])
             dl_ts = _ts(anchors[tk]["deadline"])
@@ -108,19 +166,18 @@ def collect(series: list[str], *, fetch=None) -> dict:
                 cs = history.candlesticks(s, tk, close_ts - 45 * 86400,
                                           close_ts, 1440)
             except Exception as exc:
-                candles[tk] = {"__error__": type(exc).__name__}
-                _save("candles.json", candles)
+                if not isinstance(candles.get(tk), list):
+                    candles[tk] = {"__error__": type(exc).__name__}
+                    _save("candles.json", candles)
                 continue
-            candles[tk] = [
-                {"end_ts": c["end_ts"], "yes_ask": c["yes_ask_close"],
-                 "volume": c["volume"],
-                 # Both anchors kept, so the contaminated and corrected
-                 # views are each reconstructable from disk.
-                 "days_to_close": round((close_ts - c["end_ts"]) / 86400.0, 2),
-                 "days_to_deadline": round((dl_ts - c["end_ts"]) / 86400.0, 2)}
-                for c in cs
-                if c.get("yes_ask_close") is not None
-            ]
+            fresh = _rows(cs, close_ts, dl_ts)
+            if fresh:
+                candles[tk] = fresh
+            elif isinstance(candles.get(tk), list):
+                # Archived out from under us: keep what we have.
+                candles[tk] = _stamp_unupgradable(candles[tk])
+            else:
+                candles[tk] = fresh
             _save("candles.json", candles)
     return {"series": len(raw), "markets": len(anchors),
             "with_candles": sum(1 for v in candles.values()
@@ -155,15 +212,44 @@ def days_since_capture(conn, now: str | None = None) -> float | None:
     return (ref - then).total_seconds() / 86400.0
 
 
+def superset_series(board) -> list[str]:
+    """Every series holding a by-deadline market, with NO exclusions applied.
+
+    **Capture is not classification, and only capture is perishable.**
+    The allowlist (70 series) is a *screen* decision -- it was chosen on
+    2026-08-29 to keep tier A when a structural LLM gate still cost the
+    tier, and it can be revisited any day. The settled payloads cannot:
+    Kalshi archives them ~60 days after close, so a market outside
+    today's screen that is wanted by tomorrow's is gone.
+
+    So the walk is driven by the widest defensible rule -- the
+    by-deadline phrasing alone -- and every exclusion (threshold,
+    scheduled certainty, multi-destination, partition) is applied
+    afterwards, offline, over payloads already on disk. Over-capturing
+    costs a few minutes of fetches; under-capturing is unrecoverable.
+
+    The excluded families are worth having for a second reason: they are
+    the **negative control** for any gate that claims to remove them.
+    """
+    from theories.deadline_drift.screen import BY_DEADLINE
+    return sorted({m.series_ticker for m in board
+                   if m.series_ticker and BY_DEADLINE.search(m.rules_primary or "")})
+
+
 if __name__ == "__main__":
     import sys
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
     from tools import board as bt, db
     from theories.deadline_drift import screen as dd
+    wide = "--wide" in sys.argv
     conn = db.connect()
     board = bt.get_board(conn)
-    series = sorted({m.series_ticker for m in dd.population(board)})
-    print(f"walking {len(series)} allowlist series...")
+    if wide:
+        series = superset_series(board)
+        print(f"walking {len(series)} by-deadline series (WIDE superset)...")
+    else:
+        series = sorted({m.series_ticker for m in dd.population(board)})
+        print(f"walking {len(series)} allowlist series...")
     print(collect(series))
     mark_captured(conn)
     print("capture date stamped in theory_facts")
