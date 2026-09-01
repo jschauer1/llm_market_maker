@@ -1,0 +1,40 @@
+CAPTURE: 1564 tickers on disk, 1413 fetched, 151 aged out of the API (9.7%)
+EXPOSURE over every captured ticker: {'EXPOSED': 264, 'UNKNOWN': 788, 'UNEXPOSED': 361, 'GONE': 151}
+  deadline source used: {'parse:rules_primary': 231, 'parse:title': 332, 'custom_strike': 61, 'parse:subtitle': 1}
+  days early among EXPOSED: median 147.1, p90 895.0, max 1277.0
+
+OBSERVATIONS: 3279 settled backtest rows for insider_judgment
+
+PRIMARY  out-of-sample (s200b + s57)  --  slice predicate: outcome=no, confidence in (strong, moderate)
+  whole slice arm (headline)         n  314  clusters  86  edge_net   +4.37  se   2.49  win 0.917
+  EXPOSED                            n   54  clusters   7  edge_net   +0.69  se  14.99  win 0.889
+  UNEXPOSED (deadline found, on time) n  113  clusters  34  edge_net   +6.64  se   4.48  win 0.938
+  UNKNOWN (no deadline -> not exposed) n  134  clusters  43  edge_net   +4.00  se   3.48  win 0.910
+  CLEAN = UNEXPOSED + UNKNOWN        n  247  clusters  77  edge_net   +5.20  se   2.76  win 0.923
+  aged out of the API (unclassifiable) n   13  clusters   4  edge_net   +3.93  se   6.20  win 0.923
+  -> pre-registered KILL criterion (clean arm < +2.0 net AND exposed above it): NOT triggered
+  -> CONTRAST NOT MEASURED: an arm is below the pre-committed floor of 10 event clusters.
+
+SECONDARY in-sample (s200, mined_from)  --  slice predicate: outcome=no, confidence in (strong, moderate)
+  whole slice arm (headline)         n  239  clusters  77  edge_net   +5.34  se   2.49  win 0.921
+  EXPOSED                            n   20  clusters   9  edge_net   -1.54  se  15.26  win 0.850
+  UNEXPOSED (deadline found, on time) n  103  clusters  28  edge_net  +10.05  se   1.67  win 0.961
+  UNKNOWN (no deadline -> not exposed) n   98  clusters  38  edge_net   +5.19  se   3.28  win 0.929
+  CLEAN = UNEXPOSED + UNKNOWN        n  201  clusters  66  edge_net   +7.68  se   2.02  win 0.945
+  aged out of the API (unclassifiable) n   18  clusters   5  edge_net  -13.17  se  18.69  win 0.722
+  -> pre-registered KILL criterion (clean arm < +2.0 net AND exposed above it): NOT triggered
+  -> CONTRAST NOT MEASURED: an arm is below the pre-committed floor of 10 event clusters.
+
+NEGATIVE CONTROL (outside the Holm family): YES side, same runs, same buckets
+
+control OOS  yes-side
+  EXPOSED                            n   33  clusters  14  edge_net   -0.16  se   7.10  win 0.848
+  CLEAN = UNEXPOSED + UNKNOWN        n  100  clusters  47  edge_net   -5.14  se   4.89  win 0.770
+
+control IS   yes-side
+  EXPOSED                            n   41  clusters  17  edge_net   +8.80  se   5.83  win 0.951
+  CLEAN = UNEXPOSED + UNKNOWN        n   57  clusters  37  edge_net  -16.13  se   6.94  win 0.667
+
+HOLM: no contrast cleared the power floor; nothing to correct.
+
+CROSS-CHECK (reported, not used to classify): the sibling-max-close rule agrees with the deadline classification on 333/625 = 53.3%

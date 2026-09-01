@@ -1809,3 +1809,81 @@ screen. So it counts **surviving** markets per event, not the event's
 true size. That makes it a noisier proxy than it looks, and a genuine
 "how many markets does this event have" is available free on the board's
 event envelope. Anyone retrying this should use that, not this.
+
+## 2026-09-01 — the early-close anchor bug does not explain `strong-moderate-no`; it has been costing it
+
+Session `fleet-w3-g1`, study lane. Full write-up, method and caveats:
+`studies/2026-09-01-early-close-exposure-in-the-bettable-slice/STUDY.md`.
+Nothing here changes this theory's procedure, so no version bump.
+
+**Why it was asked.** `replay.py:218` anchors "days to close" on
+`settled.close_time`. On a "does X happen by D" market, actual close is a
+*function of the outcome* — a NO runs to the deadline, a YES stops the
+moment the event fires — so the replay's entry day is computed backwards
+from an outcome-dependent point. `studies/2026-08-29-early-close-exposure-
+existing-backtests` established that and measured `insider-fullcov` at
+~18% exposed, then stopped, having reasoned (its own words: "a reasoned
+expectation, not a measurement") that a negative headline only gets more
+negative.
+
+**The gap nobody had noticed.** That study sampled the two *full-coverage*
+runs. The 314 backtested rows behind `strong-moderate-no` — the repo's
+only R1-eligible segment, and the source of the 2026-09-01 floor's only
+bet — come from `insider-judged-s200b` and `s57`, which it never sampled.
+Same `replay.py`, same anchor, unmeasured.
+
+**Measured, full pass over all 1,564 tickers in the three judged runs, no
+sampling:**
+
+| arm (OOS slice rows: s200b + s57) | n | clusters | edge_net | se |
+|---|---|---|---|---|
+| whole slice arm (headline) | 314 | 86 | +4.37 | 2.49 |
+| EXPOSED (closed >3d before deadline) | 54 | 7 | +0.69 | 14.99 |
+| CLEAN (unexposed + no-deadline) | 247 | 77 | **+5.20** | 2.76 |
+
+In-sample `s200` shows the same shape: exposed −1.54 (9 clusters), clean
++7.68 (66 clusters).
+
+**The answer is no, and the sign is the interesting part.** The bug's
+direction was confirmed on both sides of the book: exposure moves the
+NO-side number **down** (−4.51 OOS, −9.22 in-sample) and the YES-side
+number **up** (+4.98 OOS, +24.9 in-sample). Because this slice buys NO on
+favorites, contamination **depresses** its measured edge. The clean arm is
+*higher* than the headline. Four pre-registered directional comparisons,
+4/4 in the predicted direction, one-tailed sign test p = 0.0625.
+
+**Read the strength honestly.** The formal exposed-vs-clean contrast was
+reported **NOT MEASURED** against the study's own pre-committed floor —
+the exposed arm holds 7 event clusters against a floor of 10 — so no
+p-value is claimed for it and the conclusion rests on the 4/4 sign
+pattern, which is not significant at 0.05. The pre-registered **kill
+criterion was not triggered**, which is the load-bearing pre-registered
+read: the clean arm at +5.20 is above the +2.0 bar and above the exposed
+arm, so the falsifying pattern is absent.
+
+**What this does and does not change for this theory.**
+
+- It **removes an alternative explanation** for the slice's record. It
+  does **not** raise the number. The recorded score stays what ranks and
+  what bets; +5.20 is a post-classification subset on a parser, and the
+  study is not powered to distinguish it from +4.37. Do not re-cite +5.20
+  as this slice's edge.
+- **No remediation is warranted on this evidence.** Re-running the judged
+  campaigns on a deadline anchor would cost tokens and, on the measured
+  direction, would if anything *raise* the slice's number — so it is not
+  the way to protect the user from a bad bet. Left alone deliberately.
+- **The YES-side arms are the ones to be careful with.** In-sample YES
+  rows show exposed +8.80 vs clean −16.13. Any future slice or sub-theory
+  drawn from the YES side of this population inherits an anchor bias that
+  flatters it, and the gap there is much larger than on the NO side.
+
+**Perishability, which is the operational point.** 9.7% of those 1,564
+tickers had already aged out of Kalshi's public API — against 2.9%
+unreachable in the same window three days earlier. The complete raw
+payloads for all 1,413 reachable markets are now captured at
+`studies/2026-09-01-early-close-exposure-in-the-bettable-slice/raw_markets.jsonl`.
+That file is the only remaining source for the titles, rules text, close
+times and settlement fields of this theory's judged-campaign population,
+and it is what the open `backfill-titles-from-judging-payloads` ticket
+should read rather than re-fetching from an archive that no longer holds
+them.

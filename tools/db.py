@@ -459,23 +459,45 @@ def _migrate_theory_versions(conn: sqlite3.Connection) -> None:
         conn.execute("PRAGMA foreign_keys = ON")
 
 
-def _migrate_lane_claims(conn: sqlite3.Connection) -> None:
-    """Widen an old `lane_claims` lane CHECK to accept 'find-theories'.
+def _lane_check_values(ddl: str) -> set[str]:
+    """The lane names a `lane_claims` DDL's CHECK constraint accepts."""
+    import re
 
-    Databases created before the find-theories lane existed carry the
-    four-value CHECK in their DDL, and `CREATE TABLE IF NOT EXISTS` will
-    not touch an existing table. Rebuilt exactly as
+    m = re.search(r"CHECK\s*\(\s*lane\s+IN\s*\((.*?)\)", ddl or "",
+                  re.DOTALL | re.IGNORECASE)
+    if not m:
+        return set()
+    return set(re.findall(r"'([^']*)'", m.group(1)))
+
+
+def _migrate_lane_claims(conn: sqlite3.Connection) -> None:
+    """Widen an old `lane_claims` lane CHECK to whatever schema.sql accepts.
+
+    `CREATE TABLE IF NOT EXISTS` will not touch an existing table, so a
+    database created before a lane existed keeps the narrower CHECK in its
+    DDL and rejects claims on the new lane outright. Rebuilt exactly as
     `_migrate_theory_versions` rebuilds its own; every legacy row is still
     valid under the wider set.
+
+    **The trigger is a comparison against schema.sql, not a sentinel lane
+    name.** It used to short-circuit on `"find-theories" in ddl`, which
+    meant the migration stopped firing the moment that one lane landed:
+    `study` was then added to `tools.lanes.LANES` and to schema.sql's
+    successor without any database ever widening, so `lane claim --lane
+    study` raised a bare `sqlite3.IntegrityError` in every database, new
+    and old alike. Diffing the accepted sets makes each future lane
+    migrate itself.
     """
     row = conn.execute(
         "SELECT sql FROM sqlite_master WHERE type='table'"
         " AND name='lane_claims'"
     ).fetchone()
-    if row is None or "find-theories" in (row[0] or ""):
+    if row is None:
         return
 
     ddl = schema_statement("lane_claims")
+    if not (_lane_check_values(ddl) - _lane_check_values(row[0] or "")):
+        return
     conn.commit()
     conn.execute("PRAGMA foreign_keys = OFF")
     conn.execute("PRAGMA legacy_alter_table = ON")

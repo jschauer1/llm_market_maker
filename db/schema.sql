@@ -409,7 +409,7 @@ CREATE INDEX IF NOT EXISTS idx_floor_runs_completed
 CREATE TABLE IF NOT EXISTS lane_claims (
     id          INTEGER PRIMARY KEY,
     lane        TEXT NOT NULL
-                CHECK (lane IN ('floor','theory','new-theory',
+                CHECK (lane IN ('floor','theory','study','new-theory',
                                 'find-theories','maintenance')),
     session     TEXT NOT NULL,
     focus       TEXT,

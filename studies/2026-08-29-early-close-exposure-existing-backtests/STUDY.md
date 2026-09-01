@@ -1,7 +1,17 @@
 # Which existing backtests are exposed to the early-close anchor bug?
 
-**Date:** 2026-08-29 · **Tier:** A (no model) · **Status:** measurement
-complete, remediation is not mine to decide
+**Date:** 2026-08-29 · **Tier:** A (no model) · **Status:** complete · **Verdict:** 66.8% of settled markets close early and `insider-fullcov` is ~18% exposed; the bias inflates favorite win rates, so negative headlines only get more negative — the consequence for the bettable slice was measured separately and is not a threat
+
+> **Status line rewritten 2026-09-01 by session `fleet-w3-g1` (study
+> lane).** It previously read "measurement complete, remediation is not
+> mine to decide", which `tools/studies.py` cannot classify, so this study
+> showed as in-flight in every `cli studies` listing and every floor report
+> for three days despite being finished. The measurement below is
+> **unchanged**; only the header was edited, plus the pointer added at the
+> end. The distinction the old wording was reaching for is real and is
+> preserved: the *measurement* was complete, the *remediation* was somebody
+> else's call. That belongs in the verdict, not in the status field, whose
+> vocabulary is what the floor reads.
 
 ## Why
 
@@ -86,3 +96,46 @@ Both look safe, but that is a reasoned expectation, not a measurement.
 Remediation touches `theories/insider_bias/`, which is not this session's
 to change, and re-running a full-coverage backtest is a decision with a
 real cost. Reported to session 09 for routing.
+
+## Followed up, 2026-09-01 — the consequence was measured
+
+`studies/2026-09-01-early-close-exposure-in-the-bettable-slice/` picked up
+the two open threads above and closed them.
+
+**It found this study had measured the wrong population** — not wrongly,
+but off-target. The 70-ticker samples came from `insider-fullcov` and
+`mention-fullcov`, the two full-coverage runs. The rows that actually
+vouch for the repo's only bettable segment, `strong-moderate-no`, come
+from three *judged* campaign runs (`insider-judged-s200`, `s200b`, `s57`)
+that were never sampled here: `s200b` + `s57` alone are the 314
+backtested rows in that slice's score. They were replayed by the same
+`replay.py` and carry the same anchor, so "which backtests are exposed"
+had a third answer this study never reached.
+
+**On the full 1,564-ticker population of those runs, with no sampling:**
+18.7% EXPOSED, 25.5% UNEXPOSED, 55.8% no deadline found — so the exposure
+share is close to the ~18% estimated here from 15 markets, on a base 100x
+larger. Median close among exposed markets is **147 days early**.
+
+**The direction reasoned about here was confirmed by measurement, on both
+sides of the book.** Four pre-registered directional comparisons, all four
+in the predicted direction (one-tailed sign test p = 0.0625): exposure
+moves the NO-side number down and the YES-side number up. Because the
+bettable slice buys NO, the bug **depresses** its measured edge rather than
+inflating it — the clean arm is +5.20 net over 77 clusters against a +4.37
+headline. The expectation recorded here as "a reasoned expectation, not a
+measurement" is now a measurement.
+
+**Two of this study's limits were tightened rather than removed.** Deadline
+coverage went from 22% to 44% of the population by preferring the published
+`custom_strike.Date` field before the regex — though that field carried
+only 61 of 625 classifications, so the parser still does most of the work
+and "22% is a floor, not an estimate" remains the right reading. And the
+archive is closing: **9.7% of that population had already aged out of
+Kalshi's API on 2026-09-01**, against 2.9% unreachable here three days
+earlier. Raw payloads for all 1,413 reachable markets are captured in that
+study's `raw_markets.jsonl`.
+
+`no_side_premium`'s cell A and cell B, flagged here for a specific look,
+were **not** covered by the follow-up — it scoped to `insider_judgment`.
+That thread is still open and is ticketed against `no_side_premium`.

@@ -544,6 +544,19 @@ def _single_leg_observations(
         resolved = row["resolved_at"]
         out.append({
             "position_kind": "single",
+            # The market this observation is about. Additive, and purely
+            # identity: `_aggregate` ignores it. It is here because the
+            # docstring above promises "the identity fields a slice
+            # predicate and its out-of-sample split key on" and the ticker
+            # is the most basic of them -- a consumer partitioning
+            # observations by any per-MARKET property (study
+            # 2026-09-01-early-close-exposure-in-the-bettable-slice splits
+            # on whether a market closed early against its stated
+            # deadline) could otherwise only reach the event via
+            # `cluster`, which silently merges siblings that differ on
+            # exactly the property being tested. A basket observation has
+            # no single ticker and carries no such key.
+            "kalshi_ticker": row["kalshi_ticker"],
             "outcome": row["outcome"],
             "confidence": confidence,
             "entry_price": price,

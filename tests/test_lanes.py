@@ -131,3 +131,51 @@ def test_find_theories_is_a_lane(conn):
                         now="2026-09-01T01:00:00Z")
     assert claim["lane"] == "find-theories"
     assert "find-theories" in lanes.status(conn, now="2026-09-01T01:30:00Z")
+
+
+def test_every_lane_go_dispatches_to_is_claimable(conn):
+    """The schema's CHECK and `lanes.LANES` must not drift apart.
+
+    They did: `study` was added to LANES and to `go`'s lane table on
+    2026-09-01 without widening `lane_claims`, so `lane claim --lane study`
+    died with a bare `sqlite3.IntegrityError: CHECK constraint failed` --
+    an entire lane unclaimable in every database, new and old. A per-lane
+    test would not have caught it, because the missing lane is by
+    definition the one nobody wrote a test for. Iterate LANES instead.
+    """
+    for i, lane in enumerate(lanes.LANES):
+        claim = lanes.claim(conn, lane, f"sess-{i}",
+                            now=f"2026-09-01T0{i}:00:00Z")
+        assert claim["lane"] == lane
+
+
+def test_a_database_predating_a_lane_is_migrated_rather_than_rejected(conn):
+    """An old DB carries the narrow CHECK in its own DDL, and
+    `CREATE TABLE IF NOT EXISTS` will not touch it. The migration used to
+    short-circuit on a hardcoded sentinel lane name, so it stopped firing
+    for every lane added after that one. It now diffs the accepted sets."""
+    conn.executescript(
+        """
+        DROP TABLE lane_claims;
+        CREATE TABLE lane_claims (
+            id INTEGER PRIMARY KEY,
+            lane TEXT NOT NULL
+                 CHECK (lane IN ('floor','theory','new-theory',
+                                 'find-theories','maintenance')),
+            session TEXT NOT NULL, focus TEXT, claimed_at TEXT NOT NULL,
+            released_at TEXT, summary TEXT,
+            joined INTEGER NOT NULL DEFAULT 0, join_reason TEXT
+        );
+        INSERT INTO lane_claims (id, lane, session, claimed_at)
+        VALUES (1, 'maintenance', 'legacy-sess', '2026-08-31T01:00:00Z');
+        """
+    )
+    db._migrate_lane_claims(conn)
+
+    claim = lanes.claim(conn, "study", "sess-a", focus="some-study",
+                        now="2026-09-01T02:00:00Z")
+    assert claim["lane"] == "study"
+    # the legacy row survives the rebuild
+    kept = conn.execute(
+        "SELECT session FROM lane_claims WHERE id = 1").fetchone()
+    assert kept[0] == "legacy-sess"

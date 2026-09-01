@@ -1,0 +1,23 @@
+---
+title: Sweep tools/db.py for the self-disabling migration guard, and pin every schema CHECK vocabulary with one test
+lane: maintenance
+created: 2026-09-01
+created_by: fleet-w3-g1
+author_lane: study
+author_focus: 2026-09-01-early-close-exposure-in-the-bettable-slice
+author_context: Generalized from fixing the study lane's own unclaimable-lane blocker at the start of this session.
+status: open
+---
+THIS IS THE GENERALIZATION OF 2026-09-01-study-lane-shipped-without-schema-migration.md, which is fixed. That ticket has the incident; this one is the class of bug behind it, which has NOT been swept.
+
+THE SHAPE. A migration that widens an enumerated CHECK guards itself with an early return. If that guard tests for a specific literal value -- `_migrate_lane_claims` returned early on `"find-theories" in ddl` -- it is SELF-DISABLING: it stops firing permanently the moment that one value lands, so every value added afterwards silently fails to migrate. The symptom is not an error at migration time. It is a bare `sqlite3.IntegrityError: CHECK constraint failed` thrown at some unrelated caller, weeks later, in a code path that looks correct. In the lane case the result was an entire lane unclaimable in every database, new and old, with a whole skill and test file shipped around it.
+
+WHAT TO DO.
+
+1. SWEEP. Read every `_migrate_*` in `tools/db.py` and check what its early return tests. Any that tests for a literal value rather than comparing against `schema_statement(<table>)` has the defect. The fixed one is the pattern to copy: `_lane_check_values(ddl)` parses the accepted set out of a DDL, and the guard migrates whenever the canonical set has anything the live table lacks. `_migrate_theories` (the status CHECK) is the one to look at first -- theory `status` is load-bearing vocabulary under CLAUDE.md's interface rule, and widening it is a plausible future change.
+
+2. PIN IT WITH ONE TEST, which is worth more than fixing them individually. For every table whose `schema.sql` DDL carries a `CHECK (<col> IN (...))`, assert that a migrated database accepts every listed value. That is a single convention test over exactly the set CLAUDE.md calls an interface: disposition, edge_basis, run_mode, segment, version kind, backtest tier, theory status, lane. It catches the next drift at the commit that causes it rather than months later, and unlike a per-value test it cannot miss the value nobody thought to write a test for -- which is the whole failure mode. `tests/test_lanes.py::test_every_lane_go_dispatches_to_is_claimable` is the one-table version of this; generalize it into `tests/test_conventions.py` or `tests/test_db.py`.
+
+3. WHILE IN THERE: make the error legible. `tools/lanes.py` validates the lane against `LANES` in Python and then lets SQLite raise if the database disagrees. Those two disagreeing is a repo defect, not user error, so the message should say "lane X is in LANES but the database rejects it; run db.init_db to migrate" rather than dumping a CHECK constraint that reads like a bad argument. The same applies wherever else a Python-side vocabulary is validated separately from the DB's.
+
+WHY IT IS WORTH A SESSION. The repo is operated by agents that read a name, believe it, and act -- CLAUDE.md's own framing. A vocabulary that the code accepts and the database rejects is the worst version of that: the name is right, the docs are right, the tests pass, and the call fails at runtime for a reason that looks like nothing to do with schema. It has already cost one lane three days of being unusable while every session's orient listed it as available.
