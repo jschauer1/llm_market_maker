@@ -512,3 +512,119 @@ tidy.
   same mistake a second time, writing an `until ! ps -ef | grep ...` wait
   loop that exited immediately against a still-running collector.
   Ticketed as `maintenance/collector-concurrent-write-race`.
+
+### The split that explains both populations, and where the premium actually lives
+
+Splitting the wide hazard stratum by allowlist membership (event-weighted,
+bootstrapped over event clusters, priced off the bid):
+
+```
+  all hazard, bid                  81 evts   +6.7   [ +3.1, +10.0]  p=0.000
+    closes before Aug 01           46 evts   +4.6   [ -0.1,  +8.7]  p=0.027
+    closes from Aug 01             39 evts   +9.2   [ +2.9, +14.8]  p=0.003
+    allowlist series only          22 evts   -1.0   [ -9.8,  +5.7]  p=0.560
+    NON-allowlist series only      59 evts   +9.6   [ +6.3, +13.0]  p=0.000
+```
+
+Both halves of the capture window are positive, so it is not one bad
+fortnight. But the allowlist/non-allowlist split is total: **all of the
+effect is outside the allowlist.**
+
+Looking at what is actually in there settles what kind of thing this is.
+The top non-allowlist contributors are **one-off newsy questions priced
+$0.25–0.55 that did not happen** — "Will the Senate vote on the CLARITY
+Act?" (0.54), "Will another GTA VI trailer come out before Aug 2026?"
+(0.37), "Will Google release Gemini 3.5 Pro before Aug 21?" (0.35), "Will
+Serbia announce a snap election before Aug 1?" (0.27), "Will legislation
+reauthorizing FISA 702 pass?" (0.26). Almost all are a single event with
+zero YES.
+
+The allowlist, by contrast, is **recurring families** — `KXFEDERALCHARGE`,
+`KXNBATRADE`, `KXMLBDEBUT`, `KXMANAGERSOUT` — trading at a mean bid of
+0.04–0.06 and pricing about right.
+
+**Proposed mechanism: a recurring family teaches its own base rate.**
+Someone who has watched forty coach-out markets resolve knows roughly how
+often one fires. A one-off question about a bill, a trailer or a model
+release has no reference class anywhere on the board, so the story that
+made it interesting sets the price and nothing drags it back. If that is
+the mechanism, the premium tracks **non-recurrence**, not subject matter —
+which is testable on a property fixed at listing time. Written up as DD-2
+in THEORY.md.
+
+**The irony worth recording.** The allowlist was built by asking which
+families are *unambiguously* per-subject hazards, and the answer was: the
+recurring ones, because you can inspect a family's whole history and be
+sure. That selection criterion is close to a proxy for "the ones traders
+have also seen before". **The screen was selecting against its own edge**,
+and it did so for a good reason that had nothing to do with the thesis.
+
+**What this does not settle.** 5 series carry 37% of the non-allowlist
+gap; most contributing series are one event that did not happen; and
+`KXBIGBROTHERELIMINATION` (a one-winner partition, ~6% of the gap) proves
+the population is still not clean. The bootstrap prices the sampling
+uncertainty and cannot price the contamination — that needs the
+structural gate, which is what the open ticket is for.
+
+### FINAL numbers — capture complete, 1,908 settled markets in 962 series
+
+The two entries above were written mid-walk and their tables are
+superseded by these. **Every number moved down** as the walk finished,
+which is the point of the "a partial capture is a biased sample" note:
+
+```
+cut                                  evts     gap        95% CI      P(<=0)
+ALLOWLIST (pre-registered), bid        22    -1.0   [ -9.8,  +5.7]    0.560
+ALLOWLIST, ask (the old view)          23    +5.7   [ -2.4, +12.0]    0.074
+wide hazard, bid                       94    +4.6   [ +1.0,  +8.0]    0.007
+wide hazard, ask (the old view)        95   +10.1   [ +6.6, +13.4]    0.000
+  bid, spread<=6pts                    94    +5.2   [ +1.5,  +8.6]    0.003
+  bid, spread<=4pts                    84    +5.3   [ +0.9,  +9.5]    0.009
+  bid, spread<=2pts                    69    +5.0   [ -0.8, +10.4]    0.044
+  bid, minus partition families        86    +4.8   [ +0.9,  +8.4]    0.009
+  bid, open interest>=100              92    +5.3   [ +1.8,  +8.5]    0.002
+  NON-allowlist series only            72    +6.3   [ +2.4, +10.0]    0.001
+  closes before Aug 01                 51    +2.1   [ -3.6,  +7.1]    0.215
+  closes from Aug 01                   49    +6.1   [ -0.3, +12.0]    0.030
+```
+
+The trajectory as the walk grew: **+6.7 → +5.8 → +5.0 → +4.6**. It was
+still falling at the end. Do not treat +4.6 as settled; treat it as the
+in-sample number that DD-1 has to beat out of sample.
+
+**The entry rule turns out to be load-bearing, and that is the thesis
+rather than a fragility.** On the hazard stratum, priced off the bid:
+entering the *first* qualifying day gives **+3.4**; averaging over every
+qualifying day in the window gives **−1.7**. The overpricing decays as
+the deadline approaches, so entering as early as the window allows is
+where the drift is — which is what "deadline drift" means. It also means
+any test that enters late measures nothing.
+
+**Three caveats that belong next to the headline, not below it.**
+
+1. **Concentration got worse with more data, not better.** Top 5
+   non-allowlist series carry **46% of the pooled gap on 13 of 72 event
+   clusters**, and 10 of the top 12 contributing series are a *single
+   event that did not happen* — CLARITY Act vote, another GTA VI trailer,
+   Gemini 3.5 Pro, Serbia snap election, FISA 702 reauthorisation. The
+   bootstrap prices this as sampling uncertainty; it cannot tell you
+   whether the next 60 days serve up a comparable crop of one-off
+   questions.
+2. **Liquidity is adequate but the gradient is wrong at the top end.**
+   Median open interest at entry is ~1,100 and 53% of entries are above
+   1,000, so this is not `structural_arb`'s unfillable-size problem. But
+   at **OI ≥ 5,000 the gap vanishes** (+0.2, CI [−8.1, +7.9], n=38)
+   before reappearing at ≥20,000 (+4.5, n=17). Non-monotonic and
+   underpowered at the tail, so it is not a clean liquidity story — but
+   it is close enough to kill criterion 3 ("the effect exists only where
+   liquidity is worst") that it must be re-checked out of sample rather
+   than waved through.
+3. **Neither half of the window clears on its own** — +2.1 [−3.6, +7.1]
+   early, +6.1 [−0.3, +12.0] late. The pooled result needs both halves.
+
+**Where correction 1 stands at full data.** Still the right call, and
+still the same direction: anchored on actual close the hazard stratum
+reads −1.4, anchored on the stated deadline +3.0. The gap between those
+two rows is smaller than it was on the allowlist-only data, because the
+wide population is much shorter-dated — the YES early-settlement median
+falls from 209.6 days (allowlist) to 10.2 days (wide).

@@ -61,7 +61,7 @@ was always written correctly; the *measurement* script was not, and
 priced the trade off `yes_ask` from 2026-08-29 until 2026-09-01. That
 credits the strategy with the whole bid-ask spread, which on this
 population runs a 4-point median and a 6-point mean — enough to roughly
-double the apparent edge (wide stratum: +11.9 off the ask, +6.3 off the
+double the apparent edge (wide stratum: +10.1 off the ask, +4.6 off the
 bid). Anything measuring this theory reconstructs prices from raw
 candles, which steps outside the `Market`/`no_ask` types that enforce the
 convention everywhere else in the repo. Use `hazard.observe(side="bid")`.
@@ -93,13 +93,13 @@ reason than on 2026-08-29. The bins have been collected twice over; what
 is missing is a population this theory is entitled to bet.
 
 **What 2026-09-01 measured** (`python -m theories.deadline_drift.hazard`
-and `.bootstrap`, over ~1,400 settled markets — the entire fetchable
-by-deadline history, not a sample):
+and `.bootstrap`, over **1,908 settled markets in 962 series** — the
+entire fetchable by-deadline history, not a sample):
 
 | population | gap at the tradeable price | 95% CI | events |
 |---|---|---|---|
-| **allowlist — what this theory ships** | **−1.7 pts** | [−10.7, +5.1] | 21 |
-| wide by-deadline hazard stratum | **+6.3 pts** | [+2.1, +10.3] | 64 |
+| **allowlist — what this theory ships** | **−1.0 pts** | [−9.8, +5.7] | 22 |
+| wide by-deadline hazard stratum | **+4.6 pts** | [+1.0, +8.0] | 94 |
 
 Read those two rows together, because neither means much alone:
 
@@ -109,16 +109,16 @@ Read those two rows together, because neither means much alone:
   12 points.
 - **The wide result is a real signal at the price a NO buyer actually
   pays**, and it survives every cut: it *grows* under tighter spread
-  filters (+6.3 → +7.3 at ≤2pts, where a spread artifact must shrink),
-  survives removing one-winner partition families, and survives an
-  open-interest floor.
+  filters (+4.6 → +5.3 at ≤4pts, where a spread artifact must shrink),
+  survives removing one-winner partition families (+4.8) and an
+  open-interest floor (+5.3).
 
 **So the binding constraint was never the thesis — it was the allowlist**,
 adopted to preserve tier A back when a structural LLM gate was thought to
 cost it. CLAUDE.md's "Structural gates keep tier A" removed that price on
 the same day the allowlist was adopted, and nobody revisited the trade.
 
-**Why this is still not bettable, and `price()` stays inert.** The +6.3
+**Why this is still not bettable, and `price()` stays inert.** The +4.6
 is **post-hoc**: the wide population was chosen and measured in the same
 session, after a dozen cuts. CLAUDE.md's pairing discipline makes that a
 hypothesis to pre-register, never an edge to bet on the data that
@@ -135,13 +135,59 @@ yes_bid`: realized P(YES) sits **at least 3 points below** the implied
 
 - **Out-of-sample set:** markets settling **after 2026-09-01**. Nothing
   in today's capture counts.
-- **Power:** today's estimate rests on 64 event clusters. The same
+- **Power:** today's estimate rests on 94 event clusters. The same
   population produces roughly that many per two months, so this is a
   ~60-day test, and the standing capture obligation in `RUNBOOK.md` is
   what collects it — that obligation is now the experiment, not
   housekeeping.
-- **Kill:** a CI covering zero at comparable n, or an out-of-sample point
-  estimate below +3 net.
+- **Kill:** an out-of-sample 95% CI covering zero at ≥ 80 event
+  clusters, or a point estimate below **+2 net**. (The bar is +2 rather
+  than +3 because the in-sample gross gap is +4.6 and the fee on a NO at
+  these prices is ~1.1 pts, so the effect being tested is ~+3.5 net; a
+  +3 bar would fail a true effect about half the time.)
+
+- **The entry rule is load-bearing and is part of DD-1, not a detail.**
+  Entering the *first* qualifying day gives +3.4 on the hazard stratum;
+  averaging over every qualifying day in the window gives **−1.7**. That
+  is not a robustness failure, it is the thesis: the overpricing decays
+  as the deadline approaches, so entering as early as the window allows
+  is where the drift is. But it does mean a test that enters late
+  measures nothing, and any implementation must enter on first
+  qualification.
+
+**DD-2, a pre-specified split of DD-1** (not a second test to run only if
+DD-1 fails). The in-sample effect is **entirely** in series *outside* the
+allowlist — allowlist −1.0, CI [−9.8, +5.7], 22 clusters; non-allowlist
+**+6.3**, CI [+2.4, +10.0], 72 clusters — and inspecting the
+contributors says why. The non-allowlist side is a long tail of **one-off
+newsy questions priced $0.25–0.55 that did not happen**: "Will the Senate
+vote on the CLARITY Act?", "Will another GTA VI trailer come out before
+Aug 2026?", "Will Google release Gemini 3.5 Pro before Aug 21?", "Will
+Serbia announce a snap election?". The allowlist side is **recurring
+families** — `KXFEDERALCHARGE`, `KXNBATRADE`, `KXMLBDEBUT` — which trade
+much cheaper (mean bid 0.04–0.06) and price about right.
+
+Proposed mechanism: **a recurring family teaches its own base rate.**
+Traders who have seen forty coach-out markets resolve know roughly how
+often one fires; a one-off question about a bill, a trailer or a model
+release has no reference class on the board, so the story that made it
+interesting sets the price. If that is right, the premium should track
+*non-recurrence*, not the subject matter.
+
+So the forward test splits on a property fixed at listing: **is this
+market's series recurring** (≥ 3 settled events before the decision date)
+**or one-off?** DD-2 predicts the gap concentrates in the one-off arm.
+Recorded now, before any out-of-sample data, precisely because it was
+found by looking — it is a hypothesis this sample suggested, and it
+vouches for nothing until the forward test runs.
+
+**Read DD-2 with its caveat.** The in-sample non-allowlist estimate is
+heavy-tailed: 5 series carry 46% of the gap on 13 of 72 clusters, 10 of
+the top 12 contributing series are
+a single event that did not happen, and `KXBIGBROTHERELIMINATION` (a
+one-winner partition, ~6% of the gap) shows the population is still not
+clean. The bootstrap prices the sampling uncertainty; it cannot price the
+contamination.
 
 To reach `testing`: widen the population past the allowlist (a version
 bump, and the structural-gate decision the notebook left open), then
