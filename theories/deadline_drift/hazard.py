@@ -36,6 +36,8 @@ import re
 import statistics
 from pathlib import Path
 
+from theories.deadline_drift.screen import in_allowlist
+
 DATA = Path(__file__).parent / "data"
 
 LATE_WINDOW_DAYS = 21
@@ -97,17 +99,59 @@ def stratum(rules_text: str) -> str:
     return "hazard"
 
 
+#: A NO market in a per-subject hazard family runs to its deadline; a NO
+#: market in a "which branch" family dies the moment a SIBLING resolves
+#: YES. Measured 2026-09-01 the two families separate almost perfectly --
+#: 98.0% of regex-identified multi-destination NO markets closed >3 days
+#: early against 0.0% of the exhaustively-audited allowlist -- which makes
+#: this a sharper family detector than five rounds of rules-text regex
+#: managed (they plateaued near 15% misclassification).
+BRANCH_EARLY_SHARE = 0.5
+EARLY_DAYS = 3.0
+
+
+def branch_families(anchors: dict, *, min_no: int = 3) -> set[str]:
+    """Series that settle like "which branch" families, not hazards.
+
+    **This is a cleaning tool, not a screen, and the distinction is load
+    bearing.** It reads settlement behaviour, so it cannot classify a
+    series that has not settled anything yet and is useless live. It is
+    also deliberately applied at the SERIES level: filtering individual
+    markets by their own early close would condition on the outcome (an
+    early close is overwhelmingly a NO), which would bias P(YES) upward
+    and manufacture the very result it is meant to test. A family's
+    settlement pattern is a structural fact about how the family is
+    built; one market's is a fact about how that market came out.
+    """
+    per: dict[str, list[bool]] = {}
+    for a in anchors.values():
+        if a.get("result") != "no" or a.get("closed_early_days") is None:
+            continue
+        per.setdefault(a.get("series") or "", []).append(
+            a["closed_early_days"] > EARLY_DAYS)
+    return {s for s, v in per.items()
+            if len(v) >= min_no and sum(v) / len(v) > BRANCH_EARLY_SHARE}
+
+
 def observe(rows, anchor_row, *, side, anchor="days_to_deadline",
             dlo=0, dhi=LATE_WINDOW_DAYS, band=ENTRY_BAND,
-            max_spread=None, min_volume=None, min_oi=None):
-    """One market -> (mean price paid against, resolved YES) or None.
+            max_spread=None, min_volume=None, min_oi=None, entry="mean"):
+    """One market -> (price paid against, resolved YES) or None.
 
     `side` is "bid" (what a NO buyer's breakeven actually is) or "ask"
     (the optimistic view kept so correction 2 stays reproducible).
+
+    `entry` is "mean" (average over every qualifying day in the window --
+    i.e. "enter on a day drawn at random from the window") or "first"
+    (the earliest qualifying day, which is what the live screen would
+    actually do: it fires the first time a market enters the horizon and
+    the band). They answer different questions and "first" is the one
+    that matches the procedure, so a gap that exists only under "mean" is
+    an artifact of averaging, not a strategy.
     """
     lo, hi = band
     s = n = 0
-    for r in rows:
+    for r in sorted(rows, key=lambda x: -x[anchor]):
         d, ask, bid = r[anchor], r["yes_ask"], r.get("yes_bid")
         if not (dlo <= d <= dhi) or not (lo <= ask <= hi):
             continue
@@ -123,6 +167,8 @@ def observe(rows, anchor_row, *, side, anchor="days_to_deadline",
             continue
         s += p
         n += 1
+        if entry == "first":
+            break
     if not n:
         return None
     return s / n, anchor_row["result"] == "yes"
@@ -209,14 +255,61 @@ def main() -> None:
     print("\n=== CORRECTION 2: the side of the book (same {} markets) ===".format(
         len(matched)))
     print(HDR); print("-" * len(HDR))
-    for side, label in (("ask", "YES ask (optimistic)"),
-                        ("bid", "YES bid (what NO pays)")):
-        _row(label, estimate(anchors, candles, tickers=matched, side=side))
+    for entry in ("mean", "first"):
+        for side, label in (("ask", "YES ask (optimistic)"),
+                            ("bid", "YES bid (what NO pays)")):
+            _row("{}  entry={}".format(label, entry),
+                 estimate(anchors, candles, tickers=matched, side=side,
+                          entry=entry))
 
     print("\n=== strata, priced off YES bid (a code gate must say what it removed) ===")
     print(HDR); print("-" * len(HDR))
     for name, tks in sorted(strata.items(), key=lambda x: -len(x[1])):
         _row(name, estimate(anchors, candles, tickers=tks, side="bid"))
+    # The allowlist is the only population whose purity was established
+    # EXHAUSTIVELY rather than by sample: round 5b inspected all 70 series
+    # and found 70/70 per-subject, so it carries no sampling error at all
+    # (studies/2026-08-29-deadline-drift-classifier-audit/). The regex
+    # strata above are a ~15%-misclassification screen over a population
+    # the same audit measured as 34% multi-destination, so a gap that
+    # appears in "hazard" and NOT here is contamination, not edge.
+    allow = [tk for tk in candles
+             if in_allowlist((anchors.get(tk) or {}).get("series"))]
+    _row("ALLOWLIST (audited 70/70)",
+         estimate(anchors, candles, tickers=allow, side="bid"))
+    _row("  ...same, off YES ask",
+         estimate(anchors, candles, tickers=allow, side="ask"))
+    branch = branch_families(anchors)
+    clean = [tk for tk in hazard
+             if (anchors.get(tk) or {}).get("series") not in branch]
+    print("  [series settling like branch families: {} of {}; "
+          "hazard stratum {} -> {} markets]".format(
+              len(branch), len({(a or {}).get("series") for a in anchors.values()}),
+              len(hazard), len(clean)))
+    _row("hazard MINUS branch families", estimate(anchors, candles,
+                                                  tickers=clean, side="bid"))
+    _row("  ...same, off YES ask", estimate(anchors, candles,
+                                            tickers=clean, side="ask"))
+
+    # Early close on a NO market is a free structural tell for
+    # multi-destination contamination: a per-subject hazard runs to its
+    # deadline (the allowlist measured 0/78 early on 2026-08-29), whereas
+    # a "which branch" market resolves NO the moment a SIBLING resolves
+    # YES. No model needed, and it is computed from fields already on disk.
+    print("\n=== early-close tell: share of NO markets closing >3d early ===")
+    print("(a per-subject hazard runs to its deadline; a branch market dies"
+          " when a sibling wins)")
+    for name, tks in sorted(strata.items(), key=lambda x: -len(x[1]))            + [("ALLOWLIST", allow)]:
+        early = tot = 0
+        for tk in tks:
+            a = anchors.get(tk) or {}
+            if a.get("result") != "no" or a.get("closed_early_days") is None:
+                continue
+            tot += 1
+            early += a["closed_early_days"] > 3
+        if tot:
+            print("  {:<24} {:>4}/{:<4} = {:>5.1f}%".format(
+                name, early, tot, 100.0 * early / tot))
 
     print("\n=== liquidity cuts on the hazard stratum, priced off YES bid ===")
     print(HDR); print("-" * len(HDR))
