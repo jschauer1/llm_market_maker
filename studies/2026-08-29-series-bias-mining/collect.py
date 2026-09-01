@@ -28,8 +28,13 @@ Phase 2 (`prices`) -- for series with enough settled markets, the ask at
                       a single pre-registered decision point. Expensive;
                       Kalshi serialises candlesticks at ~4-5/s.
 
+Backfill  -- book quality for observations written before 2026-09-01,
+             when only the derived ask was persisted. Time-boxed by the
+             ~60-day archive window; run it before `prices`.
+
   python studies/2026-08-29-series-bias-mining/collect.py walk
   python studies/2026-08-29-series-bias-mining/collect.py prices
+  python studies/2026-08-29-series-bias-mining/collect.py backfill
   python studies/2026-08-29-series-bias-mining/collect.py status
 """
 
@@ -313,6 +318,139 @@ def excluded_as_combinatorial(conn) -> list[tuple[str, int]]:
         "HAVING n > ? ORDER BY n DESC", (MAX_SETTLED_FOR_PRICES,))]
 
 
+def decision_prices(row, cs, close_ts, sched_ts, open_ts):
+    """(main, alt) observation tuples for one market, or (None, None).
+
+    Extracted 2026-09-01 so `prices` and `backfill` cannot drift apart.
+    That is not tidiness: the backfill attaches a spread to an ask that
+    is ALREADY STORED, so if it computed a different decision point the
+    two fields would describe different candles and nothing would say
+    so. `backfill` re-derives the ask through this same function and
+    refuses to write when it disagrees with the stored value.
+
+    Each tuple is (side, ask, won, offset_h, spread, volume, oi).
+    """
+    def price_at(target_ts):
+        elig = [c for c in cs if c["end_ts"] <= target_ts]
+        c0 = elig[-1] if elig else None
+        if c0 is None:
+            return None
+        ya, yb = c0.get("yes_ask_close"), c0.get("yes_bid_close")
+        if ya is None or yb is None:
+            return None
+        ya, yb = float(ya), float(yb)
+        if ya > 1.0 or yb > 1.0:                      # cents, not dollars
+            ya, yb = ya / 100.0, yb / 100.0
+        if (ya + yb) / 2.0 >= 0.5:
+            side_, ask_ = "yes", ya
+        else:
+            side_, ask_ = "no", 1.0 - yb
+        if not (0.0 < ask_ < 1.0):
+            return None
+        # Spread is side-independent: it is the same book either way, and
+        # it is the field that says whether `ask_` was a price anyone was
+        # actually offering.
+        return (side_, ask_, 1 if side_ == row["result"] else 0,
+                (close_ts - c0["end_ts"]) / 3600.0,
+                ya - yb, c0.get("volume"), c0.get("open_interest"))
+
+    if open_ts and sched_ts > open_ts:
+        lifetime = sched_ts - open_ts
+    else:
+        lifetime = max(cs[-1]["end_ts"] - cs[0]["end_ts"], 0)
+
+    main = price_at(sched_ts - max(3600.0, DECISION_FRACTION * lifetime))
+    if main is None:
+        # A short-lived market may have one candle and that single price
+        # is all the history there is.
+        main = price_at(cs[0]["end_ts"])
+    alt = price_at(sched_ts - 86400) if lifetime >= 86400 else None
+    return main, alt
+
+
+def backfill(conn, limit_series: int | None = None) -> None:
+    """Attach book quality to observations written before 2026-09-01.
+
+    `collect.py` originally persisted only the derived ask, discarding
+    the bid, volume and open interest the candle already carried. Pass 3
+    could then not tell a tradeable price from a one-sided book, which
+    is what made its nine flags unreadable (STUDY.md "Pass 3 result").
+
+    This is time-boxed by Kalshi, not by preference: the fields can only
+    come from candlesticks, and settled markets leave the public API
+    ~60 days after close. Rows whose candles have already aged out are
+    counted and REPORTED -- that count is the measure of what the
+    original omission cost -- and are left exactly as they are. Nothing
+    is ever deleted: dropping an un-backfillable row would silently
+    shrink the population, which is a worse failure than a NULL.
+    """
+    todo = [r["series_ticker"] for r in conn.execute(
+        "SELECT DISTINCT series_ticker FROM obs WHERE spread IS NULL "
+        "ORDER BY series_ticker")]
+    if limit_series:
+        todo = todo[:limit_series]
+    done = _done(conn, "backfill")
+    print(f"backfill: {len(todo)} series carry NULL-spread rows; "
+          f"{len(done)} already done")
+
+    tot_filled = tot_aged = tot_mismatch = 0
+    for si, series_ticker in enumerate(todo, 1):
+        if series_ticker in done:
+            continue
+        rows = list(conn.execute(
+            "SELECT o.ticker, o.ask, o.side, s.close_time, s.result, "
+            "s.open_time, s.expected_expiration_time "
+            "FROM obs o JOIN settled s ON s.ticker = o.ticker "
+            "WHERE o.series_ticker=? AND o.spread IS NULL",
+            (series_ticker,)))
+        filled = aged = mismatch = 0
+        for r in rows:
+            close_ts, sched_ts = _ts(r["close_time"]),                 _ts(r["expected_expiration_time"])
+            if close_ts is None or sched_ts is None:
+                continue
+            try:
+                cs = history.candlesticks(
+                    series_ticker, r["ticker"],
+                    start_ts=close_ts - 86400 * CANDLE_LOOKBACK_DAYS,
+                    end_ts=close_ts, period_interval=60)
+            except Exception:                          # noqa: BLE001
+                aged += 1
+                continue
+            if not cs:
+                aged += 1                              # gone upstream
+                continue
+            main, alt = decision_prices(r, cs, close_ts, sched_ts,
+                                        _ts(r["open_time"]))
+            if main is None:
+                aged += 1
+                continue
+            # The self-check. A recomputed ask that disagrees with the
+            # stored one means the two fields would describe different
+            # candles, so the row is left alone and counted.
+            if abs(main[1] - float(r["ask"])) > 1e-9 or main[0] != r["side"]:
+                mismatch += 1
+                continue
+            conn.execute(
+                "UPDATE obs SET spread=?, volume=?, open_interest=?, "
+                "spread_24h=? WHERE ticker=?",
+                (main[4], main[5], main[6],
+                 alt[4] if alt else None, r["ticker"]))
+            filled += 1
+        note = f"{filled}/{len(rows)} filled"
+        if aged:
+            note += f"; {aged} aged out upstream"
+        if mismatch:
+            note += f"; {mismatch} ask mismatch (left alone)"
+        _mark(conn, "backfill", series_ticker, note)
+        conn.commit()                                 # per series, always
+        tot_filled += filled
+        tot_aged += aged
+        tot_mismatch += mismatch
+        print(f"  [{si}/{len(todo)}] {series_ticker}: {note}", flush=True)
+    print(f"backfill done: {tot_filled} filled, {tot_aged} aged out, "
+          f"{tot_mismatch} mismatched")
+
+
 def prices(conn, limit_series: int | None = None) -> None:
     """Phase 2: the ask at the decision point, per market, per series."""
     todo_series = eligible_series(conn)
@@ -369,65 +507,11 @@ def prices(conn, limit_series: int | None = None) -> None:
                 noshed += 1
                 continue
 
-            # Scheduled lifetime where open_time exists; else observed span.
-            if open_ts and sched_ts > open_ts:
-                lifetime = sched_ts - open_ts
-            else:
-                lifetime = max(cs[-1]["end_ts"] - cs[0]["end_ts"], 0)
-
-            def price_at(target_ts):
-                """(side, ask, won, offset_h, spread, vol, oi) at the last
-                candle <= target.
-
-                ADDED 2026-09-01: spread, volume and open interest. The
-                candle already carried all three and this collector was
-                throwing them away, keeping only the derived ask -- and
-                pass 3 then could not tell a tradeable price from a
-                one-sided book. 23% of its observations sat at asks of
-                0.98-0.995 realizing 0.80, which is not a mispricing but
-                an absent offer, and the mention_family negative control
-                fired because of it. Re-deriving these later means
-                re-fetching candles that Kalshi archives at ~60 days, so
-                they are persisted at capture time. See STUDY.md
-                "Pass 3 result".
-                """
-                elig = [c for c in cs if c["end_ts"] <= target_ts]
-                c0 = elig[-1] if elig else None
-                if c0 is None:
-                    return None
-                ya, yb = c0.get("yes_ask_close"), c0.get("yes_bid_close")
-                if ya is None or yb is None:
-                    return None
-                ya, yb = float(ya), float(yb)
-                if ya > 1.0 or yb > 1.0:              # cents, not dollars
-                    ya, yb = ya / 100.0, yb / 100.0
-                if (ya + yb) / 2.0 >= 0.5:
-                    side_, ask_ = "yes", ya
-                else:
-                    side_, ask_ = "no", 1.0 - yb
-                if not (0.0 < ask_ < 1.0):
-                    return None
-                # Spread is side-independent: it is the same book either
-                # way, and it is the field that says whether `ask_` was a
-                # price anyone was actually offering.
-                return (side_, ask_, 1 if side_ == r["result"] else 0,
-                        (close_ts - c0["end_ts"]) / 3600.0,
-                        ya - yb, c0.get("volume"), c0.get("open_interest"))
-
-            # THE amended pre-registered point: 25% of scheduled lifetime.
-            main = price_at(sched_ts - max(3600.0, DECISION_FRACTION * lifetime))
-            if main is None:
-                # A short-lived market may have one candle and that single
-                # price is all the history there is.
-                main = price_at(cs[0]["end_ts"])
+            main, alt = decision_prices(
+                r, cs, close_ts, sched_ts, open_ts)
             if main is None:
                 continue
             side, ask, won, offset_h, spread, vol, oi = main
-
-            # The ORIGINAL rule, priced from the same candles for free.
-            # Undefined (NULL) where the market lived under 24h -- which
-            # is precisely the population class that made it unrunnable.
-            alt = price_at(sched_ts - 86400) if lifetime >= 86400 else None
 
             conn.execute(
                 "INSERT OR REPLACE INTO obs(ticker,series_ticker,close_time,"
@@ -482,6 +566,9 @@ def main() -> None:
     conn = connect()
     if cmd == "walk":
         walk(conn)
+    elif cmd == "backfill":
+        n = int(sys.argv[2]) if len(sys.argv) > 2 else None
+        backfill(conn, n)
     elif cmd == "prices":
         n = int(sys.argv[2]) if len(sys.argv) > 2 else None
         prices(conn, n)

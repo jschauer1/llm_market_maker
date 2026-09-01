@@ -830,3 +830,58 @@ under passes 1–2's liquidity standard rather than a third thing. The
 negative control is the acceptance test: **if mention_family still trips
 the gates under that filter, the population is still wrong and pass 4 is
 not measured either**, whatever else it flags.
+
+### Correction to pass 4's filter, made before pass 4 runs
+
+The section above pre-registered pass 4's tradeable-book test as
+`spread <= 0.07` and `volume >= 500`, "the same thresholds
+`insider_bias/screen.py` uses". **The second half of that is wrong, and
+the first half is insufficient.** The backfill's first rows showed why,
+so it is corrected here rather than discovered later:
+
+```
+KXA100WS-26AUG28-2.000   ask=0.990 no   spread=0.010  vol=0.0  oi=138.75
+KXA100WS-26AUG28-1.750   ask=0.990 no   spread=0.010  vol=0.0  oi=691.07
+KXA100WS-26AUG28-1.500   ask=0.990 no   spread=0.010  vol=0.0  oi=1289.27
+```
+
+Two things are visible at once.
+
+1. **A 1c spread is not evidence of a tradeable book.** These rows are
+   exactly the pathology pass 3 identified — favorites at 0.99 that lose
+   far too often — and their *spread is one cent*. A tight quote with
+   nothing behind it is still a quote. So a spread filter alone would
+   have passed the very observations that produced the artifact, and
+   `spread <= 0.07` cannot be the whole test.
+
+2. **The candle's `volume` is not the screen's volume.** These carry
+   `vol=0.0` alongside open interest in the hundreds or thousands, which
+   settles what the field means: it is **contracts traded in that
+   period**, not lifetime volume. `insider_bias/screen.py`'s
+   `volume >= 500` is a *lifetime* figure on a market record. Applying
+   500 to an hourly candle is a different and far harsher test that
+   would empty the population, and applying it *as if* it were the
+   screen's threshold would be the same class of error this study has
+   already made twice: a rule that reads like a known-good one while
+   measuring something else.
+
+**So pass 4's filter is restated, and the reasoning is the
+pre-registration:** the test is on **`open_interest`**, which is a
+*level* and therefore meaningful at a point in time the way a
+period-volume is not, with per-period `volume` reported alongside rather
+than thresholded. The threshold is **not** borrowed from the screen,
+because the quantity is not the screen's quantity; it is set from the
+population's own distribution *before* any per-series number is
+computed, and the chosen value is recorded here with the count of
+observations it removes.
+
+`spread <= 0.07` is kept as a second, independent condition — a wide
+book is still disqualifying — but it is explicitly **not** load-bearing
+on its own, for the reason above.
+
+The acceptance test is unchanged and remains the thing that decides
+whether any of this worked: **if `mention_family` still trips the gates
+under the filter, the population is still wrong and pass 4 is not
+measured**, whatever else it flags. That is the check that caught this
+in pass 3, and no amount of reasoning about which field to threshold
+substitutes for it.
