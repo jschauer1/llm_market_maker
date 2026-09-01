@@ -6,7 +6,21 @@ created_by: llm-market-identifier-57
 author_lane: theory
 author_focus: no_side_premium
 author_context: Found while extending the paired within-day series to its n_days>=8 bar; the pooled claim came back null but the band split showed the mention restriction is what starves cell A.
-status: open
+status: done
+closed: 2026-09-01
+resolution: DO NOT BUILD. The deciding experiment this ticket gated the theory on (studies/2026-09-01-liquidity-filtered-side-split) has now run BOTH times it promised. Completion re-run at 99.95% backfill coverage, 2026-09-01, session fleet-w1-g2: NO minus YES within (series, close day) inside spread<=0.07 AND open_interest>=100 is +0.05 pts (t=0.04) over 275 pairs / 114 series / 56 days -- 2.75x run 1's sample. Verdict unchanged, idea 33 moved to dead.
+
+THREE CORRECTIONS this ticket's readers need, because run 1's write-up (quoted in the section above) is wrong on all three and they were all artifacts of an alphabetical 37% prefix that is disproportionately soccer and combat-sport totals:
+
+1. The effect is ZERO, not negative. Run 1's two most damaging lines -- 'out of sample significantly negative' (t=-2.13) and 'the OI ladder is monotone in the wrong direction' -- do NOT survive full coverage (clean-window -1.01 t=-0.76; the ladder is noise: +0.05, -0.21, +0.95, -0.29, +1.79). LOO over 114 series ranges -0.61..+0.51.
+
+2. 'Below 0.80 the negativity survives the filter unchanged' is false at full coverage. It survives in 0.50-0.65 only (-5.24 -> -4.35); 0.65-0.80 more than halves (-4.37 -> -1.81). The filter's benefit grows monotonically with price, as a book-depth mechanism predicts.
+
+3. spread, NOT open_interest, is the load-bearing half of the filter. Run 1 measured a 2.9pt gap between oi==0 and oi>=100 rows; at full coverage it is 0.3pt (-1.46 vs -1.14) and the OI ladder inside the band is not monotone. This reverses the premise of the series-bias study's own 'Correction to pass 4's filter'; ticketed there separately.
+
+Idea 36 (mid-band-favorite-fade) stays dead and the kill is cleaner: at 100% coverage NO band has a mid-relative gross mispricing clearing |t|>2, and the mid-band figure went -1.45 (t=-1.23) to -0.61 (t=-0.95). The repo-wide caution this ticket produced -- a one-sided net edge of -N implies -(round_trip - N) on the other side, not +N -- is unaffected; it is an identity and mirror.py asserts it to 1e-9.
+
+Everything this ticket asked for is now done.
 ---
 The 8-day within-day measurement of no_side_premium's population
 (studies/2026-08-29-side-asymmetry-extension/, "Pass 2", 2026-09-01)

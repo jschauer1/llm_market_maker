@@ -675,3 +675,73 @@ That single run decides between:
 
 Nothing should be pre-registered until that is known, and the cost of
 waiting is a few hours of someone else's already-running job.
+
+## 2026-09-01 — that run happened, at 100% coverage: the unconditional band effect is ZERO, so cell A is now the only thing that could resurrect it
+
+Session `fleet-w1-g2`, study lane. The note directly above says one run
+decides `no-favorite-high-band`, and that the cost of waiting is a few
+hours of someone else's already-running job. The job finished, the run
+was made twice, and this is what it returned. **This is context for cell
+A, not a result about it** — the study measures a different population
+and says so explicitly in its "What this study does NOT license".
+
+**The answer to the question posed above: composition everywhere.**
+`studies/2026-09-01-liquidity-filtered-side-split`, completion re-run at
+99.95% backfill coverage (72,010 obs / 659 series / 61 close days, vs
+26,941 / 227 at run 1). NO minus YES **within (series, close day)**,
+inside `spread <= 0.07 AND open_interest >= 100`:
+
+```
++0.05 pts   t=0.04   22/56 days positive   275 pairs over 114 series
+LOO over 114 series: -0.61 .. +0.51, negative in 22/114
+out-of-sample (close < 2026-08-20, clear of the mining window): -1.01  t=-0.76
+```
+
+Idea 33 is `dead`; the `new-theory` ticket is closed. Board-wide, the
++3.95 pooled side gap in the 0.90–0.97 band is composition, not a side
+effect.
+
+**Read the number as zero, not as negative.** Run 1 of that study, on a
+37% alphabetical prefix, reported −1.02 and called the thesis actively
+harmful on two checks — "significantly negative out of sample" (t=−2.13)
+and "the OI ladder is monotone in the wrong direction". **Neither
+survives full coverage.** The prefix was disproportionately soccer and
+combat-sport totals. If you read run 1 and came away thinking the
+opposite bet had promise, it does not: at 100% coverage no price band
+has a mid-relative gross mispricing clearing |t| > 2.
+
+### What this does and does not do to cell A
+
+**It does not falsify `cell-a-no-favorite`, and it must not be used to.**
+That cell screens `insider_bias.screen`'s population, which carries a
+lifetime-volume bar this sweep does not, and its rows are forward
+settlements at a live decision point rather than one historical anchor
+per market. Different population, different entry, different data.
+
+**What it does change is what a positive cell A would MEAN.** Before
+today the honest reading of a positive cell A was ambiguous between
+"NO favorites at 0.90–0.97 are underpriced" and "…and specifically so
+inside this screen". The unconditional version is now measured and
+absent on 659 series, so **only the conditional reading survives**: if
+cell A clears its gates positive, the effect is a property of the
+screen — its volume bar, its category mix, its event families — and not
+of the price band. That is a materially narrower and more falsifiable
+claim than the one the cell was registered under, and it is the version
+to write up if the cell ever comes in.
+
+The corollary matters for how the cell is defended. "The band effect is
+real, we measured it board-wide" is **no longer available** as
+supporting argument. Cell A now stands or falls on its own 5-day /
+10-cluster gates, with nothing behind it.
+
+Its revisit angle is recorded on idea 33 in exactly those terms.
+
+### One field-level fact this theory should absorb
+
+The liquidity filter's work is done by **`spread`, not
+`open_interest`** — a 0.3-point gap between `oi==0` and `oi>=100` rows at
+full coverage (−1.46 vs −1.14), against 2.9 points on the 37% prefix,
+and an open-interest ladder inside the band that is not monotone in any
+direction. If any future cell or slice here reaches for a liquidity
+predicate, reach for spread first; open interest looks load-bearing and
+measurably is not, at least on settled history at a single anchor.

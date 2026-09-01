@@ -1,9 +1,12 @@
 # Does the NO-favorite side gap survive a tradeable book? — the deciding experiment for `no-favorite-high-band`
 
-**Date:** 2026-09-01 · **Status:** pre-registration written before any
-effect was computed · **Tier:** A (no model in the measurement path) ·
-**Session:** `llm-market-identifier-b3`, new-theory lane, focus
-`no-favorite-high-band`
+**Date:** 2026-09-01 · **Status:** complete · **Tier:** A (no model in
+the measurement path) · **Verdict:** DO NOT BUILD — at 100% coverage the
+within-series gap is +0.05 (t=0.04); the effect is ZERO, not negative as
+run 1 reported, and requiring a fillable book is what removes the
+series-bias corpus's apparent level bias ·
+**Sessions:** `llm-market-identifier-b3` (pre-registration + run 1, 37%
+coverage), `fleet-w1-g2` (completion re-run at 100%, study lane)
 
 ## Why this study exists
 
@@ -399,3 +402,211 @@ and **not** promoted to a thesis: it was found by looking at a table of
 six bands after the fact, its at-ask net is +1.73 (t=+1.10, not
 significant), and pre-registering it on the same data that suggested it
 is the exact failure this repo has already made twice.
+
+---
+
+# RESULT — run 2, the promised completion re-run, on 100% backfill coverage
+
+Session `fleet-w1-g2`, study lane, 2026-09-01. The backfill this study was
+waiting on finished quietly while nobody was watching: **650 series
+backfilled, zero ask/spread mismatches, 33 rows (0.046% of 72,010) aged
+out of Kalshi's API before they could be re-priced.** That last number is
+what the backfill ticket asked for — *the measure of what the original
+omission cost* — and it is very close to nothing, because the backfill
+was run inside the ~60-day window rather than after it.
+
+Reproduce every number below against a snapshot of the collector db taken
+**before** the `prices` sweep was restarted:
+
+```
+python studies/2026-09-01-liquidity-filtered-side-split/measure.py            <copy.db>
+python studies/2026-09-01-liquidity-filtered-side-split/mechanism.py          <copy.db>
+python studies/2026-09-01-liquidity-filtered-side-split/mirror.py             <copy.db>
+python studies/2026-09-01-liquidity-filtered-side-split/completion_checks.py  <copy.db>
+```
+
+**Collection state, stated as the one-run rule requires:** 72,010
+observations over 659 series and 61 close days; **71,977 rows (99.95%)
+carry liquidity columns**, against 26,941 over 227 series at run 1.
+Coverage by first letter is now `A–E 100%, F 98%, G–J 99%, K–Z 100%` —
+run 1's coverage caveat, that whole sports-league families under L, N, S,
+T and U were absent, is **retired**. Nothing in the pre-registration was
+touched; `completion_checks.py` imports its constants from `measure.py`
+rather than restating them.
+
+## The verdict stands, and its reasoning does not
+
+Pre-registered primary — NO minus YES **within (series, close day)**,
+inside `spread <= 0.07 AND open_interest >= 100`:
+
+| | run 1 (37%) | **run 2 (100%)** |
+|---|---|---|
+| cell rows surviving the filter | 1,079 | **3,054** |
+| series / pairs | 40 / 100 | **114 / 275** |
+| **WITHIN, day-clustered** | **−1.02** (t=−0.35) | **+0.05** (t=+0.04) |
+| days positive | 16/35 | 22/56 |
+
+By the decision rule fixed before any number existed — *"≈ 0 or negative
+→ composition everywhere → do not build"* — **+0.05 at t=0.04 is ≈ 0, so
+the verdict is unchanged: DO NOT BUILD `no-favorite-high-band`, and the
+negative is recorded against idea 33.**
+
+**But run 1's write-up is wrong about *why*, and the difference matters
+to anyone reading it later.** Run 1 called the thesis actively harmful
+and rested that on three checks. At full coverage, two of the three do
+not survive:
+
+| run 1's check | run 1 | **run 2** | survives? |
+|---|---|---|---|
+| OI ladder "monotone in the wrong direction" | −1.02 → −2.81 across T | +0.05, −0.21, +0.95, −0.29, +1.79 — **no monotonicity, noise around zero** | **no** |
+| "Out of sample significantly negative" | clean window −5.44, **t=−2.13** | clean window −1.01, **t=−0.76** | **no** |
+| "No single series carries it" (LOO) | 134/137 negative, range −2.34..+0.31 | 22/114 negative, range **−0.61..+0.51** | yes, but of a *zero* |
+
+So the honest full-coverage statement is **"the NO-favorite side gap in
+this band is zero once you require a fillable book"**, not *"it is
+negative"*. Both readings kill the theory; only one of them is true, and
+a reader who took run 1 at face value would come away believing the
+mirror trade had promise. It does not — see the mirror section below.
+
+**Why run 1 was misled, precisely:** its 37% slice was an alphabetical
+prefix, and the alphabetical prefix of Kalshi's series list is
+disproportionately *soccer and combat-sport totals* (`KXEPL*`,
+`KXEREDIVISIE*`, `KXETTAN*`, `KXELITESERIEN*`, `KXFIGHTMENTION`). Those
+families dominate the k=1 pairs that run 1 correctly identified as its
+noise source — they were simply a much larger share of a 40-series sample
+than of a 114-series one.
+
+## Run 1's diagnosis of its own counter-evidence was right, and generalizes
+
+Run 1 found series-equal weighting gave **+9.11** where day-clustering
+gave −1.02, and explained it: 23 of 40 series contributed a *single*
+(series, close day) pair, which can only land near 0 or near ±100, and
+equal-weighting up-weights exactly those. At completion the same
+decomposition holds on 114 series:
+
+```
+series-equal-weighted, all      n=114   mean= +3.71   median= +0.00
+series with exactly 1 pair      n=58    mean= +7.20   median= +0.00
+series with >1 pair             n=56    mean= +0.09   median= -0.21
+largest |series value|: +100.94 (k=1), -98.12 (k=1), +98.12 (k=1),
+                        +96.25 (k=1), +94.36 (k=1), +64.78 (k=1)
+```
+
+**Every one of the six largest series-level values is a k=1 series**, and
+restricted to series that pair more than once the effect is +0.09,
+median −0.21 — gone, exactly as at run 1. The generalizable rule:
+**series-equal weighting on a within-cell difference is not a robustness
+view, it is an amplifier for cells with one observation per side.** Where
+a paired design's cells vary in size, day-clustering is the statistic;
+series-equal weighting needs its k=1 stratum reported beside it or it is
+misleading by construction.
+
+---
+
+# The mechanism section is superseded, and its headline is now stronger and differently attributed
+
+`mechanism.py` re-run at 100% coverage. This is the part of run 1 the
+write-up called *"the finding that outranks the verdict"*, and it needs
+correcting on three points.
+
+```
+band          ALL rows                 TRADEABLE (spread<=0.07, oi>=100)
+0.50-0.65     -5.24  t=-7.04  n=11418   -4.35  t=-4.70  n=4126
+0.65-0.80     -4.37  t=-6.00  n=16299   -1.81  t=-2.27  n=4098
+0.80-0.90     -5.87  t=-9.96  n=11638   -0.75  t=-0.75  n=2820
+0.90-0.97     -7.64  t=-9.57  n=12642   -1.14  t=-1.64  n=3054
+0.97-0.98     -9.44  t=-7.83  n=3029    -0.41  t=-0.49  n= 716
+0.98-1.01    -17.29  t=-15.96 n=16951   -0.64  t=-1.00  n=2157
+```
+
+**What is confirmed, and more strongly than at run 1.** The series-bias
+study's headline reading — *"every level is deeply negative"* — is
+overwhelmingly a statement about **quotes nobody could fill**. The
+0.98–1.01 artifact that made pass 3 unreadable goes from **−17.29 to
+−0.64**; 0.90–0.97 goes from −7.64 to −1.14; 0.97–0.98 from −9.44 to
+−0.41. On 4.5x the rows of run 1, with every unfiltered t-statistic far
+outside noise, this is now the study's most solid result.
+
+**Correction 1 — the effect is not confined to 0.80+.** Run 1 reported
+that below 0.80 the negativity "survives the filter essentially
+unchanged". At completion it survives in **0.50–0.65 only** (−5.24 →
+−4.35); **0.65–0.80 more than halves** (−4.37 → −1.81). The clean
+statement is that the filter's benefit grows monotonically with price,
+which is what a book-depth mechanism predicts — the higher the price, the
+more of the unfiltered population is a one-sided penny quote.
+
+**Correction 2, and it reverses a pre-registration's own premise —
+`spread`, not `open_interest`, is the load-bearing half of the filter.**
+Run 1 concluded the opposite, from a 2.9-point gap (oi==0 at −2.47 vs
+oi>=100 at +0.44). At full coverage that gap is **0.3 points**:
+
+```
+spread<=0.07 AND oi==0    n=3930  net= -1.46  t=-1.24
+spread<=0.07 AND oi>=100  n=3054  net= -1.14  t=-1.64
+```
+
+and the open-interest ladder inside the band is **not monotone at all**
+(oi 0–1: −1.44 · 1–100: +0.16 · 100–500: −1.23 · 500–2,000: −3.15 ·
+≥2,000: −1.81). So of the −7.64 → −1.14 improvement, essentially all of
+it is the **spread** condition and almost none is open interest.
+
+This matters beyond this study, because
+`studies/2026-08-29-series-bias-mining/STUDY.md`'s *"Correction to pass
+4's filter"* fixed that test on `open_interest`, with `spread <= 0.07`
+kept as "a second, independent, explicitly **not** load-bearing
+condition". The correction's reasoning — *"a one-cent quote on a market
+nobody holds is still a quote"* — sounds right and is **empirically
+false on this corpus**: those rows price about as well as held ones. The
+condition that does the work is the one the correction demoted. **Pass 4
+should be read with the two conditions' roles swapped**, and the
+"55% of the NO side is zero-OI" fact run 1 leaned on explains nothing.
+
+Filed as a ticket against the series-bias study rather than edited into
+it, per the repo's supersede-don't-rewrite pattern.
+
+**Correction 3 — the "one genuinely favourable cell" was a coverage
+artifact, and not promoting it was correct.** Run 1 observed 0.80–0.90
+underpriced at mid by +3.54 (t=+2.23) and *deliberately declined* to
+promote it to a thesis, on the grounds that it was found by scanning six
+bands after the fact. At completion it is **+1.18 (t=+1.16)** — gone.
+That restraint is worth naming: the discipline of not pre-registering a
+pattern on the data that suggested it saved a session here, on a cell
+that looked significant and was not.
+
+## Idea 36 stays dead, and the kill is now cleaner
+
+`mirror.py` re-run at 100%. The identity `fav_net + dog_net =
+−(spread + fees)` asserts to 1e-9, as it must. The favorite-longshot
+mechanism claim is weaker than at run 1, not stronger:
+
+```
+fav ask     BUY FAVORITE        naive mirror    BUY UNDERDOG    round trip
+0.50-0.65   -4.35 (t=-4.70)        +4.35        -0.93 (t=-1.02)     5.28
+0.65-0.80   -1.81 (t=-2.27)        +1.81        -2.88 (t=-3.60)     4.68
+0.50-0.80   -3.09 (t=-4.77)        +3.09        -1.89 (t=-2.96)     4.98
+0.80-0.90   -0.75 (t=-0.75)        +0.75        -3.21 (t=-3.10)     3.96
+0.90-0.97   -1.14 (t=-1.64)        +1.14        -1.68 (t=-2.42)     2.82
+
+market's error vs the toll, mid-relative and gross of fees:
+0.50-0.80  GROSS@mid = -0.61 (t=-0.95)   round trip 4.98
+```
+
+**Not one of the six bands has a mid-relative gross mispricing clearing
+|t| > 2.** Run 1's mid-band figure was −1.45 (t=−1.23); at completion it
+is **−0.61 (t=−0.95)**. The whole of the "favorites lose four points"
+headline is the round trip. **Idea 36 is dead on 4.5x the data, and the
+broader claim now available is the one worth carrying: on this corpus, a
+Kalshi settled-market price at a fillable quote is not detectably biased
+at any level.** Every apparent level bias in the series-bias corpus is a
+book artifact, a fee, or a spread.
+
+## What this study does NOT license
+
+It measures one band's side gap on settled history at one decision point,
+plus one corpus-wide price-level question. It says nothing about
+`no_side_premium`'s live cells, which screen a different population
+(`insider_bias.screen`, with its own volume bar) and are accruing forward
+rows — this is context for that theory, not a result about it. And "no
+detectable level bias at fillable quotes" is a statement about
+*unconditional* price levels; it is not evidence against any theory that
+conditions on something else.
