@@ -1,9 +1,14 @@
 # Worker brief
 
-Sent verbatim as a research session's prompt, with `{{SESSION_NAME}}`
-substituted and nothing else. It lives on disk rather than inline so a
-change to what a session is told shows up in `git diff` and gets reviewed
-like any other change to a procedure.
+**Everything above the `---` is for the supervisor and is never sent.
+The prompt is everything below it**, verbatim, with `{{SESSION_NAME}}`
+substituted and nothing else added. Sending this header would leak the
+very thing it exists to forbid, so the split is the point rather than a
+formatting choice.
+
+The brief lives on disk rather than inline so a change to what a session
+is told shows up in `git diff` and gets reviewed like any other change to
+a procedure.
 
 **What this file must never contain**, and what must never be added to a
 spawn on top of it:

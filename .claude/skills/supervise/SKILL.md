@@ -105,6 +105,10 @@ Spawn each with the brief at `.claude/skills/supervise/worker-brief.md`,
 read from disk and with `{{SESSION_NAME}}` substituted — never retyped
 from memory, or the prompt that ran stops matching the prompt on disk.
 
+**Send only what is below that file's `---`.** The header above it is
+your documentation, and it names every thing a worker must not be told;
+sending it would leak exactly what it forbids.
+
 ```
 Agent(subagent_type="general-purpose", model="opus",
       run_in_background=true,
