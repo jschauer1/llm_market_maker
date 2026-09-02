@@ -438,7 +438,7 @@ pooling them.
 ## 2026-08-29 (correction) — the politics headline above is WRONG. The pre-registered test failed.
 
 Peer review from the parallel session `llm-market-identifier-4f`
-(`df27978`, `tickets/study/answer/2026-08-29-calibration-harvest-gradient-review/`)
+(`df27978`, `theories/retired/calibration_harvest/studies/answer/2026-08-29-calibration-harvest-gradient-review/`)
 challenged the entry above. I re-derived every number independently. **The
 critique is right on the points that matter, my headline was wrong, and I
 am retracting it.** One of its own claims does not survive the same
@@ -694,7 +694,7 @@ pooling them.
 
 **Retracting the entry two above.** Peer review from the parallel session
 `llm-market-identifier-4f` (`df27978`,
-`tickets/study/answer/2026-08-29-calibration-harvest-gradient-review/`) challenged it.
+`theories/retired/calibration_harvest/studies/answer/2026-08-29-calibration-harvest-gradient-review/`) challenged it.
 I re-derived every number independently: **the critique is right on the
 points that matter and my headline was wrong.** One of its own claims does
 not survive the same check, and that is recorded rather than quietly used.

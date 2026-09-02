@@ -602,6 +602,31 @@ _CITE_LINE = re.compile(
 )
 
 
+#: Follow a citation into a theory that has since been retired.
+#:
+#: A retired theory's documents move to `theories/retired/<slug>/`, and the
+#: prose that cited them stays exactly where it is -- RESEARCH_LOG.md is
+#: append-only history, so a line reading "Narrative moved 2026-08-29 to
+#: `theories/calibration_harvest/NOTES.md`" records what was true when it
+#: was written and rewriting it would falsify the record. Four such lines
+#: broke the instant calibration_harvest's folder moved (2026-09-02).
+#:
+#: Following the move is right rather than lenient: retirement is the
+#: opposite of the silent move this test exists to catch. It leaves a
+#: RETIRED.md marker in the new folder and a `retired` registry row saying
+#: where the theory went, so the pointer is recoverable by anything that
+#: looks -- which is the standard the docstring above sets for a stub. A
+#: span that resolves at NEITHER home still fails, and the date-heading
+#: check below runs against the retired copy unchanged.
+def _retired_home(span: str) -> Path | None:
+    """`theories/<slug>/x` -> `theories/retired/<slug>/x`, if that exists."""
+    parts = span.split("/")
+    if len(parts) < 3 or parts[0] != "theories":
+        return None
+    moved = ROOT.joinpath("theories", registry.RETIRED_DIRNAME, *parts[1:])
+    return moved if moved.exists() else None
+
+
 def test_every_dated_cross_citation_still_resolves():
     """Notebooks, THEORY.md files and the log cite each other's entries by
     date ('NOTES.md 2026-08-26'). A migration moves entries between these
@@ -624,8 +649,11 @@ def test_every_dated_cross_citation_still_resolves():
                 if not m or not dates:
                     continue
                 span = m.group("file")
+                retired = _retired_home(span) if "/" in span else None
                 if "/" in span and (ROOT / span).exists():
                     targets = [ROOT / span]
+                elif retired is not None:
+                    targets = [retired]
                 elif "/" in span:
                     problems.append(f"{doc.relative_to(ROOT)}: cites missing `{span}`")
                     continue

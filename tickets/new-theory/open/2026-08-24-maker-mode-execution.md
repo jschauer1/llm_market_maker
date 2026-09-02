@@ -124,7 +124,10 @@ should run before any live recommendation carries a limit-price line.
 ## 8. Implementation plan
 
 1. Measurement script first (theory-local under whichever measured theory
-   runs it first, e.g. `theories/calibration_harvest/maker_sim.py`).
+   runs it first, e.g. `theories/<slug>/maker_sim.py`). The example here
+   named `calibration_harvest` until 2026-09-02; that theory was retired
+   2026-09-01, so the home is whichever theory is measuring when this
+   ticket is picked up.
 2. If it passes: `tools/sizing.py` gains the dual-quote edge computation;
    `find-edge`'s report format gains the two-line entry; `ledger.py`
    `mark-taken` gains the fill fields. Each is a versioned change.

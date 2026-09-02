@@ -1,7 +1,22 @@
 """Reproduce the three checks in STUDY.md against the politics run.
 
 Read-only: imports `calibration_harvest.gradient`'s loaders and recomputes.
-Run: python tickets/study/answer/2026-08-29-calibration-harvest-gradient-review/review.py
+
+**THIS SCRIPT NO LONGER RUNS, and it is kept anyway.** `calibration_harvest`
+was retired 2026-09-01 and its modules were deleted, so the import below
+raises. The script is the record of HOW the review was computed -- deleting
+it would leave STUDY.md's numbers unreproducible even in principle. To run
+it, restore the module it needs from the rev named in
+`theories/retired/calibration_harvest/RETIRED.md`:
+
+    git show <rev>:theories/calibration_harvest/gradient.py > gradient.py
+
+Was at `tickets/study/answer/2026-08-29-calibration-harvest-gradient-review/`
+until 2026-09-02, when it moved under the retired theory it belongs to --
+a retired theory's studies retire with it.
+
+Run (once the module above is restored):
+python theories/retired/calibration_harvest/studies/answer/2026-08-29-calibration-harvest-gradient-review/review.py
 """
 
 from __future__ import annotations
@@ -10,7 +25,9 @@ import statistics
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
+# parents[6]: <slug>/answer/studies/calibration_harvest/retired/
+# theories/<repo root>. Was parents[4] under tickets/study/answer/.
+sys.path.insert(0, str(Path(__file__).resolve().parents[6]))
 
 from tools import db                                             # noqa: E402
 from theories.calibration_harvest.gradient import (               # noqa: E402

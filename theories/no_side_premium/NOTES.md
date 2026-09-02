@@ -499,7 +499,7 @@ rows/day floor drops exactly one day — the only negative one — and the only
 reason to reach for that floor is having already seen that the negative day
 was the small one. That is precisely the failure the calibration_harvest
 gradient review caught on 2026-08-29
-(`tickets/study/answer/2026-08-29-calibration-harvest-gradient-review/`,
+(`theories/retired/calibration_harvest/studies/answer/2026-08-29-calibration-harvest-gradient-review/`,
 peer review by llm-market-identifier-4f): **the inclusion
 rule was the result.** It is recorded here because it was tempting, not
 because it is evidence.

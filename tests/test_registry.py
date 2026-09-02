@@ -79,15 +79,21 @@ def _register_matching(conn):
             conn.execute("UPDATE theories SET version=?, status='testing'"
                          " WHERE id=?", (version, tid))
         theories.set_uses_llm_judgment(conn, tid, uses, now=TS)
-    # calibration_harvest joined the running set on 2026-08-29, when its
-    # first pre-registered population (Climate and Weather, 154/154
-    # series) completed and four cells cleared both floors. It was
-    # `proposed` here until then precisely because its cells were
-    # unmeasured.
+    # calibration_harvest joined the running set on 2026-08-29 and was
+    # RETIRED by the user on 2026-09-01, on its own pre-registered kill
+    # criterion. Its code was deleted on 2026-09-02 and its folder moved
+    # to theories/retired/calibration_harvest, so `discover()` no longer
+    # finds a class for it. It is registered here anyway, and precisely
+    # because of that: a `retired` row with no class is NOT drift (retired
+    # is not in SCANNABLE_STATUSES), and this fixture is the only place
+    # that combination is exercised against the real repo. Registering it
+    # as `testing` -- as this fixture did until the migration -- would
+    # fail check_drift the moment the code was deleted, which is exactly
+    # what the status field is for.
     theories.register(conn, "calibration_harvest", "Calibration Harvest",
-                      "theories/calibration_harvest", now=TS)
+                      "theories/retired/calibration_harvest", now=TS)
     with db.write(conn):
-        conn.execute("UPDATE theories SET version=4, status='testing'"
+        conn.execute("UPDATE theories SET version=4, status='retired'"
                      " WHERE id='calibration_harvest'")
     theories.set_uses_llm_judgment(conn, "calibration_harvest", False, now=TS)
     # taker_flow registered 2026-09-01 and is `testing`: fully mechanical,
@@ -158,9 +164,10 @@ def test_a_proposed_row_without_code_is_not_drift(conn):
 def test_running_returns_scannable_theories_and_raises_on_drift(conn):
     _register_matching(conn)
     ids = [t.id for t in registry.running(conn)]
-    assert ids == ["calibration_harvest", "deadline_drift",
-                   "insider_judgment", "mention_family", "no_side_premium",
-                   "structural_arb", "taker_flow"]
+    # calibration_harvest is registered by the fixture but `retired`, so it
+    # is absent here: running() is SCANNABLE_STATUSES only.
+    assert ids == ["deadline_drift", "insider_judgment", "mention_family",
+                   "no_side_premium", "structural_arb", "taker_flow"]
     with db.write(conn):
         conn.execute("UPDATE theories SET version=99"
                      " WHERE id='mention_family'")

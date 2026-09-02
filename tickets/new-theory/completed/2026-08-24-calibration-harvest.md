@@ -7,7 +7,7 @@ author_lane: find-theories
 author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
 status: done
 closed: 2026-09-01
-resolution: BUILT then RETIRED. Theory `calibration_harvest` ran v1-v4 and was retired 2026-09-01 on its own pre-registered kill criterion. Across three complete populations -- weather, politics, and econfin (1,181/1,181 series, 2,666 observations) -- 47 cells cleared both floors and ZERO cleared fees. The horizon axis reversed sign out of sample (1mo+ +9.38 -> -5.09), 0 of 27 econfin cells survived Holm, and 87% of the forward corpus turned out to be sports reading -6.69 gross. This was the highest-scoring spec in the backlog (composite 14/15). Full record in theories/calibration_harvest/.
+resolution: BUILT then RETIRED. Theory `calibration_harvest` ran v1-v4 and was retired 2026-09-01 on its own pre-registered kill criterion. Across three complete populations -- weather, politics, and econfin (1,181/1,181 series, 2,666 observations) -- 47 cells cleared both floors and ZERO cleared fees. The horizon axis reversed sign out of sample (1mo+ +9.38 -> -5.09), 0 of 27 econfin cells survived Holm, and 87% of the forward corpus turned out to be sports reading -6.69 gross. This was the highest-scoring spec in the backlog (composite 14/15). Full record in theories/retired/calibration_harvest/.
 ---
 Effort: S · LLM in decision path: no · Backtest tier: A
 

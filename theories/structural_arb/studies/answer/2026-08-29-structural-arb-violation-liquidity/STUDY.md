@@ -15,7 +15,7 @@ The repo holds 11 stored board snapshots spanning 2026-08-24 to
 2026-08-29 (96k–117k markets each), so the theory's own geometry can be
 replayed over all of them with no API calls at all — which matters,
 because Kalshi rate-limits the history endpoint to ~4–5 req/s
-(`theories/calibration_harvest/NOTES.md`, 2026-08-29) and a collector was
+(`theories/retired/calibration_harvest/NOTES.md`, 2026-08-29) and a collector was
 already using it.
 
 ## Method

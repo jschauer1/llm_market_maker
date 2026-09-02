@@ -16,7 +16,6 @@ from datetime import datetime, timezone
 
 import pytest
 
-from theories.calibration_harvest import screen as ch_screen
 from theories.insider_bias import screen as ib_screen
 from theories.structural_arb import scan as sa_scan
 from tools.timeutil import days_until
@@ -27,7 +26,14 @@ NAIVE = datetime(2026, 8, 29, 0, 0, 0)
 #: Every module that re-exports the elevated helper. The point of the
 #: elevation is that these are the SAME function, so every behavioural
 #: assertion below runs through all of them.
-REEXPORTS = [ib_screen.days_until, sa_scan.days_until, ch_screen.days_until]
+#:
+#: There were three. The third, `calibration_harvest.screen.days_until`,
+#: went with that theory's retirement on 2026-09-01 -- its code is deleted
+#: and retrievable at the rev named in
+#: `theories/retired/calibration_harvest/RETIRED.md`. This test is about
+#: `timeutil`, not about that theory, so it kept its coverage and lost one
+#: fixture rather than being deleted alongside the code it borrowed.
+REEXPORTS = [ib_screen.days_until, sa_scan.days_until]
 
 
 def test_every_theory_screen_re_exports_the_one_implementation():

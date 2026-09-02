@@ -22,7 +22,7 @@ the work"; its section 7 makes that a kill criterion:
 So the classifier was built and audited **before** any hazard bins were
 collected. That ordering is the point: the bins cost hours of API time
 that Kalshi rate-limits to ~4–5 req/s (see
-`theories/calibration_harvest/NOTES.md` 2026-08-29), and pooling the wrong
+`theories/retired/calibration_harvest/NOTES.md` 2026-08-29), and pooling the wrong
 markets into them would waste all of it.
 
 ## Method
