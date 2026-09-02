@@ -554,11 +554,11 @@ as the doc edit.
 
 ## Phasing
 
-Four phases, each leaving the repo green and usable. The order is forced
+Five phases, each leaving the repo green and usable. The order is forced
 by the enforcement test in Part 6: the migration has to precede the rule
 that would fail on it.
 
-1. **The study pipeline** — the lane, its states, directory-tickets,
+1. **The study pipeline** — SHIPPED 2026-09-02, merged at 4267816. — the lane, its states, directory-tickets,
    `survey()` rewritten, then the 15 studies and the 3 probe dirs moved
    and their citations updated. Top-level `studies/` goes. This is the
    biggest phase and the one everything else assumes.
