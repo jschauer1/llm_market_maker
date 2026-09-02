@@ -198,72 +198,106 @@ def platform_series(fetch=None) -> list[str]:
                                         key=lambda s: (rank(s), s["ticker"]))]
 
 
+#: Series walked between full-store flushes. The convention that matters is
+#: "an interrupted run resumes rather than restarts", not "one write per
+#: unit" -- and a flush rewrites the WHOLE store, so per-series flushing is
+#: O(series x store size). Measured on the 2026-09-02 platform walk:
+#: throughput fell 1.78 -> 1.30 -> 0.84 series/sec as the store passed 5.6
+#: MB, projecting past four hours and still degrading. At 25 the worst case
+#: is re-walking 25 series (seconds) and the write volume drops 25x.
+FLUSH_EVERY = 25
+
+
 def collect(series: list[str], *, fetch=None, raw_filter=None,
-            max_pages: int | None = None) -> dict:
-    """Walk each series, persisting after every one. Resumable by design.
+            max_pages: int | None = None,
+            flush_every: int = FLUSH_EVERY) -> dict:
+    """Walk each series, persisting every `flush_every`. Resumable by design.
 
     `raw_filter` is handed to `list_settled` and runs before the expensive
     part of `normalize`, which is what makes a platform-wide walk tractable.
     `max_pages` abandons any single series exceeding it -- see
     `_SeriesTooLarge`.
+
+    **Flushes are batched and the last batch lands in a `finally`**, so a
+    KeyboardInterrupt or a crash still persists everything walked so far.
+    The data is perishable -- Kalshi archives settled markets ~60 days
+    after close -- so the one thing this must never do is hold a completed
+    fetch only in memory.
     """
     raw = _load("settled_raw.json")
     anchors = _load("anchors.json")
     candles = _load("candles.json")
     floor = int(time.time()) - ARCHIVE_DAYS * 24 * 3600
+    dirty = False
 
-    for s in series:
-        if s not in raw:
-            def _cap(pages, _n, _limit=max_pages, _s=s):
-                if _limit is not None and pages >= _limit:
-                    raise _SeriesTooLarge(_s)
-            try:
-                got = km.list_settled(series_ticker=s, min_close_ts=floor,
-                                      fetch=fetch, raw_filter=raw_filter,
-                                      on_page=_cap if max_pages else None)
-                raw[s] = [m.raw for m in got if m.result]
-            except _SeriesTooLarge:
-                raw[s] = {"__error__": f"skipped: exceeded {max_pages} pages"}
-            except Exception as exc:
-                raw[s] = {"__error__": f"{type(exc).__name__}: {exc}"}
-            _save("settled_raw.json", raw)
+    def _flush():
+        _save("settled_raw.json", raw)
+        _save("anchors.json", anchors)
+        _save("candles.json", candles)
 
-        rows = raw[s] if isinstance(raw[s], list) else []
-        for m in rows:
-            tk = m["ticker"]
-            if tk not in anchors:
-                dl = parse_deadline(m.get("rules_primary"))
-                anchors[tk] = {
-                    "series": s, "result": m.get("result"),
-                    "close_time": m.get("close_time"), "deadline": dl,
-                    "closed_early_days": (
-                        round((_ts(dl) - _ts(m["close_time"])) / 86400.0, 2)
-                        if dl and m.get("close_time") else None),
-                }
-                _save("anchors.json", anchors)
-            if not anchors[tk].get("deadline"):
-                continue
-            if tk in candles and not _needs_bid_upgrade(candles[tk]):
-                continue
-            close_ts = _ts(anchors[tk]["close_time"])
-            dl_ts = _ts(anchors[tk]["deadline"])
-            try:
-                cs = history.candlesticks(s, tk, close_ts - 45 * 86400,
-                                          close_ts, 1440)
-            except Exception as exc:
-                if not isinstance(candles.get(tk), list):
-                    candles[tk] = {"__error__": type(exc).__name__}
-                    _save("candles.json", candles)
-                continue
-            fresh = _rows(cs, close_ts, dl_ts)
-            if fresh:
-                candles[tk] = fresh
-            elif isinstance(candles.get(tk), list):
-                # Archived out from under us: keep what we have.
-                candles[tk] = _stamp_unupgradable(candles[tk])
-            else:
-                candles[tk] = fresh
-            _save("candles.json", candles)
+    try:
+        for i, s in enumerate(series, 1):
+            if s not in raw:
+                def _cap(pages, _n, _limit=max_pages, _s=s):
+                    if _limit is not None and pages >= _limit:
+                        raise _SeriesTooLarge(_s)
+                try:
+                    got = km.list_settled(
+                        series_ticker=s, min_close_ts=floor, fetch=fetch,
+                        raw_filter=raw_filter,
+                        on_page=_cap if max_pages else None)
+                    raw[s] = [m.raw for m in got if m.result]
+                except _SeriesTooLarge:
+                    raw[s] = {"__error__":
+                              f"skipped: exceeded {max_pages} pages"}
+                except Exception as exc:
+                    raw[s] = {"__error__": f"{type(exc).__name__}: {exc}"}
+                dirty = True
+
+            rows = raw[s] if isinstance(raw[s], list) else []
+            for m in rows:
+                tk = m["ticker"]
+                if tk not in anchors:
+                    dl = parse_deadline(m.get("rules_primary"))
+                    anchors[tk] = {
+                        "series": s, "result": m.get("result"),
+                        "close_time": m.get("close_time"), "deadline": dl,
+                        "closed_early_days": (
+                            round((_ts(dl) - _ts(m["close_time"])) / 86400.0, 2)
+                            if dl and m.get("close_time") else None),
+                    }
+                    dirty = True
+                if not anchors[tk].get("deadline"):
+                    continue
+                if tk in candles and not _needs_bid_upgrade(candles[tk]):
+                    continue
+                close_ts = _ts(anchors[tk]["close_time"])
+                dl_ts = _ts(anchors[tk]["deadline"])
+                try:
+                    cs = history.candlesticks(s, tk, close_ts - 45 * 86400,
+                                              close_ts, 1440)
+                except Exception as exc:
+                    if not isinstance(candles.get(tk), list):
+                        candles[tk] = {"__error__": type(exc).__name__}
+                        dirty = True
+                    continue
+                fresh = _rows(cs, close_ts, dl_ts)
+                if fresh:
+                    candles[tk] = fresh
+                elif isinstance(candles.get(tk), list):
+                    # Archived out from under us: keep what we have.
+                    candles[tk] = _stamp_unupgradable(candles[tk])
+                else:
+                    candles[tk] = fresh
+                dirty = True
+
+            if dirty and i % flush_every == 0:
+                _flush()
+                dirty = False
+    finally:
+        if dirty:
+            _flush()
+
     return {"series": len(raw), "markets": len(anchors),
             "with_candles": sum(1 for v in candles.values()
                                 if isinstance(v, list))}
