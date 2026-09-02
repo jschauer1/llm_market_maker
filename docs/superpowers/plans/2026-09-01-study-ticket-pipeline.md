@@ -2,6 +2,26 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
+> **SHIPPED 2026-09-02, with corrections.** This plan is the record of what was
+> intended; the code is the record of what was built. Three things in it turned
+> out to be wrong and were fixed during execution — read the code, not this file,
+> where they disagree:
+>
+> - **`tickets.STATES` no longer exists.** The plan keeps it "for backward
+>   compatibility"; it turned out to have zero callers and was deleted.
+> - **`tickets new --study` no longer exists.** The study lane targets a theory
+>   with `--theory`, not a study folder. (`tickets list --study` *does* remain —
+>   it filters the `study:` frontmatter cross-reference.)
+> - **`backlog`'s `wanted` line was wrong here** (`"completed" if status == "done"`,
+>   compared against `_reported_as`, which returns `"done"`/`"open"`) and would have
+>   made `--status done` silently match nothing on every lane.
+>
+> Also corrected: the migration step said `git add -A`, which this repo's fleet
+> rules ban in a shared tree; and the definition of done said 18 studies where 17
+> is right, because `structural-gate-payload-version` was never a study and moved
+> to `docs/`.
+
+
 **Goal:** Turn a study from a folder in a top-level tree into a ticket with its own lifecycle (`question → investigation → answer`) living inside the theory that owns it, and dissolve top-level `studies/`.
 
 **Architecture:** `tools/tickets.py` gains per-lane state sets and a study lane whose tickets are *directories* rather than files, routed to `<theory registry path>/studies/<state>/` when a theory owns the study and `tickets/study/<state>/` when none does. `tools/studies.py` stops parsing a `Status:` header and reads state from the directory instead. The migration keeps the repo green by having `survey()` walk legacy and new locations simultaneously, moving the 18 directories, then dropping legacy support.
