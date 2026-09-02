@@ -495,3 +495,49 @@ def test_omitting_the_state_uses_the_lanes_first(repo):
     # state=None resolving to the lane's first declared state.
     assert tickets.ticket_dir(repo, "maintenance").name == "open"
     assert tickets.ticket_dir(repo, "study").name == "question"
+
+
+# --- advance: moving a ticket to its next state -----------------------------
+
+
+def test_advance_moves_a_study_to_the_next_state(tmp_path):
+    path = tickets.create(tmp_path, lane="study", slug="entry-timing",
+                          title="Does entry timing matter?",
+                          body="Bar: 2pt net at n>=200.", created="2026-09-02")
+    moved = tickets.advance(path, to="investigation",
+                            note="Collecting 60 days of candles.",
+                            now="2026-09-03")
+    assert moved.parent.parent.name == "investigation"
+    assert not path.parent.exists()
+    assert "Collecting 60 days of candles." in moved.read_text(encoding="utf-8")
+
+
+def test_advance_carries_the_whole_directory(tmp_path):
+    path = tickets.create(tmp_path, lane="study", slug="probe",
+                          title="Q", body="Bar: x.", created="2026-09-02")
+    (path.parent / "collect.py").write_text("# code\n", encoding="utf-8")
+    moved = tickets.advance(path, to="investigation", note="Running.",
+                            now="2026-09-03")
+    assert (moved.parent / "collect.py").is_file()
+
+
+def test_advance_refuses_a_state_the_lane_does_not_have(tmp_path):
+    path = tickets.create(tmp_path, lane="study", slug="q", title="Q",
+                          body="Bar: x.", created="2026-09-02")
+    with pytest.raises(ValueError, match="has no state 'completed'"):
+        tickets.advance(path, to="completed", note="nope")
+
+
+def test_advance_refuses_to_go_backwards(tmp_path):
+    path = tickets.create(tmp_path, lane="study", slug="q", title="Q",
+                          body="Bar: x.", created="2026-09-02")
+    moved = tickets.advance(path, to="answer", note="Done.", now="2026-09-03")
+    with pytest.raises(ValueError, match="cannot move backwards"):
+        tickets.advance(moved, to="question", note="reopening")
+
+
+def test_advance_requires_a_note(tmp_path):
+    path = tickets.create(tmp_path, lane="study", slug="q", title="Q",
+                          body="Bar: x.", created="2026-09-02")
+    with pytest.raises(ValueError, match="a note is required"):
+        tickets.advance(path, to="investigation", note="  ")

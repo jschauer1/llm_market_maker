@@ -424,6 +424,72 @@ def backlog(
     return found
 
 
+def advance(path: Path, *, to: str, note: str,
+           now: str | None = None) -> Path:
+    """Move a ticket into its next state. Returns the new path.
+
+    The note is required and is appended to the body under a dated
+    heading, because a state change nobody explained is a state change
+    the next session has to reverse-engineer. For a study moving to
+    `investigation`, the note is what the measurement is about to do;
+    moving to `answer`, it is what it found.
+
+    Moving BACKWARDS is refused. A pipeline that can run in reverse is a
+    status field wearing a directory's clothes, and the whole reason
+    state is a directory here is that a field lets two places disagree
+    about where the work stands.
+    """
+    if not note or not note.strip():
+        raise ValueError("a note is required: say why it moved")
+    path = Path(path)
+    is_study = path.name == STUDY_FILE
+    item = path.parent if is_study else path
+    lane_dir = item.parent
+    allowed = states_for(_lane_of(lane_dir))
+    here = lane_dir.name
+    if to not in allowed:
+        raise ValueError(
+            f"lane {_lane_of(lane_dir)!r} has no state {to!r}; "
+            f"it declares {allowed}"
+        )
+    if allowed.index(to) <= allowed.index(here):
+        raise ValueError(
+            f"cannot move backwards: {here!r} -> {to!r}. Close the ticket "
+            "or file a new one instead."
+        )
+    target = lane_dir.parent / to
+    target.mkdir(parents=True, exist_ok=True)
+    moved = target / item.name
+    if moved.exists():
+        raise ValueError(f"already present in {to}: {moved}")
+    item.rename(moved)
+    body_file = moved / STUDY_FILE if is_study else moved
+    raw = body_file.read_text(encoding="utf-8").rstrip()
+    stamp = now or _today()
+    body_file.write_text(
+        f"{raw}\n\n## {to} — {stamp}\n\n{note.strip()}\n", encoding="utf-8")
+    return body_file
+
+
+def _lane_of(state_dir: Path) -> str:
+    """The lane a state directory belongs to, from its container.
+
+    `<owner>/studies/answer` and `tickets/study/answer` are both the
+    study lane; `tickets/maintenance/open` is maintenance. The container
+    directory names the lane, which is the same fact `ticket_dir` writes
+    down in the other direction.
+    """
+    container = state_dir.parent.name
+    if container in ("studies", "study"):
+        return "study"
+    for lane, dirname in ROOT_LANES.items():
+        if container == dirname:
+            return lane
+    if container == "tickets":
+        return "theory"
+    raise ValueError(f"cannot tell which lane {state_dir} belongs to")
+
+
 def close(path: Path, *, resolution: str, now: str | None = None) -> Path:
     """Mark a ticket done and MOVE it into `completed/`. Returns the new path.
 
