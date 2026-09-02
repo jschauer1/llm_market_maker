@@ -196,6 +196,10 @@ def _cmd_tickets(args) -> int:
             author_context=args.author_context,
         )
         _emit({"created": str(path.relative_to(root)).replace("\\", "/")})
+    elif args.action == "advance":
+        path = tickets.advance(pathlib.Path(args.path), to=args.to,
+                               note=args.note)
+        _emit({"advanced": str(path), "state": args.to})
     elif args.action == "close":
         path = tickets.close(pathlib.Path(args.path),
                              resolution=args.resolution)
@@ -867,9 +871,7 @@ def build_parser() -> argparse.ArgumentParser:
                       help="required for --lane theory; it lives in that "
                            "theory's folder")
     tnew.add_argument("--study", default=None,
-                      help="required for --lane study; it lives in that "
-                           "study's folder. Name the folder exactly, dated "
-                           "prefix and all: 2026-08-29-series-bias-mining")
+                      help=argparse.SUPPRESS)   # retired with the study tree
     tnew.add_argument("--session", default=None,
                       help="your session name, as ListAgents reports it")
     tnew.add_argument(
@@ -884,6 +886,16 @@ def build_parser() -> argparse.ArgumentParser:
         "--author-context", dest="author_context", default=None,
         help="one line on what you were doing when you hit this; it is "
              "the context a reader cannot reconstruct")
+    tadv = tsub.add_parser(
+        "advance", help="move a ticket to its next state")
+    tadv.add_argument("path")
+    tadv.add_argument("--to", required=True,
+                      help="the state to move into; the lane declares "
+                           "which it has (study: question, investigation, "
+                           "answer)")
+    tadv.add_argument("--note", required=True,
+                      help="why it moved — appended to the body under a "
+                           "dated heading")
     tcl = tsub.add_parser("close")
     tcl.add_argument("path")
     tcl.add_argument("--resolution", required=True)

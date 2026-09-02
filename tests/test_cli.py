@@ -913,3 +913,24 @@ def test_score_report_does_not_flag_a_riskless_bucket_with_live_rows(
     assert payload["all"]["riskless_n"] == 2
     notes = payload.get("notes") or []
     assert not any("riskless" in n.lower() for n in notes), notes
+
+
+def test_filing_a_study_creates_a_directory_ticket(tmp_path, monkeypatch):
+    monkeypatch.setattr(db, "REPO_ROOT", tmp_path)
+    rc = cli.main(["tickets", "new", "--lane", "study", "--slug", "probe",
+                   "--title", "Does it fire?", "--body", "Bar: 10 hits."])
+    assert rc == 0
+    made = list((tmp_path / "tickets/study/question").iterdir())
+    assert len(made) == 1 and (made[0] / "STUDY.md").is_file()
+
+
+def test_advancing_a_study_moves_it(tmp_path, monkeypatch):
+    monkeypatch.setattr(db, "REPO_ROOT", tmp_path)
+    cli.main(["tickets", "new", "--lane", "study", "--slug", "probe",
+              "--title", "Q", "--body", "Bar: x."])
+    made = next((tmp_path / "tickets/study/question").iterdir())
+    rc = cli.main(["tickets", "advance", str(made / "STUDY.md"),
+                   "--to", "investigation", "--note", "Collecting."])
+    assert rc == 0
+    assert (tmp_path / "tickets/study/investigation").is_dir()
+    assert not any((tmp_path / "tickets/study/question").iterdir())
