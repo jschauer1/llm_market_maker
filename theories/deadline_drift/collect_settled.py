@@ -136,8 +136,47 @@ def _stamp_unupgradable(stored: list[dict]) -> list[dict]:
     return stored
 
 
-def collect(series: list[str], *, fetch=None) -> dict:
-    """Walk each series, persisting after every one. Resumable by design."""
+class _SeriesTooLarge(Exception):
+    """Raised out of `list_settled`'s `on_page` to abandon one runaway series.
+
+    Kalshi hosts combinatorial "shard" products -- `KXMVECROSSCATEGORY`
+    settles 400,000+ markets *per day* -- and a platform-wide walk hits
+    them. There is no partial-fetch option on `list_settled` by design, so
+    the only way to bound one series without bounding all of them is to
+    raise from the page callback and catch it per series. A by-deadline
+    series is small (the largest in the current store is under 200
+    markets), so this can only ever discard a family this theory does not
+    want.
+    """
+
+
+def platform_series(fetch=None) -> list[str]:
+    """Every series Kalshi lists -- not just those with an open market today.
+
+    **This is the correction to a survivorship bias, not an optimisation.**
+    `superset_series` derives its list from the live board, so a series is
+    reachable only while it still has something trading. For a theory about
+    "will X happen by deadline D" that filter is not neutral: a series ends
+    *because* its question resolved, so board-scoped capture systematically
+    misses the families that already finished. Measured 2026-09-02: the
+    board-scoped walk covered 170 series with results, against 13,733
+    series on the platform.
+    """
+    from tools.http import get_json
+    payload = get_json(f"{km.BASE_URL}/series", params={"limit": 1000})
+    return sorted({s["ticker"] for s in payload.get("series", [])
+                   if s.get("ticker")})
+
+
+def collect(series: list[str], *, fetch=None, raw_filter=None,
+            max_pages: int | None = None) -> dict:
+    """Walk each series, persisting after every one. Resumable by design.
+
+    `raw_filter` is handed to `list_settled` and runs before the expensive
+    part of `normalize`, which is what makes a platform-wide walk tractable.
+    `max_pages` abandons any single series exceeding it -- see
+    `_SeriesTooLarge`.
+    """
     raw = _load("settled_raw.json")
     anchors = _load("anchors.json")
     candles = _load("candles.json")
@@ -145,10 +184,16 @@ def collect(series: list[str], *, fetch=None) -> dict:
 
     for s in series:
         if s not in raw:
+            def _cap(pages, _n, _limit=max_pages, _s=s):
+                if _limit is not None and pages >= _limit:
+                    raise _SeriesTooLarge(_s)
             try:
                 got = km.list_settled(series_ticker=s, min_close_ts=floor,
-                                      fetch=fetch)
+                                      fetch=fetch, raw_filter=raw_filter,
+                                      on_page=_cap if max_pages else None)
                 raw[s] = [m.raw for m in got if m.result]
+            except _SeriesTooLarge:
+                raw[s] = {"__error__": f"skipped: exceeded {max_pages} pages"}
             except Exception as exc:
                 raw[s] = {"__error__": f"{type(exc).__name__}: {exc}"}
             _save("settled_raw.json", raw)
@@ -252,15 +297,36 @@ if __name__ == "__main__":
     from tools import board as bt, db
     from theories.deadline_drift import screen as dd
     wide = "--wide" in sys.argv
+    platform = "--platform" in sys.argv
     conn = db.connect()
-    board = bt.get_board(conn)
-    if wide:
+    kwargs = {}
+    if platform:
+        # Platform-wide: the series list cannot be filtered by market text
+        # up front (there is none until the walk fetches it), so the
+        # by-deadline rule moves into `raw_filter` and runs per market,
+        # before normalize. Page cap guards the combinatorial shards.
+        import re as _re
+        _BD = dd.BY_DEADLINE
+
+        def _by_deadline(raw):
+            text = " ".join(str(raw.get(k) or "") for k in
+                            ("title", "subtitle", "yes_sub_title",
+                             "rules_primary"))
+            return bool(_BD.search(text))
+
+        series = platform_series()
+        kwargs = {"raw_filter": _by_deadline, "max_pages": 15}
+        print(f"walking {len(series)} PLATFORM series "
+              f"(by-deadline filtered at the page, 15-page cap)...")
+    elif wide:
+        board = bt.get_board(conn)
         series = superset_series(board)
         print(f"walking {len(series)} by-deadline series (WIDE superset)...")
     else:
+        board = bt.get_board(conn)
         series = sorted({m.series_ticker for m in dd.population(board)})
         print(f"walking {len(series)} allowlist series...")
-    print(collect(series))
+    print(collect(series, **kwargs))
     mark_captured(conn)
     print("capture date stamped in theory_facts")
 

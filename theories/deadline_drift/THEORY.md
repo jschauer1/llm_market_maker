@@ -235,6 +235,60 @@ one-winner partition, ~6% of the gap) shows the population is still not
 clean. The bootstrap prices the sampling uncertainty; it cannot price the
 contamination.
 
+**DD-3, a replication on contemporaneous data the population choice never
+saw** (written 2026-09-02, while the capture that produces it was still
+running, before any number from it existed).
+
+**Why this exists.** DD-1's out-of-sample set is defined by *settlement
+date* — markets settling after 2026-09-01 — on the stated belief that
+"today's capture" was the entire fetchable history. **That belief was
+wrong.** `collect_settled`'s walk took its series list from the live
+board (`superset_series`), so it could only ever reach a series that
+still had something trading. Measured 2026-09-02: the board-scoped walk
+covered **962 series (170 with results)** against **13,733 series on the
+platform**. A 200-series probe of the unwalked remainder found
+by-deadline settled markets inside the reachable window at ~0.14 per
+series, extrapolating to roughly **+700 markets, ~37% on top of the
+1,908** the estimate was built from.
+
+**This is a selection correction, not a sample-size win.** A series
+leaves the board *because* its question resolved, so board-scoped capture
+systematically under-samples families that already finished — precisely
+the population a by-deadline theory is about. The direction of that bias
+is not obvious a priori, which is why this is worth running rather than
+assuming.
+
+**DD-3 is not DD-1 and does not substitute for it.** These markets
+settled *before* 2026-09-01, so they are contemporaneous with the
+in-sample set, not forward of it. They control for **selection**; they
+control for nothing about **regime**. DD-1 remains the forward test and
+its clock is unaffected.
+
+- **Population and entry rule:** identical to DD-1, unchanged — hazard
+  stratum minus `partition_families()`, lifetime volume >= 100, entry on
+  the **first** day within 21 days of the stated deadline, YES ask
+  $0.05-0.60, buying NO at `no_ask = 1 - yes_bid`, event-clustered, net
+  of fees. Nothing about the rule is re-tuned for this set; if it were,
+  this would be another in-sample fit.
+- **Out-of-sample set:** exactly those tickers **absent from
+  `data/preplatform_seen.json`**, a file frozen from the store *before*
+  the platform walk began. That file is the boundary and must never be
+  regenerated after the walk — regenerating it would silently convert
+  this test to in-sample.
+- **Confirmation:** point estimate **>= +2 net** with a 95%
+  event-clustered CI excluding zero. Same bar as DD-1, because it is the
+  same statistic; +2 rather than +3 for the same fee reason.
+- **Failure:** a 95% CI covering zero at >= 80 event clusters, or a point
+  estimate below +2 net. Below 80 clusters the result is reported as
+  underpowered and settles nothing, in either direction.
+- **Reported alongside, as a descriptive control, never as the test:**
+  the same statistic recomputed on the seen set with identical code, and
+  the DD-2 recurring/one-off split on the unseen arm. A gap between seen
+  and unseen is evidence about *selection*, and is explicitly not
+  licensed as evidence about the edge.
+- **Tier A.** No LLM anywhere in the decision path, so no cutoff applies
+  and no contamination probe is owed.
+
 **Reached `testing` 2026-09-01** by widening the population past the
 allowlist (v2, `continues`) and recording. To reach `active`: DD-1
 confirmed out of sample.
