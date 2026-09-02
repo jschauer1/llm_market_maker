@@ -87,14 +87,6 @@ def survey(root: Path) -> list[dict]:
                 if not marker.is_file():
                     continue
                 out.append(_row(folder, marker, state, owner, root))
-    # LEGACY: the pre-2026-09-01 tree, read so the repo stays green
-    # across the migration. Removed once nothing lives here.
-    legacy = root / "studies"
-    if legacy.is_dir():
-        for folder in sorted(legacy.iterdir()):
-            marker = folder / "STUDY.md"
-            if marker.is_file():
-                out.append(_row(folder, marker, "answer", None, root))
     out.sort(key=lambda r: (r["date"], r["slug"]))
     return out
 

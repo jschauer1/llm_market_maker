@@ -909,3 +909,36 @@ def test_the_exact_stamp_marker_is_not_a_blanket_opt_out():
                 f"{path.relative_to(ROOT).as_posix()}:{i + 1} opts out of the "
                 "board-reconstruction guard without saying why"
             )
+
+
+_TOP_LEVEL = {
+    ".claude", "attic", "db", "docs", "tests", "theories", "tickets",
+    "tools", "user_reports",
+}
+
+
+def test_no_new_top_level_directory():
+    """The top level is an allowlist. A new directory here is an
+    architecture decision, not a side effect of somebody needing
+    somewhere to put a file.
+
+    `studies` is deliberately absent: it was dissolved on 2026-09-01
+    when a study became a ticket living inside the theory that owns it,
+    and this test is what stops it growing back one stray `mkdir` at a
+    time.
+    """
+    skip = {"__pycache__", ".git", ".pytest_cache", ".venv",
+            ".worktrees", ".superpowers"}
+    found = set()
+    for p in ROOT.iterdir():
+        if not p.is_dir():
+            continue
+        if p.name.startswith(".") and p.name != ".claude":
+            continue
+        if p.name in skip:
+            continue
+        found.add(p.name)
+    assert found <= _TOP_LEVEL, (
+        "a new top-level directory appeared -- decide deliberately "
+        f"whether it belongs: {sorted(found - _TOP_LEVEL)}"
+    )
