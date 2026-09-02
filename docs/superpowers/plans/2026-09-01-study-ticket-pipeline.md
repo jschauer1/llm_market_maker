@@ -1079,8 +1079,17 @@ Expected: suite green; 18 studies listed (15 migrated + 3 probes), `parlay-marku
 
 - [ ] **Step 12: Commit**
 
+**Never `git add -A` or `git add .` in this tree.** Other sessions run
+collectors here that hold megabytes of half-written JSON mid-flush; a
+repo-wide add sweeps their in-flight capture into this migration commit
+and makes both the migration and their run harder to review or revert.
+This repo's fleet rules already ban it — on 2026-09-01 the tree held 83
+dirty entries from three sessions at once. Stage the migration's own
+paths explicitly:
+
 ```bash
-git add -A
+git add tickets/ theories/ docs/ tests/ tools/
+git status --short          # confirm nothing foreign is staged
 git commit -m "migrate: studies become ticket-pipeline directories, studies/ is gone
 
 15 studies and 3 probe dirs moved. Seven land in the theory that owns
