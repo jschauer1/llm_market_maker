@@ -23,6 +23,8 @@ written for a session that was not there when it was filed.
 from __future__ import annotations
 
 import re
+import subprocess
+from datetime import date
 from pathlib import Path
 
 #: The lanes a session can be in. `floor` files no tickets -- it runs a
@@ -822,6 +824,254 @@ def _require_idea(conn, slug: str, word: str) -> None:
             "the measurement could not reach the bar, so it stays "
             "re-proposable -- say what would have to change."
         )
+
+
+#: Where a citation of a ticket can live. A ticket named by any of these
+#: is KEPT, because deleting it would break the reference -- and a
+#: reference is evidence somebody found it worth pointing at.
+#:
+#: `tickets/new-theory/README.md` is the case that made this check
+#: non-negotiable. Its rule 0 cites `calendar-arb`, `smile-smoothing` and
+#: `aggregation-gap` by slug as the worked examples of theses that were
+#: measured properly and failed, and links their closed specs by path. A
+#: purge that removed those files would leave the repo's own explanation
+#: of why it does not re-propose them pointing at nothing.
+#:
+#: The repo root is swept as `*.md` rather than by naming `CLAUDE.md`,
+#: `README.md`, `RESEARCH_LOG.md` and `FLEET_LOG.md` one at a time. A
+#: markdown file at the top level IS repo-level knowledge by definition,
+#: and an enumeration means the fifth one somebody adds silently stops
+#: protecting the tickets it cites -- a failure that shows up as a
+#: deletion, months later, in a file nobody thought to add to a list.
+_CITATION_GLOBS = (
+    "*.md",
+    "docs/**/*.md", ".claude/skills/**/*.md", "tests/**/*.py",
+    "theories/**/*.md", "tickets/**/*.md", "studies/**/*.md",
+)
+
+#: Free-text database columns that can name a ticket. A slice records
+#: where its hypothesis came from, and "mined from the aggregation-gap
+#: probe" in `theory_slices.origin` is a citation exactly as much as a
+#: line in a markdown file is.
+#:
+#: A closed ticket's own `resolution:` frontmatter is a citation too, and
+#: needs no entry here: it lives in a `.md` file under `tickets/` or a
+#: theory folder, so `_CITATION_GLOBS` already reads it.
+#:
+#: **The ideas registry is deliberately NOT on this list**, even though
+#: its rows are keyed by the same slug. A spec closed `disproven` or
+#: `underpowered` cannot be closed at all until its finding is recorded
+#: there (`_require_idea`) -- so counting the registry as a citation
+#: would permanently keep exactly the specs the registry made safe to
+#: delete. That is the design inverted: the row is what lets the file go,
+#: not a reason to hold on to it.
+_DB_CITATION_COLUMNS = (("theory_slices", "origin"),)
+
+_CLOSED_LINE = re.compile(r"^closed:\s*(\d{4}-\d{2}-\d{2})\s*$", re.M)
+
+
+def _closed_on(path: Path) -> date | None:
+    """The day this ticket was closed, or None if the file does not say.
+
+    A ticket with no readable `closed:` date is not a purge candidate.
+    Both failure directions were available and only one of them is cheap:
+    a ticket wrongly kept costs one line of one listing, and a ticket
+    wrongly deleted costs somebody knowing to run `git log
+    --diff-filter=D` to find out it ever existed.
+    """
+    try:
+        raw = path.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return None
+    match = _CLOSED_LINE.search(raw)
+    if match is None:
+        return None
+    try:
+        return date.fromisoformat(match.group(1))
+    except ValueError:
+        return None
+
+
+def _rel(root: Path, path: Path) -> str:
+    """A repo-relative posix path — the form citations get reported in."""
+    try:
+        return path.relative_to(root).as_posix()
+    except ValueError:
+        return str(path)
+
+
+def _citation_corpus(root: Path) -> list[tuple[str, str]]:
+    """Every file a citation could live in, read once.
+
+    Read once and searched N times, rather than re-globbed per candidate:
+    the repo has ~30 completed tickets and several hundred markdown
+    files, and a per-candidate walk is that same work done thirty times.
+    """
+    seen: dict[str, str] = {}
+    for pattern in _CITATION_GLOBS:
+        for path in sorted(root.glob(pattern)):
+            if not path.is_file():
+                continue
+            name = _rel(root, path)
+            if name in seen:
+                continue
+            try:
+                seen[name] = path.read_text(encoding="utf-8", errors="replace")
+            except OSError:
+                continue
+    return list(seen.items())
+
+
+def _db_citations(conn, slugs: set[str]) -> dict[str, list[str]]:
+    """Which candidates are named by the database's free-text columns.
+
+    A missing connection means the DB was not consulted and a missing
+    table means it had nothing to say — neither is a reason to refuse the
+    whole purge, and both leave the file-based check untouched.
+    """
+    import sqlite3
+
+    hits: dict[str, set[str]] = {}
+    if conn is None or not slugs:
+        return {}
+    for table, column in _DB_CITATION_COLUMNS:
+        try:
+            rows = conn.execute(
+                f"SELECT {column} FROM {table} WHERE {column} IS NOT NULL"
+            ).fetchall()
+        except sqlite3.Error:
+            continue
+        for row in rows:
+            text = str(row[0])
+            for slug in slugs:
+                if slug in text:
+                    hits.setdefault(slug, set()).add(f"db:{table}.{column}")
+    return {slug: sorted(names) for slug, names in hits.items()}
+
+
+def purge(root, *, older_than: int = 7, apply: bool = False,
+          conn=None, now: str | None = None) -> dict:
+    """Remove long-completed tickets that nothing cites. Dry run by default.
+
+    A finished ticket is the record of what was asked for and why, which
+    is why `close` keeps it rather than deleting it. But the backlog is
+    read by listing, and a tree that only ever grows makes the cheapest,
+    most-repeated read in the repo the largest. Git history is the
+    durable record -- `git log --diff-filter=D` finds a purged ticket and
+    `git show` retrieves it -- so a completed ticket nothing points at
+    does not need to sit in the working tree forever.
+
+    Deleting a `disproven` or `underpowered` spec is acceptable only
+    because `close` already forced its finding into the ideas registry:
+    the knowledge leaves the file before the file leaves the tree. That
+    coupling is what this function stands on, and it is why the ideas
+    registry is not itself a citation source (`_DB_CITATION_COLUMNS`).
+
+    **Studies are never candidates, and not by exemption.** The study
+    lane's terminal state is `answer/`, not `completed/`, so a finished
+    study is simply not a thing this query matches. Permanence falls out
+    of the state names. A study special-case appearing in this function
+    would mean the state names had stopped carrying their meaning, and
+    the fix would be upstream rather than another branch in here.
+
+    Dry run is the DEFAULT and `apply` is what deletes: removing files
+    must never be a side effect of a flag somebody forgot to pass.
+    """
+    root = Path(root)
+    today = date.fromisoformat(now or _today())
+    candidates: list[Path] = []
+    for base in (root / "tickets", root / "theories"):
+        if not base.is_dir():
+            continue
+        for state_dir in sorted(base.rglob("completed")):
+            if not state_dir.is_dir():
+                continue
+            try:
+                _lane_of(state_dir)
+            except ValueError:
+                # A `completed/` directory that no lane declares is not a
+                # ticket state -- it is some other directory that happens
+                # to share the name. Deciding by the lane vocabulary
+                # rather than by the string is what keeps this walk from
+                # wandering into, say, a theory's data folder.
+                continue
+            for path in sorted(state_dir.glob("*.md")):
+                if path.name == "README.md":
+                    continue
+                closed = _closed_on(path)
+                if closed is None or (today - closed).days < older_than:
+                    continue
+                candidates.append(path)
+    purged: list[str] = []
+    kept: list[dict] = []
+    if candidates:
+        corpus = _citation_corpus(root)
+        db_hits = _db_citations(conn, {slug_of(p) for p in candidates})
+        for path in candidates:
+            slug = slug_of(path)
+            here = _rel(root, path)
+            # The candidate's own file is skipped: a completed ticket
+            # sits under `tickets/` or a theory folder, both of which the
+            # corpus reads, so a ticket whose body names its own slug
+            # would vouch for itself and never become purgeable.
+            #
+            # A plain substring match, deliberately. It over-keeps --
+            # `calendar-arb` matches a mention of
+            # `calendar-arb-probe-exact-stamp-board` -- and over-keeping
+            # is the recoverable direction: the cost is one stale file
+            # sitting in `completed/`, against a broken reference nobody
+            # notices for months.
+            cited_by = [name for name, text in corpus
+                        if name != here and slug in text]
+            cited_by += db_hits.get(slug, [])
+            if cited_by:
+                kept.append({"path": str(path), "cited_by": cited_by})
+            else:
+                purged.append(str(path))
+        if apply:
+            for target in purged:
+                # `git rm`, not `unlink`: the removal has to land in git
+                # history, because git history IS the durable record that
+                # makes deleting a completed ticket safe at all.
+                subprocess.run(["git", "rm", "-q", "--", target],
+                               cwd=root, check=True)
+    return {"purged": purged, "kept": kept, "dry_run": not apply}
+
+
+def render_purge(result: dict, root=None) -> str:
+    """The purge as a listing a human reads BEFORE anyone passes --apply.
+
+    The dry run is the whole verification, so the listing has to be
+    readable: a proposed deletion of something rule 0 cites is how you
+    find out the citation check is broken, and you only find it by
+    looking.
+    """
+    root = Path(root) if root else None
+
+    def show(path: str) -> str:
+        return _rel(root, Path(path)) if root else path
+
+    out = [
+        "PURGE — dry run: nothing was deleted. Pass --apply to remove."
+        if result["dry_run"] else
+        "PURGE — applied: removed via `git rm`; `git log --diff-filter=D` "
+        "finds them again.",
+        "",
+    ]
+    purged = result["purged"]
+    out.append(f"{'would remove' if result['dry_run'] else 'removed'} "
+               f"({len(purged)})")
+    out += [f"  {show(path)}" for path in purged] or ["  (none)"]
+    out.append("")
+    kept = result["kept"]
+    out.append(f"kept — cited ({len(kept)})")
+    if not kept:
+        out.append("  (none)")
+    for entry in kept:
+        out.append(f"  {show(entry['path'])}")
+        out.append("      cited by " + _clip(
+            ", ".join(entry["cited_by"]), _WIDTH - 16))
+    return "\n".join(out).rstrip() + "\n"
 
 
 #: Width the rendered backlog is wrapped to. A ticket that does not fit

@@ -956,3 +956,89 @@ def test_the_slug_of_a_study_is_its_directory(tmp_path):
                           title="T", body="b", created="2026-09-02")
     assert path.name == tickets.STUDY_FILE
     assert tickets.slug_of(path) == "a-measurement"
+
+
+# --- the purge: long-completed, uncited tickets leave the working tree ------
+
+
+def _completed_ticket(root, slug, closed):
+    """A ticket that was closed on `closed`.
+
+    Free-text resolution on the maintenance lane on purpose: the purge is
+    about how long a ticket has sat in `completed/`, not about which lane
+    put it there, and a `new-theory` close would drag the ideas-registry
+    coupling into a test that is not about it.
+    """
+    path = tickets.create(root, lane="maintenance", slug=slug, title="T",
+                          body="b", created=closed)
+    return tickets.close(path, resolution="done", now=closed)
+
+
+def test_purge_is_dry_run_by_default(tmp_path):
+    """Deleting files must never be a side effect of a flag somebody
+    forgot to pass."""
+    path = _completed_ticket(tmp_path, "old-one", closed="2026-08-01")
+    result = tickets.purge(tmp_path, now="2026-09-02")
+    assert result["dry_run"] is True
+    assert path.exists()
+    assert str(path) in [p for p in result["purged"]]
+
+
+def test_purge_keeps_a_ticket_something_cites(tmp_path):
+    path = _completed_ticket(tmp_path, "cited-one", closed="2026-08-01")
+    (tmp_path / "NOTES.md").write_text(
+        "see 2026-08-01-cited-one for why\n", encoding="utf-8")
+    result = tickets.purge(tmp_path, apply=True, now="2026-09-02")
+    assert path.exists()
+    assert any("cited-one" in k["path"] for k in result["kept"])
+
+
+def test_purge_leaves_a_recent_ticket_alone(tmp_path):
+    path = _completed_ticket(tmp_path, "fresh", closed="2026-09-01")
+    tickets.purge(tmp_path, apply=True, now="2026-09-02")
+    assert path.exists()
+
+
+def test_purge_never_matches_a_study(tmp_path):
+    """Not by exemption -- the study lane's terminal state is `answer/`,
+    so a finished study is not a thing this query can match. If a study
+    exemption ever appears in purge(), the design broke upstream."""
+    study = tickets.create(tmp_path, lane="study", slug="a-study",
+                           title="Q", body="bar", created="2026-01-01")
+    answered = tickets.advance(study, to="answer", note="done",
+                               now="2026-01-02")
+    tickets.purge(tmp_path, apply=True, now="2026-09-02")
+    assert answered.exists()
+
+
+def test_purge_does_not_count_a_tickets_own_text_as_a_citation(tmp_path):
+    """A completed ticket sits under `tickets/`, which is one of the
+    globs the citation search reads -- so a ticket whose own body names
+    its own slug would vouch for itself and never be purgeable. The
+    search skips the candidate's own file."""
+    path = tickets.create(tmp_path, lane="maintenance", slug="self-namer",
+                          title="T", body="this is about self-namer",
+                          created="2026-08-01")
+    done = tickets.close(path, resolution="done", now="2026-08-01")
+    result = tickets.purge(tmp_path, now="2026-09-02")
+    assert str(done) in result["purged"]
+
+
+def test_purge_applies_by_removing_the_file_from_git(tmp_path):
+    """`--apply` really deletes, through `git rm`, so the removal is a
+    commit somebody can find with `git log --diff-filter=D` rather than
+    a file that merely stopped existing."""
+    import subprocess
+
+    def git(*args):
+        subprocess.run(["git", *args], cwd=tmp_path, check=True,
+                       capture_output=True)
+
+    git("init", "-q")
+    path = _completed_ticket(tmp_path, "goner", closed="2026-08-01")
+    git("add", "-A")
+    git("-c", "user.email=t@t", "-c", "user.name=t", "commit", "-qm", "seed")
+    result = tickets.purge(tmp_path, apply=True, now="2026-09-02")
+    assert result["dry_run"] is False
+    assert str(path) in result["purged"]
+    assert not path.exists()

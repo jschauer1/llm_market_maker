@@ -212,6 +212,22 @@ def _cmd_tickets(args) -> int:
         finally:
             conn.close()
         _emit({"closed": str(path)})
+    elif args.action == "purge":
+        # A connection for every purge: the citation check reads the
+        # database's free-text columns as well as the markdown tree, and
+        # a purge that silently skipped half its evidence because nobody
+        # passed a flag is the failure mode this whole command is built
+        # to avoid.
+        conn = _connect(args)
+        try:
+            result = tickets.purge(root, older_than=args.older_than,
+                                   apply=args.apply, conn=conn)
+        finally:
+            conn.close()
+        if args.json:
+            _emit(result)
+        else:
+            print(tickets.render_purge(result, root), end="")
     return 0
 
 
@@ -916,6 +932,20 @@ def build_parser() -> argparse.ArgumentParser:
              "`underpowered` means the measurement could not reach the "
              "bar, which stays re-proposable. Either of those two "
              "requires the finding in the ideas registry first")
+    tpg = tsub.add_parser(
+        "purge",
+        help="remove long-completed tickets nothing cites — DRY RUN by "
+             "default")
+    tpg.add_argument(
+        "--apply", action="store_true",
+        help="actually remove them, via `git rm`. Without this the "
+             "command only lists what it would do: deleting files must "
+             "never be a side effect of a flag somebody forgot to pass")
+    tpg.add_argument(
+        "--older-than", dest="older_than", type=int, default=7,
+        help="days a ticket must have sat in completed/ before it is a "
+             "candidate (default 7)")
+    tpg.add_argument("--json", action="store_true")
 
     p = sub.add_parser(
         "lane", help="who is working on what; claim a lane and stay in it")
