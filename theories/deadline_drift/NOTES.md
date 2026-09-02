@@ -777,3 +777,47 @@ decide it on settled rows.
 **One event supplies 22 of today's 46 rows** (`KXTRUMPSAY-26SEP07`). The
 rows are legitimate, but anything reading these settlements must cluster
 by event or it will read one question as twenty-two.
+
+## 2026-09-02 — DD-3 INTERIM LOOK at 45% capture (declared, not the verdict)
+
+**This is a peek, and recording it is the point.** The user asked for a
+read on the current data while the platform walk was still running. Running
+the test now and again at completion is **two looks at the same
+hypothesis**, and the way that turns into a lie is by reporting whichever
+one looks better. So: this entry exists so the interim number cannot be
+quietly forgotten, and **the DD-3 verdict is the complete-sweep result,
+whatever it says, however it compares to this.**
+
+Capture state: 6,204 / 13,733 series walked (45%), 507 new markets, of
+which 390 are hazard-stratum and liquid, giving 36 event clusters in the
+test arm.
+
+```
+                                mkts evts  YES   price  P(YES)   gap   SEcl   zcl    net
+DD-3 UNSEEN (the test)            36   36   10   0.247   0.274   -2.7   7.0  -0.38  -4.0
+seen (control, descriptive)       86   86    9   0.156   0.108   +4.8   2.0   2.45  +3.9
+```
+
+**Pre-registered verdict: UNDERPOWERED.** 36 event clusters against a
+floor of 80. By the bar fixed in THEORY.md before any of this ran, it
+settles nothing in either direction, and that is the honest whole answer
+today.
+
+What can be said without overreading:
+
+- **The control reproduces exactly.** The seen arm returns +4.8 gap /
+  +3.9 net over 86 clusters, which is the number `hazard.main` prints for
+  "...minus partitions, ev-weighted". The driver is measuring the thing it
+  claims to measure; a mismatch here would have meant the split was wrong.
+- **The point estimate on unseen data is negative (−4.0 net), and the
+  interval is useless.** 95% CI [−17.7, +9.8] contains the seen estimate
+  (+3.9) comfortably, and zero, and −15. A 7.0-point clustered SE on 36
+  clusters cannot distinguish any hypothesis anyone holds.
+- **The sample is not random.** `platform_series` walks KX* ordered by
+  category — Politics first, then Financials, Sports, Entertainment — so
+  at 45% the unseen arm is disproportionately one family. This is a
+  biased subsample by construction, which is exactly why the pre-
+  registration waits for the sweep.
+
+So the honest summary is: **no answer yet, and the early sign is not
+reassuring.** Both halves of that sentence are load-bearing.
