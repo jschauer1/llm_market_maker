@@ -218,3 +218,15 @@ def test_a_retired_sub_theory_still_has_to_be_reported(conn):
 
     names = {c["name"] for c in floor.required_coverage(conn)}
     assert "strong-moderate-no" in names
+
+
+def test_required_coverage_names_an_unanswered_study(tmp_path, conn):
+    d = tmp_path / "tickets/study/investigation" / "2026-08-30-parlay-markup"
+    d.mkdir(parents=True)
+    (d / "STUDY.md").write_text(
+        "# Parlay markup\n\n**Date:** 2026-08-30 · **Tier:** A\n",
+        encoding="utf-8")
+    rows = floor.required_coverage(conn, root=tmp_path)
+    study = next(r for r in rows if r["kind"] == "study")
+    assert study["name"] == "2026-08-30-parlay-markup"
+    assert study["status"] == "investigation"

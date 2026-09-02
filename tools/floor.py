@@ -202,8 +202,8 @@ def required_coverage(conn: sqlite3.Connection,
         out.append({
             "kind": "study",
             "name": study["slug"],
-            "theory": None,
-            "status": study["status"],
+            "theory": study["owner"],
+            "status": study["state"],
         })
     return out
 

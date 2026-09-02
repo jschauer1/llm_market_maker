@@ -34,24 +34,21 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-#: `**Status:** complete · **Tier:** A · **Verdict:** ...` — the header
-#: every STUDY.md carries. Parsed leniently: a study whose header does
-#: not match is REPORTED with an empty status rather than dropped, on the
-#: same principle as a malformed ticket. A study nobody can classify is
-#: still a study somebody has to look at.
+#: `**Tier:** A · **Verdict:** ...` — the header every STUDY.md carries.
+#: Parsed leniently: a study whose header does not match is REPORTED with
+#: an empty field rather than dropped, on the same principle as a
+#: malformed ticket. A study nobody can classify is still a study
+#: somebody has to look at.
+#:
+#: There is deliberately no `Status` field here any more. See `survey`'s
+#: docstring for why: it drifted from the directory it was supposed to
+#: describe, and the fix was to stop recording the fact twice.
 _FIELD = r"\*\*{name}:?\*\*:?\s*(.+?)(?:\s*·|$)"
 _DATE = re.compile(_FIELD.format(name="Date"), re.M)
-_STATUS = re.compile(_FIELD.format(name="Status"), re.M)
 _VERDICT = re.compile(_FIELD.format(name="Verdict"), re.M)
 _TIER = re.compile(_FIELD.format(name="Tier"), re.M)
 _TITLE = re.compile(r"^#\s+(.+?)\s*$", re.M)
 _SLUG_DATE = re.compile(r"\A(\d{4}-\d{2}-\d{2})-(.+)\Z")
-
-#: A study is finished when its own header says so. Anything else --
-#: `collecting`, a pre-registration written but not yet run, no header at
-#: all -- is work in flight, and the distinction is what the floor
-#: reports on.
-_COMPLETE = ("complete", "done", "closed")
 
 
 def _clean(text: str) -> str:
@@ -66,34 +63,67 @@ def _one(pattern: re.Pattern, raw: str) -> str:
 
 
 def survey(root: Path) -> list[dict]:
-    """Every study, oldest first, with what its own STUDY.md says."""
+    """Every study, oldest first, with what its own STUDY.md says.
+
+    **State comes from the directory, never from a header field.** A
+    study carried a `**Status:**` line until 2026-09-01, and it drifted
+    exactly as a duplicated status field always does: series-bias-mining
+    read `complete -- result: not measured` while two open tickets said
+    the phase-2 sweep was unfinished and pass 4's filter was reversed.
+    The header and the work disagreed, and nothing could tell you which
+    was right. Now the directory is the only claim.
+    """
     from tools import tickets
 
     root = Path(root)
-    directory = root / "studies"
-    if not directory.is_dir():
-        return []
     out: list[dict] = []
-    for folder in sorted(directory.iterdir()):
-        marker = folder / "STUDY.md"
-        if not marker.is_file():
-            continue                      # __pycache__, data dirs, strays
-        raw = marker.read_text(encoding="utf-8", errors="replace")
-        match = _SLUG_DATE.match(folder.name)
-        status = _one(_STATUS, raw)
-        open_tickets = len(tickets.backlog(root, study=folder.name))
-        out.append({
-            "slug": folder.name,
-            "date": match.group(1) if match else _one(_DATE, raw),
-            "title": _one(_TITLE, raw),
-            "status": status,
-            "complete": status.lower().startswith(_COMPLETE),
-            "verdict": _one(_VERDICT, raw),
-            "tier": _one(_TIER, raw),
-            "open_tickets": open_tickets,
-            "path": f"studies/{folder.name}",
-        })
+    for holder, owner in _study_homes(root):
+        for state in tickets.states_for("study"):
+            directory = holder / state
+            if not directory.is_dir():
+                continue
+            for folder in sorted(directory.iterdir()):
+                marker = folder / tickets.STUDY_FILE
+                if not marker.is_file():
+                    continue
+                out.append(_row(folder, marker, state, owner, root))
+    # LEGACY: the pre-2026-09-01 tree, read so the repo stays green
+    # across the migration. Removed once nothing lives here.
+    legacy = root / "studies"
+    if legacy.is_dir():
+        for folder in sorted(legacy.iterdir()):
+            marker = folder / "STUDY.md"
+            if marker.is_file():
+                out.append(_row(folder, marker, "answer", None, root))
+    out.sort(key=lambda r: (r["date"], r["slug"]))
     return out
+
+
+def _study_homes(root: Path):
+    """Every directory that can hold study state dirs, with its owner."""
+    yield root / "tickets" / "study", None
+    theories = root / "theories"
+    if theories.is_dir():
+        for candidate in sorted(theories.rglob("studies")):
+            if candidate.is_dir():
+                yield candidate, candidate.parent.name
+
+
+def _row(folder: Path, marker: Path, state: str, owner: str | None,
+        root: Path) -> dict:
+    raw = marker.read_text(encoding="utf-8", errors="replace")
+    match = _SLUG_DATE.match(folder.name)
+    return {
+        "slug": folder.name,
+        "date": match.group(1) if match else _one(_DATE, raw),
+        "title": _one(_TITLE, raw),
+        "state": state,
+        "complete": state == "answer",
+        "verdict": _one(_VERDICT, raw),
+        "tier": _one(_TIER, raw),
+        "owner": owner,
+        "path": str(folder.relative_to(root)).replace("\\", "/"),
+    }
 
 
 def _clip(text: str, width: int) -> str:
@@ -108,15 +138,12 @@ def render(rows: list[dict]) -> str:
     out: list[str] = []
     for row in rows:
         mark = " " if row["complete"] else "*"
-        tickets_note = (f"  {row['open_tickets']} open"
-                        if row["open_tickets"] else "")
-        head = f"{mark} {row['slug']}"
-        state = row["status"] or "(no status line)"
-        out.append(f"{head}  [{_clip(state, 34)}]{tickets_note}")
+        owner = f"  [{row['owner']}]" if row["owner"] else "  [no owner]"
+        out.append(f"{mark} {row['slug']}  ({row['state']}){owner}")
         detail = row["verdict"] or row["title"]
         if detail:
             out.append(f"      {_clip(detail, 84)}")
     flight = sum(1 for r in rows if not r["complete"])
     if flight:
-        out.append(f"  (* {flight} not complete — in flight, not forgotten)")
+        out.append(f"  (* {flight} not answered — in flight, not forgotten)")
     return "\n".join(out) + "\n"
