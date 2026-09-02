@@ -161,11 +161,41 @@ def platform_series(fetch=None) -> list[str]:
     misses the families that already finished. Measured 2026-09-02: the
     board-scoped walk covered 170 series with results, against 13,733
     series on the platform.
+
+    **Ordered by expected yield, not alphabetically.** Kalshi ticker
+    prefixes sort digits and legacy names ahead of the `KX*` range that
+    holds essentially every modern series, so an alphabetical walk spends
+    hours on `10Y2Y`, `1SONG-*` and `538APPROVE*` before reaching anything
+    this theory can use -- measured 2026-09-02: 256 series walked, 0
+    by-deadline markets found, while the probe's likely-category sample
+    yielded 0.14 per series. The walk is resumable and eventually covers
+    everything either way; ordering only decides how soon the useful part
+    arrives.
     """
     from tools.http import get_json
     payload = get_json(f"{km.BASE_URL}/series", params={"limit": 1000})
-    return sorted({s["ticker"] for s in payload.get("series", [])
-                   if s.get("ticker")})
+    #: Measured, not guessed: all 170 series that have ever yielded a
+    #: by-deadline settled market carry the `KX` prefix, and 0 of the
+    #: legacy non-KX names do. Category is a much weaker signal than it
+    #: looks -- the productive set spans Politics (71) but also Financials
+    #: (29) and Sports (19), so an earlier attempt to prioritise by a
+    #: hand-picked category list ranked gas-price and approval-index
+    #: series first and found nothing in 256 walks.
+    CATEGORY_ORDER = ["Politics", "Financials", "Sports", "Entertainment",
+                      "Science and Technology", "Elections", "Mentions",
+                      "Economics", "Crypto", "Companies",
+                      "Climate and Weather", "Commodities"]
+
+    def rank(s):
+        if not s["ticker"].startswith("KX"):
+            return (1, len(CATEGORY_ORDER))
+        c = s.get("category")
+        return (0, CATEGORY_ORDER.index(c) if c in CATEGORY_ORDER
+                else len(CATEGORY_ORDER))
+
+    rows = [s for s in payload.get("series", []) if s.get("ticker")]
+    return [s["ticker"] for s in sorted(rows,
+                                        key=lambda s: (rank(s), s["ticker"]))]
 
 
 def collect(series: list[str], *, fetch=None, raw_filter=None,
