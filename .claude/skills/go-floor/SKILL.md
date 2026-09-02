@@ -83,7 +83,6 @@ python -m tools.cli floor checklist
 ```
 
 ```
-  calibration_harvest
   insider_judgment
     sub: strong-moderate-no        <- this is a line in your report too
   no_side_premium

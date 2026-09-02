@@ -662,6 +662,26 @@ needs a tier A/B backtest with positive `calibration_edge_net`. At `n=20` with
 take it off the board, because pulling a theory you suspect is broken is how
 you guarantee you never find out whether it was broken or merely unlucky.
 
+**A retired theory leaves `theories/` for `theories/retired/`** (user ruling
+2026-09-01: *"theory + notes + backtest performance with details, not the
+entire backtest"*). The folder that survives holds exactly four files —
+`RETIRED.md`, `THEORY.md`, `NOTES.md`, `RESULTS.md` — plus the theory's own
+studies, which retire with it. Everything else is **deleted**: modules,
+`RUNBOOK.md`, prompts, tickets, tests, and the raw backtest payloads, whose
+findings are *distilled into* `RESULTS.md` rather than kept — the numbers a
+future session needs survive, the megabytes of JSON behind them do not.
+
+`RETIRED.md` is the death certificate, and its load-bearing line is **the git
+rev the deleted code lived at**. That rev is the only thing in the tree
+pointing at what was removed, so it is what makes the deletion *recoverable*
+rather than merely reversible in principle: `git show <rev>:<path>` returns
+any deleted file, and `git ls-tree -r --name-only <rev> <folder>` lists
+everything the folder held. Without it, "it's in git somewhere" is an
+archaeology problem. `theories/retired/calibration_harvest` is the worked
+example. Retirement deletes code, never evidence — every ledger row, score
+and backtest run stays exactly where it was, and so does the registry row
+carrying the retirement rationale.
+
 ## An underperforming theory is a research object, not trash
 
 This is the part that is easy to get wrong. A theory whose numbers look bad is

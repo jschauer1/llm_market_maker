@@ -241,6 +241,13 @@ retired` refuses without `--authorized-by user` *and* a proposal on file.
 **Say it out loud in your report.** A proposal that sits in the database
 unmentioned is not a suggestion to anyone.
 
+**When the user does retire it, the folder moves.** A retired theory leaves
+`theories/` for `theories/retired/`, keeping only `RETIRED.md`, `THEORY.md`,
+`NOTES.md` and `RESULTS.md` plus its studies; its code, runbook, prompts,
+tickets, tests and raw backtest payloads are deleted, and stay retrievable at
+the git rev `RETIRED.md` names. CLAUDE.md's "Theory lifecycle and versioning"
+section has the rule; do not re-derive it here.
+
 If the user does retire it, record why against the originating idea, so the
 failure is written where the next proposal will look:
 

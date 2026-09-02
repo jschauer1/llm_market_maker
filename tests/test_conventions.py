@@ -348,9 +348,33 @@ _DELIBERATELY_ABSENT = {"tools/backtest.py"}
 _PATH_LIKE = re.compile(r"^[A-Za-z0-9_][A-Za-z0-9_.\-]*(/[A-Za-z0-9_.\-]+)+/?$")
 
 
+def _retired_doc(path: Path) -> bool:
+    """Is this THEORY.md the record of a theory that has been retired?
+
+    A retired theory's THEORY.md names modules, payloads and runbook
+    sections that were DELETED at retirement, on purpose: it is the
+    record of what the theory claimed and how it decided, and those
+    paths still resolve at the git rev its RETIRED.md names. Holding it
+    to root-relative path resolution would demand editing the record
+    into agreement with the deletion, which is the one thing retirement
+    must not do.
+
+    This is an EXPLICIT exclusion because until now it was an accident
+    of glob depth: `theories/*/THEORY.md` is one level deep, so
+    `theories/retired/calibration_harvest/THEORY.md` simply never
+    entered the check. Anyone deepening that glob to `**` -- the obvious
+    fix for the nested-family docs it misses, see the note on
+    `_DOC_FILES` -- would turn the retired doc red for reasons nobody
+    would connect to their change. Stated here, deepening the glob stays
+    a decision about nested theories and nothing else.
+    """
+    return registry.RETIRED_DIRNAME in path.relative_to(ROOT / "theories").parts
+
+
 def _doc_paths():
     docs = [ROOT / f for f in _DOC_FILES]
-    docs += sorted(ROOT.glob("theories/*/THEORY.md"))
+    docs += [p for p in sorted(ROOT.glob("theories/*/THEORY.md"))
+             if not _retired_doc(p)]
     for doc in docs:
         for span in re.findall(r"`([^`\n]+)`", doc.read_text(encoding="utf-8")):
             # Only bare repo paths: no spaces/flags, at least one slash, no
@@ -618,6 +642,23 @@ _CITE_LINE = re.compile(
 #: looks -- which is the standard the docstring above sets for a stub. A
 #: span that resolves at NEITHER home still fails, and the date-heading
 #: check below runs against the retired copy unchanged.
+#:
+#: Scope -- stated because the resolver runs over every citing doc while
+#: only one kind of doc justifies it. The redirect exists for APPEND-ONLY
+#: history: RESEARCH_LOG.md, and dated entries already written into a
+#: notebook, which record what was true when they were written and cannot
+#: be corrected without falsifying the record. It is NOT a licence for
+#: prose written from here on. A newly written citation names the retired
+#: path directly, and the four editable citations calibration_harvest's
+#: move broke were hand-edited to the new path rather than left to this
+#: fallback -- that is the standard.
+#:
+#: It is deliberately not narrowed by file name, because an append-only
+#: dated entry lives in a notebook as readily as in the log, and a check
+#: guessing which lines were editable would be wrong in both directions.
+#: So the limit is documented rather than enforced, and the known cost is
+#: that an editable doc written from now on can name a stale
+#: theories/<slug>/... path and pass here silently.
 def _retired_home(span: str) -> Path | None:
     """`theories/<slug>/x` -> `theories/retired/<slug>/x`, if that exists."""
     parts = span.split("/")
@@ -1009,4 +1050,114 @@ def test_a_retired_theory_holds_only_its_record():
     assert problems == [], (
         "a retired theory holds more than its record -- retirement "
         "deletes the code and keeps the findings:\n" + "\n".join(problems)
+    )
+
+
+#: Theories the DB calls `retired` that have NOT been migrated into
+#: `theories/retired/`, and are exempted from the test below.
+#:
+#: `mention_family` was retired 2026-08-26, five days before the folder
+#: convention existed (user ruling 2026-09-01), and never moved. Its
+#: migration is real outstanding work and is not free: it sits inside the
+#: shared `theories/insider_bias/` family parent alongside
+#: `insider_judgment`, it still owns a `studies/` subtree and open
+#: tickets, and `no_side_premium` came off it -- so moving it is its own
+#: change with its own review, not a side effect of a test run.
+#:
+#: This set is that debt made visible rather than hidden. The test below
+#: checks every slug listed here is genuinely still un-migrated, so the
+#: exemption cannot rot: whoever migrates `mention_family` deletes this
+#: line in the same commit, or the suite tells them to.
+_UNMIGRATED_RETIREMENTS = {"mention_family"}
+
+
+def test_every_retired_theory_lives_under_theories_retired():
+    """The converse of the test above, and the reason that one is not enough.
+
+    `test_a_retired_theory_holds_only_its_record` inspects only folders
+    ALREADY under `theories/retired/`, and skips entirely when that
+    directory is absent. Nothing asserted the other direction, which left
+    the exact failure this convention exists to prevent uncaught:
+
+        the user retires `taker_flow`, and nobody migrates it.
+        `theories/taker_flow/` keeps all nine of its modules.
+        `registry.discover()` imports it exactly as before -- `retired`
+        is not a scannable state. `registry.check_drift` returns [],
+        because the class-side loop compares version and
+        `uses_llm_judgment` and both still match. The folder never
+        enters the test above, because it is not under
+        `theories/retired/`. Every check in this file stays green while
+        866K of a dead theory's code sits in the live tree -- precisely
+        the state this branch was written to end.
+
+    So this test starts from the DB rather than the filesystem: a row
+    whose status is `retired` must have a `path` under
+    `theories/retired/`, that folder must carry the RETIRED.md death
+    certificate naming the git rev its deleted code lived at, and the
+    theory must no longer be importable as a live one.
+
+    Read-only, and skips cleanly if the working database is absent (a
+    fresh clone, or CI) rather than creating one as a side effect of
+    connecting -- `db.connect` would otherwise leave an empty file
+    behind. Same pattern as `test_the_real_registry_has_no_drift` above.
+    """
+    if not db.DEFAULT_DB_PATH.exists():
+        pytest.skip(
+            f"{db.DEFAULT_DB_PATH} does not exist -- no working database "
+            "to check retired-theory homes against in this environment"
+        )
+    conn = db.connect(db.DEFAULT_DB_PATH)
+    try:
+        rows = conn.execute(
+            "SELECT id, path FROM theories WHERE status = 'retired'"
+        ).fetchall()
+    finally:
+        conn.close()
+
+    live = set(registry.discover())
+    home = f"theories/{registry.RETIRED_DIRNAME}/"
+    problems = []
+    stale_exemptions = []
+
+    for row in rows:
+        slug = row["id"]
+        path = (row["path"] or "").replace("\\", "/")
+        migrated = path.startswith(home)
+        if slug in _UNMIGRATED_RETIREMENTS:
+            # The exemption has to keep earning itself. Once the theory
+            # is migrated, the entry above is dead weight that would
+            # silently excuse a future un-migrated retirement filed
+            # under the same slug.
+            if migrated and slug not in live:
+                stale_exemptions.append(
+                    f"{slug}: now migrated to `{path}` -- remove it from "
+                    "_UNMIGRATED_RETIREMENTS"
+                )
+            continue
+        if not migrated:
+            problems.append(
+                f"{slug}: status `retired` but its registry path is "
+                f"`{path}` -- a retired theory moves to `{home}{slug}/`"
+            )
+        elif not (ROOT / path / registry.RETIRED_MARKER).is_file():
+            problems.append(
+                f"{slug}: `{path}` carries no {registry.RETIRED_MARKER} -- "
+                "the death certificate is what names the git rev the "
+                "deleted code is retrievable at"
+            )
+        if slug in live:
+            problems.append(
+                f"{slug}: status `retired` but registry.discover() still "
+                "imports it -- its package was left behind in the live tree"
+            )
+
+    assert problems == [], (
+        "a retired theory is still filed as a live one -- retirement "
+        "moves the folder and deletes the code, it does not only change "
+        "a status column:\n" + "\n".join(problems)
+    )
+    assert stale_exemptions == [], (
+        "_UNMIGRATED_RETIREMENTS names a theory that has since been "
+        "migrated -- delete the entry so it cannot excuse a future "
+        "un-migrated retirement:\n" + "\n".join(stale_exemptions)
     )

@@ -105,9 +105,9 @@ Settled markets seen per category [payload]: Sports 10,925, Crypto 5,497,
 Commodities 3,871, Economics 2,070, Financials 766, Science and Technology
 90.
 
-`collect size` hit a **429 after 21 series**, by which point it had already
-spent **9,270 candlestick fetches, 8,911 of them from `KXMLBKS`** — figures
-the payload reproduces exactly. Sports is an order of magnitude dearer than
+`collect size` hit a **429 after 21 *Sports* series**, by which point it
+had already spent **9,270 candlestick fetches, 8,911 of them from
+`KXMLBKS`** — figures the payload reproduces exactly. Sports is an order of magnitude dearer than
 any population walked, and rate-limited in practice rather than only in
 theory. [rationale]
 

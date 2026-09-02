@@ -40,8 +40,8 @@ category, so the prior is *more* efficient pricing. The theory's −2.87
 headline was an unlabelled sports number; labelled, it did not improve.
 
 **And the sports walk is not affordable.** `collect size` hit a 429 after
-21 series, having already spent 9,270 candlestick fetches (8,911 from
-`KXMLBKS` alone). Sports is an order of magnitude dearer than any
+21 *Sports* series, having already spent 9,270 candlestick fetches (8,911
+from `KXMLBKS` alone). Sports is an order of magnitude dearer than any
 population walked, and rate-limited in practice rather than only in theory.
 
 **The full record:** six domains, ~7,500 collected rows, three complete
@@ -92,9 +92,11 @@ The findings those payloads carried are in `RESULTS.md`.
 
 **`THEORY.md` and `NOTES.md` still name modules, payloads and runbook
 sections that no longer exist in this folder.** That is deliberate: they are
-the record of what the theory claimed and how it decided, kept verbatim
-rather than edited into agreement with the deletion. Every path they name
-resolves at the rev above.
+the record of what the theory claimed and how it decided, and **no reference
+to a deleted module or payload was edited into agreement with the
+deletion.** The only edits either file took at retirement were repointing the
+gradient-review study to its new path (1 line in `THEORY.md`, 2 in
+`NOTES.md`). Every path they name resolves at the rev above.
 
 `tests/test_timeutil.py` kept its coverage but lost one of its three
 re-export fixtures with this deletion; the comment there says so.
