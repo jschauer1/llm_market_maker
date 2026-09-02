@@ -10,7 +10,7 @@ allowed to cost?**
 - **The ticket lifecycle** — how queued work moves, and when a finished
   ticket stops occupying the tree.
 
-They meet at the evidence stage, which turns out to be a study.
+They meet at the study, which turns out to be a ticket.
 
 ## Why
 
@@ -44,6 +44,18 @@ different name. This is the duplicated-home failure CLAUDE.md already
 records once, when 22 spec documents in `docs/` all read "Status: backlog"
 weeks after four had become theories. **One document, one home, one
 status.**
+
+**And "study" turned out to be four jobs wearing one word.** Reading all
+15 `STUDY.md` files and counting which theories each names: **7 serve
+exactly one theory** (`side-split-60day-obs`, `structural-arb-violation-liquidity`,
+`deadline-drift-classifier-audit` and four more), **5 serve none**
+(`entry-timing`, `settlement-day-clustering` and the early-close pair),
+**2 exist to decide whether to build a spec**, and **1 names no theory at
+all** — `structural-gate-payload-version` rules on what a repo rule
+constrains, which is governance, not measurement. Half the tree is a
+theory's own data filed somewhere else. That is the locality rule this
+repo already has, unenforced on the one kind of work that most looks like
+it belongs elsewhere.
 
 **And the backlog only grows.** `close` moves a ticket to `completed/` and
 explicitly never deletes it. That was the right call when the repo was a
@@ -82,10 +94,10 @@ the test is usually not unclear.
 | owner | folder |
 |---|---|
 | a theory | its registry path (not always `theories/<slug>`) |
-| a study | `studies/<date>-<slug>/` |
+| a study | its own state directory — inside its theory, or in the root `study` lane (Part 3) |
 
-An evidence-stage ticket is not a third owner: it scaffolds a study and
-writes there (Part 3). That is the point of Part 3 — it is what makes this
+An evidence-stage ticket is not a third owner: it spawns a study and the
+study owns the data. That is the point of Part 3 — it is what keeps this
 list two entries long instead of two-and-a-special-case.
 
 A focused session writes files into its own owner's folder and nowhere
@@ -134,17 +146,25 @@ physically. What changes is that **the set of states depends on the
 lane**:
 
 ```
-new-theory:    open → evidence → implement → completed
-maintenance:   open → completed
-theory, study: open → completed
+new-theory:   open → evidence → implement → completed
+study:        question → investigation → answer
+maintenance:  open → completed
+theory:       open → completed
 ```
+
+The study lane is the odd one and Part 3 is why: its tickets are
+**directories**, its terminal state is `answer/` rather than `completed/`,
+and it is therefore the one lane the purge never touches.
 
 | state | means |
 |---|---|
 | `open` | filed; nobody has started |
 | `evidence` | a measurement is running against the spec's bar (new-theory only) |
 | `implement` | the evidence cleared the bar — this is a build order (new-theory only) |
-| `completed` | terminal, for every lane and every outcome |
+| `question` | the bar, written before looking (study only) |
+| `investigation` | the measurement running, with its code and data (study only) |
+| `answer` | the verdict — terminal and **permanent** (study only) |
+| `completed` | terminal, for every other lane and every outcome |
 
 **`completed/` is reachable from any state.** A spec does not have to
 survive to the end of the pipeline to close; it closes the moment it is
@@ -200,74 +220,237 @@ is not optional for a spec that has not been measured.
 spec being measured is still open work, `--status open` should show it,
 and `backlog()` needs no change to its filter.
 
-## Part 3 — The evidence stage is a study
+## Part 3 — A study is a ticket pipeline
 
-**`advance --to evidence` scaffolds a real study** at
-`studies/<date>-<slug>/`, and the ticket moves to
-`tickets/new-theory/evidence/<date>-<slug>.md` as a plain file carrying
-`study: <folder>` in its frontmatter and the bar in its body.
+**A study is a measurement you run to answer a question before you act on
+it. It never places a bet.** That definition does not change. What changes
+is that a study stops being a folder in a separate tree and becomes **a
+ticket with its own lifecycle**, living inside the thing it is about.
 
-The measurement — its pre-registration, its code, its data, its verdict —
-lives in the study folder. This buys four things a probe dir does not:
+```
+study:  question → investigation → answer
+```
 
-1. **`cli studies` sees every probe.** The survey reads `STUDY.md` off
-   disk, so a scaffolded study appears the moment it exists.
-2. **The floor's stall-detection covers it.** CLAUDE.md records that a
-   stalled collector was noticed by accident twice; probes were entirely
-   outside that net.
-3. **The verdict-in-header rule applies**, so nobody has to read the
-   measurement to learn what it concluded.
-4. **Measurement data has exactly one home**, which is what makes Part 1's
-   three-owner rule complete rather than nearly complete.
-
-### What `evidence/` holds afterwards
-
-- **Ticket files** `<date>-<slug>.md` — specs in the evidence stage
-- **The lane's shared reference material**, unchanged and still linked
-  from that README: `2026-08-24-evidence-ledger.md`,
-  `2026-08-24-le-2026-calibration-notes.md`,
-  `2026-08-24-angelini-deangelis-2026-notes.md`
-
-No directories. That removes the file-versus-directory distinction an
-earlier draft of this design proposed, which was clever and would not have
-survived contact with a session that had not read it.
-
-### Migration
-
-The three existing probe dirs become studies:
-
-| from | to |
+| state | holds |
 |---|---|
-| `evidence/2026-09-01-aggregation-gap-probe/` | `studies/2026-09-01-aggregation-gap-probe/` |
-| `evidence/2026-09-01-accumulation-decay-probe/` | `studies/2026-09-01-accumulation-decay-probe/` |
-| `evidence/2026-09-01-block-trade-probe/` | `studies/2026-09-01-block-trade-probe/` |
+| `question/` | the question and the bar, **written before looking** |
+| `investigation/` | the measurement running — its code and its data |
+| `answer/` | the verdict. **Terminal and permanent** |
 
-Each gains a `STUDY.md` with the standard header, **written from the
-`RESULT.md` already in the folder** — the finding is re-filed, never
-re-derived. `PREREG.md` where it exists stays as the pre-registration.
+### Why this shape, and not a folder in `studies/`
 
-**Citations must move with them.** `tickets/new-theory/README.md` names
-`evidence/2026-09-01-aggregation-gap-probe/` twice, in rule 0 and again
-further down. `test_every_dated_cross_citation_still_resolves` and
-`test_every_repo_path_named_in_docs_resolves` are the backstop, but the
-links get updated deliberately rather than left for a test to find.
+**Pre-registration becomes structural rather than disciplinary.** Rule 1
+of `studies/README.md` is *"write the bar before looking"* — today a rule
+somebody follows. Under the pipeline, `investigation/` is unreachable
+except through `question/`. The rule is the pipeline.
 
-Net effect: three real measured verdicts enter `cli studies`, where the
-supervisor contract says they should have been all along.
+**Persistence needs no special case.** The purge (Part 5) only ever
+touches `completed/`. The study lane has no `completed/` — its terminal
+state is `answer/`. Study answers survive because there is nothing for the
+purge to match, not because someone remembered to exempt them.
 
-### Study-lane tickets are unaffected
+**It deletes a duplicated status field that is failing right now.**
+`studies/2026-08-29-series-bias-mining/STUDY.md` carries
+`**Status:** complete — result: not measured`, and the study has two open
+tickets saying the phase-2 sweep is unfinished and pass 4's filter
+conditions are reversed. The header and the work disagree, in the live
+repo, today. Under the pipeline the state is the directory and there is
+nothing left to contradict: `STUDY.md` keeps `Date`, `Tier` and `Verdict`
+and **loses `Status` entirely**.
 
-A ticket *about* a study stays `open → completed`. A study's own verdict
-header is a separate lifecycle and this design does not touch it.
+**And it removes a concept.** "A ticket about a study" stops existing.
+Work items against a running measurement — *finish the sweep*, *pass 4 is
+reversed* — are ordinary tickets against the owning theory. A study is the
+question, not the queue of chores under it.
 
-## Part 4 — The purge
+### Where a study lives
+
+Locality, unchanged from every other kind of work in this repo:
+
+| owner | path |
+|---|---|
+| one theory | `<theory registry path>/studies/<state>/<date>-<slug>/` |
+| nobody | `tickets/study/<state>/<date>-<slug>/` — a root lane beside `maintenance/` and `new-theory/` |
+
+**Top-level `studies/` disappears.**
+
+`tools/registry.py` already anticipated the first row. `_theory_packages`
+skips any folder carrying `STUDY.md`:
+
+```python
+if folder.name == "_TEMPLATE" or (folder / "STUDY.md").exists():
+    continue
+```
+
+That exclusion only does anything if a `STUDY.md` can appear under
+`theories/`. The guard was built and never used; this is what it was for.
+
+### Study tickets are directories
+
+The one lane where a ticket is a directory rather than a file, and it is
+forced: a measurement has code and data, and they belong with it.
+
+```
+<owner>/studies/investigation/2026-08-30-parlay-markup/
+    TICKET.md      the question, the bar, the inclusion rules
+    STUDY.md       Date / Tier / Verdict — no Status
+    collect.py
+    data/          gitignored past 10MB, per Part 1
+<owner>/studies/answer/2026-08-30-entry-timing/
+    TICKET.md
+    STUDY.md
+    RESULT.md      what it concluded
+```
+
+### The evidence stage spawns a study; it is not one
+
+This corrects the seam in this design's earlier draft. A new-theory spec
+in `evidence/` **spawns a study ticket** and names it in its frontmatter;
+it does not become one. The spec advances to `implement/` or closes
+`disproven`/`underpowered` when the answer lands.
+
+That split is the right one because the two have different lifetimes:
+**the spec is work and eventually purges; the study's answer is knowledge
+and never does.** A theory that does not exist yet owns nothing, so its
+study starts in the root `tickets/study/` lane and stays there — studies
+are not moved once cited.
+
+### Migration — all 15
+
+Measured 2026-09-01 by reading each `STUDY.md` and counting which theories
+it names. Seven have exactly one owner, five have none, one is a
+governance ruling with zero theory mentions, and every one but
+`parlay-markup` is finished.
+
+| study | goes to | state |
+|---|---|---|
+| `side-asymmetry-extension` | `theories/no_side_premium/studies/` | answer |
+| `side-split-60day-obs` | `theories/no_side_premium/studies/` | answer |
+| `liquidity-filtered-side-split` | `theories/no_side_premium/studies/` | answer |
+| `structural-arb-violation-liquidity` | `theories/structural_arb/studies/` | answer |
+| `deadline-drift-classifier-audit` | `theories/deadline_drift/studies/` | answer |
+| `series-bias-mining` | `theories/insider_bias/mention_family/studies/` | **investigation** |
+| `calibration-harvest-gradient-review` | `theories/retired/calibration_harvest/studies/` | answer |
+| `calendar-arb-firing-rate` | `tickets/study/` | answer |
+| `smile-smoothing-ladder-flatness` | `tickets/study/` | answer |
+| `settlement-day-clustering` | `tickets/study/` | answer |
+| `early-close-exposure-existing-backtests` | `tickets/study/` | answer |
+| `early-close-exposure-in-the-bettable-slice` | `tickets/study/` | answer |
+| `entry-timing` | `tickets/study/` | answer |
+| `parlay-markup` | `tickets/study/` | **investigation** |
+| `structural-gate-payload-version` | `docs/` | — |
+
+Three notes on the awkward rows:
+
+- **`series-bias-mining` lands in `investigation/`, not `answer/`** — its
+  header claims complete and its tickets say otherwise. The pipeline
+  forces the honest answer. Its two open tickets become ordinary
+  `mention_family` theory tickets.
+- **`structural-gate-payload-version` is not a study.** It names no
+  theory and measures no market; it rules on what a repo rule constrains.
+  That is a governance document and it goes to `docs/`.
+- **`calibration-harvest-gradient-review` follows its theory into
+  `retired/`** (Part 4). A retired theory's studies retire with it.
+
+Plus the three probe directories, which are studies that were never
+called one:
+
+| from | to | state |
+|---|---|---|
+| `tickets/new-theory/evidence/2026-09-01-aggregation-gap-probe/` | `tickets/study/` | answer |
+| `tickets/new-theory/evidence/2026-09-01-accumulation-decay-probe/` | `tickets/study/` | answer |
+| `tickets/new-theory/evidence/2026-09-01-block-trade-probe/` | `tickets/study/` | answer |
+
+Each gains a `STUDY.md` written from the `RESULT.md` already in the
+folder — the finding is re-filed, never re-derived. Afterwards
+`tickets/new-theory/evidence/` holds ticket files plus the lane's shared
+reference material (`2026-08-24-evidence-ledger.md` and the two reading
+-note files), and nothing else.
+
+**Citations move with them.** `tickets/new-theory/README.md` names
+`evidence/2026-09-01-aggregation-gap-probe/` twice, and `studies/...`
+paths are cited across `CLAUDE.md`, the skills, several `THEORY.md` and
+`NOTES.md` files. `test_every_dated_cross_citation_still_resolves` and
+`test_every_repo_path_named_in_docs_resolves` are the backstop, not the
+plan.
+
+### `cli studies` after the change
+
+`studies.survey()` stops reading `studies/*/STUDY.md` and instead walks
+the study states across theory folders and the root lane. Status comes
+from the directory; `Verdict` and `Tier` still come from the header. The
+rendered output gains an owner column, which is the thing that was
+missing all along — a reader could not previously tell whether a study
+served one theory or all of them without opening it.
+
+## Part 4 — Retiring a theory
+
+**A retired theory leaves `theories/`.** Its folder is replaced by
+`theories/retired/<slug>/`, holding what proves it was tried and nothing
+that could still be run.
+
+### What survives
+
+| kept | why |
+|---|---|
+| `RETIRED.md` | the death certificate — date, distilled rationale, what survives and why, **and the git rev the deleted code lived at** |
+| `THEORY.md` | what the theory claimed and how it decided |
+| `NOTES.md` | the lab notebook — literally the record that it was tried |
+| `RESULTS.md` | **distilled** backtest performance: the populations walked, the cells, the numbers each one produced, and the kill criterion it met |
+
+Everything else goes: the `.py` modules, `RUNBOOK.md`, `prompts/`, the raw
+backtest payloads, the theory's completed tickets, `__pycache__`.
+`git show <rev>:<path>` retrieves any of it, and `RETIRED.md` names the rev
+so retrieval is a command rather than archaeology.
+
+**The raw backtest payloads do not survive; their findings do.** This is
+the user ruling of 2026-09-01 — *"theory + notes + backtest performance
+with details, not the entire backtest"* — and it is the elevation rule
+already in CLAUDE.md applied to a dying theory: **knowledge elevates by
+distillation.** `calibration_harvest`'s 508K of `backtests/*.json` becomes
+a `RESULTS.md` carrying the three populations, the 47 cells past both
+floors, the zero positive net edges, and the horizon sign reversal — the
+things a future session would actually read. Nobody re-reads 508K of JSON;
+they read the table.
+
+### Two mechanical consequences, both of which bite
+
+1. **`registry.discover()` imports every `THEORY.md` folder it finds.**
+   `_theory_packages` does `rglob("THEORY.md")` under `theories/` and
+   raises if the package exposes no `THEORY` singleton. A retired folder
+   keeping its `THEORY.md` therefore breaks the drift check. Excluded the
+   way the existing markers already are — by the `retired/` path segment
+   **and** the presence of `RETIRED.md`, mirroring how `STUDY.md` marks a
+   study folder.
+2. **The registry `path` column must be repointed** to
+   `theories/retired/<slug>`. `tickets.ticket_dir` reads that column, and
+   a stale path files tickets into a phantom directory beside a theory
+   that no longer exists — the exact bug this repo already fixed once, in
+   the other direction.
+
+`retired` is not in `SCANNABLE_STATUSES`, so the DB side of the drift
+check already skips it; removing the code removes it from the class side.
+No change to `check_drift` itself.
+
+### The live case
+
+`calibration_harvest` was retired on 2026-09-01 and its 866K folder is
+still in `theories/`. It is the migration's first subject and its worked
+example.
+
+## Part 5 — The purge
 
 ```bash
 cli tickets purge [--dry-run | --apply] [--older-than 7]
 ```
 
-**Candidates:** tickets in any `completed/` — every lane, including theory
-and study folders — whose `closed:` date is at least 7 days ago.
+**Candidates:** tickets in any `completed/` — every lane that has one —
+whose `closed:` date is at least 7 days ago.
+
+**Studies are never candidates, and not by exemption.** The study lane's
+terminal state is `answer/`, so a finished study is simply not a thing
+this query matches. Permanence is a consequence of the state names rather
+than a rule the purge has to remember.
 
 **A candidate is kept if anything cites it.** The check looks for the
 ticket's slug or its repo path in:
@@ -290,7 +473,7 @@ should do as a side effect of a flag it forgot to pass.
 go-floor gains one step: run `purge --apply`, and report the count and the
 names in the **Floor record** section — the receipt, where it belongs.
 
-## Part 5 — Backlog pressure
+## Part 6 — Backlog pressure
 
 Tickets are a priority, balanced against research rather than replacing
 it. The balance is made mechanical so it is not re-litigated every
@@ -309,18 +492,19 @@ backlog — 4 maintenance open, 16 new-theory open — the ≥5 rule fires on
 real pressure) and arguably noise. **Flagged for the user; easy to tune
 once, hard to tune repeatedly.**
 
-## Part 6 — Enforcement
+## Part 7 — Enforcement
 
 Three tests in `tests/test_conventions.py`, in the house style — fail at
 the commit that breaks the rule, not months later:
 
 1. **`test_no_new_top_level_directory`** — the top level is an allowlist:
-   `.claude`, `attic`, `db`, `docs`, `studies`, `tests`, `theories`,
-   `tickets`, `tools`, `user_reports`. A new one is an architecture
-   decision, not a side effect.
+   `.claude`, `attic`, `db`, `docs`, `tests`, `theories`, `tickets`,
+   `tools`, `user_reports`. A new one is an architecture decision, not a
+   side effect. **`studies` is deliberately absent** — Part 3 dissolves
+   it, and this test is what stops it growing back.
 2. **`test_data_files_live_with_their_owner`** — a tracked file matching
    `.jsonl`, `.csv`, `.parquet` or `.db` must sit under a theory folder, a
-   study folder, `db/`, or `tests/`. Anywhere else is an escape.
+   study state directory, `db/`, or `tests/`. Anywhere else is an escape.
 
    **This test currently fails, on exactly three files** — and they are
    exactly the three the Part 3 migration moves:
@@ -336,9 +520,10 @@ the commit that breaks the rule, not months later:
    this repo already does, and that the one place it drifted is the one
    Part 3 closes. The test goes red on the migration commit and green when
    it lands, in that order.
-3. **`test_ticket_states_match_their_lane`** — no `implement/` or
-   `evidence/` under `maintenance/`, and no state directory outside the
-   set its lane declares.
+3. **`test_ticket_states_match_their_lane`** — each lane's state
+   directories come from its own declared set and nothing else: no
+   `evidence/` or `implement/` under `maintenance/`, no `completed/`
+   under a study, no `answer/` under `new-theory/`.
 
 Plus coverage in `tests/test_tickets.py` for `advance` (each legal
 transition, each refused one) and `purge` (a cited ticket survives, an
@@ -350,9 +535,11 @@ uncited one goes, `--dry-run` deletes nothing).
 |---|---|
 | `CLAUDE.md` | Data conventions reframed around the regenerable test; the three owners; the closed sink list; the lifecycle table |
 | `tickets/README.md` | the per-lane state diagram; the four resolutions |
-| `tickets/new-theory/README.md` | the evidence stage as a study; updated probe citations |
-| `studies/README.md` | studies as the evidence stage's home |
-| `tools/tickets.py` | per-lane `STATES`, `advance()`, `purge()`, resolution validation |
+| `tickets/new-theory/README.md` | the evidence stage spawning a study; updated probe citations |
+| `tickets/study/README.md` | **new** — the study pipeline, replacing `studies/README.md` |
+| `tools/tickets.py` | per-lane `STATES`, directory-tickets for the study lane, `advance()`, `purge()`, resolution validation |
+| `tools/studies.py` | `survey()` walks study states across theories and the root lane; owner column; `Status` no longer parsed |
+| `tools/registry.py` | exclude the `theories/retired/` subtree from `discover()` |
 | `tools/cli.py` | `tickets advance`, `tickets purge`, age column |
 | `.claude/skills/go-floor/SKILL.md` | the purge step and its report line |
 | `.claude/skills/go/SKILL.md` | the backlog-pressure rule |
@@ -371,19 +558,23 @@ Four phases, each leaving the repo green and usable. The order is forced
 by the enforcement test in Part 6: the migration has to precede the rule
 that would fail on it.
 
-1. **Migration** — the three probe dirs become studies, `STUDY.md`
-   written from each `RESULT.md`, citations in
-   `tickets/new-theory/README.md` updated. Nothing else changes; the
-   repo is already better off (three verdicts enter `cli studies`).
-2. **Lifecycle** — per-lane `STATES`, `advance()`, the four resolutions,
-   the ideas-registry coupling on close, the CLI verbs, the directories
-   with `.gitkeep`. Tests for each transition.
-3. **Purge** — `purge()` with its citation check, `--dry-run` default,
+1. **The study pipeline** — the lane, its states, directory-tickets,
+   `survey()` rewritten, then the 15 studies and the 3 probe dirs moved
+   and their citations updated. Top-level `studies/` goes. This is the
+   biggest phase and the one everything else assumes.
+2. **Retirement** — `theories/retired/`, `RETIRED.md`, the registry
+   exclusion and path repoint, and `calibration_harvest` migrated as the
+   worked example.
+3. **Lifecycle** — per-lane `STATES` for `new-theory`, `advance()`, the
+   four resolutions, the ideas-registry coupling on close, the CLI verbs.
+   Tests for each transition.
+4. **Purge** — `purge()` with its citation check, `--dry-run` default,
    the go-floor step.
-4. **Standard and enforcement** — the CLAUDE.md rewrite, the READMEs, the
+5. **Standard and enforcement** — the CLAUDE.md rewrite, the READMEs, the
    skill edits, the three conventions tests, the backlog-pressure rule.
 
-Phase 1 is worth doing even if the rest is cut.
+Phases 1 and 2 each stand alone and are worth doing even if the rest is
+cut.
 
 ## What this deliberately does not do
 
@@ -392,6 +583,13 @@ Phase 1 is worth doing even if the rest is cut.
 - **No lightweight study class.** A probe is a study; splitting studies
   into weight classes would recreate the duplicated home this design
   closes.
+- **No "ticket about a study".** That concept is deleted. Chores against
+  a running measurement are ordinary tickets against the owning theory; a
+  study is the question, not the queue of work under it.
+- **No moving a study once it is cited.** A study that starts in the root
+  lane because its subject theory did not exist yet stays there when the
+  theory is built. Studies are cited by path across the repo, and churning
+  those paths costs more than the tidier filing is worth.
 - **No change to the study verdict lifecycle**, to scoring, to the ledger,
   or to any load-bearing vocabulary already in CLAUDE.md
   (`disposition`, `edge_basis`, `run_mode`, `segment`, version `kind`,
