@@ -326,6 +326,28 @@ shape — `<id> v<n> — ran per RUNBOOK (<stages>), <n> recorded, gate
 removed <counts by category>`, or `blocked at <stage>: <why>`, or
 `skipped: <condition>`. Then what settled and how the scores moved.
 
+Then trim the completed backlog, and report the count and the names:
+
+```bash
+python -m tools.cli tickets purge --apply
+```
+
+**This destroys no record.** It removes completed tickets that have sat
+in `completed/` for a week and that **nothing cites** — the check reads
+`CLAUDE.md`, the logs, `docs/`, the skills, the tests, every theory
+folder and every ticket, so a ticket anything points at is kept and named
+in the output. Git history is the durable record for the rest: `git log
+--diff-filter=D` finds a purged ticket and `git show` retrieves it. And a
+`disproven` or `underpowered` spec could not have been closed at all
+without its finding already recorded in the ideas registry, so the
+knowledge left the file before the file left the tree.
+
+It belongs in the receipt rather than in the bets, because it is
+bookkeeping: the backlog is read by listing at the start of every
+session, and a tree that only ever grows makes the repo's most-repeated
+read its largest. Run it without `--apply` first if you want to read the
+listing — the dry run is the default everywhere else.
+
 ### Section 3 — Studies in flight
 
 ```bash

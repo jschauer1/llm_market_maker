@@ -34,13 +34,38 @@ successor nobody has built.
 
 **Every open ticket in `tickets/new-theory/open/` is a spec** — that is
 what this lane's backlog is. If you are working one, you already have
-your spec and should not write a second; read it, and close it with a
-resolution when the theory exists. Read
-`tickets/new-theory/README.md` first either way: its rules 0 through 0f
+your spec and should not write a second; read it and move it along the
+lane. Read `tickets/new-theory/README.md` first either way: its rules 0 through 0f
 are the shared contracts every spec in the lane inherits, and rule 0 (an
 edge between siblings of one Kalshi event finds nothing) and rule 0f
 (measure at *executable* prices, never the mid) between them account for
 most of the backlog's dead entries.
+
+**The lane's states are `open → evidence → implement → completed`, and
+they are the shape of this session.** A spec sits in `open/` until
+somebody runs its cheapest decisive test; `evidence/` is where that test
+runs against the bar the spec wrote before looking; `implement/` means
+the bar was cleared and the build is authorized. `open → implement` is
+refused in code — a theory built on a thesis nobody measured is exactly
+what this lane exists to prevent, and it is why `calendar-arb` and
+`smile-smoothing` died in an afternoon instead of a month.
+
+```bash
+python -m tools.cli tickets advance <path> --to evidence --note "<the test>"
+python -m tools.cli tickets advance <path> --to implement --note "<result>"
+python -m tools.cli tickets close <path> --resolution "built: theories/<slug>"
+```
+
+Closing takes one of **four resolutions** as its first word — `built`,
+`disproven`, `underpowered`, `superseded` — and the prose still fits
+after a colon. The distinction that matters six months out is
+`disproven` (the bar was met and the thesis failed; not re-proposable)
+against `underpowered` (the measurement *could not reach* the bar; still
+re-proposable). Both require the finding to already be in the ideas
+registry with `what_was_tried` and `outcome`, and `underpowered` also
+requires a `revisit_angle` — say what would have to change. That is not
+bookkeeping: `tickets purge` may delete the closed file once nothing
+cites it, so the registry row is the part that survives.
 
 ## 2. Decide what kind of thesis it is
 

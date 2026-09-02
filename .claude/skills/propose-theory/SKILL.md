@@ -82,9 +82,29 @@ be able to pick it up and work it:
 goes in that theory's own folder (`--lane theory --theory <slug>`),
 because a theory folder is supposed to hold everything its expert needs.
 
-When the theory gets built, close the spec ticket with a resolution
-saying where it went; it moves to `completed/` and stays as the record of
-what was asked for and why.
+**A spec earns its way to a build order.** The lane's states are
+`open → evidence → implement → completed`, and the middle two are not
+bookkeeping: `evidence/` is where the cheapest decisive test you named
+above actually runs against the bar the spec wrote *before looking*, and
+`implement/` asserts that bar was cleared. `open → implement` is refused
+in code, because a build order issued on an unmeasured thesis is the
+failure this whole lane exists to prevent.
+
+```bash
+python -m tools.cli tickets advance <path> --to evidence --note "<the test>"
+```
+
+Closing takes one of **four resolutions**, as the first word: `built`
+(name the theory), `disproven` (the bar was met and the thesis failed —
+not re-proposable), `underpowered` (the measurement *could not reach* the
+bar, which is a different claim and stays re-proposable), or
+`superseded`. The prose still fits after a colon. `disproven` and
+`underpowered` are refused unless the finding is already in the ideas
+registry with `what_was_tried` and `outcome` — and `underpowered` also
+needs a `revisit_angle`, saying what would have to change before anyone
+tries again, because `tickets purge` may delete the file once nothing
+cites it and the registry row is what survives. Full vocabulary and the
+lane's shared contracts: `tickets/new-theory/README.md`.
 
 ## 4. Interrogate the hypothesis
 
