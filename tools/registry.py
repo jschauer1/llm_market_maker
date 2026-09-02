@@ -24,6 +24,17 @@ from tools.theory import Theory
 
 THEORIES_ROOT = REPO_ROOT / "theories"
 
+#: Retired theories live here, and discovery never imports them. A
+#: retired theory KEEPS its THEORY.md -- that document is the record of
+#: what it claimed and how it decided -- but its code is deleted, so
+#: `importlib.import_module` on it would raise. The subtree is skipped
+#: by path, and `RETIRED.md` is checked as well so a retired theory
+#: filed anywhere else is still excluded. Same shape as the STUDY.md
+#: exclusion right below it, and for the same reason: a folder with a
+#: THEORY.md that is not a runnable theory.
+RETIRED_DIRNAME = "retired"
+RETIRED_MARKER = "RETIRED.md"
+
 
 def _theory_packages(root: Path = THEORIES_ROOT) -> list[str]:
     """Dotted module paths for every theory package under `root`."""
@@ -32,7 +43,11 @@ def _theory_packages(root: Path = THEORIES_ROOT) -> list[str]:
         folder = marker.parent
         if folder.name == "_TEMPLATE" or (folder / "STUDY.md").exists():
             continue
+        if (folder / RETIRED_MARKER).exists():
+            continue
         rel = folder.relative_to(root.parent)
+        if RETIRED_DIRNAME in rel.parts:
+            continue
         out.append(".".join(rel.parts))
     return out
 

@@ -25,6 +25,40 @@ def test_theory_packages_skips_template_and_studies(tmp_path):
     assert got == [f"{tmp_path.name}.real_one"]
 
 
+def test_a_retired_theory_is_not_discovered(tmp_path):
+    """A retired theory keeps its THEORY.md -- it is the record of what
+    the theory claimed -- but its code is gone, so importing it would
+    raise. Discovery has to skip the subtree, exactly as it already skips
+    a folder marked STUDY.md."""
+    root = tmp_path / "theories"
+    (root / "retired" / "dead_theory").mkdir(parents=True)
+    (root / "retired" / "dead_theory" / "THEORY.md").write_text(
+        "# Dead\n", encoding="utf-8")
+    (root / "retired" / "dead_theory" / "RETIRED.md").write_text(
+        "# Retired\n", encoding="utf-8")
+    assert registry._theory_packages(root) == []
+
+
+def test_a_retired_marker_excludes_a_folder_wherever_it_sits(tmp_path):
+    """Belt and braces: the path check catches the normal case, the
+    marker catches a retired theory somebody files somewhere else."""
+    root = tmp_path / "theories"
+    (root / "stray").mkdir(parents=True)
+    (root / "stray" / "THEORY.md").write_text("# Stray\n", encoding="utf-8")
+    (root / "stray" / "RETIRED.md").write_text("# Retired\n", encoding="utf-8")
+    assert registry._theory_packages(root) == []
+
+
+def test_a_live_theory_beside_a_retired_one_is_still_discovered(tmp_path):
+    root = tmp_path / "theories"
+    (root / "retired" / "dead").mkdir(parents=True)
+    (root / "retired" / "dead" / "THEORY.md").write_text("#\n", encoding="utf-8")
+    (root / "retired" / "dead" / "RETIRED.md").write_text("#\n", encoding="utf-8")
+    (root / "alive").mkdir(parents=True)
+    (root / "alive" / "THEORY.md").write_text("#\n", encoding="utf-8")
+    assert registry._theory_packages(root) == ["theories.alive"]
+
+
 @pytest.fixture
 def conn(tmp_path):
     c = db.connect(tmp_path / "t.db")
