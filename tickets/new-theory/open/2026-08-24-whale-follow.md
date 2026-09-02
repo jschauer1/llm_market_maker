@@ -15,6 +15,36 @@ moved, and read [the backlog's shared contracts](../README.md)
 first — rules 0 through 0e there have killed more ideas in this
 repo than any single spec's own kill criteria have.
 
+## Read first: the cheap version of this spec is dead, and it does not transfer
+
+`block-trade-whale-follow` was this thesis without the cross-venue
+matching — Kalshi publishes `is_block_trade`, a flag on negotiated
+large-size prints, so the whale would have arrived pre-identified with no
+wallet scoring and no pair store. **It was killed on population,
+2026-09-01**: 5 block trades in 498,918, across three strata including
+205 markets whose *entire* reachable trade history was walked; 3 of the 5
+are a single decision (LSU football, three events, all YES, 53 seconds
+apart), so ~3 independent events per 67 days. Full measurement:
+`../evidence/2026-09-01-block-trade-probe/RESULT.md`.
+
+**That kill is about Kalshi's block facility being unused. It says
+nothing about this spec**, whose population is Polymarket's wallet
+ledger — orders of magnitude larger, and not a negotiated-trade facility
+at all. Two things from the probe do carry, and both are favourable:
+the whale-follow *mechanism* survived its own kill tests (every block was
+4–5 orders of magnitude above its market's median trade and the largest
+print in that market's history, and the LSU cluster was a directional
+correlated basket, not a maker inventory transfer), and the shortcut being
+gone means **the pair store is now the only route** — so this spec's
+section-8 dependency on `cross-venue-fair-value` is load-bearing rather
+than a sequencing preference.
+
+**Do the section-6 Polymarket-only split test first.** Score wallets on
+months 1–6, paper-follow months 7–12, settle. It is tier A, needs no pair
+store, no Kalshi leg and no matching, and it either kills the signal
+outright or justifies the Effort-L build. Nothing else here should be
+started before it.
+
 ## Assessment
 
 **Applicability 3/5 · Implementability 2/5 · Likelihood of success 3/5 ·

@@ -26,3 +26,35 @@ WHAT TO DO.
   4. Add a test for parse_deadline in tests/test_timeutil.py; deadline_drift's own NOTES.md 2026-08-29 correction explains why the rules-stated deadline rather than close_time is the sound anchor, and that reasoning should survive the move.
 
 COORDINATE FIRST. Step 3 touches a file another session may still be writing. Check whether no_side_premium's exposure work has landed before editing it, or do steps 1-2 (which are safe and self-contained) and leave step 3 to whoever finishes that work.
+
+---
+
+## Second, unrelated red test from the same in-flight work (added same session)
+
+`tests/test_conventions.py::test_every_repo_path_named_in_docs_resolves`
+also went red while this was being written, from the same peer's
+uncommitted `no_side_premium` work:
+
+```
+THEORY.md: `data/mine_cells_result.txt`
+```
+
+**Not the same bug, and much smaller.** `theories/no_side_premium/THEORY.md`
+names `data/mine_cells_result.txt` relative to its own folder, but the test
+resolves every documented path from the **repo root**, so it looks for
+`<root>/data/mine_cells_result.txt`. The real file exists at
+`theories/no_side_premium/data/mine_cells_result.txt` — and that directory
+is gitignored (`.gitignore:25`), so on a fresh clone it would not exist
+under any spelling.
+
+**Fix is one of two lines, and belongs to whoever owns that file:** write
+the full repo-relative path in `THEORY.md`, or add it to
+`_ALLOWED_MISSING` / `_DELIBERATELY_ABSENT` in `tests/test_conventions.py`
+as the runtime artifact it is (the second is probably right, since the file
+is a generated result that is deliberately not committed).
+
+Recorded here rather than as its own ticket because the action is the same:
+**`no_side_premium`'s in-flight work leaves the suite red in two ways and
+should not be committed until both are resolved.** Suite as of
+2026-09-01T23:5xZ: **1,422 passed, 2 failed**, and both failures name only
+that theory's uncommitted files.

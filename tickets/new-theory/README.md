@@ -331,7 +331,7 @@ Sorted by composite, then by outcome.
 | ~~[calendar-arb](completed/2026-08-24-calendar-arb.md)~~ | date-ladder nesting logic | 3 | 4 | 3 | 10 | S | **DEAD 2026-08-27** |
 | [news-drift](open/2026-08-24-news-drift.md) | underreaction continuation | 4 | 4 | 2 | 10 | M | open |
 | [weather-model-gap](open/2026-08-24-weather-model-gap.md) | ensemble forecast vs market | 4 | 3 | 3 | 10 | M | open |
-| [settled-but-trading](open/2026-08-24-settled-but-trading.md) | resolution-source staleness | 4 | 3 | 3 | 10 | M–L | open — see `accumulation-decay` |
+| [settled-but-trading](completed/2026-08-24-settled-but-trading.md) | resolution-source staleness | 4 | 3 | 3 | 10 | M–L | **killed** — favourable case quotes 1.000; the residual is rules ambiguity |
 | [new-market-anchor](open/2026-08-24-new-market-anchor.md) | issuance mispricing (study) | 3 | 5 | 2 | 10 | S | open |
 | [cross-venue-fair-value](open/2026-08-24-cross-venue-fair-value.md) | cross-venue convergence | 3 | 3 | 3 | 9 | M | open |
 | [econ-anchoring](open/2026-08-24-econ-anchoring.md) | consensus anchoring on releases | 3 | 3 | 3 | 9 | M | open |
@@ -339,12 +339,12 @@ Sorted by composite, then by outcome.
 | [metaculus-gap](open/2026-08-24-metaculus-gap.md) | forecaster aggregate vs market | 2 | 3 | 3 | 8 | M | open |
 | [whale-follow](open/2026-08-24-whale-follow.md) | proven-wallet mirroring | 3 | 2 | 3 | 8 | L | open — see `block-trade-whale-follow` |
 | [vol-crossing](open/2026-08-24-vol-crossing.md) | barrier-option model | 3 | 3 | 2 | 8 | M | open |
-| [implication-graph](open/2026-08-24-implication-graph.md) | cross-event logic | 2 | 2 | 3 | 7 | L | open — see `aggregation-gap` |
+| [implication-graph](completed/2026-08-24-implication-graph.md) | cross-event logic | 2 | 2 | 3 | 7 | L | **killed on class evidence** — cross-event identities measured flat twice |
 | [insider-flow-radar](open/2026-08-24-insider-flow-radar.md) | anomalous fresh flow | 2 | 2 | 2 | 6 | L | open |
 
 ### Read this table honestly: it has been anti-predictive so far
 
-Eight of the 22 have been acted on, and **not one has produced a bettable
+Ten of the 22 have been acted on, and **not one has produced a bettable
 edge.** The four highest-composite specs are retired, not-measured, open,
 and sterile respectively. Meanwhile every result this repo actually has
 came from somewhere else: `insider_judgment` (the only positive segment,
@@ -355,7 +355,7 @@ paper. Even `no_side_premium`, which *is* from this backlog, got its
 founding evidence from the mention and insider full-coverage backtests
 rather than from the literature its spec cites.
 
-Fourteen untouched specs is a real selection caveat — the top ones were
+Twelve untouched specs is a real selection caveat — the top ones were
 built first and so had more chances to fail. But the pattern is one to
 weigh before treating a high composite as a reason to build: **an idea
 sourced from a paper and an idea sourced from this repo's own settled
@@ -378,13 +378,25 @@ also got easier than the spec assumed: `tools/kalshi/trades.py` did not
 exist on 2026-08-24, and the per-trade aggressor feed lets a replay check
 real crossing prints rather than inferring fills from a candle bid path.
 
-**Four open tickets are already successors to specs in this table** and
-should be read together, not twice: `aggregation-gap` is the part of
-`implication-graph` that needs no model; `accumulation-decay` is category
-(a) of `settled-but-trading` made concrete; `block-trade-whale-follow` is
-`whale-follow` without the cross-venue matching; `kalshi-taker-flow-toxicity`
-is the other side of `maker-mode-execution`'s coin (that one collects the
-spread, this one pays it to trade with informed flow).
+**Four specs in this table spawned successors, and all four successors
+have now closed — three of them dead.** The successor pattern is worth
+naming because it worked: each one took a parent spec, stripped the
+expensive part, and measured the cheapest decisive thing instead.
+
+| successor | what it stripped from its parent | closed |
+|---|---|---|
+| `aggregation-gap` | `implication-graph` minus the LLM edge construction | **dead** — mid sum 274.25 vs a true ≤ 272, but the band [264.03, 284.47] straddles it; both riskless baskets fail at the ask |
+| `accumulation-decay` | `settled-but-trading` category (a), made concrete | **dead** — the post-window bucket quotes 1.000; a *perfect* forecaster nets median +0.00 |
+| `block-trade-whale-follow` | `whale-follow` minus the cross-venue matching | **dead on population** — 5 blocks in 498,918 trades, and 3 of the 5 are one decision |
+| `kalshi-taker-flow-toxicity` | `maker-mode-execution`'s coin, other side | **built** — now the `taker_flow` theory |
+
+Three of those four kills landed in **one session each**, and two of them
+took their parent down with them (`implication-graph` and
+`settled-but-trading` are both closed above, on their successors'
+evidence). **That is the cheapest thing this backlog does: before building
+a spec, ask what the one-afternoon version of it would measure, and
+measure that.** Rule 0's dispersion check and rule 0f's executable-price
+rule are the two that keep firing.
 
 Paired designs: news-drift ↔ overreaction-fade share one joint
 sign-measurement (each claims only the cells measured its way);
