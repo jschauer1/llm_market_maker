@@ -240,3 +240,72 @@ mandatory for any side comparison in this repo**, this theory's included.
 The deciding experiment is the series-bias liquidity backfill completing,
 after which the sweep can be filtered to the screen's own bar and the
 control re-run. Write-up: `studies/2026-09-01-side-split-60day-obs/`.
+
+**2026-09-01 (cont., `fleet-w1-g3`) — both cells measured CLEAN of the
+early-close anchor bug, and cell B is two settlement days from its own kill
+bar.**
+
+`studies/2026-08-29-early-close-exposure-existing-backtests` named this
+theory as needing a specific look and then reasoned rather than measured
+("Both look safe, but that is a reasoned expectation, not a measurement").
+It is now measured. Over all 281 tickers this theory has ever recorded —
+**281/281 fetched from Kalshi, 0 aged out** — the exposed fraction is
+**zero in both cells**:
+
+| cell | n | clusters | headline | EXPOSED | CLEAN | contamination bound |
+|---|---|---|---|---|---|---|
+| A | 20 | 2 | +4.33 | **n=0** | +4.33 | **0.000 pts** |
+| B | 150 | 116 | +0.46 | **n=0** | +0.46 | **0.000 pts** |
+
+Because the bound is `f x d` and `f = 0`, this is decisive without needing
+the exposed-vs-clean contrast to be significant — which it never could have
+been on a 170-row theory. **Both cells' numbers are uncontaminated, so the
+bars below read against clean data.** Cell A's 29 classifiable tickers are
+26 `KXTRUMPSAY` plus three others, all with the deadline *before* close;
+cell B's 150 rows are date-certain settlement ladders and sports games,
+which carry no by-deadline deadline at all. Four validity checks (threshold
+distribution, family composition, a regex sweep for missed phrasing, and a
+parse-free `expected_expiration_time` check) are in `NOTES.md`; procedure
+in `exposure.py` / `exposure_measure.py`.
+
+**Cell B, on the bar as written.** The kill condition for cell B's claim is
+`calibration_edge_net >= 0 at n >= 150`, and per the 2026-08-27 amendment
+also `n_days >= 8`. It now stands at **n = 150 exactly, +0.46, over 6
+settlement days** — value and row count both met, **the day count short by
+two.** So the claim is *not yet* falsified by its own rule, and it is as
+close to falsified as it can be without being so.
+
+Two things must be said alongside that, because they cut in opposite
+directions and the pre-registration does not adjudicate between them:
+
+- **The day-clustered statistic has NOT crossed zero.** Per-day mean
+  **−0.28**, day-clustered SE **6.09**, 4/6 days positive. The 2026-08-27
+  amendment reads the bar on `calibration_edge_net` (the row-level figure)
+  and requires the day SE *reported alongside*, which is the reading
+  applied here — but on the statistic that same amendment was written
+  because rows are not independent, cell B is nominally still on the
+  claim's side. **When the eighth settlement day lands, the bar will fire
+  on a statistic whose sibling says the opposite.** That tension is
+  recorded now, before the data arrives, so resolving it later cannot be a
+  post-hoc choice. It is flagged for a governance ruling rather than
+  settled here.
+- **Neither reading is distinguishable from zero.** t = +0.15 row-clustered.
+  The honest statement remains the ticket's: what the data excludes is the
+  **magnitude**, not the sign — a −3.9 avoid effect is not there. "YES
+  favorites at 0.80–0.90 are priced about fairly" is what this supports;
+  "they are underpriced" is not.
+
+**And the −3.9 is not hiding in a subset.** 16 exploratory cuts over cell
+B's 150 rows / 116 clusters — by family (9 groups), entry-price band (3),
+ladder-leg vs discrete, and a volume median split — produce **no partition
+distinguishable from zero**, and none negative at readable size. The two
+apparent standouts (`index-rate` +12.69, `tech-compute` +12.45) rest on 6
+and 4 rows over 2 and 1 settlement days, which is the single-observation
+amplification this repo has already documented twice. Procedure and full
+output: `mine_cells.py`, `data/mine_cells_result.txt`. Per the pairing
+discipline nothing here is registered as a slice, because nothing survived
+to register.
+
+So **cell A is now the theory's only live claim**, exactly as the
+2026-09-01 liquidity-filtered study anticipated — and its constraint is not
+evidence quality but **event clusters: 2, against a gate of 10.**

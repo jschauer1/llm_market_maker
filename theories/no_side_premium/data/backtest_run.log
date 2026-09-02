@@ -1,0 +1,5 @@
+384 mention-family series eligible; window close >= 2026-08-25 .. 2026-09-02
+281 tickers already recorded by this theory will be skipped (ledger dedup includes run_mode, so recording them again would double-count)
+  KXMTPMENTION                   surv   14  cellA   0  written   0  (skip-live 0, no-cell 6, never-qual 8, no-candles 0)
+  KXALLINMENTION                 surv   12  cellA   0  written   0  (skip-live 0, no-cell 0, never-qual 0, no-candles 12)
+  KXLASTWORDMENTION              surv   34  cellA   0  written   0  (skip-live 0, no-cell 0, never-qual 14, no-candles 20)

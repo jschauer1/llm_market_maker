@@ -1,0 +1,224 @@
+{
+ "series": {
+  "KXEARNINGSMENTIONGOOGL": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXMTPMENTION": {
+   "series_ticker": "KXMTPMENTION",
+   "n_survivors": 14,
+   "no_candles": 0,
+   "no_quotes": 0,
+   "never_qualified": 8,
+   "already_live": 0,
+   "cell_a": 0,
+   "cell_b": 0,
+   "no_cell": 6,
+   "written": 0
+  },
+  "KXBESSENTMTPMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONPLTR": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXMMMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONALIBABA": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONSHOP": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONNKE": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONCCL": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXJENSENMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXGUTFELDMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONBAC": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONDOCUSIGN": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONMTN": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONGRAB": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXCARLSONMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONFIG": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONMETA": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXBILATERALMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONEBAY": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KX60MINMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONCOST": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXKIRKMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONAAPL": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXWOMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONYETI": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONRDDT": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXLOVEISLMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONJNJ": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONUAL": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONPSKY": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONFUTU": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXSAVEACT": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXFURYMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXDWTSMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXBRKMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXLUTNICKFTNMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXCANDEBMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXCFBMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXDJTNATOMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXAPPLEMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXEARNINGSMENTIONSYUM": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXKINGMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXNEWSOMMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXCROCKETTMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXPORTNOYMENTION": {
+   "n_survivors": 0,
+   "written": 0
+  },
+  "KXALLINMENTION": {
+   "series_ticker": "KXALLINMENTION",
+   "n_survivors": 12,
+   "no_candles": 12,
+   "no_quotes": 0,
+   "never_qualified": 0,
+   "already_live": 0,
+   "cell_a": 0,
+   "cell_b": 0,
+   "no_cell": 0,
+   "written": 0
+  },
+  "KXLASTWORDMENTION": {
+   "series_ticker": "KXLASTWORDMENTION",
+   "n_survivors": 34,
+   "no_candles": 20,
+   "no_quotes": 0,
+   "never_qualified": 14,
+   "already_live": 0,
+   "cell_a": 0,
+   "cell_b": 0,
+   "no_cell": 0,
+   "written": 0
+  }
+ }
+}

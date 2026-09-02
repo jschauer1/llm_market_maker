@@ -1,0 +1,53 @@
+==============================================================================
+CELL B  (outcome=yes, ask 0.80-0.90) -- the avoid claim, -3.9 net
+==============================================================================
+  HEADLINE                   n  150  cl 116  net   +0.46  se   3.18  t  +0.15  | day-mean  -0.28 over 6 days (4+)
+
+  per settlement day:
+    2026-08-27  n  14  net  +14.18
+    2026-08-28  n  22  net  -27.53
+    2026-08-29  n  20  net   -6.46
+    2026-08-30  n   9  net   +4.80
+    2026-08-31  n  59  net   +6.56
+    2026-09-01  n  26  net   +6.75
+    day-mean -0.28  SE 6.09  (4/6 positive)
+
+  by family (published series prefix, no judgment):
+  commodity-ladder           n   32  cl  18  net   -1.57  se   8.19  t  -0.19  | day-mean  +0.48 over 4 days (3+)
+  crypto-ladder              n   30  cl  21  net   +0.40  se   6.96  t  +0.06  | day-mean  -9.49 over 6 days (4+)
+  other                      n   24  cl  24  net   -1.84  se   7.79  t  -0.24  | day-mean  -0.99 over 6 days (3+)
+  sport                      n   19  cl  16  net   -2.78  se  10.16  t  -0.27  | day-mean -11.09 over 5 days (3+)
+  retail-price               n   18  cl  15  net   +2.53  se   8.76  t  +0.29  | day-mean -12.81 over 4 days (3+)
+  weather                    n   10  cl   9  net   +2.97  se  11.44  t  +0.26  | day-mean  +5.58 over 5 days (4+)
+  entertainment              n    7  cl   6  net   +0.50  se  16.99  t  +0.03  | day-mean  +5.94 over 3 days (2+)
+  index-rate                 n    6  cl   4  net  +12.69  se   1.47  t  +8.60  | day-mean +14.02 over 2 days (2+)
+  tech-compute               n    4  cl   3  net  +12.45  se   1.38  t  +9.04  | day-mean +12.45 over 1 days (1+)
+
+  by entry-price band inside 0.80-0.90:
+  0.800-0.833                n   49  cl  46  net   +0.88  se   5.34  t  +0.16  | day-mean  -1.92 over 6 days (3+)
+  0.833-0.867                n   44  cl  39  net   +0.34  se   5.43  t  +0.06  | day-mean  +4.14 over 6 days (4+)
+  0.867-0.900                n   57  cl  53  net   +0.20  se   4.39  t  +0.05  | day-mean  +0.55 over 6 days (4+)
+
+  ladder vs discrete (a ladder leg is one strike of many on a
+  continuous quantity; a discrete market is not):
+  ladder-leg families        n   96  cl  67  net   +1.18  se   3.89  t  +0.30  | day-mean -13.88 over 6 days (3+)
+  discrete families          n   54  cl  49  net   -0.81  se   5.37  t  -0.15  | day-mean  -3.82 over 6 days (3+)
+
+  by volume at call (median split):
+  volume <= median           n   75  cl  65  net   +1.89  se   4.28  t  +0.44  | day-mean  +2.82 over 6 days (4+)
+  volume >  median           n   75  cl  58  net   -0.96  se   4.67  t  -0.21  | day-mean  -2.81 over 6 days (3+)
+    (median lifetime volume 11321)
+
+==============================================================================
+CELL A  (outcome=no, ask >= 0.85) -- the live claim, +2.0 net
+==============================================================================
+  HEADLINE                   n   20  cl   2  net   +4.33  se   1.50  t  +2.89  | day-mean  +5.53 over 2 days (2+)
+  series: {'KXTRUMPACT': 2, 'KXTRUMPSAY': 18}
+  event clusters: 2 -- below every gate; NOT sliced, because a 2-cluster
+  sample cannot support a partition.
+
+==============================================================================
+16 exploratory cuts taken on cell B. Nothing above is an edge; a
+survivor is a hypothesis to register as a slice, and a failure on
+150 rows is unconfirmed rather than disproven.
+==============================================================================

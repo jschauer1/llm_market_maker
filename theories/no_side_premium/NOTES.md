@@ -745,3 +745,169 @@ and an open-interest ladder inside the band that is not monotone in any
 direction. If any future cell or slice here reaches for a liquidity
 predicate, reach for spread first; open interest looks load-bearing and
 measurably is not, at least on settled history at a single anchor.
+
+## 2026-09-01 (fleet-w1-g3) — early-close anchor exposure in cells A and B: capture done, pre-registration BEFORE the split
+
+Working ticket `2026-09-01-early-close-exposure-in-cells-a-and-b`, filed by
+`fleet-w3-g1` out of the study lane. Two open questions on this theory are
+entangled and the ticket says to answer them together:
+
+1. `cell-b-yes-avoid` has drifted **−8.00 (n 64) → −0.98 (n 109) → +0.46
+   (n 150)** and there is an open ticket asking whether the pre-registered
+   −3.9 avoid claim is falsified by crossing zero upward.
+2. Nobody has ever measured whether either cell's number is contaminated by
+   the early-close anchor bug, which
+   `studies/2026-08-29-early-close-exposure-existing-backtests` flagged for
+   this theory by name and then *reasoned* about rather than measured. Its
+   own words: "Both look safe, but that is a reasoned expectation, not a
+   measurement."
+
+**Capture first, because capture is the perishable half.** Done, and this
+is a result on its own: **281 of 281 tickers this theory has ever recorded
+fetched successfully, 0 aged out of the API** (640 KB, one payload per
+line, `theories/no_side_premium/data/raw_markets.jsonl`, written by
+`theories/no_side_premium/exposure.py collect`). Against the parent study's
+**9.7% already unreachable** on the same day, that says this theory's
+population is nowhere near the ~60-day archive boundary — it started
+recording 2026-08-26 and its oldest rows are six days old. The urgency the
+ticket cited is real for `insider_judgment`'s 2026-06 campaigns; it does
+not bind here yet. It will: rows recorded today age out around 2026-10-31,
+so the standing answer is to re-run `collect` on every pass, which is
+cheap and resumable.
+
+### The pre-registration — written now, before any arm is computed
+
+**Classifier, inherited from the parent study unchanged** so this theory's
+numbers are comparable to `insider_judgment`'s rather than merely
+available: published `custom_strike.Date` first, then
+`deadline_drift.collect_settled.parse_deadline` over title, rules_primary,
+subtitle, yes_sub_title; **EXPOSED** when the stated deadline sits more
+than **3.0 days** after `close_time`; **CLEAN = UNEXPOSED + UNKNOWN**,
+because a market with no by-deadline deadline carries no exposure by this
+mechanism; **GONE** (unclassifiable) stays out of both arms.
+
+**Arms.** The two registered slice predicates, unchanged, over settled rows:
+cell A = `outcome=no, entry_price >= 0.85`; cell B = `outcome=yes,
+entry_price in [0.80, 0.90]`.
+
+**Power floor: 10 event clusters in each arm**, the parent study's
+pre-committed floor and its precedent. Below it in either arm the contrast
+is reported **NOT MEASURED** and is not reinterpreted. On a 170-row theory
+I expect this to fire, exactly as the ticket warns.
+
+**Predicted directions, stated before looking**, from the parent study's
+measured asymmetry (EXPOSED − CLEAN = **−4.51** OOS / −9.22 IS on the NO
+side; **+4.98** OOS / +24.93 IS on the YES side):
+
+- **Cell B is a YES-side claim**, so it sits on the side where the measured
+  distortion is *largest*. Prediction: EXPOSED reads **above** CLEAN. If so,
+  the clean arm is **below** the +0.46 headline, i.e. part of the upward
+  zero-crossing is artifact and the −3.9 claim is *less* falsified than the
+  headline says.
+- **Cell A is drawn from the mention population**, which the 2026-08-29
+  study measured as not exposed (3 of 68 sampled carried by-deadline
+  phrasing, none early). Prediction: the exposed arm is **empty or
+  near-empty**. That is a result — "not exposed" — and must be reported as
+  such rather than as "not measured".
+
+**The bound is the part that does not need power, and it is why this is
+worth running even though the contrast probably will not clear the floor.**
+If a cell is a fraction *f* exposed and the exposed-minus-clean gap is *d*,
+then headline ≈ clean + *f*·*d*, so the most contamination can be moving the
+headline is |*f*·*d*|. *f* is a count and needs no significance at all; *d*
+can be borrowed from the parent study's measured OOS values as a stated
+assumption when this theory's own *d* is under-powered. A small *f* settles
+the contamination question outright regardless of how noisy *d* is here.
+
+**What this cannot license, fixed now.** It cannot confirm or kill either
+cell — the bars in THEORY.md's "Pre-registered outcomes" govern that, and
+cell B's bar (`net < 0` at `n >= 60` **and** `n_days >= 8`) is at 6 days and
+therefore unmet either way. What it can do is say whether the number being
+read against those bars is contaminated, and by how much.
+
+### The result: ZERO exposure in both cells. The headline numbers ARE the clean numbers.
+
+`python -m theories.no_side_premium.exposure_measure`, saved verbatim at
+`theories/no_side_premium/data/exposure_result.txt`.
+
+```
+EXPOSURE over every captured ticker: {'UNKNOWN': 252, 'UNEXPOSED': 29}
+  deadline source used: {'parse:title': 28, 'custom_strike': 1}
+
+CELL A  (outcome=no, ask >= 0.85)     headline n 20  clusters   2  +4.33
+  EXPOSED  n 0        CLEAN n 20  clusters   2  +4.33
+CELL B  (outcome=yes, ask 0.80-0.90)  headline n 150 clusters 116  +0.46
+  EXPOSED  n 0        CLEAN n 150 clusters 116  +0.46
+```
+
+**`f = 0` in both cells, so the contamination bound `f*d` is exactly 0.000
+points whatever `d` is.** This is the case the bound was written for: the
+exposed fraction is a count and needs no significance, so a null here is
+decisive where the *contrast* never could have been. The pre-committed
+10-cluster floor did fire, exactly as the ticket predicted — and it did not
+matter.
+
+**Cell A's prediction was confirmed** ("not exposed", not "not measured"):
+26 of its 29 classifiable tickers are `KXTRUMPSAY`, whose deadline parses
+14 hours *before* close (`days_early` = −0.58 for 27 of 29, −0.17 for the
+other two) because "before Aug 31" resolves to midnight and the market
+closes at 14:00 UTC that day. Deadline before close is the opposite of
+exposure.
+
+**Cell B's prediction was wrong, and in the safe direction.** I predicted
+exposure would be *largest* here because it is the YES side. It is zero.
+
+#### Four validity checks, because a clean null needs a positive control
+
+1. **`days_early` among the 29 UNEXPOSED**: all in [−0.58, −0.17]. No mass
+   anywhere near the +3.0 threshold, so the null is not a threshold artifact.
+2. **What the 252 UNKNOWN actually are**: `KXBTCD` 23, `KXRT` 12, `KXWTI` 12,
+   `KXETHD` 9, `KXRAIN` 8, `KXSOLD`, `KXGOLDD`, `KXAAAGAS*`, `KXWNBA*`,
+   `KXFIBAGAME`. These are **date-certain settlement ladders and sports
+   games** — "Bitcoin price on Aug 28, 2026?", "Spain wins" — which settle
+   *on* a stated date rather than *by* one. They carry no exposure by this
+   mechanism, which is what UNKNOWN is defined to mean. The classifier is
+   not failing on them; there is nothing to find.
+3. **Regex sweep for phrasing the parser missed**: over all 150 cell-B rows'
+   title + rules_primary + subtitle + yes_sub_title, searching
+   `(before|by|prior to|no later than) <month|year>` — **0 hits**. No
+   by-deadline market is hiding in the UNKNOWN arm.
+4. **Parse-free published-field check**: `expected_expiration_time −
+   close_time` is **exactly 0.000 days for all 20 cell-A rows**, and has
+   median 0.003 in cell B. Nine cell-B rows show 7–9 days, and every one is
+   a **data-publication lag** — Burger King / Dunkin / Chipotle / Taco Bell
+   average-price markets, a Billboard chart week — i.e. the market closed
+   and then waited for the source to publish. That is settlement lag, not a
+   deadline sitting after the close, and it is the opposite direction from
+   the bug.
+
+#### One field-level fact worth carrying out of this
+
+**`can_close_early` is `True` for all 281 captured markets**, so it is not
+the published shortcut it looks like — it says a market *may* close early,
+not that it *did*, and on this sample it discriminates nothing.
+`latest_expiration_time − close_time` is likewise a settlement grace window
+(median 7.0 days across all 281), not the deadline gap. The useful published
+field is `expected_expiration_time`, and only as a cross-check: it detects
+settlement lag, which the title parser correctly ignores. **The title/rules
+parser remains the instrument for this bug** — recorded because the obvious
+next reflex is to reach for a field, and I checked, and the fields do not
+answer it.
+
+#### What this closes, and what it does not
+
+**Closes:** the 2026-08-29 study's open thread on this theory. Its reasoned
+expectation — "Both look safe, but that is a reasoned expectation, not a
+measurement" — is now a measurement, and it was right, though not for the
+reason it gave. It expected cell B to be *conservatively* biased by an
+inflating anchor. There is no anchor here at all.
+
+**Does not close:** anything about whether either cell is right. Exposure is
+zero, so the cells' own bars read against uncontaminated numbers — which is
+what makes the cell-B question below answerable rather than an answer to it.
+
+**Capture note for whoever runs this next.** 281/281 fetched, 0 aged out.
+This theory's oldest rows are 2026-08-26, so nothing is near the ~60-day
+archive boundary yet; rows recorded today age out around 2026-10-31.
+`exposure.py collect` is resumable and skips what is on disk, so re-running
+it on any future pass costs one pass over new tickers only.

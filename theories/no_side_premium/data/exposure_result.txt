@@ -1,0 +1,31 @@
+CAPTURE: 281 tickers on disk, 281 fetched, 0 aged out of the API (0.0%)
+EXPOSURE over every captured ticker: {'UNKNOWN': 252, 'UNEXPOSED': 29}
+  deadline source used: {'parse:title': 28, 'custom_strike': 1}
+
+OBSERVATIONS: 170 settled live rows for no_side_premium v1
+
+CELL A  cell-a-no-favorite   (outcome=no,  ask >= 0.85)
+  whole cell (headline)                  n   20  clusters   2  edge_net   +4.33  se   1.50  win 0.950
+  EXPOSED                                n    0  clusters   0  edge_net     n/a  se    n/a  win n/a
+  UNEXPOSED (deadline found, on time)    n   18  clusters   1  edge_net   +4.03  se    n/a  win 0.944
+  UNKNOWN (no deadline -> not exposed)   n    2  clusters   1  edge_net   +7.02  se    n/a  win 1.000
+  CLEAN = UNEXPOSED + UNKNOWN            n   20  clusters   2  edge_net   +4.33  se   1.50  win 0.950
+  aged out of the API (unclassifiable)   n    0  clusters   0  edge_net     n/a  se    n/a  win n/a
+  -> exposed fraction f = 0/20 = 0.0%
+  -> CONTRAST NOT MEASURED: an arm is below the pre-committed floor of 10 event clusters.
+  -> CONTAMINATION BOUND  f*d
+       parent study OOS d = -4.51: -0.000 pts of the headline
+       headline +4.33 -> clean +4.33
+
+CELL B  cell-b-yes-avoid     (outcome=yes, ask 0.80-0.90)
+  whole cell (headline)                  n  150  clusters 116  edge_net   +0.46  se   3.18  win 0.867
+  EXPOSED                                n    0  clusters   0  edge_net     n/a  se    n/a  win n/a
+  UNEXPOSED (deadline found, on time)    n    0  clusters   0  edge_net     n/a  se    n/a  win n/a
+  UNKNOWN (no deadline -> not exposed)   n  150  clusters 116  edge_net   +0.46  se   3.18  win 0.867
+  CLEAN = UNEXPOSED + UNKNOWN            n  150  clusters 116  edge_net   +0.46  se   3.18  win 0.867
+  aged out of the API (unclassifiable)   n    0  clusters   0  edge_net     n/a  se    n/a  win n/a
+  -> exposed fraction f = 0/150 = 0.0%
+  -> CONTRAST NOT MEASURED: an arm is below the pre-committed floor of 10 event clusters.
+  -> CONTAMINATION BOUND  f*d
+       parent study OOS d = +4.98: +0.000 pts of the headline
+       headline +0.46 -> clean +0.46
