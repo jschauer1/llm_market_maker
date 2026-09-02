@@ -942,3 +942,43 @@ def test_no_new_top_level_directory():
         "a new top-level directory appeared -- decide deliberately "
         f"whether it belongs: {sorted(found - _TOP_LEVEL)}"
     )
+
+
+#: What a retired theory is allowed to keep. RETIRED.md is the death
+#: certificate; THEORY.md is what it claimed; NOTES.md is the lab
+#: notebook that proves it was tried; RESULTS.md is the DISTILLED
+#: backtest performance -- the user's ruling of 2026-09-01 was "theory +
+#: notes + backtest performance with details, not the entire backtest".
+#: A `studies/` subtree is allowed because a retired theory's studies
+#: retire with it.
+_RETIRED_ALLOWED = {"RETIRED.md", "THEORY.md", "NOTES.md", "RESULTS.md"}
+
+
+def test_a_retired_theory_holds_only_its_record():
+    """A retired theory is a record, not a codebase.
+
+    Its modules, runbook, prompts and raw backtest payloads are deleted
+    at retirement and stay retrievable by git rev -- RETIRED.md names the
+    rev. Without this test the folder quietly reacquires code one
+    convenient file at a time, and the deletion is undone by drift rather
+    than by decision.
+    """
+    retired_root = ROOT / "theories" / registry.RETIRED_DIRNAME
+    if not retired_root.is_dir():
+        pytest.skip("no theory has been retired into the tree yet")
+    problems = []
+    for folder in sorted(retired_root.iterdir()):
+        if not folder.is_dir():
+            continue
+        if not (folder / registry.RETIRED_MARKER).is_file():
+            problems.append(f"{folder.name}: no RETIRED.md marker")
+        for path in folder.rglob("*"):
+            if path.is_dir() or "studies" in path.relative_to(folder).parts:
+                continue
+            if path.name not in _RETIRED_ALLOWED:
+                rel = path.relative_to(retired_root)
+                problems.append(f"{rel}: not one of {sorted(_RETIRED_ALLOWED)}")
+    assert problems == [], (
+        "a retired theory holds more than its record -- retirement "
+        "deletes the code and keeps the findings:\n" + "\n".join(problems)
+    )
