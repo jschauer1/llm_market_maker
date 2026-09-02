@@ -190,7 +190,6 @@ def _cmd_tickets(args) -> int:
         path = tickets.create(
             root, lane=args.lane, slug=args.slug, title=args.title,
             body=args.body, theory=args.theory, theory_path=theory_path,
-            study=args.study,
             created_by=args.session, author_lane=args.author_lane,
             author_focus=args.author_focus,
             author_context=args.author_context,
@@ -854,7 +853,10 @@ def build_parser() -> argparse.ArgumentParser:
     tls = tsub.add_parser("list", help="the backlog a session chooses from")
     tls.add_argument("--lane", default=None, choices=tickets.LANES)
     tls.add_argument("--theory", default=None)
-    tls.add_argument("--study", default=None)
+    tls.add_argument("--study", default=None,
+                     help="tickets filed AGAINST a named study, read from "
+                          "their `study:` frontmatter -- not the studies "
+                          "themselves, which are `--lane study`")
     tls.add_argument("--status", default="open")
     tls.add_argument(
         "--full", action="store_true",
@@ -870,8 +872,6 @@ def build_parser() -> argparse.ArgumentParser:
     tnew.add_argument("--theory", default=None,
                       help="required for --lane theory; it lives in that "
                            "theory's folder")
-    tnew.add_argument("--study", default=None,
-                      help=argparse.SUPPRESS)   # retired with the study tree
     tnew.add_argument("--session", default=None,
                       help="your session name, as ListAgents reports it")
     tnew.add_argument(

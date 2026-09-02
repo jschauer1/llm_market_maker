@@ -119,7 +119,8 @@ hundred tokens, and the cost of skipping one is a rule you never saw.
 another lane becomes a **ticket** (`python -m tools.cli tickets list`) —
 **a ticket lives inside the thing it is about.** Work on a theory goes
 in that theory's folder (`--lane theory --theory <slug>`); work on a
-study goes in that study's folder (`--lane study --study <slug>`);
+study goes in that study's folder (`--lane study`, plus `--theory
+<slug>` when a theory owns it);
 everything else goes under `tickets/<lane>/`. A theory folder and a
 study folder are each supposed to hold everything their expert needs,
 and queued work against them is part of that. **A theory's folder is wherever its registry row says,

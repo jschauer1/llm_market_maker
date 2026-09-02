@@ -3,7 +3,6 @@ title: Parlay markup — do Kalshi's cross-game parlays price above the product 
 lane: study
 created: 2026-08-30
 created_by: migration
-status: open
 ---
 
 # Parlay markup — pre-registration, written BEFORE any markup number

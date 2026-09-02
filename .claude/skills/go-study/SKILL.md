@@ -112,7 +112,7 @@ The header line is the interface — `cli studies` reads it live, so this
 is how a supervisor learns what you found without opening the file:
 
 ```markdown
-**Date:** YYYY-MM-DD · **Status:** complete · **Tier:** A · **Verdict:** <one line>
+**Date:** YYYY-MM-DD · **Tier:** A · **Verdict:** <one line>
 ```
 
 Keep the *directory* honest — that is where a study's state lives now,
@@ -138,11 +138,14 @@ Never bet the data that suggested it.
 
 ## 6. Before you close the claim
 
-- Is the `Status` line true?
+- Is the study in the state directory its work is actually in?
 - Does `cli studies` show what you want a supervisor to see?
 - Did the answer reach whoever asked the question?
-- Is anything you could not finish a ticket in the study's own folder
-  (`--lane study --study <slug>`) rather than in your head?
+- Is anything you could not finish written down in the study's own
+  folder rather than in your head? A study is itself a ticket now, so
+  `--lane study` would open a second study rather than annotate this
+  one: put unfinished work in this study's `STUDY.md`, or file it in
+  the lane that will do it, naming the study.
 
 ```bash
 python -m tools.cli lane release <id> --summary "<what was measured, and what it decided>"

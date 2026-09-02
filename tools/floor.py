@@ -203,6 +203,21 @@ def required_coverage(conn: sqlite3.Connection,
             "kind": "study",
             "name": study["slug"],
             "theory": study["owner"],
+            # A study's pipeline STATE (`question`/`investigation`) is
+            # reported under the key `status` on purpose, and the name is
+            # not a slip. `status` is this function's own per-row
+            # vocabulary -- every row kind it returns fills the key with
+            # whatever "where does this stand" means for that kind, and a
+            # sub-theory row already puts `registered` there, which is the
+            # slices vocabulary and not the theory-status one either.
+            # Renaming it for studies alone would make the shape of a row
+            # depend on its `kind`, and this list is consumed as JSON by
+            # other agents (`cli floor checklist`), which would then need
+            # to know three key names to ask one question.
+            #
+            # A study has no `status` FIELD to conflict with: state is the
+            # directory, and the header field that used to duplicate it is
+            # exactly what this pipeline removed.
             "status": study["state"],
         })
     return out

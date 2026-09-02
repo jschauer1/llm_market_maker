@@ -354,10 +354,13 @@ multi-hour collector from the floor; the floor is a bounded daily
 procedure and a collector outlives it.
 
 If an in-flight study has no ticket saying what it is waiting on, file
-one against the study itself:
+one in the lane that will do the work and name the study in its title.
+A study is itself a ticket now, so `--lane study` would open a SECOND
+study rather than a note about this one:
 
 ```bash
-python -m tools.cli tickets new --lane study --study <slug> ...
+python -m tools.cli tickets new --lane maintenance --slug <slug> \
+    --title "<study slug>: <what it is waiting on>" --body "..."
 ```
 
 **The report is a deliverable, not the record.** The audit trail stays in

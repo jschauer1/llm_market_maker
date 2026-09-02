@@ -4,7 +4,6 @@ lane: study
 theory: mention_family
 created: 2026-08-29
 created_by: migration
-status: open
 ---
 
 # Series bias mining — pre-registration, written BEFORE looking

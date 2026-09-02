@@ -601,3 +601,180 @@ def test_advance_requires_a_note(tmp_path):
                           body="Bar: x.", created="2026-09-02")
     with pytest.raises(ValueError, match="a note is required"):
         tickets.advance(path, to="investigation", note="  ")
+
+
+# --- advance must never be the way into completed/ -------------------------
+#
+# The deletion bug, and why these two guards are separate. Before
+# `advance()` existed, `close()` was the ONLY route into `completed/` and
+# it rewrote `status: open` -> `status: done` as it moved the file, so
+# "already completed" and "not open" were the same fact -- one guard
+# covered both. `advance()` broke that equivalence: it moved a file-based
+# ticket into `completed/` with its frontmatter untouched, whereupon
+# `close()` computed `path.parent.parent / "completed"` (the directory the
+# file was already in), wrote the closed copy over the source, and
+# `path.unlink()`ed that same path. The ticket was DELETED, exit code 0,
+# `close()` returned a path that did not exist, and `completed/` was
+# empty. Reachable with two ordinary CLI calls.
+
+
+def test_advance_refuses_to_move_a_maintenance_ticket_into_completed(repo):
+    path = tickets.create(repo, lane="maintenance", slug="a", title="A",
+                          body="do a", created="2026-09-01")
+    with pytest.raises(ValueError, match="close"):
+        tickets.advance(path, to="completed", note="done I think")
+
+    assert path.exists(), "the ticket must not have moved"
+    assert path.relative_to(repo).as_posix() == (
+        "tickets/maintenance/open/2026-09-01-a.md"
+    )
+    assert not (repo / "tickets" / "maintenance" / "completed").exists(), (
+        "advance() must not even create the terminal directory")
+
+
+def test_advance_refuses_to_move_a_theory_ticket_into_completed(repo):
+    path = tickets.create(
+        repo, lane="theory", theory="insider_judgment",
+        theory_path="theories/insider_bias/insider_judgment",
+        slug="d", title="D", body="do d", created="2026-09-01")
+    with pytest.raises(ValueError, match="close"):
+        tickets.advance(path, to="completed", note="done I think")
+
+    assert path.exists()
+    assert path.relative_to(repo).as_posix() == (
+        "theories/insider_bias/insider_judgment/tickets/open/2026-09-01-d.md"
+    )
+    assert not (repo / "theories" / "insider_bias" / "insider_judgment"
+                / "tickets" / "completed").exists()
+
+
+def test_close_refuses_a_ticket_already_in_completed_and_keeps_the_file(repo):
+    """The second, independent guard. Even if something else puts a
+    ticket in `completed/`, closing it must not overwrite-then-delete it."""
+    path = tickets.create(repo, lane="maintenance", slug="a", title="A",
+                          body="do a", created="2026-09-01")
+    done = tickets.close(path, resolution="fixed")
+    before = done.read_text(encoding="utf-8")
+
+    with pytest.raises(ValueError, match="already in completed"):
+        tickets.close(done, resolution="fixed again")
+
+    assert done.exists(), "closing twice must never delete the ticket"
+    assert done.read_text(encoding="utf-8") == before, "nothing rewritten"
+    assert tickets.backlog(repo, status="done")[0]["slug"] == "a"
+
+
+def test_the_deletion_path_is_closed_end_to_end(repo):
+    """advance-then-close, the exact two calls that used to delete a
+    ticket. Whichever guard fires, the file survives."""
+    path = tickets.create(repo, lane="maintenance", slug="a", title="A",
+                          body="do a", created="2026-09-01")
+    with pytest.raises(ValueError):
+        tickets.advance(path, to="completed", note="x")
+    with pytest.raises(ValueError):
+        tickets.close(tickets.close(path, resolution="y"),
+                      resolution="y again")
+    survivors = tickets.backlog(repo, status="done")
+    assert [t["slug"] for t in survivors] == ["a"]
+
+
+# --- malformed means something different for a study -----------------------
+
+
+def test_a_study_without_frontmatter_is_not_malformed(tmp_path):
+    """12 of the 15 studies migrated on 2026-09-01 carry no ticket
+    frontmatter -- a STUDY.md is a study document first and a ticket
+    second. Flagging them made `tickets list --lane study --status done`
+    print 12 `!! MALFORMED` rows with blank titles, which is a permanent
+    false positive on the one signal that exists so a genuinely
+    unreadable ticket is visible."""
+    folder = tmp_path / "tickets" / "study" / "answer" / "2026-08-27-probe"
+    folder.mkdir(parents=True)
+    (folder / "STUDY.md").write_text(
+        "# Do calendar arbs ever fire?\n\n"
+        "**Tier:** A -- **Verdict:** they do not\n",
+        encoding="utf-8")
+
+    entry = tickets.backlog(tmp_path, lane="study", status="done")[0]
+    assert entry["malformed"] is False
+    assert entry["title"] == "Do calendar arbs ever fire?", (
+        "the `# ` heading is the title when there is no frontmatter")
+    assert entry["slug"] == "probe"
+    assert "!! MALFORMED" not in tickets.render([entry])
+
+
+def test_a_file_based_ticket_without_frontmatter_is_still_malformed(repo):
+    """The alarm has to keep working where the frontmatter genuinely IS
+    the ticket: a maintenance ticket has nowhere else to record its
+    title, lane or author context."""
+    bad = repo / "tickets" / "maintenance" / "open" / "2026-08-31-broken.md"
+    bad.parent.mkdir(parents=True, exist_ok=True)
+    bad.write_text("# Not frontmatter, just a heading\n", encoding="utf-8")
+
+    entry = [t for t in tickets.backlog(repo) if t["slug"] == "broken"][0]
+    assert entry["malformed"] is True
+
+
+# --- the status field must not come back -----------------------------------
+
+
+def test_a_new_study_carries_no_status_field(tmp_path):
+    """The defect this pipeline existed to remove, regenerated inside
+    the change that removed it. Nothing rewrites a study's frontmatter --
+    `advance()` renames the directory and touches no fields -- so a
+    `status: open` written at creation would read `open` forever, next to
+    a directory saying `answer`. That is series-bias-mining's
+    `**Status:** complete` against two open tickets, one layer down."""
+    path = tickets.create(
+        tmp_path, lane="study", slug="entry-timing", title="Q",
+        body="Bar: x.", created="2026-09-02")
+    assert "status:" not in path.read_text(encoding="utf-8")
+
+    moved = tickets.advance(path, to="answer", note="Done.", now="2026-09-03")
+    assert "status:" not in moved.read_text(encoding="utf-8")
+    assert tickets.backlog(tmp_path, lane="study", status="done")[0][
+        "state"] == "answer"
+
+
+def test_a_maintenance_ticket_still_carries_status_open(tmp_path):
+    """The file-based lanes keep the field: `close()` rewrites it in the
+    same operation that moves the file, so the two cannot drift."""
+    path = tickets.create(
+        tmp_path, lane="maintenance", slug="a", title="A", body="do a",
+        created="2026-09-02")
+    assert "status: open" in path.read_text(encoding="utf-8")
+    done = tickets.close(path, resolution="fixed")
+    assert "status: done" in done.read_text(encoding="utf-8")
+
+
+def test_no_study_on_disk_carries_a_status_field():
+    """The migrated files, not a fixture. Two of the 17 were written with
+    `status: open` by `create()` before the exception above existed."""
+    from tools import db
+
+    offenders = [
+        str(p.relative_to(db.REPO_ROOT)).replace("\\", "/")
+        for p in db.REPO_ROOT.rglob("STUDY.md")
+        if ".git" not in p.parts
+        and any(line.startswith("status:")
+                for line in p.read_text(encoding="utf-8",
+                                        errors="replace").splitlines())
+    ]
+    assert offenders == [], (
+        "a study's state is its directory; a status field can only drift "
+        "from it, which is the defect this pipeline removed")
+
+
+# --- a ticket in an unrecognised state directory ---------------------------
+
+
+def test_advance_names_the_directory_when_the_state_is_unrecognised(repo):
+    """A bare `tuple.index()` raised `x not in tuple` and named neither
+    the directory nor the lane."""
+    stray = repo / "tickets" / "maintenance" / "wip"
+    stray.mkdir(parents=True)
+    path = stray / "2026-09-01-a.md"
+    path.write_text("---\ntitle: A\nstatus: open\n---\n\ndo a\n",
+                    encoding="utf-8")
+    with pytest.raises(ValueError, match="wip"):
+        tickets.advance(path, to="open", note="back to the backlog")

@@ -71,10 +71,6 @@ LANE_STATES: dict[str, tuple[str, ...]] = {
     "study": ("question", "investigation", "answer"),
 }
 
-#: The file-based lanes' states, kept under the old name because callers
-#: outside this module still ask for "the states a normal ticket has".
-STATES = ("open", "completed")
-
 #: The study lane's ticket filename. A study ticket is a DIRECTORY --
 #: a measurement has code and data and they belong with it -- and this
 #: is the one file inside it that is the ticket. It is `STUDY.md` rather
@@ -96,7 +92,7 @@ def states_for(lane: str) -> tuple[str, ...]:
 
 def ticket_dir(
     root: Path, lane: str, theory: str | None = None, state: str | None = None,
-    theory_path: str | None = None, study: str | None = None,
+    theory_path: str | None = None,
 ) -> Path:
     """Where a ticket for this lane and state belongs.
 
@@ -158,8 +154,11 @@ def ticket_dir(
                 "beside the real theory."
             )
         return Path(root) / theory_path / "tickets" / state
-    if lane not in ROOT_LANES:
-        raise ValueError(f"unknown lane {lane!r}; expected one of {LANES}")
+    # Everything left is a ROOT_LANE: `lane in LANES` was checked at the
+    # top and the study and theory branches above return. There used to
+    # be a second `lane not in ROOT_LANES` raise here, unreachable by
+    # construction -- and an unreachable guard is worse than none, because
+    # a reader has to work out for themselves that it never fires.
     return Path(root) / "tickets" / ROOT_LANES[lane] / state
 
 
@@ -172,7 +171,6 @@ def create(
     body: str,
     theory: str | None = None,
     theory_path: str | None = None,
-    study: str | None = None,
     created: str | None = None,
     created_by: str | None = None,
     author_lane: str | None = None,
@@ -204,8 +202,7 @@ def create(
             "not here when you filed this"
         )
     day = created or _today()
-    directory = ticket_dir(root, lane, theory,
-                           theory_path=theory_path, study=study)
+    directory = ticket_dir(root, lane, theory, theory_path=theory_path)
     directory.mkdir(parents=True, exist_ok=True)
     if lane == "study":
         # The ticket is the directory; STUDY.md inside it is the file.
@@ -225,8 +222,6 @@ def create(
     ]
     if theory:
         head.append(f"theory: {theory}")
-    if study:
-        head.append(f"study: {study}")
     head += [
         f"created: {day}",
         f"created_by: {created_by or 'unknown'}",
@@ -237,23 +232,75 @@ def create(
         head.append(f"author_focus: {author_focus}")
     if author_context:
         head.append(f"author_context: {author_context.strip()}")
-    head += [
-        "status: open",
-        "---",
-        "",
-    ]
+    if lane != "study":
+        # **The study lane gets NO `status:` field, and this exception is
+        # the whole point of the lane.** Every other lane's ticket is a
+        # flat file whose frontmatter is the ticket, and `close()` rewrites
+        # `status: open` -> `status: done` as it moves the file, so the
+        # field and the directory are written in the same operation and
+        # cannot drift.
+        #
+        # Nothing rewrites a study's. A study moves by `advance()`, which
+        # renames the directory and touches no frontmatter -- so a
+        # `status: open` written at creation would still read `open` after
+        # the study reached `answer/`, which is EXACTLY the defect this
+        # phase existed to remove: series-bias-mining's header claimed
+        # `**Status:** complete` while two open tickets said its phase-2
+        # sweep was unfinished, and nothing could tell you which was right.
+        # `_scan` derives `status` from the state directory, so no code is
+        # fooled -- but a human reading the file is, and that human is the
+        # one the duplicated field burned the first time.
+        head.append("status: open")
+    head += ["---", ""]
     path.write_text("\n".join(head) + body.strip() + "\n", encoding="utf-8")
     return path
 
 
+#: A markdown document's first `# ` heading — the title a STUDY.md
+#: carries when it carries no frontmatter. `tools/studies.py` reads a
+#: study's title exactly this way; the pattern is duplicated rather than
+#: imported because `studies` imports `tickets` and one of the two has to
+#: not depend on the other.
+_HEADING = re.compile(r"^#\s+(.+?)\s*$", re.M)
+
+
+def _one_heading(raw: str) -> str:
+    match = _HEADING.search(raw)
+    return " ".join(match.group(1).split()) if match else ""
+
+
+def _missing_frontmatter_is_normal(lane: str) -> bool:
+    """Whether a file in this lane may legitimately have no frontmatter.
+
+    **Only the study lane.** A study's `STUDY.md` is a study document
+    first and a ticket second: it leads with a `# ` heading and a
+    `**Date:** ... **Verdict:** ...` header that predate this pipeline,
+    and 12 of the 15 studies migrated on 2026-09-01 have no ticket
+    frontmatter at all. Flagging those made `tickets list --lane study
+    --status done` print 12 `!! MALFORMED` rows with blank titles --
+    a permanent false positive on the one signal that exists so a
+    genuinely unreadable ticket is VISIBLE. An alarm that is always on
+    is worse than no alarm, because the day a real one fires it is
+    indistinguishable from the noise.
+
+    For the file-based lanes the frontmatter genuinely IS the ticket --
+    there is no other place a maintenance ticket's title, lane or author
+    context lives -- so absent frontmatter there is still malformed.
+    """
+    return lane == "study"
+
+
 def _parse(path: Path, lane: str, theory: str | None,
-           brief: bool = False, study: str | None = None) -> dict:
+           brief: bool = False) -> dict:
     """One ticket as a dict. A file that cannot be parsed is REPORTED.
 
     Never skipped: a ticket nobody can read is work nobody will do, and
     dropping it silently is the one behaviour a backlog must not have.
     The directory still tells us the lane, so a malformed ticket is at
     least visible to the session that could fix it.
+
+    **`malformed` means something different for the study lane**, and the
+    difference is the point -- see `_missing_frontmatter_is_normal`.
     """
     raw = path.read_text(encoding="utf-8")
     stem = path.stem
@@ -265,10 +312,19 @@ def _parse(path: Path, lane: str, theory: str | None,
         "created": created,
         "lane": lane,
         "theory": theory,
-        "study": study,
+        # A ticket may name a study it is work against, as three of
+        # mention_family's do. That is a frontmatter cross-reference and
+        # nothing else -- it is read off the file below, never seeded from
+        # a caller's filter, which is how `backlog(study=...)` used to
+        # match every ticket that had no `study:` line at all.
+        "study": "",
         "title": "",
-        "status": "open",
-        "state": "open",
+        "status": "",
+        # Seeded EMPTY, not "open": `open` is not a state the study lane
+        # declares, and a default that is wrong for a whole lane reads as
+        # a fact rather than a placeholder. `_scan` sets both from the
+        # state directory, which is the only thing entitled to say.
+        "state": "",
         "created_by": "",
         "author_lane": "",
         "author_focus": "",
@@ -277,6 +333,9 @@ def _parse(path: Path, lane: str, theory: str | None,
     }
     front = _FRONTMATTER.match(raw)
     if front is None:
+        if _missing_frontmatter_is_normal(lane):
+            entry["title"] = _one_heading(raw)
+            return entry
         entry["malformed"] = True
         return entry
     for line in front.group(1).splitlines():
@@ -288,6 +347,8 @@ def _parse(path: Path, lane: str, theory: str | None,
                    "study", "resolution", "author_lane", "author_focus",
                    "author_context"):
             entry[key] = value
+    if not entry["title"] and _missing_frontmatter_is_normal(lane):
+        entry["title"] = _one_heading(raw)
     body = front.group(2).strip()
     # A brief entry reports the body's SIZE and not its text. The
     # backlog is read at the start of every session, and once a ticket
@@ -300,10 +361,15 @@ def _parse(path: Path, lane: str, theory: str | None,
     return entry
 
 
-def _scan(directory: Path, lane: str, theory: str | None,
-         brief: bool = False, study: str | None = None,
-         state: str = "open") -> list[dict]:
+def _scan(directory: Path, lane: str, theory: str | None, state: str,
+         brief: bool = False) -> list[dict]:
     """Every ticket in one state directory.
+
+    `state` is REQUIRED rather than defaulted to `"open"`: it is the
+    caller's own loop variable over `states_for(lane)`, and the study
+    lane has no `open` state for a default to fall back to. A default
+    that is wrong for an entire lane is a bug waiting for the one caller
+    who forgets to pass it.
 
     The study lane's tickets are directories holding a STUDY.md; every
     other lane's are plain .md files. Both are parsed the same way once
@@ -321,7 +387,7 @@ def _scan(directory: Path, lane: str, theory: str | None,
                  if p.name != "README.md"]
     rows = []
     for path in found:
-        entry = _parse(path, lane, theory, brief=brief, study=study)
+        entry = _parse(path, lane, theory, brief=brief)
         if lane == "study":
             # The slug is the DIRECTORY's name; STUDY.md carries no date.
             match = _DATE_PREFIX.match(path.parent.name)
@@ -386,12 +452,12 @@ def backlog(
             if _reported_as(lane_name, st) != wanted:
                 continue
             found += _scan(root / "tickets" / dirname / st, lane_name,
-                           None, brief=brief, state=st)
+                           None, st, brief=brief)
     for st in states_for("study"):
         if _reported_as("study", st) != wanted:
             continue
-        found += _scan(root / "tickets" / "study" / st, "study", None,
-                       brief=brief, state=st)
+        found += _scan(root / "tickets" / "study" / st, "study", None, st,
+                       brief=brief)
     theories_dir = root / "theories"
     if theories_dir.is_dir():
         for candidate in sorted(theories_dir.rglob("tickets")):
@@ -401,8 +467,8 @@ def backlog(
             for st in states_for("theory"):
                 if _reported_as("theory", st) != wanted:
                     continue
-                found += _scan(candidate / st, "theory", owner,
-                               brief=brief, state=st)
+                found += _scan(candidate / st, "theory", owner, st,
+                               brief=brief)
         for candidate in sorted(theories_dir.rglob("studies")):
             if not candidate.is_dir():
                 continue
@@ -410,13 +476,20 @@ def backlog(
             for st in states_for("study"):
                 if _reported_as("study", st) != wanted:
                     continue
-                found += _scan(candidate / st, "study", owner,
-                               brief=brief, state=st)
+                found += _scan(candidate / st, "study", owner, st,
+                               brief=brief)
     if lane:
         found = [t for t in found if t["lane"] == lane]
     if theory:
         found = [t for t in found if t["theory"] == theory]
     if study:
+        # A ticket may name a study it is work AGAINST -- three of
+        # mention_family's do, all pointing at series-bias-mining. This
+        # filter reads that frontmatter cross-reference and nothing else.
+        # It used to be threaded down into `_parse`, which seeded
+        # `entry["study"]` with the filter value, so every ticket WITHOUT
+        # a `study:` line compared equal to it and `--study anything`
+        # returned the whole backlog.
         found = [t for t in found if t["study"] == study]
     if status:
         found = [t for t in found if t["status"] == status]
@@ -452,7 +525,29 @@ def advance(path: Path, *, to: str, note: str,
             f"lane {_lane_of(lane_dir)!r} has no state {to!r}; "
             f"it declares {allowed}"
         )
-    if allowed.index(to) <= allowed.index(here):
+    if to == "completed":
+        # **`advance()` must never be the way into `completed/`.** That
+        # transition belongs to `close()`, which is the only thing that
+        # records the required resolution -- and, before this branch
+        # existed, `close()` was also the ONLY route into `completed/`,
+        # which is what made its "is not open" guard sufficient.
+        #
+        # The hole `advance()` opened: it moved a file-based ticket into
+        # `completed/` with its frontmatter still reading `status: open`.
+        # `close()` on that file then computed
+        # `path.parent.parent / "completed"` -- the directory the file was
+        # ALREADY IN -- wrote the closed copy over the source, and
+        # `path.unlink()`ed that same path. The ticket was deleted, exit
+        # code 0, and `close()` returned a path that did not exist.
+        # Reachable with two ordinary CLI calls and nothing to see
+        # afterwards but an empty `completed/`.
+        raise ValueError(
+            f"advance() cannot move a ticket into {to!r}: that is close()'s "
+            "transition, because closing is what records the resolution. "
+            f"Use tickets.close(path, resolution=...) -- "
+            f"`python -m tools.cli tickets close {item} --resolution '...'`."
+        )
+    if allowed.index(to) <= _state_index(allowed, here, lane_dir):
         raise ValueError(
             f"cannot move backwards: {here!r} -> {to!r}. Close the ticket "
             "or file a new one instead."
@@ -469,6 +564,24 @@ def advance(path: Path, *, to: str, note: str,
     body_file.write_text(
         f"{raw}\n\n## {to} — {stamp}\n\n{note.strip()}\n", encoding="utf-8")
     return body_file
+
+
+def _state_index(allowed: tuple[str, ...], here: str, state_dir: Path) -> int:
+    """Where `here` sits in the lane's pipeline, or a usable error.
+
+    A bare `tuple.index()` raises `ValueError: tuple.index(x): x not in
+    tuple` and names neither the directory nor the lane, which is the
+    least useful thing it could say to somebody holding a ticket that
+    somehow landed in a directory no lane declares.
+    """
+    try:
+        return allowed.index(here)
+    except ValueError:
+        raise ValueError(
+            f"ticket sits in {state_dir}, but {_lane_of(state_dir)!r} "
+            f"declares no state {here!r} -- it has {allowed}. Move it into "
+            "one of those before advancing it."
+        ) from None
 
 
 def _lane_of(state_dir: Path) -> str:
@@ -531,6 +644,28 @@ def close(path: Path, *, resolution: str, now: str | None = None) -> Path:
             "by advancing it to 'answer' -- "
             "tickets.advance(path, to='answer', note=...) -- never by "
             "closing it."
+        )
+    if item.parent.name == "completed":
+        # **A ticket already in `completed/` is never closed again**, and
+        # this guard stands on its own rather than leaning on the
+        # `status: open` check below.
+        #
+        # That is the whole lesson of the deletion bug: the two used to be
+        # one guard. `close()` was the only route into `completed/` and it
+        # rewrote `status: open` -> `status: done` on the way, so "already
+        # completed" and "not open" were the same fact and checking either
+        # caught both. `advance()` broke that equivalence by moving a
+        # ticket into `completed/` with its frontmatter untouched --
+        # whereupon `close()` computed `path.parent.parent / "completed"`,
+        # got the directory the file was already in, wrote over the source
+        # and then unlinked it. The ticket vanished silently.
+        #
+        # Independent guards, so neither depends on the other holding.
+        raise ValueError(
+            f"ticket {path} is already in completed/ -- it cannot be closed "
+            "again. Closing writes into `<lane>/completed/`, which for a "
+            "ticket already there is the file itself: the old code "
+            "overwrote it and then deleted it."
         )
     raw = path.read_text(encoding="utf-8")
     if "status: open" not in raw:
