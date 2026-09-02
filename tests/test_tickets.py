@@ -162,6 +162,66 @@ def test_closing_moves_the_file_into_completed(repo):
     assert "fixed in 21b3fe4" in done.read_text(encoding="utf-8")
 
 
+def test_close_refuses_a_study_ticket_and_leaves_it_untouched(tmp_path):
+    """The bug this guards against: close() assumed a flat file at
+    `<state_dir>/<name>.md` and a lane with a `completed/` state. Called
+    on a study's STUDY.md it used to compute
+    `path.parent.parent / "completed"` -- for a study filed as
+    `.../question/<slug>/STUDY.md` that resolves to `question/`, the
+    study's own current state directory, not the lane root -- and wrote
+    an orphaned `question/completed/STUDY.md`, deleted the original,
+    stranded the study's sibling code/data under `question/`, and raised
+    nothing, because the frontmatter still read `status: open`. This
+    pins both the refusal and that nothing on disk moved."""
+    path = tickets.create(
+        tmp_path, lane="study", slug="entry-timing",
+        title="Does entry timing matter?", body="Bar: 2pt net at n>=200.",
+        created="2026-09-02",
+    )
+    sibling = path.parent / "collect.py"
+    sibling.write_text("# collection code\n", encoding="utf-8")
+    before = path.read_text(encoding="utf-8")
+
+    with pytest.raises(ValueError, match="advancing it to 'answer'"):
+        tickets.close(path, resolution="Found nothing.")
+
+    assert path.exists(), "the study must stay exactly where it was"
+    assert path.read_text(encoding="utf-8") == before, "nothing rewritten"
+    assert sibling.exists(), "sibling code/data must not be stranded"
+    assert not (path.parent.parent / "completed").exists(), (
+        "no orphaned completed/ under the study's own state directory"
+    )
+    assert not (tmp_path / "tickets" / "study" / "completed").exists(), (
+        "the study lane must never grow a completed/ state"
+    )
+
+
+def test_close_still_works_on_a_maintenance_ticket(repo):
+    path = tickets.create(repo, lane="maintenance", slug="b", title="B",
+                          body="do b", created="2026-09-01")
+    done = tickets.close(path, resolution="fixed")
+    assert not path.exists()
+    assert done.relative_to(repo).as_posix() == (
+        "tickets/maintenance/completed/2026-09-01-b.md"
+    )
+    assert "fixed" in done.read_text(encoding="utf-8")
+
+
+def test_close_still_works_on_a_theory_ticket(repo):
+    path = tickets.create(
+        repo, lane="theory", theory="insider_judgment",
+        theory_path="theories/insider_bias/insider_judgment",
+        slug="d", title="D", body="do d", created="2026-09-01",
+    )
+    done = tickets.close(path, resolution="fixed")
+    assert not path.exists()
+    assert done.relative_to(repo).as_posix() == (
+        "theories/insider_bias/insider_judgment/tickets/completed/"
+        "2026-09-01-d.md"
+    )
+    assert "fixed" in done.read_text(encoding="utf-8")
+
+
 # --- the filing session's context ------------------------------------------
 
 

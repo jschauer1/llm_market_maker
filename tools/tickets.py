@@ -503,6 +503,35 @@ def close(path: Path, *, resolution: str, now: str | None = None) -> Path:
     if not resolution or not resolution.strip():
         raise ValueError("a resolution is required: say what happened")
     path = Path(path)
+    is_study = path.name == STUDY_FILE
+    item = path.parent if is_study else path
+    lane = _lane_of(item.parent)
+    if "completed" not in states_for(lane):
+        # close() assumes a flat file at `<state_dir>/<name>.md` and moves
+        # it to `<lane root>/completed/` via `path.parent.parent`. A study
+        # ticket breaks both assumptions: it is a DIRECTORY -- STUDY.md
+        # plus whatever code and data the measurement collected -- and the
+        # study lane declares NO `completed/` state at all (LANE_STATES
+        # above), because a study is a permanent record and the later
+        # purge phase matches only `completed/`. Giving the lane one, even
+        # by accident, would make a "finished" study eligible for it.
+        #
+        # Before this guard, calling close() on a study's STUDY.md computed
+        # `path.parent.parent / "completed"` blindly. For a study filed as
+        # `.../question/<slug>/STUDY.md`, `path.parent.parent` is
+        # `question/` -- the study's own CURRENT STATE directory, not the
+        # lane root -- so it wrote an orphaned `question/completed/
+        # STUDY.md`, deleted the original, stranded every sibling file
+        # under `question/`, and left the study invisible to every future
+        # `backlog()`/`_scan()` call. It raised nothing, because the
+        # frontmatter still read `status: open` and the guard below passed.
+        raise ValueError(
+            f"close() cannot be used on this {lane!r}-lane ticket: the "
+            f"{lane!r} lane has no 'completed' state. A study is finished "
+            "by advancing it to 'answer' -- "
+            "tickets.advance(path, to='answer', note=...) -- never by "
+            "closing it."
+        )
     raw = path.read_text(encoding="utf-8")
     if "status: open" not in raw:
         raise ValueError(f"ticket {path} is not open")
