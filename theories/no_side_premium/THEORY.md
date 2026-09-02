@@ -85,7 +85,7 @@ No gate, no judgment, no prompts. Tier A by construction.
 ### Amendment, 2026-08-27 — every bar above also requires `n_days ≥ 8`
 
 Rows are not independent draws. The settlement-day clustering study
-(`studies/2026-08-27-settlement-day-clustering/`) measured this screen's
+(`tickets/study/answer/2026-08-27-settlement-day-clustering/`) measured this screen's
 whole population over three consecutive close-days and found the
 day-level favorite edge swinging +4.26 / −7.29 / +5.40 net, with the
 YES/NO split *reversing* between days (08-25: YES −1.42, NO +7.98;
@@ -150,7 +150,7 @@ makes (`NO_net - YES_net`, which cancels the day effect) over the clean
 snapshot population: **mean +8.25 pts, n_days=5, SE 7.60, 4/5 days
 positive** — right sign, not significant, bar is 8 days. Per-side day means
 land at YES **-4.42** (claimed -3.9) and NO **+3.83** (claimed +2.0). Full
-write-up: `studies/2026-08-29-side-asymmetry-extension/`; report this
+write-up: `theories/no_side_premium/studies/answer/2026-08-29-side-asymmetry-extension/`; report this
 theory on the paired statistic first, `compute_score` alongside.
 
 **2026-09-01 — the `n_days >= 8` bar is reached, and the paired claim is
@@ -205,7 +205,7 @@ Neither cell is killable by its own rule (cell A kills at <=0 with n>=150,
 sits at n=20/+4.33; cell B kills at >=0 with n>=150, sits at n=109/-0.98),
 so no retirement is proposed. Status stays `testing`, `edge_basis='prior'`,
 nothing recommendable. Full write-up:
-`studies/2026-08-29-side-asymmetry-extension/` "Pass 2".
+`theories/no_side_premium/studies/answer/2026-08-29-side-asymmetry-extension/` "Pass 2".
 
 ## Version
 
@@ -239,13 +239,13 @@ verdict, and status stays `testing`. **A composition control is now
 mandatory for any side comparison in this repo**, this theory's included.
 The deciding experiment is the series-bias liquidity backfill completing,
 after which the sweep can be filtered to the screen's own bar and the
-control re-run. Write-up: `studies/2026-09-01-side-split-60day-obs/`.
+control re-run. Write-up: `theories/no_side_premium/studies/answer/2026-09-01-side-split-60day-obs/`.
 
 **2026-09-01 (cont., `fleet-w1-g3`) — both cells measured CLEAN of the
 early-close anchor bug, and cell B is two settlement days from its own kill
 bar.**
 
-`studies/2026-08-29-early-close-exposure-existing-backtests` named this
+`tickets/study/answer/2026-08-29-early-close-exposure-existing-backtests` named this
 theory as needing a specific look and then reasoned rather than measured
 ("Both look safe, but that is a reasoned expectation, not a measurement").
 It is now measured. Over all 281 tickers this theory has ever recorded —

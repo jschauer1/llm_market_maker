@@ -46,13 +46,13 @@ home, one status.
      siblings inside ONE event, so basket cost never fell below 1.000;
      cross-event ladders exist only at 1y+ where carry dwarfs a
      cent-scale edge. Study:
-     `studies/2026-08-27-calendar-arb-firing-rate/`.
+     `tickets/study/answer/2026-08-27-calendar-arb-firing-rate/`.
    - **`smile-smoothing`** (dead): at a tradeable liquidity
      floor, **97.6% of 959 strike rungs sat *exactly* on their own
      isotonic fit**, max deviation 1.5c, zero candidates. Deviations
      appeared only in rungs with median volume **0**, where the "mid" is
      an empty book rather than a price. Study:
-     `studies/2026-08-29-smile-smoothing-ladder-flatness/`.
+     `tickets/study/answer/2026-08-29-smile-smoothing-ladder-flatness/`.
 
    - **`structural_arb`'s NO-basket path** (2026-08-29, exhaustive):
      with the event envelope making Kalshi's `mutually_exclusive` flag
@@ -74,7 +74,7 @@ home, one status.
      exist but sit entirely inside the spread, and the most liquid case
      (`KXBALANCEPOWERCOMBO`, 10.7M volume, 1c spread) has the
      *smallest* gap. Study:
-     `studies/2026-08-30-parlay-markup/` (rule-0 section).
+     `tickets/study/investigation/2026-08-30-parlay-markup/` (rule-0 section).
 
    - **`aggregation-gap`, the second CROSS-event probe** (2026-09-01):
      `KXNFLWINS` lists 32 teams as 32 separate *events*, each a complete
@@ -127,7 +127,7 @@ home, one status.
      3–6pt effect worth betting; the median tested series had a minimum
      detectable effect of **13.5 pts**, so "0 of 17 flagged" meant *not
      measured*, not *calibrated*. See
-     `studies/2026-08-29-series-bias-mining/`.
+     `theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/`.
 
    **Caveat found the same day, by the floor's own author:** an
    SE-based power floor is **not outcome-neutral for binomial data.**

@@ -213,7 +213,7 @@ the theory's own geometry over all **11 stored board snapshots**
 (2026-08-24 to 2026-08-29, 96k–117k markets each). No API calls — which
 mattered, because a calibration_harvest collector was saturating the
 rate-limited history endpoint at the time. Full write-up and reproducible
-probe: `studies/2026-08-29-structural-arb-violation-liquidity/`.
+probe: `theories/structural_arb/studies/answer/2026-08-29-structural-arb-violation-liquidity/`.
 
 **Six distinct violations across 11 snapshots and 5 days**, and they fall
 into exactly three sterile classes:
@@ -609,7 +609,7 @@ geometry over all **11 stored board snapshots** (2026-08-24 → 2026-08-29,
 96k–117k markets each). No API calls, which mattered because the
 calibration_harvest collector was saturating the rate-limited history
 endpoint at the time. Study:
-`studies/2026-08-29-structural-arb-violation-liquidity/`.
+`theories/structural_arb/studies/answer/2026-08-29-structural-arb-violation-liquidity/`.
 
 **Learned:**
 

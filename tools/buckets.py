@@ -48,7 +48,7 @@ MIN_BUCKET_DAYS = 5
 """Distinct settlement days a bucket needs before it may speak.
 
 Rows are not independent draws. The settlement-day clustering study
-(`studies/2026-08-27-settlement-day-clustering/`) measured the same
+(`tickets/study/answer/2026-08-27-settlement-day-clustering/`) measured the same
 screened population swinging +4.26 / −7.29 / +5.40 net across three
 consecutive close-days, and `insider_judgment`'s `weak` bucket graduated
 on 2026-08-28 from 17 rows that had **all settled on one night** — a

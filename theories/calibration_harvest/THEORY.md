@@ -175,7 +175,7 @@ not been**; it was chosen after seeing where the sign flipped, and it was
 the best of the three available split points (+0.11, +3.50, +2.23). That
 claim is **retracted**. See `NOTES.md` 2026-08-29 (correction) for the
 full account, and
-`studies/2026-08-29-calibration-harvest-gradient-review/` for the peer
+`tickets/study/answer/2026-08-29-calibration-harvest-gradient-review/` for the peer
 review that caught it.
 
 **What actually stands** is narrower. Decomposed into adjacent paired
@@ -408,7 +408,7 @@ Kalshi's board settles in day-clumps: a screen's near-term candidates
 resolve within hours of each other, so rows that settle together are not
 independent draws. Measured on the shared insider_bias screen population
 over three consecutive close-days
-(`studies/2026-08-27-settlement-day-clustering/`, n=215, whole
+(`tickets/study/answer/2026-08-27-settlement-day-clustering/`, n=215, whole
 population), the day-level favorite edge ran **+4.26 / −7.29 / +5.40**
 net and the YES/NO split reversed outright between days.
 

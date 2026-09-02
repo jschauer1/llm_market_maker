@@ -7,7 +7,7 @@ author_lane: maintenance
 author_context: Found while fixing the exact-stamp board readers (ticket calendar-arb-probe-exact-stamp-board); re-ran the firing-rate probe correctly but its main() does not compute Result 2's table, so that half is still unverified.
 status: open
 ---
-READ THIS BEFORE USING THE 295-PAIR DATASET. The open ticket 2026-09-01-calendar-arb-soft-relative-value points a future session at 'the 295 near-dated same-event pairs already sitting at cost 1.000 as a ready-made dataset'. That figure comes from studies/2026-08-27-calendar-arb-firing-rate/ Result 2, and it was measured with a board reconstruction that is now known to be wrong.
+READ THIS BEFORE USING THE 295-PAIR DATASET. The open ticket 2026-09-01-calendar-arb-soft-relative-value points a future session at 'the 295 near-dated same-event pairs already sitting at cost 1.000 as a ready-made dataset'. That figure comes from tickets/study/answer/2026-08-27-calendar-arb-firing-rate/ Result 2, and it was measured with a board reconstruction that is now known to be wrong.
 
 WHAT IS ESTABLISHED. probe.py rebuilt boards with WHERE captured_at = ?. Dedup-on-write (2026-08-30) made that return only the markets that MOVED at a pull. The probe ran 2026-08-27, before dedup, so its numbers were right when made -- but the captures it walked now re-read as little as 3,254 markets against a real board of 107,656. probe_as_of.py (added 2026-09-01) supersedes it and uses snapshot.board_as_of.
 

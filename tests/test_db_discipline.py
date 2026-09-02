@@ -25,8 +25,11 @@ from tools import db, theories
 ROOT = Path(__file__).resolve().parents[1]
 
 # Production trees the board/payload rules bind. tests/ is excluded: unit
-# tests exercise the underlying functions on purpose.
-SCANNED_TREES = ("tools", "theories", "studies")
+# tests exercise the underlying functions on purpose. `tickets` replaced
+# `studies` on 2026-09-01: a study is now a ticket directory, so the
+# ownerless ones live under tickets/study/ and the owned ones under
+# theories/<t>/studies/, already covered by `theories`.
+SCANNED_TREES = ("tools", "theories", "tickets")
 
 # The sanctioned direct users of the raw feeds.
 LIST_OPEN_ALLOWED = {

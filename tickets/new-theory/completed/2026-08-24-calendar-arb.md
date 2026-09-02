@@ -7,7 +7,7 @@ author_lane: find-theories
 author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
 status: done
 closed: 2026-08-27
-resolution: DEAD 2026-08-27, killed by its own first deliverable before anything was built. Ten stored board snapshots showed zero violations at its own 1c/leg buffer. Near-dated date ladders are siblings inside ONE event, so basket cost never fell below 1.000, and cross-event ladders exist only at 1y+ horizons where carry dwarfs a cent-scale edge. Study: studies/2026-08-27-calendar-arb-firing-rate/. A soft relative-value successor is open as calendar-arb-soft-relative-value.
+resolution: DEAD 2026-08-27, killed by its own first deliverable before anything was built. Ten stored board snapshots showed zero violations at its own 1c/leg buffer. Near-dated date ladders are siblings inside ONE event, so basket cost never fell below 1.000, and cross-event ladders exist only at 1y+ horizons where carry dwarfs a cent-scale edge. Study: tickets/study/answer/2026-08-27-calendar-arb-firing-rate/. A soft relative-value successor is open as calendar-arb-soft-relative-value.
 ---
 Effort: S · LLM in decision path: no · Backtest tier: A
 

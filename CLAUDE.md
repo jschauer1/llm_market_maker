@@ -235,18 +235,24 @@ yours to arrange.
 - **`Theory` is for things that produce bets.** An execution policy
   decorates candidates. And **a study is a measurement that answers a
   question — it never bets**: no `record_opportunity`, no ticker, no
-  ledger row, no score. `STUDY.md` marks its folder, it lives at
-  `studies/<date>-<slug>/`, and it exists to settle something *before*
-  anyone acts on it — whether an idea is worth building, whether a
-  theory's number is real, how something should work for everything at
-  once. The payoff is asymmetric: a study that finds nothing has still
-  stopped you building the wrong thing, at a day's cost instead of a
+  ledger row, no score. `STUDY.md` marks its folder, and a study is a
+  **ticket** in the `study` lane whose state is the directory it sits
+  in — `question` → `investigation` → `answer`, with deliberately no
+  `completed/`, because a study is a permanent record. A theory-owned
+  one lives at `<theory registry path>/studies/<state>/<date>-<slug>/`
+  and an ownerless one at `tickets/study/<state>/<date>-<slug>/`. It
+  exists to settle something *before* anyone acts on it — whether an
+  idea is worth building, whether a theory's number is real, how
+  something should work for everything at once. The payoff is
+  asymmetric: a study that finds nothing has still stopped you
+  building the wrong thing, at a day's cost instead of a
   month's, which is why `calendar-arb` and `smile-smoothing` both died
   in an afternoon. Its rules — write the bar before looking, never
   touch the ledger, report the verdict in the header so nobody has to
-  read the study to learn what it concluded — are in `studies/README.md`,
-  and the lane that runs one is `go-study`. `python -m tools.cli studies`
-  renders every study and its verdict, read live from the files.
+  read the study to learn what it concluded — are in
+  `tickets/study/README.md`, and the lane that runs one is `go-study`.
+  `python -m tools.cli studies` renders every study and its verdict,
+  read live from the files.
   **A study that grows a dataset other work depends on has become
   infrastructure and needs an owner** — `series-bias-mining` is 353 MB,
   four passes and a collector other studies read, and its stalls were

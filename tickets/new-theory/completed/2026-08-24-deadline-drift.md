@@ -79,7 +79,7 @@ that would muddy the track record).
 
 **Amendment, 2026-08-29 — a third excluded family, and it is the biggest
 one.** The 50-market audit section 7 mandates was run (four rounds,
-disjoint samples; `studies/2026-08-29-deadline-drift-classifier-audit/`)
+disjoint samples; `theories/deadline_drift/studies/answer/2026-08-29-deadline-drift-classifier-audit/`)
 and found that the dominant contaminant is neither family named above:
 
 - **Multi-destination / "which branch" markets** — "X's next team is Y

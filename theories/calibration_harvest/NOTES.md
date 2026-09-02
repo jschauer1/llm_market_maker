@@ -84,7 +84,7 @@ One genuinely encouraging structural fact did come out of it, and it is
 about the *method* rather than the result: weather cells reach 32–49
 distinct settlement days at n≈41–81, because weather markets settle every
 single day. That is the opposite of the day-clustering problem found in
-`studies/2026-08-27-settlement-day-clustering/`, and it means the weather
+`tickets/study/answer/2026-08-27-settlement-day-clustering/`, and it means the weather
 domain can clear the `n_days >= 8` floor easily. The politics domain,
 whose markets cluster on event dates, will be much harder — worth watching
 when that collection runs.
@@ -438,7 +438,7 @@ pooling them.
 ## 2026-08-29 (correction) — the politics headline above is WRONG. The pre-registered test failed.
 
 Peer review from the parallel session `llm-market-identifier-4f`
-(`df27978`, `studies/2026-08-29-calibration-harvest-gradient-review/`)
+(`df27978`, `tickets/study/answer/2026-08-29-calibration-harvest-gradient-review/`)
 challenged the entry above. I re-derived every number independently. **The
 critique is right on the points that matter, my headline was wrong, and I
 am retracting it.** One of its own claims does not survive the same
@@ -694,7 +694,7 @@ pooling them.
 
 **Retracting the entry two above.** Peer review from the parallel session
 `llm-market-identifier-4f` (`df27978`,
-`studies/2026-08-29-calibration-harvest-gradient-review/`) challenged it.
+`tickets/study/answer/2026-08-29-calibration-harvest-gradient-review/`) challenged it.
 I re-derived every number independently: **the critique is right on the
 points that matter and my headline was wrong.** One of its own claims does
 not survive the same check, and that is recorded rather than quietly used.
@@ -764,7 +764,7 @@ knob in theirs.
    between-day clustered SE, `None` at one cluster) wired into
    `score report`; amended no_side_premium's pre-registered bars to
    require `n_days >= 8`. Full writeup:
-   `studies/2026-08-27-settlement-day-clustering/`.
+   `tickets/study/answer/2026-08-27-settlement-day-clustering/`.
 2. **structural_arb v2 re-run** on tonight's board: same single survivor
    for the third run running, rejected on depth (~$0.02 fillable, opp
    9311). Idea 26 `arb-dust-memory` recorded.
@@ -775,7 +775,7 @@ knob in theirs.
    measuring a population the live screen would never trade. Discarded the
    417 rows collected under it and restarted.
 5. **Killed calendar-arb before building it** (idea 21 → dead).
-   `studies/2026-08-27-calendar-arb-firing-rate/`.
+   `tickets/study/answer/2026-08-27-calendar-arb-firing-rate/`.
 
 Settle pass: 21 markets finalized and recorded. All three running theories
 were already current for today (an earlier session), so §2's re-run half

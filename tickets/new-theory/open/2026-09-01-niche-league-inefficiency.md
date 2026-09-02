@@ -67,7 +67,7 @@ Primera), KXLALIGAGAME (72), KXLEAGUESCUP (36), KXATPCHALLENGERDOUBLES,
 KXDPWORLDTOUR (89), plus the NPB/KBO/T20 families above. Comparison
 group: KXNFLGAME, KXNFLSPREAD, KXMLBGAME, KXMLBTOTAL, KXNCAAFGAME.
 Settled history for all of it already sits in
-studies/2026-08-29-series-bias-mining/data/collect.db (981,451 settled
+theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/data/collect.db (981,451 settled
 markets, 2026-06-30..2026-08-29) -- so this needs NO new collection.
 
 WHAT WOULD KILL IT.
@@ -110,4 +110,4 @@ SOURCE: sports-betting efficiency literature on lower-league slow
 correction (Winkelmann et al. 2024, Management Science; "Beating the
 House", arXiv:1910.08858; ECU "Weak Form Efficiency in Sports Betting
 Markets"), cross-read against
-studies/2026-08-29-series-bias-mining/STUDY.md pass 3's flagged list.
+theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/STUDY.md pass 3's flagged list.

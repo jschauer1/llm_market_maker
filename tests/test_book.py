@@ -86,7 +86,7 @@ def test_the_naive_mirror_is_wrong_by_exactly_the_round_trip():
 
 def test_the_liquidity_study_numbers_reproduce():
     """Regression against the measured case in
-    studies/2026-09-01-liquidity-filtered-side-split (addendum): a 1.68pt
+    theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split (addendum): a 1.68pt
     spread over the 0.50-0.80 band gives a 4.94pt round trip."""
     # Mean favorite ask and spread for that band, as reported.
     rt = book.round_trip_cost_pts(0.65, 0.0168)

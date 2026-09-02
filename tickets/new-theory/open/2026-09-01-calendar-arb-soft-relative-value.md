@@ -5,13 +5,13 @@ created: 2026-09-01
 created_by: setup
 status: open
 ---
-calendar-arb's hard-arbitrage premise was falsified (zero violations across 10 snapshots; near-dated ladders turn out to be same-event siblings priced at exactly 1.000). Its revisit angle is a different theory and is unbuilt: ask whether the implied conditional hazard between two deadlines is ever absurd, using the 295 near-dated same-event pairs already sitting at cost 1.000 as a ready-made dataset. Treat as a NEW theory with its own pre-registration -- mechanism, evidence and risk profile all differ from the arbitrage version. Check first whether structural_arb's within-event nesting scan already covers the population. Source: idea 21 revisit_angle, studies/2026-08-27-calendar-arb-firing-rate/.
+calendar-arb's hard-arbitrage premise was falsified (zero violations across 10 snapshots; near-dated ladders turn out to be same-event siblings priced at exactly 1.000). Its revisit angle is a different theory and is unbuilt: ask whether the implied conditional hazard between two deadlines is ever absurd, using the 295 near-dated same-event pairs already sitting at cost 1.000 as a ready-made dataset. Treat as a NEW theory with its own pre-registration -- mechanism, evidence and risk profile all differ from the arbitrage version. Check first whether structural_arb's within-event nesting scan already covers the population. Source: idea 21 revisit_angle, tickets/study/answer/2026-08-27-calendar-arb-firing-rate/.
 
 ## BLOCKER, added 2026-09-02: the 295-pair dataset this ticket points at is unverified
 
 This spec offers "the 295 near-dated same-event pairs already sitting at
 cost 1.000 as a ready-made dataset". **Do not use that figure without
-re-deriving it.** It comes from `studies/2026-08-27-calendar-arb-firing-rate/`
+re-deriving it.** It comes from `tickets/study/answer/2026-08-27-calendar-arb-firing-rate/`
 Result 2, which rebuilt boards with `WHERE captured_at = ?`. Dedup-on-write
 (shipped 2026-08-30) made that query return only the markets that *moved*
 at a pull, so those captures now re-read as few as 3,254 markets against a

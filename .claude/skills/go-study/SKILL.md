@@ -11,8 +11,8 @@ session.**
 **A study is a measurement that answers a question. It never bets.** No
 `record_opportunity`, no ticker, no ledger row, no score — if what you
 are building produces a bet, you are in the wrong lane and it needs a
-spec (`go-new-theory`). `studies/README.md` has the full definition and
-the rules; read it before starting.
+spec (`go-new-theory`). `tickets/study/README.md` has the full
+definition and the rules; read it before starting.
 
 ## Why this lane exists
 
@@ -55,8 +55,15 @@ State which you picked and what you compared it against.
 
 ## 3. If you are starting a new one: write the bar first
 
-**Before computing any result**, create `studies/<YYYY-MM-DD>-<slug>/STUDY.md`
-and commit it, stating:
+**Before computing any result**, file the study ticket and commit its
+`STUDY.md`, stating:
+
+```bash
+python -m tools.cli tickets new --lane study --slug <YYYY-MM-DD>-<slug> \n    --title "<the question>" [--theory <slug>] --session <you>
+```
+
+It lands in `question/` — inside the theory that owns it when you name
+one, and in `tickets/study/question/` when no single theory does. State:
 
 - **The question**, in one sentence.
 - **The population** — inclusion rules, concretely. *The rules that
@@ -75,7 +82,7 @@ siblings of one Kalshi event finds nothing) and **rule 0f** (measure at
 *executable* prices, never the mid, never gross of fees).
 
 Keep the script that proves you had looked at nothing —
-`studies/2026-08-30-entry-timing/counts.py` exists for exactly that reason.
+`tickets/study/answer/2026-08-30-entry-timing/counts.py` exists for exactly that reason.
 
 **Carry a negative control** if the study scans many candidates: a slice
 whose answer is already known. Measure it, and keep it out of the
@@ -108,11 +115,14 @@ is how a supervisor learns what you found without opening the file:
 **Date:** YYYY-MM-DD · **Status:** complete · **Tier:** A · **Verdict:** <one line>
 ```
 
-Keep `Status` honest. `collecting` while it is collecting; `complete`
-only when the question is answered.
+Keep the *directory* honest — that is where a study's state lives now,
+and there is no `Status` field. `python -m tools.cli tickets advance
+<path>` moves it `question` -> `investigation` when you start
+measuring, and `investigation` -> `answer` only when the question is
+answered.
 
 Then close the loop wherever the question came from — the study is not
-finished while its answer sits only in `studies/`:
+finished while its answer sits only in the study's own folder:
 
 - Killed or confirmed a `new-theory` spec → close that ticket with the
   resolution, or append the finding to it.

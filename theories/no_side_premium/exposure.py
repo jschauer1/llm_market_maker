@@ -1,13 +1,13 @@
 """Early-close anchor exposure for this theory's own cells.
 
-**Why this exists.** `studies/2026-08-29-early-close-exposure-existing-backtests`
+**Why this exists.** `tickets/study/answer/2026-08-29-early-close-exposure-existing-backtests`
 established that a market whose *stated deadline* sits well after its
 *close_time* carries a contaminated time anchor, and it named this theory
 explicitly: "no_side_premium deserves a specific look for that reason: its
 cell B (non-mention YES favorites 0.80-0.90, claimed -3.89 net) is drawn
 from exactly this population." It then *reasoned* -- and said so -- that
 both cells are safe, and stopped.
-`studies/2026-09-01-early-close-exposure-in-the-bettable-slice` measured the
+`tickets/study/answer/2026-09-01-early-close-exposure-in-the-bettable-slice` measured the
 same thing on `insider_judgment` and found the bias real on **both** sides
 of the book, with the YES-side distortion several times larger than the
 NO-side one. Cell B is a YES-side claim, so it sits on the side where the

@@ -20,11 +20,14 @@ user_reports/*
 # Ignored as a DIRECTORY, not one filename -- the -journal, the WAL
 # and the per-run logs beside collect.db were all still untracked,
 # so `git add -A` would have staged them. Regenerable via collect.py.
+theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/data/
+# TRANSITIONAL (remove once the move lands): a collector was live in
+# the old path when the migration ran, so the corpus is still there.
 studies/2026-08-29-series-bias-mining/data/
 STATE.md
 
 # parlay-markup study: 150k+ raw payloads, regenerable via collect.py
-studies/2026-08-30-parlay-markup/data/
+tickets/study/investigation/2026-08-30-parlay-markup/data/
 
 # taker_flow: the raw per-trade corpus for backtest-2026-09-01-takerflow
 # (~5,200 markets, 305MB). Regenerable via backtest.collect(); the

@@ -9,7 +9,7 @@ Elevated from `theories/structural_arb/scan.py` on 2026-08-29 under the
 normal caller-count rule, with three real callers: `structural_arb`
 (interval containment and exclusivity proofs), `smile_smoothing` (fitting
 a monotone curve across a ladder), and
-`studies/2026-08-29-structural-arb-violation-liquidity/probe.py`.
+`theories/structural_arb/studies/answer/2026-08-29-structural-arb-violation-liquidity/probe.py`.
 Behaviour is unchanged by the move — `structural_arb` re-exports these
 names and its decision procedure is byte-identical in effect, so the move
 does **not** bump its version.

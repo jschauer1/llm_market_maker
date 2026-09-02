@@ -19,7 +19,7 @@ instead, so a thin cell has to earn its edge by being both high AND populous.
 floor. `n_days >= 8` is the settlement-day floor, and it is the one that
 matters more: Kalshi settles in day-clumps, and measured over three
 consecutive close-days on the shared insider_bias population
-(`studies/2026-08-27-settlement-day-clustering/`) the day-level favorite edge
+(`tickets/study/answer/2026-08-27-settlement-day-clustering/`) the day-level favorite edge
 ran +4.26 / -7.29 / +5.40 net -- a swing wider than any edge this theory
 hopes to harvest. 400 rows spread over 3 days is 3 draws, not 400, and
 calling that `measured` would be the mention_family mistake with a bigger n.

@@ -7,7 +7,7 @@ author_lane: find-theories
 author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
 status: done
 closed: 2026-08-29
-resolution: DEAD 2026-08-29, killed at step one before the theory was ever registered. At a tradeable liquidity floor, 97.6% of 959 strike rungs sat EXACTLY on their own isotonic fit, maximum deviation 1.5c, zero candidates. Deviations appeared only in rungs whose median volume was 0, where the mid is an empty book rather than a price. Study: studies/2026-08-29-smile-smoothing-ladder-flatness/. Generalized into rule 0 of this backlog -- an edge living between siblings of one Kalshi event should expect to find nothing, and should measure before it builds.
+resolution: DEAD 2026-08-29, killed at step one before the theory was ever registered. At a tradeable liquidity floor, 97.6% of 959 strike rungs sat EXACTLY on their own isotonic fit, maximum deviation 1.5c, zero candidates. Deviations appeared only in rungs whose median volume was 0, where the mid is an empty book rather than a price. Study: tickets/study/answer/2026-08-29-smile-smoothing-ladder-flatness/. Generalized into rule 0 of this backlog -- an edge living between siblings of one Kalshi event should expect to find nothing, and should measure before it builds.
 ---
 Effort: M · LLM in decision path: no · Backtest tier: A
 

@@ -12,7 +12,7 @@ resolution: Shipped tools/book.py: other_side_ask (1 - ask + spread, not 1 - ask
 
 ONE THING THE TICKET DID NOT ANTICIPATE, found by the tests. The binding validity constraint on a quote pair is 'spread <= ask' -- a wider spread puts THIS side's bid below zero -- and it is not the obvious one: ask=0.99 spread=0.05 looks extreme and is legal (bid 0.94, other side 0.06), while ask=0.05 spread=0.07 looks milder and is impossible. other_side_ask raises rather than clamping, since silently clamping would reproduce the class of error the module exists to prevent. Two of my own first-draft test cases were invalid quotes, which is the evidence that this trap is easy to walk into.
 
-CALLER MIGRATION NOT DONE, deliberately and per the ticket's own 'neither is urgent; the value is the next theory'. theories/deadline_drift/hazard.py:303 computes the fee inline without sizing's $0.035 cap -- harmless, since 0.07*p*(1-p) maxes at 0.0175 and can never reach the cap, so the two agree exactly -- but repointing it touches a theory's decision-procedure file and is a theory-lane call. studies/2026-09-01-liquidity-filtered-side-split/measure.py was being actively written by a peer session during this work and was not touched.
+CALLER MIGRATION NOT DONE, deliberately and per the ticket's own 'neither is urgent; the value is the next theory'. theories/deadline_drift/hazard.py:303 computes the fee inline without sizing's $0.035 cap -- harmless, since 0.07*p*(1-p) maxes at 0.0175 and can never reach the cap, so the two agree exactly -- but repointing it touches a theory's decision-procedure file and is a theory-lane call. theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split/measure.py was being actively written by a peer session during this work and was not touched.
 ---
 FACTS, both from 2026-09-01, both landed within an hour, neither session aware of the other's work while doing it.
 
@@ -33,4 +33,4 @@ WHAT THIS IS NOT. Not a framework and not an execution model. Three functions an
 
 WORTH DOING BECAUSE THE FAILURE IS SILENT AND EXPENSIVE. Both errors produced a plausible, significant-looking positive result that survived until someone specifically checked the book side. deadline_drift's read z=2.60. Neither was caught by a test, because both were arithmetically self-consistent -- just against the wrong price.
 
-Callers to migrate when it lands: theories/deadline_drift/hazard.py and studies/2026-09-01-liquidity-filtered-side-split/measure.py (fee_pts, and the addendum's mirror arithmetic). Neither is urgent; the value is the next theory, not these two.
+Callers to migrate when it lands: theories/deadline_drift/hazard.py and theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split/measure.py (fee_pts, and the addendum's mirror arithmetic). Neither is urgent; the value is the next theory, not these two.

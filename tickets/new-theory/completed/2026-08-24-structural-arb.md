@@ -7,7 +7,7 @@ author_lane: find-theories
 author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
 status: done
 closed: 2026-09-01
-resolution: BUILT. Theory `structural_arb` v1-v4, status `testing`. The geometry is correct and the violations are real; the TRADEABLE firing rate is zero. An exhaustive check of all 6,414 mutually-exclusive events on one board found exactly 1 NO-basket below its payout, at 0.125c/leg against a 1c/leg buffer. Across 17 board captures, 12 of 16 violations were KXWTAGTOTAL at zero open interest. Day 6 of its own 60-day kill clock; no retirement proposed. See studies/2026-08-29-structural-arb-violation-liquidity/.
+resolution: BUILT. Theory `structural_arb` v1-v4, status `testing`. The geometry is correct and the violations are real; the TRADEABLE firing rate is zero. An exhaustive check of all 6,414 mutually-exclusive events on one board found exactly 1 NO-basket below its payout, at 0.125c/leg against a 1c/leg buffer. Across 17 board captures, 12 of 16 violations were KXWTAGTOTAL at zero open interest. Day 6 of its own 60-day kill clock; no retirement proposed. See theories/structural_arb/studies/answer/2026-08-29-structural-arb-violation-liquidity/.
 ---
 Effort: S · LLM in decision path: no · Backtest tier: A
 

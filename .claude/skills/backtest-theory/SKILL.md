@@ -77,7 +77,7 @@ line is outcome judgment.
   notes must say so and cite the measured drift bound for the population
   (currently one genuine resolution-criteria change across 156k
   multi-capture markets in 5 days —
-  `studies/2026-08-29-structural-gate-payload-version/`; refresh the
+  `docs/2026-08-29-structural-gate-payload-version/`; refresh the
   bound as snapshot history grows).
 <!-- /rule -->
 

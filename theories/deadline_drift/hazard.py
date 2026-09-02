@@ -45,7 +45,7 @@ ENTRY_BAND = (0.05, 0.60)
 FEE_RATE = 0.07
 
 #: Rules-text exclusions from the round-4 classifier
-#: (`studies/2026-08-29-deadline-drift-classifier-audit/classifier.py`),
+#: (`theories/deadline_drift/studies/answer/2026-08-29-deadline-drift-classifier-audit/classifier.py`),
 #: inlined so this script reads nothing outside the theory folder. A
 #: market matching any of these is not a per-subject hazard, and the
 #: strata table below reports each as its own population rather than
@@ -378,7 +378,7 @@ def main() -> None:
     # The allowlist is the only population whose purity was established
     # EXHAUSTIVELY rather than by sample: round 5b inspected all 70 series
     # and found 70/70 per-subject, so it carries no sampling error at all
-    # (studies/2026-08-29-deadline-drift-classifier-audit/). The regex
+    # (theories/deadline_drift/studies/answer/2026-08-29-deadline-drift-classifier-audit/). The regex
     # strata above are a ~15%-misclassification screen over a population
     # the same audit measured as 34% multi-destination, so a gap that
     # appears in "hazard" and NOT here is contamination, not edge.

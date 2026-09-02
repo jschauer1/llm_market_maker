@@ -32,7 +32,7 @@ this theory unmeasurable.** See NOTES.md 2026-09-01.
 ## Why an allowlist was chosen in v1, and what replaced it
 
 Five audit
-rounds (`studies/2026-08-29-deadline-drift-classifier-audit/`) established
+rounds (`theories/deadline_drift/studies/answer/2026-08-29-deadline-drift-classifier-audit/`) established
 that a *board-wide* mechanical screen cannot reach the spec's 10%
 misclassification bar. Rounds 1-4 tuned regex to a plateau near 15%; round
 5 added Kalshi's own `mutually_exclusive` flag and a price-partition test

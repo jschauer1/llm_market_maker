@@ -24,7 +24,8 @@ import sys
 from pathlib import Path
 
 _STUDY = (Path(__file__).resolve().parents[1]
-          / "studies/2026-08-29-series-bias-mining")
+          / "theories/insider_bias/mention_family/studies/investigation"
+          / "2026-08-29-series-bias-mining")
 
 
 def _load(name: str, path: Path):

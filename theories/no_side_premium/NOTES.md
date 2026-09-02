@@ -51,7 +51,7 @@ reversing outright:
 Whole-population favorite edge by day: +4.26 / −7.29 / +5.40 net. The
 day-to-day swing is ~12 points — wider than the ±3.9 this theory is trying
 to resolve. Full writeup and data:
-`studies/2026-08-27-settlement-day-clustering/`.
+`tickets/study/answer/2026-08-27-settlement-day-clustering/`.
 
 **Why this bites this theory harder than any other.** The quantity
 no_side_premium measures *is* the YES/NO split, and the YES/NO split is
@@ -138,7 +138,7 @@ first evidence lands 08-31.
 
 ### The paired within-day estimator
 
-Full write-up: `studies/2026-08-29-side-asymmetry-extension/`. Two more
+Full write-up: `theories/no_side_premium/studies/answer/2026-08-29-side-asymmetry-extension/`. Two more
 close-days measured on the clean snapshot population (08-28 n=158, 08-29
 n=24 partial), composed with the earlier study's three.
 
@@ -218,7 +218,7 @@ cell B as the theory failing.
 -10.44 (n=46)`. Extended the settlement-day-clustering study by two clean
 close-days and built the paired within-day estimator the theory's claim
 actually calls for. Study:
-`studies/2026-08-29-side-asymmetry-extension/`; theory detail in its
+`theories/no_side_premium/studies/answer/2026-08-29-side-asymmetry-extension/`; theory detail in its
 `NOTES.md`; `THEORY.md` status updated. Suite **900** green.
 
 **Learned:**
@@ -310,7 +310,7 @@ never affected (predicate-based); only the disposition pools misread.
 ## 2026-09-01 — the n_days>=8 bar is reached; the paired claim is null, and the paired estimator was the wrong one
 
 Session `llm-market-identifier-57`, theory lane. Full write-up and data:
-`studies/2026-08-29-side-asymmetry-extension/` ("Pass 2").
+`theories/no_side_premium/studies/answer/2026-08-29-side-asymmetry-extension/` ("Pass 2").
 
 **The bar the 08-27 amendment set is met.** `n_days = 8`, and the answer
 is **null**: mean `NO - YES` = **+2.91 pts**, day-clustered SE 5.51,
@@ -498,8 +498,9 @@ days with >= 10 rows (7 days)   +3.59   SE 0.73   t=4.93
 rows/day floor drops exactly one day — the only negative one — and the only
 reason to reach for that floor is having already seen that the negative day
 was the small one. That is precisely the failure the calibration_harvest
-gradient review caught on 2026-08-29 (`studies/2026-08-29-calibration-harvest-
-gradient-review/`, peer review by llm-market-identifier-4f): **the inclusion
+gradient review caught on 2026-08-29
+(`tickets/study/answer/2026-08-29-calibration-harvest-gradient-review/`,
+peer review by llm-market-identifier-4f): **the inclusion
 rule was the result.** It is recorded here because it was tempting, not
 because it is evidence.
 
@@ -535,10 +536,10 @@ is expressed.
 
 Same session. Answers the ticket `llm-market-identifier-0e` filed against
 this theory mid-session (`tickets/open/2026-09-01-side-split-on-series-bias-obs.md`).
-Full write-up: `studies/2026-09-01-side-split-60day-obs/`.
+Full write-up: `theories/no_side_premium/studies/answer/2026-09-01-side-split-60day-obs/`.
 
 **The prize was real: 72,010 priced settled markets over 61 close days,
-already on disk** in `studies/2026-08-29-series-bias-mining/data/collect.db`,
+already on disk** in `theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/data/collect.db`,
 with a `side` column nobody had split. This theory's own series has 8 days.
 Worked on a *copy* — a peer session is running a multi-hour backfill against
 the live file.
@@ -629,7 +630,7 @@ effect.
 
 ## The same control on the SCREEN population — it does not reverse there
 
-Run immediately after, on `studies/2026-08-29-side-asymmetry-extension/data/`
+Run immediately after, on `theories/no_side_premium/studies/answer/2026-08-29-side-asymmetry-extension/data/`
 (868 settled favorites, 132 series, the 8 complete close days). Same
 estimator: difference NO minus YES within (series, close day).
 
@@ -686,7 +687,7 @@ A, not a result about it** — the study measures a different population
 and says so explicitly in its "What this study does NOT license".
 
 **The answer to the question posed above: composition everywhere.**
-`studies/2026-09-01-liquidity-filtered-side-split`, completion re-run at
+`theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split`, completion re-run at
 99.95% backfill coverage (72,010 obs / 659 series / 61 close days, vs
 26,941 / 227 at run 1). NO minus YES **within (series, close day)**,
 inside `spread <= 0.07 AND open_interest >= 100`:
@@ -757,7 +758,7 @@ entangled and the ticket says to answer them together:
    −3.9 avoid claim is falsified by crossing zero upward.
 2. Nobody has ever measured whether either cell's number is contaminated by
    the early-close anchor bug, which
-   `studies/2026-08-29-early-close-exposure-existing-backtests` flagged for
+   `tickets/study/answer/2026-08-29-early-close-exposure-existing-backtests` flagged for
    this theory by name and then *reasoned* about rather than measured. Its
    own words: "Both look safe, but that is a reasoned expectation, not a
    measurement."

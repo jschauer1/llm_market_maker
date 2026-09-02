@@ -9,7 +9,7 @@ author_context: Noticed while exploring in go's choose phase; theory lane was cl
 status: done
 closed: 2026-09-01
 resolution: DONE, and the answer is a warning rather than the evidence hoped for.
-Full write-up: studies/2026-09-01-side-split-60day-obs/ (measure.py is
+Full write-up: theories/no_side_premium/studies/answer/2026-09-01-side-split-60day-obs/ (measure.py is
 re-runnable against a copy of collect.db).
 
 All four of the ticket's honesty conditions were handled; the fourth --
@@ -68,7 +68,7 @@ on tickets/new-theory/open/2026-09-01-no-favorite-high-band.md. Thanks for
 the ticket -- the dataset was exactly where you said and this would not
 have been found without it.
 ---
-THE POINT. `studies/2026-08-29-series-bias-mining/data/collect.db` holds
+THE POINT. `theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/data/collect.db` holds
 **69,874 priced observations across 648 series spanning ~60 settlement
 days** (`obs` table; `settled` holds 981,451 markets, close_time
 2026-06-30 -> 2026-08-29). Pass 3 of that study published an ask-band
@@ -128,7 +128,7 @@ FOUR THINGS THAT MUST BE HANDLED HONESTLY, or the number is worthless:
    with the YES/NO split REVERSING between days. Use the paired
    within-day statistic (NO_net - YES_net), which cancels the day
    effect -- the same one
-   `studies/2026-08-29-side-asymmetry-extension/` used to get +8.25 over
+   `theories/no_side_premium/studies/answer/2026-08-29-side-asymmetry-extension/` used to get +8.25 over
    5 days. ~60 days is the prize here.
 
 4. IT IS A DIFFERENT POPULATION. `obs` came from a board-wide sweep, not

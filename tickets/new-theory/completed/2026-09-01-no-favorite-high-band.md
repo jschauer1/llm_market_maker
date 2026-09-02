@@ -8,7 +8,7 @@ author_focus: no_side_premium
 author_context: Found while extending the paired within-day series to its n_days>=8 bar; the pooled claim came back null but the band split showed the mention restriction is what starves cell A.
 status: done
 closed: 2026-09-01
-resolution: DO NOT BUILD. The deciding experiment this ticket gated the theory on (studies/2026-09-01-liquidity-filtered-side-split) has now run BOTH times it promised. Completion re-run at 99.95% backfill coverage, 2026-09-01, session fleet-w1-g2: NO minus YES within (series, close day) inside spread<=0.07 AND open_interest>=100 is +0.05 pts (t=0.04) over 275 pairs / 114 series / 56 days -- 2.75x run 1's sample. Verdict unchanged, idea 33 moved to dead.
+resolution: DO NOT BUILD. The deciding experiment this ticket gated the theory on (theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split) has now run BOTH times it promised. Completion re-run at 99.95% backfill coverage, 2026-09-01, session fleet-w1-g2: NO minus YES within (series, close day) inside spread<=0.07 AND open_interest>=100 is +0.05 pts (t=0.04) over 275 pairs / 114 series / 56 days -- 2.75x run 1's sample. Verdict unchanged, idea 33 moved to dead.
 
 THREE CORRECTIONS this ticket's readers need, because run 1's write-up (quoted in the section above) is wrong on all three and they were all artifacts of an alphabetical 37% prefix that is disproportionately soccer and combat-sport totals:
 
@@ -23,7 +23,7 @@ Idea 36 (mid-band-favorite-fade) stays dead and the kill is cleaner: at 100% cov
 Everything this ticket asked for is now done.
 ---
 The 8-day within-day measurement of no_side_premium's population
-(studies/2026-08-29-side-asymmetry-extension/, "Pass 2", 2026-09-01)
+(theories/no_side_premium/studies/answer/2026-08-29-side-asymmetry-extension/, "Pass 2", 2026-09-01)
 says the signal such as it is lives in a PRICE BAND, and that
 no_side_premium's cell A cannot test it because its family restriction
 starves the population.
@@ -88,7 +88,7 @@ general.
 ## Addendum, same session: two more things that MUST be pre-registered
 
 Found in the robustness pass after the ticket was first written
-(`studies/2026-08-29-side-asymmetry-extension/STUDY.md`, "Robustness").
+(`theories/no_side_premium/studies/answer/2026-08-29-side-asymmetry-extension/STUDY.md`, "Robustness").
 
 **(5) A minimum rows-per-day for a day to count, fixed before collecting.**
 The cell's per-day row count runs **6 to 71** across the 8 days, so the
@@ -120,7 +120,7 @@ Start at n=0.
 
 ## Addendum 2, same session: a MANDATORY control this thesis has never had
 
-`studies/2026-09-01-side-split-60day-obs/` split a 61-close-day,
+`theories/no_side_premium/studies/answer/2026-09-01-side-split-60day-obs/` split a 61-close-day,
 72,010-observation out-of-population dataset by side. The pooled gap in
 this exact band replicated hard — **+3.95 pts, t=3.03, 41/61 days**,
 identical out-of-sample (+3.94 on 51 clean days), stronger in the on-time
@@ -144,7 +144,7 @@ had this control applied. That population is narrower than the sweep's, so
 the artifact may well be smaller — but "may well be" is what the control
 exists to replace. If the +1.70 is composition too, this theory should not
 be built, and that is a cheap thing to find out first:
-`studies/2026-08-29-side-asymmetry-extension/data/close-*.json` carry
+`theories/no_side_premium/studies/answer/2026-08-29-side-asymmetry-extension/data/close-*.json` carry
 `ticker`, so the series is derivable and the control is a short script.
 
 **UPDATE, same session: the control WAS run on the screen population, and
@@ -166,7 +166,7 @@ not.
 `spread`/`open_interest` exist across all 659 series (today: 59, reached in
 collection order, which is why the current liquidity control is unusable).
 Then filter the sweep to the screen's own liquidity bar and re-run the
-composition control -- `studies/2026-09-01-side-split-60day-obs/measure.py`
+composition control -- `theories/no_side_premium/studies/answer/2026-09-01-side-split-60day-obs/measure.py`
 section 7 already does it, it just needs the columns. That one run decides:
 
   * composition everywhere, screen result is small-sample noise
@@ -182,7 +182,7 @@ few hours of a job that is already running.
 ## RESOLVED (preliminary): the deciding experiment ran, and the answer is DO NOT BUILD
 
 Session `llm-market-identifier-b3`, 2026-09-01, new-theory lane.
-Study: `studies/2026-09-01-liquidity-filtered-side-split/`.
+Study: `theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split/`.
 Registry: idea 33 moved to `investigating` with the full numbers.
 
 This ticket ended by naming one experiment as the precondition for
@@ -239,9 +239,9 @@ settled even though the direction is stable across every cut tried.
 > series/min). When `collect.py status` shows it done:
 >
 > ```
-> cp studies/2026-08-29-series-bias-mining/data/collect.db <scratch>/c.db
-> python studies/2026-09-01-liquidity-filtered-side-split/measure.py <scratch>/c.db
-> python studies/2026-09-01-liquidity-filtered-side-split/mechanism.py <scratch>/c.db
+> cp theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/data/collect.db <scratch>/c.db
+> python theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split/measure.py <scratch>/c.db
+> python theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split/mechanism.py <scratch>/c.db
 > ```
 >
 > The pre-registration is frozen in that study's STUDY.md — **do not
@@ -273,4 +273,4 @@ exactly. Both sides lose. Mid-relative mispricing there is −1.45
 So the reusable output of this ticket is **two eliminations and one
 repo-wide caution**: a one-sided net edge of −N does not imply +N on the
 other side; it implies −(round_trip − N). Cross-referenced into
-`studies/2026-08-29-series-bias-mining/STUDY.md`.
+`theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/STUDY.md`.

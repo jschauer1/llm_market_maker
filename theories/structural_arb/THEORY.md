@@ -172,7 +172,7 @@ find" as settled (NOTES 2026-08-29 correction entry has the recipe).
 
 3 — 2026-08-29: **stage 1 drops three sterile violation classes before
 the orderbook fetch.** The snapshot study
-(`studies/2026-08-29-structural-arb-violation-liquidity/`) replayed this
+(`theories/structural_arb/studies/answer/2026-08-29-structural-arb-violation-liquidity/`) replayed this
 theory's geometry over 11 stored boards and found six violations in five
 days, **every one of which the v2 depth gate then rejected**. All six fall
 into classes the board alone identifies:

@@ -75,7 +75,9 @@ class Status:
 #: The known long-running collections. Both phases of the series-bias
 #: collector; `prices` walks unpriced series, `backfill` re-prices the
 #: pre-3cc5317 rows that read NULL liquidity fields.
-_SERIES_BIAS = Path("studies/2026-08-29-series-bias-mining")
+_SERIES_BIAS = Path(
+    "theories/insider_bias/mention_family/studies/investigation"
+    "/2026-08-29-series-bias-mining")
 
 REGISTRY: tuple[Collection, ...] = (
     Collection(

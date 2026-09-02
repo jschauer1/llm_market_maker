@@ -10,7 +10,7 @@ status: done
 closed: 2026-09-01
 resolution: Killed by its own item (1), run before release. The composition control PASSED -- buying the mid-band favorite really does lose -3.90 (t=-3.30), LOO negative in 171/171 -- but the mirrored trade is not +3.90. Favorite ask and underdog ask sum to 1+spread, so fav_net + dog_net == -(spread + fees) exactly (-3.8989 + -1.0411 = -4.9400, verified to 1e-6). The underdog leg measures -1.04: BOTH SIDES LOSE. Mid-relative mispricing is only -1.45 (t=-1.23, not significant) against a 4.94 round-trip cost, so ~3/4 of the headline was toll rather than error. Idea 36 recorded dead. Generalizable lesson kept in the study and the registry: a one-sided net edge of -N does not imply +N on the other side, it implies -(round_trip - N).
 ---
-MECHANISM AND MEASUREMENT. studies/2026-09-01-liquidity-filtered-side-split/mechanism.py applied the series-bias study's own pre-registered tradeable-book filter (spread<=0.07 AND open_interest>=100 -- the correction in that study's STUDY.md, which makes open_interest load-bearing and spread explicitly not) to the WHOLE price range rather than just the 0.90-0.97 cell. The population splits cleanly in two, day-clustered over 61 close days:
+MECHANISM AND MEASUREMENT. theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split/mechanism.py applied the series-bias study's own pre-registered tradeable-book filter (spread<=0.07 AND open_interest>=100 -- the correction in that study's STUDY.md, which makes open_interest load-bearing and spread explicitly not) to the WHOLE price range rather than just the 0.90-0.97 cell. The population splits cleanly in two, day-clustered over 61 close days:
 
   band        ALL rows          TRADEABLE only
   0.50-0.65   -4.90 t=-2.59     -4.21 t=-1.65  n=1285   <- SURVIVES
@@ -31,7 +31,7 @@ WHAT MUST BE PRE-REGISTERED BEFORE BUILDING -- four things, and (4) is the one t
   1. THE MIRRORED TRADE IS NOT SIMPLY +3.65. The favorite's net edge is (win rate - ask) - fee. The underdog leg pays its own fee on its own price; you cannot negate the number. Recompute from the underdog side directly.
   2. The sweep is SIZE-TRUNCATED toward lower-frequency series (collect.py's eligible_series walks ascending by settled count), so the high-frequency tail is unmeasured and the theory must not claim it.
   3. Coverage when this was measured was 37% and ALPHABETICAL (A-E complete, F partial, ~nothing after). Whole families are absent -- 72 series under L, 58 under U, 50 under S. RE-MEASURE ON THE COMPLETED BACKFILL FIRST.
-  4. THE WITHIN-SERIES WITHIN-DAY COMPOSITION CONTROL HAS NOT BEEN RUN ON THIS BAND, and it is mandatory. It is exactly what dissolved idea 33: that thesis had a pooled +3.95 (t=3.03) and a within-series control of -1.85, and out of sample -5.44 (t=-2.13). A pooled level over a population whose series mix varies is not an effect. studies/2026-09-01-liquidity-filtered-side-split/measure.py::control does this and can be pointed at the mid band directly -- it is a short change, and it is the FIRST thing to run, not the last.
+  4. THE WITHIN-SERIES WITHIN-DAY COMPOSITION CONTROL HAS NOT BEEN RUN ON THIS BAND, and it is mandatory. It is exactly what dissolved idea 33: that thesis had a pooled +3.95 (t=3.03) and a within-series control of -1.85, and out of sample -5.44 (t=-2.13). A pooled level over a population whose series mix varies is not an effect. theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split/measure.py::control does this and can be pointed at the mid band directly -- it is a short change, and it is the FIRST thing to run, not the last.
 
 Also check for subsumption before building: idea 25 favorite-day-effect and idea 2 calibration-harvest both look at favorite pricing over overlapping populations, and calibration_harvest's whole thesis is signed calibration cells by (domain x horizon x price). If this is just calibration_harvest's price axis measured on a different population, it belongs there as evidence rather than here as a theory.
 
@@ -99,7 +99,7 @@ Still outstanding, and (1)–(3) of the parent list are untouched:
   deserves the question "who is on the other side, and why do they keep
   being wrong" answered before anything is built.
 
-Scripts: `studies/2026-09-01-liquidity-filtered-side-split/measure.py`
+Scripts: `theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split/measure.py`
 (filter, `day_stat`, `control`) and `mechanism.py` (the band table). The
 control above was ad hoc against those helpers and is reproducible from
 them; it is not yet checked in as its own file.
@@ -153,5 +153,5 @@ than the thesis was:
 Every theory that reports a signed cell edge is one step from making it —
 the step from "do not buy this" to "so buy the other one".
 
-Full working: `studies/2026-09-01-liquidity-filtered-side-split/STUDY.md`,
+Full working: `theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split/STUDY.md`,
 "Addendum, same session".

@@ -49,7 +49,7 @@ here says anything about whether the judgment stage adds or destroys value.
 **2. All 17 settled on 2026-08-27, and that day flattered everything.**
 Whole-population control over the same screen, priced from the
 2026-08-27T01:06:07Z snapshot before any of it settled
-(`studies/2026-08-27-settlement-day-clustering/`, n=99 settled of 109):
+(`tickets/study/answer/2026-08-27-settlement-day-clustering/`, n=99 settled of 109):
 favorites beat implied by +5.40 net that day; 52/52 favorites priced
 0.90–0.98 won.
 
@@ -82,7 +82,7 @@ Follow-on from the settlement-day clustering study. Historical backtests
 previously could not be day-clustered at all — the replays recorded
 settlements with no `resolved_at`. Recovered from `extra_json`
 (`entry_day_iso + days_to_close_at_entry`) with no API call; see
-`studies/2026-08-27-settlement-day-clustering/backfill_resolved_at.py`.
+`tickets/study/answer/2026-08-27-settlement-day-clustering/backfill_resolved_at.py`.
 
 | run | n | days | row net | day net | row SE | day SE |
 |---|---|---|---|---|---|---|
@@ -1813,15 +1813,16 @@ event envelope. Anyone retrying this should use that, not this.
 ## 2026-09-01 — the early-close anchor bug does not explain `strong-moderate-no`; it has been costing it
 
 Session `fleet-w3-g1`, study lane. Full write-up, method and caveats:
-`studies/2026-09-01-early-close-exposure-in-the-bettable-slice/STUDY.md`.
+`tickets/study/answer/2026-09-01-early-close-exposure-in-the-bettable-slice/STUDY.md`.
 Nothing here changes this theory's procedure, so no version bump.
 
 **Why it was asked.** `replay.py:218` anchors "days to close" on
 `settled.close_time`. On a "does X happen by D" market, actual close is a
 *function of the outcome* — a NO runs to the deadline, a YES stops the
 moment the event fires — so the replay's entry day is computed backwards
-from an outcome-dependent point. `studies/2026-08-29-early-close-exposure-
-existing-backtests` established that and measured `insider-fullcov` at
+from an outcome-dependent point.
+`tickets/study/answer/2026-08-29-early-close-exposure-existing-backtests`
+established that and measured `insider-fullcov` at
 ~18% exposed, then stopped, having reasoned (its own words: "a reasoned
 expectation, not a measurement") that a negative headline only gets more
 negative.
@@ -1881,7 +1882,7 @@ arm, so the falsifying pattern is absent.
 tickers had already aged out of Kalshi's public API — against 2.9%
 unreachable in the same window three days earlier. The complete raw
 payloads for all 1,413 reachable markets are now captured at
-`studies/2026-09-01-early-close-exposure-in-the-bettable-slice/raw_markets.jsonl`.
+`tickets/study/answer/2026-09-01-early-close-exposure-in-the-bettable-slice/raw_markets.jsonl`.
 That file is the only remaining source for the titles, rules text, close
 times and settlement fields of this theory's judged-campaign population,
 and it is what the open `backfill-titles-from-judging-payloads` ticket

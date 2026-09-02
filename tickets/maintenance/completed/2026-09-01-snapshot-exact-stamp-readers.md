@@ -33,11 +33,11 @@ which is the check that the interval reconstruction is right.)
 THE FIX ALREADY EXISTS. `tools.snapshot.board_as_of(conn, platform, at)`
 returns the row per market whose [captured_at, last_seen_at] interval
 contains the instant. Added 2026-09-01 with six tests in
-tests/test_snapshot_store.py. studies/2026-08-29-side-asymmetry-extension/
+tests/test_snapshot_store.py. theories/no_side_premium/studies/answer/2026-08-29-side-asymmetry-extension/
 measure.py is already converted; this ticket is the other two callers:
 
-  studies/2026-08-29-structural-arb-violation-liquidity/probe.py:53-56
-  studies/2026-08-27-calendar-arb-firing-rate/probe.py:106-108
+  theories/structural_arb/studies/answer/2026-08-29-structural-arb-violation-liquidity/probe.py:53-56
+  tickets/study/answer/2026-08-27-calendar-arb-firing-rate/probe.py:106-108
 
 Each is a two-line change: drop the SELECT, call board_as_of, keep the
 existing normalize/payload_text handling.

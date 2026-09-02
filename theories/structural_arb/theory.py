@@ -62,7 +62,7 @@ MAX_ORDERBOOK_FETCHES = 20
 MIN_FILLABLE_PROFIT_USD = 5.0
 
 #: v3 stage-1 sterile-class screens. The 2026-08-29 snapshot study
-#: (studies/2026-08-29-structural-arb-violation-liquidity/) replayed this
+#: (theories/structural_arb/studies/answer/2026-08-29-structural-arb-violation-liquidity/) replayed this
 #: theory's geometry over 11 stored boards and found six violations in
 #: five days, EVERY ONE of which the depth gate then rejected. They fall
 #: into three classes identifiable from the board alone, so screening

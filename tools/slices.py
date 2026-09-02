@@ -112,8 +112,8 @@ MIN_SLICE_DAYS = 5
 """Distinct out-of-sample settlement days before a slice may speak.
 
 The same floor, for the same reason, as `buckets.MIN_BUCKET_DAYS`: the
-settlement-day clustering study (`studies/2026-08-27-settlement-day-
-clustering/`) measured one screen population swinging several points
+settlement-day clustering study
+(`tickets/study/answer/2026-08-27-settlement-day-clustering/`) measured one screen population swinging several points
 between consecutive close-days, so one hot night must not define a
 slice any more than it may define a bucket.
 """

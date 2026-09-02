@@ -577,7 +577,7 @@ def test_price_live_orderbook_budget_caps_fetches(monkeypatch):
 # --- v3: the three sterile classes, screened before the depth fetch ------
 #
 # The 2026-08-29 snapshot study
-# (studies/2026-08-29-structural-arb-violation-liquidity/) replayed the
+# (theories/structural_arb/studies/answer/2026-08-29-structural-arb-violation-liquidity/) replayed the
 # geometry over 11 stored boards and found six violations in five days,
 # every one of which the depth gate rejected. They fall into three classes
 # that are all identifiable from the board alone, so the scan should stop
