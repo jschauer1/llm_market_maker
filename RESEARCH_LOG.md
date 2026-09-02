@@ -4359,3 +4359,157 @@ price band on this 659-series corpus shows a mid-relative gross
 mispricing clearing |t|>2. Any proposed theory whose edge is an
 *unconditional price level* is now measured against an empty space, and a
 spec in that mold should cite this before it is built.
+
+## 2026-09-01 — three specs killed on their own first steps, and the two design moves that did it (new-theory lane)
+
+Session `fleet-w2-g2`, new-theory lane. Evidence under
+`tickets/new-theory/evidence/2026-09-01-{block-trade,accumulation-decay,aggregation-gap}-probe/`.
+Backlog 21 -> 18 open.
+
+**Did.** Took `block-trade-whale-follow`, and when it died in under an
+hour took `accumulation-decay`, then `aggregation-gap` — every one on the
+"cheapest decisive first step" its own spec named, every one pre-registered
+before the numbers, all three recorded dead in the idea registry with
+`what_was_tried` / `outcome` / `revisit_angle` and closed with resolutions.
+Rule 0f went from seven instances to eight and rule 0 gained a second
+cross-event probe, both in `tickets/new-theory/README.md`.
+
+**Learned — a spec's own scope limit is the first thing to point at its
+own headline case.** `aggregation-gap` carries an explicit warning that
+`E[wins]` is recoverable only where the strike ladder spans the full
+support, "or it will manufacture enormous fake gaps", and applies it to
+NBA and NCAAF. Its own strongest case fails that test:
+`KXHOUSEWINSTATE` lists **one** `>k` strike per state, so `E[Dem seats]`
+is bounded rather than determined, with bound widths of 0.06–0.40 seats
+against claimed gaps of +0.21 to +0.40 — in SC the width *equals* the
+gap. The identity the theory rests on does not exist for the family it
+was going to be built on. **Generalizable check before building any
+spec: take each caveat the spec states about other families and re-run it
+against the spec's own headline instance.** The author who writes the
+caveat is the least likely person to apply it there.
+
+**Learned — when the outcome test cannot be powered, find the test that
+does not need outcomes.** `accumulation-decay`'s family caps at 28–31
+event clusters (one album-week resolves off one Luminate number, ~3
+events/week, and the DB already holds more history than Kalshi's archive
+still serves). That is an MDE near 25 pts against a 3–6 pt target, so per
+rule 0b the design was **resized before running**: a price-path test
+(n=1,046 observations, no clustering problem) became primary and the
+calibration test was demoted with its limit stated up front. The kill then
+came from arithmetic rather than a t-statistic — **a perfect forecaster
+buying the favorite at the executable ask in the determined-but-unpublished
+window nets mean +0.45 pts and median +0.00**. A ceiling computed with
+perfect foresight is the strongest form of a null: no data source, model
+or run-rate can beat it, and it needs no power at all. Reach for it
+whenever cluster count is the binding constraint.
+
+**Learned — `is_block_trade` is genuine, is not a size proxy, and fires
+about sixteen times a year.** 5 flagged trades in 498,918 (plus 0 in
+`taker_flow`'s earlier 93,399), and 3 of the 5 are **one** decision —
+LSU football across three events, all YES, inside 53 seconds. Meanwhile
+1,342 of 15,000 board-wide trades were >= 500 contracts and one was
+272,727, none flagged. So the flag means *negotiated*, not *big*, and the
+population is ~3 independent events per 67 days. The kill does not depend
+on the open fixed-vs-rolling retention question: a full year still yields
+~16 events.
+
+**Capability fact worth not rediscovering:** a liquid Kalshi market's
+**entire** reachable trade history is usually under 3,000 trades — 205 of
+the 300 highest-open-interest markets on the board exhausted inside three
+pages, and the median walk bottomed out at the 2026-06-26 retention floor.
+Any flow theory can treat `max_pages=3` as full coverage for liquid names
+rather than as a sample, which is a much cheaper collection budget than
+`tools/kalshi/trades.py`'s "max_pages is a real budget" implies there.
+
+**Next.** The mechanical half of the 2026-09-01 find-theories batch is now
+triaged; what is left in `open/` from that day is `fine-print-divergence`
+(interpretive), `niche-league-inefficiency`,
+`calendar-arb-soft-relative-value` and `no-favorite-high-band` (the last
+being decided by a study in flight — do not touch it). Of the 2026-08-24
+literature batch, `weather-model-gap` is the one whose data is keylessly
+reachable and whose population is large, and `new-market-anchor` starts as
+a measurement rather than a theory. Neither has had its first step run.
+
+## 2026-09-01 — the collector layer gets a cause fix, a detection fix, and a guard; and a "zero" that was never zero (maintenance lane)
+
+Session `fleet-w3-g2`, maintenance, claim 19. Four tickets closed, two
+filed. Suite 1,422 passing; the 2 failures are another session's
+uncommitted `no_side_premium` files and are ticketed, not mine.
+
+**Did.** `tools/http.py` — 429 now has its own attempt budget
+(`RATE_LIMIT_RETRIES=8`) separate from `max_retries`, honours
+`Retry-After` (seconds or HTTP-date), and otherwise backs off
+exponentially with upward-only jitter capped at 60s. `tools/collectors.py`
++ a `collections:` block in `cli state`'s FRESHNESS panel. A conventions
+guard on `captured_at = ?`. `tools/book.py`. `probe_as_of.py` for the
+calendar-arb study, plus a dated addendum there.
+
+**Learned — the two halves of a collector failure are different bugs, and
+this repo had been fixing only the second.** The series-bias backfill
+stalled twice and each time the response was "a session noticed and
+restarted it". But *why it stopped* and *why nobody knew* are independent,
+and both were live. Cause: Kalshi's limiter has a **sustained-volume
+component**, so a single-threaded walk at the ~4–5/s that
+`calibration_harvest`'s profiling certified as safe still trips a 429 —
+one died 21 series into 3,274 — and `tools/http.py` gave up after four
+quick retries, which against a limiter asking you to *stop* can extend the
+penalty rather than clear it. Detection: nothing in any orientation
+surface mentioned a collection, so a stall was only ever found by someone
+running a study's own `status` by hand. **Generalizable: when a job
+outlives the session that starts it, "someone will notice" is not a
+mechanism.** Both fixes are small; neither substitutes for the other.
+
+**Learned — a status line that nags is the same defect as one that hides.**
+First cut of the `collections:` panel reported the finished backfill as
+`IDLE` with a "resume:" hint, because nothing knew the denominator. That
+is a tool telling every future session to restart a completed four-hour
+walk. Completeness is study-specific and only sometimes answerable, so
+`Collection.remaining_sql` is **optional**: `backfill` can express work
+left (a NULL-spread series *never attempted* — a NULL that survived its own
+backfill is a candle that aged out upstream, which is loss, not work), and
+`prices` cannot without duplicating the collector's eligibility rule in
+`tools/`, so it makes no claim at all. **An honest "I don't know" beats a
+confident denominator that drifts.**
+
+**Learned — a guard that fires on its own documentation gets muted.** The
+`captured_at = ?` check, written line-by-line, flagged five sites: three
+were *prose warning against the trap*. Rewritten to match `.execute()`
+arguments through the AST, it flags exactly the three real queries. The
+two frozen as-run study probes opt out with `# EXACT-STAMP-OK: <reason>`,
+and a second test rejects a reason under 20 characters, so exceptions stay
+auditable rather than becoming a blanket.
+
+**Learned — calendar-arb's "firing rate is zero" was measured on a board
+missing up to 97% of its markets, and the verdict survives anyway.** Its
+probe read boards by exact stamp; re-run through `board_as_of`, one
+capture goes from 3,254 markets to 107,656, and the count goes from zero
+to **25 violations / 38,124 pairs**. The verdict still stands, because 19
+of 25 are one recurring **2028-horizon** cross-event pair worth 0.4–2.3
+points against two years of carry, and 3 have a **0.01 NO ask** — the
+placeholder-quote trap, now hit in a third study. **The real finding is the
+half nobody re-ran:** Result 2's 295-near-dated-pair table, the structural
+argument that actually closes the theory and the dataset
+`calendar-arb-soft-relative-value` wants to reuse, is not computed by
+`probe.py`'s `main()`, so it was never re-derived and still rests on the
+short board. Filed. **Generalizable: fixing a study's instrument only
+re-checks the results that instrument produces — the ones computed
+alongside it are silently left on the old data.**
+
+**Learned — the round-trip identity, and why two theories hit it in one
+hour.** `net(this side) + net(other side) == -(spread + both fees)`,
+identically. So a cell at −N is not +N on the complement; it is
+−(round trip − N), and on Kalshi that toll is 2–5 points — usually larger
+than the effect being measured. Now `tools/book.py`, with the identity
+pinned by test. Writing those tests turned up a trap the ticket had not
+seen: the validity constraint on a quote pair is **`spread <= ask`**, not
+the obvious one — `ask=0.99, spread=0.05` looks extreme and is legal,
+`ask=0.05, spread=0.07` looks mild and is impossible. Two of my own first
+draft's test cases were invalid quotes, which is the evidence that this is
+easy to walk into.
+
+**Next.** `collector-write-lock` remains the live silent-data-loss risk and
+is the natural successor to the two collector fixes here.
+`parse-deadline-earned-elevation` is blocked only on a peer's work landing.
+Of the rest, `sweep-migration-sentinel-guards` is the one with teeth —
+self-disabling migration guards are the "semantics change silently" failure
+this lane exists for.
