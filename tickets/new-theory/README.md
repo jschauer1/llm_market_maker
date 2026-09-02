@@ -15,7 +15,7 @@ ticket links here instead of repeating any of it.
 | | |
 |---|---|
 | `open/` | proposed theories, one spec each — the backlog a session chooses from |
-| `completed/` | specs that were built, turned into a study, or killed; the `resolution` field says which |
+| `completed/` | specs that ended; the `resolution` field's first word says how |
 | `evidence/` | specs whose cheapest decisive measurement is running now, against the bar the spec wrote before looking |
 | `implement/` | specs whose measurement cleared that bar — a build order, not a proposal |
 | `reference/` | the graded evidence ledger and full reading notes behind the claims these specs make |
@@ -28,6 +28,30 @@ false positive this repo has already paid for once — an alarm that is
 always on is worse than no alarm, because the day a real one fires it is
 indistinguishable from the noise. `reference/` is not a state, so
 `backlog()` never looks in it.
+
+**A resolution starts with one of four words**, and `cli tickets close`
+refuses anything else:
+
+| word | means | re-proposable? |
+|---|---|---|
+| `built` | became a running theory — name it | — |
+| `disproven` | the bar was met and the thesis failed | **no** |
+| `underpowered` | the measurement could not reach the bar — population too thin, history too short, liquidity too low | **yes**, when conditions change |
+| `superseded` | folded into another spec or theory | — |
+
+The prose still goes after the colon (`--resolution "disproven: 97.6% of
+rungs sat on their own fit"`). The vocabulary exists because `disproven`
+and `underpowered` mean opposite things about re-proposing and free text
+made them look identical six months later — which is how a dead thesis
+gets rebuilt and a merely-unmeasured one gets abandoned. `calendar-arb`
+and `smile-smoothing` are the worked `disproven`: measured properly, and
+the answer was no.
+
+Closing `disproven` or `underpowered` **requires the finding in the ideas
+registry first** — `what_was_tried` and `outcome`, plus a
+`revisit_angle` for `underpowered`. That is not bookkeeping: a completed
+ticket is purgeable after a week, and deleting the file is only safe once
+the durable fact has left it.
 
 An idea to try **on an existing theory** is not a new-theory ticket — it
 belongs in that theory's own folder (`cli tickets new --lane theory

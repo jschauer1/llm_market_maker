@@ -200,8 +200,17 @@ def _cmd_tickets(args) -> int:
                                note=args.note)
         _emit({"advanced": str(path), "state": args.to})
     elif args.action == "close":
-        path = tickets.close(pathlib.Path(args.path),
-                             resolution=args.resolution)
+        # The connection is opened for EVERY close, not only a
+        # new-theory one: whether the resolution needs a registry entry
+        # is decided by `tickets.close` from the ticket's own lane and
+        # first word, and a caller that had to know the rule in advance
+        # to pass the right arguments is a rule with two homes.
+        conn = _connect(args)
+        try:
+            path = tickets.close(pathlib.Path(args.path),
+                                 resolution=args.resolution, conn=conn)
+        finally:
+            conn.close()
         _emit({"closed": str(path)})
     return 0
 
@@ -896,9 +905,17 @@ def build_parser() -> argparse.ArgumentParser:
     tadv.add_argument("--note", required=True,
                       help="why it moved — appended to the body under a "
                            "dated heading")
-    tcl = tsub.add_parser("close")
+    tcl = tsub.add_parser(
+        "close", help="mark a ticket done and move it into completed/")
     tcl.add_argument("path")
-    tcl.add_argument("--resolution", required=True)
+    tcl.add_argument(
+        "--resolution", required=True,
+        help="what happened. A new-theory spec must START with one of "
+             f"{tickets.NEW_THEORY_RESOLUTIONS} -- `disproven` means the "
+             "bar was met and the thesis failed (not re-proposable); "
+             "`underpowered` means the measurement could not reach the "
+             "bar, which stays re-proposable. Either of those two "
+             "requires the finding in the ideas registry first")
 
     p = sub.add_parser(
         "lane", help="who is working on what; claim a lane and stay in it")

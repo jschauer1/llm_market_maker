@@ -19,7 +19,18 @@ from __future__ import annotations
 
 import pytest
 
-from tools import tickets
+from tools import db, ideas, tickets
+
+
+@pytest.fixture()
+def conn(tmp_path):
+    """A real ideas registry. Closing a `new-theory` spec `disproven` or
+    `underpowered` reads this, so the tests that cover that coupling need
+    a database rather than a stub."""
+    c = db.connect(tmp_path / "t.db")
+    db.init_db(c)
+    yield c
+    c.close()
 
 
 @pytest.fixture()
@@ -353,14 +364,23 @@ def test_the_new_theory_lane_lives_in_a_directory_named_for_it(repo):
     )
 
 
-def test_closing_a_new_theory_ticket_stays_inside_its_lane(repo):
+def test_closing_a_new_theory_ticket_stays_inside_its_lane(repo, conn):
+    """`smile-smoothing` is the repo's own worked example of `disproven`
+    -- measured properly, and the answer was no -- so this closes the way
+    a real one now has to: the registry row first, then the file. It grew
+    a database for that reason and not because placement needs one."""
     path = tickets.create(
         repo, lane="new-theory", slug="smile-smoothing", title="ladder shape",
         body="Fit a monotone curve; bet the deviant strike.",
         created="2026-08-24", created_by="llm-7a",
     )
-    done = tickets.close(path, resolution="Dead: 97.6% of rungs sat on the fit.",
-                         now="2026-08-29")
+    ideas.record(conn, "smile-smoothing", "Ladder shape")
+    ideas.update_status(conn, "smile-smoothing", "dead",
+                        what_was_tried="isotonic fit over 959 rungs",
+                        outcome="97.6% sat exactly on their own fit")
+    done = tickets.close(path,
+                         resolution="disproven: 97.6% of rungs sat on the fit.",
+                         now="2026-08-29", conn=conn)
     assert done.relative_to(repo).as_posix() == (
         "tickets/new-theory/completed/2026-08-24-smile-smoothing.md"
     )
@@ -822,3 +842,117 @@ def test_advance_still_refuses_completed_for_new_theory(tmp_path):
         created="2026-09-02")
     with pytest.raises(ValueError):
         tickets.advance(path, to="completed", note="nope")
+
+
+# --- four resolutions, and closing elevates the finding first ---------------
+
+
+def test_a_new_theory_close_requires_a_known_resolution(tmp_path):
+    path = tickets.create(tmp_path, lane="new-theory", slug="x", title="T",
+                          body="b", created="2026-09-02")
+    with pytest.raises(ValueError, match="built|disproven|underpowered"):
+        tickets.close(path, resolution="did not work out")
+
+
+def test_built_and_superseded_need_no_registry_entry(tmp_path):
+    path = tickets.create(tmp_path, lane="new-theory", slug="x", title="T",
+                          body="b", created="2026-09-02")
+    done = tickets.close(path, resolution="built: now theories/x")
+    assert done.parent.name == "completed"
+
+
+def test_disproven_refuses_without_an_ideas_entry(tmp_path, conn):
+    """The purge may delete a completed spec after a week. That is only
+    safe because the finding elevated OUT of the file first -- otherwise
+    somebody re-proposes the same dead thesis in three weeks, which is
+    exactly what the ideas registry exists to prevent."""
+    path = tickets.create(tmp_path, lane="new-theory", slug="deadidea",
+                          title="T", body="b", created="2026-09-02")
+    with pytest.raises(ValueError, match="ideas"):
+        tickets.close(path, resolution="disproven: zero violations",
+                      conn=conn)
+
+
+def test_underpowered_needs_a_revisit_angle(tmp_path, conn):
+    """`underpowered` means we could not tell, not that the thesis is
+    dead -- so it is re-proposable, and the registry has to say what
+    would have to change before anyone tries again."""
+    ideas.record(conn, "thinpop", "Thin population thesis")
+    ideas.update_status(conn, "thinpop", "parked",
+                        what_was_tried="probed one board",
+                        outcome="only 4 markets qualified")
+    path = tickets.create(tmp_path, lane="new-theory", slug="thinpop",
+                          title="T", body="b", created="2026-09-02")
+    with pytest.raises(ValueError, match="revisit_angle"):
+        tickets.close(path, resolution="underpowered: 4 markets",
+                      conn=conn)
+    ideas.update_status(conn, "thinpop", "parked",
+                        revisit_angle="retry when the series lists weekly")
+    done = tickets.close(path, resolution="underpowered: 4 markets",
+                         conn=conn)
+    assert done.parent.name == "completed"
+
+
+def test_other_lanes_keep_free_text_resolutions(tmp_path):
+    path = tickets.create(tmp_path, lane="maintenance", slug="x", title="T",
+                          body="b", created="2026-09-02")
+    done = tickets.close(path, resolution="not a bug, the caller was wrong")
+    assert done.parent.name == "completed"
+
+
+def test_disproven_refuses_without_a_connection_at_all(tmp_path):
+    """No connection means nothing could have checked the registry, and a
+    close that skips the check is a spec the purge may delete with its
+    finding still only in the file."""
+    path = tickets.create(tmp_path, lane="new-theory", slug="deadidea",
+                          title="T", body="b", created="2026-09-02")
+    with pytest.raises(ValueError, match="database connection"):
+        tickets.close(path, resolution="disproven: zero violations")
+
+
+def test_a_disproven_close_needs_what_was_tried_and_an_outcome(tmp_path, conn):
+    """A registry row that names the idea but records nothing learned is
+    not the durable fact -- it is a placeholder that reads like one."""
+    ideas.record(conn, "hollow", "Hollow entry")
+    path = tickets.create(tmp_path, lane="new-theory", slug="hollow",
+                          title="T", body="b", created="2026-09-02")
+    with pytest.raises(ValueError, match="what_was_tried"):
+        tickets.close(path, resolution="disproven: nothing there", conn=conn)
+    ideas.update_status(conn, "hollow", "dead",
+                        what_was_tried="measured one board")
+    with pytest.raises(ValueError, match="outcome"):
+        tickets.close(path, resolution="disproven: nothing there", conn=conn)
+    ideas.update_status(conn, "hollow", "dead", outcome="zero violations")
+    done = tickets.close(path, resolution="disproven: nothing there",
+                         conn=conn)
+    assert done.parent.name == "completed"
+    assert "resolution: disproven: nothing there" in done.read_text(
+        encoding="utf-8")
+
+
+def test_disproven_needs_no_revisit_angle(tmp_path, conn):
+    """`disproven` is the one that does NOT stay re-proposable: the bar
+    was met and the thesis failed, so there is nothing to say about
+    trying again."""
+    ideas.record(conn, "reallydead", "Really dead")
+    ideas.update_status(conn, "reallydead", "dead",
+                        what_was_tried="full-coverage replay",
+                        outcome="flat at executable prices")
+    path = tickets.create(tmp_path, lane="new-theory", slug="reallydead",
+                          title="T", body="b", created="2026-09-02")
+    # Case-insensitive, and the prose still fits after the colon.
+    assert tickets.close(path, resolution="Disproven: flat at the ask",
+                         conn=conn).parent.name == "completed"
+
+
+def test_the_slug_of_a_ticket_drops_its_dated_prefix(tmp_path):
+    path = tickets.create(tmp_path, lane="new-theory", slug="some-thesis",
+                          title="T", body="b", created="2026-09-02")
+    assert tickets.slug_of(path) == "some-thesis"
+
+
+def test_the_slug_of_a_study_is_its_directory(tmp_path):
+    path = tickets.create(tmp_path, lane="study", slug="a-measurement",
+                          title="T", body="b", created="2026-09-02")
+    assert path.name == tickets.STUDY_FILE
+    assert tickets.slug_of(path) == "a-measurement"

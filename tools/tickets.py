@@ -86,6 +86,31 @@ LANE_STATES: dict[str, tuple[str, ...]] = {
 #: what this measurement is.
 STUDY_FILE = "STUDY.md"
 
+#: The four ways a new-theory spec can end, and the reason the vocabulary
+#: is fixed: `disproven` and `underpowered` mean OPPOSITE things about
+#: re-proposing, and today that distinction is invisible in free text.
+#:
+#:   built        became a running theory -- name it
+#:   disproven    the bar was met and the thesis failed. Not re-proposable.
+#:                `calendar-arb` and `smile-smoothing` are the worked
+#:                examples: measured, and the answer was no.
+#:   underpowered the measurement COULD NOT REACH the bar -- population too
+#:                thin, history too short, liquidity too low. This is a
+#:                different claim ("we could not tell"), and it IS
+#:                re-proposable when conditions change.
+#:   superseded   folded into another spec or theory
+#:
+#: Six months later a free-text resolution makes a dead thesis and an
+#: unmeasured one look identical, which is how one gets rebuilt and the
+#: other gets abandoned. The verdict is the resolution's first word, so
+#: the sentence a session would have written anyway still fits after the
+#: colon.
+NEW_THEORY_RESOLUTIONS = ("built", "disproven", "underpowered", "superseded")
+
+#: Closing one of these elevates the finding into the ideas registry
+#: BEFORE the file may be deleted. See `close`.
+_RESOLUTIONS_NEEDING_A_REGISTRY_ENTRY = ("disproven", "underpowered")
+
 
 def states_for(lane: str) -> tuple[str, ...]:
     """The states this lane declares, in pipeline order."""
@@ -95,6 +120,24 @@ def states_for(lane: str) -> tuple[str, ...]:
         raise ValueError(
             f"unknown lane {lane!r}; expected one of {LANES}"
         ) from None
+
+
+def slug_of(path: Path) -> str:
+    """A ticket's slug -- its filename minus the dated prefix.
+
+    A study is the exception, and for the same reason `_scan` treats it as
+    one: the ticket is the DIRECTORY and `STUDY.md` is only the file
+    inside it, so the slug is the directory's name. Deriving it from the
+    stem would call every study in the repo "STUDY".
+
+    This is the identity a `new-theory` close looks an idea up by, so it
+    has to agree with what a session typed at `ideas record` -- the slug,
+    never the dated filename.
+    """
+    path = Path(path)
+    name = path.parent.name if path.name == STUDY_FILE else path.stem
+    match = _DATE_PREFIX.match(name)
+    return match.group(2) if match else name
 
 
 def ticket_dir(
@@ -628,7 +671,8 @@ def _lane_of(state_dir: Path) -> str:
     raise ValueError(f"cannot tell which lane {state_dir} belongs to")
 
 
-def close(path: Path, *, resolution: str, now: str | None = None) -> Path:
+def close(path: Path, *, resolution: str, now: str | None = None,
+          conn=None) -> Path:
     """Mark a ticket done and MOVE it into `completed/`. Returns the new path.
 
     The file is kept, never deleted: a finished ticket is the record of
@@ -637,6 +681,12 @@ def close(path: Path, *, resolution: str, now: str | None = None) -> Path:
     physically, because the backlog is a directory listing -- a status
     field alone would make every session read every ticket ever filed to
     find the few still open.
+
+    **A `new-theory` ticket is a spec, so its resolution is a vocabulary
+    and not free text** (`NEW_THEORY_RESOLUTIONS`), and closing one
+    `disproven` or `underpowered` requires the finding to ALREADY be in
+    the ideas registry -- which is what `conn` is for. That coupling is
+    the load-bearing part; `_require_idea` says why.
     """
     if not resolution or not resolution.strip():
         raise ValueError("a resolution is required: say what happened")
@@ -695,6 +745,24 @@ def close(path: Path, *, resolution: str, now: str | None = None) -> Path:
     raw = path.read_text(encoding="utf-8")
     if "status: open" not in raw:
         raise ValueError(f"ticket {path} is not open")
+    if lane == "new-theory":
+        # Checked BEFORE anything is written. A spec closed with prose
+        # says what happened to whoever reads it next week and says
+        # nothing at all to the session six months out asking the only
+        # question that changes behaviour: may this thesis be proposed
+        # again?
+        word = resolution.strip().split(":")[0].strip().lower()
+        if word not in NEW_THEORY_RESOLUTIONS:
+            raise ValueError(
+                f"a new-theory resolution starts with one of "
+                f"{NEW_THEORY_RESOLUTIONS}, not {word!r}. `disproven` "
+                "means the bar was met and the thesis failed; "
+                "`underpowered` means the measurement could not reach "
+                "the bar, which is a different claim and stays "
+                "re-proposable."
+            )
+        if word in _RESOLUTIONS_NEEDING_A_REGISTRY_ENTRY:
+            _require_idea(conn, slug_of(path), word)
     raw = raw.replace("status: open", "status: done", 1)
     raw = raw.replace(
         "\n---\n",
@@ -707,6 +775,53 @@ def close(path: Path, *, resolution: str, now: str | None = None) -> Path:
     done.write_text(raw, encoding="utf-8")
     path.unlink()
     return done
+
+
+def _require_idea(conn, slug: str, word: str) -> None:
+    """Refuse the close unless the finding already elevated.
+
+    This is not bookkeeping. `purge` deletes a completed ticket after a
+    week, and that is only safe because the durable fact left the file
+    first. Without this coupling, purging an uncited `underpowered` spec
+    just lets somebody re-propose the same dead thesis in three weeks --
+    the exact failure the ideas registry exists to prevent.
+
+    Knowledge elevates by AUDIENCE, and a killed spec's audience is every
+    future session that will have the same idea. The file is the audit
+    trail; the registry row is the fact. Only one of the two is
+    searchable, and only one of the two survives the purge.
+    """
+    if conn is None:
+        raise ValueError(
+            f"closing a spec {word!r} needs a database connection: the "
+            "finding has to reach the ideas registry before the file may "
+            "be deleted"
+        )
+    from tools import ideas
+    row = ideas.get(conn, slug)
+    if row is None:
+        raise ValueError(
+            f"no ideas-registry entry for {slug!r}. Record it first "
+            "(`ideas record` then `ideas status`) with what was tried and "
+            "what was learned -- the purge may delete this file in a week."
+        )
+    if not (row["what_was_tried"] or "").strip():
+        raise ValueError(f"idea {slug!r} has no what_was_tried")
+    if not (row["outcome"] or "").strip():
+        raise ValueError(f"idea {slug!r} has no outcome")
+    if word == "underpowered" and not (row["revisit_angle"] or "").strip():
+        # The whole asymmetry between the two words lives here.
+        # `disproven` closes the question, so there is nothing to say
+        # about trying again. `underpowered` says only that we could not
+        # tell, so the row has to carry what would have to change --
+        # without it the idea reads as dead to the next session that
+        # searches for it, which loses exactly the distinction this
+        # vocabulary was introduced to keep.
+        raise ValueError(
+            f"idea {slug!r} has no revisit_angle. `underpowered` means "
+            "the measurement could not reach the bar, so it stays "
+            "re-proposable -- say what would have to change."
+        )
 
 
 #: Width the rendered backlog is wrapped to. A ticket that does not fit
