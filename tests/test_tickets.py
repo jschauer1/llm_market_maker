@@ -30,11 +30,6 @@ def repo(tmp_path):
     # says, and insider_judgment sits under a shared family parent.
     (tmp_path / "theories" / "insider_bias"
      / "insider_judgment").mkdir(parents=True)
-    # A study owns its tickets the same way a theory does; its folder is
-    # its slug, dated, under studies/.
-    study = tmp_path / "studies" / "2026-08-29-series-bias-mining"
-    study.mkdir(parents=True)
-    (study / "STUDY.md").write_text("# series bias", encoding="utf-8")
     return tmp_path
 
 
@@ -374,103 +369,94 @@ def test_the_brief_render_is_one_line_per_ticket(repo):
     assert len(text) < 1000
 
 
-# --- a study owns its tickets, exactly as a theory does --------------------
+# --- a study is a directory ticket, routed to the theory that owns it ------
+#
+# The old "a ticket about a study" concept -- a chore filed against a
+# pre-existing study folder, at studies/<slug>/tickets/<state>/ -- is gone.
+# A study IS the ticket now: creating one starts its own question/
+# investigation/answer lifecycle, directory and all, exactly like a theory
+# or a maintenance ticket starts its own open/completed one. The tests that
+# pinned the old shape (`test_a_study_ticket_lands_in_that_studys_folder`,
+# its "needs its study" / "no study" refusals, its backlog and close
+# assertions on `studies/<slug>/tickets/...`) tested a concept this phase
+# removes, so they were deleted rather than adapted -- see the commit
+# message for the full accounting.
 
 
-def test_a_study_ticket_lands_in_that_studys_folder(repo):
-    """Work about a study belongs to the study, not the main backlog.
+def test_a_study_owned_by_a_theory_lives_in_that_theory(tmp_path):
+    got = tickets.ticket_dir(
+        tmp_path, "study", theory="no_side_premium",
+        theory_path="theories/no_side_premium", state="answer")
+    assert got == tmp_path / "theories/no_side_premium/studies/answer"
 
-    Same rule as a theory, for the same reason: a study folder holds its
-    question, its scripts, its data and its verdict, and queued work
-    against it is part of that. `series-bias-mining` is why this matters
-    — it grew a 353MB corpus and a multi-hour collector that other work
-    depends on, and its stalls were noticed twice by accident because
-    nothing about it was anybody's.
-    """
+
+def test_a_study_owned_by_nobody_lives_in_the_root_lane(tmp_path):
+    got = tickets.ticket_dir(tmp_path, "study", state="investigation")
+    assert got == tmp_path / "tickets/study/investigation"
+
+
+def test_a_study_ticket_is_a_directory_holding_STUDY_md(tmp_path):
     path = tickets.create(
-        repo, lane="study", slug="finish-the-price-sweep",
-        study="2026-08-29-series-bias-mining",
-        title="phase 2 stopped at 664 of 840 series",
-        body="Resume with collect.py prices; it is per-series atomic.",
-        created="2026-09-01", created_by="llm-7a",
-    )
-    assert path.relative_to(repo).as_posix() == (
-        "studies/2026-08-29-series-bias-mining/tickets/open/"
-        "2026-09-01-finish-the-price-sweep.md"
-    )
+        tmp_path, lane="study", slug="entry-timing",
+        title="Does entry timing matter?",
+        body="Bar: a 2pt net difference at n>=200.",
+        created="2026-09-02")
+    assert path.name == "STUDY.md"
+    assert path.parent.name == "2026-09-02-entry-timing"
+    assert path.parent.parent.name == "question"
+    assert path.read_text(encoding="utf-8").startswith("---\n")
 
 
-def test_a_study_ticket_without_its_study_is_refused(repo):
-    with pytest.raises(ValueError, match="needs its study"):
-        tickets.create(
-            repo, lane="study", slug="x", title="t", body="b",
-            created="2026-09-01",
-        )
-
-
-def test_a_study_ticket_for_an_unknown_study_is_refused(repo):
-    """A typo must fail loudly rather than build a phantom folder.
-
-    This is the theory-path bug in a second place: deriving a folder
-    from a name and creating it on demand produced a directory beside
-    the real one, holding nothing but tickets nobody would ever read.
-    """
-    with pytest.raises(ValueError, match="no study"):
-        tickets.create(
-            repo, lane="study", slug="x", study="2026-08-29-series-bais-mining",
-            title="t", body="b", created="2026-09-01",
-        )
-
-
-def test_the_backlog_carries_study_tickets_and_names_their_study(repo):
-    tickets.create(
-        repo, lane="study", slug="finish-the-price-sweep",
-        study="2026-08-29-series-bias-mining", title="resume the sweep",
-        body="...", created="2026-09-01", created_by="llm-7a",
-    )
-    tickets.create(
-        repo, lane="maintenance", slug="http-429", title="backoff",
-        body="...", created="2026-09-01", created_by="llm-7a",
-    )
-    found = {t["slug"]: t for t in tickets.backlog(repo)}
-    assert set(found) == {"finish-the-price-sweep", "http-429"}
-    entry = found["finish-the-price-sweep"]
-    assert entry["lane"] == "study"
-    assert entry["study"] == "2026-08-29-series-bias-mining"
-    assert entry["theory"] is None
-
-
-def test_the_backlog_filters_to_one_study(repo):
-    tickets.create(
-        repo, lane="study", slug="a", study="2026-08-29-series-bias-mining",
-        title="a", body="...", created="2026-09-01",
-    )
-    assert len(tickets.backlog(repo, study="2026-08-29-series-bias-mining")) == 1
-    assert tickets.backlog(repo, study="2026-08-30-parlay-markup") == []
-
-
-def test_closing_a_study_ticket_stays_in_the_studys_folder(repo):
+def test_a_study_ticket_records_its_owning_theory(tmp_path):
+    (tmp_path / "theories/no_side_premium").mkdir(parents=True)
     path = tickets.create(
-        repo, lane="study", slug="a", study="2026-08-29-series-bias-mining",
-        title="a", body="...", created="2026-09-01",
-    )
-    done = tickets.close(path, resolution="Swept to 840/840.", now="2026-09-02")
-    assert done.relative_to(repo).as_posix() == (
-        "studies/2026-08-29-series-bias-mining/tickets/completed/"
-        "2026-09-01-a.md"
-    )
+        tmp_path, lane="study", slug="side-split",
+        title="Does the side gap survive a tradeable book?",
+        body="Bar: the gap holds at 100% coverage.",
+        theory="no_side_premium",
+        theory_path="theories/no_side_premium", created="2026-09-02")
+    assert "theory: no_side_premium" in path.read_text(encoding="utf-8")
+    assert path.parent.parent.parent.name == "studies"
 
 
-def test_the_brief_render_groups_studies(repo):
-    tickets.create(
-        repo, lane="study", slug="finish-the-price-sweep",
-        study="2026-08-29-series-bias-mining", title="resume the sweep",
-        body="Q" * 4000, created="2026-09-01",
-    )
-    text = tickets.render(tickets.backlog(repo, brief=True))
-    assert "STUDY" in text
-    assert "2026-08-29-series-bias-mining" in text
-    assert len(text) < 400
+def test_a_non_study_ticket_is_still_a_plain_file(tmp_path):
+    path = tickets.create(
+        tmp_path, lane="maintenance", slug="fix-thing", title="Fix it",
+        body="Do the thing.", created="2026-09-02")
+    assert path.name == "2026-09-02-fix-thing.md"
+    assert path.parent.name == "open"
+
+
+def test_the_backlog_finds_a_study_in_every_state(tmp_path):
+    tickets.create(tmp_path, lane="study", slug="asked",
+                   title="An open question", body="Bar: x.",
+                   created="2026-09-02")
+    rows = tickets.backlog(tmp_path, lane="study", status="open")
+    assert [r["slug"] for r in rows] == ["asked"]
+    assert rows[0]["state"] == "question"
+
+
+def test_a_study_in_answer_is_reported_done_not_open(tmp_path):
+    """The directory is the only source of truth for status.
+
+    A study advanced into `answer/` never gets its frontmatter
+    `status:` field rewritten -- nothing in this module does that for
+    the study lane. If `backlog(status=...)` filtered on that stale
+    field, a finished study would silently vanish from `--status done`
+    and linger forever in `--status open`. `_scan` sets `entry["status"]`
+    from the state directory precisely so the directory and the
+    frontmatter can never disagree.
+    """
+    path = tickets.create(tmp_path, lane="study", slug="finished",
+                          title="Is the gap real?", body="Bar: x.",
+                          created="2026-09-01")
+    answer_dir = tmp_path / "tickets" / "study" / "answer"
+    answer_dir.mkdir(parents=True)
+    path.parent.rename(answer_dir / path.parent.name)
+
+    done = tickets.backlog(tmp_path, lane="study", status="done")
+    assert [r["slug"] for r in done] == ["finished"]
+    assert tickets.backlog(tmp_path, lane="study", status="open") == []
 
 
 # --- per-lane states --------------------------------------------------------
@@ -503,12 +489,9 @@ def test_a_lane_refuses_a_state_belonging_to_another_lane(tmp_path):
 
 
 def test_omitting_the_state_uses_the_lanes_first(repo):
-    # The study branch separately requires a real study (pinned by
-    # test_a_study_ticket_without_its_study_is_refused) regardless of
-    # state, so this needs one that actually exists on disk -- the
-    # `repo` fixture's -- to isolate what this test is actually about:
+    # A study lane ticket_dir call no longer needs an existing study on
+    # disk -- ownership is decided by theory/theory_path, not by a study
+    # slug pointing at a folder -- so this isolates exactly what it says:
     # state=None resolving to the lane's first declared state.
     assert tickets.ticket_dir(repo, "maintenance").name == "open"
-    assert tickets.ticket_dir(
-        repo, "study", study="2026-08-29-series-bias-mining"
-    ).name == "question"
+    assert tickets.ticket_dir(repo, "study").name == "question"

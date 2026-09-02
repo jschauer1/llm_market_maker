@@ -75,6 +75,14 @@ LANE_STATES: dict[str, tuple[str, ...]] = {
 #: outside this module still ask for "the states a normal ticket has".
 STATES = ("open", "completed")
 
+#: The study lane's ticket filename. A study ticket is a DIRECTORY --
+#: a measurement has code and data and they belong with it -- and this
+#: is the one file inside it that is the ticket. It is `STUDY.md` rather
+#: than `TICKET.md` because the study header and the ticket frontmatter
+#: describe the same thing, and two files would mean two places to say
+#: what this measurement is.
+STUDY_FILE = "STUDY.md"
+
 
 def states_for(lane: str) -> tuple[str, ...]:
     """The states this lane declares, in pipeline order."""
@@ -120,24 +128,20 @@ def ticket_dir(
             f"lane {lane!r} has no state {state!r}; it declares {allowed}"
         )
     if lane == "study":
-        if not study:
+        # A study lives inside the theory that owns it, and in the root
+        # `study` lane when no single theory does. Measured 2026-09-01:
+        # of 15 studies, 7 served exactly one theory and 5 served none,
+        # so both homes are load-bearing rather than one being a
+        # fallback for the other.
+        if theory_path:
+            return Path(root) / theory_path / "studies" / state
+        if theory:
             raise ValueError(
-                "a study ticket needs its study: study work lives in that "
-                "study's own folder, never in the main tickets directory"
+                f"a study owned by {theory!r} needs that theory's registry "
+                "path, not its slug: pass "
+                "theory_path=theories.get(conn, slug)['path']"
             )
-        # A study's folder IS its slug -- studies/<date>-<slug>/ -- so
-        # unlike a theory there is no registry to consult. But the folder
-        # is checked rather than assumed, because deriving a path from a
-        # name and creating it on demand is exactly how the theory lane
-        # grew a phantom directory beside the real theory.
-        target = Path(root) / "studies" / study
-        if not (target / "STUDY.md").is_file():
-            raise ValueError(
-                f"no study {study!r}: expected studies/{study}/STUDY.md. "
-                "A study ticket names the study's folder exactly, dated "
-                "prefix and all (e.g. 2026-08-29-series-bias-mining)"
-            )
-        return target / "tickets" / state
+        return Path(root) / "tickets" / "study" / state
     if lane == "theory":
         if not theory:
             raise ValueError(
@@ -203,9 +207,17 @@ def create(
     directory = ticket_dir(root, lane, theory,
                            theory_path=theory_path, study=study)
     directory.mkdir(parents=True, exist_ok=True)
-    path = directory / f"{day}-{slug}.md"
-    if path.exists():
-        raise ValueError(f"ticket already exists: {path}")
+    if lane == "study":
+        # The ticket is the directory; STUDY.md inside it is the file.
+        holder = directory / f"{day}-{slug}"
+        if holder.exists():
+            raise ValueError(f"study already exists: {holder}")
+        holder.mkdir(parents=True)
+        path = holder / STUDY_FILE
+    else:
+        path = directory / f"{day}-{slug}.md"
+        if path.exists():
+            raise ValueError(f"ticket already exists: {path}")
     head = [
         "---",
         f"title: {title.strip()}",
@@ -256,6 +268,7 @@ def _parse(path: Path, lane: str, theory: str | None,
         "study": study,
         "title": "",
         "status": "open",
+        "state": "open",
         "created_by": "",
         "author_lane": "",
         "author_focus": "",
@@ -288,14 +301,59 @@ def _parse(path: Path, lane: str, theory: str | None,
 
 
 def _scan(directory: Path, lane: str, theory: str | None,
-          brief: bool = False, study: str | None = None) -> list[dict]:
+         brief: bool = False, study: str | None = None,
+         state: str = "open") -> list[dict]:
+    """Every ticket in one state directory.
+
+    The study lane's tickets are directories holding a STUDY.md; every
+    other lane's are plain .md files. Both are parsed the same way once
+    found -- only the glob differs.
+    """
     if not directory.is_dir():
         return []
-    return [
-        _parse(p, lane, theory, brief=brief, study=study)
-        for p in sorted(directory.glob("*.md"))
-        if p.name != "README.md"
-    ]
+    if lane == "study":
+        found = sorted(
+            child / STUDY_FILE for child in directory.iterdir()
+            if child.is_dir() and (child / STUDY_FILE).is_file()
+        )
+    else:
+        found = [p for p in sorted(directory.glob("*.md"))
+                 if p.name != "README.md"]
+    rows = []
+    for path in found:
+        entry = _parse(path, lane, theory, brief=brief, study=study)
+        if lane == "study":
+            # The slug is the DIRECTORY's name; STUDY.md carries no date.
+            match = _DATE_PREFIX.match(path.parent.name)
+            created, slug = (match.groups() if match
+                             else ("", path.parent.name))
+            entry["created"], entry["slug"] = created, slug
+        entry["state"] = state
+        # The directory a ticket sits in, not its frontmatter, is what
+        # `backlog(status=...)` filters on below -- nothing rewrites a
+        # moved ticket's `status:` field, so a study sitting in `answer/`
+        # would otherwise keep `status: open` forever and be dropped from
+        # a `--status done` query even though the walk found it there.
+        # Deriving `status` from the state directory keeps the two from
+        # ever being able to disagree, which is the entire point of
+        # making state a directory instead of a field.
+        entry["status"] = _reported_as(lane, state)
+        rows.append(entry)
+    return rows
+
+
+def _reported_as(lane: str, state: str) -> str:
+    """Which of open/done a state counts as, for callers that filter on
+    the old two-value vocabulary.
+
+    A study being measured is OPEN work -- it is not finished until it
+    has an answer -- so `question` and `investigation` report as open and
+    only `answer` reports as done. This keeps `--status open` meaning
+    "work still to do" across every lane.
+    """
+    if lane != "study":
+        return "done" if state == "completed" else "open"
+    return "done" if state == "answer" else "open"
 
 
 def backlog(
@@ -315,30 +373,45 @@ def backlog(
     """
     root = Path(root)
     # The state IS the directory, so the listing only touches the tickets
-    # in the state being asked about -- a repo with a thousand completed
-    # tickets reads its open backlog as fast as an empty one.
-    state = "completed" if status == "done" else "open"
+    # in the states being asked about -- a repo with a thousand completed
+    # tickets reads its open backlog as fast as an empty one. Every lane
+    # can have more than two states (the study lane has three), so this
+    # walks every state the lane declares and keeps the ones that report
+    # as the wanted bucket, rather than assuming "open" and "completed"
+    # are the only names in play.
+    wanted = "done" if status == "done" else "open"
     found: list[dict] = []
     for lane_name, dirname in ROOT_LANES.items():
-        found += _scan(root / "tickets" / dirname / state, lane_name, None,
-                       brief=brief)
+        for st in states_for(lane_name):
+            if _reported_as(lane_name, st) != wanted:
+                continue
+            found += _scan(root / "tickets" / dirname / st, lane_name,
+                           None, brief=brief, state=st)
+    for st in states_for("study"):
+        if _reported_as("study", st) != wanted:
+            continue
+        found += _scan(root / "tickets" / "study" / st, "study", None,
+                       brief=brief, state=st)
     theories_dir = root / "theories"
     if theories_dir.is_dir():
         for candidate in sorted(theories_dir.rglob("tickets")):
             if not candidate.is_dir():
                 continue
-            candidate = candidate / state
+            owner = candidate.parent.name
+            for st in states_for("theory"):
+                if _reported_as("theory", st) != wanted:
+                    continue
+                found += _scan(candidate / st, "theory", owner,
+                               brief=brief, state=st)
+        for candidate in sorted(theories_dir.rglob("studies")):
             if not candidate.is_dir():
                 continue
-            owner = candidate.parent.parent.name
-            found += _scan(candidate, "theory", owner, brief=brief)
-    studies_dir = root / "studies"
-    if studies_dir.is_dir():
-        for owner_dir in sorted(studies_dir.iterdir()):
-            if not (owner_dir / "STUDY.md").is_file():
-                continue
-            found += _scan(owner_dir / "tickets" / state, "study", None,
-                           brief=brief, study=owner_dir.name)
+            owner = candidate.parent.name
+            for st in states_for("study"):
+                if _reported_as("study", st) != wanted:
+                    continue
+                found += _scan(candidate / st, "study", owner,
+                               brief=brief, state=st)
     if lane:
         found = [t for t in found if t["lane"] == lane]
     if theory:

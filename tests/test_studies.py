@@ -74,16 +74,6 @@ def test_a_study_with_no_status_line_is_reported_not_skipped(repo):
     assert row["complete"] is False
 
 
-def test_open_tickets_against_a_study_are_counted(repo):
-    from tools import tickets
-    tickets.create(repo, lane="study", slug="finish-the-sweep",
-                   study="2026-08-30-parlay-markup", title="resume",
-                   body="...", created="2026-09-01")
-    row = next(r for r in studies.survey(repo)
-               if r["slug"] == "2026-08-30-parlay-markup")
-    assert row["open_tickets"] == 1
-
-
 def test_render_is_one_line_per_study(repo):
     text = studies.render(studies.survey(repo))
     assert "calendar-arb-firing-rate" in text
