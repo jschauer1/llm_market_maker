@@ -289,6 +289,66 @@ its clock is unaffected.
 - **Tier A.** No LLM anywhere in the decision path, so no cutoff applies
   and no contamination probe is owed.
 
+**DD-4 and DD-5, written 2026-09-02 at ~50% capture, before the data
+either one is scored on had been fetched.**
+
+**Why these exist: a peek costs something, and this is the price being
+paid explicitly.** The DD-3 aggregate was computed and reported at ~45-50%
+capture, at the user's request, on 36 event clusters. Those 509 tickers are
+frozen in `data/dd3_peeked.json` and are **spent for the aggregate test** —
+looking at them again is a second look at the same data, and reporting
+whichever look is friendlier is the exact failure pre-registration exists
+to stop. What follows fences that off and commits the *unlooked-at*
+remainder to tests specified in advance.
+
+**DD-4 — holdout replication of DD-3.** Same population, same entry rule,
+same bar, restricted to unseen tickers **absent from `dd3_peeked.json`**
+(i.e. captured after the freeze).
+
+- **Read it with its weakness stated up front.** `platform_series` walks
+  KX* ordered by category, so the holdout is not an exchangeable random
+  half — it is a different category mix (the peeked half skews Politics
+  and Financials; the remainder skews Sports, Entertainment and the tail).
+  A difference between halves is therefore **confounded with category**
+  and is not by itself evidence about the edge. DD-4 can corroborate; it
+  cannot arbitrate.
+
+**DD-5 — DD-2's contrast, on the whole unseen arm. This is the one worth
+running.** DD-2 predicts the gap concentrates in **one-off** series and
+that **recurring** families price about right. That split has **not been
+examined on any unseen data**, so the full unseen arm — peeked half
+included — is clean for it.
+
+- **Primary statistic: the contrast**, `net(one-off) − net(recurring)`,
+  event-clustered. DD-2 predicts it is **positive**. A contrast is chosen
+  deliberately over either arm's level: the reported aggregate is a
+  weighted average of the two arms, so it constrains the *levels* somewhat
+  and the *difference* barely. That residual contamination is the honest
+  caveat and it is small, not zero.
+- **`recurring` is point-in-time and must be computed as such.** A series
+  is recurring for a given market if it had **>= 3 settled events with a
+  close_time strictly before that market's own decision date**. It must
+  **not** come from a `population_facts.json` rebuilt after this walk —
+  that file is regenerated from the whole store, so using it would let the
+  test period's own settlements define the test's split.
+- **Confirmation:** contrast >= +3 pts with a 95% event-clustered CI
+  excluding zero, and the one-off arm positive on its own.
+- **Failure:** a CI covering zero with >= 30 clusters in each arm. Below
+  that, underpowered, and it settles nothing.
+- **What each outcome means.** DD-5 positive rescues a *narrower* theory
+  than the one that was claimed: not "buy NO across the hazard stratum"
+  but "buy NO on one-off newsy questions". DD-5 null, with DD-3 also
+  failing, is the end of the broad thesis — and at that point the
+  +4.6 is best read as a survivorship artifact of board-scoped capture,
+  which is a result worth having.
+
+**Standing consequence, independent of all three.** The **+4.6 is
+withdrawn as this theory's headline number** as of 2026-09-02. It was
+measured on a sample that could only contain series still trading, and a
+by-deadline series leaves the board *because* its question resolved. No
+report should quote it as the theory's edge again; it stands only as the
+in-sample estimate it always was, now with a known selection defect.
+
 **Reached `testing` 2026-09-01** by widening the population past the
 allowlist (v2, `continues`) and recording. To reach `active`: DD-1
 confirmed out of sample.
