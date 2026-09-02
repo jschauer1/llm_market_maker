@@ -51,16 +51,43 @@ def _today() -> str:
     return utcnow()[:10]
 
 
-#: A ticket is open or completed, and that is a DIRECTORY rather than a
-#: field. The backlog is read by listing, so a finished ticket has to
-#: leave it physically -- with a status field alone, every session reads
-#: every ticket ever filed to find the few still open, and the backlog
-#: gets slower and less useful exactly as the repo gets more history.
+#: A ticket's state IS a directory rather than a field. The backlog is
+#: read by listing, so a finished ticket has to leave it physically --
+#: with a status field alone, every session reads every ticket ever filed
+#: to find the few still open, and the backlog gets slower and less
+#: useful exactly as the repo gets more history.
+#:
+#: The STATES a lane has are the lane's own. `study` is the odd one and
+#: deliberately so: a study is a measurement that answers a question, its
+#: terminal state is `answer/`, and it has NO `completed/`. That is what
+#: makes a study permanent -- the purge matches `completed/`, so a
+#: finished study is simply not a thing the query can match. Permanence
+#: falls out of the state names instead of being an exemption somebody
+#: has to remember.
+LANE_STATES: dict[str, tuple[str, ...]] = {
+    "theory": ("open", "completed"),
+    "maintenance": ("open", "completed"),
+    "new-theory": ("open", "completed"),
+    "study": ("question", "investigation", "answer"),
+}
+
+#: The file-based lanes' states, kept under the old name because callers
+#: outside this module still ask for "the states a normal ticket has".
 STATES = ("open", "completed")
 
 
+def states_for(lane: str) -> tuple[str, ...]:
+    """The states this lane declares, in pipeline order."""
+    try:
+        return LANE_STATES[lane]
+    except KeyError:
+        raise ValueError(
+            f"unknown lane {lane!r}; expected one of {LANES}"
+        ) from None
+
+
 def ticket_dir(
-    root: Path, lane: str, theory: str | None = None, state: str = "open",
+    root: Path, lane: str, theory: str | None = None, state: str | None = None,
     theory_path: str | None = None, study: str | None = None,
 ) -> Path:
     """Where a ticket for this lane and state belongs.
@@ -83,8 +110,15 @@ def ticket_dir(
     at once rather than filing work where its theory's expert will never
     look.
     """
-    if state not in STATES:
-        raise ValueError(f"unknown state {state!r}; expected one of {STATES}")
+    if lane not in LANES:
+        raise ValueError(f"unknown lane {lane!r}; expected one of {LANES}")
+    allowed = states_for(lane)
+    if state is None:
+        state = allowed[0]
+    if state not in allowed:
+        raise ValueError(
+            f"lane {lane!r} has no state {state!r}; it declares {allowed}"
+        )
     if lane == "study":
         if not study:
             raise ValueError(

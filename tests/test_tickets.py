@@ -471,3 +471,44 @@ def test_the_brief_render_groups_studies(repo):
     assert "STUDY" in text
     assert "2026-08-29-series-bias-mining" in text
     assert len(text) < 400
+
+
+# --- per-lane states --------------------------------------------------------
+
+
+def test_each_lane_declares_its_own_states():
+    assert tickets.states_for("maintenance") == ("open", "completed")
+    assert tickets.states_for("theory") == ("open", "completed")
+    assert tickets.states_for("study") == ("question", "investigation",
+                                           "answer")
+
+
+def test_an_unknown_lane_has_no_states():
+    with pytest.raises(ValueError, match="unknown lane"):
+        tickets.states_for("nonsense")
+
+
+def test_the_study_lane_has_no_completed_state():
+    """Permanence is a consequence of the state names, not an exemption
+    the purge has to remember: a finished study lives in `answer/`, so a
+    query for `completed/` simply never matches one."""
+    assert "completed" not in tickets.states_for("study")
+
+
+def test_a_lane_refuses_a_state_belonging_to_another_lane(tmp_path):
+    with pytest.raises(ValueError, match="has no state 'answer'"):
+        tickets.ticket_dir(tmp_path, "maintenance", state="answer")
+    with pytest.raises(ValueError, match="has no state 'open'"):
+        tickets.ticket_dir(tmp_path, "study", state="open")
+
+
+def test_omitting_the_state_uses_the_lanes_first(repo):
+    # The study branch separately requires a real study (pinned by
+    # test_a_study_ticket_without_its_study_is_refused) regardless of
+    # state, so this needs one that actually exists on disk -- the
+    # `repo` fixture's -- to isolate what this test is actually about:
+    # state=None resolving to the lane's first declared state.
+    assert tickets.ticket_dir(repo, "maintenance").name == "open"
+    assert tickets.ticket_dir(
+        repo, "study", study="2026-08-29-series-bias-mining"
+    ).name == "question"
