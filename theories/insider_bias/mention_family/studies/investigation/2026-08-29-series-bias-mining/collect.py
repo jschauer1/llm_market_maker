@@ -32,10 +32,10 @@ Backfill  -- book quality for observations written before 2026-09-01,
              when only the derived ask was persisted. Time-boxed by the
              ~60-day archive window; run it before `prices`.
 
-  python studies/2026-08-29-series-bias-mining/collect.py walk
-  python studies/2026-08-29-series-bias-mining/collect.py prices
-  python studies/2026-08-29-series-bias-mining/collect.py backfill
-  python studies/2026-08-29-series-bias-mining/collect.py status
+  python theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/collect.py walk
+  python theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/collect.py prices
+  python theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/collect.py backfill
+  python theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/collect.py status
 """
 
 from __future__ import annotations
@@ -47,7 +47,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE.parents[1]))
+sys.path.insert(0, str(HERE.parents[5]))
 
 from theories.insider_bias import replay              # noqa: E402
 from tools.http import get_json                       # noqa: E402

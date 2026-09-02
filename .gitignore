@@ -21,9 +21,6 @@ user_reports/*
 # and the per-run logs beside collect.db were all still untracked,
 # so `git add -A` would have staged them. Regenerable via collect.py.
 theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/data/
-# TRANSITIONAL (remove once the move lands): a collector was live in
-# the old path when the migration ran, so the corpus is still there.
-studies/2026-08-29-series-bias-mining/data/
 STATE.md
 
 # parlay-markup study: 150k+ raw payloads, regenerable via collect.py

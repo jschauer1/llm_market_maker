@@ -1,8 +1,18 @@
+---
+title: Series bias mining — which Kalshi series carry a persistent, tradeable favorite bias?
+lane: study
+theory: mention_family
+created: 2026-08-29
+created_by: migration
+status: open
+---
+
 # Series bias mining — pre-registration, written BEFORE looking
 
-**Date:** 2026-08-29 · **Status:** complete — **result: not measured** ·
-**Tier:** A (no model anywhere) · Backlog spec #4, registry slug
-`series-bias-mining`
+**Date:** 2026-08-29 ·
+**Tier:** A (no model anywhere) ·
+**Verdict:** **not measured** ·
+Backlog spec #4, registry slug `series-bias-mining`
 
 **This file's bar was fixed and committed before any per-series bias
 number was computed.** At the time of writing I had looked at exactly two
@@ -446,7 +456,7 @@ that claim, which is why the exclusions are listed.
 produces measurements, not bets). Pre-registered the bar and committed it
 before computing any per-series number (`3fd3be5`); built and fixture-tested
 the miner before it saw real data (`07291f0`); ran it once (`f826d6c`).
-Study: `studies/2026-08-29-series-bias-mining/`. Suite **955** green.
+Study: `theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/`. Suite **955** green.
 
 **Learned:**
 
@@ -895,7 +905,7 @@ Added by session `llm-market-identifier-b3` (new-theory lane, focus
 no conclusion above it** — everything before this line stands exactly as
 run.
 
-`studies/2026-09-01-liquidity-filtered-side-split/` needed pass 4's
+`theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split/` needed pass 4's
 filter for a different question and therefore had to fix its threshold.
 It did so under this study's own rule — from the population's
 distribution, before any per-series number, with the removal count

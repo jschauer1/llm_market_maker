@@ -8,7 +8,7 @@ Every constant here is quoted from STUDY.md, which was committed before
 any per-series number was computed. Changing one changes the
 pre-registration and must be done in the open, not silently.
 
-Run: python studies/2026-08-29-series-bias-mining/mine.py
+Run: python theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/mine.py
 """
 
 from __future__ import annotations
@@ -18,7 +18,7 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[6]))
 
 from tools import db                       # noqa: E402
 from tools.sizing import fee_pts           # noqa: E402

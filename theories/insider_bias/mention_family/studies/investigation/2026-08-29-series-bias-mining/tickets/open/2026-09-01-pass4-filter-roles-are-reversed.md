@@ -14,7 +14,7 @@ READ THIS BEFORE RUNNING PASS 4. This study's STUDY.md section 'Correction to pa
 That reasoning is intuitive and it is empirically FALSE on this corpus.
 
 EVIDENCE, at 99.95% backfill coverage (72,010 obs / 659 series / 61 close days), reproduce with:
-    python studies/2026-09-01-liquidity-filtered-side-split/mechanism.py <copy.db>
+    python theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split/mechanism.py <copy.db>
 
 Band 0.90-0.97, net edge in points, day-clustered:
     spread<=0.07 AND oi==0      n=3930   net=-1.46  t=-1.24
@@ -34,7 +34,7 @@ WHY THE CORRECTION GOT IT BACKWARDS. It was written against the same 37% alphabe
 
 WHAT TO DO -- and the point is NOT to retune anything:
  (1) Pass 4 may run with the filter exactly as pre-registered. It is still a defensible tradeable-quote filter and nothing here says it selects the wrong rows. What must change is how its RESULT is read and reported: do not attribute the filter's effect to open interest, and do not repeat the '55% of the NO side is quoted into an empty book' explanation, which explains nothing at full coverage.
- (2) Append a dated note to the 'Correction to pass 4's filter' section pointing at this ticket and at studies/2026-09-01-liquidity-filtered-side-split/STUDY.md 'Correction 2'. Do NOT edit the correction's original text -- it was a pre-registration and the repo's pattern is to supersede, not rewrite.
+ (2) Append a dated note to the 'Correction to pass 4's filter' section pointing at this ticket and at theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split/STUDY.md 'Correction 2'. Do NOT edit the correction's original text -- it was a pre-registration and the repo's pattern is to supersede, not rewrite.
  (3) If a future pass wants to change the filter, that is a new pre-registration on a stated collection state, not an edit to this one. A larger family is a harsher Holm divisor and two runs over two collection states are two different tests; this study's own one-run rule already says so.
 
 WIDER CAUTION worth carrying out of this: an alphabetical prefix of Kalshi's series list is NOT a random sample of the board -- it is a sample of a few sports families. Three separate conclusions in this repo were drawn on the 37% prefix and two of them reversed at completion. Any measurement taken while a series-ordered collection is partway through should either wait or state the prefix bias as a first-order caveat, not a footnote.

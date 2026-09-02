@@ -18,7 +18,7 @@ before any per-series number on this population was computed:
     visible rather than silent;
   * the MDE<=5 view still runs, SECOND and labelled outcome-correlated.
 
-Run: python studies/2026-08-29-series-bias-mining/pass3.py
+Run: python theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/pass3.py
 """
 
 from __future__ import annotations
@@ -29,7 +29,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE.parents[1]))
+sys.path.insert(0, str(HERE.parents[5]))
 sys.path.insert(0, str(HERE))
 
 import mine as M                                       # noqa: E402

@@ -17,13 +17,13 @@ FINAL NUMBERS, from the progress table and obs directly:
 
 THE AGED-OUT COUNT, which this ticket called 'the measure of what the original omission cost': 33 rows, 0.046% of the corpus, across 10 series -- KXFLPRIMARY 12, KXFOXNEWSMENTION 8, KXFIGHTMENTION 2, KXFNSMENTION 2, KXINDYCARTOP3 2, KXJLEAGUE1H 2, KXJLEAGUE1HSPREAD 2, KXGRECUPTOTAL 1, KXH100WS 1, KXHNLGAME 1. None were deleted; they keep their ask and won and simply read NULL, exactly as option (b) specified. So the omission cost essentially nothing, BECAUSE the backfill was run inside Kalshi's ~60-day window rather than after it. That is the fact worth carrying forward: the urgency in this ticket was correct and it is why the number is small.
 
-WHAT IT UNBLOCKED, immediately: studies/2026-09-01-liquidity-filtered-side-split's promised completion re-run, which had been sitting at 37% coverage with a verdict its own caveat said was not yet settled. Run at 100% the same session; the verdict held but two of its three supporting checks did not. See that STUDY.md.
+WHAT IT UNBLOCKED, immediately: theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split's promised completion re-run, which had been sitting at 37% coverage with a verdict its own caveat said was not yet settled. Run at 100% the same session; the verdict held but two of its three supporting checks did not. See that STUDY.md.
 
 Pass 4 is NOT thereby enabled -- see the follow-on ticket filed today, which reverses this study's own 'Correction to pass 4's filter' on the evidence.
 ---
 URGENT AND TIME-BOXED. Pass 4 of the series-bias study cannot run until this is done, and it gets impossible rather than merely harder with time: it needs candlesticks, and Kalshi archives settled markets out of its public API ~60 days after close. Every day of delay permanently removes the front of the window.
 
-WHAT HAPPENED. collect.py fetched candles carrying yes_bid_close, volume and open_interest, used the bid to choose the favorite side, and persisted only the derived ask. Pass 3 then could not tell a tradeable price from a one-sided book -- 23% of its observations sat at asks of 0.980-0.995 realizing 0.801, and the mention_family negative control fired on 5 of 11 because of it. Full account: studies/2026-08-29-series-bias-mining/STUDY.md, "Pass 3 result".
+WHAT HAPPENED. collect.py fetched candles carrying yes_bid_close, volume and open_interest, used the bid to choose the favorite side, and persisted only the derived ask. Pass 3 then could not tell a tradeable price from a one-sided book -- 23% of its observations sat at asks of 0.980-0.995 realizing 0.801, and the mention_family negative control fired on 5 of 11 because of it. Full account: theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/STUDY.md, "Pass 3 result".
 
 FIXED GOING FORWARD in 3cc5317: obs now has spread, volume, open_interest and spread_24h, and the sweep captures them. The migration was additive, so the ~660 series priced BEFORE that commit read NULL and are the backlog this ticket covers.
 
@@ -46,8 +46,8 @@ SEQUENCING against the other open ticket (2026-09-01-series-bias-sweep-finish): 
 Option (b) was taken, as this ticket recommended. `collect.py backfill`
 exists and is running; what remains is letting it finish, not writing it.
 
-    python studies/2026-08-29-series-bias-mining/collect.py backfill
-    python studies/2026-08-29-series-bias-mining/collect.py status
+    python theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/collect.py backfill
+    python theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/collect.py status
 
 Resumable and per-series atomic under `progress` phase `backfill`, so
 re-running skips what is done. Roughly 70k candle fetches at Kalshi's
