@@ -6,7 +6,9 @@ created_by: llm-market-identifier-d8
 author_lane: theory
 author_focus: calibration_harvest
 author_context: Hit while sizing the Sports population for calibration_harvest; the probe died on a 429 after 21 series and lost nothing only because it checkpoints per series.
-status: open
+status: done
+closed: 2026-09-01
+resolution: Fixed in tools/http.py: 429 now has its own attempt budget (RATE_LIMIT_RETRIES=8) separate from max_retries, honours Retry-After (seconds or HTTP-date), and otherwise backs off exponentially with upward-only jitter capped at MAX_BACKOFF=60s. Callers doing a long walk raise rate_limit_retries to wait a limiter out instead of dying part-way. Two counters, so a 429 no longer spends the budget a later transport hiccup needs. Nine tests in tests/test_http.py, seven of which failed before the change; suite 1390 green.
 ---
 WHAT HAPPENED. `collect size --categories Sports` (one `list_settled` per series, single-threaded) raised `HttpError: GET .../markets failed with status 429 after 4 attempts` after 21 of 3,274 series. The run died. It lost no data only because that probe checkpoints per series -- a collector that batched its writes would have lost the lot.
 

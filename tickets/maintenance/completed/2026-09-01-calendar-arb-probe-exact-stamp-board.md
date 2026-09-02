@@ -6,7 +6,9 @@ created_by: llm-market-identifier-af
 author_lane: theory
 author_focus: structural_arb
 author_context: Found by grepping for the blast radius of the same defect in structural_arb's own study probe; not my lane to fix another study.
-status: open
+status: done
+closed: 2026-09-02
+resolution: Superseded, re-run, and the result recorded. probe.py left exactly as run and marked DO NOT RE-RUN; probe_as_of.py added, using snapshot.board_as_of and printing exact-stamp beside reconstructed counts so the distortion stays visible. Re-run over all 20 stored captures: Result 1 moves -- 'firing rate is zero' becomes 25 violations / 38,124 pairs -- but 19 of 25 are ONE recurring 2028-horizon cross-event pair worth 0.4-2.3 pts against two years of carry, and 3 have a 0.01 NO ask (placeholder-quote trap), so the study's VERDICT is unchanged and I did not reopen it. The important finding is what the ticket did not anticipate: Result 2's 295-near-dated-pair table -- the structural argument that actually closes calendar-arb, and the dataset the soft-relative-value ticket wants -- is NOT computed by probe.py's main(), so it was never re-derived and rests on a board ~90k markets short. Filed as tickets/new-theory/open/2026-09-02-calendar-arb-295-pair-table-unverified.md. Addendum written into the study; raw output in its data/.
 ---
 studies/2026-08-27-calendar-arb-firing-rate/probe.py:108 reads a board with WHERE platform='kalshi' AND captured_at=?. snapshot.board_as_of exists precisely because that stopped being the board on 2026-08-30, when dedup-on-write landed: a pull writes NO row for a market whose payload did not change, so an exact-stamp filter returns 'the markets that MOVED at that pull'.
 

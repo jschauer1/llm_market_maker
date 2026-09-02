@@ -362,3 +362,36 @@ def test_a_sub_theory_survives_a_continues_bump(conn):
     text = state.render_state(conn, now="2026-08-29T12:00:00Z")
     assert "sub: proven-subset" in text
     assert "edge_net 3.76" in text
+
+
+def test_freshness_reports_long_running_collections(conn, monkeypatch):
+    """A stalled multi-hour collector was invisible to every orientation
+    surface in the repo; it took a session running the study's own status
+    subcommand by hand to find a 5.7-hour hole, twice (backfill-restart-loop)."""
+    from tools import collectors
+
+    fake = collectors.Collection(
+        name="demo walk",
+        db="does-not-exist.db",
+        phase="prices",
+        unit="series",
+        command="python demo.py prices",
+    )
+    monkeypatch.setattr(collectors, "REGISTRY", (fake,))
+    text = state.render_state(conn, now="2026-08-29T12:00:00Z")
+    assert "collections:" in text
+    assert "demo walk" in text
+
+
+def test_a_broken_collection_read_cannot_break_orientation(conn, monkeypatch):
+    """`cli state` is what every session runs first. A collector holding
+    its own SQLite file must never take orientation down with it."""
+    from tools import collectors
+
+    monkeypatch.setattr(
+        collectors, "statuses",
+        lambda *a, **k: (_ for _ in ()).throw(RuntimeError("boom")),
+    )
+    text = state.render_state(conn, now="2026-08-29T12:00:00Z")
+    assert "FRESHNESS" in text
+    assert "collections:" in text

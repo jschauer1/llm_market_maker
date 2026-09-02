@@ -1,0 +1,57 @@
+[
+ {
+  "ticker": "KXFLYCANCJFK-JFK-ALL-26OCT21-T50",
+  "time": "2026-07-27T20:14:32.291798Z",
+  "taker_side": "yes",
+  "count": 3000000.0,
+  "yes_price": 0.004,
+  "no_price": 0.996,
+  "median_size_in_mkt": 13.475000000000001,
+  "max_size_in_mkt": 3000000.0,
+  "n_trades": 560
+ },
+ {
+  "ticker": "KXNCAAF-27-LSU",
+  "time": "2026-08-13T19:06:28.362687Z",
+  "taker_side": "yes",
+  "count": 787500.0,
+  "yes_price": 0.08,
+  "no_price": 0.92,
+  "median_size_in_mkt": 91.1,
+  "max_size_in_mkt": 787500.0,
+  "n_trades": 910
+ },
+ {
+  "ticker": "KXNCAAFPLAYOFF-26-LSU",
+  "time": "2026-08-13T19:05:35.120042Z",
+  "taker_side": "yes",
+  "count": 837500.0,
+  "yes_price": 0.41,
+  "no_price": 0.59,
+  "median_size_in_mkt": 11.760000000000002,
+  "max_size_in_mkt": 837500.0,
+  "n_trades": 632
+ },
+ {
+  "ticker": "KXNCAAFFINALIST-27-LSU",
+  "time": "2026-08-13T19:06:16.640392Z",
+  "taker_side": "yes",
+  "count": 537500.0,
+  "yes_price": 0.12,
+  "no_price": 0.88,
+  "median_size_in_mkt": 25.0,
+  "max_size_in_mkt": 537500.0,
+  "n_trades": 65
+ },
+ {
+  "ticker": "KXCAGOAT-26SEP30",
+  "time": "2026-08-04T19:37:00.774808Z",
+  "taker_side": "no",
+  "count": 500000.0,
+  "yes_price": 0.9,
+  "no_price": 0.1,
+  "median_size_in_mkt": 23.26,
+  "max_size_in_mkt": 500000.0,
+  "n_trades": 929
+ }
+]

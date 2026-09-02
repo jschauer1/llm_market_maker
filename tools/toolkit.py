@@ -48,6 +48,9 @@ GROUPS = {
     "tools/lanes.py": "starting a session",
     "tools/tickets.py": "starting a session",
     "tools/studies.py": "starting a session",
+    # Not a data source: it is read by `state`'s FRESHNESS panel so a
+    # session orienting can see a long walk that stopped writing.
+    "tools/collectors.py": "starting a session",
     "tools/kalshi/markets.py": "getting data",
     "tools/kalshi/history.py": "getting data",
     "tools/kalshi/cache.py": "getting data",
@@ -63,6 +66,7 @@ GROUPS = {
     "tools/score.py": "measuring",
     "tools/slices.py": "measuring",
     "tools/buckets.py": "measuring",
+    "tools/book.py": "measuring",
     "tools/rank.py": "measuring",
     "tools/sizing.py": "measuring",
     "tools/promotion.py": "deciding what the user is told",

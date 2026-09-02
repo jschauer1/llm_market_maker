@@ -6,7 +6,9 @@ created_by: llm-market-identifier-70
 author_lane: new-theory
 author_focus: taker_flow
 author_context: Spun off while building tools/kalshi/trades.py; the flag is already normalized onto the Trade dataclass but nothing reads it.
-status: open
+status: done
+closed: 2026-09-01
+resolution: KILLED on population, 2026-09-01 by fleet-w2-g2, on the cheapest decisive first step this ticket itself named. Full measurement and the three reusable capability facts: tickets/new-theory/evidence/2026-09-01-block-trade-probe/RESULT.md; pre-registration in that folder's PREREG.md, written before any per-ticker count. HEADLINE: 5 block trades in 498,918 trades (1 per ~118,000), across three strata including 205 markets whose ENTIRE reachable trade history was walked. Pre-registered bar was >=30 markets carrying a block; observed 5, of which 3 are a single decision (LSU football, three events, all YES, 53 seconds apart). ~3 independent block events per 67 days = ~16/year board-wide, which cannot clear >=10 event clusters / >=5 settlement days in any useful horizon. Robust to the open fixed-vs-rolling retention question: a full year of history still yields ~16. WHAT THE TICKET GOT RIGHT: both of its named kill tests came back FAVOURABLE -- the flag is genuine and is not a size proxy (1,342 of 15,000 trades were >=500 contracts, one was 272,727, none flagged; every real block was 500k-3M and the largest print in its market's history), and blocks are directional baskets rather than maker inventory transfers. The thesis was sound; there is just no population. Idea 37 recorded dead with a revisit angle that redirects the finding at a zero-gate alert and at a correlated-flow detector that needs no block flag.
 ---
 CLAUDE.md says Polymarket is a first-class research tool because it exposes per-trade wallet identity that Kalshi does not. True about IDENTITY -- but Kalshi publishes is_block_trade, a flag on negotiated large-size trades, and idea 10 (whale-follow) currently assumes cross-venue matching is required. It may not be.
 

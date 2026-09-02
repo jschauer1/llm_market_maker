@@ -1,0 +1,28 @@
+---
+title: parse_deadline now has two theories calling it, which is the elevation trigger -- and the second caller is a sibling import the suite rejects
+lane: maintenance
+created: 2026-09-02
+created_by: fleet-w3-g2
+author_lane: maintenance
+author_context: Found by tests/test_conventions.py::test_no_theory_imports_a_sibling_theory going red mid-session; the offending file is another session's UNTRACKED work-in-progress, so I did not touch it.
+status: open
+---
+DO NOT COMMIT theories/no_side_premium/exposure_measure.py AS IT STANDS -- it fails the suite.
+
+WHAT IS BROKEN. theories/no_side_premium/exposure_measure.py line 26 does:
+
+    from theories.deadline_drift.collect_settled import parse_deadline
+
+That is a theory importing a sibling theory's folder, which CLAUDE.md forbids ('The expert's contract: a theory folder contains everything its expert needs to run -- no imports from a sibling theory's folder') and which tests/test_conventions.py::test_no_theory_imports_a_sibling_theory fails on. Suite went 1410 passed / 1 failed the moment that file appeared.
+
+STATE WHEN FOUND. The file was UNTRACKED (git status '??') -- live, uncommitted work by a peer session, landed between two suite runs 20 minutes apart. I did not edit it: clobbering another session's in-flight file in a shared tree is worse than the violation. That is the only reason this is a ticket and not a fix.
+
+WHY THE FIX IS EASY AND ALREADY EARNED. parse_deadline (theories/deadline_drift/collect_settled.py:57) is eight lines: regex a 'by <Month> <D>, <YYYY>' deadline out of rules text and return it as a UTC ISO stamp. It is pure, has no deadline_drift state, and now has TWO real callers in two different theories -- which is exactly CLAUDE.md's elevation trigger ('a helper moves to tools/ once it has more than one real caller'). This is the rule firing as designed, not an exception to it.
+
+WHAT TO DO.
+  1. Move parse_deadline (and its _DEADLINE / _MONI module constants) to tools/ -- tools/timeutil.py is the natural home, it already holds shared time helpers.
+  2. Repoint theories/deadline_drift/collect_settled.py at the tools/ version and DELETE the local copy (elevation is a migration -- one implementation, per CLAUDE.md, not a copy).
+  3. Repoint exposure_measure.py's import.
+  4. Add a test for parse_deadline in tests/test_timeutil.py; deadline_drift's own NOTES.md 2026-08-29 correction explains why the rules-stated deadline rather than close_time is the sound anchor, and that reasoning should survive the move.
+
+COORDINATE FIRST. Step 3 touches a file another session may still be writing. Check whether no_side_premium's exposure work has landed before editing it, or do steps 1-2 (which are safe and self-contained) and leave step 3 to whoever finishes that work.

@@ -6,7 +6,9 @@ created_by: llm-market-identifier-57
 author_lane: theory
 author_focus: no_side_premium
 author_context: Hit while extending the side-asymmetry series: the 2026-08-31 close-day would have been measured on 54% of its board. Fixed in that study and promoted board_as_of to tools/; these two callers are out of my lane.
-status: open
+status: done
+closed: 2026-09-02
+resolution: Guard shipped plus both callers handled. tests/test_conventions.py::test_no_new_code_rebuilds_a_board_by_exact_capture_stamp fails on any market_snapshots query filtering captured_at = ? outside tools/snapshot.py. It matches through the AST (execute/executemany call arguments) rather than by scanning lines, because three of the five line-level hits were prose DOCUMENTING the trap -- a guard that cries wolf on its own documentation gets muted. A frozen as-run record opts out with '# EXACT-STAMP-OK: <reason>', and a second test refuses a marker whose reason is under 20 chars, so exceptions stay auditable. Both study probes were marked rather than edited (their published numbers were made on pre-dedup captures and stand); calendar-arb's is superseded by a new probe_as_of.py per its own ticket, and structural_arb's was already superseded by probe_volume_threshold.py, whose deliberate wrong-query function is marked too.
 ---
 Two study probes rebuild a point-in-time board with
 `SELECT ... FROM market_snapshots WHERE captured_at = ?`. Dedup-on-write

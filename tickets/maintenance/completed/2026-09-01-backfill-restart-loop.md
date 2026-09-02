@@ -6,7 +6,9 @@ created_by: llm-market-identifier-b3
 author_lane: new-theory
 author_focus: no-favorite-high-band
 author_context: Found it stalled at 213/647 having stopped 5.7h earlier; restarted it, and it is the second time a session has had to notice this by hand.
-status: open
+status: done
+closed: 2026-09-01
+resolution: Shipped the small fix the ticket asked for: tools/collectors.py is a registry of long-running collections, and cli state's FRESHNESS panel now renders a 'collections:' block with each phase's row count, last write age and state (RUNNING / COMPLETE / IDLE / ABSENT / UNREADABLE), plus the resume command when IDLE. Reads each study's SQLite read-only with a 1s timeout and degrades rather than raising, so a walk holding its own file cannot break orientation. Went beyond the ticket on one point: a phase that can prove no work remains (optional remaining_sql) reads COMPLETE and prints no resume hint -- nagging a session to restart a finished walk is the same defect pointed the other way. Did NOT build the auto-restarter, per the ticket. 17 tests (tests/test_collectors.py, two in tests/test_state.py); suite 1409 green. Verified live: it caught a peer's series-bias prices walk as RUNNING while the backfill read COMPLETE.
 ---
 FACTS. `studies/2026-08-29-series-bias-mining/collect.py backfill` is a multi-hour, resumable, per-series-atomic job against perishable upstream data (Kalshi ages settled markets out ~60 days after close). It has now stalled twice because the session running it ended:
 

@@ -76,6 +76,8 @@ def board_as_of(conn, at: str) -> list[Market]:
 
 def board_exact_stamp(conn, at: str) -> list[Market]:
     """probe.py's reconstruction, kept only to size its error."""
+    # EXACT-STAMP-OK: this function IS the wrong query, kept deliberately so
+    # the distortion can be printed beside the correct reconstruction.
     return _markets(conn.execute(
         "SELECT raw_json FROM market_snapshots "
         "WHERE platform = 'kalshi' AND captured_at = ?", (at,)))

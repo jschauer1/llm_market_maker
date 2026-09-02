@@ -133,3 +133,65 @@ the risk profile all differ.
   325 families), so it cannot be hiding violations by under-matching.
 
 Note (2026-08-30): re-running this probe against post-compression snapshot rows requires routing raw_json/event_json reads through tools.snapshot.payload_text (spec 5.2 phase 3).
+
+---
+
+# Addendum 2026-09-01 — re-run on correctly reconstructed boards
+
+*Maintenance lane, session `fleet-w3-g2`, ticket
+`calendar-arb-probe-exact-stamp-board`. Facts only: this addendum does
+**not** revisit the verdict, which stands. `probe.py` is left exactly as
+run; `probe_as_of.py` supersedes it and produced everything below. Raw
+output: `data/rerun-2026-09-01-board-as-of.txt`.*
+
+**What was wrong.** `probe.py` rebuilds each board with
+`WHERE captured_at = ?`. Dedup-on-write (spec 5.2 phase 2, 2026-08-30)
+means a pull writes no row for a market whose payload did not change, so
+that query returns *the markets that moved at that pull*. The probe ran on
+2026-08-27, before dedup, so **its published numbers were correct when
+made** — but every capture it walked is now re-read short, and the
+truncation is severe and biased toward liquid markets:
+
+```
+2026-08-27T11:47:05Z    exact  3,254 markets    as_of 107,656 markets
+2026-08-27T11:46:17Z    exact 19,005           as_of 107,660
+2026-09-01T11:34:32Z    exact  5,580           as_of 103,940
+```
+
+**Result 1 changes as stated, and does not change as concluded.** Over the
+20 captures now stored, on correctly reconstructed boards:
+
+```
+snapshots=20   pairs checked=38,124   violations=25   cross-event=22
+median profit/basket=0.0134
+```
+
+So "the firing rate is zero" is **no longer literally true** and should be
+read as *"~7 violations per 10,000 ladder pairs, none of them near-dated."*
+What the violations are matters more than the count:
+
+- **19 of 25 are one recurring pair**, `KXDECLAREPRESFIRSTD-28NOV07-KHAR`
+  against `-28NOV01-KHAR`, at +0.004 to +0.023 per basket on a **2028**
+  horizon. That is two years of carry for one to two points, which is the
+  study's own Result 2 argument, not a counter-example to it.
+- **3 are `KXTRUMPSAYMONTH` pairs whose NO leg asks 0.01.** A one-cent ask
+  is the placeholder-quote trap this repo has now hit in three separate
+  studies (the mirror image of the 0.980–0.995 artifact that made the
+  series-bias pass-3 unreadable). Treat as artifact until depth is checked.
+- The four earliest captures (2026-08-24) still return **zero** on the
+  corrected board.
+
+**Result 2 has NOT been re-derived, and that is the open piece.** The 295
+near-dated same-event pairs at min cost 1.000 — the structural finding that
+actually closes the theory, and the dataset
+`tickets/new-theory/open/2026-09-01-calendar-arb-soft-relative-value.md`
+proposes to reuse — came from a separate horizon/scope tabulation that
+`probe.py`'s `main()` does not compute, so `probe_as_of.py` does not
+reproduce it either. It was measured on a board that was **~90k markets
+short**. Whoever picks up the soft-relative-value ticket must re-derive that
+table before leaning on the 295 figure; ticketed.
+
+**Verdict unchanged: do not build the spec as written.** Nothing here
+disturbs it — the violations that appeared are long-dated or one-cent-ask,
+which is what Result 2 predicts. What changed is that the zero is not a
+zero, and one of the two supporting tables is unverified.

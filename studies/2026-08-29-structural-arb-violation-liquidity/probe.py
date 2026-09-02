@@ -50,6 +50,14 @@ def board_at(conn, captured_at: str) -> list[Market]:
     `Market.from_mapping`, which expects an already-normalized mapping.
     """
     out = []
+    # EXACT-STAMP-OK: frozen as-run record of the 2026-08-29 probe. It ran
+    # entirely on pre-dedup captures, where the exact-stamp and interval
+    # reconstructions are byte-identical, so its published numbers stand.
+    # DO NOT RE-RUN THIS FILE against a post-2026-08-30 capture -- dedup-on-
+    # write makes this query return only the markets that moved at that
+    # pull. `probe_volume_threshold.py` supersedes it and uses
+    # `snapshot.board_as_of`; measured gap on the same 17 captures, 24
+    # violations found here against 36 there.
     for row in conn.execute(
         "SELECT raw_json FROM market_snapshots "
         "WHERE platform = 'kalshi' AND captured_at = ?", (captured_at,)

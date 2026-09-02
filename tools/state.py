@@ -347,6 +347,21 @@ def _freshness_panel(conn, now: str) -> list[str]:
             )
     else:
         lines.append("  floor duty:       (not yet tracked — table floor_runs)")
+
+    # Long-running collections. A collector outlives the session that
+    # starts it, so a stall is invisible unless something reports it --
+    # the series-bias backfill sat dead for 5.7 hours twice before a
+    # session found it by hand, against data that ages out upstream.
+    # Wrapped because this reads other studies' SQLite files, and
+    # orientation must survive any of them being missing, odd or locked.
+    lines.append("  collections:")
+    try:
+        from tools import collectors
+
+        rendered = collectors.render(collectors.REGISTRY, now)
+    except Exception as exc:  # noqa: BLE001 - orientation must not fail
+        rendered = [f"    (unreadable: {exc})"]
+    lines.extend(rendered or ["    (none registered)"])
     return lines
 
 

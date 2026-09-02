@@ -90,6 +90,43 @@ without the contract.
   Stopping the harness task is also not enough: killing a background task
   stops the *shell*, not the detached child. A stopped task's python.exe
   was still fetching and writing nine minutes later.
+- **A long collection registers in `tools/collectors.py`, so a stall is
+  visible.** A collector outlives the session that starts it, which makes
+  "it stopped and nobody knew" structural rather than careless: the
+  series-bias liquidity backfill died twice, once sitting dead for **5.7
+  hours** before a session found it by running that study's own `status`
+  by hand. Nothing prompts anyone to do that, and the data ages out
+  upstream while it waits. Add a `Collection` row and `cli state`'s
+  FRESHNESS panel reports the phase's row count, last write and state on
+  every orient. Give it a `remaining_sql` only when the study can honestly
+  answer "is there work left" — without one the line reports an age and
+  makes no completeness claim, which beats nagging a session to restart a
+  finished walk.
+- **A 429 is not a 5xx, and `tools/http.py` no longer treats it as one.**
+  It has its own attempt budget (`RATE_LIMIT_RETRIES`, default 8, separate
+  from `max_retries`), honours `Retry-After`, and otherwise backs off
+  exponentially with upward jitter capped at `MAX_BACKOFF`. This matters
+  because Kalshi's limiter has a **sustained-volume component**: a
+  single-threaded walk at the ~4-5/s that profiling established as safe
+  still tripped a 429 twenty-one series into a 3,274-series job and died
+  with retries to spare. A collector that wants to wait a limiter out
+  rather than abort raises `rate_limit_retries`; an interactive quote
+  lookup leaves it alone.
+- **The other side of a quote costs `1 - ask + spread`, not `1 - ask`, and
+  `tools/book.py` is where that arithmetic lives.** Taking either side
+  crosses the book, so the two asks sum to `1 + spread` and the legs' net
+  edges obey an identity rather than a symmetry:
+  `net(this) + net(other) == -round_trip`. The corollary is the one that
+  costs money: **a cell measured at -N is not an opportunity of +N on the
+  complement** — it is `-(round_trip - N)` over there, and whenever the
+  mispricing is smaller than the toll both sides lose. On Kalshi that toll
+  is 2-5 points and is usually larger than the effect being measured. Two
+  theories died to this within one hour on 2026-09-01, in different
+  populations and from opposite directions, and neither error was caught by
+  a test because both were arithmetically self-consistent against the wrong
+  price. The identity is pinned in `tests/test_book.py`. Fees come from
+  `fee_pts` in `tools/sizing.py` — five studies already carry their own copy of
+  `min(0.07*p*(1-p), 0.035)` and there must not be a sixth.
 - **Prices are decimal dollars in [0, 1]. Edge is in percentage points.**
   Conversion happens at the API boundary; no provider's wire format escapes
   its client module.

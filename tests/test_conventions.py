@@ -788,3 +788,124 @@ def test_every_repo_path_named_in_a_skill_resolves():
         "a skill names a repo path that does not resolve -- fix the skill "
         "or add a deliberate exception:\n" + "\n".join(missing)
     )
+
+
+# --- the board reconstruction that stopped being a board ---
+
+#: A file may filter market_snapshots on an exact capture stamp only with
+#: this marker on the same line or the line before, naming why. Frozen
+#: as-run study probes qualify; new analysis does not.
+EXACT_STAMP_MARKER = "EXACT-STAMP-OK:"
+
+_EXACT_STAMP = re.compile(r"captured_at\s*=\s*\?")
+
+
+def _sql_literals(tree):
+    """Every SQL string handed to a `.execute`/`.executemany` call, with the
+    line it starts on.
+
+    Matched through the AST rather than by scanning lines, because the
+    files most likely to mention this query are the ones *documenting* the
+    trap -- three of the first five line-level hits were prose warning
+    against it. A guard that cries wolf on its own documentation gets
+    muted.
+    """
+    import ast as _ast
+
+    out = []
+    for node in _ast.walk(tree):
+        if not isinstance(node, _ast.Call):
+            continue
+        func = node.func
+        if not isinstance(func, _ast.Attribute):
+            continue
+        if func.attr not in ("execute", "executemany"):
+            continue
+        if not node.args:
+            continue
+        parts = []
+
+        def collect(n):
+            if isinstance(n, _ast.Constant) and isinstance(n.value, str):
+                parts.append(n.value)
+            elif isinstance(n, _ast.BinOp):
+                collect(n.left)
+                collect(n.right)
+            elif isinstance(n, _ast.JoinedStr):
+                for v in n.values:
+                    collect(v)
+
+        collect(node.args[0])
+        if parts:
+            out.append((node.lineno, " ".join(parts)))
+    return out
+
+
+def test_no_new_code_rebuilds_a_board_by_exact_capture_stamp():
+    """`WHERE captured_at = ?` silently stopped meaning "the board".
+
+    Dedup-on-write (spec 5.2 phase 2, shipped 2026-08-30) means a pull
+    writes NO row for a market whose payload did not change, so an
+    exact-stamp filter returns *the markets that moved at that pull*. On
+    this project's DB the 2026-08-31T00:38:34Z capture holds 53,613 rows
+    against a 99,064-market board -- 46% missing, no error, and the missing
+    subset is correlated with liquidity and therefore with price, side and
+    volume. `tools.snapshot.board_as_of` is the reconstruction that is
+    right; this test exists because the wrong query reads correct and
+    cannot be caught by review a second time.
+
+    Frozen as-run study probes and the one function that deliberately keeps
+    the wrong query to size its own error carry the marker rather than
+    being edited, so the record of what was actually run stays intact.
+    """
+    import ast as _ast
+
+    offenders = []
+    for path in sorted(ROOT.glob("**/*.py")):
+        rel = path.relative_to(ROOT).as_posix()
+        if rel.startswith(("tools/snapshot.py", "tests/", ".venv/")):
+            continue
+        text = path.read_text(encoding="utf-8", errors="replace")
+        if "captured_at" not in text:
+            continue
+        try:
+            tree = _ast.parse(text)
+        except SyntaxError:
+            continue
+        lines = text.splitlines()
+        for lineno, sql in _sql_literals(tree):
+            if not _EXACT_STAMP.search(sql):
+                continue
+            if "market_snapshots" not in sql:
+                continue
+            # The marker sits on, or in the comment block just above, the
+            # statement -- close enough that it cannot drift onto an
+            # unrelated query, wide enough for a real explanation.
+            window = chr(10).join(lines[max(0, lineno - 12):lineno + 2])
+            if EXACT_STAMP_MARKER in window:
+                continue
+            offenders.append(f"{rel}:{lineno}")
+    assert not offenders, (
+        "these rebuild a board with `captured_at = ?`, which returns the "
+        "markets that MOVED at that pull, not the board. Use "
+        "tools.snapshot.board_as_of(conn, platform, at), or mark a frozen "
+        f"as-run record with `# {EXACT_STAMP_MARKER} <why>`: "
+        + ", ".join(offenders)
+    )
+
+
+def test_the_exact_stamp_marker_is_not_a_blanket_opt_out():
+    """A marker has to say why, so an exception stays auditable."""
+    for path in sorted(ROOT.glob("**/*.py")):
+        if path.relative_to(ROOT).as_posix().startswith("tests/"):
+            continue
+        for i, line in enumerate(
+            path.read_text(encoding="utf-8", errors="replace").splitlines()
+        ):
+            if EXACT_STAMP_MARKER not in line:
+                continue
+            reason = line.split(EXACT_STAMP_MARKER, 1)[1].strip()
+            assert len(reason) >= 20, (
+                f"{path.relative_to(ROOT).as_posix()}:{i + 1} opts out of the "
+                "board-reconstruction guard without saying why"
+            )

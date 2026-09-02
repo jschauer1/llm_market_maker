@@ -76,15 +76,30 @@ home, one status.
      *smallest* gap. Study:
      `studies/2026-08-30-parlay-markup/` (rule-0 section).
 
+   - **`aggregation-gap`, the second CROSS-event probe** (2026-09-01):
+     `KXNFLWINS` lists 32 teams as 32 separate *events*, each a complete
+     1..17 ladder, so `E[wins] = sum_N P(wins>=N)` is exact and the 32
+     expectations must sum to `272 - ties` — a conservation law across
+     events, correlation-free like the combo synthetic. The mid sum is
+     274.25 against a true `<= 272`, but the bid/ask band is
+     **[264.03, 284.47]** and straddles it; both riskless baskets fail at
+     executable prices (all-NO costs 279.96 against a 272 floor). The
+     companion House-seats case turned out **not to be an identity at
+     all** — `KXHOUSEWINSTATE` carries one `>k` strike per state, so
+     `E[seats]` is bounded rather than determined. Evidence:
+     `evidence/2026-09-01-aggregation-gap-probe/`.
+
    The cheap check is a one-board measurement of the *dispersion the
-   thesis needs*, run before any theory scaffolding — both of the above
-   were settled in well under a session that way. Cross-**event**
+   thesis needs*, run before any theory scaffolding — every one of the
+   above was settled in well under a session that way. Cross-**event**
    relative value is **no longer untested**: the combo-vs-leg channel is
    now measured and flat, by the strongest available test (an exact
-   synthetic, correlation-free). What remains open is cross-event
-   relative value where no arbitrage identity exists — a *forecast*
-   disagreement between two separately-priced events, which is a
-   different and much weaker claim than a violated identity.
+   synthetic, correlation-free), and the NFL conservation law is a
+   second, independent identity measured flat the same way. What remains
+   open is cross-event relative value where no arbitrage identity
+   exists — a *forecast* disagreement between two separately-priced
+   events, which is a different and much weaker claim than a violated
+   identity.
 
    **Matching trap, recorded because it is silent:** KS/NH/OH list
    governor and senate contests from **different election cycles** under
@@ -202,7 +217,7 @@ home, one status.
 0f. **Measure the effect at *executable* prices before building
    anything — not at the mid, and not gross of fees.** This is the single
    most common way an idea dies here, and it has now killed or gutted
-   seven of them. It is not seven findings; it is one finding, seven
+   eight of them. It is not eight findings; it is one finding, eight
    times:
 
    - `calendar-arb` — basket cost never fell below 1.000 at executable
@@ -223,6 +238,14 @@ home, one status.
      other side; it implies −(round_trip − N).** Both sides lose.
    - `calibration_harvest` — 47 cells cleared both floors across three
      complete populations and **zero** cleared fees.
+   - **`aggregation-gap`** (2026-09-01) — the House-seats gap is positive
+     at mid in **5 of 5** complete-coverage states (mean +0.196 seats) and
+     **negative at worst-case executable quotes in 5 of 5** (mean −0.240).
+     The line needing no adjudication: the spec's own most favourable
+     worst-case gap was **+0.073 seats** and the measured fee cost of the
+     basket capturing it is **$0.073** — the same number, so fees take
+     100% of the spec's own edge before a 14-month lockup. Evidence:
+     `evidence/2026-09-01-aggregation-gap-probe/`.
 
    Two consequences worth stating separately. **A liquidity filter must
    be a real one** — spread *and* open interest, never a price cap, and

@@ -102,6 +102,11 @@ def main():
         "WHERE platform='kalshi' ORDER BY captured_at")]
     total = []
     for cap in caps:
+        # EXACT-STAMP-OK: frozen as-run record of the 2026-08-27 probe, whose
+        # zero-violation result is what falsified calendar-arb's hard-
+        # arbitrage premise. It ran before dedup-on-write, so exact and
+        # interval reconstructions agree and its published numbers stand.
+        # DO NOT RE-RUN THIS FILE -- use probe_as_of.py, which supersedes it.
         rows = [json.loads(snapshot.payload_text(r["raw_json"]))
                 for r in conn.execute(
             "SELECT raw_json FROM market_snapshots "
