@@ -778,3 +778,47 @@ def test_advance_names_the_directory_when_the_state_is_unrecognised(repo):
                     encoding="utf-8")
     with pytest.raises(ValueError, match="wip"):
         tickets.advance(path, to="open", note="back to the backlog")
+
+
+# --- a new-theory spec earns its way to a build order ----------------------
+
+
+def test_the_new_theory_lane_has_an_evidence_and_implement_stage():
+    assert tickets.states_for("new-theory") == (
+        "open", "evidence", "implement", "completed")
+
+
+def test_a_spec_advances_open_to_evidence_to_implement(tmp_path):
+    path = tickets.create(
+        tmp_path, lane="new-theory", slug="some-thesis",
+        title="A thesis", body="The mechanism, the population, the bar.",
+        created="2026-09-02")
+    at_evidence = tickets.advance(
+        path, to="evidence", note="Probing dispersion on one board.",
+        now="2026-09-03")
+    assert at_evidence.parent.name == "evidence"
+    at_implement = tickets.advance(
+        at_evidence, to="implement", note="Cleared the bar at n=240.",
+        now="2026-09-04")
+    assert at_implement.parent.name == "implement"
+
+
+def test_a_spec_cannot_skip_the_evidence_stage(tmp_path):
+    """The evidence stage is not optional for a spec nobody has measured.
+    Jumping straight to a build order is exactly how a theory gets built
+    on a thesis that was never tested."""
+    path = tickets.create(
+        tmp_path, lane="new-theory", slug="unmeasured", title="T",
+        body="b", created="2026-09-02")
+    with pytest.raises(ValueError, match="evidence"):
+        tickets.advance(path, to="implement", note="skipping")
+
+
+def test_advance_still_refuses_completed_for_new_theory(tmp_path):
+    """close() owns the transition into completed/, because close() is
+    what records the resolution."""
+    path = tickets.create(
+        tmp_path, lane="new-theory", slug="x", title="T", body="b",
+        created="2026-09-02")
+    with pytest.raises(ValueError):
+        tickets.advance(path, to="completed", note="nope")

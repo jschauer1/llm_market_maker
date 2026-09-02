@@ -67,7 +67,14 @@ def _today() -> str:
 LANE_STATES: dict[str, tuple[str, ...]] = {
     "theory": ("open", "completed"),
     "maintenance": ("open", "completed"),
-    "new-theory": ("open", "completed"),
+    # A new-theory ticket IS a spec, and it earns its way to a build
+    # order. `evidence` is where the cheapest decisive measurement runs
+    # against the bar the spec wrote before looking; `implement` means
+    # that measurement cleared it. The stage is not optional -- a spec
+    # that jumps from `open` to `implement` is a theory built on a thesis
+    # nobody tested, which is the failure the whole new-theory lane
+    # exists to prevent.
+    "new-theory": ("open", "evidence", "implement", "completed"),
     "study": ("question", "investigation", "answer"),
 }
 
@@ -518,11 +525,12 @@ def advance(path: Path, *, to: str, note: str,
     is_study = path.name == STUDY_FILE
     item = path.parent if is_study else path
     lane_dir = item.parent
-    allowed = states_for(_lane_of(lane_dir))
+    lane = _lane_of(lane_dir)
+    allowed = states_for(lane)
     here = lane_dir.name
     if to not in allowed:
         raise ValueError(
-            f"lane {_lane_of(lane_dir)!r} has no state {to!r}; "
+            f"lane {lane!r} has no state {to!r}; "
             f"it declares {allowed}"
         )
     if to == "completed":
@@ -551,6 +559,23 @@ def advance(path: Path, *, to: str, note: str,
         raise ValueError(
             f"cannot move backwards: {here!r} -> {to!r}. Close the ticket "
             "or file a new one instead."
+        )
+    if lane == "new-theory" and here == "open" and to == "implement":
+        # **The evidence stage is not skippable**, and this is the one
+        # forwards move in the repo that is refused anyway. Every other
+        # lane's states are bookkeeping; these two are the lane's whole
+        # argument. A spec states a thesis and the bar that would falsify
+        # it, `evidence/` is where the cheapest decisive measurement runs
+        # against that bar, and `implement/` asserts the bar was cleared.
+        # Allowing `open` -> `implement` would let a build order be issued
+        # on a thesis nobody measured -- which is the failure this lane
+        # exists to prevent, and the reason `calendar-arb` and
+        # `smile-smoothing` died in an afternoon instead of a month.
+        raise ValueError(
+            "a spec cannot skip the evidence stage: advance it to "
+            "'evidence' and run the measurement first. A build order "
+            "issued on an unmeasured thesis is what this lane exists to "
+            "prevent."
         )
     target = lane_dir.parent / to
     target.mkdir(parents=True, exist_ok=True)

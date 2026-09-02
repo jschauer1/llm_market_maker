@@ -16,7 +16,18 @@ ticket links here instead of repeating any of it.
 |---|---|
 | `open/` | proposed theories, one spec each — the backlog a session chooses from |
 | `completed/` | specs that were built, turned into a study, or killed; the `resolution` field says which |
-| `evidence/` | the graded evidence ledger and full reading notes behind the claims these specs make |
+| `evidence/` | specs whose cheapest decisive measurement is running now, against the bar the spec wrote before looking |
+| `implement/` | specs whose measurement cleared that bar — a build order, not a proposal |
+| `reference/` | the graded evidence ledger and full reading notes behind the claims these specs make |
+
+The reading notes used to live in `evidence/`, and had to move the day
+`evidence/` became a state: a ticket's state IS its directory, so the
+backlog lists every `.md` in a state folder and reported all three
+reference files as `!! MALFORMED` tickets with blank titles. That is the
+false positive this repo has already paid for once — an alarm that is
+always on is worse than no alarm, because the day a real one fires it is
+indistinguishable from the noise. `reference/` is not a state, so
+`backlog()` never looks in it.
 
 An idea to try **on an existing theory** is not a new-theory ticket — it
 belongs in that theory's own folder (`cli tickets new --lane theory
@@ -444,21 +455,21 @@ cell matrix; that theory is retired, so it needs its own population.)
   [parlay-fade](completed/2026-08-24-parlay-fade.md); parked until
   the cross-game version has evidence.
 
-## Evidence folder — for reviewers
+## Reference folder — for reviewers
 
-`evidence/` holds what a reviewing model needs to check the specs'
+`reference/` holds what a reviewing model needs to check the specs'
 claims without redoing the research:
 
-- [Evidence ledger](evidence/2026-08-24-evidence-ledger.md) — **start
+- [Evidence ledger](reference/2026-08-24-evidence-ledger.md) — **start
   here when reviewing**: every load-bearing quantitative claim across
   the 22 specs, mapped to its source and graded A (primary read in
   full, transcribed with locators) / B (primary located,
   summary-verified) / C (practitioner, directly read) / D (secondhand
   aggregation — treat as a lead, not evidence). The ledger names the
   claims that still need verification at implementation time.
-- [Le 2026 reading notes](evidence/2026-08-24-le-2026-calibration-notes.md) —
+- [Le 2026 reading notes](reference/2026-08-24-le-2026-calibration-notes.md) —
   full Table 4/5 transcriptions, isotonic checks, dataset description.
-- [Angelini & De Angelis 2026 reading notes](evidence/2026-08-24-angelini-deangelis-2026-notes.md) —
+- [Angelini & De Angelis 2026 reading notes](reference/2026-08-24-angelini-deangelis-2026-notes.md) —
   impact coefficient, Table 6 drift matrix, the verbatim
   executable-returns negative.
 
@@ -466,7 +477,7 @@ claims without redoing the research:
 
 Papers marked **read in full** were extracted and read during the
 2026-08-24 sessions; quoted numbers come from their text and are
-transcribed with locators in `evidence/`.
+transcribed with locators in `reference/`.
 
 - [Le 2026 — Decomposing Crowd Wisdom: Domain-Specific Calibration Dynamics](https://arxiv.org/pdf/2602.19520) (**read in full**; [replication repo](https://github.com/namanhzz/prediction-market-calibration)) — 353M trades; Politics slopes 1.32–1.83 (compressed toward 50%), Weather 0.69–0.87 short-horizon (too extreme), Sports 1.74 / Crypto 1.36 at 1mo+; universal horizon component 0.99 → 1.32; price 0.75 → 0.886 realized (Politics), 0.691 (Weather); large political trades compress more (1.74 vs 1.19).
 - [Angelini & De Angelis 2026 — When Do Markets Fully Process Public Information?](https://arxiv.org/pdf/2606.07811) (**read in full**) — Kalshi NBA in-play: 0.64-for-one impact adjustment, predictable drift, worse when illiquid+salient; **not profitable net of bid–ask at minute scale**.
