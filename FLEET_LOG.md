@@ -136,3 +136,29 @@ goes to be found.
   reports.
 - 00:02 spawn  w1-g3 a6dc0080 (w2-g2 and w3-g2 confirmed still running via
   ListAgents — 2 live, only w1 empty, exactly one spawned)
+- 00:12 USER DIRECTION: commit/push more aggressively. Adopted — in-flight work
+  is checkpointed as it goes green rather than held for a worker's manifest.
+  Rationale accepted: hours of finished work waiting on a report 20 min out, in
+  a tree where "someone notices" is not a mechanism.
+- 00:14 commit 46e3023 "fleet: checkpoint of w2-g2 and w3-g2 in-flight work"
+  (3 new-theory probes to verdict, 4 maintenance tickets, tools/book.py,
+  tools/collectors.py, AST-based EXACT-STAMP guard) pushed
+- 00:15 commit 7bbfda2 "fleet: close book-side-arithmetic-helper" pushed
+- 00:16 w2-g2 completed — CONCLUSIVE (new-theory released, TRIPLE KILL:
+  block-trade-whale-follow, accumulation-decay, aggregation-gap all dead with
+  pre-registered evidence; backlog 21 -> 18)
+- 00:17 commit ee64679 "log: three new-theory specs killed on their own decisive
+  first step" pushed
+- 00:18 spawn  w2-g3 ac3b64a3 (2 live confirmed, only w2 empty)
+- 00:22 w3-g2 completed — CONCLUSIVE (maintenance released, 5 tickets closed,
+  2 filed, 19 net new tests, collections panel live in `cli state`)
+- 00:23 commit 3f23c31 "fleet: w3-g2's collector-reliability remainder, and
+  w2-g3 in flight" pushed
+- 00:24 spawn  w3-g3 af7b212c (2 live confirmed via ListAgents, only w3 empty)
+- 00:24 SUITE: 1418 passed, 2 failed. Both failures name ONLY
+  theories/no_side_premium/ uncommitted files (sibling import of
+  deadline_drift.collect_settled; THEORY.md naming data/mine_cells_result.txt).
+  That folder is fleet-w1-g3's LIVE theory-lane work and is deliberately held
+  out of every commit — master stays green. Two independent workers reported
+  the same diagnosis and neither touched the other's live files. Correct
+  behaviour; no blame, no ticket beyond the elevation one already filed.
