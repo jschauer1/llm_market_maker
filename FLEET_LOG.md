@@ -162,3 +162,24 @@ goes to be found.
   out of every commit — master stays green. Two independent workers reported
   the same diagnosis and neither touched the other's live files. Correct
   behaviour; no blame, no ticket beyond the elevation one already filed.
+- 00:28 WIND DOWN (user: "wrap things up"). All three workers were already
+  killed by the user's interrupt — no TaskStop needed.
+- 00:29 released dangling claims 21 (fleet-w1-g3, theory/no_side_premium) and
+  22 (fleet-w2-g3, theory/insider_judgment). No lane held by anyone.
+- 00:29 cron ad81bf9f deleted. No heartbeat outlives this session.
+- 00:29 UNCOMMITTED AT WIND-DOWN, deliberately: theories/no_side_premium/
+  (NOTES.md, THEORY.md, backtest.py, exposure.py, exposure_measure.py,
+  mine_cells.py, data/, one ticket move). fleet-w1-g3 was killed mid-lane.
+  It fails the suite twice: exposure_measure.py imports
+  theories.deadline_drift.collect_settled (sibling import, rejected by
+  test_conventions), and THEORY.md names `data/mine_cells_result.txt`, which
+  resolves from repo root. Committing it would hand every peer session and
+  every future fleet a red baseline; the files are on disk, and the fix is
+  already specified in tickets/maintenance/open/2026-09-02-parse-deadline-
+  earned-elevation.md (elevate parse_deadline to tools/ — it now has two
+  callers in two theories, which is the elevation trigger).
+  NEXT SESSION: take that ticket, then the folder commits clean.
+- 00:29 session totals: 3 slots, 8 workers spawned (g1-g3), 8 conclusive,
+  0 inconclusive, 0 sent back, 0 retired. 15 commits, all pushed. 0 orphans.
+  Suite 1418 passed / 2 failed, both failures confined to the uncommitted
+  folder above.
