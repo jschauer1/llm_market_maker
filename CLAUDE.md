@@ -938,22 +938,71 @@ fails at the commit that breaks a path rather than months later.
 
 ## Data conventions
 
-**The governing principle: save as much as you can, while you can.**
-Every rule in this section is an instance of it. Data in this domain is
-perishable — markets close, Kalshi archives its settled history after ~60
-days, model usage cuts out mid-run, sessions die — so anything fetched,
-computed, judged, or decided that is not on disk at the moment it exists
-is a candidate for permanent loss, discovered exactly when it is needed.
-When in doubt, persist: raw payloads over distillates, incremental writes
-over one final write, durable stores over session memory, and the context
-that produced a result alongside the result. Storage is the cheapest
-input this project consumes; everything else — network time, token
-spend, a market that no longer trades — is expensive or impossible to
-buy back. The test: a future session that never saw this one should be
-able to reconstruct any result from disk, and ask questions of old data
-that nobody thought to ask when it was captured. The rules below are
-examples, not the boundary — a new situation that smells like "we could
-keep this, but it's a hassle" resolves to keeping it.
+**Two kinds of data, split by one test: can a future session regenerate
+this from what is already on disk?**
+
+- **No → source data.** Kalshi payloads, candles, per-trade corpora, LLM
+  judgments already paid for in tokens. Unbuyable — Kalshi ages settled
+  markets out of its public API after ~60 days, and a model's verdicts
+  cost tokens that are not spent twice. **Capture aggressively: this is
+  the repo's existing governing principle — save as much as you can,
+  while you can — unchanged, and it still governs here in full.**
+  Perishable data that is not on disk at the moment it exists is a
+  candidate for permanent loss, discovered exactly when it is needed. So
+  when in doubt, persist: raw payloads over distillates, incremental
+  writes over one final write, durable stores over session memory, and
+  the context that produced a result alongside the result. Storage is
+  the cheapest input this project consumes; everything else — network
+  time, token spend, a market that no longer trades — is expensive or
+  impossible to buy back. The test: a future session that never saw this
+  one should be able to reconstruct any result from disk, and ask
+  questions of old data that nobody thought to ask when it was captured.
+  A new situation that smells like "we could keep this, but it's a
+  hassle" resolves to keeping it.
+- **Yes → derived data.** Intermediates, re-runnable aggregates, scratch
+  analysis, restated summaries, a second copy of a number the ledger
+  already holds. **Earns its keep two ways only: it is expensive to
+  regenerate, or something cites it.** The default is not to keep it.
+
+The asymmetry is the whole rule: losing source data is unrecoverable,
+losing derived data costs CPU. Where the test is genuinely unclear, keep
+it — but the test is usually not unclear. **This principle was previously
+stated with no scope and has been read as covering everything; it is now
+scoped, not reversed — source data is still captured exactly as
+aggressively as before, and only the "yes" branch above has to earn its
+keep.**
+
+**Data lands in the thing that produced it.** Two owners, and only two: a
+theory, at its **registry path** (not always `theories/<slug>` — see
+"What lives in a theory, and what gets elevated" above), or a study, at
+its own state directory. **Reading stays open everywhere** — already the
+rule ("Reading is open; only writing is segregated") and nothing here
+narrows it: a session may read any theory's notes or any study's data at
+any time; it may not deposit new files there.
+
+**The shared sinks — a closed list.** Writing outside your own owner's
+folder is legitimate at exactly these targets, and nowhere else:
+
+1. **The database**, through the `tools/` package's APIs — ledger,
+   scores, `theory_facts`, ideas, snapshots, provenance.
+2. **`RESEARCH_LOG.md`** — append only.
+3. **Tickets, any lane, without restriction** — the one broad exception,
+   because a ticket is how a focused session tells another owner
+   something without spending their attention; filing one never needs a
+   reason.
+4. **`user_reports/<date>/`** — the floor lane only.
+5. **`tests/` and their fixtures** — an *elevation*, which is a migration
+   under the existing caller-count rule, not a casual write.
+
+**The escape hatch, and its narrowness:** *"my task is impossible
+otherwise"* — not inconvenient, not slower, impossible. A session that
+takes it says so plainly in its report and files a ticket naming what it
+wrote and where.
+
+**A data directory over 10MB adds its own `.gitignore` entry naming the
+directory, not a filename** — the reason the existing `series-bias-mining`
+entry already gives: the `-journal`, the WAL and the per-run logs were
+all still untracked, so `git add -A` would have staged them.
 
 - **SQLite** (`db/market_edge.db`) is the source of truth for structured facts.
 - **`THEORY.md`** is the source of truth for a hypothesis and its procedure.
