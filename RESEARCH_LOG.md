@@ -4513,3 +4513,72 @@ is the natural successor to the two collector fixes here.
 Of the rest, `sweep-migration-sentinel-guards` is the one with teeth —
 self-disabling migration guards are the "semantics change silently" failure
 this lane exists for.
+
+## 2026-09-02 — the new-theory lane loses `completed/`: a spec now ends by being deleted (maintenance lane)
+
+**User ruling.** The lane's states are now `open → evidence → build`, and
+`build/` means **ready to implement**. `completed/` is gone and
+`implement/` was renamed. Asked where a finished spec should land, the
+user's answer was that the terminal state *is* the build order, and that
+a spec which dies should be **deleted outright**.
+
+**Why `completed/` was indefensible, in one measurement.** The lane
+README promised that "a resolution starts with one of four words"
+(`built`/`disproven`/`underpowered`/`superseded`) and `cli tickets close`
+enforced it. Running that exact check over the 16 specs sitting in
+`completed/`: **0 conforming, 16 would-be-rejected.** First tokens were
+`dead`, `killed`, `built.`, `built` (no colon), `do` ("DO NOT BUILD").
+The vocabulary was introduced after those files were written and nothing
+re-read them, so the one field a session was told to trust answered
+nothing for 100% of the data. `evidence/` and `implement/` were both
+**empty** — every spec had gone `open → completed` directly — so in
+practice the lane really was the collapsed two-state thing the directory
+names denied.
+
+**The principle behind the fix.** A spec that ends is one of two things,
+and both already have a better home than a folder: a **built** one is
+recorded by the theory it became, a **dead** one by its ideas-registry
+row, which `close` already refused to proceed without. `completed/` was a
+*third copy* of a verdict two durable stores owned — and the copy is
+always the one that drifts. Deleting it removes the drift by removing the
+duplicate, not by removing the record. This is the same shape as the
+study lane: permanence (and now impermanence) falls out of the state
+names rather than from an exemption somebody has to remember. `purge`
+matches `completed/`, so `new-theory` simply drops out of its query.
+
+**Verified before deleting anything.** All 16 specs had ideas-registry
+rows; 13 kills carried `outcome` (+`revisit_angle`), 3 builds carried
+`status=promoted` and a `theory_id`. Combined registry text exceeded the
+ticket's own resolution in 14 of 16 cases, and the two flagged
+(`implication-graph`, `structural-arb`) were read by hand: the registry
+held strictly more, including `implication-graph`'s reopen recipe and its
+KS/NH/OH cross-cycle matching trap.
+
+**The part that was nearly missed.** Deleting the files would have broken
+**23 live citations** — 9 in the tree (including
+`theories/structural_arb/THEORY.md` and
+`theories/no_side_premium/THEORY.md`, both scanned by
+`test_every_repo_path_named_in_docs_resolves`) and 14 in the database
+(`ideas.description` ×12, `ideas.outcome` ×2). Every one was repointed to
+`git show 6e7d920:<path>`, following the `RETIRED.md` precedent that makes
+a deletion *recoverable* rather than merely reversible in principle. Rev
+**6e7d920** is where the 16 deleted specs live.
+
+**Also fixed, because it was the actual source of the confusion.**
+`tickets/README.md` still drew the new-theory lane as `open/` +
+`completed/` only, and labelled `evidence/` as "the graded ledger" — which
+had moved to `reference/` when `evidence/` became a state. It also pointed
+studies at `studies/<date>-<slug>/tickets/`, a directory that does not
+exist. A session reading the top-level README first was being told a
+two-state story the code had already left behind.
+
+**Answers an open question from the 2026-09-01 lifecycle design**, which
+listed "whether `implement/` earns its place" as unresolved. It does — as
+`build/`, as a terminal state, with nothing after it.
+
+**Not changed, and worth a decision later:** closing `built` still
+requires no registry check (only `disproven`/`underpowered` do). That was
+harmless when the file was retained; now that the close deletes it, a
+`built` close is the one path where a spec leaves with nothing verifying
+its record landed. Left as-is to keep this change to the shape the user
+approved.

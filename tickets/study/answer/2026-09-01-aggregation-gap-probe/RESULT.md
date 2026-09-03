@@ -5,7 +5,7 @@ ticket itself nominated — *"The gap does not exceed fees plus the cost of
 holding both legs. This is the LIKELY killer and must be tested first."*
 
 Session `fleet-w2-g2`, new-theory lane, 2026-09-01. Spec:
-`tickets/new-theory/completed/2026-09-01-aggregation-gap.md`, registry
+`git show 6e7d920:tickets/new-theory/completed/2026-09-01-aggregation-gap.md`, registry
 idea 30. Measured on the session board (110,121 markets, pulled 21:59Z),
 `python measure.py` -> `output.txt`.
 

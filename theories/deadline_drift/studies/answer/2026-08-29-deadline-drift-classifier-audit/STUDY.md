@@ -6,7 +6,7 @@
 
 ## Question
 
-[deadline-drift](../../tickets/new-theory/completed/2026-08-24-deadline-drift.md)
+deadline-drift (spec: `git show 6e7d920:tickets/new-theory/completed/2026-08-24-deadline-drift.md`)
 (backlog #2, effort M) buys NO on markets that resolve YES only if a
 discrete, **unscheduled affirmative event** occurs by a deadline, when the
 implied hazard exceeds the historical hazard by more than fees.

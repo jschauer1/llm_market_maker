@@ -6,7 +6,7 @@
 
 ## Question
 
-[calendar-arb](../../tickets/new-theory/completed/2026-08-24-calendar-arb.md)
+calendar-arb (spec: `git show 6e7d920:tickets/new-theory/completed/2026-08-24-calendar-arb.md`)
 (backlog #12, effort S) proposes trading date-monotonicity violations:
 P(X by June) ≤ P(X by July) is a hard logical constraint, so buying the
 later-deadline YES and the earlier-deadline NO locks a profit whenever

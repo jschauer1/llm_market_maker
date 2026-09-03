@@ -6,7 +6,7 @@
 
 ## Question
 
-Spec [`smile-smoothing`](../../tickets/new-theory/completed/2026-08-24-smile-smoothing.md)
+Spec `smile-smoothing` (`git show 6e7d920:tickets/new-theory/completed/2026-08-24-smile-smoothing.md`)
 claims that even on a *monotone* ladder — no hard `structural_arb`
 violation — individual strikes get pushed off the smooth implied
 distribution by uninformed flow. Fit a monotone curve across the ladder,

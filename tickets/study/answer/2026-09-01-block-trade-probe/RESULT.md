@@ -4,7 +4,7 @@
 pre-registered in `PREREG.md` before any per-ticker number existed.
 
 Session `fleet-w2-g2`, new-theory lane, 2026-09-01. Spec:
-`tickets/new-theory/completed/2026-09-01-block-trade-whale-follow.md`.
+`git show 6e7d920:tickets/new-theory/completed/2026-09-01-block-trade-whale-follow.md`.
 Registry idea `block-trade-whale-follow` (spun off idea 32,
 `kalshi-taker-flow-toxicity`).
 

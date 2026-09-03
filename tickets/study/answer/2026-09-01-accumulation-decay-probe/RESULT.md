@@ -4,7 +4,7 @@
 rule pre-registered in `PREREG.md` before any calibration number existed.
 
 Session `fleet-w2-g2`, new-theory lane, 2026-09-01. Spec:
-`tickets/new-theory/completed/2026-09-01-accumulation-decay.md`, registry
+`git show 6e7d920:tickets/new-theory/completed/2026-09-01-accumulation-decay.md`, registry
 idea 31. Population: **222 settled `KXALBUMEQUIV` markets, 28 events,
 10-11 resolution days**, 2026-06-21 to 2026-08-30. 1,046 liquid
 observations.

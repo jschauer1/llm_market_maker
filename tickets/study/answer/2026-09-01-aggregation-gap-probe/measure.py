@@ -1,6 +1,6 @@
 """Aggregation gap — the executable-price and fee test the ticket deferred.
 
-The ticket (tickets/new-theory/completed/2026-09-01-aggregation-gap.md)
+The ticket (`git show 6e7d920:tickets/new-theory/completed/2026-09-01-aggregation-gap.md`)
 names this as the likely killer and says to test it first:
 
     "The gap does not exceed fees plus the cost of holding both legs.
