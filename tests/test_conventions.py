@@ -9,6 +9,7 @@ import ast
 import inspect
 import pytest
 import re
+import subprocess
 import sys
 from dataclasses import fields
 from pathlib import Path
@@ -1160,4 +1161,62 @@ def test_every_retired_theory_lives_under_theories_retired():
         "_UNMIGRATED_RETIREMENTS names a theory that has since been "
         "migrated -- delete the entry so it cannot excuse a future "
         "un-migrated retirement:\n" + "\n".join(stale_exemptions)
+    )
+
+
+def _tracked_files() -> list[str]:
+    """Every path git tracks, repo-root-relative and forward-slashed.
+
+    Shells out to `git ls-files` rather than walking the filesystem: an
+    untracked scratch file sitting in a working tree is not a convention
+    violation -- committing it is the moment somebody actually decided to
+    keep it, and that is the moment this suite cares about. Skipped
+    rather than failed when git itself is unavailable, because this
+    suite has to stay runnable outside a checkout (a source tarball, an
+    environment with no `.git` directory) and "no git" is a fact about
+    the environment, not a violation of anything.
+    """
+    try:
+        proc = subprocess.run(
+            ["git", "ls-files"], cwd=ROOT, capture_output=True, text=True,
+        )
+    except OSError:
+        pytest.skip("git is not available in this environment")
+    if proc.returncode != 0:
+        pytest.skip("git ls-files failed in this environment")
+    return [line for line in proc.stdout.splitlines() if line]
+
+
+#: Extensions that mean "collected data" rather than "code or prose".
+_DATA_SUFFIXES = {".jsonl", ".csv", ".parquet", ".db"}
+
+#: Where collected data is allowed to live. A theory folder or a study's
+#: state directory OWNS its data; `db/` is the shared store; `tests/`
+#: holds fixtures. Anywhere else is data that escaped the thing that
+#: produced it, which is how a repo grows a pile nobody can attribute.
+_DATA_OWNERS = ("theories/", "tickets/study/", "db/", "tests/")
+
+
+def test_data_files_live_with_their_owner():
+    """Collected data belongs to the theory or study that produced it.
+
+    Not a tidiness rule. Data with no owner is data nobody can decide
+    about later: whether it is still needed, whether it can be
+    regenerated, whether deleting it loses something unrecoverable. The
+    owner's folder answers all three by construction.
+
+    Every tracked data file in this repo already satisfies this; the test
+    exists so the first exception is a decision somebody makes rather
+    than a file that appears.
+    """
+    stray = []
+    for line in _tracked_files():
+        if Path(line).suffix.lower() not in _DATA_SUFFIXES:
+            continue
+        if not line.startswith(_DATA_OWNERS):
+            stray.append(line)
+    assert stray == [], (
+        "collected data is sitting outside the theory or study that "
+        "produced it -- move it to its owner's folder, or say in the "
+        "session report why it had to escape:\n" + "\n".join(stray)
     )
