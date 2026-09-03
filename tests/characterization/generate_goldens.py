@@ -6,15 +6,28 @@ Refuses to overwrite an existing golden (see conftest.dump_golden): after
 Phase 0 these files are the migration's only proof that behavior did not
 move, so regenerating one would destroy the evidence it exists to carry.
 
-No network, no database -- everything comes from board_sample.json and the
-frozen rates in meta.json.
+No network, no database -- everything comes from board_sample.json and
+meta.json.
+
+**Six of the thirteen goldens this once wrote no longer exist.** The
+`mention_*` files (`mention_find_candidates`, `..._wide`, `mention_rank`,
+`mention_rank_wide`, `mention_rank_preview_wide`,
+`mention_rank_wide_edge_corrected`) locked `mention_family`, which the
+user retired on 2026-08-27; its code was deleted on 2026-09-02 and the
+goldens went with it, along with the `rates`/`preview_days` accessors this
+script used to read out of meta.json. The generator that wrote them is at
+
+    git show 450db428ec0e7542852fae6484ab8370aaeddfad:tests/characterization/generate_goldens.py
+
+The seven that remain -- screen, dedupe_by_event, gate_partition,
+gate_partition_v3, blind_payload_v3, run_mechanical_stages_v3, normalize
+-- cover live code and are untouched by that deletion.
 """
 
 from __future__ import annotations
 
 from theories.insider_bias import screen
 from theories.insider_bias.insider_judgment import gate, pipeline
-from theories.insider_bias.mention_family import mention_bucket
 from tools.kalshi import markets
 
 from tests.characterization import conftest as cz
@@ -23,7 +36,6 @@ from tests.characterization import conftest as cz
 def main() -> None:
     board = cz.board_input()
     now = cz.frozen_now()
-    rates = cz.frozen_rates()
 
     candidates = screen.screen(board, now=now)
     cz.dump_golden("screen", candidates)
@@ -42,25 +54,6 @@ def main() -> None:
 
     cz.dump_golden("run_mechanical_stages",
                    pipeline.run_mechanical_stages(board, now))
-
-    family = mention_bucket.find_candidates(board, now=now)
-    cz.dump_golden("mention_find_candidates", family)
-    cz.dump_golden("mention_rank", mention_bucket.rank(family, rates))
-
-    # The validated 14-day window is routinely empty for this theory (see
-    # build_fixture's docstring), so the goldens that actually lock its
-    # arithmetic come from the wide horizon. `rank` and `rank_preview` are
-    # locked separately and deliberately: they attach different edge_basis
-    # values, and collapsing them is the exact regression the OOP spec's
-    # non-regression list forbids.
-    wide = mention_bucket.find_candidates(
-        board, now=now, max_days_ahead=cz.preview_days()
-    )
-    cz.dump_golden("mention_find_candidates_wide", wide)
-    cz.dump_golden("mention_rank_wide",
-                   mention_bucket.rank(wide, rates, top_n=len(wide)))
-    cz.dump_golden("mention_rank_preview_wide",
-                   mention_bucket.rank_preview(wide, rates, top_n=len(wide)))
 
     cz.dump_golden(
         "normalize",

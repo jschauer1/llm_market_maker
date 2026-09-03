@@ -4,19 +4,39 @@ at Phase 0 of the theory-layer OOP migration, from the repo root:
     python -m tests.characterization.build_fixture
 
 Contents: every market that survives screen.screen() (so the goldens cover
-every candidate the current code produces), every mention_family market
-that survives the screen at a wide horizon, and a systematic sample of
+every candidate the current code produces) and a systematic sample of
 2,000 non-survivors (reject paths and every gate.classify category),
 deduped, sorted by ticker, written with sort_keys=True.
 
-**Why the wide-horizon mention_family pass exists.** On a typical board
-that theory has *zero* candidates inside its validated 14-day window --
-its own module docstring predicts this ("most candidates only become
-eligible in the final days before close"), and it was true when this
-fixture was first built. Without this second pass its goldens are `[]`,
-which locks nothing: `rank([]) == []` passes even if `rank` is broken, and
-the OOP migration ports exactly that code. The wide pass is fixture
-coverage only -- it never changes what the 14-day goldens record.
+**THIS SCRIPT NO LONGER REPRODUCES THE COMMITTED FIXTURE, and the reason
+is recorded here rather than left to be rediscovered.** Until 2026-09-02
+it ran a second pass -- every `mention_family` market surviving the screen
+at a 365-day horizon -- and unioned those tickers into the fixture. That
+pass contributed **163 markets** (`meta.json`'s `family_survivors`) which
+are in `fixtures/board_sample.json` today and are covered by the
+`normalize` golden, one entry per fixture row. The pass existed because
+that theory had *zero* candidates inside its validated 14-day window on a
+typical board, so without it `mention_rank`'s goldens were `[]`, which
+locks nothing.
+
+`mention_family` was retired (user, 2026-08-27) and its code deleted on
+2026-09-02, so the pass is gone and its six goldens went with it. The 163
+markets stay in the committed fixture: **goldens are immutable, and the
+seven that survive -- screen, dedupe_by_event, gate_partition,
+gate_partition_v3, blind_payload_v3, run_mechanical_stages_v3, normalize
+-- were all recorded against a fixture containing them.** Rebuilding the
+fixture without those rows would change `normalize` and every funnel count
+downstream of it. That was already true of any re-run (a different board
+and a different clock produce a different fixture), which is why this
+script says "run ONCE"; what changed is that the fixture's *shape* can no
+longer be reproduced even in principle. Retrieve the pass that built it
+with
+
+    git show 450db428ec0e7542852fae6484ab8370aaeddfad:tests/characterization/build_fixture.py
+
+`meta.json` keeps `family_survivors`, `preview_days` and `rates` for the
+same reason it keeps `full_board_size`: it is the record of how the
+committed fixture was made, not a live input. Nothing reads them now.
 
 **The frozen clock is the board's own capture moment**, not wall-clock now.
 A board and a clock that disagree would screen out everything that closed
@@ -38,7 +58,6 @@ from pathlib import Path
 
 from theories.insider_bias import screen
 from theories.insider_bias.replay import systematic_sample
-from theories.insider_bias.mention_family import mention_bucket
 from tools import board as board_tool, db
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -46,11 +65,6 @@ FIXTURES = Path(__file__).parent / "fixtures"
 #: Non-survivors kept, evenly spaced across close_time. Covers the reject
 #: paths and every gate category without carrying a 100k-market board.
 SAMPLE_SIZE = 2000
-
-#: Horizon for the mention_family coverage pass -- see the module
-#: docstring. Wide enough to catch the whole family that clears the price,
-#: spread and volume screen, so `rank`'s bins and sort are all exercised.
-PREVIEW_DAYS = 365.0
 
 #: Large enough that any stored board is reused rather than refetched --
 #: see the module docstring on why the cache is the right source here.
@@ -67,20 +81,9 @@ def main() -> None:
     now_dt = datetime.fromisoformat(frozen_now.replace("Z", "+00:00"))
 
     survivor_tickers = {c["ticker"] for c in screen.screen(board, now=now_dt)}
-    family = mention_bucket.find_candidates(
-        board, now=now_dt, max_days_ahead=PREVIEW_DAYS
-    )
-    family_tickers = {c["ticker"] for c in family}
-    if not family_tickers:
-        raise RuntimeError(
-            "no mention_family candidates at any horizon on this board -- "
-            "the fixture would lock vacuous goldens for that theory. "
-            "Investigate before committing (see the module docstring)."
-        )
 
-    wanted = survivor_tickers | family_tickers
-    keep = [m for m in board if m["ticker"] in wanted]
-    rest = [m for m in board if m["ticker"] not in wanted]
+    keep = [m for m in board if m["ticker"] in survivor_tickers]
+    rest = [m for m in board if m["ticker"] not in survivor_tickers]
     keep += systematic_sample(rest, SAMPLE_SIZE)
 
     by_ticker = {m["ticker"]: m for m in keep}
@@ -96,9 +99,6 @@ def main() -> None:
                 "frozen_now": frozen_now,
                 "full_board_size": len(board),
                 "survivors": len(survivor_tickers),
-                "family_survivors": len(family_tickers),
-                "preview_days": PREVIEW_DAYS,
-                "rates": mention_bucket.measured_rate(conn),
             },
             sort_keys=True,
             indent=1,
@@ -107,8 +107,8 @@ def main() -> None:
     )
     print(
         f"fixture: {len(fixture)} markets ({len(survivor_tickers)} survivors "
-        f"+ {len(family_tickers)} mention_family + sample) from a "
-        f"{len(board)}-market board, frozen_now={frozen_now}"
+        f"+ sample) from a {len(board)}-market board, "
+        f"frozen_now={frozen_now}"
     )
 
 

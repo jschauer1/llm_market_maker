@@ -47,14 +47,14 @@ def frozen_now() -> datetime:
     return datetime.fromisoformat(_meta()["frozen_now"].replace("Z", "+00:00"))
 
 
-def frozen_rates() -> dict:
-    """mention_family's measured bucket rates, frozen at fixture time."""
-    return _meta()["rates"]
-
-
-def preview_days() -> float:
-    """Horizon the mention_family coverage goldens use. See build_fixture."""
-    return _meta()["preview_days"]
+# `frozen_rates()` and `preview_days()` were deleted here 2026-09-02 with
+# the mention_family goldens their only callers loaded. `meta.json` still
+# carries the `rates`, `preview_days` and `family_survivors` keys they
+# read: that file is the record of how the committed fixture was built,
+# not a live input, and editing it would falsify the record of a fixture
+# that still contains the 163 markets that pass selected. Retrieve the
+# accessors with
+#   git show 450db428ec0e7542852fae6484ab8370aaeddfad:tests/characterization/conftest.py
 
 
 def board_input() -> list:

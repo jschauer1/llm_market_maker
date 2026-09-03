@@ -13,13 +13,38 @@ ADD a `survivor_candidates` key, and only to add (OOP spec section 4.7).
 A failure here is never fixed by regenerating a golden. It means the phase
 under way changed behavior, which is either a bug to fix or a theory
 version bump to escalate to the user (OOP spec section 8.2).
+
+**Six goldens and four tests were deleted here on 2026-09-02**, when
+`mention_family` (retired by the user 2026-08-27) was migrated out of the
+live tree and `mention_bucket.py` was deleted with the rest of its code.
+Keeping the module alive purely to keep those four tests green was
+considered and rejected on three grounds:
+
+  * `theories/insider_bias/README.md` sets the bar for the shared family
+    parent at "both siblings actually depend on it". `insider_judgment`
+    does not use `mention_bucket`, so elevating it there to keep a test
+    passing would have broken the rule the folder exists to enforce.
+  * this docstring says what these files are: the pass condition for the
+    theory-layer OOP migration. That migration is complete, so the
+    goldens for a deleted theory lock nothing that can still move.
+  * a characterization test over code nobody can call is not coverage.
+    It is 2.5MB of JSON asserting that a deleted module still behaves the
+    way it did, which is true by construction.
+
+The seven goldens covering live code -- screen, dedupe_by_event,
+gate_partition, gate_partition_v3, run_mechanical_stages_v3,
+blind_payload_v3, normalize -- are untouched, and the fixture they read
+still contains the 163 markets the deleted mention_family pass put there
+(see build_fixture). Retrieve the deleted tests and goldens with
+
+    git show 450db428ec0e7542852fae6484ab8370aaeddfad:tests/characterization/test_goldens.py
+    git show 450db428ec0e7542852fae6484ab8370aaeddfad:tests/characterization/goldens/mention_rank_wide.json
 """
 
 from __future__ import annotations
 
 from theories.insider_bias import screen
 from theories.insider_bias.insider_judgment import gate, pipeline
-from theories.insider_bias.mention_family import mention_bucket
 from tools.kalshi import markets
 
 from tests.characterization import conftest as cz
@@ -80,86 +105,6 @@ def test_run_mechanical_stages_subset_matches_golden():
     for key, want in cz.load_golden(
             "run_mechanical_stages_v3").items():
         assert got[key] == want, f"funnel key {key!r} changed"
-
-
-def test_mention_family_validated_window_matches_golden():
-    family = mention_bucket.find_candidates(
-        cz.board_input(), now=cz.frozen_now()
-    )
-    assert cz.proj(family) == cz.load_golden("mention_find_candidates")
-    got = mention_bucket.rank(family, cz.frozen_rates())
-    assert cz.proj(got) == cz.load_golden("mention_rank")
-
-
-def test_mention_family_wide_horizon_matches_goldens():
-    """The goldens that actually lock this theory's arithmetic -- its
-    validated 14-day window is routinely empty (see build_fixture)."""
-    wide = mention_bucket.find_candidates(
-        cz.board_input(), now=cz.frozen_now(),
-        max_days_ahead=cz.preview_days(),
-    )
-    assert wide, "wide-horizon fixture coverage vanished"
-    assert cz.proj(wide) == cz.load_golden("mention_find_candidates_wide")
-
-    ranked = mention_bucket.rank(wide, cz.frozen_rates(), top_n=len(wide))
-    assert cz.proj(ranked) == cz.load_golden(
-        "mention_rank_wide_edge_corrected")
-
-    preview = mention_bucket.rank_preview(
-        wide, cz.frozen_rates(), top_n=len(wide)
-    )
-    assert cz.proj(preview) == cz.load_golden("mention_rank_preview_wide")
-
-
-def test_the_bucket_edge_correction_is_visible_in_the_goldens():
-    """2026-08-29: `buckets.edge_for` stopped differencing a bucket's
-    pooled win rate against the CANDIDATE's price and started carrying the
-    bucket's own realized edge.
-
-    `mention_rank_wide.json` is deliberately kept, unmodified, as the
-    record of the pre-correction arithmetic -- goldens are immutable, so
-    the corrected behaviour got a new file rather than overwriting the
-    old one. This test locks the difference itself, which is the most
-    useful thing either file can do: under the old formula the ranking
-    sorted by CHEAPNESS (every candidate in a bin was repriced against
-    that bin's win rate, so the cheapest looked best); under the
-    corrected one every candidate in a bin claims the same gross edge and
-    the ranking is decided by fees and volume instead.
-    """
-    old = cz.load_golden("mention_rank_wide")
-    new = cz.load_golden("mention_rank_wide_edge_corrected")
-    assert len(old) == len(new), "same candidate set, different arithmetic"
-
-    # The old top pick was the cheaper market; the corrected one is not.
-    assert old[0]["entry_price"] < new[0]["entry_price"]
-    assert old[0]["edge_pts_net"] > new[0]["edge_pts_net"]
-
-    # Under the correction, claimed gross edge is a property of the
-    # bucket, so every row sharing a bucket claims the same gross number
-    # and differs only by its own fee.
-    from tools.sizing import fee_pts
-
-    by_bucket: dict[str, set] = {}
-    for row in new:
-        gross = row["edge_pts_net"] + fee_pts(row["entry_price"])
-        by_bucket.setdefault(row["bucket"], set()).add(round(gross, 6))
-    assert by_bucket, "the corrected golden carries no bucketed rows"
-    for bucket, grosses in by_bucket.items():
-        assert len(grosses) == 1, (
-            f"{bucket} claims {len(grosses)} different gross edges; a "
-            "bucket's realized edge does not depend on the candidate"
-        )
-
-
-def test_rank_and_rank_preview_stay_two_different_functions():
-    """They exist separately on purpose: a wider horizon changes what
-    edge_basis a caller may honestly attach. Collapsing them into one
-    function with a flag is the regression the OOP spec's non-regression
-    list names explicitly."""
-    ranked = cz.load_golden("mention_rank_wide")
-    preview = cz.load_golden("mention_rank_preview_wide")
-    assert {r["edge_basis"] for r in preview} == {"model"}
-    assert ranked != preview
 
 
 def test_normalize_matches_golden_for_every_fixture_row():
