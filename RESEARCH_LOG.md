@@ -4992,3 +4992,66 @@ of which now point at those studies where they actually live
 (`tickets/study/answer/`). `test_a_spec_advances_straight_from_open_to_build`
 and `test_the_new_theory_lane_no_longer_has_an_evidence_state` pin both
 halves of the change.
+
+---
+
+## 2026-09-02 — the test suite runs in a third of the time, and tests the same things
+
+**54.75s → 19.13s for the default run**, 1478 tests, every one of them
+preserved. No parallelism, no new dependency, and no production code
+changed. Design and full measurements:
+`docs/superpowers/specs/2026-09-02-test-suite-speed-design.md`; the
+task-by-task plan is beside it under `plans/`.
+
+**The suite had no hotspot, which is why it looked un-fixable.** Outside
+four network tests the slowest test was under 6s and everything else under
+1s. The cost was per-test *setup*, levied 1467 times: 37.74s of the
+measured 92s, against 49s of actual test bodies. Roughly 37 near-identical
+fixtures each built a real SQLite file per test — two database files plus
+WAL and shm, then 18 `CREATE TABLE`s and six migration passes. 55.5ms,
+per test.
+
+**Three levers, each measured before it was believed:**
+
+- **The database.** Build the schema once per session, `serialize()` it,
+  and `deserialize()` a private copy per test: **0.84ms against 55.5ms**,
+  66x, with all 18 tables and the attached `snapdb` intact. Setup fell
+  37.74s → 3.12s and teardown 4.94s → 0.03s.
+- **Four `@pytest.mark.network` tests, 17s.** One pages the live Kalshi
+  board to exhaustion. `pytest.ini` already documented the deselection in
+  the marker's own help text; it is now the default. Nothing is deleted —
+  `pytest -m network` still runs them, and does.
+- **Repeated repo scans.** The scan tests re-read and re-AST-parsed the
+  same files once per guard. Memoized per session, *without changing which
+  files they select* — a repo-guard test that quietly scans a different
+  set is worse than a slow one.
+
+**The finding worth keeping.** A blind global swap of `db.connect` to
+memory passed 1365 of 1467 tests, and the 102 that objected were not noise
+— they sorted cleanly into tests whose code **reopens the database by
+path** (the CLI, 84 times) and tests whose subject **is the filesystem**
+(backup, WAL, `split_snapshots`, legacy migration). The second group must
+keep real files: speeding them up by taking their files away would delete
+the test while appearing to keep it. For both, a **prebuilt template file
+copied into place** turned out to beat the spec's planned shared-cache URI
+— 6.8ms against 32.9ms, real file semantics preserved, and it made the
+spec's only production-code change unnecessary. That phase was dropped.
+
+**Explicit fixtures over a one-line monkeypatch**, deliberately, on this
+file's own grounds: a test that reads `db.connect(tmp_path / "t.db")` and
+silently receives an in-memory database is exactly the vocabulary that
+"does not produce an error; it produces months of confidently wrong
+decisions". The diff is mostly subtraction — 37 duplicated fixtures became
+three named ones in a new `tests/conftest.py`.
+
+**How "same tests, faster" was proven rather than asserted:** collected
+node IDs were captured before the first change and diffed after the last.
+Nothing was lost. The only two IDs that moved were renamed by the
+concurrent new-theory-lane session in `4bb5ed3`, not by this work. Across
+all 37 files touched, **zero assertion lines were removed**.
+
+**Left undone, on purpose.** `tests/test_conventions.py` is the largest
+remaining item (3.54s, 2.71s of it in one citation-resolving test) and was
+held modified by a concurrent session for this entire session; editing it
+would have clobbered their work. Ticketed, not forgotten. The ~4s floor is
+interpreter startup and collection.

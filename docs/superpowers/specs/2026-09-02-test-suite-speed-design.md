@@ -24,8 +24,15 @@ test is *set up*, and the measurements below say that is where the time is.
 Baseline, full suite, this machine, 2026-09-02:
 
 ```
-1467 passed in 97.45s
+1467 passed in 97.45s     (first run of the session -- COLD filesystem cache)
+1469 passed in 54.75s     (warm, and the honest number to compare against)
 ```
+
+**Correction, recorded after implementation:** the 97.45s figure was the
+session's first full run, against a cold cache on a 3.5 GB OneDrive-synced
+tree. Repeated runs settle at ~54.75s. Every *relative* measurement below
+was taken warm and stands; the phase proportions hold. The headline to
+judge this work by is **54.75s -> 19.13s**, not 97s.
 
 Broken down by pytest phase (`--durations=0`, aggregated):
 
@@ -355,13 +362,19 @@ still ~4x faster.
 
 ### Projection
 
-| after | expected |
-|---|---|
-| baseline | 97s |
-| phase 1 | ~80s |
-| phase 2 | ~40s |
-| phase 3 | ~31s |
-| phase 4 | ~27s |
+| after | expected | ACTUAL (warm) |
+|---|---|---|
+| baseline | 97s | 54.75s |
+| phase 1 (network) | ~80s | 46.76s |
+| phase 2 (tiers 1 and 3) | ~40s | 22.07s |
+| phase 3 (scan memo) | ~31s | 20.41s |
+| phase 4 | ~27s | **19.13s** — see below |
+
+**Phase 4 was not needed and was dropped.** Copying a prebuilt template
+database file (6.8ms, against 32.9ms to construct one) gave the disk tier
+what the shared-cache URI was for, with real file semantics intact and
+**no change to `db.connect()`** — so the whole refactor ships without
+touching production code.
 
 Target: **under 30s, from 97s, with no test removed and no parallelism.**
 Phases 1-3 alone reach ~31s without touching a line of production code.
