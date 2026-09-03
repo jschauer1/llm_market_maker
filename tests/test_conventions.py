@@ -1334,6 +1334,20 @@ def test_ticket_states_match_their_lane():
     )
 
 
+def _study_state_dirs(state: str):
+    """Every `<state>/` directory holding studies, root lane and theory-owned.
+
+    Mirrors `tickets.backlog()`'s own walk rather than inventing a second
+    one -- most studies do not live under the repo-root `tickets/` tree at
+    all, but inside the theory that owns them.
+    """
+    bases = [ROOT / "tickets" / "study"]
+    theories_dir = ROOT / "theories"
+    if theories_dir.is_dir():
+        bases.extend(sorted(theories_dir.rglob("studies")))
+    return [b / state for b in bases if (b / state).is_dir()]
+
+
 def test_a_study_in_question_holds_only_the_question():
     """`question/` holds what should be investigated and nothing else.
 
@@ -1364,17 +1378,9 @@ def test_a_study_in_question_holds_only_the_question():
     """
     from tools import tickets
 
-    bases = [ROOT / "tickets" / "study"]
-    theories_dir = ROOT / "theories"
-    if theories_dir.is_dir():
-        bases.extend(sorted(theories_dir.rglob("studies")))
-
     problems = []
-    for base in bases:
-        question = base / "question"
-        if not question.is_dir():
-            continue
-        for entry in sorted(question.iterdir()):
+    for state_dir in _study_state_dirs("question"):
+        for entry in sorted(state_dir.iterdir()):
             rel = entry.relative_to(ROOT).as_posix()
             if not entry.is_dir():
                 problems.append(f"{rel} (a study ticket is a directory)")
@@ -1392,6 +1398,84 @@ def test_a_study_in_question_holds_only_the_question():
         + "\n  ".join(problems)
         + "\n\npython -m tools.cli tickets advance <path> --to "
           "investigation --note '<what the measurement is about to do>'"
+    )
+
+
+def test_a_study_in_answer_holds_only_its_record():
+    """`answer/` holds the answer, and the investigation is deleted.
+
+    User ruling 2026-09-03. A study that has reached an answer is
+    *documented as* an answer: `STUDY.md` says what was asked, how it was
+    measured, what came back and what it decided, and the scripts,
+    intermediates and working data that produced it go. This is the rule
+    retirement already applies to a theory, and it has the same
+    safeguard -- the answer document carries the git rev its code lived
+    at, so `git show <rev>:<path>` returns any deleted file. Without that
+    line the deletion is reversible only in principle, which is the
+    archaeology problem `RETIRED.md`'s rev line exists to prevent.
+
+    **The one exception is source data no `git show` can return.**
+    CLAUDE.md's data conventions split on whether a future session could
+    regenerate a file from what is on disk; a gitignored corpus of raw
+    Kalshi payloads could not, and Kalshi ages settled markets out of its
+    public API after ~60 days, so deleting one is permanent in a way
+    deleting a script never is. Such a corpus stays in `data/` and is
+    named in the document under `**Retained:**` with why -- declared, so
+    that keeping it is a decision somebody wrote down rather than a
+    folder nobody swept.
+    """
+    problems = []
+    for state_dir in _study_state_dirs("answer"):
+        for entry in sorted(state_dir.iterdir()):
+            rel = entry.relative_to(ROOT).as_posix()
+            if not entry.is_dir():
+                problems.append(f"{rel} (a study ticket is a directory)")
+                continue
+            doc = entry / "STUDY.md"
+            declared = (doc.is_file()
+                        and "**Retained:**" in doc.read_text(encoding="utf-8"))
+            for child in sorted(entry.iterdir()):
+                if child.name == "STUDY.md":
+                    continue
+                if child.name == "data" and child.is_dir() and declared:
+                    continue
+                problems.append(f"{rel}/{child.name}")
+
+    assert problems == [], (
+        "a study in answer/ still holds its investigation -- the answer is "
+        "the document; delete the rest, recording the rev it lived at:\n  "
+        + "\n  ".join(problems)
+        + "\n\n**Code:** deleted at `<rev>` -- `git show <rev>:<path>` "
+          "returns any file. Source data no rev can return stays in data/ "
+          "and is named under `**Retained:**`."
+    )
+
+
+def test_every_answered_study_reports_a_verdict():
+    """Rule 3: report the verdict in the header, so nobody has to read the
+    study to learn what it concluded.
+
+    The header is an interface, not decoration -- `python -m tools.cli
+    studies` parses exactly this line, and it is how a supervisor learns
+    what a study found without opening it (CLAUDE.md's supervisor
+    contract). Five studies reached `answer/` carrying their conclusion
+    only in a `## Result` section several hundred lines down, and the
+    survey rendered them with an empty verdict: present in the listing,
+    silent about the one thing the listing exists to show. This binds
+    `answer/` only; a study still being measured has nothing to report
+    yet.
+    """
+    from tools import studies as studies_mod
+
+    silent = [
+        f"{r['owner'] or 'tickets/study'}: {r['slug']}"
+        for r in studies_mod.survey(ROOT)
+        if r["state"] == "answer" and not r["verdict"].strip()
+    ]
+    assert silent == [], (
+        "a study has an answer but reports no verdict in its header -- "
+        "`cli studies` renders it blank:\n  " + "\n  ".join(silent)
+        + "\n\nAdd: **Date:** ... | **Tier:** ... | **Verdict:** <one line>"
     )
 
 

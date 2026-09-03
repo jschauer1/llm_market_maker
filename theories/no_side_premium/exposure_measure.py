@@ -2,8 +2,9 @@
 
 Nothing here chooses a threshold, an arm or a population: all three are
 fixed in the notebook entry written before this file computed anything.
-The classifier is inherited from
-`tickets/study/answer/2026-09-01-early-close-exposure-in-the-bettable-slice/measure.py`
+The classifier is inherited from that study's `measure.py`, deleted with its
+investigation on 2026-09-03 and readable at `git show 38028e6:tickets/study/
+answer/2026-09-01-early-close-exposure-in-the-bettable-slice/measure.py`,
 without modification -- deliberately, so this theory's arms are comparable
 to `insider_judgment`'s rather than merely available.
 

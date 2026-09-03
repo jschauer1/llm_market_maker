@@ -2,7 +2,8 @@
 
 **Date:** 2026-08-30 ·
 **Tier:** A (no model anywhere) ·
-**Verdict:** **FAILED PREDICTION**, and the useful half is the secondary null
+**Verdict:** **FAILED PREDICTION**, and the useful half is the secondary null ·
+**Code:** the investigation was deleted 2026-09-03; it lives at git rev `38028e6` - `git ls-tree -r --name-only 38028e6 tickets/study/answer/2026-08-30-entry-timing` lists it, `git show 38028e6:<path>` returns any file
 
 **Committed before any edge, win rate or difference was computed.** At the
 time of writing I had run exactly one query against the corpus, and it

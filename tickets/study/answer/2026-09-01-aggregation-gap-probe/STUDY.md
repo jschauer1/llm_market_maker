@@ -7,7 +7,8 @@ created_by: migration
 
 # The aggregation gap is spread, and its headline case is not the identity it claims
 
-**Date:** 2026-09-01 · **Tier:** A · **Verdict:** **DO NOT BUILD `aggregation-gap`** — both riskless baskets fail at executable prices; the House-seats companion is not an identity at all
+**Date:** 2026-09-01 · **Tier:** A · **Verdict:** **DO NOT BUILD `aggregation-gap`** — both riskless baskets fail at executable prices; the House-seats companion is not an identity at all ·
+**Code:** the investigation was deleted 2026-09-03; it lives at git rev `38028e6` - `git ls-tree -r --name-only 38028e6 tickets/study/answer/2026-09-01-aggregation-gap-probe` lists it, `git show 38028e6:<path>` returns any file
 
 Filed as a probe under `tickets/new-theory/evidence/` before the study
 pipeline existed; re-filed 2026-09-02 with no change to the finding.

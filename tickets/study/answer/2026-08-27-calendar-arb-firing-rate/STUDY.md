@@ -2,7 +2,8 @@
 
 **Date:** 2026-08-27 ·
 **Tier:** A (no model in the measurement path) ·
-**Verdict:** do not build the spec as written
+**Verdict:** do not build the spec as written ·
+**Code:** the investigation was deleted 2026-09-03; it lives at git rev `38028e6` - `git ls-tree -r --name-only 38028e6 tickets/study/answer/2026-08-27-calendar-arb-firing-rate` lists it, `git show 38028e6:<path>` returns any file
 
 ## Question
 

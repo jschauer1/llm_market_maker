@@ -10,7 +10,9 @@ created_by: migration
 **Date:** 2026-08-30 ·
 **Tier:** A (no model anywhere) ·
 **Verdict:** CONFIRMED — cross-game parlays price +6.60 pts above product-of-legs (4,808 parlays, 6 creation slates, all six positive, day-clustered t=+14.2); the secondary leg-count prediction FAILED, and the markup sits in an RFQ product with no fade side, so the edge and the liquidity are in different products and no theory follows ·
-Backlog spec #8, registry slug `parlay-fade`
+Backlog spec #8, registry slug `parlay-fade` ·
+**Code:** the investigation was deleted 2026-09-03; it lives at git rev `38028e6` - `git ls-tree -r --name-only 38028e6 tickets/study/answer/2026-08-30-parlay-markup` lists it, `git show 38028e6:<path>` returns any file ·
+**Retained:** `data/legs.db` - 150k raw Kalshi leg payloads, gitignored and in no git rev; re-collection needs an API that ages this window out, so deleting it would be permanent
 
 **This bar was written before a single calibration or markup figure was
 computed.** At the time of writing I had looked at exactly four things:

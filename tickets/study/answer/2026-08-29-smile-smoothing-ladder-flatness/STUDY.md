@@ -2,7 +2,9 @@
 
 **Date:** 2026-08-29 ·
 **Tier:** A (no model in the measurement path) ·
-**Outcome:** killed idea `smile-smoothing` (backlog #11)
+**Outcome:** killed idea `smile-smoothing` (backlog #11) ·
+**Verdict:** DO NOT BUILD smile-smoothing - at any tradeable liquidity floor the isotonic fit is a no-op (96-98% of rungs sit exactly on it, max deviation 1.5c, nothing clears a 3pt buffer); candidates appear only with no liquidity floor at all, at median volume 0 ·
+**Code:** the investigation was deleted 2026-09-03; it lives at git rev `38028e6` - `git ls-tree -r --name-only 38028e6 tickets/study/answer/2026-08-29-smile-smoothing-ladder-flatness` lists it, `git show 38028e6:<path>` returns any file
 
 ## Question
 

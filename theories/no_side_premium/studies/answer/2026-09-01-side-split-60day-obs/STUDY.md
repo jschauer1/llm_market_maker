@@ -2,7 +2,9 @@
 
 **Date:** 2026-09-01 ·
 **Tier:** A (no model in the measurement path) ·
-**Session:** `llm-market-identifier-57`, theory lane
+**Session:** `llm-market-identifier-57`, theory lane ·
+**Verdict:** the pooled side gap replicates (+3.95 pts, t=3.03, 41/61 days) and it is composition - within series and close day it is -1.85 (t=-1.40); no_side_premium's own screen population does not reverse, and the liquidity backfill settles it ·
+**Code:** the investigation was deleted 2026-09-03; it lives at git rev `38028e6` - `git ls-tree -r --name-only 38028e6 theories/no_side_premium/studies/answer/2026-09-01-side-split-60day-obs` lists it, `git show 38028e6:<path>` returns any file
 
 Answers ticket `theories/no_side_premium/tickets/open/2026-09-01-side-split-on-series-bias-obs.md`,
 filed by `llm-market-identifier-0e`.

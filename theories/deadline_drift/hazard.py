@@ -44,9 +44,11 @@ LATE_WINDOW_DAYS = 21
 ENTRY_BAND = (0.05, 0.60)
 FEE_RATE = 0.07
 
-#: Rules-text exclusions from the round-4 classifier
-#: (`theories/deadline_drift/studies/answer/2026-08-29-deadline-drift-classifier-audit/classifier.py`),
-#: inlined so this script reads nothing outside the theory folder. A
+#: Rules-text exclusions from the round-4 classifier of the audit study
+#: `theories/deadline_drift/studies/answer/2026-08-29-deadline-drift-classifier-audit`
+#: -- its `classifier.py` was deleted with the investigation on 2026-09-03
+#: and reads back at `git show 38028e6:<that path>/classifier.py`. Inlined
+#: here, so this script reads nothing outside the theory folder. A
 #: market matching any of these is not a per-subject hazard, and the
 #: strata table below reports each as its own population rather than
 #: silently dropping it -- a code gate must always say what it removed.

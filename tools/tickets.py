@@ -75,8 +75,18 @@ def _today() -> str:
 #: first line of its measurement -- otherwise the backlog cannot tell an
 #: unclaimed question from a half-run one, and the floor's in-flight
 #: report, which reads `investigation/`, never sees a stalled collector.
-#: Enforced by `tests/test_conventions.py::test_a_study_in_question_
-#: holds_only_the_question`.
+#:
+#: **`answer/` holds the answer and NOTHING ELSE** (same ruling). A study
+#: that has an answer is documented as one and its investigation is
+#: deleted -- scripts, intermediates, working data -- with the git rev
+#: they lived at recorded in the document, the way a retired theory
+#: records its own. The exception is source data no `git show` can
+#: return: a gitignored corpus of raw payloads is unbuyable once Kalshi
+#: ages the window out, so it stays, named in the document.
+#:
+#: Enforced by `tests/test_conventions.py`:
+#: `test_a_study_in_question_holds_only_the_question` and
+#: `test_a_study_in_answer_holds_only_its_record`.
 LANE_STATES: dict[str, tuple[str, ...]] = {
     "theory": ("open", "completed"),
     "maintenance": ("open", "completed"),

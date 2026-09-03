@@ -105,7 +105,8 @@ siblings of one Kalshi event finds nothing) and **rule 0f** (measure at
 *executable* prices, never the mid, never gross of fees).
 
 Keep the script that proves you had looked at nothing —
-`tickets/study/answer/2026-08-30-entry-timing/counts.py` exists for exactly that reason.
+`2026-08-30-entry-timing` wrote a `counts.py` for exactly that reason,
+and its answer document names the rev it can still be read at.
 
 **Carry a negative control** if the study scans many candidates: a slice
 whose answer is already known. Measure it, and keep it out of the
@@ -143,6 +144,25 @@ and there is no `Status` field. `question` -> `investigation` happened
 back at step 3, the moment you picked the question up; `python -m
 tools.cli tickets advance <path> --to answer` moves it on only when the
 question is answered.
+
+**Reaching `answer/` means deleting the investigation.** The answer is
+the document; the scripts, the intermediates and the working data were
+how you got there, and they go. Before deleting, make the document able
+to stand without them — the question, the population and its inclusion
+rules, the contrast, the bar as pre-registered, the numbers (including
+the ones that did not support the verdict), and the limits — then record
+the rev they lived at:
+
+```markdown
+**Code:** deleted at `<rev>` — `git show <rev>:<path>` returns any file.
+```
+
+The rev is what makes this recoverable rather than merely irreversible,
+and it is the same line a retired theory's `RETIRED.md` carries. What
+stays is source data no `git show` can return: a gitignored corpus of
+raw payloads is unbuyable once Kalshi ages the window out, so name it in
+the document under `**Retained:**` with why. `tickets/study/README.md`
+has the full list of what the answer document must carry.
 
 Then close the loop wherever the question came from — the study is not
 finished while its answer sits only in the study's own folder:

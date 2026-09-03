@@ -250,7 +250,13 @@ yours to arrange.
   holds what should be investigated and nothing else** (user ruling
   2026-09-03): a study sitting there is a request nobody has picked up,
   so the design, the pre-registration, the code and the data are all
-  work and all live in `investigation/`. A theory-owned
+  work and all live in `investigation/`. **`answer/` holds the answer
+  and only the answer**: reaching one means documenting it and
+  **deleting the investigation** — the scripts, the intermediates and
+  the working data — with the git rev they lived at recorded in the
+  document, exactly as a retired theory records its own. What survives
+  deletion is source data that cannot be bought back, named in the
+  document with why. A theory-owned
   one lives at `<theory registry path>/studies/<state>/<date>-<slug>/`
   and an ownerless one at `tickets/study/<state>/<date>-<slug>/`. It
   exists to settle something *before* anyone acts on it — whether an

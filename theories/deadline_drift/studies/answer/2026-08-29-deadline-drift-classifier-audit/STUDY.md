@@ -2,7 +2,8 @@
 
 **Date:** 2026-08-29 ·
 **Tier:** A (no model in the measurement path) ·
-**Verdict:** the theory is viable and the population is large, but a **regex classifier does not reach the spec's 10% bar** — it plateaus near 15%, and the residue is semantic, not syntactic
+**Verdict:** the theory is viable and the population is large, but a **regex classifier does not reach the spec's 10% bar** — it plateaus near 15%, and the residue is semantic, not syntactic ·
+**Code:** the investigation was deleted 2026-09-03; it lives at git rev `38028e6` - `git ls-tree -r --name-only 38028e6 theories/deadline_drift/studies/answer/2026-08-29-deadline-drift-classifier-audit` lists it, `git show 38028e6:<path>` returns any file
 
 ## Question
 

@@ -2,7 +2,8 @@
 
 **Date:** 2026-08-29 ·
 **Tier:** A (no model in the measurement path) ·
-**Verdict:** the v2 depth gate is validated; the theory's *tradeable* firing rate over 11 board snapshots is **zero**, and the reason is structural rather than bad luck
+**Verdict:** the v2 depth gate is validated; the theory's *tradeable* firing rate over 11 board snapshots is **zero**, and the reason is structural rather than bad luck ·
+**Code:** the investigation was deleted 2026-09-03; it lives at git rev `38028e6` - `git ls-tree -r --name-only 38028e6 theories/structural_arb/studies/answer/2026-08-29-structural-arb-violation-liquidity` lists it, `git show 38028e6:<path>` returns any file
 
 ## Question
 

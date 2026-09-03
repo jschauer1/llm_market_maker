@@ -3,7 +3,8 @@
 **Date:** 2026-09-01 ·
 **Tier:** A ·
 **Verdict:** the anchor bug is real and its direction is confirmed on both sides, but it DEPRESSES `strong-moderate-no` rather than inflating it — the clean arm is +5.20 net over 77 clusters against a +4.37 headline, so the slice is not an artifact ·
-**Session:** `fleet-w3-g1`, study lane
+**Session:** `fleet-w3-g1`, study lane ·
+**Code:** the investigation was deleted 2026-09-03; it lives at git rev `38028e6` - `git ls-tree -r --name-only 38028e6 tickets/study/answer/2026-09-01-early-close-exposure-in-the-bettable-slice` lists it, `git show 38028e6:<path>` returns any file
 
 ## Why this study exists, and what it changes about the one it extends
 

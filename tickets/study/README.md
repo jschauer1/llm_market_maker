@@ -37,7 +37,9 @@ question  →  investigation  →  answer
   before looking, as the investigation's first act. The measurement's
   code, its data and a collector mid-sweep all live here, and the floor
   reports it as in flight.
-- **`answer/`** — the verdict is in `STUDY.md`'s header.
+- **`answer/`** — **the answer, and only the answer.** `STUDY.md` says
+  what was asked, how it was measured, what came back and what it
+  decided; the investigation that produced it is **deleted**.
 
 **`question/` holds no work at all** (user ruling 2026-09-03), and the
 line is worth stating because it is not where a careful session would
@@ -86,6 +88,66 @@ drifted exactly as a duplicated status field always does:
 `series-bias-mining` read `complete` while two open tickets said its
 sweep was unfinished, and nothing could tell you which claim was right.
 One fact, one home — the directory.
+
+## When a study has an answer, the investigation is deleted
+
+**User ruling 2026-09-03.** A study that has reached an answer is
+*documented as an answer*. Its scripts, its intermediates and its working
+data were the means of getting there, not the finding, and they stay only
+as long as the question is open. When the study advances to `answer/`,
+they go with the advance.
+
+This is the rule retirement already applies to a theory, for the same
+reason: what a future session needs is the claim, the method and the
+numbers, not the megabytes behind them. And it has the same safeguard —
+**the deletion is recoverable, not merely reversible in principle.** The
+answer document carries the git rev its code lived at:
+
+```markdown
+**Code:** deleted at `<rev>` — `git show <rev>:<path>` returns any file,
+`git ls-tree -r --name-only <rev> <study dir>` lists what the folder held.
+```
+
+Without that line "it's in git somewhere" is an archaeology problem, which
+is exactly what `RETIRED.md`'s rev line exists to prevent.
+
+### What the answer document has to carry
+
+The code is gone, so the document is the record. It states:
+
+1. **The header** — `**Date:** … · **Tier:** … · **Verdict:** …`, which
+   is what `python -m tools.cli studies` reads.
+2. **The question**, in one sentence.
+3. **The method** — the population and its inclusion rules, the contrast,
+   and the bar as it was pre-registered. Enough that somebody could run
+   the measurement again without the script.
+4. **The numbers**, including the ones that did not support the verdict.
+5. **The limits** — what the result does not cover.
+6. **`**Code:**`** — the rev above.
+
+A document that fails this is not ready for `answer/`, and the answer is
+to finish the document rather than to keep the folder.
+
+### The one thing that is not deleted
+
+**Source data that cannot be bought back stays.** CLAUDE.md's data
+conventions split on one test — can a future session regenerate this from
+what is already on disk? A corpus of raw Kalshi payloads cannot: Kalshi
+ages settled markets out of its public API after ~60 days, and a
+gitignored file has no copy in any rev, so deleting it is permanent in a
+way deleting a script never is.
+
+So a retained corpus is named in the answer document, with why it cannot
+be re-collected:
+
+```markdown
+**Retained:** `data/legs.db` — 150k raw Kalshi payloads, gitignored, not
+in any rev; re-collection needs an API that ages this window out.
+```
+
+Everything a `git show` can return goes. And a dataset that *other work
+reads* is not a retention case at all — it has become infrastructure and
+needs an owner; see below.
 
 ## When to run one
 

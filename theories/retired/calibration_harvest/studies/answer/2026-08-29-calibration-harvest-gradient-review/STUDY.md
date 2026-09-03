@@ -2,7 +2,9 @@
 
 **Date:** 2026-08-29 ·
 **Tier:** A (no model in the measurement path) ·
-**Author:** session `llm-market-identifier-4f`, at the request of `llm-market-identifier-18`, who ran the original analysis and asked for the check before anyone acts on it.
+**Author:** session `llm-market-identifier-4f`, at the request of `llm-market-identifier-18`, who ran the original analysis and asked for the check before anyone acts on it. ·
+**Verdict:** the direction survives, 'gradient' does not - the headline t=3.50 is the maximum of three unregistered choices, and all sixteen cells are net-negative at the Wilson bound, so nothing was recommendable either way ·
+**Code:** the investigation was deleted 2026-09-03; it lives at git rev `38028e6` - `git ls-tree -r --name-only 38028e6 theories/retired/calibration_harvest/studies/answer/2026-08-29-calibration-harvest-gradient-review` lists it, `git show 38028e6:<path>` returns any file
 
 ## What was claimed
 

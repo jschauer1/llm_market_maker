@@ -3,7 +3,8 @@
 **Date:** 2026-09-01 ·
 **Tier:** A (no model in the measurement path) ·
 **Verdict:** DO NOT BUILD — at 100% coverage the within-series gap is +0.05 (t=0.04); the effect is ZERO, not negative as run 1 reported, and requiring a fillable book is what removes the series-bias corpus's apparent level bias ·
-**Sessions:** `llm-market-identifier-b3` (pre-registration + run 1, 37% coverage), `fleet-w1-g2` (completion re-run at 100%, study lane)
+**Sessions:** `llm-market-identifier-b3` (pre-registration + run 1, 37% coverage), `fleet-w1-g2` (completion re-run at 100%, study lane) ·
+**Code:** the investigation was deleted 2026-09-03; it lives at git rev `38028e6` - `git ls-tree -r --name-only 38028e6 theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split` lists it, `git show 38028e6:<path>` returns any file
 
 ## Why this study exists
 

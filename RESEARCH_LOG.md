@@ -4906,3 +4906,52 @@ the body on disk (`moved / STUDY_FILE if moved.is_dir()`), with a
 regression test passing the directory the way the CLI does. Every study
 advanced by CLI until now landed unannotated, which is worth knowing
 when reading old state changes.
+
+## 2026-09-03 — a study's answer is the document; the investigation is deleted with it (user ruling)
+
+**Ruling.** Once a study has an answer, it is *documented as* an answer
+and its investigation is deleted — scripts, intermediates, working data.
+The answer document is the record, and it carries the git rev its code
+lived at, the way `RETIRED.md` does for a retired theory.
+
+**Applied across the tree in the same pass.** 16 studies were in
+`answer/`; 55 entries came out of them, leaving `STUDY.md` and one
+declared retention. The rev is `38028e6`:
+`git ls-tree -r --name-only 38028e6 <study dir>` lists what a folder
+held, `git show 38028e6:<path>` returns any file, and every affected
+document now carries that line in its header.
+
+**The retention is exactly one file and the reason is the data
+convention, not sentiment.** `parlay-markup/data/legs.db` is 17MB of raw
+Kalshi leg payloads that is **gitignored** — no rev holds it, and
+re-collection needs an API that ages this window out at ~60 days, so
+deleting it is permanent in a way deleting a script never is. It stays,
+named in the answer document under `**Retained:**`. Everything a
+`git show` can return went, which is what keeps the exception narrow: it
+is *untracked source data*, not "data" in general.
+
+**Five studies could not have been swept without being finished first.**
+`settlement-day-clustering`, `smile-smoothing-ladder-flatness`,
+`calibration-harvest-gradient-review`, `side-asymmetry-extension` and
+`side-split-60day-obs` reached `answer/` carrying their conclusion only
+in a `## Result` section hundreds of lines down — `cli studies` rendered
+each with an **empty verdict**, so the survey listed them while saying
+nothing about what they found. That is a supervisor-contract break of the
+exact shape CLAUDE.md warns about, and it was invisible while the code
+sat beside the document, because anyone could go read the code. Deleting
+the investigation is what forced the document to stand on its own.
+
+**Three live citations were repointed rather than left dangling**, on the
+retirement precedent: historical records (a notebook, a completed ticket,
+the answer document's own prose) keep their paths and rely on the rev,
+but anything a session would act on today gets the rev inline. Those
+were `deadline_drift/hazard.py`, `no_side_premium/exposure_measure.py`,
+and the open `insider_judgment` backfill ticket — the last of which reads
+a 3.2MB capture of payloads Kalshi has already dropped 9.7% of, so it now
+carries the one-line `git show` that restores it.
+
+**Enforced.** `test_a_study_in_answer_holds_only_its_record` fails on
+anything beside `STUDY.md` in an answered study, allowing `data/` only
+when the document declares `**Retained:**`;
+`test_every_answered_study_reports_a_verdict` fails on the empty-header
+case above. Both verified red against a probe before being left green.
