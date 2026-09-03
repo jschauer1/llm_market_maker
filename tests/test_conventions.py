@@ -661,12 +661,33 @@ _CITE_LINE = re.compile(
 #: that an editable doc written from now on can name a stale
 #: theories/<slug>/... path and pass here silently.
 def _retired_home(span: str) -> Path | None:
-    """`theories/<slug>/x` -> `theories/retired/<slug>/x`, if that exists."""
+    """`theories/[<family>/]<slug>/x` -> `theories/retired/<slug>/x`.
+
+    Returns the first such path that exists, or None.
+
+    **The leading segments are dropped one at a time, not just once**,
+    because a theory does not have to have lived at the top of
+    `theories/`. `mention_family` lived at
+    `theories/insider_bias/mention_family/` -- nested inside a shared
+    family parent alongside `insider_judgment` -- and retirement flattens
+    that to `theories/retired/mention_family/`, since a retired theory
+    keeps its record but leaves the family package it was a sibling in.
+    A one-step mapping only ever resolved the flat case
+    (`theories/calibration_harvest/...`, the first migration and the one
+    this helper was written for), so the six dated RESEARCH_LOG.md
+    citations of `theories/insider_bias/mention_family/NOTES.md` failed
+    on 2026-09-02 with the file sitting exactly where the convention
+    says it should be.
+    """
     parts = span.split("/")
     if len(parts) < 3 or parts[0] != "theories":
         return None
-    moved = ROOT.joinpath("theories", registry.RETIRED_DIRNAME, *parts[1:])
-    return moved if moved.exists() else None
+    for start in range(1, len(parts) - 1):
+        moved = ROOT.joinpath("theories", registry.RETIRED_DIRNAME,
+                              *parts[start:])
+        if moved.exists():
+            return moved
+    return None
 
 
 def test_every_dated_cross_citation_still_resolves():

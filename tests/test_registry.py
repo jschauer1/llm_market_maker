@@ -5,12 +5,18 @@ from tools import db, registry, theories
 TS = "2026-08-24T12:00:00Z"
 
 
-def test_discover_finds_both_real_theories():
+def test_discover_finds_the_real_theories():
     found = registry.discover()
-    assert set(found) >= {"insider_judgment", "mention_family"}
+    assert set(found) >= {"insider_judgment", "structural_arb"}
     assert found["insider_judgment"].version == 6
     assert found["insider_judgment"].uses_llm_judgment is True
-    assert found["mention_family"].uses_llm_judgment is False
+    assert found["structural_arb"].uses_llm_judgment is False
+    # `mention_family` was asserted here as the second real theory until
+    # 2026-09-02, when it was retired and its code deleted. A retired
+    # theory is deliberately NOT discoverable -- see
+    # test_a_retired_theory_is_not_discovered below, which is now the
+    # test that pins that half of the behaviour.
+    assert "mention_family" not in found
 
 
 def test_theory_packages_skips_template_and_studies(tmp_path):
@@ -70,7 +76,6 @@ def conn(tmp_path):
 def _register_matching(conn):
     for tid, name, version, uses in (
         ("insider_judgment", "Insider Judgment", 6, True),
-        ("mention_family", "Mention Family", 1, False),
         ("structural_arb", "Structural Arb", 4, False),
         ("no_side_premium", "No-Side Premium", 1, False),
     ):
@@ -96,6 +101,19 @@ def _register_matching(conn):
         conn.execute("UPDATE theories SET version=4, status='retired'"
                      " WHERE id='calibration_harvest'")
     theories.set_uses_llm_judgment(conn, "calibration_harvest", False, now=TS)
+    # mention_family is the same shape and was moved here for the same
+    # reason on 2026-09-02: retired by the user 2026-08-27, migrated to
+    # theories/retired/mention_family and its code deleted, so discover()
+    # finds no class. It stayed in the matching loop above as `testing`
+    # for six days after the retirement -- which is exactly the drift the
+    # status field exists to catch, and it went uncaught only because the
+    # code was still sitting in the tree.
+    theories.register(conn, "mention_family", "Mention Family",
+                      "theories/retired/mention_family", now=TS)
+    with db.write(conn):
+        conn.execute("UPDATE theories SET version=1, status='retired'"
+                     " WHERE id='mention_family'")
+    theories.set_uses_llm_judgment(conn, "mention_family", False, now=TS)
     # taker_flow registered 2026-09-01 and is `testing`: fully mechanical,
     # its tier A replay over 3,585 settled decisions is recorded, and the
     # only positive population is the `extreme-imbalance` slice, which is
@@ -134,19 +152,22 @@ def test_check_drift_catches_all_four_mismatch_kinds(conn):
 
     _register_matching(conn)
 
-    # 2. version disagreement
+    # 2. version disagreement. Uses structural_arb, not mention_family as
+    # it did until 2026-09-02: these two kinds compare a DB row against a
+    # DISCOVERED class, so they need a theory that still has one, and
+    # mention_family's was deleted at retirement.
     with db.write(conn):
         conn.execute("UPDATE theories SET version=99"
-                     " WHERE id='mention_family'")
+                     " WHERE id='structural_arb'")
     assert any("version" in p for p in registry.check_drift(conn))
     with db.write(conn):
-        conn.execute("UPDATE theories SET version=1"
-                     " WHERE id='mention_family'")
+        conn.execute("UPDATE theories SET version=4"
+                     " WHERE id='structural_arb'")
 
     # 3. uses_llm_judgment disagreement
-    theories.set_uses_llm_judgment(conn, "mention_family", True, now=TS)
+    theories.set_uses_llm_judgment(conn, "structural_arb", True, now=TS)
     assert any("uses_llm_judgment" in p for p in registry.check_drift(conn))
-    theories.set_uses_llm_judgment(conn, "mention_family", False, now=TS)
+    theories.set_uses_llm_judgment(conn, "structural_arb", False, now=TS)
 
     # 4. scannable DB row with no class
     theories.register(conn, "ghost", "Ghost", "theories/ghost", now=TS)
@@ -164,12 +185,13 @@ def test_a_proposed_row_without_code_is_not_drift(conn):
 def test_running_returns_scannable_theories_and_raises_on_drift(conn):
     _register_matching(conn)
     ids = [t.id for t in registry.running(conn)]
-    # calibration_harvest is registered by the fixture but `retired`, so it
-    # is absent here: running() is SCANNABLE_STATUSES only.
-    assert ids == ["deadline_drift", "insider_judgment", "mention_family",
+    # calibration_harvest and mention_family are registered by the fixture
+    # but `retired`, so both are absent here: running() is
+    # SCANNABLE_STATUSES only.
+    assert ids == ["deadline_drift", "insider_judgment",
                    "no_side_premium", "structural_arb", "taker_flow"]
     with db.write(conn):
         conn.execute("UPDATE theories SET version=99"
-                     " WHERE id='mention_family'")
+                     " WHERE id='structural_arb'")
     with pytest.raises(RuntimeError, match="drift"):
         registry.running(conn)
