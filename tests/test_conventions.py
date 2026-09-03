@@ -1220,3 +1220,39 @@ def test_data_files_live_with_their_owner():
         "produced it -- move it to its owner's folder, or say in the "
         "session report why it had to escape:\n" + "\n".join(stray)
     )
+
+
+def test_ticket_states_match_their_lane():
+    """Each lane's state directories are its own and nothing else's.
+
+    The lanes deliberately disagree: `study` has no `completed/` (its
+    terminal state is `answer/`, which is what makes a finished study
+    permanent -- `purge` matches `completed/`, so the query cannot reach
+    it), and `new-theory` has `evidence/` and `implement/` that no other
+    lane has. A stray directory in the wrong lane is a ticket nobody
+    lists and a state nothing advances out of.
+
+    `tickets/new-theory/reference/` is NOT a state and is excluded on
+    purpose: it holds the lane's shared reference material, and it was
+    moved out of `evidence/` precisely because being scanned as a state
+    made `backlog()` report three permanent malformed rows.
+    """
+    from tools import tickets
+
+    allowed_extra = {"README.md", "reference"}
+    problems = []
+    for lane, dirname in tickets.ROOT_LANES.items():
+        base = ROOT / "tickets" / dirname
+        if not base.is_dir():
+            continue
+        legal = set(tickets.states_for(lane)) | allowed_extra
+        for child in sorted(base.iterdir()):
+            if child.name not in legal:
+                problems.append(f"tickets/{dirname}/{child.name}")
+    for base in sorted((ROOT / "tickets" / "study").glob("*")):
+        if base.is_dir() and base.name not in tickets.states_for("study"):
+            problems.append(f"tickets/study/{base.name}")
+    assert problems == [], (
+        "a ticket state directory does not belong to its lane:\n"
+        + "\n".join(problems)
+    )
