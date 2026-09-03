@@ -449,6 +449,42 @@ def test_the_brief_render_is_one_line_per_ticket(repo):
     assert len(text) < 1000
 
 
+# --- backlog pressure -------------------------------------------------------
+#
+# "Are tickets a priority?" used to be re-litigated every session. These
+# three pin the mechanical rule instead: a lane with five or more open
+# tickets, or with even one ticket sitting open past 14 days, is flagged
+# so a session has to take it or decline it with a reason, rather than
+# silently skip it. `now` is passed explicitly in all three -- a test
+# whose result depends on the day it happens to run is a test that fails
+# mysteriously in three weeks.
+
+
+def test_the_backlog_flags_a_lane_under_pressure(repo):
+    for i in range(5):
+        tickets.create(repo, lane="maintenance", slug=f"t{i}",
+                       title=f"Ticket {i}", body="b", created="2026-09-01")
+    out = tickets.render(tickets.backlog(repo, brief=True),
+                         now="2026-09-02")
+    assert "PRESSURE" in out
+
+
+def test_a_quiet_lane_is_not_flagged(repo):
+    tickets.create(repo, lane="maintenance", slug="only", title="T",
+                   body="b", created="2026-09-01")
+    out = tickets.render(tickets.backlog(repo, brief=True),
+                         now="2026-09-02")
+    assert "PRESSURE" not in out
+
+
+def test_one_old_ticket_is_enough_to_flag_a_lane(repo):
+    tickets.create(repo, lane="maintenance", slug="ancient", title="T",
+                   body="b", created="2026-08-01")
+    out = tickets.render(tickets.backlog(repo, brief=True),
+                         now="2026-09-02")
+    assert "PRESSURE" in out
+
+
 # --- a study is a directory ticket, routed to the theory that owns it ------
 #
 # The old "a ticket about a study" concept -- a chore filed against a

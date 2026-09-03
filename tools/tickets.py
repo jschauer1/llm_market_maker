@@ -1137,13 +1137,90 @@ def _clip(text: str, width: int) -> str:
     return text if len(text) <= width else text[: width - 1] + "\u2026"
 
 
-def render(entries: list[dict]) -> str:
+#: Backlog-pressure thresholds -- the rule `go` enforces at lane choice
+#: (`.claude/skills/go/SKILL.md`): a lane holding a ticket open longer
+#: than `_PRESSURE_AGE_DAYS`, or carrying at least `_PRESSURE_COUNT` open
+#: tickets, is either taken or explicitly declined with a reason in the
+#: session report.
+#:
+#: **These are a starting point, not a measurement.** They were picked
+#: when this rule was written (2026-09-02, repo-governance Task 4) with
+#: no data behind them -- nobody had yet measured what backlog depth or
+#: ticket age actually predicts. Treating them as derived would mean
+#: nobody ever revisits them; saying so here is what makes a future
+#: session tune both numbers deliberately once the mechanical rule has
+#: run long enough to say whether 14 and 5 are the right ones.
+_PRESSURE_AGE_DAYS = 14
+_PRESSURE_COUNT = 5
+
+
+def _age_days(entry: dict, today: date) -> int | None:
+    """How many whole days old this ticket is, or None if `created` is
+    empty or unparsable.
+
+    A malformed ticket (see `_parse`) can carry an empty `created` field.
+    That ticket already gets its own `!! MALFORMED` flag on its line, so
+    age reads as unknown here rather than raising and taking the whole
+    render down with one bad row.
+    """
+    try:
+        return (today - date.fromisoformat(entry.get("created") or "")).days
+    except ValueError:
+        return None
+
+
+def _pressure_line(lane: str, rows: list[dict], today: date) -> str | None:
+    """The PRESSURE line for one lane, or None if the lane is quiet.
+
+    Counts and ages only OPEN tickets. `render` is sometimes handed a
+    `--status done` listing, and a lane's completed history is not
+    backlog pressure -- only work still sitting there is. A row built by
+    hand rather than through `backlog()` (a few tests pass a bare dict to
+    `render` directly) has no `status` key at all, and defaults to
+    `"open"` here to match `backlog()`'s own default of `status="open"`,
+    which is what every real caller uses.
+    """
+    ages = [
+        age for row in rows
+        if row.get("status", "open") == "open"
+        and (age := _age_days(row, today)) is not None
+    ]
+    if not ages:
+        return None
+    reasons = []
+    if len(ages) >= _PRESSURE_COUNT:
+        reasons.append(
+            f"{len(ages)} open tickets (threshold {_PRESSURE_COUNT})")
+    oldest = max(ages)
+    if oldest > _PRESSURE_AGE_DAYS:
+        reasons.append(
+            f"oldest is {oldest}d old (threshold {_PRESSURE_AGE_DAYS}d)")
+    if not reasons:
+        return None
+    return f"  PRESSURE -- {lane}: " + "; ".join(reasons)
+
+
+def render(entries: list[dict], *, now: str | None = None) -> str:
     """The backlog as a scannable table — the read a session opens with.
 
     One line per ticket, grouped by lane, oldest first inside each
-    group. What a session needs in order to CHOOSE is the date, the
-    slug, and the title; what it needs in order to *do* the work is in
-    the file, and it opens the file.
+    group, tagged with its age in days. What a session needs in order to
+    CHOOSE is the date, the age, the slug, and the title; what it needs
+    in order to *do* the work is in the file, and it opens the file.
+
+    A lane whose open tickets cross either backlog-pressure threshold
+    (`_PRESSURE_AGE_DAYS`, `_PRESSURE_COUNT`) gets a PRESSURE line under
+    its heading. This is what turns "is the backlog a priority?" from a
+    question re-litigated every session into one code answers -- see the
+    `go` skill for what a session does once it sees one: take the lane,
+    or decline it with a reason in the report.
+
+    `now` pins "today" for the age and pressure calculation. Without it
+    a test's result depends on the calendar the moment it happens to
+    run, which is exactly the kind of test that passes today and fails
+    mysteriously in three weeks -- so every test that cares about ages
+    or PRESSURE passes `now` explicitly, and only a live CLI render
+    leaves it to default to the real date.
 
     This is the default because the alternative stopped being usable.
     Tickets carry their design in full -- that is what makes a ticket a
@@ -1153,6 +1230,7 @@ def render(entries: list[dict]) -> str:
     """
     if not entries:
         return "no open tickets"
+    today = date.fromisoformat(now) if now else date.fromisoformat(_today())
     by_lane: dict[str, list[dict]] = {}
     for entry in entries:
         by_lane.setdefault(entry["lane"], []).append(entry)
@@ -1165,13 +1243,21 @@ def render(entries: list[dict]) -> str:
         for row in rows:
             owner = row.get("theory") or row.get("study") or ""
             owner = f" [{owner}]" if owner else ""
-            head = f"  {row['created']}  {row['slug']}{owner}"
+            age = _age_days(row, today)
+            age_tag = f"  {age}d" if age is not None else ""
+            head = f"  {row['created']}  {row['slug']}{owner}{age_tag}"
             flag = "  !! MALFORMED" if row.get("malformed") else ""
             out.append(head + flag)
             out.append("      " + _clip(row.get("title"), _WIDTH - 6))
+        pressure = _pressure_line(lane, rows, today)
+        if pressure:
+            out.append(pressure)
         out.append("")
     for lane, rows in by_lane.items():  # a lane this renderer never heard of
         out.append(f"{lane.upper()}  ({len(rows)})")
         for row in rows:
             out.append(f"  {row['created']}  {row['slug']}")
+        pressure = _pressure_line(lane, rows, today)
+        if pressure:
+            out.append(pressure)
     return "\n".join(out).rstrip() + "\n"
