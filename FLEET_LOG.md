@@ -206,3 +206,15 @@ goes to be found.
 - 01:33 SPAWN w1 = fleet-w1-g4 (af42435e365dd1b83)
 - 01:33 SPAWN w2 = fleet-w2-g4 (ada30159650920c4d)
 - 01:33 SPAWN w3 = fleet-w3-g4 (a7441c05cd401bf6d)
+- 01:36 BASELINE recorded: 2 failed, 1373 passed, 4 deselected (123s).
+  Failing set, inherited and NOT caused by this fleet:
+    tests/test_conventions.py::test_no_theory_imports_a_sibling_theory
+    tests/test_conventions.py::test_every_repo_path_named_in_docs_resolves
+      (docs name data/preplatform_seen.json, data/dd3_peeked.json,
+       data/mine_cells_result.txt)
+  These are exactly the two failures the previous fleet declined to commit
+  at 00:29. A peer committed the folder anyway without the fix, so the red
+  baseline landed on master regardless. The specified fix is already queued
+  at tickets/maintenance/open/2026-09-02-parse-deadline-earned-elevation.md.
+  Not chased by the supervisor -- it is a maintenance-lane ticket and a
+  worker may claim it. Blame workers only for failures beyond these two.
