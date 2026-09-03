@@ -4750,3 +4750,102 @@ over two months. A soft relative-value thesis has to argue the implied
 conditional hazard is absurd, which is a different claim from the prices
 being inconsistent.
 
+
+
+## 2026-09-03 — board-scoped capture is a survivorship trap, measured: a walk that only reaches series still trading over-samples the outcomes that did not happen (theory lane, `deadline_drift`)
+
+Session `fleet-w1-g4`, focus `deadline_drift`. Detail in that theory's
+`NOTES.md` under 2026-09-03; the status a supervisor needs is in its
+`THEORY.md` Status section. **The transferable finding is not about this
+theory**, which is why it is here.
+
+**The mechanism, and it generalises to every capture in this repo.** A
+collector that derives its series list from the live board can only reach
+a series while that series still has something trading. For any theory
+about "will X happen by deadline D", that filter is not neutral: **a
+series leaves the board *because* its question resolved**, and the ones
+that resolved YES are disproportionately the ones that left. Measured on
+`deadline_drift`'s completed 13,772-series platform-wide walk:
+
+```
+                       board-scoped (seen)   never-on-the-board (unseen)
+  realized P(YES)              0.107                     0.254
+  mean entry price             0.155                     0.199
+  price-minus-outcome gap     +4.87                     -5.52
+```
+
+**Difference +10.39 pts, z = +2.14, 95% CI [+0.88, +19.91].** The unseen
+markets' events actually happened **more than twice as often**. A
+buy-NO screen measured on board-scoped history is therefore measuring its
+own sampling frame, and this theory's withdrawn +4.6 headline now has a
+named, measured alternative explanation rather than a suspected one.
+
+**What to do with it: any theory whose capture starts from `get_board`
+and reaches back into settled history should ask whether its population
+is defined by survival.** `superset_series`-shaped capture is the pattern
+to check. The fix is not subtle — walk the platform's series list rather
+than the board's — but it costs ~32 minutes and 13,772 fetches, and
+nobody would run it without a reason. This is the reason.
+
+**The discipline half, which is the part that was nearly lost.** All
+three pre-registered replications (DD-3, DD-4, DD-5) came back
+**UNDERPOWERED by their own bars** — 73, 37 and 2 event clusters against
+floors of 80, 80 and 30 — with every point estimate negative (−6.6, −9.2,
+−6.0). It would have been easy, and wrong, to read three consistent
+negatives as a kill. They settle nothing, the pre-registration said so
+before the data existed, and the theory keeps running: **DD-1, the
+forward test, is untouched by any of this**, and every row this theory
+writes claims edge 0, so letting it finish costs nothing and cannot
+produce a recommendation. The selection result above is reportable
+precisely *because* it was the one comparison pre-registered as being
+about selection rather than about the edge.
+
+**A stopping rule was fixed rather than left open.** DD-3 is seven
+clusters short and the store only grows, so it is read **exactly once
+more**, at the first sweep where the unseen arm reaches >= 80 clusters,
+and that reading is final. Re-checking until a number crosses in a
+pleasing direction is optional stopping; writing the rule down while the
+settlements do not yet exist is the guard.
+
+**A design finding worth carrying: a test's population and a split
+defined inside it can fail to be independent.** DD-5 asked whether the
+effect concentrates in one-off rather than recurring families, on the
+unseen arm. That arm is 71 one-off to 2 recurring — because "unseen"
+means *a series the board-scoped walk never reached*, and a recurring
+family by definition keeps putting markets on the board, so it is always
+reached. DD-5 can never run as written, and no further capture fixes it.
+The check is cheap and belongs in `propose-theory`-shaped work: before
+pre-registering a split *inside* an out-of-sample set, ask whether the
+thing that defines the set also determines the split.
+
+**Two collector defects fixed, both of the class "the failure is
+invisible from outside".** A walk that printed nothing sat dead at 56%
+for three hours and was found by stat-ing the store's mtime — the second
+stalled collection here noticed by accident, after `series-bias-mining`.
+And a transient HTTP error was *stored as an answer*: `collect` wrote
+`{"__error__": ...}` and resumed on `s not in raw`, so one 429
+permanently recorded "nothing here" for that series. On data Kalshi ages
+out at ~60 days that is unrecoverable, and the nine series it hit were
+not a random nine — KXCOMEYDISMISS, KXELECTUKRAINE, KXCRUDEEXPORTBAN,
+KXCONGRESSPAYINCREASE and friends are exactly the one-off newsy
+by-deadline questions the theory's own split says carry the effect. Both
+are now pinned by tests. **The general form is worth stating: a
+record-while-you-collect collector must distinguish a failure from an
+answer, or its resume logic will bake the failure in permanently.**
+
+**Two additions from the mining pass, both generalisable.** *(a)* A
+14-cut pass over both arms never changes the sign — unseen negative in
+14/14, seen positive in 14/14 — which is the signature of a sampling-frame
+artifact rather than a real edge with a mispriced pocket, and is worth
+running whenever a seen/unseen gap appears. *(b)* **A robustness check
+inherits every bias of the sample it runs on.** This theory was cleared of
+being a bid-ask artifact by a spread ladder (the gap GREW as the spread
+filter tightened, which an artifact cannot do). That reasoning is sound
+and the test is the right test — but it was computed on the biased sample,
+it reproduces only there, and it is blind to a *different* artifact.
+Passing a robustness check rules out the specific thing it was designed to
+catch, and the 2026-09-01 entry read it as ruling out artifacts in
+general. The plainest version of the whole finding needs no statistics at
+all: in the board-scoped arm, **33 single-leg by-deadline questions
+resolved YES exactly zero times**, against 0.250 on markets the walk never
+reached. A rate of 0/33 is not a base rate.

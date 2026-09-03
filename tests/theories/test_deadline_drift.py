@@ -289,3 +289,331 @@ def test_the_event_is_recorded_under_the_key_scoring_reads():
     assert score.cluster_key({"extra_json": None,
                               "kalshi_ticker": m.ticker}) == (
         "KXMEDIARELEASEDATEAHS-26-SEP19", True)
+
+
+# --------------------------------------------------------------- DD-5
+
+
+def test_observe_can_return_the_entry_row_without_changing_the_price():
+    """`return_row` is additive: same price, same outcome, plus the row.
+
+    DD-5's split is point-in-time, so it needs the DECISION DATE, and that
+    date is not recoverable from the (price, outcome) pair. Exposing the
+    row beats reimplementing "which candle qualifies" in the caller --
+    two copies of that predicate is how they would silently diverge.
+    """
+    from theories.deadline_drift import hazard
+
+    rows = [
+        # Outside the 21-day window: must not be chosen.
+        {"end_ts": 100, "yes_ask": 0.30, "yes_bid": 0.28,
+         "days_to_deadline": 40.0, "volume": 10, "open_interest": 10},
+        # First qualifying day.
+        {"end_ts": 200, "yes_ask": 0.30, "yes_bid": 0.25,
+         "days_to_deadline": 20.0, "volume": 10, "open_interest": 10},
+        {"end_ts": 300, "yes_ask": 0.30, "yes_bid": 0.10,
+         "days_to_deadline": 5.0, "volume": 10, "open_interest": 10},
+    ]
+    anchor = {"result": "no"}
+    plain = hazard.observe(rows, anchor, side="bid", entry="first")
+    withrow = hazard.observe(rows, anchor, side="bid", entry="first",
+                             return_row=True)
+    assert plain == withrow[:2]
+    assert withrow[2]["end_ts"] == 200, "the FIRST qualifying day, not the last"
+    assert withrow[0] == 0.25
+
+
+def test_dd5_recurring_is_point_in_time_and_excludes_the_markets_own_event():
+    """THEORY.md: recurring means >= 3 settled events with a close_time
+    STRICTLY BEFORE that market's own decision date.
+
+    Two ways this goes wrong silently, both pinned here:
+      * counting events that settled AFTER the decision date, which lets
+        the test period's own settlements define the test's split;
+      * counting the market's OWN event, which would make a family look
+        like its own reference class.
+    """
+    from theories.deadline_drift import backtest as bt
+
+    anchors = {
+        # Three prior events in series S, closing at ts 10, 20, 30.
+        "S-E1-A": {"series": "S", "close_time": "2026-01-01T00:00:00Z"},
+        "S-E2-A": {"series": "S", "close_time": "2026-02-01T00:00:00Z"},
+        "S-E3-A": {"series": "S", "close_time": "2026-03-01T00:00:00Z"},
+        # The market under test, in its own event.
+        "S-E4-A": {"series": "S", "close_time": "2026-04-01T00:00:00Z"},
+    }
+    events = {"S-E1-A": "S-E1", "S-E2-A": "S-E2", "S-E3-A": "S-E3",
+              "S-E4-A": "S-E4"}
+    by_series = bt._settled_events_before(anchors, events)
+    prior = by_series["S"]
+    assert [ev for _ts, ev in prior] == ["S-E1", "S-E2", "S-E3", "S-E4"]
+
+    import bisect
+    import datetime as dt
+
+    def n_prior(decision_iso, own_ev):
+        ts = dt.datetime.fromisoformat(
+            decision_iso.replace("Z", "+00:00")).timestamp()
+        k = bisect.bisect_left(prior, (ts,))
+        return sum(1 for _t, ev in prior[:k] if ev != own_ev)
+
+    # Deciding in March: only E1 and E2 have closed -> one-off.
+    assert n_prior("2026-02-15T00:00:00Z", "S-E4") == 2
+    # Deciding after E3 closed -> recurring, and E4 (its own) never counts.
+    assert n_prior("2026-03-15T00:00:00Z", "S-E4") == 3
+    # Even deciding after its own close, the market's own event is excluded.
+    assert n_prior("2026-05-01T00:00:00Z", "S-E4") == 3
+
+
+def test_dd5_arm_stats_matches_hazard_estimate_on_the_same_events():
+    """`_arm_stats` must be the SAME statistic `hazard.estimate` computes.
+
+    DD-5's contrast is a difference of two `net_pts`, so an arm computed
+    by a subtly different formula would make the contrast meaningless
+    while still printing a plausible number.
+    """
+    from theories.deadline_drift import backtest as bt
+    from theories.deadline_drift import hazard
+
+    # One market per event, so event-weighting is the identity and the two
+    # code paths are directly comparable.
+    per = {"E1": (0.30, False), "E2": (0.20, False), "E3": (0.40, True)}
+    mine = bt._arm_stats(per)
+
+    anchors, candles, events = {}, {}, {}
+    for i, (ev, (p, y)) in enumerate(per.items()):
+        tk = f"T{i}"
+        anchors[tk] = {"result": "yes" if y else "no", "deadline": "x",
+                       "series": "S"}
+        candles[tk] = [{"end_ts": 1, "yes_ask": p, "yes_bid": p,
+                        "days_to_deadline": 10.0, "volume": 1,
+                        "open_interest": 1}]
+        events[tk] = ev
+    theirs = hazard.estimate(anchors, candles, events=events, side="bid",
+                             entry="first", weight="event")
+
+    for k in ("mean_p", "p_yes", "gap_pts", "se_cl_pts", "fee_pts", "net_pts"):
+        assert abs(mine[k] - theirs[k]) < 1e-9, k
+    assert mine["n_clusters"] == theirs["n_clusters"] == 3
+
+
+def test_dd4_holdout_excludes_every_peeked_ticker():
+    """The 509 peeked tickers are SPENT for the aggregate statistic.
+
+    They were computed and reported at ~45% capture, so a second look at
+    them is a second look at the same data. DD-4 exists precisely to test
+    the part that has never been looked at, and a holdout that leaked one
+    peeked ticker would quietly be a re-look wearing a holdout's name.
+    """
+    from theories.deadline_drift import backtest as bt
+
+    peeked = bt.peeked_tickers()
+    seen = bt.seen_tickers()
+    assert peeked, "the freeze file must not be empty"
+    # The peek was taken on the UNSEEN arm, so no peeked ticker may also be
+    # in the pre-platform seen set -- if one were, the two freezes disagree
+    # about what the test set is.
+    assert not (peeked & seen), "peeked tickers must all be outside the seen set"
+
+
+# ------------------------------------------------------- fixed-k purity
+
+
+def _anchors_for(series, per_event_results):
+    """Build an anchors/events pair from {event: [result, ...]}."""
+    anchors, events = {}, {}
+    for ev, results in per_event_results.items():
+        for i, r in enumerate(results):
+            tk = f"{ev}-L{i}"
+            anchors[tk] = {"series": series, "result": r,
+                           "close_time": "2026-08-01T00:00:00Z"}
+            events[tk] = ev
+    return anchors, events
+
+
+def test_fixed_k_detector_clears_the_labelled_independent_family():
+    """KXTRUMPSAY is the negative label and must never be flagged.
+
+    It is the same superficial shape as a fixed-k elimination -- 30-odd
+    legs, many YES per event -- but the legs are genuinely independent
+    (Trump saying 'Antifa' does not preclude 'Uranium'), and the tell is
+    that the winner count MOVES: 7, 12, 12, 15, 17, 17, 19, 19, 21.
+    Flagging it would delete a legitimate population, so this is the test
+    that has to hold even if the positive side is never fittable.
+    """
+    from theories.deadline_drift import purity
+
+    real = {"7": 7, "12a": 12, "12b": 12, "15": 15, "17a": 17, "17b": 17,
+            "19a": 19, "19b": 19, "21": 21}
+    per_event = {ev: ["yes"] * k + ["no"] * (31 - k) for ev, k in real.items()}
+    anchors, events = _anchors_for("KXTRUMPSAY", per_event)
+    stats = purity.family_stats(purity.yes_counts(anchors, events))
+    assert "KXTRUMPSAY" in stats
+    assert stats["KXTRUMPSAY"]["k_cv"] > purity.K_CV_MAX
+    assert "KXTRUMPSAY" not in purity.fixed_k_families(stats)
+
+
+def test_fixed_k_detector_flags_a_constant_winner_count_above_one():
+    """The AGT shape: many legs, the SAME k every event, k > 1.
+
+    k == 1 is deliberately left to `partition_families`, which already
+    catches it; this detector exists only for the k > 1 case that one
+    misses by construction.
+    """
+    from theories.deadline_drift import purity
+
+    per_event = {f"E{i}": ["yes"] * 7 + ["no"] * 4 for i in range(4)}
+    anchors, events = _anchors_for("KXAGTELIMINATION", per_event)
+    stats = purity.family_stats(purity.yes_counts(anchors, events))
+    assert purity.fixed_k_families(stats) == {"KXAGTELIMINATION"}
+
+    # The same constancy at k == 1 is a one-winner partition, not this.
+    per_event1 = {f"E{i}": ["yes"] + ["no"] * 10 for i in range(4)}
+    a1, e1 = _anchors_for("KXWHICHONE", per_event1)
+    s1 = purity.family_stats(purity.yes_counts(a1, e1))
+    assert purity.fixed_k_families(s1) == set(), \
+        "k==1 belongs to partition_families, not to the fixed-k detector"
+
+
+def test_fixed_k_detector_refuses_to_judge_a_family_with_too_few_events():
+    """Two settled events cannot fit a variance threshold.
+
+    This is the whole reason the ticket refused to ship a rule in 2026-09:
+    at n=2 the AGT shape and the TRUMPSAY shape are indistinguishable, and
+    guessing would bake an inclusion rule into the population DD-1 is
+    being measured on.
+    """
+    from theories.deadline_drift import purity
+
+    per_event = {f"E{i}": ["yes"] * 7 + ["no"] * 4 for i in range(2)}
+    anchors, events = _anchors_for("KXAGTELIMINATION", per_event)
+    stats = purity.family_stats(purity.yes_counts(anchors, events))
+    assert "KXAGTELIMINATION" not in stats, \
+        f"below {purity.MIN_EVENTS} events the family must not be judged"
+    assert purity.fixed_k_families(stats) == set()
+
+
+def test_collect_reports_progress_so_a_stall_is_visible(tmp_path, monkeypatch):
+    """A walk that prints nothing makes 'running' and 'died an hour ago'
+    look identical from outside.
+
+    That is not hypothetical: the 2026-09-02 platform capture sat dead at
+    56% for three hours and was found by stat-ing the store's mtime. The
+    line is emitted on a flush that has ALREADY happened, so it can never
+    claim progress the store does not hold.
+    """
+    from theories.deadline_drift import collect_settled as cs
+
+    monkeypatch.setattr(cs, "DATA", tmp_path)
+
+    class _Mkt:
+        def __init__(self, tk):
+            self.raw = {"ticker": tk, "result": "no",
+                        "close_time": "2026-08-01T00:00:00Z",
+                        "rules_primary": "nothing parseable here"}
+            self.result = "no"
+
+    monkeypatch.setattr(cs.km, "list_settled",
+                        lambda **kw: [_Mkt(kw["series_ticker"] + "-A")])
+
+    seen = []
+    out = cs.collect([f"S{i}" for i in range(6)], flush_every=2,
+                     progress=seen.append)
+
+    assert out["series"] == 6
+    assert len(seen) == 3, "one line per flush, not per series"
+    assert seen[0].startswith("[2/6]"), seen[0]
+    assert "series=" in seen[0] and "markets=" in seen[0]
+    # The final partial batch lands in the `finally`, which deliberately
+    # does not print -- it has no index and the return value says the same
+    # thing. Six series at flush_every=2 divides evenly, so 3 is exact.
+    assert seen[-1].startswith("[6/6]"), seen[-1]
+
+
+def test_collect_persists_everything_walked_even_when_a_series_raises(
+        tmp_path, monkeypatch):
+    """The data is perishable, so a crash mid-walk must not lose the walk.
+
+    Pins the `finally`-flush: whatever was fetched before the failure is
+    on disk, and the resume skips it.
+    """
+    import json
+
+    from theories.deadline_drift import collect_settled as cs
+
+    monkeypatch.setattr(cs, "DATA", tmp_path)
+
+    class _Mkt:
+        def __init__(self, tk):
+            self.raw = {"ticker": tk, "result": "no",
+                        "close_time": "2026-08-01T00:00:00Z",
+                        "rules_primary": "nothing parseable here"}
+            self.result = "no"
+
+    def _boom(**kw):
+        if kw["series_ticker"] == "S3":
+            raise KeyboardInterrupt
+        return [_Mkt(kw["series_ticker"] + "-A")]
+
+    monkeypatch.setattr(cs.km, "list_settled", _boom)
+
+    try:
+        cs.collect([f"S{i}" for i in range(6)], flush_every=100)
+    except KeyboardInterrupt:
+        pass
+
+    stored = json.loads((tmp_path / "settled_raw.json").read_text())
+    assert set(stored) == {"S0", "S1", "S2"}, \
+        "everything walked before the interrupt must be on disk"
+
+
+def test_a_transient_series_failure_is_retried_but_a_page_cap_skip_is_not(
+        tmp_path, monkeypatch):
+    """A failed fetch is not an answer, and must not be stored as one.
+
+    `collect` records `{"__error__": ...}` when a series raises, and the
+    resume test used to be `s not in raw` -- so one 429 permanently
+    recorded 'nothing here'. On data Kalshi ages out at ~60 days that is
+    unrecoverable. The page-cap skip is the opposite case: it IS a
+    decision (a combinatorial shard this theory does not want), so it
+    stays permanent.
+    """
+    import json
+
+    from theories.deadline_drift import collect_settled as cs
+
+    monkeypatch.setattr(cs, "DATA", tmp_path)
+
+    class _Mkt:
+        def __init__(self, tk):
+            self.raw = {"ticker": tk, "result": "no",
+                        "close_time": "2026-08-01T00:00:00Z",
+                        "rules_primary": "nothing parseable here"}
+            self.result = "no"
+
+    calls = []
+
+    def _flaky(**kw):
+        s = kw["series_ticker"]
+        calls.append(s)
+        if s == "BOOM" and calls.count("BOOM") == 1:
+            raise RuntimeError("transient")
+        return [_Mkt(s + "-A")]
+
+    monkeypatch.setattr(cs.km, "list_settled", _flaky)
+
+    cs.collect(["BOOM", "FINE"], flush_every=1)
+    stored = json.loads((tmp_path / "settled_raw.json").read_text())
+    assert isinstance(stored["BOOM"], dict) and "__error__" in stored["BOOM"]
+    assert cs._is_retryable(stored["BOOM"])
+
+    # Second run: the poisoned series is re-walked and now succeeds.
+    cs.collect(["BOOM", "FINE"], flush_every=1)
+    stored = json.loads((tmp_path / "settled_raw.json").read_text())
+    assert isinstance(stored["BOOM"], list), "a transient failure must be retried"
+    assert calls.count("FINE") == 1, "a successful series is never re-walked"
+
+    # The deliberate page-cap skip is permanent.
+    assert not cs._is_retryable({"__error__": "skipped: exceeded 15 pages"})
+    assert not cs._is_retryable([])          # a real (empty) answer

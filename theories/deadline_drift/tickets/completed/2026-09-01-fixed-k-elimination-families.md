@@ -7,7 +7,15 @@ created_by: fleet-w1-g1
 author_lane: theory
 author_focus: deadline_drift
 author_context: Found on 2026-09-01 while inspecting v2's first live candidate set; recorded as fields rather than acted on, because the settled sample cannot yet distinguish the two shapes.
-status: open
+status: done
+closed: 2026-09-03
+resolution: ANSWERED BY A NULL, and the honest default it recommended is now the supported answer. The ticket asked to wait for more settled elimination events and then fit one of two rules on data. The 2026-09-03 platform-wide walk (13,772 series, 3,392 markets) is as much data as this theory can reach inside the 60-day archive window, and it supplied NO second example: KXAGTELIMINATION still has exactly two settled events (7 of 11, 7 of 11), because the platform sweep reaches NEW SERIES and not new history for an already-walked one. The blocker is structural, not a shortage, and waiting will not clear it.
+
+Three things were measured instead, and they are better than a fitted rule. (1) purity.py implements the ticket's rule (b) -- winner-count CV and k/n share CV across a family's settled events, floored at 4 settled events of >=5 legs. On the labelled NEGATIVE it holds with room: KXTRUMPSAY reads k_cv 0.286 against a 0.15 bar, so a detector on this statistic would not have deleted the legitimate family the ticket feared for. (2) Every other k-constrained family in the whole store is ALREADY excluded -- KXMLBNEXTTEAM (k_cv 0.000) and KXNEXTTEAMNBA (0.017) are the tightest possible and both sit in partition_families, as do KXBIGBROTHERELIMINATION and KXJOINCLUB; the detector's mean_k>=1.5 guard exists so it does not re-flag them. The k>1 region partition_families misses by construction contains exactly one known family platform-wide. (3) Exposure in DD-3's unseen arm is ZERO markets and ZERO clusters, so contamination cannot explain that arm's negative point estimate and the obvious escape hatch is not available.
+
+SHIPPED: theories/deadline_drift/purity.py, a diagnostic that FILTERS NOTHING -- it prints the unseen arm with and without flagged families as a sensitivity, and the pre-registered row stays the verdict. No population change, no version bump, per the ticket's own argument against changing the population mid-test.
+
+ONE THING THE TICKET GOT WRONG, now corrected in NOTES.md: it judged these families 'a small minority of rows'. True platform-wide, false for the arm that matters -- KXAGTELIMINATION is 3 of the live dd2-one-off slice's 21 event clusters (14%), sitting inside the very arm DD-2 predicts is positive. That is a caveat that must travel with any dd2-one-off number.
 ---
 WHAT. KXAGTELIMINATION supplied 4 of v2's first 46 candidates and is not a per-subject hazard. It is 11 legs with 2 settled events paying SEVEN YES each -- a fixed-k elimination ('exactly 7 of these 11 acts go'), so the legs are negatively correlated and P(YES) is structurally ~k/n rather than a hazard rate. All three partition detectors miss it: hazard.partition_families requires exactly ONE winner; screen.partition_events requires siblings summing 0.90-1.05 and these sum to 6.67; the rules regex misses it because the shape is semantic, not syntactic.
 

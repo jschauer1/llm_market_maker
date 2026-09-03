@@ -821,3 +821,392 @@ What can be said without overreading:
 
 So the honest summary is: **no answer yet, and the early sign is not
 reassuring.** Both halves of that sentence are load-bearing.
+
+## 2026-09-03 — the sweep completes: DD-3, DD-4 and DD-5 all underpowered, and the selection effect they were built to detect is the one thing that clears a threshold
+
+Session `fleet-w1-g4`, theory lane, focus `deadline_drift`. **This is the
+complete-sweep result the 2026-09-02 interim entry promised would be the
+verdict, whatever it said.** 13,772 of 13,772 platform series walked;
+3,392 markets; 1,484 new since the `preplatform_seen.json` freeze.
+
+### The three pre-registered verdicts
+
+```
+                              mkts evts  YES   price  P(YES)    gap   SEcl   zcl    net
+DD-3 UNSEEN (the test)          73   73   19   0.199   0.254   -5.5    4.4 -1.24   -6.6
+  seen (control, descriptive)   87   87    9   0.155   0.107   +4.9    1.9 +2.52   +4.0
+DD-4 HOLDOUT (never looked at)  37   37    9   0.151   0.235   -8.3    5.5 -1.52   -9.2
+  peeked half (spent, descr.)   36   36   10   0.247   0.274   -2.7    7.0 -0.38   -4.0
+DD-5 one-off (predicted +)      71   71   18   0.198   0.247   -4.9    4.5 -1.09   -6.0
+DD-5 recurring (predicted 0)     2   -- too few to report --
+```
+
+- **DD-3: UNDERPOWERED.** net −6.64, 95% CI [−15.36, +2.08], **73 event
+  clusters against a floor of 80.** By the bar fixed in THEORY.md before
+  any of this ran, it settles nothing in either direction. Bootstrap
+  agrees with the normal approximation here (gross CI [−14.69, +2.97],
+  P(gap<=0)=0.894), so the interval is not an artifact of normal theory.
+- **DD-4: UNDERPOWERED.** net −9.22, CI [−19.92, +1.49], 37 clusters. The
+  half nobody had ever looked at is *more* negative than the peeked half
+  (−9.2 vs −4.0), which is the opposite of what a peek-inflated result
+  would do.
+- **DD-5: UNDERPOWERED, and unmeasurable by construction** — see below.
+
+**All three point estimates are negative, and the interim look did not
+revert.** The 45%-capture peek read −4.0 on 36 clusters; the complete
+sweep reads −6.6 on 73. More data moved it further from the in-sample
++4.6, not back toward it.
+
+**None of that is licensed as "the edge is negative."** The bar said 80
+clusters and we have 73. What follows is.
+
+### The finding: the selection effect is real, large, and its mechanism is visible
+
+DD-3's actual job was to control for **selection**, and on that question
+it is not underpowered:
+
+```
+  seen   +4.87 gap  (n=87 clusters)
+  unseen -5.52 gap  (n=73 clusters)
+  difference +10.39 pts, SE 4.85, z = +2.14, 95% CI [+0.88, +19.91]
+```
+
+**That interval excludes zero.** It is the only thing measured today that
+clears a conventional threshold, and THEORY.md pre-registered exactly this
+comparison as "evidence about *selection*, and explicitly not licensed as
+evidence about the edge."
+
+The mechanism is visible in the components rather than inferred:
+
+```
+                       seen    unseen
+  mean entry price     0.155    0.199
+  realized P(YES)      0.107    0.254
+```
+
+**The unseen markets' events actually happened more than twice as often.**
+That is the survivorship story stated exactly: a by-deadline series leaves
+the board *because* its question resolved, and the ones that resolved
+**YES** are disproportionately the ones that left. A board-scoped walk
+therefore over-samples NO outcomes — which is precisely what makes a
+"buy NO" screen look profitable on it.
+
+The seen arm also reproduces the withdrawn headline (+4.9 gross / +4.0
+net, bootstrap CI [+0.89, +8.49] excluding zero), so the driver measures
+what it claims and the two arms are computed by identical code. A
+mismatch there would have meant the split was wrong.
+
+**Read together: the +4.6 now has a named, measured, mechanism-backed
+alternative explanation, and no out-of-sample cut has yet reproduced it.**
+The 2026-09-02 withdrawal of that number as the theory's headline stands
+and is now supported rather than precautionary.
+
+### DD-5 cannot be run as specified, and the reason is structural
+
+The unseen arm splits **71 one-off / 2 recurring**. That is not a small
+sample; it is the population definition biting. "Unseen" means *a series
+the board-scoped walk never reached*, and the board-scoped walk reached
+every series that still had something trading — so a **recurring family,
+which by definition keeps putting markets on the board, is always
+reached.** The unseen arm is one-off almost by construction.
+
+**So DD-3's population and DD-2's split are not independent**, and no
+amount of further capture fixes it. DD-5 as written can never have two
+usable arms. That is a design finding, not a data shortage, and it should
+have been visible when DD-5 was specified on 2026-09-02.
+
+What *can* be said, and it is pre-registered rather than post-hoc: DD-5's
+confirmation required "the one-off arm positive on its own". **The one-off
+arm is −5.97 net over 71 event clusters**, comfortably past DD-5's own
+per-arm floor of 30. So DD-5's confirmation condition is not merely
+unreached — it is **excluded**, by a clause fixed before the data, on an
+arm that clears its own power bar. DD-2 nominated the one-off population
+as where the +6.3 lived; out of sample on data the population choice never
+saw, that same population reads −6.0.
+
+The formal verdict stays UNDERPOWERED, because the failure condition
+requires >= 30 clusters in *each* arm and the recurring arm has 2.
+
+### How DD-3 gets finished, fixed now so it cannot be optionally stopped
+
+Seven more event clusters. The store only grows — markets we have captured
+never leave our disk even as Kalshi ages them out — so re-running
+`collect_settled --platform` in a few weeks will add clusters from new
+settlements.
+
+**The stopping rule, written now, before those settlements exist:** DD-3
+is read **exactly once more**, at the first sweep where the unseen arm
+holds **>= 80 event clusters**, and that reading is the verdict whatever
+it says. Re-checking weekly until it crosses in a pleasing direction is
+optional stopping, and this is the guard against it. Recorded in
+THEORY.md.
+
+### Contamination is not the explanation: fixed-k exposure in the unseen arm is zero
+
+`purity.py` (see the entry below) flags **0 families** on seen data and
+**0 markets, 0 clusters** in the DD-3 unseen arm. The pre-registered row
+and the minus-fixed-k sensitivity are identical to two decimal places.
+So the negative point estimate cannot be blamed on population impurity,
+and the sensitivity that would have been the obvious escape hatch is not
+available. Recorded because a null sensitivity is worth exactly as much
+as a positive one here.
+
+### The mining pass: 14 declared cuts, and the sign never changes
+
+`mine_arms.py`, run over both DD-3 arms. All 14 cuts were written before
+running and **all 28 cells are reported**, including the bad ones, so the
+multiplicity is visible rather than hidden by selective reporting. Nothing
+below is a test — the aggregate is underpowered at 73 clusters and every
+cell is smaller.
+
+**The result is the absence of a result, and that is the informative
+part: the unseen arm is negative in 14 of 14 cuts, and the seen arm is
+positive in 14 of 14.** Not one cell crosses. A spurious aggregate
+difference would show cells on both sides of zero; a population-level
+selection effect shows exactly this. So the +10.4 seen/unseen gap is not
+carried by a subset — it is everywhere, uniformly, which is what a
+sampling-frame artifact looks like and is not what a real edge with a
+mispriced pocket looks like.
+
+Range across cuts: unseen **−0.0 to −8.9**; seen **+0.7 to +9.3**.
+
+### The smoking gun: 33 single-leg questions in the board-scoped arm, and not one resolved YES
+
+```
+                        evts   price  P(YES)     net        95% CI
+  SEEN,   single-leg      33   0.099   0.000    +9.3   [ +5.8, +12.8]
+  UNSEEN, single-leg      16   0.211   0.250    -5.1   [-27.0, +16.7]
+```
+
+**P(YES) = 0.000 over 33 independent single-leg events.** A single-leg
+by-deadline question is "will X happen by D?" — one market, one event, no
+siblings. If it resolves YES, the question is answered and its series
+stops listing; if it resolves NO, the series often carries on. So a
+board-scoped walk collects the NOs and structurally cannot collect the
+YESes, and a base rate of exactly zero over 33 questions is not a fact
+about the world — **it is the definition of a truncated sample.** The
+same cut on markets the walk never reached returns P(YES) = 0.250.
+
+This is the cleanest statement of the mechanism anywhere in this
+notebook, and it is worth more than the aggregate: it needs no
+statistics, only the observation that a rate of 0/33 cannot be real.
+
+### The robustness check that convinced everyone was computed on the biased sample
+
+The 2026-09-01 entry's decisive argument was the spread ladder: *"A gap
+that IS the spread must SHRINK as the spread filter tightens. The
+bid-side gap grows: +6.3 → +7.3 as the filter goes to 2 points. That is
+not the signature of an artifact."* That reasoning is sound and the test
+is the right test. Run it on both arms:
+
+```
+                    SEEN            UNSEEN
+  all              +4.0             -6.6
+  spread <= 10     +4.0             -6.5
+  spread <= 4      +7.3             -0.3
+  spread <= 2      +6.6             -1.2
+```
+
+**The ladder reproduces on the seen arm and does not exist on the unseen
+arm.** So the check that cleared this theory of being a spread artifact
+was itself computed on the sample with the selection problem, and it
+cannot distinguish "a real edge" from "a selection effect that also
+survives a spread filter". A spread filter tests for one artifact; it is
+blind to a different one.
+
+**Worth generalising, because it is the deeper lesson of the day:** a
+robustness check inherits every bias of the sample it runs on. Passing
+it rules out the specific artifact it was designed to catch and nothing
+else — and the 2026-09-01 entry read it as ruling out artifacts in
+general. Note also where the tight-spread cells actually land: unseen
+−0.3 and −1.2, i.e. **indistinguishable from zero on the markets where
+execution is realistic**. That is the least-bad guess at the truth
+available today, and it is "no edge", not "an edge in the other
+direction".
+
+### What was NOT registered, and why
+
+Nothing. Not one cell here is registrable. Every one is a subset of an
+arm that is itself underpowered, 28 comparisons were run (≈1.4 would
+clear at the 5% level by chance), and the only cells with intervals
+excluding zero are in the **seen** arm — the one with the measured
+selection problem. Registering a slice off this data would be
+pre-registration theatre: the out-of-sample bookkeeping would be real and
+the pattern behind it would not.
+
+### The gate rebuild moved the live screen, and it is reported rather than silent
+
+The sweep rebuilds `population_facts.json` from the whole store, which
+changes the live screen's learned exclusions mid-DD-1:
+
+```
+  partition_families  7 -> 10   (+KXLIUKELIMINATION, KXLIUSAELIMINATION, KXNEXTMANAGER)
+  branch_families    12 -> 41   (+29, incl. KXNEXTUKPM, KXNEXTCHANCELLOR, KXFEATURE)
+  built_from_markets  1908 -> 3392;  series with settled events 170 -> 317
+```
+
+Today's board screens to **45 candidates**, and the code gate's removals
+by category are:
+
+```
+  not_by_deadline            110872
+  stratum_multi_destination    2610
+  mutually_exclusive_flag       333
+  stratum_threshold             315
+  priced_as_partition            30
+  stratum_scheduled              29
+  partition_family_learned       16
+```
+
+The pre-walk file is kept at `data/population_facts_prewalk.json` so the
+change is auditable rather than merely asserted. **This is a population
+shift inside a running pre-registered test** — DD-1's population is
+defined by `partition_families()`, whose answer is a function of accrued
+history by design, so the shift is within the pre-registration's intent
+rather than a violation of it. Recorded because the next session should
+not have to rediscover that DD-1's population is not frozen.
+
+## 2026-09-03 (same session) — how the sweep was found dead, and the fixed-k ticket answered by a null
+
+Session `fleet-w1-g4`, theory lane, focus `deadline_drift`.
+
+### The capture had been dead for three hours and nobody knew
+
+`settled_raw.json` last moved at 2026-09-02T22:12Z with **7,704 of
+13,771 series** walked (56%). No python process was alive. The 2026-09-02
+platform walk — the one DD-3's verdict is waiting on — had simply stopped,
+and the only way to find that out was to stat the file.
+
+That is the second stalled collection in this repo noticed by accident,
+after `series-bias-mining`, and it is a fixable class of problem rather
+than bad luck: **`collect()` produced no output at all**, so "running",
+"stalled" and "finished an hour ago" were indistinguishable from outside.
+It now takes a `progress` callback and prints one line per flush —
+position, store sizes, elapsed, rate. The flush already happened, so the
+line costs nothing and cannot claim progress the store does not hold.
+
+The `FLUSH_EVERY = 25` stopgap from the quadratic-rewrite ticket was
+already in place and works: the resume re-walked the first ~7,100
+positions (all cache hits) in 11 seconds.
+
+### The fixed-k ticket: the rule still cannot be fitted, and that is now the answer
+
+`fixed-k-elimination-families` asked to wait for more settled elimination
+events and then decide between two candidate rules on data. A
+platform-wide walk of 13,771 series is as much data as this theory can
+ever get inside the 60-day archive window. **It supplied no second
+example**, and that settles the ticket in the direction it did not
+anticipate.
+
+`purity.py` implements the ticket's rule (b) — the winner count's spread
+across a family's settled events, both as a raw count CV and as a k/n
+share CV — with a floor of 4 settled events of >= 5 legs, because that
+floor is the whole reason the ticket refused to guess at n=2.
+
+Every family in the entire store that clears the floor:
+
+```
+  KXTRUMPSAY               ev=9   mean_k=15.44  k=[7,12,12,15,17,17,19,19,21]  k_cv=0.286
+  KXBIGBROTHERELIMINATION  ev=8   mean_k=0.88   k=[0,1,1,1,1,1,1,1]            k_cv=0.404
+  KXJOINCLUB               ev=17  mean_k=0.88   k_cv=0.376
+  KXLIUKELIMINATION        ev=13  mean_k=1.31   k_cv=0.724
+  KXLIUSAELIMINATION       ev=4   mean_k=1.25   k_cv=0.400
+  KXMLBNEXTTEAM            ev=10  mean_k=1.00   k_cv=0.000
+  KXNEXTTEAMNBA            ev=7   mean_k=1.00   k_cv=0.017
+  KXFEATURE                ev=5   mean_k=1.20   k_cv=2.236
+```
+
+**`KXAGTELIMINATION` is not in that table.** It still has exactly two
+settled events (7 of 11, 7 of 11) and never acquired a third, because it
+is a board-scoped series that was already fully walked — the platform
+sweep reaches *new series*, not new history for old ones. So the ticket's
+stated blocker is not "not enough data yet"; it is **structural**, and
+waiting will not clear it inside the archive window.
+
+Three things follow, and they are better than a fitted rule would have
+been:
+
+1. **The negative label holds with room to spare.** `KXTRUMPSAY` — the
+   family that looks like a fixed-k elimination and is genuinely
+   independent — sits at k_cv 0.286 against a 0.15 bar. A detector built
+   on this statistic would not have deleted it. That was the ticket's
+   real fear and it is now measured rather than assumed.
+2. **Every other k-constrained family is already excluded.**
+   `KXMLBNEXTTEAM` and `KXNEXTTEAMNBA` have k_cv of 0.000 and 0.017 — the
+   tightest constraint possible — and both are already in
+   `partition_families`, as are `KXBIGBROTHERELIMINATION` and
+   `KXJOINCLUB`. The detector's `mean_k >= 1.5` guard exists so it does
+   not re-flag them. **The k > 1 region that `partition_families` misses
+   by construction contains exactly one known family in the whole
+   store.**
+3. **So the contamination is bounded, not just unquantified.** One
+   family, two settled events. The ticket's own recommendation — let DD-1
+   run and treat contamination as a known, quantified caveat rather than
+   change the population mid-test — is now the *supported* answer instead
+   of the cautious one.
+
+`purity.main()` also prints the DD-3 unseen arm with and without flagged
+families as a sensitivity. The pre-registered row stays the verdict;
+swapping to the other one would be choosing the population after seeing
+the answer, which is the failure the whole DD-3 apparatus exists to
+prevent.
+
+**Not done, deliberately: no population change, no version bump.** The
+detector ships as a diagnostic that filters nothing. Nothing about DD-1's
+pre-registered population moved.
+
+### DD-2's live arms are 21 clusters to 2, not the 23/23 the last entry recorded
+
+The 2026-09-01 entry says the first 46 rows "split 23 one-off / 23
+recurring, which is a better balance than the in-sample 72/22". That is
+true **in rows** and misleading, because rows are not the unit anything
+here is scored in. Over the 53 live rows now on the ledger:
+
+```
+  one-off arm    21 event clusters   30 rows
+  recurring arm   2 event clusters   23 rows
+```
+
+The recurring arm is `KXTRUMPSAY` (22 rows, one cluster) plus `KXCLAUDE`
+(one row). **The whole recurring arm is one family**, and the same entry
+already warned that `KXTRUMPSAY` supplies 22 of 46 rows and that anything
+reading these settlements must cluster by event. Both halves of that
+warning apply to DD-2's own split and were not carried into it.
+
+What this means practically:
+
+- `dd2-one-off`'s **complement is effectively "KXTRUMPSAY"**, so the
+  contrast DD-2 predicts will, on live data, be one long-tail arm against
+  one weekly family. That is not a reason to change anything — the slice
+  is pre-registered and immutable — but a contrast resting on 2 clusters
+  cannot be read at all, and nobody should expect it to clear a gate on
+  this trajectory.
+- The gates want >= 10 event clusters and >= 5 settlement days **out of
+  sample**. The one-off arm will get there; on the current mix the
+  recurring arm needs a second and third recurring family to appear on
+  the board at all.
+
+Recorded rather than acted on. The honest read is that DD-5 — the same
+contrast on the *unseen settled* arm, where both arms are large — is the
+test that can actually answer DD-2, and the live slice is a slow
+confirmation of it rather than the primary instrument.
+
+### The one known fixed-k contaminant sits inside `dd2-one-off`
+
+`KXAGTELIMINATION` is **3 of the one-off arm's 21 live event clusters
+(14%)**, 7 of its 30 rows. The `fixed-k` ticket judged these families "a
+small minority of rows"; that is right for the population as a whole and
+wrong for the arm DD-2 predicts is the positive one, where they are a
+seventh of the clusters.
+
+It cannot be fixed by excluding them — that is a v3 population change
+mid-test, which the ticket argues against and this entry does not
+reverse. It is a **caveat that has to travel with any `dd2-one-off`
+number**: a family whose P(YES) is structurally ~7/11 is in an arm whose
+thesis is that one-off questions are overpriced, and it will bias that
+arm in a direction nothing has measured.
+
+`purity.fixed_k_families()` identifies them from recorded fields after
+the fact, which is exactly what the ticket said the recorded
+`event_legs` / `event_ask_sum` were for. So the correction is available
+whenever the arm has enough settlements to want it.

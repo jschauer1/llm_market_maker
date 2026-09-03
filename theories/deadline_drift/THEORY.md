@@ -116,11 +116,80 @@ markets, a pure partition the suffix rule would otherwise admit.
 
 ## Status
 
-**`testing`, v2, since 2026-09-01.** It records — 46 observation rows on
-its first run — and it claims no edge while it does so. Read those two
-facts together: the theory is now *accruing DD-1's out-of-sample set*,
-which is the only thing that was ever between it and evidence, and it is
-doing so without asserting anything it has not earned.
+**`testing`, v2, since 2026-09-01.** It records — 53 observation rows so
+far — and it claims no edge while it does so. Read those two facts
+together: the theory is now *accruing DD-1's out-of-sample set*, which is
+the only thing that was ever between it and evidence, and it is doing so
+without asserting anything it has not earned.
+
+### 2026-09-03 — the platform sweep completed, and all three replications came back underpowered
+
+The 13,772-series platform-wide walk that DD-3, DD-4 and DD-5 were waiting
+on is **finished** (3,392 markets, 1,484 of them new since the seen-set
+freeze). Full numbers and their reading are in `NOTES.md` under
+2026-09-03; the four facts a session needs before acting on this theory:
+
+1. **Every pre-registered replication is UNDERPOWERED by its own bar, and
+   every point estimate is negative.** DD-3 −6.6 net on 73 event clusters
+   against a floor of 80; DD-4 (the never-looked-at half) −9.2 on 37;
+   DD-5's one-off arm −6.0 on 71. Under the bars fixed before any of this
+   ran, **none of them settles anything in either direction** — and that
+   restraint is load-bearing, not a formality.
+2. **The selection effect DD-3 was built to detect is real and clears a
+   threshold.** seen +4.87 vs unseen −5.52, a **+10.39-pt difference,
+   z = +2.14, 95% CI [+0.88, +19.91]**. The mechanism shows in the
+   components: realized P(YES) is **0.107 seen against 0.254 unseen**, so
+   board-scoped capture over-sampled NO outcomes — exactly what makes a
+   buy-NO screen look profitable on it. Per the pre-registration this is
+   evidence about **selection** and is *not* licensed as evidence about
+   the edge.
+3. **So the withdrawn +4.6 now has a measured alternative explanation.**
+   Its 2026-09-02 withdrawal as the headline number stands, and is now
+   supported rather than precautionary. No report should quote it.
+4. **DD-5 can never run as written.** The unseen arm is 71 one-off to 2
+   recurring, because "unseen" means a series the board-scoped walk never
+   reached and a recurring family always keeps something on the board.
+   DD-3's population and DD-2's split are not independent. Further
+   capture does not fix this.
+5. **A 14-cut mining pass (`mine_arms.py`) never changes the sign:** the
+   unseen arm is negative in 14 of 14 cuts (−0.0 to −8.9), the seen arm
+   positive in 14 of 14 (+0.7 to +9.3). No subset carries the gap; it is
+   uniform, which is what a sampling-frame artifact looks like and is not
+   what a real edge with a mispriced pocket looks like.
+6. **The plainest fact of the day needs no statistics.** In the
+   board-scoped arm, **33 single-leg by-deadline questions resolved YES
+   exactly zero times.** A single-leg question that resolves YES ends its
+   series, so a board-scoped walk structurally cannot collect it. The
+   same cut on never-on-the-board markets returns P(YES) = 0.250. A rate
+   of 0/33 is not a base rate; it is a truncated sample.
+7. **The spread ladder that cleared this theory of being an artifact was
+   itself computed on the biased sample.** It reproduces on the seen arm
+   (+4.0 → +7.3 at ≤4pts) and does not exist on the unseen arm (−6.6 →
+   −0.3). Passing a robustness check rules out the artifact it was
+   designed to catch and nothing else. Note where the tight-spread unseen
+   cells land — **−0.3 and −1.2, indistinguishable from zero on the
+   markets where execution is realistic.** That is the least-bad estimate
+   available today, and it reads "no edge".
+
+**DD-1 is untouched by all of it and remains the primary test.** It is a
+*forward* test on markets settling after 2026-09-01; DD-3 controlled for
+selection and for nothing about regime. The theory keeps running: every
+row it writes claims edge 0, so it cannot produce a recommendation, and
+the cost of letting the forward test finish is zero.
+
+### DD-3's completion, and its stopping rule
+
+DD-3 is **seven event clusters short**, and the store only grows — markets
+already captured never leave our disk even as Kalshi ages them out
+upstream. Re-running `collect_settled --platform` in a few weeks will add
+clusters from new settlements.
+
+**Fixed now, before those settlements exist:** DD-3 is read **exactly once
+more**, at the first sweep where the unseen arm holds **>= 80 event
+clusters**, and that reading is the verdict whatever it says. Re-checking
+until it crosses in a pleasing direction is optional stopping, and this
+rule is the guard against it. The bar itself is unchanged: net >= +2 with
+a 95% event-clustered CI excluding zero.
 
 What changed was the population, not the thesis. v1 shipped the
 70-series allowlist, recorded nothing, and was therefore unmeasurable;
@@ -271,7 +340,7 @@ its clock is unaffected.
   of fees. Nothing about the rule is re-tuned for this set; if it were,
   this would be another in-sample fit.
 - **Out-of-sample set:** exactly those tickers **absent from
-  `data/preplatform_seen.json`**, a file frozen from the store *before*
+  `theories/deadline_drift/data/preplatform_seen.json`**, a file frozen from the store *before*
   the platform walk began. That file is the boundary and must never be
   regenerated after the walk — regenerating it would silently convert
   this test to in-sample.
@@ -295,7 +364,7 @@ either one is scored on had been fetched.**
 **Why these exist: a peek costs something, and this is the price being
 paid explicitly.** The DD-3 aggregate was computed and reported at ~45-50%
 capture, at the user's request, on 36 event clusters. Those 509 tickers are
-frozen in `data/dd3_peeked.json` and are **spent for the aggregate test** —
+frozen in `theories/deadline_drift/data/dd3_peeked.json` and are **spent for the aggregate test** —
 looking at them again is a second look at the same data, and reporting
 whichever look is friendlier is the exact failure pre-registration exists
 to stop. What follows fences that off and commits the *unlooked-at*

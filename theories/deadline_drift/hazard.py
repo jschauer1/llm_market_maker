@@ -204,7 +204,8 @@ def partition_families(anchors: dict, events: dict, *, min_legs: int = 3,
 
 def observe(rows, anchor_row, *, side, anchor="days_to_deadline",
             dlo=0, dhi=LATE_WINDOW_DAYS, band=ENTRY_BAND,
-            max_spread=None, min_volume=None, min_oi=None, entry="mean"):
+            max_spread=None, min_volume=None, min_oi=None, entry="mean",
+            return_row=False):
     """One market -> (price paid against, resolved YES) or None.
 
     `side` is "bid" (what a NO buyer's breakeven actually is) or "ask"
@@ -217,9 +218,18 @@ def observe(rows, anchor_row, *, side, anchor="days_to_deadline",
     the band). They answer different questions and "first" is the one
     that matches the procedure, so a gap that exists only under "mean" is
     an artifact of averaging, not a strategy.
+
+    `return_row` additionally yields the FIRST qualifying candle, which is
+    the decision point. DD-5 needs it because its `recurring` split is
+    point-in-time -- "had this series settled >= 3 events before THIS
+    market's decision date" -- and that date is not recoverable from the
+    (price, outcome) pair. It is exposed here rather than reimplemented in
+    the caller so there is exactly one definition of "qualifying"; a
+    second copy of this predicate is how the two would silently diverge.
     """
     lo, hi = band
     s = n = 0
+    first = None
     for r in sorted(rows, key=lambda x: -x[anchor]):
         d, ask, bid = r[anchor], r["yes_ask"], r.get("yes_bid")
         if not (dlo <= d <= dhi) or not (lo <= ask <= hi):
@@ -236,10 +246,14 @@ def observe(rows, anchor_row, *, side, anchor="days_to_deadline",
             continue
         s += p
         n += 1
+        if first is None:
+            first = r
         if entry == "first":
             break
     if not n:
         return None
+    if return_row:
+        return s / n, anchor_row["result"] == "yes", first
     return s / n, anchor_row["result"] == "yes"
 
 

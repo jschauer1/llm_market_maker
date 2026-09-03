@@ -10,6 +10,32 @@
 
 No judgment stage. **Current version: 2 (`testing`).**
 
+### The pre-registered tests, and which script runs which
+
+None of these is part of a floor run. They are the experiments THEORY.md
+pre-registers, and each one is run once, when its data is complete.
+
+| test | what it asks | run |
+|---|---|---|
+| DD-1 | the forward test — markets settling after 2026-09-01 | accrues from stage 3; nothing to run yet |
+| DD-3 | the same cell on series the population choice never saw | `python -m theories.deadline_drift.backtest` |
+| DD-4 | DD-3's bar on the half never looked at in aggregate | `... backtest --dd4` |
+| DD-5 | DD-2's one-off/recurring contrast on the unseen arm | `... backtest --dd5` |
+| — | how much fixed-k contamination the arm carries | `python -m theories.deadline_drift.purity` |
+| — | 14 declared cuts over both arms, all reported | `python -m theories.deadline_drift.mine_arms` |
+
+**`--all` runs DD-3, DD-4 and DD-5 in that order.** `purity` is a
+diagnostic that filters nothing: it prints the unseen arm with and
+without flagged families as a *sensitivity*, and the pre-registered row
+stays the verdict.
+
+**A completing platform walk must finish before any of them is read.**
+The freeze files (`preplatform_seen.json`, `dd3_peeked.json`) define the
+test sets and must never be regenerated; running a test on a partial
+capture and running it again at completion is two looks at the same
+hypothesis. The 2026-09-02 interim look is recorded in NOTES.md as a
+declared peek precisely so it could not be quietly forgotten.
+
 ## The standing obligation: top up the settled capture
 
 **This is the only thing in this theory that is time-critical, and missing
@@ -102,7 +128,12 @@ ctx = TheoryContext.build(conn=conn, board=bt.get_board(conn),
 result = THEORY.screen(ctx)
 ```
 
-`price()` emits observation rows while `data/hazard_bins.json` is absent,
+`price()` emits observation rows while `hazard_bins.json` is absent,
+and the file it looks for is `theories/deadline_drift/hazard_bins.json`
+-- the THEORY ROOT, not `data/`. This runbook said `data/` until
+2026-09-03, which would have been a silent no-op: writing the file
+where the doc said would arm nothing, and a session checking that the
+interlock was still safe would have looked in the wrong place.
 and it is absent on purpose. **Do not create that file until DD-1
 clears.** Writing it is what turns this theory from one that observes into
 one that bets, and it also arms the `under_review` trigger — until then a

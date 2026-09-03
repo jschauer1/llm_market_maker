@@ -35,38 +35,28 @@ from __future__ import annotations
 
 import datetime as dt
 import json
-import re
 import time
 from pathlib import Path
 
 from tools import atomic_write
+from tools.timeutil import parse_deadline  # noqa: F401  (re-exported)
 from tools.kalshi import history
 from tools.kalshi import markets as km
 
 DATA = Path(__file__).parent / "data"
 ARCHIVE_DAYS = 60
 
-_MON = "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec"
-_DEADLINE = re.compile(
-    rf"\b(?:before|by|on or before|no later than)\s+"
-    rf"({_MON})\w*\s+(\d{{1,2}}),?\s*(\d{{4}})", re.IGNORECASE)
-_MONI = {m: i + 1 for i, m in enumerate(
-    "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split())}
-
-
-def parse_deadline(rules: str | None) -> str | None:
-    """The deadline STATED IN THE RULES -- the only sound time anchor.
-
-    Actual close is a function of the outcome on a 'by D' market, so it can
-    never define the decision point: see the 2026-08-29 correction in
-    NOTES.md.
-    """
-    hit = _DEADLINE.search(rules or "")
-    if not hit:
-        return None
-    return dt.datetime(int(hit.group(3)), _MONI[hit.group(1)[:3].title()],
-                       int(hit.group(2)), tzinfo=dt.timezone.utc).isoformat()
-
+#: Elevated 2026-09-03 to `tools.timeutil` and RE-EXPORTED here, not
+#: copied: `no_side_premium.exposure_measure` became a second caller and
+#: imported it across the theory boundary, which
+#: `test_no_theory_imports_a_sibling_theory` forbids and which had the
+#: suite red. CLAUDE.md's caller-count rule was already satisfied, so the
+#: answer was the move. The name stays reachable from this module because
+#: `deadline_drift.screen` and an answered study both import it from here;
+#: `tests/test_timeutil.py` asserts this is the SAME object, so there is
+#: still exactly one implementation. The reasoning for parsing the stated
+#: deadline rather than reading `close_time` -- the 2026-08-29 correction
+#: in NOTES.md -- travelled with it into that docstring.
 
 def _load(name: str) -> dict:
     p = DATA / name
@@ -134,6 +124,34 @@ def _stamp_unupgradable(stored: list[dict]) -> list[dict]:
         r.setdefault("open_interest", None)
         r["bid_unavailable"] = True
     return stored
+
+
+#: The page-cap skip is a DECISION -- the series is a combinatorial shard
+#: this theory does not want -- so it is permanent and must not be retried.
+#: A transport failure is not a decision. Anything else stored as an error
+#: is re-walked on the next run.
+_PERMANENT_ERROR = "skipped: exceeded"
+
+
+def _is_retryable(stored) -> bool:
+    """True for a stored series result that was a FAILURE, not an answer.
+
+    **Why this exists.** `collect` writes `{"__error__": ...}` when a series
+    walk raises, and the resume test used to be `s not in raw` -- so one
+    transient HTTP error permanently recorded "nothing here" for that
+    series, and no later run ever looked again. On perishable data that is
+    the worst possible failure mode: Kalshi ages settled markets out at ~60
+    days, so a series lost to a 429 is lost upstream for good.
+
+    Measured 2026-09-03: the platform walk poisoned nine series this way,
+    and they were not a random nine -- KXCOMEYDISMISS, KXELECTUKRAINE,
+    KXCRUDEEXPORTBAN, KXCONGRESSPAYINCREASE, KXDCEILEND, KXFTA and friends
+    are exactly the one-off newsy by-deadline questions DD-2 says carry the
+    effect. A biased loss, not a random one.
+    """
+    return (isinstance(stored, dict)
+            and not str(stored.get("__error__", "")).startswith(
+                _PERMANENT_ERROR))
 
 
 class _SeriesTooLarge(Exception):
@@ -210,7 +228,7 @@ FLUSH_EVERY = 25
 
 def collect(series: list[str], *, fetch=None, raw_filter=None,
             max_pages: int | None = None,
-            flush_every: int = FLUSH_EVERY) -> dict:
+            flush_every: int = FLUSH_EVERY, progress=None) -> dict:
     """Walk each series, persisting every `flush_every`. Resumable by design.
 
     `raw_filter` is handed to `list_settled` and runs before the expensive
@@ -229,15 +247,26 @@ def collect(series: list[str], *, fetch=None, raw_filter=None,
     candles = _load("candles.json")
     floor = int(time.time()) - ARCHIVE_DAYS * 24 * 3600
     dirty = False
+    started = time.time()
 
-    def _flush():
+    def _flush(i=None):
         _save("settled_raw.json", raw)
         _save("anchors.json", anchors)
         _save("candles.json", candles)
+        # A walk that reports nothing is a walk whose stall is noticed by
+        # accident -- which is exactly how the 2026-09-02 platform capture
+        # sat dead at 56% overnight. One line per flush, on the flush that
+        # already happened, so it costs nothing and cannot lie about
+        # progress the store does not hold.
+        if progress is not None and i is not None:
+            el = time.time() - started
+            progress(f"[{i}/{len(series)}] series={len(raw)} "
+                     f"markets={len(anchors)} candles={len(candles)} "
+                     f"{el:.0f}s {i / el if el else 0:.2f}/s")
 
     try:
         for i, s in enumerate(series, 1):
-            if s not in raw:
+            if s not in raw or _is_retryable(raw[s]):
                 def _cap(pages, _n, _limit=max_pages, _s=s):
                     if _limit is not None and pages >= _limit:
                         raise _SeriesTooLarge(_s)
@@ -292,7 +321,7 @@ def collect(series: list[str], *, fetch=None, raw_filter=None,
                 dirty = True
 
             if dirty and i % flush_every == 0:
-                _flush()
+                _flush(i)
                 dirty = False
     finally:
         if dirty:
@@ -390,7 +419,10 @@ if __name__ == "__main__":
         board = bt.get_board(conn)
         series = sorted({m.series_ticker for m in dd.population(board)})
         print(f"walking {len(series)} allowlist series...")
-    print(collect(series, **kwargs))
+    def _progress(line):
+        print(line, flush=True)
+
+    print(collect(series, progress=_progress, **kwargs))
     mark_captured(conn)
     print("capture date stamped in theory_facts")
 
