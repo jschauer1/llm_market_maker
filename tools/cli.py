@@ -929,7 +929,7 @@ def build_parser() -> argparse.ArgumentParser:
     tadv.add_argument("--to", required=True,
                       help="the state to move into; the lane declares "
                            "which it has (study: question, investigation, "
-                           "answer; new-theory: open, evidence, build)")
+                           "answer; new-theory: open, build)")
     tadv.add_argument("--note", required=True,
                       help="why it moved — appended to the body under a "
                            "dated heading")

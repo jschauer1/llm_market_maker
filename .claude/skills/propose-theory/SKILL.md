@@ -72,8 +72,7 @@ be able to pick it up and work it:
   side, and **why it persists** rather than being arbitraged away.
 - **Kalshi population** — which series and how many markets, counted on a
   real board, not estimated.
-- **What would kill it**, stated before any measurement, with the
-  cheapest decisive test named first.
+- **What would kill it**, stated before any measurement.
 - **Mechanical or interpretive**, and the backtest tier that follows.
 - **Relation to existing work** — the registry slugs it overlaps, checked
   in step 1, and why this is a sibling rather than a duplicate.
@@ -82,20 +81,25 @@ be able to pick it up and work it:
 goes in that theory's own folder (`--lane theory --theory <slug>`),
 because a theory folder is supposed to hold everything its expert needs.
 
-**A spec earns its way to a build order.** The lane's states are
-`open → evidence → build`, and the last two are not bookkeeping:
-`evidence/` is where the cheapest decisive test you named above actually
-runs against the bar the spec wrote *before looking*, and `build/` means
-that bar was cleared — **ready to implement**. `open → build` is refused
-in code, because a build order issued on an unmeasured thesis is the
-failure this whole lane exists to prevent.
+**The lane's states are `open → build`.** `build/` means the spec has
+been accepted and is **ready to implement**; nothing measures it first.
+A theory proves itself when it is implemented — it runs, it records, it
+is scored, and the ledger says whether the thesis was right (user ruling
+2026-09-03). There used to be an `evidence/` stage that a spec could not
+skip; it is gone, and so is the refusal that enforced it.
+
+That does not make measurement unwelcome. A thesis whose *population* or
+*mechanism* is cheap to check and expensive to build is a good candidate
+for a study — that is what the study lane is for, and `calendar-arb` and
+`smile-smoothing` both died there in an afternoon. It is a call about
+one thesis, made by whoever is holding it.
 
 `build/` is the last state a spec has. Closing one **deletes** it: a
 built spec's record is the theory it became, a dead one's is its
 ideas-registry row, and `close` checks that row is there first.
 
 ```bash
-python -m tools.cli tickets advance <path> --to evidence --note "<the test>"
+python -m tools.cli tickets advance <path> --to build --note "<why build it>"
 ```
 
 Closing takes one of **four resolutions**, as the first word: `built`

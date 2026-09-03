@@ -25,7 +25,7 @@ wallet scoring and no pair store. **It was killed on population,
 205 markets whose *entire* reachable trade history was walked; 3 of the 5
 are a single decision (LSU football, three events, all YES, 53 seconds
 apart), so ~3 independent events per 67 days. Full measurement:
-`../evidence/2026-09-01-block-trade-probe/RESULT.md`.
+`tickets/study/answer/2026-09-01-block-trade-probe/STUDY.md`.
 
 **That kill is about Kalshi's block facility being unused. It says
 nothing about this spec**, whose population is Polymarket's wallet

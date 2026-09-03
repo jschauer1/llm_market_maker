@@ -90,13 +90,18 @@ def _today() -> str:
 LANE_STATES: dict[str, tuple[str, ...]] = {
     "theory": ("open", "completed"),
     "maintenance": ("open", "completed"),
-    # A new-theory ticket IS a spec, and it earns its way to a build
-    # order. `evidence` is where the cheapest decisive measurement runs
-    # against the bar the spec wrote before looking; `build` means that
-    # measurement cleared it and the spec is READY TO IMPLEMENT. The
-    # stage is not optional -- a spec that jumps from `open` to `build`
-    # is a theory built on a thesis nobody tested, which is the failure
-    # the whole new-theory lane exists to prevent.
+    # A new-theory ticket IS a spec. `open` is a thesis somebody has
+    # written down; `build` means it has been accepted and is READY TO
+    # IMPLEMENT.
+    #
+    # **There is no `evidence` stage, and that is a decision** (user
+    # ruling 2026-09-03): a theory proves itself when it is implemented.
+    # The lane used to hold a spec at `evidence/` until a measurement
+    # cleared the bar it wrote, and `advance` refused `open` -> `build`
+    # to make the stage unskippable. Both are gone. A thesis that wants
+    # measuring before it is built can still get it -- that is what the
+    # study lane is for -- but it is a choice about a particular thesis,
+    # not a toll every spec pays.
     #
     # `build` is TERMINAL, and the lane has no `completed/` (2026-09-02).
     # A finished spec is one of two things and neither wants a folder:
@@ -107,7 +112,7 @@ LANE_STATES: dict[str, tuple[str, ...]] = {
     # through it ended up with `resolution:` strings that no longer
     # parsed as any of NEW_THEORY_RESOLUTIONS. So a spec now LEAVES this
     # lane when it ends; see `close`.
-    "new-theory": ("open", "evidence", "build"),
+    "new-theory": ("open", "build"),
     "study": ("question", "investigation", "answer"),
 }
 
@@ -743,23 +748,6 @@ def advance(path: Path, *, to: str, note: str,
         raise ValueError(
             f"cannot move backwards: {here!r} -> {to!r}. Close the ticket "
             "or file a new one instead."
-        )
-    if lane == "new-theory" and here == "open" and to == "build":
-        # **The evidence stage is not skippable**, and this is the one
-        # forwards move in the repo that is refused anyway. Every other
-        # lane's states are bookkeeping; these two are the lane's whole
-        # argument. A spec states a thesis and the bar that would falsify
-        # it, `evidence/` is where the cheapest decisive measurement runs
-        # against that bar, and `build/` asserts the bar was cleared.
-        # Allowing `open` -> `build` would let a build order be issued
-        # on a thesis nobody measured -- which is the failure this lane
-        # exists to prevent, and the reason `calendar-arb` and
-        # `smile-smoothing` died in an afternoon instead of a month.
-        raise ValueError(
-            "a spec cannot skip the evidence stage: advance it to "
-            "'evidence' and run the measurement first. A build order "
-            "issued on an unmeasured thesis is what this lane exists to "
-            "prevent."
         )
     if root is None:
         from tools import db  # local: keeps this module import-light

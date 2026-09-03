@@ -137,10 +137,14 @@ only lane free to move between tickets.
 **Making a theory requires writing a spec first, and the spec is that
 ticket.** A `new-theory` ticket is not a one-line idea: it states the
 mechanism, who is on the other side and why they keep being wrong, the
-Kalshi population counted on a real board, what would falsify it, whether
-it is mechanical or interpretive, and the cheapest decisive first step.
+Kalshi population counted on a real board, what would falsify it, and
+whether it is mechanical or interpretive.
 `propose-theory` carries the full list and will not scaffold a theory
-without one. The shared contracts every spec in that lane inherits —
+without one. **A spec is not measured before it is built** — the lane
+runs `open/` -> `build/`, and a theory proves itself when it is
+implemented (user ruling 2026-09-03). A thesis worth settling first can
+still get a study; that is a judgment about one thesis, not a toll every
+spec pays. The shared contracts every spec in that lane inherits —
 including rule 0 (an edge between siblings of one Kalshi event finds
 nothing) and rule 0f (measure at *executable* prices, never the mid) —
 live in `tickets/new-theory/README.md`, alongside a graded evidence
@@ -152,9 +156,9 @@ them still read "Status: backlog — not yet proposed as a theory" weeks after
 four had become running theories, one had been retired and two were dead.
 A second home for a document means a second status field, and the second
 one is always the stale one. **One document, one home, one status** — a
-proposed theory in `tickets/new-theory/open/`, one whose measurement is
-running in `evidence/`, one that cleared its bar in `build/` (ready to
-implement, and the last state a spec has), and an idea to try on an
+proposed theory in `tickets/new-theory/open/`, one accepted for building
+in `build/` (ready to implement, and the last state a spec has), and an
+idea to try on an
 *existing* theory in that theory's own folder rather than any of them.
 A spec that **ends** is deleted rather than filed: built, its record is
 the theory it became; dead, its record is the ideas-registry row that

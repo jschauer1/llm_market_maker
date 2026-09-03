@@ -4955,3 +4955,40 @@ anything beside `STUDY.md` in an answered study, allowing `data/` only
 when the document declares `**Retained:**`;
 `test_every_answered_study_reports_a_verdict` fails on the empty-header
 case above. Both verified red against a probe before being left green.
+
+## 2026-09-03 — the new-theory lane loses its evidence stage: a theory proves itself when it is implemented (user ruling)
+
+**Ruling.** The `evidence/` state is removed. The lane runs `open/` →
+`build/`, and nothing measures a spec on its way there. **A theory proves
+itself when it is implemented** — it runs, it records, it is scored, and
+the ledger answers the question the spec asked.
+
+**What was removed, and what that leaves.** `evidence/` was where a
+spec's "cheapest decisive test" ran against the bar the spec wrote before
+looking, and `advance()` refused `open → build` to make the stage
+unskippable. Both are gone, along with the spec-contract clause requiring
+a cheapest decisive first step. The directory was empty at removal and
+`build/` was too, so no spec had to be moved.
+
+**What is deliberately not removed: the study.** A thesis that is cheap
+to check and expensive to build is still worth an afternoon —
+`calendar-arb` and `smile-smoothing` both died that way, and the
+new-theory README keeps the record of what those probes found, because
+those are facts about the board rather than a debt every spec owes. The
+difference is that it is now a judgment about one thesis, made by whoever
+holds it, instead of a toll collected at a gate.
+
+**The vocabulary is gone, not merely unused.** `states_for("new-theory")`
+returns `("open", "build")`, and `advance --to evidence` now fails with
+"no state 'evidence'". That matters more than tidiness: a state name that
+still resolves is one sessions keep filing into, and a spec parked in a
+directory nothing advances out of is invisible to the backlog — which is
+exactly the failure `completed/` caused in this lane on 2026-09-02.
+
+**Repointed on the way through**, since both cited paths that no longer
+exist: the `whale-follow` spec's citation of the block-trade probe, and
+the new-theory README's two citations of the aggregation-gap probe, all
+of which now point at those studies where they actually live
+(`tickets/study/answer/`). `test_a_spec_advances_straight_from_open_to_build`
+and `test_the_new_theory_lane_no_longer_has_an_evidence_state` pin both
+halves of the change.

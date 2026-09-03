@@ -9,8 +9,7 @@ tickets/
     README.md    <- shared contracts every spec in this lane inherits
     reference/   <- the graded ledger behind their claims (NOT a state)
     open/        2026-08-24-maker-mode-execution.md
-    evidence/    <- its cheapest decisive measurement is running
-    build/       <- ready to implement; the last state a spec has
+    build/       <- accepted; ready to implement, and a spec's last state
   study/
     question/ investigation/ answer/   <- a study is a DIRECTORY per state
 theories/<registry path>/tickets/ <- theory work, in that theory's folder
@@ -23,8 +22,9 @@ theories/<registry path>/tickets/ <- theory work, in that theory's folder
 `open/` -> `completed/`. `study` runs `question/` -> `investigation/` ->
 `answer/` and has no `completed/` at all, which is what makes a finished
 study permanent -- `purge` matches `completed/`, so the query cannot
-reach one. `new-theory` runs `open/` -> `evidence/` -> `build/` and
-likewise has no `completed/`: a spec that ends is **deleted**, because
+reach one. `new-theory` runs `open/` -> `build/` -- a theory proves
+itself when it is implemented, so there is no measurement stage in
+between (user ruling 2026-09-03) -- and likewise has no `completed/`: a spec that ends is **deleted**, because
 its verdict is already in the ideas registry or in the theory it became.
 `states_for()` in `tools/tickets.py` is the authority.
 

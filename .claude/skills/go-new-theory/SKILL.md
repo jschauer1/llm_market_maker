@@ -41,20 +41,23 @@ edge between siblings of one Kalshi event finds nothing) and rule 0f
 (measure at *executable* prices, never the mid) between them account for
 most of the backlog's dead entries.
 
-**The lane's states are `open → evidence → build`, and they are the
-shape of this session.** A spec sits in `open/` until somebody runs its
-cheapest decisive test; `evidence/` is where that test runs against the
-bar the spec wrote before looking; `build/` means the bar was cleared
-and the build is authorized — ready to implement, and the last state a
-spec has. Closing one deletes it, its verdict already being in the ideas
-registry or in the theory it became. `open → build` is
-refused in code — a theory built on a thesis nobody measured is exactly
-what this lane exists to prevent, and it is why `calendar-arb` and
-`smile-smoothing` died in an afternoon instead of a month.
+**The lane's states are `open → build`, and they are the shape of this
+session.** A spec sits in `open/` until somebody decides to build it;
+`build/` means ready to implement, and it is the last state a spec has.
+Closing one deletes it, its verdict already being in the ideas registry
+or in the theory it became.
+
+**Nothing measures a spec before it is built** (user ruling 2026-09-03):
+a theory proves itself when it is implemented — it runs, it records, it
+is scored, and the ledger answers the question. The lane used to hold a
+spec at `evidence/` until a measurement cleared its bar, and refused
+`open → build` to make that unskippable; both are gone. A thesis you
+would rather settle before building can still get a study, and that is a
+judgment about that thesis — `calendar-arb` and `smile-smoothing` were
+worth an afternoon each — not a stage every spec passes through.
 
 ```bash
-python -m tools.cli tickets advance <path> --to evidence --note "<the test>"
-python -m tools.cli tickets advance <path> --to implement --note "<result>"
+python -m tools.cli tickets advance <path> --to build --note "<why build it>"
 python -m tools.cli tickets close <path> --resolution "built: theories/<slug>"
 ```
 
@@ -99,9 +102,9 @@ folder contract. What must exist before the theory is real:
   thesis off the backlog, that ticket *is* it — do not write another. If
   the thesis is yours, file it before writing procedure code: mechanism,
   who is on the other side and why they keep being wrong, the Kalshi
-  population counted on a real board, what would falsify it, mechanical
-  or interpretive, and the cheapest decisive first step. There is no
-  separate spec tree and there should not be one.
+  population counted on a real board, what would falsify it, and
+  mechanical or interpretive. There is no separate spec tree and there
+  should not be one.
 - `THEORY.md` — the claim, the procedure, the status, the pre-registered
   bar it must clear and what would kill it
 - `RUNBOOK.md` — Stages / Run / Record / **Sub-theories** / Report / Skip

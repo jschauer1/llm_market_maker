@@ -44,10 +44,12 @@ finish than a fresh one is to start.
    unfinished collection is not merely delayed, it is *losing rows
    upstream*. This outranks a new question.
 2. **A ticket in the study lane.**
-3. **The deciding experiment for an open `new-theory` spec.** Several
-   tickets name one explicitly and say the theory should not be built
-   until it runs. That is the highest-leverage new study available,
-   because its answer is already load-bearing for somebody.
+3. **A cheap check that would decide an open `new-theory` spec.**
+   Nothing requires one — a theory proves itself when it is implemented,
+   and the lane runs `open → build` with no measurement stage — but a
+   thesis that is cheap to check and expensive to build is exactly where
+   an afternoon buys the most: `calendar-arb` and `smile-smoothing` both
+   died that way. Say whose decision the answer would change.
 4. **A claim a running theory rests on that nobody has checked.**
 5. **A new question of your own** — last, not first.
 

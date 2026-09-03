@@ -913,7 +913,7 @@ def test_the_new_theory_lane_ends_at_a_build_order():
     LEAVE the lane rather than pile up in a directory whose name says
     neither, which is what `completed/` did until 2026-09-02.
     """
-    assert tickets.states_for("new-theory") == ("open", "evidence", "build")
+    assert tickets.states_for("new-theory") == ("open", "build")
 
 
 def test_the_new_theory_lane_has_no_completed_state():
@@ -923,30 +923,38 @@ def test_the_new_theory_lane_has_no_completed_state():
     assert "completed" not in tickets.states_for("new-theory")
 
 
-def test_a_spec_advances_open_to_evidence_to_build(tmp_path):
+def test_a_spec_advances_straight_from_open_to_build(tmp_path):
+    """User ruling 2026-09-03: a theory proves itself when it is
+    implemented, so nothing measures a spec on its way to a build order.
+
+    The lane used to run `open -> evidence -> build` and REFUSED this
+    move, on the reasoning that a build order issued on an unmeasured
+    thesis is what the lane exists to prevent. That gate is gone: the
+    ledger is what tests a thesis, and a spec reaches `build/` when
+    somebody decides to build it.
+    """
     path = tickets.create(
         tmp_path, lane="new-theory", slug="some-thesis",
         title="A thesis", body="The mechanism, the population, the bar.",
         created="2026-09-02")
-    at_evidence = tickets.advance(
-        path, to="evidence", note="Probing dispersion on one board.",
-        now="2026-09-03")
-    assert at_evidence.parent.name == "evidence"
     at_build = tickets.advance(
-        at_evidence, to="build", note="Cleared the bar at n=240.",
-        now="2026-09-04")
+        path, to="build", note="Worth building; the ledger will say.",
+        now="2026-09-03")
     assert at_build.parent.name == "build"
 
 
-def test_a_spec_cannot_skip_the_evidence_stage(tmp_path):
-    """The evidence stage is not optional for a spec nobody has measured.
-    Jumping straight to a build order is exactly how a theory gets built
-    on a thesis that was never tested."""
-    path = tickets.create(
-        tmp_path, lane="new-theory", slug="unmeasured", title="T",
-        body="b", created="2026-09-02")
-    with pytest.raises(ValueError, match="evidence"):
-        tickets.advance(path, to="build", note="skipping")
+def test_the_new_theory_lane_no_longer_has_an_evidence_state(tmp_path):
+    """The removed state is gone from the vocabulary, not merely unused.
+
+    A state name that still resolves is a state sessions keep filing
+    into, and a spec parked in a directory nothing advances out of is
+    invisible to the backlog -- the same failure `completed/` caused.
+    """
+    assert "evidence" not in tickets.states_for("new-theory")
+    path = tickets.create(tmp_path, lane="new-theory", slug="x", title="T",
+                          body="b", created="2026-09-02")
+    with pytest.raises(ValueError, match="no state 'evidence'"):
+        tickets.advance(path, to="evidence", note="measuring first")
 
 
 def test_advance_refuses_completed_for_new_theory(tmp_path):
@@ -1005,10 +1013,8 @@ def test_a_new_theory_spec_can_be_closed_from_build(tmp_path):
     goes away because the theory is now its own record."""
     path = tickets.create(tmp_path, lane="new-theory", slug="shipped",
                           title="T", body="b", created="2026-09-02")
-    at_evidence = tickets.advance(path, to="evidence", note="measuring",
-                                  now="2026-09-03")
-    at_build = tickets.advance(at_evidence, to="build", note="cleared",
-                               now="2026-09-04")
+    at_build = tickets.advance(path, to="build", note="worth building",
+                               now="2026-09-03")
     done = tickets.close(at_build, resolution="built: theories/shipped")
     assert not done.exists()
 

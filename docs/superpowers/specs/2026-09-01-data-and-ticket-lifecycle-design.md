@@ -152,6 +152,18 @@ maintenance:  open → completed
 theory:       open → completed
 ```
 
+**Amended 2026-09-03 (user ruling): the new-theory lane no longer has an
+`evidence` stage, and runs `open → build`.** *A theory proves itself when
+it is implemented* — it runs, it records, it is scored, and the ledger
+answers the question the spec asked. Everything below describing
+`evidence/` as a state a spec passes through, and the refusal of
+`open → build` that made it unskippable, is the design as shipped on
+2026-09-01 and is no longer what the lane does. The measurement it
+described is still available to any thesis worth settling first; it is a
+study, chosen for that thesis, not a stage every spec pays for. (The
+lane's terminal state was also renamed `implement` → `build` and
+`completed/` removed on 2026-09-02; see that entry.)
+
 The study lane is the odd one and Part 3 is why: its tickets are
 **directories**, its terminal state is `answer/` rather than `completed/`,
 and it is therefore the one lane the purge never touches.

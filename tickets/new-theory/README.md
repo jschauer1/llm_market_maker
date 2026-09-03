@@ -15,9 +15,19 @@ ticket links here instead of repeating any of it.
 | | |
 |---|---|
 | `open/` | proposed theories, one spec each — the backlog a session chooses from |
-| `evidence/` | specs whose cheapest decisive measurement is running now, against the bar the spec wrote before looking |
-| `build/` | **ready to implement** — specs whose measurement cleared that bar. A build order, not a proposal, and the last state a spec has |
+| `build/` | **ready to implement** — accepted, a build order rather than a proposal, and the last state a spec has |
 | `reference/` | the graded evidence ledger and full reading notes behind the claims these specs make |
+
+**There is no measurement stage, and that is deliberate** (user ruling
+2026-09-03): **a theory proves itself when it is implemented.** It runs,
+it records, it is scored, and the ledger answers the question the spec
+asked. The lane used to hold a spec in `evidence/` until its cheapest
+decisive test cleared the bar the spec wrote before looking, and
+`advance` refused `open → build` to keep the stage unskippable. Both are
+gone. A thesis you would rather settle before building can still get a
+study — the study lane exists for exactly that, and `calendar-arb` and
+`smile-smoothing` each died there in an afternoon — but that is a
+judgment about one thesis, not a toll every spec pays.
 
 **There is no `completed/`, and a finished spec is deleted** (2026-09-02).
 That is not carelessness about history — it is where the history actually
@@ -34,10 +44,11 @@ written and nothing re-read them. Git keeps every deleted spec:
 `git show <rev>:<path>` retrieves it. The 16 removed on 2026-09-02 are at
 rev `6e7d920`, which is what the citations pointing at them now say.
 
-The reading notes used to live in `evidence/`, and had to move the day
-`evidence/` became a state: a ticket's state IS its directory, so the
-backlog lists every `.md` in a state folder and reported all three
-reference files as `!! MALFORMED` tickets with blank titles. That is the
+The reading notes used to live in a folder that later became a state
+(`evidence/`, since removed), and had to move the day it did: a ticket's
+state IS its directory, so the backlog lists every `.md` in a state
+folder and reported all three reference files as `!! MALFORMED` tickets
+with blank titles. That is the
 false positive this repo has already paid for once — an alarm that is
 always on is worse than no alarm, because the day a real one fires it is
 indistinguishable from the noise. `reference/` is not a state, so
@@ -139,7 +150,7 @@ home, one status.
      companion House-seats case turned out **not to be an identity at
      all** — `KXHOUSEWINSTATE` carries one `>k` strike per state, so
      `E[seats]` is bounded rather than determined. Evidence:
-     `evidence/2026-09-01-aggregation-gap-probe/`.
+     `tickets/study/answer/2026-09-01-aggregation-gap-probe/`.
 
    The cheap check is a one-board measurement of the *dispersion the
    thesis needs*, run before any theory scaffolding — every one of the
@@ -297,7 +308,7 @@ home, one status.
      worst-case gap was **+0.073 seats** and the measured fee cost of the
      basket capturing it is **$0.073** — the same number, so fees take
      100% of the spec's own edge before a 14-month lockup. Evidence:
-     `evidence/2026-09-01-aggregation-gap-probe/`.
+     `tickets/study/answer/2026-09-01-aggregation-gap-probe/`.
 
    Two consequences worth stating separately. **A liquidity filter must
    be a real one** — spread *and* open interest, never a price cap, and
@@ -491,10 +502,11 @@ expensive part, and measured the cheapest decisive thing instead.
 Three of those four kills landed in **one session each**, and two of them
 took their parent down with them (`implication-graph` and
 `settled-but-trading` are both closed above, on their successors'
-evidence). **That is the cheapest thing this backlog does: before building
-a spec, ask what the one-afternoon version of it would measure, and
-measure that.** Rule 0's dispersion check and rule 0f's executable-price
-rule are the two that keep firing.
+evidence). **Nothing obliges a spec to be measured before it is built** —
+a theory proves itself when it is implemented — but those four are the
+record of what an afternoon can be worth when a thesis is cheap to check
+and expensive to build. Rule 0's dispersion check and rule 0f's
+executable-price rule are the two that keep firing.
 
 Paired designs: news-drift ↔ overreaction-fade share one joint
 sign-measurement (each claims only the cells measured its way);
