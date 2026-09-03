@@ -29,9 +29,8 @@ from tools.domain import EquivalenceResult
 
 
 @pytest.fixture()
-def conn():
-    c = db.connect(":memory:")
-    db.init_db(c)
+def conn(conn):
+    c = conn
     theories.register(c, "t", "T", "theories/t")
     return c
 

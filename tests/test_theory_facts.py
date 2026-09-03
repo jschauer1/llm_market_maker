@@ -31,12 +31,10 @@ TS = "2026-08-24T12:00:00Z"
 
 
 @pytest.fixture
-def conn(tmp_path):
-    c = db.connect(tmp_path / "t.db")
-    db.init_db(c)
+def conn(conn):
+    c = conn
     theories.register(c, "pairs", "Pair Store", "theories/pairs", now=TS)
-    yield c
-    c.close()
+    return c
 
 
 def _put(conn, provenance_id=None, key="KXCPI-26|0xabc"):

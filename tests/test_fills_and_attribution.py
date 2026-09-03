@@ -10,13 +10,11 @@ TS2 = "2026-08-29T12:00:00Z"
 
 
 @pytest.fixture
-def conn(tmp_path):
-    c = db.connect(tmp_path / "test.db")
-    db.init_db(c)
+def conn(conn):
+    c = conn
     for slug in ("t1", "t2"):
         theories.register(c, slug, slug, f"theories/{slug}", now=TS)
-    yield c
-    c.close()
+    return c
 
 
 def _rec(conn, theory="t1", ticker="A", price=0.60):

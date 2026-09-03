@@ -11,14 +11,12 @@ from tools.theory import Theory, TheoryContext
 
 
 @pytest.fixture
-def conn(tmp_path):
-    c = db.connect(tmp_path / "t.db")
-    db.init_db(c)
+def conn(conn):
+    c = conn
     theories.register(c, "stub_mech", "Stub Mechanical", "x",
                       status="proposed", now=TS)
     theories.set_status(c, "stub_mech", "testing", now=TS)
-    yield c
-    c.close()
+    return c
 
 
 def test_two_required_methods_are_enough_to_record(conn):

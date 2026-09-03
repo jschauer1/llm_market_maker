@@ -19,11 +19,9 @@ from tools import db, ledger, score, slices, theories
 
 
 @pytest.fixture()
-def conn():
-    c = db.connect(":memory:")
-    db.init_db(c)
-    theories.register(c, "t", "T", "theories/t")
-    return c
+def conn(conn):
+    theories.register(conn, "t", "T", "theories/t")
+    return conn
 
 
 def _settled(

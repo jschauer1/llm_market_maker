@@ -11,15 +11,13 @@ from tools.theory import TheoryContext
 
 
 @pytest.fixture
-def conn(tmp_path):
-    c = db.connect(tmp_path / "t.db")
-    db.init_db(c)
+def conn(conn):
+    c = conn
     theories.register(c, "stub_mech", "Stub Mechanical", "x", now=TS)
     with db.write(c):
         c.execute("UPDATE theories SET status='testing'"
                   " WHERE id='stub_mech'")
-    yield c
-    c.close()
+    return c
 
 
 def _record(conn, run_id, ticker):
