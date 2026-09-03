@@ -65,14 +65,6 @@ def test_a_live_theory_beside_a_retired_one_is_still_discovered(tmp_path):
     assert registry._theory_packages(root) == ["theories.alive"]
 
 
-@pytest.fixture
-def conn(tmp_path):
-    c = db.connect(tmp_path / "t.db")
-    db.init_db(c)
-    yield c
-    c.close()
-
-
 def _register_matching(conn):
     for tid, name, version, uses in (
         ("insider_judgment", "Insider Judgment", 6, True),

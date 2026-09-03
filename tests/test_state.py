@@ -3,14 +3,6 @@ import pytest
 from tools import db, state
 
 
-@pytest.fixture
-def conn(tmp_path):
-    c = db.connect(tmp_path / "test.db")
-    db.init_db(c)
-    yield c
-    c.close()
-
-
 def test_state_renders_every_panel_header(conn):
     text = state.render_state(conn, now="2026-08-29T12:00:00Z")
     for panel in ("THEORIES", "STANDING", "EVIDENCE", "WINDOWS",

@@ -3,14 +3,6 @@ import pytest
 from tools import db, rulings
 
 
-@pytest.fixture
-def conn(tmp_path):
-    c = db.connect(tmp_path / "test.db")
-    db.init_db(c)
-    yield c
-    c.close()
-
-
 def test_record_and_list_roundtrip(conn):
     rid = rulings.record(
         conn, "clustered SEs are reported beside every score",

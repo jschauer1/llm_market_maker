@@ -7,14 +7,6 @@ from tools import board, db, snapshot
 NOW = "2026-08-24T12:00:00Z"
 
 
-@pytest.fixture
-def conn(tmp_path):
-    c = db.connect(tmp_path / "test.db")
-    db.init_db(c)
-    yield c
-    c.close()
-
-
 def _raw(ticker, event="EV", series="KXTHING", **kw):
     base = {
         "ticker": ticker, "event_ticker": event, "series_ticker": series,

@@ -15,12 +15,8 @@ TS = "2026-08-25T12:00:00Z"
 
 
 @pytest.fixture
-def conn(tmp_path):
-    c = db.connect(tmp_path / "t.db")
-    db.init_db(c)
-    theories.register(c, "t1", "Theory One", "theories/t1", now=TS)
-    yield c
-    c.close()
+def conn(registered_conn):
+    return registered_conn
 
 
 def _legs(a=0.60, b=0.35):

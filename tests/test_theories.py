@@ -8,14 +8,6 @@ from tools.domain import EquivalenceResult
 TS = "2026-08-23T12:00:00Z"
 
 
-@pytest.fixture
-def conn(tmp_path):
-    c = db.connect(tmp_path / "test.db")
-    db.init_db(c)
-    yield c
-    c.close()
-
-
 def test_register_creates_a_theory_at_version_one(conn):
     theories.register(conn, "insider_bias", "Insider Bias",
                       "theories/insider_bias", now=TS)

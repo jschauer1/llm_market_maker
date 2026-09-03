@@ -6,14 +6,6 @@ TS = "2026-08-23T12:00:00Z"
 LATER = "2026-09-01T12:00:00Z"
 
 
-@pytest.fixture
-def conn(tmp_path):
-    c = db.connect(tmp_path / "test.db")
-    db.init_db(c)
-    yield c
-    c.close()
-
-
 def test_record_creates_an_idea(conn):
     ideas.record(
         conn,

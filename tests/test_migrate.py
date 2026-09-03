@@ -8,14 +8,6 @@ from tools import db, ledger, score, theories
 TS = "2026-08-23T12:00:00Z"
 
 
-@pytest.fixture
-def conn(tmp_path):
-    c = db.connect(tmp_path / "test.db")
-    db.init_db(c)
-    yield c
-    c.close()
-
-
 def _row(ticker="KXA", side="yes", price="0.80", q="0.90",
          ts="2026-06-01T12:00:00Z", rationale="insider story"):
     return {

@@ -14,12 +14,8 @@ LEGS = [
 
 
 @pytest.fixture
-def conn(tmp_path):
-    c = db.connect(tmp_path / "test.db")
-    db.init_db(c)
-    theories.register(c, "t1", "Theory One", "theories/t1", now=TS)
-    yield c
-    c.close()
+def conn(registered_conn):
+    return registered_conn
 
 
 def _basket(conn, run_id, now=TS, decision_date=None):

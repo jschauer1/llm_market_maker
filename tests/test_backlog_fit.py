@@ -15,14 +15,6 @@ from tools.theory import Theory, TheoryContext
 from tests.test_theory import NOW, TS, fake_ctx, mkm
 
 
-@pytest.fixture
-def conn(tmp_path):
-    c = db.connect(tmp_path / "t.db")
-    db.init_db(c)
-    yield c
-    c.close()
-
-
 def _seed(conn, tid):
     theories.register(conn, tid, tid, "x", now=TS)
     with db.write(conn):

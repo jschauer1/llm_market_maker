@@ -21,13 +21,6 @@ import pytest
 from tools import db, lanes
 
 
-@pytest.fixture()
-def conn():
-    c = db.connect(":memory:")
-    db.init_db(c)
-    return c
-
-
 def test_an_open_lane_is_claimed_outright(conn):
     claim = lanes.claim(conn, "maintenance", "sess-a",
                         now="2026-08-31T01:00:00Z")

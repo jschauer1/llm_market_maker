@@ -8,12 +8,8 @@ PRIORS = {"strong": 4.0, "moderate": 2.0, "weak": 0.0}
 
 
 @pytest.fixture
-def conn(tmp_path):
-    c = db.connect(tmp_path / "test.db")
-    db.init_db(c)
-    theories.register(c, "t1", "Theory One", "theories/t1", now=TS)
-    yield c
-    c.close()
+def conn(registered_conn):
+    return registered_conn
 
 
 def _bet(conn, ticker, entry_price, bucket, won, edge=4.0):

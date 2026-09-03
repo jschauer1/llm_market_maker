@@ -44,14 +44,6 @@ POLY_MARKET = PolymarketMarket(
 )
 
 
-@pytest.fixture
-def conn(tmp_path):
-    c = db.connect(tmp_path / "test.db")
-    db.init_db(c)
-    yield c
-    c.close()
-
-
 def test_save_kalshi_writes_a_row(conn):
     assert snapshot.save_kalshi(conn, [KALSHI_MARKET], now=TS) == 1
     row = conn.execute("SELECT * FROM market_snapshots").fetchone()
