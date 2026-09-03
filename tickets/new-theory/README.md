@@ -313,9 +313,15 @@ home, one status.
    still binds: data, then code, then a structural gate, then outcome
    judgment).
 4. Reuse the validated patterns already in the repo: the price-bin bucket
-   pattern in `theories/insider_bias/mention_family/mention_bucket.py`
-   (`PRICE_BINS`, `bucket_for_price`, measured rates via
-   `tools/buckets.py`), the code-gate-with-category-report pattern in
+   pattern in `mention_bucket.py` (`PRICE_BINS`, `bucket_for_price`,
+   measured rates via `tools/buckets.py`) — that theory was retired and
+   its code deleted 2026-09-02, so read the pattern at `git show
+   450db428ec0e7542852fae6484ab8370aaeddfad:theories/insider_bias/
+   mention_family/mention_bucket.py`, and read `theories/retired/
+   mention_family/RETIRED.md` first: the procedure those bins drove
+   measured **dead** at full coverage (−1.53pts net, n=3,441). The bin
+   *mechanics* are the reusable part, not the claim. The
+   code-gate-with-category-report pattern in
    `theories/insider_bias/insider_judgment/gate.py`, the tier-A backtest
    pattern in `theories/insider_bias/insider_judgment/backtest.py`, and
    fee math from `tools/sizing.py`. The session board comes from

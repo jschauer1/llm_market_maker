@@ -23,8 +23,11 @@ before it may replace its prior. See THEORY.md Version). Carried forward from th
 sequence below is a decision-procedure change and **bumps the version**.
 v3 (2026-08-24) marks the point where the mention-family discovery
 happened; it briefly lived here as a mechanical sub-path before moving into
-its own theory the same day (`theories/insider_bias/mention_family/` — see
-its own RUNBOOK.md for how to run it). It did not change stages 1–6, which
+its own theory the same day. That theory was retired (user, 2026-08-27)
+and migrated on 2026-09-02: its record is now `theories/retired/
+mention_family/`, and its `RUNBOOK.md` was deleted with the rest of its
+code — retrieve it with `git show 450db428ec0e7542852fae6484ab8370aaeddfad:theories/insider_bias/
+mention_family/RUNBOOK.md`. It did not change stages 1–6, which
 is why the 44 v2 live rows stay their own comparable cohort rather than
 needing a re-run, and why the version number stayed at 3 rather than
 reverting.

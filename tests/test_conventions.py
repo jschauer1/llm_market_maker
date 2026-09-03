@@ -311,8 +311,7 @@ def test_every_record_opportunity_param_has_an_attempt_column():
 #: add theories/*/CLAUDE.md (§7.9) and the dated-citation check (§6.6).
 #:
 #: Deliberately excludes nested theories/*/*/THEORY.md (e.g.
-#: theories/insider_bias/insider_judgment/THEORY.md,
-#: theories/insider_bias/mention_family/THEORY.md): `_doc_paths` only
+#: theories/insider_bias/insider_judgment/THEORY.md): `_doc_paths` only
 #: globs one level deep (`theories/*/THEORY.md`), so a family's nested
 #: THEORY.md files never enter this check. That is on purpose, not an
 #: oversight -- a nested theory doc's backticked paths are written
@@ -538,9 +537,10 @@ def _file_contains_date_heading(path, date):
     missed a real, repo-wide citation format -- THEORY.md 'Learnings'
     entries are Markdown list items, `- 2026-08-26 -- **headline
     text...**`, which start with `-`, not `#` or `**` (see
-    theories/insider_bias/insider_judgment/THEORY.md and
-    theories/insider_bias/mention_family/THEORY.md). Plain containment
-    fixed that false alarm but broke the test's actual job: reviewed and
+    theories/insider_bias/insider_judgment/THEORY.md; the second worked
+    example named here was mention_family's, retired and migrated to
+    theories/retired/mention_family/THEORY.md on 2026-09-02). Plain
+    containment fixed that false alarm but broke the test's actual job: reviewed and
     rejected (2026-08-29) because it cannot tell an entry's own dated
     anchor from an unrelated mention of the same date elsewhere in the
     file. Reproduced concretely: insider_judgment/THEORY.md carries two
@@ -1057,19 +1057,27 @@ def test_a_retired_theory_holds_only_its_record():
 #: Theories the DB calls `retired` that have NOT been migrated into
 #: `theories/retired/`, and are exempted from the test below.
 #:
-#: `mention_family` was retired 2026-08-26, five days before the folder
-#: convention existed (user ruling 2026-09-01), and never moved. Its
-#: migration is real outstanding work and is not free: it sits inside the
-#: shared `theories/insider_bias/` family parent alongside
-#: `insider_judgment`, it still owns a `studies/` subtree and open
-#: tickets, and `no_side_premium` came off it -- so moving it is its own
-#: change with its own review, not a side effect of a test run.
+#: **EMPTY, and that is the intended resting state.** It held exactly one
+#: slug, `mention_family` -- retired 2026-08-27, five days before the
+#: folder convention existed (user ruling 2026-09-01), and never moved.
+#: The set was that debt made visible rather than hidden, and it was
+#: built to expire: the test below checks every slug listed here is
+#: genuinely still un-migrated, so an entry that has since been migrated
+#: fails the suite rather than silently excusing a future un-migrated
+#: retirement filed under the same slug.
 #:
-#: This set is that debt made visible rather than hidden. The test below
-#: checks every slug listed here is genuinely still un-migrated, so the
-#: exemption cannot rot: whoever migrates `mention_family` deletes this
-#: line in the same commit, or the suite tells them to.
-_UNMIGRATED_RETIREMENTS = {"mention_family"}
+#: It worked as designed. `mention_family` was migrated to
+#: `theories/retired/mention_family/` on 2026-09-02 and this entry was
+#: deleted in that same change, because leaving it would have failed the
+#: `stale_exemptions` assertion below.
+#:
+#: Adding a slug here is a deliberate act of deferral, not a way past a
+#: red test. Write down what makes the migration non-trivial when you do
+#: -- for mention_family it was three things: it sat inside the shared
+#: `theories/insider_bias/` family parent, it owned an in-flight
+#: `studies/` subtree other studies read, and `no_side_premium` came off
+#: it.
+_UNMIGRATED_RETIREMENTS: set[str] = set()
 
 
 def test_every_retired_theory_lives_under_theories_retired():

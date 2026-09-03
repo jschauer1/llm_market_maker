@@ -260,7 +260,7 @@ The side-asymmetry pattern-mining pass that founded this theory (idea
 14, registered 2026-08-25) is recorded in full under `## 2026-08-25 —
 Pattern-mining the fullcov rows: timing and price-level dead, but a side
 asymmetry survives every stress and feeds no-side-premium (migrated from
-RESEARCH_LOG.md)` in `theories/insider_bias/mention_family/NOTES.md`,
+RESEARCH_LOG.md)` in `theories/retired/mention_family/NOTES.md`,
 not here.
 
 ## 2026-08-26 (cont.) — no_side_premium forward test implemented and running; polymarket whale filter fixed (migrated from RESEARCH_LOG.md)

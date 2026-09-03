@@ -23,7 +23,7 @@ paragraph. The old name is still the package/folder path
 commands, `provenance list --theory`).
 
 **A mechanical sibling theory, `mention_family`, split off from this one on
-2026-08-24 — see `theories/insider_bias/mention_family/THEORY.md` for its
+2026-08-24 — see `theories/retired/mention_family/THEORY.md` for its
 hypothesis.** It started as a v3 sub-path here (a purely mechanical, no-LLM
 edge on "will X mention/say/do Y" markets, discovered as a side effect of
 backtesting this theory's stage-1 screen) and moved into its own theory

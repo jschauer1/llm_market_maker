@@ -125,8 +125,13 @@ also part of the decision path. Record the later of the two cutoffs as
 ## 2. Enforce the rules
 
 - **The replay code lives with the theory**, as `backtest.py` in its
-  folder by convention — `theories/insider_bias/mention_family/backtest.py`
-  is the worked example. When sibling theories replay the *same* screen,
+  folder by convention — `theories/insider_bias/insider_judgment/
+  backtest.py` is the worked example. (It was `mention_family`'s until
+  that theory was retired and its code deleted on 2026-09-02; that
+  replay is still readable at `git show 450db428ec0e7542852fae6484ab8370aaeddfad:theories/insider_bias/
+  mention_family/backtest.py`, and it is where Kalshi's ~60-day
+  archival floor was established.) When sibling theories replay the
+  *same* screen,
   the shared half moves up to their shared parent, never to `tools/`:
   `theories/insider_bias/replay.py` is that case. The harness gives you
   point-in-time data, run identity, tiers and scoring; reconstructing a

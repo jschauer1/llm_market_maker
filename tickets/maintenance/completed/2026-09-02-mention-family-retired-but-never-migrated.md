@@ -6,7 +6,9 @@ created_by: unknown
 author_lane: maintenance
 author_focus: final fix wave, 2026-09-02 theory-retirement branch
 author_context: Adding the converse conventions guard for Important 1 of the final review; the new test fails on mention_family, so it needed an exemption and this ticket.
-status: open
+status: done
+closed: 2026-09-03
+resolution: Migrated 2026-09-02 on branch retire-mention-family. mention_family now lives at theories/retired/mention_family/ holding exactly RETIRED.md, THEORY.md, NOTES.md, RESULTS.md; registry path repointed; code deleted at rev 450db428ec0e7542852fae6484ab8370aaeddfad. All three decision points this ticket said had to be decided rather than assumed: (1) nothing in theories/insider_bias/ or insider_judgment imported the sibling package -- families.py stays put because backfill_history.py and insider_judgment/backtest_fullcov.py call is_mention_family; (2) no live caller imports the module, only its concept; (3) the studies/ subtree went OWNERLESS to tickets/study/investigation/2026-08-29-series-bias-mining (368MB intact) rather than retiring with its theory, and its three tickets became maintenance tickets. _UNMIGRATED_RETIREMENTS is now empty, as its own self-checking design required.
 ---
 `mention_family` has status `retired` in the registry (retired 2026-08-26,
 rationale on its row) but still lives at `theories/insider_bias/mention_family`

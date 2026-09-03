@@ -1024,7 +1024,7 @@ dataset.
 Item (1) of `## 2026-08-24 — Two follow-ups from user questions: a
 corrected Big Brother bet, and a new mechanical path for the
 MENTION-family edge (migrated from RESEARCH_LOG.md)` in
-`theories/insider_bias/mention_family/NOTES.md` is insider_judgment's:
+`theories/retired/mention_family/NOTES.md` is insider_judgment's:
 the Big Brother correction and the stage-3 checklist item.
 
 ## 2026-08-26 — Formal multiplicity pass (user-prompted): Holm + event clustering (migrated from RESEARCH_LOG.md)
