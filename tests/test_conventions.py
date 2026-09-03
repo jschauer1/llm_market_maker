@@ -1209,8 +1209,16 @@ def test_data_files_live_with_their_owner():
     exists so the first exception is a decision somebody makes rather
     than a file that appears.
     """
+    tracked = _tracked_files()
+    assert tracked, (
+        "git ls-files returned zero tracked files -- an empty list makes "
+        "this check pass vacuously without examining a single path, which "
+        "is exactly the failure mode it exists to prevent. Fix the "
+        "environment (this must run inside a real checkout with commits) "
+        "rather than trust a silent green here."
+    )
     stray = []
-    for line in _tracked_files():
+    for line in tracked:
         if Path(line).suffix.lower() not in _DATA_SUFFIXES:
             continue
         if not line.startswith(_DATA_OWNERS):
@@ -1236,6 +1244,23 @@ def test_ticket_states_match_their_lane():
     purpose: it holds the lane's shared reference material, and it was
     moved out of `evidence/` precisely because being scanned as a state
     made `backlog()` report three permanent malformed rows.
+
+    **Theory-owned tickets and studies are in scope too.** Most theory
+    tickets, and 3 of the 4 studies, do not live under the repo-root
+    `tickets/` tree at all -- they live inside the theory that owns them,
+    at `<theory path>/tickets/<state>/` and `<theory path>/studies/
+    <state>/` (`tickets.ticket_dir`, `tickets.backlog`). Before this test
+    walked those directories too, a session finishing a theory-owned
+    study could create `theories/<slug>/studies/completed/` -- a natural
+    mistake, since `completed/` is the terminal state for every OTHER
+    lane -- and this test stayed green. `backlog()` never lists it back:
+    `_scan` only walks `states_for("study")`, and `completed` is not one
+    of them, so the ticket becomes invisible and nothing ever advances it.
+    The traversal below mirrors `tickets.backlog()`'s own
+    `(ROOT / "theories").rglob("tickets")` / `.rglob("studies")` walk
+    rather than inventing a second one -- if the two ever disagreed about
+    where tickets live, this test would be guarding a different tree than
+    the code reads, which is worse than no test at all.
     """
     from tools import tickets
 
@@ -1252,6 +1277,26 @@ def test_ticket_states_match_their_lane():
     for base in sorted((ROOT / "tickets" / "study").glob("*")):
         if base.is_dir() and base.name not in tickets.states_for("study"):
             problems.append(f"tickets/study/{base.name}")
+
+    theories_dir = ROOT / "theories"
+    if theories_dir.is_dir():
+        theory_legal = set(tickets.states_for("theory")) | allowed_extra
+        for candidate in sorted(theories_dir.rglob("tickets")):
+            if not candidate.is_dir():
+                continue
+            rel = candidate.relative_to(ROOT).as_posix()
+            for child in sorted(candidate.iterdir()):
+                if child.name not in theory_legal:
+                    problems.append(f"{rel}/{child.name}")
+        study_legal = set(tickets.states_for("study")) | allowed_extra
+        for candidate in sorted(theories_dir.rglob("studies")):
+            if not candidate.is_dir():
+                continue
+            rel = candidate.relative_to(ROOT).as_posix()
+            for child in sorted(candidate.iterdir()):
+                if child.name not in study_legal:
+                    problems.append(f"{rel}/{child.name}")
+
     assert problems == [], (
         "a ticket state directory does not belong to its lane:\n"
         + "\n".join(problems)

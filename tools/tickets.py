@@ -1179,22 +1179,32 @@ def _pressure_line(lane: str, rows: list[dict], today: date) -> str | None:
     `render` directly) has no `status` key at all, and defaults to
     `"open"` here to match `backlog()`'s own default of `status="open"`,
     which is what every real caller uses.
+
+    The COUNT threshold counts every open row, malformed ones included.
+    `_age_days` returns `None` for a ticket with an empty or unparsable
+    `created` field, and that ticket is still an open ticket somebody has
+    to deal with -- arguably more so, since it also needs its `created`
+    field fixed. Dropping it from the tally let a lane with 5 open
+    tickets (one malformed) read as quiet instead of tripping the
+    threshold. Only the AGE threshold needs a real date and so only looks
+    at the datable subset.
     """
-    ages = [
-        age for row in rows
-        if row.get("status", "open") == "open"
-        and (age := _age_days(row, today)) is not None
-    ]
-    if not ages:
+    open_rows = [row for row in rows if row.get("status", "open") == "open"]
+    if not open_rows:
         return None
+    ages = [
+        age for row in open_rows
+        if (age := _age_days(row, today)) is not None
+    ]
     reasons = []
-    if len(ages) >= _PRESSURE_COUNT:
+    if len(open_rows) >= _PRESSURE_COUNT:
         reasons.append(
-            f"{len(ages)} open tickets (threshold {_PRESSURE_COUNT})")
-    oldest = max(ages)
-    if oldest > _PRESSURE_AGE_DAYS:
-        reasons.append(
-            f"oldest is {oldest}d old (threshold {_PRESSURE_AGE_DAYS}d)")
+            f"{len(open_rows)} open tickets (threshold {_PRESSURE_COUNT})")
+    if ages:
+        oldest = max(ages)
+        if oldest > _PRESSURE_AGE_DAYS:
+            reasons.append(
+                f"oldest is {oldest}d old (threshold {_PRESSURE_AGE_DAYS}d)")
     if not reasons:
         return None
     return f"  PRESSURE -- {lane}: " + "; ".join(reasons)
@@ -1209,8 +1219,9 @@ def render(entries: list[dict], *, now: str | None = None) -> str:
     in order to *do* the work is in the file, and it opens the file.
 
     A lane whose open tickets cross either backlog-pressure threshold
-    (`_PRESSURE_AGE_DAYS`, `_PRESSURE_COUNT`) gets a PRESSURE line under
-    its heading. This is what turns "is the backlog a priority?" from a
+    (`_PRESSURE_AGE_DAYS`, `_PRESSURE_COUNT`) gets a PRESSURE line after
+    the lane's rows, before the blank line that separates it from the
+    next lane. This is what turns "is the backlog a priority?" from a
     question re-litigated every session into one code answers -- see the
     `go` skill for what a session does once it sees one: take the lane,
     or decline it with a reason in the report.
