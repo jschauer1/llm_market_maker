@@ -4,7 +4,9 @@ lane: theory
 theory: deadline_drift
 created: 2026-09-02
 created_by: sdd-study-ticket-pipeline-task-6
-status: open
+status: done
+closed: 2026-09-03
+resolution: Both citations repointed 2026-09-02. THEORY.md now names docs/2026-08-29-structural-gate-payload-version/ and NOTES.md names theories/deadline_drift/studies/answer/2026-08-29-deadline-drift-classifier-audit/. The peer session that owned this folder was stopped by the user, so the files were finally safe to edit. test_every_repo_path_named_in_docs_resolves now reports only no_side_premium's three spans.
 ---
 The 2026-09-01 study migration dissolved the top-level `studies/` tree: a
 study is now a ticket directory, either inside the theory that owns it or

@@ -400,4 +400,4 @@ When the backtest is built it must construct the screen payload from the
 fetch: `rules_primary` changes substantively on live markets, and a moved
 strike does not merely misjudge one market — it reassigns it to a different
 stochastic process and poisons a whole bin. See
-`studies/2026-08-29-structural-gate-payload-version/`.
+`docs/2026-08-29-structural-gate-payload-version/`.

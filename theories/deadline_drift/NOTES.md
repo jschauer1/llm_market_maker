@@ -5,7 +5,7 @@ Dated, raw, append-only. The distilled version lives in `THEORY.md`.
 ## 2026-08-29 — proposed, v1, bins not yet collected
 
 Promoted from idea 3 after five audit rounds. Full narrative in
-`studies/2026-08-29-deadline-drift-classifier-audit/STUDY.md`; short version
+`theories/deadline_drift/studies/answer/2026-08-29-deadline-drift-classifier-audit/STUDY.md`; short version
 is that a board-wide mechanical screen is unreachable (round 5: 12% against
 a 10% bar, not distinguishable from round 4's 16%) and the allowlist is
 (round 5b: 70/70 series, exhaustive, no sampling error).
@@ -202,7 +202,7 @@ disjoint systematic samples of the 117,272-market board. No API calls and
 no hazard bins collected — deliberately, because the bins are the
 expensive step (Kalshi rate-limits to ~4–5 req/s) and misclassification
 poisons them. Study, classifier and all three judged samples:
-`studies/2026-08-29-deadline-drift-classifier-audit/`.
+`theories/deadline_drift/studies/answer/2026-08-29-deadline-drift-classifier-audit/`.
 
 | round | population | misclassified /50 | rate |
 |---|---|---|---|
