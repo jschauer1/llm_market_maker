@@ -183,3 +183,26 @@ goes to be found.
   0 inconclusive, 0 sent back, 0 retired. 15 commits, all pushed. 0 orphans.
   Suite 1418 passed / 2 failed, both failures confined to the uncommitted
   folder above.
+
+## 2026-09-03 — supervisor session llm-market-identifier-c5
+
+- 01:33 startup. Tree clean (0 dirty). No lane claims held by anyone.
+  `theories/no_side_premium/` — left uncommitted by the previous fleet at
+  00:29 — is now tracked and committed; a peer took the handoff, so there
+  was nothing to inherit.
+- 01:33 floor lock held by `llm-market-identifier-18` since 00:47Z (4h
+  lease, expires ~04:47Z). That session is NOT in `ListAgents` — a dead
+  holder squatting the lock. Not released: a supervisor does not claim or
+  clear the floor, and the lease self-expires. Noted in case a worker
+  reports the floor as unavailable.
+- 01:33 live peers sharing this tree: llm-market-identifier-52
+  (interactive), accomplice-zazzy-trinket (Remote Control). Not fleet
+  workers, do not count toward three, but they commit to the same master.
+- 01:33 cron 262d16d9 armed (7,27,47 * * * *) for the §3 heartbeat.
+- 01:33 suite baseline started in background (task bonx55qnm).
+- 01:33 generations start at g4 — the previous fleet used g1-g3 and its
+  names are still in this log; reusing them would make the roster
+  ambiguous.
+- 01:33 SPAWN w1 = fleet-w1-g4 (af42435e365dd1b83)
+- 01:33 SPAWN w2 = fleet-w2-g4 (ada30159650920c4d)
+- 01:33 SPAWN w3 = fleet-w3-g4 (a7441c05cd401bf6d)
