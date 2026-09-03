@@ -218,3 +218,27 @@ goes to be found.
   at tickets/maintenance/open/2026-09-02-parse-deadline-earned-elevation.md.
   Not chased by the supervisor -- it is a maintenance-lane ticket and a
   worker may claim it. Blame workers only for failures beyond these two.
+- 02:01 w2 (fleet-w2-g4) COMPLETE -> CONCLUSIVE. Verified: claim 25
+  released (only 23/w1 and 24/w3 open), STUDY.md + RESEARCH_LOG entry +
+  2 tickets closed + 1 filed all on disk, outcome reached (a result).
+  series-bias-mining pass 4: sweep complete at 840/840 series / 146,964
+  obs; at a fillable quote (spread<=0.07, OI>=100) Kalshi recurring-series
+  favorites are calibrated 0.65-1.00 within 0.4pts at MDE 0.42-1.80. The
+  whole -2.05 to -15.27pt favorite-overpricing gradient lives in quotes
+  that were not fillable. Acceptance test passed 10-of-17 controls
+  unfiltered vs 0-of-5 filtered on identical rows. Per-series question
+  ruled unanswerable on this source. No pass 5.
+- 02:01 w2 also closed a live 17.6MB git hazard I independently verified:
+  tickets/study/answer/2026-08-30-parlay-markup/data/legs.db was untracked
+  AND unignored because `cli tickets advance` moved the study out of
+  investigation/ while the .gitignore rule still named that state. Now
+  matched by a state-independent glob (.gitignore:46); `git check-ignore`
+  confirms. The general defect is ticketed as
+  2026-09-03-advance-orphans-gitignore-and-citations.
+- 02:01 COMMIT efb4dee (w2 manifest only, 12 paths + 2 ticket-close
+  renames). Pushed. Verified staged set contained nothing from w1 or w3;
+  RESEARCH_LOG.md held only w2's single 93-line entry.
+- 02:01 SPAWN w2 = fleet-w2-g5 (a4a42e75720ba21ae). ListAgents confirmed
+  slot empty first: only af42(w1) and a7441(w3) live.
+- 02:01 no live peer sessions remain (llm-market-identifier-52 and
+  accomplice-zazzy-trinket both gone). Fleet is the only writer now.
