@@ -8,12 +8,16 @@ TS = "2026-08-23T12:00:00Z"
 
 
 @pytest.fixture
-def dbpath(tmp_path):
-    path = tmp_path / "test.db"
+def dbpath(make_db_file):
+    """A real database FILE, because the CLI reopens it by path.
+
+    Copied from the session template rather than built per test: the file
+    semantics the CLI needs are identical, the construction is not.
+    """
+    path = make_db_file()
     conn = db.connect(path)
-    db.init_db(conn)
     theories.register(conn, "t1", "Theory One", "theories/t1", now=TS)
-    conn.close()
+    db.close(conn)
     return str(path)
 
 

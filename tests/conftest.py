@@ -35,6 +35,7 @@ Design and measurements: docs/superpowers/specs/2026-09-02-test-suite-speed-desi
 
 from __future__ import annotations
 
+import shutil
 import sqlite3
 import sys
 
@@ -97,17 +98,56 @@ def registered_conn(conn):
 # Tier 3: a database that is genuinely a file
 # --------------------------------------------------------------------- #
 
+@pytest.fixture(scope="session")
+def _template_db(tmp_path_factory):
+    """One fully-initialised database FILE, built once per session.
+
+    Copied per test rather than rebuilt: 6.8ms against 32.9ms, and the
+    copy is a real file with real WAL behaviour, so tier 3 keeps exactly
+    the semantics it is there to test. `db.close` checkpoints the WAL into
+    the file first, which is what makes copying the .db (plus its
+    snapshots sibling) sufficient.
+    """
+    path = tmp_path_factory.mktemp("db_template") / "template.db"
+    c = db.connect(path)
+    db.init_db(c)
+    db.close(c)
+    return path
+
+
+def _copy_db(template, dest):
+    """Copy a prebuilt database, and its snapshots sibling, into place."""
+    shutil.copyfile(template, dest)
+    src_snap = db.snapshots_path_for(template)
+    if src_snap.exists():
+        shutil.copyfile(src_snap, db.snapshots_path_for(dest))
+    return dest
+
+
 @pytest.fixture
 def db_file(tmp_path):
-    """Path for a real on-disk test database."""
+    """Path for a real on-disk test database. Not created."""
     return tmp_path / "test.db"
 
 
 @pytest.fixture
-def conn_disk(db_file):
-    """A database that is genuinely a file. Slow on purpose."""
+def make_db_file(tmp_path, _template_db):
+    """Return a callable that lays down a ready-to-use database FILE.
+
+    For tests that hand a path to the code under test, which then opens
+    the database itself -- `cli.main(["--db", path, ...])` being the
+    common case.
+    """
+    def _make(name: str = "test.db"):
+        return _copy_db(_template_db, tmp_path / name)
+    return _make
+
+
+@pytest.fixture
+def conn_disk(db_file, _template_db):
+    """A database that is genuinely a file."""
+    _copy_db(_template_db, db_file)
     c = db.connect(db_file)
-    db.init_db(c)
     yield c
     c.close()
 
