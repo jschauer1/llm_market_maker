@@ -6,11 +6,10 @@ from tools import db
 
 
 @pytest.fixture
-def conn(tmp_path):
-    c = db.connect(tmp_path / "test.db")
-    db.init_db(c)
-    yield c
-    c.close()
+def conn(conn_disk):
+    """A real FILE, because these tests are about on-disk behaviour --
+    but copied from the session template rather than rebuilt per test."""
+    return conn_disk
 
 
 def test_all_tables_created(conn):
