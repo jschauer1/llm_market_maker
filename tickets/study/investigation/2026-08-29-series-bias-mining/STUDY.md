@@ -9,7 +9,7 @@ created_by: migration
 
 **Date:** 2026-08-29 ·
 **Tier:** A (no model anywhere) ·
-**Verdict:** **not measured** ·
+**Verdict:** at a fillable quote no price band is detectably biased (gross within +-0.4 pts from 0.65 up, MDE 0.4-1.8); the whole favorite-overpricing gradient is untradeable quotes; per-series mining stays not measured at median MDE 12.58 ·
 Backlog spec #4, registry slug `series-bias-mining`
 
 **Ownerless since 2026-09-02 — the `theory:` line above was removed, not
@@ -916,6 +916,42 @@ measured**, whatever else it flags. That is the check that caught this
 in pass 3, and no amount of reasoning about which field to threshold
 substitutes for it.
 
+### Appended 2026-09-03 — the correction above got the two roles backwards
+
+**The original text of this correction is left exactly as written**, because
+it was a pre-registration and this repo supersedes rather than rewrites.
+What follows is the dated note that ticket
+`tickets/maintenance/open/2026-09-01-pass4-filter-roles-are-reversed.md`
+asks for, and it does not change the filter.
+
+The correction argued that `open_interest` is the load-bearing condition
+and `spread <= 0.07` is "explicitly **not** load-bearing on its own", on
+the reasoning that "a one-cent quote on a market nobody holds is still a
+quote". That reasoning is intuitive and it is **empirically false on this
+corpus**. Measured at 99.95% backfill coverage by
+`theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split/`
+(its "Correction 2"), in the 0.90-0.97 band: `spread<=0.07 AND oi==0` is
+-1.46 against `spread<=0.07 AND oi>=100` at -1.14 — a **0.3-point** gap —
+while the unfiltered-to-filtered improvement in that band is **6.5
+points**. Essentially all of the filter's effect is the spread condition.
+
+**Why the correction got it backwards:** it was written against the same
+37% alphabetical backfill prefix that misled run 1 of the liquidity
+study, where the oi==0 vs oi>=100 gap measured 2.9 points and open
+interest genuinely looked load-bearing. An alphabetical prefix of
+Kalshi's series list is not a random sample of the board — it is a
+sample of a few sports families.
+
+**What this does and does not change.** Pass 4 was still run with the
+filter **exactly as pre-registered** — the ticket is explicit that
+nothing should be retuned, and retuning after seeing pass 3's numbers
+would be a threshold chosen with the answer in view. What changes is how
+its result is read: **no pass-4 finding may be attributed to open
+interest**, and the pass-3-era explanation that "55% of the NO side is
+quoted into an empty book" explains nothing at full coverage. If a future
+pass wants a different filter, that is a new pre-registration on a stated
+collection state, not an edit to this one.
+
 ---
 
 ## Cross-reference, 2026-09-01: the pass-4 threshold has been set, and the filter's effect on this population is now measured
@@ -983,3 +1019,314 @@ study's own one-run rule and are due a re-run on completion. The backfill
 was resumed by this session after stalling at 213 series; **the first
 aged-out rows have now appeared** (KXFIGHTMENTION, 2 of 311), which is
 the cost this ticket predicted starting to be paid.
+
+---
+
+# Pass 4 result — run 2026-09-03, on the COMPLETED sweep
+
+**One run, on the collection state at which the sweep stopped — and it
+stopped by completing.** STUDY.md's one-run rule fixes the reported
+primary result as the run on that state, and this is it:
+
+```
+walk    : 8,533 series          COMPLETE
+prices  : 840 / 840 eligible    COMPLETE   (830 yielded usable rows)
+obs     : 146,964 priced observations, 99.98% carrying spread+open_interest
+```
+
+Pass 3 ran on a frozen 658-series / 69,874-observation snapshot taken
+mid-sweep. This is 2.1x the observations and the whole reachable
+population, so the two runs are two different tests and the pass-3
+numbers below are quoted only for comparison, never pooled.
+
+## Headline
+
+```
+filter: spread <= 0.07 AND open_interest >= 100, at the decision point
+
+  priced observations      : 146,964
+  admitted                 :  36,257
+  removed                  : 110,707  (75.3%)
+    no book fields (NULL)  :      33
+    fails spread only      :   6,034
+    fails open interest only: 57,721
+    fails both             :  46,919
+
+  series with priced obs      : 734
+  series clearing floors      : 216   (of which 5 mention control)
+  series TESTED (Holm family) : 211
+  expected false positives    : 10.6
+  median MDE over tested      : 12.58 pts
+
+  ACCEPTANCE TEST -- control tripping split+t : 0 of 5   CONTROL CLEAN
+  pass-3 criterion (>=30 tested, median MDE <=8.0)       : NOT met
+  PRE-REGISTERED 'MEASURED'?                             : NO
+  FLAGGED (all four gates)                               : 0
+```
+
+Reproduce with `python tickets/study/investigation/2026-08-29-series-bias-mining/pass4.py`;
+the follow-up tables below with `pass4_diagnostics.py` beside it.
+
+## VERDICT on the pre-registered per-series question: still NOT MEASURED
+
+Median MDE 12.58 against a bar of 8.0. **Zero flags at that power is not
+a negative result**, and saying otherwise would be pass 1's exact
+mistake — "0 of 17 flagged" meaning *not measured* rather than
+*calibrated*. The per-series question this study asks in its title is
+unanswered, for the fourth pass running.
+
+**And it is now clear that it cannot be answered on this data source.**
+The sweep is complete: 840 of 840 eligible series, the entire ~60-day
+archive window, nothing left to collect. Under the tradeable filter the
+median admitted series has n=91 over 16 settlement days, and only 41 of
+211 reach MDE <= 8. Per-series power is bounded by *per-series history*,
+and Kalshi ages settled markets out at ~60 days, so more collecting
+cannot raise it — only more calendar can. That is the same structural
+finding `parlay-markup` phase 1 reached by the same route, and it is
+recorded here as the reason no pass 5 is proposed.
+
+## VERDICT on the acceptance test: PASSED, and this is what pass 4 was for
+
+Pass 3 was **re-run on this same completed collection state** so the
+comparison isolates the filter and nothing else — same corpus, same
+statistic, same gates, one difference:
+
+```
+  ON THE COMPLETED SWEEP (146,964 obs / 830 series)
+                          tested  flagged  median MDE   control admitted / tripping
+  unfiltered (pass 3)        496       30        9.67          17  /  10
+  tradeable  (pass 4)        211        0       12.58           5  /   0
+```
+
+STUDY.md fixed this twice before the data existed: *if `mention_family`
+still trips the gates under the filter, the population is still wrong
+and pass 4 is not measured, whatever else it flags.* It does not.
+
+**Ten of seventeen control series trip the gates without the filter, and
+zero of five trip with it, on the same rows.** That is as clean an
+attribution as this study can produce: the population defect pass 3
+diagnosed is caused by untradeable quotes, and filtering them removes it.
+The negative control — the one instrument here that has caught every
+previous failure — is the thing saying so, which is exactly the job it
+was given.
+
+Two honest qualifications:
+
+- The control shrank from 17 admitted series to 5, so it is a **weaker
+  check** than the unfiltered one. A clean control over 5 series is
+  reassuring, not conclusive.
+- The unfiltered re-run is a **different test** from pass 3's frozen run
+  (658 series / 69,874 obs, 347 tested, 9 flagged, 5 of 11 control
+  tripping). Two collection states are two tests, per this study's own
+  one-run rule; **both are reported here and neither is presented as
+  the better-looking one.** The direction is the same in both and the
+  full-coverage version is worse: 30 flags rather than 9, and 59% of the
+  control tripping rather than 45%.
+
+## The finding: at a fillable quote, favorites are calibrated at every level
+
+This is the ask-band re-run the 2026-09-01 cross-reference asked for by
+name (it ran on 227 of 659 backfilled series and said its numbers "carry
+this study's own one-run rule and are due a re-run on completion").
+Day-clustered over 61 settlement days, gross with net beside it,
+**MDE printed so a near-zero figure cannot be misread as calibration
+when it is really an absent measurement**:
+
+```
+  ALL rows  (n=146,964)
+    band          n     days  mean ask  realized    gross      net       t     MDE
+    0.50-0.65   24,385   61     0.579     0.559     -2.05    -3.75   -3.96    1.45
+    0.65-0.80   29,740   61     0.724     0.687     -3.46    -4.85  -10.35    0.94
+    0.80-0.90   23,806   61     0.847     0.792     -5.04    -5.94  -11.14    1.27
+    0.90-0.97   28,641   61     0.934     0.865     -6.51    -6.93  -13.64    1.34
+    0.97-0.98    8,041   61     0.970     0.893     -7.22    -7.42   -8.20    2.46
+    0.98-1.01   32,351   61     0.987     0.827    -15.27   -15.36  -18.41    2.32
+
+  TRADEABLE  (n=36,257)
+    band          n     days  mean ask  realized    gross      net       t     MDE
+    0.50-0.65   10,101   61     0.571     0.561     -1.04    -2.74   -1.61    1.80
+    0.65-0.80    7,349   61     0.719     0.718     -0.36    -1.76   -0.63    1.61
+    0.80-0.90    5,389   61     0.848     0.841     -0.42    -1.32   -0.67    1.75
+    0.90-0.97    6,511   61     0.934     0.932     +0.18    -0.25   +0.49    1.04
+    0.97-0.98    1,587   61     0.970     0.972     +0.36    +0.16   +0.81    1.26
+    0.98-1.01    5,320   61     0.986     0.990     +0.35    +0.25   +2.31    0.42
+```
+
+**Every MDE in the tradeable half is between 0.42 and 1.80 points, well
+inside this repo's 3-point theory-grade floor.** So unlike the per-series
+family, this *is* an adequately powered measurement, and its answer is:
+
+> **On the favorite side of a recurring Kalshi series at 25% of its
+> lifetime, priced at a quote you could actually fill, realized rate
+> matches the ask to within half a point at every level from 0.65 to
+> 1.00.** Ask 0.934 realizes 0.932; ask 0.970 realizes 0.972; ask 0.986
+> realizes 0.990.
+
+And the mirror of that:
+
+> **The entire favorite-overpricing gradient — monotone from -2.05 to
+> -15.27 points as the price rises — lives in quotes that were not
+> fillable.** It is not a market that is wrong by fifteen points at 0.98;
+> it is a top-of-book number with nothing behind it.
+
+The 0.98-1.01 tradeable band carries t=+2.31 on a +0.35 pt gross edge.
+Six bands were computed, the effect is a third of a point, and it is
+reported as what it is — noise at the scale that matters — not as a
+finding.
+
+Note also what the *net* column says, and it is the answer to "is any of
+this bettable": every tradeable band is negative or within a quarter-point
+of zero after fees. A calibrated market minus a fee is a losing bet, which
+is the expected result and worth stating so nobody re-derives it.
+
+## Pass 3's nine flags did not survive, and the reason is not power
+
+Pass 4 flags nothing, which is only interpretable if you can tell "the
+effect vanished" from "the series left the family". Per series:
+
+| series | pass 3 (unfiltered) | tradeable obs surviving |
+|---|---|---|
+| KXNPBRFI | -40.85, t -11.46, n=204 | **0** |
+| KXNFL4Q | -10.18, t -12.48, n=141 | **0** |
+| KXATPCHALLENGERDOUBLES | -26.09, t -8.02, n=276 | **0** |
+| KXUELFTTS | -24.74, t -7.45, n=162 | **0** |
+| KXT20TEAMTOTAL | -33.54, t -7.25, n=113 | **1** |
+| KXKBORFI | -25.47, t -6.67, n=188 | **0** |
+| KXNFL2H | -9.69, t -6.53, n=141 | 32 |
+| KXCPLTEAMTOTAL | -44.97, t -5.95, n=93 | **0** |
+| KXATP | +5.91, t +5.46, n=77 | 27 |
+
+**Six of the nine have literally zero observations with a fillable
+quote**, and a seventh has one. These were not series with a bias that
+became insignificant; they were series whose entire measured history was
+untradeable quotes. "A -45 point systematic bias is not a bias", pass 3
+said, and this is what that sentence cashes out to.
+
+## The carried candidates: both fail, and one fails informatively
+
+Signs were fixed in pass 3's bar before any of this data existed.
+
+- **`KXRT`**, predicted negative: **-0.60 gross, t -0.22, n=159 over 9
+  days.** Right sign, no magnitude, nowhere near significance. Not
+  confirmed, third pass running. Pass 1's -4.23 does not reproduce at a
+  fillable quote.
+- **`KXLOWTLV`**, predicted positive: **+0.07 gross, t +0.02, n=72 over
+  50 days.** It is *in* the family this pass (it was not in pass 3's
+  frozen run), so for the first time this is a real test rather than an
+  absence — and pass 2's +9.50 gross at t=+5.44 collapses to **zero**.
+  On the unfiltered full-coverage re-run it is **-0.63, the sign
+  OPPOSITE the prediction**, on n=313 over 60 days. Pass 2's single flag
+  was its most extreme-win-rate series, admitted by an
+  outcome-correlated MDE floor; this is the out-of-sample test of it, and
+  it **failed on both populations**, once by collapsing to zero and once
+  by flipping sign.
+
+## Pass 3, re-run on the completed sweep — the other half of the ticket
+
+`tickets/maintenance/open/2026-09-01-series-bias-sweep-finish.md` asked
+for two things: finish the phase-2 sweep, and re-run pass 3 on it. The
+sweep finished at 840/840; this is that re-run, **reported as its own
+test on its own stated collection state**, never pooled with the frozen
+run:
+
+```
+  series with priced obs      : 830        (frozen run: 658)
+  series clearing floors      : 513        (358)
+  series TESTED (Holm family) : 496        (347)
+  expected false positives    : 24.8       (17.4)
+  median MDE over tested      : 9.67 pts   (12.16)
+  PRE-REGISTERED 'MEASURED'?  : NO         (NO)
+  FLAGGED (all four gates)    : 30         (9)
+  control tripping split+t    : 10 of 17   (5 of 11)
+```
+
+**Median MDE improved from 12.16 to 9.67 and the pass is still not
+measured** — the count of series rose 43% and the power gate did not
+move past 8.0. That is the arithmetic behind "more series will not fix
+this; only longer per-series history will", now demonstrated rather than
+projected.
+
+The 30 flags are the same artifact pass 3 identified, at larger scale
+and with the magnitudes to prove it: `KXWCTEAMLEADGOAL` at **-83.26**,
+`KXTTMATCH` at -47.51, `KXCPLTEAMTOTAL` at -44.97, `KXNPBRFI` at -40.85.
+An eighty-three-point systematic bias is not a bias. With 10 of 17
+control series tripping alongside them, none of the 30 is a candidate
+for anything, and none is carried forward.
+
+## The selection channel pass 2 found is larger here, not smaller
+
+```
+  mean win rate, MDE<=8 : 0.8733
+  mean win rate, MDE >8 : 0.7624
+```
+
+Pass 2 measured 0.864 vs 0.829 and called an MDE floor non-neutral on
+that basis. The gap here is **11 points**, three times as wide. So the
+secondary MDE<=5 view — which flags four series
+(`KXARTISTSTREAMSY`, `KXBRENTW`, `KXLOWTDEN`, `KXLOWTSFO`) — is reporting
+exactly the outcome-correlated admission channel it was labelled as, and
+**none of those four is a candidate for anything.** Recorded so nobody
+reads a four-flag line as a result.
+
+## What pass 4 establishes, and what it does not
+
+1. **A tradeable-book filter fixes this population.** The negative
+   control is clean for the first time in four passes. That is a method
+   result and it is the one pass 4 was designed to produce.
+2. **At a fillable quote, Kalshi's recurring-series favorites are
+   calibrated at every price level**, at MDE 0.4-1.8 pts. Adequately
+   powered, and a genuine negative rather than an absent measurement.
+3. **Every apparent level bias in this corpus is a book artifact.** Not
+   a small one: the raw gradient runs to -15.3 points and it is entirely
+   quotes nobody could have hit.
+4. **The per-series question remains unanswered and is unanswerable on
+   this data source**, and the arithmetic for why is above.
+5. **Nothing here is promotable.** No follow-on theory is proposed. This
+   pass kills candidates; it creates none.
+
+## Independent corroboration, reached by a different route
+
+`theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split/`
+concluded at completion that "on this corpus, a Kalshi settled-market
+price at a fillable quote is not detectably biased at any level", having
+killed idea 36 (`mid-band-favorite-fade`) on 4.5x its run-1 data.
+
+That study reached it from a **pooled mid-relative round-trip** analysis
+on the `no_side_premium` 60-day observation set (72,010 obs / 659
+series). Pass 4 reaches the same place from a **per-series
+Holm-corrected mining family with a negative control** on this study's
+own sweep (146,964 obs / 830 series). Different corpus, different
+statistic, different failure modes — same answer. Two independent routes
+agreeing is worth more than either alone, and it is why this is recorded
+as the study's conclusion rather than as one more "not measured".
+
+**One conclusion of the 2026-09-01 cross-reference does not survive**,
+and it is flagged here rather than left to be found. That section read
+the filtered numbers as showing "one real effect and one artifact, and
+the price boundary between them is ~0.80", on 227 of 659 series: below
+0.80 the negativity looked to survive the filter unchanged
+(-4.90 -> -4.21, -3.30 -> -3.65, net). At full coverage on this study's
+completed population it does not — 0.65-0.80 goes -4.85 -> **-1.76** net
+(-3.46 -> **-0.36** gross, t=-0.63) and 0.50-0.65 goes -3.75 -> -2.74 net
+(t=-1.61). There is no surviving mid-band effect above noise. Idea 36 was
+already killed independently, so nothing was built on it; this is
+confirmation of that kill from a second corpus, and a third instance of
+the standing caution that **an alphabetical prefix of Kalshi's series
+list is not a random sample of the board.**
+
+## For a future session: what would move this, and what would not
+
+- **Would not:** collecting more series. The sweep is complete and the
+  eligible population is exhausted.
+- **Would not:** re-running any pass on the same corpus. That is
+  multiple comparisons by calendar, and this study's one-run rule says
+  so.
+- **Would:** extending the corpus forward in calendar time. Per-series
+  history is the binding constraint, the 60-day window rolls, and a
+  re-collection in three months buys per-series n that nothing else can.
+  That is a deliberate new pass with its own pre-registration and its
+  own stated collection state — not a re-run of this one.
+- **Worth knowing regardless of any of that:** the tradeable-quote
+  filter is now measured infrastructure. Any study reading this corpus
+  should apply it, and any result from this corpus that did not is
+  measuring the book, not the market.

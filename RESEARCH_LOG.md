@@ -4582,3 +4582,96 @@ harmless when the file was retained; now that the close deletes it, a
 `built` close is the one path where a spec leaves with nothing verifying
 its record landed. Left as-is to keep this change to the shape the user
 approved.
+
+## 2026-09-03 — series-bias-mining pass 4: at a fillable quote, Kalshi favorites are calibrated at every level (study lane, `fleet-w2-g4`)
+
+**Did.** Finished the `series-bias-mining` sweep and ran its last
+pre-registered pass. Phase 2 is **complete** — 840/840 eligible series,
+146,964 observations across 830 series, 99.98% carrying
+`spread`+`open_interest`, the entire reachable ~60-day archive. Then ran
+**pass 4** (pass 3's bar plus the pre-registered tradeable-book filter,
+`spread <= 0.07 AND open_interest >= 100`, adopted verbatim rather than
+re-derived) and re-ran **pass 3** on the same completed state so the
+comparison isolates the filter.
+
+**The headline, and it is a real adequately-powered negative.** On the
+favorite side of a recurring series at 25% of its lifetime, priced at a
+quote you could actually fill, realized rate matches the ask to within
+half a point at every level from 0.65 to 1.00 — ask 0.934 realizes 0.932,
+ask 0.970 realizes 0.972, ask 0.986 realizes 0.990. Day-clustered over 61
+settlement days at **MDE 0.42–1.80 pts**, well inside the 3-point
+theory-grade floor, so this is calibration rather than an absent
+measurement. The mirror: **the entire favorite-overpricing gradient —
+monotone from −2.05 to −15.27 pts as price rises — lives in quotes that
+were not fillable.** It is not a market wrong by fifteen points at 0.98;
+it is a top-of-book number with nothing behind it.
+
+**The acceptance test passed, and the attribution is clean.** Pass 4's
+pre-registered gate was: if `mention_family` still trips the gates under
+the filter, the population is still wrong. On the *same* rows, the
+unfiltered population trips **10 of 17** control series and the filtered
+one trips **0 of 5**. Same corpus, same statistic, one difference. The
+negative control — the instrument that caught every previous failure in
+this study — is what says the filter fixed the population.
+
+**Learned — the per-series question is not merely unanswered, it is
+unanswerable on this data source.** Pass 4 is "not measured" for the
+fourth pass running (median MDE 12.58 vs a bar of 8.0), and zero flags at
+that power is pass 1's exact mistake if read as calibration. But the
+sweep is now *complete*, so the usual answer — collect more — is spent:
+the unfiltered re-run grew the family 43% (347 → 496 tested) and moved
+median MDE only 12.16 → 9.67, still failing. Per-series power is bounded
+by per-series *history*, Kalshi ages settled markets out at ~60 days, and
+only calendar time buys more. Same structural shape `parlay-markup` phase
+1 reached. No pass 5 is proposed.
+
+**Learned — two independent routes now agree, which is why this is a
+conclusion rather than one more "not measured".**
+`no_side_premium`'s liquidity-filtered-side-split reached "a Kalshi
+settled-market price at a fillable quote is not detectably biased at any
+level" from a pooled mid-relative round-trip on 72,010 obs / 659 series.
+Pass 4 reaches it from a per-series Holm-corrected mining family with a
+negative control on 146,964 obs / 830 series. Different corpus,
+statistic and failure modes, same answer. **Practical consequence: the
+tradeable-quote filter is now measured infrastructure — any result from
+this corpus that did not apply it is measuring the book, not the
+market.** Pass 3's nine flags are the worked example: six of the nine
+have *literally zero* observations with a fillable quote.
+
+**Learned — a study's state directory move orphans its `.gitignore`
+entry, and this had already gone wrong.** `cli tickets advance` moves the
+folder and touches nothing else. `parlay-markup` was advanced to
+`answer/` while its ignore rule still named `investigation/`, so
+`tickets/study/answer/2026-08-30-parlay-markup/` was sitting untracked
+**and unignored** with a 17.6MB `legs.db` in it — one `git add -A` by
+whoever commits this tree away from entering history. Fixed by rewriting
+both study entries as state-independent globs
+(`tickets/study/*/<slug>/data/`), verified with `git check-ignore`. The
+general defect and the citation half of it (series-bias-mining is cited
+by 23 files, two of them executable modules in another owner's folder
+that open its `collect.db` by path) are filed as
+`2026-09-03-advance-orphans-gitignore-and-citations`. **The generalizable
+rule: when a directory's location encodes state, every rule that names
+its path is a rule that expires on the next state change** — write the
+glob, not the path.
+
+**Learned — the same move silently killed the study's documented run
+command, and that is probably why the collector idled.** `collect.py`,
+`mine.py` and `pass3.py` all reached the repo root by hardcoded
+`parents[5]`/`parents[6]`, correct at
+`theories/insider_bias/mention_family/studies/investigation/` and wrong
+at `tickets/study/investigation/`. Every command in STUDY.md and in both
+open tickets died with `ModuleNotFoundError`. Nothing caught it: **pytest
+puts the repo root on `sys.path` itself, so the fixture tests kept
+passing while the documented command did not run.** Now located by
+marker (walk up for `tools/` + `theories/`).
+
+**Next.** The corpus is captured and answered; the remaining work on it
+is bookkeeping, not measurement. `advance-orphans-gitignore-and-citations`
+is the one with teeth — it has already cost a near-miss, it will recur on
+every study advance, and its natural first case is moving
+series-bias-mining to `answer/` with its 23 citations repointed. The
+study itself needs nothing until somebody wants to spend calendar time
+extending the corpus forward, which is a new pass with its own
+pre-registration and its own stated collection state, never a re-run of
+this one.

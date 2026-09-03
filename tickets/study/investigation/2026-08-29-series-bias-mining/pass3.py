@@ -29,7 +29,22 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE.parents[5]))
+#: The repo root, located by MARKER rather than by depth. This study has
+#: moved three times -- studies/<slug>/ -> theories/insider_bias/
+#: mention_family/studies/investigation/<slug>/ -> tickets/study/
+#: investigation/<slug>/ -- and every move silently invalidated a
+#: hardcoded `parents[N]`, leaving the run command documented in STUDY.md
+#: and in the two open tickets dead with ModuleNotFoundError. Nothing
+#: catches that: pytest puts the repo root on sys.path itself, so the
+#: fixture tests kept passing while the documented command did not run.
+def _repo_root(start: Path) -> Path:
+    for p in start.parents:
+        if (p / "tools").is_dir() and (p / "theories").is_dir():
+            return p
+    raise RuntimeError("repo root not found above %s" % start)
+
+
+sys.path.insert(0, str(_repo_root(Path(__file__).resolve())))
 sys.path.insert(0, str(HERE))
 
 import mine as M                                       # noqa: E402

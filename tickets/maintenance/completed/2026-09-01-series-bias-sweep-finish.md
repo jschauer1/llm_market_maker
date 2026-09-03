@@ -5,7 +5,9 @@ study: 2026-08-29-series-bias-mining
 created: 2026-09-01
 created_by: llm-market-identifier-86
 author_context: Filed as new-theory before the study lane existed; it is the study's own phase-2 sweep, resumed with its own collect.py.
-status: open
+status: done
+closed: 2026-09-03
+resolution: Both halves done 2026-09-03 by fleet-w2-g4 (study lane). PHASE 2 IS COMPLETE: 840/840 eligible series priced, 146,964 observations across 830 series, 99.98% carrying spread+open_interest. Nothing eligible remains to collect. PASS 3 RE-RUN on the completed state: 496 tested (was 347), 30 flagged (was 9), median MDE 9.67 (was 12.16) -- still NOT MEASURED against the 8.0 bar, and 10 of 17 control series trip the gates. Reported in STUDY.md as its own test on its own collection state, never pooled with the frozen run, per the one-run rule. The urgency this ticket named was real and is now spent: the corpus is captured. NOTE the ticket's documented resume command did not run -- collect.py/mine.py/pass3.py still carried parents[5]/parents[6] sys.path offsets from the pre-retirement location, so every one of them died with ModuleNotFoundError. Fixed by locating the repo root by marker instead of by depth; that is almost certainly why the collector was found IDLE.
 ---
 The broad settled-history sweep (tickets/study/investigation/2026-08-29-series-bias-mining/collect.py) is the prerequisite for every future pass of this study, and it is PARTIALLY DONE. Resume it with:
 

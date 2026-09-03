@@ -7,7 +7,9 @@ created_by: fleet-w1-g2
 author_lane: study
 author_focus: 2026-09-01-liquidity-filtered-side-split
 author_context: Found while running the completion re-run of the liquidity-filtered-side-split study at 100% backfill coverage; mechanism.py re-run reversed this study's own pre-registered premise.
-status: open
+status: done
+closed: 2026-09-03
+resolution: Done 2026-09-03 by fleet-w2-g4 (study lane), both actions the ticket asked for. (1) PASS 4 RAN WITH THE FILTER EXACTLY AS PRE-REGISTERED -- spread <= 0.07 AND open_interest >= 100, nothing retuned -- and no result is attributed to open interest anywhere in the write-up. (2) A dated note is appended to STUDY.md's 'Correction to pass 4's filter' section under the heading 'Appended 2026-09-03 -- the correction above got the two roles backwards', pointing at this ticket and at the liquidity-filtered-side-split study's Correction 2; the correction's original text is untouched, per the supersede-never-rewrite instruction. The pass-3-era '55% quoted into an empty book' explanation is explicitly retired there. WHAT THE RUN ADDS to the ticket's evidence: on the completed sweep the filter's removals are 6,034 spread-only, 57,721 OI-only, 46,919 both -- so on COUNTS open interest removes far more rows, which is consistent with the ticket's point that count and effect are different things and is why the attribution warning matters. The ticket's wider caution is also confirmed a third time: the 227-series prefix reading that a real favorite-fade survives below 0.80 does not reproduce at full coverage (0.65-0.80 goes -4.85 -> -1.76 net, t=-0.63).
 ---
 READ THIS BEFORE RUNNING PASS 4. This study's STUDY.md section 'Correction to pass 4's filter, made before pass 4 runs' fixes the test on open_interest -- 'a level, and therefore meaningful at a point in time the way a per-period volume is not' -- with spread <= 0.07 kept as 'a second, independent, explicitly NOT load-bearing condition'. The reasoning given was: 'a one-cent quote on a market nobody holds is still a quote.'
 

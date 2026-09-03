@@ -31,11 +31,19 @@ user_reports/*
 # settled history out of its public API, so it is unrecoverable
 # upstream and only "regenerable via collect.py" for the window that
 # is still reachable.
-tickets/study/investigation/2026-08-29-series-bias-mining/data/
+#
+# **Matched by STATE-INDEPENDENT glob, deliberately.** A study's state is
+# the directory it sits in, so `cli tickets advance` MOVES this folder --
+# and a path naming one state stops matching the moment it does. That is
+# not hypothetical: parlay-markup below was advanced to `answer/` and its
+# `investigation/`-pinned entry silently stopped covering a 17.6MB
+# legs.db, leaving it untracked-and-unignored for the next `git add -A`
+# to stage. Found 2026-09-03. The glob covers every state at once.
+tickets/study/*/2026-08-29-series-bias-mining/data/
 STATE.md
 
 # parlay-markup study: 150k+ raw payloads, regenerable via collect.py
-tickets/study/investigation/2026-08-30-parlay-markup/data/
+tickets/study/*/2026-08-30-parlay-markup/data/
 
 # taker_flow: the raw per-trade corpus for backtest-2026-09-01-takerflow
 # (~5,200 markets, 305MB). Regenerable via backtest.collect(); the
