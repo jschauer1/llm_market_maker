@@ -15,7 +15,9 @@ layer (go-session-structure spec, 2026-08-30):
 
 from __future__ import annotations
 
+import ast
 import re
+from functools import lru_cache
 from pathlib import Path
 
 import pytest
@@ -59,13 +61,30 @@ RUNBOOK_HEADINGS = ("## Stages", "## Run", "## Record", "## Sub-theories",
                     "## Report", "## Skip")
 
 
+@lru_cache(maxsize=None)
+def _source(path: Path) -> str:
+    """One read per file per session. Which files get scanned is decided
+    by the callers below, exactly as before -- this only stops the same
+    file being read and parsed once per test."""
+    return path.read_text(encoding="utf-8", errors="replace")
+
+
+@lru_cache(maxsize=None)
+def _nodes(path: Path) -> tuple:
+    return tuple(ast.walk(ast.parse(_source(path))))
+
+
 def _calls_in_source(source: str, func_name: str, keyword: str | None = None):
+    """The detector, over a source STRING. Kept because the detectors are
+    themselves under test (test_detectors_flag_the_documented_misuses)."""
+    return _calls_in_nodes(ast.walk(ast.parse(source)), func_name, keyword)
+
+
+def _calls_in_nodes(nodes, func_name: str, keyword: str | None = None):
     """Line numbers of calls to `func_name` — AST-based, so prose in
     docstrings and comments can never trip the guard."""
-    import ast
-
     hits = []
-    for node in ast.walk(ast.parse(source)):
+    for node in nodes:
         if not isinstance(node, ast.Call):
             continue
         func = node.func
@@ -91,8 +110,7 @@ def find_call_offenders(
             rel = path.relative_to(ROOT)
             if "__pycache__" in rel.parts or rel in allowed:
                 continue
-            source = path.read_text(encoding="utf-8", errors="replace")
-            for lineno in _calls_in_source(source, func_name, keyword):
+            for lineno in _calls_in_nodes(_nodes(path), func_name, keyword):
                 hits.append(f"{rel.as_posix()}:{lineno}")
     return hits
 
@@ -104,7 +122,7 @@ def find_pattern_offenders(pattern: re.Pattern, allowed: set[Path]) -> list[str]
             rel = path.relative_to(ROOT)
             if "__pycache__" in rel.parts or rel in allowed:
                 continue
-            text = path.read_text(encoding="utf-8", errors="replace")
+            text = _source(path)
             for lineno, line in enumerate(text.splitlines(), start=1):
                 if line.lstrip().startswith("#"):
                     continue

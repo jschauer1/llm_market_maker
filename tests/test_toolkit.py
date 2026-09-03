@@ -14,12 +14,21 @@ Grouping is a convenience and may be missing; presence is not.
 from __future__ import annotations
 
 import json
+from functools import lru_cache
 
 from tools import cli, toolkit
 
 
+@lru_cache(maxsize=1)
+def _tools():
+    """`toolkit.list_tools()` walks tools/ and reads every docstring. Eight
+    tests want the same answer, so it is computed once here rather than
+    memoized in production code that has no reason to cache."""
+    return toolkit.list_tools()
+
+
 def test_every_module_on_disk_is_listed():
-    listed = {t["module"] for t in toolkit.list_tools()}
+    listed = {t["module"] for t in _tools()}
     from pathlib import Path
 
     root = Path(toolkit.__file__).resolve().parent
@@ -33,13 +42,13 @@ def test_every_module_on_disk_is_listed():
 
 def test_subpackage_modules_are_listed_too():
     """The platform clients are the tools a session reaches for first."""
-    listed = {t["module"] for t in toolkit.list_tools()}
+    listed = {t["module"] for t in _tools()}
     assert "tools/kalshi/markets.py" in listed
     assert "tools/polymarket/trades.py" in listed
 
 
 def test_each_entry_carries_its_own_docstring_summary():
-    by_module = {t["module"]: t for t in toolkit.list_tools()}
+    by_module = {t["module"]: t for t in _tools()}
     assert by_module["tools/board.py"]["summary"].startswith(
         "One Kalshi board per session"
     )
@@ -48,7 +57,7 @@ def test_each_entry_carries_its_own_docstring_summary():
 def test_an_unmapped_module_still_lists_under_other():
     """A new tool must show up the day it lands. Grouping it is a nicety;
     hiding it until someone edits a map is the failure this replaced."""
-    entries = toolkit.list_tools()
+    entries = _tools()
     assert all(t["group"] for t in entries)
     ungrouped = [t for t in entries if t["group"] == "other"]
     for t in ungrouped:
@@ -60,7 +69,7 @@ def test_cli_tools_json_lists_every_module(capsys):
     payload = json.loads(capsys.readouterr().out)
     assert code == 0
     assert {t["module"] for t in payload} == {
-        t["module"] for t in toolkit.list_tools()
+        t["module"] for t in _tools()
     }
 
 
@@ -78,7 +87,7 @@ def test_every_tool_has_a_docstring_to_summarize():
     """The listing is only as useful as what it reads. A module with no
     docstring appears with an empty summary, which is a real gap rather
     than a formatting nit -- it is a tool nobody can tell the purpose of."""
-    missing = [t["module"] for t in toolkit.list_tools() if not t["summary"]]
+    missing = [t["module"] for t in _tools() if not t["summary"]]
     assert not missing, f"tools with no module docstring: {missing}"
 
 
@@ -92,7 +101,7 @@ def test_the_orient_reads_are_all_grouped_as_starting_a_session():
     this pins the four that `go` actually mandates, and nothing more.
     """
     from tools import toolkit
-    groups = {e["module"]: e["group"] for e in toolkit.list_tools()}
+    groups = {e["module"]: e["group"] for e in _tools()}
     for module in ("tools/floor.py", "tools/lanes.py",
                    "tools/tickets.py", "tools/state.py"):
         assert groups[module] == "starting a session", module
