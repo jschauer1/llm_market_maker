@@ -196,3 +196,140 @@ table before leaning on the 295 figure; ticketed.
 disturbs it — the violations that appeared are long-dated or one-cent-ask,
 which is what Result 2 predicts. What changed is that the zero is not a
 zero, and one of the two supporting tables is unverified.
+
+---
+
+# Addendum 2026-09-03 — Result 2 re-derived on correct boards: it reproduces exactly
+
+Session `fleet-w3-g4`, study lane. Closes ticket
+`2026-09-02-calendar-arb-295-pair-table-unverified`, which flagged that
+Result 2 — the horizon x scope table, the finding that actually closes
+this theory — had never been re-derived after the exact-stamp board bug
+was found, because `probe.py`'s `main()` does not compute it.
+
+**The bar was fixed before any number here existed**, by that ticket on
+2026-09-02: *does the near-dated same-event cell still hold ~295 pairs at
+min cost 1.000, and is the near-dated cross-event cell still empty?* Both
+questions are answered below and neither was reworded afterwards.
+
+## The table reproduces cell for cell
+
+`probe_as_of.py --table` rebuilds the board with `snapshot.board_as_of`
+and tabulates every ladder pair. On **2026-08-27T23:18:30Z, the exact
+board Result 2 was computed on**:
+
+| later-leg horizon | scope | pairs | min cost | published |
+|---|---|---|---|---|
+| <= 90d | same-event | **295** | **1.000** | 295 / 1.000 |
+| <= 90d | cross-event | **0** | — | 0 / — |
+| 90d–1y | same-event | 668 | 1.000 | 668 / 1.000 |
+| 90d–1y | cross-event | 39 | 1.050 | 39 / 1.050 |
+| 1y–3y | same-event | 593 | 0.990 | 593 / 0.990 |
+| 1y–3y | cross-event | 43 | 0.980 | 43 / 0.980 |
+| > 3y | same-event | 292 | 0.960 | 292 / 0.960 |
+| > 3y | cross-event | 14 | 1.040 | 14 / 1.040 |
+| | **TOTAL** | **1,944** | | 1,944 |
+
+**Every cell matches — counts and minima both.** So Result 2 was never
+distorted, and the structural argument that closes calendar-arb stands
+exactly as recorded.
+
+**Why it was safe when Result 1 was not.** `probe.py` ran on 2026-08-27,
+*before* dedup-on-write landed on 2026-08-30, so the exact-stamp query
+returned the whole board on the day it was used. The truncation is
+retroactive to the stored rows, not to what the probe saw. Today that
+same stamp re-reads 87,769 of 110,399 markets, and the table is
+**unchanged at 79% of the board** — the missing fifth contains no ladder
+pair that moves any cell. Result 1 moved because it counts a handful of
+extreme-tail violations, which is exactly the statistic a truncated board
+can lose; Result 2 counts population structure, which it cannot.
+Generalizable: *a defective instrument does not invalidate every number
+it produced — tail counts are fragile to a truncated sample and
+population structure is robust to it, and which one you have is knowable
+in advance.*
+
+## The claims restated on today's board, and on all 21 captures
+
+On the newest capture (2026-09-03T00:48:42Z, 118,630 markets): **280
+near-dated same-event pairs at min cost 1.010, and 0 near-dated
+cross-event pairs.** Both claims hold.
+
+Across all 21 stored captures the near-dated same-event cell runs
+202–305 pairs with min cost 0.990–1.010, and the near-dated cross-event
+cell is **0 on 19 of 21**. The two exceptions are both real and both
+explained below; neither is an arbitrage.
+
+## Exception 1 — 23 "cross-event near-dated pairs" that are not a date ladder
+
+Captures `2026-09-01T11:32:57Z` and `11:34:32Z` (one board state, two
+minutes apart) show 23 near-dated cross-event pairs, all in
+`KXTRUMPSAYCOMPANY` (13) and `KXTRUMPSAYMONTH` (10). They are a
+**classifier false positive**, not a violation:
+
+```
+KXTRUMPSAYMONTH-26OCT01-ANTI  "Will Trump say 'Antifa' before Oct 1, 2026?"
+    open 2026-09-01T04:00Z  close 2026-10-01T14:00Z   yes_ask 0.64
+KXTRUMPSAYMONTH-26SEP01-ANTI  "Will Trump say 'Antifa' before Sep 1, 2026?"
+    open 2026-08-01T04:00Z  close 2026-09-01T14:00Z   yes_ask 1.00 (resolved YES)
+```
+
+The titles read as a nested ladder — anything said before Sep 1 was said
+before Oct 1 — but the series is a **monthly reset**: each contract opens
+on the first of its own month and only counts statements from its own
+open. **The price proves it, and no reading of the rules text is
+needed.** The September leg has already resolved YES at ask 1.00; under
+genuine nesting the October leg would have to be ~1.00 as well, and it
+prices 0.64. Equivalently, the pair "costs" 0.65, so a true nesting would
+be a **35-cent riskless arbitrage sitting on a two-sided board** — which
+is a classifier error by inspection, not an opportunity.
+
+**Why only two captures.** The two legs are simultaneously listed for
+about ten hours a month, at the rollover: the October leg opens
+2026-09-01T04:00Z and the September leg closes 2026-09-01T14:00Z. All
+four captures on 2026-09-01 agree — 02:06 (before, 0 pairs), 11:32 and
+11:34 (inside, 23), 22:00 (after, 0).
+
+**This is the `KXU3MAX` trap arriving through a different door.** The
+Method section added `floor_strike`/`cap_strike`/`strike_type` to the key
+because two markets can share a subject and differ in threshold. Here the
+strikes are identical and the *period* differs, so a strike-aware key
+does not help. The general form: **a rolling per-period series whose
+title states a cumulative deadline looks nested and is not.** Recorded in
+`tickets/new-theory/README.md` as rule 0g, because it is a trap for any
+theory pairing markets by parsed dates — `structural_arb` included — and
+not only for this one.
+
+The fix is deliberately **not** applied to `probe.py` or to the pair
+walk. This study is answered, its verdict does not turn on these 23, and
+retrofitting a filter would change the population underneath a published
+table for no gain. A future consumer of the dataset excludes rolling
+series at the point of use.
+
+## Exception 2 — the one sub-par near-dated pair, and it is not a counter-example
+
+`2026-09-01T22:00:44Z` shows a near-dated same-event minimum of **0.990**:
+
+```
+YES KXMLBDEBUT-AMILLER-26NOV01 @0.05  ("...before Nov 1, 2026?")
+NO  KXMLBDEBUT-AMILLER-26OCT01 @0.94  ("...before Oct 1, 2026?")
+```
+
+Genuinely nested, same event, same subject — this one is real. It is also
+**0.990 gross and 0.997 net of both legs' fees: 0.3 cents, held to
+2026-11-01.** That is about 1.8%/yr annualized, worse than cash, and it
+sits on a market whose payload carries no volume or open interest at all,
+so the depth behind the 0.05 ask is unknown. It belongs to the same
+category as Result 1's two no-buffer hits and changes nothing.
+
+## What this settles for the open specs
+
+- **`2026-09-01-calendar-arb-soft-relative-value` has its dataset.** The
+  295 near-dated same-event pairs at cost 1.000 are verified on a correct
+  board. Whoever takes that ticket should exclude rolling per-period
+  series (rule 0g) at the point of use.
+- **The verdict of this study is unchanged, and was never in question
+  here** — `do not build the spec as written`. This addendum re-derives a
+  published table; it does not reopen a decision.
+
+Reproduce: `python tickets/study/answer/2026-08-27-calendar-arb-firing-rate/probe_as_of.py --table`
+

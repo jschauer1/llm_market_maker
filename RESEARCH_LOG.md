@@ -4675,3 +4675,78 @@ study itself needs nothing until somebody wants to spend calendar time
 extending the corpus forward, which is a new pass with its own
 pre-registration and its own stated collection state, never a re-run of
 this one.
+
+## 2026-09-03 — a published table survives its broken instrument, and a nested-looking pair that is not (study lane)
+
+Session `fleet-w3-g4`, study lane, claim 24. Two studies closed out; one
+ticket closed, one shared rule added.
+
+**Did.** Moved `2026-08-30-parlay-markup` to `answer/` with the verdict it
+had earned on 2026-08-30 and never published. Re-derived
+`2026-08-27-calendar-arb-firing-rate`'s Result 2 on correctly
+reconstructed boards, which was the open half of that study and the
+blocker on an open spec; closed
+`2026-09-02-calendar-arb-295-pair-table-unverified`; added rule 0g to
+`tickets/new-theory/README.md`.
+
+**Learned — a defective instrument does not invalidate every number it
+produced, and which numbers survive is knowable in advance.**
+`probe.py` rebuilt boards with `WHERE captured_at = ?`, which
+dedup-on-write invalidated on 2026-08-30. Re-running it correctly moved
+**Result 1** (firing rate: "zero" became 25 violations / 38,124 pairs) and
+left **Result 2** — the horizon x scope table that actually closes
+calendar-arb — untouched: on the exact board it was published from, all
+eight cells reproduce, pair counts *and* min costs, 1,944 pairs, 295
+near-dated same-event at min cost 1.000, 0 near-dated cross-event. It is
+also unchanged recomputed on only the 79% of that board the broken query
+still returns. The reason is structural rather than lucky: **Result 1
+counts extreme-tail events, which a truncated sample loses; Result 2
+counts population structure, which it does not.** Ask which of the two a
+result is before assuming a bad instrument voided it — the re-run cost an
+hour and the alternative was treating a sound finding as unsupported.
+
+**Learned — a market whose title states a cumulative deadline is not
+necessarily nested, and the price says so more cheaply than the rules
+text.** Two of 21 captures showed 23 "near-dated cross-event ladder
+pairs", all `KXTRUMPSAYMONTH` / `KXTRUMPSAYCOMPANY`. Their titles read as
+a clean ladder — "Will Trump say 'Antifa' before Oct 1" versus "before
+Sep 1" — and their rules text, read literally, agrees. They are monthly
+resets: each contract opens on the first of its own month and counts only
+its own month. **The quote settles it without reading anything**: the
+September leg had already resolved YES at ask 1.00 while the October leg
+priced 0.64, so a true nesting would have been a 35-cent riskless
+arbitrage sitting on a two-sided board. Generalizable in three parts, now
+rule 0g: an implausibly large gap on a liquid pair is a **classifier
+alarm, not a find**; a strike-aware key does *not* catch this (rule 0's
+`KXU3MAX` trap differs in threshold, this one in *period* — compare
+`open_time`, not just `close_time`); and it is visible only during the
+~10-hour monthly rollover when both legs are listed, so a probe run on
+any other day sees a clean population and concludes wrongly. All four
+2026-09-01 captures agree with that window exactly.
+
+**Learned — a study can be finished and invisible at the same time, and
+the header field is the whole interface.** `parlay-markup` reached a
+pooled six-slate verdict on 2026-08-30 (+6.60 pts markup vs
+product-of-legs, day-clustered t=+14.20, all six days positive) and then
+sat in `investigation/` for four days with **no `Verdict:` field in its
+header** — the one thing `tools/studies.py` parses. So `cli studies`
+reported it as in-flight, every session choosing work saw an unfinished
+study, and the floor's completeness guard counted it outstanding. The
+answer was in the file the whole time. **A result that exists only in the
+body of a document has not been recorded**, and the cheap fix is the
+header line the skill already mandates. Its registry row was stale in the
+same way (`investigating`, "k=2 creation days"); it is now `parked` —
+the thesis is *confirmed true* and blocked only on execution, since the
+markup lives in an RFQ product with `active_quoters = 0` and the liquid
+`*COMBO` product is flat. **The edge and the liquidity are in different
+products** is the one-line summary worth keeping.
+
+**Next.** `calendar-arb-soft-relative-value` now has a verified dataset
+and its BLOCKER section is cleared, so it is buildable — but read the two
+caveats appended to it first: exclude rolling per-period series (rule
+0g), and note the population is at or above par almost everywhere, the
+single sub-par near-dated pair in 21 captures being worth 0.3 cents net
+over two months. A soft relative-value thesis has to argue the implied
+conditional hazard is absurd, which is a different claim from the prices
+being inconsistent.
+

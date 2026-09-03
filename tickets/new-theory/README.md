@@ -126,7 +126,7 @@ home, one status.
      exist but sit entirely inside the spread, and the most liquid case
      (`KXBALANCEPOWERCOMBO`, 10.7M volume, 1c spread) has the
      *smallest* gap. Study:
-     `tickets/study/investigation/2026-08-30-parlay-markup/` (rule-0 section).
+     `tickets/study/answer/2026-08-30-parlay-markup/` (rule-0 section).
 
    - **`aggregation-gap`, the second CROSS-event probe** (2026-09-01):
      `KXNFLWINS` lists 32 teams as 32 separate *events*, each a complete
@@ -307,6 +307,46 @@ home, one status.
    De Angelis verbatim ("executable-style returns … are negative") and
    Becker's −1.12% per taker trade. An effect reported in a paper is a
    reason to look, never a reason to expect it to survive the ask.
+
+0g. **A market whose title states a cumulative deadline is not
+   necessarily nested — check whether the series *resets per period*.**
+   Any theory that pairs markets by parsing dates out of titles will
+   eventually pair two legs of a rolling monthly (or weekly) series and
+   read them as a date ladder. They are not one: each contract opens on
+   the first of its own period and only counts events from its own open,
+   so both legs can lose and the "arbitrage" is a classifier error.
+
+   Worked example, measured 2026-09-03 in
+   `tickets/study/answer/2026-08-27-calendar-arb-firing-rate/`
+   (Addendum, Exception 1). `KXTRUMPSAYMONTH-26OCT01-ANTI` ("Will Trump
+   say 'Antifa' before Oct 1, 2026?") against
+   `KXTRUMPSAYMONTH-26SEP01-ANTI` ("…before Sep 1, 2026?") looks
+   perfectly nested and prices 0.64 against a September leg that has
+   **already resolved YES at ask 1.00**. Under real nesting the October
+   leg would have to be ~1.00; the pair "costs" 0.65, i.e. a claimed
+   **35-cent riskless arbitrage on a two-sided board**.
+
+   Three things to carry:
+
+   - **The price is the cheapest detector, and it beats reading the
+     rules text.** The rules of both legs above say "before <date>" and
+     are, read literally, genuinely nested. The *listing convention* is
+     what differs, and the quote reveals it for free. A gap that large
+     on a liquid pair is a bug in your grouping, never a find — treat
+     "too good" as a classifier alarm.
+   - **A strike-aware key does not catch this.** Rule 0's `KXU3MAX`
+     trap is two markets sharing a subject and differing in *threshold*,
+     fixed by joining `floor_strike`/`cap_strike`/`strike_type` to the
+     key. Here the strikes are identical and the *period* differs, so
+     the same fix does not apply. Compare `open_time`, not just
+     `close_time`: a later-closing leg that also opens later is a reset,
+     not a superset.
+   - **It is nearly invisible, which is why it needs writing down.** The
+     two legs of a monthly series are on the board together only during
+     the rollover — about ten hours, once a month. It appeared in 2 of
+     21 stored captures, and both were inside that window. A probe run
+     on any other day sees nothing and concludes the population is
+     clean.
 
 1. `python -m tools.cli ideas search "<slug>"` — confirm nothing has
    changed since the spec was written (each is registered under its slug;

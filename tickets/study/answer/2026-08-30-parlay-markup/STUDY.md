@@ -9,6 +9,7 @@ created_by: migration
 
 **Date:** 2026-08-30 ·
 **Tier:** A (no model anywhere) ·
+**Verdict:** CONFIRMED — cross-game parlays price +6.60 pts above product-of-legs (4,808 parlays, 6 creation slates, all six positive, day-clustered t=+14.2); the secondary leg-count prediction FAILED, and the markup sits in an RFQ product with no fade side, so the edge and the liquidity are in different products and no theory follows ·
 Backlog spec #8, registry slug `parlay-fade`
 
 **This bar was written before a single calibration or markup figure was
@@ -663,3 +664,13 @@ pre-registered 3-point floor. **All six days positive**, range
 (magnitude grows with leg count) FAILED as written and is recorded as
 failed. The edge is in a product with no fade-side liquidity; the
 product with real liquidity (`*COMBO`) is flat.**
+
+## answer — 2026-09-03
+
+The measurement is complete and its verdict was already in the file: phase 2 pooled over 6 creation slates gives +6.60 pts markup vs product-of-legs, day-clustered t=+14.20, all six days positive (range 4.69-7.85), MDE 1.30 against a 3-point pre-registered floor. The primary prediction is CONFIRMED; the secondary (magnitude grows with leg count) is recorded as FAILED.
+
+What remains open in the file is explicitly NOT this study's question. Items 1-4 under 'What would still have to be true for this to become a theory' are about tradeability and a follow-on theory, and this study's own charter says the measurement is not the bet. The one genuinely unrun piece -- the `same_game` control -- is documented in that same section as unable to separate 'machinery works' from 'legs are correlated', because positively correlated legs make P(all win) > product for a reason that is not markup. So running it would not change the verdict, and leaving the study in `investigation/` on account of it was costing more than it bought.
+
+Moved by fleet-w3-g4 (study lane). The reason this needed doing at all: the header carried no `Verdict:` field, which is the one thing `tools/studies.py` parses, so `cli studies` rendered a study that was answered on 2026-08-30 as in-flight for four days. Every session choosing work saw an unfinished study and the floor's completeness guard counted it as outstanding. The verdict line has been added to the header alongside this move; nothing about the measurement changed.
+
+NOTE ON THIS MOVE: `tickets.advance` renamed the directory and then raised an OSError reading STUDY.md back (a transient lock -- this tree is inside OneDrive). The rename had already committed, so the ticket moved with no note. This note was appended by hand in advance()'s own format. Filed as a maintenance ticket.
