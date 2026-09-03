@@ -280,3 +280,47 @@ goes to be found.
   files. Not resolved by the supervisor: both are legitimately in their
   own lanes, and a collision is theirs to notice. Committing only ever
   the reported manifest keeps them separable.
+
+### 02:35 WIND-DOWN (user: "wrap up the agents")
+
+- 02:32 TaskStop on all three live workers: fleet-w1-g4 (theory/
+  deadline_drift, 56m), fleet-w2-g5 (maintenance, 28m), fleet-w3-g5
+  (study, 18m). All three were mid-task; none had reported a manifest.
+- 02:33 lane claims: 23 (w1) was already released by w1 itself moments
+  before the stop. Released 26 (w2-g5) and 27 (w3-g5) with a wind-down
+  summary. No lane is held by anyone.
+- 02:33 cron 262d16d9 deleted. No heartbeat outlives this session.
+- 02:35 UNCOMMITTED AT WIND-DOWN, deliberately: 48 entries, all three
+  killed workers' in-flight work. Committed none of it -- a manifest is
+  what makes a path attributable, and no manifest was reported. Roughly:
+    w1-g4  theories/deadline_drift/* (NOTES, THEORY, RUNBOOK, backtest,
+           hazard, collect_settled, data/, + new purity.py, mine_arms.py),
+           2 theory tickets closed, 1 filed
+    w2-g5  the parse_deadline elevation -- tools/timeutil.py, tools/db.py,
+           tools/cli.py, tools/tickets.py, theories/no_side_premium/
+           exposure_measure.py -- plus FIVE maintenance tickets closed
+           and 2 filed
+    w3-g5  tickets/study/question/, a taker_flow ticket
+- 02:35 SUITE STATE, and this is the load-bearing handoff fact:
+    `python -m pytest` currently FAILS TO COLLECT. tests/test_filelock.py
+    imports `tools.filelock`, which does not exist. That is w2-g5 caught
+    exactly between the two halves of a TDD step -- its last words were
+    "Red. Now the implementation."
+    Excluding that one file: **1461 passed, 0 failed.**
+    So the uncommitted tree has FIXED both failures this fleet inherited
+    at baseline (the sibling import and the unresolvable doc paths) --
+    w2-g5's elevation ticket was the specified fix and it landed.
+  NEXT SESSION: write tools/filelock.py (or delete the orphan test), and
+  the tree goes fully green AND clears the inherited baseline. Do not
+  commit tests/test_filelock.py on its own; it is half a TDD step.
+- 02:35 session totals: 3 slots, 5 workers spawned (g4-g5), 2 conclusive,
+  0 inconclusive, 0 sent back, 0 retired, 3 stopped by wind-down. 7
+  commits, all pushed. 0 orphans -- every dirty path is attributable to a
+  named worker above.
+- 02:35 findings shipped: series-bias-mining closed as an adequately-
+  powered negative (fillable-quote favorites are calibrated 0.65-1.00;
+  the -15pt gradient lives only in unfillable quotes), calendar-arb
+  Result 2 re-derived and reproducing exactly, rule 0g added for
+  monthly-reset false ladders, and a live 17.6MB git hazard closed.
+  No bets: both conclusive sessions were study-lane, and a study never
+  bets.
