@@ -242,3 +242,6 @@ goes to be found.
   slot empty first: only af42(w1) and a7441(w3) live.
 - 02:01 no live peer sessions remain (llm-market-identifier-52 and
   accomplice-zazzy-trinket both gone). Fleet is the only writer now.
+- 02:03 suite after efb4dee: 2 failed / 1390 passed (baseline was 2 / 1373).
+  Identical failing set -- both still the inherited pair. w2 added no
+  breakage and added 17 passing tests. No ticket, no send-back.
