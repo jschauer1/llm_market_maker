@@ -843,10 +843,22 @@ def _require_idea(conn, slug: str, word: str) -> None:
 #: and an enumeration means the fifth one somebody adds silently stops
 #: protecting the tickets it cites -- a failure that shows up as a
 #: deletion, months later, in a file nobody thought to add to a list.
+#:
+#: Python is swept as `**/*.py` for the identical reason, not narrowed to
+#: `tests/**/*.py`. A slug gets named in a code comment as often as in a
+#: doc -- `no-side-premium` in `theories/no_side_premium/theory.py`,
+#: `smile-smoothing` in `theories/structural_arb/scan.py`,
+#: `aggregation-gap` in this very module -- and enumerating which
+#: directories are allowed to cite a ticket (`tools/`, `theories/`, the
+#: study probes under `tickets/`, ...) is exactly the kind of list that
+#: goes stale silently. Under-matching here is the dangerous direction:
+#: a citation the check misses means a still-referenced ticket gets
+#: deleted, not merely kept one extra week.
 _CITATION_GLOBS = (
     "*.md",
-    "docs/**/*.md", ".claude/skills/**/*.md", "tests/**/*.py",
+    "docs/**/*.md", ".claude/skills/**/*.md",
     "theories/**/*.md", "tickets/**/*.md", "studies/**/*.md",
+    "**/*.py",
 )
 
 #: Free-text database columns that can name a ticket. A slice records
@@ -1004,6 +1016,7 @@ def purge(root, *, older_than: int = 7, apply: bool = False,
                 candidates.append(path)
     purged: list[str] = []
     kept: list[dict] = []
+    failed: list[dict] = []
     if candidates:
         corpus = _citation_corpus(root)
         db_hits = _db_citations(conn, {slug_of(p) for p in candidates})
@@ -1029,13 +1042,40 @@ def purge(root, *, older_than: int = 7, apply: bool = False,
             else:
                 purged.append(str(path))
         if apply:
+            removed: list[str] = []
             for target in purged:
                 # `git rm`, not `unlink`: the removal has to land in git
                 # history, because git history IS the durable record that
                 # makes deleting a completed ticket safe at all.
-                subprocess.run(["git", "rm", "-q", "--", target],
-                               cwd=root, check=True)
-    return {"purged": purged, "kept": kept, "dry_run": not apply}
+                #
+                # `:(literal)` pins the pathspec: without it, `*`, `?` or
+                # `[` in a path would be read as a glob by `git rm` rather
+                # than as characters in a filename. No current slug
+                # contains one, but a pathspec that only happens to be
+                # safe today is exactly the kind of thing that stops
+                # being true the day someone names a ticket with one.
+                proc = subprocess.run(
+                    ["git", "rm", "-q", "--", f":(literal){target}"],
+                    cwd=root, capture_output=True, text=True)
+                if proc.returncode == 0:
+                    removed.append(target)
+                else:
+                    # Collected, not raised: this runs unattended inside
+                    # the floor's receipt step, and a `check=True` here
+                    # used to mean one untracked or otherwise unremovable
+                    # file aborted the loop with a traceback, leaving
+                    # every file processed before it already deleted and
+                    # every file after it silently untouched. A failure
+                    # must still be visible -- it goes in the result and
+                    # the rendered listing -- but it must never take the
+                    # rest of the batch down with it.
+                    failed.append({"path": target,
+                                   "error": proc.stderr.strip()
+                                   or proc.stdout.strip()
+                                   or f"git rm exited {proc.returncode}"})
+            purged = removed
+    return {"purged": purged, "kept": kept, "dry_run": not apply,
+            "failed": failed}
 
 
 def render_purge(result: dict, root=None) -> str:
@@ -1071,6 +1111,17 @@ def render_purge(result: dict, root=None) -> str:
         out.append(f"  {show(entry['path'])}")
         out.append("      cited by " + _clip(
             ", ".join(entry["cited_by"]), _WIDTH - 16))
+    failed = result.get("failed") or []
+    if failed:
+        # Surfaced unconditionally rather than only in --json: this runs
+        # unattended inside the floor's receipt step, and a failed `git
+        # rm` that only showed up in a structure nobody reads back is
+        # indistinguishable from one that was silently swallowed.
+        out.append("")
+        out.append(f"FAILED to remove ({len(failed)}) -- still present, "
+                    "not purged")
+        for entry in failed:
+            out.append(f"  {show(entry['path'])}: {entry['error']}")
     return "\n".join(out).rstrip() + "\n"
 
 

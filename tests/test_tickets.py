@@ -1042,3 +1042,47 @@ def test_purge_applies_by_removing_the_file_from_git(tmp_path):
     assert result["dry_run"] is False
     assert str(path) in result["purged"]
     assert not path.exists()
+
+
+def test_purge_apply_survives_one_unremovable_file(tmp_path):
+    """One candidate `git rm` cannot remove must not abort the batch.
+
+    `check=True` on the `git rm` call used to raise on the first failure
+    -- an untracked file, say -- which meant every candidate processed
+    earlier in the same loop was already deleted while everything after
+    it was silently left alone: a partial application plus a traceback,
+    unattended, inside the floor's receipt step. The fix collects
+    failures instead of raising, so a file `git rm` cannot touch (here,
+    one never added to the index) is reported in `result["failed"]`
+    while every other candidate is still removed."""
+    import subprocess
+
+    def git(*args):
+        subprocess.run(["git", *args], cwd=tmp_path, check=True,
+                       capture_output=True)
+
+    git("init", "-q")
+    tracked = _completed_ticket(tmp_path, "tracked-one", closed="2026-08-01")
+    git("add", "-A")
+    git("-c", "user.email=t@t", "-c", "user.name=t", "commit", "-qm", "seed")
+
+    # Written after the commit and never `git add`-ed: git has no record
+    # of it, so `git rm` on it fails exactly the way an untracked file
+    # does in the wild.
+    untracked = _completed_ticket(tmp_path, "untracked-one",
+                                  closed="2026-08-01")
+
+    result = tickets.purge(tmp_path, apply=True, now="2026-09-02")
+
+    assert str(tracked) in result["purged"]
+    assert not tracked.exists()
+
+    assert untracked.exists()
+    assert str(tracked) not in result["failed"] and result["failed"]
+    failed_paths = [f["path"] for f in result["failed"]]
+    assert str(untracked) in failed_paths
+    assert str(untracked) not in result["purged"]
+
+    rendered = tickets.render_purge(result, tmp_path)
+    assert "FAILED" in rendered
+    assert "untracked-one" in rendered
