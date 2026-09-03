@@ -1,6 +1,6 @@
 ---
 title: Finish the series-bias phase-2 sweep and extend pass 3
-lane: study
+lane: maintenance
 study: 2026-08-29-series-bias-mining
 created: 2026-09-01
 created_by: llm-market-identifier-86
@@ -23,3 +23,22 @@ WHAT PASS 3 ALREADY IS. The analysis bar is pre-registered and committed in STUD
 READ THIS BEFORE RE-RUNNING. STUDY.md fixes a one-run rule: the family grows by adding series, and a larger family is a harsher Holm divisor, so two runs over two collection states are two different tests. A later pass that extends the sweep should report its own state and its own family size, and must not present whichever of the two looks better. Say which collection state produced the number.
 
 ALSO NOTE the pre-registered signs for the carried candidates (KXRT negative, KXLOWTLV positive) and the size-truncation caveat: the tested family is the LOWER-FREQUENCY half of the population, and the high-frequency tail is unmeasured rather than measured-and-null. Finishing the sweep is what closes that gap.
+
+---
+
+## Lane change, 2026-09-02 — this was a `mention_family` theory ticket
+
+`mention_family` was retired by the user on 2026-08-27 and migrated to
+`theories/retired/mention_family/` on 2026-09-02. This ticket lived in
+that theory's own `tickets/open/` folder until then, which is why its
+`author_lane` and history read the way they do.
+
+It is a **maintenance** ticket now, and it has no owning theory. The
+study it concerns did not retire with the theory: it was still in
+`investigation`, other studies read its corpus, and it is now ownerless
+at
+
+    tickets/study/investigation/2026-08-29-series-bias-mining/
+
+Every path in the body above has been repointed to that home. Nothing
+about the work asked for here changed with the move.

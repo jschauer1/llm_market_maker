@@ -1,6 +1,6 @@
 ---
 title: Pass 4's filter has its two conditions backwards: spread is load-bearing, open_interest is not
-lane: study
+lane: maintenance
 study: 2026-08-29-series-bias-mining
 created: 2026-09-01
 created_by: fleet-w1-g2
@@ -38,3 +38,22 @@ WHAT TO DO -- and the point is NOT to retune anything:
  (3) If a future pass wants to change the filter, that is a new pre-registration on a stated collection state, not an edit to this one. A larger family is a harsher Holm divisor and two runs over two collection states are two different tests; this study's own one-run rule already says so.
 
 WIDER CAUTION worth carrying out of this: an alphabetical prefix of Kalshi's series list is NOT a random sample of the board -- it is a sample of a few sports families. Three separate conclusions in this repo were drawn on the 37% prefix and two of them reversed at completion. Any measurement taken while a series-ordered collection is partway through should either wait or state the prefix bias as a first-order caveat, not a footnote.
+
+---
+
+## Lane change, 2026-09-02 — this was a `mention_family` theory ticket
+
+`mention_family` was retired by the user on 2026-08-27 and migrated to
+`theories/retired/mention_family/` on 2026-09-02. This ticket lived in
+that theory's own `tickets/open/` folder until then, which is why its
+`author_lane` and history read the way they do.
+
+It is a **maintenance** ticket now, and it has no owning theory. The
+study it concerns did not retire with the theory: it was still in
+`investigation`, other studies read its corpus, and it is now ownerless
+at
+
+    tickets/study/investigation/2026-08-29-series-bias-mining/
+
+Every path in the body above has been repointed to that home. Nothing
+about the work asked for here changed with the move.

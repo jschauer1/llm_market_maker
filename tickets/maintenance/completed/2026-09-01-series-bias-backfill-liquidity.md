@@ -1,6 +1,6 @@
 ---
 title: Backfill spread/volume/open_interest for the 660 pre-fix series
-lane: study
+lane: maintenance
 study: 2026-08-29-series-bias-mining
 created: 2026-09-01
 created_by: llm-market-identifier-86
