@@ -246,7 +246,11 @@ yours to arrange.
   ledger row, no score. `STUDY.md` marks its folder, and a study is a
   **ticket** in the `study` lane whose state is the directory it sits
   in — `question` → `investigation` → `answer`, with deliberately no
-  `completed/`, because a study is a permanent record. A theory-owned
+  `completed/`, because a study is a permanent record. **`question/`
+  holds what should be investigated and nothing else** (user ruling
+  2026-09-03): a study sitting there is a request nobody has picked up,
+  so the design, the pre-registration, the code and the data are all
+  work and all live in `investigation/`. A theory-owned
   one lives at `<theory registry path>/studies/<state>/<date>-<slug>/`
   and an ownerless one at `tickets/study/<state>/<date>-<slug>/`. It
   exists to settle something *before* anyone acts on it — whether an

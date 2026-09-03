@@ -12,7 +12,7 @@ question the primary result immediately raises.
    screen.py` pins `spread <= 0.07`, and `taker_flow` filters the same
    way. The primary population is not that population.
 
-    python tickets/study/question/2026-09-03-maker-mode-fill-simulation/diag.py
+    python tickets/study/investigation/2026-09-03-maker-mode-fill-simulation/diag.py
 """
 
 from __future__ import annotations

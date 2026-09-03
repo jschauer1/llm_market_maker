@@ -28,10 +28,34 @@ sits in** — never a field inside the file:
 question  →  investigation  →  answer
 ```
 
-- **`question/`** — the bar is written, nothing has been measured.
-- **`investigation/`** — the measurement is running. A collector
-  mid-sweep lives here, and the floor reports it as in flight.
+- **`question/`** — **what should be investigated, and nothing else.**
+  A study here is a *request*: one `STUDY.md` saying what the question
+  is and why it is worth a session, filed by whoever noticed it. No
+  design, no bar, no code, no data.
+- **`investigation/`** — **where the work lives.** Claiming a question
+  means advancing it here first; the pre-registration is written here,
+  before looking, as the investigation's first act. The measurement's
+  code, its data and a collector mid-sweep all live here, and the floor
+  reports it as in flight.
 - **`answer/`** — the verdict is in `STUDY.md`'s header.
+
+**`question/` holds no work at all** (user ruling 2026-09-03), and the
+line is worth stating because it is not where a careful session would
+draw it on its own. Designing the measurement *feels* like part of
+asking the question: `2026-09-03-maker-mode-fill-simulation` was filed
+into `question/` with a full pre-registration, a simulator, planted-path
+fixtures and a collected `data/markets.jsonl` — a study most of the way
+to an answer, sitting in the directory that means *nobody has started
+this*. Two things break there at once. The backlog stops distinguishing
+questions somebody could pick up from work already half-done, which is
+the whole reason state is a directory; and the floor's in-flight report
+covers `investigation/`, so a stalled collector in `question/` is
+invisible exactly the way `series-bias-mining`'s stalls were.
+
+So the test is not "has a result been computed" — it is **"has anyone
+done anything yet"**. The first act of working on a study is
+`tickets advance <path> --to investigation`, and everything after that
+is written in the state it belongs to.
 
 There is deliberately **no `completed/`**. A study is a permanent
 record, and `completed/` is what the ticket purge matches; a finished
@@ -84,12 +108,15 @@ wrong thing, and it costs a day rather than a month.
 
 ## The rules
 
-1. **Write the bar before looking.** State the question, the inclusion
+1. **Write the bar before looking** — in `investigation/`, as the first
+   thing the investigation does. State the question, the inclusion
    rules, the contrast and the smallest effect the design can detect —
    and commit that — before computing any result. Deciding what counts
    as a hit after seeing the hits is not a measurement.
    `2026-08-30-entry-timing` keeps its `counts.py` precisely so the
    claim "I had computed only counts" is checkable rather than asserted.
+   **The ordering is proved by the commit, not by the directory** — the
+   bar is committed on its own, before the run that produces a number.
 2. **Never touch the ledger.** No `record_opportunity`, no basket, no
    ticker. If it produces a bet it is a theory, and it needs a spec.
    (Currently 18 of 18 studies hold this line.)

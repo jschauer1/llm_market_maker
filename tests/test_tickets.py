@@ -680,6 +680,28 @@ def test_advance_carries_the_whole_directory(tmp_path):
     assert (moved.parent / "collect.py").is_file()
 
 
+def test_advance_accepts_the_study_directory_the_cli_hands_it(tmp_path):
+    """`cli tickets advance <study dir>` is the documented call, and it
+    used to move the study and then fail.
+
+    `create()` returns `.../STUDY.md`, so every test here passed a file
+    and the file path worked. The CLI passes the DIRECTORY -- that is
+    what `tickets list` prints and what `go-study` tells a session to
+    type -- and the old body lookup recognised only the file form. The
+    rename ran first, so the study landed in `investigation/` and then
+    `read_text` raised on a directory: moved, unannotated, exit code 1.
+    """
+    path = tickets.create(tmp_path, lane="study", slug="probe", title="Q",
+                          body="Investigate: does resting beat crossing?",
+                          created="2026-09-02")
+    moved = tickets.advance(path.parent, to="investigation",
+                            note="Claimed; writing the bar.",
+                            now="2026-09-03")
+    assert moved.name == "STUDY.md"
+    assert moved.parent.parent.name == "investigation"
+    assert "Claimed; writing the bar." in moved.read_text(encoding="utf-8")
+
+
 def test_advance_refuses_a_state_the_lane_does_not_have(tmp_path):
     path = tickets.create(tmp_path, lane="study", slug="q", title="Q",
                           body="Bar: x.", created="2026-09-02")

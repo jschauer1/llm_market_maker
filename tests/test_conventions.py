@@ -1334,6 +1334,67 @@ def test_ticket_states_match_their_lane():
     )
 
 
+def test_a_study_in_question_holds_only_the_question():
+    """`question/` holds what should be investigated and nothing else.
+
+    User ruling 2026-09-03. A study in `question/` is a REQUEST: one
+    `STUDY.md` naming the question, filed by whoever noticed it. The
+    design, the pre-registration, the measurement code and its data are
+    all work, and work lives in `investigation/` -- so the first act of
+    picking a study up is `tickets advance <path> --to investigation`,
+    not the first line of its measurement.
+
+    The failure this catches is not hypothetical and it does not look
+    like a mistake while you are making it: designing a measurement
+    feels like part of asking the question, so
+    `2026-09-03-maker-mode-fill-simulation` was filed into `question/`
+    and then grew a full pre-registration, a simulator, planted-path
+    fixtures and a collected `data/markets.jsonl` there -- a study most
+    of the way to an answer, sitting in the directory that means nobody
+    has started this. Two things break at once: the backlog stops
+    distinguishing an unclaimed question from a half-run one, which is
+    the entire reason state is a directory rather than a field; and the
+    floor's in-flight report reads `investigation/`, so a collector
+    stalling in `question/` is invisible exactly the way
+    `series-bias-mining`'s two stalls were.
+
+    Scope mirrors `tickets.backlog()`'s own walk -- most studies do not
+    live under the repo-root `tickets/` tree at all, but inside the
+    theory that owns them.
+    """
+    from tools import tickets
+
+    bases = [ROOT / "tickets" / "study"]
+    theories_dir = ROOT / "theories"
+    if theories_dir.is_dir():
+        bases.extend(sorted(theories_dir.rglob("studies")))
+
+    problems = []
+    for base in bases:
+        question = base / "question"
+        if not question.is_dir():
+            continue
+        for entry in sorted(question.iterdir()):
+            rel = entry.relative_to(ROOT).as_posix()
+            if not entry.is_dir():
+                problems.append(f"{rel} (a study ticket is a directory)")
+                continue
+            extra = sorted(
+                child.name for child in entry.iterdir()
+                if child.name != tickets.STUDY_FILE
+            )
+            if extra:
+                problems.append(f"{rel}: {', '.join(extra)}")
+
+    assert problems == [], (
+        "a study in question/ holds more than the question -- that work "
+        "means the study has started, so advance it:\n  "
+        + "\n  ".join(problems)
+        + "\n\npython -m tools.cli tickets advance <path> --to "
+          "investigation --note '<what the measurement is about to do>'"
+    )
+
+
 # ====================================== a study's .gitignore survives a move
 # `cli tickets advance` moves a study between state directories and does
 # NOT touch .gitignore. An entry written with the state in it

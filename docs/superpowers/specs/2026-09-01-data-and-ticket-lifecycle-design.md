@@ -233,9 +233,17 @@ study:  question → investigation → answer
 
 | state | holds |
 |---|---|
-| `question/` | the question and the bar, **written before looking** |
-| `investigation/` | the measurement running — its code and its data |
+| `question/` | **what should be investigated, and nothing else** |
+| `investigation/` | the work — the bar, the measurement, its code and its data |
 | `answer/` | the verdict. **Terminal and permanent** |
+
+**Amended 2026-09-03 (user ruling).** As shipped, `question/` held the
+bar as well, and that is where `2026-09-03-maker-mode-fill-simulation`
+ended up carrying a pre-registration, a simulator, fixtures and a
+collected corpus — a half-run study in the state that means *nobody has
+started this*. `question/` now holds only the statement of what should
+be investigated; designing the measurement is work, and work lives in
+`investigation/`. What that costs is stated below.
 
 ### Why this shape, and not a folder in `studies/`
 
@@ -243,6 +251,13 @@ study:  question → investigation → answer
 of `studies/README.md` is *"write the bar before looking"* — today a rule
 somebody follows. Under the pipeline, `investigation/` is unreachable
 except through `question/`. The rule is the pipeline.
+
+*(Amended 2026-09-03: the bar moved into `investigation/`, so the
+ordering is no longer proved by the directory. It is proved by the
+commit — the bar is committed on its own, before the run that produces
+a number, and `counts.py`-style scripts keep "I had computed only
+counts" checkable. The state machine still runs one way, so a study
+cannot reach `answer/` without passing through both earlier states.)*
 
 **Persistence needs no special case.** The purge (Part 5) only ever
 touches `completed/`. The study lane has no `completed/` — its terminal

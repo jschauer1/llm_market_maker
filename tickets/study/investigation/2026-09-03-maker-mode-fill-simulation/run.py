@@ -12,7 +12,7 @@ algebraically out of D. That is what makes this tier A without an
 argument, and it is why the design is far better powered than a P&L
 comparison -- the settlement variance term is not reduced, it is absent.
 
-    python tickets/study/question/2026-09-03-maker-mode-fill-simulation/run.py
+    python tickets/study/investigation/2026-09-03-maker-mode-fill-simulation/run.py
 """
 
 from __future__ import annotations

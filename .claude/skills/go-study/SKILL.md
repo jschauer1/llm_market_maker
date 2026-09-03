@@ -53,17 +53,40 @@ finish than a fresh one is to start.
 
 State which you picked and what you compared it against.
 
-## 3. If you are starting a new one: write the bar first
+## 3. If you are starting a new one: file the question, then claim it
 
-**Before computing any result**, file the study ticket and commit its
-`STUDY.md`, stating:
+**A study in `question/` is a request, not a design** — one `STUDY.md`
+saying what should be investigated and why it is worth a session, and
+nothing else. File it, or pick up one somebody already filed:
 
 ```bash
-python -m tools.cli tickets new --lane study --slug <YYYY-MM-DD>-<slug> \n    --title "<the question>" [--theory <slug>] --session <you>
+python -m tools.cli tickets new --lane study --slug <YYYY-MM-DD>-<slug> \
+    --title "<the question>" [--theory <slug>] --session <you>
 ```
 
 It lands in `question/` — inside the theory that owns it when you name
-one, and in `tickets/study/question/` when no single theory does. State:
+one, and in `tickets/study/question/` when no single theory does.
+
+**Then advance it before you write anything else.** Designing the
+measurement is work, and every part of the work — the bar, the code, the
+data — lives in `investigation/`:
+
+```bash
+python -m tools.cli tickets advance <path> --to investigation --note "<what the measurement is about to do>"
+```
+
+Skipping that leaves a half-run study filed as an unclaimed question:
+the backlog cannot tell it from something nobody has touched, and the
+floor's in-flight report reads `investigation/`, so a collector stalling
+in `question/` is invisible. `2026-09-03-maker-mode-fill-simulation`
+grew a pre-registration, a simulator, fixtures and a collected corpus in
+`question/` before this was ruled, and
+`tests/test_conventions.py::test_a_study_in_question_holds_only_the_question`
+now fails the moment it happens again.
+
+## 4. Write the bar — first thing in `investigation/`, before looking
+
+**Before computing any result**, commit the `STUDY.md` bar, stating:
 
 - **The question**, in one sentence.
 - **The population** — inclusion rules, concretely. *The rules that
@@ -88,7 +111,7 @@ Keep the script that proves you had looked at nothing —
 whose answer is already known. Measure it, and keep it out of the
 multiple-comparisons family.
 
-## 4. Run it once
+## 5. Run it once
 
 One run, against the bar as written.
 
@@ -106,7 +129,7 @@ One run, against the bar as written.
   one write at the end. The data perishes; an interrupted run must
   resume rather than restart.
 
-## 5. Record the verdict where it can be seen
+## 6. Record the verdict where it can be seen
 
 The header line is the interface — `cli studies` reads it live, so this
 is how a supervisor learns what you found without opening the file:
@@ -116,10 +139,10 @@ is how a supervisor learns what you found without opening the file:
 ```
 
 Keep the *directory* honest — that is where a study's state lives now,
-and there is no `Status` field. `python -m tools.cli tickets advance
-<path>` moves it `question` -> `investigation` when you start
-measuring, and `investigation` -> `answer` only when the question is
-answered.
+and there is no `Status` field. `question` -> `investigation` happened
+back at step 3, the moment you picked the question up; `python -m
+tools.cli tickets advance <path> --to answer` moves it on only when the
+question is answered.
 
 Then close the loop wherever the question came from — the study is not
 finished while its answer sits only in the study's own folder:
@@ -136,7 +159,7 @@ expressible over recorded fields, pre-register it as a registered slice
 (`cli slices register`) so the out-of-sample bookkeeping is automatic.
 Never bet the data that suggested it.
 
-## 6. Before you close the claim
+## 7. Before you close the claim
 
 - Is the study in the state directory its work is actually in?
 - Does `cli studies` show what you want a supervisor to see?

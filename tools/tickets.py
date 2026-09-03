@@ -66,6 +66,17 @@ def _today() -> str:
 #: finished study is simply not a thing the query can match. Permanence
 #: falls out of the state names instead of being an exemption somebody
 #: has to remember.
+#:
+#: **`question/` holds what should be investigated and NOTHING ELSE**
+#: (user ruling 2026-09-03). A study there is a request nobody has
+#: started; the design, the pre-registration, the code and the data are
+#: all work, and work lives in `investigation/`. The first act of
+#: picking a study up is `advance(..., to="investigation")`, not the
+#: first line of its measurement -- otherwise the backlog cannot tell an
+#: unclaimed question from a half-run one, and the floor's in-flight
+#: report, which reads `investigation/`, never sees a stalled collector.
+#: Enforced by `tests/test_conventions.py::test_a_study_in_question_
+#: holds_only_the_question`.
 LANE_STATES: dict[str, tuple[str, ...]] = {
     "theory": ("open", "completed"),
     "maintenance": ("open", "completed"),
@@ -768,7 +779,16 @@ def advance(path: Path, *, to: str, note: str,
     if moved.exists():
         raise ValueError(f"already present in {to}: {moved}")
     item.rename(moved)
-    body_file = moved / STUDY_FILE if is_study else moved
+    # **The body is found on disk, not inferred from what the caller
+    # typed.** A study ticket is a DIRECTORY, and the CLI hands this
+    # function that directory (`tickets advance <study dir>`) while
+    # `create()` hands back its `STUDY.md` -- so `is_study`, which only
+    # recognises the second form, said False for every CLI call. The
+    # rename above had already happened by then, and the `read_text`
+    # below hit a directory: the study moved, exit code 1, and the note
+    # explaining the move was never written. Half-applied and reported
+    # as a failure, which is the worst of the three outcomes.
+    body_file = moved / STUDY_FILE if moved.is_dir() else moved
     raw = body_file.read_text(encoding="utf-8").rstrip()
     stamp = now or _today()
     body_file.write_text(

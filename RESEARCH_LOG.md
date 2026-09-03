@@ -4849,3 +4849,60 @@ general. The plainest version of the whole finding needs no statistics at
 all: in the board-scoped arm, **33 single-leg by-deadline questions
 resolved YES exactly zero times**, against 0.250 on markets the walk never
 reached. A rate of 0/33 is not a base rate.
+
+## 2026-09-03 — a study's `question/` holds the question and nothing else (user ruling)
+
+**Ruling.** `question/` is *what should be investigated, and nothing
+else*. Designing the measurement, writing the bar, the code, the data —
+all of it is work, and work lives in `investigation/`. The first act of
+picking a study up is `tickets advance <path> --to investigation`, not
+the first line of its measurement.
+
+**What prompted it.** `2026-09-03-maker-mode-fill-simulation` was filed
+into `tickets/study/question/` and then grew, in place, a full
+pre-registration, a simulator (`sim.py`, `run.py`), planted-path
+fixtures and a collected `data/markets.jsonl` — a study most of the way
+to an answer, sitting in the directory that means *nobody has started
+this*. It has been advanced to `investigation/`; nothing about the
+measurement changed.
+
+**Why the line matters, given state is a directory.** Two things break
+at once when work sits in `question/`. The backlog stops distinguishing
+a question somebody could pick up from one already half-answered, which
+is the entire reason state is a directory rather than a field. And the
+floor's in-flight report reads `investigation/` — so a collector
+stalling in `question/` is invisible in exactly the way
+`series-bias-mining`'s two stalls were, which is the failure the
+in-flight report exists to prevent.
+
+**What it costs, stated plainly.** The 2026-09-01 lifecycle design put
+the bar in `question/` and got a structural pre-registration out of it:
+`investigation/` was unreachable except through `question/`, so the
+directory itself proved the bar predated the run. With the bar now
+written in `investigation/`, that ordering is proved by **the commit**
+instead — the bar is committed on its own, before the run that produces
+a number, and `counts.py`-style scripts keep "I had computed only
+counts" checkable rather than asserted. The state machine still runs one
+way, so nothing reaches `answer/` without passing through both earlier
+states.
+
+**Enforced, not just written down.**
+`tests/test_conventions.py::test_a_study_in_question_holds_only_the_question`
+walks every `question/` directory — the root lane and the theory-owned
+ones, mirroring `tickets.backlog()`'s own walk — and fails on anything
+beside `STUDY.md`. Verified against a probe: green with the file alone,
+red the moment a `run.py` appears beside it.
+
+**One bug found on the way, and it was load-bearing for this ruling.**
+`tickets.advance()` located a ticket's body by what the *caller typed*:
+`is_study` was true only for a path ending in `STUDY.md`, which is what
+`create()` returns and what every test passed. The CLI passes the
+**directory** — which is what `tickets list` prints and what `go-study`
+tells a session to type — so `is_study` was false for every real call,
+the rename ran first, and `read_text` then hit a directory. The study
+moved, the note explaining the move was never written, and the command
+exited 1: half-applied and reported as a failure. `advance()` now finds
+the body on disk (`moved / STUDY_FILE if moved.is_dir()`), with a
+regression test passing the directory the way the CLI does. Every study
+advanced by CLI until now landed unannotated, which is worth knowing
+when reading old state changes.

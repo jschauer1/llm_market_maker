@@ -17,7 +17,7 @@ distributions. `run.py` computes the contrast from the intermediate.
 Writes incrementally (repo data convention): an interrupted run resumes
 from the tickers already in the intermediate rather than restarting.
 
-    python tickets/study/question/2026-09-03-maker-mode-fill-simulation/counts.py
+    python tickets/study/investigation/2026-09-03-maker-mode-fill-simulation/counts.py
 """
 
 from __future__ import annotations

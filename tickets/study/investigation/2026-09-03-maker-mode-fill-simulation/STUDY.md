@@ -229,3 +229,7 @@ Population counts and the reconstructed spread distribution only —
 written by `counts.py` beside this file, which is deliberately incapable
 of reading `result`. No fill rate, no `D`, no split, no outcome of any
 kind.
+
+## investigation — 2026-09-03
+
+User ruling 2026-09-03: a study in question/ holds nothing but the statement of what should be investigated -- the design, the code and the data are the investigation. This study already carried its pre-registration, its simulator (sim.py, run.py), its planted-path fixtures and a collected data/markets.jsonl, so it moves to the state its work is actually in. Nothing about the measurement changed.
