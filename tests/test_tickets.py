@@ -455,12 +455,18 @@ def test_the_brief_render_is_one_line_per_ticket(repo):
 # --- backlog pressure -------------------------------------------------------
 #
 # "Are tickets a priority?" used to be re-litigated every session. These
-# three pin the mechanical rule instead: a lane with five or more open
-# tickets, or with even one ticket sitting open past 14 days, is flagged
-# so a session has to take it or decline it with a reason, rather than
-# silently skip it. `now` is passed explicitly in all three -- a test
-# whose result depends on the day it happens to run is a test that fails
-# mysteriously in three weeks.
+# pin the mechanical rule instead: a lane with five or more open tickets
+# (a per-lane threshold, `_PRESSURE_COUNT` -- see below), or with even one
+# ticket sitting open past 14 days, is flagged so a session has to take it
+# or decline it with a reason, rather than silently skip it. `now` is
+# passed explicitly throughout -- a test whose result depends on the day
+# it happens to run is a test that fails mysteriously in three weeks.
+#
+# `new-theory` is exempted from the count trigger, because a pile of
+# specs is the find-theories lane's inventory rather than debt somebody
+# is behind on -- see `_PRESSURE_COUNT` in `tools/tickets.py` for the
+# full reasoning and the real-backlog measurement that motivated it. The
+# age trigger stays live for every lane including `new-theory`.
 
 
 def test_the_backlog_flags_a_lane_under_pressure(repo):
@@ -483,6 +489,40 @@ def test_a_quiet_lane_is_not_flagged(repo):
 def test_one_old_ticket_is_enough_to_flag_a_lane(repo):
     tickets.create(repo, lane="maintenance", slug="ancient", title="T",
                    body="b", created="2026-08-01")
+    out = tickets.render(tickets.backlog(repo, brief=True),
+                         now="2026-09-02")
+    assert "PRESSURE" in out
+
+
+def test_new_theory_specs_do_not_flag_on_count(repo):
+    """16 fresh specs is the measured real-backlog case this change
+    exists for: `new-theory` inventory, not debt, so the count trigger is
+    exempted for this lane specifically (`_PRESSURE_COUNT["new-theory"]
+    is None`) rather than merely raised."""
+    for i in range(16):
+        tickets.create(repo, lane="new-theory", slug=f"spec-{i}",
+                       title=f"Spec {i}", body="b", created="2026-09-01")
+    out = tickets.render(tickets.backlog(repo, brief=True),
+                         now="2026-09-02")
+    assert "PRESSURE" not in out
+
+
+def test_a_stale_new_theory_spec_still_flags_on_age(repo):
+    """The age trigger is untouched for this lane: a spec nobody has
+    touched in a fortnight is stale no matter how small the pile is."""
+    tickets.create(repo, lane="new-theory", slug="ancient-spec", title="T",
+                   body="b", created="2026-08-01")
+    out = tickets.render(tickets.backlog(repo, brief=True),
+                         now="2026-09-02")
+    assert "PRESSURE" in out
+
+
+def test_five_fresh_maintenance_tickets_still_flag_on_count(repo):
+    """Unchanged behaviour for a lane not named in `_PRESSURE_COUNT`: it
+    falls back to `_PRESSURE_COUNT_DEFAULT` and still fires at 5."""
+    for i in range(5):
+        tickets.create(repo, lane="maintenance", slug=f"t{i}",
+                       title=f"Ticket {i}", body="b", created="2026-09-01")
     out = tickets.render(tickets.backlog(repo, brief=True),
                          now="2026-09-02")
     assert "PRESSURE" in out

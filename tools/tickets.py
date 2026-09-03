@@ -1187,19 +1187,54 @@ def _clip(text: str, width: int) -> str:
 
 #: Backlog-pressure thresholds -- the rule `go` enforces at lane choice
 #: (`.claude/skills/go/SKILL.md`): a lane holding a ticket open longer
-#: than `_PRESSURE_AGE_DAYS`, or carrying at least `_PRESSURE_COUNT` open
-#: tickets, is either taken or explicitly declined with a reason in the
-#: session report.
+#: than `_PRESSURE_AGE_DAYS`, or carrying at least its count threshold
+#: (`_PRESSURE_COUNT`, below) of open tickets, is either taken or
+#: explicitly declined with a reason in the session report.
 #:
 #: **These are a starting point, not a measurement.** They were picked
 #: when this rule was written (2026-09-02, repo-governance Task 4) with
 #: no data behind them -- nobody had yet measured what backlog depth or
 #: ticket age actually predicts. Treating them as derived would mean
 #: nobody ever revisits them; saying so here is what makes a future
-#: session tune both numbers deliberately once the mechanical rule has
-#: run long enough to say whether 14 and 5 are the right ones.
+#: session tune the numbers deliberately once the mechanical rule has run
+#: long enough to say whether they are the right ones.
 _PRESSURE_AGE_DAYS = 14
-_PRESSURE_COUNT = 5
+
+#: The count trigger, per lane, keyed rather than an `if lane ==
+#: "new-theory"` branch so a future retune is a data edit, not a code
+#: change. `_PRESSURE_COUNT_DEFAULT` is what any lane not named here
+#: uses.
+#:
+#: `new-theory` is set to `None` -- exempted from the count trigger
+#: entirely, not merely given a higher number -- because the reason it
+#: does not fit is structural rather than a matter of degree. A
+#: `new-theory` ticket is a SPEC: an unbuilt hypothesis with a mechanism,
+#: a population and a kill bar already written down. A pile of them is
+#: the PRODUCT of the find-theories lane doing its job, not a queue
+#: falling behind -- it is inventory, not debt. Measured on the real
+#: backlog on 2026-09-02: three of four lanes were flagging, all three on
+#: the count trigger, none on the age trigger (nothing anywhere older
+#: than about 10 days) --
+#:
+#:   PRESSURE -- new-theory: 16 open tickets (threshold 5)
+#:   PRESSURE -- theory: 11 open tickets (threshold 5)
+#:   PRESSURE -- maintenance: 7 open tickets (threshold 5)
+#:
+#: `theory` and `maintenance` are real signal: work somebody committed to
+#: and has not done. Sixteen specs with none older than ten days is a
+#: healthy `new-theory` lane, and a rule that shouts at it every session
+#: trains readers to ignore the PRESSURE line entirely -- which costs the
+#: two lanes where it was telling the truth. The age trigger stays live
+#: for `new-theory` (`_PRESSURE_AGE_DAYS`, unchanged, applies to every
+#: lane): a spec nobody has touched in a fortnight IS stale, whatever the
+#: pile's size, and that is the signal worth keeping there.
+#:
+#: Like the age threshold, `_PRESSURE_COUNT_DEFAULT` and the values below
+#: remain unmeasured starting points, not derived numbers -- a future
+#: session should tune them deliberately once there is evidence to tune
+#: them against, not assume they came from a study.
+_PRESSURE_COUNT_DEFAULT = 5
+_PRESSURE_COUNT: dict[str, int | None] = {"new-theory": None}
 
 
 def _age_days(entry: dict, today: date) -> int | None:
@@ -1228,14 +1263,20 @@ def _pressure_line(lane: str, rows: list[dict], today: date) -> str | None:
     `"open"` here to match `backlog()`'s own default of `status="open"`,
     which is what every real caller uses.
 
-    The COUNT threshold counts every open row, malformed ones included.
-    `_age_days` returns `None` for a ticket with an empty or unparsable
-    `created` field, and that ticket is still an open ticket somebody has
-    to deal with -- arguably more so, since it also needs its `created`
-    field fixed. Dropping it from the tally let a lane with 5 open
-    tickets (one malformed) read as quiet instead of tripping the
-    threshold. Only the AGE threshold needs a real date and so only looks
-    at the datable subset.
+    The COUNT threshold counts every open row, malformed ones included,
+    and is looked up per lane (`_PRESSURE_COUNT`, falling back to
+    `_PRESSURE_COUNT_DEFAULT`) rather than being one number for every
+    lane -- `new-theory` maps to `None` there and never trips this
+    branch, because a pile of unbuilt specs is inventory the find-theories
+    lane produced on purpose, not debt. `_age_days` returns `None` for a
+    ticket with an empty or unparsable `created` field, and that ticket is
+    still an open ticket somebody has to deal with -- arguably more so,
+    since it also needs its `created` field fixed. Dropping it from the
+    tally let a lane with 5 open tickets (one malformed) read as quiet
+    instead of tripping the threshold. Only the AGE threshold needs a real
+    date and so only looks at the datable subset -- and it applies to
+    every lane without exception, `new-theory` included, since a spec
+    left untouched for a fortnight is stale regardless of the pile size.
     """
     open_rows = [row for row in rows if row.get("status", "open") == "open"]
     if not open_rows:
@@ -1245,9 +1286,10 @@ def _pressure_line(lane: str, rows: list[dict], today: date) -> str | None:
         if (age := _age_days(row, today)) is not None
     ]
     reasons = []
-    if len(open_rows) >= _PRESSURE_COUNT:
+    count_threshold = _PRESSURE_COUNT.get(lane, _PRESSURE_COUNT_DEFAULT)
+    if count_threshold is not None and len(open_rows) >= count_threshold:
         reasons.append(
-            f"{len(open_rows)} open tickets (threshold {_PRESSURE_COUNT})")
+            f"{len(open_rows)} open tickets (threshold {count_threshold})")
     if ages:
         oldest = max(ages)
         if oldest > _PRESSURE_AGE_DAYS:

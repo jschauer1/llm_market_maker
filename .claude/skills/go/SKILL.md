@@ -134,11 +134,15 @@ answer:
 
 `python -m tools.cli tickets list` — already run in Orient — prints a
 **PRESSURE** line under any lane holding a ticket open more than 14
-days, or holding 5 or more open tickets (`tools/tickets.py`, `render`).
-**A flagged lane is either taken this session, or explicitly declined
-with a reason in your report** — never silently passed over the way an
-unflagged, merely-plausible ticket may be. This is what makes "is the
-backlog a priority?" a mechanical check instead of something
+days, or holding at least its count threshold of open tickets
+(`tools/tickets.py`, `_PRESSURE_COUNT`/`render`). The count threshold is
+**per lane**: 5 by default, but `new-theory` is exempted from it
+entirely — a pile of specs there is the find-theories lane's inventory,
+not a queue falling behind, so only the age trigger applies to that
+lane. **A flagged lane is either taken this session, or explicitly
+declined with a reason in your report** — never silently passed over
+the way an unflagged, merely-plausible ticket may be. This is what makes
+"is the backlog a priority?" a mechanical check instead of something
 re-litigated fresh every session.
 
 **The floor is never displaced by ticket pressure.** It is a daily
@@ -146,13 +150,13 @@ guarantee, not a discretionary lane — if the floor is due and unheld,
 take it regardless of what else is flagged (§1). Pressure only competes
 with the *other* lanes below it.
 
-The 14-day and 5-ticket thresholds are a **starting point, not a
-measurement**: they were picked when this rule was written with no data
-behind them, not derived from any study of what backlog depth or ticket
-age actually predicts. Treat them as provisional — a future session
-should tune both deliberately once the rule has run long enough to say
-whether they are the right numbers, rather than assume they came from
-evidence and leave them alone forever.
+The 14-day age threshold and the per-lane count thresholds are a
+**starting point, not a measurement**: they were picked when this rule
+was written with no data behind them, not derived from any study of what
+backlog depth or ticket age actually predicts. Treat them as
+provisional — a future session should tune them deliberately once the
+rule has run long enough to say whether they are the right numbers,
+rather than assume they came from evidence and leave them alone forever.
 
 **State the lane you picked, and what you compared it against**, in a
 line or two, before you start. That is the record of the exploration
