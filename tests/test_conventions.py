@@ -1507,6 +1507,11 @@ def _dir_bytes(path: Path) -> int:
     return sum(f.stat().st_size for f in path.rglob("*") if f.is_file())
 
 
+#: Every directory name a ticket's state has ever been. `evidence` is
+#: kept although the new-theory lane dropped it on 2026-09-03: this list
+#: exists to RECOGNISE a .gitignore line that pins a path to a state, and
+#: a line naming a state that no longer exists is exactly the stale entry
+#: worth catching.
 _STATES = ("question", "investigation", "answer", "open", "evidence",
            "build", "completed")
 

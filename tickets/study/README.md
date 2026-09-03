@@ -20,9 +20,11 @@ keeping.
 ## A study is a ticket, and its state is its directory
 
 A study is a ticket in the `study` lane, and a study ticket is a
-**directory** holding `STUDY.md` plus the measurement's own code and
-data. It moves through three states, and the state is **the directory it
-sits in** — never a field inside the file:
+**directory**: `STUDY.md` is the ticket, and while the measurement is
+running the folder holds its code and data too. It moves through three
+states, and the state is **the directory it sits in** — never a field
+inside the file. Each state says what may be in the folder, so the three
+are not just labels:
 
 ```
 question  →  investigation  →  answer

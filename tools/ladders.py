@@ -8,8 +8,13 @@ theory can decide.
 Elevated from `theories/structural_arb/scan.py` on 2026-08-29 under the
 normal caller-count rule, with three real callers: `structural_arb`
 (interval containment and exclusivity proofs), `smile_smoothing` (fitting
-a monotone curve across a ladder), and
-`theories/structural_arb/studies/answer/2026-08-29-structural-arb-violation-liquidity/probe.py`.
+a monotone curve across a ladder), and the `probe.py` of the study
+`theories/structural_arb/studies/answer/2026-08-29-structural-arb-violation-liquidity`
+-- that third caller was deleted on 2026-09-03 when its study reached an
+answer (the study lane deletes the investigation and keeps the document),
+and it reads back at `git show 38028e6:<that path>/probe.py`. The
+justification for the elevation is what those callers were at the time,
+so the count stands; the file is simply no longer in the working tree.
 Behaviour is unchanged by the move — `structural_arb` re-exports these
 names and its decision procedure is byte-identical in effect, so the move
 does **not** bump its version.

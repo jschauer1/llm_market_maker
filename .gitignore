@@ -42,7 +42,13 @@ user_reports/*
 tickets/study/*/2026-08-29-series-bias-mining/data/
 STATE.md
 
-# parlay-markup study: 150k+ raw payloads, regenerable via collect.py
+# parlay-markup study: 150k+ raw Kalshi leg payloads. NOT regenerable --
+# this entry said "regenerable via collect.py" until 2026-09-03, and both
+# halves of that stopped being true: the study reached its answer, so its
+# investigation (collect.py included) was deleted, and re-collecting needs
+# an API that drops settled markets ~60 days after close. Nothing in git
+# holds this file either, which is why it is the one thing the answer
+# sweep kept -- see the `**Retained:**` line in that study's STUDY.md.
 tickets/study/*/2026-08-30-parlay-markup/data/
 
 # taker_flow: the raw per-trade corpus for backtest-2026-09-01-takerflow

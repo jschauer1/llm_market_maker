@@ -117,8 +117,10 @@ LANE_STATES: dict[str, tuple[str, ...]] = {
 }
 
 #: The study lane's ticket filename. A study ticket is a DIRECTORY --
-#: a measurement has code and data and they belong with it -- and this
-#: is the one file inside it that is the ticket. It is `STUDY.md` rather
+#: a running measurement has code and data and they belong with it -- and
+#: this is the one file inside it that is the ticket. By `answer/` it is
+#: the ONLY file: the answer is the document and the investigation is
+#: deleted (see LANE_STATES above). It is `STUDY.md` rather
 #: than `TICKET.md` because the study header and the ticket frontmatter
 #: describe the same thing, and two files would mean two places to say
 #: what this measurement is.
@@ -140,7 +142,12 @@ DELETE_ON_CLOSE = ("new-theory",)
 #:   built        became a running theory -- name it
 #:   disproven    the bar was met and the thesis failed. Not re-proposable.
 #:                `calendar-arb` and `smile-smoothing` are the worked
-#:                examples: measured, and the answer was no.
+#:                examples: measured, and the answer was no. **The bar is
+#:                the SPEC's own kill criterion; who measured it is open**
+#:                -- a study, a backtest, a sibling theory's ledger, or
+#:                the theory this spec became. The lane stopped running
+#:                the measurement itself when `evidence/` was removed
+#:                (2026-09-03); the vocabulary did not change with it.
 #:   underpowered the measurement COULD NOT REACH the bar -- population too
 #:                thin, history too short, liquidity too low. This is a
 #:                different claim ("we could not tell"), and it IS

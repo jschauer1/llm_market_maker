@@ -1001,6 +1001,16 @@ rule ("Reading is open; only writing is segregated") and nothing here
 narrows it: a session may read any theory's notes or any study's data at
 any time; it may not deposit new files there.
 
+**A study's folder is not permanent storage, and its answer is.** When a
+study reaches `answer/` its investigation is deleted — code, intermediates
+and working data — recoverable at the git rev its document records. What
+survives is source data no rev holds: a gitignored corpus is unbuyable
+once Kalshi ages the window out, so it stays, named in the document under
+`**Retained:**`. Capture-aggressively is untouched by this; what the
+deletion removes is the *means*, never the only copy of a capture. A
+dataset other work reads is a third case — it has become infrastructure
+and needs an owner. `tickets/study/README.md` has the rule.
+
 **The shared sinks — a closed list.** Writing outside your own owner's
 folder is legitimate at exactly these targets, and nowhere else:
 
