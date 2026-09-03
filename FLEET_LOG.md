@@ -245,3 +245,38 @@ goes to be found.
 - 02:03 suite after efb4dee: 2 failed / 1390 passed (baseline was 2 / 1373).
   Identical failing set -- both still the inherited pair. w2 added no
   breakage and added 17 passing tests. No ticket, no send-back.
+- 02:12 w3 (fleet-w3-g4) COMPLETE -> CONCLUSIVE. Verified: claim 24
+  released, artifacts on disk, outcome reached (a result on two studies).
+  It ceded series-bias-mining on finding w2-g4 already in that lane on the
+  same study -- correct call under the one-run rule -- and closed the
+  other two instead.
+  calendar-arb Result 2 re-derived on correctly reconstructed boards and
+  reproduces EXACTLY: all 8 cells, 1,944 pairs, 295 near-dated same-event
+  at min cost 1.000, 0 near-dated cross-event. Those two figures were
+  fixed by the commissioning ticket before any number existed. The
+  exact-stamp board defect never touched it (probe ran 2026-08-27, dedup
+  landed 2026-08-30), and it holds on the 79% the broken query still
+  returns.
+  New rule 0g in tickets/new-theory/README.md: KXTRUMPSAYMONTH-style
+  monthly resets read as clean ladders by title AND rules text, are not
+  nested, and are visible only during the ~10h rollover. Compare
+  open_time; a strike-aware key does not catch them. Inherited by every
+  future spec, structural_arb included.
+  Also advanced parlay-markup to answer/ -- cli studies had shown an
+  answered study as in-flight for four days.
+- 02:12 COMMIT fd78f79 (w3 manifest only). Pushed. Staged set verified to
+  contain nothing from w1 or w2-g5; RESEARCH_LOG.md held only w3's single
+  75-line entry. The parlay move committed as renames, so the 17MB data/
+  never entered history.
+- 02:12 SPAWN w3 = fleet-w3-g5 (a4294a1792cff221f). ListAgents confirmed
+  slot empty first.
+- 02:12 w2-g5 claimed maintenance (claim 26). w1-g4 still on
+  theory/deadline_drift, 36m in and moving.
+- 02:12 WATCH: w1-g4 (deadline_drift) and w2-g5 (maintenance) may collide
+  -- the queued maintenance ticket elevates parse_deadline to tools/, and
+  its two callers live in deadline_drift and no_side_premium. Dirty tree
+  shows tools/timeutil.py, tests/test_timeutil.py and
+  no_side_premium/exposure_measure.py moving alongside deadline_drift
+  files. Not resolved by the supervisor: both are legitimately in their
+  own lanes, and a collision is theirs to notice. Committing only ever
+  the reported manifest keeps them separable.
