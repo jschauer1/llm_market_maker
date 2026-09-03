@@ -211,7 +211,12 @@ def _cmd_tickets(args) -> int:
                                  resolution=args.resolution, conn=conn)
         finally:
             conn.close()
-        _emit({"closed": str(path)})
+        # `deleted` is not decoration: a `new-theory` close REMOVES the
+        # spec, and the path returned is where it used to be. Printing
+        # that as a destination, the way every other lane's close reads,
+        # would have a session looking for a file nothing will ever put
+        # there again.
+        _emit({"closed": str(path), "deleted": not path.exists()})
     elif args.action == "purge":
         # A connection for every purge: the citation check reads the
         # database's free-text columns as well as the markdown tree, and
@@ -917,17 +922,21 @@ def build_parser() -> argparse.ArgumentParser:
     tadv.add_argument("--to", required=True,
                       help="the state to move into; the lane declares "
                            "which it has (study: question, investigation, "
-                           "answer)")
+                           "answer; new-theory: open, evidence, build)")
     tadv.add_argument("--note", required=True,
                       help="why it moved — appended to the body under a "
                            "dated heading")
     tcl = tsub.add_parser(
-        "close", help="mark a ticket done and move it into completed/")
+        "close",
+        help="finish a ticket: most lanes move it into completed/; a "
+             "new-theory spec is DELETED, its verdict already being in "
+             "the ideas registry or in the theory it became")
     tcl.add_argument("path")
     tcl.add_argument(
         "--resolution", required=True,
         help="what happened. A new-theory spec must START with one of "
-             f"{tickets.NEW_THEORY_RESOLUTIONS} -- `disproven` means the "
+             f"{tickets.NEW_THEORY_RESOLUTIONS} (and closing one deletes "
+             "it) -- `disproven` means the "
              "bar was met and the thesis failed (not re-proposable); "
              "`underpowered` means the measurement could not reach the "
              "bar, which stays re-proposable. Either of those two "

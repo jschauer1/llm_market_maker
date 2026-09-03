@@ -71,12 +71,22 @@ LANE_STATES: dict[str, tuple[str, ...]] = {
     "maintenance": ("open", "completed"),
     # A new-theory ticket IS a spec, and it earns its way to a build
     # order. `evidence` is where the cheapest decisive measurement runs
-    # against the bar the spec wrote before looking; `implement` means
-    # that measurement cleared it. The stage is not optional -- a spec
-    # that jumps from `open` to `implement` is a theory built on a thesis
-    # nobody tested, which is the failure the whole new-theory lane
-    # exists to prevent.
-    "new-theory": ("open", "evidence", "implement", "completed"),
+    # against the bar the spec wrote before looking; `build` means that
+    # measurement cleared it and the spec is READY TO IMPLEMENT. The
+    # stage is not optional -- a spec that jumps from `open` to `build`
+    # is a theory built on a thesis nobody tested, which is the failure
+    # the whole new-theory lane exists to prevent.
+    #
+    # `build` is TERMINAL, and the lane has no `completed/` (2026-09-02).
+    # A finished spec is one of two things and neither wants a folder:
+    # a BUILT one is recorded by the theory it became, and a DEAD one by
+    # its ideas-registry row, which `close` refuses to proceed without.
+    # `completed/` held a third copy of a verdict those two already
+    # owned, and being a copy it drifted -- all 16 specs that passed
+    # through it ended up with `resolution:` strings that no longer
+    # parsed as any of NEW_THEORY_RESOLUTIONS. So a spec now LEAVES this
+    # lane when it ends; see `close`.
+    "new-theory": ("open", "evidence", "build"),
     "study": ("question", "investigation", "answer"),
 }
 
@@ -87,6 +97,15 @@ LANE_STATES: dict[str, tuple[str, ...]] = {
 #: describe the same thing, and two files would mean two places to say
 #: what this measurement is.
 STUDY_FILE = "STUDY.md"
+
+#: Lanes whose tickets leave by DELETION rather than by moving into
+#: `completed/`. The durable fact has already elevated somewhere better
+#: by the time `close` runs -- the ideas registry for a dead spec, the
+#: theory itself for a built one -- so what `completed/` would keep is a
+#: second copy of a verdict, and the second copy is the one that goes
+#: stale. Git history holds the file for anyone who wants the original
+#: prose: `git log --diff-filter=D` finds it, `git show` retrieves it.
+DELETE_ON_CLOSE = ("new-theory",)
 
 #: The four ways a new-theory spec can end, and the reason the vocabulary
 #: is fixed: `disproven` and `underpowered` mean OPPOSITE things about
@@ -579,6 +598,10 @@ def advance(path: Path, *, to: str, note: str,
             f"it declares {allowed}"
         )
     if to == "completed":
+        # Reached only by a lane that HAS a `completed/` -- the unknown-
+        # state check above already rejected `completed` for `study` and
+        # `new-theory`, neither of which declares one.
+        #
         # **`advance()` must never be the way into `completed/`.** That
         # transition belongs to `close()`, which is the only thing that
         # records the required resolution -- and, before this branch
@@ -605,14 +628,14 @@ def advance(path: Path, *, to: str, note: str,
             f"cannot move backwards: {here!r} -> {to!r}. Close the ticket "
             "or file a new one instead."
         )
-    if lane == "new-theory" and here == "open" and to == "implement":
+    if lane == "new-theory" and here == "open" and to == "build":
         # **The evidence stage is not skippable**, and this is the one
         # forwards move in the repo that is refused anyway. Every other
         # lane's states are bookkeeping; these two are the lane's whole
         # argument. A spec states a thesis and the bar that would falsify
         # it, `evidence/` is where the cheapest decisive measurement runs
-        # against that bar, and `implement/` asserts the bar was cleared.
-        # Allowing `open` -> `implement` would let a build order be issued
+        # against that bar, and `build/` asserts the bar was cleared.
+        # Allowing `open` -> `build` would let a build order be issued
         # on a thesis nobody measured -- which is the failure this lane
         # exists to prevent, and the reason `calendar-arb` and
         # `smile-smoothing` died in an afternoon instead of a month.
@@ -675,14 +698,23 @@ def _lane_of(state_dir: Path) -> str:
 
 def close(path: Path, *, resolution: str, now: str | None = None,
           conn=None) -> Path:
-    """Mark a ticket done and MOVE it into `completed/`. Returns the new path.
+    """Finish a ticket. Returns where it ended up, or where it used to be.
 
-    The file is kept, never deleted: a finished ticket is the record of
-    what was asked for and why, which is exactly what a future session
-    re-deriving the same problem wants. But it leaves the backlog
-    physically, because the backlog is a directory listing -- a status
-    field alone would make every session read every ticket ever filed to
-    find the few still open.
+    Two shapes, by lane. Most lanes MOVE the file into `completed/`: a
+    finished ticket is the record of what was asked for and why, which is
+    exactly what a future session re-deriving the same problem wants. It
+    leaves the backlog physically, because the backlog is a directory
+    listing -- a status field alone would make every session read every
+    ticket ever filed to find the few still open.
+
+    A `DELETE_ON_CLOSE` lane instead removes the file and returns the
+    path it used to occupy. That is not a shortcut: a `new-theory` spec's
+    verdict has to be in the ideas registry (below) or embodied in the
+    theory it became BEFORE the close is allowed, so `completed/` would
+    hold a third copy of a fact two better places already own -- and
+    being a copy, it drifted. Every one of the 16 specs that passed
+    through `completed/` ended up with a `resolution:` string that no
+    longer parsed as any of `NEW_THEORY_RESOLUTIONS`.
 
     **A `new-theory` ticket is a spec, so its resolution is a vocabulary
     and not free text** (`NEW_THEORY_RESOLUTIONS`), and closing one
@@ -696,7 +728,7 @@ def close(path: Path, *, resolution: str, now: str | None = None,
     is_study = path.name == STUDY_FILE
     item = path.parent if is_study else path
     lane = _lane_of(item.parent)
-    if "completed" not in states_for(lane):
+    if "completed" not in states_for(lane) and lane not in DELETE_ON_CLOSE:
         # close() assumes a flat file at `<state_dir>/<name>.md` and moves
         # it to `<lane root>/completed/` via `path.parent.parent`. A study
         # ticket breaks both assumptions: it is a DIRECTORY -- STUDY.md
@@ -715,6 +747,9 @@ def close(path: Path, *, resolution: str, now: str | None = None,
         # under `question/`, and left the study invisible to every future
         # `backlog()`/`_scan()` call. It raised nothing, because the
         # frontmatter still read `status: open` and the guard below passed.
+        # `new-theory` also declares no `completed/`, but it IS
+        # closeable -- it is in DELETE_ON_CLOSE, so it never reaches
+        # here. The study lane is closeable by nothing at all.
         raise ValueError(
             f"close() cannot be used on this {lane!r}-lane ticket: the "
             f"{lane!r} lane has no 'completed' state. A study is finished "
@@ -765,6 +800,19 @@ def close(path: Path, *, resolution: str, now: str | None = None,
             )
         if word in _RESOLUTIONS_NEEDING_A_REGISTRY_ENTRY:
             _require_idea(conn, slug_of(path), word)
+    if lane in DELETE_ON_CLOSE:
+        # Everything that had to outlive this file has already been
+        # checked: a `disproven`/`underpowered` close cannot reach here
+        # without `what_was_tried` and `outcome` in the ideas registry
+        # (plus a `revisit_angle` where re-proposing stays open), and a
+        # `built` one is recorded by the theory it names.
+        #
+        # `unlink`, not the `git rm` that `purge` uses. Purge is an
+        # unattended bulk sweep, so it has to land its own removals in
+        # history; a close is one deliberate act by a session that
+        # commits its own work. The returned path is where the spec WAS.
+        path.unlink()
+        return path
     raw = raw.replace("status: open", "status: done", 1)
     raw = raw.replace(
         "\n---\n",

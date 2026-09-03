@@ -364,11 +364,12 @@ def test_the_new_theory_lane_lives_in_a_directory_named_for_it(repo):
     )
 
 
-def test_closing_a_new_theory_ticket_stays_inside_its_lane(repo, conn):
+def test_closing_a_new_theory_ticket_removes_it_from_the_lane(repo, conn):
     """`smile-smoothing` is the repo's own worked example of `disproven`
     -- measured properly, and the answer was no -- so this closes the way
-    a real one now has to: the registry row first, then the file. It grew
-    a database for that reason and not because placement needs one."""
+    a real one now has to: the registry row first, then the file goes.
+    It grew a database for that reason and not because placement needs
+    one."""
     path = tickets.create(
         repo, lane="new-theory", slug="smile-smoothing", title="ladder shape",
         body="Fit a monotone curve; bet the deviant strike.",
@@ -382,8 +383,10 @@ def test_closing_a_new_theory_ticket_stays_inside_its_lane(repo, conn):
                          resolution="disproven: 97.6% of rungs sat on the fit.",
                          now="2026-08-29", conn=conn)
     assert done.relative_to(repo).as_posix() == (
-        "tickets/new-theory/completed/2026-08-24-smile-smoothing.md"
+        "tickets/new-theory/open/2026-08-24-smile-smoothing.md"
     )
+    assert not done.exists(), "the spec leaves the tree; the registry keeps it"
+    assert not (repo / "tickets" / "new-theory" / "completed").exists()
 
 
 # --- the brief listing -----------------------------------------------------
@@ -839,12 +842,26 @@ def test_advance_names_the_directory_when_the_state_is_unrecognised(repo):
 # --- a new-theory spec earns its way to a build order ----------------------
 
 
-def test_the_new_theory_lane_has_an_evidence_and_implement_stage():
-    assert tickets.states_for("new-theory") == (
-        "open", "evidence", "implement", "completed")
+def test_the_new_theory_lane_ends_at_a_build_order():
+    """`build/` IS the terminal state, and it means READY TO IMPLEMENT.
+
+    A spec that clears its bar sits there as an approved build order
+    until somebody builds it. There is deliberately nothing after it:
+    the two things a finished spec can be -- built, or dead -- both
+    LEAVE the lane rather than pile up in a directory whose name says
+    neither, which is what `completed/` did until 2026-09-02.
+    """
+    assert tickets.states_for("new-theory") == ("open", "evidence", "build")
 
 
-def test_a_spec_advances_open_to_evidence_to_implement(tmp_path):
+def test_the_new_theory_lane_has_no_completed_state():
+    """The same shape as the study lane, for the same reason: `purge`
+    matches `completed/`, so a lane that declares none cannot have its
+    specs quietly aged out of the working tree."""
+    assert "completed" not in tickets.states_for("new-theory")
+
+
+def test_a_spec_advances_open_to_evidence_to_build(tmp_path):
     path = tickets.create(
         tmp_path, lane="new-theory", slug="some-thesis",
         title="A thesis", body="The mechanism, the population, the bar.",
@@ -853,10 +870,10 @@ def test_a_spec_advances_open_to_evidence_to_implement(tmp_path):
         path, to="evidence", note="Probing dispersion on one board.",
         now="2026-09-03")
     assert at_evidence.parent.name == "evidence"
-    at_implement = tickets.advance(
-        at_evidence, to="implement", note="Cleared the bar at n=240.",
+    at_build = tickets.advance(
+        at_evidence, to="build", note="Cleared the bar at n=240.",
         now="2026-09-04")
-    assert at_implement.parent.name == "implement"
+    assert at_build.parent.name == "build"
 
 
 def test_a_spec_cannot_skip_the_evidence_stage(tmp_path):
@@ -867,16 +884,16 @@ def test_a_spec_cannot_skip_the_evidence_stage(tmp_path):
         tmp_path, lane="new-theory", slug="unmeasured", title="T",
         body="b", created="2026-09-02")
     with pytest.raises(ValueError, match="evidence"):
-        tickets.advance(path, to="implement", note="skipping")
+        tickets.advance(path, to="build", note="skipping")
 
 
-def test_advance_still_refuses_completed_for_new_theory(tmp_path):
-    """close() owns the transition into completed/, because close() is
-    what records the resolution."""
+def test_advance_refuses_completed_for_new_theory(tmp_path):
+    """`completed` is not a state this lane has any more, so the generic
+    unknown-state guard is what catches it -- no special case needed."""
     path = tickets.create(
         tmp_path, lane="new-theory", slug="x", title="T", body="b",
         created="2026-09-02")
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="no state 'completed'"):
         tickets.advance(path, to="completed", note="nope")
 
 
@@ -894,7 +911,44 @@ def test_built_and_superseded_need_no_registry_entry(tmp_path):
     path = tickets.create(tmp_path, lane="new-theory", slug="x", title="T",
                           body="b", created="2026-09-02")
     done = tickets.close(path, resolution="built: now theories/x")
-    assert done.parent.name == "completed"
+    assert not done.exists()
+
+
+def test_closing_a_new_theory_spec_deletes_it(tmp_path, conn):
+    """A spec leaves this lane by being DELETED, not by being filed.
+
+    Both exits already put the durable fact somewhere better than a
+    markdown file: a kill elevates `what_was_tried`/`outcome` into the
+    ideas registry (enforced below), and a build produces the theory
+    itself. What `completed/` held after that was a second copy of a
+    verdict the registry already owned -- and the copy drifted, which is
+    how 16 of 16 specs ended up with resolutions that no longer parsed.
+    Git keeps the file for anyone who wants the original prose.
+    """
+    ideas.record(conn, "gone", "Gone thesis")
+    ideas.update_status(conn, "gone", "dead",
+                        what_was_tried="replayed 90 days",
+                        outcome="flat at executable prices")
+    path = tickets.create(tmp_path, lane="new-theory", slug="gone",
+                          title="T", body="b", created="2026-09-02")
+    assert path.exists()
+    done = tickets.close(path, resolution="disproven: flat", conn=conn)
+    assert not done.exists()
+    assert not path.exists()
+    assert not (tmp_path / "tickets" / "new-theory" / "completed").exists()
+
+
+def test_a_new_theory_spec_can_be_closed_from_build(tmp_path):
+    """The ordinary happy path: a build order gets built, and the spec
+    goes away because the theory is now its own record."""
+    path = tickets.create(tmp_path, lane="new-theory", slug="shipped",
+                          title="T", body="b", created="2026-09-02")
+    at_evidence = tickets.advance(path, to="evidence", note="measuring",
+                                  now="2026-09-03")
+    at_build = tickets.advance(at_evidence, to="build", note="cleared",
+                               now="2026-09-04")
+    done = tickets.close(at_build, resolution="built: theories/shipped")
+    assert not done.exists()
 
 
 def test_disproven_refuses_without_an_ideas_entry(tmp_path, conn):
@@ -926,7 +980,7 @@ def test_underpowered_needs_a_revisit_angle(tmp_path, conn):
                         revisit_angle="retry when the series lists weekly")
     done = tickets.close(path, resolution="underpowered: 4 markets",
                          conn=conn)
-    assert done.parent.name == "completed"
+    assert not done.exists()
 
 
 def test_other_lanes_keep_free_text_resolutions(tmp_path):
@@ -961,9 +1015,7 @@ def test_a_disproven_close_needs_what_was_tried_and_an_outcome(tmp_path, conn):
     ideas.update_status(conn, "hollow", "dead", outcome="zero violations")
     done = tickets.close(path, resolution="disproven: nothing there",
                          conn=conn)
-    assert done.parent.name == "completed"
-    assert "resolution: disproven: nothing there" in done.read_text(
-        encoding="utf-8")
+    assert not done.exists()
 
 
 def test_disproven_needs_no_revisit_angle(tmp_path, conn):
@@ -977,8 +1029,8 @@ def test_disproven_needs_no_revisit_angle(tmp_path, conn):
     path = tickets.create(tmp_path, lane="new-theory", slug="reallydead",
                           title="T", body="b", created="2026-09-02")
     # Case-insensitive, and the prose still fits after the colon.
-    assert tickets.close(path, resolution="Disproven: flat at the ask",
-                         conn=conn).parent.name == "completed"
+    assert not tickets.close(path, resolution="Disproven: flat at the ask",
+                             conn=conn).exists()
 
 
 def test_the_slug_of_a_ticket_drops_its_dated_prefix(tmp_path):
@@ -1008,6 +1060,22 @@ def _completed_ticket(root, slug, closed):
     path = tickets.create(root, lane="maintenance", slug=slug, title="T",
                           body="b", created=closed)
     return tickets.close(path, resolution="done", now=closed)
+
+
+def test_purge_never_matches_a_new_theory_spec(tmp_path, conn):
+    """Not by exemption -- by the state names. The lane declares no
+    `completed/`, and the purge walk matches only `completed/`, so a
+    spec is simply not a thing this query can reach. Same mechanism
+    that makes a study permanent."""
+    ideas.record(conn, "spec-a", "A thesis")
+    ideas.update_status(conn, "spec-a", "dead", what_was_tried="measured",
+                        outcome="nothing there")
+    path = tickets.create(tmp_path, lane="new-theory", slug="spec-a",
+                          title="T", body="b", created="2026-08-01")
+    tickets.close(path, resolution="disproven: nothing there", conn=conn)
+    result = tickets.purge(tmp_path, now="2026-09-02")
+    assert result["purged"] == []
+    assert not (tmp_path / "tickets" / "new-theory" / "completed").exists()
 
 
 def test_purge_is_dry_run_by_default(tmp_path):

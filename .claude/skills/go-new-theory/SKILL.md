@@ -41,11 +41,13 @@ edge between siblings of one Kalshi event finds nothing) and rule 0f
 (measure at *executable* prices, never the mid) between them account for
 most of the backlog's dead entries.
 
-**The lane's states are `open → evidence → implement → completed`, and
-they are the shape of this session.** A spec sits in `open/` until
-somebody runs its cheapest decisive test; `evidence/` is where that test
-runs against the bar the spec wrote before looking; `implement/` means
-the bar was cleared and the build is authorized. `open → implement` is
+**The lane's states are `open → evidence → build`, and they are the
+shape of this session.** A spec sits in `open/` until somebody runs its
+cheapest decisive test; `evidence/` is where that test runs against the
+bar the spec wrote before looking; `build/` means the bar was cleared
+and the build is authorized — ready to implement, and the last state a
+spec has. Closing one deletes it, its verdict already being in the ideas
+registry or in the theory it became. `open → build` is
 refused in code — a theory built on a thesis nobody measured is exactly
 what this lane exists to prevent, and it is why `calendar-arb` and
 `smile-smoothing` died in an afternoon instead of a month.

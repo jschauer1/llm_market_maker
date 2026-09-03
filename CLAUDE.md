@@ -152,9 +152,16 @@ them still read "Status: backlog — not yet proposed as a theory" weeks after
 four had become running theories, one had been retired and two were dead.
 A second home for a document means a second status field, and the second
 one is always the stale one. **One document, one home, one status** — a
-proposed theory in `tickets/new-theory/open/`, a built or killed one in
-`completed/` with the resolution saying which, and an idea to try on an
-*existing* theory in that theory's own folder rather than either.
+proposed theory in `tickets/new-theory/open/`, one whose measurement is
+running in `evidence/`, one that cleared its bar in `build/` (ready to
+implement, and the last state a spec has), and an idea to try on an
+*existing* theory in that theory's own folder rather than any of them.
+A spec that **ends** is deleted rather than filed: built, its record is
+the theory it became; dead, its record is the ideas-registry row that
+`cli tickets close` refuses to proceed without. There is no
+`completed/` in this lane, because the copy that folder held is the one
+that went stale -- all 16 specs that passed through it ended up with a
+resolution nothing could parse.
 
 **The user places every bet manually.** This system never sees what actually
 happened unless told:

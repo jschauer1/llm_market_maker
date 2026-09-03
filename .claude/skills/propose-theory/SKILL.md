@@ -83,12 +83,16 @@ goes in that theory's own folder (`--lane theory --theory <slug>`),
 because a theory folder is supposed to hold everything its expert needs.
 
 **A spec earns its way to a build order.** The lane's states are
-`open → evidence → implement → completed`, and the middle two are not
-bookkeeping: `evidence/` is where the cheapest decisive test you named
-above actually runs against the bar the spec wrote *before looking*, and
-`implement/` asserts that bar was cleared. `open → implement` is refused
+`open → evidence → build`, and the last two are not bookkeeping:
+`evidence/` is where the cheapest decisive test you named above actually
+runs against the bar the spec wrote *before looking*, and `build/` means
+that bar was cleared — **ready to implement**. `open → build` is refused
 in code, because a build order issued on an unmeasured thesis is the
 failure this whole lane exists to prevent.
+
+`build/` is the last state a spec has. Closing one **deletes** it: a
+built spec's record is the theory it became, a dead one's is its
+ideas-registry row, and `close` checks that row is there first.
 
 ```bash
 python -m tools.cli tickets advance <path> --to evidence --note "<the test>"

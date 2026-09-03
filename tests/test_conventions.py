@@ -1265,9 +1265,11 @@ def test_ticket_states_match_their_lane():
     The lanes deliberately disagree: `study` has no `completed/` (its
     terminal state is `answer/`, which is what makes a finished study
     permanent -- `purge` matches `completed/`, so the query cannot reach
-    it), and `new-theory` has `evidence/` and `implement/` that no other
-    lane has. A stray directory in the wrong lane is a ticket nobody
-    lists and a state nothing advances out of.
+    it), and `new-theory` has `evidence/` and `build/` that no other lane
+    has AND no `completed/` of its own: a spec that ends is deleted, its
+    verdict already living in the ideas registry or in the theory it
+    became. A stray directory in the wrong lane is a ticket nobody lists
+    and a state nothing advances out of.
 
     `tickets/new-theory/reference/` is NOT a state and is excluded on
     purpose: it holds the lane's shared reference material, and it was

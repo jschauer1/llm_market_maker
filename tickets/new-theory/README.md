@@ -15,10 +15,24 @@ ticket links here instead of repeating any of it.
 | | |
 |---|---|
 | `open/` | proposed theories, one spec each — the backlog a session chooses from |
-| `completed/` | specs that ended; the `resolution` field's first word says how |
 | `evidence/` | specs whose cheapest decisive measurement is running now, against the bar the spec wrote before looking |
-| `implement/` | specs whose measurement cleared that bar — a build order, not a proposal |
+| `build/` | **ready to implement** — specs whose measurement cleared that bar. A build order, not a proposal, and the last state a spec has |
 | `reference/` | the graded evidence ledger and full reading notes behind the claims these specs make |
+
+**There is no `completed/`, and a finished spec is deleted** (2026-09-02).
+That is not carelessness about history — it is where the history actually
+lives. A spec ends as one of two things, and both already have a better
+home than a folder: a **built** one is recorded by the theory it became,
+and a **dead** one by its ideas-registry row, which `cli tickets close`
+refuses to proceed without. `completed/` held a third copy of a verdict
+those two already owned, and the third copy is the one that goes stale —
+by the time it was removed, **all 16 specs that had passed through it
+carried a `resolution:` string that no longer parsed as any of the four
+words below**, because the vocabulary was introduced after they were
+written and nothing re-read them. Git keeps every deleted spec:
+`git log --diff-filter=D -- tickets/new-theory/` finds one and
+`git show <rev>:<path>` retrieves it. The 16 removed on 2026-09-02 are at
+rev `6e7d920`, which is what the citations pointing at them now say.
 
 The reading notes used to live in `evidence/`, and had to move the day
 `evidence/` became a state: a ticket's state IS its directory, so the
@@ -30,7 +44,9 @@ indistinguishable from the noise. `reference/` is not a state, so
 `backlog()` never looks in it.
 
 **A resolution starts with one of four words**, and `cli tickets close`
-refuses anything else:
+refuses anything else. Closing a spec **deletes it**, so the resolution
+is not stored anywhere on disk — it selects the verdict and drives the
+registry check below, and the ideas registry is what keeps it:
 
 | word | means | re-proposable? |
 |---|---|---|
@@ -49,9 +65,10 @@ the answer was no.
 
 Closing `disproven` or `underpowered` **requires the finding in the ideas
 registry first** — `what_was_tried` and `outcome`, plus a
-`revisit_angle` for `underpowered`. That is not bookkeeping: a completed
-ticket is purgeable after a week, and deleting the file is only safe once
-the durable fact has left it.
+`revisit_angle` for `underpowered`. That is not bookkeeping: **closing
+deletes the spec**, so the registry entry is the only thing that survives
+it. The check runs before anything is removed — the durable fact leaves
+the file before the file leaves the tree.
 
 An idea to try **on an existing theory** is not a new-theory ticket — it
 belongs in that theory's own folder (`cli tickets new --lane theory
@@ -360,19 +377,19 @@ Sorted by composite, then by outcome.
 
 | spec | lens | A | I | L | Σ | effort | what happened |
 |------|------|---|---|---|---|--------|---------------|
-| [calibration-harvest](completed/2026-08-24-calibration-harvest.md) | signed price/horizon/domain cells | 5 | 5 | 4 | 14 | S | **retired** — 0 of 47 cells cleared fees |
-| [series-bias-mining](completed/2026-08-24-series-bias-mining.md) | per-series base rates | 4 | 4 | 4 | 12 | M | **study** — pass 3 not measured by its own bar |
+| calibration-harvest | signed price/horizon/domain cells | 5 | 5 | 4 | 14 | S | **retired** — 0 of 47 cells cleared fees |
+| series-bias-mining | per-series base rates | 4 | 4 | 4 | 12 | M | **study** — pass 3 not measured by its own bar |
 | [maker-mode-execution](open/2026-08-24-maker-mode-execution.md) | execution layer: spread capture | 5 | 4 | 3 | 12 | M | **open — see the note below** |
-| [structural-arb](completed/2026-08-24-structural-arb.md) | within-event logic | 3 | 5 | 3 | 11 | S | **built** — 0 tradeable violations |
-| [no-side-premium](completed/2026-08-24-no-side-premium.md) | YES/NO side bias (optimism tax) | 4 | 4 | 3 | 11 | S–M | **built** — null at its 8-day bar |
+| structural-arb | within-event logic | 3 | 5 | 3 | 11 | S | **built** — 0 tradeable violations |
+| no-side-premium | YES/NO side bias (optimism tax) | 4 | 4 | 3 | 11 | S–M | **built** — null at its 8-day bar |
 | [overreaction-fade](open/2026-08-24-overreaction-fade.md) | political move reversal | 4 | 4 | 3 | 11 | M | open |
-| [deadline-drift](completed/2026-08-24-deadline-drift.md) | affirmative-event hazard | 4 | 3 | 3 | 10 | M | **built** — shipping allowlist uninformative |
-| [parlay-fade](completed/2026-08-24-parlay-fade.md) | combo markup vs product-of-legs | 3 | 3 | 4 | 10 | M | **study** — 0 tradeable at a 1c buffer |
-| ~~[smile-smoothing](completed/2026-08-24-smile-smoothing.md)~~ | ladder shape | 4 | 3 | 3 | 10 | M | **DEAD 2026-08-29** |
-| ~~[calendar-arb](completed/2026-08-24-calendar-arb.md)~~ | date-ladder nesting logic | 3 | 4 | 3 | 10 | S | **DEAD 2026-08-27** |
+| deadline-drift | affirmative-event hazard | 4 | 3 | 3 | 10 | M | **built** — shipping allowlist uninformative |
+| parlay-fade | combo markup vs product-of-legs | 3 | 3 | 4 | 10 | M | **study** — 0 tradeable at a 1c buffer |
+| ~~smile-smoothing~~ | ladder shape | 4 | 3 | 3 | 10 | M | **DEAD 2026-08-29** |
+| ~~calendar-arb~~ | date-ladder nesting logic | 3 | 4 | 3 | 10 | S | **DEAD 2026-08-27** |
 | [news-drift](open/2026-08-24-news-drift.md) | underreaction continuation | 4 | 4 | 2 | 10 | M | open |
 | [weather-model-gap](open/2026-08-24-weather-model-gap.md) | ensemble forecast vs market | 4 | 3 | 3 | 10 | M | open |
-| [settled-but-trading](completed/2026-08-24-settled-but-trading.md) | resolution-source staleness | 4 | 3 | 3 | 10 | M–L | **killed** — favourable case quotes 1.000; the residual is rules ambiguity |
+| settled-but-trading | resolution-source staleness | 4 | 3 | 3 | 10 | M–L | **killed** — favourable case quotes 1.000; the residual is rules ambiguity |
 | [new-market-anchor](open/2026-08-24-new-market-anchor.md) | issuance mispricing (study) | 3 | 5 | 2 | 10 | S | open |
 | [cross-venue-fair-value](open/2026-08-24-cross-venue-fair-value.md) | cross-venue convergence | 3 | 3 | 3 | 9 | M | open |
 | [econ-anchoring](open/2026-08-24-econ-anchoring.md) | consensus anchoring on releases | 3 | 3 | 3 | 9 | M | open |
@@ -380,7 +397,7 @@ Sorted by composite, then by outcome.
 | [metaculus-gap](open/2026-08-24-metaculus-gap.md) | forecaster aggregate vs market | 2 | 3 | 3 | 8 | M | open |
 | [whale-follow](open/2026-08-24-whale-follow.md) | proven-wallet mirroring | 3 | 2 | 3 | 8 | L | open — see `block-trade-whale-follow` |
 | [vol-crossing](open/2026-08-24-vol-crossing.md) | barrier-option model | 3 | 3 | 2 | 8 | M | open |
-| [implication-graph](completed/2026-08-24-implication-graph.md) | cross-event logic | 2 | 2 | 3 | 7 | L | **killed on class evidence** — cross-event identities measured flat twice |
+| implication-graph | cross-event logic | 2 | 2 | 3 | 7 | L | **killed on class evidence** — cross-event identities measured flat twice |
 | [insider-flow-radar](open/2026-08-24-insider-flow-radar.md) | anomalous fresh flow | 2 | 2 | 2 | 6 | L | open |
 
 ### Read this table honestly: it has been anti-predictive so far
@@ -476,13 +493,13 @@ cell matrix; that theory is retired, so it needs its own population.)
   the lag. Parked because the related-market identification is either
   LLM-judgment (implication-graph's cost profile) or so conservative it
   rarely fires, and the clean mechanical subset — date ladders — is
-  exactly [calendar-arb](completed/2026-08-24-calendar-arb.md).
+  exactly calendar-arb.
   Revisit angle: mine candlestick history for *measured* co-movement
   pairs first, then trade only pairs with demonstrated propagation lag.
 - **Same-game parlay correlation pricing** (round 3) — pricing
   correlated legs properly is a real modeling edge (an AMM-design
   literature exists), but it is the hard version of
-  [parlay-fade](completed/2026-08-24-parlay-fade.md); parked until
+  parlay-fade; parked until
   the cross-game version has evidence.
 
 ## Reference folder — for reviewers

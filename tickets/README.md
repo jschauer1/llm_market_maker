@@ -7,16 +7,26 @@ tickets/
     completed/   2026-09-01-ticket-dir-ignores-registry-path.md
   new-theory/
     README.md    <- shared contracts every spec in this lane inherits
-    evidence/    <- the graded ledger behind their claims
+    reference/   <- the graded ledger behind their claims (NOT a state)
     open/        2026-08-24-maker-mode-execution.md
-    completed/   2026-08-24-calendar-arb.md
+    evidence/    <- its cheapest decisive measurement is running
+    build/       <- ready to implement; the last state a spec has
+  study/
+    question/ investigation/ answer/   <- a study is a DIRECTORY per state
 theories/<registry path>/tickets/ <- theory work, in that theory's folder
     open/
     completed/
-studies/<date>-<slug>/tickets/    <- study work, in that study's folder
-    open/
-    completed/
+<owner>/studies/<state>/<date>-<slug>/ <- studies, beside their owner
 ```
+
+**Lanes do not share a state list.** `theory` and `maintenance` run
+`open/` -> `completed/`. `study` runs `question/` -> `investigation/` ->
+`answer/` and has no `completed/` at all, which is what makes a finished
+study permanent -- `purge` matches `completed/`, so the query cannot
+reach one. `new-theory` runs `open/` -> `evidence/` -> `build/` and
+likewise has no `completed/`: a spec that ends is **deleted**, because
+its verdict is already in the ideas registry or in the theory it became.
+`states_for()` in `tools/tickets.py` is the authority.
 
 **A ticket lives inside the thing it is about.** That is the rule, and it
 has two owned lanes:
@@ -24,7 +34,7 @@ has two owned lanes:
 | the work is about | lane | it lands in |
 |---|---|---|
 | an existing theory | `--lane theory --theory <slug>` | `theories/<registry path>/tickets/` |
-| an existing study | `--lane study --study <slug>` | `studies/<date>-<slug>/tickets/` |
+| an existing study | `--lane study --study <slug>` | that study's own folder |
 | a theory that does not exist yet | `--lane new-theory` | `tickets/new-theory/` — **and it is a spec** |
 | the repo itself | `--lane maintenance` | `tickets/maintenance/` |
 
@@ -41,13 +51,15 @@ holding nothing but tickets its owner will never read.
 thing and a reader looking for "the new-theory backlog" had to be told
 where it was.
 
-**Open and completed are directories, not a field.** The backlog is read
+**State is a directory, not a field.** The backlog is read
 by listing, so a finished ticket has to leave it physically — with a
 status field alone, every session reads every ticket ever filed to find
 the few still open, and the backlog gets slower and less useful exactly
-as the repo accumulates history. Closing moves the file; nothing is ever
-deleted, because a completed ticket is the record of what was asked for
-and why.
+as the repo accumulates history. On most lanes closing moves the file and
+keeps it, because a completed ticket is the record of what was asked for
+and why. On `new-theory` closing **deletes** it: there the record already
+exists somewhere better, and the second copy is the one that drifts. Git
+holds every deleted spec.
 
 A theory's tickets live at its **registry path**, not `theories/<slug>` —
 `insider_judgment` sits under a shared family parent. `cli tickets new`
