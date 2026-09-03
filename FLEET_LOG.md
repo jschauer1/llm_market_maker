@@ -324,3 +324,27 @@ goes to be found.
   monthly-reset false ladders, and a live 17.6MB git hazard closed.
   No bets: both conclusive sessions were study-lane, and a study never
   bets.
+
+### 02:45 CORRECTION to the wind-down entry above
+
+The user directed the supervisor to commit and push the in-flight work.
+It is committed; the "UNCOMMITTED AT WIND-DOWN" note above is superseded.
+Tree is clean, 0 dirty entries.
+
+  3c1dbb5  deadline_drift survivorship trap + RESEARCH_LOG   (w1-g4)
+  c71a39c  parse_deadline elevation + 5 maintenance closes    (w2-g5)
+  abe0999  maker-mode-fill-simulation study + taker_flow tkt  (w3-g5/w1-g4)
+  201d113  tests/test_filelock.py, RED and isolated           (w2-g5)
+
+Committed by worker rather than as one blob so the wind-down attribution
+survives; the taker_flow ticket in abe0999 is the one path whose owner is
+not certain from the tree, and the commit message says so.
+
+c71a39c is the notable one: it FIXES both failures this fleet inherited
+at baseline (sibling import, unresolvable doc paths) -- parse_deadline
+had earned its elevation and w2-g5 landed it before being stopped.
+
+201d113 is isolated on purpose. `pytest` FAILS TO COLLECT at HEAD
+(ImportError: tools.filelock). 1461 pass without it. Write
+tools/filelock.py to fix, or `git revert 201d113` to defer -- nothing
+depends on it.
