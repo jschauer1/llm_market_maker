@@ -5,7 +5,9 @@ created: 2026-09-02
 created_by: fleet-w3-g2
 author_lane: maintenance
 author_context: Found by tests/test_conventions.py::test_no_theory_imports_a_sibling_theory going red mid-session; the offending file is another session's UNTRACKED work-in-progress, so I did not touch it.
-status: open
+status: done
+closed: 2026-09-03
+resolution: DONE. parse_deadline elevated to tools/timeutil.py under the caller-count rule; local copy in theories/deadline_drift/collect_settled.py deleted and re-exported (noqa: F401), matching how days_until was elevated. no_side_premium/exposure_measure.py repointed at tools.timeutil, which clears tests/test_conventions.py::test_no_theory_imports_a_sibling_theory -- red since 2026-09-01. Migration verified behaviour-preserving by differential test over 2,598 inputs (0 mismatches, including 141 that raise identically), and regex/month-table asserted byte-identical before the local copy was removed. Tests added to tests/test_timeutil.py, including the same re-export-identity assertion days_until carries. The second half of this ticket (THEORY.md data/mine_cells_result.txt) is also fixed -- see theories/no_side_premium/tickets. Suite 1394p/2f -> 1405p/0f.
 ---
 DO NOT COMMIT theories/no_side_premium/exposure_measure.py AS IT STANDS -- it fails the suite.
 

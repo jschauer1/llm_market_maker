@@ -163,7 +163,7 @@ def slug_of(path: Path) -> str:
 
 def ticket_dir(
     root: Path, lane: str, theory: str | None = None, state: str | None = None,
-    theory_path: str | None = None,
+    theory_path: str | None = None, theory_status: str | None = None,
 ) -> Path:
     """Where a ticket for this lane and state belongs.
 
@@ -184,7 +184,33 @@ def ticket_dir(
     A missing path now raises instead, so a caller that forgets gets told
     at once rather than filing work where its theory's expert will never
     look.
+
+    `theory_status` is the theory's registry `status`, and a **retired**
+    theory refuses outright. Retirement ENDS a backlog rather than moving
+    it: a retired theory's path is `theories/retired/<slug>`, so filing
+    would create `theories/retired/<slug>/tickets/`, which
+    `test_a_retired_theory_holds_only_its_record` rejects -- the ticket
+    would file successfully and the suite would go red afterwards, at a
+    commit that looks unrelated. Refusing here rather than widening that
+    allowlist is deliberate: widening would let a dead theory quietly
+    reacquire a live backlog, which is precisely what retirement exists to
+    stop. It is keyed to the registry status and never to a path prefix,
+    because a theory folder is wherever its row says it is.
+
+    The parameter is optional so direct callers that do not have a
+    registry row are unaffected; `cli tickets new` already fetches the row
+    to get `path` and passes the status from the same lookup.
     """
+    if theory_status == "retired":
+        raise ValueError(
+            f"{theory!r} is retired: you cannot queue work against a dead "
+            "theory. Retirement ends its backlog rather than moving it, and "
+            "a retired theory's folder holds only its record (RETIRED.md, "
+            "THEORY.md, NOTES.md, RESULTS.md and its studies). If there is "
+            "still something worth doing here, it is a NEW THEORY PROPOSAL: "
+            "`cli tickets new --lane new-theory` -- which is how "
+            "no_side_premium came off mention_family."
+        )
     if lane not in LANES:
         raise ValueError(f"unknown lane {lane!r}; expected one of {LANES}")
     allowed = states_for(lane)
@@ -242,6 +268,7 @@ def create(
     body: str,
     theory: str | None = None,
     theory_path: str | None = None,
+    theory_status: str | None = None,
     created: str | None = None,
     created_by: str | None = None,
     author_lane: str | None = None,
@@ -273,7 +300,8 @@ def create(
             "not here when you filed this"
         )
     day = created or _today()
-    directory = ticket_dir(root, lane, theory, theory_path=theory_path)
+    directory = ticket_dir(root, lane, theory, theory_path=theory_path,
+                           theory_status=theory_status)
     directory.mkdir(parents=True, exist_ok=True)
     if lane == "study":
         # The ticket is the directory; STUDY.md inside it is the file.
@@ -568,8 +596,67 @@ def backlog(
     return found
 
 
+def _code_citations(root: Path, rel: str) -> list[str]:
+    """Non-test Python files whose source names `rel`.
+
+    Only executable code, and only `.py`. Prose citations are already
+    caught at commit time by
+    `test_every_repo_path_named_in_docs_resolves`, and blocking a move on
+    them would make a well-documented study unmovable for no safety gain.
+    A code citation is different in kind: it breaks at RUN time on a
+    missing file, not at import, so nothing notices until someone re-runs
+    a measurement weeks later and gets an error instead of a number.
+
+    `tests/` is skipped because fixture paths there are meant not to
+    exist.
+    """
+    skip = {".git", "__pycache__", "node_modules", ".superpowers", "attic",
+            "tests"}
+    out = []
+    for py in sorted(Path(root).rglob("*.py")):
+        if any(part in skip for part in py.parts):
+            continue
+        try:
+            text = py.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+        if rel in text:
+            out.append(py.relative_to(root).as_posix())
+    return out
+
+
+def _code_citations(root: Path, rel: str) -> list[str]:
+    """Non-test Python files whose source names `rel`.
+
+    Only executable code, and only `.py`. Prose citations are already
+    caught at commit time by
+    `test_every_repo_path_named_in_docs_resolves`, and blocking a move on
+    them would make a well-documented study unmovable for no safety gain.
+    A code citation is different in kind: it breaks at RUN time on a
+    missing file, not at import, so nothing notices until somebody
+    re-runs a measurement weeks later and gets an error instead of a
+    number.
+
+    `tests/` is skipped because fixture paths there are meant not to
+    exist.
+    """
+    skip = {".git", "__pycache__", "node_modules", ".superpowers", "attic",
+            "tests"}
+    out = []
+    for py in sorted(Path(root).rglob("*.py")):
+        if any(part in skip for part in py.parts):
+            continue
+        try:
+            text = py.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+        if rel in text:
+            out.append(py.relative_to(root).as_posix())
+    return out
+
+
 def advance(path: Path, *, to: str, note: str,
-           now: str | None = None) -> Path:
+           now: str | None = None, root: Path | None = None) -> Path:
     """Move a ticket into its next state. Returns the new path.
 
     The note is required and is appended to the body under a dated
@@ -582,6 +669,14 @@ def advance(path: Path, *, to: str, note: str,
     status field wearing a directory's clothes, and the whole reason
     state is a directory here is that a field lets two places disagree
     about where the work stands.
+
+    **A move that would orphan an executable citation is refused too.**
+    `advance()` repoints nothing, and a study's data is opened by path
+    from other owners' modules -- so the break lands at run time, on a
+    missing file, in somebody else's measurement. The mover is the one
+    person who knows the move is happening; repointing is a two-minute
+    edit for them and an archaeology problem for anyone else. `root` is
+    the repo root the scan runs over, defaulting to `db.REPO_ROOT`.
     """
     if not note or not note.strip():
         raise ValueError("a note is required: say why it moved")
@@ -644,6 +739,28 @@ def advance(path: Path, *, to: str, note: str,
             "'evidence' and run the measurement first. A build order "
             "issued on an unmeasured thesis is what this lane exists to "
             "prevent."
+        )
+    if root is None:
+        from tools import db  # local: keeps this module import-light
+        root = db.REPO_ROOT
+    try:
+        rel = item.resolve().relative_to(Path(root).resolve()).as_posix()
+    except ValueError:
+        rel = None
+    cites = _code_citations(root, rel) if rel else []
+    if cites:
+        listed = "\n  ".join(cites)
+        raise ValueError(
+            f"moving {rel} would orphan {len(cites)} code citation(s) that "
+            f"open it BY PATH. They break at RUN time, on a missing file, "
+            f"not at import -- so nothing notices until somebody re-runs a "
+            f"measurement and gets an error instead of a number:\n  "
+            f"{listed}\n\n"
+            f"Repoint them to the {to}/ location as part of this move, then "
+            f"advance again -- that is how commits a000c12 and 6815123 did "
+            f"it. Check too that this study's .gitignore entry is the "
+            f"state-independent glob (tickets/study/*/<slug>/data/), which "
+            f"is what survives the move."
         )
     target = lane_dir.parent / to
     target.mkdir(parents=True, exist_ok=True)

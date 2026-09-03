@@ -6,7 +6,9 @@ created: 2026-09-02
 created_by: sdd-study-pipeline
 author_lane: maintenance
 author_focus: study ticket pipeline migration
-status: open
+status: done
+closed: 2026-09-03
+resolution: DONE from the maintenance lane (doc drift, not a thesis change; the no_side_premium theory lane was unheld). The preplatform_seen.json span had already been fixed; the remaining one, data/mine_cells_result.txt at THEORY.md:305, is now written repo-relative as theories/no_side_premium/data/mine_cells_result.txt, and the adjacent mine_cells.py with it. The filing ticket's worry that the file is gitignored is stale -- theories/no_side_premium/data/ is NOT ignored and mine_cells_result.txt is tracked, so making the span resolve was correct and an _ALLOWED_MISSING exemption would have been wrong. test_every_repo_path_named_in_docs_resolves is green. The sibling-import half this ticket was narrowed away from is also done: see tickets/maintenance/completed/2026-09-02-parse-deadline-earned-elevation.md.
 ---
 `tests/test_conventions.py::test_every_repo_path_named_in_docs_resolves` fails on two spans in no_side_premium/THEORY.md: `data/preplatform_seen.json` and `data/mine_cells_result.txt`. Both files exist, at theories/no_side_premium/data/, but the test resolves backticked path spans from the REPO ROOT, so a theory-relative path never resolves.
 

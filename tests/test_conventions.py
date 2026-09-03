@@ -1332,3 +1332,195 @@ def test_ticket_states_match_their_lane():
         "a ticket state directory does not belong to its lane:\n"
         + "\n".join(problems)
     )
+
+
+# ====================================== a study's .gitignore survives a move
+# `cli tickets advance` moves a study between state directories and does
+# NOT touch .gitignore. An entry written with the state in it
+# ("tickets/study/investigation/<slug>/data/") stops matching the instant
+# the study advances -- and it stops matching exactly when the data is
+# largest, because a study only reaches `answer/` after it has collected.
+#
+# This is not hypothetical. parlay-markup advanced to `answer/` carrying a
+# 17.6MB legs.db, and on 2026-09-03 the moved directory showed as '??' in
+# git status, unignored, one `git add -A` away from being committed to the
+# shared repo by a session that did not create it.
+
+_STUDY_DATA_GLOBS = ("tickets/study/*/*/data", "theories/*/studies/*/*/data",
+                     "theories/*/*/studies/*/*/data")
+_TEN_MB = 10 * 1024 * 1024
+
+
+def _study_data_dirs():
+    for pattern in _STUDY_DATA_GLOBS:
+        for path in ROOT.glob(pattern):
+            if path.is_dir():
+                yield path
+
+
+def _dir_bytes(path: Path) -> int:
+    return sum(f.stat().st_size for f in path.rglob("*") if f.is_file())
+
+
+_STATES = ("question", "investigation", "answer", "open", "evidence",
+           "build", "completed")
+
+
+def _state_pinned(line: str) -> bool:
+    """Does this .gitignore line name a study's STATE directory?
+
+    Such a line stops matching the moment `advance()` moves the study.
+    """
+    if "tickets/study/" not in line and "/studies/" not in line:
+        return False
+    return any(f"/{s}/" in line for s in _STATES)
+
+
+def test_the_state_pinned_predicate_catches_the_entry_that_actually_broke():
+    """Pins the GUARD, not the repo. `test_a_study_gitignore_entry_names_
+    no_state_directory` passes today because the entries were rewritten as
+    globs before it was written -- so on its own it proves only that a
+    predicate returned False, which a predicate that never fires also does.
+
+    The first line below is verbatim what .gitignore held when
+    parlay-markup advanced to `answer/` and its 17.6MB legs.db fell out of
+    coverage. The second is the glob that replaced it.
+    """
+    assert _state_pinned(
+        "tickets/study/investigation/2026-08-30-parlay-markup/data/")
+    assert not _state_pinned(
+        "tickets/study/*/2026-08-30-parlay-markup/data/")
+    # A theory-owned study is the same shape under a different root.
+    assert _state_pinned(
+        "theories/no_side_premium/studies/answer/2026-09-01-x/data/")
+    assert not _state_pinned(
+        "theories/no_side_premium/studies/*/2026-09-01-x/data/")
+    # Unrelated entries are left alone -- a predicate that fires on
+    # everything would be as useless as one that never fires.
+    assert not _state_pinned("db/*.db")
+    assert not _state_pinned("theories/deadline_drift/data/")
+
+
+def _gitignore_lines():
+    text = (ROOT / ".gitignore").read_text(encoding="utf-8")
+    return [ln.strip() for ln in text.splitlines()
+            if ln.strip() and not ln.strip().startswith("#")]
+
+
+def test_a_study_gitignore_entry_names_no_state_directory():
+    """The anti-orphaning rule: match the study by slug, never by state.
+
+    A state-independent glob (`tickets/study/*/<slug>/data/`) keeps
+    matching through every `advance()`. Writing the state into the entry
+    is what orphans it, and the orphaned entry fails silently -- git
+    simply stops ignoring the directory, and nothing says so.
+    """
+    bad = [ln for ln in _gitignore_lines() if _state_pinned(ln)]
+    assert bad == [], (
+        "a .gitignore entry pins a study's STATE directory, so it will stop "
+        "matching the moment `cli tickets advance` moves that study -- and "
+        "the data is largest by then. Use the state-independent glob "
+        "(tickets/study/*/<slug>/data/):\n" + "\n".join(bad))
+
+
+def test_every_gitignored_study_path_still_matches_something():
+    """A dead entry protects nothing and reads as though it does.
+
+    If a study is renamed or removed and its entry is left behind, the
+    next session sees a .gitignore line naming that data and reasonably
+    concludes the data is covered.
+    """
+    dead = []
+    for line in _gitignore_lines():
+        if "tickets/study/" not in line and "/studies/" not in line:
+            continue
+        if not list(ROOT.glob(line.rstrip("/"))):
+            dead.append(line)
+    assert dead == [], (
+        "a .gitignore entry names a study path that no longer exists -- "
+        "either the study moved and the entry was not repointed, or it is "
+        "stale and should be deleted:\n" + "\n".join(dead))
+
+
+def test_a_large_study_data_directory_is_actually_ignored():
+    """CLAUDE.md: a data directory over 10MB adds its own .gitignore entry
+    naming the directory. Asserted against `git check-ignore`, which is
+    the authority -- reading .gitignore ourselves would re-implement the
+    matching rules and get a different answer than git does.
+
+    Scoped to STUDY data directories on purpose. Whether the same rule
+    should bind a theory's own perishable capture directory is an open
+    governance question (`tickets/maintenance/open/2026-09-03-perishable-
+    capture-dirs-vs-the-10mb-gitignore-rule.md`), and a test must not
+    quietly decide it.
+    """
+    big = [p for p in _study_data_dirs() if _dir_bytes(p) > _TEN_MB]
+    if not big:
+        pytest.skip("no study data directory is over 10MB yet")
+    unignored = []
+    for path in big:
+        rel = path.relative_to(ROOT).as_posix()
+        done = subprocess.run(["git", "check-ignore", "-q", rel],
+                              cwd=ROOT, capture_output=True)
+        if done.returncode != 0:
+            unignored.append(f"{rel} ({_dir_bytes(path) / 1e6:.1f}MB)")
+    assert unignored == [], (
+        "a study data directory is over 10MB and NOT ignored -- one "
+        "`git add -A` from being committed to the shared repo:\n"
+        + "\n".join(unignored))
+
+
+_CODE_PATH_PREFIXES = ("tickets/", "theories/", "tools/", "db/",
+                       "user_reports/", "docs/")
+_CODE_SKIP_DIRS = {".git", "__pycache__", "node_modules", ".superpowers",
+                   "attic", "tests"}
+
+
+def _code_path_literals():
+    """Repo-path string literals in non-test Python, with their location.
+
+    Tests are excluded deliberately: they name fixture paths that are
+    *supposed* not to exist (`theories/t1`, `theories/ghost`), so including
+    them would make this fire on 100+ correct lines and be switched off.
+    """
+    for py in sorted(ROOT.rglob("*.py")):
+        if any(part in _CODE_SKIP_DIRS for part in py.parts):
+            continue
+        try:
+            tree = ast.parse(py.read_text(encoding="utf-8", errors="replace"))
+        except SyntaxError:
+            continue
+        for node in ast.walk(tree):
+            if not (isinstance(node, ast.Constant)
+                    and isinstance(node.value, str)):
+                continue
+            value = node.value
+            if ("/" in value and value.startswith(_CODE_PATH_PREFIXES)
+                    and "*" not in value and " " not in value):
+                yield py.relative_to(ROOT).as_posix(), node.lineno, value
+
+
+def test_every_repo_path_named_in_code_resolves():
+    """The `.py` half of the citation rule, which nothing covered.
+
+    `test_every_repo_path_named_in_docs_resolves` guards Markdown. But
+    `cli tickets advance` moves a study's whole directory and repoints
+    NOTHING, and a study's data is opened BY PATH from other owners'
+    modules -- today
+    `theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-
+    side-split/completion_checks.py` opens series-bias-mining's collect.db
+    that way. Move that study and the module raises on a missing file at
+    RUN time, not at import, so nothing notices until somebody re-runs a
+    measurement and gets an error instead of a number.
+
+    With this, the move goes red at the commit that makes it, which is
+    where a citation break is cheap to fix. The repo already has the
+    pattern for doing it properly -- commits a000c12 and 6815123 repointed
+    every citation as part of the move.
+    """
+    missing = [f"{f}:{n}  {v}" for f, n, v in _code_path_literals()
+               if not (ROOT / v).exists()]
+    assert missing == [], (
+        "code names a repo path that does not resolve. If a study or "
+        "theory folder moved, repoint its citations as part of the move:\n"
+        + "\n".join(missing))

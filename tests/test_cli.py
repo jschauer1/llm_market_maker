@@ -934,3 +934,55 @@ def test_advancing_a_study_moves_it(tmp_path, monkeypatch):
     assert rc == 0
     assert (tmp_path / "tickets/study/investigation").is_dir()
     assert not any((tmp_path / "tickets/study/question").iterdir())
+
+
+@pytest.fixture
+def repo_root(tmp_path, monkeypatch):
+    """Point the CLI's write root at a temp dir.
+
+    `cli.main` resolves ticket paths from `db.REPO_ROOT`, a module
+    constant -- NOT from the working directory, so `monkeypatch.chdir`
+    does not contain it. A `tickets new` test without this fixture writes
+    a real ticket into the real repository and leaves it there as an
+    untracked file. That happened while these tests were being written.
+    """
+    monkeypatch.setattr(db, "REPO_ROOT", tmp_path)
+    return tmp_path
+
+
+def test_tickets_new_refuses_a_retired_theory(dbpath, repo_root):
+    """The WIRING, not the rule: `ticket_dir` can only refuse if the CLI
+    hands it the status, and that lookup is one line away from being
+    dropped in a refactor. `tests/test_tickets.py` covers the rule itself.
+
+    Without this, filing against a retired theory succeeds and then
+    `test_a_retired_theory_holds_only_its_record` fails at some later
+    commit that looks unrelated.
+    """
+    conn = db.connect(dbpath)
+    theories.register(conn, "dead", "Dead Theory", "theories/retired/dead",
+                      now=TS)
+    theories.propose_retirement(conn, "dead", rationale="diagnosed and dead")
+    theories.set_status(conn, "dead", "retired", authorized_by="user")
+    assert theories.get(conn, "dead")["status"] == "retired"
+    conn.close()
+
+    with pytest.raises(ValueError, match="retired"):
+        cli.main(["--db", dbpath, "tickets", "new", "--lane", "theory",
+                  "--theory", "dead", "--slug", "s", "--title", "t",
+                  "--body", "b", "--session", "sess"])
+    assert not (repo_root / "theories" / "retired" / "dead" /
+                "tickets").exists(), "the refusal must not leave a directory"
+
+
+def test_tickets_new_still_files_against_a_live_theory(dbpath, repo_root,
+                                                       capsys):
+    """The control. A refusal keyed to the wrong thing -- a path prefix, a
+    truthy status -- would take every theory down with it, and that would
+    look identical from the retired case alone."""
+    code, payload = _run(capsys, "--db", dbpath, "tickets", "new",
+                         "--lane", "theory", "--theory", "t1",
+                         "--slug", "alive", "--title", "t", "--body", "b",
+                         "--session", "sess")
+    assert payload["created"].startswith("theories/t1/tickets/open/")
+    assert (repo_root / payload["created"]).exists()

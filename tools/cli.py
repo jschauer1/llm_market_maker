@@ -178,6 +178,7 @@ def _cmd_tickets(args) -> int:
         # parent, and deriving the path from the slug filed its tickets
         # into a phantom directory holding nothing else.
         theory_path = None
+        theory_status = None
         if args.theory:
             conn = _connect(args)
             try:
@@ -185,11 +186,17 @@ def _cmd_tickets(args) -> int:
                 if trow is None:
                     raise SystemExit(f"unknown theory {args.theory!r}")
                 theory_path = trow["path"]
+                # Same lookup carries the status, and `ticket_dir` refuses
+                # a retired theory with it: you cannot queue work against a
+                # dead theory, and its path would put the file somewhere
+                # `test_a_retired_theory_holds_only_its_record` rejects.
+                theory_status = trow["status"]
             finally:
                 conn.close()
         path = tickets.create(
             root, lane=args.lane, slug=args.slug, title=args.title,
             body=args.body, theory=args.theory, theory_path=theory_path,
+            theory_status=theory_status,
             created_by=args.session, author_lane=args.author_lane,
             author_focus=args.author_focus,
             author_context=args.author_context,

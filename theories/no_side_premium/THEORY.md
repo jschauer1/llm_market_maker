@@ -302,7 +302,7 @@ distinguishable from zero**, and none negative at readable size. The two
 apparent standouts (`index-rate` +12.69, `tech-compute` +12.45) rest on 6
 and 4 rows over 2 and 1 settlement days, which is the single-observation
 amplification this repo has already documented twice. Procedure and full
-output: `mine_cells.py`, `data/mine_cells_result.txt`. Per the pairing
+output: `theories/no_side_premium/mine_cells.py`, `theories/no_side_premium/data/mine_cells_result.txt`. Per the pairing
 discipline nothing here is registered as a slice, because nothing survived
 to register.
 

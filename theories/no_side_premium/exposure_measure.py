@@ -23,7 +23,7 @@ from collections import Counter
 from pathlib import Path
 
 from tools import db, score
-from theories.deadline_drift.collect_settled import parse_deadline
+from tools.timeutil import parse_deadline
 
 HERE = Path(__file__).parent
 RAW = HERE / "data" / "raw_markets.jsonl"

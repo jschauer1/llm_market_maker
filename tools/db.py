@@ -368,10 +368,15 @@ def _migrate_judgment_runs(conn: sqlite3.Connection) -> None:
         "SELECT sql FROM sqlite_master WHERE type='table'"
         " AND name='judgment_runs'"
     ).fetchone()
-    if row is None or "construction" in (row[0] or ""):
+    if row is None:
         return
 
     ddl = schema_statement("judgment_runs")
+    # Diff the accepted sets, never a sentinel value: a guard keyed to one
+    # literal stops firing the moment that literal lands, so every value
+    # added after it silently fails to migrate. See `check_values`.
+    if not (check_values(ddl, "stage") - check_values(row[0] or "", "stage")):
+        return
     conn.commit()
     conn.execute("PRAGMA foreign_keys = OFF")
     conn.execute("PRAGMA legacy_alter_table = ON")
@@ -425,10 +430,15 @@ def _migrate_theory_versions(conn: sqlite3.Connection) -> None:
         "SELECT sql FROM sqlite_master WHERE type='table'"
         " AND name='theory_versions'"
     ).fetchone()
-    if row is None or "continues" in (row[0] or ""):
+    if row is None:
         return
 
     ddl = schema_statement("theory_versions")
+    # Diff the accepted sets, never a sentinel value: a guard keyed to one
+    # literal stops firing the moment that literal lands, so every value
+    # added after it silently fails to migrate. See `check_values`.
+    if not (check_values(ddl, "kind") - check_values(row[0] or "", "kind")):
+        return
     conn.commit()
     conn.execute("PRAGMA foreign_keys = OFF")
     conn.execute("PRAGMA legacy_alter_table = ON")
@@ -459,15 +469,42 @@ def _migrate_theory_versions(conn: sqlite3.Connection) -> None:
         conn.execute("PRAGMA foreign_keys = ON")
 
 
-def _lane_check_values(ddl: str) -> set[str]:
-    """The lane names a `lane_claims` DDL's CHECK constraint accepts."""
+def check_values(ddl: str, column: str) -> set[str]:
+    """The values a DDL's ``CHECK (<column> IN (...))`` accepts.
+
+    **This is what every widening migration must guard on.** The bug it
+    exists to prevent is the *self-disabling sentinel*: a guard written as
+    ``if "find-theories" in ddl: return`` stops firing permanently the
+    moment that one value lands, so every value added afterwards silently
+    fails to migrate. The symptom is not an error at migration time -- it
+    is a bare ``sqlite3.IntegrityError: CHECK constraint failed`` thrown
+    weeks later at an unrelated caller, in a code path that looks correct.
+    That is exactly how the `study` lane shipped unclaimable in every
+    database, new and old, with a whole skill and test file built around
+    it.
+
+    Comparing the accepted *sets* has no such expiry: each future value
+    migrates itself with no code change. Guard with
+
+        if not (check_values(schema_statement(t), col)
+                - check_values(live_ddl, col)):
+            return
+
+    Returns an empty set when the DDL has no enumerated CHECK on that
+    column, which makes the guard above a no-op rather than an error.
+    """
     import re
 
-    m = re.search(r"CHECK\s*\(\s*lane\s+IN\s*\((.*?)\)", ddl or "",
-                  re.DOTALL | re.IGNORECASE)
+    m = re.search(rf"CHECK\s*\(\s*{re.escape(column)}\s+IN\s*\((.*?)\)",
+                  ddl or "", re.DOTALL | re.IGNORECASE)
     if not m:
         return set()
     return set(re.findall(r"'([^']*)'", m.group(1)))
+
+
+def _lane_check_values(ddl: str) -> set[str]:
+    """Back-compat alias; prefer `check_values(ddl, "lane")`."""
+    return check_values(ddl, "lane")
 
 
 def _migrate_lane_claims(conn: sqlite3.Connection) -> None:
@@ -579,10 +616,15 @@ def _migrate_theories(conn: sqlite3.Connection) -> None:
     row = conn.execute(
         "SELECT sql FROM sqlite_master WHERE type='table' AND name='theories'"
     ).fetchone()
-    if row is None or "under_review" in (row[0] or ""):
+    if row is None:
         return
 
     ddl = schema_statement("theories")
+    # Diff the accepted sets, never a sentinel value: a guard keyed to one
+    # literal stops firing the moment that literal lands, so every value
+    # added after it silently fails to migrate. See `check_values`.
+    if not (check_values(ddl, "status") - check_values(row[0] or "", "status")):
+        return
     conn.commit()
     # Child tables reference theories(id); legacy_alter_table stops the rename
     # from rewriting those clauses to point at the temporary name.

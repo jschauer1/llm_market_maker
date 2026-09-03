@@ -202,3 +202,196 @@ def test_utcnow_format():
     assert stamp.endswith("Z")
     assert len(stamp) == 20
     assert stamp[4] == "-" and stamp[10] == "T"
+
+
+# ============================================ the self-disabling sentinel
+# The bug class behind `study` shipping unclaimable in EVERY database: a
+# migration that widens an enumerated CHECK guards itself with an early
+# return keyed to one literal value. That guard stops firing permanently
+# the moment that value lands, so every value added afterwards silently
+# fails to migrate -- and the symptom is not an error at migration time,
+# it is a bare `sqlite3.IntegrityError: CHECK constraint failed` at some
+# unrelated caller weeks later.
+#
+# A per-value test cannot catch this, because the value that fails is by
+# definition the one nobody thought to write a test for. So these tests
+# derive their cases from `schema.sql` itself.
+
+#: Every table whose CHECK vocabulary has a widening migration, and the
+#: column that migration exists to widen. Each of these is a vocabulary
+#: CLAUDE.md calls an interface ("recorded rows are only interpretable
+#: through those definitions"), which is why they are the ones that got
+#: migrations in the first place.
+_MIGRATED_CHECKS = [
+    ("theories", "status", "_migrate_theories"),
+    ("theory_versions", "kind", "_migrate_theory_versions"),
+    ("judgment_runs", "stage", "_migrate_judgment_runs"),
+    ("lane_claims", "lane", "_migrate_lane_claims"),
+]
+
+
+def _ddl_without(ddl: str, column: str, value: str) -> str:
+    """`ddl` with one value dropped from its `CHECK (column IN (...))`.
+
+    This is how a legacy database looks: identical to today's schema
+    except that it predates one value.
+    """
+    import re
+
+    m = re.search(rf"CHECK\s*\(\s*{re.escape(column)}\s+IN\s*\((.*?)\)",
+                  ddl, re.DOTALL | re.IGNORECASE)
+    assert m, f"no enumerated CHECK on {column}"
+    kept = [v for v in re.findall(r"'([^']*)'", m.group(1)) if v != value]
+    assert kept, "cannot build a legacy DDL with no values left"
+    return ddl[:m.start(1)] + ",".join(f"'{v}'" for v in kept) + ddl[m.end(1):]
+
+
+def _canonical(table, column):
+    return sorted(db.check_values(db.schema_statement(table), column))
+
+
+@pytest.mark.parametrize("table,column,fn_name", _MIGRATED_CHECKS)
+def test_every_value_of_a_migrated_check_survives_a_legacy_database(
+        tmp_path, table, column, fn_name):
+    """A database predating ANY ONE value must end up accepting it.
+
+    Parametrised over the values in `schema.sql` rather than a list
+    written here, so a value added tomorrow is covered the day it lands.
+    Against the old sentinel guards this fails for every value except the
+    sentinel itself: `_migrate_theories` returned early whenever
+    'under_review' was already present, so a database missing 'paused'
+    was never widened.
+    """
+    migrate = getattr(db, fn_name)
+    canonical = db.check_values(db.schema_statement(table), column)
+    for value in sorted(canonical):
+        c = db.connect(tmp_path / f"legacy-{value}.db")
+        db.init_db(c)
+        try:
+            c.execute("PRAGMA foreign_keys = OFF")
+            c.execute(f"DROP TABLE {table}")
+            c.execute(_ddl_without(db.schema_statement(table), column, value))
+            c.commit()
+            migrate(c)
+            live = c.execute(
+                "SELECT sql FROM sqlite_master WHERE type='table' AND name=?",
+                (table,)).fetchone()
+            assert value in db.check_values(live[0], column), (
+                f"{fn_name} left {table}.{column} rejecting {value!r}: a "
+                f"database predating that value stays broken forever. This "
+                f"is the self-disabling-sentinel guard -- diff the accepted "
+                f"sets against schema.sql instead of testing for a literal."
+            )
+        finally:
+            c.close()
+
+
+@pytest.mark.parametrize("table,column,fn_name", _MIGRATED_CHECKS)
+def test_a_widening_migration_preserves_the_rows_it_rebuilds(
+        tmp_path, table, column, fn_name):
+    """SQLite cannot alter a CHECK in place, so every one of these
+    migrations RENAMEs, recreates and copies. That is a data-moving
+    operation on live evidence -- `theories` and `judgment_runs` both
+    carry rows nothing can regenerate -- so the copy is asserted, not
+    assumed."""
+    migrate = getattr(db, fn_name)
+    canonical = sorted(db.check_values(db.schema_statement(table), column))
+    c = db.connect(tmp_path / "legacy.db")
+    db.init_db(c)
+    try:
+        cols = [r[1] for r in c.execute(f"PRAGMA table_info({table})")]
+        before = c.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
+        c.execute("PRAGMA foreign_keys = OFF")
+        c.execute(f"DROP TABLE {table}")
+        c.execute(_ddl_without(db.schema_statement(table), column,
+                               canonical[-1]))
+        c.commit()
+        migrate(c)
+        after = [r[1] for r in c.execute(f"PRAGMA table_info({table})")]
+        assert set(cols) <= set(after), (
+            f"{fn_name} rebuilt {table} without every column it had")
+        assert c.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0] \
+            == before
+    finally:
+        c.close()
+
+
+def test_check_values_reads_a_vocabulary_out_of_a_ddl():
+    ddl = "CREATE TABLE t (a TEXT CHECK (a IN ('x','y')), b TEXT)"
+    assert db.check_values(ddl, "a") == {"x", "y"}
+    # No enumerated CHECK on that column -> empty, so a guard written as
+    # `if not (canonical - live): return` degrades to a no-op instead of
+    # raising on a table that never had one.
+    assert db.check_values(ddl, "b") == set()
+    assert db.check_values("", "a") == set()
+
+
+def test_the_interface_vocabularies_are_what_claude_md_says_they_are():
+    """CLAUDE.md: these names are an interface, and changing what an
+    existing value MEANS rewrites every row already recorded under the old
+    meaning. Widening is safe and this test permits it; REMOVING or
+    RENAMING a value is the breaking change, and this is where it gets
+    caught -- at the commit that does it, rather than months later in a
+    query that quietly started answering a different question."""
+    required = {
+        ("theories", "status"): {
+            "proposed", "testing", "active", "under_review", "paused",
+            "retired"},
+        ("theory_versions", "kind"): {"breaking", "carry", "continues"},
+        ("opportunities", "edge_basis"): {"measured", "prior", "model"},
+        ("opportunities", "disposition"): {
+            "screened", "endorsed", "rejected"},
+        ("opportunities", "run_mode"): {"live", "backtest"},
+        ("opportunities", "user_action"): {"untouched", "taken", "skipped"},
+        ("backtest_runs", "tier"): {"A", "B", "C"},
+        ("lane_claims", "lane"): {
+            "floor", "theory", "study", "new-theory", "find-theories",
+            "maintenance"},
+    }
+    for (table, column), expected in required.items():
+        live = db.check_values(db.schema_statement(table), column)
+        assert expected <= live, (
+            f"{table}.{column} no longer accepts {sorted(expected - live)}. "
+            f"Recorded rows were written under the old vocabulary; migrate "
+            f"them explicitly and separately, and say so in RESEARCH_LOG.md."
+        )
+
+
+@pytest.mark.parametrize("table,column", [(t, c) for t, c, _ in _MIGRATED_CHECKS])
+def test_a_guard_reads_the_constraint_and_not_the_comments_around_it(
+        table, column):
+    """The sharper half of the sentinel bug, found 2026-09-03.
+
+    `sqlite_master.sql` stores the CREATE TABLE text VERBATIM, SQL
+    comments included. Two guards substring-matched their sentinel against
+    that whole blob, and in both cases the word appears in a comment
+    documenting the very vocabulary being checked:
+
+        theory_versions:  --   continues -- the DEFAULT: procedure changed
+        judgment_runs:    -- 'construction' is judgment that established
+
+    So `"continues" in ddl` was True for a database whose CHECK accepted
+    only ('breaking','carry'). Those two migrations were not merely
+    self-disabling after their value landed -- they were **dead from birth
+    and could never fire in any database**. It stayed latent only because
+    the live DB happened to be rebuilt from schema.sql after both values
+    existed; a database created before the 2026-08-31 `continues` ruling
+    would have rejected every non-breaking bump with a bare IntegrityError
+    and no migration would ever have repaired it.
+
+    `check_values` parses the CHECK clause itself, so prose can no longer
+    vote. This test proves that by putting every value in a comment while
+    the constraint accepts none of them.
+    """
+    canonical = db.check_values(db.schema_statement(table), column)
+    commented = (
+        f"CREATE TABLE {table} (\n"
+        + "".join(f"    -- {v} is a valid {column}\n" for v in sorted(canonical))
+        + f"    {column} TEXT CHECK ({column} IN ('legacy_only'))\n)"
+    )
+    assert db.check_values(commented, column) == {"legacy_only"}, (
+        "a comment naming a value made the guard believe the constraint "
+        "accepted it; parse the CHECK clause, never the whole DDL blob"
+    )
+    # ...and the guard built on it therefore still sees work to do.
+    assert canonical - db.check_values(commented, column) == canonical

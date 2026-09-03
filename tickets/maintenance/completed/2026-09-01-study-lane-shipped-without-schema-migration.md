@@ -6,7 +6,9 @@ created_by: fleet-w3-g1
 author_lane: study
 author_focus: 2026-08-29-early-close-exposure-existing-backtests
 author_context: Hit at lane-claim time: the first thing this session tried to do was claim the study lane, and it raised a bare sqlite3.IntegrityError.
-status: open
+status: done
+closed: 2026-09-03
+resolution: Already fixed by the session that filed it (db/schema.sql widened, _lane_check_values + set-diff guard, tests/test_lanes.py). Verified 2026-09-03: lane_claims.lane accepts all six lanes in the live DB and a legacy-DDL database migrates. Closing the incident; its GENERALIZATION -- the same defect in the other three migrations -- was swept under 2026-09-01-sweep-migration-sentinel-guards.md, which found both _migrate_theory_versions and _migrate_judgment_runs were not merely self-disabling but DEAD FROM BIRTH.
 ---
 FIXED IN THIS SESSION -- filed so the finding survives, and because the generalizable half is a repo-wide pattern worth someone re-checking, not just this one table.
 

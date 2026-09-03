@@ -1230,3 +1230,147 @@ def test_purge_apply_survives_one_unremovable_file(tmp_path):
     rendered = tickets.render_purge(result, tmp_path)
     assert "FAILED" in rendered
     assert "untracked-one" in rendered
+
+
+# ================================== you cannot queue work against the dead
+
+def test_a_retired_theory_refuses_a_new_ticket(tmp_path):
+    """Retirement ENDS a theory's backlog; it does not move it.
+
+    `ticket_dir` reads the registry `path`, which for a retired theory is
+    `theories/retired/<slug>`. Filing there would create
+    `theories/retired/<slug>/tickets/open/...`, which
+    `test_a_retired_theory_holds_only_its_record` rejects -- the ticket
+    files successfully and THEN the suite goes red, at a commit that looks
+    unrelated.
+
+    The fix is to refuse at filing rather than widen that allowlist:
+    widening would let a retired theory quietly reacquire a live backlog,
+    which is the thing retirement exists to end. A retired theory's
+    remaining work is a NEW THEORY PROPOSAL -- that is how no_side_premium
+    came off mention_family.
+    """
+    with pytest.raises(ValueError, match="retired"):
+        tickets.ticket_dir(
+            tmp_path, "theory", theory="calibration_harvest",
+            theory_path="theories/retired/calibration_harvest",
+            theory_status="retired",
+        )
+
+
+def test_the_refusal_names_the_route_that_is_still_open(tmp_path):
+    """A refusal that does not say what to do instead just gets worked
+    around -- here, by hand-rolling the path, which is the failure mode
+    `ticket_dir` already raises about elsewhere."""
+    with pytest.raises(ValueError) as err:
+        tickets.ticket_dir(
+            tmp_path, "theory", theory="calibration_harvest",
+            theory_path="theories/retired/calibration_harvest",
+            theory_status="retired",
+        )
+    assert "new-theory" in str(err.value)
+
+
+def test_a_retired_theory_refuses_a_study_too(tmp_path):
+    """Studies retire WITH their theory (CLAUDE.md's four-file rule plus
+    `studies/`), so a new one against a dead theory is the same mistake in
+    the other lane."""
+    with pytest.raises(ValueError, match="retired"):
+        tickets.ticket_dir(
+            tmp_path, "study", theory="calibration_harvest",
+            theory_path="theories/retired/calibration_harvest",
+            theory_status="retired",
+        )
+
+
+@pytest.mark.parametrize("status", ["active", "testing", "under_review",
+                                    "paused", "proposed"])
+def test_every_live_status_still_files_normally(tmp_path, status):
+    """The refusal is keyed to the registry status, not to the path
+    prefix. A theory that merely LIVES somewhere unusual -- insider_judgment
+    is at theories/insider_bias/insider_judgment -- must be unaffected, and
+    so must every non-retired status, including the two that sound
+    discouraging (`under_review` runs, `paused` comes back)."""
+    got = tickets.ticket_dir(
+        tmp_path, "theory", theory="insider_judgment",
+        theory_path="theories/insider_bias/insider_judgment",
+        theory_status=status,
+    )
+    assert got == tmp_path / "theories/insider_bias/insider_judgment" \
+        / "tickets" / "open"
+
+
+def test_status_is_optional_so_existing_callers_are_unaffected(tmp_path):
+    """Omitting it files normally: the CLI is the caller that knows the
+    status, and a direct caller that does not should not be blocked."""
+    got = tickets.ticket_dir(tmp_path, "theory", theory="deadline_drift",
+                             theory_path="theories/deadline_drift")
+    assert got.name == "open"
+
+
+# =============================== advancing must not silently orphan callers
+
+def _study(root, state, slug, *, data=True):
+    d = root / "tickets" / "study" / state / slug
+    d.mkdir(parents=True)
+    (d / "STUDY.md").write_text("---\nlane: study\n---\nbody\n",
+                                encoding="utf-8")
+    if data:
+        (d / "data").mkdir()
+        (d / "data" / "collect.db").write_bytes(b"x")
+    return d
+
+
+def test_advance_refuses_when_executable_code_cites_the_old_path(tmp_path):
+    """A study's data is opened BY PATH from other owners' modules, and
+    `advance()` repoints nothing. The break surfaces at RUN time on a
+    missing file -- not at import -- so nothing notices until somebody
+    re-runs a measurement weeks later and gets an error instead of a
+    number.
+
+    Refusing is the point: the mover is the one person who knows the move
+    is happening, and repointing is a two-minute edit for them and an
+    archaeology problem for anyone else.
+    """
+    _study(tmp_path, "investigation", "2026-01-01-thing")
+    caller = tmp_path / "theories" / "other" / "measure.py"
+    caller.parent.mkdir(parents=True)
+    caller.write_text(
+        'DB = "tickets/study/investigation/2026-01-01-thing/data/collect.db"\n',
+        encoding="utf-8")
+
+    with pytest.raises(ValueError) as err:
+        tickets.advance(
+            tmp_path / "tickets/study/investigation/2026-01-01-thing/STUDY.md",
+            to="answer", note="done", root=tmp_path)
+    assert "theories/other/measure.py" in str(err.value)
+    # and the move did NOT happen
+    assert (tmp_path / "tickets/study/investigation/"
+            "2026-01-01-thing/STUDY.md").exists()
+
+
+def test_advance_proceeds_when_nothing_cites_the_old_path(tmp_path):
+    """The control: an uncited study advances normally. A guard that
+    refused every move would be indistinguishable from this one on the
+    test above alone."""
+    _study(tmp_path, "investigation", "2026-01-01-lonely")
+    got = tickets.advance(
+        tmp_path / "tickets/study/investigation/2026-01-01-lonely/STUDY.md",
+        to="answer", note="found nothing", root=tmp_path)
+    assert got.parent.parent.name == "answer"
+    assert "found nothing" in got.read_text(encoding="utf-8")
+
+
+def test_advance_ignores_markdown_citations(tmp_path):
+    """Prose citations already fail loudly at commit time via
+    `test_every_repo_path_named_in_docs_resolves`, and blocking a move on
+    them would make the common case (a study cited by a dozen notes)
+    unmovable for no safety gain. Only silent RUNTIME breaks refuse."""
+    _study(tmp_path, "investigation", "2026-01-01-noted")
+    (tmp_path / "NOTES.md").write_text(
+        "see `tickets/study/investigation/2026-01-01-noted/data/collect.db`\n",
+        encoding="utf-8")
+    got = tickets.advance(
+        tmp_path / "tickets/study/investigation/2026-01-01-noted/STUDY.md",
+        to="answer", note="n", root=tmp_path)
+    assert got.parent.parent.name == "answer"
