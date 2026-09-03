@@ -34,7 +34,7 @@ decorates candidates.
 
 ## Population — frozen, and deliberately so
 
-`theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/data/collect.db` as it stood at
+`tickets/study/investigation/2026-08-29-series-bias-mining/data/collect.db` as it stood at
 **2026-08-30T19:27Z**, copied to a scratchpad snapshot before this bar was
 written. The live file is being appended to by a resumed phase-2
 collection right now, so freezing is what makes this reproducible: a

@@ -75,7 +75,7 @@ def day_clustered(pairs):
 
 def main() -> None:
     db = sys.argv[1] if len(sys.argv) > 1 else (
-        "theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/data/collect.db")
+        "tickets/study/investigation/2026-08-29-series-bias-mining/data/collect.db")
     rows = load(db)
     have = [r for r in rows if r["spread"] is not None]
     series = {r["series_ticker"] for r in rows}

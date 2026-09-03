@@ -75,8 +75,18 @@ class Status:
 #: The known long-running collections. Both phases of the series-bias
 #: collector; `prices` walks unpriced series, `backfill` re-prices the
 #: pre-3cc5317 rows that read NULL liquidity fields.
+#:
+#: Moved 2026-09-02 out of
+#: `theories/insider_bias/mention_family/studies/investigation/` when
+#: `mention_family` was retired. The study was still in flight, so it
+#: became OWNERLESS rather than retiring with its theory -- retiring a
+#: theory must not retire a live measurement other work depends on. This
+#: constant is why that mattered: `collectors.status()` reads
+#: `data/collect.db` by path, and a stale path here reports ABSENT rather
+#: than raising, so the floor would have quietly stopped reporting the one
+#: collection in the repo whose input perishes upstream.
 _SERIES_BIAS = Path(
-    "theories/insider_bias/mention_family/studies/investigation"
+    "tickets/study/investigation"
     "/2026-08-29-series-bias-mining")
 
 REGISTRY: tuple[Collection, ...] = (

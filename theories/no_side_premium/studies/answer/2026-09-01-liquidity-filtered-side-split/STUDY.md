@@ -44,7 +44,7 @@ which is what `measure.py` here adds.
 ## Pre-registration — fixed before any effect number was computed
 
 The filter is not chosen here. It is the one
-`theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/STUDY.md` restated under
+`tickets/study/investigation/2026-08-29-series-bias-mining/STUDY.md` restated under
 "Correction to pass 4's filter, made before pass 4 runs": the test is on
 **`open_interest`** — a level, and therefore meaningful at a point in
 time the way a per-period `volume` is not — with `spread <= 0.07` kept as
@@ -548,7 +548,7 @@ and the open-interest ladder inside the band is **not monotone at all**
 it is the **spread** condition and almost none is open interest.
 
 This matters beyond this study, because
-`theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/STUDY.md`'s *"Correction to pass
+`tickets/study/investigation/2026-08-29-series-bias-mining/STUDY.md`'s *"Correction to pass
 4's filter"* fixed that test on `open_interest`, with `spread <= 0.07`
 kept as "a second, independent, explicitly **not** load-bearing
 condition". The correction's reasoning — *"a one-cent quote on a market

@@ -624,7 +624,7 @@ analysis in this study reads**. Two harms, one of them not obvious:
 2. **This repo lives inside OneDrive, and `.gitignore` does not stop
    OneDrive syncing.** A 23.6 GB file in `studies/` is a 23.6 GB cloud
    upload nobody asked for. The existing
-   `theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/data/collect.db` has the same
+   `tickets/study/investigation/2026-08-29-series-bias-mining/data/collect.db` has the same
    exposure at 172 MB.
 
 Deleted with the user's approval; the computed results were never in it

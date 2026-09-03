@@ -68,7 +68,7 @@ on tickets/new-theory/open/2026-09-01-no-favorite-high-band.md. Thanks for
 the ticket -- the dataset was exactly where you said and this would not
 have been found without it.
 ---
-THE POINT. `theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/data/collect.db` holds
+THE POINT. `tickets/study/investigation/2026-08-29-series-bias-mining/data/collect.db` holds
 **69,874 priced observations across 648 series spanning ~60 settlement
 days** (`obs` table; `settled` holds 981,451 markets, close_time
 2026-06-30 -> 2026-08-29). Pass 3 of that study published an ask-band

@@ -4,7 +4,7 @@ The headline test is the fixture universe the spec asks for: one series
 with a planted, persistent bias among calibrated ones, verifying that
 *exactly* it is flagged. The rest pin the pre-registered guard, because
 every one of those thresholds is a claim in
-`theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/STUDY.md` and a silent change to
+`tickets/study/investigation/2026-08-29-series-bias-mining/STUDY.md` and a silent change to
 one would invalidate the pre-registration.
 """
 
@@ -18,7 +18,7 @@ from pathlib import Path
 import pytest
 
 _PATH = (Path(__file__).resolve().parents[1]
-         / "theories/insider_bias/mention_family/studies/investigation"
+         / "tickets/study/investigation"
          / "2026-08-29-series-bias-mining" / "mine.py")
 _spec = importlib.util.spec_from_file_location("_mine", _PATH)
 mine = importlib.util.module_from_spec(_spec)

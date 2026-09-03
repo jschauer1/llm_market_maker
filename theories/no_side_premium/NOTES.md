@@ -539,7 +539,7 @@ this theory mid-session (`tickets/open/2026-09-01-side-split-on-series-bias-obs.
 Full write-up: `theories/no_side_premium/studies/answer/2026-09-01-side-split-60day-obs/`.
 
 **The prize was real: 72,010 priced settled markets over 61 close days,
-already on disk** in `theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/data/collect.db`,
+already on disk** in `tickets/study/investigation/2026-08-29-series-bias-mining/data/collect.db`,
 with a `side` column nobody had split. This theory's own series has 8 days.
 Worked on a *copy* — a peer session is running a multi-hour backfill against
 the live file.

@@ -1,7 +1,7 @@
 """Split the 60-day series-bias observation set by side -- no_side_premium's
 hypothesis, on a population it was never measured over.
 
-`theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/data/collect.db` holds tens of
+`tickets/study/investigation/2026-08-29-series-bias-mining/data/collect.db` holds tens of
 thousands of settled markets priced at a point-in-time decision anchored to
 SCHEDULED close, spanning ~61 close days. Pass 3 of that study published an
 ask-band calibration table pooled across YES and NO favorites. The `obs`

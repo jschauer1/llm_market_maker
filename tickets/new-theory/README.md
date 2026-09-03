@@ -162,7 +162,7 @@ home, one status.
      3–6pt effect worth betting; the median tested series had a minimum
      detectable effect of **13.5 pts**, so "0 of 17 flagged" meant *not
      measured*, not *calibrated*. See
-     `theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/`.
+     `tickets/study/investigation/2026-08-29-series-bias-mining/`.
 
    **Caveat found the same day, by the floor's own author:** an
    SE-based power floor is **not outcome-neutral for binomial data.**

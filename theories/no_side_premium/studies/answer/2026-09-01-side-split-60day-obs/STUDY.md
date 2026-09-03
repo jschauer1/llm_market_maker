@@ -12,7 +12,7 @@ filed by `llm-market-identifier-0e`.
 `no_side_premium` claims NO favorites beat YES favorites at comparable
 prices. Its own forward series had reached **8 close days** — enough to
 say "null", not enough to say "nothing". The observation set built by
-`theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/` holds **72,010 priced settled
+`tickets/study/investigation/2026-08-29-series-bias-mining/` holds **72,010 priced settled
 markets over 61 close days**, has a `side` column, and had never been split
 on it.
 
@@ -189,7 +189,7 @@ backfill is what answers it.
 ## Reproduce
 
 ```bash
-cp theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/data/collect.db /tmp/copy.db   # copy: a peer runs a multi-hour backfill on the live file
+cp tickets/study/investigation/2026-08-29-series-bias-mining/data/collect.db /tmp/copy.db   # copy: a peer runs a multi-hour backfill on the live file
 python theories/no_side_premium/studies/answer/2026-09-01-side-split-60day-obs/measure.py /tmp/copy.db
 ```
 

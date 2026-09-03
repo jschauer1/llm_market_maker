@@ -7,7 +7,7 @@ author_lane: find-theories
 author_context: One of 22 researched design specs written in the 2026-08-24 literature passes; migrated out of docs/superpowers/specs/theories/ on 2026-09-01 so that the spec and the backlog entry are one document with one status.
 status: done
 closed: 2026-09-01
-resolution: BUILT AS A STUDY, per the spec's own section 3 (the miner produces measurements, not bets): theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/. Three passes run. Pass 3 declared itself NOT MEASURED by its own pre-registered bar -- 347 series tested against a floor of 30, so breadth was solved, but median MDE was 12.16 against a bar of 8.0. Its 72,010-row priced settled corpus is now the most reused dataset in the repo. Remaining work is tracked in its own open tickets: series-bias-sweep-finish and series-bias-backfill-liquidity.
+resolution: BUILT AS A STUDY, per the spec's own section 3 (the miner produces measurements, not bets): tickets/study/investigation/2026-08-29-series-bias-mining/. Three passes run. Pass 3 declared itself NOT MEASURED by its own pre-registered bar -- 347 series tested against a floor of 30, so breadth was solved, but median MDE was 12.16 against a bar of 8.0. Its 72,010-row priced settled corpus is now the most reused dataset in the repo. Remaining work is tracked in its own open tickets: series-bias-sweep-finish and series-bias-backfill-liquidity.
 ---
 Effort: M · LLM in decision path: no · Backtest tier: A
 

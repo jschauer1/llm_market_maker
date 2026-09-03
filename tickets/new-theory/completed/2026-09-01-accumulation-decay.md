@@ -79,7 +79,7 @@ write-up; this ticket is a hypothesis with a population, not a result.
     band priced 0.987 and realized 0.801 because the ask was a
     placeholder, not an offer. Any test MUST apply a real liquidity
     filter (spread AND open_interest, not a price cap; see
-    theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/STUDY.md "The mechanism").
+    tickets/study/investigation/2026-08-29-series-bias-mining/STUDY.md "The mechanism").
   - Fees eat it. Buying at 0.97 to win 0.03 is a 32:1 capital
     commitment; deadline_drift's capital-asymmetry note applies in full
     and is why the trade may be unpleasant rather than unavailable.

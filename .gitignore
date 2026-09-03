@@ -20,7 +20,18 @@ user_reports/*
 # Ignored as a DIRECTORY, not one filename -- the -journal, the WAL
 # and the per-run logs beside collect.db were all still untracked,
 # so `git add -A` would have staged them. Regenerable via collect.py.
-theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/data/
+#
+# Moved here 2026-09-02 from
+# theories/insider_bias/mention_family/studies/investigation/, when
+# mention_family was retired. The study was in flight and CLAUDE.md
+# calls it infrastructure other studies read, so it became OWNERLESS
+# rather than retiring with its theory -- retiring a theory must not
+# retire a live measurement other work depends on. The 368MB under
+# data/ is the part that could have been lost: Kalshi has aged that
+# settled history out of its public API, so it is unrecoverable
+# upstream and only "regenerable via collect.py" for the window that
+# is still reachable.
+tickets/study/investigation/2026-08-29-series-bias-mining/data/
 STATE.md
 
 # parlay-markup study: 150k+ raw payloads, regenerable via collect.py

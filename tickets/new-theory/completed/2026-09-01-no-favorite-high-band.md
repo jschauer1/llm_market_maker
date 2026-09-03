@@ -239,7 +239,7 @@ settled even though the direction is stable across every cut tried.
 > series/min). When `collect.py status` shows it done:
 >
 > ```
-> cp theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/data/collect.db <scratch>/c.db
+> cp tickets/study/investigation/2026-08-29-series-bias-mining/data/collect.db <scratch>/c.db
 > python theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split/measure.py <scratch>/c.db
 > python theories/no_side_premium/studies/answer/2026-09-01-liquidity-filtered-side-split/mechanism.py <scratch>/c.db
 > ```
@@ -273,4 +273,4 @@ exactly. Both sides lose. Mid-relative mispricing there is −1.45
 So the reusable output of this ticket is **two eliminations and one
 repo-wide caution**: a one-sided net edge of −N does not imply +N on the
 other side; it implies −(round_trip − N). Cross-referenced into
-`theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/STUDY.md`.
+`tickets/study/investigation/2026-08-29-series-bias-mining/STUDY.md`.

@@ -1,7 +1,6 @@
 ---
 title: Series bias mining — which Kalshi series carry a persistent, tradeable favorite bias?
 lane: study
-theory: mention_family
 created: 2026-08-29
 created_by: migration
 ---
@@ -12,6 +11,28 @@ created_by: migration
 **Tier:** A (no model anywhere) ·
 **Verdict:** **not measured** ·
 Backlog spec #4, registry slug `series-bias-mining`
+
+**Ownerless since 2026-09-02 — the `theory:` line above was removed, not
+lost.** This study was filed inside `mention_family`, which the user
+retired on 2026-08-27 and which was migrated to
+`theories/retired/mention_family/` on 2026-09-02. It did not retire with
+its theory: it was still in `investigation` (phase 2 of the sweep
+unfinished), and CLAUDE.md calls it infrastructure other studies read —
+`no_side_premium`'s liquidity-filtered-side-split, side-split-60day-obs,
+entry-timing and parlay-markup all read its `data/collect.db`. **Retiring
+a theory must not retire a live measurement other work depends on**, so
+it moved out to the root study lane
+(`tickets/study/investigation/2026-08-29-series-bias-mining/`) and now
+has no owning theory. Its two open tickets moved with it, to
+`tickets/maintenance/open/`, for the same reason: there is no theory
+folder left for a theory-lane ticket to live in.
+
+Nothing about the measurement changed. The pre-registered bar below, the
+one-run rule, the carried candidates' signs and the `mention_family`
+negative control are all exactly as committed — including the control,
+which stays `mention_family` because it is a *ticker family* on the
+board, and a family does not stop existing when a theory built on it
+does.
 
 **This file's bar was fixed and committed before any per-series bias
 number was computed.** At the time of writing I had looked at exactly two
@@ -455,7 +476,7 @@ that claim, which is why the exclusions are listed.
 produces measurements, not bets). Pre-registered the bar and committed it
 before computing any per-series number (`3fd3be5`); built and fixture-tested
 the miner before it saw real data (`07291f0`); ran it once (`f826d6c`).
-Study: `theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/`. Suite **955** green.
+Study: `tickets/study/investigation/2026-08-29-series-bias-mining/`. Suite **955** green.
 
 **Learned:**
 

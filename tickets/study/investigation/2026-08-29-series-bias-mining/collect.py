@@ -32,10 +32,10 @@ Backfill  -- book quality for observations written before 2026-09-01,
              when only the derived ask was persisted. Time-boxed by the
              ~60-day archive window; run it before `prices`.
 
-  python theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/collect.py walk
-  python theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/collect.py prices
-  python theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/collect.py backfill
-  python theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/collect.py status
+  python tickets/study/investigation/2026-08-29-series-bias-mining/collect.py walk
+  python tickets/study/investigation/2026-08-29-series-bias-mining/collect.py prices
+  python tickets/study/investigation/2026-08-29-series-bias-mining/collect.py backfill
+  python tickets/study/investigation/2026-08-29-series-bias-mining/collect.py status
 """
 
 from __future__ import annotations

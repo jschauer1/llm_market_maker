@@ -8,7 +8,7 @@ Every constant here is quoted from STUDY.md, which was committed before
 any per-series number was computed. Changing one changes the
 pre-registration and must be done in the open, not silently.
 
-Run: python theories/insider_bias/mention_family/studies/investigation/2026-08-29-series-bias-mining/mine.py
+Run: python tickets/study/investigation/2026-08-29-series-bias-mining/mine.py
 """
 
 from __future__ import annotations
