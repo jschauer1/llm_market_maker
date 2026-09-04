@@ -69,6 +69,22 @@ def test_conn_supports_the_ledger_contract(conn):
         "select count(*) from opportunities").fetchone()[0] == 1
 
 
+def test_make_conn_hands_out_independent_databases(make_conn):
+    """For tests that need SEVERAL fresh databases in one body -- a
+    migration checked once per legacy shape, say -- without paying a
+    disk build for each."""
+    a, b = make_conn(), make_conn()
+    theories.register(a, "only-in-a", "T", "p", now=TS)
+    assert a.execute("select count(*) from theories").fetchone()[0] == 1
+    assert b.execute("select count(*) from theories").fetchone()[0] == 0
+    assert _tables(a) == _tables(b)
+
+
+def test_make_conn_closes_everything_it_made(make_conn):
+    c = make_conn()
+    c.execute("select 1")          # usable now; the fixture closes it after
+
+
 def test_conn_disk_is_backed_by_a_real_file(conn_disk, db_file):
     assert db_file.exists()
 

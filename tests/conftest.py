@@ -70,18 +70,45 @@ def _schema_blobs() -> tuple[bytes, bytes]:
     return blobs
 
 
-@pytest.fixture
-def conn(_schema_blobs):
-    """A private, schema-complete, in-memory database."""
-    main, snap = _schema_blobs
+def _fresh_conn(blobs: tuple[bytes, bytes]) -> sqlite3.Connection:
+    """A private, schema-complete, in-memory database from the template."""
+    main, snap = blobs
     c = sqlite3.connect(":memory:", timeout=30.0)
     c.row_factory = sqlite3.Row
     c.execute("ATTACH DATABASE ':memory:' AS snapdb")
     c.deserialize(main, name="main")
     c.deserialize(snap, name="snapdb")
     c.execute("PRAGMA foreign_keys = ON")
+    return c
+
+
+@pytest.fixture
+def conn(_schema_blobs):
+    """A private, schema-complete, in-memory database."""
+    c = _fresh_conn(_schema_blobs)
     yield c
     c.close()
+
+
+@pytest.fixture
+def make_conn(_schema_blobs):
+    """A factory: call it for each fresh database a single test needs.
+
+    For tests that exercise something once per legacy shape, once per
+    CHECK value, once per scenario -- anything that used to build a disk
+    database inside a loop. Every connection it hands out is closed when
+    the test ends.
+    """
+    made: list[sqlite3.Connection] = []
+
+    def _make() -> sqlite3.Connection:
+        c = _fresh_conn(_schema_blobs)
+        made.append(c)
+        return c
+
+    yield _make
+    for c in made:
+        c.close()
 
 
 @pytest.fixture

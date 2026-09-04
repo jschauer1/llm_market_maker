@@ -251,7 +251,7 @@ def _canonical(table, column):
 
 @pytest.mark.parametrize("table,column,fn_name", _MIGRATED_CHECKS)
 def test_every_value_of_a_migrated_check_survives_a_legacy_database(
-        tmp_path, table, column, fn_name):
+        make_conn, table, column, fn_name):
     """A database predating ANY ONE value must end up accepting it.
 
     Parametrised over the values in `schema.sql` rather than a list
@@ -264,8 +264,9 @@ def test_every_value_of_a_migrated_check_survives_a_legacy_database(
     migrate = getattr(db, fn_name)
     canonical = db.check_values(db.schema_statement(table), column)
     for value in sorted(canonical):
-        c = db.connect(tmp_path / f"legacy-{value}.db")
-        db.init_db(c)
+        # One fresh database per value, in memory: the migration under
+        # test rebuilds a table, which needs no file to be real.
+        c = make_conn()
         try:
             c.execute("PRAGMA foreign_keys = OFF")
             c.execute(f"DROP TABLE {table}")
