@@ -3,7 +3,9 @@ title: test_conventions.py scan tests should memoize their repo walk
 lane: maintenance
 created: 2026-09-03
 created_by: unknown
-status: open
+status: done
+closed: 2026-09-04
+resolution: Done in 73a0124, once the concurrent session released the file. Four lru_cache memos (file walk, per-basename glob, per-file text and lines) with every scan's selection logic untouched. test_conventions.py 3.63s -> 1.06s; the citation test 2.69s -> 0.35s.
 ---
 The largest remaining item in the test suite: 3.54s, of which 2.71s is
 `test_every_dated_cross_citation_still_resolves`. Each scan test

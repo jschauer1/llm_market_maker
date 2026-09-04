@@ -5055,3 +5055,52 @@ remaining item (3.54s, 2.71s of it in one citation-resolving test) and was
 held modified by a concurrent session for this entire session; editing it
 would have clobbered their work. Ticketed, not forgotten. The ~4s floor is
 interpreter startup and collection.
+
+---
+
+## 2026-09-03 — second pass on test speed: the sequential floor
+
+After the 54.75s → ~19s refactor, the user asked for faster still, and
+ruled out parallelism a second time. This pass took every cheap sequential
+lever left; what remains is real work.
+
+**Same loaded machine, same session: 27.87s → 23.81s wall; time inside
+tests 24.26s → 20.08s.** 1480 tests, none removed, zero assertion lines
+changed across the six files touched, two fixture self-tests added.
+
+**Where it came from**, each a "build once, reuse" of something a test
+rebuilt in a loop:
+
+- `test_db.py` 3.18s → 1.08s — one parametrised migration test built **24
+  on-disk databases** (one per CHECK value × 4 tables) to verify a table
+  rebuild that needs no file. A new `make_conn()` factory hands out
+  in-memory clones instead.
+- `test_conventions.py` 3.63s → 1.06s — the dated-citation test re-globbed
+  the whole repo (`**/<name>`) once per unresolved citation and re-read
+  each target once per (target, date): 2.69s for one test, now 0.35s.
+  Four `lru_cache` memos, and **no change to which files any scan
+  selects** — the same discipline as `db_discipline`: a repo-guard that
+  quietly scans a different set is worse than a slow one.
+- `test_migrate_positions.py` 2.11s → 1.58s — the legacy schema built
+  once per session, copied per test; still a real file at
+  `tmp_path/legacy.db`, because the CLI test reopens that exact path.
+- `test_tickets.py` 1.84s → 1.27s — onto the shared in-memory `conn`. Its
+  docstring asked for "a database, not a stub", which the in-memory one
+  is; its one file-needing test already built its own.
+
+**The sequential floor is now visible.** The profile is flat — top file
+3.55s, then a tail of ~1s files — and what's left is genuine work:
+`test_cli.py` is 55 real CLI invocations (`cli.main` does connect +
+`init_db` per call, measured at 6.5ms, so the time is the commands
+themselves); `split_snapshots` tests are disk by nature; the goldens
+parse 9 MB; series-bias runs simulations; two ticket tests shell out to
+`git`. Plus ~3.7s of interpreter startup and collection. Further
+sequential gains are now ≤0.5s apiece.
+
+**The lever that's left is the one ruled out.** 16 cores, one in use. The
+in-memory fixtures make xdist *safer* than it would have been before this
+work (no shared temp files; the template DB is per-worker), and a first
+grep found nothing writing under the repo root during a normal run. The
+one known wrinkle is my own `isolation_part_one/part_two` pair, which is
+order-dependent by design and would need `--dist loadfile`. Estimate at
+`-n 8`: ~8s. Not done; the user's call, twice made, and respected.
