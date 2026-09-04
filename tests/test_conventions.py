@@ -12,10 +12,46 @@ import re
 import subprocess
 import sys
 from dataclasses import fields
+from functools import lru_cache
 from pathlib import Path
 
 from tools import db, domain, ledger, registry
 from tools.theory import Theory, TheoryRun
+
+
+# --------------------------------------------------------------------- #
+# Read-once memos. The scans below used to re-walk and re-read the repo
+# once per test, and the citation test re-globbed the whole tree once per
+# citation and re-read each target once per (target, date) pair -- 2.7s
+# for one test. These helpers change only how often a file is READ.
+# Every test's own SELECTION logic -- which files it looks at and what it
+# skips -- is untouched below, deliberately: a repo-guard test that
+# quietly scans a different set is worse than a slow one.
+# --------------------------------------------------------------------- #
+
+@lru_cache(maxsize=None)
+def _text(path: Path) -> str:
+    return path.read_text(encoding="utf-8", errors="replace")
+
+
+@lru_cache(maxsize=None)
+def _lines(path: Path) -> tuple[str, ...]:
+    return tuple(_text(path).splitlines())
+
+
+@lru_cache(maxsize=None)
+def _files_named(name: str) -> tuple[Path, ...]:
+    """Every file in the repo with this basename -- the `**/<span>` glob
+    the citation test runs once per otherwise-unresolved citation."""
+    return tuple(sorted(ROOT.glob(f"**/{name}")))
+
+
+@lru_cache(maxsize=1)
+def _py_files() -> tuple[Path, ...]:
+    """Every .py in the repo, sorted, walked once. `ROOT.glob("**/*.py")`
+    and `ROOT.rglob("*.py")` yield the same set, so one memo serves every
+    scan that used either."""
+    return tuple(sorted(ROOT.rglob("*.py")))
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -565,7 +601,7 @@ def _file_contains_date_heading(path, date):
     those two entries apart would mean matching entry *content*, which
     this test was never designed to do and the controller ruling (2026-
     08-29) explicitly declined to add."""
-    for line in path.read_text(encoding="utf-8").splitlines():
+    for line in _lines(path):
         stripped = line.lstrip()
         if stripped.startswith("#") or stripped.startswith("**"):
             if date in line:
@@ -706,7 +742,7 @@ def test_every_dated_cross_citation_still_resolves():
     problems = []
     for pattern in _CITING_GLOBS:
         for doc in sorted(ROOT.glob(pattern)):
-            for line in doc.read_text(encoding="utf-8").splitlines():
+            for line in _lines(doc):
                 m = _CITE_LINE.search(line)
                 dates = _DATE.findall(line)
                 if not m or not dates:
@@ -723,7 +759,7 @@ def test_every_dated_cross_citation_still_resolves():
                 elif (doc.parent / span).exists():
                     targets = [doc.parent / span]
                 else:
-                    targets = sorted(ROOT.glob(f"**/{span}"))
+                    targets = list(_files_named(span))
                 for date in dates:
                     if targets and not any(
                         _file_contains_date_heading(t, date) for t in targets
@@ -952,11 +988,11 @@ def test_no_new_code_rebuilds_a_board_by_exact_capture_stamp():
     import ast as _ast
 
     offenders = []
-    for path in sorted(ROOT.glob("**/*.py")):
+    for path in _py_files():
         rel = path.relative_to(ROOT).as_posix()
         if rel.startswith(("tools/snapshot.py", "tests/", ".venv/")):
             continue
-        text = path.read_text(encoding="utf-8", errors="replace")
+        text = _text(path)
         if "captured_at" not in text:
             continue
         try:
@@ -987,11 +1023,11 @@ def test_no_new_code_rebuilds_a_board_by_exact_capture_stamp():
 
 def test_the_exact_stamp_marker_is_not_a_blanket_opt_out():
     """A marker has to say why, so an exception stays auditable."""
-    for path in sorted(ROOT.glob("**/*.py")):
+    for path in _py_files():
         if path.relative_to(ROOT).as_posix().startswith("tests/"):
             continue
         for i, line in enumerate(
-            path.read_text(encoding="utf-8", errors="replace").splitlines()
+            _lines(path)
         ):
             if EXACT_STAMP_MARKER not in line:
                 continue
@@ -1633,11 +1669,11 @@ def _code_path_literals():
     *supposed* not to exist (`theories/t1`, `theories/ghost`), so including
     them would make this fire on 100+ correct lines and be switched off.
     """
-    for py in sorted(ROOT.rglob("*.py")):
+    for py in _py_files():
         if any(part in _CODE_SKIP_DIRS for part in py.parts):
             continue
         try:
-            tree = ast.parse(py.read_text(encoding="utf-8", errors="replace"))
+            tree = ast.parse(_text(py))
         except SyntaxError:
             continue
         for node in ast.walk(tree):
