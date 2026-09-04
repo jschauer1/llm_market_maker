@@ -70,10 +70,16 @@ def _legacy_row(conn, **kw):
     conn.commit()
 
 
-@pytest.fixture
-def legacy(tmp_path):
-    """A database in the pre-migration shape."""
-    c = db.connect(tmp_path / "legacy.db")
+@pytest.fixture(scope="session")
+def _legacy_template(tmp_path_factory):
+    """The pre-migration database, built ONCE and copied per test.
+
+    Built to a file rather than memory because `test_the_cli_reports_the_
+    collapse` reopens `tmp_path / "legacy.db"` by path, so the per-test
+    copy has to be a real file at that exact location.
+    """
+    path = tmp_path_factory.mktemp("legacy_template") / "legacy.db"
+    c = db.connect(path)
     c.executescript(OLD_SCHEMA)
     c.execute(
         "CREATE TABLE opportunity_legs (opportunity_id INTEGER NOT NULL"
@@ -84,6 +90,20 @@ def legacy(tmp_path):
         " PRIMARY KEY (opportunity_id, leg_index))"
     )
     c.commit()
+    db.close(c)          # checkpoints the WAL so the .db alone is complete
+    return path
+
+
+@pytest.fixture
+def legacy(tmp_path, _legacy_template):
+    """A database in the pre-migration shape -- a fresh copy per test."""
+    import shutil
+    dest = tmp_path / "legacy.db"
+    shutil.copyfile(_legacy_template, dest)
+    snap = db.snapshots_path_for(_legacy_template)
+    if snap.exists():
+        shutil.copyfile(snap, db.snapshots_path_for(dest))
+    c = db.connect(dest)
     yield c
     c.close()
 
