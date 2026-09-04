@@ -23,14 +23,15 @@ from tools import db, ideas, tickets
 
 
 @pytest.fixture()
-def conn(tmp_path):
+def conn(conn):
     """A real ideas registry. Closing a `new-theory` spec `disproven` or
     `underpowered` reads this, so the tests that cover that coupling need
-    a database rather than a stub."""
-    c = db.connect(tmp_path / "t.db")
-    db.init_db(c)
-    yield c
-    c.close()
+    a database rather than a stub.
+
+    A database, not a file: the shared in-memory `conn` is one. The single
+    test here that needs a real FILE (the CLI reopens it by path) builds
+    its own and never touches this fixture."""
+    return conn
 
 
 @pytest.fixture()
