@@ -1,0 +1,2870 @@
+{
+  "generated_at": "2026-09-05T04:59:16.601970+00:00",
+  "method": {
+    "week": "Monday through named Sunday inclusive",
+    "comparison": "For each listed strict-above strike, current TSA mean > strike implies YES; compare with Kalshi result.",
+    "strike_parser": "Numeric million or exact integer from rules_primary; floor_strike fallback.",
+    "expiration_value_normalization": "Comma-formatted persons, or decimal values below 10 interpreted as millions after Kalshi schema/unit transition. Non-numeric strings are unparseable.",
+    "dedupe": "Union /historical and current settled KXTSAW results by ticker; current receipt wins."
+  },
+  "summary": {
+    "scope": "Source-contract audit only; no quotes, forecasts, model probabilities, or trading returns.",
+    "tsa_rows": 1707,
+    "tsa_first_date": "2022-01-01",
+    "tsa_last_date": "2026-09-03",
+    "kalshi_union_markets": 2884,
+    "kalshi_union_events": 268,
+    "explicit_tsa_source_events": 219,
+    "parse_failures": [],
+    "archive_vs_settlement_disagreement_events": 16,
+    "archive_vs_settlement_disagreement_markets": 16,
+    "disagreement_events_by_year": {
+      "2022": 1,
+      "2023": 5,
+      "2024": 7,
+      "2025": 3
+    },
+    "eligible_events_by_year": {
+      "2022": 28,
+      "2023": 53,
+      "2024": 52,
+      "2025": 51,
+      "2026": 35
+    },
+    "adjacent_window_disagreement_events": {
+      "-1": 69,
+      "0": 16,
+      "1": 67
+    },
+    "expiration_value_present_events": 215,
+    "expiration_value_missing_or_unparseable_events": 4,
+    "expiration_value_consistent_with_all_payouts_events": 214,
+    "expiration_value_inconsistent_event_tickers": [
+      "KXTSAW-25APR20"
+    ],
+    "archive_minus_expiration_value": {
+      "median": 3448.0,
+      "median_absolute": 4108.0,
+      "mean_absolute": 7889.551488372103,
+      "max_absolute": 277887.42857142864,
+      "greater_than_1": 179,
+      "less_than_minus_1": 6,
+      "within_1": 30
+    },
+    "minimum_archive_to_crossed_strike_distance": 156.1428571427241,
+    "maximum_archive_to_crossed_strike_distance": 28936.714285714086
+  },
+  "disagreement_events": [
+    {
+      "event_ticker": "TSAW-22OCT23",
+      "target_date": "2022-10-23",
+      "rules_primary": "If weekly average TSA airport screenings are above 2.25 million for the week ending October 23, 2022, according to the TSA, then the market resolves to Yes.",
+      "rules_secondary": "The Contract will expire at the sooner of the first 10:00 AM following the release of the data for October 23, 2022, or one week after October 23, 2022. The Last Trading Date and Time will always be 11:59 PM on October 23, 2022.",
+      "daily_values": [
+        {
+          "date": "2022-10-17",
+          "value": 2294755,
+          "receipt_file": "tsa_2022.html"
+        },
+        {
+          "date": "2022-10-18",
+          "value": 2003403,
+          "receipt_file": "tsa_2022.html"
+        },
+        {
+          "date": "2022-10-19",
+          "value": 2110090,
+          "receipt_file": "tsa_2022.html"
+        },
+        {
+          "date": "2022-10-20",
+          "value": 2429402,
+          "receipt_file": "tsa_2022.html"
+        },
+        {
+          "date": "2022-10-21",
+          "value": 2375559,
+          "receipt_file": "tsa_2022.html"
+        },
+        {
+          "date": "2022-10-22",
+          "value": 2005659,
+          "receipt_file": "tsa_2022.html"
+        },
+        {
+          "date": "2022-10-23",
+          "value": 2416107,
+          "receipt_file": "tsa_2022.html"
+        }
+      ],
+      "current_archive_sum": 15634975,
+      "current_archive_mean": 2233567.8571428573,
+      "expiration_value_normalized": 2256506.0,
+      "expiration_values_raw": [
+        "2,256,506"
+      ],
+      "settled_ladder_interval": {
+        "strict_lower_bound": 2250000,
+        "inclusive_upper_bound": null
+      },
+      "market_count": 1,
+      "disagreements": [
+        {
+          "ticker": "TSAW-22OCT23-A2.25",
+          "strike": 2250000,
+          "result": "yes",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,256,506",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ],
+      "expiration_value_disagrees_with_payout_tickers": [],
+      "markets": [
+        {
+          "ticker": "TSAW-22OCT23-A2.25",
+          "strike": 2250000,
+          "result": "yes",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,256,506",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ]
+    },
+    {
+      "event_ticker": "TSAW-23MAR12",
+      "target_date": "2023-03-12",
+      "rules_primary": "If weekly average TSA airport screenings are above 2.3 million for the week ending March 12, 2023, according to the TSA, then the market resolves to Yes.",
+      "rules_secondary": "The Contract will expire at the sooner of the first 10:00 AM following the release of the data for March 12, 2023, or one week after March 12, 2023. The Last Trading Date and Time will always be 11:59 PM on March 12, 2023.",
+      "daily_values": [
+        {
+          "date": "2023-03-06",
+          "value": 2265014,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-03-07",
+          "value": 1908536,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-03-08",
+          "value": 2130141,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-03-09",
+          "value": 2417279,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-03-10",
+          "value": 2562561,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-03-11",
+          "value": 2279320,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-03-12",
+          "value": 2539093,
+          "receipt_file": "tsa_2023.html"
+        }
+      ],
+      "current_archive_sum": 16101944,
+      "current_archive_mean": 2300277.714285714,
+      "expiration_value_normalized": 2285256.0,
+      "expiration_values_raw": [
+        "2,285,256"
+      ],
+      "settled_ladder_interval": {
+        "strict_lower_bound": 2200000,
+        "inclusive_upper_bound": 2300000
+      },
+      "market_count": 4,
+      "disagreements": [
+        {
+          "ticker": "TSAW-23MAR12-A2.30",
+          "strike": 2300000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,285,256",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ],
+      "expiration_value_disagrees_with_payout_tickers": [],
+      "markets": [
+        {
+          "ticker": "TSAW-23MAR12-A2.00",
+          "strike": 2000000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,285,256",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23MAR12-A2.10",
+          "strike": 2100000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,285,256",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23MAR12-A2.20",
+          "strike": 2200000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,285,256",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23MAR12-A2.30",
+          "strike": 2300000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,285,256",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ]
+    },
+    {
+      "event_ticker": "TSAW-23APR30",
+      "target_date": "2023-04-30",
+      "rules_primary": "If weekly average TSA airport screenings are above 2.3 million for the week ending April 30, 2023, according to the TSA, then the market resolves to Yes.",
+      "rules_secondary": "The Contract will expire at the sooner of the first 10:00 AM following the release of the data for April 30, 2023, or one week after April 30, 2023. The Last Trading Date and Time will always be 11:59 PM on April 30, 2023.",
+      "daily_values": [
+        {
+          "date": "2023-04-24",
+          "value": 2425693,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-04-25",
+          "value": 2015155,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-04-26",
+          "value": 2183316,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-04-27",
+          "value": 2522454,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-04-28",
+          "value": 2507149,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-04-29",
+          "value": 2021030,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-04-30",
+          "value": 2517228,
+          "receipt_file": "tsa_2023.html"
+        }
+      ],
+      "current_archive_sum": 16192025,
+      "current_archive_mean": 2313146.4285714286,
+      "expiration_value_normalized": 2298129.0,
+      "expiration_values_raw": [
+        "2,298,129"
+      ],
+      "settled_ladder_interval": {
+        "strict_lower_bound": 2200000,
+        "inclusive_upper_bound": 2300000
+      },
+      "market_count": 5,
+      "disagreements": [
+        {
+          "ticker": "TSAW-23APR30-A2.30",
+          "strike": 2300000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,298,129",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ],
+      "expiration_value_disagrees_with_payout_tickers": [],
+      "markets": [
+        {
+          "ticker": "TSAW-23APR30-A1.90",
+          "strike": 1900000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,298,129",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23APR30-A2.00",
+          "strike": 2000000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,298,129",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23APR30-A2.10",
+          "strike": 2100000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,298,129",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23APR30-A2.20",
+          "strike": 2200000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,298,129",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23APR30-A2.30",
+          "strike": 2300000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,298,129",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ]
+    },
+    {
+      "event_ticker": "TSAW-23JUL16",
+      "target_date": "2023-07-16",
+      "rules_primary": "If weekly average TSA airport screenings are above 2.6 million for the week ending July 16, 2023, according to the TSA, then the market resolves to Yes.",
+      "rules_secondary": "The Contract will expire at the sooner of the first 10:00 AM following the release of the data for July 16, 2023, or one week after July 16, 2023. The Last Trading Date and Time will always be 11:59 PM on July 16, 2023.",
+      "daily_values": [
+        {
+          "date": "2023-07-10",
+          "value": 2688266,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-07-11",
+          "value": 2382030,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-07-12",
+          "value": 2458378,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-07-13",
+          "value": 2726021,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-07-14",
+          "value": 2738461,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-07-15",
+          "value": 2486503,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-07-16",
+          "value": 2741762,
+          "receipt_file": "tsa_2023.html"
+        }
+      ],
+      "current_archive_sum": 18221421,
+      "current_archive_mean": 2603060.1428571427,
+      "expiration_value_normalized": 2594678.0,
+      "expiration_values_raw": [
+        "2,594,678"
+      ],
+      "settled_ladder_interval": {
+        "strict_lower_bound": 2500000,
+        "inclusive_upper_bound": 2600000
+      },
+      "market_count": 6,
+      "disagreements": [
+        {
+          "ticker": "TSAW-23JUL16-A2.60",
+          "strike": 2600000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,594,678",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ],
+      "expiration_value_disagrees_with_payout_tickers": [],
+      "markets": [
+        {
+          "ticker": "TSAW-23JUL16-A2.10",
+          "strike": 2100000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,594,678",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23JUL16-A2.20",
+          "strike": 2200000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,594,678",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23JUL16-A2.30",
+          "strike": 2300000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,594,678",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23JUL16-A2.40",
+          "strike": 2400000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,594,678",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23JUL16-A2.50",
+          "strike": 2500000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,594,678",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23JUL16-A2.60",
+          "strike": 2600000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,594,678",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ]
+    },
+    {
+      "event_ticker": "TSAW-23JUL30",
+      "target_date": "2023-07-30",
+      "rules_primary": "If weekly average TSA airport screenings are above 2.6 million for the week ending July 30, 2023, according to the TSA, then the market resolves to Yes.",
+      "rules_secondary": "The Contract will expire at the sooner of the first 10:00 AM following the release of the data for July 30, 2023, or one week after July 30, 2023. The Last Trading Date and Time will always be 11:59 PM on July 30, 2023.",
+      "daily_values": [
+        {
+          "date": "2023-07-24",
+          "value": 2695657,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-07-25",
+          "value": 2358536,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-07-26",
+          "value": 2510210,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-07-27",
+          "value": 2724438,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-07-28",
+          "value": 2787676,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-07-29",
+          "value": 2457943,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-07-30",
+          "value": 2815068,
+          "receipt_file": "tsa_2023.html"
+        }
+      ],
+      "current_archive_sum": 18349528,
+      "current_archive_mean": 2621361.1428571427,
+      "expiration_value_normalized": 2592360.0,
+      "expiration_values_raw": [
+        "2,592,360"
+      ],
+      "settled_ladder_interval": {
+        "strict_lower_bound": 2500000,
+        "inclusive_upper_bound": 2600000
+      },
+      "market_count": 6,
+      "disagreements": [
+        {
+          "ticker": "TSAW-23JUL30-A2.60",
+          "strike": 2600000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,592,360",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ],
+      "expiration_value_disagrees_with_payout_tickers": [],
+      "markets": [
+        {
+          "ticker": "TSAW-23JUL30-A2.10",
+          "strike": 2100000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,592,360",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23JUL30-A2.20",
+          "strike": 2200000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,592,360",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23JUL30-A2.30",
+          "strike": 2300000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,592,360",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23JUL30-A2.40",
+          "strike": 2400000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,592,360",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23JUL30-A2.50",
+          "strike": 2500000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,592,360",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23JUL30-A2.60",
+          "strike": 2600000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,592,360",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ]
+    },
+    {
+      "event_ticker": "TSAW-23SEP10",
+      "target_date": "2023-09-10",
+      "rules_primary": "If weekly average TSA airport screenings are above 2.6 million for the week ending September 10, 2023, according to the TSA, then the market resolves to Yes.",
+      "rules_secondary": "The Contract will expire at the sooner of the first 10:00 AM following the release of the data for September 10, 2023, or one week after September 10, 2023. The Last Trading Date and Time will always be 11:59 PM on September 10, 2023.",
+      "daily_values": [
+        {
+          "date": "2023-09-04",
+          "value": 2645012,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-09-05",
+          "value": 2243518,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-09-06",
+          "value": 1966818,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-09-07",
+          "value": 2283466,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-09-08",
+          "value": 2405867,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-09-09",
+          "value": 1986960,
+          "receipt_file": "tsa_2023.html"
+        },
+        {
+          "date": "2023-09-10",
+          "value": 2584116,
+          "receipt_file": "tsa_2023.html"
+        }
+      ],
+      "current_archive_sum": 16115757,
+      "current_archive_mean": 2302251.0,
+      "expiration_value_normalized": 2293025.0,
+      "expiration_values_raw": [
+        "2,293,025"
+      ],
+      "settled_ladder_interval": {
+        "strict_lower_bound": 2200000,
+        "inclusive_upper_bound": 2300000
+      },
+      "market_count": 6,
+      "disagreements": [
+        {
+          "ticker": "TSAW-23SEP10-A2.30",
+          "strike": 2300000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,293,025",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ],
+      "expiration_value_disagrees_with_payout_tickers": [],
+      "markets": [
+        {
+          "ticker": "TSAW-23SEP10-A2.10",
+          "strike": 2100000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,293,025",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23SEP10-A2.20",
+          "strike": 2200000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,293,025",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23SEP10-A2.30",
+          "strike": 2300000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,293,025",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23SEP10-A2.40",
+          "strike": 2400000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,293,025",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23SEP10-A2.50",
+          "strike": 2500000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,293,025",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-23SEP10-A2.60",
+          "strike": 2600000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,293,025",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ]
+    },
+    {
+      "event_ticker": "TSAW-24JAN28",
+      "target_date": "2024-01-28",
+      "rules_primary": "If weekly average TSA airport screenings are above 2.05 million for the week ending January 28, 2024, according to the TSA, then the market resolves to Yes.",
+      "rules_secondary": "The Contract will expire at the sooner of the first 10:00 AM following the release of the data for January 28, 2024, or one week after January 28, 2024. The Last Trading Date and Time will always be 11:59 PM on January 28, 2024.",
+      "daily_values": [
+        {
+          "date": "2024-01-22",
+          "value": 2053656,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-01-23",
+          "value": 1610765,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-01-24",
+          "value": 1815119,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-01-25",
+          "value": 2232670,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-01-26",
+          "value": 2278406,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-01-27",
+          "value": 1772563,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-01-28",
+          "value": 2261245,
+          "receipt_file": "tsa_2024.html"
+        }
+      ],
+      "current_archive_sum": 14024424,
+      "current_archive_mean": 2003489.142857143,
+      "expiration_value_normalized": 1999976.0,
+      "expiration_values_raw": [
+        "1,999,976"
+      ],
+      "settled_ladder_interval": {
+        "strict_lower_bound": 1950000,
+        "inclusive_upper_bound": 2000000
+      },
+      "market_count": 11,
+      "disagreements": [
+        {
+          "ticker": "TSAW-24JAN28-A2.00",
+          "strike": 2000000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "1,999,976",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ],
+      "expiration_value_disagrees_with_payout_tickers": [],
+      "markets": [
+        {
+          "ticker": "TSAW-24JAN28-A1.90",
+          "strike": 1900000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "1,999,976",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JAN28-A1.95",
+          "strike": 1950000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "1,999,976",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JAN28-A2.00",
+          "strike": 2000000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "1,999,976",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JAN28-A2.05",
+          "strike": 2050000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "1,999,976",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JAN28-A2.10",
+          "strike": 2100000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "1,999,976",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JAN28-A2.15",
+          "strike": 2150000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "1,999,976",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JAN28-A2.20",
+          "strike": 2200000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "1,999,976",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JAN28-A2.30",
+          "strike": 2300000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "1,999,976",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JAN28-A2.40",
+          "strike": 2400000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "1,999,976",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JAN28-A2.50",
+          "strike": 2500000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "1,999,976",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JAN28-A2.60",
+          "strike": 2600000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "1,999,976",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ]
+    },
+    {
+      "event_ticker": "TSAW-24MAR03",
+      "target_date": "2024-03-03",
+      "rules_primary": "If weekly average TSA airport screenings are above 2.4 million for the week ending March 03, 2024, according to the TSA, then the market resolves to Yes.",
+      "rules_secondary": "The Contract will expire at the sooner of the first 10:00 AM following the release of the data for March 03, 2024, or one week after March 03, 2024. The Last Trading Date and Time will always be 11:59 PM on March 03, 2024.",
+      "daily_values": [
+        {
+          "date": "2024-02-26",
+          "value": 2405209,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-02-27",
+          "value": 1935225,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-02-28",
+          "value": 2140789,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-02-29",
+          "value": 2551534,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-03-01",
+          "value": 2602686,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-03-02",
+          "value": 2132092,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-03-03",
+          "value": 2566870,
+          "receipt_file": "tsa_2024.html"
+        }
+      ],
+      "current_archive_sum": 16334405,
+      "current_archive_mean": 2333486.4285714286,
+      "expiration_value_normalized": 2360710.0,
+      "expiration_values_raw": [
+        "2,360,710"
+      ],
+      "settled_ladder_interval": {
+        "strict_lower_bound": 2350000,
+        "inclusive_upper_bound": 2400000
+      },
+      "market_count": 15,
+      "disagreements": [
+        {
+          "ticker": "TSAW-24MAR03-A2.35",
+          "strike": 2350000,
+          "result": "yes",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,360,710",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ],
+      "expiration_value_disagrees_with_payout_tickers": [],
+      "markets": [
+        {
+          "ticker": "TSAW-24MAR03-A1.70",
+          "strike": 1700000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,360,710",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24MAR03-A1.75",
+          "strike": 1750000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,360,710",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24MAR03-A1.80",
+          "strike": 1800000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,360,710",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24MAR03-A1.85",
+          "strike": 1850000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,360,710",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24MAR03-A1.90",
+          "strike": 1900000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,360,710",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24MAR03-A1.95",
+          "strike": 1950000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,360,710",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24MAR03-A2.00",
+          "strike": 2000000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,360,710",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24MAR03-A2.05",
+          "strike": 2050000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,360,710",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24MAR03-A2.10",
+          "strike": 2100000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,360,710",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24MAR03-A2.15",
+          "strike": 2150000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,360,710",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24MAR03-A2.20",
+          "strike": 2200000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,360,710",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24MAR03-A2.25",
+          "strike": 2250000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,360,710",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24MAR03-A2.30",
+          "strike": 2300000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,360,710",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24MAR03-A2.35",
+          "strike": 2350000,
+          "result": "yes",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,360,710",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24MAR03-A2.40",
+          "strike": 2400000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,360,710",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ]
+    },
+    {
+      "event_ticker": "TSAW-24APR07",
+      "target_date": "2024-04-07",
+      "rules_primary": "If weekly average TSA airport screenings are above 2.8 million for the week ending April 07, 2024, according to the TSA, then the market resolves to Yes.",
+      "rules_secondary": "The Contract will expire at the sooner of the first 10:00 AM following the release of the data for April 07, 2024, or one week after April 07, 2024. The Last Trading Date and Time will always be 11:59 PM on April 07, 2024.",
+      "daily_values": [
+        {
+          "date": "2024-04-01",
+          "value": 2658016,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-04-02",
+          "value": 2261390,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-04-03",
+          "value": 2266046,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-04-04",
+          "value": 2640572,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-04-05",
+          "value": 2703180,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-04-06",
+          "value": 2324739,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-04-07",
+          "value": 2675829,
+          "receipt_file": "tsa_2024.html"
+        }
+      ],
+      "current_archive_sum": 17529772,
+      "current_archive_mean": 2504253.1428571427,
+      "expiration_value_normalized": 2492101.0,
+      "expiration_values_raw": [
+        "2492101"
+      ],
+      "settled_ladder_interval": {
+        "strict_lower_bound": 2450000,
+        "inclusive_upper_bound": 2500000
+      },
+      "market_count": 15,
+      "disagreements": [
+        {
+          "ticker": "TSAW-24APR07-A2.50",
+          "strike": 2500000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2492101",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ],
+      "expiration_value_disagrees_with_payout_tickers": [],
+      "markets": [
+        {
+          "ticker": "TSAW-24APR07-A2.10",
+          "strike": 2100000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2492101",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR07-A2.15",
+          "strike": 2150000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2492101",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR07-A2.20",
+          "strike": 2200000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2492101",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR07-A2.25",
+          "strike": 2250000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2492101",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR07-A2.30",
+          "strike": 2300000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2492101",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR07-A2.35",
+          "strike": 2350000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2492101",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR07-A2.40",
+          "strike": 2400000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2492101",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR07-A2.45",
+          "strike": 2450000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2492101",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR07-A2.50",
+          "strike": 2500000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2492101",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR07-A2.55",
+          "strike": 2550000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2492101",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR07-A2.60",
+          "strike": 2600000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2492101",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR07-A2.65",
+          "strike": 2650000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2492101",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR07-A2.70",
+          "strike": 2700000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2492101",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR07-A2.75",
+          "strike": 2750000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2492101",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR07-A2.80",
+          "strike": 2800000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2492101",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ]
+    },
+    {
+      "event_ticker": "TSAW-24APR28",
+      "target_date": "2024-04-28",
+      "rules_primary": "If weekly average TSA airport screenings are above 2.8 million for the week ending April 28, 2024, according to the TSA, then the market resolves to Yes.",
+      "rules_secondary": "The Contract will expire at the sooner of the first 10:00 AM following the release of the data for April 28, 2024, or one week after April 28, 2024. The Last Trading Date and Time will always be 11:59 PM on April 28, 2024.",
+      "daily_values": [
+        {
+          "date": "2024-04-22",
+          "value": 2579973,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-04-23",
+          "value": 2144330,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-04-24",
+          "value": 2308366,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-04-25",
+          "value": 2686172,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-04-26",
+          "value": 2675321,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-04-27",
+          "value": 2138255,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-04-28",
+          "value": 2646469,
+          "receipt_file": "tsa_2024.html"
+        }
+      ],
+      "current_archive_sum": 17178886,
+      "current_archive_mean": 2454126.5714285714,
+      "expiration_value_normalized": 2446181.0,
+      "expiration_values_raw": [
+        "2,446,181"
+      ],
+      "settled_ladder_interval": {
+        "strict_lower_bound": 2400000,
+        "inclusive_upper_bound": 2450000
+      },
+      "market_count": 15,
+      "disagreements": [
+        {
+          "ticker": "TSAW-24APR28-A2.45",
+          "strike": 2450000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,181",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ],
+      "expiration_value_disagrees_with_payout_tickers": [],
+      "markets": [
+        {
+          "ticker": "TSAW-24APR28-A2.10",
+          "strike": 2100000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,181",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR28-A2.15",
+          "strike": 2150000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,181",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR28-A2.20",
+          "strike": 2200000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,181",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR28-A2.25",
+          "strike": 2250000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,181",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR28-A2.30",
+          "strike": 2300000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,181",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR28-A2.35",
+          "strike": 2350000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,181",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR28-A2.40",
+          "strike": 2400000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,181",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR28-A2.45",
+          "strike": 2450000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,181",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR28-A2.50",
+          "strike": 2500000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,446,181",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR28-A2.55",
+          "strike": 2550000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,446,181",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR28-A2.60",
+          "strike": 2600000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,446,181",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR28-A2.65",
+          "strike": 2650000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,446,181",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR28-A2.70",
+          "strike": 2700000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,446,181",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR28-A2.75",
+          "strike": 2750000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,446,181",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24APR28-A2.80",
+          "strike": 2800000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,446,181",
+          "receipt_file": "kalshi_historical_003.json"
+        }
+      ]
+    },
+    {
+      "event_ticker": "TSAW-24JUN30",
+      "target_date": "2024-06-30",
+      "rules_primary": "If weekly average TSA airport screenings are above 2.9 million for the week ending June 30, 2024, according to the TSA, then the market resolves to Yes.",
+      "rules_secondary": "The Contract will expire at the sooner of the first 10:00 AM following the release of the data for June 30, 2024, or one week after June 30, 2024. The Last Trading Date and Time will always be 11:59 PM on June 30, 2024.",
+      "daily_values": [
+        {
+          "date": "2024-06-24",
+          "value": 2944001,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-06-25",
+          "value": 2612478,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-06-26",
+          "value": 2722125,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-06-27",
+          "value": 2921687,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-06-28",
+          "value": 2938292,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-06-29",
+          "value": 2648476,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-06-30",
+          "value": 2835019,
+          "receipt_file": "tsa_2024.html"
+        }
+      ],
+      "current_archive_sum": 19622078,
+      "current_archive_mean": 2803154.0,
+      "expiration_value_normalized": 2798814.0,
+      "expiration_values_raw": [
+        "2,798,814"
+      ],
+      "settled_ladder_interval": {
+        "strict_lower_bound": 2750000,
+        "inclusive_upper_bound": 2800000
+      },
+      "market_count": 17,
+      "disagreements": [
+        {
+          "ticker": "TSAW-24JUN30-A2.80",
+          "strike": 2800000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,798,814",
+          "receipt_file": "kalshi_historical_002.json"
+        }
+      ],
+      "expiration_value_disagrees_with_payout_tickers": [],
+      "markets": [
+        {
+          "ticker": "TSAW-24JUN30-A2.10",
+          "strike": 2100000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,798,814",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JUN30-A2.15",
+          "strike": 2150000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,798,814",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JUN30-A2.20",
+          "strike": 2200000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,798,814",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JUN30-A2.25",
+          "strike": 2250000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,798,814",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JUN30-A2.30",
+          "strike": 2300000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,798,814",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JUN30-A2.35",
+          "strike": 2350000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,798,814",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JUN30-A2.40",
+          "strike": 2400000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,798,814",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JUN30-A2.45",
+          "strike": 2450000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,798,814",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JUN30-A2.50",
+          "strike": 2500000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,798,814",
+          "receipt_file": "kalshi_historical_003.json"
+        },
+        {
+          "ticker": "TSAW-24JUN30-A2.55",
+          "strike": 2550000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,798,814",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24JUN30-A2.60",
+          "strike": 2600000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,798,814",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24JUN30-A2.65",
+          "strike": 2650000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,798,814",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24JUN30-A2.70",
+          "strike": 2700000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,798,814",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24JUN30-A2.75",
+          "strike": 2750000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,798,814",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24JUN30-A2.80",
+          "strike": 2800000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,798,814",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24JUN30-A0.00",
+          "strike": 2850000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,798,814",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24JUN30-A2.90",
+          "strike": 2900000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,798,814",
+          "receipt_file": "kalshi_historical_002.json"
+        }
+      ]
+    },
+    {
+      "event_ticker": "TSAW-24SEP08",
+      "target_date": "2024-09-08",
+      "rules_primary": "If weekly average TSA airport screenings are above 2.8 million for the week ending September 08, 2024, according to the TSA, then the market resolves to Yes.",
+      "rules_secondary": "The Contract will expire at the sooner of the first 10:00 AM following the release of the data for September 08, 2024, or one week after September 08, 2024. The Last Trading Date and Time will always be 11:59 PM on September 08, 2024.",
+      "daily_values": [
+        {
+          "date": "2024-09-02",
+          "value": 2748226,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-09-03",
+          "value": 2272637,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-09-04",
+          "value": 1965339,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-09-05",
+          "value": 2277401,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-09-06",
+          "value": 2404754,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-09-07",
+          "value": 1944006,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-09-08",
+          "value": 2635080,
+          "receipt_file": "tsa_2024.html"
+        }
+      ],
+      "current_archive_sum": 16247443,
+      "current_archive_mean": 2321063.285714286,
+      "expiration_value_normalized": 2368354.0,
+      "expiration_values_raw": [
+        "2,368,354"
+      ],
+      "settled_ladder_interval": {
+        "strict_lower_bound": 2350000,
+        "inclusive_upper_bound": 2400000
+      },
+      "market_count": 15,
+      "disagreements": [
+        {
+          "ticker": "TSAW-24SEP08-A2.35",
+          "strike": 2350000,
+          "result": "yes",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,368,354",
+          "receipt_file": "kalshi_historical_002.json"
+        }
+      ],
+      "expiration_value_disagrees_with_payout_tickers": [],
+      "markets": [
+        {
+          "ticker": "TSAW-24SEP08-A2.10",
+          "strike": 2100000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,368,354",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP08-A2.15",
+          "strike": 2150000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,368,354",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP08-A2.20",
+          "strike": 2200000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,368,354",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP08-A2.25",
+          "strike": 2250000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,368,354",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP08-A2.30",
+          "strike": 2300000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,368,354",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP08-A2.35",
+          "strike": 2350000,
+          "result": "yes",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,368,354",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP08-A2.40",
+          "strike": 2400000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,368,354",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP08-A2.45",
+          "strike": 2450000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,368,354",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP08-A2.50",
+          "strike": 2500000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,368,354",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP08-A2.55",
+          "strike": 2550000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,368,354",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP08-A2.60",
+          "strike": 2600000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,368,354",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP08-A2.65",
+          "strike": 2650000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,368,354",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP08-A2.70",
+          "strike": 2700000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,368,354",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP08-A2.75",
+          "strike": 2750000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,368,354",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP08-A2.80",
+          "strike": 2800000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,368,354",
+          "receipt_file": "kalshi_historical_002.json"
+        }
+      ]
+    },
+    {
+      "event_ticker": "TSAW-24SEP29",
+      "target_date": "2024-09-29",
+      "rules_primary": "If weekly average TSA airport screenings are above 2.8 million for the week ending September 29, 2024, according to the TSA, then the market resolves to Yes.",
+      "rules_secondary": "The Contract will expire at the sooner of the first 10:00 AM following the release of the data for September 29, 2024, or one week after September 29, 2024. The Last Trading Date and Time will always be 11:59 PM on September 29, 2024.",
+      "daily_values": [
+        {
+          "date": "2024-09-23",
+          "value": 2624958,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-09-24",
+          "value": 2063662,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-09-25",
+          "value": 2245707,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-09-26",
+          "value": 2550227,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-09-27",
+          "value": 2584954,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-09-28",
+          "value": 2090971,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-09-29",
+          "value": 2744939,
+          "receipt_file": "tsa_2024.html"
+        }
+      ],
+      "current_archive_sum": 16905418,
+      "current_archive_mean": 2415059.714285714,
+      "expiration_value_normalized": 2396504.0,
+      "expiration_values_raw": [
+        "2,396,504"
+      ],
+      "settled_ladder_interval": {
+        "strict_lower_bound": 2350000,
+        "inclusive_upper_bound": 2400000
+      },
+      "market_count": 15,
+      "disagreements": [
+        {
+          "ticker": "TSAW-24SEP29-A2.40",
+          "strike": 2400000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,396,504",
+          "receipt_file": "kalshi_historical_002.json"
+        }
+      ],
+      "expiration_value_disagrees_with_payout_tickers": [],
+      "markets": [
+        {
+          "ticker": "TSAW-24SEP29-A2.10",
+          "strike": 2100000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,396,504",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP29-A2.15",
+          "strike": 2150000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,396,504",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP29-A2.20",
+          "strike": 2200000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,396,504",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP29-A2.25",
+          "strike": 2250000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,396,504",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP29-A2.30",
+          "strike": 2300000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,396,504",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP29-A2.35",
+          "strike": 2350000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,396,504",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP29-A2.40",
+          "strike": 2400000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,396,504",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP29-A2.45",
+          "strike": 2450000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,396,504",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP29-A2.50",
+          "strike": 2500000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,396,504",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP29-A2.55",
+          "strike": 2550000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,396,504",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP29-A2.60",
+          "strike": 2600000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,396,504",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP29-A2.65",
+          "strike": 2650000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,396,504",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP29-A2.70",
+          "strike": 2700000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,396,504",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP29-A2.75",
+          "strike": 2750000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,396,504",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "TSAW-24SEP29-A2.80",
+          "strike": 2800000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,396,504",
+          "receipt_file": "kalshi_historical_002.json"
+        }
+      ]
+    },
+    {
+      "event_ticker": "KXTSAW-25JAN05",
+      "target_date": "2025-01-05",
+      "rules_primary": "If weekly average TSA airport screenings are above 2.8 million for the week ending January 05, 2025, according to the TSA, then the market resolves to Yes.",
+      "rules_secondary": "The Contract will expire at the sooner of the first 10:00 AM following the release of the data for January 05, 2025, or one week after January 05, 2025. The Last Trading Date and Time will always be 11:59 PM on January 05, 2025.",
+      "daily_values": [
+        {
+          "date": "2024-12-30",
+          "value": 2765740,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2024-12-31",
+          "value": 2172902,
+          "receipt_file": "tsa_2024.html"
+        },
+        {
+          "date": "2025-01-01",
+          "value": 2317817,
+          "receipt_file": "tsa_2025.html"
+        },
+        {
+          "date": "2025-01-02",
+          "value": 2612162,
+          "receipt_file": "tsa_2025.html"
+        },
+        {
+          "date": "2025-01-03",
+          "value": 2563751,
+          "receipt_file": "tsa_2025.html"
+        },
+        {
+          "date": "2025-01-04",
+          "value": 2543303,
+          "receipt_file": "tsa_2025.html"
+        },
+        {
+          "date": "2025-01-05",
+          "value": 2579257,
+          "receipt_file": "tsa_2025.html"
+        }
+      ],
+      "current_archive_sum": 17554932,
+      "current_archive_mean": 2507847.4285714286,
+      "expiration_value_normalized": 2495850.0,
+      "expiration_values_raw": [
+        "2495850"
+      ],
+      "settled_ladder_interval": {
+        "strict_lower_bound": 2450000,
+        "inclusive_upper_bound": 2500000
+      },
+      "market_count": 15,
+      "disagreements": [
+        {
+          "ticker": "KXTSAW-25JAN05-A2.50",
+          "strike": 2500000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2495850",
+          "receipt_file": "kalshi_historical_002.json"
+        }
+      ],
+      "expiration_value_disagrees_with_payout_tickers": [],
+      "markets": [
+        {
+          "ticker": "KXTSAW-25JAN05-A2.10",
+          "strike": 2100000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2495850",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JAN05-A2.15",
+          "strike": 2150000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2495850",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JAN05-A2.20",
+          "strike": 2200000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2495850",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JAN05-A2.25",
+          "strike": 2250000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2495850",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JAN05-A2.30",
+          "strike": 2300000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2495850",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JAN05-A2.35",
+          "strike": 2350000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2495850",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JAN05-A2.40",
+          "strike": 2400000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2495850",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JAN05-A2.45",
+          "strike": 2450000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2495850",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JAN05-A2.50",
+          "strike": 2500000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2495850",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JAN05-A2.55",
+          "strike": 2550000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2495850",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JAN05-A2.60",
+          "strike": 2600000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2495850",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JAN05-A2.65",
+          "strike": 2650000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2495850",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JAN05-A2.70",
+          "strike": 2700000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2495850",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JAN05-A2.75",
+          "strike": 2750000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2495850",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JAN05-A2.80",
+          "strike": 2800000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2495850",
+          "receipt_file": "kalshi_historical_002.json"
+        }
+      ]
+    },
+    {
+      "event_ticker": "KXTSAW-25MAY11",
+      "target_date": "2025-05-11",
+      "rules_primary": "If weekly average TSA airport screenings are above 2.8 million for the week ending May 11, 2025, according to the TSA, then the market resolves to Yes.",
+      "rules_secondary": "The Contract will expire at the sooner of the first 9:00 AM following the release of the data for May 11, 2025, or one week after May 11, 2025. The Last Trading Date and Time will always be 11:59 PM on May 11, 2025.",
+      "daily_values": [
+        {
+          "date": "2025-05-05",
+          "value": 2588956,
+          "receipt_file": "tsa_2025.html"
+        },
+        {
+          "date": "2025-05-06",
+          "value": 2106907,
+          "receipt_file": "tsa_2025.html"
+        },
+        {
+          "date": "2025-05-07",
+          "value": 2288927,
+          "receipt_file": "tsa_2025.html"
+        },
+        {
+          "date": "2025-05-08",
+          "value": 2730456,
+          "receipt_file": "tsa_2025.html"
+        },
+        {
+          "date": "2025-05-09",
+          "value": 2711847,
+          "receipt_file": "tsa_2025.html"
+        },
+        {
+          "date": "2025-05-10",
+          "value": 2125020,
+          "receipt_file": "tsa_2025.html"
+        },
+        {
+          "date": "2025-05-11",
+          "value": 2646042,
+          "receipt_file": "tsa_2025.html"
+        }
+      ],
+      "current_archive_sum": 17198155,
+      "current_archive_mean": 2456879.285714286,
+      "expiration_value_normalized": 2446455.0,
+      "expiration_values_raw": [
+        "2,446,455"
+      ],
+      "settled_ladder_interval": {
+        "strict_lower_bound": 2400000,
+        "inclusive_upper_bound": 2450000
+      },
+      "market_count": 21,
+      "disagreements": [
+        {
+          "ticker": "KXTSAW-25MAY11-A2.45",
+          "strike": 2450000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        }
+      ],
+      "expiration_value_disagrees_with_payout_tickers": [],
+      "markets": [
+        {
+          "ticker": "KXTSAW-25MAY11-A1.80",
+          "strike": 1800000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A1.85",
+          "strike": 1850000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A1.90",
+          "strike": 1900000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A1.95",
+          "strike": 1950000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A2.00",
+          "strike": 2000000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A2.05",
+          "strike": 2050000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A2.10",
+          "strike": 2100000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A2.15",
+          "strike": 2150000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A2.20",
+          "strike": 2200000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A2.25",
+          "strike": 2250000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A2.30",
+          "strike": 2300000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A2.35",
+          "strike": 2350000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A2.40",
+          "strike": 2400000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A2.45",
+          "strike": 2450000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A2.50",
+          "strike": 2500000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A2.55",
+          "strike": 2550000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A2.60",
+          "strike": 2600000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A2.65",
+          "strike": 2650000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A2.70",
+          "strike": 2700000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A2.75",
+          "strike": 2750000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25MAY11-A2.80",
+          "strike": 2800000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,446,455",
+          "receipt_file": "kalshi_historical_002.json"
+        }
+      ]
+    },
+    {
+      "event_ticker": "KXTSAW-25JUN01",
+      "target_date": "2025-06-01",
+      "rules_primary": "If weekly average TSA airport screenings are above 2.8 million for the week ending June 01, 2025, according to the TSA, then the market resolves to Yes.",
+      "rules_secondary": "The Contract will expire at the sooner of the first 9:00 AM following the release of the data for June 01, 2025, or one week after June 01, 2025. The Last Trading Date and Time will always be 11:59 PM on June 01, 2025.",
+      "daily_values": [
+        {
+          "date": "2025-05-26",
+          "value": 2863596,
+          "receipt_file": "tsa_2025.html"
+        },
+        {
+          "date": "2025-05-27",
+          "value": 2509320,
+          "receipt_file": "tsa_2025.html"
+        },
+        {
+          "date": "2025-05-28",
+          "value": 2325817,
+          "receipt_file": "tsa_2025.html"
+        },
+        {
+          "date": "2025-05-29",
+          "value": 2626367,
+          "receipt_file": "tsa_2025.html"
+        },
+        {
+          "date": "2025-05-30",
+          "value": 2698137,
+          "receipt_file": "tsa_2025.html"
+        },
+        {
+          "date": "2025-05-31",
+          "value": 2352801,
+          "receipt_file": "tsa_2025.html"
+        },
+        {
+          "date": "2025-06-01",
+          "value": 2825055,
+          "receipt_file": "tsa_2025.html"
+        }
+      ],
+      "current_archive_sum": 18201093,
+      "current_archive_mean": 2600156.1428571427,
+      "expiration_value_normalized": 2589306.0,
+      "expiration_values_raw": [
+        "2,589,306"
+      ],
+      "settled_ladder_interval": {
+        "strict_lower_bound": 2550000,
+        "inclusive_upper_bound": 2600000
+      },
+      "market_count": 21,
+      "disagreements": [
+        {
+          "ticker": "KXTSAW-25JUN01-A2.60",
+          "strike": 2600000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        }
+      ],
+      "expiration_value_disagrees_with_payout_tickers": [],
+      "markets": [
+        {
+          "ticker": "KXTSAW-25JUN01-A1.80",
+          "strike": 1800000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A1.85",
+          "strike": 1850000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A1.90",
+          "strike": 1900000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A1.95",
+          "strike": 1950000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A2.00",
+          "strike": 2000000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A2.05",
+          "strike": 2050000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A2.10",
+          "strike": 2100000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A2.15",
+          "strike": 2150000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A2.20",
+          "strike": 2200000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A2.25",
+          "strike": 2250000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A2.30",
+          "strike": 2300000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A2.35",
+          "strike": 2350000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A2.40",
+          "strike": 2400000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A2.45",
+          "strike": 2450000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A2.50",
+          "strike": 2500000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A2.55",
+          "strike": 2550000,
+          "result": "yes",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A2.60",
+          "strike": 2600000,
+          "result": "no",
+          "current_archive_implied_result": "yes",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A2.65",
+          "strike": 2650000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A2.70",
+          "strike": 2700000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A2.75",
+          "strike": 2750000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        },
+        {
+          "ticker": "KXTSAW-25JUN01-A2.80",
+          "strike": 2800000,
+          "result": "no",
+          "current_archive_implied_result": "no",
+          "expiration_value_raw": "2,589,306",
+          "receipt_file": "kalshi_historical_002.json"
+        }
+      ]
+    }
+  ],
+  "expiration_value_anomaly": {
+    "event_ticker": "KXTSAW-25APR20",
+    "target_date": "2025-04-20",
+    "rules_primary": "If weekly average TSA airport screenings are above 2.8 million for the week ending April 20, 2025, according to the TSA, then the market resolves to Yes.",
+    "rules_secondary": "The Contract will expire at the sooner of the first 10:00 AM following the release of the data for April 20, 2025, or one week after April 20, 2025. The Last Trading Date and Time will always be 11:59 PM on April 20, 2025.",
+    "daily_values": [
+      {
+        "date": "2025-04-14",
+        "value": 2565091,
+        "receipt_file": "tsa_2025.html"
+      },
+      {
+        "date": "2025-04-15",
+        "value": 2114573,
+        "receipt_file": "tsa_2025.html"
+      },
+      {
+        "date": "2025-04-16",
+        "value": 2359864,
+        "receipt_file": "tsa_2025.html"
+      },
+      {
+        "date": "2025-04-17",
+        "value": 2821542,
+        "receipt_file": "tsa_2025.html"
+      },
+      {
+        "date": "2025-04-18",
+        "value": 2658132,
+        "receipt_file": "tsa_2025.html"
+      },
+      {
+        "date": "2025-04-19",
+        "value": 2156119,
+        "receipt_file": "tsa_2025.html"
+      },
+      {
+        "date": "2025-04-20",
+        "value": 2591393,
+        "receipt_file": "tsa_2025.html"
+      }
+    ],
+    "current_archive_sum": 17266714,
+    "current_archive_mean": 2466673.4285714286,
+    "expiration_value_normalized": 2188786.0,
+    "expiration_values_raw": [
+      "2,188,786"
+    ],
+    "settled_ladder_interval": {
+      "strict_lower_bound": 2450000,
+      "inclusive_upper_bound": 2500000
+    },
+    "market_count": 21,
+    "disagreements": [],
+    "expiration_value_disagrees_with_payout_tickers": [
+      "KXTSAW-25APR20-A2.20",
+      "KXTSAW-25APR20-A2.25",
+      "KXTSAW-25APR20-A2.30",
+      "KXTSAW-25APR20-A2.35",
+      "KXTSAW-25APR20-A2.40",
+      "KXTSAW-25APR20-A2.45"
+    ],
+    "markets": [
+      {
+        "ticker": "KXTSAW-25APR20-A1.80",
+        "strike": 1800000,
+        "result": "yes",
+        "current_archive_implied_result": "yes",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A1.85",
+        "strike": 1850000,
+        "result": "yes",
+        "current_archive_implied_result": "yes",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A1.90",
+        "strike": 1900000,
+        "result": "yes",
+        "current_archive_implied_result": "yes",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A1.95",
+        "strike": 1950000,
+        "result": "yes",
+        "current_archive_implied_result": "yes",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A2.00",
+        "strike": 2000000,
+        "result": "yes",
+        "current_archive_implied_result": "yes",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A2.05",
+        "strike": 2050000,
+        "result": "yes",
+        "current_archive_implied_result": "yes",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A2.10",
+        "strike": 2100000,
+        "result": "yes",
+        "current_archive_implied_result": "yes",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A2.15",
+        "strike": 2150000,
+        "result": "yes",
+        "current_archive_implied_result": "yes",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A2.20",
+        "strike": 2200000,
+        "result": "yes",
+        "current_archive_implied_result": "yes",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A2.25",
+        "strike": 2250000,
+        "result": "yes",
+        "current_archive_implied_result": "yes",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A2.30",
+        "strike": 2300000,
+        "result": "yes",
+        "current_archive_implied_result": "yes",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A2.35",
+        "strike": 2350000,
+        "result": "yes",
+        "current_archive_implied_result": "yes",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A2.40",
+        "strike": 2400000,
+        "result": "yes",
+        "current_archive_implied_result": "yes",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A2.45",
+        "strike": 2450000,
+        "result": "yes",
+        "current_archive_implied_result": "yes",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A2.50",
+        "strike": 2500000,
+        "result": "no",
+        "current_archive_implied_result": "no",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A2.55",
+        "strike": 2550000,
+        "result": "no",
+        "current_archive_implied_result": "no",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A2.60",
+        "strike": 2600000,
+        "result": "no",
+        "current_archive_implied_result": "no",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A2.65",
+        "strike": 2650000,
+        "result": "no",
+        "current_archive_implied_result": "no",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A2.70",
+        "strike": 2700000,
+        "result": "no",
+        "current_archive_implied_result": "no",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A2.75",
+        "strike": 2750000,
+        "result": "no",
+        "current_archive_implied_result": "no",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      },
+      {
+        "ticker": "KXTSAW-25APR20-A2.80",
+        "strike": 2800000,
+        "result": "no",
+        "current_archive_implied_result": "no",
+        "expiration_value_raw": "2,188,786",
+        "receipt_file": "kalshi_historical_002.json"
+      }
+    ]
+  },
+  "full_capture_receipts_sha256_before_compaction": "4317578b3fdcc6f2da36a65bdfcb037965b5867a8af9e895bf3deb4f051477e9",
+  "retained_receipts_manifest_sha256": "37747035846d068475b0df6d163239a6933eceb19fae3bc73607729a0ded27b1"
+}

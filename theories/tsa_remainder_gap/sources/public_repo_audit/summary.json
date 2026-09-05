@@ -1,0 +1,43 @@
+{
+  "conclusion": "No repository contains contemporaneous snapshots for the 16 disputed weeks (2022-10-23 through 2025-06-01).",
+  "repos": {
+    "hunj/tsa-passenger-throughput": {
+      "commit_count": 313,
+      "commit_range": [
+        "2020-12-26T06:09:25Z",
+        "2021-12-27T18:37:14Z"
+      ],
+      "archived": true,
+      "snapshot_finding": "Daily raw table commits exist in July 2021 around 18:38 UTC; useful only for legacy 2021 diagnostics and later than the proposed Friday 15:00 UTC entry. Sampled 2021-07-16 through 2021-07-18 snapshots add rows and change zero common values.",
+      "date_trap": "The raw 2021-07-16 file puts 706,164 in the prior-year comparison slot on the 2021-07-15 row and repeats it on a 2020-07-16 row. The later parser instead assigns comparison values by replacing the year while holding month/day fixed, which misdates same-weekday columns."
+    },
+    "bbgatch/tsa": {
+      "commit_count": 28,
+      "commit_range": [
+        "2020-07-09T14:37:49Z",
+        "2020-12-30T16:47:08Z"
+      ],
+      "snapshot_finding": "Daily CSV snapshots exist for part of July-August 2020 only. revision-check.py computes a summed row-aligned difference but persists no result or revision timing. Sampled 2020-08-27/28 files changed zero common rows.",
+      "date_trap": "Parser stores 2019 comparison values under the 2020 Date column; unsafe as dated historical observations."
+    },
+    "chengxdadp/tsa-passenger-volume": {
+      "commit_count": 28,
+      "commit_range": [
+        "2026-03-10T06:22:57Z",
+        "2026-08-31T08:32:54Z"
+      ],
+      "snapshot_finding": "Weekly committed SQLite snapshots begin in March 2026. Four sampled versions through August changed zero common rows and only added new rows; the latest 239 common 2026 rows also exactly match the retained current TSA page. Older years were backfilled when the repository began, not captured contemporaneously.",
+      "timing": "Cron is Monday 02:00 UTC; sampled snapshots end on the preceding Thursday, so they are not Friday 15:00 UTC receipts."
+    },
+    "zach-wendland/TSA-volume": {
+      "commit_count": 4,
+      "commit_range": [
+        "2025-11-09T20:13:05Z",
+        "2025-11-10T18:51:28Z"
+      ],
+      "snapshot_finding": "No TSA data or HTML is committed. The parser upserts into an external Supabase instance whose data are not in the repository."
+    }
+  },
+  "revision_evidence": "The sampled commits directly show no revisions in their overlapping rows. The bbgatch README says TSA can revise prior data, but its retained script does not preserve measured revision output. These repositories do not establish revision magnitude or timing for the disputed interval.",
+  "build_implication": "Proceed only as the already-scoped lean experimental archive diagnostic plus prospective sealed Friday capture; these repositories do not upgrade the historical source evidence."
+}

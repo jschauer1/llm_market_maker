@@ -1,0 +1,334 @@
+{
+  "captured_scope": "Four named public GitHub repositories; repository code was read as text, stored with a .py.txt suffix, and never executed.",
+  "receipts": [
+    {
+      "file": "hunj__tsa-passenger-throughput__repo.json",
+      "url": "https://api.github.com/repos/hunj/tsa-passenger-throughput",
+      "received_at": "2026-09-05T05:06:05.584250+00:00",
+      "bytes": 5746,
+      "sha256": "9cf1635a2d1417e4724922a247921eb2a58d4a4ced4e41f20b480b91ac37c088"
+    },
+    {
+      "file": "hunj__tsa-passenger-throughput__tree.json",
+      "url": "https://api.github.com/repos/hunj/tsa-passenger-throughput/git/trees/main?recursive=1",
+      "received_at": "2026-09-05T05:06:05.809862+00:00",
+      "bytes": 2500,
+      "sha256": "c8ca1616241fa12b0818247ee4688b4f6481bf56b100650985857201a73f3ef0"
+    },
+    {
+      "file": "hunj__tsa-passenger-throughput__commits_first.json",
+      "url": "https://api.github.com/repos/hunj/tsa-passenger-throughput/commits?per_page=100&page=1",
+      "received_at": "2026-09-05T05:06:05.974398+00:00",
+      "bytes": 323540,
+      "sha256": "63a1fc8fa1a69e153975008edfd3e30845e9b167afde65e2aed29aab33916882"
+    },
+    {
+      "file": "hunj__tsa-passenger-throughput__commits_last.json",
+      "url": "https://api.github.com/repos/hunj/tsa-passenger-throughput/commits?per_page=100&page=4",
+      "received_at": "2026-09-05T05:06:06.338316+00:00",
+      "bytes": 41890,
+      "sha256": "0cd79c0d69b42afe8cb89f18fcc64f8402b21a23354ba3822d34adf64712072b"
+    },
+    {
+      "file": "bbgatch__tsa__repo.json",
+      "url": "https://api.github.com/repos/bbgatch/tsa",
+      "received_at": "2026-09-05T05:06:06.503930+00:00",
+      "bytes": 4737,
+      "sha256": "9b3df7c98907de56f5d58c52050978521632683bdfdb104709ce30ef0db0e9fe"
+    },
+    {
+      "file": "bbgatch__tsa__tree.json",
+      "url": "https://api.github.com/repos/bbgatch/tsa/git/trees/master?recursive=1",
+      "received_at": "2026-09-05T05:06:06.702986+00:00",
+      "bytes": 1452,
+      "sha256": "301562d889cf8213d67edf1c384d798d4bfe05c08ff726859392b744dc3f790c"
+    },
+    {
+      "file": "bbgatch__tsa__commits_first.json",
+      "url": "https://api.github.com/repos/bbgatch/tsa/commits?per_page=100&page=1",
+      "received_at": "2026-09-05T05:06:06.883781+00:00",
+      "bytes": 89889,
+      "sha256": "b79fd68eaf30694add29ea9d320a86167aa495f5070f46f80a60bf2b54a9d819"
+    },
+    {
+      "file": "chengxdadp__tsa-passenger-volume__repo.json",
+      "url": "https://api.github.com/repos/chengxdadp/tsa-passenger-volume",
+      "received_at": "2026-09-05T05:06:07.135160+00:00",
+      "bytes": 5671,
+      "sha256": "a131ed66b6e3b11e9c695acd0444ac3cc24122fd4e54256463d36dd7a7ebaba2"
+    },
+    {
+      "file": "chengxdadp__tsa-passenger-volume__tree.json",
+      "url": "https://api.github.com/repos/chengxdadp/tsa-passenger-volume/git/trees/main?recursive=1",
+      "received_at": "2026-09-05T05:06:07.301420+00:00",
+      "bytes": 5447,
+      "sha256": "7c6406e7e79306f5c857fccecbcc65a2139e8124c4f6a54ad72d0f5545788893"
+    },
+    {
+      "file": "chengxdadp__tsa-passenger-volume__commits_first.json",
+      "url": "https://api.github.com/repos/chengxdadp/tsa-passenger-volume/commits?per_page=100&page=1",
+      "received_at": "2026-09-05T05:06:07.501366+00:00",
+      "bytes": 104059,
+      "sha256": "35e970f67fcefe2d2f516fe7ee511c2c0edf84ee615365f125f1750c4c61bcf7"
+    },
+    {
+      "file": "zach-wendland__TSA-volume__repo.json",
+      "url": "https://api.github.com/repos/zach-wendland/TSA-volume",
+      "received_at": "2026-09-05T05:06:07.739200+00:00",
+      "bytes": 5549,
+      "sha256": "e0e80b9cef317cfb62bc422197dfc47bd7e8afdfc07486ee860f0ae1aba8b4d8"
+    },
+    {
+      "file": "zach-wendland__TSA-volume__tree.json",
+      "url": "https://api.github.com/repos/zach-wendland/TSA-volume/git/trees/main?recursive=1",
+      "received_at": "2026-09-05T05:06:07.862983+00:00",
+      "bytes": 4695,
+      "sha256": "a5c12e892de75c6e72b77d7cc07be188870323360c9f8ac70e0aa321ad74b527"
+    },
+    {
+      "file": "zach-wendland__TSA-volume__commits_first.json",
+      "url": "https://api.github.com/repos/zach-wendland/TSA-volume/commits?per_page=100&page=1",
+      "received_at": "2026-09-05T05:06:08.060965+00:00",
+      "bytes": 19501,
+      "sha256": "bb8579b7dc412391a1ac72939a27812afd81de669ae02b683e2d2f56fcb1bae4"
+    },
+    {
+      "file": "hunj__tsa-passenger-throughput__README.md",
+      "url": "https://raw.githubusercontent.com/hunj/tsa-passenger-throughput/657702cbcf237be6b3be634534342ee0ddb2cc91/README.md",
+      "received_at": "2026-09-05T05:06:48.063467+00:00",
+      "bytes": 628,
+      "sha256": "346352c17582962fbd0f4ce1b5d3a70e40a505199040be7713c69d057e17ffaa"
+    },
+    {
+      "file": "hunj__tsa-passenger-throughput__scrape.py.txt",
+      "url": "https://raw.githubusercontent.com/hunj/tsa-passenger-throughput/657702cbcf237be6b3be634534342ee0ddb2cc91/scrape.py",
+      "received_at": "2026-09-05T05:06:48.390835+00:00",
+      "bytes": 1806,
+      "sha256": "89ef7dfb63e77ecaa33079e866d2e42010e43c785568958d7db333690a6bddc4"
+    },
+    {
+      "file": "hunj__tsa-passenger-throughput__.github__workflows__scrape.yml",
+      "url": "https://raw.githubusercontent.com/hunj/tsa-passenger-throughput/657702cbcf237be6b3be634534342ee0ddb2cc91/.github/workflows/scrape.yml",
+      "received_at": "2026-09-05T05:06:48.573310+00:00",
+      "bytes": 1009,
+      "sha256": "4b33ca368478e8b5f7665426c638abd010167ba27bc34a2a34626ee389bb17e1"
+    },
+    {
+      "file": "hunj__tsa-passenger-throughput__output.csv",
+      "url": "https://raw.githubusercontent.com/hunj/tsa-passenger-throughput/657702cbcf237be6b3be634534342ee0ddb2cc91/output.csv",
+      "received_at": "2026-09-05T05:06:48.667617+00:00",
+      "bytes": 21459,
+      "sha256": "eea67eed56764c07646871b248d47692d79e11ac56fa26558897f83b19ad811c"
+    },
+    {
+      "file": "bbgatch__tsa__README.md",
+      "url": "https://raw.githubusercontent.com/bbgatch/tsa/1593361150c86975930394acbf8c4dc7a77ff995/README.md",
+      "received_at": "2026-09-05T05:06:48.787734+00:00",
+      "bytes": 488,
+      "sha256": "0d0ec23172ee38061a1ca2be3f44e1ccf43d97b8dcfc9b27653b2b90f39374ed"
+    },
+    {
+      "file": "bbgatch__tsa__pull_tsa_data.py.txt",
+      "url": "https://raw.githubusercontent.com/bbgatch/tsa/1593361150c86975930394acbf8c4dc7a77ff995/pull_tsa_data.py",
+      "received_at": "2026-09-05T05:06:48.900410+00:00",
+      "bytes": 1378,
+      "sha256": "1e0233d469c71b2db498e506878ff2eeb7084ad12a2c67e49f8fd4b62838eab0"
+    },
+    {
+      "file": "bbgatch__tsa__tsa_data.py.txt",
+      "url": "https://raw.githubusercontent.com/bbgatch/tsa/1593361150c86975930394acbf8c4dc7a77ff995/tsa_data.py",
+      "received_at": "2026-09-05T05:06:49.019902+00:00",
+      "bytes": 416,
+      "sha256": "5e3967966d97b8675020875496642a8d989e71e7ba0c0806fa5299434476aa4c"
+    },
+    {
+      "file": "bbgatch__tsa__tsa.csv",
+      "url": "https://raw.githubusercontent.com/bbgatch/tsa/1593361150c86975930394acbf8c4dc7a77ff995/tsa.csv",
+      "received_at": "2026-09-05T05:06:49.107076+00:00",
+      "bytes": 7937,
+      "sha256": "2080bd841301f74bb4a9bf3ac425a6522e896f9393c886716793767574e12c1c"
+    },
+    {
+      "file": "chengxdadp__tsa-passenger-volume__README.md",
+      "url": "https://raw.githubusercontent.com/chengxdadp/tsa-passenger-volume/6d389091f405ffd26db3c99a6a0558f0a26b4559/README.md",
+      "received_at": "2026-09-05T05:06:49.203540+00:00",
+      "bytes": 3466,
+      "sha256": "08bec8f4f0c0c4cd059a25bfb8072c2868a77e1169cb170cf4a29776a5570276"
+    },
+    {
+      "file": "chengxdadp__tsa-passenger-volume__script__README.md",
+      "url": "https://raw.githubusercontent.com/chengxdadp/tsa-passenger-volume/6d389091f405ffd26db3c99a6a0558f0a26b4559/script/README.md",
+      "received_at": "2026-09-05T05:06:49.333086+00:00",
+      "bytes": 4013,
+      "sha256": "874aa2eba201d02c5162271972411e133184b932e43dbc82f432f9ac7fec7493"
+    },
+    {
+      "file": "chengxdadp__tsa-passenger-volume__script__data_scraper.py.txt",
+      "url": "https://raw.githubusercontent.com/chengxdadp/tsa-passenger-volume/6d389091f405ffd26db3c99a6a0558f0a26b4559/script/data_scraper.py",
+      "received_at": "2026-09-05T05:06:49.436976+00:00",
+      "bytes": 5998,
+      "sha256": "0ebe12ec3d48f642cd02ada369d096239aa1a6e2211ff0b01a37f7eae727d06b"
+    },
+    {
+      "file": "chengxdadp__tsa-passenger-volume__script__update.py.txt",
+      "url": "https://raw.githubusercontent.com/chengxdadp/tsa-passenger-volume/6d389091f405ffd26db3c99a6a0558f0a26b4559/script/update.py",
+      "received_at": "2026-09-05T05:06:49.557647+00:00",
+      "bytes": 6204,
+      "sha256": "cee4379c4d82e4ad07186ebe863507ad5d968022fd6e776b8638c5f46c7c78e8"
+    },
+    {
+      "file": "zach-wendland__TSA-volume__README.md",
+      "url": "https://raw.githubusercontent.com/zach-wendland/TSA-volume/ac3e93df6f8563e277d3aac86598a6c765941be5/README.md",
+      "received_at": "2026-09-05T05:06:49.793816+00:00",
+      "bytes": 3276,
+      "sha256": "75d05ee9326c0d1259c24ea27cc2d6c7e60229e03eeb0d11222f1bc250e73fe9"
+    },
+    {
+      "file": "zach-wendland__TSA-volume__app__scraper.py.txt",
+      "url": "https://raw.githubusercontent.com/zach-wendland/TSA-volume/ac3e93df6f8563e277d3aac86598a6c765941be5/app/scraper.py",
+      "received_at": "2026-09-05T05:06:49.914237+00:00",
+      "bytes": 2012,
+      "sha256": "978f975aac8d24635cf2ea4c7408acfb0e81076ae47223215c88516d7bae6ad9"
+    },
+    {
+      "file": "zach-wendland__TSA-volume__app__dal.py.txt",
+      "url": "https://raw.githubusercontent.com/zach-wendland/TSA-volume/ac3e93df6f8563e277d3aac86598a6c765941be5/app/dal.py",
+      "received_at": "2026-09-05T05:06:50.034625+00:00",
+      "bytes": 950,
+      "sha256": "29cd00dd576feb46a24dc7498828968abdf337f69b88f8e41fc1739f10c01dc0"
+    },
+    {
+      "file": "chengxdadp__tsa-passenger-volume__data__tsa_data__2026-03-10.db",
+      "url": "https://raw.githubusercontent.com/chengxdadp/tsa-passenger-volume/ae89b7bedf04/data/tsa_data.db",
+      "received_at": "2026-09-05T05:08:01.010113+00:00",
+      "bytes": 155648,
+      "sha256": "5f7310515bbad8cb7a9569a02fc63a4a1c5c27a758d95b9ba48121ae777400d0"
+    },
+    {
+      "file": "chengxdadp__tsa-passenger-volume__data__tsa_data__2026-03-16.db",
+      "url": "https://raw.githubusercontent.com/chengxdadp/tsa-passenger-volume/2f23a5436860/data/tsa_data.db",
+      "received_at": "2026-09-05T05:08:01.224377+00:00",
+      "bytes": 155648,
+      "sha256": "c4bf3f965a1702db99bd0dcc274b8529fd8f938621dfd4abc5eb320d8aa3783c"
+    },
+    {
+      "file": "chengxdadp__tsa-passenger-volume__data__tsa_data__2026-06-01.db",
+      "url": "https://raw.githubusercontent.com/chengxdadp/tsa-passenger-volume/545d53ff5fc6/data/tsa_data.db",
+      "received_at": "2026-09-05T05:08:01.343683+00:00",
+      "bytes": 155648,
+      "sha256": "5e4cb49b7c568e3815c6dc5dde0a07fc95cca587262c291f0aadc82ba1fd1d1f"
+    },
+    {
+      "file": "chengxdadp__tsa-passenger-volume__data__tsa_data__2026-08-31.db",
+      "url": "https://raw.githubusercontent.com/chengxdadp/tsa-passenger-volume/6d389091f405/data/tsa_data.db",
+      "received_at": "2026-09-05T05:08:01.452792+00:00",
+      "bytes": 163840,
+      "sha256": "68cd3efafdb0c3567aee17c4ec7de1103d6d47dbc971e4d986ab299164b5aa2d"
+    },
+    {
+      "file": "bbgatch__tsa__tree__2020-07-10.json",
+      "url": "https://api.github.com/repos/bbgatch/tsa/git/trees/1a919277c6f4?recursive=1",
+      "received_at": "2026-09-05T05:08:33.086751+00:00",
+      "bytes": 1253,
+      "sha256": "ead2e1ac861aeac90e36e7aca0a24e93cecc7504a47ef09d205ce444d3c0389f"
+    },
+    {
+      "file": "bbgatch__tsa__2020-07-10__revision-check.py.txt",
+      "url": "https://raw.githubusercontent.com/bbgatch/tsa/1a919277c6f4/revision-check.py",
+      "received_at": "2026-09-05T05:08:33.330979+00:00",
+      "bytes": 594,
+      "sha256": "1df608731942bfd50717f6a2138f09c25cefeb92ab63e9dd15f3b0ddb09d52c1"
+    },
+    {
+      "file": "bbgatch__tsa__2020-07-10__tsa_2020-07-10.csv",
+      "url": "https://raw.githubusercontent.com/bbgatch/tsa/1a919277c6f4/tsa_2020-07-10.csv",
+      "received_at": "2026-09-05T05:08:33.499038+00:00",
+      "bytes": 3426,
+      "sha256": "3e434e366f845e5d0310ec95536e24d34e1b17e4dd5a6839b3cdddae80924d54"
+    },
+    {
+      "file": "bbgatch__tsa__tree__2020-08-28.json",
+      "url": "https://api.github.com/repos/bbgatch/tsa/git/trees/fe14fd45f796?recursive=1",
+      "received_at": "2026-09-05T05:08:53.037803+00:00",
+      "bytes": 22029,
+      "sha256": "9001173d6191da834e45d12c5cea26a8b853d90fcc39d553598bc9e56c37a85b"
+    },
+    {
+      "file": "bbgatch__tsa__2020-08-28__tsa_2020-08-27.csv",
+      "url": "https://raw.githubusercontent.com/bbgatch/tsa/fe14fd45f796/tsa_2020-08-27.csv",
+      "received_at": "2026-09-05T05:08:53.314962+00:00",
+      "bytes": 4674,
+      "sha256": "09f1604700cdc1b62cf7a31fda72e8980de1fdc13408a7cba44593a13b668c59"
+    },
+    {
+      "file": "bbgatch__tsa__2020-08-28__tsa_2020-08-28.csv",
+      "url": "https://raw.githubusercontent.com/bbgatch/tsa/fe14fd45f796/tsa_2020-08-28.csv",
+      "received_at": "2026-09-05T05:08:53.497141+00:00",
+      "bytes": 4700,
+      "sha256": "c8c8c250ddd870d7971a5b0295774c987de5114f21ae81335fbcf33b80c1b42a"
+    },
+    {
+      "file": "bbgatch__tsa__commit__d7809d058936.json",
+      "url": "https://api.github.com/repos/bbgatch/tsa/commits/d7809d058936",
+      "received_at": "2026-09-05T05:09:17.544781+00:00",
+      "bytes": 11388,
+      "sha256": "efc36671c61a03f447b44b1e300c7df00077401becb3cdebe3d34e71a964cd48"
+    },
+    {
+      "file": "bbgatch__tsa__commit__c14629d0b227.json",
+      "url": "https://api.github.com/repos/bbgatch/tsa/commits/c14629d0b227",
+      "received_at": "2026-09-05T05:09:17.847615+00:00",
+      "bytes": 3687,
+      "sha256": "cbbfe8258656055604e7d0fe9bd971f777869bc8cf8612491d15ff3a04157920"
+    },
+    {
+      "file": "bbgatch__tsa__commit__c2275aff7c96.json",
+      "url": "https://api.github.com/repos/bbgatch/tsa/commits/c2275aff7c96",
+      "received_at": "2026-09-05T05:09:18.042223+00:00",
+      "bytes": 10313,
+      "sha256": "a4cbe7ac85090f43ece14f02c154d922fd30b6a9fd6633977b682d6696dc74dd"
+    },
+    {
+      "file": "bbgatch__tsa__commit__fe14fd45f796.json",
+      "url": "https://api.github.com/repos/bbgatch/tsa/commits/fe14fd45f796",
+      "received_at": "2026-09-05T05:09:18.244707+00:00",
+      "bytes": 9874,
+      "sha256": "e9d1b8090ec796a3698a01160e33ccced8d490e906c9729bd21703e9d5d31db2"
+    },
+    {
+      "file": "chengxdadp__tsa-passenger-volume__.github__workflows__update.yml",
+      "url": "https://raw.githubusercontent.com/chengxdadp/tsa-passenger-volume/6d389091f405/.github/workflows/update.yml",
+      "received_at": "2026-09-05T05:09:44.361476+00:00",
+      "bytes": 1018,
+      "sha256": "687fd0e46d36021ef386b2880e35caf083d6a53f56997adb5c63c4cfb38ecfc3"
+    },
+    {
+      "file": "hunj__tsa-passenger-throughput__output__2021-07-16.csv",
+      "url": "https://raw.githubusercontent.com/hunj/tsa-passenger-throughput/4d15f0b4a86e/output.csv",
+      "received_at": "2026-09-05T05:10:19.029816+00:00",
+      "bytes": 11234,
+      "sha256": "810d826f642351f691e213a4dc672a6f249a924fa2e7fc9174d47afca15db59c"
+    },
+    {
+      "file": "hunj__tsa-passenger-throughput__output__2021-07-17.csv",
+      "url": "https://raw.githubusercontent.com/hunj/tsa-passenger-throughput/55b4a741f7a1/output.csv",
+      "received_at": "2026-09-05T05:10:19.298583+00:00",
+      "bytes": 11241,
+      "sha256": "7c859cf5a76595ed2decc13fe5c510ee5b556121f1f0e9bc1045602cf4e4b2bf"
+    },
+    {
+      "file": "hunj__tsa-passenger-throughput__output__2021-07-18.csv",
+      "url": "https://raw.githubusercontent.com/hunj/tsa-passenger-throughput/1519221493a6/output.csv",
+      "received_at": "2026-09-05T05:10:19.514391+00:00",
+      "bytes": 11248,
+      "sha256": "31d96e289515a09bce760dda8e408742c0524505164385208b5191d670b03c14"
+    },
+    {
+      "file": "hunj__tsa-passenger-throughput__scrape__2021-07-16.py.txt",
+      "url": "https://raw.githubusercontent.com/hunj/tsa-passenger-throughput/4d15f0b4a86e/scrape.py",
+      "received_at": "2026-09-05T05:11:04.406284+00:00",
+      "bytes": 1048,
+      "sha256": "001a68bd61ce30fdedd2943f862a24c1eb4de14e031c1915407190063826a486"
+    }
+  ]
+}

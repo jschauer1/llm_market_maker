@@ -1,0 +1,4770 @@
+{
+  "decisions_digest": "819fe274682d18aed6a7e24313eb72f1883c868b4b1fafe4b986ac075fb686f4",
+  "identity_digest": "9ba73a137942e2df60fc385a0294190fe9cc7a8283f50bec7d1fed706259ba15",
+  "weeks": [
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-06-19"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 2
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-06-26"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 1,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 1,
+        "invalid_ask": 1,
+        "missing_exact_candle": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-07-03"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-07-10"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 2
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-07-17"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-07-24"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 1,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 1,
+        "invalid_ask": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-07-31"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 1,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "invalid_ask": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-08-07"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-08-14"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-08-21"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-08-28"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 3,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 3,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "missing_exact_candle": 1,
+        "spread": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-09-04"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 1,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "invalid_ask": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-09-11"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 2
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-09-18"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-09-25"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-10-02"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-10-09"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "spread": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-10-16"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 2
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-10-23"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-10-30"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-11-06"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-11-13"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 2
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-11-20"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-11-27"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-12-04"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 1,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "invalid_ask": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-12-11"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-12-18"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2022-12-25"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-01-01"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-01-08"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 2,
+        "candidates": 0,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 2,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 2,
+        "spread": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-01-15"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-01-22"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 4
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-01-29"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 2,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "missing_exact_candle": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-02-05"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 2,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "missing_exact_candle": 2
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-02-12"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 3
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-02-19"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "missing_exact_candle": 4
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-02-26"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 4
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-03-05"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 2,
+        "missing_exact_candle": 3
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-03-12"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 3,
+        "spread": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-03-19"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 4
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-03-26"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 4
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-04-02"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-04-09"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 4
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-04-16"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 2,
+        "missing_exact_candle": 4
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-04-23"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 2,
+        "missing_exact_candle": 4
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-04-30"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "missing_exact_candle": 4
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-05-07"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 5
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-05-14"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 5
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-05-21"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 5
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-05-28"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 5
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-06-04"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 2,
+        "missing_exact_candle": 4
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-06-11"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 6
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-06-18"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 2,
+        "missing_exact_candle": 6
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-06-25"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "missing_exact_candle": 7
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-07-02"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 3,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 3,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 4,
+        "lower_ranked": 1,
+        "missing_exact_candle": 6
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-07-09"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "missing_exact_candle": 5
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-07-16"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 2,
+        "missing_exact_candle": 5
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-07-23"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 6
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-07-30"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 6
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-08-06"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 2,
+        "candidates": 0,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 2,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 2,
+        "missing_exact_candle": 4,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-08-13"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 6
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-08-20"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 2,
+        "missing_exact_candle": 5
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-08-27"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 3,
+        "candidates": 0,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 3,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 2,
+        "missing_exact_candle": 3,
+        "spread": 2
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-09-03"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 6
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-09-10"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 2,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "missing_exact_candle": 4,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-09-17"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 2,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "missing_exact_candle": 4
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-09-24"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 2,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "missing_exact_candle": 4,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-10-01"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 5,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-10-08"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 5,
+        "spread": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-10-15"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 5,
+        "spread": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-10-22"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "missing_exact_candle": 5
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-10-29"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "missing_exact_candle": 5
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-11-05"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 7
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-11-12"
+    },
+    {
+      "entry_markets": 4,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 4,
+        "candidates": 1,
+        "executable": 3,
+        "model_ready": 2,
+        "population": 4,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 2,
+        "invalid_ask": 1,
+        "missing_exact_candle": 3,
+        "open_interest": 2
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-11-19"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 3,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 3,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "missing_exact_candle": 3,
+        "open_interest": 1,
+        "spread": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-11-26"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 2,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "missing_exact_candle": 5,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-12-03"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 7
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-12-10"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 7
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-12-17"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "missing_exact_candle": 6
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-12-24"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 9
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2023-12-31"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 7
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-01-07"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 2,
+        "candidates": 1,
+        "executable": 3,
+        "model_ready": 2,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 2,
+        "invalid_ask": 1,
+        "missing_exact_candle": 4
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-01-14"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 8
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-01-21"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 10
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-01-28"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 2,
+        "candidates": 1,
+        "executable": 3,
+        "model_ready": 2,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "invalid_ask": 1,
+        "lower_ranked": 1,
+        "missing_exact_candle": 6
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-02-04"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "missing_exact_candle": 7
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-02-11"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 3,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 3,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 4,
+        "lower_ranked": 1,
+        "missing_exact_candle": 5
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-02-18"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 3,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 3,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 4,
+        "lower_ranked": 1,
+        "missing_exact_candle": 6
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-02-25"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 14
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-03-03"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 15
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-03-10"
+    },
+    {
+      "entry_markets": 10,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 10,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 10,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "missing_exact_candle": 5,
+        "open_interest": 7,
+        "spread": 2
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-03-17"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 3,
+        "candidates": 0,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 3,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 6,
+        "missing_exact_candle": 12
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-03-24"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 3,
+        "candidates": 0,
+        "executable": 5,
+        "model_ready": 3,
+        "population": 3,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 5,
+        "invalid_ask": 1,
+        "missing_exact_candle": 12
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-03-31"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 2,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 2,
+        "lower_ranked": 1,
+        "missing_exact_candle": 13
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-04-07"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "missing_exact_candle": 14
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-04-14"
+    },
+    {
+      "entry_markets": 4,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 4,
+        "candidates": 1,
+        "executable": 7,
+        "model_ready": 4,
+        "population": 4,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 6,
+        "invalid_ask": 1,
+        "missing_exact_candle": 11
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-04-21"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 2,
+        "missing_exact_candle": 14
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-04-28"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 15
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-05-05"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 2,
+        "missing_exact_candle": 14
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-05-12"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 3,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 3,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "missing_exact_candle": 12
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-05-19"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 3,
+        "board": 3,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 3,
+        "population": 3,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "invalid_ask": 2,
+        "lower_ranked": 2,
+        "missing_exact_candle": 12
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-05-26"
+    },
+    {
+      "entry_markets": 7,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 7,
+        "candidates": 0,
+        "executable": 3,
+        "model_ready": 2,
+        "population": 7,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 3,
+        "invalid_ask": 1,
+        "missing_exact_candle": 8,
+        "open_interest": 4,
+        "spread": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-06-02"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 1,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 1,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 14,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-06-09"
+    },
+    {
+      "entry_markets": 10,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 10,
+        "candidates": 1,
+        "executable": 5,
+        "model_ready": 3,
+        "population": 10,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 4,
+        "invalid_ask": 1,
+        "missing_exact_candle": 5,
+        "open_interest": 7
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-06-16"
+    },
+    {
+      "entry_markets": 4,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 4,
+        "candidates": 1,
+        "executable": 5,
+        "model_ready": 3,
+        "population": 4,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 4,
+        "invalid_ask": 1,
+        "missing_exact_candle": 12,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-06-23"
+    },
+    {
+      "entry_markets": 15,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 15,
+        "candidates": 1,
+        "executable": 5,
+        "model_ready": 3,
+        "population": 15,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 4,
+        "invalid_ask": 1,
+        "missing_exact_candle": 2,
+        "open_interest": 12
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-06-30"
+    },
+    {
+      "entry_markets": 4,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 4,
+        "candidates": 1,
+        "executable": 8,
+        "model_ready": 4,
+        "population": 4,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 7,
+        "missing_exact_candle": 11
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-07-07"
+    },
+    {
+      "entry_markets": 4,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 4,
+        "candidates": 1,
+        "executable": 7,
+        "model_ready": 4,
+        "population": 4,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 6,
+        "invalid_ask": 1,
+        "missing_exact_candle": 12
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-07-14"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 2,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "missing_exact_candle": 14
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-07-21"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 2,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "missing_exact_candle": 13
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-07-28"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 15
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-08-04"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 2,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "missing_exact_candle": 13
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-08-11"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "missing_exact_candle": 14
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-08-18"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 3,
+        "candidates": 0,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 3,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 6,
+        "missing_exact_candle": 12
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-08-25"
+    },
+    {
+      "entry_markets": 4,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 4,
+        "candidates": 0,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 4,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 4,
+        "missing_exact_candle": 11,
+        "spread": 2
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-09-01"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 3,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 3,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "missing_exact_candle": 12,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-09-08"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 3,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 3,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 2,
+        "lower_ranked": 1,
+        "missing_exact_candle": 12,
+        "spread": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-09-15"
+    },
+    {
+      "entry_markets": 1,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 1,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 1,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "missing_exact_candle": 14
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-09-22"
+    },
+    {
+      "entry_markets": 5,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 5,
+        "candidates": 1,
+        "executable": 7,
+        "model_ready": 4,
+        "population": 5,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 6,
+        "invalid_ask": 1,
+        "missing_exact_candle": 10,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-09-29"
+    },
+    {
+      "entry_markets": 4,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 4,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 4,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "missing_exact_candle": 11,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-10-06"
+    },
+    {
+      "entry_markets": 6,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 6,
+        "candidates": 0,
+        "executable": 7,
+        "model_ready": 4,
+        "population": 6,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 7,
+        "invalid_ask": 1,
+        "missing_exact_candle": 9,
+        "open_interest": 2
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-10-13"
+    },
+    {
+      "entry_markets": 4,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 4,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 4,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 2,
+        "lower_ranked": 1,
+        "missing_exact_candle": 11,
+        "open_interest": 2
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-10-20"
+    },
+    {
+      "entry_markets": 15,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 3,
+        "board": 15,
+        "candidates": 1,
+        "executable": 7,
+        "model_ready": 4,
+        "population": 15,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 4,
+        "invalid_ask": 1,
+        "lower_ranked": 2,
+        "open_interest": 11
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-10-27"
+    },
+    {
+      "entry_markets": 6,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 6,
+        "candidates": 1,
+        "executable": 5,
+        "model_ready": 3,
+        "population": 6,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 4,
+        "invalid_ask": 1,
+        "missing_exact_candle": 9,
+        "spread": 3
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-11-03"
+    },
+    {
+      "entry_markets": 13,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 3,
+        "board": 13,
+        "candidates": 1,
+        "executable": 22,
+        "model_ready": 11,
+        "population": 13,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 19,
+        "lower_ranked": 2,
+        "missing_exact_candle": 2,
+        "open_interest": 2
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-11-10"
+    },
+    {
+      "entry_markets": 11,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 11,
+        "candidates": 1,
+        "executable": 14,
+        "model_ready": 7,
+        "population": 11,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 12,
+        "lower_ranked": 1,
+        "missing_exact_candle": 4,
+        "open_interest": 4
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-11-17"
+    },
+    {
+      "entry_markets": 7,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 7,
+        "candidates": 1,
+        "executable": 7,
+        "model_ready": 4,
+        "population": 7,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 6,
+        "invalid_ask": 1,
+        "missing_exact_candle": 8,
+        "open_interest": 1,
+        "spread": 2
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-11-24"
+    },
+    {
+      "entry_markets": 10,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 10,
+        "candidates": 1,
+        "executable": 14,
+        "model_ready": 8,
+        "population": 10,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 12,
+        "invalid_ask": 2,
+        "lower_ranked": 1,
+        "missing_exact_candle": 5,
+        "spread": 2
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-12-01"
+    },
+    {
+      "entry_markets": 15,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 4,
+        "board": 15,
+        "candidates": 1,
+        "executable": 15,
+        "model_ready": 10,
+        "population": 15,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 11,
+        "invalid_ask": 5,
+        "lower_ranked": 3,
+        "open_interest": 5
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-12-08"
+    },
+    {
+      "entry_markets": 8,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 8,
+        "candidates": 1,
+        "executable": 13,
+        "model_ready": 7,
+        "population": 8,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 12,
+        "invalid_ask": 1,
+        "missing_exact_candle": 7,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-12-15"
+    },
+    {
+      "entry_markets": 4,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 4,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 4,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 4,
+        "lower_ranked": 1,
+        "missing_exact_candle": 11,
+        "spread": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-12-22"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 3,
+        "board": 3,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 3,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "lower_ranked": 2,
+        "missing_exact_candle": 12
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2024-12-29"
+    },
+    {
+      "entry_markets": 4,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 3,
+        "board": 4,
+        "candidates": 1,
+        "executable": 8,
+        "model_ready": 4,
+        "population": 4,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "lower_ranked": 2,
+        "missing_exact_candle": 11
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-01-05"
+    },
+    {
+      "entry_markets": 5,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 5,
+        "candidates": 0,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 5,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 6,
+        "missing_exact_candle": 10,
+        "open_interest": 2
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-01-12"
+    },
+    {
+      "entry_markets": 0,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 15
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-01-19"
+    },
+    {
+      "entry_markets": 6,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 6,
+        "candidates": 1,
+        "executable": 7,
+        "model_ready": 4,
+        "population": 6,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 6,
+        "invalid_ask": 1,
+        "missing_exact_candle": 14,
+        "open_interest": 1,
+        "spread": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-01-26"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 2,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "missing_exact_candle": 18
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-02-02"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 2,
+        "candidates": 1,
+        "executable": 3,
+        "model_ready": 2,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 2,
+        "invalid_ask": 1,
+        "missing_exact_candle": 18
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-02-09"
+    },
+    {
+      "entry_markets": 5,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 5,
+        "candidates": 1,
+        "executable": 8,
+        "model_ready": 4,
+        "population": 5,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 6,
+        "lower_ranked": 1,
+        "missing_exact_candle": 15,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-02-16"
+    },
+    {
+      "entry_markets": 7,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 3,
+        "board": 7,
+        "candidates": 1,
+        "executable": 12,
+        "model_ready": 7,
+        "population": 7,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 9,
+        "invalid_ask": 2,
+        "lower_ranked": 2,
+        "missing_exact_candle": 13
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-02-23"
+    },
+    {
+      "entry_markets": 5,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 5,
+        "candidates": 1,
+        "executable": 8,
+        "model_ready": 4,
+        "population": 5,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 6,
+        "lower_ranked": 1,
+        "missing_exact_candle": 15,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-03-02"
+    },
+    {
+      "entry_markets": 9,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 9,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 9,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 4,
+        "lower_ranked": 1,
+        "missing_exact_candle": 11,
+        "open_interest": 6
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-03-09"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 3,
+        "candidates": 1,
+        "executable": 5,
+        "model_ready": 3,
+        "population": 3,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 4,
+        "invalid_ask": 1,
+        "missing_exact_candle": 17
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-03-16"
+    },
+    {
+      "entry_markets": 16,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 16,
+        "candidates": 1,
+        "executable": 13,
+        "model_ready": 8,
+        "population": 16,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 12,
+        "invalid_ask": 3,
+        "missing_exact_candle": 4,
+        "open_interest": 8
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-03-23"
+    },
+    {
+      "entry_markets": 7,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 7,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 7,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "missing_exact_candle": 13,
+        "open_interest": 4
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-03-30"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 2,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 2,
+        "lower_ranked": 1,
+        "missing_exact_candle": 18
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-04-06"
+    },
+    {
+      "entry_markets": 5,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 5,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 5,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "missing_exact_candle": 15,
+        "open_interest": 3
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-04-13"
+    },
+    {
+      "entry_markets": 4,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 4,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 4,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "missing_exact_candle": 16,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-04-20"
+    },
+    {
+      "entry_markets": 5,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 5,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 4,
+        "population": 5,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "invalid_ask": 2,
+        "missing_exact_candle": 15,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-04-27"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 20,
+        "candidates": 1,
+        "executable": 7,
+        "model_ready": 4,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "invalid_ask": 1,
+        "lower_ranked": 1,
+        "open_interest": 16
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-05-04"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 20,
+        "candidates": 1,
+        "executable": 8,
+        "model_ready": 4,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 6,
+        "lower_ranked": 1,
+        "open_interest": 16
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-05-11"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 3,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 3,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 4,
+        "lower_ranked": 1,
+        "missing_exact_candle": 17
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-05-18"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 3,
+        "board": 20,
+        "candidates": 1,
+        "executable": 8,
+        "model_ready": 4,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "lower_ranked": 2,
+        "open_interest": 16
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-05-25"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 3,
+        "board": 20,
+        "candidates": 1,
+        "executable": 8,
+        "model_ready": 5,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "invalid_ask": 2,
+        "lower_ranked": 2,
+        "open_interest": 15
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-06-01"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 20,
+        "candidates": 1,
+        "executable": 5,
+        "model_ready": 3,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 4,
+        "invalid_ask": 1,
+        "open_interest": 17
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-06-08"
+    },
+    {
+      "entry_markets": 15,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 15,
+        "candidates": 1,
+        "executable": 8,
+        "model_ready": 4,
+        "population": 15,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 7,
+        "missing_exact_candle": 5,
+        "open_interest": 10,
+        "spread": 1
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-06-15"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 20,
+        "candidates": 1,
+        "executable": 7,
+        "model_ready": 4,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 6,
+        "invalid_ask": 1,
+        "open_interest": 16
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-06-22"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 20,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 4,
+        "lower_ranked": 1,
+        "open_interest": 17
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-06-29"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 4,
+        "board": 20,
+        "candidates": 1,
+        "executable": 9,
+        "model_ready": 5,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "invalid_ask": 1,
+        "lower_ranked": 3,
+        "open_interest": 15
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-07-06"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 20,
+        "candidates": 1,
+        "executable": 7,
+        "model_ready": 4,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "invalid_ask": 1,
+        "lower_ranked": 1,
+        "open_interest": 16
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-07-13"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 20,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "open_interest": 17
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-07-20"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 20,
+        "candidates": 1,
+        "executable": 7,
+        "model_ready": 4,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 6,
+        "invalid_ask": 1,
+        "open_interest": 16
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-07-27"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 20,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 4,
+        "lower_ranked": 1,
+        "open_interest": 17
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-08-03"
+    },
+    {
+      "entry_markets": 18,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 18,
+        "candidates": 1,
+        "executable": 8,
+        "model_ready": 4,
+        "population": 18,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 6,
+        "lower_ranked": 1,
+        "missing_exact_candle": 2,
+        "open_interest": 14
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-08-10"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 20,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "open_interest": 17
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-08-17"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 20,
+        "candidates": 1,
+        "executable": 7,
+        "model_ready": 5,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "invalid_ask": 3,
+        "lower_ranked": 1,
+        "open_interest": 15
+      },
+      "run_id": "exp/trg1-20260905/development",
+      "week_end": "2025-08-24"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 20,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "open_interest": 13,
+        "spread": 4
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2025-08-31"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 20,
+        "candidates": 1,
+        "executable": 8,
+        "model_ready": 5,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 6,
+        "invalid_ask": 2,
+        "lower_ranked": 1,
+        "open_interest": 15
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2025-09-07"
+    },
+    {
+      "entry_markets": 18,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 18,
+        "candidates": 1,
+        "executable": 8,
+        "model_ready": 5,
+        "population": 18,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 6,
+        "invalid_ask": 2,
+        "lower_ranked": 1,
+        "missing_exact_candle": 2,
+        "open_interest": 13
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2025-09-14"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 20,
+        "candidates": 1,
+        "executable": 8,
+        "model_ready": 5,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 7,
+        "invalid_ask": 2,
+        "open_interest": 15
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2025-09-21"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 20,
+        "candidates": 1,
+        "executable": 9,
+        "model_ready": 5,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 8,
+        "invalid_ask": 1,
+        "open_interest": 15
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2025-09-28"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 4,
+        "board": 20,
+        "candidates": 1,
+        "executable": 9,
+        "model_ready": 5,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "invalid_ask": 1,
+        "lower_ranked": 3,
+        "open_interest": 15
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2025-10-05"
+    },
+    {
+      "entry_markets": 18,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 18,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 18,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 2,
+        "spread": 18
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2025-10-12"
+    },
+    {
+      "entry_markets": 13,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 13,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 13,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 7,
+        "spread": 13
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2025-10-19"
+    },
+    {
+      "entry_markets": 12,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 12,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 12,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "missing_exact_candle": 8,
+        "open_interest": 3,
+        "spread": 8
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2025-10-26"
+    },
+    {
+      "entry_markets": 14,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 14,
+        "candidates": 1,
+        "executable": 1,
+        "model_ready": 1,
+        "population": 14,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "invalid_ask": 1,
+        "missing_exact_candle": 6,
+        "open_interest": 5,
+        "spread": 8
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2025-11-02"
+    },
+    {
+      "entry_markets": 0,
+      "events": 0,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 0,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 0,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_event": 1
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2025-11-09"
+    },
+    {
+      "entry_markets": 5,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 5,
+        "candidates": 0,
+        "executable": 0,
+        "model_ready": 0,
+        "population": 5,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "missing_exact_candle": 15,
+        "spread": 5
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2025-11-16"
+    },
+    {
+      "entry_markets": 7,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 7,
+        "candidates": 1,
+        "executable": 7,
+        "model_ready": 4,
+        "population": 7,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 6,
+        "invalid_ask": 1,
+        "missing_exact_candle": 13,
+        "spread": 3
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2025-11-23"
+    },
+    {
+      "entry_markets": 8,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 8,
+        "candidates": 1,
+        "executable": 7,
+        "model_ready": 4,
+        "population": 8,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "invalid_ask": 1,
+        "lower_ranked": 1,
+        "missing_exact_candle": 12,
+        "open_interest": 2,
+        "spread": 2
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2025-11-30"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 3,
+        "candidates": 1,
+        "executable": 3,
+        "model_ready": 2,
+        "population": 3,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "invalid_ask": 1,
+        "lower_ranked": 1,
+        "missing_exact_candle": 17,
+        "spread": 1
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2025-12-07"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 20,
+        "candidates": 1,
+        "executable": 8,
+        "model_ready": 6,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 7,
+        "invalid_ask": 4,
+        "open_interest": 14
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2025-12-14"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 20,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 5,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "invalid_ask": 4,
+        "open_interest": 13,
+        "spread": 2
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2025-12-21"
+    },
+    {
+      "entry_markets": 4,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 4,
+        "candidates": 0,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 4,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 4,
+        "missing_exact_candle": 16,
+        "spread": 2
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2025-12-28"
+    },
+    {
+      "entry_markets": 8,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 8,
+        "candidates": 0,
+        "executable": 7,
+        "model_ready": 4,
+        "population": 8,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 7,
+        "invalid_ask": 1,
+        "missing_exact_candle": 12,
+        "spread": 4
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-01-04"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 20,
+        "candidates": 0,
+        "executable": 12,
+        "model_ready": 10,
+        "population": 20,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 12,
+        "invalid_ask": 8,
+        "open_interest": 6,
+        "spread": 4
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-01-11"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 20,
+        "candidates": 1,
+        "executable": 17,
+        "model_ready": 15,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 15,
+        "invalid_ask": 13,
+        "lower_ranked": 1,
+        "open_interest": 5
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-01-18"
+    },
+    {
+      "entry_markets": 19,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 3,
+        "board": 19,
+        "candidates": 1,
+        "executable": 13,
+        "model_ready": 9,
+        "population": 19,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 10,
+        "invalid_ask": 5,
+        "lower_ranked": 2,
+        "missing_exact_candle": 1,
+        "open_interest": 10
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-01-25"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 20,
+        "candidates": 1,
+        "executable": 12,
+        "model_ready": 7,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 11,
+        "invalid_ask": 2,
+        "open_interest": 10,
+        "spread": 3
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-02-01"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 20,
+        "candidates": 0,
+        "executable": 9,
+        "model_ready": 6,
+        "population": 20,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 9,
+        "invalid_ask": 3,
+        "open_interest": 11,
+        "spread": 3
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-02-08"
+    },
+    {
+      "entry_markets": 7,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 7,
+        "candidates": 1,
+        "executable": 7,
+        "model_ready": 4,
+        "population": 7,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 6,
+        "invalid_ask": 1,
+        "missing_exact_candle": 13,
+        "open_interest": 3
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-02-15"
+    },
+    {
+      "entry_markets": 10,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 3,
+        "board": 10,
+        "candidates": 1,
+        "executable": 10,
+        "model_ready": 5,
+        "population": 10,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 7,
+        "lower_ranked": 2,
+        "missing_exact_candle": 10,
+        "open_interest": 5
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-02-22"
+    },
+    {
+      "entry_markets": 17,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 17,
+        "candidates": 1,
+        "executable": 11,
+        "model_ready": 6,
+        "population": 17,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 9,
+        "invalid_ask": 1,
+        "lower_ranked": 1,
+        "missing_exact_candle": 3,
+        "open_interest": 4,
+        "spread": 7
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-03-01"
+    },
+    {
+      "entry_markets": 9,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 9,
+        "candidates": 1,
+        "executable": 8,
+        "model_ready": 5,
+        "population": 9,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 6,
+        "invalid_ask": 2,
+        "lower_ranked": 1,
+        "missing_exact_candle": 11,
+        "open_interest": 4
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-03-08"
+    },
+    {
+      "entry_markets": 8,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 8,
+        "candidates": 1,
+        "executable": 11,
+        "model_ready": 6,
+        "population": 8,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 9,
+        "invalid_ask": 1,
+        "lower_ranked": 1,
+        "missing_exact_candle": 12,
+        "open_interest": 2
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-03-15"
+    },
+    {
+      "entry_markets": 10,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 0,
+        "board": 10,
+        "candidates": 0,
+        "executable": 10,
+        "model_ready": 5,
+        "population": 10,
+        "recorded": 0,
+        "scored": 0
+      },
+      "positions": 0,
+      "removed": {
+        "edge_below_floor": 10,
+        "missing_exact_candle": 10,
+        "open_interest": 5
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-03-22"
+    },
+    {
+      "entry_markets": 9,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 3,
+        "board": 9,
+        "candidates": 1,
+        "executable": 9,
+        "model_ready": 5,
+        "population": 9,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 6,
+        "invalid_ask": 1,
+        "lower_ranked": 2,
+        "missing_exact_candle": 11,
+        "open_interest": 4
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-03-29"
+    },
+    {
+      "entry_markets": 7,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 7,
+        "candidates": 1,
+        "executable": 8,
+        "model_ready": 4,
+        "population": 7,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 6,
+        "lower_ranked": 1,
+        "missing_exact_candle": 13,
+        "open_interest": 3
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-04-05"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 2,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "missing_exact_candle": 18
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-04-12"
+    },
+    {
+      "entry_markets": 20,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 20,
+        "candidates": 1,
+        "executable": 9,
+        "model_ready": 6,
+        "population": 20,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 7,
+        "invalid_ask": 3,
+        "lower_ranked": 1,
+        "open_interest": 14
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-04-19"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 3,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 3,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 2,
+        "lower_ranked": 1,
+        "missing_exact_candle": 17,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-04-26"
+    },
+    {
+      "entry_markets": 4,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 4,
+        "candidates": 1,
+        "executable": 1,
+        "model_ready": 1,
+        "population": 4,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "invalid_ask": 1,
+        "missing_exact_candle": 16,
+        "open_interest": 2,
+        "spread": 1
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-05-03"
+    },
+    {
+      "entry_markets": 10,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 3,
+        "board": 10,
+        "candidates": 1,
+        "executable": 5,
+        "model_ready": 3,
+        "population": 10,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 2,
+        "invalid_ask": 1,
+        "lower_ranked": 2,
+        "missing_exact_candle": 10,
+        "open_interest": 7
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-05-10"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 3,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 3,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 4,
+        "lower_ranked": 1,
+        "missing_exact_candle": 17
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-05-17"
+    },
+    {
+      "entry_markets": 12,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 12,
+        "candidates": 1,
+        "executable": 5,
+        "model_ready": 3,
+        "population": 12,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "invalid_ask": 1,
+        "lower_ranked": 1,
+        "missing_exact_candle": 8,
+        "open_interest": 3,
+        "spread": 6
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-05-24"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 2,
+        "candidates": 1,
+        "executable": 3,
+        "model_ready": 2,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "invalid_ask": 1,
+        "lower_ranked": 1,
+        "missing_exact_candle": 18
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-05-31"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 3,
+        "candidates": 1,
+        "executable": 2,
+        "model_ready": 1,
+        "population": 3,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 1,
+        "missing_exact_candle": 17,
+        "open_interest": 1,
+        "spread": 1
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-06-07"
+    },
+    {
+      "entry_markets": 4,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 4,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 4,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "missing_exact_candle": 16,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-06-14"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 2,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "missing_exact_candle": 18
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-06-21"
+    },
+    {
+      "entry_markets": 9,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 9,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 9,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "missing_exact_candle": 12,
+        "open_interest": 6
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-06-28"
+    },
+    {
+      "entry_markets": 5,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 3,
+        "board": 5,
+        "candidates": 1,
+        "executable": 8,
+        "model_ready": 4,
+        "population": 5,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "lower_ranked": 2,
+        "missing_exact_candle": 15,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-07-05"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 2,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "missing_exact_candle": 18
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-07-12"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 2,
+        "candidates": 1,
+        "executable": 3,
+        "model_ready": 2,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 2,
+        "invalid_ask": 1,
+        "missing_exact_candle": 18
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-07-19"
+    },
+    {
+      "entry_markets": 4,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 4,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 4,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "missing_exact_candle": 16,
+        "open_interest": 2
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-07-26"
+    },
+    {
+      "entry_markets": 3,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 3,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 3,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "missing_exact_candle": 17,
+        "open_interest": 1
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-08-02"
+    },
+    {
+      "entry_markets": 8,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 2,
+        "board": 8,
+        "candidates": 1,
+        "executable": 5,
+        "model_ready": 3,
+        "population": 8,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "invalid_ask": 1,
+        "lower_ranked": 1,
+        "missing_exact_candle": 12,
+        "open_interest": 5
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-08-09"
+    },
+    {
+      "entry_markets": 7,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 7,
+        "candidates": 1,
+        "executable": 6,
+        "model_ready": 3,
+        "population": 7,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 5,
+        "missing_exact_candle": 13,
+        "open_interest": 4
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-08-16"
+    },
+    {
+      "entry_markets": 6,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 6,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 6,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "missing_exact_candle": 14,
+        "open_interest": 4
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-08-23"
+    },
+    {
+      "entry_markets": 2,
+      "events": 1,
+      "funnel": {
+        "above_edge_floor": 1,
+        "board": 2,
+        "candidates": 1,
+        "executable": 4,
+        "model_ready": 2,
+        "population": 2,
+        "recorded": 0,
+        "scored": 1
+      },
+      "positions": 1,
+      "removed": {
+        "edge_below_floor": 3,
+        "missing_exact_candle": 18
+      },
+      "run_id": "exp/trg1-20260905/holdout",
+      "week_end": "2026-08-30"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "retained_full_source_receipts": [
+    {
+      "file": "tsa_2022.html",
+      "url": "https://www.tsa.gov/travel/passenger-volumes/2022",
+      "received_at": "2026-09-05T04:53:01.135175+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 185190,
+      "sha256": "fef7680c1ca8d9c7570bc47ec7b322b3001cc3bdbc4f90af24067c0fa321ca28"
+    },
+    {
+      "file": "tsa_2023.html",
+      "url": "https://www.tsa.gov/travel/passenger-volumes/2023",
+      "received_at": "2026-09-05T04:53:01.176208+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 185190,
+      "sha256": "2b07ae0267bae53b748869264d34588abb837e46769561b04aae94efa7db9ac2"
+    },
+    {
+      "file": "tsa_2024.html",
+      "url": "https://www.tsa.gov/travel/passenger-volumes/2024",
+      "received_at": "2026-09-05T04:53:01.222596+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 185289,
+      "sha256": "ad6f0d849de5971a08ad6aac43bd5ca2b4613334cdd7b49e2608dd4c7583b116"
+    },
+    {
+      "file": "tsa_2025.html",
+      "url": "https://www.tsa.gov/travel/passenger-volumes/2025",
+      "received_at": "2026-09-05T04:53:01.258137+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 185206,
+      "sha256": "6b1464a0d21b06cbd5dca49218dbf6d3046c3f32f0dc808c4bf01124740c04df"
+    },
+    {
+      "file": "tsa_2026.html",
+      "url": "https://www.tsa.gov/travel/passenger-volumes",
+      "received_at": "2026-09-05T04:53:18.042066+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 184334,
+      "sha256": "452a0d6a98b69b5324104d5172041c583c94532c43d53f5603c2b05467372b65"
+    }
+  ],
+  "source_pages_compared_then_compacted": [
+    {
+      "file": "kalshi_current_settled.json",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXTSAW&status=settled&limit=1000",
+      "received_at": "2026-09-05T04:53:18.135661+00:00",
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 386779,
+      "sha256": "3f10ed7d965956330d086d03848bd13a2e9dc6e6d8cfedfdf61b6781e85599bd"
+    },
+    {
+      "file": "kalshi_historical_001.json",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/historical/markets?series_ticker=KXTSAW&limit=1000",
+      "received_at": "2026-09-05T04:53:18.268527+00:00",
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1803578,
+      "sha256": "e9166eb86e9726796650082e17b277997785ddbe52a6307373b3d2e32946990f"
+    },
+    {
+      "file": "kalshi_historical_002.json",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/historical/markets?series_ticker=KXTSAW&limit=1000&cursor=CgsIyYP4wwYQsIGmKRIUS1hUU0FXLTI1SlVMMjctQTIuMjU",
+      "received_at": "2026-09-05T04:53:18.371065+00:00",
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1790699,
+      "sha256": "1cd5d0332c1c5eabab944c49d0b6bdf4060387b197ac8d5764754061f18fc27e"
+    },
+    {
+      "file": "kalshi_historical_003.json",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/historical/markets?series_ticker=KXTSAW&limit=1000&cursor=CgwIo-vkswYQmOyFowISElRTQVctMjRKVU4zMC1BMi41NQ",
+      "received_at": "2026-09-05T04:53:18.467448+00:00",
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1241057,
+      "sha256": "dc71fc4172cc9a87bbf36b83e6661699e4ec780b6066905a079b552e2ff8d50d"
+    },
+    {
+      "file": "kalshi_current_tsaw_settled.json",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=TSAW&status=settled&limit=1000",
+      "received_at": "2026-09-05T04:54:20.488700+00:00",
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 27,
+      "sha256": "50699ea1db13415ea46ec367dcfa58decd9660083271c5dc061561f38337fbac"
+    },
+    {
+      "file": "kalshi_historical_tsaw_001.json",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/historical/markets?series_ticker=TSAW&limit=1000",
+      "received_at": "2026-09-05T04:54:20.584129+00:00",
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 27,
+      "sha256": "50699ea1db13415ea46ec367dcfa58decd9660083271c5dc061561f38337fbac"
+    }
+  ],
+  "note": "Full Kalshi pages were compacted to exact selected records in selected_market_receipts.json; page URL, receipt time, byte count, and SHA-256 remain here."
+}

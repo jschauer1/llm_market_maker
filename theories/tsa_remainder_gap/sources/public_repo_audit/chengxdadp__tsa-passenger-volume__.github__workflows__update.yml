@@ -1,0 +1,38 @@
+name: Weekly TSA Data Update
+
+on:
+  schedule:
+    - cron: '0 2 * * 1'   # 每周一 UTC 02:00（北京时间 10:00）
+  workflow_dispatch:        # 支持手动触发
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Update TSA data
+        env:
+          MPLBACKEND: Agg    # 无界面环境下使用非交互式后端
+        run: python script/update.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "auto: update TSA data $(date +'%Y-%m-%d')"
+          git push
