@@ -1,0 +1,448 @@
+{
+  "completion": {
+    "completed_at": "2026-09-05T06:04:31.162457+00:00",
+    "effort": "high",
+    "model": "gpt-5.6-sol",
+    "results": {
+      "KXHOUSEADJOURN-26": {
+        "bucket": "moderate",
+        "rationale": "The published Majority Leader calendar shows that House leadership has planned the September floor schedule, and leadership and scheduling staff have better knowledge of the intended pre-election recess. The precise last day of substantive business can still change with the legislative agenda, so the decision is not clearly final."
+      },
+      "KXNEXTHURDATE-26DEC01": {
+        "bucket": "weak",
+        "rationale": "No specific human group already knows whether an Atlantic system will reach hurricane strength before the cutoff. The outcome depends on future atmospheric development rather than a decision or completed fact held privately."
+      },
+      "KXPRESSSECANNOUNCE-26AUG": {
+        "bucket": "moderate",
+        "rationale": "The White House confirmed Karoline Leavitt's final day, but current reporting says Trump had not settled on a replacement and no successor had been named by Sep 3. The president and a small personnel circle may now know the choice or leading plan, but the recent evidence leaves open that the decision is still unmade."
+      },
+      "KXRANKLISTSONGTOP10-26SEP12": {
+        "bucket": "weak",
+        "rationale": "Billboard describes the Hot 100 as a compilation of Luminate streaming, radio-audience, and sales data, and the currently published chart is dated Sep 5. The next chart still depends on aggregate activity and processing that are not clearly complete, so even the chart staff may not yet know the final placement."
+      },
+      "KXRNCMIDTERMSPEAK-26SEP12": {
+        "bucket": "strong",
+        "rationale": "The official convention site confirms the Dallas event for Sep 9-10, and public reporting already describes planned programming and named keynote appearances. Days before the event, the RNC programming team and each invited speaker's staff should already know who is scheduled for official programming, subject only to a late cancellation."
+      },
+      "KXSARETAIL-26SEP16": {
+        "bucket": "weak",
+        "rationale": "The July source data may be in hand, but the scheduled statistic can still be undergoing validation and aggregation before release. There is no evidence that the final published month-over-month figure has already been fixed and communicated within a small group."
+      },
+      "KXSECPRESSMENTION-26SEP15": {
+        "bucket": "moderate",
+        "rationale": "Communications staff can know the prepared topics and talking points for the next formal briefing. Exact word use also depends on live questions and spontaneous answers, and the press-secretary role was still vacant in current reporting, so the complete outcome is not already fixed."
+      },
+      "KXSOCCERTRANSFER-26SUM": {
+        "bucket": "moderate",
+        "rationale": "Recent reporting says Richarlison agreed personal terms with Trabzonspor and that the clubs were negotiating after rejected bids, identifying a concrete informed group. A transfer was not yet reported as signed and still depended on Tottenham accepting terms, so the relevant decision was not demonstrably complete."
+      },
+      "KXSTARTINGQBWEEK1-W1-26SEP14-NYJ": {
+        "bucket": "strong",
+        "rationale": "The Jets' official coverage describes Geno Smith taking first-team work and preparing for the regular-season opener. The coaching and football-operations staff have a specific designation process and should already know the intended Week 1 starter barring a late health change."
+      },
+      "KXSTARTINGQBWEEK1-W1-26SEP15-ATL": {
+        "bucket": "weak",
+        "rationale": "The Falcons' own Sep 2 report says the four-quarterback competition continues and that coaches are still evaluating the players after injury-driven uncertainty. That is direct evidence the choice had not yet been made, so no group could already know a final designation."
+      },
+      "KXSTARTINGQBWEEK1-W1-26SEP15-KC": {
+        "bucket": "strong",
+        "rationale": "The Chiefs' official player biography calls Patrick Mahomes the continuing starter, and the team published his Week 1 preparation press conference. The coaching staff therefore has a specific, settled designation already communicated internally and substantially reflected in official public material."
+      },
+      "KXSTEAMTOPSELLER-26SEP08": {
+        "bucket": "weak",
+        "rationale": "The result depends on ongoing purchases by many independent customers and on competitors' revenue across the full weekly window. Valve can observe partial platform data, but the final ranking is not a discretionary decision already made by a small group."
+      },
+      "KXSWEDEN7VOTE-26SEP13": {
+        "bucket": "weak",
+        "rationale": "The seventh-place party depends on votes that have not yet been cast by a national electorate. Election officials will learn the count during tabulation, but no specific group already knows the final certified ordering today."
+      },
+      "KXTRUMPACT-26AUG30": {
+        "bucket": "moderate",
+        "rationale": "The official Presidential Actions page currently shows two qualifying Sep 4 actions, so a small White House group knows those completed items and any additional signed or scheduled items awaiting publication. The remaining count can still change through Sep 5 and publication timing is part of the condition, leaving the final page snapshot not clearly fixed."
+      },
+      "KXTRUMPAPPROVE-26SEP05": {
+        "bucket": "weak",
+        "rationale": "The value is a moving aggregate of public polling inputs rather than a discretionary outcome already decided by a small group. RCP staff may know a queued update, but the exact timestamped average can still change with incoming data and site processing."
+      },
+      "KXTRUMPPHOTO-26SEP06": {
+        "bucket": "weak",
+        "rationale": "The count depends on future photography, editorial selection, uploading, and tagging across the remaining window. Trump scheduling staff and individual photographers may know plans, but no single specific group controls or already knows the final Getty day count."
+      }
+    },
+    "web_search": true
+  },
+  "request": {
+    "batch_id": "02-retry",
+    "candidate_keys": [
+      "KXHOUSEADJOURN-26",
+      "KXNEXTHURDATE-26DEC01",
+      "KXPRESSSECANNOUNCE-26AUG",
+      "KXRANKLISTSONGTOP10-26SEP12",
+      "KXRNCMIDTERMSPEAK-26SEP12",
+      "KXSARETAIL-26SEP16",
+      "KXSECPRESSMENTION-26SEP15",
+      "KXSOCCERTRANSFER-26SUM",
+      "KXSTARTINGQBWEEK1-W1-26SEP14-NYJ",
+      "KXSTARTINGQBWEEK1-W1-26SEP15-ATL",
+      "KXSTARTINGQBWEEK1-W1-26SEP15-KC",
+      "KXSTEAMTOPSELLER-26SEP08",
+      "KXSWEDEN7VOTE-26SEP13",
+      "KXTRUMPACT-26AUG30",
+      "KXTRUMPAPPROVE-26SEP05",
+      "KXTRUMPPHOTO-26SEP06"
+    ],
+    "decision_at": "2026-09-05T05:49:12.532295+00:00",
+    "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\insider_bias\\insider_judgment\\runs\\insider-refresh-20260905T054912Z\\verdicts-02-retry.json",
+    "payload": [
+      {
+        "close_time": "2026-09-18T03:59:00Z",
+        "event_ticker": "KXHOUSEADJOURN-26",
+        "markets": [
+          {
+            "close_time": "2026-09-18T03:59:00Z",
+            "rules_primary": "If the U.S. House of Representatives adjourns from substantive floor business for its pre-election 2026 recess after Issuance and before Sep 18, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXHOUSEADJOURN-26-26SEP18",
+            "title": "Will it be reported by the U.S. House of Representatives that the U.S. House of Representatives adjourns from substantive floor business for its pre-election 2026 recess before Sep 18, 2026?"
+          }
+        ],
+        "series_ticker": "KXHOUSEADJOURN",
+        "title": "Will it be reported by the U.S. House of Representatives that the U.S. House of Representatives adjourns from substantive floor business for its pre-election 2026 recess before Sep 18, 2026?"
+      },
+      {
+        "close_time": "2026-09-15T03:59:00Z",
+        "event_ticker": "KXNEXTHURDATE-26DEC01",
+        "markets": [
+          {
+            "close_time": "2026-09-15T03:59:00Z",
+            "rules_primary": "If a hurricane (wind speeds of at least 74mph) forms in the Atlantic before Sep 15, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXNEXTHURDATE-26DEC01-26SEP15",
+            "title": "When will the next hurricane form?"
+          }
+        ],
+        "series_ticker": "KXNEXTHURDATE",
+        "title": "When will the next hurricane form?"
+      },
+      {
+        "close_time": "2026-09-08T03:59:00Z",
+        "event_ticker": "KXPRESSSECANNOUNCE-26AUG",
+        "markets": [
+          {
+            "close_time": "2026-09-08T03:59:00Z",
+            "rules_primary": "If Donald Trump has made any announcement (e.g., Truth Social post) naming the next White House Press Secretary (including acting/interim) before Sep 8, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXPRESSSECANNOUNCE-26AUG-SEP08",
+            "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Sep 8, 2026?"
+          },
+          {
+            "close_time": "2026-09-15T03:59:00Z",
+            "rules_primary": "If Donald Trump has made any announcement (e.g., Truth Social post) naming the next White House Press Secretary (including acting/interim) before Sep 15, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXPRESSSECANNOUNCE-26AUG-SEP15",
+            "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Sep 15, 2026?"
+          }
+        ],
+        "series_ticker": "KXPRESSSECANNOUNCE",
+        "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Sep 8, 2026?"
+      },
+      {
+        "close_time": "2026-09-07T03:59:00Z",
+        "event_ticker": "KXRANKLISTSONGTOP10-26SEP12",
+        "markets": [
+          {
+            "close_time": "2026-09-07T03:59:00Z",
+            "rules_primary": "If BE HER is Top 10 on the Billboard Hot 100  chart for the Week of Sep 12, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXRANKLISTSONGTOP10-26SEP12-BEH",
+            "title": "Will BE HER be Top 10 on the Billboard Hot 100 during the week of Sep 12, 2026"
+          }
+        ],
+        "series_ticker": "KXRANKLISTSONGTOP10",
+        "title": "Will BE HER be Top 10 on the Billboard Hot 100 during the week of Sep 12, 2026"
+      },
+      {
+        "close_time": "2026-09-12T03:59:00Z",
+        "event_ticker": "KXRNCMIDTERMSPEAK-26SEP12",
+        "markets": [
+          {
+            "close_time": "2026-09-12T03:59:00Z",
+            "rules_primary": "If Ken Paxton speaks as part of official programming at the 2026 Republican Midterm Convention, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXRNCMIDTERMSPEAK-26SEP12-KPAX",
+            "title": "Will it be confirmed that Ken Paxton speaks as part of official programming at the 2026 Republican Midterm Convention?"
+          },
+          {
+            "close_time": "2026-09-12T03:59:00Z",
+            "rules_primary": "If Susie Wiles speaks as part of official programming at the 2026 Republican Midterm Convention, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXRNCMIDTERMSPEAK-26SEP12-SWIL",
+            "title": "Will it be confirmed that Susie Wiles speaks as part of official programming at the 2026 Republican Midterm Convention?"
+          },
+          {
+            "close_time": "2026-09-12T03:59:00Z",
+            "rules_primary": "If Ted Cruz speaks as part of official programming at the 2026 Republican Midterm Convention, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXRNCMIDTERMSPEAK-26SEP12-TCRU",
+            "title": "Will it be confirmed that Ted Cruz speaks as part of official programming at the 2026 Republican Midterm Convention?"
+          }
+        ],
+        "series_ticker": "KXRNCMIDTERMSPEAK",
+        "title": "Will it be confirmed that Ken Paxton speaks as part of official programming at the 2026 Republican Midterm Convention?"
+      },
+      {
+        "close_time": "2026-09-16T10:59:00Z",
+        "event_ticker": "KXSARETAIL-26SEP16",
+        "markets": [
+          {
+            "close_time": "2026-09-16T10:59:00Z",
+            "rules_primary": "If the South Africa retail sales MoM for July 2026 is above -0.8%, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXSARETAIL-26SEP16-T-0.8",
+            "title": "Will South Africa retail sales MoM for July 2026 be above -0.8%?"
+          }
+        ],
+        "series_ticker": "KXSARETAIL",
+        "title": "Will South Africa retail sales MoM for July 2026 be above -0.8%?"
+      },
+      {
+        "close_time": "2026-09-15T14:00:00Z",
+        "event_ticker": "KXSECPRESSMENTION-26SEP15",
+        "markets": [
+          {
+            "close_time": "2026-09-15T14:00:00Z",
+            "rules_primary": "If the White House Press Secretary says Crypto / Bitcoin at the next Press Briefing by the White House Press Secretary (does not include gaggles), then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXSECPRESSMENTION-26SEP15-CRYP",
+            "title": "Will the White House Press Secretary say Crypto / Bitcoin at her next press briefing?"
+          },
+          {
+            "close_time": "2026-09-15T14:00:00Z",
+            "rules_primary": "If the White House Press Secretary says Election at the next Press Briefing by the White House Press Secretary (does not include gaggles), then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXSECPRESSMENTION-26SEP15-ELEC",
+            "title": "Will the White House Press Secretary say Election at her next press briefing?"
+          },
+          {
+            "close_time": "2026-09-15T14:00:00Z",
+            "rules_primary": "If the White House Press Secretary says Iran (5+ times) at the next Press Briefing by the White House Press Secretary (does not include gaggles), then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXSECPRESSMENTION-26SEP15-IRAN",
+            "title": "Will the White House Press Secretary say Iran (5+ times) at her next press briefing?"
+          },
+          {
+            "close_time": "2026-09-15T14:00:00Z",
+            "rules_primary": "If the White House Press Secretary says JD / Vance at the next Press Briefing by the White House Press Secretary (does not include gaggles), then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXSECPRESSMENTION-26SEP15-JD",
+            "title": "Will the White House Press Secretary say JD / Vance at her next press briefing?"
+          },
+          {
+            "close_time": "2026-09-15T14:00:00Z",
+            "rules_primary": "If the White House Press Secretary says Oil / Gas / Gasoline at the next Press Briefing by the White House Press Secretary (does not include gaggles), then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXSECPRESSMENTION-26SEP15-OIL",
+            "title": "Will the White House Press Secretary say Oil / Gas / Gasoline at her next press briefing?"
+          },
+          {
+            "close_time": "2026-09-15T14:00:00Z",
+            "rules_primary": "If the White House Press Secretary says Tariff at the next Press Briefing by the White House Press Secretary (does not include gaggles), then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXSECPRESSMENTION-26SEP15-TARI",
+            "title": "Will the White House Press Secretary say Tariff at her next press briefing?"
+          }
+        ],
+        "series_ticker": "KXSECPRESSMENTION",
+        "title": "Will the White House Press Secretary say Crypto / Bitcoin at her next press briefing?"
+      },
+      {
+        "close_time": "2026-09-15T03:59:00Z",
+        "event_ticker": "KXSOCCERTRANSFER-26SUM",
+        "markets": [
+          {
+            "close_time": "2026-09-15T03:59:00Z",
+            "rules_primary": "If Richarlison transfers out of Tottenham before Sep 15, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXSOCCERTRANSFER-26SUM-RICH",
+            "title": "Will Richarlison leave Tottenham before Sep 15, 2026?"
+          }
+        ],
+        "series_ticker": "KXSOCCERTRANSFER",
+        "title": "Will Richarlison leave Tottenham before Sep 15, 2026?"
+      },
+      {
+        "close_time": "2026-09-15T03:59:00Z",
+        "event_ticker": "KXSTARTINGQBWEEK1-W1-26SEP14-NYJ",
+        "markets": [
+          {
+            "close_time": "2026-09-15T03:59:00Z",
+            "rules_primary": "If Geno Smith is officially designated as New York J's starting quarterback for Week 1 of the Pro Football season, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXSTARTINGQBWEEK1-W1-26SEP14-NYJ-GSMI",
+            "title": "Will Geno Smith be starting quarterback for New York J in Week 1?"
+          }
+        ],
+        "series_ticker": "KXSTARTINGQBWEEK1",
+        "title": "Will Geno Smith be starting quarterback for New York J in Week 1?"
+      },
+      {
+        "close_time": "2026-09-15T03:59:00Z",
+        "event_ticker": "KXSTARTINGQBWEEK1-W1-26SEP15-ATL",
+        "markets": [
+          {
+            "close_time": "2026-09-15T03:59:00Z",
+            "rules_primary": "If Michael Penix Jr. is officially designated as Atlanta's Starting Quarterback for Week 1 of the 2026-2027 Pro Football season, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXSTARTINGQBWEEK1-W1-26SEP15-ATL-MPEN",
+            "title": "Will Michael Penix Jr. be Starting Quarterback for Atlanta in Week 1?"
+          },
+          {
+            "close_time": "2026-09-15T03:59:00Z",
+            "rules_primary": "If Tua Tagovailoa is officially designated as Atlanta's Starting Quarterback for Week 1 of the 2026-2027 Pro Football season, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXSTARTINGQBWEEK1-W1-26SEP15-ATL-TTAG",
+            "title": "Will Tua Tagovailoa be Starting Quarterback for Atlanta in Week 1?"
+          }
+        ],
+        "series_ticker": "KXSTARTINGQBWEEK1",
+        "title": "Will Michael Penix Jr. be Starting Quarterback for Atlanta in Week 1?"
+      },
+      {
+        "close_time": "2026-09-15T03:59:00Z",
+        "event_ticker": "KXSTARTINGQBWEEK1-W1-26SEP15-KC",
+        "markets": [
+          {
+            "close_time": "2026-09-15T03:59:00Z",
+            "rules_primary": "If Justin Fields is officially designated as Kansas City's starting quarterback for Week 1 of the 2026-27 Pro Football season, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXSTARTINGQBWEEK1-W1-26SEP15-KC-JFIE",
+            "title": "Will Justin Fields be starting quarterback for Kansas City in Week 1?"
+          },
+          {
+            "close_time": "2026-09-15T03:59:00Z",
+            "rules_primary": "If Patrick Mahomes is officially designated as Kansas City's starting quarterback for Week 1 of the 2026-27 Pro Football season, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXSTARTINGQBWEEK1-W1-26SEP15-KC-PMAH",
+            "title": "Will Patrick Mahomes be starting quarterback for Kansas City in Week 1?"
+          }
+        ],
+        "series_ticker": "KXSTARTINGQBWEEK1",
+        "title": "Will Justin Fields be starting quarterback for Kansas City in Week 1?"
+      },
+      {
+        "close_time": "2026-09-08T03:59:00Z",
+        "event_ticker": "KXSTEAMTOPSELLER-26SEP08",
+        "markets": [
+          {
+            "close_time": "2026-09-08T03:59:00Z",
+            "rules_primary": "If WARDOGS is ranked #1 on Steam's USA Weekly Top Sellers - Top 100 products by revenue list for Sep 1 - Sep 8, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXSTEAMTOPSELLER-26SEP08-WAR",
+            "title": "Will WARDOGS be #1 on Steam's Weekly Top Sellers - Top 100 products by revenue list for Sep 1 - Sep 8, 2026?"
+          }
+        ],
+        "series_ticker": "KXSTEAMTOPSELLER",
+        "title": "Will WARDOGS be #1 on Steam's Weekly Top Sellers - Top 100 products by revenue list for Sep 1 - Sep 8, 2026?"
+      },
+      {
+        "close_time": "2026-09-18T21:59:00Z",
+        "event_ticker": "KXSWEDEN7VOTE-26SEP13",
+        "markets": [
+          {
+            "close_time": "2026-09-18T21:59:00Z",
+            "rules_primary": "If Centre Party is the sole party with the seventh-highest nationwide valid-vote share in the Swedish Election Authority's final certified result for the 2026 Riksdag election, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXSWEDEN7VOTE-26SEP13-CENTRE",
+            "title": "Will Centre Party be the sole party with the seventh-highest nationwide valid-vote share in the Swedish Election Authority's final certified result for the 2026 Riksdag election?"
+          },
+          {
+            "close_time": "2026-09-18T21:59:00Z",
+            "rules_primary": "If Green Party is the sole party with the seventh-highest nationwide valid-vote share in the Swedish Election Authority's final certified result for the 2026 Riksdag election, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXSWEDEN7VOTE-26SEP13-GREEN",
+            "title": "Will Green Party be the sole party with the seventh-highest nationwide valid-vote share in the Swedish Election Authority's final certified result for the 2026 Riksdag election?"
+          },
+          {
+            "close_time": "2026-09-18T21:59:00Z",
+            "rules_primary": "If Left Party is the sole party with the seventh-highest nationwide valid-vote share in the Swedish Election Authority's final certified result for the 2026 Riksdag election, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXSWEDEN7VOTE-26SEP13-LEFT",
+            "title": "Will Left Party be the sole party with the seventh-highest nationwide valid-vote share in the Swedish Election Authority's final certified result for the 2026 Riksdag election?"
+          }
+        ],
+        "series_ticker": "KXSWEDEN7VOTE",
+        "title": "Will Centre Party be the sole party with the seventh-highest nationwide valid-vote share in the Swedish Election Authority's final certified result for the 2026 Riksdag election?"
+      },
+      {
+        "close_time": "2026-09-06T14:00:00Z",
+        "event_ticker": "KXTRUMPACT-26AUG30",
+        "markets": [
+          {
+            "close_time": "2026-09-06T14:00:00Z",
+            "rules_primary": "If Donald Trump has taken at least 3 presidential actions from Aug 30, 2026 through Sep 5, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Sep 6, 2026), then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXTRUMPACT-26AUG30-T3",
+            "title": "Will there be at least 3 presidential actions in the week of Aug 30, 2026?"
+          },
+          {
+            "close_time": "2026-09-06T14:00:00Z",
+            "rules_primary": "If Donald Trump has taken at least 4 presidential actions from Aug 30, 2026 through Sep 5, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Sep 6, 2026), then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXTRUMPACT-26AUG30-T4",
+            "title": "Will there be at least 4 presidential actions in the week of Aug 30, 2026?"
+          }
+        ],
+        "series_ticker": "KXTRUMPACT",
+        "title": "Will there be at least 3 presidential actions in the week of Aug 30, 2026?"
+      },
+      {
+        "close_time": "2026-09-05T16:59:00Z",
+        "event_ticker": "KXTRUMPAPPROVE-26SEP05",
+        "markets": [
+          {
+            "close_time": "2026-09-05T16:59:00Z",
+            "rules_primary": "If Trump's RCP approval average is above 40.1% at exactly 1:00 PM ET on Sep 5, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXTRUMPAPPROVE-26SEP05-A40.1",
+            "title": "Will Trump's RCP approval average be above 40.1 on Sep 5, 2026?"
+          }
+        ],
+        "series_ticker": "KXTRUMPAPPROVE",
+        "title": "Will Trump's RCP approval average be above 40.1 on Sep 5, 2026?"
+      },
+      {
+        "close_time": "2026-09-07T14:00:00Z",
+        "event_ticker": "KXTRUMPPHOTO-26SEP06",
+        "markets": [
+          {
+            "close_time": "2026-09-07T14:00:00Z",
+            "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Aug 31, 2026 and Sep 6, 2026 is exactly 4, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXTRUMPPHOTO-26SEP06-4",
+            "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 4 between Aug 31, 2026 and Sep 6, 2026?"
+          },
+          {
+            "close_time": "2026-09-07T14:00:00Z",
+            "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Aug 31, 2026 and Sep 6, 2026 is exactly 5, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXTRUMPPHOTO-26SEP06-5",
+            "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 5 between Aug 31, 2026 and Sep 6, 2026?"
+          }
+        ],
+        "series_ticker": "KXTRUMPPHOTO",
+        "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 4 between Aug 31, 2026 and Sep 6, 2026?"
+      }
+    ],
+    "payload_sha256": "8a820737950a3552e29c9631559081e1c7fd2bb1e5f5811ea372845cac6bf02a",
+    "rendered_prompt": "<!--\ninsider_bias \u2014 stage 2 deep-analysis prompt. Part of the versioned decision\nprocedure: editing this file changes what the theory decides, so it bumps the\ntheory version exactly like a threshold change would.\n\nRecorded per run in `judgment_runs` by sha256. Placeholders in {braces} are\nsubstituted at call time.\n-->\n\nYou are the deep-analysis stage of a prediction-market research theory called `insider_bias`. Read the input file, judge every event in it, and return structured verdicts.\n\n**Input:** `C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\insider_bias\\insider_judgment\\runs\\insider-refresh-20260905T054912Z\\input-02.json` \u2014 16 Kalshi events, 30 individual markets. Today is **2026-09-05**.\n\n# The thesis you are testing\n\nSome markets resolve on facts that a **specific, identifiable group of humans already knows** while the public does not \u2014 a pre-taped show's production crew, a board that has already voted, a company that knows its own filing date, a reporter's sourced-but-unpublished story. Where that private knowledge is real, the public price is still pricing public uncertainty, and there is room.\n\nThe question is **not** \"will this resolve YES?\" and **not** \"can I forecast this well?\" It is: **does a specific group already know the answer right now?**\n\nSay YES-ish for: pre-taped competition TV (finales, eliminations, reunions), award winners after a small body has voted, product launches and release dates known to supply chain and press, executive hires and firings, M&A and IPO announcements awaiting only a date, cabinet and judicial appointments, pardons and executive orders with circulated drafts, coaching hires, and anything resolving on a discretionary decision a small group has already made but not announced.\n\nSay NO-ish for: live sports, any future price, weather, scheduled economic indicators computed later from data not yet collected, live election-day outcomes, random draws, and anything resolving on the aggregate behavior of many independent people.\n\n**Pre-taped competition TV is the strongest sub-case and deserves extra weight.** A pre-taped show has a known taping date, a large crew, and an active leak community \u2014 a far more concrete informed group than \"reporters may have sources.\" Weight it above a flat reading of the list.\n\n# Critical constraints\n\n**You have deliberately NOT been given prices, spreads, or which side is favored.** This is intentional and load-bearing. Do not try to find, infer, or reason about the market price. Judge the thesis on its merits; price is applied mechanically afterwards.\n\n**Never state or estimate a probability.** Do not write \"about 80%\", \"likely ~70%\", or any number expressing your belief about the outcome. An LLM-introspected probability is mostly an anchor and this system explicitly refuses them. Your output is a **classification and an ordinal bucket**, nothing more.\n\n**Read the resolution rules, not just the title.** A recurring real edge \u2014 and a recurring trap \u2014 is rules that diverge from what the headline implies. Flag every divergence you find.\n\n# Confidence buckets \u2014 pick exactly one per event\n\n- `strong` \u2014 a specific *named* group already knows: a pre-taped show with a taping date already past, a board that has voted, a signed deal awaiting only announcement, a company that has already made and internally communicated the decision.\n- `moderate` \u2014 a plausible informed group exists but is less specific: \"reporters likely have sources\", \"the company knows its own roadmap but may not have decided\".\n- `weak` \u2014 the thesis is a stretch; no concrete group identified, or the outcome depends on a decision nobody has made yet.\n\n**Warning signs that must lower the bucket:**\n- a vague insider story (\"someone probably knows\") rather than a named group\n- resolution rules that differ from what the title implies\n- a resolution source that may not publish before the close time\n- the outcome depends on a decision that genuinely has not been made yet \u2014 nobody can know an unmade decision, however small the group is\n- the window is long and the event could happen at any point in it (that is a rate question, not a knowledge question)\n\n# Research\n\nYou may use WebSearch/WebFetch (load them via ToolSearch first). Use it where it decides the bucket \u2014 is this show pre-taped and has taping already happened, has this departure already been reported, is this filing already public, has this product already been announced. **Do not look up market prices or betting odds on any site.** If a search would only sharpen a forecast rather than establish whether someone already knows, skip it and save the time.\n\nBe efficient: batch your thinking, research only the events where it changes the answer, and do not spend more than a few searches on any one event.\n\n# Output\n\nWrite your verdicts to `C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\insider_bias\\insider_judgment\\runs\\insider-refresh-20260905T054912Z\\verdicts-02-retry.json` as a JSON array, one object per **event** (16 objects), each:\n\n```json\n{\n  \"event_ticker\": \"...\",\n  \"insider_group\": \"the specific group who would already know, or null if none\",\n  \"bucket\": \"strong|moderate|weak\",\n  \"rules_diverge_from_title\": true/false,\n  \"rules_note\": \"what diverges, or null\",\n  \"resolution_source_risk\": \"can the source miss the close? brief, or null\",\n  \"rationale\": \"2-4 sentences. What group knows, how you know they know, what lowers it.\",\n  \"researched\": true/false\n}\n```\n\nEvery event in the input must appear exactly once in the output. Return to me only: the count written, the bucket distribution, and any event where you found a rules/title divergence. Under 15 lines.\n",
+    "requested_effort": "high",
+    "requested_model": "gpt-5.6-sol",
+    "requested_web_search": true,
+    "run_id": "insider-refresh-20260905T054912Z",
+    "run_mode": "live",
+    "stage": "analysis",
+    "theory_id": "insider_judgment",
+    "theory_version": 6
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,162 @@
+[
+  {
+    "event_ticker": "KXAGTELIMINATION-26SEP10",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": null,
+    "rationale": "Season 21 is in its live-show phase, with eliminations determined by viewer voting rather than by an already completed taping. Production staff may know the running order and interim logistics, but nobody can know the final elimination before the live voting process finishes.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXALBUMSTREAMS-IKN26SEP10",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "The bare rules do not identify the chart or data publisher, so publication timing before the close is uncertain.",
+    "rationale": "The label, distributor, and streaming platforms can observe early totals, but the threshold depends on listener behavior across a tracking week that is still in progress. No specific group can already know the final cumulative stream count.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXALBUMSTREAMS-PRI26SEP10",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "The bare rules do not identify the chart or data publisher, so publication timing before the close is uncertain.",
+    "rationale": "The label, distributor, and streaming platforms can observe early totals, but the threshold depends on listener behavior across a tracking week that is still in progress. No specific group can already know the final cumulative stream count.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXALBUMSTREAMS-THE26SEP10",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "The bare rules do not identify the chart or data publisher, so publication timing before the close is uncertain.",
+    "rationale": "The label, distributor, and streaming platforms can observe early totals, but the threshold depends on listener behavior across a tracking week that is still in progress. No specific group can already know the final cumulative stream count.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXBIGBROTHERELIMINATION-26SEP10",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": null,
+    "rationale": "CBS describes the season's evictions as live house votes, and the September 10 episode is a live eviction. Houseguests may know current intentions, but competitions, strategy, and the final votes remain unsettled, so there is no already-known taped result.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXCFBUNRANKEDUPSET-26W1",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": null,
+    "rationale": "This resolves on the outcomes of future live football games. Teams possess private tactical and injury information, but no identifiable group already knows how many unranked teams will win.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXDOTPLOTPUB-26",
+    "insider_group": "FOMC participants and Federal Reserve Board publication and communications staff",
+    "bucket": "strong",
+    "rules_diverge_from_title": true,
+    "rules_note": "The title asks only whether the Fed publishes a dot plot, while the rules also require approved-source confirmation after issuance and before September 17.",
+    "resolution_source_risk": "The official issuance is tied to the September meeting, but the rules add a short approved-source confirmation deadline that the title does not disclose.",
+    "rationale": "The Federal Reserve's official calendar identifies the September 15-16 meeting as one with projections, and the Fed says the Summary of Economic Projections includes participants' appropriate-rate projections. FOMC participants and the staff preparing the release therefore know the publication plan before the market closes.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXDWTSELIMINATION-26SEP17",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": null,
+    "rationale": "ABC says the September 15-16 two-night premiere will be simulcast live. The elimination depends on performances, judging, and any live voting mechanics, so the production crew does not already possess a pre-taped outcome.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXENDORSEMAMDANI-26SEP15",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": null,
+    "rationale": "Recent reporting documents Mamdani's New York endorsements but does not establish an already-decided endorsement in an out-of-state primary. Mamdani and his advisers could privately plan one, but without evidence of a pending decision that is only a vague insider story, and the act may never be chosen.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXFEDCOMBO-26SEPB",
+    "insider_group": "Voting FOMC participants and senior Federal Reserve monetary-policy staff",
+    "bucket": "moderate",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": null,
+    "rationale": "FOMC participants and senior policy staff have private information about the developing rate decision and expected vote coalition. The meeting and formal vote are still ahead, so the exact conjunction of a hike and no dissents is not yet fixed, which keeps this below strong.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXFEDDISSENT-26SEP",
+    "insider_group": "Voting FOMC participants, the Chair, and senior Federal Reserve monetary-policy staff",
+    "bucket": "moderate",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": null,
+    "rationale": "Each voting participant knows their current inclination, while the Chair and senior staff are likely to know the internal balance of views. The formal votes have not occurred and individual choices can change during deliberations, so nobody yet knows the exact final set of dissenters.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXFEDMENTION-26SEP",
+    "insider_group": "The Federal Reserve Chair and the Chair's speechwriting and communications staff",
+    "bucket": "moderate",
+    "rules_diverge_from_title": true,
+    "rules_note": "The titles name Kevin Warsh, while the rules resolve on whatever person is Chair; the rules also expressly include introductory remarks and live Q+A.",
+    "resolution_source_risk": null,
+    "rationale": "The Chair and speechwriting staff may already know which listed terms appear in prepared introductory remarks. The rules also cover live Q+A, whose questions and responses are not fully scriptable, and the prepared draft can still change before the press conference.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXFOMCDISSENTCOUNT-26SEP",
+    "insider_group": "Voting FOMC participants, the Chair, and senior Federal Reserve monetary-policy staff",
+    "bucket": "moderate",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": null,
+    "rationale": "FOMC participants and senior staff have private information about members' current voting intentions and the emerging consensus. The exact count depends on a formal vote that has not happened and can still change during the meeting, so the group does not yet have a settled answer.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXGEOGUESSR-26",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": null,
+    "rationale": "The official championship page shows a live tournament running through September 5, with playoff and final results still produced on stage. Players and organizers know the bracket and match conditions, but no group already knows the winner of unfinished live competition.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXHMONTH-26AUG",
+    "insider_group": "NASA GISS and NOAA NCEI global-temperature analysis teams",
+    "bucket": "moderate",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": null,
+    "rationale": "August is complete, and NASA GISS and NOAA NCEI have a coordinated August analysis release scheduled for September 10, before the market closes. Those teams are processing a finished observation month and plausibly have an internal preliminary result, but the public schedule alone does not prove that the final record comparison is already locked.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXHMONTHRANGE-26AUG",
+    "insider_group": "NASA GISS and NOAA NCEI global-temperature analysis teams",
+    "bucket": "moderate",
+    "rules_diverge_from_title": true,
+    "rules_note": "The title says only 'temperature increase,' while the rules require the August 2026 Land-Ocean Temperature Index to exceed the specific 1.30 threshold.",
+    "resolution_source_risk": null,
+    "rationale": "August is complete, and NASA GISS and NOAA NCEI have a coordinated August analysis release scheduled for September 10, before the market closes. Their analysis teams plausibly have an internal preliminary index value, but the final published Land-Ocean Temperature Index may still be under processing or quality review.",
+    "researched": true
+  }
+]

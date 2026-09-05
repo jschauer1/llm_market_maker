@@ -1,0 +1,1 @@
+Batch 02 disclosed that a Billboard publication-timing search unexpectedly returned a Coinbase prediction-market price in a snippet. The judge reported not using it. Original output and receipt are preserved. This batch is excluded from ingestion and is being rerun with a fresh price-blind judge; batches 01 and 03 are unaffected.

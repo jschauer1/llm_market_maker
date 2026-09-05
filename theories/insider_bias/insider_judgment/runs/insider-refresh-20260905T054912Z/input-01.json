@@ -1,0 +1,536 @@
+[
+  {
+    "close_time": "2026-09-10T03:59:00Z",
+    "event_ticker": "KXAGTELIMINATION-26SEP10",
+    "markets": [
+      {
+        "close_time": "2026-09-10T03:59:00Z",
+        "rules_primary": "If Akira is officially eliminated from America's Got Talent Season 21 before Sep 10, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXAGTELIMINATION-26SEP10-AKI",
+        "title": "Will Akira be eliminated from America's Got Talent Season 21 before Sep 10, 2026?"
+      },
+      {
+        "close_time": "2026-09-10T03:59:00Z",
+        "rules_primary": "If Bird and Byron is officially eliminated from America's Got Talent Season 21 before Sep 10, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXAGTELIMINATION-26SEP10-BIR",
+        "title": "Will Bird and Byron be eliminated from America's Got Talent Season 21 before Sep 10, 2026?"
+      },
+      {
+        "close_time": "2026-09-10T03:59:00Z",
+        "rules_primary": "If Cameron Logsdon is officially eliminated from America's Got Talent Season 21 before Sep 10, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXAGTELIMINATION-26SEP10-CAM",
+        "title": "Will Cameron Logsdon be eliminated from America's Got Talent Season 21 before Sep 10, 2026?"
+      },
+      {
+        "close_time": "2026-09-10T03:59:00Z",
+        "rules_primary": "If Jesse Joe is officially eliminated from America's Got Talent Season 21 before Sep 10, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXAGTELIMINATION-26SEP10-JES",
+        "title": "Will Jesse Joe be eliminated from America's Got Talent Season 21 before Sep 10, 2026?"
+      },
+      {
+        "close_time": "2026-09-10T03:59:00Z",
+        "rules_primary": "If Tyrone and Margo is officially eliminated from America's Got Talent Season 21 before Sep 10, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXAGTELIMINATION-26SEP10-TYR",
+        "title": "Will Tyrone and Margo be eliminated from America's Got Talent Season 21 before Sep 10, 2026?"
+      }
+    ],
+    "series_ticker": "KXAGTELIMINATION",
+    "title": "Will Akira be eliminated from America's Got Talent Season 21 before Sep 10, 2026?"
+  },
+  {
+    "close_time": "2026-09-13T14:00:00Z",
+    "event_ticker": "KXALBUMSTREAMS-IKN26SEP10",
+    "markets": [
+      {
+        "close_time": "2026-09-13T14:00:00Z",
+        "rules_primary": "If I Know Too Much by Ellie Goulding has above 10M streams during the September 04, 2026 - September 10, 2026, tracking week, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXALBUMSTREAMS-IKN26SEP10-10.0M",
+        "title": "Will I Know Too Much by Ellie Goulding have above 10000000 streams during the September 04, 2026 - September 10, 2026 tracking week?"
+      }
+    ],
+    "series_ticker": "KXALBUMSTREAMS",
+    "title": "Will I Know Too Much by Ellie Goulding have above 10000000 streams during the September 04, 2026 - September 10, 2026 tracking week?"
+  },
+  {
+    "close_time": "2026-09-13T14:00:00Z",
+    "event_ticker": "KXALBUMSTREAMS-PRI26SEP10",
+    "markets": [
+      {
+        "close_time": "2026-09-13T14:00:00Z",
+        "rules_primary": "If PRIMA by AD\u00c9LA has above 7.5M streams during the September 04, 2026 - September 10, 2026, tracking week, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXALBUMSTREAMS-PRI26SEP10-7.5M",
+        "title": "Will PRIMA by AD\u00c9LA have above 7500000 streams during the September 04, 2026 - September 10, 2026 tracking week?"
+      }
+    ],
+    "series_ticker": "KXALBUMSTREAMS",
+    "title": "Will PRIMA by AD\u00c9LA have above 7500000 streams during the September 04, 2026 - September 10, 2026 tracking week?"
+  },
+  {
+    "close_time": "2026-09-13T14:00:00Z",
+    "event_ticker": "KXALBUMSTREAMS-THE26SEP10",
+    "markets": [
+      {
+        "close_time": "2026-09-13T14:00:00Z",
+        "rules_primary": "If The Phase by MONSTA X has above 7.5M streams during the September 04, 2026 - September 10, 2026, tracking week, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXALBUMSTREAMS-THE26SEP10-7.5M",
+        "title": "Will The Phase by MONSTA X have above 7500000 streams during the September 04, 2026 - September 10, 2026 tracking week?"
+      }
+    ],
+    "series_ticker": "KXALBUMSTREAMS",
+    "title": "Will The Phase by MONSTA X have above 7500000 streams during the September 04, 2026 - September 10, 2026 tracking week?"
+  },
+  {
+    "close_time": "2026-09-11T03:59:00Z",
+    "event_ticker": "KXBIGBROTHERELIMINATION-26SEP10",
+    "markets": [
+      {
+        "close_time": "2026-09-11T03:59:00Z",
+        "rules_primary": "If Angela Murray is officially eliminated from Big Brother Season 28 Before Sep 11, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXBIGBROTHERELIMINATION-26SEP10-ANG",
+        "title": "Will Angela Murray be eliminated from Big Brother Season 28 before Sep 11, 2026?"
+      },
+      {
+        "close_time": "2026-09-11T03:59:00Z",
+        "rules_primary": "If Rick Devens is officially eliminated from Big Brother Season 28 Before Sep 11, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXBIGBROTHERELIMINATION-26SEP10-RIC",
+        "title": "Will Rick Devens be eliminated from Big Brother Season 28 before Sep 11, 2026?"
+      },
+      {
+        "close_time": "2026-09-11T03:59:00Z",
+        "rules_primary": "If Yash Patel is officially eliminated from Big Brother Season 28 Before Sep 11, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXBIGBROTHERELIMINATION-26SEP10-YAS",
+        "title": "Will Yash Patel be eliminated from Big Brother Season 28 before Sep 11, 2026?"
+      }
+    ],
+    "series_ticker": "KXBIGBROTHERELIMINATION",
+    "title": "Will Angela Murray be eliminated from Big Brother Season 28 before Sep 11, 2026?"
+  },
+  {
+    "close_time": "2026-09-15T14:00:00Z",
+    "event_ticker": "KXCFBUNRANKEDUPSET-26W1",
+    "markets": [
+      {
+        "close_time": "2026-09-15T14:00:00Z",
+        "rules_primary": "If at least 1 unranked team wins against an AP Top 25 team in Week 1 of the 2026-27 college football season, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXCFBUNRANKEDUPSET-26W1-1",
+        "title": "Will at least 1 unranked team win against an AP Top 25 team in Week 1 of the 2026-27 college football season?"
+      },
+      {
+        "close_time": "2026-09-15T14:00:00Z",
+        "rules_primary": "If at least 2 unranked teams win against an AP Top 25 team in Week 1 of the 2026-27 college football season, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXCFBUNRANKEDUPSET-26W1-2",
+        "title": "Will at least 2 unranked teams win against an AP Top 25 team in Week 1 of the 2026-27 college football season?"
+      },
+      {
+        "close_time": "2026-09-15T14:00:00Z",
+        "rules_primary": "If at least 3 unranked teams win against an AP Top 25 team in Week 1 of the 2026-27 college football season, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXCFBUNRANKEDUPSET-26W1-3",
+        "title": "Will at least 3 unranked teams win against an AP Top 25 team in Week 1 of the 2026-27 college football season?"
+      }
+    ],
+    "series_ticker": "KXCFBUNRANKEDUPSET",
+    "title": "Will at least 1 unranked team win against an AP Top 25 team in Week 1 of the 2026-27 college football season?"
+  },
+  {
+    "close_time": "2026-09-16T17:59:00Z",
+    "event_ticker": "KXDOTPLOTPUB-26",
+    "markets": [
+      {
+        "close_time": "2026-09-16T17:59:00Z",
+        "rules_primary": "If the Federal Reserve publishing a dot plot for its September 2026 Summary of Economic Projections is confirmed by any of the Source Agencies after Issuance and before Sep 17, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXDOTPLOTPUB-26-DOT",
+        "title": "Will the Federal Reserve publish a dot plot for its September 2026 Summary of Economic Projections?"
+      }
+    ],
+    "series_ticker": "KXDOTPLOTPUB",
+    "title": "Will the Federal Reserve publish a dot plot for its September 2026 Summary of Economic Projections?"
+  },
+  {
+    "close_time": "2026-09-17T03:59:00Z",
+    "event_ticker": "KXDWTSELIMINATION-26SEP17",
+    "markets": [
+      {
+        "close_time": "2026-09-17T03:59:00Z",
+        "rules_primary": "If Conner Leavitt and their partner are officially eliminated from Dancing with the Stars Season 35 before Sep 17, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXDWTSELIMINATION-26SEP17-CLEV",
+        "title": "Will Conner Leavitt and their partner be eliminated from Dancing with the Stars Season 35 before Sep 17, 2026?"
+      },
+      {
+        "close_time": "2026-09-17T03:59:00Z",
+        "rules_primary": "If Connor Wood and their partner are officially eliminated from Dancing with the Stars Season 35 before Sep 17, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXDWTSELIMINATION-26SEP17-CWOO",
+        "title": "Will Connor Wood and their partner be eliminated from Dancing with the Stars Season 35 before Sep 17, 2026?"
+      },
+      {
+        "close_time": "2026-09-17T03:59:00Z",
+        "rules_primary": "If Giada De Laurentiis and their partner are officially eliminated from Dancing with the Stars Season 35 before Sep 17, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXDWTSELIMINATION-26SEP17-GDEL",
+        "title": "Will Giada De Laurentiis and their partner be eliminated from Dancing with the Stars Season 35 before Sep 17, 2026?"
+      },
+      {
+        "close_time": "2026-09-17T03:59:00Z",
+        "rules_primary": "If Guillermo Rodriguez and their partner are officially eliminated from Dancing with the Stars Season 35 before Sep 17, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXDWTSELIMINATION-26SEP17-GROD",
+        "title": "Will Guillermo Rodriguez and their partner be eliminated from Dancing with the Stars Season 35 before Sep 17, 2026?"
+      },
+      {
+        "close_time": "2026-09-17T03:59:00Z",
+        "rules_primary": "If Tyler Cameron and their partner are officially eliminated from Dancing with the Stars Season 35 before Sep 17, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXDWTSELIMINATION-26SEP17-TCAM",
+        "title": "Will Tyler Cameron and their partner be eliminated from Dancing with the Stars Season 35 before Sep 17, 2026?"
+      }
+    ],
+    "series_ticker": "KXDWTSELIMINATION",
+    "title": "Will Conner Leavitt and their partner be eliminated from Dancing with the Stars Season 35 before Sep 17, 2026?"
+  },
+  {
+    "close_time": "2026-09-15T14:00:00Z",
+    "event_ticker": "KXENDORSEMAMDANI-26SEP15",
+    "markets": [
+      {
+        "close_time": "2026-09-15T14:00:00Z",
+        "rules_primary": "If Zohran Mamdani publicly endorses any candidate in any 2026 primary election for public office whose jurisdiction is outside of New York State before Sep 15, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXENDORSEMAMDANI-26SEP15",
+        "title": "Will Zohran Mamdani endorse any candidate in any 2026 primary election for public office whose jurisdiction is outside of New York State before Sep 15, 2026?"
+      }
+    ],
+    "series_ticker": "KXENDORSEMAMDANI",
+    "title": "Will Zohran Mamdani endorse any candidate in any 2026 primary election for public office whose jurisdiction is outside of New York State before Sep 15, 2026?"
+  },
+  {
+    "close_time": "2026-09-16T17:55:00Z",
+    "event_ticker": "KXFEDCOMBO-26SEPB",
+    "markets": [
+      {
+        "close_time": "2026-09-16T17:55:00Z",
+        "rules_primary": "If ALL of the following occur for Sep 2026: Federal Funds Rate Decision: 25bp hike, Dissents: 0, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDCOMBO-26SEPB-25H-0",
+        "title": "Will Federal Funds Rate Decision be 25bp hike AND Dissents be 0 for Sep 2026?"
+      }
+    ],
+    "series_ticker": "KXFEDCOMBO",
+    "title": "Will Federal Funds Rate Decision be 25bp hike AND Dissents be 0 for Sep 2026?"
+  },
+  {
+    "close_time": "2026-09-16T17:59:00Z",
+    "event_ticker": "KXFEDDISSENT-26SEP",
+    "markets": [
+      {
+        "close_time": "2026-09-16T17:59:00Z",
+        "rules_primary": "If Anna Paulson formally dissented at the September 2026 FOMC meeting, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDDISSENT-26SEP-ANNA",
+        "title": "Who will dissent at the September 2026 FOMC meeting?"
+      },
+      {
+        "close_time": "2026-09-16T17:59:00Z",
+        "rules_primary": "If Christopher Waller formally dissented at the September 2026 FOMC meeting, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDDISSENT-26SEP-CHRI",
+        "title": "Who will dissent at the September 2026 FOMC meeting?"
+      },
+      {
+        "close_time": "2026-09-16T17:59:00Z",
+        "rules_primary": "If John Williams formally dissented at the September 2026 FOMC meeting, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDDISSENT-26SEP-JOHN",
+        "title": "Who will dissent at the September 2026 FOMC meeting?"
+      },
+      {
+        "close_time": "2026-09-16T17:59:00Z",
+        "rules_primary": "If Lisa Cook formally dissented at the September 2026 FOMC meeting, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDDISSENT-26SEP-LISA",
+        "title": "Who will dissent at the September 2026 FOMC meeting?"
+      },
+      {
+        "close_time": "2026-09-16T17:59:00Z",
+        "rules_primary": "If Michael Barr formally dissented at the September 2026 FOMC meeting, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDDISSENT-26SEP-MBAR",
+        "title": "Who will dissent at the September 2026 FOMC meeting?"
+      },
+      {
+        "close_time": "2026-09-16T17:59:00Z",
+        "rules_primary": "If Michelle Bowman formally dissented at the September 2026 FOMC meeting, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDDISSENT-26SEP-MICH",
+        "title": "Who will dissent at the September 2026 FOMC meeting?"
+      },
+      {
+        "close_time": "2026-09-16T17:59:00Z",
+        "rules_primary": "If Philip Jefferson formally dissented at the September 2026 FOMC meeting, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDDISSENT-26SEP-PHIL",
+        "title": "Who will dissent at the September 2026 FOMC meeting?"
+      }
+    ],
+    "series_ticker": "KXFEDDISSENT",
+    "title": "Who will dissent at the September 2026 FOMC meeting?"
+  },
+  {
+    "close_time": "2026-09-17T14:00:00Z",
+    "event_ticker": "KXFEDMENTION-26SEP",
+    "markets": [
+      {
+        "close_time": "2026-09-17T14:00:00Z",
+        "rules_primary": "If the Chair of the Federal Reserve says Bitcoin at his Sep 2026 post-FOMC meeting introductory remarks and Q+A, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDMENTION-26SEP-BITC",
+        "title": "Will Kevin Warsh say Bitcoin at his Sep 2026 press conference?"
+      },
+      {
+        "close_time": "2026-09-17T14:00:00Z",
+        "rules_primary": "If the Chair of the Federal Reserve says Central Bank at his Sep 2026 post-FOMC meeting introductory remarks and Q+A, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDMENTION-26SEP-CENT",
+        "title": "Will Kevin Warsh say Central Bank at his Sep 2026 press conference?"
+      },
+      {
+        "close_time": "2026-09-17T14:00:00Z",
+        "rules_primary": "If the Chair of the Federal Reserve says Consumer Confidence at his Sep 2026 post-FOMC meeting introductory remarks and Q+A, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDMENTION-26SEP-CONS",
+        "title": "Will Kevin Warsh say Consumer Confidence at his Sep 2026 press conference?"
+      },
+      {
+        "close_time": "2026-09-17T14:00:00Z",
+        "rules_primary": "If the Chair of the Federal Reserve says Crypto / Cryptocurrency at his Sep 2026 post-FOMC meeting introductory remarks and Q+A, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDMENTION-26SEP-CRYP",
+        "title": "Will Kevin Warsh say Crypto / Cryptocurrency at his Sep 2026 press conference?"
+      },
+      {
+        "close_time": "2026-09-17T14:00:00Z",
+        "rules_primary": "If the Chair of the Federal Reserve says Egg at his Sep 2026 post-FOMC meeting introductory remarks and Q+A, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDMENTION-26SEP-EGG",
+        "title": "Will Kevin Warsh say Egg at his Sep 2026 press conference?"
+      },
+      {
+        "close_time": "2026-09-17T14:00:00Z",
+        "rules_primary": "If the Chair of the Federal Reserve says Family Fight / Family Feud at his Sep 2026 post-FOMC meeting introductory remarks and Q+A, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDMENTION-26SEP-FAMI",
+        "title": "Will Kevin Warsh say Family Fight / Family Feud at his Sep 2026 press conference?"
+      },
+      {
+        "close_time": "2026-09-17T14:00:00Z",
+        "rules_primary": "If the Chair of the Federal Reserve says Gold at his Sep 2026 post-FOMC meeting introductory remarks and Q+A, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDMENTION-26SEP-GOLD",
+        "title": "Will Kevin Warsh say Gold at his Sep 2026 press conference?"
+      },
+      {
+        "close_time": "2026-09-17T14:00:00Z",
+        "rules_primary": "If the Chair of the Federal Reserve says Good Afternoon at his Sep 2026 post-FOMC meeting introductory remarks and Q+A, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDMENTION-26SEP-GOOD",
+        "title": "Will Kevin Warsh say Good Afternoon at his Sep 2026 press conference?"
+      },
+      {
+        "close_time": "2026-09-17T14:00:00Z",
+        "rules_primary": "If the Chair of the Federal Reserve says Good Day at his Sep 2026 post-FOMC meeting introductory remarks and Q+A, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDMENTION-26SEP-GOODD",
+        "title": "Will Kevin Warsh say Good Day at his Sep 2026 press conference?"
+      },
+      {
+        "close_time": "2026-09-17T14:00:00Z",
+        "rules_primary": "If the Chair of the Federal Reserve says Layoff at his Sep 2026 post-FOMC meeting introductory remarks and Q+A, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDMENTION-26SEP-LAYO",
+        "title": "Will Kevin Warsh say Layoff at his Sep 2026 press conference?"
+      },
+      {
+        "close_time": "2026-09-17T14:00:00Z",
+        "rules_primary": "If the Chair of the Federal Reserve says National Debt at his Sep 2026 post-FOMC meeting introductory remarks and Q+A, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDMENTION-26SEP-NATI",
+        "title": "Will Kevin Warsh say National Debt at his Sep 2026 press conference?"
+      },
+      {
+        "close_time": "2026-09-17T14:00:00Z",
+        "rules_primary": "If the Chair of the Federal Reserve says President at his Sep 2026 post-FOMC meeting introductory remarks and Q+A, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDMENTION-26SEP-PRES",
+        "title": "Will Kevin Warsh say President at his Sep 2026 press conference?"
+      },
+      {
+        "close_time": "2026-09-17T14:00:00Z",
+        "rules_primary": "If the Chair of the Federal Reserve says Probability at his Sep 2026 post-FOMC meeting introductory remarks and Q+A, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDMENTION-26SEP-PROB",
+        "title": "Will Kevin Warsh say Probability at his Sep 2026 press conference?"
+      },
+      {
+        "close_time": "2026-09-17T14:00:00Z",
+        "rules_primary": "If the Chair of the Federal Reserve says Projection at his Sep 2026 post-FOMC meeting introductory remarks and Q+A, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDMENTION-26SEP-PROJ",
+        "title": "Will Kevin Warsh say Projection at his Sep 2026 press conference?"
+      },
+      {
+        "close_time": "2026-09-17T14:00:00Z",
+        "rules_primary": "If the Chair of the Federal Reserve says Softening at his Sep 2026 post-FOMC meeting introductory remarks and Q+A, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDMENTION-26SEP-SOFT",
+        "title": "Will Kevin Warsh say Softening at his Sep 2026 press conference?"
+      },
+      {
+        "close_time": "2026-09-17T14:00:00Z",
+        "rules_primary": "If the Chair of the Federal Reserve says Trump at his Sep 2026 post-FOMC meeting introductory remarks and Q+A, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDMENTION-26SEP-TRUM",
+        "title": "Will Kevin Warsh say Trump at his Sep 2026 press conference?"
+      },
+      {
+        "close_time": "2026-09-17T14:00:00Z",
+        "rules_primary": "If the Chair of the Federal Reserve says Unchanged at his Sep 2026 post-FOMC meeting introductory remarks and Q+A, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDMENTION-26SEP-UNCH",
+        "title": "Will Kevin Warsh say Unchanged at his Sep 2026 press conference?"
+      },
+      {
+        "close_time": "2026-09-17T14:00:00Z",
+        "rules_primary": "If the Chair of the Federal Reserve says Volatility at his Sep 2026 post-FOMC meeting introductory remarks and Q+A, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFEDMENTION-26SEP-VOLA",
+        "title": "Will Kevin Warsh say Volatility at his Sep 2026 press conference?"
+      }
+    ],
+    "series_ticker": "KXFEDMENTION",
+    "title": "Will Kevin Warsh say Bitcoin at his Sep 2026 press conference?"
+  },
+  {
+    "close_time": "2026-09-16T17:59:00Z",
+    "event_ticker": "KXFOMCDISSENTCOUNT-26SEP",
+    "markets": [
+      {
+        "close_time": "2026-09-16T17:59:00Z",
+        "rules_primary": "If there are exactly 0 dissenting votes at the next scheduled FOMC meeting (scheduled for Sep 16, 2026), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFOMCDISSENTCOUNT-26SEP-0",
+        "title": "How many dissenting votes at the next Fed meeting?"
+      },
+      {
+        "close_time": "2026-09-16T17:59:00Z",
+        "rules_primary": "If there are exactly 1 dissenting votes at the next scheduled FOMC meeting (scheduled for Sep 16, 2026), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFOMCDISSENTCOUNT-26SEP-1",
+        "title": "How many dissenting votes at the next Fed meeting?"
+      },
+      {
+        "close_time": "2026-09-16T17:59:00Z",
+        "rules_primary": "If there are exactly 2 dissenting votes at the next scheduled FOMC meeting (scheduled for Sep 16, 2026), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFOMCDISSENTCOUNT-26SEP-2",
+        "title": "How many dissenting votes at the next Fed meeting?"
+      },
+      {
+        "close_time": "2026-09-16T17:59:00Z",
+        "rules_primary": "If there are exactly 3 dissenting votes at the next scheduled FOMC meeting (scheduled for Sep 16, 2026), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFOMCDISSENTCOUNT-26SEP-3",
+        "title": "How many dissenting votes at the next Fed meeting?"
+      },
+      {
+        "close_time": "2026-09-16T17:59:00Z",
+        "rules_primary": "If there are exactly 4 dissenting votes at the next scheduled FOMC meeting (scheduled for Sep 16, 2026), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFOMCDISSENTCOUNT-26SEP-4",
+        "title": "How many dissenting votes at the next Fed meeting?"
+      },
+      {
+        "close_time": "2026-09-16T17:59:00Z",
+        "rules_primary": "If there are exactly 5 dissenting votes at the next scheduled FOMC meeting (scheduled for Sep 16, 2026), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXFOMCDISSENTCOUNT-26SEP-5",
+        "title": "How many dissenting votes at the next Fed meeting?"
+      }
+    ],
+    "series_ticker": "KXFOMCDISSENTCOUNT",
+    "title": "How many dissenting votes at the next Fed meeting?"
+  },
+  {
+    "close_time": "2026-09-12T06:00:00Z",
+    "event_ticker": "KXGEOGUESSR-26",
+    "markets": [
+      {
+        "close_time": "2026-09-12T06:00:00Z",
+        "rules_primary": "If BulgariaEnjoyer wins the 2026 GeoGuessr World Championship, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXGEOGUESSR-26-BUL",
+        "title": "BulgariaEnjoyer wins the 2026 GeoGuessr World Championship"
+      },
+      {
+        "close_time": "2026-09-12T06:00:00Z",
+        "rules_primary": "If Consus wins the 2026 GeoGuessr World Championship, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXGEOGUESSR-26-CON",
+        "title": "Consus wins the 2026 GeoGuessr World Championship"
+      },
+      {
+        "close_time": "2026-09-12T06:00:00Z",
+        "rules_primary": "If mk wins the 2026 GeoGuessr World Championship, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXGEOGUESSR-26-MK",
+        "title": "mk wins the 2026 GeoGuessr World Championship"
+      }
+    ],
+    "series_ticker": "KXGEOGUESSR",
+    "title": "BulgariaEnjoyer wins the 2026 GeoGuessr World Championship"
+  },
+  {
+    "close_time": "2026-09-16T03:59:00Z",
+    "event_ticker": "KXHMONTH-26AUG",
+    "markets": [
+      {
+        "close_time": "2026-09-16T03:59:00Z",
+        "rules_primary": "If Aug 2026 is the hottest August ever, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXHMONTH-26AUG",
+        "title": "Will  Aug 2026 be the hottest Aug ever?"
+      }
+    ],
+    "series_ticker": "KXHMONTH",
+    "title": "Will  Aug 2026 be the hottest Aug ever?"
+  },
+  {
+    "close_time": "2026-09-16T03:59:00Z",
+    "event_ticker": "KXHMONTHRANGE-26AUG",
+    "markets": [
+      {
+        "close_time": "2026-09-16T03:59:00Z",
+        "rules_primary": "If the Land Ocean-Temperature Index for Aug 2026 is above 1.30, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXHMONTHRANGE-26AUG-T1.30",
+        "title": "Aug 2026 temperature increase?"
+      }
+    ],
+    "series_ticker": "KXHMONTHRANGE",
+    "title": "Aug 2026 temperature increase?"
+  }
+]

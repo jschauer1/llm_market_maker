@@ -1,8 +1,8 @@
 r"""insider_bias — mechanical family gate (v3, 2026-08-29).
 
-`THEORY.md` documents a cheap LLM gate over every screened candidate. On the
-first live run that gate was replaced with the deterministic classifier
-below, because the screen's output turned out to be dominated by whole market
+`THEORY.md` and `RUNBOOK.md` specify the deterministic classifier below. It
+replaced the original design's cheap LLM gate on the first live run, because
+the screen's output turned out to be dominated by whole market
 families that this theory's own written rules reject outright — crypto and
 commodity strike ladders, weather, live sport, scheduled indicators, and
 aggregates of many independent people. Deciding those with a model is paying

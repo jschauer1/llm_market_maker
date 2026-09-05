@@ -1,0 +1,162 @@
+[
+  {
+    "event_ticker": "KXHOUSEADJOURN-26",
+    "insider_group": "House Republican leadership, the Speaker's floor staff, and the House scheduling office",
+    "bucket": "moderate",
+    "rules_diverge_from_title": true,
+    "rules_note": "The title requires the adjournment to be reported by the House, while the rule text resolves on the adjournment itself and does not expressly require that report.",
+    "resolution_source_risk": null,
+    "rationale": "House leadership and floor staff control and internally communicate the chamber's schedule, so a concrete informed group can know when substantive business will end. The Clerk's September 3-4 activity shows a district work period and a planned September 8 return, but it does not establish that the later pre-election recess decision has already been finalized, which keeps this below strong.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXNEXTHURDATE-26DEC01",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": true,
+    "rules_note": "The title asks an open-ended date question, but this market resolves only on the binary condition that an Atlantic hurricane forms before September 15.",
+    "resolution_source_risk": null,
+    "rationale": "No identifiable group already knows when a future Atlantic storm will cross the hurricane-strength threshold. The answer depends on weather that has not happened, so this is outside the insider-knowledge thesis.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXPRESSSECANNOUNCE-26AUG",
+    "insider_group": "Donald Trump and the senior White House personnel and communications staff handling the succession",
+    "bucket": "moderate",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": null,
+    "rationale": "The White House publicly marked Karoline Leavitt's tenure as concluded on August 27, so the President and the small personnel team handling her replacement are a plausible informed group. I found no official successor announcement, and the choice or timing may still be unsettled, so the evidence does not show that this group already knows the eventual answer.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXRANKLISTSONGTOP10-26SEP12",
+    "insider_group": "Luminate's chart-production staff and Billboard's Hot 100 editors",
+    "bucket": "moderate",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "Luminate says Hot charts normally post on Tuesdays, after this market's Sunday-night close, so the official chart misses the close by design and could be delayed further.",
+    "rationale": "The chart is compiled from Luminate streaming, sales, and airplay data, and the relevant tracking period is substantially complete before publication, giving Luminate and Billboard staff privileged visibility into the ranking. The chart is not normally published until after the market closes and may still be undergoing final compilation, so the source timing warning lowers the classification from strong.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXRNCMIDTERMSPEAK-26SEP12",
+    "insider_group": "The Republican National Committee convention programming team and the invited speakers' staffs",
+    "bucket": "strong",
+    "rules_diverge_from_title": true,
+    "rules_note": "The titles ask whether a speaking appearance will be confirmed, but the rules require the named person to actually speak as part of official programming; advance confirmation alone is insufficient.",
+    "resolution_source_risk": null,
+    "rationale": "The convention is scheduled for September 9-10, so its programming team and the speakers' staffs should already possess the run of show and participation commitments. Public reporting already places Ken Paxton at the convention and identifies the event as a tightly produced prime-time program, while the small organizer group necessarily knows the official speaker bookings before they are broadly announced.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXSARETAIL-26SEP16",
+    "insider_group": "Statistics South Africa's retail-trade compilation and release staff",
+    "bucket": "moderate",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "Statistics South Africa schedules the July release for 13:00 local time on September 16, while the market closes at 12:59 local time, so the official source is scheduled to miss the close by one minute.",
+    "rationale": "July's reporting period is complete and Statistics South Africa has a named team compiling the release, so staff may see the embargoed figure before the public does. The release is still eleven days away and the compilation or validation may not yet be final, while its scheduled publication falls just after the close, so this does not earn strong.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXSECPRESSMENTION-26SEP15",
+    "insider_group": "The White House communications staff preparing the press secretary's opening remarks and briefing book",
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "An official transcript can be posted after the live briefing and after the stated close, especially if the briefing occurs near the deadline.",
+    "rationale": "The communications team knows prepared themes, but the markets turn on exact words during a live briefing that includes spontaneous answers to reporters. Questions, follow-ups, and phrasing remain undetermined, so even this named group does not already know the full outcome.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXSOCCERTRANSFER-26SUM",
+    "insider_group": "Richarlison, his representatives, Tottenham, and Trabzonspor's transfer negotiators",
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": null,
+    "rationale": "Current reporting says Richarlison has verbally agreed personal terms with Trabzonspor, but Tottenham rejected two bids and a new proposal was still expected. The relevant clubs therefore know the negotiations, yet no one can know the result of a club-level decision and deal that remain unfinished.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXSTARTINGQBWEEK1-W1-26SEP14-NYJ",
+    "insider_group": "New York Jets head coach Aaron Glenn and the Jets coaching and football-operations staff",
+    "bucket": "strong",
+    "rules_diverge_from_title": true,
+    "rules_note": "The title suggests who will actually be the Week 1 starting quarterback, while the rules resolve on an official designation, which could persist even if a later injury prevents the player from starting.",
+    "resolution_source_risk": null,
+    "rationale": "Jets coach Aaron Glenn has already publicly said there is no doubt Geno Smith will be the starter and called him the team's guy. The decision is therefore already known by the named coaching group and has moved beyond private inference.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXSTARTINGQBWEEK1-W1-26SEP15-ATL",
+    "insider_group": "Atlanta Falcons head coach Kevin Stefanski, the coaching staff, and the club's medical staff",
+    "bucket": "weak",
+    "rules_diverge_from_title": true,
+    "rules_note": "The titles suggest who will actually start in Week 1, while the rules resolve on an official designation, which can differ if a later injury or change prevents the designated player from starting.",
+    "resolution_source_risk": null,
+    "rationale": "The Falcons' own September 2 update said coaches were still evaluating Michael Penix Jr. and Tua Tagovailoa, and Kevin Stefanski had recently said he did not yet know when he would name the starter. That is direct evidence that the decision remained unmade rather than merely private.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXSTARTINGQBWEEK1-W1-26SEP15-KC",
+    "insider_group": "Kansas City Chiefs coaches and the medical staff overseeing Patrick Mahomes's rehabilitation",
+    "bucket": "moderate",
+    "rules_diverge_from_title": true,
+    "rules_note": "The titles suggest who will actually start in Week 1, while the rules resolve on an official designation, which can differ if a later medical setback changes the game-day starter.",
+    "resolution_source_risk": null,
+    "rationale": "Mahomes has been working with the first team and was publicly reported on September 2 as on track to start, giving the Chiefs coaches and medical staff much better information than the public. His designation still depends on recovery and clearance rather than a fully completed discretionary decision, so the informed group is concrete but the answer is not yet fixed.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXSTEAMTOPSELLER-26SEP08",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": true,
+    "rules_note": "The rules use Steam's USA revenue ranking, while the title omits the USA geographic scope.",
+    "resolution_source_risk": "The rules give no publication time, and the completed weekly list may update only after the market's early-UTC close on September 8.",
+    "rationale": "Valve can observe sales already made, but no employee or publisher knows the aggregate revenue ranking before consumers complete the rest of the September 1-8 window. This is a future many-person behavior outcome, not a decision already made by a small group.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXSWEDEN7VOTE-26SEP13",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "The rule requires the final certified result, which may not be published by the September 18 close after a September 13 election.",
+    "rationale": "The September 13 vote has not occurred, so no group on September 5 knows the nationwide ordering that millions of independent voters will produce. Election officials may learn counts before final certification, but that future access does not create present insider knowledge.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXTRUMPACT-26AUG30",
+    "insider_group": "Donald Trump and the White House legal, policy, and communications staff preparing and publishing presidential actions",
+    "bucket": "moderate",
+    "rules_diverge_from_title": true,
+    "rules_note": "The title asks how many actions occur during the week, while the rules count them through a fixed check of the White House Presidential Actions page at 10:00 a.m. ET on September 6; publication timing can therefore change resolution.",
+    "resolution_source_risk": "The White House page can publish signed actions with delay or backdated labels after the fixed September 6 check, so an action taken in the window may not count under the stated source procedure.",
+    "rationale": "The President and the small staff drafting, clearing, and posting actions can know signed but unpublished documents and the remaining schedule. The public Presidential Actions page showed no entries in the August 30-September 5 interval when checked, so the thresholds still depend on late actions or postings and the week-long rate element prevents a strong classification.",
+    "researched": true
+  },
+  {
+    "event_ticker": "KXTRUMPAPPROVE-26SEP05",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": true,
+    "rules_note": "The title refers generally to September 5, but the rules use the RCP average at exactly 1:00 p.m. ET, so another value from the same date does not control resolution.",
+    "resolution_source_risk": "RCP's update timing is not part of the title, and its public page or archives may not preserve the exact value shown at 1:00 p.m. ET.",
+    "rationale": "RCP staff can see the current inputs, but the exact future-time average can change with new polling inputs and editorial update timing. No concrete group already knows all information that will determine the displayed average at the specified instant.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXTRUMPPHOTO-26SEP06",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": true,
+    "rules_note": "The rules require Trump to be photographed in a tagged Getty editorial image, while the titles refer more broadly to a Getty editorial photo and omit the tagging condition.",
+    "resolution_source_risk": "Getty can upload, tag, retag, or backfill editorial images after the September 7 close, making the observed day count sensitive to source timing.",
+    "rationale": "Getty staff know which images have already been uploaded and tagged, but the interval continues through September 6 and future appearances, photography, and metadata choices remain open. Because later uploads or tagging can also alter which days qualify, no group already knows the final exact count.",
+    "researched": false
+  }
+]

@@ -1,0 +1,7 @@
+# Floor 4 recovery pointer
+
+Run `floor4-20260905T010600Z-insider-judgment` completed deterministic stages 1–4 against the floor's 2026-09-05T00:41:36Z board snapshot. Stage 5 was blocked by the prior Opus-only policy. The user has superseded that restriction: a comparably capable Codex or Claude judge following the same procedure now shares calibration. This old run remains unexecuted; its immutable requests still name Opus.
+
+The immutable pending receipts and blind batch inputs are in [the floor attachment](../../../../../user_reports/2026-09-04/insider_judgment_floor4/). The price-bearing operator state is [run_state.json](../../../../../user_reports/2026-09-04/insider_judgment_floor4/operator_state/run_state.json); it must never be sent to a judge. The compact floor receipt is [floor4-progress.json](../../../../../user_reports/2026-09-04/floor4-progress.json).
+
+Inspect the saved run programmatically with `judgments.load_run_state(state_path, THEORY, conn=conn)` and print only selected fields. All three receipts are pending; they are request records, not executed provenance. Use a fresh live run, board, and requests naming the selected judge under the normal floor-claim rules. Preserve these inputs for audit, but do not relabel them or execute them later against their old timestamp and prices. The timing rule is in [judgment-batches.md](../../../../../docs/agents/judgment-batches.md).

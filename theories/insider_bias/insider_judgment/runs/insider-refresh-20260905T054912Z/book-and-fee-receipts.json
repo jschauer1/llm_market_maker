@@ -1,0 +1,1731 @@
+[
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXPRESSSECANNOUNCE-26AUG-SEP08/orderbook",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "orderbook_fp": {
+        "no_dollars": [
+          [
+            "0.0100",
+            "4794.97"
+          ],
+          [
+            "0.0200",
+            "9402.23"
+          ],
+          [
+            "0.0300",
+            "5770.00"
+          ],
+          [
+            "0.0400",
+            "550.00"
+          ],
+          [
+            "0.0600",
+            "1.00"
+          ],
+          [
+            "0.2200",
+            "60.00"
+          ],
+          [
+            "0.2500",
+            "438.47"
+          ],
+          [
+            "0.2800",
+            "4.12"
+          ],
+          [
+            "0.3000",
+            "8.54"
+          ],
+          [
+            "0.3300",
+            "3850.00"
+          ],
+          [
+            "0.3400",
+            "35.00"
+          ],
+          [
+            "0.8500",
+            "9.37"
+          ],
+          [
+            "0.9400",
+            "200.00"
+          ],
+          [
+            "0.9500",
+            "10.03"
+          ],
+          [
+            "0.9600",
+            "3863.00"
+          ]
+        ],
+        "yes_dollars": [
+          [
+            "0.0100",
+            "2249.87"
+          ],
+          [
+            "0.0200",
+            "878.97"
+          ],
+          [
+            "0.0300",
+            "207.04"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXFEDCOMBO-26SEPB-25H-0/orderbook",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "orderbook_fp": {
+        "no_dollars": [
+          [
+            "0.0100",
+            "8242.00"
+          ],
+          [
+            "0.0200",
+            "9250.00"
+          ],
+          [
+            "0.0300",
+            "7293.00"
+          ],
+          [
+            "0.0400",
+            "9999.00"
+          ],
+          [
+            "0.1300",
+            "1000.00"
+          ],
+          [
+            "0.1700",
+            "98.00"
+          ],
+          [
+            "0.1800",
+            "150.00"
+          ],
+          [
+            "0.3900",
+            "1335.00"
+          ],
+          [
+            "0.4000",
+            "2310.00"
+          ],
+          [
+            "0.5500",
+            "850.00"
+          ],
+          [
+            "0.5600",
+            "1609.00"
+          ],
+          [
+            "0.5800",
+            "86.00"
+          ],
+          [
+            "0.5900",
+            "99.00"
+          ],
+          [
+            "0.6100",
+            "114.00"
+          ],
+          [
+            "0.6200",
+            "30.00"
+          ],
+          [
+            "0.6300",
+            "1.77"
+          ],
+          [
+            "0.6700",
+            "125.00"
+          ],
+          [
+            "0.6800",
+            "350.00"
+          ],
+          [
+            "0.6900",
+            "1.41"
+          ],
+          [
+            "0.7700",
+            "315.00"
+          ],
+          [
+            "0.8200",
+            "100.00"
+          ],
+          [
+            "0.8300",
+            "9.68"
+          ],
+          [
+            "0.8500",
+            "495.00"
+          ],
+          [
+            "0.8600",
+            "2106.21"
+          ],
+          [
+            "0.8700",
+            "1315.00"
+          ]
+        ],
+        "yes_dollars": [
+          [
+            "0.0100",
+            "552.00"
+          ],
+          [
+            "0.0200",
+            "2278.00"
+          ],
+          [
+            "0.0300",
+            "166.92"
+          ],
+          [
+            "0.0400",
+            "250.00"
+          ],
+          [
+            "0.0500",
+            "12200.92"
+          ],
+          [
+            "0.0600",
+            "166.00"
+          ],
+          [
+            "0.0700",
+            "142.00"
+          ],
+          [
+            "0.0800",
+            "893.00"
+          ],
+          [
+            "0.0900",
+            "1.84"
+          ],
+          [
+            "0.1000",
+            "1891.00"
+          ],
+          [
+            "0.1100",
+            "1250.93"
+          ],
+          [
+            "0.1200",
+            "2500.00"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXFEDMENTION-26SEP-BITC/orderbook",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "orderbook_fp": {
+        "no_dollars": [
+          [
+            "0.0100",
+            "5260.00"
+          ],
+          [
+            "0.0200",
+            "6006.00"
+          ],
+          [
+            "0.0300",
+            "6730.00"
+          ],
+          [
+            "0.0400",
+            "10026.00"
+          ],
+          [
+            "0.0500",
+            "100.00"
+          ],
+          [
+            "0.0900",
+            "100.00"
+          ],
+          [
+            "0.1500",
+            "50.00"
+          ],
+          [
+            "0.1600",
+            "9119.00"
+          ],
+          [
+            "0.4600",
+            "2830.00"
+          ],
+          [
+            "0.4900",
+            "5444.00"
+          ],
+          [
+            "0.5300",
+            "20.00"
+          ],
+          [
+            "0.8200",
+            "4000.00"
+          ],
+          [
+            "0.9100",
+            "500.00"
+          ],
+          [
+            "0.9200",
+            "8.00"
+          ],
+          [
+            "0.9400",
+            "46.50"
+          ],
+          [
+            "0.9500",
+            "1054.25"
+          ],
+          [
+            "0.9600",
+            "800.00"
+          ]
+        ],
+        "yes_dollars": [
+          [
+            "0.0100",
+            "600.00"
+          ],
+          [
+            "0.0300",
+            "4110.00"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXFEDMENTION-26SEP-CONS/orderbook",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "orderbook_fp": {
+        "no_dollars": [
+          [
+            "0.0100",
+            "300.00"
+          ],
+          [
+            "0.0200",
+            "326.00"
+          ],
+          [
+            "0.0300",
+            "100.00"
+          ],
+          [
+            "0.0400",
+            "10026.00"
+          ],
+          [
+            "0.0500",
+            "100.00"
+          ],
+          [
+            "0.0900",
+            "100.00"
+          ],
+          [
+            "0.1500",
+            "50.00"
+          ],
+          [
+            "0.3300",
+            "32.00"
+          ],
+          [
+            "0.6400",
+            "66.00"
+          ],
+          [
+            "0.8500",
+            "5.00"
+          ],
+          [
+            "0.8600",
+            "500.00"
+          ],
+          [
+            "0.8700",
+            "440.39"
+          ],
+          [
+            "0.8900",
+            "500.00"
+          ],
+          [
+            "0.9100",
+            "76.00"
+          ],
+          [
+            "0.9200",
+            "647.00"
+          ]
+        ],
+        "yes_dollars": [
+          [
+            "0.0100",
+            "100.00"
+          ],
+          [
+            "0.0400",
+            "500.00"
+          ],
+          [
+            "0.0600",
+            "500.00"
+          ],
+          [
+            "0.0700",
+            "3820.00"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXFEDMENTION-26SEP-CRYP/orderbook",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "orderbook_fp": {
+        "no_dollars": [
+          [
+            "0.0100",
+            "300.00"
+          ],
+          [
+            "0.0200",
+            "326.00"
+          ],
+          [
+            "0.0300",
+            "100.00"
+          ],
+          [
+            "0.0400",
+            "10026.00"
+          ],
+          [
+            "0.0500",
+            "100.00"
+          ],
+          [
+            "0.0900",
+            "100.00"
+          ],
+          [
+            "0.1300",
+            "12.40"
+          ],
+          [
+            "0.1500",
+            "50.00"
+          ],
+          [
+            "0.4800",
+            "22.00"
+          ],
+          [
+            "0.8500",
+            "1000.00"
+          ],
+          [
+            "0.8900",
+            "500.00"
+          ],
+          [
+            "0.9000",
+            "1000.00"
+          ],
+          [
+            "0.9100",
+            "193.43"
+          ],
+          [
+            "0.9300",
+            "1870.00"
+          ]
+        ],
+        "yes_dollars": [
+          [
+            "0.0100",
+            "600.00"
+          ],
+          [
+            "0.0200",
+            "500.00"
+          ],
+          [
+            "0.0300",
+            "1000.00"
+          ],
+          [
+            "0.0500",
+            "3100.00"
+          ],
+          [
+            "0.0600",
+            "775.00"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXFEDMENTION-26SEP-EGG/orderbook",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "orderbook_fp": {
+        "no_dollars": [
+          [
+            "0.0100",
+            "300.00"
+          ],
+          [
+            "0.0200",
+            "326.00"
+          ],
+          [
+            "0.0300",
+            "100.00"
+          ],
+          [
+            "0.0400",
+            "10026.00"
+          ],
+          [
+            "0.0500",
+            "100.00"
+          ],
+          [
+            "0.0900",
+            "100.00"
+          ],
+          [
+            "0.1500",
+            "50.00"
+          ],
+          [
+            "0.5600",
+            "19.00"
+          ],
+          [
+            "0.5700",
+            "11.00"
+          ],
+          [
+            "0.8900",
+            "500.00"
+          ],
+          [
+            "0.9100",
+            "20.00"
+          ],
+          [
+            "0.9200",
+            "1.00"
+          ],
+          [
+            "0.9300",
+            "1.00"
+          ],
+          [
+            "0.9400",
+            "1336.19"
+          ]
+        ],
+        "yes_dollars": [
+          [
+            "0.0100",
+            "12100.00"
+          ],
+          [
+            "0.0300",
+            "500.00"
+          ],
+          [
+            "0.0500",
+            "3820.00"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXFEDMENTION-26SEP-GOLD/orderbook",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "orderbook_fp": {
+        "no_dollars": [
+          [
+            "0.0100",
+            "300.00"
+          ],
+          [
+            "0.0200",
+            "320.00"
+          ],
+          [
+            "0.0300",
+            "100.00"
+          ],
+          [
+            "0.0400",
+            "10020.00"
+          ],
+          [
+            "0.0500",
+            "100.00"
+          ],
+          [
+            "0.0900",
+            "100.00"
+          ],
+          [
+            "0.1500",
+            "50.00"
+          ],
+          [
+            "0.4700",
+            "23.00"
+          ],
+          [
+            "0.7500",
+            "2222.00"
+          ],
+          [
+            "0.9000",
+            "508.00"
+          ],
+          [
+            "0.9300",
+            "2000.00"
+          ],
+          [
+            "0.9400",
+            "2332.10"
+          ]
+        ],
+        "yes_dollars": [
+          [
+            "0.0100",
+            "100.00"
+          ],
+          [
+            "0.0200",
+            "500.00"
+          ],
+          [
+            "0.0500",
+            "3152.00"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXFEDMENTION-26SEP-GOOD/orderbook",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "orderbook_fp": {
+        "no_dollars": [
+          [
+            "0.0100",
+            "5734.50"
+          ],
+          [
+            "0.0200",
+            "6666.00"
+          ],
+          [
+            "0.0300",
+            "6160.00"
+          ],
+          [
+            "0.0400",
+            "10026.00"
+          ],
+          [
+            "0.0500",
+            "100.00"
+          ],
+          [
+            "0.0900",
+            "100.00"
+          ],
+          [
+            "0.1400",
+            "2257.00"
+          ],
+          [
+            "0.1500",
+            "512.00"
+          ],
+          [
+            "0.2000",
+            "25.00"
+          ],
+          [
+            "0.2400",
+            "15.00"
+          ],
+          [
+            "0.3800",
+            "394.00"
+          ],
+          [
+            "0.3900",
+            "52.00"
+          ],
+          [
+            "0.4200",
+            "340.00"
+          ],
+          [
+            "0.5400",
+            "25.00"
+          ],
+          [
+            "0.5500",
+            "8.00"
+          ],
+          [
+            "0.8600",
+            "500.00"
+          ],
+          [
+            "0.8700",
+            "125.00"
+          ],
+          [
+            "0.8800",
+            "657.47"
+          ]
+        ],
+        "yes_dollars": [
+          [
+            "0.0100",
+            "126.00"
+          ],
+          [
+            "0.0200",
+            "26.00"
+          ],
+          [
+            "0.0400",
+            "500.00"
+          ],
+          [
+            "0.0500",
+            "400.00"
+          ],
+          [
+            "0.0600",
+            "833.00"
+          ],
+          [
+            "0.0700",
+            "285.00"
+          ],
+          [
+            "0.0900",
+            "690.94"
+          ],
+          [
+            "0.1000",
+            "2898.61"
+          ],
+          [
+            "0.1100",
+            "774.00"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXFEDMENTION-26SEP-NATI/orderbook",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "orderbook_fp": {
+        "no_dollars": [
+          [
+            "0.0100",
+            "311.74"
+          ],
+          [
+            "0.0200",
+            "326.00"
+          ],
+          [
+            "0.0300",
+            "100.00"
+          ],
+          [
+            "0.0400",
+            "10026.00"
+          ],
+          [
+            "0.0500",
+            "124.00"
+          ],
+          [
+            "0.0900",
+            "100.00"
+          ],
+          [
+            "0.1500",
+            "50.00"
+          ],
+          [
+            "0.2500",
+            "43.00"
+          ],
+          [
+            "0.7000",
+            "2222.00"
+          ],
+          [
+            "0.7100",
+            "66.00"
+          ],
+          [
+            "0.8800",
+            "500.00"
+          ],
+          [
+            "0.8900",
+            "1123.00"
+          ],
+          [
+            "0.9000",
+            "5.00"
+          ],
+          [
+            "0.9100",
+            "1125.00"
+          ],
+          [
+            "0.9200",
+            "1870.00"
+          ]
+        ],
+        "yes_dollars": [
+          [
+            "0.0100",
+            "600.00"
+          ],
+          [
+            "0.0200",
+            "500.00"
+          ],
+          [
+            "0.0300",
+            "666.00"
+          ],
+          [
+            "0.0400",
+            "1000.00"
+          ],
+          [
+            "0.0500",
+            "1000.00"
+          ],
+          [
+            "0.0600",
+            "2100.00"
+          ],
+          [
+            "0.0700",
+            "1775.00"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXFEDMENTION-26SEP-TRUM/orderbook",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "orderbook_fp": {
+        "no_dollars": [
+          [
+            "0.0100",
+            "300.00"
+          ],
+          [
+            "0.0200",
+            "326.00"
+          ],
+          [
+            "0.0300",
+            "100.00"
+          ],
+          [
+            "0.0400",
+            "10026.00"
+          ],
+          [
+            "0.0500",
+            "124.00"
+          ],
+          [
+            "0.0900",
+            "100.00"
+          ],
+          [
+            "0.1400",
+            "11.74"
+          ],
+          [
+            "0.1500",
+            "50.00"
+          ],
+          [
+            "0.4400",
+            "24.00"
+          ],
+          [
+            "0.7300",
+            "31.33"
+          ],
+          [
+            "0.8900",
+            "2508.00"
+          ],
+          [
+            "0.9000",
+            "27.65"
+          ],
+          [
+            "0.9200",
+            "1881.70"
+          ],
+          [
+            "0.9300",
+            "2229.47"
+          ]
+        ],
+        "yes_dollars": [
+          [
+            "0.0100",
+            "100.00"
+          ],
+          [
+            "0.0200",
+            "1000.00"
+          ],
+          [
+            "0.0300",
+            "1166.00"
+          ],
+          [
+            "0.0400",
+            "500.00"
+          ],
+          [
+            "0.0500",
+            "1999.00"
+          ],
+          [
+            "0.0600",
+            "3753.82"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXFEDMENTION-26SEP-UNCH/orderbook",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "orderbook_fp": {
+        "no_dollars": [
+          [
+            "0.0100",
+            "8530.00"
+          ],
+          [
+            "0.0200",
+            "7830.00"
+          ],
+          [
+            "0.0300",
+            "6146.00"
+          ],
+          [
+            "0.0400",
+            "4000.00"
+          ],
+          [
+            "0.0500",
+            "126.00"
+          ],
+          [
+            "0.0600",
+            "181.00"
+          ],
+          [
+            "0.0800",
+            "100.00"
+          ],
+          [
+            "0.0900",
+            "200.00"
+          ],
+          [
+            "0.1300",
+            "1013.00"
+          ],
+          [
+            "0.1400",
+            "415.00"
+          ],
+          [
+            "0.1500",
+            "74.00"
+          ],
+          [
+            "0.2500",
+            "1.90"
+          ],
+          [
+            "0.3500",
+            "88.00"
+          ],
+          [
+            "0.3800",
+            "153.00"
+          ],
+          [
+            "0.4100",
+            "141.00"
+          ],
+          [
+            "0.5100",
+            "368.00"
+          ],
+          [
+            "0.5200",
+            "3.00"
+          ],
+          [
+            "0.8300",
+            "500.00"
+          ],
+          [
+            "0.8400",
+            "12.00"
+          ],
+          [
+            "0.8500",
+            "25.00"
+          ],
+          [
+            "0.8800",
+            "352.00"
+          ]
+        ],
+        "yes_dollars": [
+          [
+            "0.0100",
+            "26.00"
+          ],
+          [
+            "0.0900",
+            "500.00"
+          ],
+          [
+            "0.1000",
+            "1344.91"
+          ],
+          [
+            "0.1100",
+            "49.00"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXFEDMENTION-26SEP-VOLA/orderbook",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "orderbook_fp": {
+        "no_dollars": [
+          [
+            "0.0100",
+            "7900.00"
+          ],
+          [
+            "0.0200",
+            "7956.00"
+          ],
+          [
+            "0.0300",
+            "5430.00"
+          ],
+          [
+            "0.0400",
+            "10026.00"
+          ],
+          [
+            "0.0500",
+            "114.50"
+          ],
+          [
+            "0.0900",
+            "100.00"
+          ],
+          [
+            "0.1300",
+            "2077.00"
+          ],
+          [
+            "0.1400",
+            "234.00"
+          ],
+          [
+            "0.1500",
+            "50.00"
+          ],
+          [
+            "0.3300",
+            "32.00"
+          ],
+          [
+            "0.3600",
+            "51.00"
+          ],
+          [
+            "0.3700",
+            "363.00"
+          ],
+          [
+            "0.3800",
+            "96.00"
+          ],
+          [
+            "0.4200",
+            "173.00"
+          ],
+          [
+            "0.4400",
+            "104.00"
+          ],
+          [
+            "0.8200",
+            "508.00"
+          ],
+          [
+            "0.8400",
+            "1255.99"
+          ],
+          [
+            "0.8600",
+            "125.00"
+          ],
+          [
+            "0.8700",
+            "37.50"
+          ]
+        ],
+        "yes_dollars": [
+          [
+            "0.0100",
+            "126.00"
+          ],
+          [
+            "0.0200",
+            "26.00"
+          ],
+          [
+            "0.0500",
+            "9.00"
+          ],
+          [
+            "0.0800",
+            "141.00"
+          ],
+          [
+            "0.1000",
+            "567.21"
+          ],
+          [
+            "0.1100",
+            "125.00"
+          ],
+          [
+            "0.1200",
+            "25.00"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXFOMCDISSENTCOUNT-26SEP-5/orderbook",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "orderbook_fp": {
+        "no_dollars": [
+          [
+            "0.0100",
+            "7957.00"
+          ],
+          [
+            "0.0200",
+            "11030.00"
+          ],
+          [
+            "0.0300",
+            "5140.00"
+          ],
+          [
+            "0.0400",
+            "550.00"
+          ],
+          [
+            "0.1600",
+            "2.00"
+          ],
+          [
+            "0.2300",
+            "2.00"
+          ],
+          [
+            "0.2500",
+            "1.00"
+          ],
+          [
+            "0.4700",
+            "1865.00"
+          ],
+          [
+            "0.4800",
+            "2651.00"
+          ],
+          [
+            "0.7000",
+            "1000.00"
+          ],
+          [
+            "0.7100",
+            "1107.00"
+          ],
+          [
+            "0.9100",
+            "45.00"
+          ],
+          [
+            "0.9200",
+            "3642.84"
+          ],
+          [
+            "0.9400",
+            "9685.00"
+          ],
+          [
+            "0.9500",
+            "251.25"
+          ]
+        ],
+        "yes_dollars": [
+          [
+            "0.0100",
+            "1052.00"
+          ],
+          [
+            "0.0200",
+            "850.00"
+          ],
+          [
+            "0.0300",
+            "30.00"
+          ],
+          [
+            "0.0400",
+            "10.00"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXSECPRESSMENTION-26SEP15-OIL/orderbook",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "orderbook_fp": {
+        "no_dollars": [
+          [
+            "0.0100",
+            "5316.78"
+          ],
+          [
+            "0.0200",
+            "100.00"
+          ],
+          [
+            "0.0300",
+            "101.39"
+          ],
+          [
+            "0.0500",
+            "100.00"
+          ],
+          [
+            "0.0600",
+            "5.31"
+          ],
+          [
+            "0.0700",
+            "50.00"
+          ],
+          [
+            "0.0800",
+            "9.09"
+          ],
+          [
+            "0.1000",
+            "5.01"
+          ],
+          [
+            "0.1200",
+            "50.00"
+          ],
+          [
+            "0.1300",
+            "219.22"
+          ],
+          [
+            "0.1600",
+            "5.78"
+          ],
+          [
+            "0.1700",
+            "10.07"
+          ],
+          [
+            "0.2500",
+            "108.45"
+          ],
+          [
+            "0.2600",
+            "555.00"
+          ],
+          [
+            "0.2700",
+            "159.00"
+          ],
+          [
+            "0.2800",
+            "7.00"
+          ],
+          [
+            "0.3200",
+            "5.96"
+          ],
+          [
+            "0.3400",
+            "2.98"
+          ],
+          [
+            "0.5800",
+            "300.00"
+          ],
+          [
+            "0.5900",
+            "13.29"
+          ],
+          [
+            "0.7200",
+            "345.00"
+          ],
+          [
+            "0.7300",
+            "162.62"
+          ],
+          [
+            "0.7400",
+            "97.49"
+          ]
+        ],
+        "yes_dollars": [
+          [
+            "0.0100",
+            "100.00"
+          ],
+          [
+            "0.0200",
+            "200.00"
+          ],
+          [
+            "0.0300",
+            "555.00"
+          ],
+          [
+            "0.0400",
+            "65.40"
+          ],
+          [
+            "0.0500",
+            "1.00"
+          ],
+          [
+            "0.1000",
+            "311.01"
+          ],
+          [
+            "0.1100",
+            "137.78"
+          ],
+          [
+            "0.1200",
+            "93.00"
+          ],
+          [
+            "0.1300",
+            "92.30"
+          ],
+          [
+            "0.1400",
+            "23.62"
+          ],
+          [
+            "0.1600",
+            "31.13"
+          ],
+          [
+            "0.1800",
+            "95.99"
+          ],
+          [
+            "0.1900",
+            "10.11"
+          ],
+          [
+            "0.2100",
+            "14.00"
+          ],
+          [
+            "0.2200",
+            "13.01"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/series/KXFEDCOMBO",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "series": {
+        "additional_prohibitions": [
+          "Persons who are employed by any of the Source Agencies are not permitted to trade on the Contract.",
+          "Persons who hold any material, non-public information on the Underlying are not permitted to trade on the Contract.",
+          "Cabinet members and their immediate staff.",
+          "Federal Reserve Board members and regional Fed presidents.",
+          "Members of Congress and their senior staff.",
+          "White House senior staff and advisors.",
+          "Heads of relevant federal agencies referenced in components.",
+          "Employees of Bureau of Labor Statistics, Bureau of Economic Analysis, Census Bureau.",
+          "Employees with pre-release access to economic data.",
+          "Federal statistical agency employees involved in data compilation.",
+          "Contractors with access to embargoed data.",
+          "Campaign managers and senior campaign staff for referenced candidates.",
+          "Political party leadership if election/appointment components included.",
+          "Judicial clerks if Supreme Court components included.",
+          "Congressional committee staff for relevant committees.",
+          "Journalists with embargo access to referenced data.",
+          "Employees of Source Agencies who cover relevant beats.",
+          "Political polling organization employees if polling components included.",
+          "Foreign government officials involved in treaty/agreement negotiations (if applicable).",
+          "Diplomatic staff with knowledge of agreement timing.",
+          "International organization employees (IMF, World Bank, UN) if relevant.",
+          "Immediate family members of all above categories.",
+          "Household members of prohibited persons.",
+          "Any candidate currently listed as a market within this event"
+        ],
+        "category": "Economics",
+        "contract_terms_url": "https://assets.kalshi.com/contract_terms/POLITICALECONOMICEVENTS.pdf",
+        "contract_url": "https://assets.kalshi.com/regulatory/product-certifications/POLITICALECONOMICEVENTS.pdf",
+        "exchange_index": 0,
+        "fee_multiplier": 1,
+        "fee_type": "quadratic",
+        "frequency": "monthly",
+        "last_updated_ts": "2026-08-16T20:20:56.456306Z",
+        "product_metadata": {
+          "scope": "Fed Combo"
+        },
+        "settlement_sources": [
+          {
+            "name": "Bureau of Labor Statistics",
+            "url": "https://www.bls.gov/news.release/empsit.nr0.htm"
+          },
+          {
+            "name": "Bureau of Labor Statistics",
+            "url": "https://www.bls.gov/cpi/"
+          },
+          {
+            "name": "Federal Reserve Board of Governors",
+            "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+          }
+        ],
+        "tags": [
+          "Fed"
+        ],
+        "ticker": "KXFEDCOMBO",
+        "title": "Fed Combo"
+      }
+    }
+  },
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/series/KXFEDMENTION",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "series": {
+        "additional_prohibitions": [
+          "Persons who are employed by any of the Source Agencies are not permitted to trade on the Contract.",
+          "Persons who hold any material, non-public information on the Underlying are not permitted to trade on the Contract."
+        ],
+        "category": "Mentions",
+        "contract_terms_url": "https://assets.kalshi.com/contract_terms/FEDMENTION.pdf",
+        "contract_url": "https://assets.kalshi.com/regulatory/product-certifications/FEDMENTION.pdf",
+        "exchange_index": 0,
+        "fee_multiplier": 1,
+        "fee_type": "quadratic",
+        "frequency": "custom",
+        "last_updated_ts": "2026-08-19T20:05:38.274924Z",
+        "product_metadata": {
+          "scope": "Mentions"
+        },
+        "settlement_sources": [
+          {
+            "name": "Federal Reserve",
+            "url": "https://www.federalreserve.gov"
+          }
+        ],
+        "tags": [
+          "Politicians"
+        ],
+        "ticker": "KXFEDMENTION",
+        "title": "Fed mention"
+      }
+    }
+  },
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/series/KXFOMCDISSENTCOUNT",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "series": {
+        "additional_prohibitions": [
+          "Persons who are employed by any of the Source Agencies are not permitted to trade on the Contract.",
+          "Persons who hold any material, non-public information on the Underlying are not permitted to trade on the Contract."
+        ],
+        "category": "Economics",
+        "contract_terms_url": "https://assets.kalshi.com/contract_terms/FOMCDISSENTCOUNT.pdf",
+        "contract_url": "https://assets.kalshi.com/regulatory/product-certifications/FOMCDISSENTCOUNT.pdf",
+        "exchange_index": 0,
+        "fee_multiplier": 1,
+        "fee_type": "quadratic",
+        "frequency": "custom",
+        "last_updated_ts": "2026-06-16T22:09:27.258565Z",
+        "product_metadata": {
+          "scope": "Dissenting Vote Count"
+        },
+        "settlement_sources": [
+          {
+            "name": "ABC",
+            "url": "https://abcnews.go.com/"
+          },
+          {
+            "name": "The Information",
+            "url": "https://www.theinformation.com"
+          },
+          {
+            "name": "MSNBC",
+            "url": "https://www.msnbc.com/"
+          },
+          {
+            "name": "CBS",
+            "url": "https://www.cbsnews.com/"
+          },
+          {
+            "name": "the Associated Press",
+            "url": "https://apnews.com/"
+          },
+          {
+            "name": "The Washington Post",
+            "url": "https://www.washingtonpost.com/"
+          },
+          {
+            "name": "Axios",
+            "url": "https://www.axios.com/"
+          },
+          {
+            "name": "CNN",
+            "url": "https://www.cnn.com/"
+          },
+          {
+            "name": "The Wall Street Journal",
+            "url": "https://www.wsj.com/"
+          },
+          {
+            "name": "Federal Open Market Committee",
+            "url": "https://kalshi.com/"
+          },
+          {
+            "name": "Fox News",
+            "url": "https://www.foxnews.com"
+          },
+          {
+            "name": "The New York Times",
+            "url": "https://www.nytimes.com/"
+          },
+          {
+            "name": "NBC",
+            "url": "https://www.nbcnews.com/"
+          },
+          {
+            "name": "Semafor",
+            "url": "https://semafor.com"
+          },
+          {
+            "name": "Politico",
+            "url": "https://www.politico.com"
+          },
+          {
+            "name": "Bloomberg News",
+            "url": "https://www.bloomberg.com"
+          },
+          {
+            "name": "the Federal Reserve",
+            "url": "https://www.federalreserve.gov"
+          },
+          {
+            "name": "Reuters",
+            "url": "https://www.reuters.com"
+          }
+        ],
+        "tags": [
+          "Fed"
+        ],
+        "ticker": "KXFOMCDISSENTCOUNT",
+        "title": "FOMC dissent count"
+      }
+    }
+  },
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/series/KXPRESSSECANNOUNCE",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "series": {
+        "additional_prohibitions": [
+          "Persons who are employed by any of the Source Agencies are not permitted to trade on the Contract.",
+          "Persons who hold any material, non-public information on the Underlying are not permitted to trade on the Contract."
+        ],
+        "category": "Politics",
+        "contract_terms_url": "https://assets.kalshi.com/contract_terms/PRESACTION.pdf",
+        "contract_url": "https://assets.kalshi.com/regulatory/product-certifications/PRESACTION.pdf",
+        "exchange_index": 0,
+        "fee_multiplier": 1,
+        "fee_type": "quadratic",
+        "frequency": "one_off",
+        "last_updated_ts": "2026-09-02T15:55:39.225042Z",
+        "settlement_sources": [
+          {
+            "name": "the White House",
+            "url": "https://www.whitehouse.gov"
+          },
+          {
+            "name": "Federal Register",
+            "url": "https://www.federalregister.gov/"
+          },
+          {
+            "name": "the President of the United States",
+            "url": "https://www.whitehouse.gov/"
+          }
+        ],
+        "tags": [
+          "Trump"
+        ],
+        "ticker": "KXPRESSSECANNOUNCE",
+        "title": "When will Trump's new Press Secretary be announced?"
+      }
+    }
+  },
+  {
+    "url": "https://api.elections.kalshi.com/trade-api/v2/series/KXSECPRESSMENTION",
+    "captured_at": "2026-09-05T06:14:44Z",
+    "response": {
+      "series": {
+        "additional_prohibitions": [
+          "Persons who are employed by any of the Source Agencies are not permitted to trade on the Contract.",
+          "Persons who hold any material, non-public information on the Underlying are not permitted to trade on the Contract."
+        ],
+        "category": "Mentions",
+        "contract_terms_url": "https://assets.kalshi.com/contract_terms/SECPRESSMENTION.pdf",
+        "contract_url": "https://assets.kalshi.com/regulatory/product-certifications/SECPRESSMENTION.pdf",
+        "exchange_index": 0,
+        "fee_multiplier": 1,
+        "fee_type": "quadratic",
+        "frequency": "custom",
+        "last_updated_ts": "2026-08-30T04:27:32.521111Z",
+        "product_metadata": {
+          "scope": "Mentions"
+        },
+        "settlement_sources": [
+          {
+            "name": "White House",
+            "url": "https://whitehouse.gov/"
+          },
+          {
+            "name": "White House Press Secretary",
+            "url": "https://www.whitehouse.gov/briefings-statements/"
+          }
+        ],
+        "tags": [
+          "Politicians"
+        ],
+        "ticker": "KXSECPRESSMENTION",
+        "title": "Sec Press mentions"
+      }
+    }
+  }
+]

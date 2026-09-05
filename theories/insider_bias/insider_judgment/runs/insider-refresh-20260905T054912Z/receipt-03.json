@@ -1,0 +1,146 @@
+{
+  "completion": {
+    "completed_at": "2026-09-05T05:52:35.860444+00:00",
+    "effort": "high",
+    "model": "gpt-5.6-sol",
+    "results": {
+      "KXUSOPENPRICE-26SEPFINALAVG": {
+        "bucket": "weak",
+        "rationale": "This resolves on a future secondary-market ticket-price snapshot, which depends on the aggregate behavior of many independent buyers and sellers through September 7. No specific identifiable group can already know that future value, so this is a rate-and-demand question rather than an insider-knowledge event."
+      },
+      "KXUSOPENPRICE-26SEPQFAVG": {
+        "bucket": "weak",
+        "rationale": "This resolves on a future secondary-market ticket-price snapshot, which depends on the aggregate behavior of many independent buyers and sellers through September 7. No specific identifiable group can already know that future value, so this is a rate-and-demand question rather than an insider-knowledge event."
+      },
+      "KXUSOPENPRICE-26SEPSFAVG": {
+        "bucket": "weak",
+        "rationale": "This resolves on a future secondary-market ticket-price snapshot, which depends on the aggregate behavior of many independent buyers and sellers through September 7. No specific identifiable group can already know that future value, so this is a rate-and-demand question rather than an insider-knowledge event."
+      }
+    },
+    "web_search": true
+  },
+  "request": {
+    "batch_id": "03",
+    "candidate_keys": [
+      "KXUSOPENPRICE-26SEPFINALAVG",
+      "KXUSOPENPRICE-26SEPQFAVG",
+      "KXUSOPENPRICE-26SEPSFAVG"
+    ],
+    "decision_at": "2026-09-05T05:49:12.532295+00:00",
+    "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\insider_bias\\insider_judgment\\runs\\insider-refresh-20260905T054912Z\\verdicts-03.json",
+    "payload": [
+      {
+        "close_time": "2026-09-08T00:00:00Z",
+        "event_ticker": "KXUSOPENPRICE-26SEPFINALAVG",
+        "markets": [
+          {
+            "close_time": "2026-09-08T00:00:00Z",
+            "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData is above $450 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXUSOPENPRICE-26SEPFINALAVG-450",
+            "title": "Will Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData be above $450 on 8:00PM ET September 7th, 2026?"
+          },
+          {
+            "close_time": "2026-09-08T00:00:00Z",
+            "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData is above $550 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXUSOPENPRICE-26SEPFINALAVG-550",
+            "title": "Will Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData be above $550 on 8:00PM ET September 7th, 2026?"
+          },
+          {
+            "close_time": "2026-09-08T00:00:00Z",
+            "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData is above $575 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXUSOPENPRICE-26SEPFINALAVG-575",
+            "title": "Will Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData be above $575 on 8:00PM ET September 7th, 2026?"
+          },
+          {
+            "close_time": "2026-09-08T00:00:00Z",
+            "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData is above $625 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXUSOPENPRICE-26SEPFINALAVG-625",
+            "title": "Will Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData be above $625 on 8:00PM ET September 7th, 2026?"
+          },
+          {
+            "close_time": "2026-09-08T00:00:00Z",
+            "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData is above $650 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXUSOPENPRICE-26SEPFINALAVG-650",
+            "title": "Will Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData be above $650 on 8:00PM ET September 7th, 2026?"
+          }
+        ],
+        "series_ticker": "KXUSOPENPRICE",
+        "title": "Will Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData be above $450 on 8:00PM ET September 7th, 2026?"
+      },
+      {
+        "close_time": "2026-09-08T00:00:00Z",
+        "event_ticker": "KXUSOPENPRICE-26SEPQFAVG",
+        "markets": [
+          {
+            "close_time": "2026-09-08T00:00:00Z",
+            "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Quarterfinals Tickets on TicketData is above $250 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXUSOPENPRICE-26SEPQFAVG-250",
+            "title": "Will Average Get-In Price of the 2026 US Open Tennis Quarterfinals Tickets on TicketData be above $250 on 8:00PM ET September 7th, 2026?"
+          },
+          {
+            "close_time": "2026-09-08T00:00:00Z",
+            "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Quarterfinals Tickets on TicketData is above $300 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXUSOPENPRICE-26SEPQFAVG-300",
+            "title": "Will Average Get-In Price of the 2026 US Open Tennis Quarterfinals Tickets on TicketData be above $300 on 8:00PM ET September 7th, 2026?"
+          },
+          {
+            "close_time": "2026-09-08T00:00:00Z",
+            "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Quarterfinals Tickets on TicketData is above $325 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXUSOPENPRICE-26SEPQFAVG-325",
+            "title": "Will Average Get-In Price of the 2026 US Open Tennis Quarterfinals Tickets on TicketData be above $325 on 8:00PM ET September 7th, 2026?"
+          },
+          {
+            "close_time": "2026-09-08T00:00:00Z",
+            "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Quarterfinals Tickets on TicketData is above $350 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXUSOPENPRICE-26SEPQFAVG-350",
+            "title": "Will Average Get-In Price of the 2026 US Open Tennis Quarterfinals Tickets on TicketData be above $350 on 8:00PM ET September 7th, 2026?"
+          }
+        ],
+        "series_ticker": "KXUSOPENPRICE",
+        "title": "Will Average Get-In Price of the 2026 US Open Tennis Quarterfinals Tickets on TicketData be above $250 on 8:00PM ET September 7th, 2026?"
+      },
+      {
+        "close_time": "2026-09-08T00:00:00Z",
+        "event_ticker": "KXUSOPENPRICE-26SEPSFAVG",
+        "markets": [
+          {
+            "close_time": "2026-09-08T00:00:00Z",
+            "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Semifinals Tickets on TicketData is above $475 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXUSOPENPRICE-26SEPSFAVG-475",
+            "title": "Will Average Get-In Price of the 2026 US Open Tennis Semifinals Tickets on TicketData be above $475 on 8:00PM ET September 7th, 2026?"
+          },
+          {
+            "close_time": "2026-09-08T00:00:00Z",
+            "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Semifinals Tickets on TicketData is above $500 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+            "rules_secondary": null,
+            "ticker": "KXUSOPENPRICE-26SEPSFAVG-500",
+            "title": "Will Average Get-In Price of the 2026 US Open Tennis Semifinals Tickets on TicketData be above $500 on 8:00PM ET September 7th, 2026?"
+          }
+        ],
+        "series_ticker": "KXUSOPENPRICE",
+        "title": "Will Average Get-In Price of the 2026 US Open Tennis Semifinals Tickets on TicketData be above $475 on 8:00PM ET September 7th, 2026?"
+      }
+    ],
+    "payload_sha256": "75d248aca90bac51806ece2dbb2efd8fb8d988db62d4a369e4db79928f4b03b6",
+    "rendered_prompt": "<!--\ninsider_bias \u2014 stage 2 deep-analysis prompt. Part of the versioned decision\nprocedure: editing this file changes what the theory decides, so it bumps the\ntheory version exactly like a threshold change would.\n\nRecorded per run in `judgment_runs` by sha256. Placeholders in {braces} are\nsubstituted at call time.\n-->\n\nYou are the deep-analysis stage of a prediction-market research theory called `insider_bias`. Read the input file, judge every event in it, and return structured verdicts.\n\n**Input:** `C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\insider_bias\\insider_judgment\\runs\\insider-refresh-20260905T054912Z\\input-03.json` \u2014 3 Kalshi events, 11 individual markets. Today is **2026-09-05**.\n\n# The thesis you are testing\n\nSome markets resolve on facts that a **specific, identifiable group of humans already knows** while the public does not \u2014 a pre-taped show's production crew, a board that has already voted, a company that knows its own filing date, a reporter's sourced-but-unpublished story. Where that private knowledge is real, the public price is still pricing public uncertainty, and there is room.\n\nThe question is **not** \"will this resolve YES?\" and **not** \"can I forecast this well?\" It is: **does a specific group already know the answer right now?**\n\nSay YES-ish for: pre-taped competition TV (finales, eliminations, reunions), award winners after a small body has voted, product launches and release dates known to supply chain and press, executive hires and firings, M&A and IPO announcements awaiting only a date, cabinet and judicial appointments, pardons and executive orders with circulated drafts, coaching hires, and anything resolving on a discretionary decision a small group has already made but not announced.\n\nSay NO-ish for: live sports, any future price, weather, scheduled economic indicators computed later from data not yet collected, live election-day outcomes, random draws, and anything resolving on the aggregate behavior of many independent people.\n\n**Pre-taped competition TV is the strongest sub-case and deserves extra weight.** A pre-taped show has a known taping date, a large crew, and an active leak community \u2014 a far more concrete informed group than \"reporters may have sources.\" Weight it above a flat reading of the list.\n\n# Critical constraints\n\n**You have deliberately NOT been given prices, spreads, or which side is favored.** This is intentional and load-bearing. Do not try to find, infer, or reason about the market price. Judge the thesis on its merits; price is applied mechanically afterwards.\n\n**Never state or estimate a probability.** Do not write \"about 80%\", \"likely ~70%\", or any number expressing your belief about the outcome. An LLM-introspected probability is mostly an anchor and this system explicitly refuses them. Your output is a **classification and an ordinal bucket**, nothing more.\n\n**Read the resolution rules, not just the title.** A recurring real edge \u2014 and a recurring trap \u2014 is rules that diverge from what the headline implies. Flag every divergence you find.\n\n# Confidence buckets \u2014 pick exactly one per event\n\n- `strong` \u2014 a specific *named* group already knows: a pre-taped show with a taping date already past, a board that has voted, a signed deal awaiting only announcement, a company that has already made and internally communicated the decision.\n- `moderate` \u2014 a plausible informed group exists but is less specific: \"reporters likely have sources\", \"the company knows its own roadmap but may not have decided\".\n- `weak` \u2014 the thesis is a stretch; no concrete group identified, or the outcome depends on a decision nobody has made yet.\n\n**Warning signs that must lower the bucket:**\n- a vague insider story (\"someone probably knows\") rather than a named group\n- resolution rules that differ from what the title implies\n- a resolution source that may not publish before the close time\n- the outcome depends on a decision that genuinely has not been made yet \u2014 nobody can know an unmade decision, however small the group is\n- the window is long and the event could happen at any point in it (that is a rate question, not a knowledge question)\n\n# Research\n\nYou may use WebSearch/WebFetch (load them via ToolSearch first). Use it where it decides the bucket \u2014 is this show pre-taped and has taping already happened, has this departure already been reported, is this filing already public, has this product already been announced. **Do not look up market prices or betting odds on any site.** If a search would only sharpen a forecast rather than establish whether someone already knows, skip it and save the time.\n\nBe efficient: batch your thinking, research only the events where it changes the answer, and do not spend more than a few searches on any one event.\n\n# Output\n\nWrite your verdicts to `C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\insider_bias\\insider_judgment\\runs\\insider-refresh-20260905T054912Z\\verdicts-03.json` as a JSON array, one object per **event** (3 objects), each:\n\n```json\n{\n  \"event_ticker\": \"...\",\n  \"insider_group\": \"the specific group who would already know, or null if none\",\n  \"bucket\": \"strong|moderate|weak\",\n  \"rules_diverge_from_title\": true/false,\n  \"rules_note\": \"what diverges, or null\",\n  \"resolution_source_risk\": \"can the source miss the close? brief, or null\",\n  \"rationale\": \"2-4 sentences. What group knows, how you know they know, what lowers it.\",\n  \"researched\": true/false\n}\n```\n\nEvery event in the input must appear exactly once in the output. Return to me only: the count written, the bucket distribution, and any event where you found a rules/title divergence. Under 15 lines.\n",
+    "requested_effort": "high",
+    "requested_model": "gpt-5.6-sol",
+    "requested_web_search": true,
+    "run_id": "insider-refresh-20260905T054912Z",
+    "run_mode": "live",
+    "stage": "analysis",
+    "theory_id": "insider_judgment",
+    "theory_version": 6
+  },
+  "schema_version": 1
+}

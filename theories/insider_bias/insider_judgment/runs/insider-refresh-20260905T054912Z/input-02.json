@@ -1,0 +1,340 @@
+[
+  {
+    "close_time": "2026-09-18T03:59:00Z",
+    "event_ticker": "KXHOUSEADJOURN-26",
+    "markets": [
+      {
+        "close_time": "2026-09-18T03:59:00Z",
+        "rules_primary": "If the U.S. House of Representatives adjourns from substantive floor business for its pre-election 2026 recess after Issuance and before Sep 18, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXHOUSEADJOURN-26-26SEP18",
+        "title": "Will it be reported by the U.S. House of Representatives that the U.S. House of Representatives adjourns from substantive floor business for its pre-election 2026 recess before Sep 18, 2026?"
+      }
+    ],
+    "series_ticker": "KXHOUSEADJOURN",
+    "title": "Will it be reported by the U.S. House of Representatives that the U.S. House of Representatives adjourns from substantive floor business for its pre-election 2026 recess before Sep 18, 2026?"
+  },
+  {
+    "close_time": "2026-09-15T03:59:00Z",
+    "event_ticker": "KXNEXTHURDATE-26DEC01",
+    "markets": [
+      {
+        "close_time": "2026-09-15T03:59:00Z",
+        "rules_primary": "If a hurricane (wind speeds of at least 74mph) forms in the Atlantic before Sep 15, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXNEXTHURDATE-26DEC01-26SEP15",
+        "title": "When will the next hurricane form?"
+      }
+    ],
+    "series_ticker": "KXNEXTHURDATE",
+    "title": "When will the next hurricane form?"
+  },
+  {
+    "close_time": "2026-09-08T03:59:00Z",
+    "event_ticker": "KXPRESSSECANNOUNCE-26AUG",
+    "markets": [
+      {
+        "close_time": "2026-09-08T03:59:00Z",
+        "rules_primary": "If Donald Trump has made any announcement (e.g., Truth Social post) naming the next White House Press Secretary (including acting/interim) before Sep 8, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXPRESSSECANNOUNCE-26AUG-SEP08",
+        "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Sep 8, 2026?"
+      },
+      {
+        "close_time": "2026-09-15T03:59:00Z",
+        "rules_primary": "If Donald Trump has made any announcement (e.g., Truth Social post) naming the next White House Press Secretary (including acting/interim) before Sep 15, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXPRESSSECANNOUNCE-26AUG-SEP15",
+        "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Sep 15, 2026?"
+      }
+    ],
+    "series_ticker": "KXPRESSSECANNOUNCE",
+    "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Sep 8, 2026?"
+  },
+  {
+    "close_time": "2026-09-07T03:59:00Z",
+    "event_ticker": "KXRANKLISTSONGTOP10-26SEP12",
+    "markets": [
+      {
+        "close_time": "2026-09-07T03:59:00Z",
+        "rules_primary": "If BE HER is Top 10 on the Billboard Hot 100  chart for the Week of Sep 12, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXRANKLISTSONGTOP10-26SEP12-BEH",
+        "title": "Will BE HER be Top 10 on the Billboard Hot 100 during the week of Sep 12, 2026"
+      }
+    ],
+    "series_ticker": "KXRANKLISTSONGTOP10",
+    "title": "Will BE HER be Top 10 on the Billboard Hot 100 during the week of Sep 12, 2026"
+  },
+  {
+    "close_time": "2026-09-12T03:59:00Z",
+    "event_ticker": "KXRNCMIDTERMSPEAK-26SEP12",
+    "markets": [
+      {
+        "close_time": "2026-09-12T03:59:00Z",
+        "rules_primary": "If Ken Paxton speaks as part of official programming at the 2026 Republican Midterm Convention, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXRNCMIDTERMSPEAK-26SEP12-KPAX",
+        "title": "Will it be confirmed that Ken Paxton speaks as part of official programming at the 2026 Republican Midterm Convention?"
+      },
+      {
+        "close_time": "2026-09-12T03:59:00Z",
+        "rules_primary": "If Susie Wiles speaks as part of official programming at the 2026 Republican Midterm Convention, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXRNCMIDTERMSPEAK-26SEP12-SWIL",
+        "title": "Will it be confirmed that Susie Wiles speaks as part of official programming at the 2026 Republican Midterm Convention?"
+      },
+      {
+        "close_time": "2026-09-12T03:59:00Z",
+        "rules_primary": "If Ted Cruz speaks as part of official programming at the 2026 Republican Midterm Convention, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXRNCMIDTERMSPEAK-26SEP12-TCRU",
+        "title": "Will it be confirmed that Ted Cruz speaks as part of official programming at the 2026 Republican Midterm Convention?"
+      }
+    ],
+    "series_ticker": "KXRNCMIDTERMSPEAK",
+    "title": "Will it be confirmed that Ken Paxton speaks as part of official programming at the 2026 Republican Midterm Convention?"
+  },
+  {
+    "close_time": "2026-09-16T10:59:00Z",
+    "event_ticker": "KXSARETAIL-26SEP16",
+    "markets": [
+      {
+        "close_time": "2026-09-16T10:59:00Z",
+        "rules_primary": "If the South Africa retail sales MoM for July 2026 is above -0.8%, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXSARETAIL-26SEP16-T-0.8",
+        "title": "Will South Africa retail sales MoM for July 2026 be above -0.8%?"
+      }
+    ],
+    "series_ticker": "KXSARETAIL",
+    "title": "Will South Africa retail sales MoM for July 2026 be above -0.8%?"
+  },
+  {
+    "close_time": "2026-09-15T14:00:00Z",
+    "event_ticker": "KXSECPRESSMENTION-26SEP15",
+    "markets": [
+      {
+        "close_time": "2026-09-15T14:00:00Z",
+        "rules_primary": "If the White House Press Secretary says Crypto / Bitcoin at the next Press Briefing by the White House Press Secretary (does not include gaggles), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXSECPRESSMENTION-26SEP15-CRYP",
+        "title": "Will the White House Press Secretary say Crypto / Bitcoin at her next press briefing?"
+      },
+      {
+        "close_time": "2026-09-15T14:00:00Z",
+        "rules_primary": "If the White House Press Secretary says Election at the next Press Briefing by the White House Press Secretary (does not include gaggles), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXSECPRESSMENTION-26SEP15-ELEC",
+        "title": "Will the White House Press Secretary say Election at her next press briefing?"
+      },
+      {
+        "close_time": "2026-09-15T14:00:00Z",
+        "rules_primary": "If the White House Press Secretary says Iran (5+ times) at the next Press Briefing by the White House Press Secretary (does not include gaggles), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXSECPRESSMENTION-26SEP15-IRAN",
+        "title": "Will the White House Press Secretary say Iran (5+ times) at her next press briefing?"
+      },
+      {
+        "close_time": "2026-09-15T14:00:00Z",
+        "rules_primary": "If the White House Press Secretary says JD / Vance at the next Press Briefing by the White House Press Secretary (does not include gaggles), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXSECPRESSMENTION-26SEP15-JD",
+        "title": "Will the White House Press Secretary say JD / Vance at her next press briefing?"
+      },
+      {
+        "close_time": "2026-09-15T14:00:00Z",
+        "rules_primary": "If the White House Press Secretary says Oil / Gas / Gasoline at the next Press Briefing by the White House Press Secretary (does not include gaggles), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXSECPRESSMENTION-26SEP15-OIL",
+        "title": "Will the White House Press Secretary say Oil / Gas / Gasoline at her next press briefing?"
+      },
+      {
+        "close_time": "2026-09-15T14:00:00Z",
+        "rules_primary": "If the White House Press Secretary says Tariff at the next Press Briefing by the White House Press Secretary (does not include gaggles), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXSECPRESSMENTION-26SEP15-TARI",
+        "title": "Will the White House Press Secretary say Tariff at her next press briefing?"
+      }
+    ],
+    "series_ticker": "KXSECPRESSMENTION",
+    "title": "Will the White House Press Secretary say Crypto / Bitcoin at her next press briefing?"
+  },
+  {
+    "close_time": "2026-09-15T03:59:00Z",
+    "event_ticker": "KXSOCCERTRANSFER-26SUM",
+    "markets": [
+      {
+        "close_time": "2026-09-15T03:59:00Z",
+        "rules_primary": "If Richarlison transfers out of Tottenham before Sep 15, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXSOCCERTRANSFER-26SUM-RICH",
+        "title": "Will Richarlison leave Tottenham before Sep 15, 2026?"
+      }
+    ],
+    "series_ticker": "KXSOCCERTRANSFER",
+    "title": "Will Richarlison leave Tottenham before Sep 15, 2026?"
+  },
+  {
+    "close_time": "2026-09-15T03:59:00Z",
+    "event_ticker": "KXSTARTINGQBWEEK1-W1-26SEP14-NYJ",
+    "markets": [
+      {
+        "close_time": "2026-09-15T03:59:00Z",
+        "rules_primary": "If Geno Smith is officially designated as New York J's starting quarterback for Week 1 of the Pro Football season, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXSTARTINGQBWEEK1-W1-26SEP14-NYJ-GSMI",
+        "title": "Will Geno Smith be starting quarterback for New York J in Week 1?"
+      }
+    ],
+    "series_ticker": "KXSTARTINGQBWEEK1",
+    "title": "Will Geno Smith be starting quarterback for New York J in Week 1?"
+  },
+  {
+    "close_time": "2026-09-15T03:59:00Z",
+    "event_ticker": "KXSTARTINGQBWEEK1-W1-26SEP15-ATL",
+    "markets": [
+      {
+        "close_time": "2026-09-15T03:59:00Z",
+        "rules_primary": "If Michael Penix Jr. is officially designated as Atlanta's Starting Quarterback for Week 1 of the 2026-2027 Pro Football season, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXSTARTINGQBWEEK1-W1-26SEP15-ATL-MPEN",
+        "title": "Will Michael Penix Jr. be Starting Quarterback for Atlanta in Week 1?"
+      },
+      {
+        "close_time": "2026-09-15T03:59:00Z",
+        "rules_primary": "If Tua Tagovailoa is officially designated as Atlanta's Starting Quarterback for Week 1 of the 2026-2027 Pro Football season, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXSTARTINGQBWEEK1-W1-26SEP15-ATL-TTAG",
+        "title": "Will Tua Tagovailoa be Starting Quarterback for Atlanta in Week 1?"
+      }
+    ],
+    "series_ticker": "KXSTARTINGQBWEEK1",
+    "title": "Will Michael Penix Jr. be Starting Quarterback for Atlanta in Week 1?"
+  },
+  {
+    "close_time": "2026-09-15T03:59:00Z",
+    "event_ticker": "KXSTARTINGQBWEEK1-W1-26SEP15-KC",
+    "markets": [
+      {
+        "close_time": "2026-09-15T03:59:00Z",
+        "rules_primary": "If Justin Fields is officially designated as Kansas City's starting quarterback for Week 1 of the 2026-27 Pro Football season, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXSTARTINGQBWEEK1-W1-26SEP15-KC-JFIE",
+        "title": "Will Justin Fields be starting quarterback for Kansas City in Week 1?"
+      },
+      {
+        "close_time": "2026-09-15T03:59:00Z",
+        "rules_primary": "If Patrick Mahomes is officially designated as Kansas City's starting quarterback for Week 1 of the 2026-27 Pro Football season, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXSTARTINGQBWEEK1-W1-26SEP15-KC-PMAH",
+        "title": "Will Patrick Mahomes be starting quarterback for Kansas City in Week 1?"
+      }
+    ],
+    "series_ticker": "KXSTARTINGQBWEEK1",
+    "title": "Will Justin Fields be starting quarterback for Kansas City in Week 1?"
+  },
+  {
+    "close_time": "2026-09-08T03:59:00Z",
+    "event_ticker": "KXSTEAMTOPSELLER-26SEP08",
+    "markets": [
+      {
+        "close_time": "2026-09-08T03:59:00Z",
+        "rules_primary": "If WARDOGS is ranked #1 on Steam's USA Weekly Top Sellers - Top 100 products by revenue list for Sep 1 - Sep 8, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXSTEAMTOPSELLER-26SEP08-WAR",
+        "title": "Will WARDOGS be #1 on Steam's Weekly Top Sellers - Top 100 products by revenue list for Sep 1 - Sep 8, 2026?"
+      }
+    ],
+    "series_ticker": "KXSTEAMTOPSELLER",
+    "title": "Will WARDOGS be #1 on Steam's Weekly Top Sellers - Top 100 products by revenue list for Sep 1 - Sep 8, 2026?"
+  },
+  {
+    "close_time": "2026-09-18T21:59:00Z",
+    "event_ticker": "KXSWEDEN7VOTE-26SEP13",
+    "markets": [
+      {
+        "close_time": "2026-09-18T21:59:00Z",
+        "rules_primary": "If Centre Party is the sole party with the seventh-highest nationwide valid-vote share in the Swedish Election Authority's final certified result for the 2026 Riksdag election, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXSWEDEN7VOTE-26SEP13-CENTRE",
+        "title": "Will Centre Party be the sole party with the seventh-highest nationwide valid-vote share in the Swedish Election Authority's final certified result for the 2026 Riksdag election?"
+      },
+      {
+        "close_time": "2026-09-18T21:59:00Z",
+        "rules_primary": "If Green Party is the sole party with the seventh-highest nationwide valid-vote share in the Swedish Election Authority's final certified result for the 2026 Riksdag election, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXSWEDEN7VOTE-26SEP13-GREEN",
+        "title": "Will Green Party be the sole party with the seventh-highest nationwide valid-vote share in the Swedish Election Authority's final certified result for the 2026 Riksdag election?"
+      },
+      {
+        "close_time": "2026-09-18T21:59:00Z",
+        "rules_primary": "If Left Party is the sole party with the seventh-highest nationwide valid-vote share in the Swedish Election Authority's final certified result for the 2026 Riksdag election, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXSWEDEN7VOTE-26SEP13-LEFT",
+        "title": "Will Left Party be the sole party with the seventh-highest nationwide valid-vote share in the Swedish Election Authority's final certified result for the 2026 Riksdag election?"
+      }
+    ],
+    "series_ticker": "KXSWEDEN7VOTE",
+    "title": "Will Centre Party be the sole party with the seventh-highest nationwide valid-vote share in the Swedish Election Authority's final certified result for the 2026 Riksdag election?"
+  },
+  {
+    "close_time": "2026-09-06T14:00:00Z",
+    "event_ticker": "KXTRUMPACT-26AUG30",
+    "markets": [
+      {
+        "close_time": "2026-09-06T14:00:00Z",
+        "rules_primary": "If Donald Trump has taken at least 3 presidential actions from Aug 30, 2026 through Sep 5, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Sep 6, 2026), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXTRUMPACT-26AUG30-T3",
+        "title": "Will there be at least 3 presidential actions in the week of Aug 30, 2026?"
+      },
+      {
+        "close_time": "2026-09-06T14:00:00Z",
+        "rules_primary": "If Donald Trump has taken at least 4 presidential actions from Aug 30, 2026 through Sep 5, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Sep 6, 2026), then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXTRUMPACT-26AUG30-T4",
+        "title": "Will there be at least 4 presidential actions in the week of Aug 30, 2026?"
+      }
+    ],
+    "series_ticker": "KXTRUMPACT",
+    "title": "Will there be at least 3 presidential actions in the week of Aug 30, 2026?"
+  },
+  {
+    "close_time": "2026-09-05T16:59:00Z",
+    "event_ticker": "KXTRUMPAPPROVE-26SEP05",
+    "markets": [
+      {
+        "close_time": "2026-09-05T16:59:00Z",
+        "rules_primary": "If Trump's RCP approval average is above 40.1% at exactly 1:00 PM ET on Sep 5, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXTRUMPAPPROVE-26SEP05-A40.1",
+        "title": "Will Trump's RCP approval average be above 40.1 on Sep 5, 2026?"
+      }
+    ],
+    "series_ticker": "KXTRUMPAPPROVE",
+    "title": "Will Trump's RCP approval average be above 40.1 on Sep 5, 2026?"
+  },
+  {
+    "close_time": "2026-09-07T14:00:00Z",
+    "event_ticker": "KXTRUMPPHOTO-26SEP06",
+    "markets": [
+      {
+        "close_time": "2026-09-07T14:00:00Z",
+        "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Aug 31, 2026 and Sep 6, 2026 is exactly 4, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXTRUMPPHOTO-26SEP06-4",
+        "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 4 between Aug 31, 2026 and Sep 6, 2026?"
+      },
+      {
+        "close_time": "2026-09-07T14:00:00Z",
+        "rules_primary": "If the number of distinct days Donald Trump is photographed in a tagged editorial photo on Getty Images between Aug 31, 2026 and Sep 6, 2026 is exactly 5, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXTRUMPPHOTO-26SEP06-5",
+        "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 5 between Aug 31, 2026 and Sep 6, 2026?"
+      }
+    ],
+    "series_ticker": "KXTRUMPPHOTO",
+    "title": "Will the number of distinct days with a Getty Images editorial photo of Trump be exactly 4 between Aug 31, 2026 and Sep 6, 2026?"
+  }
+]

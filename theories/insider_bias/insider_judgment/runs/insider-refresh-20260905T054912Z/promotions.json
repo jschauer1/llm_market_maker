@@ -1,0 +1,2503 @@
+[
+  {
+    "opportunity_id": 109979,
+    "kalshi_ticker": "KXAGTELIMINATION-26SEP10-CAM",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 109982,
+    "kalshi_ticker": "KXCFBUNRANKEDUPSET-26W1-1",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 109983,
+    "kalshi_ticker": "KXCFBUNRANKEDUPSET-26W1-2",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 109984,
+    "kalshi_ticker": "KXCFBUNRANKEDUPSET-26W1-3",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 109994,
+    "kalshi_ticker": "KXPRESSSECANNOUNCE-26AUG-SEP08",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": -11.966643384916372,
+    "claimed_edge_pts": -9.675158481421747,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "edge gone at today's ask 0.97 (claimed -9.68 pts)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 109995,
+    "kalshi_ticker": "KXPRESSSECANNOUNCE-26AUG-SEP15",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": -17.869843384916376,
+    "claimed_edge_pts": -14.44795848142175,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "edge gone at today's ask 0.85 (claimed -14.45 pts)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 109998,
+    "kalshi_ticker": "KXSECPRESSMENTION-26SEP15-CRYP",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 0.8672013519257326,
+    "claimed_edge_pts": 0.7011415185782518,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 4.00 pts >= claimed edge 0.70 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 110000,
+    "kalshi_ticker": "KXSECPRESSMENTION-26SEP15-TARI",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": -22.505527595442686,
+    "claimed_edge_pts": -18.195958481421744,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "edge gone at today's ask 0.87 (claimed -18.20 pts)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 110002,
+    "kalshi_ticker": "KXSOCCERTRANSFER-26SUM-RICH",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R1",
+    "rung_name": "RECOMMENDED",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 6.8371908256099365,
+    "claimed_edge_pts": 5.527941518578246,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 110004,
+    "kalshi_ticker": "KXSTARTINGQBWEEK1-W1-26SEP15-KC-JFIE",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R1",
+    "rung_name": "RECOMMENDED",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.4586263157895396,
+    "claimed_edge_pts": 1.1793148936170745,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 110005,
+    "kalshi_ticker": "KXSTARTINGQBWEEK1-W1-26SEP15-KC-PMAH",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R5",
+    "rung_name": "MEASURED-AGAINST",
+    "segment": "complement",
+    "rank_inputs": {
+      "n": 909,
+      "calibration_edge_net": -2.2877980991602644,
+      "mean_claimed_edge": 0.05501913421437083
+    },
+    "ranked_edge": 0.0,
+    "claimed_edge_pts": 3.988214893617077,
+    "quoted": false,
+    "reasons": [
+      "evidence is 2726/2975 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "measured against: calibration_edge_net -2.2877980991602644 over n_clusters=909, n_days=76 \u2014 the record outranks the claim"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 110014,
+    "kalshi_ticker": "KXUSOPENPRICE-26SEPFINALAVG-650",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113345,
+    "kalshi_ticker": "KXAGTELIMINATION-26SEP10-AKI",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113346,
+    "kalshi_ticker": "KXAGTELIMINATION-26SEP10-BIR",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113348,
+    "kalshi_ticker": "KXAGTELIMINATION-26SEP10-JES",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113349,
+    "kalshi_ticker": "KXAGTELIMINATION-26SEP10-TYR",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113350,
+    "kalshi_ticker": "KXALBUMSTREAMS-IKN26SEP10-10.0M",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113351,
+    "kalshi_ticker": "KXALBUMSTREAMS-PRI26SEP10-7.5M",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113352,
+    "kalshi_ticker": "KXALBUMSTREAMS-THE26SEP10-7.5M",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113353,
+    "kalshi_ticker": "KXBIGBROTHERELIMINATION-26SEP10-ANG",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113354,
+    "kalshi_ticker": "KXBIGBROTHERELIMINATION-26SEP10-RIC",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113355,
+    "kalshi_ticker": "KXBIGBROTHERELIMINATION-26SEP10-YAS",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113359,
+    "kalshi_ticker": "KXDOTPLOTPUB-26-DOT",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R5",
+    "rung_name": "MEASURED-AGAINST",
+    "segment": "complement",
+    "rank_inputs": {
+      "n": 909,
+      "calibration_edge_net": -2.2877980991602644,
+      "mean_claimed_edge": 0.05501913421437083
+    },
+    "ranked_edge": 0.0,
+    "claimed_edge_pts": 3.7971148936170764,
+    "quoted": false,
+    "reasons": [
+      "evidence is 2726/2975 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "measured against: calibration_edge_net -2.2877980991602644 over n_clusters=909, n_days=76 \u2014 the record outranks the claim"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113360,
+    "kalshi_ticker": "KXDWTSELIMINATION-26SEP17-CLEV",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113361,
+    "kalshi_ticker": "KXDWTSELIMINATION-26SEP17-CWOO",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113362,
+    "kalshi_ticker": "KXDWTSELIMINATION-26SEP17-GDEL",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113363,
+    "kalshi_ticker": "KXDWTSELIMINATION-26SEP17-GROD",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113364,
+    "kalshi_ticker": "KXDWTSELIMINATION-26SEP17-TCAM",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113365,
+    "kalshi_ticker": "KXENDORSEMAMDANI-26SEP15",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113366,
+    "kalshi_ticker": "KXFEDCOMBO-26SEPB-25H-0",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R1",
+    "rung_name": "RECOMMENDED",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.361196088767839,
+    "claimed_edge_pts": 1.1005415185782528,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113367,
+    "kalshi_ticker": "KXFEDDISSENT-26SEP-ANNA",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.5663881940309974,
+    "claimed_edge_pts": 1.2664415185782532,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 7.00 pts >= claimed edge 1.27 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113368,
+    "kalshi_ticker": "KXFEDDISSENT-26SEP-CHRI",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.2962618782415232,
+    "claimed_edge_pts": 1.0480415185782528,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 4.00 pts >= claimed edge 1.05 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113369,
+    "kalshi_ticker": "KXFEDDISSENT-26SEP-JOHN",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 2.02352503613626,
+    "claimed_edge_pts": 1.6360415185782526,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 5.00 pts >= claimed edge 1.64 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113370,
+    "kalshi_ticker": "KXFEDDISSENT-26SEP-LISA",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.78716450982047,
+    "claimed_edge_pts": 1.4449415185782524,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 7.00 pts >= claimed edge 1.44 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113371,
+    "kalshi_ticker": "KXFEDDISSENT-26SEP-MBAR",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.78716450982047,
+    "claimed_edge_pts": 1.4449415185782524,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 7.00 pts >= claimed edge 1.44 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113372,
+    "kalshi_ticker": "KXFEDDISSENT-26SEP-MICH",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.361196088767839,
+    "claimed_edge_pts": 1.1005415185782528,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 7.00 pts >= claimed edge 1.10 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113373,
+    "kalshi_ticker": "KXFEDDISSENT-26SEP-PHIL",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.9430066150836285,
+    "claimed_edge_pts": 1.5709415185782527,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 6.00 pts >= claimed edge 1.57 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113374,
+    "kalshi_ticker": "KXFEDMENTION-26SEP-BITC",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R1",
+    "rung_name": "RECOMMENDED",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 2.02352503613626,
+    "claimed_edge_pts": 1.6360415185782526,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113375,
+    "kalshi_ticker": "KXFEDMENTION-26SEP-CENT",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R5",
+    "rung_name": "MEASURED-AGAINST",
+    "segment": "complement",
+    "rank_inputs": {
+      "n": 909,
+      "calibration_edge_net": -2.2877980991602644,
+      "mean_claimed_edge": 0.05501913421437083
+    },
+    "ranked_edge": 0.0,
+    "claimed_edge_pts": 1.384041518578253,
+    "quoted": false,
+    "reasons": [
+      "evidence is 2726/2975 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "measured against: calibration_edge_net -2.2877980991602644 over n_clusters=909, n_days=76 \u2014 the record outranks the claim"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113376,
+    "kalshi_ticker": "KXFEDMENTION-26SEP-CONS",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R1",
+    "rung_name": "RECOMMENDED",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.7118408256099573,
+    "claimed_edge_pts": 1.3840415185782633,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113377,
+    "kalshi_ticker": "KXFEDMENTION-26SEP-CRYP",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R1",
+    "rung_name": "RECOMMENDED",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.78716450982047,
+    "claimed_edge_pts": 1.4449415185782524,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113378,
+    "kalshi_ticker": "KXFEDMENTION-26SEP-EGG",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R1",
+    "rung_name": "RECOMMENDED",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.864219772978365,
+    "claimed_edge_pts": 1.5072415185782524,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113379,
+    "kalshi_ticker": "KXFEDMENTION-26SEP-FAMI",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R5",
+    "rung_name": "MEASURED-AGAINST",
+    "segment": "complement",
+    "rank_inputs": {
+      "n": 909,
+      "calibration_edge_net": -2.2877980991602644,
+      "mean_claimed_edge": 0.05501913421437083
+    },
+    "ranked_edge": 0.0,
+    "claimed_edge_pts": 0.2689415185782529,
+    "quoted": false,
+    "reasons": [
+      "evidence is 2726/2975 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "measured against: calibration_edge_net -2.2877980991602644 over n_clusters=909, n_days=76 \u2014 the record outranks the claim"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113380,
+    "kalshi_ticker": "KXFEDMENTION-26SEP-GOLD",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R1",
+    "rung_name": "RECOMMENDED",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.864219772978365,
+    "claimed_edge_pts": 1.5072415185782524,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113381,
+    "kalshi_ticker": "KXFEDMENTION-26SEP-GOOD",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R1",
+    "rung_name": "RECOMMENDED",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.4278618782415233,
+    "claimed_edge_pts": 1.1544415185782528,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113382,
+    "kalshi_ticker": "KXFEDMENTION-26SEP-GOODD",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R5",
+    "rung_name": "MEASURED-AGAINST",
+    "segment": "complement",
+    "rank_inputs": {
+      "n": 909,
+      "calibration_edge_net": -2.2877980991602644,
+      "mean_claimed_edge": 0.05501913421437083
+    },
+    "ranked_edge": 0.0,
+    "claimed_edge_pts": 1.0480415185782528,
+    "quoted": false,
+    "reasons": [
+      "evidence is 2726/2975 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "measured against: calibration_edge_net -2.2877980991602644 over n_clusters=909, n_days=76 \u2014 the record outranks the claim"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113383,
+    "kalshi_ticker": "KXFEDMENTION-26SEP-LAYO",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 0.7897750361362601,
+    "claimed_edge_pts": 0.6385415185782528,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 2.00 pts >= claimed edge 0.64 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113384,
+    "kalshi_ticker": "KXFEDMENTION-26SEP-NATI",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R1",
+    "rung_name": "RECOMMENDED",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.7118408256099573,
+    "claimed_edge_pts": 1.3840415185782633,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113385,
+    "kalshi_ticker": "KXFEDMENTION-26SEP-PRES",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 0.7421566150836285,
+    "claimed_edge_pts": 0.6000415185782528,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 1.00 pts >= claimed edge 0.60 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113386,
+    "kalshi_ticker": "KXFEDMENTION-26SEP-PROB",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.2330592466625758,
+    "claimed_edge_pts": 0.9969415185782527,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 1.00 pts >= claimed edge 1.00 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113387,
+    "kalshi_ticker": "KXFEDMENTION-26SEP-PROJ",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R5",
+    "rung_name": "MEASURED-AGAINST",
+    "segment": "complement",
+    "rank_inputs": {
+      "n": 909,
+      "calibration_edge_net": -2.2877980991602644,
+      "mean_claimed_edge": 0.05501913421437083
+    },
+    "ranked_edge": 0.0,
+    "claimed_edge_pts": 0.719741518578253,
+    "quoted": false,
+    "reasons": [
+      "evidence is 2726/2975 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "measured against: calibration_edge_net -2.2877980991602644 over n_clusters=909, n_days=76 \u2014 the record outranks the claim"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113388,
+    "kalshi_ticker": "KXFEDMENTION-26SEP-SOFT",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.1118487203467862,
+    "claimed_edge_pts": 0.8989415185782526,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 1.00 pts >= claimed edge 0.90 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113389,
+    "kalshi_ticker": "KXFEDMENTION-26SEP-TRUM",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R1",
+    "rung_name": "RECOMMENDED",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.78716450982047,
+    "claimed_edge_pts": 1.4449415185782524,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113390,
+    "kalshi_ticker": "KXFEDMENTION-26SEP-UNCH",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R1",
+    "rung_name": "RECOMMENDED",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.4278618782415233,
+    "claimed_edge_pts": 1.1544415185782528,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113391,
+    "kalshi_ticker": "KXFEDMENTION-26SEP-VOLA",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R1",
+    "rung_name": "RECOMMENDED",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.361196088767839,
+    "claimed_edge_pts": 1.1005415185782528,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113392,
+    "kalshi_ticker": "KXFOMCDISSENTCOUNT-26SEP-0",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.361196088767839,
+    "claimed_edge_pts": 1.1005415185782528,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 2.00 pts >= claimed edge 1.10 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113393,
+    "kalshi_ticker": "KXFOMCDISSENTCOUNT-26SEP-1",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 3.527525036136262,
+    "claimed_edge_pts": 2.852041518578254,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 3.00 pts >= claimed edge 2.85 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113394,
+    "kalshi_ticker": "KXFOMCDISSENTCOUNT-26SEP-2",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 0.19101977297836426,
+    "claimed_edge_pts": 0.15444151857825195,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 3.00 pts >= claimed edge 0.15 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113395,
+    "kalshi_ticker": "KXFOMCDISSENTCOUNT-26SEP-3",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 0.3915118782415366,
+    "claimed_edge_pts": 0.3165415185782636,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 2.00 pts >= claimed edge 0.32 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113396,
+    "kalshi_ticker": "KXFOMCDISSENTCOUNT-26SEP-4",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.2330592466625758,
+    "claimed_edge_pts": 0.9969415185782527,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 2.00 pts >= claimed edge 1.00 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113397,
+    "kalshi_ticker": "KXFOMCDISSENTCOUNT-26SEP-5",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R1",
+    "rung_name": "RECOMMENDED",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.9430066150836285,
+    "claimed_edge_pts": 1.5709415185782527,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113398,
+    "kalshi_ticker": "KXGEOGUESSR-26-BUL",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113399,
+    "kalshi_ticker": "KXGEOGUESSR-26-CON",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113400,
+    "kalshi_ticker": "KXGEOGUESSR-26-MK",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113401,
+    "kalshi_ticker": "KXHMONTH-26AUG",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R5",
+    "rung_name": "MEASURED-AGAINST",
+    "segment": "complement",
+    "rank_inputs": {
+      "n": 909,
+      "calibration_edge_net": -2.2877980991602644,
+      "mean_claimed_edge": 0.05501913421437083
+    },
+    "ranked_edge": 0.0,
+    "claimed_edge_pts": 1.5709415185782527,
+    "quoted": false,
+    "reasons": [
+      "evidence is 2726/2975 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "measured against: calibration_edge_net -2.2877980991602644 over n_clusters=909, n_days=76 \u2014 the record outranks the claim"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113402,
+    "kalshi_ticker": "KXHMONTHRANGE-26AUG-T1.30",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R5",
+    "rung_name": "MEASURED-AGAINST",
+    "segment": "complement",
+    "rank_inputs": {
+      "n": 909,
+      "calibration_edge_net": -2.2877980991602644,
+      "mean_claimed_edge": 0.05501913421437083
+    },
+    "ranked_edge": 0.0,
+    "claimed_edge_pts": 1.5072415185782524,
+    "quoted": false,
+    "reasons": [
+      "evidence is 2726/2975 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "measured against: calibration_edge_net -2.2877980991602644 over n_clusters=909, n_days=76 \u2014 the record outranks the claim"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113403,
+    "kalshi_ticker": "KXHOUSEADJOURN-26-26SEP18",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R5",
+    "rung_name": "MEASURED-AGAINST",
+    "segment": "complement",
+    "rank_inputs": {
+      "n": 909,
+      "calibration_edge_net": -2.2877980991602644,
+      "mean_claimed_edge": 0.05501913421437083
+    },
+    "ranked_edge": 0.0,
+    "claimed_edge_pts": 1.6360415185782526,
+    "quoted": false,
+    "reasons": [
+      "evidence is 2726/2975 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "measured against: calibration_edge_net -2.2877980991602644 over n_clusters=909, n_days=76 \u2014 the record outranks the claim"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113404,
+    "kalshi_ticker": "KXNEXTHURDATE-26DEC01-26SEP15",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113407,
+    "kalshi_ticker": "KXRANKLISTSONGTOP10-26SEP12-BEH",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113408,
+    "kalshi_ticker": "KXRNCMIDTERMSPEAK-26SEP12-KPAX",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R5",
+    "rung_name": "MEASURED-AGAINST",
+    "segment": "complement",
+    "rank_inputs": {
+      "n": 909,
+      "calibration_edge_net": -2.2877980991602644,
+      "mean_claimed_edge": 0.05501913421437083
+    },
+    "ranked_edge": 0.0,
+    "claimed_edge_pts": 3.9231148936170768,
+    "quoted": false,
+    "reasons": [
+      "evidence is 2726/2975 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "measured against: calibration_edge_net -2.2877980991602644 over n_clusters=909, n_days=76 \u2014 the record outranks the claim"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113409,
+    "kalshi_ticker": "KXRNCMIDTERMSPEAK-26SEP12-SWIL",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R1",
+    "rung_name": "RECOMMENDED",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 3.695950000000068,
+    "claimed_edge_pts": 2.988214893617076,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113410,
+    "kalshi_ticker": "KXRNCMIDTERMSPEAK-26SEP12-TCRU",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R5",
+    "rung_name": "MEASURED-AGAINST",
+    "segment": "complement",
+    "rank_inputs": {
+      "n": 909,
+      "calibration_edge_net": -2.2877980991602644,
+      "mean_claimed_edge": 0.05501913421437083
+    },
+    "ranked_edge": 0.0,
+    "claimed_edge_pts": 3.2511148936170766,
+    "quoted": false,
+    "reasons": [
+      "evidence is 2726/2975 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "measured against: calibration_edge_net -2.2877980991602644 over n_clusters=909, n_days=76 \u2014 the record outranks the claim"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113411,
+    "kalshi_ticker": "KXSARETAIL-26SEP16-T-0.8",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113413,
+    "kalshi_ticker": "KXSECPRESSMENTION-26SEP15-ELEC",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 1.846532930873103,
+    "claimed_edge_pts": 1.4929415185782535,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 2.00 pts >= claimed edge 1.49 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113414,
+    "kalshi_ticker": "KXSECPRESSMENTION-26SEP15-IRAN",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 0.6962697729783655,
+    "claimed_edge_pts": 0.5629415185782529,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 3.00 pts >= claimed edge 0.56 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113415,
+    "kalshi_ticker": "KXSECPRESSMENTION-26SEP15-JD",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": -2.65668549017952,
+    "claimed_edge_pts": -2.1479584814217394,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "edge gone at today's ask 0.83 (claimed -2.15 pts)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113416,
+    "kalshi_ticker": "KXSECPRESSMENTION-26SEP15-OIL",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R1",
+    "rung_name": "RECOMMENDED",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 3.363890825609933,
+    "claimed_edge_pts": 2.7197415185782434,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113419,
+    "kalshi_ticker": "KXSTARTINGQBWEEK1-W1-26SEP14-NYJ-GSMI",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R5",
+    "rung_name": "MEASURED-AGAINST",
+    "segment": "complement",
+    "rank_inputs": {
+      "n": 909,
+      "calibration_edge_net": -2.2877980991602644,
+      "mean_claimed_edge": 0.05501913421437083
+    },
+    "ranked_edge": 0.0,
+    "claimed_edge_pts": 3.988214893617077,
+    "quoted": false,
+    "reasons": [
+      "evidence is 2726/2975 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "measured against: calibration_edge_net -2.2877980991602644 over n_clusters=909, n_days=76 \u2014 the record outranks the claim"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113420,
+    "kalshi_ticker": "KXSTARTINGQBWEEK1-W1-26SEP15-ATL-MPEN",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113421,
+    "kalshi_ticker": "KXSTARTINGQBWEEK1-W1-26SEP15-ATL-TTAG",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113424,
+    "kalshi_ticker": "KXSTEAMTOPSELLER-26SEP08-WAR",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113425,
+    "kalshi_ticker": "KXSWEDEN7VOTE-26SEP13-CENTRE",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113426,
+    "kalshi_ticker": "KXSWEDEN7VOTE-26SEP13-GREEN",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113427,
+    "kalshi_ticker": "KXSWEDEN7VOTE-26SEP13-LEFT",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113428,
+    "kalshi_ticker": "KXTRUMPACT-26AUG30-T3",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 6.51375661508362,
+    "claimed_edge_pts": 5.266441518578246,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 8.00 pts >= claimed edge 5.27 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113429,
+    "kalshi_ticker": "KXTRUMPACT-26AUG30-T4",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R4",
+    "rung_name": "ACCRUING",
+    "segment": "slice:strong-moderate-no",
+    "rank_inputs": {
+      "n": 94,
+      "calibration_edge_net": 3.42839539999986,
+      "mean_claimed_edge": 0.35067441310770814
+    },
+    "ranked_edge": 0.8689329308731009,
+    "claimed_edge_pts": 0.7025415185782518,
+    "quoted": true,
+    "reasons": [
+      "evidence is 314/365 rows replayed from backtest history (tier A/B; counts as evidence in full)",
+      "not takeable: spread 3.00 pts >= claimed edge 0.70 pts"
+    ],
+    "chain_versions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113430,
+    "kalshi_ticker": "KXTRUMPAPPROVE-26SEP05-A40.1",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113431,
+    "kalshi_ticker": "KXTRUMPPHOTO-26SEP06-4",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113432,
+    "kalshi_ticker": "KXTRUMPPHOTO-26SEP06-5",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113433,
+    "kalshi_ticker": "KXUSOPENPRICE-26SEPFINALAVG-450",
+    "outcome": "yes",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113434,
+    "kalshi_ticker": "KXUSOPENPRICE-26SEPFINALAVG-550",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113435,
+    "kalshi_ticker": "KXUSOPENPRICE-26SEPFINALAVG-575",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113436,
+    "kalshi_ticker": "KXUSOPENPRICE-26SEPFINALAVG-625",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113438,
+    "kalshi_ticker": "KXUSOPENPRICE-26SEPQFAVG-250",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113439,
+    "kalshi_ticker": "KXUSOPENPRICE-26SEPQFAVG-300",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113440,
+    "kalshi_ticker": "KXUSOPENPRICE-26SEPQFAVG-325",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113441,
+    "kalshi_ticker": "KXUSOPENPRICE-26SEPQFAVG-350",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113442,
+    "kalshi_ticker": "KXUSOPENPRICE-26SEPSFAVG-475",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  },
+  {
+    "opportunity_id": 113443,
+    "kalshi_ticker": "KXUSOPENPRICE-26SEPSFAVG-500",
+    "outcome": "no",
+    "theory_id": "insider_judgment",
+    "theory_version": 6,
+    "rung": "R6",
+    "rung_name": "CONTROL",
+    "segment": null,
+    "rank_inputs": null,
+    "ranked_edge": null,
+    "claimed_edge_pts": null,
+    "quoted": false,
+    "reasons": [
+      "no positive claimed edge \u2014 observation/control row (ruling 13)"
+    ],
+    "chain_versions": null,
+    "key_version": 4
+  }
+]

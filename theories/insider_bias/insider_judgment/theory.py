@@ -29,7 +29,10 @@ FUNNEL_KEYS = ("board_markets", "screened_markets", "events", "gated_out",
 class InsiderJudgmentTheory(Theory):
     id = "insider_judgment"
     name = "Insider Judgment"
-    version = 6
+    version = 7
+    #: v7 (2026-09-05): the shared bucket transfer bounds inferred binary
+    #: probability to [0, 1] and derives gross/net from that bounded value.
+    #: The screen, judge, buckets and evidence population are unchanged.
     uses_llm_judgment = True
     #: v6 (2026-09-01): the confidence buckets finally speak for
     #: themselves. `price()` asked `bucket_rates` for one version and one

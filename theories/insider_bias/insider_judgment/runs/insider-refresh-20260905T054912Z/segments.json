@@ -1,0 +1,134 @@
+{
+  "theory_id": "insider_judgment",
+  "theory_version": 6,
+  "disposition": "all",
+  "run_modes": [
+    "live",
+    "backtest"
+  ],
+  "tier_c_excluded_rows": 0,
+  "evidence_exclusions": {
+    "total": 0
+  },
+  "aggregate": {
+    "n": 3580,
+    "win_rate": 0.8497206703910615,
+    "price_implied_rate": 0.8538533519553031,
+    "calibration_edge": -0.4132681564241625,
+    "calibration_edge_net": -1.2158879863124312,
+    "mean_claimed_edge": 0.08203298465700186,
+    "mean_fee_pts": 0.8026198298882689,
+    "realization": 0.0,
+    "roi_all": -0.014107400343294213,
+    "roi_taken": null,
+    "riskless_n": 0,
+    "riskless_roi": null,
+    "n_attempts": 5228,
+    "n_clusters": 988,
+    "clustered_se": 0.8387464537683377,
+    "unclustered_rows": 0,
+    "n_backtest": 3279,
+    "n_days": 77,
+    "day_mean_edge_net": -1.991304374792683,
+    "day_clustered_se": 1.3915666087042806
+  },
+  "slices": [
+    {
+      "slug": "strong-moderate-no",
+      "status": "registered",
+      "predicate": {
+        "outcome": [
+          "no"
+        ],
+        "confidence": [
+          "strong",
+          "moderate"
+        ]
+      },
+      "hypothesis": "Optimism tax concentrates where judgment finds an informed group: retail YES flow overprices the affirmative side, so a strong-or-moderate insider verdict on a NO-side favorite marks exactly the rows where the screen's population-level breakeven hides a real edge. The NO bucket ladder is monotone (+6.50/+4.52/-1.96) while every YES cell is flat-to-negative.",
+      "origin": "Bet rule pre-registered 2026-08-26 after run backtest-2026-08-26-insider-judged-s200 (theories/insider_bias/insider_judgment/THEORY.md Learnings 2026-08-26; backtests/RESULTS.md carries the Holm-corrected family: bet rule and moderate-NO survive). registered-at is backdated to that documented pre-registration. oos runs s200b and s57 were judged AFTER the rule was registered: +4.92pts net, p=0.0008, 312 rows / 85 events, vs +5.34 on s200 which generated the rule and stays in-sample.",
+      "registered_at": "2026-08-26T02:30:22Z",
+      "priority": 0,
+      "oos": {
+        "n": 365,
+        "win_rate": 0.9068493150684932,
+        "price_implied_rate": 0.865065753424659,
+        "calibration_edge": 4.178356164383423,
+        "calibration_edge_net": 3.42839539999986,
+        "mean_claimed_edge": 0.35067441310770814,
+        "mean_fee_pts": 0.7499607643835631,
+        "realization": 1.5,
+        "roi_all": 0.03929098670387072,
+        "roi_taken": null,
+        "riskless_n": 0,
+        "riskless_roi": null,
+        "n_attempts": 711,
+        "n_clusters": 94,
+        "clustered_se": 2.469784735032877,
+        "unclustered_rows": 0,
+        "n_backtest": 314,
+        "n_days": 46,
+        "day_mean_edge_net": 6.220008639814162,
+        "day_clustered_se": 2.1591367953389335
+      },
+      "in_sample": {
+        "n": 240,
+        "win_rate": 0.9166666666666666,
+        "price_implied_rate": 0.8587958333333334,
+        "calibration_edge": 5.787083333333321,
+        "calibration_edge_net": 5.008150137499987,
+        "mean_claimed_edge": 0.008333333333333333,
+        "mean_fee_pts": 0.7789331958333339,
+        "realization": 1.5,
+        "roi_all": 0.05779178248238737,
+        "roi_taken": null,
+        "riskless_n": 0,
+        "riskless_roi": null,
+        "n_attempts": 479,
+        "n_clusters": 78,
+        "clustered_se": 2.6470144449890856,
+        "unclustered_rows": 0,
+        "n_backtest": 239,
+        "n_days": 32,
+        "day_mean_edge_net": -2.2283849717741013,
+        "day_clustered_se": 4.620323321474843
+      },
+      "ready": true,
+      "ready_gates": {
+        "min_clusters": 10,
+        "min_days": 5
+      },
+      "retired_reason": null
+    }
+  ],
+  "complement": {
+    "n": 2975,
+    "win_rate": 0.8373109243697479,
+    "price_implied_rate": 0.8520789915966446,
+    "calibration_edge": -1.476806722689672,
+    "calibration_edge_net": -2.2877980991602644,
+    "mean_claimed_edge": 0.05501913421437083,
+    "mean_fee_pts": 0.8109913764705925,
+    "realization": 0.0,
+    "roi_all": -0.026596461369139374,
+    "roi_taken": null,
+    "riskless_n": 0,
+    "riskless_roi": null,
+    "n_attempts": 4038,
+    "n_clusters": 909,
+    "clustered_se": 0.9069242791946942,
+    "unclustered_rows": 0,
+    "n_backtest": 2726,
+    "n_days": 76,
+    "day_mean_edge_net": -1.8738723409523983,
+    "day_clustered_se": 1.2253076738848723
+  },
+  "chain_versions": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ]
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "event_ticker": "KXUSOPENPRICE-26SEPFINALAVG",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "TicketData may not preserve a public, time-stamped historical snapshot of the exact 8:00 PM ET value; the supplied rules name no fallback source.",
+    "rationale": "This resolves on a future secondary-market ticket-price snapshot, which depends on the aggregate behavior of many independent buyers and sellers through September 7. No specific identifiable group can already know that future value, so this is a rate-and-demand question rather than an insider-knowledge event.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXUSOPENPRICE-26SEPQFAVG",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "TicketData may not preserve a public, time-stamped historical snapshot of the exact 8:00 PM ET value; the supplied rules name no fallback source.",
+    "rationale": "This resolves on a future secondary-market ticket-price snapshot, which depends on the aggregate behavior of many independent buyers and sellers through September 7. No specific identifiable group can already know that future value, so this is a rate-and-demand question rather than an insider-knowledge event.",
+    "researched": false
+  },
+  {
+    "event_ticker": "KXUSOPENPRICE-26SEPSFAVG",
+    "insider_group": null,
+    "bucket": "weak",
+    "rules_diverge_from_title": false,
+    "rules_note": null,
+    "resolution_source_risk": "TicketData may not preserve a public, time-stamped historical snapshot of the exact 8:00 PM ET value; the supplied rules name no fallback source.",
+    "rationale": "This resolves on a future secondary-market ticket-price snapshot, which depends on the aggregate behavior of many independent buyers and sellers through September 7. No specific identifiable group can already know that future value, so this is a rate-and-demand question rather than an insider-knowledge event.",
+    "researched": false
+  }
+]

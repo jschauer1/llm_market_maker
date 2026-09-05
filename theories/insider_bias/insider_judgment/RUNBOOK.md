@@ -10,7 +10,13 @@ see `THEORY.md` Hypothesis section for why). The package path is
 `theories.insider_bias.insider_judgment`; `theories/insider_bias/` is now a
 shared parent folder, not this theory's own name.
 
-Current version: **6** (2026-09-01 — **the confidence buckets now supply their own measured edge.** `price()` was asking `score.bucket_rates` for one exact version and `run_mode='live'`, which returned `{}` for this theory's whole life, so every judged row claimed a `PRIORS` placeholder while 1,564 settled bucketed rows sat unread at v3/backtest. `bucket_rates` is rebuilt on `observations()` and now takes `run_mode`/`pool` like `compute_score`; the theory passes `("live","backtest")` and `pool="chain"`. Measured buckets: strong +4.07, moderate +2.03, weak −0.36, against priors of +4.00/+2.00/0.00. Bumped `continues` — nothing in the decision path moved except that it now reads a measurement it already had. **Nothing in the run procedure below changes.** See THEORY.md Version 6.)
+Current version: **7** (2026-09-05) — measured bucket probabilities are bounded
+to `[0, 1]`, with gross/net edge derived consistently. Screen and judging
+stages are unchanged; the continuing evidence chain remains applicable.
+Original receipts retain their version. Promotion key v5 holds impossible
+legacy claims for a new bounded decision.
+
+Previous version: **6** (2026-09-01 — **the confidence buckets now supply their own measured edge.** `price()` was asking `score.bucket_rates` for one exact version and `run_mode='live'`, which returned `{}` for this theory's whole life, so every judged row claimed a `PRIORS` placeholder while 1,564 settled bucketed rows sat unread at v3/backtest. `bucket_rates` is rebuilt on `observations()` and now takes `run_mode`/`pool` like `compute_score`; the theory passes `("live","backtest")` and `pool="chain"`. Measured buckets: strong +4.07, moderate +2.03, weak −0.36, against priors of +4.00/+2.00/0.00. Bumped `continues` — nothing in the decision path moved except that it now reads a measurement it already had. **Nothing in the run procedure below changes.** See THEORY.md Version 6.)
 
 Previous version: **5** (2026-09-01 — **stage 6, the main session's price-aware final review, is removed.** A bucket from stage 5 is now the whole interpretation, and what it is worth is decided by the candidate's segment record through the promotion key (key v3). Bumped `continues`: every backtest row this theory holds was generated without stage 6, so v5 is closer to the measured procedure than v4 was. See THEORY.md Version 5.)
 
@@ -24,25 +30,20 @@ sequence below is a decision-procedure change and **bumps the version**.
 v3 (2026-08-24) marks the point where the mention-family discovery
 happened; it briefly lived here as a mechanical sub-path before moving into
 its own theory the same day. That theory was retired (user, 2026-08-27)
-and migrated on 2026-09-02: its record is now `theories/retired/
-mention_family/`, and its `RUNBOOK.md` was deleted with the rest of its
+and migrated on 2026-09-02: its record is now
+`theories/retired/mention_family/`, and its `RUNBOOK.md` was deleted with the rest of its
 code — retrieve it with `git show 450db428ec0e7542852fae6484ab8370aaeddfad:theories/insider_bias/
-mention_family/RUNBOOK.md`. It did not change stages 1–6, which
+mention_family/RUNBOOK.md`. It did not change the then-current stages 1–6, which
 is why the 44 v2 live rows stay their own comparable cohort rather than
 needing a re-run, and why the version number stayed at 3 rather than
 reverting.
 
-**There are zero rows recorded at v3, and that is expected, not a gap to
-fill.** The 44 live rows in the ledger (`run_id=live-2026-08-23`, 3
-endorsed / 41 rejected) are recorded at `theory_version=2` — they travelled
-through v2's exact procedure, which is what actually ran that day. They
-stay at v2 rather than being relabeled v3, because v2 is what produced
-them; v3 exists as a version *number* (marking the mention-family
-discovery point and the parent-folder rename) without this theory's own
-procedure ever having changed since v2. The next live run of this theory's
-stages 1–6 will be the first one legitimately recorded at v3 — and since
-the procedure is unchanged, it should be directly comparable to the v2
-rows, not treated as a break in the cohort.
+**Historical correction:** v3 has substantial backtest and live rows in the
+ledger. They were produced under v3 and stay labelled v3; do not relabel them
+to the current version. Because the registry records v1 through v6 as one
+`continues` chain, eligible rows pool when scoring and measuring bucket
+rates. A version label records the procedure that produced a row, while the
+chain declares whether its evidence applies now.
 
 ## Stages
 
@@ -69,10 +70,11 @@ already do, not as "not yet assessed".
 through key v3's R4 gate to its ranking segment, and the segment's own
 measured record classifies it — R1 where the record is past its evidence
 gates and positive, R5 where it is past them and negative, R6 where today's
-claimed edge is not positive. For this theory that means the
-`strong-moderate-no` slice routes its own candidates on its own +3.76, and
-the complement's −2.39 suppresses the rest. Judgment classifies;
-measurement quantifies. **Do not re-introduce a session-level veto** — that
+claimed edge is not positive. For this theory,
+`strong-moderate-no` matches route to the slice and all other candidates
+route to the complement; each uses its current eligible score. Judgment
+classifies; measurement quantifies. Read exact rungs with `promote`.
+**Do not re-introduce a session-level veto** — that
 is the stage that was removed, and reinstating it by hand is a
 decision-procedure change that needs a version bump and a reason.
 
@@ -109,26 +111,62 @@ without saying what it dropped lets a scan claim coverage it never had.
 
 - **Prompt:** `prompts/analysis.md` (substitute `{input_path}`, `{n_events}`,
   `{n_markets}`, `{today}`, `{output_path}`)
-- **Model:** `opus` — the strong tier. This is the stage the whole bucket
-  calibration rests on; do not economize here.
+- **Outcome model:** the judged benchmark used `claude-sonnet-5` agents; see
+  [the benchmark protocol](backtests/RESULTS.md#what-was-run). Choose a model in
+  the active runtime with comparable Sonnet-class intelligence and appropriate
+  reasoning effort. Under the user's idealized-judge assumption, a Codex or Claude
+  model following this same procedure uses the existing production bucket and
+  slice calibration. Model choice alone needs no experiment or version bump.
+  Record the actual model and effort; capability matching is approximate.
 - **Batching:** ~16 events per subagent. Batch within the tier; never one
   subagent per candidate.
-- **Web search:** on. Load via `ToolSearch` inside the subagent.
+- **Web search:** on for the established procedure. Use the search tool the
+  active runtime actually exposes. If none is available, report this stage as
+  blocked; do not dispatch without search or record search as enabled.
 - **Blind to price:** yes, guaranteed by stage 4.
 
 Write `out["payload"]` to a file and pass the path — do not paste the payload
-into the prompt, or the prompt text stops matching the recorded sha.
+into the prompt. Pasting it changes both the intended dispatch procedure and
+the exact rendered prompt that provenance must record.
 
-> **Model ids are aliases.** The Agent tool takes `opus`/`sonnet`/`haiku`/
-> `fable` and resolves them harness-side without reporting back. Record the
-> alias, not a pinned id nobody verified — an alias that silently remaps is
-> exactly the drift the record exists to expose.
+Each batch has a different rendered prompt because its paths and counts differ.
+Record every batch before ingesting that batch's verdicts. Record the requested
+model id when the runtime exposes it; otherwise record an honestly labelled
+alias. Record effort only when it was specified or exposed, record the actual
+web-search setting, and pass the exact substituted prompt through
+`rendered_prompt`. The template path remains `prompts/analysis.md`, while each
+stored hash identifies the rendered text one judge actually received.
+
+The established Claude procedure requested the `opus` alias. When that runtime
+does not expose the resolved id, its honest historical identity is
+`opus (Agent tool alias)`. A Codex dispatch records its actual requested model
+id and reasoning effort. Never copy one parent model or effort value across
+separately dispatched work.
+
+For new live or experimental runs, use
+`docs/agents/judgment-batches.md`: prepare one `analysis` receipt per batch,
+materialize its bare blind payload at the prompt's `{input_path}`, and save the
+original operator run state before dispatch. Complete each returned receipt
+with its actual execution metadata and parsed `Verdict` values. Keep the raw
+verdict output alongside it for recovery. The historical `backtest_judged.py`
+manifest/ingest procedure stays the owner of existing replay artifacts.
+
+On restart, `judgments.load_run_state` restores the original screen and decision
+time. Recover a pending receipt's original executed output before spending
+tokens again. If a live batch had not executed when its session ended, follow
+the timing rule in `docs/agents/judgment-batches.md`: start a fresh live run,
+retaining the old pending artifacts for audit. Later web-informed judgments
+must not become decisions recorded at the old timestamp and prices.
+When all required batches are complete, attach them to that restored run with
+`run.attach_completed_batches(receipts).finish()`. Each batch becomes its own
+`JudgmentExecution`; provenance is written before opportunities. The batch
+receipts and operator run-state file never go to a judging subagent.
 
 ### 6. — removed at v5
 
 There is no stage 6. Once stage 5's verdicts are applied, `finish()` writes
-the rows and the run is done; `python -m tools.cli promote --run $RUN` then
-says what each row is worth. `prompts/final_review.md` is retired history
+the rows and the run is done; `python -m tools.cli promote --run "<run-id>"`
+then says what each row is worth. `prompts/final_review.md` is retired history
 kept on disk for the `judgment_runs` rows that name it — do not run it.
 
 ## Record — before any opportunity is written
@@ -136,15 +174,18 @@ kept on disk for the `judgment_runs` rows that name it — do not run it.
 `insider_judgment` declares `uses_llm_judgment`, so `record_opportunity`
 refuses rows for a run with no provenance.
 
-```bash
-RUN=live-$(date -u +%Y-%m-%d)
-python -m tools.cli provenance record --theory insider_judgment --version 5 \
-    --run $RUN --stage gate --model "none (deterministic)" \
-    --prompt-path theories/insider_bias/insider_judgment/gate.py --web-search 0
-python -m tools.cli provenance record --theory insider_judgment --version 5 \
-    --run $RUN --stage analysis --model "opus (Agent tool alias)" \
-    --prompt-path theories/insider_bias/insider_judgment/prompts/analysis.md --web-search 1
+```text
+python -m tools.cli provenance record --theory insider_judgment --version 7 --run "<run-id>" --stage gate --model "none (deterministic)" --prompt-path theories/insider_bias/insider_judgment/gate.py --web-search 0
+
+python -m tools.cli provenance record --theory insider_judgment --version 7 --run "<run-id>" --stage analysis --model "<actual-requested-model-or-honest-alias>" --prompt-path theories/insider_bias/insider_judgment/prompts/analysis.md --rendered-prompt-file "<rendered-batch-prompt-path>" --web-search "<0-or-1>" --n-items "<batch-size>"
 ```
+
+The host adapter supplies the run id and rendered-prompt path for each batch.
+It also supplies the actual model and search setting; add `--effort
+"<actual-effort>"` only when the runtime specified or exposed one. Repeat the
+analysis command for every batch before reading its verdict file. This manual
+CLI path remains useful for crash safety; passing the same complete execution
+tuple to `TheoryContext` makes the later `finish()` writes idempotent.
 
 Two stages record, not three: `gate` and `analysis`. Then record
 opportunities with `edge_pts_net` from `buckets.edge_for` and
@@ -158,17 +199,17 @@ with `promote`, never by re-judging the batch yourself.
 A **sub-theory** is a theory run over a *subset* of this theory's data:
 same rows, narrower population, its own evidence. It accrues, clears its
 gates and is scored separately, and it can be strong while this theory is
-flat -- which is exactly the case here.
+flat.
 
 | slug | claim |
 |---|---|
 | `strong-moderate-no` | a strong-or-moderate insider verdict on a NO-side favorite is where the screen's population-level breakeven hides a real edge |
 
-**This theory's sub-theory is its best-evidenced result.** As of
-2026-09-01 the slice is READY out of sample at the current version --
-**n=328, 90 event clusters, 44 settlement days, +3.76 net**, pooled over
-v1-v4, of which 314 rows are replayed history -- while the aggregate
-screen is breakeven. Reporting only the parent buries it.
+**This theory's sub-theory is ready and has its own evidence.** It ranks on
+eligible out-of-sample rows pooled over the continuing version chain;
+reporting only the parent would mix it back into the broader screen. Read the
+current sample, replay share, edge, and gate state from the commands below
+rather than from a dated prose snapshot.
 
 Evaluating them is part of running this theory:
 
@@ -192,8 +233,8 @@ sub-theory drives its bets with nothing adopted, merged or promoted.
 rows, and never fold the predicate into the decision procedure.** The bet
 would be identical, and it would cost the complement (nobody could check
 again whether the NO subset is still the part that works) and the
-out-of-sample split that makes the +3.76 trustworthy at all. See
-CLAUDE.md, "A sub-theory is maintained, not absorbed".
+out-of-sample split that makes the evidence trustworthy. See
+`docs/RESEARCH_GUIDE.md`, "A sub-theory is maintained, not absorbed".
 
 **Historical note, because it is instructive.** This slice spent two days
 as *orphaned evidence*: v2-v4 were recorded `breaking` under the old
@@ -242,25 +283,27 @@ retail price index.
 A mechanical, no-LLM edge on "will X mention/say/do Y" markets was found as
 a side effect of the tier A backtest above, lived here briefly as a v3
 sub-path, and moved into its own theory the same day:
-`theories/mention_family/` — see that theory's own `RUNBOOK.md` for how to
-run it (it shares `tools/screen.py`, the same shared mechanical filter this
-theory's stage 1 uses, but nothing else). Nothing about running *this*
-theory's own stages 1–6 changed by the split.
+`theories/retired/mention_family/`. Its live runbook was deleted on
+retirement; retrieve the historical procedure at the git revision recorded
+in that theory's `RETIRED.md`. It shared
+`theories/insider_bias/screen.py`, the same mechanical filter this theory's
+stage 1 uses, but nothing else. Nothing about running this theory's own
+decision path changed by the split.
 
 ## Known weaknesses
 
-1. **The gate classifies by series-ticker prefix and never reads resolution
-   rules.** Its error rate is unmeasured. An audit on 2026-08-23 found at
-   least two likely misses in the `aggregate of many independent people`
-   bucket — `KXMAMDANIMENTION` (speech content: speechwriters are a named
-   informed group) and `KXEOWEEK` (executive orders, explicitly a YES case in
-   THEORY.md). Both were filed as counts because the ticker names read that
-   way. Fixing this bumps the version.
-2. **False eliminations are invisible.** The gate errs toward keeping an
-   unrecognized family, but inside a matched family it drops silently and
-   nothing downstream reports it. Sampling ~30 of the gated-out set and
-   judging them blind against THEORY.md's rules would turn the error rate
-   into a measured number.
-3. **The screen has no thesis term in it** — it selects tradeable favourites,
-   not markets an insider could know, which is why 88% of its output is
-   gate-rejected. See THEORY.md Learnings.
+1. **The deterministic gate recognizes only encoded ticker and rules-text
+   patterns.** Novel impossible families fall through to the expensive
+   analysis stage. Matched removals are reported by category through
+   `gate_removed`, but they do not enter the ledger, so periodic audits of
+   removed candidates remain necessary.
+2. **Model equivalence is an operating assumption.** The judged benchmark used
+   Sonnet agents; some live runs used Opus. Match the Sonnet benchmark's
+   capability when choosing a Codex or Claude judge and follow the same prompt,
+   blindness, buckets, and live web-enabled procedure. Actual classifications
+   can differ. Keep provenance for later diagnosis; Opus is not a prerequisite.
+3. **The screen is intentionally broad.** It selects tradeable favorites,
+   while the judgment stage supplies the thesis term. The ready
+   `strong-moderate-no` slice and its complement must remain separate so
+   the supported subset drives only matching candidates and keeps accruing
+   against its control.

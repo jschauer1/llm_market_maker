@@ -1,0 +1,103 @@
+[
+  {
+    "close_time": "2026-09-08T00:00:00Z",
+    "event_ticker": "KXUSOPENPRICE-26SEPFINALAVG",
+    "markets": [
+      {
+        "close_time": "2026-09-08T00:00:00Z",
+        "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData is above $450 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXUSOPENPRICE-26SEPFINALAVG-450",
+        "title": "Will Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData be above $450 on 8:00PM ET September 7th, 2026?"
+      },
+      {
+        "close_time": "2026-09-08T00:00:00Z",
+        "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData is above $550 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXUSOPENPRICE-26SEPFINALAVG-550",
+        "title": "Will Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData be above $550 on 8:00PM ET September 7th, 2026?"
+      },
+      {
+        "close_time": "2026-09-08T00:00:00Z",
+        "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData is above $575 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXUSOPENPRICE-26SEPFINALAVG-575",
+        "title": "Will Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData be above $575 on 8:00PM ET September 7th, 2026?"
+      },
+      {
+        "close_time": "2026-09-08T00:00:00Z",
+        "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData is above $625 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXUSOPENPRICE-26SEPFINALAVG-625",
+        "title": "Will Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData be above $625 on 8:00PM ET September 7th, 2026?"
+      },
+      {
+        "close_time": "2026-09-08T00:00:00Z",
+        "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData is above $650 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXUSOPENPRICE-26SEPFINALAVG-650",
+        "title": "Will Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData be above $650 on 8:00PM ET September 7th, 2026?"
+      }
+    ],
+    "series_ticker": "KXUSOPENPRICE",
+    "title": "Will Average Get-In Price of the 2026 US Open Tennis Finals Tickets on TicketData be above $450 on 8:00PM ET September 7th, 2026?"
+  },
+  {
+    "close_time": "2026-09-08T00:00:00Z",
+    "event_ticker": "KXUSOPENPRICE-26SEPQFAVG",
+    "markets": [
+      {
+        "close_time": "2026-09-08T00:00:00Z",
+        "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Quarterfinals Tickets on TicketData is above $250 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXUSOPENPRICE-26SEPQFAVG-250",
+        "title": "Will Average Get-In Price of the 2026 US Open Tennis Quarterfinals Tickets on TicketData be above $250 on 8:00PM ET September 7th, 2026?"
+      },
+      {
+        "close_time": "2026-09-08T00:00:00Z",
+        "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Quarterfinals Tickets on TicketData is above $300 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXUSOPENPRICE-26SEPQFAVG-300",
+        "title": "Will Average Get-In Price of the 2026 US Open Tennis Quarterfinals Tickets on TicketData be above $300 on 8:00PM ET September 7th, 2026?"
+      },
+      {
+        "close_time": "2026-09-08T00:00:00Z",
+        "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Quarterfinals Tickets on TicketData is above $325 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXUSOPENPRICE-26SEPQFAVG-325",
+        "title": "Will Average Get-In Price of the 2026 US Open Tennis Quarterfinals Tickets on TicketData be above $325 on 8:00PM ET September 7th, 2026?"
+      },
+      {
+        "close_time": "2026-09-08T00:00:00Z",
+        "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Quarterfinals Tickets on TicketData is above $350 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXUSOPENPRICE-26SEPQFAVG-350",
+        "title": "Will Average Get-In Price of the 2026 US Open Tennis Quarterfinals Tickets on TicketData be above $350 on 8:00PM ET September 7th, 2026?"
+      }
+    ],
+    "series_ticker": "KXUSOPENPRICE",
+    "title": "Will Average Get-In Price of the 2026 US Open Tennis Quarterfinals Tickets on TicketData be above $250 on 8:00PM ET September 7th, 2026?"
+  },
+  {
+    "close_time": "2026-09-08T00:00:00Z",
+    "event_ticker": "KXUSOPENPRICE-26SEPSFAVG",
+    "markets": [
+      {
+        "close_time": "2026-09-08T00:00:00Z",
+        "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Semifinals Tickets on TicketData is above $475 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXUSOPENPRICE-26SEPSFAVG-475",
+        "title": "Will Average Get-In Price of the 2026 US Open Tennis Semifinals Tickets on TicketData be above $475 on 8:00PM ET September 7th, 2026?"
+      },
+      {
+        "close_time": "2026-09-08T00:00:00Z",
+        "rules_primary": "If the Average Get-In Price of the 2026 US Open Tennis Semifinals Tickets on TicketData is above $500 at 8:00PM ET September 7th, 2026, then the market resolves to Yes.",
+        "rules_secondary": null,
+        "ticker": "KXUSOPENPRICE-26SEPSFAVG-500",
+        "title": "Will Average Get-In Price of the 2026 US Open Tennis Semifinals Tickets on TicketData be above $500 on 8:00PM ET September 7th, 2026?"
+      }
+    ],
+    "series_ticker": "KXUSOPENPRICE",
+    "title": "Will Average Get-In Price of the 2026 US Open Tennis Semifinals Tickets on TicketData be above $475 on 8:00PM ET September 7th, 2026?"
+  }
+]

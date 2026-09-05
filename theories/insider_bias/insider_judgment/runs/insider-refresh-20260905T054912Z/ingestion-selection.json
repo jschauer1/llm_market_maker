@@ -1,0 +1,10 @@
+{
+  "included": [
+    "receipt-01.json",
+    "receipt-02-retry.json",
+    "receipt-03.json"
+  ],
+  "excluded": {
+    "receipt-02.json": "Accidental price-bearing web search snippet; rerun entire batch with fresh judge."
+  }
+}

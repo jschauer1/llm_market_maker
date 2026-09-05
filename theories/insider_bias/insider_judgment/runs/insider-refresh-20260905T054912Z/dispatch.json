@@ -1,0 +1,23 @@
+{
+  "run_id": "insider-refresh-20260905T054912Z",
+  "batches": [
+    {
+      "batch": "01",
+      "prompt": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\insider_bias\\insider_judgment\\runs\\insider-refresh-20260905T054912Z\\prompt-01.md",
+      "events": 16,
+      "markets": 58
+    },
+    {
+      "batch": "02",
+      "prompt": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\insider_bias\\insider_judgment\\runs\\insider-refresh-20260905T054912Z\\prompt-02.md",
+      "events": 16,
+      "markets": 30
+    },
+    {
+      "batch": "03",
+      "prompt": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\insider_bias\\insider_judgment\\runs\\insider-refresh-20260905T054912Z\\prompt-03.md",
+      "events": 3,
+      "markets": 11
+    }
+  ]
+}

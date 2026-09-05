@@ -86,7 +86,7 @@ def test_one_verdict_reaches_every_sibling_and_records(tmp_path):
         assert row["judged_blind"] == 1
         assert row["edge_basis"] == "prior"       # no measured rates yet
         assert row["edge_pts_net"] == pytest.approx(4.0)   # THEORY.md prior
-        assert row["theory_version"] == 6
+    assert row["theory_version"] == 7
     runs = provenance.list_judgment_runs(conn, theory_id="insider_judgment")
     # v5 removed stage 6: analysis is the only judging stage left.
     assert {r["stage"] for r in runs} == {"analysis"}
