@@ -38,7 +38,7 @@ import json
 import time
 from pathlib import Path
 
-from tools import atomic_write
+from tools import atomic_write, filelock
 from tools.timeutil import parse_deadline  # noqa: F401  (re-exported)
 from tools.kalshi import history
 from tools.kalshi import markets as km
@@ -70,9 +70,9 @@ def _save(name: str, obj) -> None:
     handle killing a walk at 874/960 series, and a reader catching a
     half-written file) proved the shape here first. It is now shared —
     every collector built to the record-while-you-collect convention had
-    the same exposure. Still no defence against a SECOND WRITER; that
-    needs a lock, ticketed as
-    `maintenance/collector-write-lock`.
+    the same exposure. The caller now holds `collector_lock_path()` across
+    every load and save; this helper remains only the atomic replacement
+    half of that transaction.
     """
     atomic_write.write_json(DATA / name, obj)
 
@@ -224,11 +224,31 @@ def platform_series(fetch=None) -> list[str]:
 #: MB, projecting past four hours and still degrading. At 25 the worst case
 #: is re-walking 25 series (seconds) and the write volume drops 25x.
 FLUSH_EVERY = 25
+COLLECTOR_LOCK_NAME = ".collector.lock"
+
+
+def collector_lock_path(data: Path | None = None) -> Path:
+    """Stable ownership identity shared with the facts rebuild."""
+    return (DATA if data is None else data) / COLLECTOR_LOCK_NAME
 
 
 def collect(series: list[str], *, fetch=None, raw_filter=None,
             max_pages: int | None = None,
-            flush_every: int = FLUSH_EVERY, progress=None) -> dict:
+            flush_every: int = FLUSH_EVERY, progress=None,
+            lock_timeout: float | None = filelock.DEFAULT_TIMEOUT) -> dict:
+    """Own the complete three-file transaction, then run the resumable walk."""
+    with filelock.exclusive_lock(
+        collector_lock_path(), timeout=lock_timeout
+    ):
+        return _collect_owned(
+            series, fetch=fetch, raw_filter=raw_filter, max_pages=max_pages,
+            flush_every=flush_every, progress=progress,
+        )
+
+
+def _collect_owned(series: list[str], *, fetch=None, raw_filter=None,
+                   max_pages: int | None = None,
+                   flush_every: int = FLUSH_EVERY, progress=None) -> dict:
     """Walk each series, persisting every `flush_every`. Resumable by design.
 
     `raw_filter` is handed to `list_settled` and runs before the expensive
@@ -241,6 +261,9 @@ def collect(series: list[str], *, fetch=None, raw_filter=None,
     The data is perishable -- Kalshi archives settled markets ~60 days
     after close -- so the one thing this must never do is hold a completed
     fetch only in memory.
+    Caller holds ``collector_lock_path()`` from these initial loads through
+    the final ``finally`` flush. Atomic writes alone cannot prevent another
+    process from saving a snapshot loaded before this one.
     """
     raw = _load("settled_raw.json")
     anchors = _load("anchors.json")

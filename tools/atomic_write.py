@@ -22,19 +22,19 @@ on 2026-09-01:
   sees an empty or half-written file. A real `json.load` mid-walk raised
   `JSONDecodeError: Expecting value: line 1 column 1`.
 
-Both are fixed by the same three lines: write to a sibling `.tmp`, then
-`os.replace` onto the destination (atomic on Windows within a volume),
-retrying a transient `OSError` with a backoff. A reader always observes
-either the whole old file or the whole new one, and a sync lock costs a
-retry instead of a run.
+Both are fixed by writing to a unique private sibling temporary file, then
+using `os.replace` on the destination (atomic on Windows within a volume),
+retrying a transient `OSError` with a backoff. A reader always observes either
+the whole old file or the whole new one, and a sync lock costs a retry instead
+of a run. Unique temporary paths keep independent atomic writes from corrupting
+each other's staging file; collector transaction locks separately prevent lost
+updates between a load and its later save.
 
-**What this deliberately does NOT do: defend against a second concurrent
-writer.** Two processes doing load-mutate-save each hold a snapshot from
-their own start time, so whichever replaces last still erases everything
-the other added — atomically, and therefore invisibly. That is a
-lost-update race and it needs a lock, not an atomic replace; it is
-tracked as `maintenance/collector-write-lock`. Do not read a
-call to this module as making concurrent collection safe.
+**What this deliberately does NOT do: defend the read/modify/write cycle.**
+Two processes can still load the same snapshot and atomically replace each
+other's update. Real collectors hold `tools.filelock.exclusive_lock` across
+that entire cycle; do not read a call to this module alone as transaction
+ownership.
 
 Elevated from `theories/deadline_drift/collect_settled.py::_save`, which
 proved the shape under a real failing walk, once the second and third
@@ -45,6 +45,7 @@ from __future__ import annotations
 
 import json
 import os
+import tempfile
 import time
 from pathlib import Path
 from typing import Any, Callable
@@ -56,6 +57,14 @@ RETRIES = 6
 _replace = os.replace
 
 
+def _write_file(path: Path, text: str, encoding: str) -> None:
+    """Write and flush one private temp before it becomes visible."""
+    with path.open("w", encoding=encoding) as handle:
+        handle.write(text)
+        handle.flush()
+        os.fsync(handle.fileno())
+
+
 def write_text(
     path: str | Path,
     text: str,
@@ -63,6 +72,7 @@ def write_text(
     encoding: str = "utf-8",
     retries: int = RETRIES,
     _replace: Callable[[Any, Any], None] | None = None,
+    _write: Callable[[Path, str, str], None] = _write_file,
     _sleep: Callable[[float], None] = time.sleep,
 ) -> None:
     """Replace `path`'s contents with `text`, atomically.
@@ -73,22 +83,29 @@ def write_text(
     """
     dest = Path(path)
     dest.parent.mkdir(parents=True, exist_ok=True)
-    tmp = dest.with_name(dest.name + ".tmp")
     replace = _replace or globals()["_replace"]
+    fd, tmp_name = tempfile.mkstemp(
+        prefix=f".{dest.name}.", suffix=".tmp", dir=dest.parent
+    )
+    os.close(fd)
+    tmp = Path(tmp_name)
     last: Exception | None = None
-    for attempt in range(retries):
-        try:
-            tmp.write_text(text, encoding=encoding)
-            replace(tmp, dest)
-            return
-        except OSError as exc:          # transient sync / AV / reader lock
-            last = exc
-            _sleep(0.5 * (attempt + 1))
-    # Leave no half-written sibling behind for the next reader to find.
     try:
-        tmp.unlink()
-    except OSError:
-        pass
+        for attempt in range(retries):
+            try:
+                _write(tmp, text, encoding)
+                replace(tmp, dest)
+                return
+            except OSError as exc:      # transient sync / AV / reader lock
+                last = exc
+                _sleep(0.5 * (attempt + 1))
+    finally:
+        # A real replace moved the temp away.  This also cleans a partial temp
+        # after write failure and test doubles that deliberately do not move it.
+        try:
+            tmp.unlink()
+        except OSError:
+            pass
     raise RuntimeError(
         f"could not write {dest} after {retries} attempts: {last}"
     ) from last

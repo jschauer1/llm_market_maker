@@ -5,7 +5,9 @@ created: 2026-09-01
 created_by: fleet-w2-g1
 author_lane: maintenance
 author_context: Split off from collector-concurrent-write-race after its atomic-write half shipped as tools/atomic_write.py.
-status: open
+status: done
+closed: 2026-09-04
+resolution: Added OS-released collector ownership around full read-modify-write transactions for deadline collection/population and insider-history checkpoints, plus unique flushed atomic-write temp files. Multiprocess contention, process-death recovery and real collector union tests pass; independent Windows review found no remaining issue. Lock identity persists; no TTL eviction or capture format migration.
 ---
 WHAT IS ALREADY DONE. tools/atomic_write.py (shipped 2026-09-01, tests/test_atomic_write.py) fixes the two SINGLE-writer failures: a sync client holding a handle mid-rewrite, and a reader catching a truncated file. Every collector now writes .tmp then os.replace. tools/README.md documents it.
 

@@ -6,7 +6,9 @@ created_by: fleet-w3-g4
 author_lane: study
 author_focus: 2026-08-30-parlay-markup
 author_context: Hit for real while advancing parlay-markup from investigation/ to answer/; the move landed, the note did not, and I had to append it by hand in advance()'s own format.
-status: open
+status: done
+closed: 2026-09-04
+resolution: Made advance and close recoverable under stable per-ticket OS locks, atomic note writes and no-replace publication. Exact receipts support retries after write, move and unlink failures; threaded contention preserves the successful caller explanation. Independent review and fault regressions pass; no unrelated destination is replaced.
 ---
 WHAT HAPPENED, ONCE, FOR REAL. `python -m tools.cli tickets advance tickets/study/investigation/2026-08-30-parlay-markup --to answer --note '...'` raised OSError from pathlib's io.open and exited non-zero. The directory had ALREADY been renamed into answer/. So the ticket moved and its note -- the record of WHY it moved -- was lost. Re-running was not an option either: advance() refuses when the target already exists, so the operation is not idempotent. I appended the note by hand in advance()'s exact format.
 

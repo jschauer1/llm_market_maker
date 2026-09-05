@@ -30,7 +30,7 @@ import json
 from collections import defaultdict
 from pathlib import Path
 
-from tools import atomic_write
+from tools import atomic_write, filelock
 
 DATA = Path(__file__).parent / "data"
 FACTS_PATH = DATA / "population_facts.json"
@@ -72,10 +72,20 @@ def build() -> dict:
     }
 
 
-def save(facts: dict | None = None) -> dict:
-    facts = build() if facts is None else facts
-    atomic_write.write_json(FACTS_PATH, facts, indent=1, sort_keys=True)
-    return facts
+def save(
+    facts: dict | None = None,
+    *,
+    lock_timeout: float | None = filelock.DEFAULT_TIMEOUT,
+) -> dict:
+    """Build and save against one consistent settled-capture snapshot."""
+    from theories.deadline_drift.collect_settled import collector_lock_path
+
+    with filelock.exclusive_lock(
+        collector_lock_path(DATA), timeout=lock_timeout
+    ):
+        facts = build() if facts is None else facts
+        atomic_write.write_json(FACTS_PATH, facts, indent=1, sort_keys=True)
+        return facts
 
 
 def load() -> dict:

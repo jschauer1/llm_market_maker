@@ -17,9 +17,13 @@ costs them their focus and a ticket does not.
 
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
+import threading
+
 import pytest
 
-from tools import db, ideas, tickets
+from tools import atomic_write, db, ideas, tickets
 
 
 @pytest.fixture()
@@ -1166,6 +1170,17 @@ def test_purge_keeps_a_ticket_something_cites(tmp_path):
     assert any("cited-one" in k["path"] for k in result["kept"])
 
 
+@pytest.mark.parametrize("skill_root", [".agents", ".claude"])
+def test_purge_preserves_tickets_referenced_by_either_agent_skill_tree(tmp_path, skill_root):
+    path = _completed_ticket(tmp_path, "shared-rule", closed="2026-08-01")
+    skill = tmp_path / skill_root / "skills" / "probe" / "SKILL.md"
+    skill.parent.mkdir(parents=True)
+    skill.write_text("See 2026-08-01-shared-rule for the rule.\n", encoding="utf-8")
+    result = tickets.purge(tmp_path, now="2026-09-02")
+    assert str(path) not in result["purged"]
+    assert any("shared-rule" in kept["path"] for kept in result["kept"])
+
+
 def test_purge_leaves_a_recent_ticket_alone(tmp_path):
     path = _completed_ticket(tmp_path, "fresh", closed="2026-09-01")
     tickets.purge(tmp_path, apply=True, now="2026-09-02")
@@ -1403,3 +1418,352 @@ def test_advance_ignores_markdown_citations(tmp_path):
         tmp_path / "tickets/study/investigation/2026-01-01-noted/STUDY.md",
         to="answer", note="n", root=tmp_path)
     assert got.parent.parent.name == "answer"
+
+
+def test_advance_retry_after_rename_error_keeps_one_explanation(tmp_path, monkeypatch):
+    """A rename can succeed on disk and still report an error to its caller.
+
+    Retrying the original command must discover that completed move, keep the
+    original study contents, and avoid adding the transition note twice.
+    """
+    _study(tmp_path, "investigation", "2026-01-01-interrupted")
+    source = (tmp_path / "tickets" / "study" / "investigation"
+              / "2026-01-01-interrupted" / "STUDY.md")
+    real_rename = Path.rename
+    failed = False
+
+    def rename_then_raise(self, destination):
+        nonlocal failed
+        result = real_rename(self, destination)
+        if not failed:
+            failed = True
+            raise OSError("reported after rename")
+        return result
+
+    monkeypatch.setattr(Path, "rename", rename_then_raise)
+    with pytest.raises(OSError, match="reported after rename"):
+        tickets.advance(source, to="answer", note="Found the answer.",
+                        now="2026-01-02", root=tmp_path)
+
+    moved = (tmp_path / "tickets" / "study" / "answer"
+             / "2026-01-01-interrupted" / "STUDY.md")
+    assert moved.exists()
+    assert not source.exists()
+
+    retried = tickets.advance(source, to="answer", note="Found the answer.",
+                              now="2026-01-03", root=tmp_path)
+    text = retried.read_text(encoding="utf-8")
+    assert text.count("## answer — 2026-01-02") == 1
+    assert text.count("Found the answer.") == 1
+    assert (retried.parent / "data" / "collect.db").read_bytes() == b"x"
+
+
+def test_advance_note_failure_leaves_source_for_retry(tmp_path, monkeypatch):
+    _study(tmp_path, "investigation", "2026-01-01-note-failure")
+    source = (tmp_path / "tickets" / "study" / "investigation"
+              / "2026-01-01-note-failure" / "STUDY.md")
+    original = source.read_text(encoding="utf-8")
+    failed = False
+
+    def fail_once(*args, **kwargs):
+        nonlocal failed
+        if not failed:
+            failed = True
+            raise OSError("note write failed")
+        return real_write(*args, **kwargs)
+
+    real_write = atomic_write.write_text
+    monkeypatch.setattr(atomic_write, "write_text", fail_once)
+    with pytest.raises(OSError, match="note write failed"):
+        tickets.advance(source, to="answer", note="Found it.",
+                        now="2026-01-02", root=tmp_path)
+    assert source.read_text(encoding="utf-8") == original
+    assert not (tmp_path / "tickets" / "study" / "answer"
+                / "2026-01-01-note-failure").exists()
+
+    moved = tickets.advance(source, to="answer", note="Found it.",
+                            now="2026-01-02", root=tmp_path)
+    assert moved.read_text(encoding="utf-8").count("Found it.") == 1
+
+
+def test_advance_move_failure_keeps_note_for_successful_retry(tmp_path, monkeypatch):
+    _study(tmp_path, "investigation", "2026-01-01-move-failure")
+    source = (tmp_path / "tickets" / "study" / "investigation"
+              / "2026-01-01-move-failure" / "STUDY.md")
+    real_rename = Path.rename
+
+    def fail_move(self, destination):
+        raise OSError("move failed")
+
+    monkeypatch.setattr(Path, "rename", fail_move)
+    with pytest.raises(OSError, match="move failed"):
+        tickets.advance(source, to="answer", note="Moved once.",
+                        now="2026-01-02", root=tmp_path)
+    assert source.exists()
+    assert source.read_text(encoding="utf-8").count("Moved once.") == 1
+
+    monkeypatch.setattr(Path, "rename", real_rename)
+    moved = tickets.advance(source, to="answer", note="Moved once.",
+                            now="2026-01-02", root=tmp_path)
+    assert moved.read_text(encoding="utf-8").count("Moved once.") == 1
+
+
+def test_advance_refuses_unrelated_existing_destination(tmp_path):
+    _study(tmp_path, "investigation", "2026-01-01-conflict")
+    source = (tmp_path / "tickets" / "study" / "investigation"
+              / "2026-01-01-conflict" / "STUDY.md")
+    destination = (tmp_path / "tickets" / "study" / "answer"
+                   / "2026-01-01-conflict")
+    destination.mkdir(parents=True)
+    (destination / "STUDY.md").write_text("unrelated\n", encoding="utf-8")
+    original = source.read_text(encoding="utf-8")
+
+    with pytest.raises(ValueError, match="already present"):
+        tickets.advance(source, to="answer", note="Should not overwrite.",
+                        now="2026-01-02", root=tmp_path)
+    assert source.read_text(encoding="utf-8") == original
+    assert (destination / "STUDY.md").read_text(encoding="utf-8") == "unrelated\n"
+
+
+def test_close_write_failure_leaves_source_for_retry(tmp_path, monkeypatch):
+    source = tickets.create(tmp_path, lane="maintenance", slug="write-failure",
+                            title="T", body="keep", created="2026-01-01")
+    original = source.read_text(encoding="utf-8")
+    failed = False
+
+    def fail_once(*args, **kwargs):
+        nonlocal failed
+        if not failed:
+            failed = True
+            raise OSError("close write failed")
+        return real_write(*args, **kwargs)
+
+    real_write = atomic_write.write_text
+    monkeypatch.setattr(atomic_write, "write_text", fail_once)
+    with pytest.raises(OSError, match="close write failed"):
+        tickets.close(source, resolution="fixed", now="2026-01-02")
+    assert source.read_text(encoding="utf-8") == original
+    assert not (tmp_path / "tickets" / "maintenance" / "completed"
+                / source.name).exists()
+
+    done = tickets.close(source, resolution="fixed", now="2026-01-02")
+    assert done.exists()
+    assert "resolution: fixed" in done.read_text(encoding="utf-8")
+
+
+def test_close_retry_after_unlink_error_keeps_destination_contents(tmp_path, monkeypatch):
+    source = tickets.create(tmp_path, lane="maintenance", slug="unlink-failure",
+                            title="T", body="keep", created="2026-01-01")
+    real_unlink = Path.unlink
+    failed = False
+
+    def unlink_then_raise(self, *args, **kwargs):
+        nonlocal failed
+        result = real_unlink(self, *args, **kwargs)
+        if self == source and not failed:
+            failed = True
+            raise OSError("unlink reported late")
+        return result
+
+    monkeypatch.setattr(Path, "unlink", unlink_then_raise)
+    with pytest.raises(OSError, match="unlink reported late"):
+        tickets.close(source, resolution="fixed", now="2026-01-02")
+    done_path = tmp_path / "tickets" / "maintenance" / "completed" / source.name
+    first_contents = done_path.read_text(encoding="utf-8")
+    assert not source.exists()
+
+    retried = tickets.close(source, resolution="fixed", now="2026-01-02")
+    assert retried == done_path
+    assert retried.read_text(encoding="utf-8") == first_contents
+
+
+def test_close_retry_after_unlink_failure_before_removal_keeps_receipt(tmp_path,
+                                                                        monkeypatch):
+    source = tickets.create(tmp_path, lane="maintenance", slug="unlink-before",
+                            title="T", body="keep", created="2026-01-01")
+    real_unlink = Path.unlink
+    failed = False
+
+    def fail_before_unlink(self, *args, **kwargs):
+        nonlocal failed
+        if self == source and not failed:
+            failed = True
+            raise OSError("unlink refused")
+        return real_unlink(self, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "unlink", fail_before_unlink)
+    with pytest.raises(OSError, match="unlink refused"):
+        tickets.close(source, resolution="fixed", now="2026-01-02")
+    done = tmp_path / "tickets" / "maintenance" / "completed" / source.name
+    first_contents = done.read_text(encoding="utf-8")
+    assert source.exists()
+
+    retried = tickets.close(source, resolution="fixed", now="2026-01-03")
+    assert retried == done
+    assert not source.exists()
+    assert done.read_text(encoding="utf-8") == first_contents
+
+
+def test_new_theory_close_retry_after_delete_error_is_idempotent(tmp_path,
+                                                                  monkeypatch):
+    source = tickets.create(tmp_path, lane="new-theory", slug="delete-failure",
+                            title="T", body="keep", created="2026-01-01")
+    real_unlink = Path.unlink
+    failed = False
+
+    def unlink_then_raise(self, *args, **kwargs):
+        nonlocal failed
+        result = real_unlink(self, *args, **kwargs)
+        if self == source and not failed:
+            failed = True
+            raise OSError("delete reported late")
+        return result
+
+    monkeypatch.setattr(Path, "unlink", unlink_then_raise)
+    with pytest.raises(OSError, match="delete reported late"):
+        tickets.close(source, resolution="built: theories/x",
+                      now="2026-01-02")
+    assert not source.exists()
+    assert tickets.close(source, resolution="built: theories/x",
+                         now="2026-01-02") == source
+
+
+def test_close_refuses_unrelated_existing_destination(tmp_path):
+    source = tickets.create(tmp_path, lane="maintenance", slug="close-conflict",
+                            title="T", body="keep", created="2026-01-01")
+    destination = (tmp_path / "tickets" / "maintenance" / "completed"
+                   / source.name)
+    destination.parent.mkdir(parents=True)
+    destination.write_text("unrelated\n", encoding="utf-8")
+    original = source.read_text(encoding="utf-8")
+
+    with pytest.raises(ValueError, match="already present"):
+        tickets.close(source, resolution="fixed", now="2026-01-02")
+    assert source.read_text(encoding="utf-8") == original
+    assert destination.read_text(encoding="utf-8") == "unrelated\n"
+
+
+def test_close_does_not_clobber_destination_created_at_publish_boundary(
+        tmp_path, monkeypatch):
+    source = tickets.create(tmp_path, lane="maintenance", slug="publish-race",
+                            title="T", body="keep", created="2026-01-01")
+    done = tmp_path / "tickets" / "maintenance" / "completed" / source.name
+    real_write = atomic_write.write_text
+
+    def compete_at_publish(path, text, **kwargs):
+        done.parent.mkdir(parents=True, exist_ok=True)
+        done.write_text("unrelated concurrent close\n", encoding="utf-8")
+        return real_write(path, text, **kwargs)
+
+    monkeypatch.setattr(atomic_write, "write_text", compete_at_publish)
+    with pytest.raises(ValueError, match="destination"):
+        tickets.close(source, resolution="fixed", now="2026-01-02")
+    assert source.exists()
+    assert "status: open" in source.read_text(encoding="utf-8")
+    assert done.read_text(encoding="utf-8") == "unrelated concurrent close\n"
+
+
+def test_advance_does_not_clobber_destination_created_at_rename_boundary(
+        tmp_path, monkeypatch):
+    source = tickets.create(tmp_path, lane="new-theory", slug="rename-race",
+                            title="T", body="keep", created="2026-01-01")
+    done = tmp_path / "tickets" / "new-theory" / "build" / source.name
+    real_link = tickets.os.link
+
+    def compete_at_rename(source_path, destination):
+        if Path(source_path) == source:
+            destination.write_text("unrelated concurrent advance\n",
+                                   encoding="utf-8")
+        return real_link(source_path, destination)
+
+    monkeypatch.setattr(tickets.os, "link", compete_at_rename)
+    with pytest.raises(ValueError, match="destination"):
+        tickets.advance(source, to="build", note="done",
+                        now="2026-01-02", root=tmp_path)
+    assert source.exists()
+    assert "done" in source.read_text(encoding="utf-8")
+    assert done.read_text(encoding="utf-8") == "unrelated concurrent advance\n"
+
+
+def test_close_retry_rejects_resolution_prefix_match(tmp_path):
+    source = tickets.create(tmp_path, lane="maintenance", slug="receipt-prefix",
+                            title="T", body="keep", created="2026-01-01")
+    done = tickets.close(source, resolution="fixed", now="2026-01-02")
+    with pytest.raises(ValueError, match="destination"):
+        tickets.close(source, resolution="fix", now="2026-01-02")
+    assert done.exists()
+    assert "resolution: fixed" in done.read_text(encoding="utf-8")
+
+
+def test_advance_retry_rejects_first_line_of_multiline_note(tmp_path):
+    source = tickets.create(tmp_path, lane="new-theory", slug="note-prefix",
+                            title="T", body="keep", created="2026-01-01")
+    full_note = "Build the classifier.\nKeep the old replay."
+    built = tickets.advance(source, to="build", note=full_note,
+                            now="2026-01-02", root=tmp_path)
+    with pytest.raises(ValueError, match="destination"):
+        tickets.advance(source, to="build", note="Build the classifier.",
+                        now="2026-01-02", root=tmp_path)
+    assert built.read_text(encoding="utf-8").count(full_note) == 1
+
+
+def test_advance_serializes_source_read_modify_move(tmp_path, monkeypatch):
+    source = tickets.create(tmp_path, lane="new-theory", slug="advance-race",
+                            title="T", body="keep", created="2026-01-01")
+    entered = threading.Event()
+    release = threading.Event()
+    real_write = atomic_write.write_text
+
+    def hold_first_write(path, text, **kwargs):
+        if "NOTE-A" in text:
+            entered.set()
+            assert release.wait(timeout=5), "first transition did not release"
+        return real_write(path, text, **kwargs)
+
+    monkeypatch.setattr(atomic_write, "write_text", hold_first_write)
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        first = pool.submit(tickets.advance, source, to="build",
+                            note="NOTE-A", now="2026-01-02", root=tmp_path)
+        assert entered.wait(timeout=5)
+        second = pool.submit(tickets.advance, source, to="build",
+                             note="NOTE-B", now="2026-01-02", root=tmp_path)
+        assert not second.done(), "competing transition bypassed the lock"
+        release.set()
+        moved = first.result(timeout=5)
+        with pytest.raises(ValueError, match="destination"):
+            second.result(timeout=5)
+    text = moved.read_text(encoding="utf-8")
+    assert text.count("NOTE-A") == 1
+    assert "NOTE-B" not in text
+    assert not source.exists()
+
+
+def test_close_serializes_source_read_modify_publish_unlink(tmp_path, monkeypatch):
+    source = tickets.create(tmp_path, lane="maintenance", slug="close-race",
+                            title="T", body="keep", created="2026-01-01")
+    entered = threading.Event()
+    release = threading.Event()
+    real_write = atomic_write.write_text
+
+    def hold_first_write(path, text, **kwargs):
+        if "resolution: FIXED-A" in text:
+            entered.set()
+            assert release.wait(timeout=5), "first close did not release"
+        return real_write(path, text, **kwargs)
+
+    monkeypatch.setattr(atomic_write, "write_text", hold_first_write)
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        first = pool.submit(tickets.close, source, resolution="FIXED-A",
+                            now="2026-01-02")
+        assert entered.wait(timeout=5)
+        second = pool.submit(tickets.close, source, resolution="FIXED-B",
+                             now="2026-01-02")
+        assert not second.done(), "competing close bypassed the lock"
+        release.set()
+        done = first.result(timeout=5)
+        with pytest.raises(ValueError, match="destination"):
+            second.result(timeout=5)
+    text = done.read_text(encoding="utf-8")
+    assert text.count("resolution: FIXED-A") == 1
+    assert "FIXED-B" not in text
+    assert not source.exists()

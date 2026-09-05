@@ -22,10 +22,14 @@ written for a session that was not there when it was filed.
 
 from __future__ import annotations
 
+import os
 import re
 import subprocess
 from datetime import date
 from pathlib import Path
+
+from tools import atomic_write
+from tools.filelock import exclusive_lock
 
 #: The lanes a session can be in. `floor` files no tickets -- it runs a
 #: fixed procedure daily -- but may write them for any other lane.
@@ -688,7 +692,73 @@ def _code_citations(root: Path, rel: str) -> list[str]:
     return out
 
 
+def _has_transition_note(raw: str, state: str, note: str) -> bool:
+    """Whether ``raw`` already carries this state's dated explanation."""
+    heading = re.compile(
+        rf"^## {re.escape(state)} — \d{{4}}-\d{{2}}-\d{{2}}$", re.M
+    )
+    expected = f"\n\n{note.strip()}\n"
+    for match in heading.finditer(raw):
+        tail = raw[match.end():].replace("\r\n", "\n")
+        if tail == expected:
+            return True
+    return False
+
+
+def _exclusive_replace(source: str | Path, destination: str | Path) -> None:
+    """Publish a completed file without replacing a concurrent destination."""
+    os.link(source, destination)
+    os.unlink(source)
+
+
+def _move_no_replace(source: Path, destination: Path) -> None:
+    """Move a file without POSIX rename's replace-on-collision behavior."""
+    if source.is_dir():
+        if os.name == "nt":
+            # Windows rename refuses an existing destination directory.
+            source.rename(destination)
+            return
+        # Linux's renameat2 provides the same no-replace operation for a
+        # whole study directory. Refuse rather than falling back to POSIX
+        # rename, whose empty-directory collision rule can replace a peer.
+        import ctypes
+
+        renameat2 = getattr(ctypes.CDLL(None, use_errno=True), "renameat2", None)
+        if renameat2 is None:
+            raise OSError("atomic no-replace directory move is unavailable")
+        renameat2.argtypes = [ctypes.c_int, ctypes.c_char_p,
+                              ctypes.c_int, ctypes.c_char_p, ctypes.c_uint]
+        renameat2.restype = ctypes.c_int
+        result = renameat2(
+            -100, os.fsencode(source), -100, os.fsencode(destination), 1
+        )
+        if result:
+            error = ctypes.get_errno()
+            raise OSError(error, os.strerror(error), str(source),
+                          str(destination))
+        return
+    os.link(source, destination)
+    source.unlink()
+
+
+def _ticket_lock_path(item: Path) -> Path:
+    """Return a lock identity stable while ``item`` changes state."""
+    return item.parent.parent / ".ticket-locks" / f"{item.name}.lock"
+
+
 def advance(path: Path, *, to: str, note: str,
+           now: str | None = None, root: Path | None = None) -> Path:
+    """Advance one ticket while owning its complete source transaction."""
+    if not note or not note.strip():
+        raise ValueError("a note is required: say why it moved")
+    path = Path(path)
+    item = path.parent if path.name == STUDY_FILE else path
+    _lane_of(item.parent)
+    with exclusive_lock(_ticket_lock_path(item)):
+        return _advance_unlocked(path, to=to, note=note, now=now, root=root)
+
+
+def _advance_unlocked(path: Path, *, to: str, note: str,
            now: str | None = None, root: Path | None = None) -> Path:
     """Move a ticket into its next state. Returns the new path.
 
@@ -779,26 +849,77 @@ def advance(path: Path, *, to: str, note: str,
             f"is what survives the move."
         )
     target = lane_dir.parent / to
-    target.mkdir(parents=True, exist_ok=True)
     moved = target / item.name
-    if moved.exists():
-        raise ValueError(f"already present in {to}: {moved}")
-    item.rename(moved)
-    # **The body is found on disk, not inferred from what the caller
-    # typed.** A study ticket is a DIRECTORY, and the CLI hands this
-    # function that directory (`tickets advance <study dir>`) while
-    # `create()` hands back its `STUDY.md` -- so `is_study`, which only
-    # recognises the second form, said False for every CLI call. The
-    # rename above had already happened by then, and the `read_text`
-    # below hit a directory: the study moved, exit code 1, and the note
-    # explaining the move was never written. Half-applied and reported
-    # as a failure, which is the worst of the three outcomes.
-    body_file = moved / STUDY_FILE if moved.is_dir() else moved
-    raw = body_file.read_text(encoding="utf-8").rstrip()
     stamp = now or _today()
-    body_file.write_text(
-        f"{raw}\n\n## {to} — {stamp}\n\n{note.strip()}\n", encoding="utf-8")
-    return body_file
+    marker = f"## {to} — {stamp}"
+
+    # A rename can complete on disk and still report an error. On retry the
+    # destination is accepted only when the transition marker proves it is
+    # ours; an unrelated destination is never replaced.
+    if not item.exists():
+        if not moved.exists():
+            raise FileNotFoundError(f"ticket {item} no longer exists")
+        body_file = moved / STUDY_FILE if moved.is_dir() else moved
+        raw = body_file.read_text(encoding="utf-8")
+        if not _has_transition_note(raw, to, note):
+            raise ValueError(
+                f"already present in {to}: {moved}; refusing to overwrite "
+                "an unrelated destination"
+            )
+        return body_file
+
+    if moved.exists():
+        if item.exists() and not item.is_dir() and not moved.is_symlink():
+            try:
+                ours = os.path.samefile(item, moved)
+            except OSError:
+                ours = False
+            if ours and _has_transition_note(
+                    item.read_text(encoding="utf-8"), to, note):
+                item.unlink()
+                return moved
+        raise ValueError(
+            f"already present in {to}: {moved}; refusing to overwrite "
+            "an unrelated destination"
+        )
+
+    # A study ticket is a DIRECTORY, while `create()` returns its STUDY.md.
+    body_file = item / STUDY_FILE if item.is_dir() else item
+    raw = body_file.read_text(encoding="utf-8")
+    if not _has_transition_note(raw, to, note):
+        updated = f"{raw.rstrip()}\n\n{marker}\n\n{note.strip()}\n"
+        # Persist the explanation while the source is still in place. A
+        # failed write leaves it untouched; a failed rename leaves a safe
+        # retry with the marker already present.
+        atomic_write.write_text(body_file, updated, encoding="utf-8")
+
+    # Do not create the destination directory until the note is durable.
+    target.mkdir(parents=True, exist_ok=True)
+    if moved.exists():
+        raise ValueError(
+            f"already present in {to}: {moved}; refusing to overwrite "
+            "an unrelated destination"
+        )
+    try:
+        _move_no_replace(item, moved)
+    except OSError as exc:
+        # A source/destination pair that are the same file is our own
+        # interrupted hard-link publication; leave the exception visible and
+        # let the retry branch above finish the unlink. A distinct destination
+        # was installed concurrently and must remain untouched.
+        if (moved.exists() and item.exists() and not item.is_dir()
+                and not moved.is_symlink()):
+            try:
+                ours = os.path.samefile(item, moved)
+            except OSError:
+                ours = False
+            if not ours:
+                raise ValueError(
+                    f"already present in {to}: {moved}; refusing to "
+                    "overwrite an unrelated destination"
+                ) from exc
+        raise
+    return moved / STUDY_FILE if moved.is_dir() else moved
 
 
 def _state_index(allowed: tuple[str, ...], here: str, state_dir: Path) -> int:
@@ -817,6 +938,27 @@ def _state_index(allowed: tuple[str, ...], here: str, state_dir: Path) -> int:
             f"declares no state {here!r} -- it has {allowed}. Move it into "
             "one of those before advancing it."
         ) from None
+
+
+def _same_close_receipt(existing: str, expected: str) -> bool:
+    """Compare a completed ticket while allowing a retry on a later date."""
+    normalize = lambda text: re.sub(
+        r"^closed:.*$", "closed: <date>", text, flags=re.M
+    )
+    return normalize(existing) == normalize(expected)
+
+
+def _frontmatter_fields(raw: str) -> dict[str, str]:
+    """Parse the scalar frontmatter fields used by retry receipts."""
+    match = _FRONTMATTER.match(raw)
+    if not match:
+        return {}
+    fields: dict[str, str] = {}
+    for line in match.group(1).splitlines():
+        if ":" in line:
+            key, value = line.split(":", 1)
+            fields[key.strip()] = value.strip()
+    return fields
 
 
 def _lane_of(state_dir: Path) -> str:
@@ -839,6 +981,19 @@ def _lane_of(state_dir: Path) -> str:
 
 
 def close(path: Path, *, resolution: str, now: str | None = None,
+          conn=None) -> Path:
+    """Close one ticket while owning its complete source transaction."""
+    if not resolution or not resolution.strip():
+        raise ValueError("a resolution is required: say what happened")
+    path = Path(path)
+    item = path.parent if path.name == STUDY_FILE else path
+    _lane_of(item.parent)
+    with exclusive_lock(_ticket_lock_path(item)):
+        return _close_unlocked(path, resolution=resolution, now=now,
+                               conn=conn)
+
+
+def _close_unlocked(path: Path, *, resolution: str, now: str | None = None,
           conn=None) -> Path:
     """Finish a ticket. Returns where it ended up, or where it used to be.
 
@@ -921,6 +1076,25 @@ def close(path: Path, *, resolution: str, now: str | None = None,
             "ticket already there is the file itself: the old code "
             "overwrote it and then deleted it."
         )
+    done_dir = path.parent.parent / "completed"
+    done = done_dir / path.name
+    if not path.exists():
+        # A deletion or unlink can succeed and still report an error. There
+        # is no destination receipt for a new-theory spec, so its absence is
+        # the idempotent result of the requested deletion.
+        if lane in DELETE_ON_CLOSE:
+            return path
+        if not done.exists():
+            raise FileNotFoundError(f"ticket {path} no longer exists")
+        existing = done.read_text(encoding="utf-8")
+        fields = _frontmatter_fields(existing)
+        if (fields.get("status") != "done"
+                or fields.get("resolution") != resolution.strip()):
+            raise ValueError(
+                f"already present in completed: {done}; refusing to "
+                "overwrite an unrelated destination"
+            )
+        return done
     raw = path.read_text(encoding="utf-8")
     if "status: open" not in raw:
         raise ValueError(f"ticket {path} is not open")
@@ -961,10 +1135,33 @@ def close(path: Path, *, resolution: str, now: str | None = None,
         f"\nclosed: {now or _today()}\nresolution: {resolution.strip()}\n---\n",
         1,
     ) if raw.count("\n---\n") >= 1 else raw
-    done_dir = path.parent.parent / "completed"
+    if done.exists():
+        existing = done.read_text(encoding="utf-8")
+        if not _same_close_receipt(existing, raw):
+            raise ValueError(
+                f"already present in completed: {done}; refusing to "
+                "overwrite an unrelated destination"
+            )
+        # The destination is the receipt from an earlier attempt. Finish by
+        # unlinking the source, without rewriting the existing contents.
+        path.unlink()
+        return done
     done_dir.mkdir(parents=True, exist_ok=True)
-    done = done_dir / path.name
-    done.write_text(raw, encoding="utf-8")
+    try:
+        atomic_write.write_text(
+            done, raw, encoding="utf-8", retries=1,
+            _replace=_exclusive_replace,
+        )
+    except RuntimeError as exc:
+        # A competing writer can install a destination between our preflight
+        # check and publication. The no-replace callback leaves it untouched;
+        # report the collision as a transition conflict.
+        if done.exists():
+            raise ValueError(
+                f"already present in completed: {done}; refusing to "
+                "overwrite an unrelated destination"
+            ) from exc
+        raise
     path.unlink()
     return done
 
@@ -1046,7 +1243,7 @@ def _require_idea(conn, slug: str, word: str) -> None:
 #: deleted, not merely kept one extra week.
 _CITATION_GLOBS = (
     "*.md",
-    "docs/**/*.md", ".claude/skills/**/*.md",
+    "docs/**/*.md", ".agents/skills/**/*.md", ".claude/skills/**/*.md",
     "theories/**/*.md", "tickets/**/*.md", "studies/**/*.md",
     "**/*.py",
 )

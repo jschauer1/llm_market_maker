@@ -25,6 +25,8 @@ writer — that needs a lock, and is tracked separately.
 from __future__ import annotations
 
 import json
+import threading
+from pathlib import Path
 
 import pytest
 
@@ -88,6 +90,63 @@ def test_a_failed_write_never_truncates_the_existing_file(tmp_path):
     assert str(p) in str(exc.value)
     assert json.loads(p.read_text(encoding="utf-8")) == {"old": True}
     assert [x.name for x in tmp_path.iterdir()] == ["c.json"], "tmp not cleaned up"
+
+
+def test_simultaneous_writes_use_distinct_temporary_paths(tmp_path):
+    """Reintroducing one shared ``<destination>.tmp`` path breaks this."""
+    p = tmp_path / "c.json"
+    rendezvous = threading.Barrier(2)
+    seen: list[Path] = []
+    seen_guard = threading.Lock()
+
+    def capture_replace(src, _dst):
+        with seen_guard:
+            seen.append(Path(src))
+        rendezvous.wait(timeout=2.0)
+        # The atomic-write seam need not emulate os.replace here: the
+        # observable contract under test is that each operation owns its temp.
+
+    errors: list[BaseException] = []
+
+    def write(value: int) -> None:
+        try:
+            atomic_write.write_json(
+                p, {"value": value}, _replace=capture_replace,
+                _sleep=lambda _seconds: None,
+            )
+        except BaseException as exc:  # surfaced in the parent test thread
+            errors.append(exc)
+
+    threads = [threading.Thread(target=write, args=(value,)) for value in (1, 2)]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join(3.0)
+
+    assert not errors
+    assert all(not thread.is_alive() for thread in threads)
+    assert len(seen) == 2
+    assert seen[0] != seen[1], "concurrent operations must never share a temp file"
+    assert list(tmp_path.iterdir()) == [], "temporary files are cleaned on success"
+
+
+def test_temp_write_failure_preserves_destination_and_cleans_partial_temp(tmp_path):
+    """A failure before replace must leave only the last complete payload."""
+    p = tmp_path / "c.json"
+    p.write_text('{"old": true}', encoding="utf-8")
+
+    def partial_then_fail(tmp, text, encoding):
+        tmp.write_text(text[:4], encoding=encoding)
+        raise OSError(28, "No space left on device")
+
+    with pytest.raises(RuntimeError, match="could not write"):
+        atomic_write.write_json(
+            p, {"new": True}, retries=2, _write=partial_then_fail,
+            _sleep=lambda _seconds: None,
+        )
+
+    assert json.loads(p.read_text(encoding="utf-8")) == {"old": True}
+    assert [x.name for x in tmp_path.iterdir()] == ["c.json"]
 
 
 def test_write_text_is_the_primitive(tmp_path):

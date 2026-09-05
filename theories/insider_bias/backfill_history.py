@@ -29,7 +29,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from tools import atomic_write
+from tools import atomic_write, filelock
 from tools.kalshi import cache as history_cache
 from theories.insider_bias import replay as sibling
 from theories.insider_bias.families import is_mention_family
@@ -58,17 +58,29 @@ def series_for(family: str) -> list[dict]:
     return all_series
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--family", choices=["mention", "insider", "all"],
-                        required=True)
-    parser.add_argument("--checkpoint", type=Path, required=True)
-    args = parser.parse_args()
+def checkpoint_lock_path(checkpoint: Path) -> Path:
+    """Persistent ownership identity beside the checkpoint."""
+    return checkpoint.with_name(checkpoint.name + ".lock")
 
-    state = (json.loads(args.checkpoint.read_text(encoding="utf-8"))
-             if args.checkpoint.exists() else {"series": {}})
-    series_list = series_for(args.family)
-    print(f"{len(series_list)} series ({args.family}), "
+
+def run(
+    family: str,
+    checkpoint: Path,
+    *,
+    lock_timeout: float | None = filelock.DEFAULT_TIMEOUT,
+) -> dict:
+    """Backfill one population while exclusively owning its checkpoint."""
+    with filelock.exclusive_lock(
+        checkpoint_lock_path(checkpoint), timeout=lock_timeout
+    ):
+        return _run_owned(family, checkpoint)
+
+
+def _run_owned(family: str, checkpoint: Path) -> dict:
+    state = (json.loads(checkpoint.read_text(encoding="utf-8"))
+             if checkpoint.exists() else {"series": {}})
+    series_list = series_for(family)
+    print(f"{len(series_list)} series ({family}), "
           f"window {WINDOW_MIN_CLOSE}..{WINDOW_MAX_CLOSE}")
 
     conn = history_cache.connect()
@@ -99,7 +111,7 @@ def main() -> None:
                 "n_survivors": len(survivors), "payloads": stored,
                 "candles_fetched": fetched, "candles_cached": skipped,
             }
-            atomic_write.write_json(args.checkpoint, state, indent=1)
+            atomic_write.write_json(checkpoint, state, indent=1)
             if survivors:
                 print(f"  {ticker:30s} survivors={len(survivors):4d} "
                       f"fetched={fetched:4d} already_cached={skipped:4d}")
@@ -111,6 +123,16 @@ def main() -> None:
           f"{sum(s['n_survivors'] for s in done)} survivors, "
           f"{sum(s['candles_fetched'] for s in done)} candle windows fetched, "
           f"{sum(s['candles_cached'] for s in done)} already cached")
+    return state
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--family", choices=["mention", "insider", "all"],
+                        required=True)
+    parser.add_argument("--checkpoint", type=Path, required=True)
+    args = parser.parse_args()
+    run(args.family, args.checkpoint)
 
 
 if __name__ == "__main__":
