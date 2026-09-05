@@ -13,8 +13,57 @@ import re
 from tools.atomic_write import write_json
 
 
-ACTION = re.compile(r'\b(approv\w*|confirm\w*|enact\w*|sign(?:ed|ing)?|veto\w*|acquir\w*|acquisition|merg\w*|launch\w*|releas\w*|resign\w*|appoint\w*|nomina\w*|impeach\w*|indict\w*|convict\w*|pardon\w*|ban(?:ned)?|legaliz\w*|ratif\w*|ceasefire|treaty|shutdown|reopen\w*|IPO|go public|file for|filing|traded|transfer\w*|drafted|coach|manager|award\w*|ballot|qualif\w*|declare\w*)\b', re.I)
-NUMERIC = re.compile(r'\b(temperature|rainfall|snowfall|precipitation|wind speed|hurricane wind|earthquake magnitude|closing price|stock price|share price|market cap|exchange rate|inflation rate|unemployment rate|GDP growth|CPI|PPI|payrolls|views|streams|subscribers|downloads|box office|Rotten Tomatoes|Metacritic|Metascore|billboard|approval rating|polling average)\b', re.I)
+ACTION = re.compile(
+    r'\b(approv\w*|confirm\w*|enact\w*|sign(?:ed|ing)?|veto\w*|'
+    r'acquir\w*|acquisition|merg\w*|launch\w*|releas\w*|resign\w*|'
+    r'appoint\w*|nomina\w*|impeach\w*|indict\w*|convict\w*|charg\w*|'
+    r'arrest\w*|pardon\w*|ban(?:ned)?|legaliz\w*|ratif\w*|ceasefire|'
+    r'treaty|shutdown|reopen\w*|IPO|go public|take\w*.{0,30}\bpublic\b|'
+    r'file for|filing|traded|transfer\w*|ballot|candidate list|declare\w*|'
+    r'decision|decide\w*|complete\w*)\b',
+    re.I,
+)
+SPORT_ACTION = re.compile(
+    r'\b(trad(?:e|ed|ing)|transfer\w*|sign(?:ed|ing)? with|waiv\w*|'
+    r'resign\w*|appoint\w*|hir(?:e|ed|ing)|fir(?:e|ed|ing)|approv\w*|'
+    r'ban(?:ned)?|suspend\w*)\b',
+    re.I,
+)
+VENDOR_PANEL = re.compile(r'\bCarbon Arc\b', re.I)
+FIRST_COMPLETION = re.compile(
+    r'\breport\w*\s+(?:that\s+)?(?:above|more than|at least)\s+'
+    r'\$?0(?:\.0+)?\b.{0,100}\b(produc\w*|manufactur\w*|deliver\w*|'
+    r'launch\w*|ship(?:ped|ment\w*)?)\b',
+    re.I,
+)
+MARKET_PRICE = re.compile(
+    r'\b(?:closing|close|settlement|settle|spot|ticket|get-in|stock|share|'
+    r'gas|oil|gold|silver|copper|commodity|bitcoin|crypto)\s+price\b|'
+    r'\bprice of\b|\bmarket cap(?:italization)?\b|\bexchange rate\b|'
+    r'\bnet worth\b|\btreasury yield\b|\bcompute per hour price\b|'
+    r'\bBTC price\b|\b(?:Nasdaq-?100|S&P 500|Dow Jones|Russell 2000)\b'
+    r'.{0,80}\b(?:above|below|between|at|end)\b',
+    re.I,
+)
+NUMERIC = re.compile(
+    r'\b(temperature|rainfall|snowfall|precipitation|wind speed|'
+    r'hurricane wind|earthquake magnitude|nominal GDP|real GDP|GDP growth|'
+    r'consumer price index|producer price index|CPI|PPI|payrolls?|'
+    r'jobs? (?:be )?(?:added|lost)|employment (?:change|growth|level|rate)|'
+    r'unemployment|inflation|interest rate|federal funds rate|revenue growth|'
+    r'sales growth|pure album sales|receipts|total fundraising|headcount|'
+    r'(?:customer|user|transaction) count|active users?|transaction volume|'
+    r'number of trips|ridership|trading volume|(?:profit|operating) margin|market share|'
+    r'views?|streams?|subscribers?|downloads?|album equivalent units|'
+    r'box office|Rotten Tomatoes|Metacritic|Metascore|Billboard|'
+    r'approval rating|polling average|data centers?|disease cases?|'
+    r'case count|number of|how many|seats|margin of victory|vote share|'
+    r'top[- ]ranked|top \d+|rank(?:ed|ing)?|score|win\w*.{0,30}\baward)\b|'
+    r'#\d+\b|'
+    r'\breport\w*\s+(?:that\s+)?(?:above|below|over|under|more than|'
+    r'less than|at least|at most)\s+[$+\-]?\d',
+    re.I,
+)
 
 
 def instant(value):
@@ -23,21 +72,40 @@ def instant(value):
 
 def mechanics(m):
     category = (m.get('event') or {}).get('category', '').lower()
-    title = ' '.join(str(x or '') for x in (m.get('title'), (m.get('raw') or {}).get('subtitle'), (m.get('raw') or {}).get('yes_sub_title')))
-    numeric = NUMERIC.search(title)
-    if numeric:
-        # Published quantities are not unfinished institutional prerequisites.
+    raw = m.get('raw') or {}
+    headline = ' '.join(str(x or '') for x in (
+        m.get('title'), raw.get('subtitle'), raw.get('yes_sub_title'),
+        raw.get('no_sub_title'),
+    ))
+    rules = ' '.join(str(x or '') for x in (
+        m.get('rules_primary'), raw.get('rules_secondary'),
+    ))
+    if category == 'mentions':
+        return 'mention'
+    if VENDOR_PANEL.search(headline) or VENDOR_PANEL.search(rules):
+        return 'vendor_panel_metric'
+    if FIRST_COMPLETION.search(headline):
+        # A threshold of zero can encode whether production or delivery
+        # happened at all. The judge should read that ambiguous action.
+        return 'pass'
+    if MARKET_PRICE.search(headline):
+        return 'market_price'
+    if NUMERIC.search(headline):
+        if 'sport' in category:
+            return 'live_sport'
         if 'weather' in category or 'climate' in category:
             return 'weather'
         return 'numeric_measurement'
-    if ACTION.search(title):
-        return 'pass'
     if 'sport' in category:
+        if SPORT_ACTION.search(headline):
+            return 'pass'
         return 'live_sport'
     if 'weather' in category or 'climate' in category:
+        if ACTION.search(headline):
+            return 'pass'
         return 'weather'
-    if category in {'crypto', 'financials', 'financial markets'}:
-        return 'market_price'
+    if ACTION.search(headline):
+        return 'pass'
     return 'pass'
 
 
@@ -98,7 +166,10 @@ def run(board_path, at, out):
             decisions.write(json.dumps(dict(key=m['ticker'], reason=label, category=category))+'\n')
             if label == 'pass':
                 survivors.append(blind(m))
-            elif label in {'live_sport', 'weather', 'market_price', 'numeric_measurement'}:
+            elif label in {
+                'live_sport', 'weather', 'market_price', 'numeric_measurement',
+                'mention', 'vendor_panel_metric',
+            }:
                 audit[label].append(blind(m))
     events = group_events(survivors)
     for label in audit:
