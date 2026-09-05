@@ -1,0 +1,173 @@
+{
+  "scope": "All21 first-formalities labels,13 event groups. Source/rule assessment, not settlement correctness, win rate or calibration; reviews know prices.",
+  "rows": [
+    {
+      "key": "KXLANDSPACELAUNCH-ZQ3-27MAR01",
+      "event": "KXLANDSPACELAUNCH-ZQ3",
+      "first_bucket": "formalities_only",
+      "review_status": "definition_or_rule_failure",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:23:40.861997Z"
+    },
+    {
+      "key": "KXBROADCASTBACHELORETTE-27JAN01-ABC",
+      "event": "KXBROADCASTBACHELORETTE-27JAN01",
+      "first_bucket": "formalities_only",
+      "review_status": "definition_or_rule_failure",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:09:54.984965Z"
+    },
+    {
+      "key": "KXFDAAPPROVE-CAM-26OCT01",
+      "event": "KXFDAAPPROVE-CAM",
+      "first_bucket": "formalities_only",
+      "review_status": "qualifying_event_supported",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:09:54.984965Z"
+    },
+    {
+      "key": "KXWAYMOCITY-26DEC-DEN",
+      "event": "KXWAYMOCITY-26DEC",
+      "first_bucket": "formalities_only",
+      "review_status": "definition_or_rule_failure",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:09:57.698361Z"
+    },
+    {
+      "key": "KXWAYMOCITY-26DEC-SAN",
+      "event": "KXWAYMOCITY-26DEC",
+      "first_bucket": "formalities_only",
+      "review_status": "definition_or_rule_failure",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:09:57.698361Z"
+    },
+    {
+      "key": "KXWAYMOCITY-26DEC-TAM",
+      "event": "KXWAYMOCITY-26DEC",
+      "first_bucket": "formalities_only",
+      "review_status": "definition_or_rule_failure",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:09:57.698361Z"
+    },
+    {
+      "key": "KXUKBYELECTION-27-26DEC01",
+      "event": "KXUKBYELECTION-27",
+      "first_bucket": "formalities_only",
+      "review_status": "definition_or_rule_failure",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:23:45.204878Z"
+    },
+    {
+      "key": "KXUKBYELECTION-27-26NOV01",
+      "event": "KXUKBYELECTION-27",
+      "first_bucket": "formalities_only",
+      "review_status": "definition_or_rule_failure",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:23:45.204878Z"
+    },
+    {
+      "key": "KXUKBYELECTION-27-26OCT01",
+      "event": "KXUKBYELECTION-27",
+      "first_bucket": "formalities_only",
+      "review_status": "definition_or_rule_failure",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:23:45.204878Z"
+    },
+    {
+      "key": "KXUKBYELECTION-27-27APR01",
+      "event": "KXUKBYELECTION-27",
+      "first_bucket": "formalities_only",
+      "review_status": "definition_or_rule_failure",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:23:45.204878Z"
+    },
+    {
+      "key": "KXUKBYELECTION-27-27JAN01",
+      "event": "KXUKBYELECTION-27",
+      "first_bucket": "formalities_only",
+      "review_status": "definition_or_rule_failure",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:23:45.204878Z"
+    },
+    {
+      "key": "KXALBUMRELEASENBAYB-27-YOU",
+      "event": "KXALBUMRELEASENBAYB-27",
+      "first_bucket": "formalities_only",
+      "review_status": "material_evidence_gap",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:23:45.204878Z"
+    },
+    {
+      "key": "KXSENATEREC-26JUN-26DEC01",
+      "event": "KXSENATEREC-26JUN",
+      "first_bucket": "formalities_only",
+      "review_status": "definition_or_rule_failure",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:16:32.720305Z"
+    },
+    {
+      "key": "KXSENATEREC-26JUN-26NOV01",
+      "event": "KXSENATEREC-26JUN",
+      "first_bucket": "formalities_only",
+      "review_status": "definition_or_rule_failure",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:16:32.720305Z"
+    },
+    {
+      "key": "KXDOTPLOTPUB-26-DOT",
+      "event": "KXDOTPLOTPUB-26",
+      "first_bucket": "formalities_only",
+      "review_status": "future_implementation_unresolved",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:16:37.456338Z"
+    },
+    {
+      "key": "KXHHSYOUTHCARE-26OCT20",
+      "event": "KXHHSYOUTHCARE-26OCT20",
+      "first_bucket": "formalities_only",
+      "review_status": "future_implementation_unresolved",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:27:33.884464Z"
+    },
+    {
+      "key": "KXCABILLIONAIRETAX-26NOV03",
+      "event": "KXCABILLIONAIRETAX-26NOV03",
+      "first_bucket": "formalities_only",
+      "review_status": "future_implementation_unresolved",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:23:11.346644Z"
+    },
+    {
+      "key": "KXONTARIOMINWAGE-26",
+      "event": "KXONTARIOMINWAGE-26",
+      "first_bucket": "formalities_only",
+      "review_status": "future_implementation_unresolved",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:27:45.399952Z"
+    },
+    {
+      "key": "KXRENTFREEZEEFFECT-26",
+      "event": "KXRENTFREEZEEFFECT-26",
+      "first_bucket": "formalities_only",
+      "review_status": "material_evidence_gap",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:27:51.880846Z"
+    },
+    {
+      "key": "KXVOTESAVEAMERICA-26MAY-NOV03",
+      "event": "KXVOTESAVEAMERICA-26MAR",
+      "first_bucket": "formalities_only",
+      "review_status": "definition_or_rule_failure",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:36:46.742933Z"
+    },
+    {
+      "key": "KXVOTESAVEAMERICA-26MAY-OCT01",
+      "event": "KXVOTESAVEAMERICA-26MAR",
+      "first_bucket": "formalities_only",
+      "review_status": "definition_or_rule_failure",
+      "reviewed_as_part_of": "all21_formalities_audit",
+      "book_capture_at": "2026-09-05T20:36:46.742933Z"
+    }
+  ]
+}

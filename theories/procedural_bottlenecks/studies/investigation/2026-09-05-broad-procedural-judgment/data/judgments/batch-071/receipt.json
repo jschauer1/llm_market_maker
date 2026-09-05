@@ -1,1 +1,1117 @@
-{"schema_version": 1, "request": {"run_id": "study/broad-procedural-20260905", "theory_id": "study/broad-procedural", "theory_version": 1, "run_mode": "study", "decision_at": "2026-09-05T19:53:15.489944+00:00", "requested_model": "gpt-5.6-sol", "requested_effort": "high", "requested_web_search": true, "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-071\\first-output.jsonl", "stage": "analysis", "batch_id": "71", "candidate_keys": ["KXDIESELMON-26SEP30-T4.70", "KXDIESELMON-26SEP30-T5.50", "KXDIESELMON-26SEP30-T5.80", "KXDIESELMON-26SEP30-T6.00", "KXDIESELMON-26SEP30-T6.20", "KXDIESELMON-26SEP30-T6.30", "KXDIESELMON-26SEP30-T6.50", "KXDIESELMON-26SEP30-T6.60", "KXDIESELMON-26SEP30-T6.70", "KXNYTCHARGE-27JAN01-27JAN01", "KXNICKELSTOP-27-27JAN01", "KXSVOTECLARITY-MAY26-AALS", "KXSVOTECLARITY-MAY26-AKIM", "KXSVOTECLARITY-MAY26-CMAS", "KXSVOTECLARITY-MAY26-JHAW", "KXSVOTECLARITY-MAY26-JMOR", "KXSVOTECLARITY-MAY26-KGIL", "KXSVOTECLARITY-MAY26-LROC", "KXSVOTECLARITY-MAY26-MLEE", "KXSVOTECLARITY-MAY26-MWAR", "KXSVOTECLARITY-MAY26-RGAL", "KXSVOTECLARITY-MAY26-RPAU", "KXSVOTECLARITY-MAY26-RWAR", "KXNYCRENTSY-26-T0", "KXNYCRENTSY-26-T3", "KXNYCRENTSY-26-T4", "KXNYCRENTSY-26-T6", "KXLTGOVRINOMD-26-CCOY", "KXLTGOVRINOMD-26-RMCC", "KXLTGOVRINOMD-26-SAND", "KXLTGOVRINOMD-26-SMAT", "KXLTGOVRINOMD-26-XKHA", "KXMACCELL-27", "KXNEWGLENN-262-DEC", "KXNEWGLENN-262-NOV", "KXNEWGLENN-272-JAN", "KXTHOMASANNOUNCERETIRE-26JUL-27JAN01", "KXTHOMASANNOUNCERETIRE-26JUL-27JUL01", "KXMONOMINEEMETHOD-26-PARTIES", "KXTHC3MG-FED-26DEC10", "KXTHC3MG-FED-26NOV13", "KXTHC3MG-FED-27MAR13", "KXHORMUZNORM-26MAR17-B261001", "KXHORMUZNORM-26MAR17-B261101", "KXHORMUZNORM-26MAR17-B261201", "KXHORMUZNORM-26MAR17-B270101", "KXHORMUZNORM-26MAR17-B270401", "KXHORMUZNORM-26MAR17-B270701", "KXIRANEMBASSY-27", "KXCBDHUNGARY-26SEP22-C25", "KXCBDHUNGARY-26SEP22-HOLD", "KXLFPRATE-27JAN08-B60.7", "KXLFPRATE-27JAN08-B61.2", "KXLFPRATE-27JAN08-B61.7", "KXLFPRATE-27JAN08-T60.5", "KXLFPRATE-27JAN08-T62.0"], "payload_sha256": "45213c8bd31e95dae9e327720dcaf2b1ffca394bfa22d925b5b450142fd813f6", "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-071\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-071\\first-output.jsonl\n", "payload": {"decision_at": "2026-09-05T19:53:15.489944+00:00", "events": [{"event_key": "KXDIESELMON-26SEP30", "markets": [{"category": "Economics", "event_key": "KXDIESELMON-26SEP30", "key": "KXDIESELMON-26SEP30-T4.70", "no_sub_title": "Above $4.70", "rules_primary": "If the Diesel Price on September 30, 2026 is above $4.70, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-09-30T05:59:00Z", "series": "KXDIESELMON", "subtitle": null, "title": "Will Diesel Price on September 30, 2026 be above $4.70?", "yes_sub_title": "Above $4.70"}, {"category": "Economics", "event_key": "KXDIESELMON-26SEP30", "key": "KXDIESELMON-26SEP30-T5.50", "no_sub_title": "Above $5.50", "rules_primary": "If the Diesel Price on September 30, 2026 is above $5.50, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-09-30T05:59:00Z", "series": "KXDIESELMON", "subtitle": null, "title": "Will Diesel Price on September 30, 2026 be above $5.50?", "yes_sub_title": "Above $5.50"}, {"category": "Economics", "event_key": "KXDIESELMON-26SEP30", "key": "KXDIESELMON-26SEP30-T5.80", "no_sub_title": "Above $5.80", "rules_primary": "If the Diesel Price on September 30, 2026 is above $5.80, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-09-30T05:59:00Z", "series": "KXDIESELMON", "subtitle": null, "title": "Will Diesel Price on September 30, 2026 be above $5.80?", "yes_sub_title": "Above $5.80"}, {"category": "Economics", "event_key": "KXDIESELMON-26SEP30", "key": "KXDIESELMON-26SEP30-T6.00", "no_sub_title": "Above $6.00", "rules_primary": "If the Diesel Price on September 30, 2026 is above $6.00, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-09-30T05:59:00Z", "series": "KXDIESELMON", "subtitle": null, "title": "Will Diesel Price on September 30, 2026 be above $6.00?", "yes_sub_title": "Above $6.00"}, {"category": "Economics", "event_key": "KXDIESELMON-26SEP30", "key": "KXDIESELMON-26SEP30-T6.20", "no_sub_title": "Above $6.20", "rules_primary": "If the Diesel Price on September 30, 2026 is above $6.20, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-09-30T05:59:00Z", "series": "KXDIESELMON", "subtitle": null, "title": "Will Diesel Price on September 30, 2026 be above $6.20?", "yes_sub_title": "Above $6.20"}, {"category": "Economics", "event_key": "KXDIESELMON-26SEP30", "key": "KXDIESELMON-26SEP30-T6.30", "no_sub_title": "Above $6.30", "rules_primary": "If the Diesel Price on September 30, 2026 is above $6.30, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-09-30T05:59:00Z", "series": "KXDIESELMON", "subtitle": null, "title": "Will Diesel Price on September 30, 2026 be above $6.30?", "yes_sub_title": "Above $6.30"}, {"category": "Economics", "event_key": "KXDIESELMON-26SEP30", "key": "KXDIESELMON-26SEP30-T6.50", "no_sub_title": "Above $6.50", "rules_primary": "If the Diesel Price on September 30, 2026 is above $6.50, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-09-30T05:59:00Z", "series": "KXDIESELMON", "subtitle": null, "title": "Will Diesel Price on September 30, 2026 be above $6.50?", "yes_sub_title": "Above $6.50"}, {"category": "Economics", "event_key": "KXDIESELMON-26SEP30", "key": "KXDIESELMON-26SEP30-T6.60", "no_sub_title": "Above $6.60", "rules_primary": "If the Diesel Price on September 30, 2026 is above $6.60, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-09-30T05:59:00Z", "series": "KXDIESELMON", "subtitle": null, "title": "Will Diesel Price on September 30, 2026 be above $6.60?", "yes_sub_title": "Above $6.60"}, {"category": "Economics", "event_key": "KXDIESELMON-26SEP30", "key": "KXDIESELMON-26SEP30-T6.70", "no_sub_title": "Above $6.70", "rules_primary": "If the Diesel Price on September 30, 2026 is above $6.70, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-09-30T05:59:00Z", "series": "KXDIESELMON", "subtitle": null, "title": "Will Diesel Price on September 30, 2026 be above $6.70?", "yes_sub_title": "Above $6.70"}]}, {"event_key": "KXNYTCHARGE-27JAN01", "markets": [{"category": "Politics", "event_key": "KXNYTCHARGE-27JAN01", "key": "KXNYTCHARGE-27JAN01-27JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If any New York Times reporter whose alleged offense arises from newsgathering, publication, source protection, or compliance with investigative demands concerning the Times\u2019s July 2026 reporting on the security of the Qatari-donated aircraft used as Air Force One has been formally charged with any crime in federal court after Issuance and before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "Formal charges require the filing of a criminal complaint, information, or indictment with an appropriate court. Arrests without charges, being named as a target of investigation, civil lawsuits, and administrative actions do not constitute charges. Traffic violations that don't require court appearances and sealed charges that remain sealed through the deadline also don't count. If charges are filed and then dismissed before the deadline, the market still resolves to Yes. Pre-trial diversion agreements involving formal charges count as charges. For groups of individuals, charges against any member of the specified group trigger the criterion.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXNYTCHARGE", "subtitle": null, "title": "Will any New York Times reporter whose alleged offense arises from newsgathering, publication, source protection, or compliance with investigative demands concerning the Times\u2019s July 2026 reporting on the security of the Qatari-donated aircraft used as Air Force One be charged with a any crime before Jan 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}]}, {"event_key": "KXNICKELSTOP-27", "markets": [{"category": "Politics", "event_key": "KXNICKELSTOP-27", "key": "KXNICKELSTOP-27-27JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If the\u00a0U.S. Mint or\u00a0Department of the Treasury announces the\u00a0suspension or cessation of production of the five-cent coin (nickel) for circulation before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXNICKELSTOP", "subtitle": null, "title": "Will the U.S. Mint or Department of the Treasury announce the suspension or cessation of production of the five-cent coin (nickel) for circulation before Jan 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}]}, {"event_key": "KXSVOTECLARITY-MAY26", "markets": [{"category": "Politics", "event_key": "KXSVOTECLARITY-MAY26", "key": "KXSVOTECLARITY-MAY26-AALS", "no_sub_title": "Angela Alsobrooks", "rules_primary": "If Angela Alsobrooks votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXSVOTECLARITY", "subtitle": null, "title": "Will Angela Alsobrooks vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?", "yes_sub_title": "Angela Alsobrooks"}, {"category": "Politics", "event_key": "KXSVOTECLARITY-MAY26", "key": "KXSVOTECLARITY-MAY26-AKIM", "no_sub_title": "Andy Kim", "rules_primary": "If Andy Kim votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXSVOTECLARITY", "subtitle": null, "title": "Will Andy Kim vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?", "yes_sub_title": "Andy Kim"}, {"category": "Politics", "event_key": "KXSVOTECLARITY-MAY26", "key": "KXSVOTECLARITY-MAY26-CMAS", "no_sub_title": "Catherine Cortez Masto", "rules_primary": "If Catherine Cortez Masto votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXSVOTECLARITY", "subtitle": null, "title": "Will Catherine Cortez Masto vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?", "yes_sub_title": "Catherine Cortez Masto"}, {"category": "Politics", "event_key": "KXSVOTECLARITY-MAY26", "key": "KXSVOTECLARITY-MAY26-JHAW", "no_sub_title": "Josh Hawley", "rules_primary": "If Josh Hawley votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXSVOTECLARITY", "subtitle": null, "title": "Will Josh Hawley vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?", "yes_sub_title": "Josh Hawley"}, {"category": "Politics", "event_key": "KXSVOTECLARITY-MAY26", "key": "KXSVOTECLARITY-MAY26-JMOR", "no_sub_title": "Jerry Moran", "rules_primary": "If Jerry Moran votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXSVOTECLARITY", "subtitle": null, "title": "Will Jerry Moran vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?", "yes_sub_title": "Jerry Moran"}, {"category": "Politics", "event_key": "KXSVOTECLARITY-MAY26", "key": "KXSVOTECLARITY-MAY26-KGIL", "no_sub_title": "Kirsten Gillibrand", "rules_primary": "If Kirsten Gillibrand votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXSVOTECLARITY", "subtitle": null, "title": "Will Kirsten Gillibrand vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?", "yes_sub_title": "Kirsten Gillibrand"}, {"category": "Politics", "event_key": "KXSVOTECLARITY-MAY26", "key": "KXSVOTECLARITY-MAY26-LROC", "no_sub_title": "Lisa Blunt Rochester", "rules_primary": "If Lisa Blunt Rochester votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXSVOTECLARITY", "subtitle": null, "title": "Will Lisa Blunt Rochester vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?", "yes_sub_title": "Lisa Blunt Rochester"}, {"category": "Politics", "event_key": "KXSVOTECLARITY-MAY26", "key": "KXSVOTECLARITY-MAY26-MLEE", "no_sub_title": "Mike Lee", "rules_primary": "If Mike Lee votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXSVOTECLARITY", "subtitle": null, "title": "Will Mike Lee vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?", "yes_sub_title": "Mike Lee"}, {"category": "Politics", "event_key": "KXSVOTECLARITY-MAY26", "key": "KXSVOTECLARITY-MAY26-MWAR", "no_sub_title": "Mark Warner", "rules_primary": "If Mark Warner votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXSVOTECLARITY", "subtitle": null, "title": "Will Mark Warner vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?", "yes_sub_title": "Mark Warner"}, {"category": "Politics", "event_key": "KXSVOTECLARITY-MAY26", "key": "KXSVOTECLARITY-MAY26-RGAL", "no_sub_title": "Ruben Gallego", "rules_primary": "If Ruben Gallego votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXSVOTECLARITY", "subtitle": null, "title": "Will Ruben Gallego vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?", "yes_sub_title": "Ruben Gallego"}, {"category": "Politics", "event_key": "KXSVOTECLARITY-MAY26", "key": "KXSVOTECLARITY-MAY26-RPAU", "no_sub_title": "Rand Paul", "rules_primary": "If Rand Paul votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXSVOTECLARITY", "subtitle": null, "title": "Will Rand Paul vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?", "yes_sub_title": "Rand Paul"}, {"category": "Politics", "event_key": "KXSVOTECLARITY-MAY26", "key": "KXSVOTECLARITY-MAY26-RWAR", "no_sub_title": "Raphael Warnock", "rules_primary": "If Raphael Warnock votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXSVOTECLARITY", "subtitle": null, "title": "Will Raphael Warnock vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?", "yes_sub_title": "Raphael Warnock"}]}, {"event_key": "KXNYCRENTSY-26", "markets": [{"category": "Economics", "event_key": "KXNYCRENTSY-26", "key": "KXNYCRENTSY-26-T0", "no_sub_title": "Above 0%", "rules_primary": "If the NYC StreetEasy Rent Index (all bedrooms) year-over-year percent change is greater than 0% in December 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-11T04:59:00Z", "series": "KXNYCRENTSY", "subtitle": "0%", "title": "Will New York City rent grow above 0% in December 2026?", "yes_sub_title": "Above 0%"}, {"category": "Economics", "event_key": "KXNYCRENTSY-26", "key": "KXNYCRENTSY-26-T3", "no_sub_title": "Above 3%", "rules_primary": "If the NYC StreetEasy Rent Index (all bedrooms) year-over-year percent change is greater than 3% in December 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-11T04:59:00Z", "series": "KXNYCRENTSY", "subtitle": "3%", "title": "Will New York City rent grow above 3% in December 2026?", "yes_sub_title": "Above 3%"}, {"category": "Economics", "event_key": "KXNYCRENTSY-26", "key": "KXNYCRENTSY-26-T4", "no_sub_title": "Above 4%", "rules_primary": "If the NYC StreetEasy Rent Index (all bedrooms) year-over-year percent change is greater than 4% in December 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-11T04:59:00Z", "series": "KXNYCRENTSY", "subtitle": "4%", "title": "Will New York City rent grow above 4% in December 2026?", "yes_sub_title": "Above 4%"}, {"category": "Economics", "event_key": "KXNYCRENTSY-26", "key": "KXNYCRENTSY-26-T6", "no_sub_title": "Above 6%", "rules_primary": "If the NYC StreetEasy Rent Index (all bedrooms) year-over-year percent change is greater than 6% in December 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-11T04:59:00Z", "series": "KXNYCRENTSY", "subtitle": "6%", "title": "Will New York City rent grow above 6% in December 2026?", "yes_sub_title": "Above 6%"}]}, {"event_key": "KXLTGOVRINOMD-26", "markets": [{"category": "Elections", "event_key": "KXLTGOVRINOMD-26", "key": "KXLTGOVRINOMD-26-CCOY", "no_sub_title": "Cindy Coyne", "rules_primary": "If Cindy Coyne wins the nomination for the Democratic Party to contest the 2026 Rhode Island Lieutenant Governorship, then the market resolves to Yes.", "rules_secondary": "This market is eligible for accelerated determination after a consensus of media organizations project the winner. See full rules for details.", "scheduled_close": "2026-11-03T15:00:00Z", "series": "KXLTGOVRINOMD", "subtitle": null, "title": "Will Cindy Coyne be the Democratic nominee for Lt. Governor in Rhode Island?", "yes_sub_title": "Cindy Coyne"}, {"category": "Elections", "event_key": "KXLTGOVRINOMD-26", "key": "KXLTGOVRINOMD-26-RMCC", "no_sub_title": "Ross McCurdy", "rules_primary": "If Ross McCurdy wins the nomination for the Democratic Party to contest the 2026 Rhode Island Lieutenant Governorship, then the market resolves to Yes.", "rules_secondary": "This market is eligible for accelerated determination after a consensus of media organizations project the winner. See full rules for details.", "scheduled_close": "2026-11-03T15:00:00Z", "series": "KXLTGOVRINOMD", "subtitle": null, "title": "Will Ross McCurdy be the Democratic nominee for Lt. Governor in Rhode Island?", "yes_sub_title": "Ross McCurdy"}, {"category": "Elections", "event_key": "KXLTGOVRINOMD-26", "key": "KXLTGOVRINOMD-26-SAND", "no_sub_title": "Sue AnderBois", "rules_primary": "If Sue AnderBois wins the nomination for the Democratic Party to contest the 2026 Rhode Island Lieutenant Governorship, then the market resolves to Yes.", "rules_secondary": "This market is eligible for accelerated determination after a consensus of media organizations project the winner. See full rules for details.", "scheduled_close": "2026-11-03T15:00:00Z", "series": "KXLTGOVRINOMD", "subtitle": null, "title": "Will Sue AnderBois be the Democratic nominee for Lt. Governor in Rhode Island?", "yes_sub_title": "Sue AnderBois"}, {"category": "Elections", "event_key": "KXLTGOVRINOMD-26", "key": "KXLTGOVRINOMD-26-SMAT", "no_sub_title": "Sabina Matos", "rules_primary": "If Sabina Matos wins the nomination for the Democratic Party to contest the 2026 Rhode Island Lieutenant Governorship, then the market resolves to Yes.", "rules_secondary": "This market is eligible for accelerated determination after a consensus of media organizations project the winner. See full rules for details.", "scheduled_close": "2026-11-03T15:00:00Z", "series": "KXLTGOVRINOMD", "subtitle": null, "title": "Will Sabina Matos be the Democratic nominee for Lt. Governor in Rhode Island?", "yes_sub_title": "Sabina Matos"}, {"category": "Elections", "event_key": "KXLTGOVRINOMD-26", "key": "KXLTGOVRINOMD-26-XKHA", "no_sub_title": "Xay Khamsyvoravong", "rules_primary": "If Xay Khamsyvoravong wins the nomination for the Democratic Party to contest the 2026 Rhode Island Lieutenant Governorship, then the market resolves to Yes.", "rules_secondary": "This market is eligible for accelerated determination after a consensus of media organizations project the winner. See full rules for details.", "scheduled_close": "2026-11-03T15:00:00Z", "series": "KXLTGOVRINOMD", "subtitle": null, "title": "Will Xay Khamsyvoravong be the Democratic nominee for Lt. Governor in Rhode Island?", "yes_sub_title": "Xay Khamsyvoravong"}]}, {"event_key": "KXMACCELL-27", "markets": [{"category": "Science and Technology", "event_key": "KXMACCELL-27", "key": "KXMACCELL-27", "no_sub_title": "Before 2027", "rules_primary": "If Apple announces a Macbook with a built in cellular modem before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXMACCELL", "subtitle": null, "title": "Will Apple release a Mac with cellular connectivity before 2027?", "yes_sub_title": "Before 2027"}]}, {"event_key": "KXNEWGLENN-262", "markets": [{"category": "Science and Technology", "event_key": "KXNEWGLENN-262", "key": "KXNEWGLENN-262-DEC", "no_sub_title": "Before December", "rules_primary": "If Blue Origin's New Glenn rocket has launched from the launch pad before Dec 1, 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-01T15:00:00Z", "series": "KXNEWGLENN", "subtitle": null, "title": "Will Blue Origin's New Glenn rocket launch before Dec 2026?", "yes_sub_title": "Before December"}, {"category": "Science and Technology", "event_key": "KXNEWGLENN-262", "key": "KXNEWGLENN-262-NOV", "no_sub_title": "Before November", "rules_primary": "If Blue Origin's New Glenn rocket has launched from the launch pad before Nov 1, 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-11-01T15:00:00Z", "series": "KXNEWGLENN", "subtitle": null, "title": "Will Blue Origin's New Glenn rocket launch before Nov 2026?", "yes_sub_title": "Before November"}, {"category": "Science and Technology", "event_key": "KXNEWGLENN-262", "key": "KXNEWGLENN-272-JAN", "no_sub_title": "Before 2027", "rules_primary": "If Blue Origin's New Glenn rocket has launched from the launch pad before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXNEWGLENN", "subtitle": null, "title": "Will Blue Origin's New Glenn rocket launch before Jan 2027?", "yes_sub_title": "Before 2027"}]}, {"event_key": "KXTHOMASANNOUNCERETIRE-26JUL", "markets": [{"category": "Politics", "event_key": "KXTHOMASANNOUNCERETIRE-26JUL", "key": "KXTHOMASANNOUNCERETIRE-26JUL-27JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If Clarence Thomas retires as Supreme Court justice before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "This market resolves based on when the departure is publicly announced or officially communicated, regardless of the effective date.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXTHOMASANNOUNCERETIRE", "subtitle": null, "title": "Will Clarence Thomas announce their departure as Supreme Court justice before Jan 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}, {"category": "Politics", "event_key": "KXTHOMASANNOUNCERETIRE-26JUL", "key": "KXTHOMASANNOUNCERETIRE-26JUL-27JUL01", "no_sub_title": "Before Jul 1, 2027", "rules_primary": "If Clarence Thomas retires as Supreme Court justice before Jul 1, 2027, then the market resolves to Yes.", "rules_secondary": "This market resolves based on when the departure is publicly announced or officially communicated, regardless of the effective date.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.", "scheduled_close": "2027-07-01T03:59:00Z", "series": "KXTHOMASANNOUNCERETIRE", "subtitle": "::", "title": "Will Clarence Thomas announce their departure as Supreme Court justice before Jul 1, 2027?", "yes_sub_title": "Before Jul 1, 2027"}]}, {"event_key": "KXMONOMINEEMETHOD-26", "markets": [{"category": "Politics", "event_key": "KXMONOMINEEMETHOD-26", "key": "KXMONOMINEEMETHOD-26-PARTIES", "no_sub_title": "Parties choose nominees", "rules_primary": "If Missouri first officially determines all Democratic and Republican nominees for its eight U.S. House districts through party committee selections after Issuance and before Nov 3, 2026, then the market resolves to Yes.", "rules_secondary": "These markets concern the first official post-September 3 determination that covers every Democratic and Republican nominee for Missouri's eight U.S. House districts on the November 3 ballot. A proposal or an action covering only some nominations does not settle the event. If different methods are used across parties or districts, or a complete method not named above is used, No single listed method resolves to Yes. A qualifying outcome resolves the entire event as soon as it is confirmed by a Source Agency, and a later judicial or administrative change does not alter settlement. If no qualifying statewide-complete determination is reported by the cutoff, no outcome qualifies and all four markets resolve to No.\n\nIf Missouri officially schedules November 3 jungle primaries under the restored map, New primaries resolves to Yes.\n\nOnly reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.", "scheduled_close": "2026-11-03T04:59:00Z", "series": "KXMONOMINEEMETHOD", "subtitle": null, "title": "Will it be reported by any of the Source Agencies that Missouri first officially determines all Democratic and Republican nominees for its eight U.S. House districts through party committee selections before Nov 3, 2026?", "yes_sub_title": "Parties choose nominees"}]}, {"event_key": "KXTHC3MG-FED", "markets": [{"category": "Politics", "event_key": "KXTHC3MG-FED", "key": "KXTHC3MG-FED-26DEC10", "no_sub_title": "On Dec 10, 2026", "rules_primary": "If, as of 11:59 PM ET on Dec 10, 2026, federal law treats a hemp-derived beverage intended for human ingestion containing 3 milligrams or more of Total THC per Container as lawful hemp excluded from the Controlled Substances Act definition of marihuana rather than as a Schedule I controlled substance, then the market resolves to Yes.", "rules_secondary": "The determinative question is whether the 3-milligram Total THC level qualifies as lawful hemp under federal controlled-substance law at 11:59 PM ET on the Resolution Date. FDA food-safety, labeling, or other regulation outside the Controlled Substances Act does not by itself affect resolution, and state law does not affect resolution. Total THC is measured under the federal statutory standard in effect at the relevant time: delta-9 THC plus 0.877 times THCA, plus any other THC isomers included in the applicable federal statutory measure. \n\nA legally effective federal regime that leaves or makes a beverage containing 3 milligrams of Total THC per Container lawful hemp may resolve the market Yes, including continuation of the pre-Section 781 hemp definition, enacted federal legislation, a final federal regulation carrying the force of law, or nationwide federal court relief blocking enforcement of Section 781 of Public Law 119-37. Proposed or unenacted legislation or rules, informal federal non-enforcement or enforcement discretion, state action, and court relief limited to particular plaintiffs, products, sellers, or districts do not qualify. \n\nOnly statutes, regulations, and court orders issued and legally effective by 11:59 PM ET on the Resolution Date are considered. An instrument whose operative provisions take effect only after that time does not qualify. Later corrections, amendments, or court decisions do not change resolution, even if they purport to apply retroactively. If no qualifying condition is in effect at the snapshot, the market resolves No.", "scheduled_close": "2026-12-11T04:59:00Z", "series": "KXTHC3MG", "subtitle": null, "title": "Will 3 mg THC beverages qualify as hemp under federal law on Dec 10, 2026?", "yes_sub_title": "On Dec 10, 2026"}, {"category": "Politics", "event_key": "KXTHC3MG-FED", "key": "KXTHC3MG-FED-26NOV13", "no_sub_title": "On Nov 13, 2026", "rules_primary": "If, as of 11:59 PM ET on Nov 13, 2026, federal law treats a hemp-derived beverage intended for human ingestion containing 3 milligrams or more of Total THC per Container as lawful hemp excluded from the Controlled Substances Act definition of marihuana rather than as a Schedule I controlled substance, then the market resolves to Yes.", "rules_secondary": "The determinative question is whether the 3-milligram Total THC level qualifies as lawful hemp under federal controlled-substance law at 11:59 PM ET on the Resolution Date. FDA food-safety, labeling, or other regulation outside the Controlled Substances Act does not by itself affect resolution, and state law does not affect resolution. Total THC is measured under the federal statutory standard in effect at the relevant time: delta-9 THC plus 0.877 times THCA, plus any other THC isomers included in the applicable federal statutory measure. \n\nA legally effective federal regime that leaves or makes a beverage containing 3 milligrams of Total THC per Container lawful hemp may resolve the market Yes, including continuation of the pre-Section 781 hemp definition, enacted federal legislation, a final federal regulation carrying the force of law, or nationwide federal court relief blocking enforcement of Section 781 of Public Law 119-37. Proposed or unenacted legislation or rules, informal federal non-enforcement or enforcement discretion, state action, and court relief limited to particular plaintiffs, products, sellers, or districts do not qualify. \n\nOnly statutes, regulations, and court orders issued and legally effective by 11:59 PM ET on the Resolution Date are considered. An instrument whose operative provisions take effect only after that time does not qualify. Later corrections, amendments, or court decisions do not change resolution, even if they purport to apply retroactively. If no qualifying condition is in effect at the snapshot, the market resolves No.", "scheduled_close": "2026-11-14T04:59:00Z", "series": "KXTHC3MG", "subtitle": null, "title": "Will 3 mg THC beverages qualify as hemp under federal law on Nov 13, 2026?", "yes_sub_title": "On Nov 13, 2026"}, {"category": "Politics", "event_key": "KXTHC3MG-FED", "key": "KXTHC3MG-FED-27MAR13", "no_sub_title": "On Mar 13, 2027", "rules_primary": "If, as of 11:59 PM ET on Mar 13, 2027, federal law treats a hemp-derived beverage intended for human ingestion containing 3 milligrams or more of Total THC per Container as lawful hemp excluded from the Controlled Substances Act definition of marihuana rather than as a Schedule I controlled substance, then the market resolves to Yes.", "rules_secondary": "The determinative question is whether the 3-milligram Total THC level qualifies as lawful hemp under federal controlled-substance law at 11:59 PM ET on the Resolution Date. FDA food-safety, labeling, or other regulation outside the Controlled Substances Act does not by itself affect resolution, and state law does not affect resolution. Total THC is measured under the federal statutory standard in effect at the relevant time: delta-9 THC plus 0.877 times THCA, plus any other THC isomers included in the applicable federal statutory measure. \n\nA legally effective federal regime that leaves or makes a beverage containing 3 milligrams of Total THC per Container lawful hemp may resolve the market Yes, including continuation of the pre-Section 781 hemp definition, enacted federal legislation, a final federal regulation carrying the force of law, or nationwide federal court relief blocking enforcement of Section 781 of Public Law 119-37. Proposed or unenacted legislation or rules, informal federal non-enforcement or enforcement discretion, state action, and court relief limited to particular plaintiffs, products, sellers, or districts do not qualify. \n\nOnly statutes, regulations, and court orders issued and legally effective by 11:59 PM ET on the Resolution Date are considered. An instrument whose operative provisions take effect only after that time does not qualify. Later corrections, amendments, or court decisions do not change resolution, even if they purport to apply retroactively. If no qualifying condition is in effect at the snapshot, the market resolves No.", "scheduled_close": "2027-03-14T04:59:00Z", "series": "KXTHC3MG", "subtitle": null, "title": "Will 3 mg THC beverages qualify as hemp under federal law on Mar 13, 2027?", "yes_sub_title": "On Mar 13, 2027"}]}, {"event_key": "KXHORMUZNORM-26MAR17", "markets": [{"category": "Politics", "event_key": "KXHORMUZNORM-26MAR17", "key": "KXHORMUZNORM-26MAR17-B261001", "no_sub_title": "Before Oct 1, 2026", "rules_primary": "If the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 60 before October 1, 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-10-01T13:59:00Z", "series": "KXHORMUZNORM", "subtitle": null, "title": "Will the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch be above 60 before October 1, 2026?", "yes_sub_title": "Before Oct 1, 2026"}, {"category": "Politics", "event_key": "KXHORMUZNORM-26MAR17", "key": "KXHORMUZNORM-26MAR17-B261101", "no_sub_title": "Before Nov 1, 2026", "rules_primary": "If the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 60 before November 1, 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-11-01T14:59:00Z", "series": "KXHORMUZNORM", "subtitle": null, "title": "Will the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch be above 60 before November 1, 2026?", "yes_sub_title": "Before Nov 1, 2026"}, {"category": "Politics", "event_key": "KXHORMUZNORM-26MAR17", "key": "KXHORMUZNORM-26MAR17-B261201", "no_sub_title": "Before Dec 1, 2026", "rules_primary": "If the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 60 before December 1, 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-01T14:59:00Z", "series": "KXHORMUZNORM", "subtitle": null, "title": "Will the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch be above 60 before December 1, 2026?", "yes_sub_title": "Before Dec 1, 2026"}, {"category": "Politics", "event_key": "KXHORMUZNORM-26MAR17", "key": "KXHORMUZNORM-26MAR17-B270101", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 60 before January 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T14:59:00Z", "series": "KXHORMUZNORM", "subtitle": null, "title": "Will the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch be above 60 before January 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}, {"category": "Politics", "event_key": "KXHORMUZNORM-26MAR17", "key": "KXHORMUZNORM-26MAR17-B270401", "no_sub_title": "Before Apr 1, 2027", "rules_primary": "If the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 60 before April 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-04-01T13:59:00Z", "series": "KXHORMUZNORM", "subtitle": null, "title": "Will the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch be above 60 before April 1, 2027?", "yes_sub_title": "Before Apr 1, 2027"}, {"category": "Politics", "event_key": "KXHORMUZNORM-26MAR17", "key": "KXHORMUZNORM-26MAR17-B270701", "no_sub_title": "Before Jul 1, 2027", "rules_primary": "If the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 60 before July 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-07-01T13:59:00Z", "series": "KXHORMUZNORM", "subtitle": null, "title": "Will the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch be above 60 before July 1, 2027?", "yes_sub_title": "Before Jul 1, 2027"}]}, {"event_key": "KXIRANEMBASSY-27", "markets": [{"category": "Politics", "event_key": "KXIRANEMBASSY-27", "key": "KXIRANEMBASSY-27", "no_sub_title": "Before 2027", "rules_primary": "If the United States has announced the opening of an embassy or consulate of the United States of America in Iran after Issuance and before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The embassy/consulate must be opened or have a specific date on which it will be opened to be encompassed by the Payout Criterion. It also includes an embassy being re-opened after suspending operations.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXIRANEMBASSY", "subtitle": null, "title": "Will the US reopen its embassy in Iran before Jan 1, 2027?", "yes_sub_title": "Before 2027"}]}, {"event_key": "KXCBDHUNGARY-26SEP22", "markets": [{"category": "Economics", "event_key": "KXCBDHUNGARY-26SEP22", "key": "KXCBDHUNGARY-26SEP22-C25", "no_sub_title": "Cut 25bps", "rules_primary": "If the Magyar Nemzeti Bank takes the action of Cut 25bps at September Monetary Council policy meeting, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings.", "scheduled_close": "2026-09-22T11:59:00Z", "series": "KXCBDHUNGARY", "subtitle": null, "title": "Will the Magyar Nemzeti Bank Cut 25bps at the September Monetary Council policy meeting?", "yes_sub_title": "Cut 25bps"}, {"category": "Economics", "event_key": "KXCBDHUNGARY-26SEP22", "key": "KXCBDHUNGARY-26SEP22-HOLD", "no_sub_title": "Maintain current rate", "rules_primary": "If the Magyar Nemzeti Bank takes the action of Maintain current rate at September Monetary Council policy meeting, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings.", "scheduled_close": "2026-09-22T11:59:00Z", "series": "KXCBDHUNGARY", "subtitle": null, "title": "Will the Magyar Nemzeti Bank Maintain current rate at the September Monetary Council policy meeting?", "yes_sub_title": "Maintain current rate"}]}, {"event_key": "KXLFPRATE-27JAN08", "markets": [{"category": "Economics", "event_key": "KXLFPRATE-27JAN08", "key": "KXLFPRATE-27JAN08-B60.7", "no_sub_title": "60.5% to 60.9%", "rules_primary": "If the US labor force participation rate for December 2026 is between 60.5% and 60.9%, as represented by the one-decimal place value reported by Trading Economics, then the market resolves to Yes.", "rules_secondary": "For purposes of this market, \u201cyear-end 2026\u201d means the December 2026 reference month. The market will resolve based on the first value published for December 2026. Later revisions, corrections, or updates will not affect resolution.\n\nIf Trading Economics is unavailable or does not publish the relevant December 2026 value, Kalshi may use the corresponding value from the U.S. Bureau of Labor Statistics or FRED series CIVPART.\n", "scheduled_close": "2027-01-08T13:29:00Z", "series": "KXLFPRATE", "subtitle": null, "title": "Will US labor force participation rate for December 2026 be between 60.5% and 60.9%?", "yes_sub_title": "60.5% to 60.9%"}, {"category": "Economics", "event_key": "KXLFPRATE-27JAN08", "key": "KXLFPRATE-27JAN08-B61.2", "no_sub_title": "61.0% to 61.4%", "rules_primary": "If the US labor force participation rate for December 2026 is between 61.0% and 61.4%, as represented by the one-decimal place value reported by Trading Economics, then the market resolves to Yes.", "rules_secondary": "For purposes of this market, \u201cyear-end 2026\u201d means the December 2026 reference month. The market will resolve based on the first value published for December 2026. Later revisions, corrections, or updates will not affect resolution.\n\nIf Trading Economics is unavailable or does not publish the relevant December 2026 value, Kalshi may use the corresponding value from the U.S. Bureau of Labor Statistics or FRED series CIVPART.\n", "scheduled_close": "2027-01-08T13:29:00Z", "series": "KXLFPRATE", "subtitle": null, "title": "Will US labor force participation rate for December 2026 be between 61.0% and 61.4%?", "yes_sub_title": "61.0% to 61.4%"}, {"category": "Economics", "event_key": "KXLFPRATE-27JAN08", "key": "KXLFPRATE-27JAN08-B61.7", "no_sub_title": "61.5% to 61.9%", "rules_primary": "If the US labor force participation rate for December 2026 is between 61.5% and 61.9%, as represented by the one-decimal place value reported by Trading Economics, then the market resolves to Yes.", "rules_secondary": "For purposes of this market, \u201cyear-end 2026\u201d means the December 2026 reference month. The market will resolve based on the first value published for December 2026. Later revisions, corrections, or updates will not affect resolution.\n\nIf Trading Economics is unavailable or does not publish the relevant December 2026 value, Kalshi may use the corresponding value from the U.S. Bureau of Labor Statistics or FRED series CIVPART.\n", "scheduled_close": "2027-01-08T13:29:00Z", "series": "KXLFPRATE", "subtitle": null, "title": "Will US labor force participation rate for December 2026 be between 61.5% and 61.9%?", "yes_sub_title": "61.5% to 61.9%"}, {"category": "Economics", "event_key": "KXLFPRATE-27JAN08", "key": "KXLFPRATE-27JAN08-T60.5", "no_sub_title": "Below 60.5%", "rules_primary": "If the US labor force participation rate for December 2026 is below 60.5%, as represented by the one-decimal place value reported by Trading Economics, then the market resolves to Yes.", "rules_secondary": "For purposes of this market, \u201cyear-end 2026\u201d means the December 2026 reference month. The market will resolve based on the first value published for December 2026. Later revisions, corrections, or updates will not affect resolution.\n\nIf Trading Economics is unavailable or does not publish the relevant December 2026 value, Kalshi may use the corresponding value from the U.S. Bureau of Labor Statistics or FRED series CIVPART.\n", "scheduled_close": "2027-01-08T13:29:00Z", "series": "KXLFPRATE", "subtitle": null, "title": "Will US labor force participation rate for December 2026 be below 60.5%?", "yes_sub_title": "Below 60.5%"}, {"category": "Economics", "event_key": "KXLFPRATE-27JAN08", "key": "KXLFPRATE-27JAN08-T62.0", "no_sub_title": "62.0% or Above", "rules_primary": "If the US labor force participation rate for December 2026 is at least 62.0%, as represented by the one-decimal place value reported by Trading Economics, then the market resolves to Yes.", "rules_secondary": "For purposes of this market, \u201cyear-end 2026\u201d means the December 2026 reference month. The market will resolve based on the first value published for December 2026. Later revisions, corrections, or updates will not affect resolution.\n\nIf Trading Economics is unavailable or does not publish the relevant December 2026 value, Kalshi may use the corresponding value from the U.S. Bureau of Labor Statistics or FRED series CIVPART.\n", "scheduled_close": "2027-01-08T13:29:00Z", "series": "KXLFPRATE", "subtitle": null, "title": "Will US labor force participation rate for December 2026 be at least 62.0%?", "yes_sub_title": "62.0% or Above"}]}], "snapshot_at": "2026-09-05T15:45:16Z"}}, "completion": null}
+{
+  "completion": {
+    "completed_at": "2026-09-05T20:42:15.391964+00:00",
+    "effort": "high",
+    "model": "gpt-5.6-sol",
+    "results": {
+      "KXCBDHUNGARY-26SEP22-C25": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/22/2026 11:59:00\", \"family\": \"interpersonal_or_media_occurrence\", \"key\": \"KXCBDHUNGARY-26SEP22-C25\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Magyar Nemzeti Bank takes the action of Cut 25bps at September Monetary Council policy meeting, then the market resolves to Yes.\", \"rationale\": \"The predicate is the interpersonal, speech, travel, or media occurrence itself; the rules do not make a separate institutional milestone necessary.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcbdhungary-26sep22\", \"web_search_used\": false}"
+      },
+      "KXCBDHUNGARY-26SEP22-HOLD": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/22/2026 11:59:00\", \"family\": \"interpersonal_or_media_occurrence\", \"key\": \"KXCBDHUNGARY-26SEP22-HOLD\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Magyar Nemzeti Bank takes the action of Maintain current rate at September Monetary Council policy meeting, then the market resolves to Yes.\", \"rationale\": \"The predicate is the interpersonal, speech, travel, or media occurrence itself; the rules do not make a separate institutional milestone necessary.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcbdhungary-26sep22\", \"web_search_used\": false}"
+      },
+      "KXDIESELMON-26SEP30-T4.70": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/30/2026 05:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXDIESELMON-26SEP30-T4.70\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Diesel Price on September 30, 2026 is above $4.70, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxdieselmon-26sep30\", \"web_search_used\": false}"
+      },
+      "KXDIESELMON-26SEP30-T5.50": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/30/2026 05:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXDIESELMON-26SEP30-T5.50\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Diesel Price on September 30, 2026 is above $5.50, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxdieselmon-26sep30\", \"web_search_used\": false}"
+      },
+      "KXDIESELMON-26SEP30-T5.80": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/30/2026 05:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXDIESELMON-26SEP30-T5.80\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Diesel Price on September 30, 2026 is above $5.80, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxdieselmon-26sep30\", \"web_search_used\": false}"
+      },
+      "KXDIESELMON-26SEP30-T6.00": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/30/2026 05:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXDIESELMON-26SEP30-T6.00\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Diesel Price on September 30, 2026 is above $6.00, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxdieselmon-26sep30\", \"web_search_used\": false}"
+      },
+      "KXDIESELMON-26SEP30-T6.20": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/30/2026 05:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXDIESELMON-26SEP30-T6.20\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Diesel Price on September 30, 2026 is above $6.20, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxdieselmon-26sep30\", \"web_search_used\": false}"
+      },
+      "KXDIESELMON-26SEP30-T6.30": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/30/2026 05:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXDIESELMON-26SEP30-T6.30\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Diesel Price on September 30, 2026 is above $6.30, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxdieselmon-26sep30\", \"web_search_used\": false}"
+      },
+      "KXDIESELMON-26SEP30-T6.50": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/30/2026 05:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXDIESELMON-26SEP30-T6.50\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Diesel Price on September 30, 2026 is above $6.50, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxdieselmon-26sep30\", \"web_search_used\": false}"
+      },
+      "KXDIESELMON-26SEP30-T6.60": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/30/2026 05:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXDIESELMON-26SEP30-T6.60\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Diesel Price on September 30, 2026 is above $6.60, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxdieselmon-26sep30\", \"web_search_used\": false}"
+      },
+      "KXDIESELMON-26SEP30-T6.70": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/30/2026 05:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXDIESELMON-26SEP30-T6.70\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Diesel Price on September 30, 2026 is above $6.70, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxdieselmon-26sep30\", \"web_search_used\": false}"
+      },
+      "KXHORMUZNORM-26MAR17-B261001": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/01/2026 13:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXHORMUZNORM-26MAR17-B261001\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 60 before October 1, 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxhormuznorm-26mar17\", \"web_search_used\": false}"
+      },
+      "KXHORMUZNORM-26MAR17-B261101": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 11/01/2026 14:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXHORMUZNORM-26MAR17-B261101\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 60 before November 1, 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxhormuznorm-26mar17\", \"web_search_used\": false}"
+      },
+      "KXHORMUZNORM-26MAR17-B261201": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/01/2026 14:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXHORMUZNORM-26MAR17-B261201\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 60 before December 1, 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxhormuznorm-26mar17\", \"web_search_used\": false}"
+      },
+      "KXHORMUZNORM-26MAR17-B270101": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 14:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXHORMUZNORM-26MAR17-B270101\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 60 before January 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxhormuznorm-26mar17\", \"web_search_used\": false}"
+      },
+      "KXHORMUZNORM-26MAR17-B270401": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 04/01/2027 13:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXHORMUZNORM-26MAR17-B270401\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 60 before April 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxhormuznorm-26mar17\", \"web_search_used\": false}"
+      },
+      "KXHORMUZNORM-26MAR17-B270701": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 07/01/2027 13:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXHORMUZNORM-26MAR17-B270701\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 60 before July 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxhormuznorm-26mar17\", \"web_search_used\": false}"
+      },
+      "KXIRANEMBASSY-27": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Either an embassy or consulate announcement may suffice.\", \"deadline\": \"Before Jan 1, 2027\", \"family\": \"diplomatic_relations_reestablishment\", \"key\": \"KXIRANEMBASSY-27\", \"mandatory_steps\": [{\"source_url\": \"https://www.state.gov/\", \"status\": \"unknown\", \"step\": \"The United States and Iran agree to restore an official mission and the United States announces opening it.\"}], \"obstacle\": \"No normalization agreement or mission-opening plan was established.\", \"predicate\": \"If the United States has announced the opening of an embassy or consulate of the United States of America in Iran after Issuance and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Focused State Department research found current Iran visa restrictions and third-country processing, but no agreement, site, staffing, or announcement path for reopening a U.S. mission in Iran.\", \"source_gaps\": [\"Bilateral normalization agreement and mission-opening announcement.\"], \"sources\": [], \"subject_key\": \"kxiranembassy-27\", \"web_search_used\": true}"
+      },
+      "KXLFPRATE-27JAN08-B60.7": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/08/2027 13:29:00\", \"family\": \"quantity_measurement\", \"key\": \"KXLFPRATE-27JAN08-B60.7\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the US labor force participation rate for December 2026 is between 60.5% and 60.9%, as represented by the one-decimal place value reported by Trading Economics, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxlfprate-27jan08\", \"web_search_used\": false}"
+      },
+      "KXLFPRATE-27JAN08-B61.2": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/08/2027 13:29:00\", \"family\": \"quantity_measurement\", \"key\": \"KXLFPRATE-27JAN08-B61.2\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the US labor force participation rate for December 2026 is between 61.0% and 61.4%, as represented by the one-decimal place value reported by Trading Economics, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxlfprate-27jan08\", \"web_search_used\": false}"
+      },
+      "KXLFPRATE-27JAN08-B61.7": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/08/2027 13:29:00\", \"family\": \"quantity_measurement\", \"key\": \"KXLFPRATE-27JAN08-B61.7\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the US labor force participation rate for December 2026 is between 61.5% and 61.9%, as represented by the one-decimal place value reported by Trading Economics, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxlfprate-27jan08\", \"web_search_used\": false}"
+      },
+      "KXLFPRATE-27JAN08-T60.5": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/08/2027 13:29:00\", \"family\": \"quantity_measurement\", \"key\": \"KXLFPRATE-27JAN08-T60.5\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the US labor force participation rate for December 2026 is below 60.5%, as represented by the one-decimal place value reported by Trading Economics, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxlfprate-27jan08\", \"web_search_used\": false}"
+      },
+      "KXLFPRATE-27JAN08-T62.0": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/08/2027 13:29:00\", \"family\": \"quantity_measurement\", \"key\": \"KXLFPRATE-27JAN08-T62.0\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the US labor force participation rate for December 2026 is at least 62.0%, as represented by the one-decimal place value reported by Trading Economics, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxlfprate-27jan08\", \"web_search_used\": false}"
+      },
+      "KXLTGOVRINOMD-26-CCOY": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 11/03/2026 15:00:00\", \"family\": \"competitive_or_election_outcome\", \"key\": \"KXLTGOVRINOMD-26-CCOY\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Cindy Coyne wins the nomination for the Democratic Party to contest the 2026 Rhode Island Lieutenant Governorship, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive or election outcome, not completion of one necessary institutional pathway.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxltgovrinomd-26\", \"web_search_used\": false}"
+      },
+      "KXLTGOVRINOMD-26-RMCC": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 11/03/2026 15:00:00\", \"family\": \"competitive_or_election_outcome\", \"key\": \"KXLTGOVRINOMD-26-RMCC\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Ross McCurdy wins the nomination for the Democratic Party to contest the 2026 Rhode Island Lieutenant Governorship, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive or election outcome, not completion of one necessary institutional pathway.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxltgovrinomd-26\", \"web_search_used\": false}"
+      },
+      "KXLTGOVRINOMD-26-SAND": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 11/03/2026 15:00:00\", \"family\": \"competitive_or_election_outcome\", \"key\": \"KXLTGOVRINOMD-26-SAND\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Sue AnderBois wins the nomination for the Democratic Party to contest the 2026 Rhode Island Lieutenant Governorship, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive or election outcome, not completion of one necessary institutional pathway.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxltgovrinomd-26\", \"web_search_used\": false}"
+      },
+      "KXLTGOVRINOMD-26-SMAT": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 11/03/2026 15:00:00\", \"family\": \"competitive_or_election_outcome\", \"key\": \"KXLTGOVRINOMD-26-SMAT\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Sabina Matos wins the nomination for the Democratic Party to contest the 2026 Rhode Island Lieutenant Governorship, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive or election outcome, not completion of one necessary institutional pathway.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxltgovrinomd-26\", \"web_search_used\": false}"
+      },
+      "KXLTGOVRINOMD-26-XKHA": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 11/03/2026 15:00:00\", \"family\": \"competitive_or_election_outcome\", \"key\": \"KXLTGOVRINOMD-26-XKHA\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Xay Khamsyvoravong wins the nomination for the Democratic Party to contest the 2026 Rhode Island Lieutenant Governorship, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive or election outcome, not completion of one necessary institutional pathway.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxltgovrinomd-26\", \"web_search_used\": false}"
+      },
+      "KXMACCELL-27": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Any qualifying Apple MacBook announcement may suffice.\", \"deadline\": \"Before Jan 1, 2027\", \"family\": \"consumer_product_announcement\", \"key\": \"KXMACCELL-27\", \"mandatory_steps\": [{\"source_url\": \"https://www.apple.com/newsroom/topics/mac/\", \"status\": \"unknown\", \"step\": \"Apple completes and announces a MacBook with an integrated cellular modem.\"}], \"obstacle\": \"No official cellular MacBook product or announcement date was established.\", \"predicate\": \"If Apple announces a Macbook with a built in cellular modem before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Apple's current Mac newsroom lists 2026 MacBook products and Wi-Fi/Bluetooth connectivity but no built-in cellular modem or dated cellular MacBook plan.\", \"source_gaps\": [\"Official cellular MacBook announcement or release plan.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:37:20Z\", \"published_at\": \"unknown\", \"quote\": \"Apple introduces the new MacBook Air with M5\", \"supports\": \"Shows the current official Mac lineup without a cellular MacBook announcement.\", \"title\": \"Apple Newsroom: Mac\", \"url\": \"https://www.apple.com/newsroom/topics/mac/\"}], \"subject_key\": \"kxmaccell-27\", \"web_search_used\": true}"
+      },
+      "KXMONOMINEEMETHOD-26-PARTIES": {
+        "bucket": "substantive_barrier",
+        "rationale": "{\"bucket\": \"substantive_barrier\", \"bypass\": \"The predicate specifically requires committee selection for all listed nominees.\", \"deadline\": \"Before Nov 3, 2026\", \"family\": \"state_candidate_nomination\", \"key\": \"KXMONOMINEEMETHOD-26-PARTIES\", \"mandatory_steps\": [{\"source_url\": \"https://enr.sos.mo.gov/\", \"status\": \"blocked\", \"step\": \"Both major parties select all eight House nominees through party committees.\"}], \"obstacle\": \"Missouri already held and certified its August 4 congressional primaries, so nominees were determined through primary elections rather than all through committees.\", \"predicate\": \"If Missouri first officially determines all Democratic and Republican nominees for its eight U.S. House districts through party committee selections after Issuance and before Nov 3, 2026, then the market resolves to Yes.\", \"rationale\": \"The official election calendar and certified results show the 2026 primary occurred and was certified August 25. That completed the ordinary nomination route in a way incompatible with the all-committee-selection predicate.\", \"source_gaps\": [\"Whether every congressional contest had a certified nominee and any later vacancy exceptions.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:37:20Z\", \"published_at\": \"2026-08-25\", \"quote\": \"Primary Election, August 04, 2026 ... Official Results\", \"supports\": \"Confirms nominees were determined through the completed primary route.\", \"title\": \"Missouri Primary Election Official Results\", \"url\": \"https://enr.sos.mo.gov/\"}], \"subject_key\": \"kxmonomineemethod-26\", \"web_search_used\": true}"
+      },
+      "KXNEWGLENN-262-DEC": {
+        "bucket": "substantive_barrier",
+        "rationale": "{\"bucket\": \"substantive_barrier\", \"bypass\": \"No launch can occur until flight and range readiness are restored.\", \"deadline\": \"Before Dec 1, 2026\", \"family\": \"commercial_space_launch\", \"key\": \"KXNEWGLENN-262-DEC\", \"mandatory_steps\": [{\"source_url\": \"https://www.blueorigin.com/news/new-glenn-return-to-flight\", \"status\": \"blocked\", \"step\": \"Blue Origin completes pad reconstruction, systems integration, flight readiness, licensing, and launch.\"}], \"obstacle\": \"A major hotfire anomaly destroyed pad systems, and Blue Origin's year-end target does not fit the December 1 deadline.\", \"predicate\": \"If Blue Origin's New Glenn rocket has launched from the launch pad before Dec 1, 2026, then the market resolves to Yes.\", \"rationale\": \"Blue Origin documents extensive recovery work and only a return by year-end, materially later than the December 1 cutoff.\", \"source_gaps\": [\"Updated repair completion and licensed launch date.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:37:20Z\", \"published_at\": \"2026-06-30\", \"quote\": \"reconstruction of the pad has started\", \"supports\": \"Confirms substantive construction remained in progress after the anomaly.\", \"title\": \"New Glenn Return to Flight\", \"url\": \"https://www.blueorigin.com/news/new-glenn-return-to-flight\"}], \"subject_key\": \"kxnewglenn-262\", \"web_search_used\": true}"
+      },
+      "KXNEWGLENN-262-NOV": {
+        "bucket": "substantive_barrier",
+        "rationale": "{\"bucket\": \"substantive_barrier\", \"bypass\": \"No launch can occur until flight and range readiness are restored.\", \"deadline\": \"Before Nov 1, 2026\", \"family\": \"commercial_space_launch\", \"key\": \"KXNEWGLENN-262-NOV\", \"mandatory_steps\": [{\"source_url\": \"https://www.blueorigin.com/news/new-glenn-return-to-flight\", \"status\": \"blocked\", \"step\": \"Blue Origin completes pad reconstruction, systems integration, flight readiness, licensing, and launch.\"}], \"obstacle\": \"A major hotfire anomaly destroyed pad systems, and Blue Origin targeted return by year-end rather than before November.\", \"predicate\": \"If Blue Origin's New Glenn rocket has launched from the launch pad before Nov 1, 2026, then the market resolves to Yes.\", \"rationale\": \"Blue Origin's recovery plan documents multiple unfinished repair and readiness phases after major pad damage. Its own target is only by year-end, creating a material timing conflict with November 1.\", \"source_gaps\": [\"Updated repair completion and licensed launch date.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:37:20Z\", \"published_at\": \"2026-06-30\", \"quote\": \"We will return to flight by the end of this year\", \"supports\": \"Provides the company's target and unfinished recovery phases.\", \"title\": \"New Glenn Return to Flight\", \"url\": \"https://www.blueorigin.com/news/new-glenn-return-to-flight\"}], \"subject_key\": \"kxnewglenn-262\", \"web_search_used\": true}"
+      },
+      "KXNEWGLENN-272-JAN": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"No launch can occur until flight and range readiness are restored.\", \"deadline\": \"Before Jan 1, 2027\", \"family\": \"commercial_space_launch\", \"key\": \"KXNEWGLENN-272-JAN\", \"mandatory_steps\": [{\"source_url\": \"https://www.blueorigin.com/news/gs1-3-hotfire-updates\", \"status\": \"in_progress\", \"step\": \"Blue Origin completes pad reconstruction, systems integration, flight readiness, licensing, and launch.\"}], \"obstacle\": \"Repairs, integration, and flight readiness remain unfinished.\", \"predicate\": \"If Blue Origin's New Glenn rocket has launched from the launch pad before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Blue Origin reports root-cause progress, hardware modifications due by the end of August, active pad reconstruction, and an explicit return-to-flight target before year-end. That is a dated affirmative path matching this deadline.\", \"source_gaps\": [\"Completed repair phases, FAA license, and firm launch date.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:37:20Z\", \"published_at\": \"2026-08-05\", \"quote\": \"We will fly again before the end of this year\", \"supports\": \"Direct company commitment and repair milestones support a viable year-end path.\", \"title\": \"GS1-3 Hotfire Updates\", \"url\": \"https://www.blueorigin.com/news/gs1-3-hotfire-updates\"}], \"subject_key\": \"kxnewglenn-262\", \"web_search_used\": true}"
+      },
+      "KXNICKELSTOP-27-27JAN01": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Either a Mint or Treasury announcement may suffice.\", \"deadline\": \"Before Jan 1, 2027\", \"family\": \"treasury_coin_production_policy\", \"key\": \"KXNICKELSTOP-27-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://www.usmint.gov/learn/coins-and-medals/circulating-coins/nickel\", \"status\": \"unknown\", \"step\": \"Treasury or the Mint decides and announces cessation of circulating nickel production.\"}], \"obstacle\": \"No cessation decision or administrative timetable was established.\", \"predicate\": \"If the\\u00a0U.S. Mint or\\u00a0Department of the Treasury announces the\\u00a0suspension or cessation of production of the five-cent coin (nickel) for circulation before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The Mint's current primary page says it makes the five-cent coin for circulation and documents 2026 production. The cessation material found concerns the penny, not the nickel; no nickel decision path was established.\", \"source_gaps\": [\"Treasury review or formal nickel cessation plan.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:37:20Z\", \"published_at\": \"unknown\", \"quote\": \"The Mint makes the cupro-nickel five-cent coin for circulation\", \"supports\": \"Confirms current production and absence of a cessation announcement on the official page.\", \"title\": \"Nickel\", \"url\": \"https://www.usmint.gov/learn/coins-and-medals/circulating-coins/nickel\"}], \"subject_key\": \"kxnickelstop-27\", \"web_search_used\": true}"
+      },
+      "KXNYCRENTSY-26-T0": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/11/2027 04:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXNYCRENTSY-26-T0\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the NYC StreetEasy Rent Index (all bedrooms) year-over-year percent change is greater than 0% in December 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnycrentsy-26\", \"web_search_used\": false}"
+      },
+      "KXNYCRENTSY-26-T3": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/11/2027 04:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXNYCRENTSY-26-T3\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the NYC StreetEasy Rent Index (all bedrooms) year-over-year percent change is greater than 3% in December 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnycrentsy-26\", \"web_search_used\": false}"
+      },
+      "KXNYCRENTSY-26-T4": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/11/2027 04:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXNYCRENTSY-26-T4\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the NYC StreetEasy Rent Index (all bedrooms) year-over-year percent change is greater than 4% in December 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnycrentsy-26\", \"web_search_used\": false}"
+      },
+      "KXNYCRENTSY-26-T6": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/11/2027 04:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXNYCRENTSY-26-T6\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the NYC StreetEasy Rent Index (all bedrooms) year-over-year percent change is greater than 6% in December 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnycrentsy-26\", \"web_search_used\": false}"
+      },
+      "KXNYTCHARGE-27JAN01-27JAN01": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Any qualifying federal criminal charge may suffice.\", \"deadline\": \"Before Jan 1, 2027\", \"family\": \"federal_criminal_charge\", \"key\": \"KXNYTCHARGE-27JAN01-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://www.justice.gov/\", \"status\": \"unknown\", \"step\": \"Federal investigators develop a case and prosecutors file a qualifying criminal charge.\"}], \"obstacle\": \"No official investigation, grand-jury action, or charge path was established.\", \"predicate\": \"If any New York Times reporter whose alleged offense arises from newsgathering, publication, source protection, or compliance with investigative demands concerning the Times\\u2019s July 2026 reporting on the security of the Qatari-donated aircraft used as Air Force One has been formally charged with any crime in federal court after Issuance and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Focused Justice Department and federal-court research did not establish a named investigation, subpoena dispute, grand-jury proceeding, or charging timetable tied to the Times reporting.\", \"source_gaps\": [\"Official investigation or court docket.\"], \"sources\": [], \"subject_key\": \"kxnytcharge-27jan01\", \"web_search_used\": true}"
+      },
+      "KXSVOTECLARITY-MAY26-AALS": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXSVOTECLARITY-MAY26-AALS\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Angela Alsobrooks votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsvoteclarity-may26\", \"web_search_used\": false}"
+      },
+      "KXSVOTECLARITY-MAY26-AKIM": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXSVOTECLARITY-MAY26-AKIM\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Andy Kim votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsvoteclarity-may26\", \"web_search_used\": false}"
+      },
+      "KXSVOTECLARITY-MAY26-CMAS": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXSVOTECLARITY-MAY26-CMAS\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Catherine Cortez Masto votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsvoteclarity-may26\", \"web_search_used\": false}"
+      },
+      "KXSVOTECLARITY-MAY26-JHAW": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXSVOTECLARITY-MAY26-JHAW\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Josh Hawley votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsvoteclarity-may26\", \"web_search_used\": false}"
+      },
+      "KXSVOTECLARITY-MAY26-JMOR": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXSVOTECLARITY-MAY26-JMOR\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Jerry Moran votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsvoteclarity-may26\", \"web_search_used\": false}"
+      },
+      "KXSVOTECLARITY-MAY26-KGIL": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXSVOTECLARITY-MAY26-KGIL\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Kirsten Gillibrand votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsvoteclarity-may26\", \"web_search_used\": false}"
+      },
+      "KXSVOTECLARITY-MAY26-LROC": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXSVOTECLARITY-MAY26-LROC\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Lisa Blunt Rochester votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsvoteclarity-may26\", \"web_search_used\": false}"
+      },
+      "KXSVOTECLARITY-MAY26-MLEE": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXSVOTECLARITY-MAY26-MLEE\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Mike Lee votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsvoteclarity-may26\", \"web_search_used\": false}"
+      },
+      "KXSVOTECLARITY-MAY26-MWAR": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXSVOTECLARITY-MAY26-MWAR\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Mark Warner votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsvoteclarity-may26\", \"web_search_used\": false}"
+      },
+      "KXSVOTECLARITY-MAY26-RGAL": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXSVOTECLARITY-MAY26-RGAL\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Ruben Gallego votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsvoteclarity-may26\", \"web_search_used\": false}"
+      },
+      "KXSVOTECLARITY-MAY26-RPAU": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXSVOTECLARITY-MAY26-RPAU\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Rand Paul votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsvoteclarity-may26\", \"web_search_used\": false}"
+      },
+      "KXSVOTECLARITY-MAY26-RWAR": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXSVOTECLARITY-MAY26-RWAR\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Raphael Warnock votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsvoteclarity-may26\", \"web_search_used\": false}"
+      },
+      "KXTHC3MG-FED-26DEC10": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"A temporary delay or permanent replacement may preserve lawful hemp status.\", \"deadline\": \"On Dec 10, 2026; scheduled close 12/11/2026 04:59:00\", \"family\": \"federal_hemp_legislation\", \"key\": \"KXTHC3MG-FED-26DEC10\", \"mandatory_steps\": [{\"source_url\": \"https://www.smith.senate.gov/u-s-senator-tina-smiths-statement-on-proposed-delay-of-national-ban-on-hemp-derived-thc-products/\", \"status\": \"in_progress\", \"step\": \"Congress enacts a delay or replacement preserving qualifying 3mg beverages as hemp on the stated date.\"}], \"obstacle\": \"Existing law was scheduled to impose a restrictive definition in November; the delay remained unfinished.\", \"predicate\": \"If, as of 11:59 PM ET on Dec 10, 2026, federal law treats a hemp-derived beverage intended for human ingestion containing 3 milligrams or more of Total THC per Container as lawful hemp excluded from the Controlled Substances Act definition of marihuana rather than as a Schedule I controlled substance, then the market resolves to Yes.\", \"rationale\": \"An official Senate statement says bipartisan language delaying the November ban to December 11 was included in must-pass funding legislation. That is a concrete path for the November and December dates, though enactment remained pending.\", \"source_gaps\": [\"Final enacted text and longer-term replacement after December 11.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:37:20Z\", \"published_at\": \"2026-08-03\", \"quote\": \"delay this ban to December 11\", \"supports\": \"Confirms a concrete legislative vehicle that would preserve beverage treatment through the first two dates.\", \"title\": \"Statement on Proposed Delay of National Ban on Hemp-Derived THC Products\", \"url\": \"https://www.smith.senate.gov/u-s-senator-tina-smiths-statement-on-proposed-delay-of-national-ban-on-hemp-derived-thc-products/\"}], \"subject_key\": \"kxthc3mg-fed\", \"web_search_used\": true}"
+      },
+      "KXTHC3MG-FED-26NOV13": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"A temporary delay or permanent replacement may preserve lawful hemp status.\", \"deadline\": \"On Nov 13, 2026; scheduled close 11/14/2026 04:59:00\", \"family\": \"federal_hemp_legislation\", \"key\": \"KXTHC3MG-FED-26NOV13\", \"mandatory_steps\": [{\"source_url\": \"https://www.smith.senate.gov/u-s-senator-tina-smiths-statement-on-proposed-delay-of-national-ban-on-hemp-derived-thc-products/\", \"status\": \"in_progress\", \"step\": \"Congress enacts a delay or replacement preserving qualifying 3mg beverages as hemp on the stated date.\"}], \"obstacle\": \"Existing law was scheduled to impose a restrictive definition in November; the delay remained unfinished.\", \"predicate\": \"If, as of 11:59 PM ET on Nov 13, 2026, federal law treats a hemp-derived beverage intended for human ingestion containing 3 milligrams or more of Total THC per Container as lawful hemp excluded from the Controlled Substances Act definition of marihuana rather than as a Schedule I controlled substance, then the market resolves to Yes.\", \"rationale\": \"An official Senate statement says bipartisan language delaying the November ban to December 11 was included in must-pass funding legislation. That is a concrete path for the November and December dates, though enactment remained pending.\", \"source_gaps\": [\"Final enacted text and longer-term replacement after December 11.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:37:20Z\", \"published_at\": \"2026-08-03\", \"quote\": \"delay this ban to December 11\", \"supports\": \"Confirms a concrete legislative vehicle that would preserve beverage treatment through the first two dates.\", \"title\": \"Statement on Proposed Delay of National Ban on Hemp-Derived THC Products\", \"url\": \"https://www.smith.senate.gov/u-s-senator-tina-smiths-statement-on-proposed-delay-of-national-ban-on-hemp-derived-thc-products/\"}], \"subject_key\": \"kxthc3mg-fed\", \"web_search_used\": true}"
+      },
+      "KXTHC3MG-FED-27MAR13": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"A later extension or permanent framework may suffice.\", \"deadline\": \"On Mar 13, 2027\", \"family\": \"federal_hemp_legislation\", \"key\": \"KXTHC3MG-FED-27MAR13\", \"mandatory_steps\": [{\"source_url\": \"https://www.smith.senate.gov/u-s-senator-tina-smiths-statement-on-proposed-delay-of-national-ban-on-hemp-derived-thc-products/\", \"status\": \"unknown\", \"step\": \"Congress enacts a durable replacement preserving qualifying 3mg beverages through March 13.\"}], \"obstacle\": \"The identified proposal extends only to December 11, not March 2027.\", \"predicate\": \"If, as of 11:59 PM ET on Mar 13, 2027, federal law treats a hemp-derived beverage intended for human ingestion containing 3 milligrams or more of Total THC per Container as lawful hemp excluded from the Controlled Substances Act definition of marihuana rather than as a Schedule I controlled substance, then the market resolves to Yes.\", \"rationale\": \"The concrete Senate delay path ends December 11, 2026. The source calls for a longer-term solution but does not establish bill text or a dated path preserving 3mg beverages through March 13.\", \"source_gaps\": [\"Long-term bill text and enactment path.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:37:20Z\", \"published_at\": \"2026-08-03\", \"quote\": \"still need to work towards a long-term solution\", \"supports\": \"Shows the identified delay does not resolve the March status.\", \"title\": \"Statement on Proposed Delay of National Ban on Hemp-Derived THC Products\", \"url\": \"https://www.smith.senate.gov/u-s-senator-tina-smiths-statement-on-proposed-delay-of-national-ban-on-hemp-derived-thc-products/\"}], \"subject_key\": \"kxthc3mg-fed\", \"web_search_used\": true}"
+      },
+      "KXTHOMASANNOUNCERETIRE-26JUL-27JAN01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 04:59:00\", \"family\": \"observed_outcome\", \"key\": \"KXTHOMASANNOUNCERETIRE-26JUL-27JAN01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Clarence Thomas retires as Supreme Court justice before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxthomasannounceretire-26jul\", \"web_search_used\": false}"
+      },
+      "KXTHOMASANNOUNCERETIRE-26JUL-27JUL01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 07/01/2027 03:59:00\", \"family\": \"observed_outcome\", \"key\": \"KXTHOMASANNOUNCERETIRE-26JUL-27JUL01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Clarence Thomas retires as Supreme Court justice before Jul 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxthomasannounceretire-26jul\", \"web_search_used\": false}"
+      }
+    },
+    "web_search": true
+  },
+  "request": {
+    "batch_id": "71",
+    "candidate_keys": [
+      "KXDIESELMON-26SEP30-T4.70",
+      "KXDIESELMON-26SEP30-T5.50",
+      "KXDIESELMON-26SEP30-T5.80",
+      "KXDIESELMON-26SEP30-T6.00",
+      "KXDIESELMON-26SEP30-T6.20",
+      "KXDIESELMON-26SEP30-T6.30",
+      "KXDIESELMON-26SEP30-T6.50",
+      "KXDIESELMON-26SEP30-T6.60",
+      "KXDIESELMON-26SEP30-T6.70",
+      "KXNYTCHARGE-27JAN01-27JAN01",
+      "KXNICKELSTOP-27-27JAN01",
+      "KXSVOTECLARITY-MAY26-AALS",
+      "KXSVOTECLARITY-MAY26-AKIM",
+      "KXSVOTECLARITY-MAY26-CMAS",
+      "KXSVOTECLARITY-MAY26-JHAW",
+      "KXSVOTECLARITY-MAY26-JMOR",
+      "KXSVOTECLARITY-MAY26-KGIL",
+      "KXSVOTECLARITY-MAY26-LROC",
+      "KXSVOTECLARITY-MAY26-MLEE",
+      "KXSVOTECLARITY-MAY26-MWAR",
+      "KXSVOTECLARITY-MAY26-RGAL",
+      "KXSVOTECLARITY-MAY26-RPAU",
+      "KXSVOTECLARITY-MAY26-RWAR",
+      "KXNYCRENTSY-26-T0",
+      "KXNYCRENTSY-26-T3",
+      "KXNYCRENTSY-26-T4",
+      "KXNYCRENTSY-26-T6",
+      "KXLTGOVRINOMD-26-CCOY",
+      "KXLTGOVRINOMD-26-RMCC",
+      "KXLTGOVRINOMD-26-SAND",
+      "KXLTGOVRINOMD-26-SMAT",
+      "KXLTGOVRINOMD-26-XKHA",
+      "KXMACCELL-27",
+      "KXNEWGLENN-262-DEC",
+      "KXNEWGLENN-262-NOV",
+      "KXNEWGLENN-272-JAN",
+      "KXTHOMASANNOUNCERETIRE-26JUL-27JAN01",
+      "KXTHOMASANNOUNCERETIRE-26JUL-27JUL01",
+      "KXMONOMINEEMETHOD-26-PARTIES",
+      "KXTHC3MG-FED-26DEC10",
+      "KXTHC3MG-FED-26NOV13",
+      "KXTHC3MG-FED-27MAR13",
+      "KXHORMUZNORM-26MAR17-B261001",
+      "KXHORMUZNORM-26MAR17-B261101",
+      "KXHORMUZNORM-26MAR17-B261201",
+      "KXHORMUZNORM-26MAR17-B270101",
+      "KXHORMUZNORM-26MAR17-B270401",
+      "KXHORMUZNORM-26MAR17-B270701",
+      "KXIRANEMBASSY-27",
+      "KXCBDHUNGARY-26SEP22-C25",
+      "KXCBDHUNGARY-26SEP22-HOLD",
+      "KXLFPRATE-27JAN08-B60.7",
+      "KXLFPRATE-27JAN08-B61.2",
+      "KXLFPRATE-27JAN08-B61.7",
+      "KXLFPRATE-27JAN08-T60.5",
+      "KXLFPRATE-27JAN08-T62.0"
+    ],
+    "decision_at": "2026-09-05T19:53:15.489944+00:00",
+    "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-071\\first-output.jsonl",
+    "payload": {
+      "decision_at": "2026-09-05T19:53:15.489944+00:00",
+      "events": [
+        {
+          "event_key": "KXDIESELMON-26SEP30",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXDIESELMON-26SEP30",
+              "key": "KXDIESELMON-26SEP30-T4.70",
+              "no_sub_title": "Above $4.70",
+              "rules_primary": "If the Diesel Price on September 30, 2026 is above $4.70, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-09-30T05:59:00Z",
+              "series": "KXDIESELMON",
+              "subtitle": null,
+              "title": "Will Diesel Price on September 30, 2026 be above $4.70?",
+              "yes_sub_title": "Above $4.70"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXDIESELMON-26SEP30",
+              "key": "KXDIESELMON-26SEP30-T5.50",
+              "no_sub_title": "Above $5.50",
+              "rules_primary": "If the Diesel Price on September 30, 2026 is above $5.50, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-09-30T05:59:00Z",
+              "series": "KXDIESELMON",
+              "subtitle": null,
+              "title": "Will Diesel Price on September 30, 2026 be above $5.50?",
+              "yes_sub_title": "Above $5.50"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXDIESELMON-26SEP30",
+              "key": "KXDIESELMON-26SEP30-T5.80",
+              "no_sub_title": "Above $5.80",
+              "rules_primary": "If the Diesel Price on September 30, 2026 is above $5.80, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-09-30T05:59:00Z",
+              "series": "KXDIESELMON",
+              "subtitle": null,
+              "title": "Will Diesel Price on September 30, 2026 be above $5.80?",
+              "yes_sub_title": "Above $5.80"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXDIESELMON-26SEP30",
+              "key": "KXDIESELMON-26SEP30-T6.00",
+              "no_sub_title": "Above $6.00",
+              "rules_primary": "If the Diesel Price on September 30, 2026 is above $6.00, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-09-30T05:59:00Z",
+              "series": "KXDIESELMON",
+              "subtitle": null,
+              "title": "Will Diesel Price on September 30, 2026 be above $6.00?",
+              "yes_sub_title": "Above $6.00"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXDIESELMON-26SEP30",
+              "key": "KXDIESELMON-26SEP30-T6.20",
+              "no_sub_title": "Above $6.20",
+              "rules_primary": "If the Diesel Price on September 30, 2026 is above $6.20, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-09-30T05:59:00Z",
+              "series": "KXDIESELMON",
+              "subtitle": null,
+              "title": "Will Diesel Price on September 30, 2026 be above $6.20?",
+              "yes_sub_title": "Above $6.20"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXDIESELMON-26SEP30",
+              "key": "KXDIESELMON-26SEP30-T6.30",
+              "no_sub_title": "Above $6.30",
+              "rules_primary": "If the Diesel Price on September 30, 2026 is above $6.30, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-09-30T05:59:00Z",
+              "series": "KXDIESELMON",
+              "subtitle": null,
+              "title": "Will Diesel Price on September 30, 2026 be above $6.30?",
+              "yes_sub_title": "Above $6.30"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXDIESELMON-26SEP30",
+              "key": "KXDIESELMON-26SEP30-T6.50",
+              "no_sub_title": "Above $6.50",
+              "rules_primary": "If the Diesel Price on September 30, 2026 is above $6.50, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-09-30T05:59:00Z",
+              "series": "KXDIESELMON",
+              "subtitle": null,
+              "title": "Will Diesel Price on September 30, 2026 be above $6.50?",
+              "yes_sub_title": "Above $6.50"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXDIESELMON-26SEP30",
+              "key": "KXDIESELMON-26SEP30-T6.60",
+              "no_sub_title": "Above $6.60",
+              "rules_primary": "If the Diesel Price on September 30, 2026 is above $6.60, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-09-30T05:59:00Z",
+              "series": "KXDIESELMON",
+              "subtitle": null,
+              "title": "Will Diesel Price on September 30, 2026 be above $6.60?",
+              "yes_sub_title": "Above $6.60"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXDIESELMON-26SEP30",
+              "key": "KXDIESELMON-26SEP30-T6.70",
+              "no_sub_title": "Above $6.70",
+              "rules_primary": "If the Diesel Price on September 30, 2026 is above $6.70, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-09-30T05:59:00Z",
+              "series": "KXDIESELMON",
+              "subtitle": null,
+              "title": "Will Diesel Price on September 30, 2026 be above $6.70?",
+              "yes_sub_title": "Above $6.70"
+            }
+          ]
+        },
+        {
+          "event_key": "KXNYTCHARGE-27JAN01",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXNYTCHARGE-27JAN01",
+              "key": "KXNYTCHARGE-27JAN01-27JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If any New York Times reporter whose alleged offense arises from newsgathering, publication, source protection, or compliance with investigative demands concerning the Times\u2019s July 2026 reporting on the security of the Qatari-donated aircraft used as Air Force One has been formally charged with any crime in federal court after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "Formal charges require the filing of a criminal complaint, information, or indictment with an appropriate court. Arrests without charges, being named as a target of investigation, civil lawsuits, and administrative actions do not constitute charges. Traffic violations that don't require court appearances and sealed charges that remain sealed through the deadline also don't count. If charges are filed and then dismissed before the deadline, the market still resolves to Yes. Pre-trial diversion agreements involving formal charges count as charges. For groups of individuals, charges against any member of the specified group trigger the criterion.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXNYTCHARGE",
+              "subtitle": null,
+              "title": "Will any New York Times reporter whose alleged offense arises from newsgathering, publication, source protection, or compliance with investigative demands concerning the Times\u2019s July 2026 reporting on the security of the Qatari-donated aircraft used as Air Force One be charged with a any crime before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXNICKELSTOP-27",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXNICKELSTOP-27",
+              "key": "KXNICKELSTOP-27-27JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If the\u00a0U.S. Mint or\u00a0Department of the Treasury announces the\u00a0suspension or cessation of production of the five-cent coin (nickel) for circulation before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXNICKELSTOP",
+              "subtitle": null,
+              "title": "Will the U.S. Mint or Department of the Treasury announce the suspension or cessation of production of the five-cent coin (nickel) for circulation before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXSVOTECLARITY-MAY26",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXSVOTECLARITY-MAY26",
+              "key": "KXSVOTECLARITY-MAY26-AALS",
+              "no_sub_title": "Angela Alsobrooks",
+              "rules_primary": "If Angela Alsobrooks votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXSVOTECLARITY",
+              "subtitle": null,
+              "title": "Will Angela Alsobrooks vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?",
+              "yes_sub_title": "Angela Alsobrooks"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXSVOTECLARITY-MAY26",
+              "key": "KXSVOTECLARITY-MAY26-AKIM",
+              "no_sub_title": "Andy Kim",
+              "rules_primary": "If Andy Kim votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXSVOTECLARITY",
+              "subtitle": null,
+              "title": "Will Andy Kim vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?",
+              "yes_sub_title": "Andy Kim"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXSVOTECLARITY-MAY26",
+              "key": "KXSVOTECLARITY-MAY26-CMAS",
+              "no_sub_title": "Catherine Cortez Masto",
+              "rules_primary": "If Catherine Cortez Masto votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXSVOTECLARITY",
+              "subtitle": null,
+              "title": "Will Catherine Cortez Masto vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?",
+              "yes_sub_title": "Catherine Cortez Masto"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXSVOTECLARITY-MAY26",
+              "key": "KXSVOTECLARITY-MAY26-JHAW",
+              "no_sub_title": "Josh Hawley",
+              "rules_primary": "If Josh Hawley votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXSVOTECLARITY",
+              "subtitle": null,
+              "title": "Will Josh Hawley vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?",
+              "yes_sub_title": "Josh Hawley"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXSVOTECLARITY-MAY26",
+              "key": "KXSVOTECLARITY-MAY26-JMOR",
+              "no_sub_title": "Jerry Moran",
+              "rules_primary": "If Jerry Moran votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXSVOTECLARITY",
+              "subtitle": null,
+              "title": "Will Jerry Moran vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?",
+              "yes_sub_title": "Jerry Moran"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXSVOTECLARITY-MAY26",
+              "key": "KXSVOTECLARITY-MAY26-KGIL",
+              "no_sub_title": "Kirsten Gillibrand",
+              "rules_primary": "If Kirsten Gillibrand votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXSVOTECLARITY",
+              "subtitle": null,
+              "title": "Will Kirsten Gillibrand vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?",
+              "yes_sub_title": "Kirsten Gillibrand"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXSVOTECLARITY-MAY26",
+              "key": "KXSVOTECLARITY-MAY26-LROC",
+              "no_sub_title": "Lisa Blunt Rochester",
+              "rules_primary": "If Lisa Blunt Rochester votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXSVOTECLARITY",
+              "subtitle": null,
+              "title": "Will Lisa Blunt Rochester vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?",
+              "yes_sub_title": "Lisa Blunt Rochester"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXSVOTECLARITY-MAY26",
+              "key": "KXSVOTECLARITY-MAY26-MLEE",
+              "no_sub_title": "Mike Lee",
+              "rules_primary": "If Mike Lee votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXSVOTECLARITY",
+              "subtitle": null,
+              "title": "Will Mike Lee vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?",
+              "yes_sub_title": "Mike Lee"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXSVOTECLARITY-MAY26",
+              "key": "KXSVOTECLARITY-MAY26-MWAR",
+              "no_sub_title": "Mark Warner",
+              "rules_primary": "If Mark Warner votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXSVOTECLARITY",
+              "subtitle": null,
+              "title": "Will Mark Warner vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?",
+              "yes_sub_title": "Mark Warner"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXSVOTECLARITY-MAY26",
+              "key": "KXSVOTECLARITY-MAY26-RGAL",
+              "no_sub_title": "Ruben Gallego",
+              "rules_primary": "If Ruben Gallego votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXSVOTECLARITY",
+              "subtitle": null,
+              "title": "Will Ruben Gallego vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?",
+              "yes_sub_title": "Ruben Gallego"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXSVOTECLARITY-MAY26",
+              "key": "KXSVOTECLARITY-MAY26-RPAU",
+              "no_sub_title": "Rand Paul",
+              "rules_primary": "If Rand Paul votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXSVOTECLARITY",
+              "subtitle": null,
+              "title": "Will Rand Paul vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?",
+              "yes_sub_title": "Rand Paul"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXSVOTECLARITY-MAY26",
+              "key": "KXSVOTECLARITY-MAY26-RWAR",
+              "no_sub_title": "Raphael Warnock",
+              "rules_primary": "If Raphael Warnock votes for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE) in the Senate before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The vote must be the first final vote on the bill, not a motion to proceed or motion to invoke cloture, unless otherwise specified. This must be a vote in the relevant full chamber, not a Committee vote, though not every member of the chamber needs to have participated in the vote. Once the vote has been closed and the correct result of the vote has been announced, a request by the member to add, remove, or alter a vote shall not be considered for purposes of resolving this market, regardless of any change to the official vote tally reported by the website Congress.gov or any other Congressional source.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXSVOTECLARITY",
+              "subtitle": null,
+              "title": "Will Raphael Warnock vote for a crypto market structure bill (as defined in KXCRYPTOSTRUCTURE)?",
+              "yes_sub_title": "Raphael Warnock"
+            }
+          ]
+        },
+        {
+          "event_key": "KXNYCRENTSY-26",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXNYCRENTSY-26",
+              "key": "KXNYCRENTSY-26-T0",
+              "no_sub_title": "Above 0%",
+              "rules_primary": "If the NYC StreetEasy Rent Index (all bedrooms) year-over-year percent change is greater than 0% in December 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-11T04:59:00Z",
+              "series": "KXNYCRENTSY",
+              "subtitle": "0%",
+              "title": "Will New York City rent grow above 0% in December 2026?",
+              "yes_sub_title": "Above 0%"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXNYCRENTSY-26",
+              "key": "KXNYCRENTSY-26-T3",
+              "no_sub_title": "Above 3%",
+              "rules_primary": "If the NYC StreetEasy Rent Index (all bedrooms) year-over-year percent change is greater than 3% in December 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-11T04:59:00Z",
+              "series": "KXNYCRENTSY",
+              "subtitle": "3%",
+              "title": "Will New York City rent grow above 3% in December 2026?",
+              "yes_sub_title": "Above 3%"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXNYCRENTSY-26",
+              "key": "KXNYCRENTSY-26-T4",
+              "no_sub_title": "Above 4%",
+              "rules_primary": "If the NYC StreetEasy Rent Index (all bedrooms) year-over-year percent change is greater than 4% in December 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-11T04:59:00Z",
+              "series": "KXNYCRENTSY",
+              "subtitle": "4%",
+              "title": "Will New York City rent grow above 4% in December 2026?",
+              "yes_sub_title": "Above 4%"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXNYCRENTSY-26",
+              "key": "KXNYCRENTSY-26-T6",
+              "no_sub_title": "Above 6%",
+              "rules_primary": "If the NYC StreetEasy Rent Index (all bedrooms) year-over-year percent change is greater than 6% in December 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-11T04:59:00Z",
+              "series": "KXNYCRENTSY",
+              "subtitle": "6%",
+              "title": "Will New York City rent grow above 6% in December 2026?",
+              "yes_sub_title": "Above 6%"
+            }
+          ]
+        },
+        {
+          "event_key": "KXLTGOVRINOMD-26",
+          "markets": [
+            {
+              "category": "Elections",
+              "event_key": "KXLTGOVRINOMD-26",
+              "key": "KXLTGOVRINOMD-26-CCOY",
+              "no_sub_title": "Cindy Coyne",
+              "rules_primary": "If Cindy Coyne wins the nomination for the Democratic Party to contest the 2026 Rhode Island Lieutenant Governorship, then the market resolves to Yes.",
+              "rules_secondary": "This market is eligible for accelerated determination after a consensus of media organizations project the winner. See full rules for details.",
+              "scheduled_close": "2026-11-03T15:00:00Z",
+              "series": "KXLTGOVRINOMD",
+              "subtitle": null,
+              "title": "Will Cindy Coyne be the Democratic nominee for Lt. Governor in Rhode Island?",
+              "yes_sub_title": "Cindy Coyne"
+            },
+            {
+              "category": "Elections",
+              "event_key": "KXLTGOVRINOMD-26",
+              "key": "KXLTGOVRINOMD-26-RMCC",
+              "no_sub_title": "Ross McCurdy",
+              "rules_primary": "If Ross McCurdy wins the nomination for the Democratic Party to contest the 2026 Rhode Island Lieutenant Governorship, then the market resolves to Yes.",
+              "rules_secondary": "This market is eligible for accelerated determination after a consensus of media organizations project the winner. See full rules for details.",
+              "scheduled_close": "2026-11-03T15:00:00Z",
+              "series": "KXLTGOVRINOMD",
+              "subtitle": null,
+              "title": "Will Ross McCurdy be the Democratic nominee for Lt. Governor in Rhode Island?",
+              "yes_sub_title": "Ross McCurdy"
+            },
+            {
+              "category": "Elections",
+              "event_key": "KXLTGOVRINOMD-26",
+              "key": "KXLTGOVRINOMD-26-SAND",
+              "no_sub_title": "Sue AnderBois",
+              "rules_primary": "If Sue AnderBois wins the nomination for the Democratic Party to contest the 2026 Rhode Island Lieutenant Governorship, then the market resolves to Yes.",
+              "rules_secondary": "This market is eligible for accelerated determination after a consensus of media organizations project the winner. See full rules for details.",
+              "scheduled_close": "2026-11-03T15:00:00Z",
+              "series": "KXLTGOVRINOMD",
+              "subtitle": null,
+              "title": "Will Sue AnderBois be the Democratic nominee for Lt. Governor in Rhode Island?",
+              "yes_sub_title": "Sue AnderBois"
+            },
+            {
+              "category": "Elections",
+              "event_key": "KXLTGOVRINOMD-26",
+              "key": "KXLTGOVRINOMD-26-SMAT",
+              "no_sub_title": "Sabina Matos",
+              "rules_primary": "If Sabina Matos wins the nomination for the Democratic Party to contest the 2026 Rhode Island Lieutenant Governorship, then the market resolves to Yes.",
+              "rules_secondary": "This market is eligible for accelerated determination after a consensus of media organizations project the winner. See full rules for details.",
+              "scheduled_close": "2026-11-03T15:00:00Z",
+              "series": "KXLTGOVRINOMD",
+              "subtitle": null,
+              "title": "Will Sabina Matos be the Democratic nominee for Lt. Governor in Rhode Island?",
+              "yes_sub_title": "Sabina Matos"
+            },
+            {
+              "category": "Elections",
+              "event_key": "KXLTGOVRINOMD-26",
+              "key": "KXLTGOVRINOMD-26-XKHA",
+              "no_sub_title": "Xay Khamsyvoravong",
+              "rules_primary": "If Xay Khamsyvoravong wins the nomination for the Democratic Party to contest the 2026 Rhode Island Lieutenant Governorship, then the market resolves to Yes.",
+              "rules_secondary": "This market is eligible for accelerated determination after a consensus of media organizations project the winner. See full rules for details.",
+              "scheduled_close": "2026-11-03T15:00:00Z",
+              "series": "KXLTGOVRINOMD",
+              "subtitle": null,
+              "title": "Will Xay Khamsyvoravong be the Democratic nominee for Lt. Governor in Rhode Island?",
+              "yes_sub_title": "Xay Khamsyvoravong"
+            }
+          ]
+        },
+        {
+          "event_key": "KXMACCELL-27",
+          "markets": [
+            {
+              "category": "Science and Technology",
+              "event_key": "KXMACCELL-27",
+              "key": "KXMACCELL-27",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If Apple announces a Macbook with a built in cellular modem before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXMACCELL",
+              "subtitle": null,
+              "title": "Will Apple release a Mac with cellular connectivity before 2027?",
+              "yes_sub_title": "Before 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXNEWGLENN-262",
+          "markets": [
+            {
+              "category": "Science and Technology",
+              "event_key": "KXNEWGLENN-262",
+              "key": "KXNEWGLENN-262-DEC",
+              "no_sub_title": "Before December",
+              "rules_primary": "If Blue Origin's New Glenn rocket has launched from the launch pad before Dec 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-01T15:00:00Z",
+              "series": "KXNEWGLENN",
+              "subtitle": null,
+              "title": "Will Blue Origin's New Glenn rocket launch before Dec 2026?",
+              "yes_sub_title": "Before December"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXNEWGLENN-262",
+              "key": "KXNEWGLENN-262-NOV",
+              "no_sub_title": "Before November",
+              "rules_primary": "If Blue Origin's New Glenn rocket has launched from the launch pad before Nov 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-11-01T15:00:00Z",
+              "series": "KXNEWGLENN",
+              "subtitle": null,
+              "title": "Will Blue Origin's New Glenn rocket launch before Nov 2026?",
+              "yes_sub_title": "Before November"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXNEWGLENN-262",
+              "key": "KXNEWGLENN-272-JAN",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If Blue Origin's New Glenn rocket has launched from the launch pad before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXNEWGLENN",
+              "subtitle": null,
+              "title": "Will Blue Origin's New Glenn rocket launch before Jan 2027?",
+              "yes_sub_title": "Before 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXTHOMASANNOUNCERETIRE-26JUL",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXTHOMASANNOUNCERETIRE-26JUL",
+              "key": "KXTHOMASANNOUNCERETIRE-26JUL-27JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If Clarence Thomas retires as Supreme Court justice before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "This market resolves based on when the departure is publicly announced or officially communicated, regardless of the effective date.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXTHOMASANNOUNCERETIRE",
+              "subtitle": null,
+              "title": "Will Clarence Thomas announce their departure as Supreme Court justice before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXTHOMASANNOUNCERETIRE-26JUL",
+              "key": "KXTHOMASANNOUNCERETIRE-26JUL-27JUL01",
+              "no_sub_title": "Before Jul 1, 2027",
+              "rules_primary": "If Clarence Thomas retires as Supreme Court justice before Jul 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "This market resolves based on when the departure is publicly announced or officially communicated, regardless of the effective date.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+              "scheduled_close": "2027-07-01T03:59:00Z",
+              "series": "KXTHOMASANNOUNCERETIRE",
+              "subtitle": "::",
+              "title": "Will Clarence Thomas announce their departure as Supreme Court justice before Jul 1, 2027?",
+              "yes_sub_title": "Before Jul 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXMONOMINEEMETHOD-26",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXMONOMINEEMETHOD-26",
+              "key": "KXMONOMINEEMETHOD-26-PARTIES",
+              "no_sub_title": "Parties choose nominees",
+              "rules_primary": "If Missouri first officially determines all Democratic and Republican nominees for its eight U.S. House districts through party committee selections after Issuance and before Nov 3, 2026, then the market resolves to Yes.",
+              "rules_secondary": "These markets concern the first official post-September 3 determination that covers every Democratic and Republican nominee for Missouri's eight U.S. House districts on the November 3 ballot. A proposal or an action covering only some nominations does not settle the event. If different methods are used across parties or districts, or a complete method not named above is used, No single listed method resolves to Yes. A qualifying outcome resolves the entire event as soon as it is confirmed by a Source Agency, and a later judicial or administrative change does not alter settlement. If no qualifying statewide-complete determination is reported by the cutoff, no outcome qualifies and all four markets resolve to No.\n\nIf Missouri officially schedules November 3 jungle primaries under the restored map, New primaries resolves to Yes.\n\nOnly reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+              "scheduled_close": "2026-11-03T04:59:00Z",
+              "series": "KXMONOMINEEMETHOD",
+              "subtitle": null,
+              "title": "Will it be reported by any of the Source Agencies that Missouri first officially determines all Democratic and Republican nominees for its eight U.S. House districts through party committee selections before Nov 3, 2026?",
+              "yes_sub_title": "Parties choose nominees"
+            }
+          ]
+        },
+        {
+          "event_key": "KXTHC3MG-FED",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXTHC3MG-FED",
+              "key": "KXTHC3MG-FED-26DEC10",
+              "no_sub_title": "On Dec 10, 2026",
+              "rules_primary": "If, as of 11:59 PM ET on Dec 10, 2026, federal law treats a hemp-derived beverage intended for human ingestion containing 3 milligrams or more of Total THC per Container as lawful hemp excluded from the Controlled Substances Act definition of marihuana rather than as a Schedule I controlled substance, then the market resolves to Yes.",
+              "rules_secondary": "The determinative question is whether the 3-milligram Total THC level qualifies as lawful hemp under federal controlled-substance law at 11:59 PM ET on the Resolution Date. FDA food-safety, labeling, or other regulation outside the Controlled Substances Act does not by itself affect resolution, and state law does not affect resolution. Total THC is measured under the federal statutory standard in effect at the relevant time: delta-9 THC plus 0.877 times THCA, plus any other THC isomers included in the applicable federal statutory measure. \n\nA legally effective federal regime that leaves or makes a beverage containing 3 milligrams of Total THC per Container lawful hemp may resolve the market Yes, including continuation of the pre-Section 781 hemp definition, enacted federal legislation, a final federal regulation carrying the force of law, or nationwide federal court relief blocking enforcement of Section 781 of Public Law 119-37. Proposed or unenacted legislation or rules, informal federal non-enforcement or enforcement discretion, state action, and court relief limited to particular plaintiffs, products, sellers, or districts do not qualify. \n\nOnly statutes, regulations, and court orders issued and legally effective by 11:59 PM ET on the Resolution Date are considered. An instrument whose operative provisions take effect only after that time does not qualify. Later corrections, amendments, or court decisions do not change resolution, even if they purport to apply retroactively. If no qualifying condition is in effect at the snapshot, the market resolves No.",
+              "scheduled_close": "2026-12-11T04:59:00Z",
+              "series": "KXTHC3MG",
+              "subtitle": null,
+              "title": "Will 3 mg THC beverages qualify as hemp under federal law on Dec 10, 2026?",
+              "yes_sub_title": "On Dec 10, 2026"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXTHC3MG-FED",
+              "key": "KXTHC3MG-FED-26NOV13",
+              "no_sub_title": "On Nov 13, 2026",
+              "rules_primary": "If, as of 11:59 PM ET on Nov 13, 2026, federal law treats a hemp-derived beverage intended for human ingestion containing 3 milligrams or more of Total THC per Container as lawful hemp excluded from the Controlled Substances Act definition of marihuana rather than as a Schedule I controlled substance, then the market resolves to Yes.",
+              "rules_secondary": "The determinative question is whether the 3-milligram Total THC level qualifies as lawful hemp under federal controlled-substance law at 11:59 PM ET on the Resolution Date. FDA food-safety, labeling, or other regulation outside the Controlled Substances Act does not by itself affect resolution, and state law does not affect resolution. Total THC is measured under the federal statutory standard in effect at the relevant time: delta-9 THC plus 0.877 times THCA, plus any other THC isomers included in the applicable federal statutory measure. \n\nA legally effective federal regime that leaves or makes a beverage containing 3 milligrams of Total THC per Container lawful hemp may resolve the market Yes, including continuation of the pre-Section 781 hemp definition, enacted federal legislation, a final federal regulation carrying the force of law, or nationwide federal court relief blocking enforcement of Section 781 of Public Law 119-37. Proposed or unenacted legislation or rules, informal federal non-enforcement or enforcement discretion, state action, and court relief limited to particular plaintiffs, products, sellers, or districts do not qualify. \n\nOnly statutes, regulations, and court orders issued and legally effective by 11:59 PM ET on the Resolution Date are considered. An instrument whose operative provisions take effect only after that time does not qualify. Later corrections, amendments, or court decisions do not change resolution, even if they purport to apply retroactively. If no qualifying condition is in effect at the snapshot, the market resolves No.",
+              "scheduled_close": "2026-11-14T04:59:00Z",
+              "series": "KXTHC3MG",
+              "subtitle": null,
+              "title": "Will 3 mg THC beverages qualify as hemp under federal law on Nov 13, 2026?",
+              "yes_sub_title": "On Nov 13, 2026"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXTHC3MG-FED",
+              "key": "KXTHC3MG-FED-27MAR13",
+              "no_sub_title": "On Mar 13, 2027",
+              "rules_primary": "If, as of 11:59 PM ET on Mar 13, 2027, federal law treats a hemp-derived beverage intended for human ingestion containing 3 milligrams or more of Total THC per Container as lawful hemp excluded from the Controlled Substances Act definition of marihuana rather than as a Schedule I controlled substance, then the market resolves to Yes.",
+              "rules_secondary": "The determinative question is whether the 3-milligram Total THC level qualifies as lawful hemp under federal controlled-substance law at 11:59 PM ET on the Resolution Date. FDA food-safety, labeling, or other regulation outside the Controlled Substances Act does not by itself affect resolution, and state law does not affect resolution. Total THC is measured under the federal statutory standard in effect at the relevant time: delta-9 THC plus 0.877 times THCA, plus any other THC isomers included in the applicable federal statutory measure. \n\nA legally effective federal regime that leaves or makes a beverage containing 3 milligrams of Total THC per Container lawful hemp may resolve the market Yes, including continuation of the pre-Section 781 hemp definition, enacted federal legislation, a final federal regulation carrying the force of law, or nationwide federal court relief blocking enforcement of Section 781 of Public Law 119-37. Proposed or unenacted legislation or rules, informal federal non-enforcement or enforcement discretion, state action, and court relief limited to particular plaintiffs, products, sellers, or districts do not qualify. \n\nOnly statutes, regulations, and court orders issued and legally effective by 11:59 PM ET on the Resolution Date are considered. An instrument whose operative provisions take effect only after that time does not qualify. Later corrections, amendments, or court decisions do not change resolution, even if they purport to apply retroactively. If no qualifying condition is in effect at the snapshot, the market resolves No.",
+              "scheduled_close": "2027-03-14T04:59:00Z",
+              "series": "KXTHC3MG",
+              "subtitle": null,
+              "title": "Will 3 mg THC beverages qualify as hemp under federal law on Mar 13, 2027?",
+              "yes_sub_title": "On Mar 13, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXHORMUZNORM-26MAR17",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXHORMUZNORM-26MAR17",
+              "key": "KXHORMUZNORM-26MAR17-B261001",
+              "no_sub_title": "Before Oct 1, 2026",
+              "rules_primary": "If the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 60 before October 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-10-01T13:59:00Z",
+              "series": "KXHORMUZNORM",
+              "subtitle": null,
+              "title": "Will the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch be above 60 before October 1, 2026?",
+              "yes_sub_title": "Before Oct 1, 2026"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXHORMUZNORM-26MAR17",
+              "key": "KXHORMUZNORM-26MAR17-B261101",
+              "no_sub_title": "Before Nov 1, 2026",
+              "rules_primary": "If the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 60 before November 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-11-01T14:59:00Z",
+              "series": "KXHORMUZNORM",
+              "subtitle": null,
+              "title": "Will the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch be above 60 before November 1, 2026?",
+              "yes_sub_title": "Before Nov 1, 2026"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXHORMUZNORM-26MAR17",
+              "key": "KXHORMUZNORM-26MAR17-B261201",
+              "no_sub_title": "Before Dec 1, 2026",
+              "rules_primary": "If the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 60 before December 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-01T14:59:00Z",
+              "series": "KXHORMUZNORM",
+              "subtitle": null,
+              "title": "Will the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch be above 60 before December 1, 2026?",
+              "yes_sub_title": "Before Dec 1, 2026"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXHORMUZNORM-26MAR17",
+              "key": "KXHORMUZNORM-26MAR17-B270101",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 60 before January 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T14:59:00Z",
+              "series": "KXHORMUZNORM",
+              "subtitle": null,
+              "title": "Will the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch be above 60 before January 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXHORMUZNORM-26MAR17",
+              "key": "KXHORMUZNORM-26MAR17-B270401",
+              "no_sub_title": "Before Apr 1, 2027",
+              "rules_primary": "If the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 60 before April 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-04-01T13:59:00Z",
+              "series": "KXHORMUZNORM",
+              "subtitle": null,
+              "title": "Will the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch be above 60 before April 1, 2027?",
+              "yes_sub_title": "Before Apr 1, 2027"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXHORMUZNORM-26MAR17",
+              "key": "KXHORMUZNORM-26MAR17-B270701",
+              "no_sub_title": "Before Jul 1, 2027",
+              "rules_primary": "If the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 60 before July 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-07-01T13:59:00Z",
+              "series": "KXHORMUZNORM",
+              "subtitle": null,
+              "title": "Will the 7-day moving average of transit calls through the Strait of Hormuz as reported by the IMF PortWatch be above 60 before July 1, 2027?",
+              "yes_sub_title": "Before Jul 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXIRANEMBASSY-27",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXIRANEMBASSY-27",
+              "key": "KXIRANEMBASSY-27",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If the United States has announced the opening of an embassy or consulate of the United States of America in Iran after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The embassy/consulate must be opened or have a specific date on which it will be opened to be encompassed by the Payout Criterion. It also includes an embassy being re-opened after suspending operations.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXIRANEMBASSY",
+              "subtitle": null,
+              "title": "Will the US reopen its embassy in Iran before Jan 1, 2027?",
+              "yes_sub_title": "Before 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXCBDHUNGARY-26SEP22",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXCBDHUNGARY-26SEP22",
+              "key": "KXCBDHUNGARY-26SEP22-C25",
+              "no_sub_title": "Cut 25bps",
+              "rules_primary": "If the Magyar Nemzeti Bank takes the action of Cut 25bps at September Monetary Council policy meeting, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings.",
+              "scheduled_close": "2026-09-22T11:59:00Z",
+              "series": "KXCBDHUNGARY",
+              "subtitle": null,
+              "title": "Will the Magyar Nemzeti Bank Cut 25bps at the September Monetary Council policy meeting?",
+              "yes_sub_title": "Cut 25bps"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXCBDHUNGARY-26SEP22",
+              "key": "KXCBDHUNGARY-26SEP22-HOLD",
+              "no_sub_title": "Maintain current rate",
+              "rules_primary": "If the Magyar Nemzeti Bank takes the action of Maintain current rate at September Monetary Council policy meeting, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings.",
+              "scheduled_close": "2026-09-22T11:59:00Z",
+              "series": "KXCBDHUNGARY",
+              "subtitle": null,
+              "title": "Will the Magyar Nemzeti Bank Maintain current rate at the September Monetary Council policy meeting?",
+              "yes_sub_title": "Maintain current rate"
+            }
+          ]
+        },
+        {
+          "event_key": "KXLFPRATE-27JAN08",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXLFPRATE-27JAN08",
+              "key": "KXLFPRATE-27JAN08-B60.7",
+              "no_sub_title": "60.5% to 60.9%",
+              "rules_primary": "If the US labor force participation rate for December 2026 is between 60.5% and 60.9%, as represented by the one-decimal place value reported by Trading Economics, then the market resolves to Yes.",
+              "rules_secondary": "For purposes of this market, \u201cyear-end 2026\u201d means the December 2026 reference month. The market will resolve based on the first value published for December 2026. Later revisions, corrections, or updates will not affect resolution.\n\nIf Trading Economics is unavailable or does not publish the relevant December 2026 value, Kalshi may use the corresponding value from the U.S. Bureau of Labor Statistics or FRED series CIVPART.\n",
+              "scheduled_close": "2027-01-08T13:29:00Z",
+              "series": "KXLFPRATE",
+              "subtitle": null,
+              "title": "Will US labor force participation rate for December 2026 be between 60.5% and 60.9%?",
+              "yes_sub_title": "60.5% to 60.9%"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXLFPRATE-27JAN08",
+              "key": "KXLFPRATE-27JAN08-B61.2",
+              "no_sub_title": "61.0% to 61.4%",
+              "rules_primary": "If the US labor force participation rate for December 2026 is between 61.0% and 61.4%, as represented by the one-decimal place value reported by Trading Economics, then the market resolves to Yes.",
+              "rules_secondary": "For purposes of this market, \u201cyear-end 2026\u201d means the December 2026 reference month. The market will resolve based on the first value published for December 2026. Later revisions, corrections, or updates will not affect resolution.\n\nIf Trading Economics is unavailable or does not publish the relevant December 2026 value, Kalshi may use the corresponding value from the U.S. Bureau of Labor Statistics or FRED series CIVPART.\n",
+              "scheduled_close": "2027-01-08T13:29:00Z",
+              "series": "KXLFPRATE",
+              "subtitle": null,
+              "title": "Will US labor force participation rate for December 2026 be between 61.0% and 61.4%?",
+              "yes_sub_title": "61.0% to 61.4%"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXLFPRATE-27JAN08",
+              "key": "KXLFPRATE-27JAN08-B61.7",
+              "no_sub_title": "61.5% to 61.9%",
+              "rules_primary": "If the US labor force participation rate for December 2026 is between 61.5% and 61.9%, as represented by the one-decimal place value reported by Trading Economics, then the market resolves to Yes.",
+              "rules_secondary": "For purposes of this market, \u201cyear-end 2026\u201d means the December 2026 reference month. The market will resolve based on the first value published for December 2026. Later revisions, corrections, or updates will not affect resolution.\n\nIf Trading Economics is unavailable or does not publish the relevant December 2026 value, Kalshi may use the corresponding value from the U.S. Bureau of Labor Statistics or FRED series CIVPART.\n",
+              "scheduled_close": "2027-01-08T13:29:00Z",
+              "series": "KXLFPRATE",
+              "subtitle": null,
+              "title": "Will US labor force participation rate for December 2026 be between 61.5% and 61.9%?",
+              "yes_sub_title": "61.5% to 61.9%"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXLFPRATE-27JAN08",
+              "key": "KXLFPRATE-27JAN08-T60.5",
+              "no_sub_title": "Below 60.5%",
+              "rules_primary": "If the US labor force participation rate for December 2026 is below 60.5%, as represented by the one-decimal place value reported by Trading Economics, then the market resolves to Yes.",
+              "rules_secondary": "For purposes of this market, \u201cyear-end 2026\u201d means the December 2026 reference month. The market will resolve based on the first value published for December 2026. Later revisions, corrections, or updates will not affect resolution.\n\nIf Trading Economics is unavailable or does not publish the relevant December 2026 value, Kalshi may use the corresponding value from the U.S. Bureau of Labor Statistics or FRED series CIVPART.\n",
+              "scheduled_close": "2027-01-08T13:29:00Z",
+              "series": "KXLFPRATE",
+              "subtitle": null,
+              "title": "Will US labor force participation rate for December 2026 be below 60.5%?",
+              "yes_sub_title": "Below 60.5%"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXLFPRATE-27JAN08",
+              "key": "KXLFPRATE-27JAN08-T62.0",
+              "no_sub_title": "62.0% or Above",
+              "rules_primary": "If the US labor force participation rate for December 2026 is at least 62.0%, as represented by the one-decimal place value reported by Trading Economics, then the market resolves to Yes.",
+              "rules_secondary": "For purposes of this market, \u201cyear-end 2026\u201d means the December 2026 reference month. The market will resolve based on the first value published for December 2026. Later revisions, corrections, or updates will not affect resolution.\n\nIf Trading Economics is unavailable or does not publish the relevant December 2026 value, Kalshi may use the corresponding value from the U.S. Bureau of Labor Statistics or FRED series CIVPART.\n",
+              "scheduled_close": "2027-01-08T13:29:00Z",
+              "series": "KXLFPRATE",
+              "subtitle": null,
+              "title": "Will US labor force participation rate for December 2026 be at least 62.0%?",
+              "yes_sub_title": "62.0% or Above"
+            }
+          ]
+        }
+      ],
+      "snapshot_at": "2026-09-05T15:45:16Z"
+    },
+    "payload_sha256": "45213c8bd31e95dae9e327720dcaf2b1ffca394bfa22d925b5b450142fd813f6",
+    "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-071\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-071\\first-output.jsonl\n",
+    "requested_effort": "high",
+    "requested_model": "gpt-5.6-sol",
+    "requested_web_search": true,
+    "run_id": "study/broad-procedural-20260905",
+    "run_mode": "study",
+    "stage": "analysis",
+    "theory_id": "study/broad-procedural",
+    "theory_version": 1
+  },
+  "schema_version": 1
+}

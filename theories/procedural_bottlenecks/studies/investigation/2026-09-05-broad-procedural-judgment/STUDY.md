@@ -7,7 +7,13 @@ created_by: astra-broad-procedural
 ---
 # Broad procedural judgment
 
-**Date:** 2026-09-05 · **Tier:** prospective judgment; historical tier unassessed · **Verdict:** In progress — whole-board screening and affordable judgment, before outcome analysis.
+**Date:** 2026-09-05 · **Tier:** prospective discovery; no historical outcome test · **Verdict:** Collection stopped for analysis — broad candidates found, classifier errors documented, profitability unmeasured.
+
+**Read the [performance assessment](PERFORMANCE.md) first.** The user stopped
+expansion at 48/73 batches (2,296 contracts, 697 events). All workers were
+interrupted; 1,267 frozen candidates remain unjudged. No automatic resumption
+of the remaining worklist. Original first outputs and repaired method failures
+are preserved separately. The historical frame below has not been backtested.
 
 ## Question and scope
 

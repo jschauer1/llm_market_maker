@@ -1,1 +1,937 @@
-{"schema_version": 1, "request": {"run_id": "study/broad-procedural-20260905", "theory_id": "study/broad-procedural", "theory_version": 1, "run_mode": "study", "decision_at": "2026-09-05T19:53:15.489944+00:00", "requested_model": "gpt-5.6-sol", "requested_effort": "high", "requested_web_search": true, "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-036\\first-output.jsonl", "stage": "analysis", "batch_id": "36", "candidate_keys": ["KXAAAGASED-26NOV03-2.50", "KXAAAGASED-26NOV03-2.75", "KXAAAGASED-26NOV03-3.00", "KXAAAGASED-26NOV03-3.25", "KXAAAGASED-26NOV03-3.50", "KXAAAGASED-26NOV03-3.75", "KXAAAGASED-26NOV03-4.00", "KXAAAGASED-26NOV03-4.25", "KXAAAGASED-26NOV03-4.50", "KXAAAGASED-26NOV03-4.75", "KXAAAGASED-26NOV03-5.00", "KXSDCORNYIELD-27JAN31-T145", "KXSDCORNYIELD-27JAN31-T150", "KXSDCORNYIELD-27JAN31-T155", "KXSDCORNYIELD-27JAN31-T160", "KXSDCORNYIELD-27JAN31-T165", "KXSDCORNYIELD-27JAN31-T170", "KXSDCORNYIELD-27JAN31-T175", "KXSDCORNYIELD-27JAN31-T180", "KXNYQSBS-27JAN01", "KXGOVTCUTS-26-1000", "KXGOVTCUTS-26-2000", "KXGOVTCUTS-26-250", "KXGOVTCUTS-26-500", "KXGOVTCUTS-26-750", "KXGOVTCUTS-26-BILLIONB", "KXNDKOIL-27FEB26-T421.101", "KXALBUMRELEASEDATE-NEWMRB-27JAN01", "KXDST-27JAN01", "KXSMITHSONIAN-27JAN01", "KXCYCLOCOUNT-27JAN01-A16000", "KXCYCLOCOUNT-27JAN01-A20000", "KXCYCLOCOUNT-27JAN01-A22000", "KXCYCLOCOUNT-27JAN01-A24000", "KXCYCLOCOUNT-27JAN01-A32000", "KXCYCLOCOUNT-27JAN01-A8000", "KXALBUMRELEASEDATETRAVIS-OCT01-26", "KXCREDITRATING-26DEC31", "KXHELLCAT-27-CAT", "KXFEDFREQ-26JUL-27JAN01", "KXINXMINY-01JAN2027-5900.01", "KXINXMINY-01JAN2027-6000.01", "KXINXMINY-01JAN2027-6100.01", "KXINXMINY-01JAN2027-6200.01", "KXINXMINY-01JAN2027-6300.01", "KXJUDGMENT-USPSMAIL26"], "payload_sha256": "d8a33657b608c7f3efedc08ed294bd3a784d9d192a6b07b734a5d8b75df6280f", "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-036\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-036\\first-output.jsonl\n", "payload": {"decision_at": "2026-09-05T19:53:15.489944+00:00", "events": [{"event_key": "KXAAAGASED-26NOV03", "markets": [{"category": "Economics", "event_key": "KXAAAGASED-26NOV03", "key": "KXAAAGASED-26NOV03-2.50", "no_sub_title": "Above 2.50", "rules_primary": "If average regular gas prices for the United States are strictly greater than $2.50 on Nov 3, 2026 according to AAA, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-11-03T04:59:00Z", "series": "KXAAAGASED", "subtitle": null, "title": "Will average **gas prices** be above $2.50?", "yes_sub_title": "Above 2.50"}, {"category": "Economics", "event_key": "KXAAAGASED-26NOV03", "key": "KXAAAGASED-26NOV03-2.75", "no_sub_title": "Above 2.75", "rules_primary": "If average regular gas prices for the United States are strictly greater than $2.75 on Nov 3, 2026 according to AAA, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-11-03T04:59:00Z", "series": "KXAAAGASED", "subtitle": null, "title": "Will average **gas prices** be above $2.75?", "yes_sub_title": "Above 2.75"}, {"category": "Economics", "event_key": "KXAAAGASED-26NOV03", "key": "KXAAAGASED-26NOV03-3.00", "no_sub_title": "Above 3.00", "rules_primary": "If average regular gas prices for the United States are strictly greater than $3.00 on Nov 3, 2026 according to AAA, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-11-03T04:59:00Z", "series": "KXAAAGASED", "subtitle": null, "title": "Will average **gas prices** be above $3.00?", "yes_sub_title": "Above 3.00"}, {"category": "Economics", "event_key": "KXAAAGASED-26NOV03", "key": "KXAAAGASED-26NOV03-3.25", "no_sub_title": "Above 3.25", "rules_primary": "If average regular gas prices for the United States are strictly greater than $3.25 on Nov 3, 2026 according to AAA, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-11-03T04:59:00Z", "series": "KXAAAGASED", "subtitle": null, "title": "Will average **gas prices** be above $3.25?", "yes_sub_title": "Above 3.25"}, {"category": "Economics", "event_key": "KXAAAGASED-26NOV03", "key": "KXAAAGASED-26NOV03-3.50", "no_sub_title": "Above 3.50", "rules_primary": "If average regular gas prices for the United States are strictly greater than $3.50 on Nov 3, 2026 according to AAA, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-11-03T04:59:00Z", "series": "KXAAAGASED", "subtitle": null, "title": "Will average **gas prices** be above $3.50?", "yes_sub_title": "Above 3.50"}, {"category": "Economics", "event_key": "KXAAAGASED-26NOV03", "key": "KXAAAGASED-26NOV03-3.75", "no_sub_title": "Above 3.75", "rules_primary": "If average regular gas prices for the United States are strictly greater than $3.75 on Nov 3, 2026 according to AAA, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-11-03T04:59:00Z", "series": "KXAAAGASED", "subtitle": null, "title": "Will average **gas prices** be above $3.75?", "yes_sub_title": "Above 3.75"}, {"category": "Economics", "event_key": "KXAAAGASED-26NOV03", "key": "KXAAAGASED-26NOV03-4.00", "no_sub_title": "Above 4.00", "rules_primary": "If average regular gas prices for the United States are strictly greater than $4.00 on Nov 3, 2026 according to AAA, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-11-03T04:59:00Z", "series": "KXAAAGASED", "subtitle": null, "title": "Will average **gas prices** be above $4.00?", "yes_sub_title": "Above 4.00"}, {"category": "Economics", "event_key": "KXAAAGASED-26NOV03", "key": "KXAAAGASED-26NOV03-4.25", "no_sub_title": "Above 4.25", "rules_primary": "If average regular gas prices for the United States are strictly greater than $4.25 on Nov 3, 2026 according to AAA, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-11-03T04:59:00Z", "series": "KXAAAGASED", "subtitle": null, "title": "Will average **gas prices** be above $4.25?", "yes_sub_title": "Above 4.25"}, {"category": "Economics", "event_key": "KXAAAGASED-26NOV03", "key": "KXAAAGASED-26NOV03-4.50", "no_sub_title": "Above 4.50", "rules_primary": "If average regular gas prices for the United States are strictly greater than $4.50 on Nov 3, 2026 according to AAA, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-11-03T04:59:00Z", "series": "KXAAAGASED", "subtitle": null, "title": "Will average **gas prices** be above $4.50?", "yes_sub_title": "Above 4.50"}, {"category": "Economics", "event_key": "KXAAAGASED-26NOV03", "key": "KXAAAGASED-26NOV03-4.75", "no_sub_title": "Above 4.75", "rules_primary": "If average regular gas prices for the United States are strictly greater than $4.75 on Nov 3, 2026 according to AAA, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-11-03T04:59:00Z", "series": "KXAAAGASED", "subtitle": null, "title": "Will average **gas prices** be above $4.75?", "yes_sub_title": "Above 4.75"}, {"category": "Economics", "event_key": "KXAAAGASED-26NOV03", "key": "KXAAAGASED-26NOV03-5.00", "no_sub_title": "Above 5.00", "rules_primary": "If average regular gas prices for the United States are strictly greater than $5.00 on Nov 3, 2026 according to AAA, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-11-03T04:59:00Z", "series": "KXAAAGASED", "subtitle": null, "title": "Will average **gas prices** be above $5.00?", "yes_sub_title": "Above 5.00"}]}, {"event_key": "KXSDCORNYIELD-27JAN31", "markets": [{"category": "Economics", "event_key": "KXSDCORNYIELD-27JAN31", "key": "KXSDCORNYIELD-27JAN31-T145", "no_sub_title": "Above 145 bu/acre", "rules_primary": "If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \n\n145 bu/acre, then the market resolves to Yes.", "rules_secondary": "Resolution will be based on South Dakota\u2019s 2026 corn for grain yield per harvested acre, as reported by USDA NASS in the first Crop Production Annual Summary containing the final 2026 estimate. Yield is measured in bushels per harvested acre. Corn silage yield will not be considered. Subsequent revisions will not affect resolution.", "scheduled_close": "2027-01-31T14:59:00Z", "series": "KXSDCORNYIELD", "subtitle": null, "title": "Will South Dakota's corn for grain yield per harvested acre for 2026 be above 145 bu/acre?", "yes_sub_title": "Above 145 bu/acre"}, {"category": "Economics", "event_key": "KXSDCORNYIELD-27JAN31", "key": "KXSDCORNYIELD-27JAN31-T150", "no_sub_title": "Above 150 bu/acre", "rules_primary": "If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \n\n150 bu/acre, then the market resolves to Yes.", "rules_secondary": "Resolution will be based on South Dakota\u2019s 2026 corn for grain yield per harvested acre, as reported by USDA NASS in the first Crop Production Annual Summary containing the final 2026 estimate. Yield is measured in bushels per harvested acre. Corn silage yield will not be considered. Subsequent revisions will not affect resolution.", "scheduled_close": "2027-01-31T14:59:00Z", "series": "KXSDCORNYIELD", "subtitle": null, "title": "Will South Dakota's corn for grain yield per harvested acre for 2026 be above 150 bu/acre?", "yes_sub_title": "Above 150 bu/acre"}, {"category": "Economics", "event_key": "KXSDCORNYIELD-27JAN31", "key": "KXSDCORNYIELD-27JAN31-T155", "no_sub_title": "Above 155 bu/acre", "rules_primary": "If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \n\n155 bu/acre, then the market resolves to Yes.", "rules_secondary": "Resolution will be based on South Dakota\u2019s 2026 corn for grain yield per harvested acre, as reported by USDA NASS in the first Crop Production Annual Summary containing the final 2026 estimate. Yield is measured in bushels per harvested acre. Corn silage yield will not be considered. Subsequent revisions will not affect resolution.", "scheduled_close": "2027-01-31T14:59:00Z", "series": "KXSDCORNYIELD", "subtitle": null, "title": "Will South Dakota's corn for grain yield per harvested acre for 2026 be above 155 bu/acre?", "yes_sub_title": "Above 155 bu/acre"}, {"category": "Economics", "event_key": "KXSDCORNYIELD-27JAN31", "key": "KXSDCORNYIELD-27JAN31-T160", "no_sub_title": "Above 160 bu/acre", "rules_primary": "If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \n\n160 bu/acre, then the market resolves to Yes.", "rules_secondary": "Resolution will be based on South Dakota\u2019s 2026 corn for grain yield per harvested acre, as reported by USDA NASS in the first Crop Production Annual Summary containing the final 2026 estimate. Yield is measured in bushels per harvested acre. Corn silage yield will not be considered. Subsequent revisions will not affect resolution.", "scheduled_close": "2027-01-31T14:59:00Z", "series": "KXSDCORNYIELD", "subtitle": null, "title": "Will South Dakota's corn for grain yield per harvested acre for 2026 be above 160 bu/acre?", "yes_sub_title": "Above 160 bu/acre"}, {"category": "Economics", "event_key": "KXSDCORNYIELD-27JAN31", "key": "KXSDCORNYIELD-27JAN31-T165", "no_sub_title": "Above 165 bu/acre", "rules_primary": "If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \n\n165 bu/acre, then the market resolves to Yes.", "rules_secondary": "Resolution will be based on South Dakota\u2019s 2026 corn for grain yield per harvested acre, as reported by USDA NASS in the first Crop Production Annual Summary containing the final 2026 estimate. Yield is measured in bushels per harvested acre. Corn silage yield will not be considered. Subsequent revisions will not affect resolution.", "scheduled_close": "2027-01-31T14:59:00Z", "series": "KXSDCORNYIELD", "subtitle": null, "title": "Will South Dakota's corn for grain yield per harvested acre for 2026 be above 165 bu/acre?", "yes_sub_title": "Above 165 bu/acre"}, {"category": "Economics", "event_key": "KXSDCORNYIELD-27JAN31", "key": "KXSDCORNYIELD-27JAN31-T170", "no_sub_title": "Above 170 bu/acre", "rules_primary": "If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \n\n170 bu/acre, then the market resolves to Yes.", "rules_secondary": "Resolution will be based on South Dakota\u2019s 2026 corn for grain yield per harvested acre, as reported by USDA NASS in the first Crop Production Annual Summary containing the final 2026 estimate. Yield is measured in bushels per harvested acre. Corn silage yield will not be considered. Subsequent revisions will not affect resolution.", "scheduled_close": "2027-01-31T14:59:00Z", "series": "KXSDCORNYIELD", "subtitle": null, "title": "Will South Dakota's corn for grain yield per harvested acre for 2026 be above 170 bu/acre?", "yes_sub_title": "Above 170 bu/acre"}, {"category": "Economics", "event_key": "KXSDCORNYIELD-27JAN31", "key": "KXSDCORNYIELD-27JAN31-T175", "no_sub_title": "Above 175 bu/acre", "rules_primary": "If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \n\n175 bu/acre, then the market resolves to Yes.", "rules_secondary": "Resolution will be based on South Dakota\u2019s 2026 corn for grain yield per harvested acre, as reported by USDA NASS in the first Crop Production Annual Summary containing the final 2026 estimate. Yield is measured in bushels per harvested acre. Corn silage yield will not be considered. Subsequent revisions will not affect resolution.", "scheduled_close": "2027-01-31T14:59:00Z", "series": "KXSDCORNYIELD", "subtitle": null, "title": "Will South Dakota's corn for grain yield per harvested acre for 2026 be above 175 bu/acre?", "yes_sub_title": "Above 175 bu/acre"}, {"category": "Economics", "event_key": "KXSDCORNYIELD-27JAN31", "key": "KXSDCORNYIELD-27JAN31-T180", "no_sub_title": "Above 180 bu/acre", "rules_primary": "If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \n\n180 bu/acre, then the market resolves to Yes.", "rules_secondary": "Resolution will be based on South Dakota\u2019s 2026 corn for grain yield per harvested acre, as reported by USDA NASS in the first Crop Production Annual Summary containing the final 2026 estimate. Yield is measured in bushels per harvested acre. Corn silage yield will not be considered. Subsequent revisions will not affect resolution.", "scheduled_close": "2027-01-31T14:59:00Z", "series": "KXSDCORNYIELD", "subtitle": null, "title": "Will South Dakota's corn for grain yield per harvested acre for 2026 be above 180 bu/acre?", "yes_sub_title": "Above 180 bu/acre"}]}, {"event_key": "KXNYQSBS-27JAN01", "markets": [{"category": "Politics", "event_key": "KXNYQSBS-27JAN01", "key": "KXNYQSBS-27JAN01", "no_sub_title": "Yes", "rules_primary": "If legislation that decouples New York tax law from the federal Qualified Small Business Stock (QSBS) gain exclusion under IRC \u00a71202 has become law in New York before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law. For standard legislation requiring executive approval, this includes final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods. For legislation not requiring executive approval, this includes final passage and completion of required waiting periods. For constitutional amendments, this includes passage with required supermajorities and completion of ratification processes. For executive orders, this includes official signature, publication in official government records, and legal effectiveness. Legislative passage without completed executive action, passage by only some required bodies, provisional passage, non-binding resolutions, and draft orders do not constitute enactment. Enactment occurs when all requirements are completed, regardless of pending judicial challenges.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXNYQSBS", "subtitle": null, "title": "Will legislation that decouples New York tax law from the federal Qualified Small Business Stock (QSBS) gain exclusion under IRC \u00a71202 become law in New York before Jan 1, 2027?", "yes_sub_title": "Yes"}]}, {"event_key": "KXGOVTCUTS-26", "markets": [{"category": "Politics", "event_key": "KXGOVTCUTS-26", "key": "KXGOVTCUTS-26-1000", "no_sub_title": "At least 1 trillion", "rules_primary": "If government spending decreases by at least 1000 billion during Q4 2024 to Q4 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-03-31T15:00:00Z", "series": "KXGOVTCUTS", "subtitle": null, "title": "Will government spending decrease by 1000 before 2026?", "yes_sub_title": "At least 1 trillion"}, {"category": "Politics", "event_key": "KXGOVTCUTS-26", "key": "KXGOVTCUTS-26-2000", "no_sub_title": "At least 2 trillion", "rules_primary": "If government spending decreases by at least 2000 billion during Q4 2024 to Q4 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-03-31T15:00:00Z", "series": "KXGOVTCUTS", "subtitle": null, "title": "Will government spending decrease by 2000 before 2026?", "yes_sub_title": "At least 2 trillion"}, {"category": "Politics", "event_key": "KXGOVTCUTS-26", "key": "KXGOVTCUTS-26-250", "no_sub_title": "At least 250 billion", "rules_primary": "If government spending decreases by at least 250 billion during Q4 2024 to Q4 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-03-31T15:00:00Z", "series": "KXGOVTCUTS", "subtitle": null, "title": "Will government spending decrease by 250 before 2026?", "yes_sub_title": "At least 250 billion"}, {"category": "Politics", "event_key": "KXGOVTCUTS-26", "key": "KXGOVTCUTS-26-500", "no_sub_title": "At least 500 billion", "rules_primary": "If government spending decreases by at least 500 billion during Q4 2024 to Q4 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-03-31T15:00:00Z", "series": "KXGOVTCUTS", "subtitle": null, "title": "Will government spending decrease by 500 before 2026?", "yes_sub_title": "At least 500 billion"}, {"category": "Politics", "event_key": "KXGOVTCUTS-26", "key": "KXGOVTCUTS-26-750", "no_sub_title": "At least 750 billion", "rules_primary": "If government spending decreases by at least 750 billion during Q4 2024 to Q4 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-03-31T15:00:00Z", "series": "KXGOVTCUTS", "subtitle": null, "title": "Will government spending decrease by 750 before 2026?", "yes_sub_title": "At least 750 billion"}, {"category": "Politics", "event_key": "KXGOVTCUTS-26", "key": "KXGOVTCUTS-26-BILLIONB", "no_sub_title": "At least 50 billion", "rules_primary": "If government spending (FGEXPND) is at least $50 billion below the Q4 2024 level in any quarter through Q4 2026, then the market resolves to Yes.", "rules_secondary": "Each quarter from Q1 2025 to Q4 2026 is compared against Q4 2024.", "scheduled_close": "2027-03-31T15:00:00Z", "series": "KXGOVTCUTS", "subtitle": null, "title": "Will government spending decrease by 50 before 2026?", "yes_sub_title": "At least 50 billion"}]}, {"event_key": "KXNDKOIL-27FEB26", "markets": [{"category": "Economics", "event_key": "KXNDKOIL-27FEB26", "key": "KXNDKOIL-27FEB26-T421.101", "no_sub_title": "Above 421.101 million barrels", "rules_primary": "If EIA reports that North Dakota\u2019s field production of crude oil for calendar year 2026 is above \n\n421.101 million barrels, then the market resolves to Yes.", "rules_secondary": "The Underlying is EIA\u2019s North Dakota Field Production of Crude Oil annual total for 2026. EIA reports the statistic in thousand barrels, so the fixed threshold is 421,101 thousand barrels. The threshold will not change if EIA subsequently revises its 2025 value.", "scheduled_close": "2027-02-26T14:59:00Z", "series": "KXNDKOIL", "subtitle": null, "title": "Will North Dakota\u2019s field production of crude oil for 2026 be above 421.101 million barrels?", "yes_sub_title": "Above 421.101 million barrels"}]}, {"event_key": "KXALBUMRELEASEDATE-NEWMRB", "markets": [{"category": "Entertainment", "event_key": "KXALBUMRELEASEDATE-NEWMRB", "key": "KXALBUMRELEASEDATE-NEWMRB-27JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If MrBeast formally known as James Stephen Donaldson releases a new album after issuance and before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXALBUMRELEASEDATE", "subtitle": null, "title": "Will MrBeast formally known as James Stephen Donaldson release new album after issuance and before Jan 1, 2027", "yes_sub_title": "Before Jan 1, 2027"}]}, {"event_key": "KXDST-27JAN01", "markets": [{"category": "Politics", "event_key": "KXDST-27JAN01", "key": "KXDST-27JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If legislation establishing permanent Daylight Saving Time has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXDST", "subtitle": "Yes", "title": "Will permanent daylight savings become law before Jan 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}]}, {"event_key": "KXSMITHSONIAN-27JAN01", "markets": [{"category": "Politics", "event_key": "KXSMITHSONIAN-27JAN01", "key": "KXSMITHSONIAN-27JAN01", "no_sub_title": "Yes", "rules_primary": "If the US agrees to or announces a substantive federal action arising from its Smithsonian pressure campaign before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "For this market, a qualifying action is limited to one of the following:\n\nA federal agency cancels, suspends, or refuses to renew an existing artifact loan to the Smithsonian.\nA federal agency cancels, suspends, or refuses to renew an existing procurement-assistance arrangement with the Smithsonian.\nA federal agency withholds, rescinds, suspends, or refuses a named discretionary grant to the Smithsonian, or imposes a new binding condition on that grant.\nThe Department of the Interior or National Park Service installs any of the temporary Smithsonian-related signs or exhibits on National Park Service property ordered by Executive Order 14416.\nThe President, Vice President, or another authorized executive-branch official takes a formal action that results in the removal, replacement, or resignation of the Smithsonian Secretary, or a change in voting control of the Smithsonian Board of Regents.\n\nFor the first three items, the federal action or announcement must expressly tie the decision to the dispute over Smithsonian leadership, governance, or museum content, or to Executive Order 14253, Executive Order 14416, the July 2026 White House report, or the Aug. 28, 2026 letter.\n\nAn unconditional official announcement also qualifies if the President, an authorized Cabinet official, or the responsible federal agency commits the United States to one of the listed actions, even if implementation will occur later. No other action qualifies.\n\nA conditional threat; a review, report, recommendation, meeting request, or expression of dissatisfaction; proposed legislation; a routine Smithsonian decision; or an action completed before Issuance does NOT qualify. Executive Order 14253, Executive Order 14416 itself, the July 2026 White House report, and the Aug. 28, 2026 letter therefore do NOT qualify.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXSMITHSONIAN", "subtitle": null, "title": "Will the US agree to or announce a substantive federal action arising from its Smithsonian pressure campaign before Jan 1, 2027?", "yes_sub_title": "Yes"}]}, {"event_key": "KXCYCLOCOUNT-27JAN01", "markets": [{"category": "Science and Technology", "event_key": "KXCYCLOCOUNT-27JAN01", "key": "KXCYCLOCOUNT-27JAN01-A16000", "no_sub_title": "Above 16k", "rules_primary": "If the total number of Cyclosporiasis cases reported in the United States during 2026 is above 16000, then the market resolves to Yes.", "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized.", "scheduled_close": "2027-01-01T14:59:00Z", "series": "KXCYCLOCOUNT", "subtitle": null, "title": "Above 16000 Cyclosporiasis cases in the United States during 2026", "yes_sub_title": "Above 16k"}, {"category": "Science and Technology", "event_key": "KXCYCLOCOUNT-27JAN01", "key": "KXCYCLOCOUNT-27JAN01-A20000", "no_sub_title": "Above 20k", "rules_primary": "If the total number of Cyclosporiasis cases reported in the United States during 2026 is above 20000, then the market resolves to Yes.", "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized.", "scheduled_close": "2027-01-01T14:59:00Z", "series": "KXCYCLOCOUNT", "subtitle": null, "title": "Above 20000 Cyclosporiasis cases in the United States during 2026", "yes_sub_title": "Above 20k"}, {"category": "Science and Technology", "event_key": "KXCYCLOCOUNT-27JAN01", "key": "KXCYCLOCOUNT-27JAN01-A22000", "no_sub_title": "Above 22k", "rules_primary": "If the total number of Cyclosporiasis cases reported in the United States during 2026 is above 22000, then the market resolves to Yes.", "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized.", "scheduled_close": "2027-01-01T14:59:00Z", "series": "KXCYCLOCOUNT", "subtitle": null, "title": "Above 22000 Cyclosporiasis cases in the United States during 2026", "yes_sub_title": "Above 22k"}, {"category": "Science and Technology", "event_key": "KXCYCLOCOUNT-27JAN01", "key": "KXCYCLOCOUNT-27JAN01-A24000", "no_sub_title": "Above 24k", "rules_primary": "If the total number of Cyclosporiasis cases reported in the United States during 2026 is above 24000, then the market resolves to Yes.", "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized.", "scheduled_close": "2027-01-01T14:59:00Z", "series": "KXCYCLOCOUNT", "subtitle": null, "title": "Above 24000 Cyclosporiasis cases in the United States during 2026", "yes_sub_title": "Above 24k"}, {"category": "Science and Technology", "event_key": "KXCYCLOCOUNT-27JAN01", "key": "KXCYCLOCOUNT-27JAN01-A32000", "no_sub_title": "Above 32k", "rules_primary": "If the total number of Cyclosporiasis cases reported in the United States during 2026 is above 32000, then the market resolves to Yes.", "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized.", "scheduled_close": "2027-01-01T14:59:00Z", "series": "KXCYCLOCOUNT", "subtitle": null, "title": "Above 32000 Cyclosporiasis cases in the United States during 2026", "yes_sub_title": "Above 32k"}, {"category": "Science and Technology", "event_key": "KXCYCLOCOUNT-27JAN01", "key": "KXCYCLOCOUNT-27JAN01-A8000", "no_sub_title": "Above 8k", "rules_primary": "If the total number of Cyclosporiasis cases reported in the United States during 2026 is above 8000, then the market resolves to Yes.", "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized.", "scheduled_close": "2027-01-01T14:59:00Z", "series": "KXCYCLOCOUNT", "subtitle": null, "title": "Above 8000 Cyclosporiasis cases in the United States during 2026", "yes_sub_title": "Above 8k"}]}, {"event_key": "KXALBUMRELEASEDATETRAVIS", "markets": [{"category": "Entertainment", "event_key": "KXALBUMRELEASEDATETRAVIS", "key": "KXALBUMRELEASEDATETRAVIS-OCT01-26", "no_sub_title": "Before October", "rules_primary": "If Travis Scott releases a a new album Before Oct 1, 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-10-01T14:00:00Z", "series": "KXALBUMRELEASEDATETRAVIS", "subtitle": null, "title": "Will Travis Scott release a new album before Oct 1, 2026?", "yes_sub_title": "Before October"}]}, {"event_key": "KXCREDITRATING-26DEC31", "markets": [{"category": "Politics", "event_key": "KXCREDITRATING-26DEC31", "key": "KXCREDITRATING-26DEC31", "no_sub_title": "Rating reduced", "rules_primary": "If U.S. credit is downgraded by any of the three major credit ratings agencies by December 31, 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXCREDITRATING", "subtitle": "U.S. is downgraded or defaults", "title": "Will the U.S. credit rating be downgraded by December 31, 2026?", "yes_sub_title": "Rating reduced"}]}, {"event_key": "KXHELLCAT-27", "markets": [{"category": "Companies", "event_key": "KXHELLCAT-27", "key": "KXHELLCAT-27-CAT", "no_sub_title": "Dodge Challenger Hellcat", "rules_primary": "If Dodge releases Dodge Challenger Hellcat to the public before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXHELLCAT", "subtitle": null, "title": "When will Dodge release Dodge Challenger Hellcat to the public?", "yes_sub_title": "Dodge Challenger Hellcat"}]}, {"event_key": "KXFEDFREQ-26JUL", "markets": [{"category": "Politics", "event_key": "KXFEDFREQ-26JUL", "key": "KXFEDFREQ-26JUL-27JAN01", "no_sub_title": "Yes", "rules_primary": "If the Federal Open Market Committee (FOMC) announces a decision to schedule fewer than eight regular FOMC monetary-policy meetings in a calendar year as a change to the Committee\u2019s meeting cadence before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXFEDFREQ", "subtitle": null, "title": "Will the Federal Open Market Committee (FOMC) announce a decision to schedule fewer than eight regular FOMC monetary-policy meetings in a calendar year as a change to the Committee\u2019s meeting cadence before Jan 1, 2027?", "yes_sub_title": "Yes"}]}, {"event_key": "KXINXMINY-01JAN2027", "markets": [{"category": "Financials", "event_key": "KXINXMINY-01JAN2027", "key": "KXINXMINY-01JAN2027-5900.01", "no_sub_title": "5,900 or below", "rules_primary": "If the value of the S&P 500 index value starting Jan 1, 2026 and ending on Jan 1, 2027 is below 5900.01, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T11:00:00Z", "series": "KXINXMINY", "subtitle": null, "title": "Will the minimum SP500 value reach below 5900.01 by Jan 1, 2027?", "yes_sub_title": "5,900 or below"}, {"category": "Financials", "event_key": "KXINXMINY-01JAN2027", "key": "KXINXMINY-01JAN2027-6000.01", "no_sub_title": "6,000 or below", "rules_primary": "If the value of the S&P 500 index value starting Jan 1, 2026 and ending on Jan 1, 2027 is below 6000.01, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T11:00:00Z", "series": "KXINXMINY", "subtitle": null, "title": "Will the minimum SP500 value reach below 6000.01 by Jan 1, 2027?", "yes_sub_title": "6,000 or below"}, {"category": "Financials", "event_key": "KXINXMINY-01JAN2027", "key": "KXINXMINY-01JAN2027-6100.01", "no_sub_title": "6,100 or below", "rules_primary": "If the value of the S&P 500 index value starting Jan 1, 2026 and ending on Jan 1, 2027 is below 6100.01, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T11:00:00Z", "series": "KXINXMINY", "subtitle": null, "title": "Will the minimum SP500 value reach below 6100.01 by Jan 1, 2027?", "yes_sub_title": "6,100 or below"}, {"category": "Financials", "event_key": "KXINXMINY-01JAN2027", "key": "KXINXMINY-01JAN2027-6200.01", "no_sub_title": "6,200 or below", "rules_primary": "If the value of the S&P 500 index value starting Jan 1, 2026 and ending on Jan 1, 2027 is below 6200.01, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T11:00:00Z", "series": "KXINXMINY", "subtitle": null, "title": "Will the minimum SP500 value reach below 6200.01 by Jan 1, 2027?", "yes_sub_title": "6,200 or below"}, {"category": "Financials", "event_key": "KXINXMINY-01JAN2027", "key": "KXINXMINY-01JAN2027-6300.01", "no_sub_title": "6,300 or below", "rules_primary": "If the value of the S&P 500 index value starting Jan 1, 2026 and ending on Jan 1, 2027 is below 6300.01, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T11:00:00Z", "series": "KXINXMINY", "subtitle": null, "title": "Will the minimum SP500 value reach below 6300.01 by Jan 1, 2027?", "yes_sub_title": "6,300 or below"}]}, {"event_key": "KXJUDGMENT-USPSMAIL26", "markets": [{"category": "Politics", "event_key": "KXJUDGMENT-USPSMAIL26", "key": "KXJUDGMENT-USPSMAIL26", "no_sub_title": "Before Nov 3, 2026", "rules_primary": "If the U.S. Supreme Court rules that USPS may enforce both the Federal Ballot Mail Portal registration or enrollment requirements and the related outbound federal ballot-mail pre-acceptance verification requirements for elections on or before November 3, 2026 in any Supreme Court proceeding arising from State of California, et al. v. United States Postal Service, et al., D. Mass. No. 1:26-cv-13917-IT before Nov 3, 2026, then the market resolves to Yes.", "rules_secondary": "The specified Case is any Supreme Court proceeding arising from State of California, et al. v. United States Postal Service, et al., D. Mass. No. 1:26-cv-13917-IT.\n\nThe ruling must:\nBe issued in a written order, opinion, judgment, or decision by the U.S. Supreme Court in that proceeding\nAddress the matter described by the specified judgment\n\nThe following do NOT satisfy the Payout Criterion:\nA procedural standing or ripeness order that does not itself permit enforcement\nA grant or denial of certiorari without operative relief\nA temporary administrative stay entered only for briefing or consideration\nOral, tentative, leaked, scheduling, show-cause, or non-substantive minute orders\nRelief limited to envelope design, voluntary portal development, or another provision without both specified components\n\nA stay or vacatur qualifies only if its operative text itself permits the portal and verification requirements to be enforced. The August 24 order in Trump v. California does NOT qualify. Per curiam opinions and summary orders count if they match the specified judgment.", "scheduled_close": "2026-11-03T04:59:00Z", "series": "KXJUDGMENT", "subtitle": null, "title": "Will SCOTUS let USPS enforce ballot-mail rules?", "yes_sub_title": "Before Nov 3, 2026"}]}], "snapshot_at": "2026-09-05T15:45:16Z"}}, "completion": null}
+{
+  "completion": {
+    "completed_at": "2026-09-05T20:36:28.520110+00:00",
+    "effort": "high",
+    "model": "gpt-5.6-sol",
+    "results": {
+      "KXAAAGASED-26NOV03-2.50": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"November 3, 2026\", \"family\": \"price_metric\", \"key\": \"KXAAAGASED-26NOV03-2.50\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for the United States are strictly greater than $2.50 on Nov 3, 2026 according to AAA, then the market resolves to Yes.\", \"rationale\": \"YES compares a reported average fuel price with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_regular_gas_price_november3_2026\", \"web_search_used\": false}"
+      },
+      "KXAAAGASED-26NOV03-2.75": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"November 3, 2026\", \"family\": \"price_metric\", \"key\": \"KXAAAGASED-26NOV03-2.75\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for the United States are strictly greater than $2.75 on Nov 3, 2026 according to AAA, then the market resolves to Yes.\", \"rationale\": \"YES compares a reported average fuel price with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_regular_gas_price_november3_2026\", \"web_search_used\": false}"
+      },
+      "KXAAAGASED-26NOV03-3.00": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"November 3, 2026\", \"family\": \"price_metric\", \"key\": \"KXAAAGASED-26NOV03-3.00\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for the United States are strictly greater than $3.00 on Nov 3, 2026 according to AAA, then the market resolves to Yes.\", \"rationale\": \"YES compares a reported average fuel price with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_regular_gas_price_november3_2026\", \"web_search_used\": false}"
+      },
+      "KXAAAGASED-26NOV03-3.25": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"November 3, 2026\", \"family\": \"price_metric\", \"key\": \"KXAAAGASED-26NOV03-3.25\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for the United States are strictly greater than $3.25 on Nov 3, 2026 according to AAA, then the market resolves to Yes.\", \"rationale\": \"YES compares a reported average fuel price with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_regular_gas_price_november3_2026\", \"web_search_used\": false}"
+      },
+      "KXAAAGASED-26NOV03-3.50": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"November 3, 2026\", \"family\": \"price_metric\", \"key\": \"KXAAAGASED-26NOV03-3.50\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for the United States are strictly greater than $3.50 on Nov 3, 2026 according to AAA, then the market resolves to Yes.\", \"rationale\": \"YES compares a reported average fuel price with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_regular_gas_price_november3_2026\", \"web_search_used\": false}"
+      },
+      "KXAAAGASED-26NOV03-3.75": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"November 3, 2026\", \"family\": \"price_metric\", \"key\": \"KXAAAGASED-26NOV03-3.75\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for the United States are strictly greater than $3.75 on Nov 3, 2026 according to AAA, then the market resolves to Yes.\", \"rationale\": \"YES compares a reported average fuel price with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_regular_gas_price_november3_2026\", \"web_search_used\": false}"
+      },
+      "KXAAAGASED-26NOV03-4.00": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"November 3, 2026\", \"family\": \"price_metric\", \"key\": \"KXAAAGASED-26NOV03-4.00\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for the United States are strictly greater than $4.00 on Nov 3, 2026 according to AAA, then the market resolves to Yes.\", \"rationale\": \"YES compares a reported average fuel price with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_regular_gas_price_november3_2026\", \"web_search_used\": false}"
+      },
+      "KXAAAGASED-26NOV03-4.25": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"November 3, 2026\", \"family\": \"price_metric\", \"key\": \"KXAAAGASED-26NOV03-4.25\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for the United States are strictly greater than $4.25 on Nov 3, 2026 according to AAA, then the market resolves to Yes.\", \"rationale\": \"YES compares a reported average fuel price with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_regular_gas_price_november3_2026\", \"web_search_used\": false}"
+      },
+      "KXAAAGASED-26NOV03-4.50": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"November 3, 2026\", \"family\": \"price_metric\", \"key\": \"KXAAAGASED-26NOV03-4.50\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for the United States are strictly greater than $4.50 on Nov 3, 2026 according to AAA, then the market resolves to Yes.\", \"rationale\": \"YES compares a reported average fuel price with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_regular_gas_price_november3_2026\", \"web_search_used\": false}"
+      },
+      "KXAAAGASED-26NOV03-4.75": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"November 3, 2026\", \"family\": \"price_metric\", \"key\": \"KXAAAGASED-26NOV03-4.75\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for the United States are strictly greater than $4.75 on Nov 3, 2026 according to AAA, then the market resolves to Yes.\", \"rationale\": \"YES compares a reported average fuel price with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_regular_gas_price_november3_2026\", \"web_search_used\": false}"
+      },
+      "KXAAAGASED-26NOV03-5.00": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"November 3, 2026\", \"family\": \"price_metric\", \"key\": \"KXAAAGASED-26NOV03-5.00\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for the United States are strictly greater than $5.00 on Nov 3, 2026 according to AAA, then the market resolves to Yes.\", \"rationale\": \"YES compares a reported average fuel price with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_regular_gas_price_november3_2026\", \"web_search_used\": false}"
+      },
+      "KXALBUMRELEASEDATE-NEWMRB-27JAN01": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"unresolved\", \"deadline\": \"before January 1, 2027\", \"family\": \"music_release\", \"key\": \"KXALBUMRELEASEDATE-NEWMRB-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"Complete and approve a qualifying album\"}, {\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"Release it publicly\"}], \"obstacle\": \"none established\", \"predicate\": \"If MrBeast formally known as James Stephen Donaldson releases a new album after issuance and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"No official current album plan or release schedule was established in a focused creator-source search.\", \"source_gaps\": [\"Current qualifying status was not established.\"], \"sources\": [], \"subject_key\": \"mrbeast_new_album_2026\", \"web_search_used\": true}"
+      },
+      "KXALBUMRELEASEDATETRAVIS-OCT01-26": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"unresolved\", \"deadline\": \"before October 1, 2026\", \"family\": \"music_release\", \"key\": \"KXALBUMRELEASEDATETRAVIS-OCT01-26\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"Complete and approve a qualifying album\"}, {\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"Release it publicly\"}], \"obstacle\": \"none established\", \"predicate\": \"If Travis Scott releases a a new album Before Oct 1, 2026, then the market resolves to Yes.\", \"rationale\": \"A focused official artist-source search did not establish a qualifying album and release date before the near deadline.\", \"source_gaps\": [\"Current qualifying status was not established.\"], \"sources\": [], \"subject_key\": \"travis_scott_new_album_release_2026\", \"web_search_used\": true}"
+      },
+      "KXCREDITRATING-26DEC31": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"by December 31, 2026\", \"family\": \"rating_decision\", \"key\": \"KXCREDITRATING-26DEC31\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If U.S. credit is downgraded by any of the three major credit ratings agencies by December 31, 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a discretionary future rating-agency judgment rather than a necessary-step completion mechanism.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_credit_rating_downgrade_2026\", \"web_search_used\": false}"
+      },
+      "KXCYCLOCOUNT-27JAN01-A16000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"calendar year 2026\", \"family\": \"public_health_metric\", \"key\": \"KXCYCLOCOUNT-27JAN01-A16000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the total number of Cyclosporiasis cases reported in the United States during 2026 is above 16000, then the market resolves to Yes.\", \"rationale\": \"YES is a reported case count compared with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_cyclosporiasis_cases_2026\", \"web_search_used\": false}"
+      },
+      "KXCYCLOCOUNT-27JAN01-A20000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"calendar year 2026\", \"family\": \"public_health_metric\", \"key\": \"KXCYCLOCOUNT-27JAN01-A20000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the total number of Cyclosporiasis cases reported in the United States during 2026 is above 20000, then the market resolves to Yes.\", \"rationale\": \"YES is a reported case count compared with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_cyclosporiasis_cases_2026\", \"web_search_used\": false}"
+      },
+      "KXCYCLOCOUNT-27JAN01-A22000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"calendar year 2026\", \"family\": \"public_health_metric\", \"key\": \"KXCYCLOCOUNT-27JAN01-A22000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the total number of Cyclosporiasis cases reported in the United States during 2026 is above 22000, then the market resolves to Yes.\", \"rationale\": \"YES is a reported case count compared with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_cyclosporiasis_cases_2026\", \"web_search_used\": false}"
+      },
+      "KXCYCLOCOUNT-27JAN01-A24000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"calendar year 2026\", \"family\": \"public_health_metric\", \"key\": \"KXCYCLOCOUNT-27JAN01-A24000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the total number of Cyclosporiasis cases reported in the United States during 2026 is above 24000, then the market resolves to Yes.\", \"rationale\": \"YES is a reported case count compared with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_cyclosporiasis_cases_2026\", \"web_search_used\": false}"
+      },
+      "KXCYCLOCOUNT-27JAN01-A32000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"calendar year 2026\", \"family\": \"public_health_metric\", \"key\": \"KXCYCLOCOUNT-27JAN01-A32000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the total number of Cyclosporiasis cases reported in the United States during 2026 is above 32000, then the market resolves to Yes.\", \"rationale\": \"YES is a reported case count compared with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_cyclosporiasis_cases_2026\", \"web_search_used\": false}"
+      },
+      "KXCYCLOCOUNT-27JAN01-A8000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"calendar year 2026\", \"family\": \"public_health_metric\", \"key\": \"KXCYCLOCOUNT-27JAN01-A8000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the total number of Cyclosporiasis cases reported in the United States during 2026 is above 8000, then the market resolves to Yes.\", \"rationale\": \"YES is a reported case count compared with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_cyclosporiasis_cases_2026\", \"web_search_used\": false}"
+      },
+      "KXDST-27JAN01": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"unresolved\", \"deadline\": \"before January 1, 2027\", \"family\": \"federal_legislation\", \"key\": \"KXDST-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Pass qualifying legislation in House and Senate\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"President signs it or it otherwise becomes law\"}], \"obstacle\": \"none established\", \"predicate\": \"If legislation establishing permanent Daylight Saving Time has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"A prior Senate unanimous-consent effort drew an objection, and the focused current official search did not establish a new floor path or bicameral passage.\", \"source_gaps\": [\"Current House and Senate committee/floor status at the cutoff was not established.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:34:13.0050107Z\", \"published_at\": \"2025-10-28\", \"quote\": \"Is there an objection? ... Mr. COTTON\", \"supports\": \"A Senate attempt to pass the measure by unanimous consent was blocked.\", \"title\": \"Congressional Record: Sunshine Protection Act unanimous-consent request\", \"url\": \"https://www.congress.gov/119/crec/2025/10/28/171/179/CREC-2025-10-28-senate.pdf\"}], \"subject_key\": \"us_permanent_daylight_saving_time_law\", \"web_search_used\": true}"
+      },
+      "KXFEDFREQ-26JUL-27JAN01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"before January 1, 2027\", \"family\": \"committee_announcement\", \"key\": \"KXFEDFREQ-26JUL-27JAN01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Federal Open Market Committee (FOMC) announces a decision to schedule fewer than eight regular FOMC monetary-policy meetings in a calendar year as a change to the Committee\\u2019s meeting cadence before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is a discretionary committee scheduling announcement; the rules impose no mandatory prior procedure.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"fomc_meeting_cadence_announcement\", \"web_search_used\": false}"
+      },
+      "KXGOVTCUTS-26-1000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"Q4 2026\", \"family\": \"economic_metric\", \"key\": \"KXGOVTCUTS-26-1000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If government spending decreases by at least 1000 billion during Q4 2024 to Q4 2026, then the market resolves to Yes.\", \"rationale\": \"YES is an aggregate spending change compared with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_government_spending_change_q4_2024_q4_2026\", \"web_search_used\": false}"
+      },
+      "KXGOVTCUTS-26-2000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"Q4 2026\", \"family\": \"economic_metric\", \"key\": \"KXGOVTCUTS-26-2000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If government spending decreases by at least 2000 billion during Q4 2024 to Q4 2026, then the market resolves to Yes.\", \"rationale\": \"YES is an aggregate spending change compared with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_government_spending_change_q4_2024_q4_2026\", \"web_search_used\": false}"
+      },
+      "KXGOVTCUTS-26-250": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"Q4 2026\", \"family\": \"economic_metric\", \"key\": \"KXGOVTCUTS-26-250\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If government spending decreases by at least 250 billion during Q4 2024 to Q4 2026, then the market resolves to Yes.\", \"rationale\": \"YES is an aggregate spending change compared with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_government_spending_change_q4_2024_q4_2026\", \"web_search_used\": false}"
+      },
+      "KXGOVTCUTS-26-500": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"Q4 2026\", \"family\": \"economic_metric\", \"key\": \"KXGOVTCUTS-26-500\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If government spending decreases by at least 500 billion during Q4 2024 to Q4 2026, then the market resolves to Yes.\", \"rationale\": \"YES is an aggregate spending change compared with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_government_spending_change_q4_2024_q4_2026\", \"web_search_used\": false}"
+      },
+      "KXGOVTCUTS-26-750": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"Q4 2026\", \"family\": \"economic_metric\", \"key\": \"KXGOVTCUTS-26-750\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If government spending decreases by at least 750 billion during Q4 2024 to Q4 2026, then the market resolves to Yes.\", \"rationale\": \"YES is an aggregate spending change compared with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_government_spending_change_q4_2024_q4_2026\", \"web_search_used\": false}"
+      },
+      "KXGOVTCUTS-26-BILLIONB": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"Q4 2026\", \"family\": \"economic_metric\", \"key\": \"KXGOVTCUTS-26-BILLIONB\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If government spending (FGEXPND) is at least $50 billion below the Q4 2024 level in any quarter through Q4 2026, then the market resolves to Yes.\", \"rationale\": \"YES is an aggregate spending change compared with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_government_spending_change_q4_2024_q4_2026\", \"web_search_used\": false}"
+      },
+      "KXHELLCAT-27-CAT": {
+        "bucket": "substantive_barrier",
+        "rationale": "{\"bucket\": \"substantive_barrier\", \"bypass\": \"A different Dodge model carrying Hellcat branding does not satisfy the stated Challenger predicate.\", \"deadline\": \"before January 1, 2027\", \"family\": \"vehicle_product_release\", \"key\": \"KXHELLCAT-27-CAT\", \"mandatory_steps\": [{\"source_url\": \"https://www.dodge.com/challenger.html\", \"status\": \"pending\", \"step\": \"Reverse the Challenger discontinuation and resume qualifying production\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Commercially release a qualifying Challenger Hellcat\"}], \"obstacle\": \"Dodge\\u2019s current official page says Challenger production ended December 31, 2023 and the model is discontinued.\", \"predicate\": \"If Dodge releases Dodge Challenger Hellcat to the public before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The exact model is officially discontinued and out of production. A qualifying 2026 release requires a substantive product reversal for which no current plan was found.\", \"source_gaps\": [\"No official Challenger Hellcat revival plan was found.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:34:13.0050107Z\", \"published_at\": \"unknown\", \"quote\": \"production ended December 31, 2023\", \"supports\": \"The exact vehicle line is discontinued and no longer in production.\", \"title\": \"Dodge Challenger official page\", \"url\": \"https://www.dodge.com/challenger.html\"}], \"subject_key\": \"dodge_challenger_hellcat_public_release\", \"web_search_used\": true}"
+      },
+      "KXINXMINY-01JAN2027-5900.01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through January 1, 2027\", \"family\": \"market_metric\", \"key\": \"KXINXMINY-01JAN2027-5900.01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the value of the S&P 500 index value starting Jan 1, 2026 and ending on Jan 1, 2027 is below 5900.01, then the market resolves to Yes.\", \"rationale\": \"YES is a direct index-level threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"sp500_minimum_2026\", \"web_search_used\": false}"
+      },
+      "KXINXMINY-01JAN2027-6000.01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through January 1, 2027\", \"family\": \"market_metric\", \"key\": \"KXINXMINY-01JAN2027-6000.01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the value of the S&P 500 index value starting Jan 1, 2026 and ending on Jan 1, 2027 is below 6000.01, then the market resolves to Yes.\", \"rationale\": \"YES is a direct index-level threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"sp500_minimum_2026\", \"web_search_used\": false}"
+      },
+      "KXINXMINY-01JAN2027-6100.01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through January 1, 2027\", \"family\": \"market_metric\", \"key\": \"KXINXMINY-01JAN2027-6100.01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the value of the S&P 500 index value starting Jan 1, 2026 and ending on Jan 1, 2027 is below 6100.01, then the market resolves to Yes.\", \"rationale\": \"YES is a direct index-level threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"sp500_minimum_2026\", \"web_search_used\": false}"
+      },
+      "KXINXMINY-01JAN2027-6200.01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through January 1, 2027\", \"family\": \"market_metric\", \"key\": \"KXINXMINY-01JAN2027-6200.01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the value of the S&P 500 index value starting Jan 1, 2026 and ending on Jan 1, 2027 is below 6200.01, then the market resolves to Yes.\", \"rationale\": \"YES is a direct index-level threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"sp500_minimum_2026\", \"web_search_used\": false}"
+      },
+      "KXINXMINY-01JAN2027-6300.01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through January 1, 2027\", \"family\": \"market_metric\", \"key\": \"KXINXMINY-01JAN2027-6300.01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the value of the S&P 500 index value starting Jan 1, 2026 and ending on Jan 1, 2027 is below 6300.01, then the market resolves to Yes.\", \"rationale\": \"YES is a direct index-level threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"sp500_minimum_2026\", \"web_search_used\": false}"
+      },
+      "KXJUDGMENT-USPSMAIL26": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"Only qualifying Supreme Court relief on both requirements satisfies this contract.\", \"deadline\": \"before November 3, 2026\", \"family\": \"emergency_appellate_litigation\", \"key\": \"KXJUDGMENT-USPSMAIL26\", \"mandatory_steps\": [{\"source_url\": \"https://www.supremecourt.gov/DocketPDF/26/26A297/422948/20260903154027877_USPS%20Final%20Rule%20Stay%20and%20Appx.pdf\", \"status\": \"complete\", \"step\": \"District court issues reviewable order on final USPS rule\"}, {\"source_url\": \"https://www.supremecourt.gov/DocketPDF/26/26A297/422948/20260903154027877_USPS%20Final%20Rule%20Stay%20and%20Appx.pdf\", \"status\": \"complete\", \"step\": \"Emergency application reaches Supreme Court\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Supreme Court authorizes enforcement of both specified requirements\"}], \"obstacle\": \"The district court stayed portions of the final rule, and Supreme Court relief remained undecided.\", \"predicate\": \"If the U.S. Supreme Court rules that USPS may enforce both the Federal Ballot Mail Portal registration or enrollment requirements and the related outbound federal ballot-mail pre-acceptance verification requirements for elections on or before November 3, 2026 in any Supreme Court proceeding arising from State of California, et al. v. United States Postal Service, et al., D. Mass. No. 1:26-cv-13917-IT before Nov 3, 2026, then the market resolves to Yes.\", \"rationale\": \"A current Supreme Court emergency filing includes the August 27 TRO staying the final USPS rule. The live emergency path is concrete and deadline-linked, while the requested merits of relief remain substantive.\", \"source_gaps\": [\"The Supreme Court had not ruled on the application by the cutoff.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:34:13.0050107Z\", \"published_at\": \"2026-09-03\", \"quote\": \"GRANTS a temporary restraining order staying ... the Final Rule\", \"supports\": \"The exact dispute reached a current Supreme Court filing after a district-court stay.\", \"title\": \"Supreme Court filing in USPS ballot-mail matter\", \"url\": \"https://www.supremecourt.gov/DocketPDF/26/26A297/422948/20260903154027877_USPS%20Final%20Rule%20Stay%20and%20Appx.pdf\"}], \"subject_key\": \"scotus_usps_ballot_mail_rules_2026\", \"web_search_used\": true}"
+      },
+      "KXNDKOIL-27FEB26-T421.101": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"calendar year 2026\", \"family\": \"production_metric\", \"key\": \"KXNDKOIL-27FEB26-T421.101\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If EIA reports that North Dakota\\u2019s field production of crude oil for calendar year 2026 is above \\n\\n421.101 million barrels, then the market resolves to Yes.\", \"rationale\": \"YES is a reported production total compared with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"north_dakota_crude_oil_2026\", \"web_search_used\": false}"
+      },
+      "KXNYQSBS-27JAN01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"A budget or other qualifying bill could enact the same decoupling.\", \"deadline\": \"before January 1, 2027\", \"family\": \"state_legislation\", \"key\": \"KXNYQSBS-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://www.nysenate.gov/legislation/bills/2025/S8921/amendment/original\", \"status\": \"pending\", \"step\": \"Pass S8921 or qualifying legislation in both chambers\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Governor signs it or it otherwise becomes law\"}], \"obstacle\": \"The official bill page shows introduction and committee referral, not chamber passage.\", \"predicate\": \"If legislation that decouples New York tax law from the federal Qualified Small Business Stock (QSBS) gain exclusion under IRC \\u00a71202 has become law in New York before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"S8921 is a current bill whose text directly adds federal section 1202 gains back to New York income. It supplies a concrete vehicle, though bicameral passage and enactment remain substantive.\", \"source_gaps\": [\"No committee advance, chamber passage, or governor position was established.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:34:13.0050107Z\", \"published_at\": \"2026-01-15\", \"quote\": \"This bill would decouple the state of New York from the federal ... exclusion\", \"supports\": \"A current introduced bill directly implements the predicate.\", \"title\": \"New York Senate Bill S8921\", \"url\": \"https://www.nysenate.gov/legislation/bills/2025/S8921/amendment/original\"}], \"subject_key\": \"new_york_qsbs_decoupling_law\", \"web_search_used\": true}"
+      },
+      "KXSDCORNYIELD-27JAN31-T145": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"calendar year 2026\", \"family\": \"agricultural_metric\", \"key\": \"KXSDCORNYIELD-27JAN31-T145\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \\n\\n145 bu/acre, then the market resolves to Yes.\", \"rationale\": \"YES compares USDA-reported yield with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"south_dakota_corn_yield_2026\", \"web_search_used\": false}"
+      },
+      "KXSDCORNYIELD-27JAN31-T150": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"calendar year 2026\", \"family\": \"agricultural_metric\", \"key\": \"KXSDCORNYIELD-27JAN31-T150\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \\n\\n150 bu/acre, then the market resolves to Yes.\", \"rationale\": \"YES compares USDA-reported yield with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"south_dakota_corn_yield_2026\", \"web_search_used\": false}"
+      },
+      "KXSDCORNYIELD-27JAN31-T155": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"calendar year 2026\", \"family\": \"agricultural_metric\", \"key\": \"KXSDCORNYIELD-27JAN31-T155\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \\n\\n155 bu/acre, then the market resolves to Yes.\", \"rationale\": \"YES compares USDA-reported yield with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"south_dakota_corn_yield_2026\", \"web_search_used\": false}"
+      },
+      "KXSDCORNYIELD-27JAN31-T160": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"calendar year 2026\", \"family\": \"agricultural_metric\", \"key\": \"KXSDCORNYIELD-27JAN31-T160\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \\n\\n160 bu/acre, then the market resolves to Yes.\", \"rationale\": \"YES compares USDA-reported yield with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"south_dakota_corn_yield_2026\", \"web_search_used\": false}"
+      },
+      "KXSDCORNYIELD-27JAN31-T165": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"calendar year 2026\", \"family\": \"agricultural_metric\", \"key\": \"KXSDCORNYIELD-27JAN31-T165\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \\n\\n165 bu/acre, then the market resolves to Yes.\", \"rationale\": \"YES compares USDA-reported yield with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"south_dakota_corn_yield_2026\", \"web_search_used\": false}"
+      },
+      "KXSDCORNYIELD-27JAN31-T170": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"calendar year 2026\", \"family\": \"agricultural_metric\", \"key\": \"KXSDCORNYIELD-27JAN31-T170\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \\n\\n170 bu/acre, then the market resolves to Yes.\", \"rationale\": \"YES compares USDA-reported yield with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"south_dakota_corn_yield_2026\", \"web_search_used\": false}"
+      },
+      "KXSDCORNYIELD-27JAN31-T175": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"calendar year 2026\", \"family\": \"agricultural_metric\", \"key\": \"KXSDCORNYIELD-27JAN31-T175\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \\n\\n175 bu/acre, then the market resolves to Yes.\", \"rationale\": \"YES compares USDA-reported yield with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"south_dakota_corn_yield_2026\", \"web_search_used\": false}"
+      },
+      "KXSDCORNYIELD-27JAN31-T180": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"calendar year 2026\", \"family\": \"agricultural_metric\", \"key\": \"KXSDCORNYIELD-27JAN31-T180\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \\n\\n180 bu/acre, then the market resolves to Yes.\", \"rationale\": \"YES compares USDA-reported yield with a threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"south_dakota_corn_yield_2026\", \"web_search_used\": false}"
+      },
+      "KXSMITHSONIAN-27JAN01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"before January 1, 2027\", \"family\": \"federal_policy_announcement\", \"key\": \"KXSMITHSONIAN-27JAN01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the US agrees to or announces a substantive federal action arising from its Smithsonian pressure campaign before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The predicate is a discretionary executive-branch action or announcement; no mandatory staged process is specified.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_smithsonian_pressure_campaign_action\", \"web_search_used\": false}"
+      }
+    },
+    "web_search": true
+  },
+  "request": {
+    "batch_id": "36",
+    "candidate_keys": [
+      "KXAAAGASED-26NOV03-2.50",
+      "KXAAAGASED-26NOV03-2.75",
+      "KXAAAGASED-26NOV03-3.00",
+      "KXAAAGASED-26NOV03-3.25",
+      "KXAAAGASED-26NOV03-3.50",
+      "KXAAAGASED-26NOV03-3.75",
+      "KXAAAGASED-26NOV03-4.00",
+      "KXAAAGASED-26NOV03-4.25",
+      "KXAAAGASED-26NOV03-4.50",
+      "KXAAAGASED-26NOV03-4.75",
+      "KXAAAGASED-26NOV03-5.00",
+      "KXSDCORNYIELD-27JAN31-T145",
+      "KXSDCORNYIELD-27JAN31-T150",
+      "KXSDCORNYIELD-27JAN31-T155",
+      "KXSDCORNYIELD-27JAN31-T160",
+      "KXSDCORNYIELD-27JAN31-T165",
+      "KXSDCORNYIELD-27JAN31-T170",
+      "KXSDCORNYIELD-27JAN31-T175",
+      "KXSDCORNYIELD-27JAN31-T180",
+      "KXNYQSBS-27JAN01",
+      "KXGOVTCUTS-26-1000",
+      "KXGOVTCUTS-26-2000",
+      "KXGOVTCUTS-26-250",
+      "KXGOVTCUTS-26-500",
+      "KXGOVTCUTS-26-750",
+      "KXGOVTCUTS-26-BILLIONB",
+      "KXNDKOIL-27FEB26-T421.101",
+      "KXALBUMRELEASEDATE-NEWMRB-27JAN01",
+      "KXDST-27JAN01",
+      "KXSMITHSONIAN-27JAN01",
+      "KXCYCLOCOUNT-27JAN01-A16000",
+      "KXCYCLOCOUNT-27JAN01-A20000",
+      "KXCYCLOCOUNT-27JAN01-A22000",
+      "KXCYCLOCOUNT-27JAN01-A24000",
+      "KXCYCLOCOUNT-27JAN01-A32000",
+      "KXCYCLOCOUNT-27JAN01-A8000",
+      "KXALBUMRELEASEDATETRAVIS-OCT01-26",
+      "KXCREDITRATING-26DEC31",
+      "KXHELLCAT-27-CAT",
+      "KXFEDFREQ-26JUL-27JAN01",
+      "KXINXMINY-01JAN2027-5900.01",
+      "KXINXMINY-01JAN2027-6000.01",
+      "KXINXMINY-01JAN2027-6100.01",
+      "KXINXMINY-01JAN2027-6200.01",
+      "KXINXMINY-01JAN2027-6300.01",
+      "KXJUDGMENT-USPSMAIL26"
+    ],
+    "decision_at": "2026-09-05T19:53:15.489944+00:00",
+    "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-036\\first-output.jsonl",
+    "payload": {
+      "decision_at": "2026-09-05T19:53:15.489944+00:00",
+      "events": [
+        {
+          "event_key": "KXAAAGASED-26NOV03",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASED-26NOV03",
+              "key": "KXAAAGASED-26NOV03-2.50",
+              "no_sub_title": "Above 2.50",
+              "rules_primary": "If average regular gas prices for the United States are strictly greater than $2.50 on Nov 3, 2026 according to AAA, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-11-03T04:59:00Z",
+              "series": "KXAAAGASED",
+              "subtitle": null,
+              "title": "Will average **gas prices** be above $2.50?",
+              "yes_sub_title": "Above 2.50"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASED-26NOV03",
+              "key": "KXAAAGASED-26NOV03-2.75",
+              "no_sub_title": "Above 2.75",
+              "rules_primary": "If average regular gas prices for the United States are strictly greater than $2.75 on Nov 3, 2026 according to AAA, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-11-03T04:59:00Z",
+              "series": "KXAAAGASED",
+              "subtitle": null,
+              "title": "Will average **gas prices** be above $2.75?",
+              "yes_sub_title": "Above 2.75"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASED-26NOV03",
+              "key": "KXAAAGASED-26NOV03-3.00",
+              "no_sub_title": "Above 3.00",
+              "rules_primary": "If average regular gas prices for the United States are strictly greater than $3.00 on Nov 3, 2026 according to AAA, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-11-03T04:59:00Z",
+              "series": "KXAAAGASED",
+              "subtitle": null,
+              "title": "Will average **gas prices** be above $3.00?",
+              "yes_sub_title": "Above 3.00"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASED-26NOV03",
+              "key": "KXAAAGASED-26NOV03-3.25",
+              "no_sub_title": "Above 3.25",
+              "rules_primary": "If average regular gas prices for the United States are strictly greater than $3.25 on Nov 3, 2026 according to AAA, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-11-03T04:59:00Z",
+              "series": "KXAAAGASED",
+              "subtitle": null,
+              "title": "Will average **gas prices** be above $3.25?",
+              "yes_sub_title": "Above 3.25"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASED-26NOV03",
+              "key": "KXAAAGASED-26NOV03-3.50",
+              "no_sub_title": "Above 3.50",
+              "rules_primary": "If average regular gas prices for the United States are strictly greater than $3.50 on Nov 3, 2026 according to AAA, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-11-03T04:59:00Z",
+              "series": "KXAAAGASED",
+              "subtitle": null,
+              "title": "Will average **gas prices** be above $3.50?",
+              "yes_sub_title": "Above 3.50"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASED-26NOV03",
+              "key": "KXAAAGASED-26NOV03-3.75",
+              "no_sub_title": "Above 3.75",
+              "rules_primary": "If average regular gas prices for the United States are strictly greater than $3.75 on Nov 3, 2026 according to AAA, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-11-03T04:59:00Z",
+              "series": "KXAAAGASED",
+              "subtitle": null,
+              "title": "Will average **gas prices** be above $3.75?",
+              "yes_sub_title": "Above 3.75"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASED-26NOV03",
+              "key": "KXAAAGASED-26NOV03-4.00",
+              "no_sub_title": "Above 4.00",
+              "rules_primary": "If average regular gas prices for the United States are strictly greater than $4.00 on Nov 3, 2026 according to AAA, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-11-03T04:59:00Z",
+              "series": "KXAAAGASED",
+              "subtitle": null,
+              "title": "Will average **gas prices** be above $4.00?",
+              "yes_sub_title": "Above 4.00"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASED-26NOV03",
+              "key": "KXAAAGASED-26NOV03-4.25",
+              "no_sub_title": "Above 4.25",
+              "rules_primary": "If average regular gas prices for the United States are strictly greater than $4.25 on Nov 3, 2026 according to AAA, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-11-03T04:59:00Z",
+              "series": "KXAAAGASED",
+              "subtitle": null,
+              "title": "Will average **gas prices** be above $4.25?",
+              "yes_sub_title": "Above 4.25"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASED-26NOV03",
+              "key": "KXAAAGASED-26NOV03-4.50",
+              "no_sub_title": "Above 4.50",
+              "rules_primary": "If average regular gas prices for the United States are strictly greater than $4.50 on Nov 3, 2026 according to AAA, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-11-03T04:59:00Z",
+              "series": "KXAAAGASED",
+              "subtitle": null,
+              "title": "Will average **gas prices** be above $4.50?",
+              "yes_sub_title": "Above 4.50"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASED-26NOV03",
+              "key": "KXAAAGASED-26NOV03-4.75",
+              "no_sub_title": "Above 4.75",
+              "rules_primary": "If average regular gas prices for the United States are strictly greater than $4.75 on Nov 3, 2026 according to AAA, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-11-03T04:59:00Z",
+              "series": "KXAAAGASED",
+              "subtitle": null,
+              "title": "Will average **gas prices** be above $4.75?",
+              "yes_sub_title": "Above 4.75"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASED-26NOV03",
+              "key": "KXAAAGASED-26NOV03-5.00",
+              "no_sub_title": "Above 5.00",
+              "rules_primary": "If average regular gas prices for the United States are strictly greater than $5.00 on Nov 3, 2026 according to AAA, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-11-03T04:59:00Z",
+              "series": "KXAAAGASED",
+              "subtitle": null,
+              "title": "Will average **gas prices** be above $5.00?",
+              "yes_sub_title": "Above 5.00"
+            }
+          ]
+        },
+        {
+          "event_key": "KXSDCORNYIELD-27JAN31",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXSDCORNYIELD-27JAN31",
+              "key": "KXSDCORNYIELD-27JAN31-T145",
+              "no_sub_title": "Above 145 bu/acre",
+              "rules_primary": "If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \n\n145 bu/acre, then the market resolves to Yes.",
+              "rules_secondary": "Resolution will be based on South Dakota\u2019s 2026 corn for grain yield per harvested acre, as reported by USDA NASS in the first Crop Production Annual Summary containing the final 2026 estimate. Yield is measured in bushels per harvested acre. Corn silage yield will not be considered. Subsequent revisions will not affect resolution.",
+              "scheduled_close": "2027-01-31T14:59:00Z",
+              "series": "KXSDCORNYIELD",
+              "subtitle": null,
+              "title": "Will South Dakota's corn for grain yield per harvested acre for 2026 be above 145 bu/acre?",
+              "yes_sub_title": "Above 145 bu/acre"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXSDCORNYIELD-27JAN31",
+              "key": "KXSDCORNYIELD-27JAN31-T150",
+              "no_sub_title": "Above 150 bu/acre",
+              "rules_primary": "If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \n\n150 bu/acre, then the market resolves to Yes.",
+              "rules_secondary": "Resolution will be based on South Dakota\u2019s 2026 corn for grain yield per harvested acre, as reported by USDA NASS in the first Crop Production Annual Summary containing the final 2026 estimate. Yield is measured in bushels per harvested acre. Corn silage yield will not be considered. Subsequent revisions will not affect resolution.",
+              "scheduled_close": "2027-01-31T14:59:00Z",
+              "series": "KXSDCORNYIELD",
+              "subtitle": null,
+              "title": "Will South Dakota's corn for grain yield per harvested acre for 2026 be above 150 bu/acre?",
+              "yes_sub_title": "Above 150 bu/acre"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXSDCORNYIELD-27JAN31",
+              "key": "KXSDCORNYIELD-27JAN31-T155",
+              "no_sub_title": "Above 155 bu/acre",
+              "rules_primary": "If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \n\n155 bu/acre, then the market resolves to Yes.",
+              "rules_secondary": "Resolution will be based on South Dakota\u2019s 2026 corn for grain yield per harvested acre, as reported by USDA NASS in the first Crop Production Annual Summary containing the final 2026 estimate. Yield is measured in bushels per harvested acre. Corn silage yield will not be considered. Subsequent revisions will not affect resolution.",
+              "scheduled_close": "2027-01-31T14:59:00Z",
+              "series": "KXSDCORNYIELD",
+              "subtitle": null,
+              "title": "Will South Dakota's corn for grain yield per harvested acre for 2026 be above 155 bu/acre?",
+              "yes_sub_title": "Above 155 bu/acre"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXSDCORNYIELD-27JAN31",
+              "key": "KXSDCORNYIELD-27JAN31-T160",
+              "no_sub_title": "Above 160 bu/acre",
+              "rules_primary": "If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \n\n160 bu/acre, then the market resolves to Yes.",
+              "rules_secondary": "Resolution will be based on South Dakota\u2019s 2026 corn for grain yield per harvested acre, as reported by USDA NASS in the first Crop Production Annual Summary containing the final 2026 estimate. Yield is measured in bushels per harvested acre. Corn silage yield will not be considered. Subsequent revisions will not affect resolution.",
+              "scheduled_close": "2027-01-31T14:59:00Z",
+              "series": "KXSDCORNYIELD",
+              "subtitle": null,
+              "title": "Will South Dakota's corn for grain yield per harvested acre for 2026 be above 160 bu/acre?",
+              "yes_sub_title": "Above 160 bu/acre"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXSDCORNYIELD-27JAN31",
+              "key": "KXSDCORNYIELD-27JAN31-T165",
+              "no_sub_title": "Above 165 bu/acre",
+              "rules_primary": "If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \n\n165 bu/acre, then the market resolves to Yes.",
+              "rules_secondary": "Resolution will be based on South Dakota\u2019s 2026 corn for grain yield per harvested acre, as reported by USDA NASS in the first Crop Production Annual Summary containing the final 2026 estimate. Yield is measured in bushels per harvested acre. Corn silage yield will not be considered. Subsequent revisions will not affect resolution.",
+              "scheduled_close": "2027-01-31T14:59:00Z",
+              "series": "KXSDCORNYIELD",
+              "subtitle": null,
+              "title": "Will South Dakota's corn for grain yield per harvested acre for 2026 be above 165 bu/acre?",
+              "yes_sub_title": "Above 165 bu/acre"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXSDCORNYIELD-27JAN31",
+              "key": "KXSDCORNYIELD-27JAN31-T170",
+              "no_sub_title": "Above 170 bu/acre",
+              "rules_primary": "If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \n\n170 bu/acre, then the market resolves to Yes.",
+              "rules_secondary": "Resolution will be based on South Dakota\u2019s 2026 corn for grain yield per harvested acre, as reported by USDA NASS in the first Crop Production Annual Summary containing the final 2026 estimate. Yield is measured in bushels per harvested acre. Corn silage yield will not be considered. Subsequent revisions will not affect resolution.",
+              "scheduled_close": "2027-01-31T14:59:00Z",
+              "series": "KXSDCORNYIELD",
+              "subtitle": null,
+              "title": "Will South Dakota's corn for grain yield per harvested acre for 2026 be above 170 bu/acre?",
+              "yes_sub_title": "Above 170 bu/acre"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXSDCORNYIELD-27JAN31",
+              "key": "KXSDCORNYIELD-27JAN31-T175",
+              "no_sub_title": "Above 175 bu/acre",
+              "rules_primary": "If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \n\n175 bu/acre, then the market resolves to Yes.",
+              "rules_secondary": "Resolution will be based on South Dakota\u2019s 2026 corn for grain yield per harvested acre, as reported by USDA NASS in the first Crop Production Annual Summary containing the final 2026 estimate. Yield is measured in bushels per harvested acre. Corn silage yield will not be considered. Subsequent revisions will not affect resolution.",
+              "scheduled_close": "2027-01-31T14:59:00Z",
+              "series": "KXSDCORNYIELD",
+              "subtitle": null,
+              "title": "Will South Dakota's corn for grain yield per harvested acre for 2026 be above 175 bu/acre?",
+              "yes_sub_title": "Above 175 bu/acre"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXSDCORNYIELD-27JAN31",
+              "key": "KXSDCORNYIELD-27JAN31-T180",
+              "no_sub_title": "Above 180 bu/acre",
+              "rules_primary": "If USDA NASS reports that South Dakota's corn for grain yield per harvested acre for 2026 is above \n\n180 bu/acre, then the market resolves to Yes.",
+              "rules_secondary": "Resolution will be based on South Dakota\u2019s 2026 corn for grain yield per harvested acre, as reported by USDA NASS in the first Crop Production Annual Summary containing the final 2026 estimate. Yield is measured in bushels per harvested acre. Corn silage yield will not be considered. Subsequent revisions will not affect resolution.",
+              "scheduled_close": "2027-01-31T14:59:00Z",
+              "series": "KXSDCORNYIELD",
+              "subtitle": null,
+              "title": "Will South Dakota's corn for grain yield per harvested acre for 2026 be above 180 bu/acre?",
+              "yes_sub_title": "Above 180 bu/acre"
+            }
+          ]
+        },
+        {
+          "event_key": "KXNYQSBS-27JAN01",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXNYQSBS-27JAN01",
+              "key": "KXNYQSBS-27JAN01",
+              "no_sub_title": "Yes",
+              "rules_primary": "If legislation that decouples New York tax law from the federal Qualified Small Business Stock (QSBS) gain exclusion under IRC \u00a71202 has become law in New York before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law. For standard legislation requiring executive approval, this includes final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods. For legislation not requiring executive approval, this includes final passage and completion of required waiting periods. For constitutional amendments, this includes passage with required supermajorities and completion of ratification processes. For executive orders, this includes official signature, publication in official government records, and legal effectiveness. Legislative passage without completed executive action, passage by only some required bodies, provisional passage, non-binding resolutions, and draft orders do not constitute enactment. Enactment occurs when all requirements are completed, regardless of pending judicial challenges.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXNYQSBS",
+              "subtitle": null,
+              "title": "Will legislation that decouples New York tax law from the federal Qualified Small Business Stock (QSBS) gain exclusion under IRC \u00a71202 become law in New York before Jan 1, 2027?",
+              "yes_sub_title": "Yes"
+            }
+          ]
+        },
+        {
+          "event_key": "KXGOVTCUTS-26",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXGOVTCUTS-26",
+              "key": "KXGOVTCUTS-26-1000",
+              "no_sub_title": "At least 1 trillion",
+              "rules_primary": "If government spending decreases by at least 1000 billion during Q4 2024 to Q4 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-03-31T15:00:00Z",
+              "series": "KXGOVTCUTS",
+              "subtitle": null,
+              "title": "Will government spending decrease by 1000 before 2026?",
+              "yes_sub_title": "At least 1 trillion"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXGOVTCUTS-26",
+              "key": "KXGOVTCUTS-26-2000",
+              "no_sub_title": "At least 2 trillion",
+              "rules_primary": "If government spending decreases by at least 2000 billion during Q4 2024 to Q4 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-03-31T15:00:00Z",
+              "series": "KXGOVTCUTS",
+              "subtitle": null,
+              "title": "Will government spending decrease by 2000 before 2026?",
+              "yes_sub_title": "At least 2 trillion"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXGOVTCUTS-26",
+              "key": "KXGOVTCUTS-26-250",
+              "no_sub_title": "At least 250 billion",
+              "rules_primary": "If government spending decreases by at least 250 billion during Q4 2024 to Q4 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-03-31T15:00:00Z",
+              "series": "KXGOVTCUTS",
+              "subtitle": null,
+              "title": "Will government spending decrease by 250 before 2026?",
+              "yes_sub_title": "At least 250 billion"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXGOVTCUTS-26",
+              "key": "KXGOVTCUTS-26-500",
+              "no_sub_title": "At least 500 billion",
+              "rules_primary": "If government spending decreases by at least 500 billion during Q4 2024 to Q4 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-03-31T15:00:00Z",
+              "series": "KXGOVTCUTS",
+              "subtitle": null,
+              "title": "Will government spending decrease by 500 before 2026?",
+              "yes_sub_title": "At least 500 billion"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXGOVTCUTS-26",
+              "key": "KXGOVTCUTS-26-750",
+              "no_sub_title": "At least 750 billion",
+              "rules_primary": "If government spending decreases by at least 750 billion during Q4 2024 to Q4 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-03-31T15:00:00Z",
+              "series": "KXGOVTCUTS",
+              "subtitle": null,
+              "title": "Will government spending decrease by 750 before 2026?",
+              "yes_sub_title": "At least 750 billion"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXGOVTCUTS-26",
+              "key": "KXGOVTCUTS-26-BILLIONB",
+              "no_sub_title": "At least 50 billion",
+              "rules_primary": "If government spending (FGEXPND) is at least $50 billion below the Q4 2024 level in any quarter through Q4 2026, then the market resolves to Yes.",
+              "rules_secondary": "Each quarter from Q1 2025 to Q4 2026 is compared against Q4 2024.",
+              "scheduled_close": "2027-03-31T15:00:00Z",
+              "series": "KXGOVTCUTS",
+              "subtitle": null,
+              "title": "Will government spending decrease by 50 before 2026?",
+              "yes_sub_title": "At least 50 billion"
+            }
+          ]
+        },
+        {
+          "event_key": "KXNDKOIL-27FEB26",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXNDKOIL-27FEB26",
+              "key": "KXNDKOIL-27FEB26-T421.101",
+              "no_sub_title": "Above 421.101 million barrels",
+              "rules_primary": "If EIA reports that North Dakota\u2019s field production of crude oil for calendar year 2026 is above \n\n421.101 million barrels, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is EIA\u2019s North Dakota Field Production of Crude Oil annual total for 2026. EIA reports the statistic in thousand barrels, so the fixed threshold is 421,101 thousand barrels. The threshold will not change if EIA subsequently revises its 2025 value.",
+              "scheduled_close": "2027-02-26T14:59:00Z",
+              "series": "KXNDKOIL",
+              "subtitle": null,
+              "title": "Will North Dakota\u2019s field production of crude oil for 2026 be above 421.101 million barrels?",
+              "yes_sub_title": "Above 421.101 million barrels"
+            }
+          ]
+        },
+        {
+          "event_key": "KXALBUMRELEASEDATE-NEWMRB",
+          "markets": [
+            {
+              "category": "Entertainment",
+              "event_key": "KXALBUMRELEASEDATE-NEWMRB",
+              "key": "KXALBUMRELEASEDATE-NEWMRB-27JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If MrBeast formally known as James Stephen Donaldson releases a new album after issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXALBUMRELEASEDATE",
+              "subtitle": null,
+              "title": "Will MrBeast formally known as James Stephen Donaldson release new album after issuance and before Jan 1, 2027",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXDST-27JAN01",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXDST-27JAN01",
+              "key": "KXDST-27JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If legislation establishing permanent Daylight Saving Time has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXDST",
+              "subtitle": "Yes",
+              "title": "Will permanent daylight savings become law before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXSMITHSONIAN-27JAN01",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXSMITHSONIAN-27JAN01",
+              "key": "KXSMITHSONIAN-27JAN01",
+              "no_sub_title": "Yes",
+              "rules_primary": "If the US agrees to or announces a substantive federal action arising from its Smithsonian pressure campaign before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "For this market, a qualifying action is limited to one of the following:\n\nA federal agency cancels, suspends, or refuses to renew an existing artifact loan to the Smithsonian.\nA federal agency cancels, suspends, or refuses to renew an existing procurement-assistance arrangement with the Smithsonian.\nA federal agency withholds, rescinds, suspends, or refuses a named discretionary grant to the Smithsonian, or imposes a new binding condition on that grant.\nThe Department of the Interior or National Park Service installs any of the temporary Smithsonian-related signs or exhibits on National Park Service property ordered by Executive Order 14416.\nThe President, Vice President, or another authorized executive-branch official takes a formal action that results in the removal, replacement, or resignation of the Smithsonian Secretary, or a change in voting control of the Smithsonian Board of Regents.\n\nFor the first three items, the federal action or announcement must expressly tie the decision to the dispute over Smithsonian leadership, governance, or museum content, or to Executive Order 14253, Executive Order 14416, the July 2026 White House report, or the Aug. 28, 2026 letter.\n\nAn unconditional official announcement also qualifies if the President, an authorized Cabinet official, or the responsible federal agency commits the United States to one of the listed actions, even if implementation will occur later. No other action qualifies.\n\nA conditional threat; a review, report, recommendation, meeting request, or expression of dissatisfaction; proposed legislation; a routine Smithsonian decision; or an action completed before Issuance does NOT qualify. Executive Order 14253, Executive Order 14416 itself, the July 2026 White House report, and the Aug. 28, 2026 letter therefore do NOT qualify.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXSMITHSONIAN",
+              "subtitle": null,
+              "title": "Will the US agree to or announce a substantive federal action arising from its Smithsonian pressure campaign before Jan 1, 2027?",
+              "yes_sub_title": "Yes"
+            }
+          ]
+        },
+        {
+          "event_key": "KXCYCLOCOUNT-27JAN01",
+          "markets": [
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCYCLOCOUNT-27JAN01",
+              "key": "KXCYCLOCOUNT-27JAN01-A16000",
+              "no_sub_title": "Above 16k",
+              "rules_primary": "If the total number of Cyclosporiasis cases reported in the United States during 2026 is above 16000, then the market resolves to Yes.",
+              "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized.",
+              "scheduled_close": "2027-01-01T14:59:00Z",
+              "series": "KXCYCLOCOUNT",
+              "subtitle": null,
+              "title": "Above 16000 Cyclosporiasis cases in the United States during 2026",
+              "yes_sub_title": "Above 16k"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCYCLOCOUNT-27JAN01",
+              "key": "KXCYCLOCOUNT-27JAN01-A20000",
+              "no_sub_title": "Above 20k",
+              "rules_primary": "If the total number of Cyclosporiasis cases reported in the United States during 2026 is above 20000, then the market resolves to Yes.",
+              "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized.",
+              "scheduled_close": "2027-01-01T14:59:00Z",
+              "series": "KXCYCLOCOUNT",
+              "subtitle": null,
+              "title": "Above 20000 Cyclosporiasis cases in the United States during 2026",
+              "yes_sub_title": "Above 20k"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCYCLOCOUNT-27JAN01",
+              "key": "KXCYCLOCOUNT-27JAN01-A22000",
+              "no_sub_title": "Above 22k",
+              "rules_primary": "If the total number of Cyclosporiasis cases reported in the United States during 2026 is above 22000, then the market resolves to Yes.",
+              "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized.",
+              "scheduled_close": "2027-01-01T14:59:00Z",
+              "series": "KXCYCLOCOUNT",
+              "subtitle": null,
+              "title": "Above 22000 Cyclosporiasis cases in the United States during 2026",
+              "yes_sub_title": "Above 22k"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCYCLOCOUNT-27JAN01",
+              "key": "KXCYCLOCOUNT-27JAN01-A24000",
+              "no_sub_title": "Above 24k",
+              "rules_primary": "If the total number of Cyclosporiasis cases reported in the United States during 2026 is above 24000, then the market resolves to Yes.",
+              "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized.",
+              "scheduled_close": "2027-01-01T14:59:00Z",
+              "series": "KXCYCLOCOUNT",
+              "subtitle": null,
+              "title": "Above 24000 Cyclosporiasis cases in the United States during 2026",
+              "yes_sub_title": "Above 24k"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCYCLOCOUNT-27JAN01",
+              "key": "KXCYCLOCOUNT-27JAN01-A32000",
+              "no_sub_title": "Above 32k",
+              "rules_primary": "If the total number of Cyclosporiasis cases reported in the United States during 2026 is above 32000, then the market resolves to Yes.",
+              "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized.",
+              "scheduled_close": "2027-01-01T14:59:00Z",
+              "series": "KXCYCLOCOUNT",
+              "subtitle": null,
+              "title": "Above 32000 Cyclosporiasis cases in the United States during 2026",
+              "yes_sub_title": "Above 32k"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCYCLOCOUNT-27JAN01",
+              "key": "KXCYCLOCOUNT-27JAN01-A8000",
+              "no_sub_title": "Above 8k",
+              "rules_primary": "If the total number of Cyclosporiasis cases reported in the United States during 2026 is above 8000, then the market resolves to Yes.",
+              "rules_secondary": "Cases are determined at 10:00 AM ET on the Expiration Date (January 8). Cases that actually occur between the end of the specified time period and Expiration do not count, but newly reported cases during this window do count if they are backdated to 2026. See the full rules for how Source Agencies are prioritized.",
+              "scheduled_close": "2027-01-01T14:59:00Z",
+              "series": "KXCYCLOCOUNT",
+              "subtitle": null,
+              "title": "Above 8000 Cyclosporiasis cases in the United States during 2026",
+              "yes_sub_title": "Above 8k"
+            }
+          ]
+        },
+        {
+          "event_key": "KXALBUMRELEASEDATETRAVIS",
+          "markets": [
+            {
+              "category": "Entertainment",
+              "event_key": "KXALBUMRELEASEDATETRAVIS",
+              "key": "KXALBUMRELEASEDATETRAVIS-OCT01-26",
+              "no_sub_title": "Before October",
+              "rules_primary": "If Travis Scott releases a a new album Before Oct 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-10-01T14:00:00Z",
+              "series": "KXALBUMRELEASEDATETRAVIS",
+              "subtitle": null,
+              "title": "Will Travis Scott release a new album before Oct 1, 2026?",
+              "yes_sub_title": "Before October"
+            }
+          ]
+        },
+        {
+          "event_key": "KXCREDITRATING-26DEC31",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXCREDITRATING-26DEC31",
+              "key": "KXCREDITRATING-26DEC31",
+              "no_sub_title": "Rating reduced",
+              "rules_primary": "If U.S. credit is downgraded by any of the three major credit ratings agencies by December 31, 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXCREDITRATING",
+              "subtitle": "U.S. is downgraded or defaults",
+              "title": "Will the U.S. credit rating be downgraded by December 31, 2026?",
+              "yes_sub_title": "Rating reduced"
+            }
+          ]
+        },
+        {
+          "event_key": "KXHELLCAT-27",
+          "markets": [
+            {
+              "category": "Companies",
+              "event_key": "KXHELLCAT-27",
+              "key": "KXHELLCAT-27-CAT",
+              "no_sub_title": "Dodge Challenger Hellcat",
+              "rules_primary": "If Dodge releases Dodge Challenger Hellcat to the public before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXHELLCAT",
+              "subtitle": null,
+              "title": "When will Dodge release Dodge Challenger Hellcat to the public?",
+              "yes_sub_title": "Dodge Challenger Hellcat"
+            }
+          ]
+        },
+        {
+          "event_key": "KXFEDFREQ-26JUL",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXFEDFREQ-26JUL",
+              "key": "KXFEDFREQ-26JUL-27JAN01",
+              "no_sub_title": "Yes",
+              "rules_primary": "If the Federal Open Market Committee (FOMC) announces a decision to schedule fewer than eight regular FOMC monetary-policy meetings in a calendar year as a change to the Committee\u2019s meeting cadence before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXFEDFREQ",
+              "subtitle": null,
+              "title": "Will the Federal Open Market Committee (FOMC) announce a decision to schedule fewer than eight regular FOMC monetary-policy meetings in a calendar year as a change to the Committee\u2019s meeting cadence before Jan 1, 2027?",
+              "yes_sub_title": "Yes"
+            }
+          ]
+        },
+        {
+          "event_key": "KXINXMINY-01JAN2027",
+          "markets": [
+            {
+              "category": "Financials",
+              "event_key": "KXINXMINY-01JAN2027",
+              "key": "KXINXMINY-01JAN2027-5900.01",
+              "no_sub_title": "5,900 or below",
+              "rules_primary": "If the value of the S&P 500 index value starting Jan 1, 2026 and ending on Jan 1, 2027 is below 5900.01, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T11:00:00Z",
+              "series": "KXINXMINY",
+              "subtitle": null,
+              "title": "Will the minimum SP500 value reach below 5900.01 by Jan 1, 2027?",
+              "yes_sub_title": "5,900 or below"
+            },
+            {
+              "category": "Financials",
+              "event_key": "KXINXMINY-01JAN2027",
+              "key": "KXINXMINY-01JAN2027-6000.01",
+              "no_sub_title": "6,000 or below",
+              "rules_primary": "If the value of the S&P 500 index value starting Jan 1, 2026 and ending on Jan 1, 2027 is below 6000.01, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T11:00:00Z",
+              "series": "KXINXMINY",
+              "subtitle": null,
+              "title": "Will the minimum SP500 value reach below 6000.01 by Jan 1, 2027?",
+              "yes_sub_title": "6,000 or below"
+            },
+            {
+              "category": "Financials",
+              "event_key": "KXINXMINY-01JAN2027",
+              "key": "KXINXMINY-01JAN2027-6100.01",
+              "no_sub_title": "6,100 or below",
+              "rules_primary": "If the value of the S&P 500 index value starting Jan 1, 2026 and ending on Jan 1, 2027 is below 6100.01, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T11:00:00Z",
+              "series": "KXINXMINY",
+              "subtitle": null,
+              "title": "Will the minimum SP500 value reach below 6100.01 by Jan 1, 2027?",
+              "yes_sub_title": "6,100 or below"
+            },
+            {
+              "category": "Financials",
+              "event_key": "KXINXMINY-01JAN2027",
+              "key": "KXINXMINY-01JAN2027-6200.01",
+              "no_sub_title": "6,200 or below",
+              "rules_primary": "If the value of the S&P 500 index value starting Jan 1, 2026 and ending on Jan 1, 2027 is below 6200.01, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T11:00:00Z",
+              "series": "KXINXMINY",
+              "subtitle": null,
+              "title": "Will the minimum SP500 value reach below 6200.01 by Jan 1, 2027?",
+              "yes_sub_title": "6,200 or below"
+            },
+            {
+              "category": "Financials",
+              "event_key": "KXINXMINY-01JAN2027",
+              "key": "KXINXMINY-01JAN2027-6300.01",
+              "no_sub_title": "6,300 or below",
+              "rules_primary": "If the value of the S&P 500 index value starting Jan 1, 2026 and ending on Jan 1, 2027 is below 6300.01, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T11:00:00Z",
+              "series": "KXINXMINY",
+              "subtitle": null,
+              "title": "Will the minimum SP500 value reach below 6300.01 by Jan 1, 2027?",
+              "yes_sub_title": "6,300 or below"
+            }
+          ]
+        },
+        {
+          "event_key": "KXJUDGMENT-USPSMAIL26",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXJUDGMENT-USPSMAIL26",
+              "key": "KXJUDGMENT-USPSMAIL26",
+              "no_sub_title": "Before Nov 3, 2026",
+              "rules_primary": "If the U.S. Supreme Court rules that USPS may enforce both the Federal Ballot Mail Portal registration or enrollment requirements and the related outbound federal ballot-mail pre-acceptance verification requirements for elections on or before November 3, 2026 in any Supreme Court proceeding arising from State of California, et al. v. United States Postal Service, et al., D. Mass. No. 1:26-cv-13917-IT before Nov 3, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The specified Case is any Supreme Court proceeding arising from State of California, et al. v. United States Postal Service, et al., D. Mass. No. 1:26-cv-13917-IT.\n\nThe ruling must:\nBe issued in a written order, opinion, judgment, or decision by the U.S. Supreme Court in that proceeding\nAddress the matter described by the specified judgment\n\nThe following do NOT satisfy the Payout Criterion:\nA procedural standing or ripeness order that does not itself permit enforcement\nA grant or denial of certiorari without operative relief\nA temporary administrative stay entered only for briefing or consideration\nOral, tentative, leaked, scheduling, show-cause, or non-substantive minute orders\nRelief limited to envelope design, voluntary portal development, or another provision without both specified components\n\nA stay or vacatur qualifies only if its operative text itself permits the portal and verification requirements to be enforced. The August 24 order in Trump v. California does NOT qualify. Per curiam opinions and summary orders count if they match the specified judgment.",
+              "scheduled_close": "2026-11-03T04:59:00Z",
+              "series": "KXJUDGMENT",
+              "subtitle": null,
+              "title": "Will SCOTUS let USPS enforce ballot-mail rules?",
+              "yes_sub_title": "Before Nov 3, 2026"
+            }
+          ]
+        }
+      ],
+      "snapshot_at": "2026-09-05T15:45:16Z"
+    },
+    "payload_sha256": "d8a33657b608c7f3efedc08ed294bd3a784d9d192a6b07b734a5d8b75df6280f",
+    "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-036\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-036\\first-output.jsonl\n",
+    "requested_effort": "high",
+    "requested_model": "gpt-5.6-sol",
+    "requested_web_search": true,
+    "run_id": "study/broad-procedural-20260905",
+    "run_mode": "study",
+    "stage": "analysis",
+    "theory_id": "study/broad-procedural",
+    "theory_version": 1
+  },
+  "schema_version": 1
+}

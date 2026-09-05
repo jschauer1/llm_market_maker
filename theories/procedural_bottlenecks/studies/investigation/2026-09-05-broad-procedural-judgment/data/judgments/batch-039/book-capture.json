@@ -1,0 +1,1699 @@
+{
+  "batch_id": "39",
+  "book_side_identity": {
+    "buy_no_ask": "1 - YES bid",
+    "buy_yes_ask": "1 - NO bid"
+  },
+  "candidate_keys": [
+    "KXGREENLAND-29-27",
+    "KXFEDMEET-27-JAN01",
+    "KXIAETHANOL-27JAN31-T4.4",
+    "KXIAETHANOL-27JAN31-T4.5",
+    "KXIAETHANOL-27JAN31-T5.0",
+    "KXBOLOJANOUT-26JUL-OCT01",
+    "KXCTMINWAGE-27JUL30-T18.00"
+  ],
+  "capture_id": "20260905T203634.419995Z-9e81f46a",
+  "capture_lag_seconds": 99.18091058731079,
+  "capture_started_utc": "2026-09-05T20:36:34.419995Z",
+  "depth_targets_contracts": [
+    100,
+    500,
+    1000
+  ],
+  "fee_schedule_evidence": {
+    "body_path": "theories/procedural_bottlenecks/data/design_audit/raw/fees/kalshi-fee-schedule-attempt1.pdf",
+    "effective_utc": "2026-07-07T00:00:00Z",
+    "formula": "round_up(M * 0.07 * C * P * (1-P))",
+    "receipt_path": "theories/procedural_bottlenecks/data/design_audit/raw/fees/kalshi-fee-schedule-attempt1.pdf.meta.json",
+    "retrieved_utc": "2026-09-05T16:32:10.754110+00:00",
+    "sha256": "c326a69f596a11e8f8be2620402d39a8d4823920c21cc97c93a114d862699601",
+    "status": "verified",
+    "url": "https://www.kalshi.com/docs/kalshi-fee-schedule.pdf"
+  },
+  "first_output": {
+    "mtime_ns": 1788640495239084600,
+    "mtime_utc": "2026-09-05T20:34:55.239084Z",
+    "path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/batch-039/first-output.jsonl",
+    "sha256": "6de602911443656b5340b48c0953c29478b0ba9ca30c708ddf0f898df3cc19d5"
+  },
+  "judgments": {
+    "KXBOLOJANOUT-26JUL-OCT01": {
+      "bucket": "not_applicable",
+      "bypass": "not applicable",
+      "deadline": "before October 1, 2026",
+      "family": "political_departure",
+      "key": "KXBOLOJANOUT-26JUL-OCT01",
+      "mandatory_steps": [],
+      "obstacle": "none established",
+      "predicate": "If Ilie Bolojan leaves as Prime Minister of Romania before Oct 1, 2026, then the market resolves to Yes.",
+      "rationale": "Departure from office is a discretionary political outcome, not a mandatory procedural sequence.",
+      "source_gaps": [
+        "none"
+      ],
+      "sources": [],
+      "subject_key": "ilie_bolojan_romania_prime_minister_departure",
+      "web_search_used": false
+    },
+    "KXCTMINWAGE-27JUL30-T18.00": {
+      "bucket": "not_applicable",
+      "bypass": "not applicable",
+      "deadline": "June 2027 ECI calculation",
+      "family": "formula_metric",
+      "key": "KXCTMINWAGE-27JUL30-T18.00",
+      "mandatory_steps": [],
+      "obstacle": "none established",
+      "predicate": "If the June 2027 BLS Employment Cost Index value used under Connecticut General Statutes \u00a731-58 produces a Connecticut minimum fair wage for January 1, 2028 that is above \n\n$18.00 per hour, then the market resolves to Yes.",
+      "rationale": "YES is a mechanical comparison of a statutory wage formula output with a threshold.",
+      "source_gaps": [
+        "none"
+      ],
+      "sources": [],
+      "subject_key": "connecticut_2028_minimum_wage_formula",
+      "web_search_used": false
+    },
+    "KXFEDMEET-27-JAN01": {
+      "bucket": "not_applicable",
+      "bypass": "not applicable",
+      "deadline": "before January 1, 2027",
+      "family": "committee_scheduling",
+      "key": "KXFEDMEET-27-JAN01",
+      "mandatory_steps": [],
+      "obstacle": "none established",
+      "predicate": "If the Federal Open market Committee has an unscheduled meeting before Jan 1, 2027, then the market resolves to Yes.",
+      "rationale": "An unscheduled meeting is a contingent discretionary committee action, with no necessary-step process defined by the rules.",
+      "source_gaps": [
+        "none"
+      ],
+      "sources": [],
+      "subject_key": "fomc_unscheduled_meeting_2026",
+      "web_search_used": false
+    },
+    "KXGREENLAND-29-27": {
+      "bucket": "substantive_barrier",
+      "bypass": "No route can bypass the required consent and still constitute a purchase from Denmark under the predicate.",
+      "deadline": "before January 1, 2027",
+      "family": "sovereign_territory_transaction",
+      "key": "KXGREENLAND-29-27",
+      "mandatory_steps": [
+        {
+          "source_url": "https://naalakkersuisut.gl/Nyheder/2025/01/1401_mute?sc_lang=da",
+          "status": "pending",
+          "step": "Greenland and Denmark agree to a transfer or sale"
+        },
+        {
+          "source_url": "rules",
+          "status": "pending",
+          "step": "United States completes a qualifying purchase"
+        }
+      ],
+      "obstacle": "Greenland\u2019s government states that Greenland is not for sale and belongs to Greenlanders.",
+      "predicate": "If the United States purchases at least part of Greenland from Denmark before Jan 1, 2027, then the market resolves to Yes.",
+      "rationale": "A purchase requires willing sovereign counterparties. Greenland\u2019s official position directly rejects a sale, and no current agreement process was established by the short deadline.",
+      "source_gaps": [
+        "No later official reversal or active purchase negotiation was found."
+      ],
+      "sources": [
+        {
+          "accessed_at": "2026-09-05T20:34:54.7051018Z",
+          "published_at": "2025-01-14",
+          "quote": "Greenland is not for sale",
+          "supports": "Greenland\u2019s government rejects the necessary transaction.",
+          "title": "Greenland is not for sale",
+          "url": "https://naalakkersuisut.gl/Nyheder/2025/01/1401_mute?sc_lang=da"
+        }
+      ],
+      "subject_key": "us_purchase_part_of_greenland",
+      "web_search_used": true
+    },
+    "KXIAETHANOL-27JAN31-T4.4": {
+      "bucket": "not_applicable",
+      "bypass": "not applicable",
+      "deadline": "calendar year 2026",
+      "family": "production_metric",
+      "key": "KXIAETHANOL-27JAN31-T4.4",
+      "mandatory_steps": [],
+      "obstacle": "none established",
+      "predicate": "If IRFA reports that Iowa ethanol production for calendar year 2026 is above \n\n4.4 billion gallons, then the market resolves to Yes.",
+      "rationale": "YES is a reported aggregate production total compared with a threshold.",
+      "source_gaps": [
+        "none"
+      ],
+      "sources": [],
+      "subject_key": "iowa_ethanol_production_2026",
+      "web_search_used": false
+    },
+    "KXIAETHANOL-27JAN31-T4.5": {
+      "bucket": "not_applicable",
+      "bypass": "not applicable",
+      "deadline": "calendar year 2026",
+      "family": "production_metric",
+      "key": "KXIAETHANOL-27JAN31-T4.5",
+      "mandatory_steps": [],
+      "obstacle": "none established",
+      "predicate": "If IRFA reports that Iowa ethanol production for calendar year 2026 is above \n\n4.5 billion gallons, then the market resolves to Yes.",
+      "rationale": "YES is a reported aggregate production total compared with a threshold.",
+      "source_gaps": [
+        "none"
+      ],
+      "sources": [],
+      "subject_key": "iowa_ethanol_production_2026",
+      "web_search_used": false
+    },
+    "KXIAETHANOL-27JAN31-T5.0": {
+      "bucket": "not_applicable",
+      "bypass": "not applicable",
+      "deadline": "calendar year 2026",
+      "family": "production_metric",
+      "key": "KXIAETHANOL-27JAN31-T5.0",
+      "mandatory_steps": [],
+      "obstacle": "none established",
+      "predicate": "If IRFA reports that Iowa ethanol production for calendar year 2026 is above \n\n5.0 billion gallons, then the market resolves to Yes.",
+      "rationale": "YES is a reported aggregate production total compared with a threshold.",
+      "source_gaps": [
+        "none"
+      ],
+      "sources": [],
+      "subject_key": "iowa_ethanol_production_2026",
+      "web_search_used": false
+    }
+  },
+  "ledger_writes": false,
+  "markets": {
+    "KXBOLOJANOUT-26JUL-OCT01": {
+      "depth_curves": {
+        "buy_no": {
+          "100": {
+            "available_contracts": 550.0,
+            "average_payable": 0.8965000000000001,
+            "average_price": 0.8895000000000001,
+            "best_ask": 0.88,
+            "fee_dollars": 0.7000000000000001,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 100.0,
+            "target_contracts": 100.0,
+            "worst_ask": 0.89
+          },
+          "1000": {
+            "available_contracts": 550.0,
+            "average_payable": null,
+            "average_price": 0.9472727272727273,
+            "best_ask": 0.88,
+            "fee_dollars": null,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": false,
+            "filled_contracts": 550.0,
+            "target_contracts": 1000.0,
+            "worst_ask": 0.99
+          },
+          "500": {
+            "available_contracts": 550.0,
+            "average_payable": 0.94666,
+            "average_price": 0.943,
+            "best_ask": 0.88,
+            "fee_dollars": 1.8299999999999998,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 500.0,
+            "target_contracts": 500.0,
+            "worst_ask": 0.98
+          }
+        },
+        "buy_yes": {
+          "100": {
+            "available_contracts": 1603.0,
+            "average_payable": 0.1959,
+            "average_price": 0.1852,
+            "best_ask": 0.15,
+            "fee_dollars": 1.07,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 100.0,
+            "target_contracts": 100.0,
+            "worst_ask": 0.19
+          },
+          "1000": {
+            "available_contracts": 1603.0,
+            "average_payable": 0.51628,
+            "average_price": 0.50116,
+            "best_ask": 0.15,
+            "fee_dollars": 15.12,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 1000.0,
+            "target_contracts": 1000.0,
+            "worst_ask": 0.85
+          },
+          "500": {
+            "available_contracts": 1603.0,
+            "average_payable": 0.3960600000000001,
+            "average_price": 0.38152,
+            "best_ask": 0.15,
+            "fee_dollars": 7.2700000000000005,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 500.0,
+            "target_contracts": 500.0,
+            "worst_ask": 0.54
+          }
+        }
+      },
+      "failures": [],
+      "fee": {
+        "multiplier": 1.0,
+        "reason": null,
+        "status": "verified_quadratic"
+      },
+      "market_metadata": {
+        "can_close_early": true,
+        "close_time": "2026-10-01T03:59:00Z",
+        "created_time": "2026-07-07T20:43:42.449984Z",
+        "custom_strike": {
+          "Date": "Before Oct 1, 2026"
+        },
+        "early_close_condition": "This market will close and expire early if the specific individual leaves the role as defined in the payout criteria.",
+        "event_ticker": "KXBOLOJANOUT-26JUL",
+        "exchange_index": 0,
+        "expected_expiration_time": "2027-01-08T15:00:00Z",
+        "expiration_time": "2026-10-08T14:00:00Z",
+        "expiration_value": "",
+        "last_price_dollars": "0.2800",
+        "latest_expiration_time": "2026-10-08T14:00:00Z",
+        "liquidity_dollars": "0.0000",
+        "market_type": "binary",
+        "no_ask_dollars": "0.8800",
+        "no_bid_dollars": "0.8500",
+        "no_sub_title": "Before Oct 1, 2026",
+        "notional_value_dollars": "1.0000",
+        "occurrence_datetime": "2026-10-01T03:59:00Z",
+        "open_interest_fp": "334.69",
+        "open_time": "2026-07-07T21:30:00Z",
+        "previous_price_dollars": "0.2800",
+        "previous_yes_ask_dollars": "0.1600",
+        "previous_yes_bid_dollars": "0.1200",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If Ilie Bolojan leaves as Prime Minister of Romania before Oct 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": "Ilie Bolojan must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+        "settlement_timer_seconds": 1800,
+        "status": "active",
+        "strike_type": "custom",
+        "subtitle": "::",
+        "ticker": "KXBOLOJANOUT-26JUL-OCT01",
+        "title": "Will Ilie Bolojan be out as Prime Minister of Romania before Oct 1, 2026?",
+        "updated_time": "2026-07-08T21:34:52.603056Z",
+        "volume_24h_fp": "0.00",
+        "volume_fp": "1187.25",
+        "yes_ask_dollars": "0.1500",
+        "yes_ask_size_fp": "2.00",
+        "yes_bid_dollars": "0.1200",
+        "yes_bid_size_fp": "5.00",
+        "yes_sub_title": "Before Oct 1, 2026"
+      },
+      "responses": {
+        "market": [
+          {
+            "bytes": 2595,
+            "captured_utc": "2026-09-05T20:36:34.760908Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/batch-039/book-capture-raw/20260905T203634.419995Z-9e81f46a/markets/market-KXBOLOJANOUT-26JUL-OCT01-attempt-1.json",
+            "sha256": "03d47180acecd3bf39e6ed7ae6ac65fd9ba0f07957bb4f8df086674d3cef40b7",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXBOLOJANOUT-26JUL-OCT01"
+          }
+        ],
+        "orderbook": [
+          {
+            "bytes": 320,
+            "captured_utc": "2026-09-05T20:36:34.865012Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/batch-039/book-capture-raw/20260905T203634.419995Z-9e81f46a/markets/orderbook-KXBOLOJANOUT-26JUL-OCT01-attempt-1.json",
+            "sha256": "ad13465c111c4e4ebde8f1195030221fd65d9c0cd3baaece80e887edaabf5a41",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXBOLOJANOUT-26JUL-OCT01/orderbook?depth=100"
+          }
+        ]
+      },
+      "rules_status": {
+        "rules_primary": "If Ilie Bolojan leaves as Prime Minister of Romania before Oct 1, 2026, then the market resolves to Yes.",
+        "rules_secondary": "Ilie Bolojan must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+        "status": "active"
+      },
+      "series_ticker": "KXBOLOJANOUT"
+    },
+    "KXCTMINWAGE-27JUL30-T18.00": {
+      "depth_curves": {
+        "buy_no": {
+          "100": {
+            "available_contracts": 8788.0,
+            "average_payable": 0.5674000000000001,
+            "average_price": 0.55,
+            "best_ask": 0.55,
+            "fee_dollars": 1.74,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 100.0,
+            "target_contracts": 100.0,
+            "worst_ask": 0.55
+          },
+          "1000": {
+            "available_contracts": 8788.0,
+            "average_payable": 0.56733,
+            "average_price": 0.55,
+            "best_ask": 0.55,
+            "fee_dollars": 17.33,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 1000.0,
+            "target_contracts": 1000.0,
+            "worst_ask": 0.55
+          },
+          "500": {
+            "available_contracts": 8788.0,
+            "average_payable": 0.5673400000000001,
+            "average_price": 0.55,
+            "best_ask": 0.55,
+            "fee_dollars": 8.67,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 500.0,
+            "target_contracts": 500.0,
+            "worst_ask": 0.55
+          }
+        },
+        "buy_yes": {
+          "100": {
+            "available_contracts": 7506.0,
+            "average_payable": 0.47740000000000005,
+            "average_price": 0.46,
+            "best_ask": 0.46,
+            "fee_dollars": 1.74,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 100.0,
+            "target_contracts": 100.0,
+            "worst_ask": 0.46
+          },
+          "1000": {
+            "available_contracts": 7506.0,
+            "average_payable": 0.47739,
+            "average_price": 0.46,
+            "best_ask": 0.46,
+            "fee_dollars": 17.39,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 1000.0,
+            "target_contracts": 1000.0,
+            "worst_ask": 0.46
+          },
+          "500": {
+            "available_contracts": 7506.0,
+            "average_payable": 0.4774,
+            "average_price": 0.46,
+            "best_ask": 0.46,
+            "fee_dollars": 8.7,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 500.0,
+            "target_contracts": 500.0,
+            "worst_ask": 0.46
+          }
+        }
+      },
+      "failures": [],
+      "fee": {
+        "multiplier": 1.0,
+        "reason": null,
+        "status": "verified_quadratic"
+      },
+      "market_metadata": {
+        "can_close_early": true,
+        "close_time": "2027-07-30T12:34:00Z",
+        "created_time": "2026-08-19T00:47:29.540439Z",
+        "early_close_condition": "This market will close and expire early if the economic data is released.",
+        "event_ticker": "KXCTMINWAGE-27JUL30",
+        "exchange_index": 0,
+        "expected_expiration_time": "2027-08-06T12:35:00Z",
+        "expiration_time": "2027-08-06T12:35:00Z",
+        "expiration_value": "",
+        "floor_strike": 18,
+        "last_price_dollars": "0.4600",
+        "latest_expiration_time": "2027-08-06T12:35:00Z",
+        "liquidity_dollars": "0.0000",
+        "market_type": "binary",
+        "no_ask_dollars": "0.5500",
+        "no_bid_dollars": "0.5400",
+        "no_sub_title": "Above $18.00 per hour",
+        "notional_value_dollars": "1.0000",
+        "occurrence_datetime": "2027-07-30T12:35:00Z",
+        "open_interest_fp": "100.00",
+        "open_time": "2026-08-19T02:00:00Z",
+        "previous_price_dollars": "0.4600",
+        "previous_yes_ask_dollars": "0.4600",
+        "previous_yes_bid_dollars": "0.4500",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If the June 2027 BLS Employment Cost Index value used under Connecticut General Statutes \u00a731-58 produces a Connecticut minimum fair wage for January 1, 2028 that is above \n\n$18.00 per hour, then the market resolves to Yes.",
+        "rules_secondary": "Under Connecticut law, the January 1, 2028 rate is determined by the 12-month percentage change in the applicable ECI through June 30, 2027, with the resulting wage rounded to the nearest cent.\n\nResolution uses the 12-month percent change ending June 2027, not seasonally adjusted, for wages and salaries for all civilian workers. The January 1, 2028 minimum wage is calculated by applying that percentage change to the January 1, 2027 Connecticut minimum wage of $17.48 and rounding the resulting hourly wage to the nearest cent, consistent with Connecticut General Statutes \u00a731-58. The market does not rely on the timing or wording of a subsequent Connecticut government announcement.\n\nResolution source: United States Department of Labor, Bureau of Labor Statistics - Employment Cost Index, Table 8: Employment Cost Index for wages and salaries, for civilian workers, by occupational group and industry, not seasonally adjusted.",
+        "settlement_timer_seconds": 1800,
+        "status": "active",
+        "strike_type": "greater",
+        "ticker": "KXCTMINWAGE-27JUL30-T18.00",
+        "title": "Will Connecticut minimum fair wage for January 1, 2028 be above $18.00 per hour?",
+        "updated_time": "2026-08-19T02:00:01.19085Z",
+        "volume_24h_fp": "0.00",
+        "volume_fp": "100.00",
+        "yes_ask_dollars": "0.4600",
+        "yes_ask_size_fp": "2920.00",
+        "yes_bid_dollars": "0.4500",
+        "yes_bid_size_fp": "3599.00",
+        "yes_sub_title": "Above $18.00 per hour"
+      },
+      "responses": {
+        "market": [
+          {
+            "bytes": 2632,
+            "captured_utc": "2026-09-05T20:36:34.783423Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/batch-039/book-capture-raw/20260905T203634.419995Z-9e81f46a/markets/market-KXCTMINWAGE-27JUL30-T18.00-attempt-1.json",
+            "sha256": "7e675eb0a45595c94ebecb2eb3d95c45b813a9951c326c163af6617c6e501907",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXCTMINWAGE-27JUL30-T18.00"
+          }
+        ],
+        "orderbook": [
+          {
+            "bytes": 332,
+            "captured_utc": "2026-09-05T20:36:34.886668Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/batch-039/book-capture-raw/20260905T203634.419995Z-9e81f46a/markets/orderbook-KXCTMINWAGE-27JUL30-T18.00-attempt-1.json",
+            "sha256": "4d7bcdc130600f1d96053afd39c02a1066a13bc419fc752ae09d17bfe02392a5",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXCTMINWAGE-27JUL30-T18.00/orderbook?depth=100"
+          }
+        ]
+      },
+      "rules_status": {
+        "rules_primary": "If the June 2027 BLS Employment Cost Index value used under Connecticut General Statutes \u00a731-58 produces a Connecticut minimum fair wage for January 1, 2028 that is above \n\n$18.00 per hour, then the market resolves to Yes.",
+        "rules_secondary": "Under Connecticut law, the January 1, 2028 rate is determined by the 12-month percentage change in the applicable ECI through June 30, 2027, with the resulting wage rounded to the nearest cent.\n\nResolution uses the 12-month percent change ending June 2027, not seasonally adjusted, for wages and salaries for all civilian workers. The January 1, 2028 minimum wage is calculated by applying that percentage change to the January 1, 2027 Connecticut minimum wage of $17.48 and rounding the resulting hourly wage to the nearest cent, consistent with Connecticut General Statutes \u00a731-58. The market does not rely on the timing or wording of a subsequent Connecticut government announcement.\n\nResolution source: United States Department of Labor, Bureau of Labor Statistics - Employment Cost Index, Table 8: Employment Cost Index for wages and salaries, for civilian workers, by occupational group and industry, not seasonally adjusted.",
+        "status": "active"
+      },
+      "series_ticker": "KXCTMINWAGE"
+    },
+    "KXFEDMEET-27-JAN01": {
+      "depth_curves": {
+        "buy_no": {
+          "100": {
+            "available_contracts": 17089.1,
+            "average_payable": 0.9614536,
+            "average_price": 0.9586536,
+            "best_ask": 0.958,
+            "fee_dollars": 0.28,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 100.0,
+            "target_contracts": 100.0,
+            "worst_ask": 0.959
+          },
+          "1000": {
+            "available_contracts": 17089.1,
+            "average_payable": 0.9739072,
+            "average_price": 0.9719972,
+            "best_ask": 0.958,
+            "fee_dollars": 1.9100000000000001,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 1000.0,
+            "target_contracts": 1000.0,
+            "worst_ask": 0.995
+          },
+          "500": {
+            "available_contracts": 17089.1,
+            "average_payable": 0.9624944799999999,
+            "average_price": 0.9597744799999999,
+            "best_ask": 0.958,
+            "fee_dollars": 1.36,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 500.0,
+            "target_contracts": 500.0,
+            "worst_ask": 0.961
+          }
+        },
+        "buy_yes": {
+          "100": {
+            "available_contracts": 74806.48,
+            "average_payable": 0.09559999999999999,
+            "average_price": 0.08979999999999999,
+            "best_ask": 0.089,
+            "fee_dollars": 0.5800000000000001,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 100.0,
+            "target_contracts": 100.0,
+            "worst_ask": 0.09
+          },
+          "1000": {
+            "available_contracts": 74806.48,
+            "average_payable": 0.215664,
+            "average_price": 0.204554,
+            "best_ask": 0.089,
+            "fee_dollars": 11.11,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 1000.0,
+            "target_contracts": 1000.0,
+            "worst_ask": 0.27
+          },
+          "500": {
+            "available_contracts": 74806.48,
+            "average_payable": 0.15778600000000004,
+            "average_price": 0.14900600000000003,
+            "best_ask": 0.089,
+            "fee_dollars": 4.39,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 500.0,
+            "target_contracts": 500.0,
+            "worst_ask": 0.2
+          }
+        }
+      },
+      "failures": [],
+      "fee": {
+        "multiplier": 1.0,
+        "reason": null,
+        "status": "verified_quadratic"
+      },
+      "market_metadata": {
+        "can_close_early": true,
+        "close_time": "2027-01-01T04:59:00Z",
+        "created_time": "2025-12-09T22:15:26.346775Z",
+        "early_close_condition": "If this event occurs, the market will close the following 10:00 AM ET.",
+        "event_ticker": "KXFEDMEET-27",
+        "exchange_index": 0,
+        "expected_expiration_time": "2027-01-02T15:00:00Z",
+        "expiration_time": "2027-01-01T15:00:00Z",
+        "expiration_value": "",
+        "last_price_dollars": "0.0410",
+        "latest_expiration_time": "2027-01-01T15:00:00Z",
+        "liquidity_dollars": "0.0000",
+        "market_type": "binary",
+        "no_ask_dollars": "0.9580",
+        "no_bid_dollars": "0.9110",
+        "no_sub_title": "Before Jan 1, 2027",
+        "notional_value_dollars": "1.0000",
+        "open_interest_fp": "89432.07",
+        "open_time": "2026-01-01T05:01:00Z",
+        "previous_price_dollars": "0.0410",
+        "previous_yes_ask_dollars": "0.0900",
+        "previous_yes_bid_dollars": "0.0410",
+        "price_level_structure": "deci_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0010"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If the Federal Open market Committee has an unscheduled meeting before Jan 1, 2027, then the market resolves to Yes.",
+        "rules_secondary": "",
+        "settlement_timer_seconds": 3600,
+        "status": "active",
+        "ticker": "KXFEDMEET-27-JAN01",
+        "title": "Will the Fed have an emergency meeting before Jan 1, 2027?",
+        "updated_time": "2026-04-09T10:32:49.239648Z",
+        "volume_24h_fp": "0.00",
+        "volume_fp": "175787.40",
+        "yes_ask_dollars": "0.0890",
+        "yes_ask_size_fp": "20.00",
+        "yes_bid_dollars": "0.0420",
+        "yes_bid_size_fp": "34.64",
+        "yes_sub_title": "Before Jan 1, 2027"
+      },
+      "responses": {
+        "market": [
+          {
+            "bytes": 1454,
+            "captured_utc": "2026-09-05T20:36:34.581530Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/batch-039/book-capture-raw/20260905T203634.419995Z-9e81f46a/markets/market-KXFEDMEET-27-JAN01-attempt-1.json",
+            "sha256": "3cd70e9dedc81b5dd8faf9223b875036fe814c1aef03bb027a869de34b4cdf9b",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXFEDMEET-27-JAN01"
+          }
+        ],
+        "orderbook": [
+          {
+            "bytes": 781,
+            "captured_utc": "2026-09-05T20:36:34.729395Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/batch-039/book-capture-raw/20260905T203634.419995Z-9e81f46a/markets/orderbook-KXFEDMEET-27-JAN01-attempt-1.json",
+            "sha256": "bb0fa797ecebe73101ca10093ba44b9cef3e69a2c5161a7bff93815f8ce30ce4",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXFEDMEET-27-JAN01/orderbook?depth=100"
+          }
+        ]
+      },
+      "rules_status": {
+        "rules_primary": "If the Federal Open market Committee has an unscheduled meeting before Jan 1, 2027, then the market resolves to Yes.",
+        "rules_secondary": "",
+        "status": "active"
+      },
+      "series_ticker": "KXFEDMEET"
+    },
+    "KXGREENLAND-29-27": {
+      "depth_curves": {
+        "buy_no": {
+          "100": {
+            "available_contracts": 523988.91,
+            "average_payable": 0.9689999999999999,
+            "average_price": 0.9689999999999999,
+            "best_ask": 0.969,
+            "fee_dollars": 0.0,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 100.0,
+            "target_contracts": 100.0,
+            "worst_ask": 0.969
+          },
+          "1000": {
+            "available_contracts": 523988.91,
+            "average_payable": 0.969,
+            "average_price": 0.969,
+            "best_ask": 0.969,
+            "fee_dollars": 0.0,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 1000.0,
+            "target_contracts": 1000.0,
+            "worst_ask": 0.969
+          },
+          "500": {
+            "available_contracts": 523988.91,
+            "average_payable": 0.969,
+            "average_price": 0.969,
+            "best_ask": 0.969,
+            "fee_dollars": 0.0,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 500.0,
+            "target_contracts": 500.0,
+            "worst_ask": 0.969
+          }
+        },
+        "buy_yes": {
+          "100": {
+            "available_contracts": 212053.25,
+            "average_payable": 0.0415,
+            "average_price": 0.0415,
+            "best_ask": 0.04,
+            "fee_dollars": 0.0,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 100.0,
+            "target_contracts": 100.0,
+            "worst_ask": 0.042
+          },
+          "1000": {
+            "available_contracts": 212053.25,
+            "average_payable": 0.0425401,
+            "average_price": 0.0425401,
+            "best_ask": 0.04,
+            "fee_dollars": 0.0,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 1000.0,
+            "target_contracts": 1000.0,
+            "worst_ask": 0.043
+          },
+          "500": {
+            "available_contracts": 212053.25,
+            "average_payable": 0.042080200000000005,
+            "average_price": 0.042080200000000005,
+            "best_ask": 0.04,
+            "fee_dollars": 0.0,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 500.0,
+            "target_contracts": 500.0,
+            "worst_ask": 0.043
+          }
+        }
+      },
+      "failures": [],
+      "fee": {
+        "multiplier": 0.0,
+        "reason": null,
+        "status": "verified_quadratic"
+      },
+      "market_metadata": {
+        "can_close_early": true,
+        "close_time": "2027-01-01T15:00:00Z",
+        "created_time": "2026-01-09T21:51:00.922598Z",
+        "early_close_condition": "This market will close and expire early if the event occurs.",
+        "event_ticker": "KXGREENLAND-29",
+        "exchange_index": 0,
+        "expected_expiration_time": "2029-01-20T15:00:00Z",
+        "expiration_time": "2027-01-01T15:00:00Z",
+        "expiration_value": "",
+        "last_price_dollars": "0.0310",
+        "latest_expiration_time": "2027-01-01T15:00:00Z",
+        "liquidity_dollars": "0.0000",
+        "market_type": "binary",
+        "no_ask_dollars": "0.9690",
+        "no_bid_dollars": "0.9600",
+        "no_sub_title": "Before 2027",
+        "notional_value_dollars": "1.0000",
+        "open_interest_fp": "394509.64",
+        "open_time": "2026-01-10T00:00:00Z",
+        "previous_price_dollars": "0.0420",
+        "previous_yes_ask_dollars": "0.0420",
+        "previous_yes_bid_dollars": "0.0320",
+        "price_level_structure": "tapered_deci_cent",
+        "price_ranges": [
+          {
+            "end": "0.1000",
+            "start": "0.0000",
+            "step": "0.0010"
+          },
+          {
+            "end": "0.9000",
+            "start": "0.1000",
+            "step": "0.0100"
+          },
+          {
+            "end": "1.0000",
+            "start": "0.9000",
+            "step": "0.0010"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If the United States purchases at least part of Greenland from Denmark before Jan 1, 2027, then the market resolves to Yes.",
+        "rules_secondary": "",
+        "settlement_timer_seconds": 1800,
+        "status": "active",
+        "ticker": "KXGREENLAND-29-27",
+        "title": "Will Trump buy Greenland?",
+        "updated_time": "2026-04-09T10:47:35.833469Z",
+        "volume_24h_fp": "588.63",
+        "volume_fp": "1495192.48",
+        "yes_ask_dollars": "0.0400",
+        "yes_ask_size_fp": "25.00",
+        "yes_bid_dollars": "0.0310",
+        "yes_bid_size_fp": "3684.90",
+        "yes_sub_title": "Before 2027"
+      },
+      "responses": {
+        "market": [
+          {
+            "bytes": 1519,
+            "captured_utc": "2026-09-05T20:36:34.539027Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/batch-039/book-capture-raw/20260905T203634.419995Z-9e81f46a/markets/market-KXGREENLAND-29-27-attempt-1.json",
+            "sha256": "f9cd10465a1556094ad4a307ef82d7a7dfaf5731398db32aed900ab657d03fc6",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXGREENLAND-29-27"
+          }
+        ],
+        "orderbook": [
+          {
+            "bytes": 1935,
+            "captured_utc": "2026-09-05T20:36:34.674109Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/batch-039/book-capture-raw/20260905T203634.419995Z-9e81f46a/markets/orderbook-KXGREENLAND-29-27-attempt-1.json",
+            "sha256": "d9ec3373bcb9e4b4a776975e259233f956981e8d594b1adc9f94e0aa53de0311",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXGREENLAND-29-27/orderbook?depth=100"
+          }
+        ]
+      },
+      "rules_status": {
+        "rules_primary": "If the United States purchases at least part of Greenland from Denmark before Jan 1, 2027, then the market resolves to Yes.",
+        "rules_secondary": "",
+        "status": "active"
+      },
+      "series_ticker": "KXGREENLAND"
+    },
+    "KXIAETHANOL-27JAN31-T4.4": {
+      "depth_curves": {
+        "buy_no": {
+          "100": {
+            "available_contracts": 5838.58,
+            "average_payable": 0.17755100000000001,
+            "average_price": 0.16765100000000005,
+            "best_ask": 0.16,
+            "fee_dollars": 0.99,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 100.0,
+            "target_contracts": 100.0,
+            "worst_ask": 0.17
+          },
+          "1000": {
+            "available_contracts": 5838.58,
+            "average_payable": 0.27393330000000005,
+            "average_price": 0.2621333,
+            "best_ask": 0.16,
+            "fee_dollars": 11.8,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 1000.0,
+            "target_contracts": 1000.0,
+            "worst_ask": 0.68
+          },
+          "500": {
+            "available_contracts": 5838.58,
+            "average_payable": 0.1794102,
+            "average_price": 0.16953020000000002,
+            "best_ask": 0.16,
+            "fee_dollars": 4.94,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 500.0,
+            "target_contracts": 500.0,
+            "worst_ask": 0.17
+          }
+        },
+        "buy_yes": {
+          "100": {
+            "available_contracts": 5786.7,
+            "average_payable": 0.883428,
+            "average_price": 0.875628,
+            "best_ask": 0.86,
+            "fee_dollars": 0.78,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 100.0,
+            "target_contracts": 100.0,
+            "worst_ask": 0.88
+          },
+          "1000": {
+            "available_contracts": 5786.7,
+            "average_payable": 0.8869927999999999,
+            "average_price": 0.8795628,
+            "best_ask": 0.86,
+            "fee_dollars": 7.430000000000001,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 1000.0,
+            "target_contracts": 1000.0,
+            "worst_ask": 0.88
+          },
+          "500": {
+            "available_contracts": 5786.7,
+            "average_payable": 0.8865856,
+            "average_price": 0.8791256,
+            "best_ask": 0.86,
+            "fee_dollars": 3.73,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 500.0,
+            "target_contracts": 500.0,
+            "worst_ask": 0.88
+          }
+        }
+      },
+      "failures": [],
+      "fee": {
+        "multiplier": 1.0,
+        "reason": null,
+        "status": "verified_quadratic"
+      },
+      "market_metadata": {
+        "can_close_early": true,
+        "close_time": "2027-01-31T14:59:00Z",
+        "created_time": "2026-08-20T18:41:23.806481Z",
+        "early_close_condition": "This market will close and expire early if the economic data is released.",
+        "event_ticker": "KXIAETHANOL-27JAN31",
+        "exchange_index": 0,
+        "expected_expiration_time": "2027-02-07T15:00:00Z",
+        "expiration_time": "2027-02-07T15:00:00Z",
+        "expiration_value": "",
+        "floor_strike": 4.4,
+        "last_price_dollars": "0.8400",
+        "latest_expiration_time": "2027-02-07T15:00:00Z",
+        "liquidity_dollars": "0.0000",
+        "market_type": "binary",
+        "no_ask_dollars": "0.1600",
+        "no_bid_dollars": "0.1400",
+        "no_sub_title": "Above 4.4 billion gallons",
+        "notional_value_dollars": "1.0000",
+        "occurrence_datetime": "2027-01-31T15:00:00Z",
+        "open_interest_fp": "1269.98",
+        "open_time": "2026-08-20T19:00:00Z",
+        "previous_price_dollars": "0.8700",
+        "previous_yes_ask_dollars": "0.8800",
+        "previous_yes_bid_dollars": "0.8500",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If IRFA reports that Iowa ethanol production for calendar year 2026 is above \n\n4.4 billion gallons, then the market resolves to Yes.",
+        "rules_secondary": "The Underlying is the Iowa Renewable Fuels Association\u2019s reported Iowa ethanol production for calendar year 2026, measured in gallons.",
+        "settlement_timer_seconds": 1800,
+        "status": "active",
+        "strike_type": "greater",
+        "ticker": "KXIAETHANOL-27JAN31-T4.4",
+        "title": "Will Iowa ethanol production for 2026 be above 4.4 billion gallons?",
+        "updated_time": "2026-08-20T19:00:01.659103Z",
+        "volume_24h_fp": "9.52",
+        "volume_fp": "13524.89",
+        "yes_ask_dollars": "0.8600",
+        "yes_ask_size_fp": "5.00",
+        "yes_bid_dollars": "0.8400",
+        "yes_bid_size_fp": "23.49",
+        "yes_sub_title": "Above 4.4 billion gallons"
+      },
+      "responses": {
+        "market": [
+          {
+            "bytes": 1734,
+            "captured_utc": "2026-09-05T20:36:34.539027Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/batch-039/book-capture-raw/20260905T203634.419995Z-9e81f46a/markets/market-KXIAETHANOL-27JAN31-T4.4-attempt-1.json",
+            "sha256": "f90c8065b96be3ee721afb9f929108d56a8747d1503f8faf959d3048d99c8d66",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXIAETHANOL-27JAN31-T4.4"
+          }
+        ],
+        "orderbook": [
+          {
+            "bytes": 387,
+            "captured_utc": "2026-09-05T20:36:34.647589Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/batch-039/book-capture-raw/20260905T203634.419995Z-9e81f46a/markets/orderbook-KXIAETHANOL-27JAN31-T4.4-attempt-1.json",
+            "sha256": "0adb2fad563d97d700d8abfbafc2d4f63f12b22ce87e19aed1980282385a8848",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXIAETHANOL-27JAN31-T4.4/orderbook?depth=100"
+          }
+        ]
+      },
+      "rules_status": {
+        "rules_primary": "If IRFA reports that Iowa ethanol production for calendar year 2026 is above \n\n4.4 billion gallons, then the market resolves to Yes.",
+        "rules_secondary": "The Underlying is the Iowa Renewable Fuels Association\u2019s reported Iowa ethanol production for calendar year 2026, measured in gallons.",
+        "status": "active"
+      },
+      "series_ticker": "KXIAETHANOL"
+    },
+    "KXIAETHANOL-27JAN31-T4.5": {
+      "depth_curves": {
+        "buy_no": {
+          "100": {
+            "available_contracts": 8084.42,
+            "average_payable": 0.24239999999999998,
+            "average_price": 0.23,
+            "best_ask": 0.23,
+            "fee_dollars": 1.24,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 100.0,
+            "target_contracts": 100.0,
+            "worst_ask": 0.23
+          },
+          "1000": {
+            "available_contracts": 8084.42,
+            "average_payable": 0.2424,
+            "average_price": 0.23,
+            "best_ask": 0.23,
+            "fee_dollars": 12.4,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 1000.0,
+            "target_contracts": 1000.0,
+            "worst_ask": 0.23
+          },
+          "500": {
+            "available_contracts": 8084.42,
+            "average_payable": 0.2424,
+            "average_price": 0.23,
+            "best_ask": 0.23,
+            "fee_dollars": 6.2,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 500.0,
+            "target_contracts": 500.0,
+            "worst_ask": 0.23
+          }
+        },
+        "buy_yes": {
+          "100": {
+            "available_contracts": 11542.86,
+            "average_payable": 0.7920999999999999,
+            "average_price": 0.78,
+            "best_ask": 0.78,
+            "fee_dollars": 1.21,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 100.0,
+            "target_contracts": 100.0,
+            "worst_ask": 0.78
+          },
+          "1000": {
+            "available_contracts": 11542.86,
+            "average_payable": 0.79202,
+            "average_price": 0.78,
+            "best_ask": 0.78,
+            "fee_dollars": 12.02,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 1000.0,
+            "target_contracts": 1000.0,
+            "worst_ask": 0.78
+          },
+          "500": {
+            "available_contracts": 11542.86,
+            "average_payable": 0.79202,
+            "average_price": 0.78,
+            "best_ask": 0.78,
+            "fee_dollars": 6.01,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 500.0,
+            "target_contracts": 500.0,
+            "worst_ask": 0.78
+          }
+        }
+      },
+      "failures": [],
+      "fee": {
+        "multiplier": 1.0,
+        "reason": null,
+        "status": "verified_quadratic"
+      },
+      "market_metadata": {
+        "can_close_early": true,
+        "close_time": "2027-01-31T14:59:00Z",
+        "created_time": "2026-08-18T21:01:42.869913Z",
+        "early_close_condition": "This market will close and expire early if the economic data is released.",
+        "event_ticker": "KXIAETHANOL-27JAN31",
+        "exchange_index": 0,
+        "expected_expiration_time": "2027-02-07T15:00:00Z",
+        "expiration_time": "2027-02-07T15:00:00Z",
+        "expiration_value": "",
+        "floor_strike": 4.5,
+        "last_price_dollars": "0.7800",
+        "latest_expiration_time": "2027-02-07T15:00:00Z",
+        "liquidity_dollars": "0.0000",
+        "market_type": "binary",
+        "no_ask_dollars": "0.2300",
+        "no_bid_dollars": "0.2200",
+        "no_sub_title": "Above 4.5 billion gallons",
+        "notional_value_dollars": "1.0000",
+        "occurrence_datetime": "2027-01-31T15:00:00Z",
+        "open_interest_fp": "226.28",
+        "open_time": "2026-08-18T23:00:00Z",
+        "previous_price_dollars": "0.7800",
+        "previous_yes_ask_dollars": "0.7800",
+        "previous_yes_bid_dollars": "0.7700",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If IRFA reports that Iowa ethanol production for calendar year 2026 is above \n\n4.5 billion gallons, then the market resolves to Yes.",
+        "rules_secondary": "The Underlying is the Iowa Renewable Fuels Association\u2019s reported Iowa ethanol production for calendar year 2026, measured in gallons.",
+        "settlement_timer_seconds": 1800,
+        "status": "active",
+        "strike_type": "greater",
+        "ticker": "KXIAETHANOL-27JAN31-T4.5",
+        "title": "Will Iowa ethanol production for 2026 be above 4.5 billion gallons?",
+        "updated_time": "2026-08-18T23:00:02.040625Z",
+        "volume_24h_fp": "0.00",
+        "volume_fp": "226.28",
+        "yes_ask_dollars": "0.7800",
+        "yes_ask_size_fp": "5707.86",
+        "yes_bid_dollars": "0.7700",
+        "yes_bid_size_fp": "2899.42",
+        "yes_sub_title": "Above 4.5 billion gallons"
+      },
+      "responses": {
+        "market": [
+          {
+            "bytes": 1736,
+            "captured_utc": "2026-09-05T20:36:34.528146Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/batch-039/book-capture-raw/20260905T203634.419995Z-9e81f46a/markets/market-KXIAETHANOL-27JAN31-T4.5-attempt-1.json",
+            "sha256": "d228fd20f1057b69bc1fb66a6a4a9fc9d61379d75454ea88e87b1947c3509cb3",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXIAETHANOL-27JAN31-T4.5"
+          }
+        ],
+        "orderbook": [
+          {
+            "bytes": 350,
+            "captured_utc": "2026-09-05T20:36:34.638590Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/batch-039/book-capture-raw/20260905T203634.419995Z-9e81f46a/markets/orderbook-KXIAETHANOL-27JAN31-T4.5-attempt-1.json",
+            "sha256": "b25e1c9e67735a46bb2c80c5bafc9dae51800dba57229202b58312bfec151aa4",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXIAETHANOL-27JAN31-T4.5/orderbook?depth=100"
+          }
+        ]
+      },
+      "rules_status": {
+        "rules_primary": "If IRFA reports that Iowa ethanol production for calendar year 2026 is above \n\n4.5 billion gallons, then the market resolves to Yes.",
+        "rules_secondary": "The Underlying is the Iowa Renewable Fuels Association\u2019s reported Iowa ethanol production for calendar year 2026, measured in gallons.",
+        "status": "active"
+      },
+      "series_ticker": "KXIAETHANOL"
+    },
+    "KXIAETHANOL-27JAN31-T5.0": {
+      "depth_curves": {
+        "buy_no": {
+          "100": {
+            "available_contracts": 13500.0,
+            "average_payable": 0.9721,
+            "average_price": 0.97,
+            "best_ask": 0.97,
+            "fee_dollars": 0.21,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 100.0,
+            "target_contracts": 100.0,
+            "worst_ask": 0.97
+          },
+          "1000": {
+            "available_contracts": 13500.0,
+            "average_payable": 0.97204,
+            "average_price": 0.97,
+            "best_ask": 0.97,
+            "fee_dollars": 2.04,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 1000.0,
+            "target_contracts": 1000.0,
+            "worst_ask": 0.97
+          },
+          "500": {
+            "available_contracts": 13500.0,
+            "average_payable": 0.97204,
+            "average_price": 0.97,
+            "best_ask": 0.97,
+            "fee_dollars": 1.02,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 500.0,
+            "target_contracts": 500.0,
+            "worst_ask": 0.97
+          }
+        },
+        "buy_yes": {
+          "100": {
+            "available_contracts": 7476.94,
+            "average_payable": 0.042699999999999995,
+            "average_price": 0.04,
+            "best_ask": 0.04,
+            "fee_dollars": 0.27,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 100.0,
+            "target_contracts": 100.0,
+            "worst_ask": 0.04
+          },
+          "1000": {
+            "available_contracts": 7476.94,
+            "average_payable": 0.04269,
+            "average_price": 0.04,
+            "best_ask": 0.04,
+            "fee_dollars": 2.69,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 1000.0,
+            "target_contracts": 1000.0,
+            "worst_ask": 0.04
+          },
+          "500": {
+            "available_contracts": 7476.94,
+            "average_payable": 0.0427,
+            "average_price": 0.04,
+            "best_ask": 0.04,
+            "fee_dollars": 1.35,
+            "fee_status": "verified_quadratic",
+            "fee_unknown_reason": null,
+            "fill_complete": true,
+            "filled_contracts": 500.0,
+            "target_contracts": 500.0,
+            "worst_ask": 0.04
+          }
+        }
+      },
+      "failures": [],
+      "fee": {
+        "multiplier": 1.0,
+        "reason": null,
+        "status": "verified_quadratic"
+      },
+      "market_metadata": {
+        "can_close_early": true,
+        "close_time": "2027-01-31T14:59:00Z",
+        "created_time": "2026-08-20T18:43:08.537046Z",
+        "early_close_condition": "This market will close and expire early if the economic data is released.",
+        "event_ticker": "KXIAETHANOL-27JAN31",
+        "exchange_index": 0,
+        "expected_expiration_time": "2027-02-07T15:00:00Z",
+        "expiration_time": "2027-02-07T15:00:00Z",
+        "expiration_value": "",
+        "floor_strike": 5,
+        "last_price_dollars": "0.0400",
+        "latest_expiration_time": "2027-02-07T15:00:00Z",
+        "liquidity_dollars": "0.0000",
+        "market_type": "binary",
+        "no_ask_dollars": "0.9700",
+        "no_bid_dollars": "0.9600",
+        "no_sub_title": "Above 5.0 billion gallons",
+        "notional_value_dollars": "1.0000",
+        "occurrence_datetime": "2027-01-31T15:00:00Z",
+        "open_interest_fp": "550.00",
+        "open_time": "2026-08-20T19:00:00Z",
+        "previous_price_dollars": "0.0400",
+        "previous_yes_ask_dollars": "0.0400",
+        "previous_yes_bid_dollars": "0.0300",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If IRFA reports that Iowa ethanol production for calendar year 2026 is above \n\n5.0 billion gallons, then the market resolves to Yes.",
+        "rules_secondary": "The Underlying is the Iowa Renewable Fuels Association\u2019s reported Iowa ethanol production for calendar year 2026, measured in gallons.",
+        "settlement_timer_seconds": 1800,
+        "status": "active",
+        "strike_type": "greater",
+        "ticker": "KXIAETHANOL-27JAN31-T5.0",
+        "title": "Will Iowa ethanol production for 2026 be above 5.0 billion gallons?",
+        "updated_time": "2026-08-20T19:00:01.659103Z",
+        "volume_24h_fp": "0.00",
+        "volume_fp": "1100.00",
+        "yes_ask_dollars": "0.0400",
+        "yes_ask_size_fp": "1989.94",
+        "yes_bid_dollars": "0.0300",
+        "yes_bid_size_fp": "11250.00",
+        "yes_sub_title": "Above 5.0 billion gallons"
+      },
+      "responses": {
+        "market": [
+          {
+            "bytes": 1736,
+            "captured_utc": "2026-09-05T20:36:34.749897Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/batch-039/book-capture-raw/20260905T203634.419995Z-9e81f46a/markets/market-KXIAETHANOL-27JAN31-T5.0-attempt-1.json",
+            "sha256": "7e4da8cb8e72bb021e3920a28a8eb43cd6a69c448b2c8d819207c9d978296a82",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXIAETHANOL-27JAN31-T5.0"
+          }
+        ],
+        "orderbook": [
+          {
+            "bytes": 276,
+            "captured_utc": "2026-09-05T20:36:34.858366Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/batch-039/book-capture-raw/20260905T203634.419995Z-9e81f46a/markets/orderbook-KXIAETHANOL-27JAN31-T5.0-attempt-1.json",
+            "sha256": "5a160e135528ff2bfaf68f5a6d87a1112b4420e8272594b5367983e2ea07041b",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXIAETHANOL-27JAN31-T5.0/orderbook?depth=100"
+          }
+        ]
+      },
+      "rules_status": {
+        "rules_primary": "If IRFA reports that Iowa ethanol production for calendar year 2026 is above \n\n5.0 billion gallons, then the market resolves to Yes.",
+        "rules_secondary": "The Underlying is the Iowa Renewable Fuels Association\u2019s reported Iowa ethanol production for calendar year 2026, measured in gallons.",
+        "status": "active"
+      },
+      "series_ticker": "KXIAETHANOL"
+    }
+  },
+  "outcomes_inspected": false,
+  "schema_version": 1,
+  "series": {
+    "KXBOLOJANOUT": {
+      "failures": [],
+      "fee_changes": [],
+      "metadata": {
+        "additional_prohibitions": [
+          "Persons who are employed by any of the Source Agencies are not permitted to trade on the Contract.",
+          "Persons who hold any material, non-public information on the Underlying are not permitted to trade on the Contract."
+        ],
+        "category": "Politics",
+        "contract_terms_url": "https://assets.kalshi.com/contract_terms/EFFECTIVELEAVE.pdf",
+        "contract_url": "https://assets.kalshi.com/regulatory/product-certifications/EFFECTIVELEAVE.pdf",
+        "exchange_index": 0,
+        "fee_multiplier": 1,
+        "fee_type": "quadratic",
+        "frequency": "one_off",
+        "last_updated_ts": "2026-09-01T18:29:37.210285Z",
+        "settlement_sources": [
+          {
+            "name": "person",
+            "url": "https://kalshi.com/"
+          },
+          {
+            "name": "The Wall Street Journal",
+            "url": "https://www.wsj.com/"
+          },
+          {
+            "name": "Bloomberg News",
+            "url": "https://www.bloomberg.com/news"
+          },
+          {
+            "name": "The Washington Post",
+            "url": "https://www.washingtonpost.com/"
+          },
+          {
+            "name": "the Associated Press",
+            "url": "https://apnews.com/"
+          },
+          {
+            "name": "Fox News",
+            "url": "https://www.foxnews.com"
+          },
+          {
+            "name": "Reuters",
+            "url": "https://www.reuters.com/"
+          },
+          {
+            "name": "official government records and registries",
+            "url": "https://kalshi.com"
+          },
+          {
+            "name": "the body, agency, company, organization, or entity at which role is held",
+            "url": "https://kalshi.com"
+          },
+          {
+            "name": "CNN",
+            "url": "https://www.cnn.com"
+          },
+          {
+            "name": "the New York Times",
+            "url": "https://www.nytimes.com"
+          },
+          {
+            "name": "Politico",
+            "url": "https://www.politico.com/"
+          }
+        ],
+        "tags": [
+          "International"
+        ],
+        "ticker": "KXBOLOJANOUT",
+        "title": "Romanian PM Bolojan out by?"
+      },
+      "responses": {
+        "fee_changes": [
+          {
+            "bytes": 28,
+            "captured_utc": "2026-09-05T20:36:35.096940Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/book-capture-raw/20260905T203634.419995Z-9e81f46a/series/series-fee-changes-KXBOLOJANOUT-attempt-1.json",
+            "sha256": "6780c8eb7edbb5e1ca3b15166f17cef054befacb2cc8f4bc479c54074a9a2c18",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/series/fee_changes?series_ticker=KXBOLOJANOUT&show_historical=true"
+          }
+        ],
+        "series": [
+          {
+            "bytes": 1463,
+            "captured_utc": "2026-09-05T20:36:34.997339Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/book-capture-raw/20260905T203634.419995Z-9e81f46a/series/series-KXBOLOJANOUT-attempt-1.json",
+            "sha256": "28ee4675d0130e246651f8ffdadbfd1960eae84de6c1f8a68c51c2f3658028d0",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/series/KXBOLOJANOUT"
+          }
+        ]
+      }
+    },
+    "KXCTMINWAGE": {
+      "failures": [],
+      "fee_changes": [],
+      "metadata": {
+        "additional_prohibitions": [
+          "Persons who are employed by any of the Source Agencies are not permitted to trade on the Contract.",
+          "Persons who hold any material, non-public information on the Underlying are not permitted to trade on the Contract."
+        ],
+        "category": "Economics",
+        "contract_terms_url": "https://assets.kalshi.com/contract_terms/ECONSTATE2.pdf",
+        "contract_url": "https://assets.kalshi.com/regulatory/product-certifications/ECONSTATE2.pdf",
+        "exchange_index": 0,
+        "fee_multiplier": 1,
+        "fee_type": "quadratic",
+        "frequency": "one_off",
+        "last_updated_ts": "2026-08-21T16:19:41.084084Z",
+        "settlement_sources": [
+          {
+            "name": "Federal Reserve Bank of New York",
+            "url": "https://www.newyorkfed.org/markets/reference-rates/sofr"
+          }
+        ],
+        "tags": [
+          "Jobs & Economy"
+        ],
+        "ticker": "KXCTMINWAGE",
+        "title": "Connecticut minimum wage on [date]"
+      },
+      "responses": {
+        "fee_changes": [
+          {
+            "bytes": 28,
+            "captured_utc": "2026-09-05T20:36:35.143534Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/book-capture-raw/20260905T203634.419995Z-9e81f46a/series/series-fee-changes-KXCTMINWAGE-attempt-1.json",
+            "sha256": "6780c8eb7edbb5e1ca3b15166f17cef054befacb2cc8f4bc479c54074a9a2c18",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/series/fee_changes?series_ticker=KXCTMINWAGE&show_historical=true"
+          }
+        ],
+        "series": [
+          {
+            "bytes": 810,
+            "captured_utc": "2026-09-05T20:36:35.000338Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/book-capture-raw/20260905T203634.419995Z-9e81f46a/series/series-KXCTMINWAGE-attempt-1.json",
+            "sha256": "ed1bd5bfca61b1f997ce606ba1fcbf1cfef051a105091a991b28a8f3deeb93e6",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/series/KXCTMINWAGE"
+          }
+        ]
+      }
+    },
+    "KXFEDMEET": {
+      "failures": [],
+      "fee_changes": [],
+      "metadata": {
+        "additional_prohibitions": [
+          "Persons who are employed by any of the Source Agencies are not permitted to trade on the Contract.",
+          "Persons who hold any material, non-public information on the Underlying are not permitted to trade on the Contract."
+        ],
+        "category": "Economics",
+        "contract_terms_url": "https://assets.kalshi.com/contract_terms/FEDMEET.pdf",
+        "contract_url": "https://assets.kalshi.com/regulatory/product-certifications/FEDMEET.pdf",
+        "exchange_index": 0,
+        "fee_multiplier": 1,
+        "fee_type": "quadratic",
+        "frequency": "custom",
+        "last_updated_ts": "2026-03-25T22:07:14.748745Z",
+        "product_metadata": {
+          "important_info": null
+        },
+        "settlement_sources": [
+          {
+            "name": "Federal Reserve",
+            "url": "https://www.federalreserve.gov"
+          }
+        ],
+        "tags": [
+          "Fed"
+        ],
+        "ticker": "KXFEDMEET",
+        "title": "Fed emergency meeting"
+      },
+      "responses": {
+        "fee_changes": [
+          {
+            "bytes": 28,
+            "captured_utc": "2026-09-05T20:36:35.104962Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/book-capture-raw/20260905T203634.419995Z-9e81f46a/series/series-fee-changes-KXFEDMEET-attempt-1.json",
+            "sha256": "6780c8eb7edbb5e1ca3b15166f17cef054befacb2cc8f4bc479c54074a9a2c18",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/series/fee_changes?series_ticker=KXFEDMEET&show_historical=true"
+          }
+        ],
+        "series": [
+          {
+            "bytes": 778,
+            "captured_utc": "2026-09-05T20:36:34.990160Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/book-capture-raw/20260905T203634.419995Z-9e81f46a/series/series-KXFEDMEET-attempt-1.json",
+            "sha256": "354c76adcd36c9428544e2425432dfbb41ecf0f817fc2785258239bf0b27d565",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/series/KXFEDMEET"
+          }
+        ]
+      }
+    },
+    "KXGREENLAND": {
+      "failures": [],
+      "fee_changes": [
+        {
+          "fee_multiplier": 0,
+          "fee_type": "quadratic",
+          "id": "a14424a9-8e31-44d8-8d3b-bf0d4c91b0ce",
+          "scheduled_ts": "2025-10-21T07:00:00Z",
+          "series_ticker": "KXGREENLAND"
+        }
+      ],
+      "metadata": {
+        "additional_prohibitions": [
+          "Persons who are employed by any of the Source Agencies are not permitted to trade on the Contract.",
+          "Persons who hold any material, non-public information on the Underlying are not permitted to trade on the Contract."
+        ],
+        "category": "Politics",
+        "contract_terms_url": "https://assets.kalshi.com/contract_terms/GREENLAND.pdf",
+        "contract_url": "https://assets.kalshi.com/regulatory/product-certifications/GREENLAND.pdf",
+        "exchange_index": 0,
+        "fee_multiplier": 0,
+        "fee_type": "quadratic",
+        "frequency": "one_off",
+        "last_updated_ts": "2026-03-25T21:27:09.072541Z",
+        "product_metadata": {
+          "important_info": null
+        },
+        "settlement_sources": [
+          {
+            "name": "The New York Times",
+            "url": "https://www.nytimes.com/"
+          }
+        ],
+        "tags": [
+          "International",
+          "Trump"
+        ],
+        "ticker": "KXGREENLAND",
+        "title": "Greenland purchase"
+      },
+      "responses": {
+        "fee_changes": [
+          {
+            "bytes": 183,
+            "captured_utc": "2026-09-05T20:36:35.129026Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/book-capture-raw/20260905T203634.419995Z-9e81f46a/series/series-fee-changes-KXGREENLAND-attempt-1.json",
+            "sha256": "4df5aac27854ff0f1d74c6b6fd7b1c95ee92dac4eb9794bec8f105c973e91533",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/series/fee_changes?series_ticker=KXGREENLAND&show_historical=true"
+          }
+        ],
+        "series": [
+          {
+            "bytes": 796,
+            "captured_utc": "2026-09-05T20:36:35.008770Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/book-capture-raw/20260905T203634.419995Z-9e81f46a/series/series-KXGREENLAND-attempt-1.json",
+            "sha256": "81fa95c2fb2655dd2a44edb6d64296f5196d52c7eadd6fa5a3a3a9468ccb12fe",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/series/KXGREENLAND"
+          }
+        ]
+      }
+    },
+    "KXIAETHANOL": {
+      "failures": [],
+      "fee_changes": [],
+      "metadata": {
+        "additional_prohibitions": [
+          "Persons who are employed by any of the Source Agencies are not permitted to trade on the Contract.",
+          "Persons who hold any material, non-public information on the Underlying are not permitted to trade on the Contract."
+        ],
+        "category": "Economics",
+        "contract_terms_url": "https://assets.kalshi.com/contract_terms/ECONSTATE2.pdf",
+        "contract_url": "https://assets.kalshi.com/regulatory/product-certifications/ECONSTATE2.pdf",
+        "exchange_index": 0,
+        "fee_multiplier": 1,
+        "fee_type": "quadratic",
+        "frequency": "annual",
+        "last_updated_ts": "2026-08-21T16:19:41.067399Z",
+        "settlement_sources": [
+          {
+            "name": "Federal Reserve Bank of New York",
+            "url": "https://www.newyorkfed.org/markets/reference-rates/sofr"
+          }
+        ],
+        "tags": [
+          "Oil and energy"
+        ],
+        "ticker": "KXIAETHANOL",
+        "title": "Iowa ethanol production"
+      },
+      "responses": {
+        "fee_changes": [
+          {
+            "bytes": 28,
+            "captured_utc": "2026-09-05T20:36:35.519295Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/book-capture-raw/20260905T203634.419995Z-9e81f46a/series/series-fee-changes-KXIAETHANOL-attempt-1.json",
+            "sha256": "6780c8eb7edbb5e1ca3b15166f17cef054befacb2cc8f4bc479c54074a9a2c18",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/series/fee_changes?series_ticker=KXIAETHANOL&show_historical=true"
+          }
+        ],
+        "series": [
+          {
+            "bytes": 798,
+            "captured_utc": "2026-09-05T20:36:35.399766Z",
+            "response_path": "C:/Users/jbs00/OneDrive/Documents/Current_Work/LLM_market_identifier/theories/procedural_bottlenecks/studies/investigation/2026-09-05-broad-procedural-judgment/data/judgments/book-capture-raw/20260905T203634.419995Z-9e81f46a/series/series-KXIAETHANOL-attempt-1.json",
+            "sha256": "5d2f27ff1b3b11d82f7cb31d438e3473f0f84c2f9dbc6d84dd0ef7f4b324ddbb",
+            "status": 200,
+            "url": "https://api.elections.kalshi.com/trade-api/v2/series/KXIAETHANOL"
+          }
+        ]
+      }
+    }
+  }
+}

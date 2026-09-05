@@ -1,1 +1,955 @@
-{"schema_version": 1, "request": {"run_id": "study/broad-procedural-20260905", "theory_id": "study/broad-procedural", "theory_version": 1, "run_mode": "study", "decision_at": "2026-09-05T19:53:15.489944+00:00", "requested_model": "gpt-5.6-sol", "requested_effort": "high", "requested_web_search": true, "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-056\\first-output.jsonl", "stage": "analysis", "batch_id": "56", "candidate_keys": ["KXAIFINANCE-26OCT01-T73.5", "KXAIFINANCE-26OCT01-T74", "KXAIFINANCE-26OCT01-T74.5", "KXAIFINANCE-26OCT01-T75", "KXPIEDATERRECASE-27", "KXNYCCHILDCARE-27JAN01", "KXCANCUTS-26DEC31-E0", "KXCANCUTS-26DEC31-E1", "KXCANCUTS-26DEC31-E2", "KXNOBELPEACE-26-CE", "KXNOBELPEACE-26-DJT", "KXNOBELPEACE-26-DOC", "KXNOBELPEACE-26-ELO", "KXNOBELPEACE-26-FRA", "KXNOBELPEACE-26-ICJ", "KXNOBELPEACE-26-MIN", "KXNOBELPEACE-26-NAR", "KXNOBELPEACE-26-SUD", "KXNOBELPEACE-26-VOL", "KXNOBELPEACE-27-ICC", "KXNOBELPEACE-27-MKUL", "KXNOBELPEACE-27-PLEO", "KXNOBELPEACE-27-SSHA", "KXNOBELPEACE-27-STC", "KXNOBELPEACE-27-UNRWA", "KXNOBELPEACE-27-YNAV", "KXGOVTSHUTDOWN-26OCT01", "KXFM30YMTG-26DEC31-T5.75", "KXILHPIYOY-27FEB26-T327.38", "KXFILMTAXCREDIT-26SEP", "KXSDCATTLE-27JAN31-T3550000", "KXUSMCA-26-27", "KXELECTIRAN-27JAN01", "KXCONGRESSTESTIFY-27JAN-AFAU", "KXCONGRESSTESTIFY-27JAN-BOBA", "KXCONGRESSTESTIFY-27JAN-GMAX", "KXCONGRESSTESTIFY-27JAN-JBID", "KXCONGRESSTESTIFY-27JAN-JPOW", "KXCONGRESSTESTIFY-27JAN-JROL", "KXCONGRESSTESTIFY-27JAN-JSTE", "KXCONGRESSTESTIFY-27JAN-KHAR", "KXCONGRESSTESTIFY-27JAN-MZUC", "KXCONGRESSTESTIFY-27JAN-SALT", "KXCONGRESSTESTIFY-27JAN-SCHE", "KXXRPMINY-XRP-26DEC31-050", "KXXRPMINY-XRP-26DEC31-075", "KXBRICS-26"], "payload_sha256": "906202b4d6be4bba6ca6c11025b4f605f9bd7b523eed0fe2e94125025f4aa9f6", "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-056\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-056\\first-output.jsonl\n", "payload": {"decision_at": "2026-09-05T19:53:15.489944+00:00", "events": [{"event_key": "KXAIFINANCE-26OCT01", "markets": [{"category": "Science and Technology", "event_key": "KXAIFINANCE-26OCT01", "key": "KXAIFINANCE-26OCT01-T73.5", "no_sub_title": "Above 73.5%", "rules_primary": "If the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 is above 73.5%, then the market resolves to Yes.", "rules_secondary": "For purposes of this market, determination will resolve on the first value publicly reported in the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026. Corrections or revisions made after the market has been settled will not affect the outcome.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Ramp. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-10-01T03:59:00Z", "series": "KXAIFINANCE", "subtitle": null, "title": "Will Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 be above 73.5%?", "yes_sub_title": "Above 73.5%"}, {"category": "Science and Technology", "event_key": "KXAIFINANCE-26OCT01", "key": "KXAIFINANCE-26OCT01-T74", "no_sub_title": "Above 74%", "rules_primary": "If the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 is above 74%, then the market resolves to Yes.", "rules_secondary": "For purposes of this market, determination will resolve on the first value publicly reported in the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026. Corrections or revisions made after the market has been settled will not affect the outcome.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Ramp. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-10-01T03:59:00Z", "series": "KXAIFINANCE", "subtitle": null, "title": "Will Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 be above 74%?", "yes_sub_title": "Above 74%"}, {"category": "Science and Technology", "event_key": "KXAIFINANCE-26OCT01", "key": "KXAIFINANCE-26OCT01-T74.5", "no_sub_title": "Above 74.5%", "rules_primary": "If the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 is above 74.5%, then the market resolves to Yes.", "rules_secondary": "For purposes of this market, determination will resolve on the first value publicly reported in the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026. Corrections or revisions made after the market has been settled will not affect the outcome.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Ramp. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-10-01T03:59:00Z", "series": "KXAIFINANCE", "subtitle": null, "title": "Will Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 be above 74.5%?", "yes_sub_title": "Above 74.5%"}, {"category": "Science and Technology", "event_key": "KXAIFINANCE-26OCT01", "key": "KXAIFINANCE-26OCT01-T75", "no_sub_title": "Above 75%", "rules_primary": "If the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 is above 75%, then the market resolves to Yes.", "rules_secondary": "For purposes of this market, determination will resolve on the first value publicly reported in the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026. Corrections or revisions made after the market has been settled will not affect the outcome.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Ramp. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-10-01T03:59:00Z", "series": "KXAIFINANCE", "subtitle": null, "title": "Will Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 be above 75%?", "yes_sub_title": "Above 75%"}]}, {"event_key": "KXPIEDATERRECASE-27", "markets": [{"category": "Politics", "event_key": "KXPIEDATERRECASE-27", "key": "KXPIEDATERRECASE-27", "no_sub_title": "Before 2027", "rules_primary": "If a New York State court grants the petitioners preliminary or permanent injunctive or annulment relief (other than a temporary restraining order) against the City's supplemental tax roll, its surcharge notices, or its imposition or collection of the pied-\u00e0-terre surcharge in O'Brien v. City of New York, or any appeal thereof before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "This market resolves on a written court ruling in O'Brien v. City of New York, the Article 78 proceeding brought in the Supreme Court of the State of New York, Richmond County by Rachel O'Brien, Carmine Morano and Simon Hedley against Mayor Zohran Mamdani and Finance Commissioner Richard Lee over the rollout of the non-primary residence (pied-\u00e0-terre) surcharge. Rulings in any appeal of that proceeding also count.\n\nThe ruling must:\n\nBe issued by a New York State court in O'Brien v. City of New York, or any appeal thereof\nAddress the specific matter described in the judgment\nBe issued through a written order, opinion, judgment, or decision\n\nRelief on any one of the three heads is enough, and partial relief counts. An order that annuls or enjoins the supplemental tax roll, the surcharge notices, or the imposition or collection of the surcharge resolves this market to YES.\n\nThe following do NOT satisfy the Payout Criterion:\n\nOral rulings from the bench unless reduced to a written order\nTentative rulings that are not made final\nDraft opinions that leak but are not officially issued\nSettlements or voluntary dismissals\nAdministrative or scheduling orders\nOrders to show cause\nMinute orders that do not address the substantive issue in the judgment\n\nThe following also do NOT count, because they grant no injunctive or annulment relief:\n\nThe temporary restraining order issued August 10, 2026, or any later temporary restraining order\nAn order granting, confirming, vacating or dissolving a stay\nDenial of a motion to dismiss or of any other dispositive motion\nVoluntary action by the City, such as withdrawing notices, removing the tax roll, or extending a deadline\n\nFor clarity:\n\nIf the case is dismissed for lack of jurisdiction, that counts as a ruling only if the judgment refers to jurisdiction\nSua sponte rulings count if they match the judgment\nPer curiam opinions and summary orders count as rulings\nIf multiple judges issue separate opinions, the majority/plurality opinion controls\nA ruling in a separate proceeding that has not been consolidated into this one does not count\nIf no qualifying ruling is issued after Issuance and before Jan 1, 2027, this market resolves to NO", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXPIEDATERRECASE", "subtitle": null, "title": "Will a New York State court rule grants the petitioners preliminary or permanent injunctive or annulment relief (other than a temporary restraining order) against the City's supplemental tax roll, its surcharge notices, or its imposition or collection of the pied-\u00e0-terre surcharge?", "yes_sub_title": "Before 2027"}]}, {"event_key": "KXNYCCHILDCARE-27JAN01", "markets": [{"category": "Politics", "event_key": "KXNYCCHILDCARE-27JAN01", "key": "KXNYCCHILDCARE-27JAN01", "no_sub_title": "Yes", "rules_primary": "If a law establishing and funding a universal child care program has become law in New York City before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law. For standard legislation requiring executive approval, this includes final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods. For legislation not requiring executive approval, this includes final passage and completion of required waiting periods. For constitutional amendments, this includes passage with required supermajorities and completion of ratification processes. For executive orders, this includes official signature, publication in official government records, and legal effectiveness. Legislative passage without completed executive action, passage by only some required bodies, provisional passage, non-binding resolutions, and draft orders do not constitute enactment. Enactment occurs when all requirements are completed, regardless of pending judicial challenges.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXNYCCHILDCARE", "subtitle": null, "title": "Will Mamdani establish universal child care before 2027?", "yes_sub_title": "Yes"}]}, {"event_key": "KXCANCUTS-26DEC31", "markets": [{"category": "Economics", "event_key": "KXCANCUTS-26DEC31", "key": "KXCANCUTS-26DEC31-E0", "no_sub_title": "Exactly 0\u3164", "rules_primary": "If the number of Bank of Canada rate cuts in 2026 is exactly 0\u3164, then the market resolves to Yes.", "rules_secondary": "To be clear, 25bp of cuts is equal to one cut (so 25bp cut is 1, 50bp cut is 2, 75bp cut is 3, and so on).", "scheduled_close": "2027-01-01T03:28:00Z", "series": "KXCANCUTS", "subtitle": null, "title": "Will Bank of Canada rate cuts in 2026 be exactly 0\u3164?", "yes_sub_title": "Exactly 0\u3164"}, {"category": "Economics", "event_key": "KXCANCUTS-26DEC31", "key": "KXCANCUTS-26DEC31-E1", "no_sub_title": "Exactly 1\u3164", "rules_primary": "If the number of Bank of Canada rate cuts in 2026 is exactly 1\u3164, then the market resolves to Yes.", "rules_secondary": "To be clear, 25bp of cuts is equal to one cut (so 25bp cut is 1, 50bp cut is 2, 75bp cut is 3, and so on).", "scheduled_close": "2027-01-01T03:28:00Z", "series": "KXCANCUTS", "subtitle": null, "title": "Will Bank of Canada rate cuts in 2026 be exactly 1\u3164?", "yes_sub_title": "Exactly 1\u3164"}, {"category": "Economics", "event_key": "KXCANCUTS-26DEC31", "key": "KXCANCUTS-26DEC31-E2", "no_sub_title": "Exactly 2\u3164", "rules_primary": "If the number of Bank of Canada rate cuts in 2026 is exactly 2\u3164, then the market resolves to Yes.", "rules_secondary": "To be clear, 25bp of cuts is equal to one cut (so 25bp cut is 1, 50bp cut is 2, 75bp cut is 3, and so on).", "scheduled_close": "2027-01-01T03:28:00Z", "series": "KXCANCUTS", "subtitle": null, "title": "Will Bank of Canada rate cuts in 2026 be exactly 2\u3164?", "yes_sub_title": "Exactly 2\u3164"}]}, {"event_key": "KXNOBELPEACE-26", "markets": [{"category": "Politics", "event_key": "KXNOBELPEACE-26", "key": "KXNOBELPEACE-26-CE", "no_sub_title": "Centre for Humanitarian Dialogue", "rules_primary": "If Centre for Humanitarian Dialogue wins the Nobel Peace Prize in 2026, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.", "scheduled_close": "2026-12-31T23:59:00Z", "series": "KXNOBELPEACE", "subtitle": null, "title": "Who will win the Nobel Peace Prize?", "yes_sub_title": "Centre for Humanitarian Dialogue"}, {"category": "Politics", "event_key": "KXNOBELPEACE-26", "key": "KXNOBELPEACE-26-DJT", "no_sub_title": "Donald Trump", "rules_primary": "If Donald Trump wins the Nobel Peace Prize in 2026, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.", "scheduled_close": "2026-12-31T23:59:00Z", "series": "KXNOBELPEACE", "subtitle": "Donald Trump", "title": "Who will win the Nobel Peace Prize?", "yes_sub_title": "Donald Trump"}, {"category": "Politics", "event_key": "KXNOBELPEACE-26", "key": "KXNOBELPEACE-26-DOC", "no_sub_title": "Doctors Without Borders (M\u00e9decins Sans Fronti\u00e8res)", "rules_primary": "If Doctors Without Borders (M\u00e9decins Sans Fronti\u00e8res) wins the Nobel Peace Prize in 2026, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.", "scheduled_close": "2026-12-31T23:59:00Z", "series": "KXNOBELPEACE", "subtitle": null, "title": "Who will win the Nobel Peace Prize?", "yes_sub_title": "Doctors Without Borders (M\u00e9decins Sans Fronti\u00e8res)"}, {"category": "Politics", "event_key": "KXNOBELPEACE-26", "key": "KXNOBELPEACE-26-ELO", "no_sub_title": "Elon Musk", "rules_primary": "If Elon Musk wins the Nobel Peace Prize in 2026, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.", "scheduled_close": "2026-12-31T23:59:00Z", "series": "KXNOBELPEACE", "subtitle": null, "title": "Who will win the Nobel Peace Prize?", "yes_sub_title": "Elon Musk"}, {"category": "Politics", "event_key": "KXNOBELPEACE-26", "key": "KXNOBELPEACE-26-FRA", "no_sub_title": "Francesca Albanese", "rules_primary": "If Francesca Albanese wins the Nobel Peace Prize in 2026, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.", "scheduled_close": "2026-12-31T23:59:00Z", "series": "KXNOBELPEACE", "subtitle": null, "title": "Who will win the Nobel Peace Prize?", "yes_sub_title": "Francesca Albanese"}, {"category": "Politics", "event_key": "KXNOBELPEACE-26", "key": "KXNOBELPEACE-26-ICJ", "no_sub_title": "International Court of Justice (ICJ)", "rules_primary": "If International Court of Justice (ICJ) wins the Nobel Peace Prize in 2026, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.", "scheduled_close": "2026-12-31T23:59:00Z", "series": "KXNOBELPEACE", "subtitle": null, "title": "Who will win the Nobel Peace Prize?", "yes_sub_title": "International Court of Justice (ICJ)"}, {"category": "Politics", "event_key": "KXNOBELPEACE-26", "key": "KXNOBELPEACE-26-MIN", "no_sub_title": "Minneapolis", "rules_primary": "If Minneapolis wins the Nobel Peace Prize in 2026, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.", "scheduled_close": "2026-12-31T23:59:00Z", "series": "KXNOBELPEACE", "subtitle": "Minneapolis", "title": "Who will win the Nobel Peace Prize?", "yes_sub_title": "Minneapolis"}, {"category": "Politics", "event_key": "KXNOBELPEACE-26", "key": "KXNOBELPEACE-26-NAR", "no_sub_title": "Narges Mohammadi", "rules_primary": "If Narges Mohammadi wins the Nobel Peace Prize in 2026, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.", "scheduled_close": "2026-12-31T23:59:00Z", "series": "KXNOBELPEACE", "subtitle": null, "title": "Who will win the Nobel Peace Prize?", "yes_sub_title": "Narges Mohammadi"}, {"category": "Politics", "event_key": "KXNOBELPEACE-26", "key": "KXNOBELPEACE-26-SUD", "no_sub_title": "Sudan\u2019s Emergency Response Rooms (ERRs)", "rules_primary": "If Sudan\u2019s Emergency Response Rooms (ERRs) wins the Nobel Peace Prize in 2026, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.", "scheduled_close": "2026-12-31T23:59:00Z", "series": "KXNOBELPEACE", "subtitle": null, "title": "Who will win the Nobel Peace Prize?", "yes_sub_title": "Sudan\u2019s Emergency Response Rooms (ERRs)"}, {"category": "Politics", "event_key": "KXNOBELPEACE-26", "key": "KXNOBELPEACE-26-VOL", "no_sub_title": "Volodymyr Zelenskyy", "rules_primary": "If Volodymyr Zelenskyy wins the Nobel Peace Prize in 2026, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.", "scheduled_close": "2026-12-31T23:59:00Z", "series": "KXNOBELPEACE", "subtitle": null, "title": "Who will win the Nobel Peace Prize?", "yes_sub_title": "Volodymyr Zelenskyy"}, {"category": "Politics", "event_key": "KXNOBELPEACE-26", "key": "KXNOBELPEACE-27-ICC", "no_sub_title": "International Criminal Court", "rules_primary": "If International Criminal Court wins the Nobel Peace Prize in 2026, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXNOBELPEACE", "subtitle": "International Criminal Court", "title": "Who will win the Nobel Peace Prize?", "yes_sub_title": "International Criminal Court"}, {"category": "Politics", "event_key": "KXNOBELPEACE-26", "key": "KXNOBELPEACE-27-MKUL", "no_sub_title": "Mykola Kuleba / Save Ukraine", "rules_primary": "If Mykola Kuleba / Save Ukraine wins the Nobel Peace Prize in 2026, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXNOBELPEACE", "subtitle": "Mykola Kuleba / Save Ukraine", "title": "Who will win the Nobel Peace Prize?", "yes_sub_title": "Mykola Kuleba / Save Ukraine"}, {"category": "Politics", "event_key": "KXNOBELPEACE-26", "key": "KXNOBELPEACE-27-PLEO", "no_sub_title": "Pope Leo XIV", "rules_primary": "If Pope Leo XIV wins the Nobel Peace Prize in 2026, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXNOBELPEACE", "subtitle": "Pope Leo XIV", "title": "Who will win the Nobel Peace Prize?", "yes_sub_title": "Pope Leo XIV"}, {"category": "Politics", "event_key": "KXNOBELPEACE-26", "key": "KXNOBELPEACE-27-SSHA", "no_sub_title": "Shehbaz Sharif", "rules_primary": "If Shehbaz Sharif wins the Nobel Peace Prize in 2026, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXNOBELPEACE", "subtitle": "Shehbaz Sharif", "title": "Who will win the Nobel Peace Prize?", "yes_sub_title": "Shehbaz Sharif"}, {"category": "Politics", "event_key": "KXNOBELPEACE-26", "key": "KXNOBELPEACE-27-STC", "no_sub_title": "Save the Children", "rules_primary": "If Save the Children wins the Nobel Peace Prize in 2026, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXNOBELPEACE", "subtitle": "Save the Children", "title": "Who will win the Nobel Peace Prize?", "yes_sub_title": "Save the Children"}, {"category": "Politics", "event_key": "KXNOBELPEACE-26", "key": "KXNOBELPEACE-27-UNRWA", "no_sub_title": "UNRWA", "rules_primary": "If UNRWA wins the Nobel Peace Prize in 2026, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXNOBELPEACE", "subtitle": "UNRWA", "title": "Who will win the Nobel Peace Prize?", "yes_sub_title": "UNRWA"}, {"category": "Politics", "event_key": "KXNOBELPEACE-26", "key": "KXNOBELPEACE-27-YNAV", "no_sub_title": "Yulia Navalnaya", "rules_primary": "If Yulia Navalnaya wins the Nobel Peace Prize in 2026, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXNOBELPEACE", "subtitle": "Yulia Navalnaya", "title": "Who will win the Nobel Peace Prize?", "yes_sub_title": "Yulia Navalnaya"}]}, {"event_key": "KXGOVTSHUTDOWN-26OCT01", "markets": [{"category": "Politics", "event_key": "KXGOVTSHUTDOWN-26OCT01", "key": "KXGOVTSHUTDOWN-26OCT01", "no_sub_title": "Yes", "rules_primary": "If the United States federal government is at least partially shut down due to a lapse of appropriations at 10:00 AM ET on Oct 1, 2026, then the market resolves to Yes.", "rules_secondary": "A shutdown is defined as the government's orderly suspension of agency work that is not legally excepted, typically accompanied by furloughing the employees who perform that work, when funding is unavailable.\n\nExamples that would resolve the market to Yes:\n\nOMB releases a formal directive that orders heads of the affected agencies to \"execute plans for an orderly shutdown,\" which is in effect as of 10:00 AM ET on Oct 1, 2026\nOPM posts a current operating status that indicates that \"due to a partial lapse in appropriations, Federal Government operations vary by agency\"\n\nExamples that would NOT resolve the market to Yes:\n\nA technical lapse in appropriations occurs, but OMB directs agencies to continue standard operations\nGovernment closures or operating status changes resulting from Federal holidays, inclement weather, or other emergencies, unless such closures coincide with a shutdown due to a lapse in appropriations", "scheduled_close": "2026-10-01T14:00:00Z", "series": "KXGOVTSHUTDOWN", "subtitle": null, "title": "Will the US government be shut down on Oct 1, 2026?", "yes_sub_title": "Yes"}]}, {"event_key": "KXFM30YMTG-26DEC31", "markets": [{"category": "Economics", "event_key": "KXFM30YMTG-26DEC31", "key": "KXFM30YMTG-26DEC31-T5.75", "no_sub_title": "Yes", "rules_primary": "If any Freddie Mac Primary Mortgage Market Survey (PMMS) release, between Issuance and Dec 31, 2026, inclusive, reports that the 30-year fixed-rate mortgage average is below 5.75%, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T16:55:00Z", "series": "KXFM30YMTG", "subtitle": null, "title": "Will any 2026 Freddie Mac Primary Mortgage Market Survey (PMMS) report a 30-Year Fixed-Rate Mortgage rate below 5.75%?", "yes_sub_title": "Yes"}]}, {"event_key": "KXILHPIYOY-27FEB26", "markets": [{"category": "Economics", "event_key": "KXILHPIYOY-27FEB26", "key": "KXILHPIYOY-27FEB26-T327.38", "no_sub_title": "Above 327.38", "rules_primary": "If the Illinois\u2019s seasonally adjusted Purchase-Only FHFA HPI for Q4 2026 is above \n\n327.38, then the market resolves to Yes.", "rules_secondary": "The Underlying is the index_sa value for Illinois (IL), year 2026, quarter 4, in FHFA\u2019s quarterly state Purchase-Only House Price Index dataset. The market measures Q4-over-Q4 price change, not an annual average or calendar-year average.\n\nResolution uses the first FHFA publication containing the Q4 2026 value; subsequent revisions do not affect resolution.", "scheduled_close": "2027-02-26T14:59:00Z", "series": "KXILHPIYOY", "subtitle": null, "title": "Will Illinois\u2019s seasonally adjusted Purchase-Only FHFA HPI for Q4 2026 be above 327.38?", "yes_sub_title": "Above 327.38"}]}, {"event_key": "KXFILMTAXCREDIT-26SEP", "markets": [{"category": "Politics", "event_key": "KXFILMTAXCREDIT-26SEP", "key": "KXFILMTAXCREDIT-26SEP", "no_sub_title": "Yes", "rules_primary": "If a federal film or television production tax credit has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "A qualifying federal law must expressly create a tax credit against federal tax liability for qualified film or television production. A deduction, expensing or depreciation provision, tariff, grant, appropriation, state or local incentive, proposal, or administrative action without qualifying federal law does NOT qualify.\n\nThe legislation must be signed by the President or become law through veto override. An expired presidential pocket veto does NOT qualify. The credit need not take effect before the deadline if the law becomes law within the specified period.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXFILMTAXCREDIT", "subtitle": null, "title": "Will a federal film or TV production tax credit become law?", "yes_sub_title": "Yes"}]}, {"event_key": "KXSDCATTLE-27JAN31", "markets": [{"category": "Economics", "event_key": "KXSDCATTLE-27JAN31", "key": "KXSDCATTLE-27JAN31-T3550000", "no_sub_title": "Above 3,550,000 head", "rules_primary": "If USDA NASS reports South Dakota\u2019s inventory of all cattle and calves for January 1, 2027 is above 3,550,000 head, then the market resolves to Yes.", "rules_secondary": "Resolution will use USDA NASS\u2019s Cattle, Including Calves - Inventory estimate for South Dakota as of January 1, 2027. This market covers all cattle and calves, not specifically beef cows, milk cows, or cattle on feed. NASS\u2019s January Cattle report provides state-level inventory estimates; the July report only provides national estimates.", "scheduled_close": "2027-01-31T14:59:00Z", "series": "KXSDCATTLE", "subtitle": null, "title": "Will South Dakota\u2019s inventory of all cattle and calves for January 1, 2027 be above 3,550,000 head?", "yes_sub_title": "Above 3,550,000 head"}]}, {"event_key": "KXUSMCA-26", "markets": [{"category": "Politics", "event_key": "KXUSMCA-26", "key": "KXUSMCA-26-27", "no_sub_title": "Before 2027", "rules_primary": "If the United States submits a notice of withdrawal from the USMCA before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXUSMCA", "subtitle": null, "title": "Will Trump try to leave the USMCA before 2027?", "yes_sub_title": "Before 2027"}]}, {"event_key": "KXELECTIRAN", "markets": [{"category": "Elections", "event_key": "KXELECTIRAN", "key": "KXELECTIRAN-27JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If Iran holds a presidential election before January 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXELECTIRAN", "subtitle": null, "title": "Will Iran hold a presidential election before Jan 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}]}, {"event_key": "KXCONGRESSTESTIFY-27JAN", "markets": [{"category": "Politics", "event_key": "KXCONGRESSTESTIFY-27JAN", "key": "KXCONGRESSTESTIFY-27JAN-AFAU", "no_sub_title": "Anthony Fauci", "rules_primary": "If Anthony Fauci has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.", "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCONGRESSTESTIFY", "subtitle": null, "title": "Will Anthony Fauci testify in front of Congress before Jan 2027?", "yes_sub_title": "Anthony Fauci"}, {"category": "Politics", "event_key": "KXCONGRESSTESTIFY-27JAN", "key": "KXCONGRESSTESTIFY-27JAN-BOBA", "no_sub_title": "Barack Obama", "rules_primary": "If Barack Obama has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.", "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCONGRESSTESTIFY", "subtitle": null, "title": "Will Barack Obama testify in front of Congress before Jan 2027?", "yes_sub_title": "Barack Obama"}, {"category": "Politics", "event_key": "KXCONGRESSTESTIFY-27JAN", "key": "KXCONGRESSTESTIFY-27JAN-GMAX", "no_sub_title": "Ghislaine Maxwell", "rules_primary": "If Ghislaine Maxwell has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.", "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCONGRESSTESTIFY", "subtitle": null, "title": "Will Ghislaine Maxwell testify in front of Congress before Jan 2027?", "yes_sub_title": "Ghislaine Maxwell"}, {"category": "Politics", "event_key": "KXCONGRESSTESTIFY-27JAN", "key": "KXCONGRESSTESTIFY-27JAN-JBID", "no_sub_title": "Joe Biden", "rules_primary": "If Joe Biden has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.", "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCONGRESSTESTIFY", "subtitle": null, "title": "Will Joe Biden testify in front of Congress before Jan 2027?", "yes_sub_title": "Joe Biden"}, {"category": "Politics", "event_key": "KXCONGRESSTESTIFY-27JAN", "key": "KXCONGRESSTESTIFY-27JAN-JPOW", "no_sub_title": "Jerome Powell", "rules_primary": "If Jerome Powell has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.", "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCONGRESSTESTIFY", "subtitle": null, "title": "Will Jerome Powell testify in front of Congress before Jan 2027?", "yes_sub_title": "Jerome Powell"}, {"category": "Politics", "event_key": "KXCONGRESSTESTIFY-27JAN", "key": "KXCONGRESSTESTIFY-27JAN-JROL", "no_sub_title": "Jelly Roll", "rules_primary": "If Jelly Roll has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.", "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCONGRESSTESTIFY", "subtitle": null, "title": "Will Jelly Roll testify in front of Congress before Jan 2027?", "yes_sub_title": "Jelly Roll"}, {"category": "Politics", "event_key": "KXCONGRESSTESTIFY-27JAN", "key": "KXCONGRESSTESTIFY-27JAN-JSTE", "no_sub_title": "Jon Stewart", "rules_primary": "If Jon Stewart has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.", "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCONGRESSTESTIFY", "subtitle": null, "title": "Will Jon Stewart testify in front of Congress before Jan 2027?", "yes_sub_title": "Jon Stewart"}, {"category": "Politics", "event_key": "KXCONGRESSTESTIFY-27JAN", "key": "KXCONGRESSTESTIFY-27JAN-KHAR", "no_sub_title": "Kamala Harris", "rules_primary": "If Kamala Harris has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.", "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCONGRESSTESTIFY", "subtitle": null, "title": "Will Kamala Harris testify in front of Congress before Jan 2027?", "yes_sub_title": "Kamala Harris"}, {"category": "Politics", "event_key": "KXCONGRESSTESTIFY-27JAN", "key": "KXCONGRESSTESTIFY-27JAN-MZUC", "no_sub_title": "Mark Zuckerberg", "rules_primary": "If Mark Zuckerberg has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.", "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCONGRESSTESTIFY", "subtitle": null, "title": "Will Mark Zuckerberg testify in front of Congress before Jan 2027?", "yes_sub_title": "Mark Zuckerberg"}, {"category": "Politics", "event_key": "KXCONGRESSTESTIFY-27JAN", "key": "KXCONGRESSTESTIFY-27JAN-SALT", "no_sub_title": "Sam Altman", "rules_primary": "If Sam Altman has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.", "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCONGRESSTESTIFY", "subtitle": null, "title": "Will Sam Altman testify in front of Congress before Jan 2027?", "yes_sub_title": "Sam Altman"}, {"category": "Politics", "event_key": "KXCONGRESSTESTIFY-27JAN", "key": "KXCONGRESSTESTIFY-27JAN-SCHE", "no_sub_title": "Shou Zi Chew", "rules_primary": "If Shou Zi Chew has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.", "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCONGRESSTESTIFY", "subtitle": null, "title": "Will Shou Zi Chew testify in front of Congress before Jan 2027?", "yes_sub_title": "Shou Zi Chew"}]}, {"event_key": "KXXRPMINY-XRP-26DEC31", "markets": [{"category": "Crypto", "event_key": "KXXRPMINY-XRP-26DEC31", "key": "KXXRPMINY-XRP-26DEC31-050", "no_sub_title": "Below $0.50", "rules_primary": "If the price of XRP after issuance and through 11:59 PM ET on Dec 31, 2026 is ever below $0.50, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF XRPUSD_RTI price for XRP. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2027-01-01T04:59:59Z", "series": "KXXRPMINY", "subtitle": null, "title": "Will XRP trimmed mean be below $0.50 by 11:59 PM ET on Dec 31, 2026?", "yes_sub_title": "Below $0.50"}, {"category": "Crypto", "event_key": "KXXRPMINY-XRP-26DEC31", "key": "KXXRPMINY-XRP-26DEC31-075", "no_sub_title": "Below $0.75", "rules_primary": "If the price of XRP after issuance and through 11:59 PM ET on Dec 31, 2026 is ever below $0.75, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF XRPUSD_RTI price for XRP. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2027-01-01T04:59:59Z", "series": "KXXRPMINY", "subtitle": null, "title": "Will XRP trimmed mean be below $0.75 by 11:59 PM ET on Dec 31, 2026?", "yes_sub_title": "Below $0.75"}]}, {"event_key": "KXBRICS-26", "markets": [{"category": "Politics", "event_key": "KXBRICS-26", "key": "KXBRICS-26", "no_sub_title": "Before 2027", "rules_primary": "If BRICS invites a new country to be a member before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-08T14:00:00Z", "series": "KXBRICS", "subtitle": null, "title": "Will BRICS invite a new member to join them at their next summit?", "yes_sub_title": "Before 2027"}]}], "snapshot_at": "2026-09-05T15:45:16Z"}}, "completion": null}
+{
+  "completion": {
+    "completed_at": "2026-09-05T20:36:28.628999+00:00",
+    "effort": "high",
+    "model": "gpt-5.6-sol",
+    "results": {
+      "KXAIFINANCE-26OCT01-T73.5": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/01/2026 03:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAIFINANCE-26OCT01-T73.5\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 is above 73.5%, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaifinance-26oct01\", \"web_search_used\": false}"
+      },
+      "KXAIFINANCE-26OCT01-T74": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/01/2026 03:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAIFINANCE-26OCT01-T74\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 is above 74%, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaifinance-26oct01\", \"web_search_used\": false}"
+      },
+      "KXAIFINANCE-26OCT01-T74.5": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/01/2026 03:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAIFINANCE-26OCT01-T74.5\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 is above 74.5%, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaifinance-26oct01\", \"web_search_used\": false}"
+      },
+      "KXAIFINANCE-26OCT01-T75": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/01/2026 03:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAIFINANCE-26OCT01-T75\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 is above 75%, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaifinance-26oct01\", \"web_search_used\": false}"
+      },
+      "KXBRICS-26": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Invitation of any new country suffices.\", \"deadline\": \"Before Jan 1, 2027\", \"family\": \"intergovernmental_membership_invitation\", \"key\": \"KXBRICS-26\", \"mandatory_steps\": [{\"source_url\": \"https://brics.br/\", \"status\": \"unknown\", \"step\": \"BRICS members reach consensus and issue a qualifying invitation.\"}], \"obstacle\": \"No current official expansion timetable or candidate invitation was established.\", \"predicate\": \"If BRICS invites a new country to be a member before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Official BRICS research did not establish a dated 2026 membership-expansion decision path or pending invitation.\", \"source_gaps\": [\"Summit agenda, consensus, or formal invitation.\"], \"sources\": [], \"subject_key\": \"kxbrics-26\", \"web_search_used\": true}"
+      },
+      "KXCANCUTS-26DEC31-E0": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 03:28:00\", \"family\": \"quantity_measurement\", \"key\": \"KXCANCUTS-26DEC31-E0\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the number of Bank of Canada rate cuts in 2026 is exactly 0\\u3164, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcancuts-26dec31\", \"web_search_used\": false}"
+      },
+      "KXCANCUTS-26DEC31-E1": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 03:28:00\", \"family\": \"quantity_measurement\", \"key\": \"KXCANCUTS-26DEC31-E1\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the number of Bank of Canada rate cuts in 2026 is exactly 1\\u3164, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcancuts-26dec31\", \"web_search_used\": false}"
+      },
+      "KXCANCUTS-26DEC31-E2": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 03:28:00\", \"family\": \"quantity_measurement\", \"key\": \"KXCANCUTS-26DEC31-E2\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the number of Bank of Canada rate cuts in 2026 is exactly 2\\u3164, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcancuts-26dec31\", \"web_search_used\": false}"
+      },
+      "KXCONGRESSTESTIFY-27JAN-AFAU": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXCONGRESSTESTIFY-27JAN-AFAU\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Anthony Fauci has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcongresstestify-27jan\", \"web_search_used\": false}"
+      },
+      "KXCONGRESSTESTIFY-27JAN-BOBA": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXCONGRESSTESTIFY-27JAN-BOBA\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Barack Obama has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcongresstestify-27jan\", \"web_search_used\": false}"
+      },
+      "KXCONGRESSTESTIFY-27JAN-GMAX": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXCONGRESSTESTIFY-27JAN-GMAX\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Ghislaine Maxwell has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcongresstestify-27jan\", \"web_search_used\": false}"
+      },
+      "KXCONGRESSTESTIFY-27JAN-JBID": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXCONGRESSTESTIFY-27JAN-JBID\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Joe Biden has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcongresstestify-27jan\", \"web_search_used\": false}"
+      },
+      "KXCONGRESSTESTIFY-27JAN-JPOW": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXCONGRESSTESTIFY-27JAN-JPOW\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Jerome Powell has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcongresstestify-27jan\", \"web_search_used\": false}"
+      },
+      "KXCONGRESSTESTIFY-27JAN-JROL": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXCONGRESSTESTIFY-27JAN-JROL\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Jelly Roll has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcongresstestify-27jan\", \"web_search_used\": false}"
+      },
+      "KXCONGRESSTESTIFY-27JAN-JSTE": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXCONGRESSTESTIFY-27JAN-JSTE\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Jon Stewart has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcongresstestify-27jan\", \"web_search_used\": false}"
+      },
+      "KXCONGRESSTESTIFY-27JAN-KHAR": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXCONGRESSTESTIFY-27JAN-KHAR\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Kamala Harris has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcongresstestify-27jan\", \"web_search_used\": false}"
+      },
+      "KXCONGRESSTESTIFY-27JAN-MZUC": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXCONGRESSTESTIFY-27JAN-MZUC\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Mark Zuckerberg has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcongresstestify-27jan\", \"web_search_used\": false}"
+      },
+      "KXCONGRESSTESTIFY-27JAN-SALT": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXCONGRESSTESTIFY-27JAN-SALT\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Sam Altman has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcongresstestify-27jan\", \"web_search_used\": false}"
+      },
+      "KXCONGRESSTESTIFY-27JAN-SCHE": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXCONGRESSTESTIFY-27JAN-SCHE\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Shou Zi Chew has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcongresstestify-27jan\", \"web_search_used\": false}"
+      },
+      "KXELECTIRAN-27JAN01": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Any qualifying presidential election may suffice.\", \"deadline\": \"Before Jan 1, 2027\", \"family\": \"presidential_election_administration\", \"key\": \"KXELECTIRAN-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://president.ir/\", \"status\": \"unknown\", \"step\": \"Iran calls, administers, and completes a presidential election.\"}], \"obstacle\": \"No current official election call was established.\", \"predicate\": \"If Iran holds a presidential election before January 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Focused official-source research did not establish a 2026 presidential election calendar or call.\", \"source_gaps\": [\"Official election call and calendar.\"], \"sources\": [], \"subject_key\": \"kxelectiran\", \"web_search_used\": true}"
+      },
+      "KXFILMTAXCREDIT-26SEP": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Any qualifying federal enactment may suffice.\", \"deadline\": \"Before Jan 1, 2027\", \"family\": \"federal_tax_legislation\", \"key\": \"KXFILMTAXCREDIT-26SEP\", \"mandatory_steps\": [{\"source_url\": \"https://www.congress.gov/\", \"status\": \"unknown\", \"step\": \"A qualifying tax-credit bill passes both chambers and becomes law.\"}], \"obstacle\": \"No qualifying current bill path was established.\", \"predicate\": \"If a federal film or television production tax credit has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Focused congressional research did not establish bill text, bicameral action, or an enactment timetable for a federal film or television production credit.\", \"source_gaps\": [\"Qualifying bill and chamber status.\"], \"sources\": [], \"subject_key\": \"kxfilmtaxcredit-26sep\", \"web_search_used\": true}"
+      },
+      "KXFM30YMTG-26DEC31-T5.75": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 16:55:00\", \"family\": \"quantity_measurement\", \"key\": \"KXFM30YMTG-26DEC31-T5.75\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If any Freddie Mac Primary Mortgage Market Survey (PMMS) release, between Issuance and Dec 31, 2026, inclusive, reports that the 30-year fixed-rate mortgage average is below 5.75%, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxfm30ymtg-26dec31\", \"web_search_used\": false}"
+      },
+      "KXGOVTSHUTDOWN-26OCT01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"Regular appropriations or a continuing resolution prevents the lapse.\", \"deadline\": \"Oct 1, 2026 at 10:00 AM ET\", \"family\": \"federal_appropriations\", \"key\": \"KXGOVTSHUTDOWN-26OCT01\", \"mandatory_steps\": [{\"source_url\": \"https://appropriations.house.gov/news/press-releases/house-sends-bill-president-trumps-desk-averts-partisan-october-shutdown\", \"status\": \"in_progress\", \"step\": \"Congress passes funding and the President signs it before the lapse.\"}], \"obstacle\": \"Presidential enactment remained unfinished at cutoff.\", \"predicate\": \"If the United States federal government is at least partially shut down due to a lapse of appropriations at 10:00 AM ET on Oct 1, 2026, then the market resolves to Yes.\", \"rationale\": \"Both chambers passed a continuing resolution through December 4 and sent it to the President on September 1. That provides a concrete path to avoiding a lapse, with enactment still pending.\", \"source_gaps\": [\"Presidential signature or veto.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:33:13Z\", \"published_at\": \"2026-09-01\", \"quote\": \"approved by a vote of 370\\u201348 and will now be sent to President Trump's desk\", \"supports\": \"Confirms bicameral passage and the remaining enactment step.\", \"title\": \"House Sends Bill to President Trump's Desk, Averts Partisan October Shutdown\", \"url\": \"https://appropriations.house.gov/news/press-releases/house-sends-bill-president-trumps-desk-averts-partisan-october-shutdown\"}], \"subject_key\": \"kxgovtshutdown-26oct01\", \"web_search_used\": true}"
+      },
+      "KXILHPIYOY-27FEB26-T327.38": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 02/26/2027 14:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXILHPIYOY-27FEB26-T327.38\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Illinois\\u2019s seasonally adjusted Purchase-Only FHFA HPI for Q4 2026 is above \\n\\n327.38, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxilhpiyoy-27feb26\", \"web_search_used\": false}"
+      },
+      "KXNOBELPEACE-26-CE": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 23:59:00\", \"family\": \"ranking_or_selection_outcome\", \"key\": \"KXNOBELPEACE-26-CE\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Centre for Humanitarian Dialogue wins the Nobel Peace Prize in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a ranking or discretionary selection outcome, not a necessary-step process whose current status determines whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnobelpeace-26\", \"web_search_used\": false}"
+      },
+      "KXNOBELPEACE-26-DJT": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 23:59:00\", \"family\": \"ranking_or_selection_outcome\", \"key\": \"KXNOBELPEACE-26-DJT\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Donald Trump wins the Nobel Peace Prize in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a ranking or discretionary selection outcome, not a necessary-step process whose current status determines whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnobelpeace-26\", \"web_search_used\": false}"
+      },
+      "KXNOBELPEACE-26-DOC": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 23:59:00\", \"family\": \"ranking_or_selection_outcome\", \"key\": \"KXNOBELPEACE-26-DOC\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Doctors Without Borders (M\\u00e9decins Sans Fronti\\u00e8res) wins the Nobel Peace Prize in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a ranking or discretionary selection outcome, not a necessary-step process whose current status determines whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnobelpeace-26\", \"web_search_used\": false}"
+      },
+      "KXNOBELPEACE-26-ELO": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 23:59:00\", \"family\": \"ranking_or_selection_outcome\", \"key\": \"KXNOBELPEACE-26-ELO\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Elon Musk wins the Nobel Peace Prize in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a ranking or discretionary selection outcome, not a necessary-step process whose current status determines whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnobelpeace-26\", \"web_search_used\": false}"
+      },
+      "KXNOBELPEACE-26-FRA": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 23:59:00\", \"family\": \"ranking_or_selection_outcome\", \"key\": \"KXNOBELPEACE-26-FRA\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Francesca Albanese wins the Nobel Peace Prize in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a ranking or discretionary selection outcome, not a necessary-step process whose current status determines whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnobelpeace-26\", \"web_search_used\": false}"
+      },
+      "KXNOBELPEACE-26-ICJ": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 23:59:00\", \"family\": \"ranking_or_selection_outcome\", \"key\": \"KXNOBELPEACE-26-ICJ\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If International Court of Justice (ICJ) wins the Nobel Peace Prize in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a ranking or discretionary selection outcome, not a necessary-step process whose current status determines whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnobelpeace-26\", \"web_search_used\": false}"
+      },
+      "KXNOBELPEACE-26-MIN": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 23:59:00\", \"family\": \"ranking_or_selection_outcome\", \"key\": \"KXNOBELPEACE-26-MIN\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Minneapolis wins the Nobel Peace Prize in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a ranking or discretionary selection outcome, not a necessary-step process whose current status determines whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnobelpeace-26\", \"web_search_used\": false}"
+      },
+      "KXNOBELPEACE-26-NAR": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 23:59:00\", \"family\": \"ranking_or_selection_outcome\", \"key\": \"KXNOBELPEACE-26-NAR\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Narges Mohammadi wins the Nobel Peace Prize in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a ranking or discretionary selection outcome, not a necessary-step process whose current status determines whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnobelpeace-26\", \"web_search_used\": false}"
+      },
+      "KXNOBELPEACE-26-SUD": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 23:59:00\", \"family\": \"ranking_or_selection_outcome\", \"key\": \"KXNOBELPEACE-26-SUD\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Sudan\\u2019s Emergency Response Rooms (ERRs) wins the Nobel Peace Prize in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a ranking or discretionary selection outcome, not a necessary-step process whose current status determines whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnobelpeace-26\", \"web_search_used\": false}"
+      },
+      "KXNOBELPEACE-26-VOL": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 23:59:00\", \"family\": \"ranking_or_selection_outcome\", \"key\": \"KXNOBELPEACE-26-VOL\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Volodymyr Zelenskyy wins the Nobel Peace Prize in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a ranking or discretionary selection outcome, not a necessary-step process whose current status determines whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnobelpeace-26\", \"web_search_used\": false}"
+      },
+      "KXNOBELPEACE-27-ICC": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"ranking_or_selection_outcome\", \"key\": \"KXNOBELPEACE-27-ICC\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If International Criminal Court wins the Nobel Peace Prize in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a ranking or discretionary selection outcome, not a necessary-step process whose current status determines whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnobelpeace-26\", \"web_search_used\": false}"
+      },
+      "KXNOBELPEACE-27-MKUL": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"ranking_or_selection_outcome\", \"key\": \"KXNOBELPEACE-27-MKUL\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Mykola Kuleba / Save Ukraine wins the Nobel Peace Prize in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a ranking or discretionary selection outcome, not a necessary-step process whose current status determines whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnobelpeace-26\", \"web_search_used\": false}"
+      },
+      "KXNOBELPEACE-27-PLEO": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"ranking_or_selection_outcome\", \"key\": \"KXNOBELPEACE-27-PLEO\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Pope Leo XIV wins the Nobel Peace Prize in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a ranking or discretionary selection outcome, not a necessary-step process whose current status determines whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnobelpeace-26\", \"web_search_used\": false}"
+      },
+      "KXNOBELPEACE-27-SSHA": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"ranking_or_selection_outcome\", \"key\": \"KXNOBELPEACE-27-SSHA\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Shehbaz Sharif wins the Nobel Peace Prize in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a ranking or discretionary selection outcome, not a necessary-step process whose current status determines whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnobelpeace-26\", \"web_search_used\": false}"
+      },
+      "KXNOBELPEACE-27-STC": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"ranking_or_selection_outcome\", \"key\": \"KXNOBELPEACE-27-STC\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Save the Children wins the Nobel Peace Prize in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a ranking or discretionary selection outcome, not a necessary-step process whose current status determines whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnobelpeace-26\", \"web_search_used\": false}"
+      },
+      "KXNOBELPEACE-27-UNRWA": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"ranking_or_selection_outcome\", \"key\": \"KXNOBELPEACE-27-UNRWA\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If UNRWA wins the Nobel Peace Prize in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a ranking or discretionary selection outcome, not a necessary-step process whose current status determines whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnobelpeace-26\", \"web_search_used\": false}"
+      },
+      "KXNOBELPEACE-27-YNAV": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"ranking_or_selection_outcome\", \"key\": \"KXNOBELPEACE-27-YNAV\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Yulia Navalnaya wins the Nobel Peace Prize in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a ranking or discretionary selection outcome, not a necessary-step process whose current status determines whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnobelpeace-26\", \"web_search_used\": false}"
+      },
+      "KXNYCCHILDCARE-27JAN01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"A qualifying law may combine state authorization and city implementation.\", \"deadline\": \"Before Jan 1, 2027\", \"family\": \"nyc_childcare_legislation\", \"key\": \"KXNYCCHILDCARE-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://www.nyc.gov/mayors-office/news/2026/05/governor-hochul-and-mayor-mamdani-announce-additional-aid-and-st\", \"status\": \"in_progress\", \"step\": \"City and state enact and fund a qualifying universal child-care program.\"}], \"obstacle\": \"A single qualifying city law with full universal scope was not established.\", \"predicate\": \"If a law establishing and funding a universal child care program has become law in New York City before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Official city material records substantial state funding, a city budget agreement, and active implementation described as a path to universal child care. A qualifying universal law remains unfinished, but the path is affirmative and funded.\", \"source_gaps\": [\"Final enacted law and complete funding terms.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:33:13Z\", \"published_at\": \"2026-05-12\", \"quote\": \"funding for universal childcare\", \"supports\": \"Confirms a funded intergovernmental path and city budget agreement.\", \"title\": \"Governor Hochul and Mayor Mamdani Announce Additional Aid and State Actions\", \"url\": \"https://www.nyc.gov/mayors-office/news/2026/05/governor-hochul-and-mayor-mamdani-announce-additional-aid-and-st\"}, {\"accessed_at\": \"2026-09-05T20:33:13Z\", \"published_at\": \"2026\", \"quote\": \"planning and implementation of child care for any child ... at no cost\", \"supports\": \"Confirms pending legislation aimed at universal no-cost care.\", \"title\": \"NYC Council File Int 0580-2026\", \"url\": \"https://legistar.council.nyc.gov/LegislationDetail.aspx?GUID=E369344E-05E4-4F7D-AAC8-F9D15C8ADECC&ID=7872585\"}], \"subject_key\": \"kxnycchildcare-27jan01\", \"web_search_used\": true}"
+      },
+      "KXPIEDATERRECASE-27": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Preliminary, permanent, or appellate relief may qualify.\", \"deadline\": \"Before Jan 1, 2027\", \"family\": \"state_court_injunction\", \"key\": \"KXPIEDATERRECASE-27\", \"mandatory_steps\": [{\"source_url\": \"https://iapps.courts.state.ny.us/\", \"status\": \"unknown\", \"step\": \"A New York court hears the request and grants qualifying relief.\"}], \"obstacle\": \"Current docket and hearing status were not established.\", \"predicate\": \"If a New York State court grants the petitioners preliminary or permanent injunctive or annulment relief (other than a temporary restraining order) against the City's supplemental tax roll, its surcharge notices, or its imposition or collection of the pied-\\u00e0-terre surcharge in O'Brien v. City of New York, or any appeal thereof before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Focused New York court research did not establish a hearing date, merits ruling, or other dated path to qualifying relief. The evidence gap is not itself a barrier.\", \"source_gaps\": [\"Current docket, briefing, and hearing schedule.\"], \"sources\": [], \"subject_key\": \"kxpiedaterrecase-27\", \"web_search_used\": true}"
+      },
+      "KXSDCATTLE-27JAN31-T3550000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/31/2027 14:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXSDCATTLE-27JAN31-T3550000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports South Dakota\\u2019s inventory of all cattle and calves for January 1, 2027 is above 3,550,000 head, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsdcattle-27jan31\", \"web_search_used\": false}"
+      },
+      "KXUSMCA-26-27": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXUSMCA-26-27\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the United States submits a notice of withdrawal from the USMCA before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxusmca-26\", \"web_search_used\": false}"
+      },
+      "KXXRPMINY-XRP-26DEC31-050": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 04:59:59\", \"family\": \"quantity_measurement\", \"key\": \"KXXRPMINY-XRP-26DEC31-050\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of XRP after issuance and through 11:59 PM ET on Dec 31, 2026 is ever below $0.50, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxxrpminy-xrp-26dec31\", \"web_search_used\": false}"
+      },
+      "KXXRPMINY-XRP-26DEC31-075": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 04:59:59\", \"family\": \"quantity_measurement\", \"key\": \"KXXRPMINY-XRP-26DEC31-075\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of XRP after issuance and through 11:59 PM ET on Dec 31, 2026 is ever below $0.75, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxxrpminy-xrp-26dec31\", \"web_search_used\": false}"
+      }
+    },
+    "web_search": true
+  },
+  "request": {
+    "batch_id": "56",
+    "candidate_keys": [
+      "KXAIFINANCE-26OCT01-T73.5",
+      "KXAIFINANCE-26OCT01-T74",
+      "KXAIFINANCE-26OCT01-T74.5",
+      "KXAIFINANCE-26OCT01-T75",
+      "KXPIEDATERRECASE-27",
+      "KXNYCCHILDCARE-27JAN01",
+      "KXCANCUTS-26DEC31-E0",
+      "KXCANCUTS-26DEC31-E1",
+      "KXCANCUTS-26DEC31-E2",
+      "KXNOBELPEACE-26-CE",
+      "KXNOBELPEACE-26-DJT",
+      "KXNOBELPEACE-26-DOC",
+      "KXNOBELPEACE-26-ELO",
+      "KXNOBELPEACE-26-FRA",
+      "KXNOBELPEACE-26-ICJ",
+      "KXNOBELPEACE-26-MIN",
+      "KXNOBELPEACE-26-NAR",
+      "KXNOBELPEACE-26-SUD",
+      "KXNOBELPEACE-26-VOL",
+      "KXNOBELPEACE-27-ICC",
+      "KXNOBELPEACE-27-MKUL",
+      "KXNOBELPEACE-27-PLEO",
+      "KXNOBELPEACE-27-SSHA",
+      "KXNOBELPEACE-27-STC",
+      "KXNOBELPEACE-27-UNRWA",
+      "KXNOBELPEACE-27-YNAV",
+      "KXGOVTSHUTDOWN-26OCT01",
+      "KXFM30YMTG-26DEC31-T5.75",
+      "KXILHPIYOY-27FEB26-T327.38",
+      "KXFILMTAXCREDIT-26SEP",
+      "KXSDCATTLE-27JAN31-T3550000",
+      "KXUSMCA-26-27",
+      "KXELECTIRAN-27JAN01",
+      "KXCONGRESSTESTIFY-27JAN-AFAU",
+      "KXCONGRESSTESTIFY-27JAN-BOBA",
+      "KXCONGRESSTESTIFY-27JAN-GMAX",
+      "KXCONGRESSTESTIFY-27JAN-JBID",
+      "KXCONGRESSTESTIFY-27JAN-JPOW",
+      "KXCONGRESSTESTIFY-27JAN-JROL",
+      "KXCONGRESSTESTIFY-27JAN-JSTE",
+      "KXCONGRESSTESTIFY-27JAN-KHAR",
+      "KXCONGRESSTESTIFY-27JAN-MZUC",
+      "KXCONGRESSTESTIFY-27JAN-SALT",
+      "KXCONGRESSTESTIFY-27JAN-SCHE",
+      "KXXRPMINY-XRP-26DEC31-050",
+      "KXXRPMINY-XRP-26DEC31-075",
+      "KXBRICS-26"
+    ],
+    "decision_at": "2026-09-05T19:53:15.489944+00:00",
+    "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-056\\first-output.jsonl",
+    "payload": {
+      "decision_at": "2026-09-05T19:53:15.489944+00:00",
+      "events": [
+        {
+          "event_key": "KXAIFINANCE-26OCT01",
+          "markets": [
+            {
+              "category": "Science and Technology",
+              "event_key": "KXAIFINANCE-26OCT01",
+              "key": "KXAIFINANCE-26OCT01-T73.5",
+              "no_sub_title": "Above 73.5%",
+              "rules_primary": "If the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 is above 73.5%, then the market resolves to Yes.",
+              "rules_secondary": "For purposes of this market, determination will resolve on the first value publicly reported in the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026. Corrections or revisions made after the market has been settled will not affect the outcome.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Ramp. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-10-01T03:59:00Z",
+              "series": "KXAIFINANCE",
+              "subtitle": null,
+              "title": "Will Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 be above 73.5%?",
+              "yes_sub_title": "Above 73.5%"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXAIFINANCE-26OCT01",
+              "key": "KXAIFINANCE-26OCT01-T74",
+              "no_sub_title": "Above 74%",
+              "rules_primary": "If the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 is above 74%, then the market resolves to Yes.",
+              "rules_secondary": "For purposes of this market, determination will resolve on the first value publicly reported in the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026. Corrections or revisions made after the market has been settled will not affect the outcome.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Ramp. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-10-01T03:59:00Z",
+              "series": "KXAIFINANCE",
+              "subtitle": null,
+              "title": "Will Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 be above 74%?",
+              "yes_sub_title": "Above 74%"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXAIFINANCE-26OCT01",
+              "key": "KXAIFINANCE-26OCT01-T74.5",
+              "no_sub_title": "Above 74.5%",
+              "rules_primary": "If the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 is above 74.5%, then the market resolves to Yes.",
+              "rules_secondary": "For purposes of this market, determination will resolve on the first value publicly reported in the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026. Corrections or revisions made after the market has been settled will not affect the outcome.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Ramp. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-10-01T03:59:00Z",
+              "series": "KXAIFINANCE",
+              "subtitle": null,
+              "title": "Will Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 be above 74.5%?",
+              "yes_sub_title": "Above 74.5%"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXAIFINANCE-26OCT01",
+              "key": "KXAIFINANCE-26OCT01-T75",
+              "no_sub_title": "Above 75%",
+              "rules_primary": "If the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 is above 75%, then the market resolves to Yes.",
+              "rules_secondary": "For purposes of this market, determination will resolve on the first value publicly reported in the Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026. Corrections or revisions made after the market has been settled will not affect the outcome.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Ramp. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-10-01T03:59:00Z",
+              "series": "KXAIFINANCE",
+              "subtitle": null,
+              "title": "Will Ramp AI Index: Sector adoption rate - Finance and insurance for August 2026 be above 75%?",
+              "yes_sub_title": "Above 75%"
+            }
+          ]
+        },
+        {
+          "event_key": "KXPIEDATERRECASE-27",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXPIEDATERRECASE-27",
+              "key": "KXPIEDATERRECASE-27",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If a New York State court grants the petitioners preliminary or permanent injunctive or annulment relief (other than a temporary restraining order) against the City's supplemental tax roll, its surcharge notices, or its imposition or collection of the pied-\u00e0-terre surcharge in O'Brien v. City of New York, or any appeal thereof before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "This market resolves on a written court ruling in O'Brien v. City of New York, the Article 78 proceeding brought in the Supreme Court of the State of New York, Richmond County by Rachel O'Brien, Carmine Morano and Simon Hedley against Mayor Zohran Mamdani and Finance Commissioner Richard Lee over the rollout of the non-primary residence (pied-\u00e0-terre) surcharge. Rulings in any appeal of that proceeding also count.\n\nThe ruling must:\n\nBe issued by a New York State court in O'Brien v. City of New York, or any appeal thereof\nAddress the specific matter described in the judgment\nBe issued through a written order, opinion, judgment, or decision\n\nRelief on any one of the three heads is enough, and partial relief counts. An order that annuls or enjoins the supplemental tax roll, the surcharge notices, or the imposition or collection of the surcharge resolves this market to YES.\n\nThe following do NOT satisfy the Payout Criterion:\n\nOral rulings from the bench unless reduced to a written order\nTentative rulings that are not made final\nDraft opinions that leak but are not officially issued\nSettlements or voluntary dismissals\nAdministrative or scheduling orders\nOrders to show cause\nMinute orders that do not address the substantive issue in the judgment\n\nThe following also do NOT count, because they grant no injunctive or annulment relief:\n\nThe temporary restraining order issued August 10, 2026, or any later temporary restraining order\nAn order granting, confirming, vacating or dissolving a stay\nDenial of a motion to dismiss or of any other dispositive motion\nVoluntary action by the City, such as withdrawing notices, removing the tax roll, or extending a deadline\n\nFor clarity:\n\nIf the case is dismissed for lack of jurisdiction, that counts as a ruling only if the judgment refers to jurisdiction\nSua sponte rulings count if they match the judgment\nPer curiam opinions and summary orders count as rulings\nIf multiple judges issue separate opinions, the majority/plurality opinion controls\nA ruling in a separate proceeding that has not been consolidated into this one does not count\nIf no qualifying ruling is issued after Issuance and before Jan 1, 2027, this market resolves to NO",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXPIEDATERRECASE",
+              "subtitle": null,
+              "title": "Will a New York State court rule grants the petitioners preliminary or permanent injunctive or annulment relief (other than a temporary restraining order) against the City's supplemental tax roll, its surcharge notices, or its imposition or collection of the pied-\u00e0-terre surcharge?",
+              "yes_sub_title": "Before 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXNYCCHILDCARE-27JAN01",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXNYCCHILDCARE-27JAN01",
+              "key": "KXNYCCHILDCARE-27JAN01",
+              "no_sub_title": "Yes",
+              "rules_primary": "If a law establishing and funding a universal child care program has become law in New York City before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law. For standard legislation requiring executive approval, this includes final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods. For legislation not requiring executive approval, this includes final passage and completion of required waiting periods. For constitutional amendments, this includes passage with required supermajorities and completion of ratification processes. For executive orders, this includes official signature, publication in official government records, and legal effectiveness. Legislative passage without completed executive action, passage by only some required bodies, provisional passage, non-binding resolutions, and draft orders do not constitute enactment. Enactment occurs when all requirements are completed, regardless of pending judicial challenges.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXNYCCHILDCARE",
+              "subtitle": null,
+              "title": "Will Mamdani establish universal child care before 2027?",
+              "yes_sub_title": "Yes"
+            }
+          ]
+        },
+        {
+          "event_key": "KXCANCUTS-26DEC31",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXCANCUTS-26DEC31",
+              "key": "KXCANCUTS-26DEC31-E0",
+              "no_sub_title": "Exactly 0\u3164",
+              "rules_primary": "If the number of Bank of Canada rate cuts in 2026 is exactly 0\u3164, then the market resolves to Yes.",
+              "rules_secondary": "To be clear, 25bp of cuts is equal to one cut (so 25bp cut is 1, 50bp cut is 2, 75bp cut is 3, and so on).",
+              "scheduled_close": "2027-01-01T03:28:00Z",
+              "series": "KXCANCUTS",
+              "subtitle": null,
+              "title": "Will Bank of Canada rate cuts in 2026 be exactly 0\u3164?",
+              "yes_sub_title": "Exactly 0\u3164"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXCANCUTS-26DEC31",
+              "key": "KXCANCUTS-26DEC31-E1",
+              "no_sub_title": "Exactly 1\u3164",
+              "rules_primary": "If the number of Bank of Canada rate cuts in 2026 is exactly 1\u3164, then the market resolves to Yes.",
+              "rules_secondary": "To be clear, 25bp of cuts is equal to one cut (so 25bp cut is 1, 50bp cut is 2, 75bp cut is 3, and so on).",
+              "scheduled_close": "2027-01-01T03:28:00Z",
+              "series": "KXCANCUTS",
+              "subtitle": null,
+              "title": "Will Bank of Canada rate cuts in 2026 be exactly 1\u3164?",
+              "yes_sub_title": "Exactly 1\u3164"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXCANCUTS-26DEC31",
+              "key": "KXCANCUTS-26DEC31-E2",
+              "no_sub_title": "Exactly 2\u3164",
+              "rules_primary": "If the number of Bank of Canada rate cuts in 2026 is exactly 2\u3164, then the market resolves to Yes.",
+              "rules_secondary": "To be clear, 25bp of cuts is equal to one cut (so 25bp cut is 1, 50bp cut is 2, 75bp cut is 3, and so on).",
+              "scheduled_close": "2027-01-01T03:28:00Z",
+              "series": "KXCANCUTS",
+              "subtitle": null,
+              "title": "Will Bank of Canada rate cuts in 2026 be exactly 2\u3164?",
+              "yes_sub_title": "Exactly 2\u3164"
+            }
+          ]
+        },
+        {
+          "event_key": "KXNOBELPEACE-26",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXNOBELPEACE-26",
+              "key": "KXNOBELPEACE-26-CE",
+              "no_sub_title": "Centre for Humanitarian Dialogue",
+              "rules_primary": "If Centre for Humanitarian Dialogue wins the Nobel Peace Prize in 2026, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.",
+              "scheduled_close": "2026-12-31T23:59:00Z",
+              "series": "KXNOBELPEACE",
+              "subtitle": null,
+              "title": "Who will win the Nobel Peace Prize?",
+              "yes_sub_title": "Centre for Humanitarian Dialogue"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXNOBELPEACE-26",
+              "key": "KXNOBELPEACE-26-DJT",
+              "no_sub_title": "Donald Trump",
+              "rules_primary": "If Donald Trump wins the Nobel Peace Prize in 2026, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.",
+              "scheduled_close": "2026-12-31T23:59:00Z",
+              "series": "KXNOBELPEACE",
+              "subtitle": "Donald Trump",
+              "title": "Who will win the Nobel Peace Prize?",
+              "yes_sub_title": "Donald Trump"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXNOBELPEACE-26",
+              "key": "KXNOBELPEACE-26-DOC",
+              "no_sub_title": "Doctors Without Borders (M\u00e9decins Sans Fronti\u00e8res)",
+              "rules_primary": "If Doctors Without Borders (M\u00e9decins Sans Fronti\u00e8res) wins the Nobel Peace Prize in 2026, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.",
+              "scheduled_close": "2026-12-31T23:59:00Z",
+              "series": "KXNOBELPEACE",
+              "subtitle": null,
+              "title": "Who will win the Nobel Peace Prize?",
+              "yes_sub_title": "Doctors Without Borders (M\u00e9decins Sans Fronti\u00e8res)"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXNOBELPEACE-26",
+              "key": "KXNOBELPEACE-26-ELO",
+              "no_sub_title": "Elon Musk",
+              "rules_primary": "If Elon Musk wins the Nobel Peace Prize in 2026, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.",
+              "scheduled_close": "2026-12-31T23:59:00Z",
+              "series": "KXNOBELPEACE",
+              "subtitle": null,
+              "title": "Who will win the Nobel Peace Prize?",
+              "yes_sub_title": "Elon Musk"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXNOBELPEACE-26",
+              "key": "KXNOBELPEACE-26-FRA",
+              "no_sub_title": "Francesca Albanese",
+              "rules_primary": "If Francesca Albanese wins the Nobel Peace Prize in 2026, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.",
+              "scheduled_close": "2026-12-31T23:59:00Z",
+              "series": "KXNOBELPEACE",
+              "subtitle": null,
+              "title": "Who will win the Nobel Peace Prize?",
+              "yes_sub_title": "Francesca Albanese"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXNOBELPEACE-26",
+              "key": "KXNOBELPEACE-26-ICJ",
+              "no_sub_title": "International Court of Justice (ICJ)",
+              "rules_primary": "If International Court of Justice (ICJ) wins the Nobel Peace Prize in 2026, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.",
+              "scheduled_close": "2026-12-31T23:59:00Z",
+              "series": "KXNOBELPEACE",
+              "subtitle": null,
+              "title": "Who will win the Nobel Peace Prize?",
+              "yes_sub_title": "International Court of Justice (ICJ)"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXNOBELPEACE-26",
+              "key": "KXNOBELPEACE-26-MIN",
+              "no_sub_title": "Minneapolis",
+              "rules_primary": "If Minneapolis wins the Nobel Peace Prize in 2026, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.",
+              "scheduled_close": "2026-12-31T23:59:00Z",
+              "series": "KXNOBELPEACE",
+              "subtitle": "Minneapolis",
+              "title": "Who will win the Nobel Peace Prize?",
+              "yes_sub_title": "Minneapolis"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXNOBELPEACE-26",
+              "key": "KXNOBELPEACE-26-NAR",
+              "no_sub_title": "Narges Mohammadi",
+              "rules_primary": "If Narges Mohammadi wins the Nobel Peace Prize in 2026, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.",
+              "scheduled_close": "2026-12-31T23:59:00Z",
+              "series": "KXNOBELPEACE",
+              "subtitle": null,
+              "title": "Who will win the Nobel Peace Prize?",
+              "yes_sub_title": "Narges Mohammadi"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXNOBELPEACE-26",
+              "key": "KXNOBELPEACE-26-SUD",
+              "no_sub_title": "Sudan\u2019s Emergency Response Rooms (ERRs)",
+              "rules_primary": "If Sudan\u2019s Emergency Response Rooms (ERRs) wins the Nobel Peace Prize in 2026, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.",
+              "scheduled_close": "2026-12-31T23:59:00Z",
+              "series": "KXNOBELPEACE",
+              "subtitle": null,
+              "title": "Who will win the Nobel Peace Prize?",
+              "yes_sub_title": "Sudan\u2019s Emergency Response Rooms (ERRs)"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXNOBELPEACE-26",
+              "key": "KXNOBELPEACE-26-VOL",
+              "no_sub_title": "Volodymyr Zelenskyy",
+              "rules_primary": "If Volodymyr Zelenskyy wins the Nobel Peace Prize in 2026, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.",
+              "scheduled_close": "2026-12-31T23:59:00Z",
+              "series": "KXNOBELPEACE",
+              "subtitle": null,
+              "title": "Who will win the Nobel Peace Prize?",
+              "yes_sub_title": "Volodymyr Zelenskyy"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXNOBELPEACE-26",
+              "key": "KXNOBELPEACE-27-ICC",
+              "no_sub_title": "International Criminal Court",
+              "rules_primary": "If International Criminal Court wins the Nobel Peace Prize in 2026, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXNOBELPEACE",
+              "subtitle": "International Criminal Court",
+              "title": "Who will win the Nobel Peace Prize?",
+              "yes_sub_title": "International Criminal Court"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXNOBELPEACE-26",
+              "key": "KXNOBELPEACE-27-MKUL",
+              "no_sub_title": "Mykola Kuleba / Save Ukraine",
+              "rules_primary": "If Mykola Kuleba / Save Ukraine wins the Nobel Peace Prize in 2026, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXNOBELPEACE",
+              "subtitle": "Mykola Kuleba / Save Ukraine",
+              "title": "Who will win the Nobel Peace Prize?",
+              "yes_sub_title": "Mykola Kuleba / Save Ukraine"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXNOBELPEACE-26",
+              "key": "KXNOBELPEACE-27-PLEO",
+              "no_sub_title": "Pope Leo XIV",
+              "rules_primary": "If Pope Leo XIV wins the Nobel Peace Prize in 2026, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXNOBELPEACE",
+              "subtitle": "Pope Leo XIV",
+              "title": "Who will win the Nobel Peace Prize?",
+              "yes_sub_title": "Pope Leo XIV"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXNOBELPEACE-26",
+              "key": "KXNOBELPEACE-27-SSHA",
+              "no_sub_title": "Shehbaz Sharif",
+              "rules_primary": "If Shehbaz Sharif wins the Nobel Peace Prize in 2026, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXNOBELPEACE",
+              "subtitle": "Shehbaz Sharif",
+              "title": "Who will win the Nobel Peace Prize?",
+              "yes_sub_title": "Shehbaz Sharif"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXNOBELPEACE-26",
+              "key": "KXNOBELPEACE-27-STC",
+              "no_sub_title": "Save the Children",
+              "rules_primary": "If Save the Children wins the Nobel Peace Prize in 2026, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXNOBELPEACE",
+              "subtitle": "Save the Children",
+              "title": "Who will win the Nobel Peace Prize?",
+              "yes_sub_title": "Save the Children"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXNOBELPEACE-26",
+              "key": "KXNOBELPEACE-27-UNRWA",
+              "no_sub_title": "UNRWA",
+              "rules_primary": "If UNRWA wins the Nobel Peace Prize in 2026, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXNOBELPEACE",
+              "subtitle": "UNRWA",
+              "title": "Who will win the Nobel Peace Prize?",
+              "yes_sub_title": "UNRWA"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXNOBELPEACE-26",
+              "key": "KXNOBELPEACE-27-YNAV",
+              "no_sub_title": "Yulia Navalnaya",
+              "rules_primary": "If Yulia Navalnaya wins the Nobel Peace Prize in 2026, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by the Nobel Foundation. Any references to the Nobel Foundation or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between the Nobel Foundation and Kalshi.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXNOBELPEACE",
+              "subtitle": "Yulia Navalnaya",
+              "title": "Who will win the Nobel Peace Prize?",
+              "yes_sub_title": "Yulia Navalnaya"
+            }
+          ]
+        },
+        {
+          "event_key": "KXGOVTSHUTDOWN-26OCT01",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXGOVTSHUTDOWN-26OCT01",
+              "key": "KXGOVTSHUTDOWN-26OCT01",
+              "no_sub_title": "Yes",
+              "rules_primary": "If the United States federal government is at least partially shut down due to a lapse of appropriations at 10:00 AM ET on Oct 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "A shutdown is defined as the government's orderly suspension of agency work that is not legally excepted, typically accompanied by furloughing the employees who perform that work, when funding is unavailable.\n\nExamples that would resolve the market to Yes:\n\nOMB releases a formal directive that orders heads of the affected agencies to \"execute plans for an orderly shutdown,\" which is in effect as of 10:00 AM ET on Oct 1, 2026\nOPM posts a current operating status that indicates that \"due to a partial lapse in appropriations, Federal Government operations vary by agency\"\n\nExamples that would NOT resolve the market to Yes:\n\nA technical lapse in appropriations occurs, but OMB directs agencies to continue standard operations\nGovernment closures or operating status changes resulting from Federal holidays, inclement weather, or other emergencies, unless such closures coincide with a shutdown due to a lapse in appropriations",
+              "scheduled_close": "2026-10-01T14:00:00Z",
+              "series": "KXGOVTSHUTDOWN",
+              "subtitle": null,
+              "title": "Will the US government be shut down on Oct 1, 2026?",
+              "yes_sub_title": "Yes"
+            }
+          ]
+        },
+        {
+          "event_key": "KXFM30YMTG-26DEC31",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXFM30YMTG-26DEC31",
+              "key": "KXFM30YMTG-26DEC31-T5.75",
+              "no_sub_title": "Yes",
+              "rules_primary": "If any Freddie Mac Primary Mortgage Market Survey (PMMS) release, between Issuance and Dec 31, 2026, inclusive, reports that the 30-year fixed-rate mortgage average is below 5.75%, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T16:55:00Z",
+              "series": "KXFM30YMTG",
+              "subtitle": null,
+              "title": "Will any 2026 Freddie Mac Primary Mortgage Market Survey (PMMS) report a 30-Year Fixed-Rate Mortgage rate below 5.75%?",
+              "yes_sub_title": "Yes"
+            }
+          ]
+        },
+        {
+          "event_key": "KXILHPIYOY-27FEB26",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXILHPIYOY-27FEB26",
+              "key": "KXILHPIYOY-27FEB26-T327.38",
+              "no_sub_title": "Above 327.38",
+              "rules_primary": "If the Illinois\u2019s seasonally adjusted Purchase-Only FHFA HPI for Q4 2026 is above \n\n327.38, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is the index_sa value for Illinois (IL), year 2026, quarter 4, in FHFA\u2019s quarterly state Purchase-Only House Price Index dataset. The market measures Q4-over-Q4 price change, not an annual average or calendar-year average.\n\nResolution uses the first FHFA publication containing the Q4 2026 value; subsequent revisions do not affect resolution.",
+              "scheduled_close": "2027-02-26T14:59:00Z",
+              "series": "KXILHPIYOY",
+              "subtitle": null,
+              "title": "Will Illinois\u2019s seasonally adjusted Purchase-Only FHFA HPI for Q4 2026 be above 327.38?",
+              "yes_sub_title": "Above 327.38"
+            }
+          ]
+        },
+        {
+          "event_key": "KXFILMTAXCREDIT-26SEP",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXFILMTAXCREDIT-26SEP",
+              "key": "KXFILMTAXCREDIT-26SEP",
+              "no_sub_title": "Yes",
+              "rules_primary": "If a federal film or television production tax credit has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "A qualifying federal law must expressly create a tax credit against federal tax liability for qualified film or television production. A deduction, expensing or depreciation provision, tariff, grant, appropriation, state or local incentive, proposal, or administrative action without qualifying federal law does NOT qualify.\n\nThe legislation must be signed by the President or become law through veto override. An expired presidential pocket veto does NOT qualify. The credit need not take effect before the deadline if the law becomes law within the specified period.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXFILMTAXCREDIT",
+              "subtitle": null,
+              "title": "Will a federal film or TV production tax credit become law?",
+              "yes_sub_title": "Yes"
+            }
+          ]
+        },
+        {
+          "event_key": "KXSDCATTLE-27JAN31",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXSDCATTLE-27JAN31",
+              "key": "KXSDCATTLE-27JAN31-T3550000",
+              "no_sub_title": "Above 3,550,000 head",
+              "rules_primary": "If USDA NASS reports South Dakota\u2019s inventory of all cattle and calves for January 1, 2027 is above 3,550,000 head, then the market resolves to Yes.",
+              "rules_secondary": "Resolution will use USDA NASS\u2019s Cattle, Including Calves - Inventory estimate for South Dakota as of January 1, 2027. This market covers all cattle and calves, not specifically beef cows, milk cows, or cattle on feed. NASS\u2019s January Cattle report provides state-level inventory estimates; the July report only provides national estimates.",
+              "scheduled_close": "2027-01-31T14:59:00Z",
+              "series": "KXSDCATTLE",
+              "subtitle": null,
+              "title": "Will South Dakota\u2019s inventory of all cattle and calves for January 1, 2027 be above 3,550,000 head?",
+              "yes_sub_title": "Above 3,550,000 head"
+            }
+          ]
+        },
+        {
+          "event_key": "KXUSMCA-26",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXUSMCA-26",
+              "key": "KXUSMCA-26-27",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If the United States submits a notice of withdrawal from the USMCA before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXUSMCA",
+              "subtitle": null,
+              "title": "Will Trump try to leave the USMCA before 2027?",
+              "yes_sub_title": "Before 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXELECTIRAN",
+          "markets": [
+            {
+              "category": "Elections",
+              "event_key": "KXELECTIRAN",
+              "key": "KXELECTIRAN-27JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If Iran holds a presidential election before January 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXELECTIRAN",
+              "subtitle": null,
+              "title": "Will Iran hold a presidential election before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXCONGRESSTESTIFY-27JAN",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXCONGRESSTESTIFY-27JAN",
+              "key": "KXCONGRESSTESTIFY-27JAN-AFAU",
+              "no_sub_title": "Anthony Fauci",
+              "rules_primary": "If Anthony Fauci has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.",
+              "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCONGRESSTESTIFY",
+              "subtitle": null,
+              "title": "Will Anthony Fauci testify in front of Congress before Jan 2027?",
+              "yes_sub_title": "Anthony Fauci"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXCONGRESSTESTIFY-27JAN",
+              "key": "KXCONGRESSTESTIFY-27JAN-BOBA",
+              "no_sub_title": "Barack Obama",
+              "rules_primary": "If Barack Obama has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.",
+              "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCONGRESSTESTIFY",
+              "subtitle": null,
+              "title": "Will Barack Obama testify in front of Congress before Jan 2027?",
+              "yes_sub_title": "Barack Obama"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXCONGRESSTESTIFY-27JAN",
+              "key": "KXCONGRESSTESTIFY-27JAN-GMAX",
+              "no_sub_title": "Ghislaine Maxwell",
+              "rules_primary": "If Ghislaine Maxwell has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.",
+              "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCONGRESSTESTIFY",
+              "subtitle": null,
+              "title": "Will Ghislaine Maxwell testify in front of Congress before Jan 2027?",
+              "yes_sub_title": "Ghislaine Maxwell"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXCONGRESSTESTIFY-27JAN",
+              "key": "KXCONGRESSTESTIFY-27JAN-JBID",
+              "no_sub_title": "Joe Biden",
+              "rules_primary": "If Joe Biden has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.",
+              "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCONGRESSTESTIFY",
+              "subtitle": null,
+              "title": "Will Joe Biden testify in front of Congress before Jan 2027?",
+              "yes_sub_title": "Joe Biden"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXCONGRESSTESTIFY-27JAN",
+              "key": "KXCONGRESSTESTIFY-27JAN-JPOW",
+              "no_sub_title": "Jerome Powell",
+              "rules_primary": "If Jerome Powell has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.",
+              "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCONGRESSTESTIFY",
+              "subtitle": null,
+              "title": "Will Jerome Powell testify in front of Congress before Jan 2027?",
+              "yes_sub_title": "Jerome Powell"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXCONGRESSTESTIFY-27JAN",
+              "key": "KXCONGRESSTESTIFY-27JAN-JROL",
+              "no_sub_title": "Jelly Roll",
+              "rules_primary": "If Jelly Roll has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.",
+              "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCONGRESSTESTIFY",
+              "subtitle": null,
+              "title": "Will Jelly Roll testify in front of Congress before Jan 2027?",
+              "yes_sub_title": "Jelly Roll"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXCONGRESSTESTIFY-27JAN",
+              "key": "KXCONGRESSTESTIFY-27JAN-JSTE",
+              "no_sub_title": "Jon Stewart",
+              "rules_primary": "If Jon Stewart has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.",
+              "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCONGRESSTESTIFY",
+              "subtitle": null,
+              "title": "Will Jon Stewart testify in front of Congress before Jan 2027?",
+              "yes_sub_title": "Jon Stewart"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXCONGRESSTESTIFY-27JAN",
+              "key": "KXCONGRESSTESTIFY-27JAN-KHAR",
+              "no_sub_title": "Kamala Harris",
+              "rules_primary": "If Kamala Harris has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.",
+              "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCONGRESSTESTIFY",
+              "subtitle": null,
+              "title": "Will Kamala Harris testify in front of Congress before Jan 2027?",
+              "yes_sub_title": "Kamala Harris"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXCONGRESSTESTIFY-27JAN",
+              "key": "KXCONGRESSTESTIFY-27JAN-MZUC",
+              "no_sub_title": "Mark Zuckerberg",
+              "rules_primary": "If Mark Zuckerberg has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.",
+              "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCONGRESSTESTIFY",
+              "subtitle": null,
+              "title": "Will Mark Zuckerberg testify in front of Congress before Jan 2027?",
+              "yes_sub_title": "Mark Zuckerberg"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXCONGRESSTESTIFY-27JAN",
+              "key": "KXCONGRESSTESTIFY-27JAN-SALT",
+              "no_sub_title": "Sam Altman",
+              "rules_primary": "If Sam Altman has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.",
+              "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCONGRESSTESTIFY",
+              "subtitle": null,
+              "title": "Will Sam Altman testify in front of Congress before Jan 2027?",
+              "yes_sub_title": "Sam Altman"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXCONGRESSTESTIFY-27JAN",
+              "key": "KXCONGRESSTESTIFY-27JAN-SCHE",
+              "no_sub_title": "Shou Zi Chew",
+              "rules_primary": "If Shou Zi Chew has testified in front of Congress after Issuance and before Jan 1, 2027, the market resolves to Yes.",
+              "rules_secondary": "In-person, remote, and/or virtual testimony during an official hearing or deposition of the House or Senate (including committees, subcommittees, and joint committees) qualifies. Testifying in a closed-door session also qualifies.\n\n\nSubmitting written testimony without appearing live does not qualify. Statements made outside of an official committee hearing, such as informal briefings, media events on Capitol grounds, or personal statements to individual members of Congress, do not satisfy the criterion.\n\n\n\nClarification (2/6/26): A person will be considered to have \u201ctestified in front of Congress\u201d if they provide live testimony in an official House or Senate committee proceeding, including a committee deposition, whether held in a public hearing or a closed-door session, so long as the person appears live (in-person or remotely) and provides testimony under committee authority.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCONGRESSTESTIFY",
+              "subtitle": null,
+              "title": "Will Shou Zi Chew testify in front of Congress before Jan 2027?",
+              "yes_sub_title": "Shou Zi Chew"
+            }
+          ]
+        },
+        {
+          "event_key": "KXXRPMINY-XRP-26DEC31",
+          "markets": [
+            {
+              "category": "Crypto",
+              "event_key": "KXXRPMINY-XRP-26DEC31",
+              "key": "KXXRPMINY-XRP-26DEC31-050",
+              "no_sub_title": "Below $0.50",
+              "rules_primary": "If the price of XRP after issuance and through 11:59 PM ET on Dec 31, 2026 is ever below $0.50, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF XRPUSD_RTI price for XRP. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2027-01-01T04:59:59Z",
+              "series": "KXXRPMINY",
+              "subtitle": null,
+              "title": "Will XRP trimmed mean be below $0.50 by 11:59 PM ET on Dec 31, 2026?",
+              "yes_sub_title": "Below $0.50"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXXRPMINY-XRP-26DEC31",
+              "key": "KXXRPMINY-XRP-26DEC31-075",
+              "no_sub_title": "Below $0.75",
+              "rules_primary": "If the price of XRP after issuance and through 11:59 PM ET on Dec 31, 2026 is ever below $0.75, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF XRPUSD_RTI price for XRP. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2027-01-01T04:59:59Z",
+              "series": "KXXRPMINY",
+              "subtitle": null,
+              "title": "Will XRP trimmed mean be below $0.75 by 11:59 PM ET on Dec 31, 2026?",
+              "yes_sub_title": "Below $0.75"
+            }
+          ]
+        },
+        {
+          "event_key": "KXBRICS-26",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXBRICS-26",
+              "key": "KXBRICS-26",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If BRICS invites a new country to be a member before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-08T14:00:00Z",
+              "series": "KXBRICS",
+              "subtitle": null,
+              "title": "Will BRICS invite a new member to join them at their next summit?",
+              "yes_sub_title": "Before 2027"
+            }
+          ]
+        }
+      ],
+      "snapshot_at": "2026-09-05T15:45:16Z"
+    },
+    "payload_sha256": "906202b4d6be4bba6ca6c11025b4f605f9bd7b523eed0fe2e94125025f4aa9f6",
+    "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-056\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-056\\first-output.jsonl\n",
+    "requested_effort": "high",
+    "requested_model": "gpt-5.6-sol",
+    "requested_web_search": true,
+    "run_id": "study/broad-procedural-20260905",
+    "run_mode": "study",
+    "stage": "analysis",
+    "theory_id": "study/broad-procedural",
+    "theory_version": 1
+  },
+  "schema_version": 1
+}
