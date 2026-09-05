@@ -151,3 +151,26 @@ must identify their timing and cannot retroactively preregister exposed data.
 ## investigation — 2026-09-05
 
 Start the authorized FDA comparison. Design, exposure audit, collection and judgment stay inside this study; no production theory changes.
+
+## Pre-judgment implementation note — 2026-09-05 18:40 UTC
+
+The exposure inventory contains five historical subjects, zero untouched
+historical subjects, seven current subjects and ten distinct subjects across
+both cohorts. The planning MDE at sigma 0.25 / 0.50 is 0.313 / 0.626 for n=5,
+0.265 / 0.529 for n=7 and 0.221 / 0.443 for n=10 (dollars per contract under
+the stated approximation). These are planning sensitivities, not estimated
+variance or evidence that any edge exists. This run is explicitly diagnostic.
+
+Before any judge output or calculated return, add a secondary descriptive
+all-NO comparator on the same admitted historical subjects. Four of the five
+outcomes were already known to be No; this benchmark prevents presenting that
+base rate as semantic skill. It does not change the primary disclosure-versus-
+judgment contrast, selection rules or the exposure classification.
+
+The primary parser is intentionally auditable: exact same-sentence drug alias,
+affirmative submission intent, application reference and a parsed calendar
+window. Unresolved dates, upper bounds and missing subject anchors abstain.
+Parser misses are reported separately from source-supported incremental
+judgment. Twenty-one synthetic controls passed before real packets were
+loaded. The first prompt and parser are frozen before comparison; failures
+on real sources will not be tuned away in this measurement.
