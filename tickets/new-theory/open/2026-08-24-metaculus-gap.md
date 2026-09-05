@@ -17,16 +17,18 @@ repo than any single spec's own kill criteria have.
 
 ## Assessment
 
-**Applicability 2/5 · Implementability 3/5 · Likelihood of success 3/5 ·
-Composite 8/15** (rubric in the
+**Applicability 2/5 · Implementability 2/5 · Likelihood of success 3/5 ·
+Composite 7/15** (rubric in the
 [index](../README.md); ordinal priors, not
 calibrated probabilities)
 
 - *Applicability 2:* the binding constraint is question overlap —
   Metaculus's long-horizon geopolitics/science questions intersect
   Kalshi's board thinly, and its community forecast updates slowly.
-- *Implementability 3:* the API is keyless and clean; the work is the
-  pair store (reused from cross-venue) and the staleness handling.
+- *Implementability 2:* the official API now requires authentication and
+  exposes Community Prediction data only on a limited question set. A public
+  embed payload currently exposes aggregate history, but it is undocumented
+  and therefore needs a retained-response fallback.
 - *Likelihood 3:* Metaculus's aggregate is documented as well-calibrated
   and competitive with markets in comparative studies — but a
   no-capital, slow-updating forecast lagging a fast market means many
@@ -85,10 +87,33 @@ right, and the Kalshi side that converges toward it is cheap.
 
 ## 5. Data requirements
 
-- Metaculus public API (keyless): community prediction time series,
-  forecast counts, resolution text. Historical CP time series enables
-  the tier-A backtest; verify depth at implementation.
+- Metaculus question data: community-prediction time series, forecast counts,
+  resolution text, and edit provenance. The authenticated API is access
+  limited. The tested no-login fallback is the official
+  `/questions/embed/{post_id}/` page, whose server payload contains the current
+  question and `recency_weighted.history`; retain every response because this
+  surface is undocumented. Metaculus also documents a question-page **Download
+  data** action, but no-login access has not been verified.
 - In-repo: board, candlesticks, pair store.
+
+### Verified access and current probe — 2026-09-05
+
+Peltola question 41678 exposed a 53% YES Community Prediction; Kalshi
+`KXAKSENATE-26NOV03-MPEL` was 65/66 YES and 34/35 NO. The 47% Metaculus NO
+versus the executable 35-cent NO ask was 10.41 points after the repository fee
+model, with depth, and an expected 66-day duration. It is **not an accepted
+pair**: Metaculus resolves from state-certified results, while Kalshi adds a
+taking-office condition and disputed-result fallbacks. The ordinary-outcome
+implication makes Metaculus NO a conservative translation for Kalshi NO, but
+only conditional on the Metaculus probability being valid; it is not a
+statistical confidence bound. Test such directional implications separately
+from the exact-match baseline.
+
+The post was edited 65 minutes after the latest aggregate segment began. The
+public payload has no field-level revision history, so it does not establish
+whether title, background, or criteria changed, nor the last individual
+reaffirmation time. Treat freshness as unresolved. Retained source responses
+and hashes are in the [2026-09-05 capture](../../../.superpowers/sdd/metaculus-gap-20260905/manifest.json).
 
 ## 6. Backtest design
 
@@ -96,7 +121,23 @@ Tier A given confirmed pairs: over each pair's overlapping history,
 apply the rule at historical Kalshi asks against the *then-current*
 community forecast, settle. Premise test first, as with cross-venue:
 when the two disagree (fresh forecasts only), who ends up right — the
-forecasters or the market? No positive premise, no theory.
+forecasters or the market? No positive premise, no theory. Report both event
+and resolution-date clusters: multiple 2024 state races on one election day
+are not independent calendar observations. A useful first test therefore needs
+several nonidentical election dates or recurring macro releases.
+
+A bounded feasibility probe found one usable recurring family: Metaculus post
+13960 has resolved monthly headline-CPI questions that match Kalshi `KXCPI` on
+the BLS first estimate, seasonal adjustment, month, and one-decimal resolution.
+The public embed exposes a final 201-point aggregate CDF before each release,
+and Kalshi's archive exposes hourly bid/ask candles, so a one-observation-per-
+release diagnostic can cover at least eight 2025 release dates. It does not
+support an intramonth time-series replay: older embed segments retain interval
+summaries and a median, not the full historical CDF. The group post was edited
+after those releases and exposes no revision diff, so this remains a
+provenance-limited diagnostic until contemporaneous criteria or an official
+export is recovered. Count every CPI release once; its many strikes are one
+cluster.
 
 ## 7. Kill criteria
 

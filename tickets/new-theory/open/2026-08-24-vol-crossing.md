@@ -32,6 +32,28 @@ calibrated probabilities)
   buffer may leave few surviving candidates. The plausible residue is
   longer-dated touches only.
 
+## Pre-build source-contract blocker — 2026-09-05
+
+Do not build the procedure below as written. An active September BTC MAX
+contract does not settle on an instantaneous spot touch: its rule says the
+"top 20% and bottom 20% of the cumulative dataset are removed" before the
+remaining minute-by-minute CF BRTI values are averaged, and Yes requires one
+of those running trimmed means to cross the strike. A reflection-principle
+spot-touch probability therefore prices a different payoff. Historical MIN
+wording also changed, leaving too few clearly comparable months for an
+independent validation split.
+
+A 2026-09-05 screen of executable year-end BTC/ETH quotes found no deviation
+above the five-point buffer when spot-touch tails were derived from Deribit
+option-implied volatility. Those are risk-neutral model prices, not physical
+probabilities, and they cannot cure the payoff mismatch. Revisit only as a
+study that reconstructs the specified running trimmed mean from exact CF
+history; do not implement a betting theory first.
+
+Sources: [current Kalshi contract rule](https://api.elections.kalshi.com/trade-api/v2/markets/KXBTCMAXMON-BTC-26SEP30-9000000),
+[CF Benchmarks history access](https://docs.kalshi.com/cfbenchmarks/rest-passthrough),
+[Deribit option-market fields](https://docs.deribit.com/api-reference/market-data/public-get_order_book).
+
 ## 1. Hypothesis
 
 "X above/below level L by date T" markets on continuously traded
