@@ -174,3 +174,11 @@ Parser misses are reported separately from source-supported incremental
 judgment. Twenty-one synthetic controls passed before real packets were
 loaded. The first prompt and parser are frozen before comparison; failures
 on real sources will not be tuned away in this measurement.
+
+Input QA before current dispatch: source-collector coverage notes contained
+interpretations (including whether a voucher applied to the same indication).
+Those notes remain operator-side. Current judge inputs contain source texts
+and each source's timestamp/vintage explanation, with a neutral incomplete-
+packet notice. The historical packet's coverage notes were limited to missing
+documents and vintage and were already frozen. Filename/path compatibility
+was corrected in the packager; neither parser nor judge instructions changed.

@@ -76,8 +76,11 @@ def prepare(cohort, packets, rules_path):
     if isinstance(rules, list):
         rules = {row["ticker"]: row for row in rules}
     found = {}
-    for path in Path(packets).rglob("packet.json"):
+    packet_paths = list(Path(packets).glob("*.json")) or list(Path(packets).rglob("packet.json"))
+    for path in packet_paths:
         packet = read(path)
+        if not isinstance(packet, dict) or not {"subject_id", "as_of", "sources"}.issubset(packet):
+            continue
         if packet["subject_id"] in found:
             raise ValueError("Duplicate subject packet")
         found[packet["subject_id"]] = (path, packet)
@@ -100,7 +103,11 @@ def prepare(cohort, packets, rules_path):
         if not case["contract"].get("rules_primary"):
             raise ValueError(f"Missing exact rules for {ticker}")
         cases.append(case)
-        input_audit.append({"case_id": case["case_id"], "packet": str(path.relative_to(STUDY)),
+        if cohort == "current":
+            # Collector coverage includes interpretation and prior-exposure notes.
+            # Keep it operator-side; the judge derives applicability from originals.
+            case["coverage"] = {"notice": "This is a finite source packet. Missing documents or status do not establish absence of progress. Publication and vintage limitations are recorded on each source."}
+        input_audit.append({"case_id": case["case_id"], "packet": str(path.resolve().relative_to(STUDY)),
                             "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
                             "source_count": len(selected["sources"]),
                             "excluded_sources": selected["excluded_sources"]})
