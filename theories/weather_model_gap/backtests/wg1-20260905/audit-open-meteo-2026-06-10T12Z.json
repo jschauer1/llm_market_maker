@@ -1,0 +1,21 @@
+{
+  "http_status": 400,
+  "note": "Post-freeze audit receipt stored outside raw; confirms the generic frozen HTTP 400 was an unavailable exact model run.",
+  "params": {
+    "elevation": "46.9392,38.1,188.0616",
+    "forecast_days": 3,
+    "hourly": "temperature_2m",
+    "latitude": "40.78333,33.93806,41.78417",
+    "longitude": "-73.96667,-118.38889,-87.75528",
+    "models": "ecmwf_ifs",
+    "run": "2026-06-10T12:00",
+    "temperature_unit": "fahrenheit",
+    "timezone": "GMT"
+  },
+  "response": {
+    "error": true,
+    "reason": "The requested model run is not available. Model: ecmwf_ifs, run: 2026-06-10T12:00Z"
+  },
+  "url": "https://single-runs-api.open-meteo.com/v1/forecast",
+  "verified_at": "2026-09-05T04:27:47Z"
+}

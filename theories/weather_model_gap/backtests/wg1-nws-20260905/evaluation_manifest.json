@@ -1,0 +1,60 @@
+{
+  "base_dataset_digest": "d4e1ab30106968a04c1031e92de95d20c1d5ef803cab592c7df4efcc6d980863",
+  "coverage": {
+    "events": 498,
+    "events_by_series": {
+      "KXHIGHCHI": 166,
+      "KXHIGHLAX": 166,
+      "KXHIGHNY": 166
+    },
+    "label_reasons": {
+      "KXHIGHCHI:valid": 166,
+      "KXHIGHLAX:valid": 166,
+      "KXHIGHNY:missing_or_invalid_expiration_value": 1,
+      "KXHIGHNY:valid": 165
+    },
+    "source_end_inclusive": "2026-08-13",
+    "source_start": "2026-03-01",
+    "valid_labels_by_series": {
+      "KXHIGHCHI": 166,
+      "KXHIGHLAX": 166,
+      "KXHIGHNY": 165
+    }
+  },
+  "decisions_digest": "9bcc18f5690236a686388933b2ce1c1f29a4b78f4d05ebb4144bd366eba47e2c",
+  "derived_identity_digest": "bc37f477ded7e0734b5bd8515616c4eb57ec2a183d8edf2561230552cfd8450b",
+  "derived_source_digest": "72a2f194de7cee037ad5a33f7caab28bbc8c5c5692762bb161df4f83f1449c13",
+  "entry_end_exclusive": "2026-08-14",
+  "entry_start": "2026-05-01",
+  "funnel": {
+    "above_edge_floor": 681,
+    "board": 1877,
+    "candidates": 297,
+    "events": 315,
+    "executable": 2222,
+    "model_ready": 1638,
+    "population": 1877,
+    "recorded": 0,
+    "scored": 297
+  },
+  "population_series": [
+    "KXHIGHNY",
+    "KXHIGHLAX",
+    "KXHIGHCHI"
+  ],
+  "protocol": "WG-1-NWS",
+  "protocol_digest": "f7cde13aeaefc6d66aac9698b33efa44dc44cc9112742e6fa1f8c3ecdb363611",
+  "reconstruction_and_screen_removed": {
+    "ask_band": 1054,
+    "edge_below_floor": 1541,
+    "entry_candle_missing": 13,
+    "invalid_model_input": 16,
+    "lower_ranked": 384,
+    "no_entry_activity": 178,
+    "open_interest": 13,
+    "spread": 32
+  },
+  "rules_digest": "54985e3207bab61b38b0a023903cc9531cc5e95c074b942dd3971e9d2835cc65",
+  "run_id": "exp/wg1-nws-20260905/holdout",
+  "source_policy": "nws"
+}

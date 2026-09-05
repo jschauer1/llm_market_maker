@@ -1,0 +1,221 @@
+{
+  "cities": {
+    "KXHIGHCHI": {
+      "city_comparison_adjusted": true,
+      "day": {
+        "clusters": 0,
+        "interval": null,
+        "mean": null,
+        "se": null
+      },
+      "event": {
+        "clusters": 0,
+        "interval": null,
+        "mean": null,
+        "se": null
+      },
+      "max_event_share": null,
+      "n": 0,
+      "net_one_contract_pts": null,
+      "net_pts": null,
+      "pending_best_case_net_pts": null,
+      "pending_n": 0,
+      "pending_worst_case_net_pts": null,
+      "settlement_day": {
+        "clusters": 0,
+        "interval": null,
+        "mean": null,
+        "se": null
+      },
+      "support_lower_bounds": [
+        null,
+        null,
+        null
+      ],
+      "supported": false,
+      "total_n": 0
+    },
+    "KXHIGHLAX": {
+      "city_comparison_adjusted": true,
+      "day": {
+        "clusters": 0,
+        "interval": null,
+        "mean": null,
+        "se": null
+      },
+      "event": {
+        "clusters": 0,
+        "interval": null,
+        "mean": null,
+        "se": null
+      },
+      "max_event_share": null,
+      "n": 0,
+      "net_one_contract_pts": null,
+      "net_pts": null,
+      "pending_best_case_net_pts": null,
+      "pending_n": 0,
+      "pending_worst_case_net_pts": null,
+      "settlement_day": {
+        "clusters": 0,
+        "interval": null,
+        "mean": null,
+        "se": null
+      },
+      "support_lower_bounds": [
+        null,
+        null,
+        null
+      ],
+      "supported": false,
+      "total_n": 0
+    },
+    "KXHIGHNY": {
+      "city_comparison_adjusted": true,
+      "day": {
+        "clusters": 0,
+        "interval": null,
+        "mean": null,
+        "se": null
+      },
+      "event": {
+        "clusters": 0,
+        "interval": null,
+        "mean": null,
+        "se": null
+      },
+      "max_event_share": null,
+      "n": 0,
+      "net_one_contract_pts": null,
+      "net_pts": null,
+      "pending_best_case_net_pts": null,
+      "pending_n": 0,
+      "pending_worst_case_net_pts": null,
+      "settlement_day": {
+        "clusters": 0,
+        "interval": null,
+        "mean": null,
+        "se": null
+      },
+      "support_lower_bounds": [
+        null,
+        null,
+        null
+      ],
+      "supported": false,
+      "total_n": 0
+    }
+  },
+  "coverage": {
+    "candle_source_errors": {
+      "KXHIGHCHI-26AUG30-T93": "candle response must contain one bar ending at exact entry",
+      "KXHIGHCHI-26JUL29-B86.5": "candle response must contain one bar ending at exact entry",
+      "KXHIGHLAX-26AUG12-B72.5": "candle response must contain one bar ending at exact entry",
+      "KXHIGHLAX-26AUG12-T72": "candle response must contain one bar ending at exact entry",
+      "KXHIGHLAX-26AUG15-T81": "candle response must contain one bar ending at exact entry",
+      "KXHIGHLAX-26AUG20-T77": "candle response must contain one bar ending at exact entry",
+      "KXHIGHLAX-26MAY26-T62": "candle response must contain one bar ending at exact entry",
+      "KXHIGHNY-26AUG05-T87": "candle response must contain one bar ending at exact entry",
+      "KXHIGHNY-26AUG11-B93.5": "candle response must contain one bar ending at exact entry",
+      "KXHIGHNY-26AUG11-T96": "candle response must contain one bar ending at exact entry",
+      "KXHIGHNY-26AUG12-T90": "candle response must contain one bar ending at exact entry",
+      "KXHIGHNY-26AUG15-T87": "candle response must contain one bar ending at exact entry",
+      "KXHIGHNY-26AUG16-T85": "candle response must contain one bar ending at exact entry",
+      "KXHIGHNY-26AUG17-B90.5": "candle response must contain one bar ending at exact entry",
+      "KXHIGHNY-26AUG17-T91": "candle response must contain one bar ending at exact entry",
+      "KXHIGHNY-26AUG19-T92": "candle response must contain one bar ending at exact entry",
+      "KXHIGHNY-26AUG20-T85": "candle response must contain one bar ending at exact entry",
+      "KXHIGHNY-26JUL02-T106": "candle response must contain one bar ending at exact entry",
+      "KXHIGHNY-26JUN09-T85": "candle response must contain one bar ending at exact entry",
+      "KXHIGHNY-26JUN19-T88": "candle response must contain one bar ending at exact entry",
+      "KXHIGHNY-26JUN23-T85": "candle response must contain one bar ending at exact entry"
+    },
+    "current_candle_requests": 58,
+    "events": 552,
+    "events_by_series": {
+      "KXHIGHCHI": 184,
+      "KXHIGHLAX": 184,
+      "KXHIGHNY": 184
+    },
+    "forecast_events_complete": 549,
+    "historical_candle_requests": 2268,
+    "in_window_markets": 3312,
+    "inventory_duplicates": 126,
+    "inventory_markets": 22667,
+    "labels": {
+      "missing_or_invalid_expiration_value": 1,
+      "source_rule_mismatch": 497,
+      "usable": 54
+    },
+    "market_pages": {
+      "current": 3,
+      "historical": 24
+    },
+    "markets_missing_entry_candle": 23,
+    "markets_with_entry_candle": 3289
+  },
+  "gate_removed": {
+    "entry_candle_missing": 19,
+    "insufficient_history": 250,
+    "no_entry_activity": 59,
+    "open_interest": 3,
+    "settlement_source": 783,
+    "spread": 2
+  },
+  "ledger_score": {
+    "calibration_edge": null,
+    "calibration_edge_net": null,
+    "clustered_se": null,
+    "mean_claimed_edge": null,
+    "mean_fee_pts": null,
+    "n": 0,
+    "n_attempts": 0,
+    "n_backtest": 0,
+    "n_clusters": 0,
+    "price_implied_rate": null,
+    "realization": null,
+    "riskless_n": 0,
+    "riskless_roi": null,
+    "roi_all": null,
+    "roi_taken": null,
+    "unclustered_rows": 0,
+    "win_rate": null
+  },
+  "pooled": {
+    "city_comparison_adjusted": false,
+    "day": {
+      "clusters": 0,
+      "interval": null,
+      "mean": null,
+      "se": null
+    },
+    "event": {
+      "clusters": 0,
+      "interval": null,
+      "mean": null,
+      "se": null
+    },
+    "max_event_share": null,
+    "n": 0,
+    "net_one_contract_pts": null,
+    "net_pts": null,
+    "pending_best_case_net_pts": null,
+    "pending_n": 0,
+    "pending_worst_case_net_pts": null,
+    "settlement_day": {
+      "clusters": 0,
+      "interval": null,
+      "mean": null,
+      "se": null
+    },
+    "support_lower_bounds": [
+      null,
+      null,
+      null
+    ],
+    "supported": false,
+    "total_n": 0
+  },
+  "protocol": "WG-1",
+  "run_id": "wg1-20260905/holdout"
+}

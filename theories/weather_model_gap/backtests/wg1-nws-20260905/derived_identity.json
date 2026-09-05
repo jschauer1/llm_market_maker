@@ -1,0 +1,36 @@
+{
+  "base_dataset_digest": "d4e1ab30106968a04c1031e92de95d20c1d5ef803cab592c7df4efcc6d980863",
+  "base_dataset_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\weather_model_gap\\backtests\\wg1-20260905\\dataset.json",
+  "base_protocol_digest": "d8404695f9a5e96997072d986f63c0eafd2bd3561fc120e63f3071dd24197c6f",
+  "base_source_digest": "51667b4362a0c77384a72bac7f675a26c74237398ef355a335056656e36c4aac",
+  "coverage": {
+    "events": 498,
+    "events_by_series": {
+      "KXHIGHCHI": 166,
+      "KXHIGHLAX": 166,
+      "KXHIGHNY": 166
+    },
+    "label_reasons": {
+      "KXHIGHCHI:valid": 166,
+      "KXHIGHLAX:valid": 166,
+      "KXHIGHNY:missing_or_invalid_expiration_value": 1,
+      "KXHIGHNY:valid": 165
+    },
+    "source_end_inclusive": "2026-08-13",
+    "source_start": "2026-03-01",
+    "valid_labels_by_series": {
+      "KXHIGHCHI": 166,
+      "KXHIGHLAX": 166,
+      "KXHIGHNY": 165
+    }
+  },
+  "derived_source_digest": "72a2f194de7cee037ad5a33f7caab28bbc8c5c5692762bb161df4f83f1449c13",
+  "protocol": "WG-1-NWS",
+  "protocol_digest": "f7cde13aeaefc6d66aac9698b33efa44dc44cc9112742e6fa1f8c3ecdb363611",
+  "rules_digest": "54985e3207bab61b38b0a023903cc9531cc5e95c074b942dd3971e9d2835cc65",
+  "rules_fields": [
+    "rules_primary",
+    "rules_secondary"
+  ],
+  "source_policy": "nws"
+}

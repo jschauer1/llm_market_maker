@@ -1,0 +1,51 @@
+{
+  "candle_source_errors": {
+    "KXHIGHCHI-26AUG30-T93": "candle response must contain one bar ending at exact entry",
+    "KXHIGHCHI-26JUL29-B86.5": "candle response must contain one bar ending at exact entry",
+    "KXHIGHLAX-26AUG12-B72.5": "candle response must contain one bar ending at exact entry",
+    "KXHIGHLAX-26AUG12-T72": "candle response must contain one bar ending at exact entry",
+    "KXHIGHLAX-26AUG15-T81": "candle response must contain one bar ending at exact entry",
+    "KXHIGHLAX-26AUG20-T77": "candle response must contain one bar ending at exact entry",
+    "KXHIGHLAX-26MAY26-T62": "candle response must contain one bar ending at exact entry",
+    "KXHIGHNY-26AUG05-T87": "candle response must contain one bar ending at exact entry",
+    "KXHIGHNY-26AUG11-B93.5": "candle response must contain one bar ending at exact entry",
+    "KXHIGHNY-26AUG11-T96": "candle response must contain one bar ending at exact entry",
+    "KXHIGHNY-26AUG12-T90": "candle response must contain one bar ending at exact entry",
+    "KXHIGHNY-26AUG15-T87": "candle response must contain one bar ending at exact entry",
+    "KXHIGHNY-26AUG16-T85": "candle response must contain one bar ending at exact entry",
+    "KXHIGHNY-26AUG17-B90.5": "candle response must contain one bar ending at exact entry",
+    "KXHIGHNY-26AUG17-T91": "candle response must contain one bar ending at exact entry",
+    "KXHIGHNY-26AUG19-T92": "candle response must contain one bar ending at exact entry",
+    "KXHIGHNY-26AUG20-T85": "candle response must contain one bar ending at exact entry",
+    "KXHIGHNY-26JUL02-T106": "candle response must contain one bar ending at exact entry",
+    "KXHIGHNY-26JUN09-T85": "candle response must contain one bar ending at exact entry",
+    "KXHIGHNY-26JUN19-T88": "candle response must contain one bar ending at exact entry",
+    "KXHIGHNY-26JUN23-T85": "candle response must contain one bar ending at exact entry"
+  },
+  "completed_at": "2026-09-05T04:28:06Z",
+  "current_candle_requests": 58,
+  "events": 552,
+  "events_by_series": {
+    "KXHIGHCHI": 184,
+    "KXHIGHLAX": 184,
+    "KXHIGHNY": 184
+  },
+  "forecast_events_complete": 549,
+  "historical_candle_requests": 2268,
+  "in_window_markets": 3312,
+  "inventory_duplicates": 126,
+  "inventory_markets": 22667,
+  "labels": {
+    "missing_or_invalid_expiration_value": 1,
+    "source_rule_mismatch": 497,
+    "usable": 54
+  },
+  "market_pages": {
+    "current": 3,
+    "historical": 24
+  },
+  "markets_missing_entry_candle": 23,
+  "markets_with_entry_candle": 3289,
+  "protocol_digest": "d8404695f9a5e96997072d986f63c0eafd2bd3561fc120e63f3071dd24197c6f",
+  "source_digest": "51667b4362a0c77384a72bac7f675a26c74237398ef355a335056656e36c4aac"
+}

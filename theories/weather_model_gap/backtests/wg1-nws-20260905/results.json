@@ -1,0 +1,235 @@
+{
+  "cities": {
+    "KXHIGHCHI": {
+      "city_comparison_adjusted": true,
+      "day": {
+        "clusters": 99,
+        "interval": [
+          -17.716045808732474,
+          -0.6403400498533838
+        ],
+        "mean": -9.17819292929293,
+        "se": 4.266793043198174
+      },
+      "event": {
+        "clusters": 99,
+        "interval": [
+          -17.716045808732474,
+          -0.6403400498533838
+        ],
+        "mean": -9.17819292929293,
+        "se": 4.266793043198174
+      },
+      "max_event_share": 0.010101010101010102,
+      "n": 99,
+      "net_one_contract_pts": -9.575757575757578,
+      "net_pts": -9.17819292929293,
+      "pending_best_case_net_pts": -9.178192929292923,
+      "pending_n": 0,
+      "pending_worst_case_net_pts": -9.178192929292923,
+      "settlement_day": {
+        "clusters": 99,
+        "interval": [
+          -17.716045808732474,
+          -0.6403400498533838
+        ],
+        "mean": -9.17819292929293,
+        "se": 4.266793043198174
+      },
+      "support_lower_bounds": [
+        -20.27185484160818,
+        -20.27185484160818,
+        -20.27185484160818
+      ],
+      "supported": false,
+      "total_n": 99
+    },
+    "KXHIGHLAX": {
+      "city_comparison_adjusted": true,
+      "day": {
+        "clusters": 102,
+        "interval": [
+          -18.11827075761026,
+          0.30159624780634076
+        ],
+        "mean": -8.90833725490196,
+        "se": 4.602665418644828
+      },
+      "event": {
+        "clusters": 102,
+        "interval": [
+          -18.11827075761026,
+          0.30159624780634076
+        ],
+        "mean": -8.90833725490196,
+        "se": 4.602665418644828
+      },
+      "max_event_share": 0.00980392156862745,
+      "n": 102,
+      "net_one_contract_pts": -9.264705882352942,
+      "net_pts": -8.90833725490196,
+      "pending_best_case_net_pts": -8.908337254901959,
+      "pending_n": 0,
+      "pending_worst_case_net_pts": -8.908337254901959,
+      "settlement_day": {
+        "clusters": 101,
+        "interval": [
+          -18.16199751580971,
+          0.3453230060057866
+        ],
+        "mean": -8.90833725490196,
+        "se": 4.6245178715181146
+      },
+      "support_lower_bounds": [
+        -20.875267343378514,
+        -20.875267343378514,
+        -20.932083720849057
+      ],
+      "supported": false,
+      "total_n": 102
+    },
+    "KXHIGHNY": {
+      "city_comparison_adjusted": true,
+      "day": {
+        "clusters": 96,
+        "interval": [
+          -6.990709922144503,
+          10.134595338811168
+        ],
+        "mean": 1.5719427083333326,
+        "se": 4.279186721877979
+      },
+      "event": {
+        "clusters": 96,
+        "interval": [
+          -6.990709922144503,
+          10.134595338811168
+        ],
+        "mean": 1.5719427083333326,
+        "se": 4.279186721877979
+      },
+      "max_event_share": 0.010416666666666666,
+      "n": 96,
+      "net_one_contract_pts": 1.187499999999998,
+      "net_pts": 1.5719427083333326,
+      "pending_best_case_net_pts": 1.5719427083333326,
+      "pending_n": 0,
+      "pending_worst_case_net_pts": 1.5719427083333326,
+      "settlement_day": {
+        "clusters": 96,
+        "interval": [
+          -6.990709922144503,
+          10.134595338811168
+        ],
+        "mean": 1.5719427083333326,
+        "se": 4.279186721877979
+      },
+      "support_lower_bounds": [
+        -9.553942768549412,
+        -9.553942768549412,
+        -9.553942768549412
+      ],
+      "supported": false,
+      "total_n": 96
+    }
+  },
+  "coverage": {
+    "events": 498,
+    "events_by_series": {
+      "KXHIGHCHI": 166,
+      "KXHIGHLAX": 166,
+      "KXHIGHNY": 166
+    },
+    "label_reasons": {
+      "KXHIGHCHI:valid": 166,
+      "KXHIGHLAX:valid": 166,
+      "KXHIGHNY:missing_or_invalid_expiration_value": 1,
+      "KXHIGHNY:valid": 165
+    },
+    "source_end_inclusive": "2026-08-13",
+    "source_start": "2026-03-01",
+    "valid_labels_by_series": {
+      "KXHIGHCHI": 166,
+      "KXHIGHLAX": 166,
+      "KXHIGHNY": 165
+    }
+  },
+  "gate_removed": {
+    "ask_band": 1054,
+    "edge_below_floor": 1541,
+    "entry_candle_missing": 13,
+    "invalid_model_input": 16,
+    "lower_ranked": 384,
+    "no_entry_activity": 178,
+    "open_interest": 13,
+    "spread": 32
+  },
+  "interpretation": "The frozen legacy population is unconfirmed and its pooled cluster intervals rule out a +3 point net effect. Stop without retuning.",
+  "ledger_score": {
+    "calibration_edge": -4.195286195286185,
+    "calibration_edge_net": -5.610723905723897,
+    "clustered_se": 2.5445238136893704,
+    "mean_claimed_edge": 28.109326790917297,
+    "mean_fee_pts": 1.4154377104377118,
+    "n": 297,
+    "n_attempts": 297,
+    "n_backtest": 297,
+    "n_clusters": 297,
+    "price_implied_rate": 0.41905723905723896,
+    "realization": 0.0,
+    "riskless_n": 0,
+    "riskless_roi": null,
+    "roi_all": -0.12951462279420345,
+    "roi_taken": null,
+    "unclustered_rows": 0,
+    "win_rate": 0.3771043771043771
+  },
+  "pooled": {
+    "city_comparison_adjusted": false,
+    "day": {
+      "clusters": 104,
+      "interval": [
+        -10.657213422861119,
+        -0.5642343885866934
+      ],
+      "mean": -5.610723905723906,
+      "se": 2.521983766685264
+    },
+    "event": {
+      "clusters": 297,
+      "interval": [
+        -10.64888105682886,
+        -0.5725667546189523
+      ],
+      "mean": -5.610723905723906,
+      "se": 2.5445238136893704
+    },
+    "max_event_share": 0.003367003367003367,
+    "n": 297,
+    "net_one_contract_pts": -5.989898989898991,
+    "net_pts": -5.610723905723906,
+    "pending_best_case_net_pts": -5.610723905723903,
+    "pending_n": 0,
+    "pending_worst_case_net_pts": -5.610723905723903,
+    "settlement_day": {
+      "clusters": 104,
+      "interval": [
+        -10.695201779414667,
+        -0.5262460320331446
+      ],
+      "mean": -5.610723905723906,
+      "se": 2.540968452619071
+    },
+    "support_lower_bounds": [
+      -10.64888105682886,
+      -10.657213422861119,
+      -10.695201779414667
+    ],
+    "supported": false,
+    "total_n": 297
+  },
+  "practically_large_effect_ruled_out": true,
+  "protocol": "WG-1-NWS",
+  "run_id": "exp/wg1-nws-20260905/holdout",
+  "source_policy": "nws"
+}
