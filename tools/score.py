@@ -75,7 +75,7 @@ _SCORING_ATTEMPTS = """
                                 AND a.confidence IS NULL THEN 1
                            ELSE 0
                        END,
-                       a.decision_date, a.recorded_at
+                       a.decision_date, a.recorded_at, a.rowid
                ) AS rn
         FROM opportunity_attempts a
         JOIN opportunities o2 ON o2.id = a.opportunity_id
@@ -99,7 +99,7 @@ _SCORING_ATTEMPT_PER_RUN = """
                                 AND a.confidence IS NULL THEN 1
                            ELSE 0
                        END,
-                       a.decision_date, a.recorded_at
+                       a.decision_date, a.recorded_at, a.rowid
                ) AS rn
         FROM opportunity_attempts a
         JOIN opportunities o2 ON o2.id = a.opportunity_id
@@ -144,13 +144,15 @@ _SCORING_ATTEMPT_PER_RUN = """
 #:    no interpreted attempts, so this rule is a no-op.
 _DECISION_ATTEMPTS = """
     SELECT opportunity_id, disposition, entry_price, edge_pts_net,
-           confidence, decision_date, run_id, recorded_at, extra_json
+           confidence, decision_date, run_id, recorded_at, extra_json,
+           attempt_rowid
     FROM (
         SELECT opportunity_id, disposition, entry_price, edge_pts_net,
                confidence, decision_date, run_id, recorded_at, extra_json,
+               rowid AS attempt_rowid,
                LAG(disposition) OVER (
                    PARTITION BY opportunity_id
-                   ORDER BY decision_date, recorded_at
+                   ORDER BY decision_date, recorded_at, rowid
                ) AS prev_disposition
         FROM opportunity_attempts
     ) t
@@ -167,21 +169,26 @@ _DECISION_ATTEMPTS = """
 """
 
 # A named pool scoped to one run may only use a decision made by that run.
-# If a run reached the same disposition more than once, keep its earliest
-# matching decision so one market settlement remains one observation in that
-# named pool under --run-id. Different dispositions remain separate decisions.
+# Within the run the same change-detection rule applies once more: a run
+# that re-reaches a disposition it already held (because another run's
+# decision sat between its two sightings) keeps only the earliest, so one
+# settlement stays one observation under --run-id; a genuine flip-back
+# inside the run (endorsed -> rejected -> endorsed) keeps every decision,
+# exactly as the pooled query does. Keying on (position, disposition)
+# instead would collapse the flip-back and silently lose a decision.
 _DECISION_ATTEMPT_PER_RUN = """
     SELECT opportunity_id, disposition, entry_price, edge_pts_net,
            confidence, decision_date, run_id, recorded_at, extra_json
     FROM (
         SELECT d.*,
-               ROW_NUMBER() OVER (
-                   PARTITION BY d.opportunity_id, d.disposition
-                   ORDER BY d.decision_date, d.recorded_at
-               ) AS rn
+               LAG(d.disposition) OVER (
+                   PARTITION BY d.opportunity_id
+                   ORDER BY d.decision_date, d.recorded_at, d.attempt_rowid
+               ) AS prev_run_disposition
         FROM (""" + _DECISION_ATTEMPTS + """) d
         WHERE d.run_id = ?
-    ) WHERE rn = 1
+    ) WHERE prev_run_disposition IS NULL
+         OR prev_run_disposition <> disposition
 """
 
 EMPTY_SCORE = {
@@ -592,6 +599,10 @@ def _single_leg_observations(
         + where
         + " AND o.position_kind = 'single'"
         + ("" if disposition == "all" else " AND d.opportunity_id IS NOT NULL")
+        # Deterministic order: by position, then by the observation's own
+        # decision date and run, so a flip-back's two rows come back in the
+        # order the decisions were made.
+        + " ORDER BY o.id, " + date_expr + ", " + run_expr
     )
     rows = conn.execute(
         sql,

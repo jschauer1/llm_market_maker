@@ -1089,7 +1089,8 @@ def interpret(
                 WHERE opportunity_id = ?
                   AND rowid = (SELECT rowid FROM opportunity_attempts
                                 WHERE opportunity_id = ?
-                                ORDER BY decision_date DESC, recorded_at DESC
+                                ORDER BY decision_date DESC, recorded_at DESC,
+                                         rowid DESC
                                 LIMIT 1)
                 """,
                 (disposition, opportunity_id, opportunity_id),
@@ -1107,7 +1108,8 @@ def interpret(
                 WHERE opportunity_id = ?
                   AND rowid = (SELECT rowid FROM opportunity_attempts
                                 WHERE opportunity_id = ?
-                                ORDER BY decision_date DESC, recorded_at DESC
+                                ORDER BY decision_date DESC, recorded_at DESC,
+                                         rowid DESC
                                 LIMIT 1)
                 """,
                 (
