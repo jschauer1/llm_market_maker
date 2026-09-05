@@ -66,6 +66,22 @@ def read_first(folder):
     keys = [r['key'] for r in rows]
     if len(keys) != len(set(keys)) or set(keys)-set(receipt.request.candidate_keys):
         raise ValueError(f'Duplicate/unexpected keys in {folder}')
+    supplement_path = folder/'sources-supplement.jsonl'
+    if supplement_path.exists():
+        by_key = {r['key']:r for r in rows}
+        seen = set()
+        for line in supplement_path.read_text(encoding='utf-8-sig').splitlines():
+            if not line.strip():
+                continue
+            supplement = json.loads(line)
+            key = supplement.get('key')
+            if (set(supplement) != {'key','sources','reason'} or key not in by_key
+                    or key in seen or not supplement.get('sources') or not supplement.get('reason')):
+                raise ValueError(f'Invalid source supplement in {folder}: {key}')
+            seen.add(key)
+            row = by_key[key]
+            row['sources'] = row.get('sources', []) + supplement['sources']
+            row['source_supplement_reason'] = supplement['reason']
     for row in rows:
         if row['bucket'] not in LABELS or not row.get('subject_key') or not row.get('rationale'):
             raise ValueError(f'Invalid verdict in {folder}: {row.get("key")}')
@@ -75,15 +91,29 @@ def read_first(folder):
 
 
 def ingest(out):
-    summary = dict(complete_batches=0, partial_batches=0, rows=0, labels=Counter(), families=Counter(), subjects=set())
+    summary = dict(complete_batches=0, partial_batches=0, research_invalid_batches=0, repaired_batches=0, rows=0, labels=Counter(), families=Counter(), subjects=set())
+    exclusions_path = out/'quality-exclusions.json'
+    exclusions = json.loads(exclusions_path.read_text(encoding='utf-8')) if exclusions_path.exists() else {}
     all_rows = []
     for folder in sorted(out.glob('batch-*')):
+        if folder.name in exclusions:
+            summary['research_invalid_batches'] += 1
+            replacement = Path(exclusions[folder.name]['replacement'])
+            if not (replacement/'receipt.json').exists():
+                continue
+            original = load_batch(folder/'receipt.json').request
+            replacement_request = load_batch(replacement/'receipt.json').request
+            if original.payload_sha256 != replacement_request.payload_sha256 or original.candidate_keys != replacement_request.candidate_keys:
+                raise ValueError('Repair must preserve the exact frozen cohort and payload')
+            folder = replacement
         receipt, rows = read_first(folder)
         if len(rows) == len(receipt.request.candidate_keys):
             if not receipt.completed:
                 complete_batch(folder/'receipt.json', model='gpt-5.6-sol', effort='high', web_search=True,
                     results={r['key']:Verdict(bucket=r['bucket'], rationale=json.dumps(r,sort_keys=True)) for r in rows})
             summary['complete_batches'] += 1
+            if folder.parent != out.resolve() and folder.parent.resolve() != out.resolve():
+                summary['repaired_batches'] += 1
         elif rows:
             summary['partial_batches'] += 1
         all_rows.extend(rows)

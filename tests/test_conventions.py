@@ -1681,7 +1681,9 @@ def test_a_large_study_data_directory_is_actually_ignored():
     unignored = []
     for path in big:
         rel = path.relative_to(ROOT).as_posix()
-        done = subprocess.run(["git", "check-ignore", "-q", rel],
+        # Paid receipts may be explicitly tracked inside an ignored raw-data
+        # directory. Inspect ignore rules independently of that tracked index.
+        done = subprocess.run(["git", "check-ignore", "--no-index", "-q", rel],
                               cwd=ROOT, capture_output=True)
         if done.returncode != 0:
             unignored.append(f"{rel} ({_dir_bytes(path) / 1e6:.1f}MB)")

@@ -78,3 +78,6 @@ theories/tsa_remainder_gap/backtests/*/raw/
 # must never reach git or a judge. The blind inputs, prompts, verdicts and
 # receipts beside it are paid judgment source data and stay tracked.
 theories/insider_bias/insider_judgment/runs/*/run-state.json
+
+# Broad procedural raw corpus stays local; paid receipts are explicitly tracked.
+theories/procedural_bottlenecks/studies/*/2026-09-05-broad-procedural-judgment/data/

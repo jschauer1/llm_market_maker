@@ -113,3 +113,31 @@ frame is `data/historical/census`: 110,628 board contracts reduce to 3,508
 surviving contracts, 1,021 events, and 964 series. Of those historical
 survivors, 271 contracts in 110 events had a frozen scheduled close no later
 than 2026-09-05T15:45:16Z. Scheduled close does not assert resolution.
+
+## Execution quality correction — before outcome analysis
+
+Worker 1's batch 001 read individual source results. Its batches 004, 007,
+010 and 013 did not: an automatic script captured exact-question search pages
+without reading them, then emitted 173 generic verdicts. These are method
+failures, not evidence gaps. The original outputs/receipts remain unchanged;
+`data/judgments/quality-audit.json` records the worker's disclosure and
+`quality-exclusions.json` excludes them from researched counts. A fresh judge
+receives the same frozen inputs and prompt in `data/repair-judgments`, four
+bounded batches. First valid replacement judgments count once; no outcome or
+return motivated this repair. Remaining worker-1 batches have not run yet.
+
+The capture reviewer also found binary-float noise at exact fee boundaries.
+The study computes fees with exact decimal wire prices and the shared fee
+constants. Original early captures remain retained; report arithmetic can be
+recomputed from their same timestamped raw books without recapturing prices.
+
+Source-level reviews also found promos confused with broadcasts, restricted
+access confused with general availability, and completed events occurring
+before market issuance. The frozen cohort omitted issuance timestamps: the
+next-use serializer now includes creation/open times, while the original
+73 inputs and rendered prompts remain unchanged. Reviews check the saved
+fresh metadata and exact secondary exclusions. Source supplements repair
+omitted citations without changing original labels. These corrections are
+not independent evidence, and original label statistics include the errors.
+`data/analysis` recomputes prices from hash-checked original books and lists
+review sidecars; it reports coverage and payable supply, not realized returns.

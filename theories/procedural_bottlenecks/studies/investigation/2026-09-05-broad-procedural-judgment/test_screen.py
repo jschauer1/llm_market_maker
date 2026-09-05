@@ -44,10 +44,12 @@ def test_symmetric_quotes_and_missingness():
 
 
 def test_blind_whitelist_strips_nested_prices_and_outcomes():
-    row = market(raw={'result': 'yes', 'rules_secondary': 'Actual extra terms', 'yes_ask': 44},
+    row = market(raw={'result': 'yes', 'rules_secondary': 'Actual extra terms', 'yes_ask': 44,
+                      'open_time':'2026-08-19T22:25:00Z','created_time':'2026-08-19T22:00:00Z'},
                  result='yes', event={'category': 'Politics', 'markets': [{'result': 'no'}]})
     payload = screen.blind(row)
-    assert set(payload) == {'key', 'event_key', 'series', 'category', 'title', 'subtitle', 'yes_sub_title', 'no_sub_title', 'rules_primary', 'rules_secondary', 'scheduled_close'}
+    assert set(payload) == {'key', 'event_key', 'series', 'category', 'title', 'subtitle', 'yes_sub_title', 'no_sub_title', 'rules_primary', 'rules_secondary', 'scheduled_close','open_time','created_time'}
+    assert payload['open_time']=='2026-08-19T22:25:00Z'
     assert payload['rules_secondary'] == 'Actual extra terms'
     assert 'result' not in str(payload)
 

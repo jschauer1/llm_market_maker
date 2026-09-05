@@ -51,3 +51,35 @@ def test_duplicate_or_sourceless_affirmative_judgments_are_rejected(tmp_path):
     path.write_text((json.dumps(verdict)+'\n')*2,encoding='utf-8')
     with pytest.raises(ValueError,match='Duplicate'):
         batches.read_first(folder)
+
+
+def test_method_invalid_batches_do_not_count_as_researched(tmp_path):
+    out,_,_=prepared(tmp_path)
+    row=dict(key='A-1',bucket='insufficient_evidence',subject_key='a',family='x',rationale='Automatic fallback',sources=[])
+    (out/'batch-000/first-output.jsonl').write_text(json.dumps(row)+'\n',encoding='utf-8')
+    (out/'quality-exclusions.json').write_text(json.dumps({'batch-000':{'reason':'No actual research','replacement':str(tmp_path/'pending-repair')}}),encoding='utf-8')
+    batches.ingest(out)
+    progress=json.loads((out/'progress.json').read_text())
+    assert progress['rows']==0
+    assert progress['research_invalid_batches']==1
+    assert not batches.load_batch(out/'batch-000/receipt.json').completed
+
+
+def test_source_supplement_preserves_first_judgment_and_cannot_relabel(tmp_path):
+    out,_,_=prepared(tmp_path)
+    folder=out/'batch-000'
+    row=dict(key='A-1',bucket='plausible_path',subject_key='a',family='x',rationale='Published timetable',sources=[])
+    first=folder/'first-output.jsonl'
+    first.write_text(json.dumps(row)+'\n',encoding='utf-8')
+    original=first.read_bytes()
+    supplement=dict(key='A-1',sources=[dict(url='https://agency.example/timetable')],reason='Omitted source from original response')
+    sidecar=folder/'sources-supplement.jsonl'
+    sidecar.write_text(json.dumps(supplement)+'\n',encoding='utf-8')
+    _,rows=batches.read_first(folder)
+    assert rows[0]['sources']==supplement['sources']
+    assert rows[0]['source_supplement_reason']==supplement['reason']
+    assert first.read_bytes()==original
+    supplement['bucket']='formalities_only'
+    sidecar.write_text(json.dumps(supplement)+'\n',encoding='utf-8')
+    with pytest.raises(ValueError,match='source supplement'):
+        batches.read_first(folder)

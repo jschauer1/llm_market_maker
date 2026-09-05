@@ -137,7 +137,9 @@ def blind(m):
                 category=(m.get('event') or {}).get('category'), title=m.get('title'),
                 subtitle=raw.get('subtitle'), yes_sub_title=raw.get('yes_sub_title'),
                 no_sub_title=raw.get('no_sub_title'), rules_primary=m.get('rules_primary'),
-                rules_secondary=raw.get('rules_secondary'), scheduled_close=m.get('close_time'))
+                rules_secondary=raw.get('rules_secondary'), scheduled_close=m.get('close_time'),
+                open_time=raw.get('open_time') or m.get('open_time'),
+                created_time=raw.get('created_time') or m.get('created_time'))
 
 
 def stable_key(value):
