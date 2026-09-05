@@ -1,5 +1,12 @@
 # structural_arb's violations are real, rare, and all three kinds are sterile
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](../../../learnings/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 **Date:** 2026-08-29 ·
 **Tier:** A (no model in the measurement path) ·
 **Verdict:** the v2 depth gate is validated; the theory's *tradeable* firing rate over 11 board snapshots is **zero**, and the reason is structural rather than bad luck ·

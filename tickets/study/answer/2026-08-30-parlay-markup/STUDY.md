@@ -7,6 +7,13 @@ created_by: migration
 
 # Parlay markup — pre-registration, written BEFORE any markup number
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](../../../../knowledge/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 **Date:** 2026-08-30 ·
 **Tier:** A (no model anywhere) ·
 **Verdict:** CONFIRMED — cross-game parlays price +6.60 pts above product-of-legs (4,808 parlays, 6 creation slates, all six positive, day-clustered t=+14.2); the secondary leg-count prediction FAILED, and the markup sits in an RFQ product with no fade side, so the edge and the liquidity are in different products and no theory follows ·

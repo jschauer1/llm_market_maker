@@ -1,5 +1,12 @@
 # Taker Flow
 
+<!-- research-memory-route -->
+> [Find scoped lessons and avoided mistakes](learnings/README.md). Read this specification
+> for the claim/procedure relevant to your task; historical learning narratives
+> are source evidence, not an accumulating current-memory summary.
+<!-- /research-memory-route -->
+
+
 ## Hypothesis
 
 **Sustained, near-total one-sided aggressive order flow marks informed
@@ -41,20 +48,27 @@ No external data, no API keys, no model.
 
 ## Status
 
-`testing` — 2026-09-01. The procedure runs end to end, records live rows,
-and has a tier A replay behind it.
+`testing`, v2. The procedure runs live and has eligible tier A evidence in
+its continuing version chain. The parent becomes demonstrated only if its
+current eligible score supports positive net calibration edge under the
+lifecycle rules; read that score from the CLI.
 
-- 2026-09-01 `proposed` → `testing`: screen runs against the live board and
-  records; replay `backtest-2026-09-01-takerflow` completed over 3,585
-  settled decisions.
+The only positive thesis under test is the registered
+`extreme-imbalance` sub-theory. Its threshold was mined from
+`backtest-2026-09-01-takerflow`, so that run is explicitly excluded from
+the slice's validating evidence even though it remains valid evidence for the
+parent. Forward rows accrue out of sample. Keep the slice first-class, keep
+the moderate-imbalance population as the control, and do not recommend the
+slice until `python -m tools.cli slices report taker_flow` says it is ready
+and `promote` assigns an eligible rung.
 
-Measured aggregate at v1–v2: `calibration_edge` +0.70 gross, **−0.17 net**
-over 813 event clusters, all of it backtested. Flat, as expected — the
-population is dominated by the `strong` bucket, which is the control.
-
-**It is not `active` and should not be read as demonstrated.** The
-pre-registered rule failed (below). What is positive is a mined subset,
-registered as a slice so it has to earn its own out-of-sample evidence.
+Use `python -m tools.cli score report taker_flow` for the current parent
+record. The historical replay size and mined-tail diagnosis live in
+[backtests/RESULTS.md](theories/taker_flow/backtests/RESULTS.md) and the
+[historical notebook](theories/taker_flow/notes/archive/NOTES.md); they are
+evidence, not a current score snapshot. The open price-band and settlement-survivorship
+tickets must be resolved before treating the mined tail as a stable
+executable pricing rule.
 
 ## Version
 
@@ -86,7 +100,7 @@ Fully deterministic. No stage 2.
 2. **Flow window**: trades in the trailing 7 days, `>= 20` of them.
 3. **Signal**: volume-weighted taker imbalance in [-1, +1], weighted by
    contract count so one 300-lot does not read like three 1-lots.
-4. **Entry**: `|imbalance| > 0.6`, taking the side the flow is taking, at
+4. **Entry**: `|imbalance| >= 0.6`, taking the side the flow is taking, at
    that side's ask.
 5. **Bucket**, recorded on every row as `extra.flow_bucket`:
    `extreme` at `|imbalance| >= 0.9`, else `strong`.
@@ -137,43 +151,9 @@ Three known biases, stated so the number can be caveated:
 
 ## Learnings
 
-Distilled; the raw record is in `NOTES.md` (2026-09-01).
+[Choose an actionable lesson](learnings/README.md). The cards preserve only
+scoped conclusions that change a later decision or avoid expensive repetition.
+The original [learning narrative](notes/archive/THEORY-learnings.md) remains
+available for a specific evidence question; it is not current startup context.
 
-- **The three `taker_*` fields are one bit.** Over 93,399 trades they took
-  exactly two joint values. `normalize()` raises on anything else rather
-  than silently collapsing a side that no longer means what it did.
-- **The trade feed does not reach past the archive floor.** It retains
-  ~67 days against `/markets`' ~60 — a one-week extension, not a route to
-  lost history. The ticket that proposed this theory claimed otherwise; it
-  had mistaken a market's oldest *retained* trade for its open.
-- **The pre-registered rule failed.** `|imbalance| > 0.6` at a 24h
-  decision buffer: +0.70 pts, t=+0.62, CI [−1.51, +2.91]. The single-name
-  localisation that the rule was built to test showed **no difference at
-  all** (+0.71 single-name vs +0.69 broad-based). That specific claim does
-  not replicate on Kalshi at a tradeable horizon.
-- **The effect is a tail, not a gradient**, and this is the finding worth
-  keeping: `strong` (0.6–0.9) is −0.78 pts over 618 clusters, while
-  `extreme` (≥0.9) is +4.29 pts over 280 clusters (t=+2.04). Mined
-  post-hoc, so it is registered as the slice `extreme-imbalance` with the
-  mining run declared — it starts at n=0 out-of-sample and has to earn its
-  record forward.
-- **The tail survived every partition check** that could have killed it:
-  top series is 3% of the cell, positive in all five price bands, positive
-  on both sides, stable across time (+4.46 then +4.21), and
-  leave-one-series-out worst case is still +3.50. Consistency across
-  partitions is not significance, but it rules out the one-lucky-corner
-  explanation.
-- **Flow does not predict the next price move.** Lead correlation at a
-  25-trade horizon is −0.008. Whatever this is, it is not short-horizon
-  price prediction.
-- **Liquidity filters do not imply payability.** A one-cent-wide book at an
-  ask of 1.00 with 2,000 open interest passes every liquidity test this
-  theory has and is still not a position. Caught by looking at the extreme
-  values of the first live run rather than by reading the code; any theory
-  pricing from a population average should check both.
-
-**What would move it to `active`:** the `extreme-imbalance` slice clearing
-its evidence gates (≥10 event clusters, ≥5 settlement days, out of sample)
-with positive net edge. **What would send it to `under_review`:** the
-slice reaching its gates flat or negative, which would make the mined
-+4.29 a multiple-comparison artifact and leave the theory with nothing.
+<!-- research-memory-archive: notes/archive/THEORY-learnings.md -->

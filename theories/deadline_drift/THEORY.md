@@ -1,5 +1,12 @@
 # Deadline Drift
 
+<!-- research-memory-route -->
+> [Find scoped lessons and avoided mistakes](learnings/README.md). Read this specification
+> for the claim/procedure relevant to your task; historical learning narratives
+> are source evidence, not an accumulating current-memory summary.
+<!-- /research-memory-route -->
+
+
 ## Hypothesis
 
 Markets that resolve YES only if a discrete, **unscheduled affirmative
@@ -116,343 +123,55 @@ markets, a pure partition the suffix rule would otherwise admit.
 
 ## Status
 
-**`testing`, v2, since 2026-09-01.** It records — 53 observation rows so
-far — and it claims no edge while it does so. Read those two facts
-together: the theory is now *accruing DD-1's out-of-sample set*, which is
-the only thing that was ever between it and evidence, and it is doing so
-without asserting anything it has not earned.
+`testing`, v2. The live procedure records zero-edge observation rows while
+DD-1 accrues; until `hazard_bins.json` is deliberately created after DD-1
+clears, this theory cannot produce a recommendation. The current registry,
+code, and runbook all use v2.
 
-### 2026-09-03 — the platform sweep completed, and all three replications came back underpowered
+The evidence questions remain separate:
 
-The 13,772-series platform-wide walk that DD-3, DD-4 and DD-5 were waiting
-on is **finished** (3,392 markets, 1,484 of them new since the seen-set
-freeze). Full numbers and their reading are in `NOTES.md` under
-2026-09-03; the four facts a session needs before acting on this theory:
+- **DD-1** is the primary forward test on markets settling after 2026-09-01.
+  Its current record comes only from the score report.
+- **`dd2-one-off`** is a registered sub-theory of DD-1. It remains
+  first-class and accrues on its own record; use the slice report for its
+  current gates.
+- **DD-3** is the selection-correction replication. The open
+  [stopping-rule ticket](tickets/open/2026-09-03-dd3-final-read-at-80-clusters.md)
+  permits exactly one further reading, at the first completed sweep that
+  reaches the floor.
+- **DD-4** completed below its floor and is not rerun. **DD-5** cannot be
+  identified as specified because the unseen arm is almost necessarily
+  one-off; it is not a second route to a recommendation.
 
-1. **Every pre-registered replication is UNDERPOWERED by its own bar, and
-   every point estimate is negative.** DD-3 −6.6 net on 73 event clusters
-   against a floor of 80; DD-4 (the never-looked-at half) −9.2 on 37;
-   DD-5's one-off arm −6.0 on 71. Under the bars fixed before any of this
-   ran, **none of them settles anything in either direction** — and that
-   restraint is load-bearing, not a formality.
-2. **The selection effect DD-3 was built to detect is real and clears a
-   threshold.** seen +4.87 vs unseen −5.52, a **+10.39-pt difference,
-   z = +2.14, 95% CI [+0.88, +19.91]**. The mechanism shows in the
-   components: realized P(YES) is **0.107 seen against 0.254 unseen**, so
-   board-scoped capture over-sampled NO outcomes — exactly what makes a
-   buy-NO screen look profitable on it. Per the pre-registration this is
-   evidence about **selection** and is *not* licensed as evidence about
-   the edge.
-3. **So the withdrawn +4.6 now has a measured alternative explanation.**
-   Its 2026-09-02 withdrawal as the headline number stands, and is now
-   supported rather than precautionary. No report should quote it.
-4. **DD-5 can never run as written.** The unseen arm is 71 one-off to 2
-   recurring, because "unseen" means a series the board-scoped walk never
-   reached and a recurring family always keeps something on the board.
-   DD-3's population and DD-2's split are not independent. Further
-   capture does not fix this.
-5. **A 14-cut mining pass (`mine_arms.py`) never changes the sign:** the
-   unseen arm is negative in 14 of 14 cuts (−0.0 to −8.9), the seen arm
-   positive in 14 of 14 (+0.7 to +9.3). No subset carries the gap; it is
-   uniform, which is what a sampling-frame artifact looks like and is not
-   what a real edge with a mispriced pocket looks like.
-6. **The plainest fact of the day needs no statistics.** In the
-   board-scoped arm, **33 single-leg by-deadline questions resolved YES
-   exactly zero times.** A single-leg question that resolves YES ends its
-   series, so a board-scoped walk structurally cannot collect it. The
-   same cut on never-on-the-board markets returns P(YES) = 0.250. A rate
-   of 0/33 is not a base rate; it is a truncated sample.
-7. **The spread ladder that cleared this theory of being an artifact was
-   itself computed on the biased sample.** It reproduces on the seen arm
-   (+4.0 → +7.3 at ≤4pts) and does not exist on the unseen arm (−6.6 →
-   −0.3). Passing a robustness check rules out the artifact it was
-   designed to catch and nothing else. Note where the tight-spread unseen
-   cells land — **−0.3 and −1.2, indistinguishable from zero on the
-   markets where execution is realistic.** That is the least-bad estimate
-   available today, and it reads "no edge".
+The completed sweep did establish a material board-selection effect, so the
+earlier positive in-sample headline is withdrawn and must not be cited as this
+theory's edge. The full measurements and reasoning are preserved in the
+[historical notebook](theories/deadline_drift/notes/archive/NOTES.md) under
+the 2026-09-03 sweep entry. They do not contaminate DD-1's forward set.
 
-**DD-1 is untouched by all of it and remains the primary test.** It is a
-*forward* test on markets settling after 2026-09-01; DD-3 controlled for
-selection and for nothing about regime. The theory keeps running: every
-row it writes claims edge 0, so it cannot produce a recommendation, and
-the cost of letting the forward test finish is zero.
-
-### DD-3's completion, and its stopping rule
-
-DD-3 is **seven event clusters short**, and the store only grows — markets
-already captured never leave our disk even as Kalshi ages them out
-upstream. Re-running `collect_settled --platform` in a few weeks will add
-clusters from new settlements.
-
-**Fixed now, before those settlements exist:** DD-3 is read **exactly once
-more**, at the first sweep where the unseen arm holds **>= 80 event
-clusters**, and that reading is the verdict whatever it says. Re-checking
-until it crosses in a pleasing direction is optional stopping, and this
-rule is the guard against it. The bar itself is unchanged: net >= +2 with
-a 95% event-clustered CI excluding zero.
-
-What changed was the population, not the thesis. v1 shipped the
-70-series allowlist, recorded nothing, and was therefore unmeasurable;
-the widening is argued below and in the version-2 bump justification.
-
-**There is no clean backtest for this theory, and that is a finding
-rather than an omission.** The usual advice — history is fetchable, so
-run the replay — does not apply here, because the replay has already been
-run as analysis (`hazard.py`, `bootstrap.py`) and *the population was
-chosen on its results*. Every settled market this theory can reach is
-in-sample for that choice. Recording it as a tier A backtest run would
-make the data that suggested the population vouch for it, which is
-exactly what CLAUDE.md's pairing discipline forbids and what
-`mined_from_run_ids` exists to prevent. **The forward test is not the
-slow path here; it is the only honest one.** A future session reaching
-for `backtest-theory` on this theory should read this paragraph first.
-
-**What 2026-09-01 measured** (`python -m theories.deadline_drift.hazard`
-and `.bootstrap`, over **1,908 settled markets in 962 series** — the
-entire fetchable by-deadline history, not a sample):
-
-| population | gap at the tradeable price | 95% CI | events |
-|---|---|---|---|
-| **allowlist — what this theory ships** | **−1.0 pts** | [−9.8, +5.7] | 22 |
-| wide by-deadline hazard stratum | **+4.6 pts** | [+1.0, +8.0] | 94 |
-
-Read those two rows together, because neither means much alone:
-
-- **The allowlist result is not evidence against the thesis. It is no
-  evidence at all** — 70 series is too thin a slice of the board to
-  measure anything inside a 60-day archive window, and its interval spans
-  12 points.
-- **The wide result is a real signal at the price a NO buyer actually
-  pays**, and it survives every cut: it *grows* under tighter spread
-  filters (+4.6 → +5.3 at ≤4pts, where a spread artifact must shrink),
-  survives removing one-winner partition families (+4.8) and an
-  open-interest floor (+5.3).
-
-**So the binding constraint was never the thesis — it was the allowlist**,
-adopted to preserve tier A back when a structural LLM gate was thought to
-cost it. CLAUDE.md's "Structural gates keep tier A" removed that price on
-the same day the allowlist was adopted, and nobody revisited the trade.
-
-**Why this is still not bettable, and `price()` stays inert.** The +4.6
-is **post-hoc**: the wide population was chosen and measured in the same
-session, after a dozen cuts. CLAUDE.md's pairing discipline makes that a
-hypothesis to pre-register, never an edge to bet on the data that
-suggested it. It also inherits the audit's ~15% misclassification.
-
-### The pre-registration (written 2026-09-01, before any out-of-sample data)
-
-**DD-1.** On the by-deadline **hazard stratum** (`hazard.stratum() ==
-"hazard"`, minus `hazard.partition_families()`), lifetime volume ≥ 100,
-entering the first day a market is within 21 days of its **stated
-deadline** with YES ask in $0.05–0.60, buying NO at `no_ask = 1 −
-yes_bid`: realized P(YES) sits **at least 3 points below** the implied
-`yes_bid`, event-clustered, net of fees.
-
-- **Out-of-sample set:** markets settling **after 2026-09-01**. Nothing
-  in today's capture counts.
-- **Power:** today's estimate rests on 94 event clusters. The same
-  population produces roughly that many per two months, so this is a
-  ~60-day test, and the standing capture obligation in `RUNBOOK.md` is
-  what collects it — that obligation is now the experiment, not
-  housekeeping.
-- **Kill:** an out-of-sample 95% CI covering zero at ≥ 80 event
-  clusters, or a point estimate below **+2 net**. (The bar is +2 rather
-  than +3 because the in-sample gross gap is +4.6 and the fee on a NO at
-  these prices is ~1.1 pts, so the effect being tested is ~+3.5 net; a
-  +3 bar would fail a true effect about half the time.)
-
-- **The entry rule is load-bearing and is part of DD-1, not a detail.**
-  Entering the *first* qualifying day gives +3.4 on the hazard stratum;
-  averaging over every qualifying day in the window gives **−1.7**. That
-  is not a robustness failure, it is the thesis: the overpricing decays
-  as the deadline approaches, so entering as early as the window allows
-  is where the drift is. But it does mean a test that enters late
-  measures nothing, and any implementation must enter on first
-  qualification.
-
-**DD-2, a pre-specified split of DD-1** (not a second test to run only if
-DD-1 fails). The in-sample effect is **entirely** in series *outside* the
-allowlist — allowlist −1.0, CI [−9.8, +5.7], 22 clusters; non-allowlist
-**+6.3**, CI [+2.4, +10.0], 72 clusters — and inspecting the
-contributors says why. The non-allowlist side is a long tail of **one-off
-newsy questions priced $0.25–0.55 that did not happen**: "Will the Senate
-vote on the CLARITY Act?", "Will another GTA VI trailer come out before
-Aug 2026?", "Will Google release Gemini 3.5 Pro before Aug 21?", "Will
-Serbia announce a snap election?". The allowlist side is **recurring
-families** — `KXFEDERALCHARGE`, `KXNBATRADE`, `KXMLBDEBUT` — which trade
-much cheaper (mean bid 0.04–0.06) and price about right.
-
-Proposed mechanism: **a recurring family teaches its own base rate.**
-Traders who have seen forty coach-out markets resolve know roughly how
-often one fires; a one-off question about a bill, a trailer or a model
-release has no reference class on the board, so the story that made it
-interesting sets the price. If that is right, the premium should track
-*non-recurrence*, not the subject matter.
-
-So the forward test splits on a property fixed at listing: **is this
-market's series recurring** (≥ 3 settled events before the decision date)
-**or one-off?** DD-2 predicts the gap concentrates in the one-off arm.
-Recorded now, before any out-of-sample data, precisely because it was
-found by looking — it is a hypothesis this sample suggested, and it
-vouches for nothing until the forward test runs.
-
-**Read DD-2 with its caveat.** The in-sample non-allowlist estimate is
-heavy-tailed: 5 series carry 46% of the gap on 13 of 72 clusters, 10 of
-the top 12 contributing series are
-a single event that did not happen, and `KXBIGBROTHERELIMINATION` (a
-one-winner partition, ~6% of the gap) shows the population is still not
-clean. The bootstrap prices the sampling uncertainty; it cannot price the
-contamination.
-
-**DD-3, a replication on contemporaneous data the population choice never
-saw** (written 2026-09-02, while the capture that produces it was still
-running, before any number from it existed).
-
-**Why this exists.** DD-1's out-of-sample set is defined by *settlement
-date* — markets settling after 2026-09-01 — on the stated belief that
-"today's capture" was the entire fetchable history. **That belief was
-wrong.** `collect_settled`'s walk took its series list from the live
-board (`superset_series`), so it could only ever reach a series that
-still had something trading. Measured 2026-09-02: the board-scoped walk
-covered **962 series (170 with results)** against **13,733 series on the
-platform**. A 200-series probe of the unwalked remainder found
-by-deadline settled markets inside the reachable window at ~0.14 per
-series, extrapolating to roughly **+700 markets, ~37% on top of the
-1,908** the estimate was built from.
-
-**This is a selection correction, not a sample-size win.** A series
-leaves the board *because* its question resolved, so board-scoped capture
-systematically under-samples families that already finished — precisely
-the population a by-deadline theory is about. The direction of that bias
-is not obvious a priori, which is why this is worth running rather than
-assuming.
-
-**DD-3 is not DD-1 and does not substitute for it.** These markets
-settled *before* 2026-09-01, so they are contemporaneous with the
-in-sample set, not forward of it. They control for **selection**; they
-control for nothing about **regime**. DD-1 remains the forward test and
-its clock is unaffected.
-
-- **Population and entry rule:** identical to DD-1, unchanged — hazard
-  stratum minus `partition_families()`, lifetime volume >= 100, entry on
-  the **first** day within 21 days of the stated deadline, YES ask
-  $0.05-0.60, buying NO at `no_ask = 1 - yes_bid`, event-clustered, net
-  of fees. Nothing about the rule is re-tuned for this set; if it were,
-  this would be another in-sample fit.
-- **Out-of-sample set:** exactly those tickers **absent from
-  `theories/deadline_drift/data/preplatform_seen.json`**, a file frozen from the store *before*
-  the platform walk began. That file is the boundary and must never be
-  regenerated after the walk — regenerating it would silently convert
-  this test to in-sample.
-- **Confirmation:** point estimate **>= +2 net** with a 95%
-  event-clustered CI excluding zero. Same bar as DD-1, because it is the
-  same statistic; +2 rather than +3 for the same fee reason.
-- **Failure:** a 95% CI covering zero at >= 80 event clusters, or a point
-  estimate below +2 net. Below 80 clusters the result is reported as
-  underpowered and settles nothing, in either direction.
-- **Reported alongside, as a descriptive control, never as the test:**
-  the same statistic recomputed on the seen set with identical code, and
-  the DD-2 recurring/one-off split on the unseen arm. A gap between seen
-  and unseen is evidence about *selection*, and is explicitly not
-  licensed as evidence about the edge.
-- **Tier A.** No LLM anywhere in the decision path, so no cutoff applies
-  and no contamination probe is owed.
-
-**DD-4 and DD-5, written 2026-09-02 at ~50% capture, before the data
-either one is scored on had been fetched.**
-
-**Why these exist: a peek costs something, and this is the price being
-paid explicitly.** The DD-3 aggregate was computed and reported at ~45-50%
-capture, at the user's request, on 36 event clusters. Those 509 tickers are
-frozen in `theories/deadline_drift/data/dd3_peeked.json` and are **spent for the aggregate test** —
-looking at them again is a second look at the same data, and reporting
-whichever look is friendlier is the exact failure pre-registration exists
-to stop. What follows fences that off and commits the *unlooked-at*
-remainder to tests specified in advance.
-
-**DD-4 — holdout replication of DD-3.** Same population, same entry rule,
-same bar, restricted to unseen tickers **absent from `dd3_peeked.json`**
-(i.e. captured after the freeze).
-
-- **Read it with its weakness stated up front.** `platform_series` walks
-  KX* ordered by category, so the holdout is not an exchangeable random
-  half — it is a different category mix (the peeked half skews Politics
-  and Financials; the remainder skews Sports, Entertainment and the tail).
-  A difference between halves is therefore **confounded with category**
-  and is not by itself evidence about the edge. DD-4 can corroborate; it
-  cannot arbitrate.
-
-**DD-5 — DD-2's contrast, on the whole unseen arm. This is the one worth
-running.** DD-2 predicts the gap concentrates in **one-off** series and
-that **recurring** families price about right. That split has **not been
-examined on any unseen data**, so the full unseen arm — peeked half
-included — is clean for it.
-
-- **Primary statistic: the contrast**, `net(one-off) − net(recurring)`,
-  event-clustered. DD-2 predicts it is **positive**. A contrast is chosen
-  deliberately over either arm's level: the reported aggregate is a
-  weighted average of the two arms, so it constrains the *levels* somewhat
-  and the *difference* barely. That residual contamination is the honest
-  caveat and it is small, not zero.
-- **`recurring` is point-in-time and must be computed as such.** A series
-  is recurring for a given market if it had **>= 3 settled events with a
-  close_time strictly before that market's own decision date**. It must
-  **not** come from a `population_facts.json` rebuilt after this walk —
-  that file is regenerated from the whole store, so using it would let the
-  test period's own settlements define the test's split.
-- **Confirmation:** contrast >= +3 pts with a 95% event-clustered CI
-  excluding zero, and the one-off arm positive on its own.
-- **Failure:** a CI covering zero with >= 30 clusters in each arm. Below
-  that, underpowered, and it settles nothing.
-- **What each outcome means.** DD-5 positive rescues a *narrower* theory
-  than the one that was claimed: not "buy NO across the hazard stratum"
-  but "buy NO on one-off newsy questions". DD-5 null, with DD-3 also
-  failing, is the end of the broad thesis — and at that point the
-  +4.6 is best read as a survivorship artifact of board-scoped capture,
-  which is a result worth having.
-
-**Standing consequence, independent of all three.** The **+4.6 is
-withdrawn as this theory's headline number** as of 2026-09-02. It was
-measured on a sample that could only contain series still trading, and a
-by-deadline series leaves the board *because* its question resolved. No
-report should quote it as the theory's edge again; it stands only as the
-in-sample estimate it always was, now with a known selection defect.
-
-**Reached `testing` 2026-09-01** by widening the population past the
-allowlist (v2, `continues`) and recording. To reach `active`: DD-1
-confirmed out of sample.
-
-**`under_review` is NOT reachable from these rows, and the distinction
-matters.** The n=20-with-negative-edge trigger reads rows the theory
-claims positive edge on, and every row it currently writes claims zero.
-Per the 2026-08-30 ruling, the aggregate calibration edge over
-observation rows measures *the board*, not this decision procedure, so it
-can carry no verdict — a theory with zero settled bettable rows is
-**unmeasured**, never `under_review`. The trigger arms when
-`hazard_bins.json` is written, which DD-1 clearing is what licenses.
-
-**No LLM gate was built, and the widen-population ticket's step 1 was
-deliberately not followed.** That step asked for a series-level
-structural gate to remove the residual ~15% multi-destination
-misclassification. Three reasons it was dropped: DD-1's population is
-defined without one, so adding it would test a population nobody
-pre-registered; the ~960 judging calls buy purity the pre-registration
-does not ask for; and the same information is now recorded per row as
-features, which makes the cleaner subset available later as a registered
-slice — data over recorded fields — without changing what DD-1 measures.
-If purity turns out to matter, that is a v3 decision made on settled
-rows, not a guess made before any of them exist.
+There is no eligible replay shortcut for DD-1 from the already captured
+history: that history was used to select its population. Tier A/B replays
+normally count in full, but recording this same analysis as a backtest would
+let the discovery sample validate its own rule. Use
+`python -m tools.cli score report deadline_drift` and
+`python -m tools.cli slices report deadline_drift` for current evidence.
 
 ## Candidate flow
 
-The population is long-dated by nature, so a snapshot understates it: **41**
-markets sit inside the <=21-day window today, but **714 close over the next
-12 months**, each passing through that window once. Live scans surface a
-handful at a time; the backtest population is the annual flow.
+The population is long-dated by nature, so one board snapshot understates
+its flow: markets enter the <=21-day window over time. Report each run's
+actual funnel from `ScreenResult`; the historical annual-flow estimate is
+preserved in `theories/deadline_drift/notes/archive/NOTES.md`.
 
 ## Version
 
-**v1** (2026-08-29) — initial. Allowlist screen + structural guard, hazard
+**v2** (2026-09-01, `continues`) — moved the shipped population from the
+70-series allowlist to DD-1's pre-registered by-deadline hazard stratum minus
+partition families, and anchored the live horizon to the deadline stated in
+the rules rather than `close_time`. v1 recorded no rows, so the continuing
+chain pools no stale observations.
+
+**v1** (2026-08-29) — initial. Allowlist screen plus structural guard; hazard
 bins pending.
 
 ## Known defects carried forward

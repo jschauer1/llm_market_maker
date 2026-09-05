@@ -159,9 +159,9 @@ biases are not written down produces a number nobody can caveat.
 
 ## Learnings
 
-The **distilled** record: what this theory now knows that changes what it
-claims or how it runs. Not a journal — raw working notes (dead ends, data
-quirks, backtest narratives, hunches not yet worth a version bump) go in
-`NOTES.md` in this folder, and graduate into this section only when they
-change the theory's claims, procedure, or status. Summarize and point at
-the `NOTES.md` entry; do not copy it.
+[Browse scoped lessons](learnings/README.md). Each card states its
+applicability, finding, future action, original evidence, and revisit
+condition. This specification changes when a finding changes the claim,
+procedure, or status; the card is not copied here. Additional investigation
+narrative lives in dated `notes/` files. Follow
+`docs/agents/research-memory.md` from the repository root.

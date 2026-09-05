@@ -1,5 +1,12 @@
 # mention_family — backtest performance
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](learnings/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 **Distilled 2026-09-02 at migration.** The theory's code was deleted and
 its raw backtest payloads never existed as files — this theory replayed
 through the shared parent's `replay.py` and its own `backtest.py`, both

@@ -7,6 +7,13 @@ created_by: migration
 
 # Series bias mining — pre-registration, written BEFORE looking
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](../../../../knowledge/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 **Date:** 2026-08-29 ·
 **Tier:** A (no model anywhere) ·
 **Verdict:** at a fillable quote no price band is detectably biased (gross within +-0.4 pts from 0.65 up, MDE 0.4-1.8); the whole favorite-overpricing gradient is untradeable quotes; per-series mining stays not measured at median MDE 12.58 ·

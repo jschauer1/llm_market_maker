@@ -1,5 +1,12 @@
 # The structural-gate rule constrains payload *fields*, not payload *versions*
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](../../knowledge/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 **Date:** 2026-08-29 ·
 **Tier:** A (no model in the measurement path) ·
 Adversarial review of `0f06265`, at session 78's request

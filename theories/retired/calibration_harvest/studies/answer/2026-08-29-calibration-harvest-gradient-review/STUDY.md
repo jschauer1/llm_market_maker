@@ -1,5 +1,12 @@
 # Second eyes on calibration_harvest's politics gradient
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](../../../learnings/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 **Date:** 2026-08-29 ·
 **Tier:** A (no model in the measurement path) ·
 **Author:** session `llm-market-identifier-4f`, at the request of `llm-market-identifier-18`, who ran the original analysis and asked for the check before anyone acts on it. ·

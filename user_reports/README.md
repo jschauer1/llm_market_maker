@@ -27,7 +27,10 @@ The order is what you act on first, not what happened first.
 1. **Bets** — every candidate that cleared the promotion key (R1
    RECOMMENDED, R2 RISKLESS, R3 PROVISIONAL), with ticker, side, today's
    ask, claimed and ranked edge, the segment that earned it, the n and
-   settlement days behind it, edge basis, and suggested size. R3 is
+   settlement days behind it, edge basis, and suggested size when an
+   authorized sizing rule and its inputs or a verified sizing result exist.
+   Otherwise size is **not set**. Available depth is reported separately;
+   offered contracts do not determine stake size. R3 is
    labelled with exactly what it is missing. R2 baskets itemize every leg
    with its own ask and the verify-every-leg warning.
 
@@ -47,14 +50,19 @@ The order is what you act on first, not what happened first.
    omitted for being "just" a subset; `floor complete` refuses a report
    that leaves one out.
 
-3. **For your ruling** — everything escalated instead of asked: pending
+3. **Studies in flight** — every unfinished study, its state, and what it
+   is waiting on. The floor reports these; it does not re-run their research.
+
+4. **For your ruling** — everything escalated instead of asked: pending
    retirements with their diagnosis, orphaned evidence, gaps in the
    promotion key, permission-blocked actions. Carried every day until you
    rule on it.
 
-4. **Queue** — endorsed positions still open and untouched, re-quoted at
+5. **Queue** — verified endorsed positions still open and untouched, re-quoted at
    today's ask: which still stand, which were closed as stale. Then the
-   asks, **by id**, so you can answer one line:
+   asks, **by id**, so you can answer one line. Disposition, recording, and
+   user-action status come from the ledger or supplied receipts; absent facts
+   are marked **not supplied**:
 
    ```bash
    python -m tools.cli opportunities mark-taken <id> taken \
@@ -64,16 +72,24 @@ The order is what you act on first, not what happened first.
    Until a bet is marked, `roi_taken` stays `null` and the divergence
    signal never accumulates.
 
-5. **Floor record** — the receipt, last because it is the least
+6. **Floor record** — the receipt, last because it is the least
    actionable: which theories ran through which stages, what the gates
-   removed by category, what settled, and how the scores moved.
+   removed by category, what settled, and how the scores moved. Show
+   observations split into new and reobserved positions using the run's
+   `opportunity_attempts`, separately from settled evidence sample size.
+   A position's `run_id` retains its first run; absent counts are not supplied.
 
 ## What this folder is not
 
-**Not the audit trail.** The record lives in the database, each theory's
-`NOTES.md`, and `RESEARCH_LOG.md`. These are written for you to read, and
-they are regenerable from the ledger — if a report and the database
-disagree, the database is right.
+The audit trail lives in the database, saved run/judgment receipts, and the
+original owner-local evidence. Reusable lessons follow
+`docs/agents/research-memory.md`; routine floor completion does not create a
+notebook or global-log entry. Reports are written for you to read and are
+regenerable from recorded facts — if a report and the database disagree,
+check the underlying record.
+
+Simulations are labelled **rehearsal/simulated; not live recommendations**.
+A blocked run names the missing stages and leaves the floor claim incomplete.
 
 **Sessions may read past reports; they may never cite one as evidence.**
 Reading yesterday's report to see what was already said is useful and

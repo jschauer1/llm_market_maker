@@ -1,5 +1,12 @@
 # Structural Arb
 
+<!-- research-memory-route -->
+> [Find scoped lessons and avoided mistakes](learnings/README.md). Read this specification
+> for the claim/procedure relevant to your task; historical learning narratives
+> are source evidence, not an accumulating current-memory summary.
+<!-- /research-memory-route -->
+
+
 ## Hypothesis
 
 Within a single Kalshi event, executable quotes must satisfy hard logical
@@ -136,9 +143,21 @@ basket paying below its declared `min_payout` is a proof error and
 
 ## Status
 
-`testing` — 2026-08-26: procedure implemented and running; first live
-scan this session. (`proposed` skipped-through the same day the scaffold
-ran end to end.)
+`testing`, v4. The scanner is live and the arithmetic proof is
+deterministic. Its score belongs in the riskless-return view. A finding
+recorded as `rejected` because it failed the depth gate is a counterfactual,
+so its ROI must not be quoted as money the theory could have earned.
+
+A candidate is actionable only after it survives sterile-class filtering,
+the mutual-exclusivity guard when applicable, fresh re-quotation, and the
+$5 fillable-profit depth gate. Every report still itemizes all legs and tells
+the user to verify every ask before entering. No sub-theory is registered.
+
+Use `python -m tools.cli score report structural_arb` for the current
+riskless record and inspect the recorded rejection rationales before drawing
+an execution conclusion. The historical liquidity and proof audits remain in
+`theories/structural_arb/studies/answer/` and the
+[historical notebook](theories/structural_arb/notes/archive/NOTES.md).
 
 ## Version
 
@@ -163,12 +182,16 @@ back to the 2,042 flags already in `theory_facts`, then reports
 `flag_unknown`. Note the guard's rejections are "unverifiable", not
 proven-false: Kalshi flags some semantically exclusive events False
 (`KXBOND-30`, `KXSUPERBOWLHEADLINE-27` — deadline-drift round 5), so a
-rejected candidate is not thereby a false claim. Measured 2026-08-29
-(session 78): 53 events price as partitions (≥3 legs, one deadline, sum
-in [0.90, 1.05]), 10 of them unflagged — and none of the 10 intersects a
-clearing candidate, so no real arb is being rejected *today*. That
-intersection moves with prices; re-run it before citing "nothing to
-find" as settled (NOTES 2026-08-29 correction entry has the recipe).
+rejected candidate is not thereby a false claim.
+
+**Historical correction:** the 2026-08-29 partition-gap monitoring recipe
+that accompanied v4 does not reproduce its recorded counts and over-triggers
+on events whose legs concern different underlying subjects. It is not a
+decision input and must not be cited as proof that the flag loses no real
+candidate. The unresolved replacement is tracked in
+`theories/structural_arb/tickets/open/2026-09-01-partition-gap-check-unreproducible.md`;
+the original audit is preserved in
+`theories/structural_arb/notes/archive/NOTES.md`.
 
 3 — 2026-08-29: **stage 1 drops three sterile violation classes before
 the orderbook fetch.** The snapshot study

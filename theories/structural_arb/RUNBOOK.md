@@ -23,8 +23,9 @@ the mutually-exclusive guard, or the depth gate bumps the version.
 | 5 | depth gate + record | code | orderbook depth; fillable profit < $5 records as `rejected` (dust control group) |
 
 No judgment stage. "Run the theory" means all five stages — the contract
-runs them as one call. Backtests skip stage 4 by design (a replay prices
-the snapshot; its output measures violation existence, not fillability).
+runs them as one call. Backtests skip fresh re-quotation and the live depth
+gate by design: a replay prices the snapshot, so its output measures
+violation existence, not fillability.
 
 ## Run
 

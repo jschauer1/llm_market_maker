@@ -1,5 +1,12 @@
 # Splitting the 60-day observation set by side — no_side_premium's claim, and a composition artifact that explains it
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](../../../learnings/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 **Date:** 2026-09-01 ·
 **Tier:** A (no model in the measurement path) ·
 **Session:** `llm-market-identifier-57`, theory lane ·

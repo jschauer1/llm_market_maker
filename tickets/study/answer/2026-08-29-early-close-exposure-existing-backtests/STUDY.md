@@ -1,5 +1,12 @@
 # Which existing backtests are exposed to the early-close anchor bug?
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](../../../../knowledge/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 **Date:** 2026-08-29 ·
 **Tier:** A (no model) ·
 **Verdict:** 66.8% of settled markets close early and `insider-fullcov` is ~18% exposed; the bias inflates favorite win rates, so negative headlines only get more negative — the consequence for the bettable slice was measured separately and is not a threat

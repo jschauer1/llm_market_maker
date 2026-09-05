@@ -1,5 +1,12 @@
 # Entry timing — pre-registration, written BEFORE looking
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](../../../../knowledge/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 **Date:** 2026-08-30 ·
 **Tier:** A (no model anywhere) ·
 **Verdict:** **FAILED PREDICTION**, and the useful half is the secondary null ·

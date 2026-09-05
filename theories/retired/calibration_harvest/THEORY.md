@@ -1,5 +1,12 @@
 # Calibration Harvest
 
+<!-- research-memory-route -->
+> [Find scoped lessons and avoided mistakes](learnings/README.md). Read this specification
+> for the claim/procedure relevant to your task; historical learning narratives
+> are source evidence, not an accumulating current-memory summary.
+<!-- /research-memory-route -->
+
+
 ## Hypothesis
 
 Kalshi prices are systematically miscalibrated as a function of
@@ -455,11 +462,9 @@ series label, which is versioned here but not audited market by market.
 
 ## Learnings
 
-Nothing measured yet. 2026-08-27: the design decision worth recording
-before any data arrives is that the repo's *existing* full-coverage
-settled data (`backtest-2026-08-25-*-fullcov`, 6,636 settled rows) cannot
-serve this theory — that population was fetch-scoped to exclude Sports,
-Crypto, Climate and Weather, Commodities, Economics, Elections and
-Financials, and capped at 14 days to close, so it excludes **both**
-domains whose contrast is this theory's central claim and every horizon
-bin beyond two weeks. See `NOTES.md` 2026-08-27.
+[Choose an actionable lesson](learnings/README.md). The cards preserve only
+scoped conclusions that change a later decision or avoid expensive repetition.
+The original [learning narrative](notes/archive/THEORY-learnings.md) remains
+available for a specific evidence question; it is not current startup context.
+
+<!-- research-memory-archive: notes/archive/THEORY-learnings.md -->

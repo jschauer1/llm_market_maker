@@ -1,5 +1,12 @@
 # Does the NO-favorite side gap survive a tradeable book? — the deciding experiment for `no-favorite-high-band`
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](../../../learnings/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 **Date:** 2026-09-01 ·
 **Tier:** A (no model in the measurement path) ·
 **Verdict:** DO NOT BUILD — at 100% coverage the within-series gap is +0.05 (t=0.04); the effect is ZERO, not negative as run 1 reported, and requiring a fillable book is what removes the series-bias corpus's apparent level bias ·

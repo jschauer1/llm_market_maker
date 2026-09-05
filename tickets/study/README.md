@@ -1,5 +1,12 @@
 # Studies — measurements that answer a question
 
+Browse existing findings through [the knowledge map](../../knowledge/README.md).
+Keep the verdict and applicability easy to read at the start of `STUDY.md`;
+the detailed answer remains the evidence. New reusable lessons and narrative
+follow [the memory policy](../../docs/agents/research-memory.md). Update incoming
+map/card links whenever the study moves state directories. A short answer can
+be linked directly; it needs no duplicate lesson document.
+
 **A study is a measurement that answers a question. It never bets.**
 
 That is the whole definition, and it is the line between a study and a

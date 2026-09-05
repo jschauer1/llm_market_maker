@@ -1,0 +1,1890 @@
+# insider_judgment — notes
+
+Lab notebook: raw, dated, append-only. The format and the distillation rule
+are in `theories/_TEMPLATE/NOTES.md`. Nothing here is private — any session
+may read any theory's notes.
+
+## 2026-08-25 — Notebook opened; where this theory's history lives
+
+This file starts empty by design. Everything written before today stayed
+where it was written, and none of it was migrated:
+
+- **`THEORY.md` Learnings** — the distilled record: the reality-TV stage-2
+  heuristic deliberately left unencoded until it is measured against the
+  endorsed/rejected split, the `edge_basis='prior'` imported-history
+  exception (LLM-introspected `q` values from `kalshi_trader`'s pick stage,
+  kept precisely because they are the only dataset that can answer whether
+  introspected probabilities realize their claimed edge), and the Big
+  Brother correction.
+- **`RESEARCH_LOG.md`** — the session narratives: the 2026-08-24 tier A
+  backtest of the stage-1 screen, including the 47-minute false start that
+  preceded it, and the 2026-08-24 Big Brother / mention-family follow-ups.
+- **`theories/insider_bias/replay.py`'s module docstring** (this was
+  `insider_judgment/backtest.py` until 2026-08-25; do not confuse it with
+  the `backtest_fullcov.py` / `backtest_judged.py` drivers still in this
+  folder) — the three constraints that shape
+  the replay: combinatorial-series fetch scoping, the category pre-filter's
+  status as a fetch-scoping decision rather than a change to the screen
+  under test, and per-day versus cumulative candle volume.
+
+From here on, raw findings about this theory land in this file, and
+`THEORY.md` changes only when the claim, the procedure, or the status
+changes.
+
+## 2026-08-27 — v3's first score (+11.85 net, n=17) measures the screen, on one day
+
+`score report insider_judgment` now shows v3 at `n=17`, win rate 0.941,
+`calibration_edge_net = +11.85`. Two things about that number before anyone
+banks it.
+
+**1. It is not the theory's product.** All 17 settled rows carry
+`disposition='screened'` — raw stage-1 screen output from
+`live-2026-08-26-noscan`, recorded but never gated and never judged. 15 of
+the 17 are sports (KXARGNACB, KXBOLPDIV, KXCPLMATCH, KXUSLSPREAD/TOTAL,
+KXT20MATCH, KXKBOSPREAD, KXFIBAGAME, KXEGYPLGAME), all bought on the **NO**
+side. The theory's actual recommendations — `endorsed`, n=8 outstanding —
+have **0 settled**, so `interpretation_value` is still `None` and nothing
+here says anything about whether the judgment stage adds or destroys value.
+
+**2. All 17 settled on 2026-08-27, and that day flattered everything.**
+Whole-population control over the same screen, priced from the
+2026-08-27T01:06:07Z snapshot before any of it settled
+(`tickets/study/answer/2026-08-27-settlement-day-clustering/`, n=99 settled of 109):
+favorites beat implied by +5.40 net that day; 52/52 favorites priced
+0.90–0.98 won.
+
+The honest comparison for these rows is the day's **NO-favorite** baseline,
+since that is what they are: n=44, **−3.05** net. Against that, 16/17 at
++11.85 is roughly +15 pts of outperformance — the one genuinely interesting
+number here, and it is drawn from one settlement day with `n_days=1`, so no
+standard error exists for it. Under the naive row-level SE it would look
+like ~2σ; it is not.
+
+Worth noting rather than acting on: on 08-25 the population's NO favorites
+ran **+7.98** net and its YES favorites −1.42, i.e. the side split reverses
+day to day. Whatever these 17 rows show, one day cannot distinguish "the
+screen picks good NO favorites" from "NO favorites had a day".
+
+**Nothing changes about the theory.** Status stays `testing`, v3, no
+version bump, no claim added or withdrawn — this is a note about how to
+read a score, not about the procedure. The lifecycle trigger (n=20 with
+net ≤ 0) is not close and would not fire on this anyway.
+
+**What to watch:** the 8 endorsed rows are the ones that matter, and the
+GTA video-length ladder (4 legs) plus both Big Brother legs settle tonight —
+that is the first real read on the endorsed tier. Track it with
+`score report insider_judgment | jq .settlement_days.endorsed` and wait for
+`n_days`, not `n`, to grow.
+
+## 2026-08-27 (later) — the tier-B judged backtests do not survive day clustering
+
+Follow-on from the settlement-day clustering study. Historical backtests
+previously could not be day-clustered at all — the replays recorded
+settlements with no `resolved_at`. Recovered from `extra_json`
+(`entry_day_iso + days_to_close_at_entry`) with no API call; see
+`tickets/study/answer/2026-08-27-settlement-day-clustering/backfill_resolved_at.py`.
+
+| run | n | days | row net | day net | row SE | day SE |
+|---|---|---|---|---|---|---|
+| insider fullcov (screen only) | 3,195 | 66 | −1.15 | −1.16 | 0.63 | 1.12 |
+| judged s200 | 704 | 58 | **+0.67** | **−0.35** | 1.27 | 2.50 |
+| judged s200b | 644 | 63 | −0.02 | +0.35 | 1.37 | 2.33 |
+| judged s57 | 216 | 30 | **+1.90** | **−1.36** | 2.02 | 4.78 |
+
+**The judged runs flip sign purely on how days are weighted**, and their
+clustered SEs swamp either estimate. Row-weighting over-counts busy
+settlement days, so a handful of good heavy days lifts the row-weighted
+figure — precisely the confound the study documents, appearing in the very
+runs that were meant to validate v3's buckets (the s-series completed 100%
+judgment coverage of the gate-plausible population and carried
+pre-registered cells: strong-NO positive, moderate-NO positive, bucket
+ordering).
+
+An estimate that changes sign under reweighting is not evidence in either
+direction. It does not say the buckets are wrong; it says these runs
+cannot tell us.
+
+**What changes, and what does not.** Status stays `testing` — which
+already means "running, claims not demonstrated", so nothing about the
+theory's standing moves. No version bump: the procedure is untouched.
+What changes is the promotion bar: **v3 must not go `active` on the
+s-series**, because day-clustered they show nothing. The stage-1 screen's
+own number (−1.16 ± 1.12) is likewise not distinguishable from zero,
+though it was never the theory's claim — the claim is that stage-2
+judgment adds edge on top of it, and `interpretation_value` is still
+`None` because the endorsed tier has no settled rows.
+
+**So the live endorsed tier now carries the weight the backtests cannot.**
+First settlements are due tonight/2026-08-28: the GTA video-length ladder
+has converged in-market to the endorsed [15,30) view (all four endorsed
+legs 187, 188, 9238, 9239 quoted at 1.00), and both Big Brother legs
+resolve tonight (TAY looks a win, NO at 0.91; DRE looks a loss, NO down to
+0.44 from the 0.82 entry). That would be roughly 5 wins and 1 loss.
+
+**Read it with `settlement_days`, not `n`.** All six settle the same
+night, so it will come back `n_days=1` with no computable SE — a first
+data point, not a verdict, and the temptation to call a 5-1 start
+"validation" is exactly what this whole day's work exists to prevent.
+
+## 2026-08-28 — the `weak` bucket graduated on one day of gate leakage
+
+Live run `live-2026-08-28`, stages 1–6, judged in-session (no subagent
+dispatched this session), 216 candidates over 119 events. **Nothing
+endorsed.** Funnel: 110,399 board → 767 screened → 321 events → gate
+removed 202 → 119 survivors / 216 markets. Gate counts: live sport 58,
+aggregate-of-many 43, weather 32, commodity/FX/rates 23, compute
+16, crypto 13, scheduled indicator 10, retail price index 7.
+
+**The finding is in the bucket layer, not the board.** `buckets.py`
+promoted `weak` from `prior` to `edge_basis='measured'` this run, because
+the bucket crossed `MIN_BUCKET_N = 10` on 17 settled rows. All 17 of
+those rows:
+
+- settled on **one day**, 2026-08-27 (`n_days=1`), and
+- are **NO favorites on live sport** (Argentine basketball, Bolivian
+  football, CPL, Egyptian football, FIBA, KBO, T20, USL) plus one diesel
+  strike — i.e. every one of them is a `gate.py` leak into a family this
+  theory's thesis explicitly excludes.
+
+16/17 won, which is simply what a 0.70–0.96 NO favorite does. The bucket
+layer then applied that 94.12% as a **flat win probability to every weak
+candidate regardless of its own price**, which mints apparent edge on
+anything quoted below 0.94: 150 of 216 rows came back "positive edge",
+all of them junk. Stage 3 declined all 190 weak rows on that basis.
+
+Three separate defects stacked here, worth separating:
+
+1. **`MIN_BUCKET_N` counts rows, not settlement days.** This is the exact
+   confound the 2026-08-27 clustering study measured, and the amendment
+   `no_side_premium` adopted (`n_days >= 8`). `buckets.py` has no
+   equivalent, so one lucky settlement day can graduate any bucket.
+2. **A flat bucket rate ignores the candidate's own price.** A single
+   `win_rate` applied across a 0.65–0.97 band is not a calibration; it is
+   a constant, and it is mechanically guaranteed to claim edge on the
+   cheap end of the band and negative edge on the expensive end.
+3. **Gate leakage contaminates the bucket rates, not just the scan.**
+   `gate.py` misses FIBA, KBO, CPL, T20, USL, Argentine/Bolivian league
+   football and `KXEURUSDAW`; those leak to the deep stage, get judged
+   `weak`, settle at sport-favorite base rates, and then *define* what
+   `weak` is worth. The gate's known failure mode was "a false
+   elimination is invisible" — this is the mirror: a false *survival*
+   silently becomes the theory's own yardstick.
+
+Rejecting all 190 is also the repair path: they span many future
+settlement days and many families, so once they settle the weak bucket's
+rate is measured on something other than one night of football.
+
+**Also recorded, and separately useful:** the Big Brother week-7 legs
+(`KXBIGBROTHERELIMINATION-26AUG27-{DRE,MAL,TAY}`) were priced on a
+168-minute-old board and the episode aired inside that window — Drew won
+the Block Buster and came off the block, Mallory was evicted. A re-quote
+showed 0.99/0.01/0.01. The board freshness window
+(`DEFAULT_MAX_AGE_MINUTES = 240`) is far too loose for a market that
+resolves during it; the general rule stands that a re-quote is mandatory
+before recommending, and this is the concrete case that proves it.
+
+**Rules divergences found this run** (9 events), all of which cut against
+the NO side the screen picks: `KXCABLEAVE` (rules resolve YES on merely
+*announcing* a departure), `KXGEMINI-GEMI35P` ("Gemini 3.5 Pro **or
+greater**"), `KXTRUMPMEET` (phone calls count as a "meet"), `KXUAPFILES`
+(any *federal government* UAP release, not just Trump). Narrower-than-
+title, therefore helping NO: `KXGTATRAILER` (≥30s), `KXMAMDANIEO`
+(non-emergency only), `KXPIRROOUT` (actually leaves, not announces),
+`KXITALYBORDERCHECK` (not replaced by equivalent checks),
+`KXBIGBENDRESUME` (agency-reported).
+
+## 2026-08-29 — the same three bucket defects, reproduced live; first endorsed settlements land
+
+Live run `live-2026-08-29`, stages 1–6, judged in-session by
+claude-opus-5 (no subagent dispatched). Funnel: 117,272 board → 740
+screened → 328 events → gate removed 198 → 130 survivors / **232
+markets**. Gate counts: live sport 59, aggregate-of-many 40, weather 28,
+compute/collectible 21, commodity/FX/rates 17, crypto 15, scheduled
+indicator 15, retail price index 3.
+
+**Verdicts: 122 weak, 9 moderate, 0 strong** (131 events judged; the
+screen re-ran a few minutes after the payload was built and 130 of the
+131 survived the moving days-to-close boundary). **Nothing endorsed —
+second consecutive run.**
+
+### The bucket layer failed the same way, one bucket over
+
+Last session's three stacked defects were diagnosed on a `weak` bucket
+graduated by 17 rows from a single night of gate-leaked football. The
+settle pass this session added 95 settlements and the bucket is now
+`weak` n=67, win rate 0.7761 — a much broader base. **The defect did not
+go away; it moved.** A flat 0.7761 applied across a 0.65–0.97 band still
+mints "positive edge" on everything priced below 0.776 and nothing above,
+which is defect 2 (a constant is not a calibration) surviving untouched
+by a 4× larger sample. This run it produced 16 weak-bucket "positive
+edge" rows: Taça de Portugal football, a T20 cricket match, Hulu app
+downloads, South Africa GDP, US PPI, a Creed Aventus retail price. Every
+one is a family the thesis explicitly excludes.
+
+Defect 3 (gate leakage contaminating the rate, not just the scan) is
+likewise still live and is *why* the rate reads 0.776: the weak bucket's
+settled rows remain dominated by live-sport NO favourites, so what the
+theory calls "weak" is being defined by a population its own thesis
+excludes.
+
+Defect 1 (`MIN_BUCKET_N` counts rows, not settlement days) is unchanged
+in `buckets.py`. Day-clustered, the live record is `n=74, n_days=2`,
+calibration_edge_net **−0.96 ± 12.9** — indistinguishable from zero
+either way. The row-weighted −7.89 that the same report prints is the
+confound, not the finding.
+
+The `moderate` bucket (n=5, below MIN_BUCKET_N) still pays its declared
+prior of +2.0 net **regardless of price**, which is the same defect in
+its other form: it claimed +2.00 on a NO leg quoted at 0.97 as readily as
+on one at 0.77.
+
+### Stage 6 declined all 232, in two groups
+
+- **214 weak rows** — declined as an arithmetic artifact, per the above.
+- **18 moderate rows across 9 events** — declined individually:
+  - `KXTRUMPMEET` (8 legs): rules count **phone calls** as a meeting,
+    broader than the title, cutting against every NO leg the screen
+    chose.
+  - `KXCABLEAVE`: rules resolve YES on merely **announcing** a departure
+    — same direction, against NO at 0.95.
+  - `KXPRESSSECANNOUNCE`: rules count an **acting/interim** naming —
+    again broader, against NO at 0.83.
+  - `KXAKDROPOUTAUG` (3 legs): researched. Alaska Public Media
+    (2026-08-17) reported the two leading Democrats are *discussing*
+    whether one should quit if both make the top four; Begich sat 2nd at
+    20.0% on the 08-26 count. That fails two final-review tests at once —
+    the group's knowledge is already in the press (no asymmetry) and
+    "discussing" is an unmade decision.
+  - `KXGTATRAILER` (NO 0.97), `KXHEARNCHARGE` (NO 0.97),
+    `KXNEWDRUGAPPLICATIONCMPS-360` (NO 0.96), `KXCLAUDE-NXTMYTH` (NO
+    0.77), `KXGROK-GROK47` (NO 0.86): the thesis genuinely applies to
+    each — a company knows its own ship date, prosecutors know their own
+    charging decision — but the claimed edge is a **prior**, not a
+    measurement, and at 0.96–0.97 the fee consumes most of a 2-point
+    claim.
+
+### Researched, and worth recording as a correction
+
+**AGT is not a pre-taped-TV case.** `KXAGTELIMINATION` looked like the
+thesis's strongest sub-case on its face. Season 21's quarterfinals are
+**live** performance and results shows (round 3 airs Sep 1–2, 2026)
+decided by America's public vote — an aggregate of millions of
+independent voters, i.e. the exclusion, not the thesis. Judged `weak`.
+Reality-TV tickers are not interchangeable: the distinction that matters
+is taping-already-in-the-can versus a live audience vote, and only the
+resolution timing tells them apart.
+
+**`KXALBUMDEBUT` carries a source-timing risk worth reusing.** Rod Wave's
+album released 2026-08-28, so the chart-tracking week was one day old at
+judgment; industry projections become privately known mid-week, but not
+today. Separately, the Billboard 200 dated Sep 12 publishes around Sep 8,
+**after** this market's Sep 7 close.
+
+### First endorsed settlements — read them as one day, not six rows
+
+Six of the nine queued endorsed positions settled, **all six won**: the
+GTA video-length ladder (187 YES-10 @0.93, 188 YES-15 @0.87, 9238 NO-30
+@0.85, 9239 NO-45 @0.94) and both Big Brother legs (192 NO-DRE @0.82,
+9134 NO-TAY @0.65). The 2026-08-27 note predicted DRE a loss with NO down
+to 0.44; it resolved NO. **All six settled on 2026-08-28 — `n_days=1`,
+no computable SE.** `interpretation_value` is now +34.4 (endorsed n=3 at
+100%, rejected n=51 at 68.6% against 84.5% implied), which is a first
+data point and emphatically not validation: the endorsed tier is three
+rows on one night.
+
+## 2026-08-29 (cont.) — v4: a bucket contributes an edge, not a probability
+
+The three stacked defects of 2026-08-28 turned out to be two mechanical
+bugs and one contamination, and the first two are now fixed in
+`tools/buckets.py`. **`insider_judgment` bumps to v4.**
+
+### Defect 2 was the load-bearing one, and it was a sign error in kind
+
+`edge_for` computed `(bucket_win_rate − this candidate's price) × 100`.
+That reads the bucket's *pooled win rate* as *this candidate's
+probability*, which makes the claimed edge move 1:1 with price. It is not
+a calibration — it is a bet that price carries no information at all.
+
+Concretely, on this theory's own live `weak` rate (n=67, win 0.7761,
+mean entry 0.8446):
+
+| candidate ask | old claim | corrected claim |
+|---|---|---|
+| 0.66 | **+10.04** measured | +0.00 prior |
+| 0.72 | **+4.20** measured | +0.00 prior |
+| 0.85 | −8.28 measured | +0.00 prior |
+| 0.97 | −19.59 measured | +0.00 prior |
+
+A 30-point swing driven entirely by price, out of a bucket whose actual
+realized edge is **−6.85 points**. The corrected formula carries
+`(win_rate − mean entry price of the rows that measured it)` — how far
+the bucket beat the prices it was really bought at — and lets only the
+fee depend on the candidate's own price.
+
+Three things that had silently disagreed now agree: the prior path
+(always points of edge), `score.compute_score` (which *grades* this
+theory on `win_rate − price_implied_rate`), and `Edge.model_prob` (now
+this candidate's price plus the bucket's edge, not a pooled rate
+describing other prices).
+
+### Defect 1 fixed as `MIN_BUCKET_DAYS = 5`
+
+`score.bucket_rates` now reports `n_days`, and a bucket must span five
+distinct settlement days before it may replace its prior. A rates dict
+that cannot supply `n_days` or `mean_entry_price` **fails closed** to the
+prior — an unverifiable measurement is not a measurement, which is the
+same false-survival failure that let one night of football define
+`weak`. `bucket_rates` snapshots persist `n_days` too (nullable: unknown
+must read as unknown, never as zero).
+
+Live effect: all three of this theory's buckets are currently `n_days`
+1–2, so **every bucket falls back to its prior** and the 16 junk
+"positive edge" rows this run produced could not be minted at all.
+
+### Defect 3 (gate leakage) is NOT fixed
+
+`gate.py` still passes FIBA, KBO, CPL, T20, USL, Taça de Portugal,
+Argentine/Bolivian league football and the Carbon Arc vendor-metric
+family. That is a `gate.py` change and a separate version bump; it is the
+next thing to do here. What has changed is that leakage can no longer
+*define* a bucket on one night — it still contaminates the population.
+
+### A found bug in a retired sibling, worth recording
+
+The same correction re-ranks `mention_family`'s golden output, and the
+diff is the defect in one line: the old top pick was a **$0.85**
+candidate at +14.11 net, the corrected one a **$0.97** candidate at
++8.21. The old formula was sorting that theory by *cheapness*, because
+every candidate in a price bin got repriced against that bin's win rate.
+`mention_family` is retired and records nothing, so no version was
+bumped; the pre-correction arithmetic is preserved unmodified in
+`tests/characterization/goldens/mention_rank_wide.json` and the
+correction itself is now locked by
+`test_the_bucket_edge_correction_is_visible_in_the_goldens`.
+
+## 2026-08-29 (cont.) — defect 3 closed: the gate reads rules now, 130 survivors → 18
+
+The last of the three 2026-08-28 defects. `gate.py` classified by
+series-ticker prefix only, which means it knows exactly the families
+someone has already typed into it — and Kalshi adds families faster than
+that. Measured over the whole 117,272-market board:
+
+```
+328 screened events
+-198 removed by the prefix allowlist (v2)
+=130 survivors, of which 109 were STILL families the thesis rejects
+```
+
+84% of what reached the expensive stage was junk, and not stragglers —
+whole categories: 39 Carbon Arc vendor-panel events, 47 sport fixtures
+across a dozen unenumerated leagues, 7 OpenRouter share events, 3
+Metacritic events.
+
+### The fix is to match resolution mechanics, not names
+
+A Carbon Arc panel says "Carbon Arc" in its own resolution rules whatever
+its ticker is called, so one pattern covers every such series Kalshi ever
+adds. Four rules-text rules, each measured against every series on the
+board before being written:
+
+| rule | series caught | markets | false positives |
+|---|---|---|---|
+| sport fixture | 611 | ~23,000 | none |
+| Carbon Arc vendor panel | 77 | 956 | none |
+| statistical release | 29 | ~1,000 | none |
+| OpenRouter / Metascore | 11 | 122 | none |
+
+**Net: 130 survivors → 18**, zero forbidden eliminations board-wide. The
+18 are exactly the events this session's own hand-judgment had identified
+as arguable, arrived at independently — which is about as good a check on
+a gate as is available without settlements.
+
+### Two obvious rules were measured and rejected — this is the real lesson
+
+Both would have shipped on intuition and both silently kill live
+candidates. This is the failure mode the gate's docstring already named
+("inside a matched family it drops silently"), caught only because the
+patterns were run over the whole board before being written rather than
+after.
+
+1. **Ticker-suffix sport rule** `(GAME|MATCH|SPREAD|TOTAL|BTTS|TOP\d+|RACE)$`.
+   Catches 496 series — *fewer* than the rules-text rule's 611 — and eats
+   `KXRACE` ("Will Ferrari N.V. report Above 3225 total car shipments in
+   Q3 2026": a company that knows its own shipments, which is the thesis
+   verbatim) and `KXXAIGAME` ("Will xAI release a video game before
+   2027"). It also files `KXHOUSERACE` and four Billboard/DJ-Mag ranking
+   series under "live sport".
+2. **Substring statistical rule** `^KX.*(CPI|PPI|INF|GDP|SALES|KWH)`.
+   "Phili**PPI**nes" matches `PPI`, killing three Philippine election
+   series; "LAYOFFSY**INF**O" matches `INF`; and `KXGTASALESRECORD`
+   ("Will GTA 6 break the record for the highest-grossing videogame in 24
+   hours" — Take-Two knows its own first-day sales) dies on `SALES`.
+
+Both are recorded in `gate.py` as rejected-with-measurement, and
+`test_the_rejected_rules_false_positives_still_survive` asserts all four
+of those candidates still reach the deep stage. The safe form of the
+statistical rule names the published series and the publishing agency
+(text that appears in the rules), which is what shipped.
+
+### Bookkeeping
+
+Folded into **v4** rather than a v5: no v4 row had been recorded when this
+landed (today's 232 rows are v3), so there is no track record for a
+separate number to keep separable. The three affected characterization
+goldens are kept unmodified as the record of the prefix-only gate; the
+rules-reading behaviour got `_v3` files, and
+`test_the_gate_v3_rules_reading_is_visible_in_the_goldens` locks the
+difference — including that v3 may only *remove* survivors, never
+resurrect one.
+
+**What this does not fix.** The gate still cannot see a family whose rules
+give no mechanical tell, and the screen still has no thesis term in it
+(known weakness 3) — 18 survivors out of 328 screened means the screen is
+selecting tradeable favourites, not markets an insider could know. That
+remains the deeper problem.
+
+## 2026-08-29 (cont.) — v4's first live run: the gate works, and the screen's side is now the problem
+
+**First run at v4** (`live-2026-08-29b`, board of 111,102 markets). Stage 5
+was judged **inline by the main session (claude-opus-5)** rather than by
+Agent-tool subagents — this session was instructed not to spawn subagents
+unless asked — and the `judgment_runs` row says so. Same model tier as the
+runbook's `opus` alias; the record names what actually judged.
+
+### Funnel
+
+```
+111,102  board markets
+    764  screened / 365 events
+    342  gated out  ->  23 events survived  ->  35 markets judged
+      0  recommended
+```
+
+Gate removed: live sport 150, aggregate-of-many 47, vendor panel 35, weather
+27, compute/collectible 23, scheduled indicator 26, commodity/FX 17, crypto
+12, retail price index 5.
+
+**v4's gate change is doing what it was built to do.** 130 survivors under
+v3's prefix-only gate, 23 under v4 on a comparable board — and the vendor-panel
+and sport families that motivated it are gone.
+
+### The finding: the screen picks NO, and the divergences all push YES
+
+15 of the 23 surviving events carry a rules divergence, and — this is the
+part that only shows up across the batch — **almost every one is a rule that
+is BROADER than its title, which makes YES easier.** The screen picked NO on
+**30 of 35** legs. So the theory's own stage-1 side selection is systematically
+opposed by the defect stage 2 is best at finding:
+
+| event | divergence | direction |
+|---|---|---|
+| `KXCLAUDE-NXTMYTH` | rules exclude only Fable 5; **Mythos 5 shipped to approved orgs in late June** and is "branded Mythos" | may already be YES |
+| `KXNEWDRUGAPPNTLA-LONV` | rolling BLA *initiated* Apr 27 2026 vs *completed* filing (H2 2026) | may already be YES |
+| `KXNEWDRUGAPPLICATIONCMPS-360` | rolling NDA underway, sections submitted; completion guided Q4 2026 | may already be YES |
+| `KXTRYFIRECOOK-27JAN01` | "has tried to fire" with **no after-Issuance anchor**; 2025 attempt + Aug 7 2026 notice letter | may already be YES |
+| `KXSNAPELECTIONRS-27` | Vucic announced an Oct 18/25 snap election **on Aug 20**; rule says "officially announces" | may already be YES |
+| `KXPRESSSECANNOUNCE-26AUG` | rules count an **acting/interim** naming; title says "the next Press Secretary" | broadens YES |
+| `KXTRUMPMEET-26AUG` (10 legs) | rules count a **phone call** as a "meet" | broadens YES |
+| `KXUAPFILES`, `KXCABLEAVE`, `KXBIGBENDRESUME` | rule broader than title in each case | broadens YES |
+
+Five of those were confirmed by research (Mythos 5's June release, the two
+rolling submissions, the Aug 7 Cook letter, Vucic's Aug 20 announcement) —
+they are not speculative readings.
+
+This is a **structural mismatch, not a run of bad luck**: stage 1 selects
+tradeable favourites and lands on NO ~70% of the time (RUNBOOK known weakness
+3), while the thesis's most reliable tell — a rule that resolves on something
+already true — is precisely a YES-side signal. Every final review since v2 has
+declined for a version of this reason; v4 is the first run where the gate is
+clean enough that the pattern is unmistakable rather than buried under sport
+and vendor-panel noise.
+
+### Two other things worth keeping
+
+1. **Every edge this run is `edge_basis='prior'`.** v4 has no bucket rates
+   (they are version-scoped, correctly), so `strong`=4.0 / `moderate`=2.0 /
+   `weak`=0.0 are placeholders. Nothing here could have been endorsed on
+   measured evidence even if the judgment had favoured it.
+2. **Two gate leaks measured, both real.** `KXKBOTOTAL` (two KBO baseball
+   events) leaked because **Kalshi's own rules text calls a Korean pro fixture
+   a "College Baseball game"** — the rules-reading matcher had nothing to
+   catch. `KXDDR5MS` (a DDR5 spot-price monthly average), `KXCBDPOLAND` (an
+   NBP rate decision) and `KXTECHRANKLISTAICODE` (a crowd-voted Elo
+   leaderboard) also survived into a stage that should never have seen them.
+   Four wasted deep-stage slots out of 23 — a 17% leak rate, now measured
+   rather than assumed.
+
+### Where this points
+
+Not at retirement. The candidate list here is *better* than any previous run —
+the gate fix worked. The open question is whether the screen should be allowed
+to pick the YES side when a rules divergence says the market may already be
+resolved, which is a stage-1 change and a v5. Recorded as a question, not a
+change: nothing has measured that the YES side of a divergent market wins.
+
+## 2026-08-29 (cont.) — the bet rule became a registered slice, and its OOS cell is day-robust
+
+The pre-registered strong-or-moderate-NO bet rule is now a **registered
+slice** (`strong-moderate-no`, `theory_slices`, registered_at backdated
+to the documented 2026-08-26 pre-registration; `s200b`/`s57` designated
+out-of-sample, `s200` in-sample — see the slice row's `origin` for the
+full citation). Ranking now reads this theory per segment instead of on
+one row: `python -m tools.cli slices report insider_judgment --version 3`.
+
+What the mechanism computes from the ledger, v3, live+backtest pooled,
+first-sighting prices (so the numbers differ slightly from the
+campaign's first-qualifying-entry methodology in `backtests/RESULTS.md`):
+
+| segment | n | clusters | days | row net | day mean | day SE |
+|---|---|---|---|---|---|---|
+| slice OOS | 320 | 88 | 42 | **+4.30** | **+8.10** | 1.88 |
+| slice in-sample | 239 | 77 | 31 | +5.34 | +0.10 | 4.12 |
+| complement | 2,732 | 809 | 69 | −2.54 | −2.36 | 1.34 |
+
+Two things worth keeping:
+
+1. **The OOS cell survives day clustering; the in-sample cell does
+   not.** The 2026-08-27 entry above showed the judged runs as a whole
+   flipping sign under day weighting. The bet-rule cell specifically
+   does not: out of sample it is positive row-weighted AND day-weighted
+   (+8.10 ± 1.88 over 42 days), while the in-sample rows collapse to
+   +0.10 day-weighted — the discovery sample's strength was
+   concentrated on heavy days, and the forward evidence is the part
+   that generalizes. That is the right way around, and it is the first
+   time this theory's central claim has held under the day lens.
+2. **The complement is measurably negative** (−2.54 row / −2.36 day,
+   SE 1.34, n_clusters=809). Everything this theory proposes outside
+   the slice has been worse than its prices after fees. Candidates
+   outside the slice now rank on that record instead of hiding behind
+   the aggregate's −1.31.
+
+Caveats, so nobody reads this as promotion: v4's own segments are empty
+(nothing settled), and slice evidence is per-version — v4 candidates
+citing the v3 slice segment must say so out loud until v4's segment is
+ready. The OOS `mean_claimed_edge` is ≈0.09 because the backtest rows
+recorded near-zero claims, so `realization` saturates at its 1.5 clamp
+and credibility is effectively sample-weight × 1.5; show `clustered_se`
+(2.43) and `day_clustered_se` (1.88) alongside any ranked edge built on
+this segment. Status stays `testing`; the promotion bar from 2026-08-27
+(live settlements, day-counted) is unchanged.
+
+## 2026-08-29 (cont.) — divergence-flag slice blocked: v4 live rows record no extra_json
+
+The pre-registered live tracking plan (2026-08-26) says the
+`rules_diverge_from_title` flag is recorded on every live row, and the
+proposed rules-diverge slice would condition on it
+(`{"extra": {"rules_diverge_from_title": true}}`). Checked while
+applying slices across the portfolio: **all 35 v4 live rows have
+extra_json NULL** — the flag is not being recorded, so the slice cannot
+be registered (its predicate would reference a field that does not
+exist) and, worse, the tracking plan's data is not accruing. Fixing the
+recording is a change to what v4 writes per row; flagged for the next
+session that runs this theory rather than patched here. Register the
+slice the day the field exists — with everything to that date
+in-sample, since the +1.97/t_ev 2.90 cell that motivated it came from
+post-hoc slicing of s200 and did not survive Holm.
+
+## 2026-08-23 — `insider_bias` is `active` but already past its review trigger (migrated from RESEARCH_LOG.md)
+
+**Did:** Documented, honestly, that `insider_bias`'s `active` status was set
+by the one-time migration to prove the harness works end-to-end — it was
+never a claim that the imported history clears the promotion bar. Measured
+now: n=29, `calibration_edge_net = -0.75` points overall; restricted to rows
+the predecessor actually bet (`extra_json.status` starting `BET`, i.e.
+excluding declined-limit rows recorded at zero edge), `calibration_edge_net
+= -1.87`. Both are negative, and n=29 is already past the `n=20` review
+trigger in `CLAUDE.md`'s lifecycle rule.
+
+**Learned:** `find-edge` defaults to `--status active`, so as things stand
+today the first session that runs it will scan a theory whose own imported
+track record says it currently loses after fees. That is not a reason to
+silently change the status mid-branch (the migration's semantics should not
+be rewritten after the fact) — it is a reason to flag it loudly here and in
+`THEORY.md` so nobody mistakes `active` for "validated."
+
+**Next:** Validating or retiring `insider_bias` is a first-order task for an
+early session: either run the stage-2 backtest (tier B/C per its `THEORY.md`)
+to see whether interpretation recovers the edge the raw screen does not show,
+or apply the lifecycle rule and move it to `paused`/`retired` if it doesn't.
+
+---
+
+## 2026-08-23 — First live run: the screen has almost no thesis alignment (migrated from RESEARCH_LOG.md)
+
+**Did:** First real use of the system. Pulled the complete Kalshi board
+(96,084 markets, 13s, snapshotted), ran the `insider_bias` stage-1 screen →
+765 candidates across 274 events, then the documented stage-2 cascade: two
+strong subagents at high reasoning, judging **blind to price** (payload
+programmatically asserted free of `yes_ask`/`no_ask`/`mid`/`spread`/
+`fav_side`), 16 events each, returning a confidence bucket per event.
+Recorded 44 opportunities under `run_id='live-2026-08-23'` — 25 endorsed,
+19 rejected. These are the theory's **first-ever endorsed and rejected
+rows**; every prior row was `screened`.
+
+**Learned:**
+
+1. **The stage-1 screen barely intersects its own thesis.** Classifying all
+   274 candidate events against THEORY.md's own written gate rules, **242
+   (88%) fall in categories the theory is written to reject**: aggregates of
+   many independent people (61 events), live sport that leaked past
+   `EXCLUDED_PREFIXES` (47), weather (32), crypto strike ladders (31),
+   commodity/FX/rates (28), compute/collectible prices (20), scheduled
+   indicators (16), retail price indices (7). Only 32 events could carry the
+   thesis at all. The screen is a generic tradeable-favorite filter — price
+   band, spread, volume, near close — with no thesis term in it. This is a
+   live explanation for the flat imported record: if 88% of what reaches
+   judgment cannot carry the thesis, near-zero measured edge is the expected
+   result. Concrete leaks: `EXCLUDED_PREFIXES` misses `KXWNBA`, `KXUCL`,
+   `KXNWSL`, `KXTESTMATCH`, `KXLMBGAME` and ~18 more live-sport families, and
+   nothing excludes price-strike ladders (330 candidates on their own).
+
+2. **Resolution rules diverge from titles at an extraordinary rate.** 19 of
+   32 events (59%) carried a rules/title divergence, several decisive:
+   `KXCLAUDE-NXTMYTH` excludes only Fable 5 while Mythos 5 shipped the same
+   day (June 9) and is not excluded; `KXVIDEOLENGTH-GTA` never says whether
+   the strike ladder measures one episode, the total, or the YouTube cut;
+   `KXTRYFIRECOOK` has no "after Issuance" clause though Trump already
+   attempted removal in 2025; `KXHEARNCHARGE` requires a *new* charge after
+   an undefined "Issuance". THEORY.md already lists rules divergence as a
+   warning sign, but at 59% it is not an occasional trap — it is the modal
+   property of this candidate class, and reading rules may be a larger part
+   of the edge than identifying insiders.
+
+3. **The AGT heuristic in THEORY.md is wrong as written.** The theory says
+   pre-taped competition TV is the strongest sub-case and deserves extra
+   weight. The subagent correctly refused it for `KXAGTELIMINATION`: AGT's
+   live quarterfinals are *not* pre-taped, and elimination is decided by
+   public vote — the aggregate-of-many-people case the thesis excludes. The
+   heuristic needs the qualifier "pre-taped **and** taping already
+   completed"; applied to a live-vote show it inverts.
+
+4. **Two session-level overrides**, both applying the theory's own
+   warning-sign rule. `KXIPOSHEIN-DATE` strong→weak: independently verified
+   that CSRC approval (Jul 10), the HKEX prospectus (Jul 26) and the ~Sep 1
+   target are all in mainstream press, so there is no informational
+   asymmetry — the thesis needs a group who knows what the public does not.
+   `KXVIDEOLENGTH-GTA` strong→moderate on the unresolved measurement
+   ambiguity.
+
+5. **Credibility is 0.0, so every candidate ranks at 0.0.** `realization` is
+   0.0 on the imported history, so `ranked_edge = 0` for every bucket. Per
+   `find-edge` §6 this was reported as claimed edge plus the shrinkage
+   reason, not as a table of zeros.
+
+**Next:** The 44 rows resolve between Aug 24 and Sep 5, so
+`interpretation_value` — diagnosis item 2, never computable before — becomes
+available in under two weeks. Two candidate version-2 changes are now
+evidence-backed enough to specify: exclude price-strike ladders and the
+leaked sport families from stage 1, and add a mechanical rules-vs-title
+divergence check. Both are stage-1 code, which would move part of this
+theory toward tier A. Do not bump the version until the current 44 settle —
+changing the procedure mid-flight is exactly what the versioning rule exists
+to prevent.
+
+**Addendum, same session — v2 bump and track-record reset.** On the user's
+instruction the v1 data was **deleted** (96 imported opportunities, 28
+settlements; backed up outside the repo, regenerable via
+`migrate_kalshi_trader.py`) and the theory bumped to **version 2**, because
+the decision procedure changed: subagent output is now an *initial*
+recommendation only, and no candidate may be suggested as a bet unless the
+main research session reviews and recommends it itself, with the deciding
+model recorded on every row (`extra_json.final_recommendation.decided_by`).
+`disposition='endorsed'` now means "the main model recommends this bet",
+not "arithmetic produced a positive number". New `Stage 3` section in
+`THEORY.md`.
+
+The run was re-recorded under v2. **The mechanical v1 rule would have
+endorsed 25 of 44 markets; the main model recommends 3.** That gap is the
+justification for the change: the 22 it declined were dominated by a defect
+visible only in the batch view — the resolution-rules divergence broadens
+what counts as YES, and 543 of 765 screen candidates are NO-side favourites,
+so the divergence systematically damages the exact leg the screen picked. A
+per-candidate subagent cannot see that pattern; comparing candidates
+side by side is what the final stage is for.
+
+The reset means the theory is now **n=0 — unproven, not disproven**. Note the
+one thing lost: the v1 rows were the only dataset that could have answered
+whether LLM-introspected `q` values realize their claimed edge (see the
+2026-08-23 Learnings note on `model_prob_source`). That question is now
+parked behind re-running the migration, not gone.
+
+---
+
+## 2026-08-24 — First tier A backtest of the stage-1 screen, after a false start that took 47 minutes to fail (migrated from RESEARCH_LOG.md)
+
+**Did:** Orient found nothing new to settle (all 44 v2 rows from yesterday
+still open) and no theory besides `insider_bias` on the board, so I picked
+THEORY.md's own top-priority item: a tier A backtest of the stage-1 screen
+alone, which the theory had never had. Built the candle→market adapter
+(`theories/insider_bias/backtest.py`, `replay_market`), then ran it.
+
+**Learned, the expensive way first:** A naive `list_settled(min_close_ts=...,
+max_close_ts=...)` walk is not usable for a recent window. One series,
+`KXMVECROSSCATEGORY` (a combinatorial "shard" product), settles **400,000+
+markets per day** on its own — confirmed by an exhaustive count that hadn't
+finished at 400 pages for a single day. A 30-day walk ran for 47 minutes
+without completing before I killed it, on the user's instruction to
+investigate a better approach rather than just wait longer or shrink the
+window. Two compounding mistakes made this worse than it needed to be even
+before the volume problem: the fetch phase had no incremental checkpoint, so
+47 minutes of API calls were unrecoverable the moment the process was
+killed; and I didn't check the true scale before committing to a window size
+— a few density-sampling probe calls would have caught the problem before
+launching an hour-long run instead of after.
+
+**The fix:** Kalshi's `/series` listing (one call, ~13k series) exposes a
+`category` field, and `/markets?status=settled` honours an (undocumented)
+`series_ticker` filter. `candidate_series()` narrows 13,437 series to ~2,200
+by dropping `screen.is_excluded` ticker prefixes, `NO_CATEGORIES`
+(Sports/Crypto/Weather/Commodities/Economics/Elections/Financials — the same
+families `screen.is_excluded`/`gate.py` already reject downstream), and
+series untouched in 60+ days — all *before* issuing a single settled-market
+request. `iter_settled_survivors` then walks one series at a time, which
+Kalshi's API returns dramatically smaller pages for. Result: a 90-day window
+that the old approach hadn't finished in 47 minutes ran in **~9 minutes** for
+the fetch phase, ~2.5 more for a 600-candidate candlestick replay. Both
+`tools/kalshi/markets.py::list_settled` (new `series_ticker`/`raw_filter`/
+`on_page` params) and the driver script now checkpoint incrementally —
+survivors every 100 series, replay results every 25 candidates — so this
+class of mistake cannot repeat.
+
+**Result:** `run_id=backtest-2026-08-24-stage1-90d`, tier A, no LLM in the
+decision path. 18,430 candidates survived the cheap pre-filter; a systematic
+sample of 600 replayed against real point-in-time candles; 200 actually
+cleared the screen at some point in their last 14 days. Overall:
+`win_rate=85.0%`, `calibration_edge_net=+1.38pts`. That number is a
+composite of a strongly negative slice (n=47, the "aggregate of many
+independent people" family `gate.py` already excludes: `-11.12pts` — direct
+mechanical confirmation that exclusion is correct) and two positive slices
+(n=116 "MENTION"-suffix series `gate.py`'s regex currently misses:
+`+5.48pts`; n=37 everything else, the cleanest thesis-eligible slice,
+including `KXBIGBROTHERELIMINATION` — the same series as a live v2 endorsed
+opportunity: `+4.40pts`). Full breakdown in `THEORY.md` Learnings,
+2026-08-24. Moved the theory `under_review` → `testing`: the specific v1
+diagnosis that kept it under review (is the screen itself broken) is now
+answered — no — but the theory's actual claim (does judgment add value) is
+still n=0 on the live side, so `active` isn't justified yet.
+
+**Next:** The 44 live v2 rows still settle Aug 24–Sep 5 — once they do,
+`interpretation_value` becomes computable and should be read alongside this
+backtest, not in isolation. The MENTION-family question (Status item 3) is a
+real open thread: is it thesis-relevant or a distinct, still-profitable
+phenomenon? Deciding that is a judgment call, not more plumbing, and
+probably wants a small subagent batch reading a sample of those markets'
+actual resolution rules. The `KXMVECROSSCATEGORY`-style volume trap is not
+insider_bias-specific — any future theory doing historical Kalshi analysis
+will hit the same wall; `list_settled`'s docstring and `backtest.py`'s module
+docstring both carry the account now, so it should not need rediscovering.
+
+---
+
+## 2026-08-25 — insider_judgment tier-A full coverage: the gate separates, but what it keeps is only breakeven; judged sample launched (migrated from RESEARCH_LOG.md)
+
+**Did:** The non-mention full-coverage walk finished: 5,583 series,
+7,948 survivors, 3,195 screen hits (3,181 with usable settlements, 831
+events, 325 series), all recorded under
+`run_id=backtest-2026-08-25-insider-fullcov` (tier A, run row recorded)
+with deterministic gate tags on every row and every raw payload/candle
+banked in the history cache as fetched. Then scored it, updated idea 14
+with the replication result, and launched the tier-B judged sample
+(batches 1-2 of 8 dispatched to Sonnet subagents; save-before-spend
+artifacts committed first in cfed04a).
+
+**Learned:** (1) *The gate discriminates, at scale and in the right
+direction*: gate-plausible +0.71pts net (n=1,561) vs gated-out -2.18
+(n=1,620) — a ~2.9pt gap. But (2) *what the gate keeps is roughly
+fair-priced, not profitable*: the +0.71 is nominally p=0.04 by rows but
+event-clustered t is -0.25 (1,561 rows on only 456 events), and the
+84-row sample's +4.40 headline does not survive — same lesson as
+mention's +5.48: small samples of this screen are confidently wrong.
+So screen+gate alone earns nothing; the theory's remaining case rests
+entirely on judgment adding selection within the plausible pool, which
+is precisely what the judged sample measures. (3) The no-side-premium
+asymmetry partially echoes on this disjoint population (YES 0.80-0.90
+significantly overpriced; NO beats YES below \$0.90) but the mention
+run's NO>=0.90 cell does not strongly replicate (+1.04, p=0.09) and the
+band structure moves — durable claim downgraded to side-level, recorded
+on idea 14. (4) Curiosity, not a claim: the gated "future price:
+compute/collectible" family scored +4.56 (n=152, p=0.038, but t_ev
++0.12) — GPU/collectible price ladders; post-hoc, cluster-weak, noted
+only so a future session knows it was seen.
+
+**Next:** Ingest and commit each judged batch as it lands; score bucket
+calibration + interpretation value vs the screen+gate baseline; then the
+final write-up. Backfill of pre-cache raw data is running in parallel.
+
+## 2026-08-26 — Tier-B judged sample complete: judgment orders outcomes; strong-NO and the rules-divergence flag are the standouts (migrated from RESEARCH_LOG.md)
+
+**Did:** All 8 batches of the judged-s200 replay ran to completion under
+the save-as-you-spend protocol — every batch's payload committed before
+dispatch, every verdicts file written by the judging subagent itself,
+ingested to the ledger and committed before the next dispatch (commits
+df97b9b..1a4c490). 200 events / 704 market rows judged by
+claude-sonnet-5 (web search off, blind payloads, per-batch as-of dates,
+committed mechanism sheet in lieu of search). Run row recorded tier B.
+Scored against the same-sample screen+gate baseline.
+
+**Learned:** Bucket totals 24 strong / 66 moderate / 110 weak. The
+buckets order outcomes exactly as the thesis predicts: strong +5.09pts
+net (n=111 rows, p_fair=0.044), moderate +0.85, weak -0.79, over a
+baseline of +0.67 — the first time any judgment layer in this repo has
+produced its predicted ordering on settled data. Event-level means are
+monotone too (+2.88 / -0.56 / -2.26). The concentrated cells: strong-NO
++8.59 net (n=83, p=0.006) against strong-YES -5.30 — the optimism-tax
+asymmetry's third independent appearance today — and events flagged
+rules_diverge_from_title scored +1.97 with t_ev=+2.90 (26 events), the
+strongest event-clustered statistic of the session: reading rules
+against titles measurably pays. Limits stated plainly: 24 strong events,
+bucket-ordering clustered support weak (t_ev +0.66), sharp cells are
+post-hoc slices. The judges also produced qualitative value the code
+path cannot: e.g. catching that the Emmy winner markets close on
+NOMINATION day (before final voting concludes), gutting the
+"tabulators already know" logic for that family.
+
+**Next:** Pre-registered live plan for insider_judgment (status stays
+testing): track strong — and strong-NO as its own view — plus the
+divergence flag on every live row; promotion requires the ordering to
+repeat on live settlements. The judged-run bucket rates are usable as
+bootstraps with the in-sample caveat attached. Backfill continues in
+background (~9.6k candle windows cached so far); when done, the entire
+reachable window's raw data is durable and every variant re-test is
+offline.
+
+## 2026-08-26 — Strong-YES autopsy: the bleed was sealed-tabulation award markets; excluding them repairs YES to breakeven, NO-rule strengthens (migrated from RESEARCH_LOG.md)
+
+User challenged the methodology on strong-YES's -7c. Autopsy: the losses
+cluster in Emmy-nomination/BET/award strikes — events where the judge is
+arguably RIGHT that a small body already knows (tabulators), but the
+knowledge is SEALED and never leaks into price before close, so buying
+the public's favorite at the ask pays the crowd's guess plus spread. The
+thesis needs leakable knowledge, not just knowledge — prompt-refinement
+candidate for a future version ("does the group's knowledge plausibly
+escape before close?"), which would be a version bump. Excluding the
+award family (KXEMMY*/KXESPYS/KXBET/KXFIELDS pattern; 135 rows / 40
+events, own net +1.6) symmetrically from all cells: strong-YES -7.0 →
++0.6 (n=24, breakeven, not negative); strong-NO +6.8 → +11.0 (luck
+0.2%, but only 16 events); moderate-YES worsens to -6.9 (the YES
+problem is not award-specific); bet rule (str+mod NO) +5.1 → +5.9,
+luck-odds ~0 either way. Post-hoc caveat recorded: exclusion chosen
+after seeing the losers; legitimate path is pre-registering a
+sealed-small-body-decision NO-rule for the gate (version bump) and
+letting live rows decide. Contamination note: strong-YES losing at all
+is itself evidence the blinding held — a leaky judge wins its confident
+bucket, never loses it.
+
+## 2026-08-26 — Uniform "enter 3-2 days before close" repriced from the candle cache: waiting KILLS the moderate edge, only strong-NO survives late entry (migrated from RESEARCH_LOG.md)
+
+User-directed focus: what if we only bet 3-2 days before close?
+`reprice_entry_window.py` replays a UNIFORM late-entry strategy from the
+durable candle cache (fixed snapshot nearest close-2.5d, unmodified
+screen conditions, favorite at that snapshot's ask) over all 1,081
+judged rows — distinguishing "chose to enter late" from the earlier,
+confounded "first qualified late" filter. Result: only 444 rows are
+even biddable at 3-2d (414 fail the price band there, 100 lack a candle
+in the window, 69 spread, 37 volume, 17 awaiting cache backfill).
+The bet rule (str+mod NO) at uniform late entry: +1.81pts, p=0.18 —
+versus +5.13 at first-qualifying entry. The culprit is convergence:
+moderate-NO's mean ask at 3-2d is 0.895 vs 0.861 at first
+qualification, and its edge collapses to +0.29. **The moderate edge is
+substantially an early-entry edge — catch the favorite when it first
+crosses the screen, not after the market has drifted toward
+certainty.** The exception: strong-NO holds +8.29 late (n=32/19ev,
+p=0.10), consistent with the first-qualifying-entry late slice (+12.2).
+The earlier "late entries did well" table was selection, not a timing
+rule — the confound the mention_family docstring flagged as untested is
+now tested, and delaying hurts everywhere except strong-NO. (Ignore the
+repriced weak-YES +5.9 — no mechanism, third noise-shaped YES cell.)
+Practical rule that survives: enter moderate-NO at first qualification;
+strong-NO may be entered any time including late.
+
+## 2026-08-26 — FULL POPULATION JUDGED: the pre-registered NO-side rule REPLICATED out of sample (migrated from RESEARCH_LOG.md)
+
+**Did:** Completed judgment coverage of the entire gate-plausible
+population from the tier-A walk: s200 (200 events) + s200b (200) + s57
+(57) = 457 events / 1,561 market rows, every batch payload committed
+before dispatch, every verdicts file ingested and committed as it
+landed (through bbadf13), one batch recovered intact from a usage-cutoff
+orphan. Also repriced the uniform 3-2-days-before-close entry over the
+full set from the candle cache, and the backfill finished its walk
+(~17k candle windows / ~18k payloads durable).
+
+**Learned — the headline:** The bet rule pre-registered from s200
+(strong-or-moderate judgment, NO side, first-qualifying entry)
+**replicated on the 257 events judged after pre-registration: +4.92pts
+net, p_fair=0.0008 (312 rows / 85 events), vs +5.34, p=0.0018 on the
+original round.** Pooled: +5.10pts, p<0.0001, n=551 rows / 162 events,
+win rate 0.922 at mean ask 0.863; excluding the award family: +5.45.
+Sub-cells: moderate-NO replicated STRONGER (+3.61 -> +5.13, p=0.003);
+strong-NO replicated in direction but weaker (+8.59 -> +4.29, p=0.096
+-- partial regression toward the mean, as expected for the flashiest
+cell). The rules-divergence flag repeated its direction (+1.97 ->
++2.17) without reaching significance. Full-population bucket x side:
+NO ladder monotone and significant (strong +6.50 p=0.0017 / moderate
++4.52 p=0.0006 / weak -1.96), YES side flat-to-negative everywhere
+(strong -4.98, moderate -3.19, weak +0.36) -- the optimism-tax
+asymmetry held through every expansion. Timing at full coverage:
+uniform 3-2d late entry still underperforms first-qualifying entry
+(+2.32 p=0.06 vs +5.10), confirming the moderate edge is an
+early-entry edge; strong-NO alone tolerates late entry.
+
+**Next:** This is the strongest evidence any theory in this repo has
+produced: tier B, pre-registered, out-of-sample replicated, mechanism-
+backed (optimism tax + insider-NO), n=162 events. Still backtest, still
+one summer, still sibling-correlated within events — the promotion bar
+remains live settlements. Proposed live procedure for the user to
+ratify (a v4 version bump): judge as today; bet only strong/moderate
+NO favorites at first qualification; record dtc and the divergence
+flag on every row; sealed-tabulation award families as a new gate
+NO-rule candidate. Bucket rates for pricing: use the pooled judged-run
+rates with the in-sample caveat until live rows accumulate.
+
+## 2026-08-26 — Gate validation: 100 gated-out events judged, 99 weak / 1 moderate / 0 strong; the session's autonomous arc is complete (migrated from RESEARCH_LOG.md)
+
+**Did:** Closed the last open question the backtest data could answer:
+does the code gate throw away markets the judge would bet? 100 randomly
+sampled gated-out events (exp/2026-08-26-insider-judged-gated100 — exp/
+so it can never pool into the theory's track record), same protocol as
+every s-series run. Verdict: **99 weak, 1 moderate, 0 strong.** The
+regex gate and the LLM judge — built independently, one reading ticker
+families, one reasoning about who-already-knows — agree essentially
+perfectly on what carries no insider thesis. The gate's cheap "no" is
+validated at the judgment layer; the tier-A +4.56 curiosity in the
+GPU-ladder family was price-band luck, not a missed insider signal. The
+single moderate (KXEOWEEK, an already-elapsed EO-count window with
+publication-lag risk) is a defensible edge case, not a systematic
+false negative.
+
+**Session summary (2026-08-25/26, autonomous):** mention_family audited,
+full-coverage-retested (n=3,441), found edgeless, retirement proposed;
+Kalshi's ~60-day archival discovered and the durable history cache built
+(~17k candle windows banked ahead of the clock); insider_judgment's
+screen+gate measured at population scale (breakeven kept-slice, gate
+separation real); the ENTIRE gate-plausible population judged across
+three tier-B runs (457 events / 1,561 rows) with the pre-registered
+NO-side rule REPLICATING out of sample (+4.92, p=0.0008; pooled +5.10,
+p<0.0001); the timing question answered mechanically (moderate edge is
+early-entry; strong-NO tolerates late); the strong-YES bleed traced to
+sealed-tabulation award families; and the gate validated. Every batch,
+verdict, run row, and finding committed as it happened; one batch
+recovered intact from a usage cutoff. Awaiting the user: mention_family
+retirement ruling, and ratification of the proposed v4 live procedure.
+
+## 2026-08-29 (cont.) — gate.py reads resolution rules; 130 survivors → 18 (migrated from RESEARCH_LOG.md)
+
+**Did:** Closed the last of the three 2026-08-28 defects. `gate.py`
+classified by series-ticker prefix only, so it knew exactly the families
+someone had already typed into it. Measured over the whole
+117,272-market board: it removed 198 of 328 screened events and **109 of
+the surviving 130 were still families the thesis rejects** — whole
+categories, not stragglers. Added `RULES_NO_RULES`, which matches the
+market's **resolution rules** instead of its name: four patterns (sport
+fixture, Carbon Arc vendor panel, statistical release,
+OpenRouter/Metascore), each validated against every series on the board,
+zero false positives. **Net: 130 survivors → 18.** Folded into v4 (no v4
+row had been recorded yet). Suite 883 green.
+
+**Learned:**
+
+1. **Matching mechanics beats matching names, and the difference is
+   maintenance.** A Carbon Arc panel says "Carbon Arc" in its own rules
+   whatever its ticker is called, so one pattern covers 77 series today
+   and every one Kalshi adds tomorrow. The prefix list needed an edit per
+   family and was losing the race.
+2. **The two rules I would have shipped on intuition both silently killed
+   live candidates.** A ticker-suffix sport rule
+   `(GAME|MATCH|SPREAD|TOTAL|BTTS|TOP\d+|RACE)$` catches *fewer* series
+   than the rules-text one (496 vs 611) and eats `KXRACE` (Ferrari's own
+   shipment count) and `KXXAIGAME` (xAI's own roadmap) — both the thesis
+   verbatim. A substring statistical rule
+   `^KX.*(CPI|PPI|INF|GDP|SALES|KWH)` eats three Philippine election
+   series on "Phili**PPI**nes" and `KXGTASALESRECORD` on `SALES`. Only
+   running every candidate pattern over the whole board *before* writing
+   it caught this. **That is now the procedure for any gate rule**, and
+   both rejected rules are recorded in `gate.py` with their measurements
+   so nobody re-adds them.
+3. **An independent check fell out for free.** The 18 survivors the new
+   gate produces are the same set this session's own hand-judgment had
+   flagged as arguable among 131 events, arrived at by a completely
+   different route. That is about as much validation as a gate can get
+   before settlements arrive.
+4. **The deeper problem is upstream and unchanged.** 18 survivors out of
+   328 screened events means the screen still has no thesis term in it —
+   it selects tradeable favourites, not markets an informed minority
+   could know (known weakness 3 in the RUNBOOK). The gate has been doing
+   the screen's job.
+
+**Next:** the screen itself is now the top `insider_judgment` item — a
+stage-1 filter with a thesis term would beat a stage-1.5 gate that throws
+away 95% of what stage 1 returns. Otherwise: 22 specced theories remain
+unbuilt, and idea 21's soft relative-value successor still has a ready
+dataset.
+
+## 2026-08-24 — pointer: the corrected Big Brother bet (migrated entry lives in mention_family's notebook)
+
+Item (1) of `## 2026-08-24 — Two follow-ups from user questions: a
+corrected Big Brother bet, and a new mechanical path for the
+MENTION-family edge (migrated from RESEARCH_LOG.md)` in
+`theories/retired/mention_family/NOTES.md` is insider_judgment's:
+the Big Brother correction and the stage-3 checklist item.
+
+## 2026-08-26 — Formal multiplicity pass (user-prompted): Holm + event clustering (migrated from RESEARCH_LOG.md)
+
+Holm-Bonferroni over the pre-registered family (m=4, replication data
+only): bet rule p=0.0008 vs 0.0125 SURVIVES; moderate-NO p=0.0030 vs
+0.0167 SURVIVES; strong-NO p=0.0961 fails; divergence flag fails. The
+sterner event-clustered one-sided t (one observation per event, killing
+sibling-strike inflation): bet rule +5.21/event, t=2.26, p~0.012 on the
+85 replication events; +3.87, t=2.29, p~0.011 pooled over 162. So the
+defensible statistical claim after full correction: THE BET RULE AND
+MODERATE-NO ARE SIGNIFICANT; strong-NO alone and the divergence flag
+are directionally supported but unproven, and the exploratory scans
+(e.g. mention NO>=0.90 at p=0.0084 across ~50 cells vs Holm ~0.001)
+never survived formal correction — which is why they were sent to
+forward tests rather than believed. Report language downgraded
+accordingly: the edge is established at ~p=0.01 clustered, not p<0.0001.
+
+## 2026-08-26 — Contamination audit of the judged runs (user-prompted): no hints found; one timing wrinkle bounded (migrated from RESEARCH_LOG.md)
+
+Four channels audited mechanically. (1) Web tools: grep of all 23 judge
+subagent transcripts for WebSearch/WebFetch invocations — zero. (2)
+Payload fields: all 557 events / 2,044 markets across the four runs
+carry only the whitelisted fields; zero price/outcome/status keys; the
+11 'settle' substring hits are ordinary Kalshi rules boilerplate
+("dismissed, settled, or otherwise disposed of..."), verified in
+context. (3) The one real wrinkle: batch-level as_of pinning (max of
+the batch's entry days) left 618/2,044 markets whose close_time
+precedes the pinned "today" — a judge could infer those events had
+concluded, though never how. Contamination-shape check: those rows
+scored WORSE overall (-0.74 vs +1.16 net) and the strong bucket scored
+worse on them (+0.73 vs +3.52) — the opposite of leakage, which
+inflates confident buckets. The bet rule on the CLEAN subset only
+(still-open at as_of): +4.65 net, win 0.910, n=409 — the headline
+survives with every affected row discarded. (4) Behavioral: strong-YES
+lost money, verdicts track mechanism not outcomes, and three judge
+instances independently rediscovered the Emmy nomination-day trap.
+Fix for future runs: pin as_of per event (or min-of-batch), not
+max-of-batch — noted for the v4 procedure.
+
+## 2026-08-26 — First live scan under the campaign rule: 8 endorsed NO bets; board-cache identity bug found and fixed on the way (migrated from RESEARCH_LOG.md)
+
+**Did:** User asked whether anything qualifying for the edge exists
+today. Live pipeline: fresh board (110,590 markets) → screen (844) →
+gate (100 events) → 76 NO-favorite events → two live Sonnet judgment
+batches (research ON, per the live procedure; payloads blind, prices in
+a separate file the judges never see). All 125 NO-favorite rows
+recorded under run_id=live-2026-08-26-noscan with buckets, campaign-
+measured edges, and provenance; stage-3 dispositions applied per the
+RESULTS.md rules (strong any timing / moderate fresh only / judge
+flags honored). Found and fixed a real bug en route (commit 01e6792):
+rebuilt boards lost series_ticker (event-envelope enrichment is not in
+the market's raw payload), silently disabling the gate on cached
+boards — 349/349 passed vs 100/349 fetched; regression test added.
+
+**The slate:** 4 strong / 5 moderate / 67 weak events. ENDORSED (8):
+KXVIDEOLENGTH-26AUG27-GTA-30 NO@0.85 and -45 NO@0.94 (strong; Rockstar
+knows the runtime; closes ~Aug 27), KXGTATRAILER-26SEP NO@0.75
+(strong; vol 183k), KXNEWDRUGAPPNTLA-LONV NO@0.88 (strong, fresh;
+rolling-BLA rules caution), KXBIGBROTHERELIMINATION-26AUG27-TAY
+NO@0.65 (moderate, fresh), KXGROK-GROK47-26SEP04 NO@0.73 (moderate,
+fresh), KXNEWDRUGAPPLICATIONCMPS-360 NO@0.91 (moderate, fresh, same
+rules caution), KXCANUSDEAL-26 NO@0.97 (moderate, fresh; vol 660 —
+tiny size only). REJECTED with reasons in the ledger (9): all five
+KXTRUMPMEET strikes (judge: qualifying calls may already have
+occurred — a strong verdict means insiders KNOW, not that NO wins),
+Lisa Cook removal (same already-satisfied risk), and three stale
+moderates (Big Brother DRE 4.9d, two Grok strikes 14.9d, asks
+converged to 0.97 exactly as the timing analysis predicts).
+Settlements land within days; these are the first live rows of the
+pre-registered forward test.
+
+## 2026-08-29 — all three theories current; six endorsed bets settled (all won, one day); the bucket defect survives a 4x bigger sample (migrated from RESEARCH_LOG.md)
+
+**Did:** Full orient on a fresh 117,272-market board. Fixed a real
+blocker first: `markets.quotes()` 414s on more than ~300 tickers and the
+settle pass had 378 waiting, so it never ran — chunked it inside
+`quotes()` (TDD, `QUOTE_CHUNK=100`) and dropped the workaround two
+theories were already carrying at their call sites. Then settled **95
+tickers**, recomputed scores and bucket rates, and re-ran every running
+theory:
+
+- `insider_judgment` v3 — `live-2026-08-29`, stages 1–6, judged
+  in-session by claude-opus-5. 740 screened → 328 events → gate removed
+  198 → 130 survivors / **232 markets**; 122 weak / 9 moderate / 0
+  strong. **Nothing endorsed**, second run running.
+- `no_side_premium` v1 — 748 population → **17 cell A + 56 cell B**
+  recorded at fresh asks.
+- `structural_arb` v2 — 3 nested-pair finds, **all three rejected** by
+  the v2 depth gate.
+
+**Learned:**
+
+1. **Six of the nine queued endorsed bets settled and all six won** —
+   the GTA video-length ladder (4 legs) and both Big Brother legs,
+   including 192 (BB-DRE NO @0.82), which the 08-27 re-quote had written
+   off at 0.44. `interpretation_value` is now **+34.4** (endorsed n=3 at
+   100%, rejected n=51 at 68.6% vs 84.5% implied). **All six settled the
+   same night**: `n_days=1`, no computable SE. A first data point, not
+   validation.
+2. **The bucket defect diagnosed on 08-28 survived a 4× larger sample.**
+   `weak` went from n=17 (one night of gate-leaked football) to n=67 and
+   the flat rate merely moved from 0.941 to 0.776 — a constant applied
+   across a 0.65–0.97 band still mints "positive edge" on everything
+   cheaper than itself. It produced 16 such rows this run: Taça de
+   Portugal football, T20 cricket, Hulu app downloads, South Africa GDP,
+   a Creed Aventus retail price. Bigger n fixes nothing when the shape is
+   wrong.
+3. **`no_side_premium` cell B flipped sign as predicted.** 12 rows on one
+   day read +14.59; 35 rows on two days read −12.17 row-weighted but
+   **−7.78 ± 22.0** day-clustered, with the two days at +14.18 and
+   −29.74. The 08-27 `n_days ≥ 8` amendment is what stopped this being
+   reported as confirmation of the avoid claim.
+4. **AGT is not a pre-taped-TV case** (researched): season 21's
+   quarterfinals are live shows decided by public vote. The thesis's
+   flagship sub-case does not transfer on ticker family alone — only
+   resolution timing separates taping-in-the-can from a live audience
+   vote.
+5. **`structural_arb`'s newest finds are untraded ladders**, not thin
+   ones: two US Open games-total pairs listed 08-27 with volume 0.11 and
+   0.0, showing 73.9% and 39.8% "riskless" against ~0.01 fillable
+   baskets. Nominal quotes that were never tested are the cheapest source
+   of apparent violations and the least fillable.
+
+Details in each theory's `NOTES.md` (2026-08-29 entries).
+
+**Next:** The bucket layer is the highest-value fix on the board and now
+has two independent runs of evidence against it — see the following
+session entry.
+
+## 2026-08-29 (cont.) — the bucket layer was differencing against the wrong price; insider_judgment v4 (migrated from RESEARCH_LOG.md)
+
+**Did:** Fixed the defect the two previous runs kept reproducing.
+`tools/buckets.edge_for` computed `(bucket_win_rate − THIS candidate's
+price)`, which reads a bucket's *pooled win rate* as *this candidate's
+probability*. That makes claimed edge move 1:1 with price — a constant,
+not a calibration — so it mints edge on everything cheaper than the
+bucket rate and negative edge on everything dearer, whatever the judge
+said. On `insider_judgment`'s own live `weak` bucket (win 0.7761 at a
+mean entry of 0.8446, i.e. **−6.85 points of real edge**) it claimed
+**+10.04** at an ask of 0.66 and **−19.59** at 0.97.
+
+The bucket now carries `(win_rate − mean entry price of the rows that
+measured it)` — how far it beat the prices it was actually bought at —
+and only the fee depends on the candidate's own ask. Shipped with
+`MIN_BUCKET_DAYS = 5` (a bucket must span five distinct settlement days
+before replacing its prior; `bucket_rates` reports and persists
+`n_days`, and an unsupplied day count fails closed to the prior).
+`insider_judgment` → **v4**. TDD throughout; suite 861 green.
+
+**Learned:**
+
+1. **The formula disagreed with the scoring it is graded by, and nobody
+   noticed for a month.** `score.compute_score` measures
+   `win_rate − price_implied_rate` — edge against the prices actually
+   paid. `edge_for` claimed edge a different way. A theory claiming by
+   one formula and being graded by another cannot converge, and the
+   symptom (junk candidates with big positive numbers) looks like a
+   screen problem, not an arithmetic one. **Worth checking elsewhere:
+   wherever a theory claims an edge, confirm the claim is in the same
+   units the ledger will grade it in.**
+2. **`mean_entry_price` was already collected by `bucket_rates` and never
+   read.** The data the correct formula needs had been sitting in the
+   same dict the wrong formula was reading from since the beginning.
+3. **The bug had a second, invisible victim.** The retired
+   `mention_family` used the same function, and the correction re-ranks
+   its golden output — old top pick a $0.85 candidate at +14.11 net,
+   corrected one a $0.97 candidate at +8.21. It had been ranking **by
+   cheapness**. Price binning masked it (inside a narrow bin a flat rate
+   is nearly right), which is why the defect only became visible on
+   `insider_judgment`'s single 0.65–0.97 band. A workaround that hides a
+   bug is worse than no workaround.
+4. **The immutable characterization goldens did their job and forced the
+   escalation.** Rather than regenerate, `mention_rank_wide.json` is kept
+   unmodified as the record of the pre-correction arithmetic, the
+   corrected behaviour got its own file, and a new test asserts the
+   *difference* between them — which locks the correction permanently
+   instead of just re-baselining it.
+5. **Only two of the three 2026-08-28 defects were arithmetic.** Gate
+   leakage (defect 3) is untouched: `gate.py` still passes Taça de
+   Portugal, T20, KBO, CPL and the whole Carbon Arc vendor-metric family.
+   Leakage can no longer *define* a bucket on one night, but it still
+   contaminates the population.
+
+**Next:** `gate.py` is now the clear top item for `insider_judgment` —
+the families it misses are a ticker question, not a judgment question, so
+the fix is code and it bumps the version again. Beyond that: 22 specced
+theories remain unbuilt (`tickets/new-theory/open/`), and idea 21's
+soft relative-value successor still has a ready dataset.
+
+## 2026-08-29 (session 3) — the version-bump gap, and what v4's clean gate revealed (migrated from RESEARCH_LOG.md)
+
+**Did:** Fresh board (111,102 markets). Settled 31 newly-resolved tickers.
+Found and closed a **§2 gap the date-based "already ran today" check cannot
+see**: `insider_judgment` v3→v4 and `structural_arb` v2→v3 both landed at
+~00:34Z *after* this morning's 00:21/00:44 runs, so both current procedures
+had never touched a board while the ledger showed them current for today. Ran
+both.
+
+- `structural_arb` **v3: ran, 0 candidates.** Funnel 111,102 → 12,476
+  multi-market events → 2 geometry findings → 0. Both findings were removed by
+  the new v3 stage-1 sterile screen (`untraded or near-untraded leg`), and
+  1,445 arithmetic hits failed the mutual-exclusivity flag. This is v3 working
+  as designed: v2 would have spent orderbook fetches on those 2 and then
+  rejected them anyway.
+- `insider_judgment` **v4: ran, 35 legs / 23 events judged, 0 recommended.**
+  Stage 5 judged **inline by the main session (claude-opus-5)**, not by
+  subagents — this session was told not to spawn subagents — and the
+  `judgment_runs` row records that. 8 of 23 events web-researched.
+- `no_side_premium` v1 was already current at its own version; not re-run.
+
+**Learned:**
+
+1. **"Ran today" and "ran at its current version" are different questions, and
+   only the first is checked.** The `go` skill's snippet groups by
+   `theory_id` and date; it does not group by `theory_version`. A theory
+   version-bumped after its daily run looks current and is not — the exact
+   silent-merge failure the versioning rule exists to prevent, arriving
+   through the freshness check instead of through the ledger. Worth fixing in
+   the skill.
+2. **insider_judgment's screen and its best signal point in opposite
+   directions.** Detail in that theory's `NOTES.md`. In short: the screen
+   picked NO on 30 of 35 legs, while 15 of 23 events carry a rules divergence
+   that is *broader* than its title — which makes YES easier. Five of those
+   were confirmed by research, not inferred. Every final review since v2 has
+   declined for a version of this reason; v4 is the first run where the gate
+   is clean enough that it reads as structure rather than noise.
+3. **A live negative result for the `settled-but-trading` backlog idea**,
+   recorded against it. Five markets found trading at 0.77–0.96 *after* their
+   determining fact was public — and in every case the residual price is the
+   market pricing **rules ambiguity**, not a staleness window. A resolver
+   firing on "the determining fact is public" takes the wrong side of all
+   five. The idea survives only for *threshold* families (a published number
+   vs a stated bar), and that split was not in the spec. All five settle Sep
+   1–4, so they are a free forward test.
+4. **v4's gate leak rate is now measured, not assumed:** 4 of 23 survivors
+   (17%) were families the thesis excludes outright. Two KBO baseball events
+   leaked because **Kalshi's own rules text calls a Korean pro fixture a
+   "College Baseball game"** — the rules-reading matcher had nothing to catch.
+
+**Next:** the `deadline-drift` user decision is still open (three options, in
+the idea's `revisit_angle`). The queue is down to 0 live endorsed positions —
+both carried bets died at today's ask.
+
+## 2026-08-30 — stages 1-4 run; 21 of 25 survivors are NO-side favorites; stages 5-6 unrun
+
+**Did.** Ran `pipeline.run_mechanical_stages` against the shared
+104,304-market board (pulled 19:22Z). Funnel:
+
+```
+104,304  board markets
+    700  screened markets / 309 events
+    288  gated out  ->  21 events survived / 25 markets
+```
+
+Gate removals, by category, as the gate rule requires: live sport/esport
+90, aggregate of many independent people 44, weather/natural event 28,
+commodity/FX/rates 27, vendor panel metric 27, scheduled economic
+indicator 25, compute/collectible 22, PLAUSIBLE 21, crypto 19, retail
+price index 6.
+
+Blind payload (21 events) at `live/2026-08-30/payload.json`.
+
+**Stages 5-6 were NOT run**, so nothing is recorded in the ledger and no
+provenance was written. The session that ran the mechanical half is
+instructed not to spawn subagents unless its user asks; two peer sessions
+claimed the judging pass during the day and both exited without running
+it. This is a gap in the day's coverage, not a clean scan — v4 has not
+seen a judged board today.
+
+**The side split, which is what makes the pending v4 ratification
+concrete.** The pre-registered v3 bet rule is *strong-or-moderate verdict,
+NO-side favorite, first-qualifying entry*. The side-and-price half of that
+is mechanical, so it can be measured without judging anything:
+
+| side | n | ask range |
+|---|---|---|
+| **NO-side favorite** | **21 of 25** | 0.72 – 0.97 |
+| YES-side favorite | 4 of 25 | 0.71 – 0.95 |
+
+So on a typical board the rule's candidate pool is ~84% of survivors, not
+a rare corner. What gates it down from 21 is the verdict, which is exactly
+the stage that did not run.
+
+**These are not bets and must not be reported as any.** The screen does
+not itself produce an edge (CLAUDE.md: never present unresearched screen
+output as a recommended bet unless `edge_basis='model'`, and this theory's
+is not). They are the candidate set the ratification decision would act
+on.
+
+**Cross-check on the evidence behind that decision** (verified from the
+ledger this session, not taken from the write-up): v3's registered slice
+`strong-moderate-no` is READY out of sample — n=321, 89 event clusters,
+43 settlement days, win 0.9159 vs implied 0.8654, roi_all +4.93%. Report
+it as a matched pair, because the report carries two differently-weighted
+statistics and mixing them flatters the result:
+
+- row-weighted **+4.31 net** with event-clustered SE 2.41 → **t = 1.79**
+- day-weighted **+8.06** with day-clustered SE 1.84 → **t = 4.38**
+
+The day-weighted mean being nearly double the row-weighted one says the
+heavy days did *worse* than the light ones — a caveat, not a bonus.
+Meanwhile the same-version aggregate is n=3,328 / 920 clusters / 70 days
+at **net −1.29**: aggregate dead, slice real.
+
+**Version note for whoever picks this up.** `theory_versions` records
+v2→v3 as `breaking` with justification *"pre-dates the carry ruling; not
+adjudicated"*, while this theory's own RUNBOOK states stages 1-6 never
+changed between v2 and v3 ("v3 exists as a version *number* ... without
+this theory's own procedure ever having changed since v2"). That is a
+`carry` candidate which would pool the 44 v2 live rows into v3's track
+record — but assertion is not the permission, a replay reproducing every
+recorded v2 decision is. Nobody has run that replay.
+
+## 2026-08-30 — live run `live-2026-08-30`, v4. 21 events judged, 0 endorsed.
+
+First full stages 1–6 run at v4 (the gate-reads-rules bump). Funnel against
+the 19:22Z board: 104,304 markets → 700 screened / 309 events → 288 gated out
+→ **21 events / 25 markets** survived. Gate removals: live sport 90,
+aggregate-of-many-people 44, weather 28, commodity/FX/rates 27, vendor panel
+27, scheduled indicator 25, compute/collectible 22, crypto 19, retail price
+index 6.
+
+Stage 5: two `opus` subagents, ~11 and ~10 events, web search on, blind to
+price. Buckets: **1 strong, 10 moderate, 10 weak**. Stage 6 (final review) run
+by the main session, claude-opus-5.
+
+**Result: every candidate declined.** Not generic pessimism — the reasons
+cluster on one mechanism, and it is the mechanism `prompts/final_review.md`
+criterion 1 predicts.
+
+### The finding: divergences broadened YES, and the screen was on NO
+
+The screen picked NO on 21 of 25 markets. The subagents found rules/title
+divergences on **15 of 21 events**, and in almost every case the rules were
+*broader* than the title — which makes YES easier and therefore cuts against
+exactly the leg the screen chose:
+
+- `KXTRUMPMEET-26AUG` — titles say "meet", rules count **phone calls**. Widens
+  all five legs at once.
+- `KXUAPFILES-26AUG10` — title says "Trump release", rules resolve on **any**
+  federal release; the DoW PURSUE pipeline has shipped 5 batches since May.
+- `KXTRYFIRECOOK-27JAN01` — "has tried to fire … before Sep 1, 2026" carries
+  **no start date**; the Aug 2025 dismissal letter and the Aug 2026 Scavino
+  "considering removal" notice may each already satisfy a literal reading.
+- `KXCLAUDE-NXTMYTH` — rules count **Mythos *or* Fable** branding (carving out
+  Fable 5); the title implies Mythos-named only.
+- `KXITALYBORDERCHECK-26`, `KXBIGBENDRESUME-27` — rules drop the title's
+  Source-Agency **reporting** predicate, so a quiet lapse resolves YES.
+- `KXGTATRAILER-26MAY` — the sharpest one. Rules require a "publicly and
+  officially released" video of **≥30s**; Rockstar's Aug 27 *"GTA VI: An
+  Extended Look"* (20+ min of official in-game footage) meets that text but
+  is not branded a trailer. The market is now **definitional, not
+  informational** — and no insider group resolves a definitional question, so
+  the thesis does not apply to it at all.
+
+That last category is worth naming as a recurring failure mode: **when a
+divergence turns a market definitional, the insider thesis stops being the
+right lens even though the screen and the gate both pass it through.**
+
+### The ladder check earned its keep
+
+Final-review criterion 4 (check siblings) killed the one `strong`.
+`KXCLAUDE-NXTMYTH` NO @ 0.73 looked like the best row on the board until the
+ladder was pulled:
+
+| strike | YES bid/ask |
+|---|---|
+| 26SEP01 | 0.27 / 0.32 |
+| 26OCT01 | 0.81 / 0.91 |
+| 26NOV01 | 0.89 / 0.95 |
+
+~30% on a **32-hour** window is not a diffuse base rate — that is a market
+that thinks something is scheduled. Sibling `KXCLAUDE-MYTH-26OCT01` at
+0.02/0.03 against `NXTMYTH-26OCT01` at 0.81/0.91 confirms the Mythos-or-Fable
+wording is precisely what lifts the NXTMYTH curve. So the informed flow
+appears to be sitting on the **YES** side, against our leg. Declined.
+
+Also disclosed to the user: this session's model is made by the company the
+market is about, which is a conflict of interest on that ticker regardless of
+how the judgment came out.
+
+### Two mechanical findings worth keeping
+
+1. **The ledger dedupes by ticker, so a re-sighted candidate is never
+   re-priced.** 18 of today's 25 candidates already had rows from
+   `live-2026-08-29b`; today's run incremented `times_seen` to 2 and left the
+   *original* `entry_price`, `confidence` and `disposition` untouched. Only 7
+   tickers got fresh rows at `run_id=live-2026-08-30`. Consequence: today's
+   verdicts for those 18 exist nowhere in the ledger, and a stale entry price
+   (e.g. `KXCLAUDE-NXTMYTH` recorded at 0.77 yesterday vs 0.73 today) is what
+   any later scoring will use. Not obviously wrong — the row *is* the
+   opportunity — but it means a multi-day scan cannot express "same ticker,
+   changed verdict", and yesterday's rows carry internally inconsistent pairs
+   (`KXGROK` moderate/4.0pts, `KXUAPFILES` moderate/0.0pts) that today's
+   bucket table would not produce.
+2. **`finish()` stamps every `Theory.prompts` entry with `ctx.judge_model`**,
+   so a run whose analysis and final-review stages ran on different models
+   gets one wrong provenance row. Left in place and annotated rather than
+   deleted — `judgment_runs` id=47 is the artifact, id=45 (`claude-opus-5`) is
+   the authoritative final_review record.
+
+### Ranking note
+
+The registered slice `strong-moderate-no` matched 15 of 25 candidates but is
+**not ready at v4** (`matched_slice_ready: false`, oos n=0) — v4 was a
+*breaking* bump, so v3's genuinely strong record (+4.31 pts net OOS, n=321 /
+89 clusters / 43 days) cannot pool and can only be cited manually. Had a
+moderate-NO been endorsed it would have ranked **0.5 pts** on v4's own
+aggregate (probation, credibility 0.25) versus **2.45 pts** citing the v3
+slice. Worth flagging that declining all 15 slice matches is a judgment
+override of the best-measured rule in the repo; `interpretation_value` will
+eventually say whether that override was worth anything.
+
+## 2026-08-31 (UTC) - full six-stage live run, v4, judged 24 events / 35 markets, endorsed 0
+
+Funnel on the shared board (99,064 markets): 687 screened / 282 events ->
+gate removed 258 (66 live sport/esport, 43 aggregate-of-many-people, 29
+future price commodity/FX, 28 scheduled indicator, 25 vendor panel metric,
+23 future price compute/collectible, 20 weather, 17 future price crypto,
+7 retail price index) -> 24 events / 35 markets survived. Payload split
+into 2 batches of 12 events; judged by opus-tier subagents (web search
+on, blind to price); final review by claude-fable-5 (this session).
+Run artifacts in backtests/live-2026-08-31/ (payload + verdicts).
+
+Buckets: 1 strong (KXCLAUDE-NXTMYTH), 9 moderate events, 14 weak.
+13 events carried a rules/title divergence - the densest crop yet;
+notable: KXTRUMPMEET counts phone calls as "meeting"; KXTRYFIRECOOK has
+no after-issuance qualifier so the public 2025 Cook removal attempt
+arguably already satisfies it; KXSNAPELECTIONRS may already be satisfied
+by Vucic's Aug 21 public date announcement; KXZECMAXMON is a touch
+market wearing a level-check title.
+
+Final review declined all 35 (records as rejected, the control lane).
+Recurrent pattern in the declines: the divergences mostly broaden YES
+while the screen picks NO ~80% of the time, and the moderate insider
+stories all failed the "has the decision actually been made?" test
+(press secretary, Grok 4.7, Israel joint list, AK dropout). NXTMYTH
+lowered strong->moderate in review: rules include any Fable-branded
+model (carving out only Claude Fable 5), which broadens YES against the
+NO leg; also noted for the record that this session runs on an Anthropic
+model while judging an Anthropic-release market - judged on rules
+structure only.
+
+Standing tension, second consecutive run: 19 of today's 35 were
+strong-or-moderate NO - slice matches for the v3-proven rule (+4.31 net
+OOS, n=321) - and all were declined at final review. The
+interpretation_value ledger is accruing the answer to whether these
+overrides add or destroy value; the orphaned-evidence escalation for
+adopting the slice rule at v4 went to the user again today.
+
+## 2026-09-01 — live run (floor), v4, run_id `live-2026-09-01`
+
+Funnel: 105,104 board → 499 screened → 202 events → 187 gated out →
+**15 events / 20 markets** judged. Gate breakdown: live sport 47,
+aggregate-of-many-people 31, scheduled indicator 28, vendor panel metric
+22, weather 21, commodity/FX/rates 15, crypto 14, compute/collectible 9.
+
+Stage 5 (opus subagent, web search on): strong 1, moderate 3, weak 11;
+8 of 15 researched. Six rules/title divergences flagged.
+
+Final review (claude-opus-5) endorsed 1, rejected 19. Decisions on the
+four non-weak events:
+
+- **KXPRESSSECANNOUNCE-26AUG-SEP08** (NO) — held moderate, *recommended*.
+  The divergence favours the chosen leg for once: the rules require an
+  announcement actually naming a person, so a "pick coming soon" post
+  does not resolve YES. Decision visibly unmade (Wiles still meeting
+  Jennings at the WH's request; Habba ruled herself out), and nobody can
+  announce an unmade pick. Sibling ladder monotone
+  (SEP01 0.02 < SEP08 0.12 < SEP15 0.37 < OCT01 0.55). Principal risk:
+  the rules count acting/interim, and the seat went empty Sep 1.
+- **KXBIGBROTHERELIMINATION-26SEP03** (2 NO legs) — **lowered
+  strong→moderate, declined.** This is the first time the pre-taped-TV
+  sub-case has been talked *down* here, and the reason is worth keeping:
+  BB28 feed spoilers are republished same-day by Parade, GoldDerby,
+  TVInsider and Hollywood Outbreak, so the "informed group" holds nothing
+  the attentive public lacks — and this market's traders *are* those
+  readers. Rule 2 is about asymmetry, not expertise, and a paid-feed
+  leak community fails it. Verification also broke the subagent's
+  premise: it described the block as LaTrice + Taylor + a replacement,
+  but the nominees were LaTrice, Taylor and **Yash**, with Yash winning
+  his second veto. Vote is cast live Thursday, so it is not in the can.
+- **KXGROK-GROK47-26SEP04** (NO) — lowered moderate→weak, declined. The
+  insider fact (4.7 slipped past Musk's Aug 4 guidance) is already
+  public. "Releases" is undefined — API vs consumer app vs model card —
+  and every liberal reading makes YES easier against the NO leg.
+- **KXTRUMPMEET-26AUG-ZMAM** (NO) — lowered moderate→weak, declined.
+  Rules count phone calls where the title says "meet": broader than the
+  title, so it cuts against the NO favorite. Ask moved 0.95→0.97 between
+  screen and fresh quote with ~1.5h to close.
+
+**The pattern from the last two runs held again and now has a name.**
+Of 20 markets judged, 5 were strong-or-moderate NO — slice matches — and
+the final review declined 4 of them. Third consecutive run where the
+override rate on slice matches is high; `interpretation_value` is the
+ledger that will eventually say whether this stage adds or destroys
+value, and it is still `None` for v4.
+
+**The orphan escalation is resolved and the RUNBOOK is now stale on it.**
+`promote` ranked the endorsed row on `segment=slice:strong-moderate-no`
+with `chain_versions=[1,2,3,4]` — the 2026-08-31 relinking ruling means
+v4 *does* inherit the slice's evidence, so the "v4 carries no bet path to
+this slice" paragraph in RUNBOOK.md (Sub-theories) and the orphaned-
+evidence escalation it mandates are both out of date. Filed as a ticket.
+
+**The endorsement still did not become a bet, and the reason is price.**
+`promote` returned **R4 ACCRUING**, not R1: the slice's evidence is real
+and past its gates (90 clusters, +3.757 net, 314/328 rows backtested,
+tier A/B — counts in full), but the position was first seen at 0.85 on
+2026-08-29 and today's ask is 0.92, so the claim recomputes to **-4.62
+pts at today's ask**. Edge gone. This is the third distinct way a
+slice-matching NO candidate has failed to reach the user, after "gate
+removed it" and "final review declined it" — worth watching whether the
+screen is systematically finding these *after* the price has already
+moved.
+
+## 2026-09-01 -- v5: stage 6 removed, and the number that argues against it
+
+Removed the final review at the user's direction. The reasoning is in
+THEORY.md; what belongs here is the measurement that prompted it and the
+one that cuts the other way, because both were cheap to get and neither
+was written down anywhere before today.
+
+**The funnel nobody had cross-tabbed.** Live rows by bucket x side x
+disposition:
+
+```
+moderate no   endorsed    4   avg claimed +4.39
+moderate no   rejected   70   avg claimed +2.39
+moderate yes  endorsed    2
+moderate yes  rejected    6
+strong   no   endorsed    3   avg claimed +5.67
+strong   no   rejected    2   avg claimed +4.25
+weak     no   rejected  265
+weak     no   screened   60
+weak     yes  rejected  104
+```
+
+Rows matching the proven slice predicate (strong-or-moderate on a NO
+favorite): **7 endorsed, 72 rejected.** That is the number that decided
+it. The slice is the best-evidenced result in this repo and stage 6 was
+killing 91% of what it produced, with each rejection landing on R6
+CONTROL -- unbettable forever, not deferred.
+
+**And every backtest row was produced without stage 6.** 3,759 of them,
+including all 314 out-of-sample rows behind the slice. So the measured
+record described a five-stage procedure while the live path ran six. Nobody
+had noticed because the two were never put side by side.
+
+**The number that argues the other way, kept here on purpose.** On settled
+live rows:
+
+```
+              n   clusters  win     net edge
+endorsed      6      2      1.000   +14.81
+rejected    109     61      0.780    -8.06
+screened     22      -      0.955   +10.95
+```
+
+Slice-matching only: 4 endorsed went 4/4 (+18.5 gross); 11 rejected went
+63.6% (-25.4 gross). Stage 6 looks like it was discriminating. n=6 over 2
+event clusters clears nothing here, so it is unconfirmed rather than
+evidence -- but it is the honest reading that the removal argument is
+structural, not empirical, and I would rather a future session find this
+paragraph than rediscover the table and think it was hidden. Ticket
+`2026-09-01-did-stage-6-add-value` carries the question; the 456
+interpreted rows are frozen at v2-v4 so it stays askable.
+
+**Watch for, when the answer comes in:** if stage 6 really was reading
+something, it will be rules-divergence-against-the-chosen-side, sibling
+coherence, or resolution-source timing -- all three are recordable fields
+or gate rules. The fix would be to mechanize what it read, never to put a
+session veto back.
+
+**Mechanics, for whoever does the next bump.** The R4 gate had to move
+first: it demanded `disposition='endorsed'` while its own rationale in
+docs/promotion-key.md said it was holding candidates whose *stage 2 had
+not run*. Those had come apart, and only insider_judgment (the sole
+`uses_llm_judgment` theory) was affected. Key v2 -> v3 reads the bucket
+instead. Verified on a copy of the real DB: unsettled live rows went R1 3
+-> 57, with 67 landing at R5 suppressed on the complement's -2.39 and 187
+at R6 on non-positive claimed edge -- the gate opens for the proven
+subset and stays shut for the rest, which is the whole point.
+
+Also hit: `cli theories bump` still offers only breaking/carry and calls
+breaking the default, so the v5 bump had to go through the Python API.
+Filed as a maintenance ticket.
+
+## 2026-09-01 — v6: the confidence buckets had never once spoken for themselves
+
+Came here to find out why the repo's one proven edge produced no bets
+today. It turned out today's run was fine and something older was not.
+
+### What today's run actually was
+
+The 2026-09-01 floor run recorded at **02:35-02:37Z**; **v5 landed at
+03:06:39Z**. So today's rows are v4, with stage 6 still active, and its
+19-of-20 rejection rate is v4 behaving exactly as v5 was created to stop.
+**Not a live defect** -- the next floor at v5+ will not do this. Recorded
+because "the proven slice produced no bets today" looks alarming and has
+a boring explanation, and the next session should not re-derive it.
+
+Three rows on today's board match the slice predicate
+(`outcome='no'`, confidence in strong/moderate). Read-only, flipping only
+the disposition v5 would have left as `screened`, all three route to
+`slice:strong-moderate-no` (90 clusters, 44 days, +3.76) and reach
+**R1** on the segment test. At today's re-quoted asks only one survives
+the executability precondition:
+
+    KXBIGBROTHERELIMINATION-26SEP03-LAT  NO  0.74 -> 0.69  spread 3.0pts  live
+    KXBIGBROTHERELIMINATION-26SEP03-TAY  NO  0.80 -> 0.83  edge gone
+    KXPRESSSECANNOUNCE-26AUG-SEP08       NO  0.92 -> 0.92  spread 2.0 >= edge
+
+Not recorded as bets: they are v4 rows and rewriting a recorded
+disposition would falsify what v4 decided. The v5+ run that records them
+properly is the floor's.
+
+### The real finding: every judged row this theory ever priced claimed a PRIOR
+
+`price()` calls `ctx.bucket_rates(self.id, self.version)` -- and took the
+defaults, `run_mode='live'` and an exact version match. That returned
+**`{}` for this theory's entire life**, so `buckets.edge_for` fell through
+to `PRIORS` every single time and stamped `edge_basis='prior'`.
+
+Meanwhile the measurement existed. All 1,564 settled bucketed rows:
+
+    theory_version  run_mode   bucket      n
+                 2  live       moderate    8
+                 3  backtest   moderate  565     <- 58 settlement days
+                 3  backtest   strong    229
+                 3  backtest   weak      770
+                 3  live       weak      171
+                 4  live       weak        8
+
+`moderate` alone is 565 rows over 58 settlement days, against floors of
+`MIN_BUCKET_N=10` and `MIN_BUCKET_DAYS=5`. It cleared them fifty times
+over and was never once read.
+
+**Two independent causes, either sufficient:**
+
+1. **`o.theory_version = ?` exactly.** After the 2026-08-31 ruling a
+   `continues` bump carries the evidence -- but this query resets every
+   bucket to its prior at each bump. **This is the same defect class as
+   the 2026-09-01 `state.py` incident**, and the sweep that followed it
+   concluded "`score.py` is already parameterized (`pool='chain'`)". That
+   was true of `compute_score` and false of `bucket_rates`, twelve
+   hundred lines down the same file.
+2. **`run_mode='live'` by default.** Excludes every backtested
+   settlement, contradicting the same ruling's other half. This theory's
+   evidence is 3,279 backtest rows against 206 live ones, so this alone
+   emptied it.
+
+### The fix, and why it is a version bump
+
+`score.bucket_rates` is rebuilt on `observations()` -- the same seam
+`compute_score` uses -- and gains `run_mode` as str-or-tuple plus
+`pool`, matching `compute_score`'s signature exactly. Two copies of one
+selection had drifted apart; now there is one. `theory.py` asks for
+`("live","backtest")` and `pool="chain"`.
+
+Five tests pin it, including that a **`breaking` bump still severs** the
+buckets (`pool="chain"` must not resurrect evidence an explicit sever
+cut) and that `bucket_rates` and `compute_score` now see the same rows.
+
+**v6, `continues`:** no screen, gate, prompt, bucket scale or threshold
+moved. The procedure now reads a measurement it already had.
+
+### What the buckets actually say -- and why "barely anything changes" is the point
+
+    bucket      n  days  win_rate  mean_ask   measured   PRIOR
+    strong    232    17    0.8922    0.8516    +4.07     +4.00
+    moderate  583    64    0.8731    0.8527    +2.03     +2.00
+    weak      955    71    0.8545    0.8581    -0.36      0.00
+
+**The priors were well chosen** -- within 0.4 points on every bucket.
+It would be easy to read that as "the bug did not matter". That is the
+wrong reading, and it is worth stating plainly: CLAUDE.md's whole
+division of labour is *a model categorizes, measurement quantifies*, and
+`edge_basis` is the field that tells a reader which of those produced a
+number. Every row this theory recorded said `prior` -- "a placeholder
+awaiting data" -- while the data sat in the same database. The claim was
+right by luck of good judgment in writing THEORY.md's bucket table, not
+by measurement, and nobody reading the ledger could tell the difference.
+
+Note also that `weak` measures **negative** (-0.36) where its prior was a
+flat 0.00. Small, but it is the bucket the screen produces most of, and
+"weak is slightly worse than nothing" is a different statement from
+"weak is nothing".
+
+### Not done, and why
+
+Stage 5 needs judging subagents and this session was not authorized to
+spawn them, so **no v5/v6 live run was recorded**. That is the one thing
+between here and the Big Brother candidate being a properly recorded R1
+bet rather than a read-only calculation. It is the floor's to run, and
+the RUNBOOK's procedure is unchanged by v6.
+
+## 2026-09-01 (cont.) — the two remaining tickets, answered
+
+### `did-stage-6-add-value`: permanently unanswerable, and that is the answer
+
+`interpretation_value` is a *comparison*, and **one arm is frozen at 6
+settled rows on ONE settlement day**. Stage 6 was removed at v5, so no
+new `endorsed` row will ever exist; ruling 14 says under three settlement
+days there is no usable error bar. Waiting grows only the rejected arm
+(251 still unsettled), sharpening a number that must still be differenced
+against a single day's board.
+
+    endorsed (stage 6 said yes)   n=  6  days=1   6/6     net +14.81  SE undefined
+    rejected (stage 6 said no)    n=111  days=8   86/111  net -10.05  SE  9.52
+    slice-matching endorsed       n=  4  days=1   4/4     net +17.52  SE undefined
+    slice-matching rejected       n= 12  days=4   8/12    net -32.53  SE 20.95
+    (slice baseline: +3.76 over 90 clusters / 44 days)
+
+Directionally stage 6 does look like it was selecting on something. Every
+measurable arm is inside its noise (t −1.06 and −1.55). **Unconfirmed,
+not disproven — and now unfalsifiable.** Closed on those grounds, with
+the guidance intact: do not reinstate a session veto by hand, because
+there is now no way to demonstrate it helps.
+
+The live successor is the ticket's own step 4 — mine the 362 rejected
+rows' stage-6 rationales for a *mechanizable* predicate. That needs no
+endorsed arm.
+
+### `single-name-structural-gate`: the free proxy was tested and found nothing
+
+The ticket's binding condition was "do NOT write a prompt for it — if the
+rule cannot be written mechanically the finding does not apply."
+
+**First problem, and it is fixable: the titles were not stored.** Only
+**381 of 1,770** bucketed settled rows (21.5%) have a title reachable
+from `market_snapshots`, and they are the live ones — the backtest rows
+that carry this theory's evidence were fetched through the replay and
+never snapshotted. `backtest_judged.py` *had* the title (it puts one in
+every judging payload) and did not persist it. **Same defect as
+calibration_harvest's collector, found the same day: a stage receives a
+field, uses it, and drops it.**
+
+**It is recoverable, and this is the "save while you collect" convention
+paying off.** The judging payloads are still on disk under
+`backtests/*/batch_*.payload.json` and carry `title`, `rules_primary`,
+`event_ticker` and every market ticker. An index built from them covers
+**2,571 of 4,275 opportunities (60.1%)**, against 381 (21.5%) from
+snapshots. No re-judging, no spend.
+
+**Second problem, and it is not fixable as the ticket specifies.** Even
+with titles, "does this name one entity or a broad field" is *reading
+comprehension* — precisely what CLAUDE.md says to reach for a model for,
+and precisely what this ticket forbids. A hand-written classification of
+261 series tickers is a prompt with extra steps, and one fitted while
+looking at the rows it would be scored on.
+
+**So I tested the mechanical thing that IS available free: sibling count
+per event** — "one named entity" versus "one of N" — which is structure,
+not comprehension.
+
+    ALL bucketed rows            n    days     net     SE      t
+      1  (binary)              183      55   +1.95   2.97   +0.66
+      2-3                      329      46   -3.33   3.65   -0.91
+      4-8                      560      51   -1.33   2.55   -0.52
+      9+ (broad field)         492      34   -2.99   4.50   -0.67
+
+    Slice rows only (outcome=no, strong/moderate)
+      1  (binary)               47      22   +6.49   4.42   +1.47
+      2-3                       88      22   -1.95   5.08   -0.38
+      4-8                      173      27   +7.98   3.90   +2.05
+      9+ (broad field)         245      19   +3.45   4.29   +0.81
+
+**It does not separate.** On all rows the single-name cell is the only
+positive one, which is the direction the paper predicts — but t=+0.66,
+and on the slice rows the ordering scrambles completely (4-8 highest at
++7.98, then 1, then 9+, then 2-3 negative). Four cells, no monotonicity,
+nothing past 2 SE except a middle cell with no story attached.
+**Unconfirmed, not disproven. No slice registered** — registering this
+would be pre-registering noise.
+
+**A real limitation, stated because it weakens my own test.** The
+sibling count comes from `len(event["markets"])` in the *judging
+payload*, which is built from candidates that already survived the
+screen. So it counts **surviving** markets per event, not the event's
+true size. That makes it a noisier proxy than it looks, and a genuine
+"how many markets does this event have" is available free on the board's
+event envelope. Anyone retrying this should use that, not this.
+
+## 2026-09-01 — the early-close anchor bug does not explain `strong-moderate-no`; it has been costing it
+
+Session `fleet-w3-g1`, study lane. Full write-up, method and caveats:
+`tickets/study/answer/2026-09-01-early-close-exposure-in-the-bettable-slice/STUDY.md`.
+Nothing here changes this theory's procedure, so no version bump.
+
+**Why it was asked.** `replay.py:218` anchors "days to close" on
+`settled.close_time`. On a "does X happen by D" market, actual close is a
+*function of the outcome* — a NO runs to the deadline, a YES stops the
+moment the event fires — so the replay's entry day is computed backwards
+from an outcome-dependent point.
+`tickets/study/answer/2026-08-29-early-close-exposure-existing-backtests`
+established that and measured `insider-fullcov` at
+~18% exposed, then stopped, having reasoned (its own words: "a reasoned
+expectation, not a measurement") that a negative headline only gets more
+negative.
+
+**The gap nobody had noticed.** That study sampled the two *full-coverage*
+runs. The 314 backtested rows behind `strong-moderate-no` — the repo's
+only R1-eligible segment, and the source of the 2026-09-01 floor's only
+bet — come from `insider-judged-s200b` and `s57`, which it never sampled.
+Same `replay.py`, same anchor, unmeasured.
+
+**Measured, full pass over all 1,564 tickers in the three judged runs, no
+sampling:**
+
+| arm (OOS slice rows: s200b + s57) | n | clusters | edge_net | se |
+|---|---|---|---|---|
+| whole slice arm (headline) | 314 | 86 | +4.37 | 2.49 |
+| EXPOSED (closed >3d before deadline) | 54 | 7 | +0.69 | 14.99 |
+| CLEAN (unexposed + no-deadline) | 247 | 77 | **+5.20** | 2.76 |
+
+In-sample `s200` shows the same shape: exposed −1.54 (9 clusters), clean
++7.68 (66 clusters).
+
+**The answer is no, and the sign is the interesting part.** The bug's
+direction was confirmed on both sides of the book: exposure moves the
+NO-side number **down** (−4.51 OOS, −9.22 in-sample) and the YES-side
+number **up** (+4.98 OOS, +24.9 in-sample). Because this slice buys NO on
+favorites, contamination **depresses** its measured edge. The clean arm is
+*higher* than the headline. Four pre-registered directional comparisons,
+4/4 in the predicted direction, one-tailed sign test p = 0.0625.
+
+**Read the strength honestly.** The formal exposed-vs-clean contrast was
+reported **NOT MEASURED** against the study's own pre-committed floor —
+the exposed arm holds 7 event clusters against a floor of 10 — so no
+p-value is claimed for it and the conclusion rests on the 4/4 sign
+pattern, which is not significant at 0.05. The pre-registered **kill
+criterion was not triggered**, which is the load-bearing pre-registered
+read: the clean arm at +5.20 is above the +2.0 bar and above the exposed
+arm, so the falsifying pattern is absent.
+
+**What this does and does not change for this theory.**
+
+- It **removes an alternative explanation** for the slice's record. It
+  does **not** raise the number. The recorded score stays what ranks and
+  what bets; +5.20 is a post-classification subset on a parser, and the
+  study is not powered to distinguish it from +4.37. Do not re-cite +5.20
+  as this slice's edge.
+- **No remediation is warranted on this evidence.** Re-running the judged
+  campaigns on a deadline anchor would cost tokens and, on the measured
+  direction, would if anything *raise* the slice's number — so it is not
+  the way to protect the user from a bad bet. Left alone deliberately.
+- **The YES-side arms are the ones to be careful with.** In-sample YES
+  rows show exposed +8.80 vs clean −16.13. Any future slice or sub-theory
+  drawn from the YES side of this population inherits an anchor bias that
+  flatters it, and the gap there is much larger than on the NO side.
+
+**Perishability, which is the operational point.** 9.7% of those 1,564
+tickers had already aged out of Kalshi's public API — against 2.9%
+unreachable in the same window three days earlier. The complete raw
+payloads for all 1,413 reachable markets are now captured at
+`tickets/study/answer/2026-09-01-early-close-exposure-in-the-bettable-slice/raw_markets.jsonl`.
+That file is the only remaining source for the titles, rules text, close
+times and settlement fields of this theory's judged-campaign population,
+and it is what the open `backfill-titles-from-judging-payloads` ticket
+should read rather than re-fetching from an archive that no longer holds
+them.

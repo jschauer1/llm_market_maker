@@ -5,10 +5,12 @@ follow near-total one-sided aggressive flow; this says *how a run
 happens*. Where prose and `theory.py` disagree, the code is right and the
 prose is a bug.
 
-Current version: **1**. Fully mechanical (`uses_llm_judgment = False`);
-every row records `edge_basis='model'` from a measured base rate. Changing
-a liquidity floor, the lookback, either imbalance threshold, or the
-measured constants bumps the version.
+Current version: **2**. Fully mechanical (`uses_llm_judgment = False`);
+every row records `edge_basis='model'` from a measured base rate. v2 rejects
+asks outside `(0, 1)` and caps gross edge at the position's payout headroom;
+the registry records this bump as `continues`, so eligible v1 evidence pools.
+Changing a liquidity floor, the lookback, either imbalance threshold, the
+payability/headroom rule, or the measured constants bumps the version.
 
 ## Stages
 
@@ -16,14 +18,15 @@ measured constants bumps the version.
 |---|---|---|---|
 | 1 | liquidity screen | code | `theory.is_liquid` — open, both asks, spread ≤ 0.05, vol24 ≥ 1000, OI ≥ 500, 1–45 days to close |
 | 2 | flow window | code | `theory.flow_features` — trades in the trailing 7d, ≥ 20 of them |
-| 3 | entry test | code | `theory.screen` — `\|imbalance\| > 0.6`, take the aggressor's side at that side's ask |
-| 4 | pricing + record | code | `theory.price` — bucket's measured gross minus fees; all rows `screened` |
+| 3 | entry test | code | `theory.screen` — `\|imbalance\| >= 0.6`, take the aggressor's side at that side's ask |
+| 4 | payability | code | `theory.screen` — chosen ask must be strictly inside `(0, 1)` |
+| 5 | pricing + record | code | `theory.price` — bucket gross capped at `(1 - entry) x 100`, then fees; all rows `screened` |
 
-There is no stage 2 judgment. "Run the theory" means all four stages —
+There is no stage 2 judgment. "Run the theory" means all five stages —
 the contract runs them as one call.
 
 **Cost note.** Stage 2 is one API call per liquid market (~1,768 on the
-2026-09-01 board), so a run is a few minutes of paging. Stage 4 re-derives
+2026-09-01 board), so a run is a few minutes of paging. Stage 5 re-derives
 the features for the handful that survived rather than carrying state
 between stages, which costs one extra call per *candidate* and keeps the
 `Theory` stateless.
@@ -45,10 +48,10 @@ result = registry.discover()["taker_flow"].start(ctx).finish()
 ## Record
 
 `finish()` writes every scored candidate as `screened`. Nothing here is
-`endorsed`: the theory's aggregate is not demonstrated, and the only
-positive population is a slice that has yet to earn out-of-sample
-evidence. Every row carries `extra.flow_bucket`, which is what the slice
-predicate matches on — a row without it cannot be routed and is a bug.
+`endorsed`: current recommendation eligibility comes from the candidate's
+ranking segment and `promote`. Every row carries `extra.flow_bucket`, which
+is what the slice predicate matches on — a row without it cannot be routed
+and is a bug.
 
 ## Sub-theories
 
@@ -66,9 +69,10 @@ to stay flat; it is kept running as the control group that says whether
 the tail is still the part that works.
 
 The slice was **mined** from `backtest-2026-09-01-takerflow`, which is
-declared in its `mined_from_run_ids`, so that run vouches for nothing. It
-starts at n=0 out-of-sample and must clear ≥10 event clusters and ≥5
-settlement days before it can drive a ranking.
+declared in its `mined_from_run_ids`, so that run vouches for nothing about
+the slice. Forward rows now accrue out of sample; it must clear >=10 event
+clusters and >=5 settlement days before it can drive a ranking. Read the
+current gate state with `python -m tools.cli slices report taker_flow`.
 
 ## Report
 

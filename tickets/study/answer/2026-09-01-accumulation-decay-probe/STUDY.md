@@ -7,6 +7,13 @@ created_by: migration
 
 # Kalshi prices the accumulation collapse in real time — there is no lag to harvest
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](../../../../knowledge/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 **Date:** 2026-09-01 · **Tier:** A · **Verdict:** **DO NOT BUILD `accumulation-decay`** — reached on branch 1 of the rule pre-registered before any calibration number existed; 222 settled `KXALBUMEQUIV` markets, 28 events, 1,046 liquid observations ·
 **Code:** the investigation was deleted 2026-09-03; it lives at git rev `38028e6` - `git ls-tree -r --name-only 38028e6 tickets/study/answer/2026-09-01-accumulation-decay-probe` lists it, `git show 38028e6:<path>` returns any file
 

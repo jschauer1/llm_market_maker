@@ -1,5 +1,12 @@
 # Judged-backtest campaign results — 2026-08-25/26
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](../learnings/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 The authoritative summary of the tier-B judgment backtests over
 `insider_judgment`'s population. Everything here is reproducible from
 the ledger (run ids below), the committed batch artifacts in this

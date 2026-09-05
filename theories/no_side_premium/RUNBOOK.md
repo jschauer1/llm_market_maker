@@ -1,13 +1,16 @@
 # no_side_premium — runbook
 
 How to run this theory end to end. `THEORY.md` says *what* it claims —
-a pre-registered forward test of the optimism tax's two cells; this says
+a pre-registered out-of-sample test of the optimism tax's two cells; this says
 *how a run happens*. Where prose and `theory.py` disagree, the code is
 right and the prose is a bug.
 
 Current version: **1**. Fully mechanical (`uses_llm_judgment = False`);
 every row records `edge_basis='prior'` by design — nothing this theory
-emits is a bet until its own forward settlements measure the cells.
+emits is a bet until eligible out-of-sample evidence measures the cells.
+Valid tier A/B replay evidence would count in full, but the available
+full-coverage runs motivated these pre-registered cells and therefore cannot
+validate them.
 Changing a cell boundary, a prior, or the reprice rule bumps the version.
 
 ## Stages

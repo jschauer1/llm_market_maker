@@ -1,5 +1,12 @@
 # Does the early-close anchor bug explain `strong-moderate-no`?
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](../../../../knowledge/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 **Date:** 2026-09-01 ·
 **Tier:** A ·
 **Verdict:** the anchor bug is real and its direction is confirmed on both sides, but it DEPRESSES `strong-moderate-no` rather than inflating it — the clean arm is +5.20 net over 77 clusters against a +4.37 headline, so the slice is not an artifact ·

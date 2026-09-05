@@ -1,5 +1,12 @@
 # backtest-2026-09-01-takerflow — tier A
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](../learnings/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 Replay of follow-the-flow over settled Kalshi markets. Every number here
 is regenerable from the ledger (`cli score report taker_flow`,
 `cli slices report taker_flow`) and from `decisions.json` beside this

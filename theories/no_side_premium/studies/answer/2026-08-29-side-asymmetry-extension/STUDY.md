@@ -1,5 +1,12 @@
 # The paired within-day estimator, and two more close-days for it
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](../../../learnings/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 **Date:** 2026-08-29 · **Tier:** A (no model in the measurement path) ·
 **Verdict:** the bar is met and nothing is there - at 8 close days NO-YES is +2.91 (t=0.53, 5/8 days), and the paired estimator is measured as the worst of four (477 days to detect +2.0); pairing was the wrong instrument ·
 **Code:** the investigation was deleted 2026-09-03; it lives at git rev `38028e6` - `git ls-tree -r --name-only 38028e6 theories/no_side_premium/studies/answer/2026-08-29-side-asymmetry-extension` lists it, `git show 38028e6:<path>` returns any file

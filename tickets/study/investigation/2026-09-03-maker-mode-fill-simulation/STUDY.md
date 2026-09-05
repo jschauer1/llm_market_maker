@@ -9,6 +9,13 @@ author_context: Deciding experiment for the open new-theory spec maker-mode-exec
 
 # Maker mode — pre-registration, written BEFORE looking
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](../../../../knowledge/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 **Date:** 2026-09-03 ·
 **Tier:** A (no model anywhere in the path) ·
 **Verdict:** PENDING — this file is the bar, committed before any contrast was computed

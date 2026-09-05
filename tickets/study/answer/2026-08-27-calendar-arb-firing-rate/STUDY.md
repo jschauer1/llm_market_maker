@@ -1,5 +1,12 @@
 # calendar-arb does not fire, and its premise is false at every tradeable horizon
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](../../../../knowledge/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 **Date:** 2026-08-27 ·
 **Tier:** A (no model in the measurement path) ·
 **Verdict:** do not build the spec as written ·

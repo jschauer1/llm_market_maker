@@ -1,5 +1,12 @@
 # calibration_harvest — backtest performance
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](learnings/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 **Distilled 2026-09-02 at retirement.** The raw payloads
 (`backtests/{weather,politics,econfin,size}.json`, 508K) were deleted; this
 file is what they measured. The user's ruling of 2026-09-01 was "theory +

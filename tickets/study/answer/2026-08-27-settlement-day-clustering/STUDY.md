@@ -1,5 +1,12 @@
 # Settlement-day clustering is a first-order confound in the ledger
 
+<!-- research-memory-route -->
+> [Find related lessons and their applicability](../../../../knowledge/README.md). This document is
+> source evidence: read its verdict and limits first, then the relevant method
+> or result section. A useful short answer needs no duplicate summary.
+<!-- /research-memory-route -->
+
+
 **Date:** 2026-08-27 · **Tier:** A (no model in the measurement path) ·
 **Verdict:** settlement day is a first-order confound - the pooled +3.71 net over 215 rows is three days that disagree, and the YES/NO split reverses sign between them; effective n is settlement days, not rows ·
 **Code:** the investigation was deleted 2026-09-03; it lives at git rev `38028e6` - `git ls-tree -r --name-only 38028e6 tickets/study/answer/2026-08-27-settlement-day-clustering` lists it, `git show 38028e6:<path>` returns any file

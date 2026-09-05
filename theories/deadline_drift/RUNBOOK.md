@@ -12,35 +12,34 @@ No judgment stage. **Current version: 2 (`testing`).**
 
 ### The pre-registered tests, and which script runs which
 
-None of these is part of a floor run. They are the experiments THEORY.md
-pre-registers, and each one is run once, when its data is complete.
+The floor only accrues DD-1 observation rows. The completed replication
+tests are not routine reruns; their stopping rules remain binding.
 
-| test | what it asks | run |
+| test | current use | command |
 |---|---|---|
-| DD-1 | the forward test — markets settling after 2026-09-01 | accrues from stage 3; nothing to run yet |
-| DD-3 | the same cell on series the population choice never saw | `python -m theories.deadline_drift.backtest` |
-| DD-4 | DD-3's bar on the half never looked at in aggregate | `... backtest --dd4` |
-| DD-5 | DD-2's one-off/recurring contrast on the unseen arm | `... backtest --dd5` |
-| — | how much fixed-k contamination the arm carries | `python -m theories.deadline_drift.purity` |
-| — | 14 declared cuts over both arms, all reported | `python -m theories.deadline_drift.mine_arms` |
+| DD-1 | primary forward test; accrues from stage 3 | no separate run yet |
+| DD-3 | one final read at the first completed sweep meeting its 80-cluster floor | `python -m theories.deadline_drift.backtest` |
+| DD-4 | completed below its floor; do not rerun | `... backtest --dd4` reproduces history only |
+| DD-5 | cannot identify its declared contrast on the unseen arm; do not rerun as a test | `... backtest --dd5` reproduces history only |
+| — | fixed-k sensitivity, not a test | `python -m theories.deadline_drift.purity` |
+| — | completed exploratory cuts, not a new search | `python -m theories.deadline_drift.mine_arms` |
 
-**`--all` runs DD-3, DD-4 and DD-5 in that order.** `purity` is a
-diagnostic that filters nothing: it prints the unseen arm with and
-without flagged families as a *sensitivity*, and the pre-registered row
-stays the verdict.
+Do not use `--all` for another evidentiary look: it would rerun DD-4 and
+DD-5 after their stopping outcomes are known. `purity` filters nothing; it
+prints the unseen arm with and without flagged families as a sensitivity.
 
-**A completing platform walk must finish before any of them is read.**
-The freeze files (`preplatform_seen.json`, `dd3_peeked.json`) define the
-test sets and must never be regenerated; running a test on a partial
-capture and running it again at completion is two looks at the same
-hypothesis. The 2026-09-02 interim look is recorded in NOTES.md as a
-declared peek precisely so it could not be quietly forgotten.
+For DD-3's one permitted future read, top up the platform capture, inspect
+only the event-cluster count, and stop without reading the estimate if it is
+still below 80. The freeze files (`preplatform_seen.json`,
+`dd3_peeked.json`) define the test sets and must never be regenerated. The
+exact stopping instruction lives in
+`tickets/open/2026-09-03-dd3-final-read-at-80-clusters.md`.
 
 ## The standing obligation: top up the settled capture
 
 **This is the only thing in this theory that is time-critical, and missing
 it is unrecoverable.** Kalshi archives settled markets out of its public
-API roughly 60 days after close. Every allowlist market that settles and
+API roughly 60 days after close. Every qualifying market that settles and
 is not captured within that window is gone from upstream permanently.
 
 The population produces roughly **714 closes a year**, so each month of
@@ -170,9 +169,10 @@ time. Mechanism: a recurring family teaches its own base rate, a one-off
 question has no reference class on the board, so the premium should track
 NON-RECURRENCE rather than subject matter.
 
-Below its gates (>= 10 event clusters and >= 5 settlement days, out of
-sample), so it is reported as accruing and changes no ranking yet. It
-carries no `mined_from_run_ids` because the analysis that suggested it
+Before its gates (>= 10 event clusters and >= 5 settlement days, out of
+sample), it is reported as accruing and changes no ranking. Once ready it
+ranks on its own record. Read the current gate state from `slices report`.
+It carries no `mined_from_run_ids` because the analysis that suggested it
 wrote no ledger rows.
 
 **Report it every run** -- `floor complete` refuses a report that omits a
