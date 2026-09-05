@@ -1,0 +1,50 @@
+{
+  "collection": "theories\\news_drift\\data\\live\\nd1-live-20260905T030705Z.json",
+  "quote_time": "2026-09-05T03:14:47.087162+00:00",
+  "opportunity_ids": [
+    112801,
+    112802,
+    112803,
+    112804,
+    112805,
+    112806,
+    112807,
+    112808,
+    112809,
+    112810
+  ],
+  "funnel": {
+    "board": 123817,
+    "eligible_category": 28404,
+    "open": 27327,
+    "valid_quote": 27327,
+    "open_interest": 14410,
+    "spread": 7122,
+    "mid_band": 1572,
+    "positive_volume_24h": 868,
+    "prefiltered_unique": 868,
+    "history_requested": 868,
+    "history_returned": 859,
+    "history_missing": 9,
+    "history_signal_survivors": 11,
+    "quote_requested": 11,
+    "quote_returned": 11,
+    "quote_missing": 0,
+    "signals": 10
+  },
+  "theory_funnel": {
+    "board": 10,
+    "eligible_category": 10,
+    "history_coverage": 10,
+    "missing_history_coverage": 0,
+    "signals": 10,
+    "candidates": 10,
+    "scored": 10,
+    "recorded": 10
+  },
+  "supported_candidates": 0,
+  "calibration_statuses": [
+    "unusable"
+  ],
+  "weekly_charts_candidates": 0
+}

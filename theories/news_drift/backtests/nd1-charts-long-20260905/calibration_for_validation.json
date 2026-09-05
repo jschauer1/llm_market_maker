@@ -1,0 +1,40 @@
+{
+  "approved": false,
+  "eligible_for_production": false,
+  "event_clusters": 7,
+  "n": 8,
+  "population_series": [
+    "KXALBUMEQUIV",
+    "KXPUREALBUMS",
+    "KXTOPSONG",
+    "KXBILLBOARDRUNNERUPSONG",
+    "KXTOPALBUM",
+    "KXBILLBOARDRUNNERUPALBUM"
+  ],
+  "protocol": "ND-1",
+  "residual": 0.19374999999999998,
+  "source_digest": "6c8313c223a2f98d51ce22a58ff5c0dedf0c1da5d08eb4c7d87511cd396a95c3",
+  "training_end": "2026-05-01T00:00:00+00:00",
+  "validation_plan": {
+    "end": "2026-09-01T00:00:00+00:00",
+    "manifest_digest": "0dabd93f1d23e3d6fa5bc1742b6db88a64f4691106b3fe2c3efe785286f05102",
+    "manifest_path": "theories/news_drift/backtests/nd1-charts-long-20260905/replay_manifest.json",
+    "membership_digest": "1a336efeef8ed1c10bbaae7fa0694a96cc727b79ab559240a7478ecd6b7d789a",
+    "membership_path": "theories/news_drift/backtests/nd1-charts-long-20260905/validation_membership.json",
+    "population_complete": true,
+    "population_series": [
+      "KXALBUMEQUIV",
+      "KXPUREALBUMS",
+      "KXTOPSONG",
+      "KXBILLBOARDRUNNERUPSONG",
+      "KXTOPALBUM",
+      "KXBILLBOARDRUNNERUPALBUM"
+    ],
+    "protocol_digest": "072a84863566a7abf1363a0807721660ae4f28295c1cf43535022015b5fd441a",
+    "protocol_path": "theories/news_drift/backtests/nd1-charts-long-20260905/PROTOCOL.md",
+    "run_id": "nd1-charts-long-20260905/holdout",
+    "source_digest": "6c8313c223a2f98d51ce22a58ff5c0dedf0c1da5d08eb4c7d87511cd396a95c3",
+    "start": "2026-05-01T00:00:00+00:00",
+    "usable_for_validation": true
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "campaign": "nd1-charts-long-20260905",
+  "candles": {
+    "candle_rows": 54752,
+    "empty": 2673,
+    "excluded_by_calendar_availability": {
+      "closed_at_or_before_window": 2476,
+      "opened_at_or_after_window": 120
+    },
+    "http_eligible_tickers": 4651,
+    "http_requests": 2467,
+    "live_batch_size": 40,
+    "missing_requests": [],
+    "requested": 7247,
+    "stored": 7247
+  },
+  "category": "Entertainment",
+  "category_conflicts": {},
+  "collected_at": "2026-09-05T03:29:58Z",
+  "coverage_complete": true,
+  "database": "history.db",
+  "denominator": "denominator.json",
+  "denominator_sha256": "fe9b15b1221011da9391bbdfc98327cca55bbf273d347c3856f057fe048e8aeb",
+  "inventory_reused_from": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\news_drift\\backtests\\nd1-charts-20260905",
+  "inventory_tree_sha256": "17eb4a21af2693506c0461e7892c95a6e660530661d1af5d0b9a42d98ff8b656",
+  "markets": {
+    "duplicates": 135,
+    "pages": {
+      "historical": 7,
+      "live": 6
+    },
+    "statuses": {
+      "active": 674,
+      "closed": 40,
+      "finalized": 6533
+    },
+    "unique": 7247,
+    "unique_historical": 4887,
+    "unique_live": 2495
+  },
+  "protocol": "ND-1",
+  "selection": "All live-tier and historical-tier markets returned for each frozen series; no status, terminal-volume, result, quote, or realized-close filter.",
+  "series": [
+    "KXALBUMEQUIV",
+    "KXPUREALBUMS",
+    "KXTOPSONG",
+    "KXBILLBOARDRUNNERUPSONG",
+    "KXTOPALBUM",
+    "KXBILLBOARDRUNNERUPALBUM"
+  ],
+  "window": {
+    "end_ts": 1788220800,
+    "period_interval": 1440,
+    "start_ts": 1767225600
+  }
+}

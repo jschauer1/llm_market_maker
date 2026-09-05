@@ -1,0 +1,15 @@
+{
+  "complete": false,
+  "last_error": null,
+  "markets_enumerated": 7247,
+  "phase": "candles",
+  "series": [
+    "KXALBUMEQUIV",
+    "KXPUREALBUMS",
+    "KXTOPSONG",
+    "KXBILLBOARDRUNNERUPSONG",
+    "KXTOPALBUM",
+    "KXBILLBOARDRUNNERUPALBUM"
+  ],
+  "started_at": "2026-09-05T03:08:02Z"
+}

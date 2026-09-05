@@ -1,0 +1,548 @@
+[
+  {
+    "entry_ts": 1783396800,
+    "event_ticker": "KXALBUMEQUIV-ALB26JUL16",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-ALB26JUL16-140K"
+  },
+  {
+    "entry_ts": 1783483200,
+    "event_ticker": "KXALBUMEQUIV-ALB26JUL16",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-ALB26JUL16-160K"
+  },
+  {
+    "entry_ts": 1783483200,
+    "event_ticker": "KXALBUMEQUIV-ALB26JUL16",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-ALB26JUL16-240K"
+  },
+  {
+    "entry_ts": 1783569600,
+    "event_ticker": "KXALBUMEQUIV-APO26JUL30",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-APO26JUL30-60K"
+  },
+  {
+    "entry_ts": 1787976000,
+    "event_ticker": "KXALBUMEQUIV-BLA26SEP03",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-BLA26SEP03-10K"
+  },
+  {
+    "entry_ts": 1786593600,
+    "event_ticker": "KXALBUMEQUIV-BLA26SEP03",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-BLA26SEP03-15K"
+  },
+  {
+    "entry_ts": 1784692800,
+    "event_ticker": "KXALBUMEQUIV-BLA26SEP03",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-BLA26SEP03-5K"
+  },
+  {
+    "entry_ts": 1786420800,
+    "event_ticker": "KXALBUMEQUIV-CHU26AUG13",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-CHU26AUG13-35K"
+  },
+  {
+    "entry_ts": 1783137600,
+    "event_ticker": "KXALBUMEQUIV-CON26JUL09",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-CON26JUL09-100K"
+  },
+  {
+    "entry_ts": 1783742400,
+    "event_ticker": "KXALBUMEQUIV-CON26JUL09",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-CON26JUL09-130K"
+  },
+  {
+    "entry_ts": 1782273600,
+    "event_ticker": "KXALBUMEQUIV-CON26JUL09",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-CON26JUL09-80K"
+  },
+  {
+    "entry_ts": 1781064000,
+    "event_ticker": "KXALBUMEQUIV-CRY26JUN11",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-CRY26JUN11-12K"
+  },
+  {
+    "entry_ts": 1782273600,
+    "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-190K"
+  },
+  {
+    "entry_ts": 1784520000,
+    "event_ticker": "KXALBUMEQUIV-DAU26JUL23",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-85K"
+  },
+  {
+    "entry_ts": 1784433600,
+    "event_ticker": "KXALBUMEQUIV-DAU26JUL23",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-DAU26JUL23-90K"
+  },
+  {
+    "entry_ts": 1784779200,
+    "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-DAU26JUL23B-130K"
+  },
+  {
+    "entry_ts": 1782532800,
+    "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-DAU26JUL23B-140K"
+  },
+  {
+    "entry_ts": 1784520000,
+    "event_ticker": "KXALBUMEQUIV-DAU26JUL23B",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-DAU26JUL23B-150K"
+  },
+  {
+    "entry_ts": 1785038400,
+    "event_ticker": "KXALBUMEQUIV-DON26SEP03",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-DON26SEP03-100K"
+  },
+  {
+    "entry_ts": 1781150400,
+    "event_ticker": "KXALBUMEQUIV-DOT26JUN11",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-DOT26JUN11-75K"
+  },
+  {
+    "entry_ts": 1782273600,
+    "event_ticker": "KXALBUMEQUIV-GEN26JUN25",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-GEN26JUN25-9K"
+  },
+  {
+    "entry_ts": 1779076800,
+    "event_ticker": "KXALBUMEQUIV-ICE26MAY21",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-ICE26MAY21-550K"
+  },
+  {
+    "entry_ts": 1785211200,
+    "event_ticker": "KXALBUMEQUIV-LIT26JUL30B",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-LIT26JUL30B-10K"
+  },
+  {
+    "entry_ts": 1785211200,
+    "event_ticker": "KXALBUMEQUIV-LIT26JUL30B",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-LIT26JUL30B-15K"
+  },
+  {
+    "entry_ts": 1786939200,
+    "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-LOS26AUG20-100K"
+  },
+  {
+    "entry_ts": 1787112000,
+    "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-LOS26AUG20-110K"
+  },
+  {
+    "entry_ts": 1783742400,
+    "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-LOS26AUG20-35K"
+  },
+  {
+    "entry_ts": 1783742400,
+    "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-LOS26AUG20-45K"
+  },
+  {
+    "entry_ts": 1784174400,
+    "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-LOS26AUG20-50K"
+  },
+  {
+    "entry_ts": 1784174400,
+    "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-LOS26AUG20-55K"
+  },
+  {
+    "entry_ts": 1784174400,
+    "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-LOS26AUG20-70K"
+  },
+  {
+    "entry_ts": 1785211200,
+    "event_ticker": "KXALBUMEQUIV-LOS26AUG20",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-LOS26AUG20-90K"
+  },
+  {
+    "entry_ts": 1782878400,
+    "event_ticker": "KXALBUMEQUIV-MUS26JUL30",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-MUS26JUL30-125K"
+  },
+  {
+    "entry_ts": 1785124800,
+    "event_ticker": "KXALBUMEQUIV-MUS26JUL30",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-MUS26JUL30-75K"
+  },
+  {
+    "entry_ts": 1785124800,
+    "event_ticker": "KXALBUMEQUIV-MUS26JUL30",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-MUS26JUL30-80K"
+  },
+  {
+    "entry_ts": 1787025600,
+    "event_ticker": "KXALBUMEQUIV-NDA26AUG20",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-NDA26AUG20-20K"
+  },
+  {
+    "entry_ts": 1786334400,
+    "event_ticker": "KXALBUMEQUIV-NOM26AUG13",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-NOM26AUG13-40K"
+  },
+  {
+    "entry_ts": 1786334400,
+    "event_ticker": "KXALBUMEQUIV-NOM26AUG13",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-NOM26AUG13-45K"
+  },
+  {
+    "entry_ts": 1786161600,
+    "event_ticker": "KXALBUMEQUIV-NOM26AUG13",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-NOM26AUG13-50K"
+  },
+  {
+    "entry_ts": 1786161600,
+    "event_ticker": "KXALBUMEQUIV-NOM26AUG13",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-NOM26AUG13-55K"
+  },
+  {
+    "entry_ts": 1786161600,
+    "event_ticker": "KXALBUMEQUIV-NOM26AUG13",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-NOM26AUG13-60K"
+  },
+  {
+    "entry_ts": 1784088000,
+    "event_ticker": "KXALBUMEQUIV-OHY26JUL23",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-OHY26JUL23-30K"
+  },
+  {
+    "entry_ts": 1784865600,
+    "event_ticker": "KXALBUMEQUIV-OHY26JUL23",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-OHY26JUL23-35K"
+  },
+  {
+    "entry_ts": 1784606400,
+    "event_ticker": "KXALBUMEQUIV-OHY26JUL23",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-OHY26JUL23-40K"
+  },
+  {
+    "entry_ts": 1785124800,
+    "event_ticker": "KXALBUMEQUIV-PET26AUG06",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-PET26AUG06-300K"
+  },
+  {
+    "entry_ts": 1785729600,
+    "event_ticker": "KXALBUMEQUIV-PET26AUG06",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-PET26AUG06-320K"
+  },
+  {
+    "entry_ts": 1785988800,
+    "event_ticker": "KXALBUMEQUIV-PRI26SEP10",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-PRI26SEP10-15K"
+  },
+  {
+    "entry_ts": 1787025600,
+    "event_ticker": "KXALBUMEQUIV-PRI26SEP10",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-PRI26SEP10-35K"
+  },
+  {
+    "entry_ts": 1785211200,
+    "event_ticker": "KXALBUMEQUIV-REA26JUL30",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-REA26JUL30-30K"
+  },
+  {
+    "entry_ts": 1784260800,
+    "event_ticker": "KXALBUMEQUIV-SET26JUL23",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-SET26JUL23-10K"
+  },
+  {
+    "entry_ts": 1784692800,
+    "event_ticker": "KXALBUMEQUIV-SET26JUL23",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-SET26JUL23-20K"
+  },
+  {
+    "entry_ts": 1786593600,
+    "event_ticker": "KXALBUMEQUIV-THI26AUG13",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-THI26AUG13-350K"
+  },
+  {
+    "entry_ts": 1782273600,
+    "event_ticker": "KXALBUMEQUIV-VIS26JUL09",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-VIS26JUL09-75K"
+  },
+  {
+    "entry_ts": 1788062400,
+    "event_ticker": "KXALBUMEQUIV-WIL26SEP03",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-WIL26SEP03-50K"
+  },
+  {
+    "entry_ts": 1788062400,
+    "event_ticker": "KXALBUMEQUIV-WIL26SEP03",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-WIL26SEP03-60K"
+  },
+  {
+    "entry_ts": 1783224000,
+    "event_ticker": "KXALBUMEQUIV-XPE26JUL09",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-XPE26JUL09-50K"
+  },
+  {
+    "entry_ts": 1783224000,
+    "event_ticker": "KXALBUMEQUIV-XPE26JUL09",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-XPE26JUL09-60K"
+  },
+  {
+    "entry_ts": 1782792000,
+    "event_ticker": "KXALBUMEQUIV-XPE26JUL09",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-XPE26JUL09-70K"
+  },
+  {
+    "entry_ts": 1783137600,
+    "event_ticker": "KXALBUMEQUIV-XPE26JUL09",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-XPE26JUL09-80K"
+  },
+  {
+    "entry_ts": 1780372800,
+    "event_ticker": "KXALBUMEQUIV-YOU26JUN18",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-YOU26JUN18-350K"
+  },
+  {
+    "entry_ts": 1781582400,
+    "event_ticker": "KXALBUMEQUIV-YOU26JUN18",
+    "side": "yes",
+    "ticker": "KXALBUMEQUIV-YOU26JUN18-450K"
+  },
+  {
+    "entry_ts": 1782187200,
+    "event_ticker": "KXALBUMEQUIV-YOU26JUN25",
+    "side": "no",
+    "ticker": "KXALBUMEQUIV-YOU26JUN25-200K"
+  },
+  {
+    "entry_ts": 1785297600,
+    "event_ticker": "KXBILLBOARDRUNNERUPALBUM-26AUG08",
+    "side": "no",
+    "ticker": "KXBILLBOARDRUNNERUPALBUM-26AUG08-IMT"
+  },
+  {
+    "entry_ts": 1785902400,
+    "event_ticker": "KXBILLBOARDRUNNERUPSONG-26AUG15",
+    "side": "yes",
+    "ticker": "KXBILLBOARDRUNNERUPSONG-26AUG15-HAT"
+  },
+  {
+    "entry_ts": 1786593600,
+    "event_ticker": "KXBILLBOARDRUNNERUPSONG-26AUG22",
+    "side": "yes",
+    "ticker": "KXBILLBOARDRUNNERUPSONG-26AUG22-BOS"
+  },
+  {
+    "entry_ts": 1786420800,
+    "event_ticker": "KXBILLBOARDRUNNERUPSONG-26AUG22",
+    "side": "no",
+    "ticker": "KXBILLBOARDRUNNERUPSONG-26AUG22-IKN"
+  },
+  {
+    "entry_ts": 1779681600,
+    "event_ticker": "KXBILLBOARDRUNNERUPSONG-26JUN06",
+    "side": "yes",
+    "ticker": "KXBILLBOARDRUNNERUPSONG-26JUN06-JAN"
+  },
+  {
+    "entry_ts": 1781841600,
+    "event_ticker": "KXBILLBOARDRUNNERUPSONG-26JUN27",
+    "side": "yes",
+    "ticker": "KXBILLBOARDRUNNERUPSONG-26JUN27-CHO"
+  },
+  {
+    "entry_ts": 1781841600,
+    "event_ticker": "KXBILLBOARDRUNNERUPSONG-26JUN27",
+    "side": "no",
+    "ticker": "KXBILLBOARDRUNNERUPSONG-26JUN27-STU"
+  },
+  {
+    "entry_ts": 1786507200,
+    "event_ticker": "KXPUREALBUMS-CHU26AUG13",
+    "side": "yes",
+    "ticker": "KXPUREALBUMS-CHU26AUG13-21K"
+  },
+  {
+    "entry_ts": 1786852800,
+    "event_ticker": "KXPUREALBUMS-CHU26AUG13",
+    "side": "yes",
+    "ticker": "KXPUREALBUMS-CHU26AUG13-24K"
+  },
+  {
+    "entry_ts": 1780459200,
+    "event_ticker": "KXPUREALBUMS-DIR26JUN18B",
+    "side": "yes",
+    "ticker": "KXPUREALBUMS-DIR26JUN18B-6K"
+  },
+  {
+    "entry_ts": 1780545600,
+    "event_ticker": "KXPUREALBUMS-DOT26JUN11",
+    "side": "no",
+    "ticker": "KXPUREALBUMS-DOT26JUN11-18K"
+  },
+  {
+    "entry_ts": 1778904000,
+    "event_ticker": "KXPUREALBUMS-ICE26MAY21",
+    "side": "no",
+    "ticker": "KXPUREALBUMS-ICE26MAY21-25K"
+  },
+  {
+    "entry_ts": 1785211200,
+    "event_ticker": "KXPUREALBUMS-LIT26JUL30B",
+    "side": "no",
+    "ticker": "KXPUREALBUMS-LIT26JUL30B-12K"
+  },
+  {
+    "entry_ts": 1785297600,
+    "event_ticker": "KXPUREALBUMS-MUS26JUL30",
+    "side": "yes",
+    "ticker": "KXPUREALBUMS-MUS26JUL30-50K"
+  },
+  {
+    "entry_ts": 1785470400,
+    "event_ticker": "KXPUREALBUMS-MUS26JUL30",
+    "side": "yes",
+    "ticker": "KXPUREALBUMS-MUS26JUL30-55K"
+  },
+  {
+    "entry_ts": 1785816000,
+    "event_ticker": "KXPUREALBUMS-NOM26AUG13",
+    "side": "no",
+    "ticker": "KXPUREALBUMS-NOM26AUG13-3K"
+  },
+  {
+    "entry_ts": 1783396800,
+    "event_ticker": "KXPUREALBUMS-PET26AUG06",
+    "side": "no",
+    "ticker": "KXPUREALBUMS-PET26AUG06-100K"
+  },
+  {
+    "entry_ts": 1782273600,
+    "event_ticker": "KXPUREALBUMS-PET26AUG06",
+    "side": "yes",
+    "ticker": "KXPUREALBUMS-PET26AUG06-110K"
+  },
+  {
+    "entry_ts": 1785729600,
+    "event_ticker": "KXPUREALBUMS-PET26AUG06",
+    "side": "yes",
+    "ticker": "KXPUREALBUMS-PET26AUG06-140K"
+  },
+  {
+    "entry_ts": 1785729600,
+    "event_ticker": "KXPUREALBUMS-PET26AUG06",
+    "side": "yes",
+    "ticker": "KXPUREALBUMS-PET26AUG06-150K"
+  },
+  {
+    "entry_ts": 1786680000,
+    "event_ticker": "KXPUREALBUMS-PRI26SEP10",
+    "side": "yes",
+    "ticker": "KXPUREALBUMS-PRI26SEP10-4K"
+  },
+  {
+    "entry_ts": 1784174400,
+    "event_ticker": "KXPUREALBUMS-SET26JUL23",
+    "side": "no",
+    "ticker": "KXPUREALBUMS-SET26JUL23-3K"
+  },
+  {
+    "entry_ts": 1786593600,
+    "event_ticker": "KXPUREALBUMS-WILD26AUG20",
+    "side": "no",
+    "ticker": "KXPUREALBUMS-WILD26AUG20-90K"
+  },
+  {
+    "entry_ts": 1785470400,
+    "event_ticker": "KXTOPALBUM-26AUG08",
+    "side": "no",
+    "ticker": "KXTOPALBUM-26AUG08-IMT"
+  },
+  {
+    "entry_ts": 1785729600,
+    "event_ticker": "KXTOPSONG-26AUG15",
+    "side": "yes",
+    "ticker": "KXTOPSONG-26AUG15-CHO"
+  },
+  {
+    "entry_ts": 1782100800,
+    "event_ticker": "KXTOPSONG-26JUL04",
+    "side": "no",
+    "ticker": "KXTOPSONG-26JUL04-CHO"
+  },
+  {
+    "entry_ts": 1780027200,
+    "event_ticker": "KXTOPSONG-26JUN06",
+    "side": "no",
+    "ticker": "KXTOPSONG-26JUN06-CHO"
+  },
+  {
+    "entry_ts": 1780027200,
+    "event_ticker": "KXTOPSONG-26JUN06",
+    "side": "yes",
+    "ticker": "KXTOPSONG-26JUN06-JAN"
+  },
+  {
+    "entry_ts": 1780286400,
+    "event_ticker": "KXTOPSONG-26JUN13",
+    "side": "yes",
+    "ticker": "KXTOPSONG-26JUN13-CHO"
+  }
+]

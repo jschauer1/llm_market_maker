@@ -1,0 +1,16 @@
+{
+  "complete": true,
+  "finished_at": "2026-09-05T03:29:58Z",
+  "last_error": null,
+  "markets_enumerated": 7247,
+  "phase": "complete",
+  "series": [
+    "KXALBUMEQUIV",
+    "KXPUREALBUMS",
+    "KXTOPSONG",
+    "KXBILLBOARDRUNNERUPSONG",
+    "KXTOPALBUM",
+    "KXBILLBOARDRUNNERUPALBUM"
+  ],
+  "started_at": "2026-09-05T03:29:13Z"
+}

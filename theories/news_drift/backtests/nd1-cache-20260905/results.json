@@ -1,0 +1,194 @@
+{
+  "calibration": {
+    "approved": true,
+    "eligible_for_production": false,
+    "event_clusters": 89,
+    "n": 148,
+    "protocol": "ND-1",
+    "residual": 0.008817567567567566,
+    "source_digest": "e23c9457a6c982b43b1448e8f104c16e1fafc465b597ca1c555721f345c89510",
+    "training_end": "2026-08-01T00:00:00+00:00"
+  },
+  "eligible_for_production": false,
+  "limitations": [
+    "insider-screen category and final-volume selection",
+    "45-day histories anchored to realized close",
+    "settled-only partial collection; no population denominator",
+    "current structural category mapping with excluded conflicts",
+    "daily quote closes, no historical depth or guaranteed fills"
+  ],
+  "phases": {
+    "holdout": {
+      "all_signals": {
+        "day": {
+          "clusters": 13,
+          "interval": [
+            -23.867035555698596,
+            25.013617698555738
+          ],
+          "mean": 0.5732910714285713,
+          "se": 11.21630409689177
+        },
+        "effective_event_count": 20.363636363636363,
+        "event": {
+          "clusters": 33,
+          "interval": [
+            -15.030400203014446,
+            16.17698234587159
+          ],
+          "mean": 0.5732910714285713,
+          "se": 7.637636453471863
+        },
+        "gross_ask_pts": 1.9464285714285714,
+        "gross_mid_pts": 2.9375000000000004,
+        "max_event_share": 0.125,
+        "n": 56,
+        "net_one_contract_pts": 0.12499999999999943,
+        "net_pts": 0.5732910714285713,
+        "positive_statistical_bar": false,
+        "reversal": {
+          "day": {
+            "clusters": 13,
+            "interval": [
+              -29.62911736129234,
+              18.975674504149485
+            ],
+            "mean": -5.326721428571429,
+            "se": 11.153004099458887
+          },
+          "effective_event_count": 20.363636363636363,
+          "event": {
+            "clusters": 33,
+            "interval": [
+              -20.824850804024596,
+              10.17140794688174
+            ],
+            "mean": -5.326721428571429,
+            "se": 7.5859664099134445
+          },
+          "gross_ask_pts": -3.928571428571429,
+          "gross_mid_pts": -2.9375000000000004,
+          "max_event_share": 0.125,
+          "n": 56,
+          "net_one_contract_pts": -5.839285714285715,
+          "net_pts": -5.326721428571429,
+          "positive_statistical_bar": false
+        }
+      },
+      "positive_forecasts": {
+        "day": {
+          "clusters": 0,
+          "interval": null,
+          "mean": null,
+          "se": null
+        },
+        "event": {
+          "clusters": 0,
+          "interval": null,
+          "mean": null,
+          "se": null
+        },
+        "n": 0,
+        "net_pts": null
+      },
+      "recorded": 56,
+      "run_id": "exp/nd1-cache-20260905/holdout"
+    },
+    "train": {
+      "all_signals": {
+        "day": {
+          "clusters": 34,
+          "interval": [
+            -8.661307293968502,
+            5.633130266941475
+          ],
+          "mean": -1.5140885135135136,
+          "se": 3.4983939209275516
+        },
+        "effective_event_count": 64.80473372781066,
+        "event": {
+          "clusters": 89,
+          "interval": [
+            -8.326475807186293,
+            5.298298780159266
+          ],
+          "mean": -1.5140885135135136,
+          "se": 3.404491401135822
+        },
+        "gross_ask_pts": -0.10135135135135129,
+        "gross_mid_pts": 0.8817567567567564,
+        "max_event_share": 0.04054054054054054,
+        "n": 148,
+        "net_one_contract_pts": -1.9729729729729737,
+        "net_pts": -1.5140885135135136,
+        "positive_statistical_bar": false,
+        "reversal": {
+          "day": {
+            "clusters": 34,
+            "interval": [
+              -10.472381491480414,
+              3.888222032020954
+            ],
+            "mean": -3.2920797297297297,
+            "se": 3.514587254895097
+          },
+          "effective_event_count": 64.80473372781066,
+          "event": {
+            "clusters": 89,
+            "interval": [
+              -10.070709135055079,
+              3.48654967559562
+            ],
+            "mean": -3.2920797297297297,
+            "se": 3.387620892216567
+          },
+          "gross_ask_pts": -1.864864864864865,
+          "gross_mid_pts": -0.8817567567567562,
+          "max_event_share": 0.04054054054054054,
+          "n": 148,
+          "net_one_contract_pts": -3.7567567567567575,
+          "net_pts": -3.2920797297297297,
+          "positive_statistical_bar": false
+        }
+      },
+      "positive_forecasts": {
+        "day": {
+          "clusters": 0,
+          "interval": null,
+          "mean": null,
+          "se": null
+        },
+        "event": {
+          "clusters": 0,
+          "interval": null,
+          "mean": null,
+          "se": null
+        },
+        "n": 0,
+        "net_pts": null
+      },
+      "recorded": 148,
+      "run_id": "exp/nd1-cache-20260905/train"
+    }
+  },
+  "pooled_score": {
+    "calibration_edge": null,
+    "calibration_edge_net": null,
+    "clustered_se": null,
+    "mean_claimed_edge": null,
+    "mean_fee_pts": null,
+    "n": 0,
+    "n_attempts": 0,
+    "n_backtest": 0,
+    "n_clusters": 0,
+    "price_implied_rate": null,
+    "realization": null,
+    "riskless_n": 0,
+    "riskless_roi": null,
+    "roi_all": null,
+    "roi_taken": null,
+    "unclustered_rows": 0,
+    "win_rate": null
+  },
+  "protocol": "ND-1"
+}

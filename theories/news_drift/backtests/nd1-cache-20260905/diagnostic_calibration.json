@@ -1,0 +1,10 @@
+{
+  "approved": true,
+  "eligible_for_production": false,
+  "event_clusters": 89,
+  "n": 148,
+  "protocol": "ND-1",
+  "residual": 0.008817567567567566,
+  "source_digest": "e23c9457a6c982b43b1448e8f104c16e1fafc465b597ca1c555721f345c89510",
+  "training_end": "2026-08-01T00:00:00+00:00"
+}
