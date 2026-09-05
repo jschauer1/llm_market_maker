@@ -1,1 +1,721 @@
-{"schema_version": 1, "request": {"run_id": "study/broad-procedural-20260905", "theory_id": "study/broad-procedural", "theory_version": 1, "run_mode": "study", "decision_at": "2026-09-05T19:53:15.489944+00:00", "requested_model": "gpt-5.6-sol", "requested_effort": "high", "requested_web_search": true, "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-038\\first-output.jsonl", "stage": "analysis", "batch_id": "38", "candidate_keys": ["KXBRIANCONF-26JUL08-JAN01", "KXNEWXBOX-XBOX-27", "KXMEISSNER-2701JAN", "KXNIFTY-26DEC31-26000", "KXXIUSA-26JUL07-NOV01", "KXXIUSA-26JUL07-OCT01", "KXBUILDPERMS-26SEP17-T1.250", "KXEHSALES-26SEP10-T3.80", "KXEHSALES-26SEP10-T4.30", "KXMLSSPREAD-26SEP05TORCHI-CHI2", "KXMLSSPREAD-26SEP05TORCHI-CHI3", "TESLAOPTIMUS-26DEC31", "KXUSSAUDINUCLEAR-27-27JAN01", "KXAAAGASW-26SEP07-4.136", "KXAAAGASW-26SEP07-4.138", "KXAAAGASW-26SEP07-4.140", "KXAAAGASW-26SEP07-4.146", "KXAAAGASW-26SEP07-4.150", "KXAAAGASW-26SEP07-4.160", "KXFISALENGTH-26MAY-FISA1Y", "KXFISALENGTH-26MAY-FISA2Y", "KXFISALENGTH-26MAY-FISA30D", "KXFISALENGTH-26MAY-FISA5Y", "KXFISALENGTH-26MAY-FISA90D", "KXAAAGASMINTX-26DEC31-1.80", "KXAAAGASMINTX-26DEC31-1.90", "KXAAAGASMINTX-26DEC31-2.10", "KXAAAGASMINTX-26DEC31-2.20", "KXAAAGASMINTX-26DEC31-2.30", "KXCBDECISIONJAPAN-26OCT29-C25", "KXCBDECISIONJAPAN-26OCT29-C25P", "KXCBDECISIONJAPAN-26OCT29-H25P", "KXCBDECISIONJAPAN-26OCT29-HOLD", "KXYALEDOJSETTLE-27-27JAN01"], "payload_sha256": "dbc16ddbfdefed9bdba496e5da6b7d7a54b4fb361b76178c898a53b7e515569c", "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-038\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-038\\first-output.jsonl\n", "payload": {"decision_at": "2026-09-05T19:53:15.489944+00:00", "events": [{"event_key": "KXBRIANCONF-26JUL08", "markets": [{"category": "Politics", "event_key": "KXBRIANCONF-26JUL08", "key": "KXBRIANCONF-26JUL08-JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If Brian Johnson is the first person confirmed as Director of the Consumer Financial Protection Bureau before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "If a nomination is withdrawn before the deadline, that market immediately resolves to No.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXBRIANCONF", "subtitle": "::", "title": "Will Brian Johnson be confirmed as Director of the Consumer Financial Protection Bureau before Jan 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}]}, {"event_key": "KXNEWXBOX-XBOX", "markets": [{"category": "Financials", "event_key": "KXNEWXBOX-XBOX", "key": "KXNEWXBOX-XBOX-27", "no_sub_title": "a new Xbox video game console", "rules_primary": "If Microsoft releases a new Xbox video game console to the public before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXNEWXBOX", "subtitle": "a new Xbox video game console", "title": "Will Microsoft release a new Xbox video game console to the public before 2027?", "yes_sub_title": "a new Xbox video game console"}]}, {"event_key": "KXMEISSNER-2701JAN", "markets": [{"category": "Science and Technology", "event_key": "KXMEISSNER-2701JAN", "key": "KXMEISSNER-2701JAN", "no_sub_title": "Yes", "rules_primary": "If a peer-reviewed paper published in an eligible journal reports the discovery of a material exhibiting the Meissner effect at ambient pressure with a critical temperature of at least 240 K before January 1, 2027, the market resolves to Yes.", "rules_secondary": "Eligible journals are those in the first quartile (Q1) of SCImago's condensed matter physics ranking or any journal with an SJR above 1.0. The material need not be a previously researched substance. ", "scheduled_close": "2027-01-02T04:59:00Z", "series": "KXMEISSNER", "subtitle": "By Jan 01", "title": "Will near room-temp Meissner effect be reported by a major peer-reviewed journal?", "yes_sub_title": "Yes"}]}, {"event_key": "KXNIFTY-26DEC31", "markets": [{"category": "Financials", "event_key": "KXNIFTY-26DEC31", "key": "KXNIFTY-26DEC31-26000", "no_sub_title": "At least \u20b926,000", "rules_primary": "If the value of Nifty 50 Index (NIFTY) is at least \u20b926,000 from Jun 16, 2026 to Dec 31, 2026, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the value of the Nifty 50 Index as reported by the Trading View, using the index's natively published level in its own currency and units; no currency conversion is applied. It is sufficient for the index to reach or exceed \u20b926,000 at any single point during from Jun 16, 2026 to Dec 31, 2026 for the market to resolve to Yes \u2014 the level does not need to be sustained. If the index does not reach \u20b926,000 at any point during from Jun 16, 2026 to Dec 31, 2026, the market resolves to No. Revisions to the underlying made after expiration will not be accounted for in determining the Expiration Value. \n\nIf no data is available for from Jun 16, 2026 to Dec 31, 2026 by the Expiration Date, all strikes other than \"No data\" or \"None\" resolve to No. The index level is evaluated to two decimal places unless otherwise specified.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXNIFTY", "subtitle": null, "title": "Will the Nifty 50 Index be at least \u20b926,000 in 2026?", "yes_sub_title": "At least \u20b926,000"}]}, {"event_key": "KXXIUSA-26JUL07", "markets": [{"category": "Politics", "event_key": "KXXIUSA-26JUL07", "key": "KXXIUSA-26JUL07-NOV01", "no_sub_title": "Before Nov 1, 2026", "rules_primary": "If Xi Jinping has physically travelled to and been present within the geographic boundaries of the United States of America before Nov 1, 2026, then the market resolves to Yes.", "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.", "scheduled_close": "2026-11-01T15:00:00Z", "series": "KXXIUSA", "subtitle": null, "title": "Will Xi Jinping visit the United States of America before Nov 1, 2026?", "yes_sub_title": "Before Nov 1, 2026"}, {"category": "Politics", "event_key": "KXXIUSA-26JUL07", "key": "KXXIUSA-26JUL07-OCT01", "no_sub_title": "Before Oct 1, 2026", "rules_primary": "If Xi Jinping has physically travelled to and been present within the geographic boundaries of the United States of America before Oct 1, 2026, then the market resolves to Yes.", "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.", "scheduled_close": "2026-10-01T14:00:00Z", "series": "KXXIUSA", "subtitle": "Before Oct 1, 2026", "title": "Will Xi Jinping visit the United States of America before Oct 1, 2026?", "yes_sub_title": "Before Oct 1, 2026"}]}, {"event_key": "KXBUILDPERMS-26SEP17", "markets": [{"category": "Economics", "event_key": "KXBUILDPERMS-26SEP17", "key": "KXBUILDPERMS-26SEP17-T1.250", "no_sub_title": "Above 1.250M", "rules_primary": "If the value of US building permits (total units) for August 2026 is above 1.250M (SAAR), then the market resolves to Yes.", "rules_secondary": "The Underlying is the first-published U.S. building permits value for August 2026, as released in the Census New Residential Construction report and reflected by Trading Economics on the initial release date. Later revised, final, or updated building permits releases, including the revised permits release approximately one week later, will not be used for resolution.", "scheduled_close": "2026-09-17T12:29:00Z", "series": "KXBUILDPERMS", "subtitle": null, "title": "Will US building permits for August 2026 be above 1.250M?", "yes_sub_title": "Above 1.250M"}]}, {"event_key": "KXEHSALES-26SEP10", "markets": [{"category": "Economics", "event_key": "KXEHSALES-26SEP10", "key": "KXEHSALES-26SEP10-T3.80", "no_sub_title": "Above 3.80M", "rules_primary": "If US existing home sales for August 2026 (seasonally adjusted annual rate, millions of homes) is above 3.80M, then the market resolves to Yes.", "rules_secondary": "Outcome verified from Trading Economics (series: United States Existing Home Sales), which reports National Association of Realtors (NAR) data.", "scheduled_close": "2026-09-10T13:59:00Z", "series": "KXEHSALES", "subtitle": null, "title": "Will US existing home sales for August 2026 be above 3.80M?", "yes_sub_title": "Above 3.80M"}, {"category": "Economics", "event_key": "KXEHSALES-26SEP10", "key": "KXEHSALES-26SEP10-T4.30", "no_sub_title": "Above 4.30M", "rules_primary": "If US existing home sales for August 2026 (seasonally adjusted annual rate, millions of homes) is above 4.30M, then the market resolves to Yes.", "rules_secondary": "Outcome verified from Trading Economics (series: United States Existing Home Sales), which reports National Association of Realtors (NAR) data.", "scheduled_close": "2026-09-10T13:59:00Z", "series": "KXEHSALES", "subtitle": null, "title": "Will US existing home sales for August 2026 be above 4.30M?", "yes_sub_title": "Above 4.30M"}]}, {"event_key": "KXMLSSPREAD-26SEP05TORCHI", "markets": [{"category": "Sports", "event_key": "KXMLSSPREAD-26SEP05TORCHI", "key": "KXMLSSPREAD-26SEP05TORCHI-CHI2", "no_sub_title": "Chicago Fire wins by more than 1.5 goals", "rules_primary": "If Chicago Fire wins by more than 1.5 goals in the Toronto vs Chicago Fire professional MLS soccer game originally scheduled for Sep 5, 2026 after 90 minutes plus stoppage time (does not include extra time or penalties), then the market resolves to Yes.", "rules_secondary": "Kalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-09-08T05:30:00Z", "series": "KXMLSSPREAD", "subtitle": null, "title": "Chicago Fire wins by more than 1.5 goals?", "yes_sub_title": "Chicago Fire wins by more than 1.5 goals"}, {"category": "Sports", "event_key": "KXMLSSPREAD-26SEP05TORCHI", "key": "KXMLSSPREAD-26SEP05TORCHI-CHI3", "no_sub_title": "Chicago Fire wins by more than 2.5 goals", "rules_primary": "If Chicago Fire wins by more than 2.5 goals in the Toronto vs Chicago Fire professional MLS soccer game originally scheduled for Sep 5, 2026 after 90 minutes plus stoppage time (does not include extra time or penalties), then the market resolves to Yes.", "rules_secondary": "Kalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-09-08T05:30:00Z", "series": "KXMLSSPREAD", "subtitle": null, "title": "Chicago Fire wins by more than 2.5 goals?", "yes_sub_title": "Chicago Fire wins by more than 2.5 goals"}]}, {"event_key": "TESLAOPTIMUS-26DEC31", "markets": [{"category": "Science and Technology", "event_key": "TESLAOPTIMUS-26DEC31", "key": "TESLAOPTIMUS-26DEC31", "no_sub_title": "Before 2027", "rules_primary": "If the Tesla Optimus (or another humanoid robot) is on sale to the general public before Dec 31, 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T04:59:00Z", "series": "TESLAOPTIMUS", "subtitle": "Before 2027", "title": "Tesla Optimus on sale before 2027?", "yes_sub_title": "Before 2027"}]}, {"event_key": "KXUSSAUDINUCLEAR-27", "markets": [{"category": "Politics", "event_key": "KXUSSAUDINUCLEAR-27", "key": "KXUSSAUDINUCLEAR-27-27JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If the bilateral U.S.\u2013Saudi agreement for peaceful nuclear cooperation under Section 123 of the Atomic Energy Act has entered into force and become legally operative between the two governments  after Issuance and before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXUSSAUDINUCLEAR", "subtitle": null, "title": "Will it be reported by any of the Source Agencies that the bilateral U.S.\u2013Saudi agreement for peaceful nuclear cooperation under Section 123 of the Atomic Energy Act has entered into force and become legally operative between the two governments before Jan 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}]}, {"event_key": "KXAAAGASW-26SEP07", "markets": [{"category": "Economics", "event_key": "KXAAAGASW-26SEP07", "key": "KXAAAGASW-26SEP07-4.136", "no_sub_title": "Above 4.136", "rules_primary": "If average regular gas prices for United States are strictly greater than $4.136 on Sep 7, 2026 according to AAA, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-09-07T03:59:00Z", "series": "KXAAAGASW", "subtitle": null, "title": "Will average **gas prices** be above $4.136?", "yes_sub_title": "Above 4.136"}, {"category": "Economics", "event_key": "KXAAAGASW-26SEP07", "key": "KXAAAGASW-26SEP07-4.138", "no_sub_title": "Above 4.138", "rules_primary": "If average regular gas prices for United States are strictly greater than $4.138 on Sep 7, 2026 according to AAA, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-09-07T03:59:00Z", "series": "KXAAAGASW", "subtitle": null, "title": "Will average **gas prices** be above $4.138?", "yes_sub_title": "Above 4.138"}, {"category": "Economics", "event_key": "KXAAAGASW-26SEP07", "key": "KXAAAGASW-26SEP07-4.140", "no_sub_title": "Above 4.140", "rules_primary": "If average regular gas prices for \nUnited States are strictly greater than $4.140 on Sep 7, 2026 according to AAA, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-09-07T03:59:00Z", "series": "KXAAAGASW", "subtitle": null, "title": "Will average **gas prices** be above $4.140?", "yes_sub_title": "Above 4.140"}, {"category": "Economics", "event_key": "KXAAAGASW-26SEP07", "key": "KXAAAGASW-26SEP07-4.146", "no_sub_title": "Above 4.146", "rules_primary": "If average regular gas prices for United States are strictly greater than $4.146 on Sep 7, 2026 according to AAA, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-09-07T03:59:00Z", "series": "KXAAAGASW", "subtitle": null, "title": "Will average **gas prices** be above $4.146?", "yes_sub_title": "Above 4.146"}, {"category": "Economics", "event_key": "KXAAAGASW-26SEP07", "key": "KXAAAGASW-26SEP07-4.150", "no_sub_title": "Above 4.150", "rules_primary": "If average regular gas prices for United States are strictly greater than $4.150 on Sep 7, 2026 according to AAA, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-09-07T03:59:00Z", "series": "KXAAAGASW", "subtitle": null, "title": "Will average **gas prices** be above $4.150?", "yes_sub_title": "Above 4.150"}, {"category": "Economics", "event_key": "KXAAAGASW-26SEP07", "key": "KXAAAGASW-26SEP07-4.160", "no_sub_title": "Above 4.160", "rules_primary": "If average regular gas prices for \nUnited States are strictly greater than $4.160 on Sep 7, 2026 according to AAA, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-09-07T03:59:00Z", "series": "KXAAAGASW", "subtitle": null, "title": "Will average **gas prices** be above $4.160?", "yes_sub_title": "Above 4.160"}]}, {"event_key": "KXFISALENGTH-26MAY", "markets": [{"category": "Politics", "event_key": "KXFISALENGTH-26MAY", "key": "KXFISALENGTH-26MAY-FISA1Y", "no_sub_title": "At least 1 year", "rules_primary": "If the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 1 year has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXFISALENGTH", "subtitle": "At least 1 year", "title": "Will the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 1 year become law before Jan 1, 2027?", "yes_sub_title": "At least 1 year"}, {"category": "Politics", "event_key": "KXFISALENGTH-26MAY", "key": "KXFISALENGTH-26MAY-FISA2Y", "no_sub_title": "At least 2 years", "rules_primary": "If the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 2 years has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXFISALENGTH", "subtitle": "At least 2 years", "title": "Will the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 2 years become law before Jan 1, 2027?", "yes_sub_title": "At least 2 years"}, {"category": "Politics", "event_key": "KXFISALENGTH-26MAY", "key": "KXFISALENGTH-26MAY-FISA30D", "no_sub_title": "At least 30 days", "rules_primary": "If the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 30 days has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXFISALENGTH", "subtitle": "At least 30 days", "title": "Will the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 30 days become law before Jan 1, 2027?", "yes_sub_title": "At least 30 days"}, {"category": "Politics", "event_key": "KXFISALENGTH-26MAY", "key": "KXFISALENGTH-26MAY-FISA5Y", "no_sub_title": "At least 5 years", "rules_primary": "If the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 5 years has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXFISALENGTH", "subtitle": "At least 5 years", "title": "Will the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 5 years become law before Jan 1, 2027?", "yes_sub_title": "At least 5 years"}, {"category": "Politics", "event_key": "KXFISALENGTH-26MAY", "key": "KXFISALENGTH-26MAY-FISA90D", "no_sub_title": "At least 90 days", "rules_primary": "If the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 90 days has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXFISALENGTH", "subtitle": "At least 90 days", "title": "Will the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 90 days become law before Jan 1, 2027?", "yes_sub_title": "At least 90 days"}]}, {"event_key": "KXAAAGASMINTX-26DEC31", "markets": [{"category": "Economics", "event_key": "KXAAAGASMINTX-26DEC31", "key": "KXAAAGASMINTX-26DEC31-1.80", "no_sub_title": "Below $1.80", "rules_primary": "If average regular gas prices for Texas are strictly lower than $1.80 by Dec 31, 2026 according to AAA,  the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T14:55:00Z", "series": "KXAAAGASMINTX", "subtitle": "$1.80", "title": "Will average **gas prices** be above or below $1.80 by Dec 31, 2026?", "yes_sub_title": "Below $1.80"}, {"category": "Economics", "event_key": "KXAAAGASMINTX-26DEC31", "key": "KXAAAGASMINTX-26DEC31-1.90", "no_sub_title": "Below $1.90", "rules_primary": "If average regular gas prices for Texas are strictly lower than $1.90 by Dec 31, 2026 according to AAA,  the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T14:55:00Z", "series": "KXAAAGASMINTX", "subtitle": "$1.90", "title": "Will average **gas prices** be above or below $1.90 by Dec 31, 2026?", "yes_sub_title": "Below $1.90"}, {"category": "Economics", "event_key": "KXAAAGASMINTX-26DEC31", "key": "KXAAAGASMINTX-26DEC31-2.10", "no_sub_title": "Below $2.10", "rules_primary": "If average regular gas prices for Texas are strictly lower than $2.10 by Dec 31, 2026 according to AAA,  the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T14:55:00Z", "series": "KXAAAGASMINTX", "subtitle": "$2.10", "title": "Will average **gas prices** be above or below $2.10 by Dec 31, 2026?", "yes_sub_title": "Below $2.10"}, {"category": "Economics", "event_key": "KXAAAGASMINTX-26DEC31", "key": "KXAAAGASMINTX-26DEC31-2.20", "no_sub_title": "Below $2.20", "rules_primary": "If average regular gas prices for Texas are strictly lower than $2.20 by Dec 31, 2026 according to AAA,  the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T14:55:00Z", "series": "KXAAAGASMINTX", "subtitle": "$2.20", "title": "Will average **gas prices** be above or below $2.20 by Dec 31, 2026?", "yes_sub_title": "Below $2.20"}, {"category": "Economics", "event_key": "KXAAAGASMINTX-26DEC31", "key": "KXAAAGASMINTX-26DEC31-2.30", "no_sub_title": "Below $2.30", "rules_primary": "If average regular gas prices for Texas are strictly lower than $2.30 by Dec 31, 2026 according to AAA,  the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T14:55:00Z", "series": "KXAAAGASMINTX", "subtitle": "$2.30", "title": "Will average **gas prices** be above or below $2.30 by Dec 31, 2026?", "yes_sub_title": "Below $2.30"}]}, {"event_key": "KXCBDECISIONJAPAN-26OCT29", "markets": [{"category": "Economics", "event_key": "KXCBDECISIONJAPAN-26OCT29", "key": "KXCBDECISIONJAPAN-26OCT29-C25", "no_sub_title": "Cut 25bps", "rules_primary": "If the Bank of Japan takes the action of Cut 25bps at October 2026 Monetary Policy Meeting, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).", "scheduled_close": "2026-10-30T02:29:00Z", "series": "KXCBDECISIONJAPAN", "subtitle": null, "title": "Will the Bank of Japan Cut 25bps at the October 2026 Monetary Policy Meeting?", "yes_sub_title": "Cut 25bps"}, {"category": "Economics", "event_key": "KXCBDECISIONJAPAN-26OCT29", "key": "KXCBDECISIONJAPAN-26OCT29-C25P", "no_sub_title": "Cut more than 25bps", "rules_primary": "If the Bank of Japan takes the action of Cut more than 25bps at October 2026 Monetary Policy Meeting, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).", "scheduled_close": "2026-10-30T02:29:00Z", "series": "KXCBDECISIONJAPAN", "subtitle": null, "title": "Will the Bank of Japan Cut more than 25bps at the October 2026 Monetary Policy Meeting?", "yes_sub_title": "Cut more than 25bps"}, {"category": "Economics", "event_key": "KXCBDECISIONJAPAN-26OCT29", "key": "KXCBDECISIONJAPAN-26OCT29-H25P", "no_sub_title": "Hike more than 25bps", "rules_primary": "If the Bank of Japan takes the action of Hike more than 25bps at October 2026 Monetary Policy Meeting, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).", "scheduled_close": "2026-10-30T02:29:00Z", "series": "KXCBDECISIONJAPAN", "subtitle": null, "title": "Will the Bank of Japan Hike more than 25bps at the October 2026 Monetary Policy Meeting?", "yes_sub_title": "Hike more than 25bps"}, {"category": "Economics", "event_key": "KXCBDECISIONJAPAN-26OCT29", "key": "KXCBDECISIONJAPAN-26OCT29-HOLD", "no_sub_title": "Maintain current rate", "rules_primary": "If the Bank of Japan takes the action of Maintain current rate at October 2026 Monetary Policy Meeting, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).", "scheduled_close": "2026-10-30T02:29:00Z", "series": "KXCBDECISIONJAPAN", "subtitle": null, "title": "Will the Bank of Japan Maintain current rate at the October 2026 Monetary Policy Meeting?", "yes_sub_title": "Maintain current rate"}]}, {"event_key": "KXYALEDOJSETTLE-27", "markets": [{"category": "Politics", "event_key": "KXYALEDOJSETTLE-27", "key": "KXYALEDOJSETTLE-27-27JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If Yale University and the U.S. Department of Justice have entered into a final settlement or other final written agreement resolving, suspending, or settling a federal admissions-discrimination investigation that includes or applies to Yale Law School  after Issuance and before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXYALEDOJSETTLE", "subtitle": null, "title": "Will it be reported by any of the Source Agencies that Yale University and the U.S. Department of Justice have entered into a final settlement or other final written agreement resolving, suspending, or settling a federal admissions-discrimination investigation that includes or applies to Yale Law School before Jan 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}]}], "snapshot_at": "2026-09-05T15:45:16Z"}}, "completion": null}
+{
+  "completion": {
+    "completed_at": "2026-09-05T20:27:32.910215+00:00",
+    "effort": "high",
+    "model": "gpt-5.6-sol",
+    "results": {
+      "KXAAAGASMINTX-26DEC31-1.80": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 14:55:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMINTX-26DEC31-1.80\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for Texas are strictly lower than $1.80 by Dec 31, 2026 according to AAA,  the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasmintx-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMINTX-26DEC31-1.90": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 14:55:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMINTX-26DEC31-1.90\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for Texas are strictly lower than $1.90 by Dec 31, 2026 according to AAA,  the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasmintx-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMINTX-26DEC31-2.10": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 14:55:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMINTX-26DEC31-2.10\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for Texas are strictly lower than $2.10 by Dec 31, 2026 according to AAA,  the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasmintx-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMINTX-26DEC31-2.20": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 14:55:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMINTX-26DEC31-2.20\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for Texas are strictly lower than $2.20 by Dec 31, 2026 according to AAA,  the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasmintx-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMINTX-26DEC31-2.30": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 14:55:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMINTX-26DEC31-2.30\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for Texas are strictly lower than $2.30 by Dec 31, 2026 according to AAA,  the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasmintx-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASW-26SEP07-4.136": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/07/2026 03:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASW-26SEP07-4.136\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for United States are strictly greater than $4.136 on Sep 7, 2026 according to AAA, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasw-26sep07\", \"web_search_used\": false}"
+      },
+      "KXAAAGASW-26SEP07-4.138": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/07/2026 03:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASW-26SEP07-4.138\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for United States are strictly greater than $4.138 on Sep 7, 2026 according to AAA, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasw-26sep07\", \"web_search_used\": false}"
+      },
+      "KXAAAGASW-26SEP07-4.140": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/07/2026 03:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASW-26SEP07-4.140\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for \\nUnited States are strictly greater than $4.140 on Sep 7, 2026 according to AAA, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasw-26sep07\", \"web_search_used\": false}"
+      },
+      "KXAAAGASW-26SEP07-4.146": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/07/2026 03:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASW-26SEP07-4.146\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for United States are strictly greater than $4.146 on Sep 7, 2026 according to AAA, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasw-26sep07\", \"web_search_used\": false}"
+      },
+      "KXAAAGASW-26SEP07-4.150": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/07/2026 03:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASW-26SEP07-4.150\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for United States are strictly greater than $4.150 on Sep 7, 2026 according to AAA, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasw-26sep07\", \"web_search_used\": false}"
+      },
+      "KXAAAGASW-26SEP07-4.160": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/07/2026 03:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASW-26SEP07-4.160\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for \\nUnited States are strictly greater than $4.160 on Sep 7, 2026 according to AAA, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasw-26sep07\", \"web_search_used\": false}"
+      },
+      "KXBRIANCONF-26JUL08-JAN01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"Any qualifying route under the rules may suffice.\", \"deadline\": \"Before Jan 1, 2027\", \"family\": \"senate_confirmation\", \"key\": \"KXBRIANCONF-26JUL08-JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://www.banking.senate.gov/hearings/07/16/2026/nomination-hearing\", \"status\": \"in_progress\", \"step\": \"The committee reports and the Senate confirms Brian Johnson.\"}], \"obstacle\": \"The qualifying final action remains unfinished.\", \"predicate\": \"If Brian Johnson is the first person confirmed as Director of the Consumer Financial Protection Bureau before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The Senate Banking Committee held Johnson\\u2019s nomination hearing July 23 and the nomination remains listed in committee. That is an active confirmation path; committee reporting and Senate confirmation remain.\", \"source_gaps\": [\"Final action and current authoritative timetable.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:24:45.7411165Z\", \"published_at\": \"2026-07-23\", \"quote\": \"Brian Johnson, to be Director\", \"supports\": \"Confirms the nomination and completed hearing.\", \"title\": \"Nomination Hearing\", \"url\": \"https://www.banking.senate.gov/hearings/07/16/2026/nomination-hearing\"}], \"subject_key\": \"kxbrianconf-26jul08\", \"web_search_used\": true}"
+      },
+      "KXBUILDPERMS-26SEP17-T1.250": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/17/2026 12:29:00\", \"family\": \"quantity_measurement\", \"key\": \"KXBUILDPERMS-26SEP17-T1.250\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the value of US building permits (total units) for August 2026 is above 1.250M (SAAR), then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxbuildperms-26sep17\", \"web_search_used\": false}"
+      },
+      "KXCBDECISIONJAPAN-26OCT29-C25": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/30/2026 02:29:00\", \"family\": \"interpersonal_or_media_occurrence\", \"key\": \"KXCBDECISIONJAPAN-26OCT29-C25\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Bank of Japan takes the action of Cut 25bps at October 2026 Monetary Policy Meeting, then the market resolves to Yes.\", \"rationale\": \"The predicate is the interpersonal, speech, travel, or media occurrence itself; the rules do not make a separate institutional milestone necessary.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcbdecisionjapan-26oct29\", \"web_search_used\": false}"
+      },
+      "KXCBDECISIONJAPAN-26OCT29-C25P": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/30/2026 02:29:00\", \"family\": \"interpersonal_or_media_occurrence\", \"key\": \"KXCBDECISIONJAPAN-26OCT29-C25P\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Bank of Japan takes the action of Cut more than 25bps at October 2026 Monetary Policy Meeting, then the market resolves to Yes.\", \"rationale\": \"The predicate is the interpersonal, speech, travel, or media occurrence itself; the rules do not make a separate institutional milestone necessary.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcbdecisionjapan-26oct29\", \"web_search_used\": false}"
+      },
+      "KXCBDECISIONJAPAN-26OCT29-H25P": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/30/2026 02:29:00\", \"family\": \"interpersonal_or_media_occurrence\", \"key\": \"KXCBDECISIONJAPAN-26OCT29-H25P\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Bank of Japan takes the action of Hike more than 25bps at October 2026 Monetary Policy Meeting, then the market resolves to Yes.\", \"rationale\": \"The predicate is the interpersonal, speech, travel, or media occurrence itself; the rules do not make a separate institutional milestone necessary.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcbdecisionjapan-26oct29\", \"web_search_used\": false}"
+      },
+      "KXCBDECISIONJAPAN-26OCT29-HOLD": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/30/2026 02:29:00\", \"family\": \"interpersonal_or_media_occurrence\", \"key\": \"KXCBDECISIONJAPAN-26OCT29-HOLD\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Bank of Japan takes the action of Maintain current rate at October 2026 Monetary Policy Meeting, then the market resolves to Yes.\", \"rationale\": \"The predicate is the interpersonal, speech, travel, or media occurrence itself; the rules do not make a separate institutional milestone necessary.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcbdecisionjapan-26oct29\", \"web_search_used\": false}"
+      },
+      "KXEHSALES-26SEP10-T3.80": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/10/2026 13:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXEHSALES-26SEP10-T3.80\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If US existing home sales for August 2026 (seasonally adjusted annual rate, millions of homes) is above 3.80M, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxehsales-26sep10\", \"web_search_used\": false}"
+      },
+      "KXEHSALES-26SEP10-T4.30": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/10/2026 13:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXEHSALES-26SEP10-T4.30\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If US existing home sales for August 2026 (seasonally adjusted annual rate, millions of homes) is above 4.30M, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxehsales-26sep10\", \"web_search_used\": false}"
+      },
+      "KXFISALENGTH-26MAY-FISA1Y": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"Any qualifying route under the rules may suffice.\", \"deadline\": \"At least 1 year\", \"family\": \"federal_legislation\", \"key\": \"KXFISALENGTH-26MAY-FISA1Y\", \"mandatory_steps\": [{\"source_url\": \"https://www.judiciary.senate.gov/press/dem/releases/durbin-lee-introduce-bipartisan-bill-to-reauthorize-and-reform-fisa-section-702-to-protect-americans-from-foreign-threats-and-warrantless-surveillance\", \"status\": \"in_progress\", \"step\": \"A qualifying extension passes both chambers and becomes law.\"}], \"obstacle\": \"The qualifying final action remains unfinished.\", \"predicate\": \"If the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 1 year has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Bipartisan bills were introduced to reauthorize Section 702 for two years, and the Judiciary chairman gave June floor remarks supporting reauthorization. This is an active path to a qualifying extension.\", \"source_gaps\": [\"Final action and current authoritative timetable.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:24:45.7411165Z\", \"published_at\": \"2026-02-23\", \"quote\": \"reauthorizes Section 702 for two years\", \"supports\": \"Confirms introduced legislation exceeding the one-year predicate.\", \"title\": \"Durbin, Lee Introduce Bipartisan FISA Bill\", \"url\": \"https://www.judiciary.senate.gov/press/dem/releases/durbin-lee-introduce-bipartisan-bill-to-reauthorize-and-reform-fisa-section-702-to-protect-americans-from-foreign-threats-and-warrantless-surveillance\"}], \"subject_key\": \"kxfisalength-26may\", \"web_search_used\": true}"
+      },
+      "KXFISALENGTH-26MAY-FISA2Y": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"Any qualifying route under the rules may suffice.\", \"deadline\": \"At least 2 years\", \"family\": \"federal_legislation\", \"key\": \"KXFISALENGTH-26MAY-FISA2Y\", \"mandatory_steps\": [{\"source_url\": \"https://www.judiciary.senate.gov/press/dem/releases/durbin-lee-introduce-bipartisan-bill-to-reauthorize-and-reform-fisa-section-702-to-protect-americans-from-foreign-threats-and-warrantless-surveillance\", \"status\": \"in_progress\", \"step\": \"A qualifying extension passes both chambers and becomes law.\"}], \"obstacle\": \"The qualifying final action remains unfinished.\", \"predicate\": \"If the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 2 years has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Bipartisan bills were introduced to reauthorize Section 702 for two years, and the Judiciary chairman gave June floor remarks supporting reauthorization. This is an active path to a qualifying extension.\", \"source_gaps\": [\"Final action and current authoritative timetable.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:24:45.7411165Z\", \"published_at\": \"2026-02-23\", \"quote\": \"reauthorizes Section 702 for two years\", \"supports\": \"Confirms introduced legislation exceeding the one-year predicate.\", \"title\": \"Durbin, Lee Introduce Bipartisan FISA Bill\", \"url\": \"https://www.judiciary.senate.gov/press/dem/releases/durbin-lee-introduce-bipartisan-bill-to-reauthorize-and-reform-fisa-section-702-to-protect-americans-from-foreign-threats-and-warrantless-surveillance\"}], \"subject_key\": \"kxfisalength-26may\", \"web_search_used\": true}"
+      },
+      "KXFISALENGTH-26MAY-FISA30D": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"Any qualifying route under the rules may suffice.\", \"deadline\": \"At least 30 days\", \"family\": \"federal_legislation\", \"key\": \"KXFISALENGTH-26MAY-FISA30D\", \"mandatory_steps\": [{\"source_url\": \"https://www.judiciary.senate.gov/press/dem/releases/durbin-lee-introduce-bipartisan-bill-to-reauthorize-and-reform-fisa-section-702-to-protect-americans-from-foreign-threats-and-warrantless-surveillance\", \"status\": \"in_progress\", \"step\": \"A qualifying extension passes both chambers and becomes law.\"}], \"obstacle\": \"The qualifying final action remains unfinished.\", \"predicate\": \"If the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 30 days has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Bipartisan bills were introduced to reauthorize Section 702 for two years, and the Judiciary chairman gave June floor remarks supporting reauthorization. This is an active path to a qualifying extension.\", \"source_gaps\": [\"Final action and current authoritative timetable.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:24:45.7411165Z\", \"published_at\": \"2026-02-23\", \"quote\": \"reauthorizes Section 702 for two years\", \"supports\": \"Confirms introduced legislation exceeding the one-year predicate.\", \"title\": \"Durbin, Lee Introduce Bipartisan FISA Bill\", \"url\": \"https://www.judiciary.senate.gov/press/dem/releases/durbin-lee-introduce-bipartisan-bill-to-reauthorize-and-reform-fisa-section-702-to-protect-americans-from-foreign-threats-and-warrantless-surveillance\"}], \"subject_key\": \"kxfisalength-26may\", \"web_search_used\": true}"
+      },
+      "KXFISALENGTH-26MAY-FISA5Y": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"Any qualifying route under the rules may suffice.\", \"deadline\": \"At least 5 years\", \"family\": \"federal_legislation\", \"key\": \"KXFISALENGTH-26MAY-FISA5Y\", \"mandatory_steps\": [{\"source_url\": \"https://www.judiciary.senate.gov/press/dem/releases/durbin-lee-introduce-bipartisan-bill-to-reauthorize-and-reform-fisa-section-702-to-protect-americans-from-foreign-threats-and-warrantless-surveillance\", \"status\": \"in_progress\", \"step\": \"A qualifying extension passes both chambers and becomes law.\"}], \"obstacle\": \"The qualifying final action remains unfinished.\", \"predicate\": \"If the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 5 years has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Bipartisan bills were introduced to reauthorize Section 702 for two years, and the Judiciary chairman gave June floor remarks supporting reauthorization. This is an active path to a qualifying extension.\", \"source_gaps\": [\"Final action and current authoritative timetable.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:24:45.7411165Z\", \"published_at\": \"2026-02-23\", \"quote\": \"reauthorizes Section 702 for two years\", \"supports\": \"Confirms introduced legislation exceeding the one-year predicate.\", \"title\": \"Durbin, Lee Introduce Bipartisan FISA Bill\", \"url\": \"https://www.judiciary.senate.gov/press/dem/releases/durbin-lee-introduce-bipartisan-bill-to-reauthorize-and-reform-fisa-section-702-to-protect-americans-from-foreign-threats-and-warrantless-surveillance\"}], \"subject_key\": \"kxfisalength-26may\", \"web_search_used\": true}"
+      },
+      "KXFISALENGTH-26MAY-FISA90D": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"Any qualifying route under the rules may suffice.\", \"deadline\": \"At least 90 days\", \"family\": \"federal_legislation\", \"key\": \"KXFISALENGTH-26MAY-FISA90D\", \"mandatory_steps\": [{\"source_url\": \"https://www.judiciary.senate.gov/press/dem/releases/durbin-lee-introduce-bipartisan-bill-to-reauthorize-and-reform-fisa-section-702-to-protect-americans-from-foreign-threats-and-warrantless-surveillance\", \"status\": \"in_progress\", \"step\": \"A qualifying extension passes both chambers and becomes law.\"}], \"obstacle\": \"The qualifying final action remains unfinished.\", \"predicate\": \"If the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 90 days has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Bipartisan bills were introduced to reauthorize Section 702 for two years, and the Judiciary chairman gave June floor remarks supporting reauthorization. This is an active path to a qualifying extension.\", \"source_gaps\": [\"Final action and current authoritative timetable.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:24:45.7411165Z\", \"published_at\": \"2026-02-23\", \"quote\": \"reauthorizes Section 702 for two years\", \"supports\": \"Confirms introduced legislation exceeding the one-year predicate.\", \"title\": \"Durbin, Lee Introduce Bipartisan FISA Bill\", \"url\": \"https://www.judiciary.senate.gov/press/dem/releases/durbin-lee-introduce-bipartisan-bill-to-reauthorize-and-reform-fisa-section-702-to-protect-americans-from-foreign-threats-and-warrantless-surveillance\"}], \"subject_key\": \"kxfisalength-26may\", \"web_search_used\": true}"
+      },
+      "KXMEISSNER-2701JAN": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Any qualifying route under the rules may suffice.\", \"deadline\": \"Yes\", \"family\": \"peer_review_publication\", \"key\": \"KXMEISSNER-2701JAN\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"A major peer-reviewed journal accepts and publishes the qualifying result.\"}], \"obstacle\": \"The qualifying final action remains unfinished.\", \"predicate\": \"If a peer-reviewed paper published in an eligible journal reports the discovery of a material exhibiting the Meissner effect at ambient pressure with a critical temperature of at least 240 K before January 1, 2027, the market resolves to Yes.\", \"rationale\": \"No accepted paper, journal publication schedule, or current publisher record establishing the specified Meissner-effect report was found.\", \"source_gaps\": [\"Final action and current authoritative timetable.\"], \"sources\": [], \"subject_key\": \"kxmeissner-2701jan\", \"web_search_used\": true}"
+      },
+      "KXMLSSPREAD-26SEP05TORCHI-CHI2": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/08/2026 05:30:00\", \"family\": \"observed_outcome\", \"key\": \"KXMLSSPREAD-26SEP05TORCHI-CHI2\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Chicago Fire wins by more than 1.5 goals in the Toronto vs Chicago Fire professional MLS soccer game originally scheduled for Sep 5, 2026 after 90 minutes plus stoppage time (does not include extra time or penalties), then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxmlsspread-26sep05torchi\", \"web_search_used\": false}"
+      },
+      "KXMLSSPREAD-26SEP05TORCHI-CHI3": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/08/2026 05:30:00\", \"family\": \"observed_outcome\", \"key\": \"KXMLSSPREAD-26SEP05TORCHI-CHI3\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Chicago Fire wins by more than 2.5 goals in the Toronto vs Chicago Fire professional MLS soccer game originally scheduled for Sep 5, 2026 after 90 minutes plus stoppage time (does not include extra time or penalties), then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxmlsspread-26sep05torchi\", \"web_search_used\": false}"
+      },
+      "KXNEWXBOX-XBOX-27": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Any qualifying route under the rules may suffice.\", \"deadline\": \"a new Xbox video game console\", \"family\": \"consumer_hardware_release\", \"key\": \"KXNEWXBOX-XBOX-27\", \"mandatory_steps\": [{\"source_url\": \"https://www.microsoft.com/en-us/d/xbox-series-x/8wj714n3rbtl\", \"status\": \"unknown\", \"step\": \"Microsoft completes and releases a new Xbox console.\"}], \"obstacle\": \"The qualifying final action remains unfinished.\", \"predicate\": \"If Microsoft releases a new Xbox video game console to the public before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Microsoft\\u2019s current official store offers Xbox Series X but the focused official search found no announced new-console public release before year-end.\", \"source_gaps\": [\"Final action and current authoritative timetable.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:24:45.7411165Z\", \"published_at\": \"unknown\", \"quote\": \"Xbox Series X\", \"supports\": \"Shows the current console, not a new 2026 release.\", \"title\": \"Xbox Series X\", \"url\": \"https://www.microsoft.com/en-us/d/xbox-series-x/8wj714n3rbtl\"}], \"subject_key\": \"kxnewxbox-xbox\", \"web_search_used\": true}"
+      },
+      "KXNIFTY-26DEC31-26000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"quantity_measurement\", \"key\": \"KXNIFTY-26DEC31-26000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the value of Nifty 50 Index (NIFTY) is at least \\u20b926,000 from Jun 16, 2026 to Dec 31, 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnifty-26dec31\", \"web_search_used\": false}"
+      },
+      "KXUSSAUDINUCLEAR-27-27JAN01": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Any qualifying route under the rules may suffice.\", \"deadline\": \"Before Jan 1, 2027\", \"family\": \"international_nuclear_agreement\", \"key\": \"KXUSSAUDINUCLEAR-27-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://2021-2025.state.gov/fact-sheets-bureau-of-international-security-and-nonproliferation/123-agreements/\", \"status\": \"unknown\", \"step\": \"The parties sign; the President approves and submits the agreement; the congressional review period clears; the agreement enters force.\"}], \"obstacle\": \"The qualifying final action remains unfinished.\", \"predicate\": \"If the bilateral U.S.\\u2013Saudi agreement for peaceful nuclear cooperation under Section 123 of the Atomic Energy Act has entered into force and become legally operative between the two governments  after Issuance and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The current official agreement search did not find a signed U.S.\\u2013Saudi Section 123 agreement or transmittal to Congress. Generic State guidance confirms those are necessary before entry into force.\", \"source_gaps\": [\"Final action and current authoritative timetable.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:24:45.7411165Z\", \"published_at\": \"2022-12-06\", \"quote\": \"The President approves the 123 Agreement, which he or she then submits to Congress for review.\", \"supports\": \"Confirms the mandatory statutory path but not current Saudi completion.\", \"title\": \"123 Agreements\", \"url\": \"https://2021-2025.state.gov/fact-sheets-bureau-of-international-security-and-nonproliferation/123-agreements/\"}], \"subject_key\": \"kxussaudinuclear-27\", \"web_search_used\": true}"
+      },
+      "KXXIUSA-26JUL07-NOV01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 11/01/2026 15:00:00\", \"family\": \"interpersonal_or_media_occurrence\", \"key\": \"KXXIUSA-26JUL07-NOV01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Xi Jinping has physically travelled to and been present within the geographic boundaries of the United States of America before Nov 1, 2026, then the market resolves to Yes.\", \"rationale\": \"The predicate is the interpersonal, speech, travel, or media occurrence itself; the rules do not make a separate institutional milestone necessary.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxxiusa-26jul07\", \"web_search_used\": false}"
+      },
+      "KXXIUSA-26JUL07-OCT01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/01/2026 14:00:00\", \"family\": \"interpersonal_or_media_occurrence\", \"key\": \"KXXIUSA-26JUL07-OCT01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Xi Jinping has physically travelled to and been present within the geographic boundaries of the United States of America before Oct 1, 2026, then the market resolves to Yes.\", \"rationale\": \"The predicate is the interpersonal, speech, travel, or media occurrence itself; the rules do not make a separate institutional milestone necessary.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxxiusa-26jul07\", \"web_search_used\": false}"
+      },
+      "KXYALEDOJSETTLE-27-27JAN01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"Any qualifying route under the rules may suffice.\", \"deadline\": \"Before Jan 1, 2027\", \"family\": \"civil_rights_resolution_agreement\", \"key\": \"KXYALEDOJSETTLE-27-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://www.justice.gov/crt/media/1440601/dl\", \"status\": \"in_progress\", \"step\": \"Yale and DOJ negotiate and execute a final written resolution.\"}], \"obstacle\": \"The qualifying final action remains unfinished.\", \"predicate\": \"If Yale University and the U.S. Department of Justice have entered into a final settlement or other final written agreement resolving, suspending, or settling a federal admissions-discrimination investigation that includes or applies to Yale Law School  after Issuance and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"DOJ\\u2019s May findings letter says the Department seeks a voluntary resolution agreement with Yale. That is dated affirmative evidence of a settlement path; no final agreement is yet established.\", \"source_gaps\": [\"Final action and current authoritative timetable.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:24:45.7411165Z\", \"published_at\": \"2026-05-14\", \"quote\": \"seeks to enter into a voluntary resolution agreement\", \"supports\": \"Confirms DOJ is pursuing the exact type of final agreement contemplated by the market.\", \"title\": \"Letter of Findings - Yale School of Medicine\", \"url\": \"https://www.justice.gov/crt/media/1440601/dl\"}], \"subject_key\": \"kxyaledojsettle-27\", \"web_search_used\": true}"
+      },
+      "TESLAOPTIMUS-26DEC31": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Any qualifying route under the rules may suffice.\", \"deadline\": \"Before 2027\", \"family\": \"robot_product_release\", \"key\": \"TESLAOPTIMUS-26DEC31\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"Tesla completes commercialization and opens qualifying public sales.\"}], \"obstacle\": \"The qualifying final action remains unfinished.\", \"predicate\": \"If the Tesla Optimus (or another humanoid robot) is on sale to the general public before Dec 31, 2026, then the market resolves to Yes.\", \"rationale\": \"The focused Tesla search did not establish an official consumer sale page, order opening, or dated Optimus public-sale plan before year-end.\", \"source_gaps\": [\"Final action and current authoritative timetable.\"], \"sources\": [], \"subject_key\": \"teslaoptimus-26dec31\", \"web_search_used\": true}"
+      }
+    },
+    "web_search": true
+  },
+  "request": {
+    "batch_id": "38",
+    "candidate_keys": [
+      "KXBRIANCONF-26JUL08-JAN01",
+      "KXNEWXBOX-XBOX-27",
+      "KXMEISSNER-2701JAN",
+      "KXNIFTY-26DEC31-26000",
+      "KXXIUSA-26JUL07-NOV01",
+      "KXXIUSA-26JUL07-OCT01",
+      "KXBUILDPERMS-26SEP17-T1.250",
+      "KXEHSALES-26SEP10-T3.80",
+      "KXEHSALES-26SEP10-T4.30",
+      "KXMLSSPREAD-26SEP05TORCHI-CHI2",
+      "KXMLSSPREAD-26SEP05TORCHI-CHI3",
+      "TESLAOPTIMUS-26DEC31",
+      "KXUSSAUDINUCLEAR-27-27JAN01",
+      "KXAAAGASW-26SEP07-4.136",
+      "KXAAAGASW-26SEP07-4.138",
+      "KXAAAGASW-26SEP07-4.140",
+      "KXAAAGASW-26SEP07-4.146",
+      "KXAAAGASW-26SEP07-4.150",
+      "KXAAAGASW-26SEP07-4.160",
+      "KXFISALENGTH-26MAY-FISA1Y",
+      "KXFISALENGTH-26MAY-FISA2Y",
+      "KXFISALENGTH-26MAY-FISA30D",
+      "KXFISALENGTH-26MAY-FISA5Y",
+      "KXFISALENGTH-26MAY-FISA90D",
+      "KXAAAGASMINTX-26DEC31-1.80",
+      "KXAAAGASMINTX-26DEC31-1.90",
+      "KXAAAGASMINTX-26DEC31-2.10",
+      "KXAAAGASMINTX-26DEC31-2.20",
+      "KXAAAGASMINTX-26DEC31-2.30",
+      "KXCBDECISIONJAPAN-26OCT29-C25",
+      "KXCBDECISIONJAPAN-26OCT29-C25P",
+      "KXCBDECISIONJAPAN-26OCT29-H25P",
+      "KXCBDECISIONJAPAN-26OCT29-HOLD",
+      "KXYALEDOJSETTLE-27-27JAN01"
+    ],
+    "decision_at": "2026-09-05T19:53:15.489944+00:00",
+    "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-038\\first-output.jsonl",
+    "payload": {
+      "decision_at": "2026-09-05T19:53:15.489944+00:00",
+      "events": [
+        {
+          "event_key": "KXBRIANCONF-26JUL08",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXBRIANCONF-26JUL08",
+              "key": "KXBRIANCONF-26JUL08-JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If Brian Johnson is the first person confirmed as Director of the Consumer Financial Protection Bureau before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "If a nomination is withdrawn before the deadline, that market immediately resolves to No.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXBRIANCONF",
+              "subtitle": "::",
+              "title": "Will Brian Johnson be confirmed as Director of the Consumer Financial Protection Bureau before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXNEWXBOX-XBOX",
+          "markets": [
+            {
+              "category": "Financials",
+              "event_key": "KXNEWXBOX-XBOX",
+              "key": "KXNEWXBOX-XBOX-27",
+              "no_sub_title": "a new Xbox video game console",
+              "rules_primary": "If Microsoft releases a new Xbox video game console to the public before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXNEWXBOX",
+              "subtitle": "a new Xbox video game console",
+              "title": "Will Microsoft release a new Xbox video game console to the public before 2027?",
+              "yes_sub_title": "a new Xbox video game console"
+            }
+          ]
+        },
+        {
+          "event_key": "KXMEISSNER-2701JAN",
+          "markets": [
+            {
+              "category": "Science and Technology",
+              "event_key": "KXMEISSNER-2701JAN",
+              "key": "KXMEISSNER-2701JAN",
+              "no_sub_title": "Yes",
+              "rules_primary": "If a peer-reviewed paper published in an eligible journal reports the discovery of a material exhibiting the Meissner effect at ambient pressure with a critical temperature of at least 240 K before January 1, 2027, the market resolves to Yes.",
+              "rules_secondary": "Eligible journals are those in the first quartile (Q1) of SCImago's condensed matter physics ranking or any journal with an SJR above 1.0. The material need not be a previously researched substance. ",
+              "scheduled_close": "2027-01-02T04:59:00Z",
+              "series": "KXMEISSNER",
+              "subtitle": "By Jan 01",
+              "title": "Will near room-temp Meissner effect be reported by a major peer-reviewed journal?",
+              "yes_sub_title": "Yes"
+            }
+          ]
+        },
+        {
+          "event_key": "KXNIFTY-26DEC31",
+          "markets": [
+            {
+              "category": "Financials",
+              "event_key": "KXNIFTY-26DEC31",
+              "key": "KXNIFTY-26DEC31-26000",
+              "no_sub_title": "At least \u20b926,000",
+              "rules_primary": "If the value of Nifty 50 Index (NIFTY) is at least \u20b926,000 from Jun 16, 2026 to Dec 31, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the value of the Nifty 50 Index as reported by the Trading View, using the index's natively published level in its own currency and units; no currency conversion is applied. It is sufficient for the index to reach or exceed \u20b926,000 at any single point during from Jun 16, 2026 to Dec 31, 2026 for the market to resolve to Yes \u2014 the level does not need to be sustained. If the index does not reach \u20b926,000 at any point during from Jun 16, 2026 to Dec 31, 2026, the market resolves to No. Revisions to the underlying made after expiration will not be accounted for in determining the Expiration Value. \n\nIf no data is available for from Jun 16, 2026 to Dec 31, 2026 by the Expiration Date, all strikes other than \"No data\" or \"None\" resolve to No. The index level is evaluated to two decimal places unless otherwise specified.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXNIFTY",
+              "subtitle": null,
+              "title": "Will the Nifty 50 Index be at least \u20b926,000 in 2026?",
+              "yes_sub_title": "At least \u20b926,000"
+            }
+          ]
+        },
+        {
+          "event_key": "KXXIUSA-26JUL07",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXXIUSA-26JUL07",
+              "key": "KXXIUSA-26JUL07-NOV01",
+              "no_sub_title": "Before Nov 1, 2026",
+              "rules_primary": "If Xi Jinping has physically travelled to and been present within the geographic boundaries of the United States of America before Nov 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+              "scheduled_close": "2026-11-01T15:00:00Z",
+              "series": "KXXIUSA",
+              "subtitle": null,
+              "title": "Will Xi Jinping visit the United States of America before Nov 1, 2026?",
+              "yes_sub_title": "Before Nov 1, 2026"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXXIUSA-26JUL07",
+              "key": "KXXIUSA-26JUL07-OCT01",
+              "no_sub_title": "Before Oct 1, 2026",
+              "rules_primary": "If Xi Jinping has physically travelled to and been present within the geographic boundaries of the United States of America before Oct 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+              "scheduled_close": "2026-10-01T14:00:00Z",
+              "series": "KXXIUSA",
+              "subtitle": "Before Oct 1, 2026",
+              "title": "Will Xi Jinping visit the United States of America before Oct 1, 2026?",
+              "yes_sub_title": "Before Oct 1, 2026"
+            }
+          ]
+        },
+        {
+          "event_key": "KXBUILDPERMS-26SEP17",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXBUILDPERMS-26SEP17",
+              "key": "KXBUILDPERMS-26SEP17-T1.250",
+              "no_sub_title": "Above 1.250M",
+              "rules_primary": "If the value of US building permits (total units) for August 2026 is above 1.250M (SAAR), then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is the first-published U.S. building permits value for August 2026, as released in the Census New Residential Construction report and reflected by Trading Economics on the initial release date. Later revised, final, or updated building permits releases, including the revised permits release approximately one week later, will not be used for resolution.",
+              "scheduled_close": "2026-09-17T12:29:00Z",
+              "series": "KXBUILDPERMS",
+              "subtitle": null,
+              "title": "Will US building permits for August 2026 be above 1.250M?",
+              "yes_sub_title": "Above 1.250M"
+            }
+          ]
+        },
+        {
+          "event_key": "KXEHSALES-26SEP10",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXEHSALES-26SEP10",
+              "key": "KXEHSALES-26SEP10-T3.80",
+              "no_sub_title": "Above 3.80M",
+              "rules_primary": "If US existing home sales for August 2026 (seasonally adjusted annual rate, millions of homes) is above 3.80M, then the market resolves to Yes.",
+              "rules_secondary": "Outcome verified from Trading Economics (series: United States Existing Home Sales), which reports National Association of Realtors (NAR) data.",
+              "scheduled_close": "2026-09-10T13:59:00Z",
+              "series": "KXEHSALES",
+              "subtitle": null,
+              "title": "Will US existing home sales for August 2026 be above 3.80M?",
+              "yes_sub_title": "Above 3.80M"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXEHSALES-26SEP10",
+              "key": "KXEHSALES-26SEP10-T4.30",
+              "no_sub_title": "Above 4.30M",
+              "rules_primary": "If US existing home sales for August 2026 (seasonally adjusted annual rate, millions of homes) is above 4.30M, then the market resolves to Yes.",
+              "rules_secondary": "Outcome verified from Trading Economics (series: United States Existing Home Sales), which reports National Association of Realtors (NAR) data.",
+              "scheduled_close": "2026-09-10T13:59:00Z",
+              "series": "KXEHSALES",
+              "subtitle": null,
+              "title": "Will US existing home sales for August 2026 be above 4.30M?",
+              "yes_sub_title": "Above 4.30M"
+            }
+          ]
+        },
+        {
+          "event_key": "KXMLSSPREAD-26SEP05TORCHI",
+          "markets": [
+            {
+              "category": "Sports",
+              "event_key": "KXMLSSPREAD-26SEP05TORCHI",
+              "key": "KXMLSSPREAD-26SEP05TORCHI-CHI2",
+              "no_sub_title": "Chicago Fire wins by more than 1.5 goals",
+              "rules_primary": "If Chicago Fire wins by more than 1.5 goals in the Toronto vs Chicago Fire professional MLS soccer game originally scheduled for Sep 5, 2026 after 90 minutes plus stoppage time (does not include extra time or penalties), then the market resolves to Yes.",
+              "rules_secondary": "Kalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-08T05:30:00Z",
+              "series": "KXMLSSPREAD",
+              "subtitle": null,
+              "title": "Chicago Fire wins by more than 1.5 goals?",
+              "yes_sub_title": "Chicago Fire wins by more than 1.5 goals"
+            },
+            {
+              "category": "Sports",
+              "event_key": "KXMLSSPREAD-26SEP05TORCHI",
+              "key": "KXMLSSPREAD-26SEP05TORCHI-CHI3",
+              "no_sub_title": "Chicago Fire wins by more than 2.5 goals",
+              "rules_primary": "If Chicago Fire wins by more than 2.5 goals in the Toronto vs Chicago Fire professional MLS soccer game originally scheduled for Sep 5, 2026 after 90 minutes plus stoppage time (does not include extra time or penalties), then the market resolves to Yes.",
+              "rules_secondary": "Kalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-08T05:30:00Z",
+              "series": "KXMLSSPREAD",
+              "subtitle": null,
+              "title": "Chicago Fire wins by more than 2.5 goals?",
+              "yes_sub_title": "Chicago Fire wins by more than 2.5 goals"
+            }
+          ]
+        },
+        {
+          "event_key": "TESLAOPTIMUS-26DEC31",
+          "markets": [
+            {
+              "category": "Science and Technology",
+              "event_key": "TESLAOPTIMUS-26DEC31",
+              "key": "TESLAOPTIMUS-26DEC31",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If the Tesla Optimus (or another humanoid robot) is on sale to the general public before Dec 31, 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T04:59:00Z",
+              "series": "TESLAOPTIMUS",
+              "subtitle": "Before 2027",
+              "title": "Tesla Optimus on sale before 2027?",
+              "yes_sub_title": "Before 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXUSSAUDINUCLEAR-27",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXUSSAUDINUCLEAR-27",
+              "key": "KXUSSAUDINUCLEAR-27-27JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If the bilateral U.S.\u2013Saudi agreement for peaceful nuclear cooperation under Section 123 of the Atomic Energy Act has entered into force and become legally operative between the two governments  after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXUSSAUDINUCLEAR",
+              "subtitle": null,
+              "title": "Will it be reported by any of the Source Agencies that the bilateral U.S.\u2013Saudi agreement for peaceful nuclear cooperation under Section 123 of the Atomic Energy Act has entered into force and become legally operative between the two governments before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXAAAGASW-26SEP07",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASW-26SEP07",
+              "key": "KXAAAGASW-26SEP07-4.136",
+              "no_sub_title": "Above 4.136",
+              "rules_primary": "If average regular gas prices for United States are strictly greater than $4.136 on Sep 7, 2026 according to AAA, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-09-07T03:59:00Z",
+              "series": "KXAAAGASW",
+              "subtitle": null,
+              "title": "Will average **gas prices** be above $4.136?",
+              "yes_sub_title": "Above 4.136"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASW-26SEP07",
+              "key": "KXAAAGASW-26SEP07-4.138",
+              "no_sub_title": "Above 4.138",
+              "rules_primary": "If average regular gas prices for United States are strictly greater than $4.138 on Sep 7, 2026 according to AAA, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-09-07T03:59:00Z",
+              "series": "KXAAAGASW",
+              "subtitle": null,
+              "title": "Will average **gas prices** be above $4.138?",
+              "yes_sub_title": "Above 4.138"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASW-26SEP07",
+              "key": "KXAAAGASW-26SEP07-4.140",
+              "no_sub_title": "Above 4.140",
+              "rules_primary": "If average regular gas prices for \nUnited States are strictly greater than $4.140 on Sep 7, 2026 according to AAA, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-09-07T03:59:00Z",
+              "series": "KXAAAGASW",
+              "subtitle": null,
+              "title": "Will average **gas prices** be above $4.140?",
+              "yes_sub_title": "Above 4.140"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASW-26SEP07",
+              "key": "KXAAAGASW-26SEP07-4.146",
+              "no_sub_title": "Above 4.146",
+              "rules_primary": "If average regular gas prices for United States are strictly greater than $4.146 on Sep 7, 2026 according to AAA, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-09-07T03:59:00Z",
+              "series": "KXAAAGASW",
+              "subtitle": null,
+              "title": "Will average **gas prices** be above $4.146?",
+              "yes_sub_title": "Above 4.146"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASW-26SEP07",
+              "key": "KXAAAGASW-26SEP07-4.150",
+              "no_sub_title": "Above 4.150",
+              "rules_primary": "If average regular gas prices for United States are strictly greater than $4.150 on Sep 7, 2026 according to AAA, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-09-07T03:59:00Z",
+              "series": "KXAAAGASW",
+              "subtitle": null,
+              "title": "Will average **gas prices** be above $4.150?",
+              "yes_sub_title": "Above 4.150"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASW-26SEP07",
+              "key": "KXAAAGASW-26SEP07-4.160",
+              "no_sub_title": "Above 4.160",
+              "rules_primary": "If average regular gas prices for \nUnited States are strictly greater than $4.160 on Sep 7, 2026 according to AAA, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-09-07T03:59:00Z",
+              "series": "KXAAAGASW",
+              "subtitle": null,
+              "title": "Will average **gas prices** be above $4.160?",
+              "yes_sub_title": "Above 4.160"
+            }
+          ]
+        },
+        {
+          "event_key": "KXFISALENGTH-26MAY",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXFISALENGTH-26MAY",
+              "key": "KXFISALENGTH-26MAY-FISA1Y",
+              "no_sub_title": "At least 1 year",
+              "rules_primary": "If the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 1 year has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXFISALENGTH",
+              "subtitle": "At least 1 year",
+              "title": "Will the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 1 year become law before Jan 1, 2027?",
+              "yes_sub_title": "At least 1 year"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXFISALENGTH-26MAY",
+              "key": "KXFISALENGTH-26MAY-FISA2Y",
+              "no_sub_title": "At least 2 years",
+              "rules_primary": "If the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 2 years has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXFISALENGTH",
+              "subtitle": "At least 2 years",
+              "title": "Will the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 2 years become law before Jan 1, 2027?",
+              "yes_sub_title": "At least 2 years"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXFISALENGTH-26MAY",
+              "key": "KXFISALENGTH-26MAY-FISA30D",
+              "no_sub_title": "At least 30 days",
+              "rules_primary": "If the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 30 days has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXFISALENGTH",
+              "subtitle": "At least 30 days",
+              "title": "Will the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 30 days become law before Jan 1, 2027?",
+              "yes_sub_title": "At least 30 days"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXFISALENGTH-26MAY",
+              "key": "KXFISALENGTH-26MAY-FISA5Y",
+              "no_sub_title": "At least 5 years",
+              "rules_primary": "If the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 5 years has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXFISALENGTH",
+              "subtitle": "At least 5 years",
+              "title": "Will the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 5 years become law before Jan 1, 2027?",
+              "yes_sub_title": "At least 5 years"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXFISALENGTH-26MAY",
+              "key": "KXFISALENGTH-26MAY-FISA90D",
+              "no_sub_title": "At least 90 days",
+              "rules_primary": "If the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 90 days has become law after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The bill must pass the full chamber (not just committee) for House or Senate passage. For \"become law\" markets, the bill must be signed by the President or become law through veto override. Presidential pocket vetoes that expire resolve to No. Joint resolutions are treated as bills. Treaties require two-thirds Senate approval for passage. The market resolves based on the first occurrence of the specified milestone.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXFISALENGTH",
+              "subtitle": "At least 90 days",
+              "title": "Will the first FISA Section 702 reauthorization enacted after Issuance extends the authority by at least 90 days become law before Jan 1, 2027?",
+              "yes_sub_title": "At least 90 days"
+            }
+          ]
+        },
+        {
+          "event_key": "KXAAAGASMINTX-26DEC31",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMINTX-26DEC31",
+              "key": "KXAAAGASMINTX-26DEC31-1.80",
+              "no_sub_title": "Below $1.80",
+              "rules_primary": "If average regular gas prices for Texas are strictly lower than $1.80 by Dec 31, 2026 according to AAA,  the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T14:55:00Z",
+              "series": "KXAAAGASMINTX",
+              "subtitle": "$1.80",
+              "title": "Will average **gas prices** be above or below $1.80 by Dec 31, 2026?",
+              "yes_sub_title": "Below $1.80"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMINTX-26DEC31",
+              "key": "KXAAAGASMINTX-26DEC31-1.90",
+              "no_sub_title": "Below $1.90",
+              "rules_primary": "If average regular gas prices for Texas are strictly lower than $1.90 by Dec 31, 2026 according to AAA,  the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T14:55:00Z",
+              "series": "KXAAAGASMINTX",
+              "subtitle": "$1.90",
+              "title": "Will average **gas prices** be above or below $1.90 by Dec 31, 2026?",
+              "yes_sub_title": "Below $1.90"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMINTX-26DEC31",
+              "key": "KXAAAGASMINTX-26DEC31-2.10",
+              "no_sub_title": "Below $2.10",
+              "rules_primary": "If average regular gas prices for Texas are strictly lower than $2.10 by Dec 31, 2026 according to AAA,  the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T14:55:00Z",
+              "series": "KXAAAGASMINTX",
+              "subtitle": "$2.10",
+              "title": "Will average **gas prices** be above or below $2.10 by Dec 31, 2026?",
+              "yes_sub_title": "Below $2.10"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMINTX-26DEC31",
+              "key": "KXAAAGASMINTX-26DEC31-2.20",
+              "no_sub_title": "Below $2.20",
+              "rules_primary": "If average regular gas prices for Texas are strictly lower than $2.20 by Dec 31, 2026 according to AAA,  the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T14:55:00Z",
+              "series": "KXAAAGASMINTX",
+              "subtitle": "$2.20",
+              "title": "Will average **gas prices** be above or below $2.20 by Dec 31, 2026?",
+              "yes_sub_title": "Below $2.20"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMINTX-26DEC31",
+              "key": "KXAAAGASMINTX-26DEC31-2.30",
+              "no_sub_title": "Below $2.30",
+              "rules_primary": "If average regular gas prices for Texas are strictly lower than $2.30 by Dec 31, 2026 according to AAA,  the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T14:55:00Z",
+              "series": "KXAAAGASMINTX",
+              "subtitle": "$2.30",
+              "title": "Will average **gas prices** be above or below $2.30 by Dec 31, 2026?",
+              "yes_sub_title": "Below $2.30"
+            }
+          ]
+        },
+        {
+          "event_key": "KXCBDECISIONJAPAN-26OCT29",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXCBDECISIONJAPAN-26OCT29",
+              "key": "KXCBDECISIONJAPAN-26OCT29-C25",
+              "no_sub_title": "Cut 25bps",
+              "rules_primary": "If the Bank of Japan takes the action of Cut 25bps at October 2026 Monetary Policy Meeting, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+              "scheduled_close": "2026-10-30T02:29:00Z",
+              "series": "KXCBDECISIONJAPAN",
+              "subtitle": null,
+              "title": "Will the Bank of Japan Cut 25bps at the October 2026 Monetary Policy Meeting?",
+              "yes_sub_title": "Cut 25bps"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXCBDECISIONJAPAN-26OCT29",
+              "key": "KXCBDECISIONJAPAN-26OCT29-C25P",
+              "no_sub_title": "Cut more than 25bps",
+              "rules_primary": "If the Bank of Japan takes the action of Cut more than 25bps at October 2026 Monetary Policy Meeting, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+              "scheduled_close": "2026-10-30T02:29:00Z",
+              "series": "KXCBDECISIONJAPAN",
+              "subtitle": null,
+              "title": "Will the Bank of Japan Cut more than 25bps at the October 2026 Monetary Policy Meeting?",
+              "yes_sub_title": "Cut more than 25bps"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXCBDECISIONJAPAN-26OCT29",
+              "key": "KXCBDECISIONJAPAN-26OCT29-H25P",
+              "no_sub_title": "Hike more than 25bps",
+              "rules_primary": "If the Bank of Japan takes the action of Hike more than 25bps at October 2026 Monetary Policy Meeting, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+              "scheduled_close": "2026-10-30T02:29:00Z",
+              "series": "KXCBDECISIONJAPAN",
+              "subtitle": null,
+              "title": "Will the Bank of Japan Hike more than 25bps at the October 2026 Monetary Policy Meeting?",
+              "yes_sub_title": "Hike more than 25bps"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXCBDECISIONJAPAN-26OCT29",
+              "key": "KXCBDECISIONJAPAN-26OCT29-HOLD",
+              "no_sub_title": "Maintain current rate",
+              "rules_primary": "If the Bank of Japan takes the action of Maintain current rate at October 2026 Monetary Policy Meeting, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+              "scheduled_close": "2026-10-30T02:29:00Z",
+              "series": "KXCBDECISIONJAPAN",
+              "subtitle": null,
+              "title": "Will the Bank of Japan Maintain current rate at the October 2026 Monetary Policy Meeting?",
+              "yes_sub_title": "Maintain current rate"
+            }
+          ]
+        },
+        {
+          "event_key": "KXYALEDOJSETTLE-27",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXYALEDOJSETTLE-27",
+              "key": "KXYALEDOJSETTLE-27-27JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If Yale University and the U.S. Department of Justice have entered into a final settlement or other final written agreement resolving, suspending, or settling a federal admissions-discrimination investigation that includes or applies to Yale Law School  after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXYALEDOJSETTLE",
+              "subtitle": null,
+              "title": "Will it be reported by any of the Source Agencies that Yale University and the U.S. Department of Justice have entered into a final settlement or other final written agreement resolving, suspending, or settling a federal admissions-discrimination investigation that includes or applies to Yale Law School before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        }
+      ],
+      "snapshot_at": "2026-09-05T15:45:16Z"
+    },
+    "payload_sha256": "dbc16ddbfdefed9bdba496e5da6b7d7a54b4fb361b76178c898a53b7e515569c",
+    "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-038\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-038\\first-output.jsonl\n",
+    "requested_effort": "high",
+    "requested_model": "gpt-5.6-sol",
+    "requested_web_search": true,
+    "run_id": "study/broad-procedural-20260905",
+    "run_mode": "study",
+    "stage": "analysis",
+    "theory_id": "study/broad-procedural",
+    "theory_version": 1
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,484 @@
+{
+  "decision_at": "2026-09-05T19:53:15.489944+00:00",
+  "events": [
+    {
+      "event_key": "KXTEMPHELP-26OCT02",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXTEMPHELP-26OCT02",
+          "key": "KXTEMPHELP-26OCT02-T2.490",
+          "no_sub_title": "Above 2.490 million",
+          "rules_primary": "If All Employees, Temporary Help Services for September 2026 is above 2.490 million, according to FRED series TEMPHELPS, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the first published, seasonally adjusted September 2026 value for FRED series TEMPHELPS. Revisions to previously published values will not be considered.",
+          "scheduled_close": "2026-10-02T13:29:00Z",
+          "series": "KXTEMPHELP",
+          "subtitle": null,
+          "title": "Will All Employees, Temporary Help Services for September 2026 be above 2.490 million?",
+          "yes_sub_title": "Above 2.490 million"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXTEMPHELP-26OCT02",
+          "key": "KXTEMPHELP-26OCT02-T2.500",
+          "no_sub_title": "Above 2.500 million",
+          "rules_primary": "If All Employees, Temporary Help Services for September 2026 is above 2.500 million, according to FRED series TEMPHELPS, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the first published, seasonally adjusted September 2026 value for FRED series TEMPHELPS. Revisions to previously published values will not be considered.",
+          "scheduled_close": "2026-10-02T13:29:00Z",
+          "series": "KXTEMPHELP",
+          "subtitle": null,
+          "title": "Will All Employees, Temporary Help Services for September 2026 be above 2.500 million?",
+          "yes_sub_title": "Above 2.500 million"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXTEMPHELP-26OCT02",
+          "key": "KXTEMPHELP-26OCT02-T2.510",
+          "no_sub_title": "Above 2.510 million",
+          "rules_primary": "If All Employees, Temporary Help Services for September 2026 is above 2.510 million, according to FRED series TEMPHELPS, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the first published, seasonally adjusted September 2026 value for FRED series TEMPHELPS. Revisions to previously published values will not be considered.",
+          "scheduled_close": "2026-10-02T13:29:00Z",
+          "series": "KXTEMPHELP",
+          "subtitle": null,
+          "title": "Will All Employees, Temporary Help Services for September 2026 be above 2.510 million?",
+          "yes_sub_title": "Above 2.510 million"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXTEMPHELP-26OCT02",
+          "key": "KXTEMPHELP-26OCT02-T2.520",
+          "no_sub_title": "Above 2.520 million",
+          "rules_primary": "If All Employees, Temporary Help Services for September 2026 is above 2.520 million, according to FRED series TEMPHELPS, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the first published, seasonally adjusted September 2026 value for FRED series TEMPHELPS. Revisions to previously published values will not be considered.",
+          "scheduled_close": "2026-10-02T13:29:00Z",
+          "series": "KXTEMPHELP",
+          "subtitle": null,
+          "title": "Will All Employees, Temporary Help Services for September 2026 be above 2.520 million?",
+          "yes_sub_title": "Above 2.520 million"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXTEMPHELP-26OCT02",
+          "key": "KXTEMPHELP-26OCT02-T2.530",
+          "no_sub_title": "Above 2.530 million",
+          "rules_primary": "If All Employees, Temporary Help Services for September 2026 is above 2.530 million, according to FRED series TEMPHELPS, then the market resolves to Yes.",
+          "rules_secondary": "The Underlying is the first published, seasonally adjusted September 2026 value for FRED series TEMPHELPS. Revisions to previously published values will not be considered.",
+          "scheduled_close": "2026-10-02T13:29:00Z",
+          "series": "KXTEMPHELP",
+          "subtitle": null,
+          "title": "Will All Employees, Temporary Help Services for September 2026 be above 2.530 million?",
+          "yes_sub_title": "Above 2.530 million"
+        }
+      ]
+    },
+    {
+      "event_key": "KXUSAMEASLESELIMINATE-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXUSAMEASLESELIMINATE-27",
+          "key": "KXUSAMEASLESELIMINATE-27",
+          "no_sub_title": "Yes",
+          "rules_primary": "If PAHO's Regional Verification Commission (RVC) determines that endemic measles transmission has been re-established in the United States  after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+          "scheduled_close": "2027-01-01T09:48:00Z",
+          "series": "KXUSAMEASLESELIMINATE",
+          "subtitle": null,
+          "title": "Will it be reported by any of the Source Agencies that PAHO's Regional Verification Commission (RVC) determines that endemic measles transmission has been re-established in the United States before Jan 1, 2027?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXBILLSCOUNT-26SEP",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXBILLSCOUNT-26SEP",
+          "key": "KXBILLSCOUNT-26SEP-8.0",
+          "no_sub_title": "8",
+          "rules_primary": "If the President signs exactly 8 bills into law in Sep 2026, then the market resolves to Yes.",
+          "rules_secondary": "Joint resolutions are included.",
+          "scheduled_close": "2026-10-01T14:00:00Z",
+          "series": "KXBILLSCOUNT",
+          "subtitle": null,
+          "title": "Will 8 to 8 bills become law in Sep 2026?",
+          "yes_sub_title": "8"
+        }
+      ]
+    },
+    {
+      "event_key": "KXDIAZOUT-MDC",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXDIAZOUT-MDC",
+          "key": "KXDIAZOUT-MDC-26DEC01",
+          "no_sub_title": "Before December 1, 2026",
+          "rules_primary": "If Miguel D\u00edaz-Canel leaves office before December 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "An announcement that the Miguel D\u00edaz-Canel will leave the office within the next year is also encompassed by the Payout Criterion. If Miguel D\u00edaz-Canel leaves solely because they have died, the associated market will resolve and the Exchange will determine the payouts to the holders of long and short positions based upon the last traded price (prior to the death). If a last traded price is not available or is not logically consistent, or if the Exchange determines at its sole discretion that the last traded prices prior to death do not represent a fair settlement value, the Outcome Review Committee will be responsible for making a binding determination of fair allocation.\n\nClarification (05/23/26): To clarify, Miguel D\u00edaz-Canel currently holds two positions relevant to this market: First Secretary of the Communist Party of Cuba and President of Cuba. For purposes of this contract, departure from either position will satisfy the Payout Criterion.",
+          "scheduled_close": "2026-12-01T15:00:00Z",
+          "series": "KXDIAZOUT",
+          "subtitle": null,
+          "title": "Will Miguel D\u00edaz-Canel leave office before 2026-12-01T15:00:00.000Z?",
+          "yes_sub_title": "Before December 1, 2026"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXDIAZOUT-MDC",
+          "key": "KXDIAZOUT-MDC-26NOV01",
+          "no_sub_title": "Before November 1, 2026",
+          "rules_primary": "If Miguel D\u00edaz-Canel leaves office before November 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "An announcement that the Miguel D\u00edaz-Canel will leave the office within the next year is also encompassed by the Payout Criterion. If Miguel D\u00edaz-Canel leaves solely because they have died, the associated market will resolve and the Exchange will determine the payouts to the holders of long and short positions based upon the last traded price (prior to the death). If a last traded price is not available or is not logically consistent, or if the Exchange determines at its sole discretion that the last traded prices prior to death do not represent a fair settlement value, the Outcome Review Committee will be responsible for making a binding determination of fair allocation.\n\nClarification (05/23/26): To clarify, Miguel D\u00edaz-Canel currently holds two positions relevant to this market: First Secretary of the Communist Party of Cuba and President of Cuba. For purposes of this contract, departure from either position will satisfy the Payout Criterion.",
+          "scheduled_close": "2026-11-01T15:00:00Z",
+          "series": "KXDIAZOUT",
+          "subtitle": null,
+          "title": "Will Miguel D\u00edaz-Canel leave office before 2026-11-01T15:00:00.000Z?",
+          "yes_sub_title": "Before November 1, 2026"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXDIAZOUT-MDC",
+          "key": "KXDIAZOUT-MDC-26OCT01",
+          "no_sub_title": "Before October 1, 2026",
+          "rules_primary": "If Miguel D\u00edaz-Canel leaves office before October 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "An announcement that the Miguel D\u00edaz-Canel will leave the office within the next year is also encompassed by the Payout Criterion. If Miguel D\u00edaz-Canel leaves solely because they have died, the associated market will resolve and the Exchange will determine the payouts to the holders of long and short positions based upon the last traded price (prior to the death). If a last traded price is not available or is not logically consistent, or if the Exchange determines at its sole discretion that the last traded prices prior to death do not represent a fair settlement value, the Outcome Review Committee will be responsible for making a binding determination of fair allocation.\n\nClarification (05/23/26): To clarify, Miguel D\u00edaz-Canel currently holds two positions relevant to this market: First Secretary of the Communist Party of Cuba and President of Cuba. For purposes of this contract, departure from either position will satisfy the Payout Criterion.",
+          "scheduled_close": "2026-10-01T14:00:00Z",
+          "series": "KXDIAZOUT",
+          "subtitle": null,
+          "title": "Will Miguel D\u00edaz-Canel leave office before 2026-10-01T14:00:00.000Z?",
+          "yes_sub_title": "Before October 1, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXFLOCKDROPPED-27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXFLOCKDROPPED-27",
+          "key": "KXFLOCKDROPPED-27-ATLGA",
+          "no_sub_title": "Atlanta, GA",
+          "rules_primary": "If Atlanta, Georgia ends its use of Flock Safety license plate reader cameras after Issuance and before Feb 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "A jurisdiction ends its use of Flock Safety cameras if its governing body, chief executive, or police department:\n\nterminates a Flock Safety contract before the contract's scheduled end date, or\ndeclines to renew or extend a Flock Safety contract, or declines to allow an automatic renewal to take effect, or\nallows a Flock Safety contract to reach its scheduled end date without entering a renewal or replacement agreement, or\notherwise discontinues the jurisdiction's use of Flock Safety cameras, including by moving to a different license plate reader vendor.\n\nThe action must occur on or after August 21, 2026, and be reported before February 1, 2027.\n\nThe following do NOT count:\n\nRenewing or extending the contract, even with added privacy safeguards, audit requirements or use restrictions\nA temporary pause, camera deactivation, or moratorium that leaves the underlying contract in force and does not prevent its renewal\nA non-binding resolution, advisory referendum or committee recommendation that the official empowered to act has not acted upon\n\nEach jurisdiction is judged on its own, and action by a jurisdiction not named in this event does not affect any market here.\n\nOnly reporting from a Source Agency qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+          "scheduled_close": "2027-02-01T04:59:00Z",
+          "series": "KXFLOCKDROPPED",
+          "subtitle": null,
+          "title": "Will it be reported by a Source Agency that Atlanta, Georgia ends its use of Flock Safety license plate reader cameras before Feb 1, 2027?",
+          "yes_sub_title": "Atlanta, GA"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNYCGROCERYCASE-GROCERY27",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXNYCGROCERYCASE-GROCERY27",
+          "key": "KXNYCGROCERYCASE-GROCERY27-0101",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If a New York State court issues an order prohibiting, suspending, or pausing the opening or operation of at least one planned New York City municipal grocery store in Multicultural Business Coalition v. City of New York, Index Nos. 160693/2026 and 160694/2026, or a proceeding formally related to, consolidated with, transferred from, renumbering, succeeding, or reviewing either named matter and concerning the same requested relief before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The ruling must:\nBe issued by a New York State court in Multicultural Business Coalition v. City of New York, Index Nos. 160693/2026 and 160694/2026, or a proceeding formally related to, consolidated with, transferred from, renumbering, succeeding, or reviewing either named matter and concerning the same requested relief\nAddress the matter described by the specified judgment\nBe issued through a written order, opinion, judgment, or decision\n\nA temporary restraining order, preliminary injunction, permanent injunction, or other written relief qualifies if it has the operative effect of prohibiting, suspending, or pausing the opening or operation of at least one planned New York City municipal grocery store. Partial relief affecting only one planned store is sufficient. A temporary restraint contained only in an order to show cause does NOT qualify; the restraint must be issued through a separate qualifying written order, opinion, judgment, or decision.\n\nThe following do NOT satisfy the Payout Criterion:\nOral rulings from the bench unless reduced to a written order\nTentative rulings that are not made final\nDraft opinions that leak but are not officially issued\nSettlements or voluntary dismissals\nAdministrative or scheduling orders\nOrders to show cause\nMinute orders that do not address the substantive issue in the specified judgment\n\nFor clarity:\nSua sponte rulings count if they match the specified judgment\nPer curiam opinions and summary orders count as rulings\nIf multiple judges issue separate opinions, the majority/plurality opinion controls",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXNYCGROCERYCASE",
+          "subtitle": null,
+          "title": "Will a court halt an NYC municipal grocery store before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXNYCGROCERYCASE-GROCERY27",
+          "key": "KXNYCGROCERYCASE-GROCERY27-0701",
+          "no_sub_title": "Before Jul 1, 2027",
+          "rules_primary": "If a New York State court issues an order prohibiting, suspending, or pausing the opening or operation of at least one planned New York City municipal grocery store in Multicultural Business Coalition v. City of New York, Index Nos. 160693/2026 and 160694/2026, or a proceeding formally related to, consolidated with, transferred from, renumbering, succeeding, or reviewing either named matter and concerning the same requested relief before Jul 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The ruling must:\nBe issued by a New York State court in Multicultural Business Coalition v. City of New York, Index Nos. 160693/2026 and 160694/2026, or a proceeding formally related to, consolidated with, transferred from, renumbering, succeeding, or reviewing either named matter and concerning the same requested relief\nAddress the matter described by the specified judgment\nBe issued through a written order, opinion, judgment, or decision\n\nA temporary restraining order, preliminary injunction, permanent injunction, or other written relief qualifies if it has the operative effect of prohibiting, suspending, or pausing the opening or operation of at least one planned New York City municipal grocery store. Partial relief affecting only one planned store is sufficient. A temporary restraint contained only in an order to show cause does NOT qualify; the restraint must be issued through a separate qualifying written order, opinion, judgment, or decision.\n\nThe following do NOT satisfy the Payout Criterion:\nOral rulings from the bench unless reduced to a written order\nTentative rulings that are not made final\nDraft opinions that leak but are not officially issued\nSettlements or voluntary dismissals\nAdministrative or scheduling orders\nOrders to show cause\nMinute orders that do not address the substantive issue in the specified judgment\n\nFor clarity:\nSua sponte rulings count if they match the specified judgment\nPer curiam opinions and summary orders count as rulings\nIf multiple judges issue separate opinions, the majority/plurality opinion controls",
+          "scheduled_close": "2027-07-01T03:59:00Z",
+          "series": "KXNYCGROCERYCASE",
+          "subtitle": null,
+          "title": "Will a court halt an NYC municipal grocery store before Jul 1, 2027?",
+          "yes_sub_title": "Before Jul 1, 2027"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXNYCGROCERYCASE-GROCERY27",
+          "key": "KXNYCGROCERYCASE-GROCERY27-1201",
+          "no_sub_title": "Before Dec 1, 2026",
+          "rules_primary": "If a New York State court issues an order prohibiting, suspending, or pausing the opening or operation of at least one planned New York City municipal grocery store in Multicultural Business Coalition v. City of New York, Index Nos. 160693/2026 and 160694/2026, or a proceeding formally related to, consolidated with, transferred from, renumbering, succeeding, or reviewing either named matter and concerning the same requested relief before Dec 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The ruling must:\nBe issued by a New York State court in Multicultural Business Coalition v. City of New York, Index Nos. 160693/2026 and 160694/2026, or a proceeding formally related to, consolidated with, transferred from, renumbering, succeeding, or reviewing either named matter and concerning the same requested relief\nAddress the matter described by the specified judgment\nBe issued through a written order, opinion, judgment, or decision\n\nA temporary restraining order, preliminary injunction, permanent injunction, or other written relief qualifies if it has the operative effect of prohibiting, suspending, or pausing the opening or operation of at least one planned New York City municipal grocery store. Partial relief affecting only one planned store is sufficient. A temporary restraint contained only in an order to show cause does NOT qualify; the restraint must be issued through a separate qualifying written order, opinion, judgment, or decision.\n\nThe following do NOT satisfy the Payout Criterion:\nOral rulings from the bench unless reduced to a written order\nTentative rulings that are not made final\nDraft opinions that leak but are not officially issued\nSettlements or voluntary dismissals\nAdministrative or scheduling orders\nOrders to show cause\nMinute orders that do not address the substantive issue in the specified judgment\n\nFor clarity:\nSua sponte rulings count if they match the specified judgment\nPer curiam opinions and summary orders count as rulings\nIf multiple judges issue separate opinions, the majority/plurality opinion controls",
+          "scheduled_close": "2026-12-01T04:59:00Z",
+          "series": "KXNYCGROCERYCASE",
+          "subtitle": null,
+          "title": "Will a court halt an NYC municipal grocery store before Dec 1, 2026?",
+          "yes_sub_title": "Before Dec 1, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSPCELAUNCH-COMM",
+      "markets": [
+        {
+          "category": "Science and Technology",
+          "event_key": "KXSPCELAUNCH-COMM",
+          "key": "KXSPCELAUNCH-COMM-27FEB01",
+          "no_sub_title": "Before February 2027",
+          "rules_primary": "If Virgin Galactic launches next commercial Delta-class SpaceShip After issuance and before Feb 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-02-01T04:59:00Z",
+          "series": "KXSPCELAUNCH",
+          "subtitle": "Before February, 2027",
+          "title": "When will Virgin Galactic launch next commercial Delta-class SpaceShip ?",
+          "yes_sub_title": "Before February 2027"
+        },
+        {
+          "category": "Science and Technology",
+          "event_key": "KXSPCELAUNCH-COMM",
+          "key": "KXSPCELAUNCH-COMM-27JAN01",
+          "no_sub_title": "Before 2027",
+          "rules_primary": "If Virgin Galactic launches next commercial Delta-class SpaceShip After issuance and before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXSPCELAUNCH",
+          "subtitle": null,
+          "title": "When will Virgin Galactic launch next commercial Delta-class SpaceShip ?",
+          "yes_sub_title": "Before 2027"
+        }
+      ]
+    },
+    {
+      "event_key": "KXPARDONSTRUMP-26SEP",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXPARDONSTRUMP-26SEP",
+          "key": "KXPARDONSTRUMP-26SEP-1",
+          "no_sub_title": "1",
+          "rules_primary": "If the President pardons, commutes the sentence of, or gives reprieve to exactly 1 persons in Sep 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-10-01T14:00:00Z",
+          "series": "KXPARDONSTRUMP",
+          "subtitle": null,
+          "title": "Will exactly 1 people be pardoned in Sep 2026?",
+          "yes_sub_title": "1"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXPARDONSTRUMP-26SEP",
+          "key": "KXPARDONSTRUMP-26SEP-62",
+          "no_sub_title": "25 to 99",
+          "rules_primary": "If the President pardons, commutes the sentence of, or gives reprieve to between 25 and 99 persons in Sep 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-10-01T14:00:00Z",
+          "series": "KXPARDONSTRUMP",
+          "subtitle": null,
+          "title": "Will between 25 and 99 people be pardoned in Sep 2026?",
+          "yes_sub_title": "25 to 99"
+        }
+      ]
+    },
+    {
+      "event_key": "KXPRESSSECANNOUNCE-26AUG",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXPRESSSECANNOUNCE-26AUG",
+          "key": "KXPRESSSECANNOUNCE-26AUG-OCT01",
+          "no_sub_title": "Before Oct 1, 2026",
+          "rules_primary": "If Donald Trump has made any announcement (e.g., Truth Social post) naming the next White House Press Secretary (including acting/interim) before Oct 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-10-01T03:59:00Z",
+          "series": "KXPRESSSECANNOUNCE",
+          "subtitle": null,
+          "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Oct 1, 2026?",
+          "yes_sub_title": "Before Oct 1, 2026"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXPRESSSECANNOUNCE-26AUG",
+          "key": "KXPRESSSECANNOUNCE-26AUG-SEP08",
+          "no_sub_title": "Before Sep 8, 2026",
+          "rules_primary": "If Donald Trump has made any announcement (e.g., Truth Social post) naming the next White House Press Secretary (including acting/interim) before Sep 8, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-08T03:59:00Z",
+          "series": "KXPRESSSECANNOUNCE",
+          "subtitle": null,
+          "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Sep 8, 2026?",
+          "yes_sub_title": "Before Sep 8, 2026"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXPRESSSECANNOUNCE-26AUG",
+          "key": "KXPRESSSECANNOUNCE-26AUG-SEP15",
+          "no_sub_title": "Before Sep 15, 2026",
+          "rules_primary": "If Donald Trump has made any announcement (e.g., Truth Social post) naming the next White House Press Secretary (including acting/interim) before Sep 15, 2026, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-09-15T03:59:00Z",
+          "series": "KXPRESSSECANNOUNCE",
+          "subtitle": null,
+          "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Sep 15, 2026?",
+          "yes_sub_title": "Before Sep 15, 2026"
+        }
+      ]
+    },
+    {
+      "event_key": "KXLEGISLATIVECOMBO-27JAN",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXLEGISLATIVECOMBO-27JAN",
+          "key": "KXLEGISLATIVECOMBO-27JAN-ALLAW",
+          "no_sub_title": "Legislating combo",
+          "rules_primary": "If ALL of the following occur for before Jan 2027: a crypto market structure bill: become law, the farm bill: become law, a federal housing bill: become law, then the market resolves to Yes.",
+          "rules_secondary": "The bills must follow these definitions:\na crypto market structure bill (see KXCRYPTOSTRUCTURE for more detail)\nan omnibus, multiyear law that governs an array of agricultural and food programs\ncomprehensive federal legislation to increase housing supply and affordability, including through reforms to federal housing programs, expanded financing authority, streamlined development and environmental review requirements, and measures to address barriers to homebuilding\n\nThis is a combination market requiring ALL specified outcomes to occur for the contract to pay out. If ANY single component resolves to No or becomes impossible, the entire contract immediately resolves to No. Each component is resolved according to its corresponding Kalshi ruleset: a crypto market structure bill (BILL), the farm bill (BILL), a federal housing bill (BILL). All conditions must be satisfied before Jan 2027.",
+          "scheduled_close": "2027-01-03T15:00:00Z",
+          "series": "KXLEGISLATIVECOMBO",
+          "subtitle": null,
+          "title": "Will a crypto market structure bill be become law AND the farm bill be become law AND a federal housing bill be become law for Jan 2027?",
+          "yes_sub_title": "Legislating combo"
+        }
+      ]
+    },
+    {
+      "event_key": "KXSENATENHD-26",
+      "markets": [
+        {
+          "category": "Elections",
+          "event_key": "KXSENATENHD-26",
+          "key": "KXSENATENHD-26-CPAP",
+          "no_sub_title": "Chris Pappas",
+          "rules_primary": "If Chris Pappas wins the nomination for the Democratic Party to contest the 2026 Class II New Hampshire Senate seat, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXSENATENHD",
+          "subtitle": null,
+          "title": "Will Chris Pappas be the Democratic nominee for the Senate in New Hampshire?",
+          "yes_sub_title": "Chris Pappas"
+        },
+        {
+          "category": "Elections",
+          "event_key": "KXSENATENHD-26",
+          "key": "KXSENATENHD-26-KMAN",
+          "no_sub_title": "Karishma Manzur",
+          "rules_primary": "If Karishma Manzur wins the nomination for the Democratic Party to contest the 2026 Class II New Hampshire Senate seat, then the market resolves to Yes.",
+          "rules_secondary": "",
+          "scheduled_close": "2026-11-03T15:00:00Z",
+          "series": "KXSENATENHD",
+          "subtitle": null,
+          "title": "Will Karishma Manzur be the Democratic nominee for the Senate in New Hampshire?",
+          "yes_sub_title": "Karishma Manzur"
+        }
+      ]
+    },
+    {
+      "event_key": "KXAUCTIONRECORD-27-WAR",
+      "markets": [
+        {
+          "category": "Entertainment",
+          "event_key": "KXAUCTIONRECORD-27-WAR",
+          "key": "KXAUCTIONRECORD-27-WAR-195040000",
+          "no_sub_title": "Above $195,040,000",
+          "rules_primary": "If the highest auction sale price of any Andy Warhol artwork sold at auction on any public auction house reporting final sale prices is above $195,040,000 in 2026, then the market resolves to Yes.",
+          "rules_secondary": "\u201cSale Price\u201d refers to the final publicly reported realized price of the artwork, including buyer\u2019s premium and auction fees, as reported by the relevant Source Agency.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXAUCTIONRECORD",
+          "subtitle": "Above $195,040,000",
+          "title": "Will Andy Warhol break his auction record this season?",
+          "yes_sub_title": "Above $195,040,000"
+        }
+      ]
+    },
+    {
+      "event_key": "KXMORTGAGERATE-26DEC",
+      "markets": [
+        {
+          "category": "Economics",
+          "event_key": "KXMORTGAGERATE-26DEC",
+          "key": "KXMORTGAGERATE-26DEC-T6.8",
+          "no_sub_title": "Above 6.8%",
+          "rules_primary": "If the 30-Yr FRM is above 6.8% in 2026, then the market resolves to Yes.",
+          "rules_secondary": "Freddie Mac U.S. weekly averages as of the Primary Mortgage Market Survey is the source agency.",
+          "scheduled_close": "2027-01-01T13:29:00Z",
+          "series": "KXMORTGAGERATE",
+          "subtitle": null,
+          "title": "How high will 30yr mortgage rate get this year?",
+          "yes_sub_title": "Above 6.8%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXMORTGAGERATE-26DEC",
+          "key": "KXMORTGAGERATE-26DEC-T6.9",
+          "no_sub_title": "Above 6.9%",
+          "rules_primary": "If the 30-Yr FRM is above 6.9% in 2026, then the market resolves to Yes.",
+          "rules_secondary": "Freddie Mac U.S. weekly averages as of the Primary Mortgage Market Survey is the source agency.",
+          "scheduled_close": "2027-01-01T13:29:00Z",
+          "series": "KXMORTGAGERATE",
+          "subtitle": null,
+          "title": "How high will 30yr mortgage rate get this year?",
+          "yes_sub_title": "Above 6.9%"
+        },
+        {
+          "category": "Economics",
+          "event_key": "KXMORTGAGERATE-26DEC",
+          "key": "KXMORTGAGERATE-26DEC-T7.0",
+          "no_sub_title": "Above 7.0%",
+          "rules_primary": "If the 30-Yr FRM is above 7.0% in 2026, then the market resolves to Yes.",
+          "rules_secondary": "Freddie Mac U.S. weekly averages as of the Primary Mortgage Market Survey is the source agency.",
+          "scheduled_close": "2027-01-01T13:29:00Z",
+          "series": "KXMORTGAGERATE",
+          "subtitle": null,
+          "title": "How high will 30yr mortgage rate get this year?",
+          "yes_sub_title": "Above 7.0%"
+        }
+      ]
+    },
+    {
+      "event_key": "KXNYCMINWAGE-27JAN01",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXNYCMINWAGE-27JAN01",
+          "key": "KXNYCMINWAGE-27JAN01",
+          "no_sub_title": "Yes",
+          "rules_primary": "If a bill establishing a minimum wage of at least $30 per hour for New York City set to go in effect 2030 or earlier has become law in New York City before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law. For standard legislation requiring executive approval, this includes final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods. For legislation not requiring executive approval, this includes final passage and completion of required waiting periods. For constitutional amendments, this includes passage with required supermajorities and completion of ratification processes. For executive orders, this includes official signature, publication in official government records, and legal effectiveness. Legislative passage without completed executive action, passage by only some required bodies, provisional passage, non-binding resolutions, and draft orders do not constitute enactment. Enactment occurs when all requirements are completed, regardless of pending judicial challenges.",
+          "scheduled_close": "2027-01-01T04:59:00Z",
+          "series": "KXNYCMINWAGE",
+          "subtitle": null,
+          "title": "Will Mamdani raise the minimum wage to $30 before 2027?",
+          "yes_sub_title": "Yes"
+        }
+      ]
+    },
+    {
+      "event_key": "KXMACHADOVENEZUELA-26JUN29",
+      "markets": [
+        {
+          "category": "Politics",
+          "event_key": "KXMACHADOVENEZUELA-26JUN29",
+          "key": "KXMACHADOVENEZUELA-26JUN29-JAN01",
+          "no_sub_title": "Before Jan 1, 2027",
+          "rules_primary": "If Mar\u00eda Corina Machado has physically travelled to and been present within the geographic boundaries of Venezuela before Jan 1, 2027, then the market resolves to Yes.",
+          "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+          "scheduled_close": "2027-01-01T15:00:00Z",
+          "series": "KXMACHADOVENEZUELA",
+          "subtitle": null,
+          "title": "Will Mar\u00eda Corina Machado visit Venezuela before Jan 1, 2027?",
+          "yes_sub_title": "Before Jan 1, 2027"
+        },
+        {
+          "category": "Politics",
+          "event_key": "KXMACHADOVENEZUELA-26JUN29",
+          "key": "KXMACHADOVENEZUELA-26JUN29-OCT01",
+          "no_sub_title": "Before Oct 1, 2026",
+          "rules_primary": "If Mar\u00eda Corina Machado has physically travelled to and been present within the geographic boundaries of Venezuela before Oct 1, 2026, then the market resolves to Yes.",
+          "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+          "scheduled_close": "2026-10-01T14:00:00Z",
+          "series": "KXMACHADOVENEZUELA",
+          "subtitle": null,
+          "title": "Will Mar\u00eda Corina Machado visit Venezuela before Oct 1, 2026?",
+          "yes_sub_title": "Before Oct 1, 2026"
+        }
+      ]
+    }
+  ],
+  "snapshot_at": "2026-09-05T15:45:16Z"
+}

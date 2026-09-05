@@ -1,1 +1,775 @@
-{"schema_version": 1, "request": {"run_id": "study/broad-procedural-20260905", "theory_id": "study/broad-procedural", "theory_version": 1, "run_mode": "study", "decision_at": "2026-09-05T19:53:15.489944+00:00", "requested_model": "gpt-5.6-sol", "requested_effort": "high", "requested_web_search": true, "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-053\\first-output.jsonl", "stage": "analysis", "batch_id": "53", "candidate_keys": ["KXORLHOTELDEMAND-27MAY10-T34.5", "KXTRYFIRECOOK-27JAN01-26OCT01", "KXTRYFIRECOOK-27JAN01-27JAN01", "KXORDPAX-27APR30-T84856018", "KXUKSOCIALBAN-27-27APR01", "KXUKSOCIALBAN-27-27AUG01", "KXHORMUZWEEKLY-26SEP13-T20", "KXMOCTRUMP25-26-JAN01", "KXNYCTAXBILLIONS-27JAN01", "KXSOLAR-26-35", "KXSOLAR-26-40", "KXSOLAR-26-45", "KXSOLAR-26-50", "KXSOLAR-26-55", "KXARRESTNETANYAHU-28JAN01-26NOV01", "KXARRESTNETANYAHU-28JAN01-27JAN01", "KXALIENS-26DEC", "KXALIENS-26NOV", "KXALIENS-26OCT", "KXALIENS-27", "KXMARTINDNCOUT-26MAY-26DEC01", "KXMARTINDNCOUT-26MAY-26OCT01", "KXMARTINDNCOUT-26MAY-27JUL01", "KXMARTINDNCOUT-26MAY-JAN01", "KXUSOPENAIANTH-29JAN29-27JAN01", "KXCRYPTORETURNY-26-BTC", "KXCRYPTORETURNY-26-DOGE", "KXCRYPTORETURNY-26-DOT", "KXCRYPTORETURNY-26-ETH", "KXCRYPTORETURNY-26-LINK", "KXCRYPTORETURNY-26-SHIBA", "KXCRYPTORETURNY-26-SOL", "KXCRYPTORETURNY-26-XLM", "KXCRYPTORETURNY-26-XRP", "KXMACBOOKPRICE-26-650", "KXMACBOOKPRICE-26-700", "KXGTASALESRECORD-27JAN31-GTA6"], "payload_sha256": "6a779b117f1340c90e95f7e5356ee0c8b1a102ea8722f520f99309b109b12464", "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-053\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-053\\first-output.jsonl\n", "payload": {"decision_at": "2026-09-05T19:53:15.489944+00:00", "events": [{"event_key": "KXORLHOTELDEMAND-27MAY10", "markets": [{"category": "Economics", "event_key": "KXORLHOTELDEMAND-27MAY10", "key": "KXORLHOTELDEMAND-27MAY10-T34.5", "no_sub_title": "Above 34.5 million room nights", "rules_primary": "If Visit Orlando reports that Metro Orlando\u2019s hotel demand for calendar year 2026 is above \n\n34.5 million room nights, then the market resolves to Yes.", "rules_secondary": "The Underlying is the calendar-year Hotel Demand figure for Metro Orlando, measured in room nights, as reported by Visit Orlando. It does not use average hotel occupancy, average daily rate, RevPAR, short-term-rental demand, visitor volume, or Tourist Development Tax collections.\n\nResolution uses the first official Visit Orlando publication containing the complete 2026 year-end Hotel Demand figure; subsequent revisions do not affect resolution. Visit Orlando separately reports weekly and monthly room-night demand throughout the year.", "scheduled_close": "2027-05-10T13:59:00Z", "series": "KXORLHOTELDEMAND", "subtitle": ":: 2025 baseline", "title": "Will Metro Orlando\u2019s hotel demand for 2026 be above 34.5 million room nights?", "yes_sub_title": "Above 34.5 million room nights"}]}, {"event_key": "KXTRYFIRECOOK-27JAN01", "markets": [{"category": "Politics", "event_key": "KXTRYFIRECOOK-27JAN01", "key": "KXTRYFIRECOOK-27JAN01-26OCT01", "no_sub_title": "Before Oct 1, 2026", "rules_primary": "If the President of the United States has tried to fire Lisa Cook as member of the Board of Governors of the Federal Reserve System before Oct 1, 2026, then the market resolves to Yes.", "rules_secondary": "A \"try to fire\" includes any of the following:\n\nThe President signs an executive order, memorandum, or other official document stating termination;\nDirects any Cabinet member or senior official to terminate the person;\nPublicly states (in a speech, interview, press conference, or verified social media) that he has fired or decided to fire the person;\nThe White House officially announces termination;\nSends written communication to the person informing them of termination;\nInitiates formal legal proceedings for removal\n\nThe following do NOT qualify:\n\nStatements that the person \"should\" resign or be fired;\nExpressions of dissatisfaction;\nAsking or pressuring for voluntary resignation;\nStating the President is \"looking into\" whether he can fire the person;\nStatements by other officials unless directed by the President;\nUnsent letters ordering termination\n\nThis market resolves on the President's attempt to fire, not on whether such attempt is legally valid, successful, or results in the person leaving office.", "scheduled_close": "2026-10-01T14:00:00Z", "series": "KXTRYFIRECOOK", "subtitle": null, "title": "Will the President try to fire the Lisa Cook as member of the Board of Governors of the Federal Reserve System before Oct 1, 2026?", "yes_sub_title": "Before Oct 1, 2026"}, {"category": "Politics", "event_key": "KXTRYFIRECOOK-27JAN01", "key": "KXTRYFIRECOOK-27JAN01-27JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If the President of the United States has tried to fire Lisa Cook as member of the Board of Governors of the Federal Reserve System before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "A \"try to fire\" includes any of the following:\n\nThe President signs an executive order, memorandum, or other official document stating termination;\nDirects any Cabinet member or senior official to terminate the person;\nPublicly states (in a speech, interview, press conference, or verified social media) that he has fired or decided to fire the person;\nThe White House officially announces termination;\nSends written communication to the person informing them of termination;\nInitiates formal legal proceedings for removal\n\nThe following do NOT qualify:\n\nStatements that the person \"should\" resign or be fired;\nExpressions of dissatisfaction;\nAsking or pressuring for voluntary resignation;\nStating the President is \"looking into\" whether he can fire the person;\nStatements by other officials unless directed by the President;\nUnsent letters ordering termination\n\nThis market resolves on the President's attempt to fire, not on whether such attempt is legally valid, successful, or results in the person leaving office.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXTRYFIRECOOK", "subtitle": null, "title": "Will the President try to fire the Lisa Cook as member of the Board of Governors of the Federal Reserve System before Jan 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}]}, {"event_key": "KXORDPAX-27APR30", "markets": [{"category": "Economics", "event_key": "KXORDPAX-27APR30", "key": "KXORDPAX-27APR30-T84856018", "no_sub_title": "Above 84,856,018 passengers", "rules_primary": "If CDA reports that O\u2019Hare International Airport\u2019s total passenger volume for calendar year 2026 is above 84,856,018 passengers, then the market resolves to Yes.", "rules_secondary": "The Underlying is the calendar-year Total Passenger Volume reported by the Chicago Department of Aviation. This includes domestic and international revenue and nonrevenue passengers included in CDA\u2019s passenger-volume statistics. It does not use TSA checkpoint screenings, customs counts, aircraft operations, or passenger projections.\n\nResolution is based on the first CDA publication containing complete January\u2013December 2026 passenger data; subsequent revisions do not affect resolution.", "scheduled_close": "2027-04-30T13:59:00Z", "series": "KXORDPAX", "subtitle": ":: O\u2019Hare\u2019s all-time annual passenger high", "title": "Will O\u2019Hare International Airport\u2019s total passenger volume for 2026 be above 84,856,018 passengers?", "yes_sub_title": "Above 84,856,018 passengers"}]}, {"event_key": "KXUKSOCIALBAN-27", "markets": [{"category": "Politics", "event_key": "KXUKSOCIALBAN-27", "key": "KXUKSOCIALBAN-27-27APR01", "no_sub_title": "Before Apr 1, 2027", "rules_primary": "If a UK ban on social media platforms offering accounts to users under age 16 is in effect  after Issuance and before Apr 1, 2027, then the market resolves to Yes.", "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.", "scheduled_close": "2027-04-01T03:59:00Z", "series": "KXUKSOCIALBAN", "subtitle": null, "title": "Will it be reported by any of the Source Agencies that a UK ban on social media platforms offering accounts to users under age 16 is in effect before Apr 1, 2027?", "yes_sub_title": "Before Apr 1, 2027"}, {"category": "Politics", "event_key": "KXUKSOCIALBAN-27", "key": "KXUKSOCIALBAN-27-27AUG01", "no_sub_title": "Before Aug 1, 2027", "rules_primary": "If a UK ban on social media platforms offering accounts to users under age 16 is in effect  after Issuance and before Aug 1, 2027, then the market resolves to Yes.", "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.", "scheduled_close": "2027-08-01T03:59:00Z", "series": "KXUKSOCIALBAN", "subtitle": null, "title": "Will it be reported by any of the Source Agencies that a UK ban on social media platforms offering accounts to users under age 16 is in effect before Aug 1, 2027?", "yes_sub_title": "Before Aug 1, 2027"}]}, {"event_key": "KXHORMUZWEEKLY-26SEP13", "markets": [{"category": "Politics", "event_key": "KXHORMUZWEEKLY-26SEP13", "key": "KXHORMUZWEEKLY-26SEP13-T20", "no_sub_title": "Above 20", "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 20 from Sep 7, 2026 to Sep 13, 2026, then the market resolves to Yes.", "rules_secondary": "The total is calculated by summing daily counts from Sep 7, 2026 to Sep 13, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.", "scheduled_close": "2026-09-15T13:00:00Z", "series": "KXHORMUZWEEKLY", "subtitle": null, "title": "Will there be more than 20 transit calls through the Strait of Hormuz from Sep 7, 2026 to Sep 13, 2026?", "yes_sub_title": "Above 20"}]}, {"event_key": "KXMOCTRUMP25-26", "markets": [{"category": "Politics", "event_key": "KXMOCTRUMP25-26", "key": "KXMOCTRUMP25-26-JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If any Republican member of Congress calls on Trump to be removed as President through the 25th amendment before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXMOCTRUMP25", "subtitle": null, "title": "Will any Republican member of Congress calls on Trump to be removed as President through the 25th amendment before Jan 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}]}, {"event_key": "KXNYCTAXBILLIONS-27JAN01", "markets": [{"category": "Politics", "event_key": "KXNYCTAXBILLIONS-27JAN01", "key": "KXNYCTAXBILLIONS-27JAN01", "no_sub_title": "Yes", "rules_primary": "If a law authorizing a new personal income tax bracket or surcharge on incomes over $1 billion for New York City residents has become law in New York City before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "Laws passed by New York State are encompassed within the Payout Criterion if they apply to or govern New York City. Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law. For standard legislation requiring executive approval, this includes final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods. For legislation not requiring executive approval, this includes final passage and completion of required waiting periods. For constitutional amendments, this includes passage with required supermajorities and completion of ratification processes. For executive orders, this includes official signature, publication in official government records, and legal effectiveness. Legislative passage without completed executive action, passage by only some required bodies, provisional passage, non-binding resolutions, and draft orders do not constitute enactment. Enactment occurs when all requirements are completed, regardless of pending judicial challenges.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXNYCTAXBILLIONS", "subtitle": "Yes", "title": "Will  become law in New York City before Jan 1, 2027?", "yes_sub_title": "Yes"}]}, {"event_key": "KXSOLAR-26", "markets": [{"category": "Economics", "event_key": "KXSOLAR-26", "key": "KXSOLAR-26-35", "no_sub_title": "At least 35 GWdc", "rules_primary": "If at least 35 GWdc of solar capacity is installed in the US in 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-03-31T15:00:00Z", "series": "KXSOLAR", "subtitle": null, "title": "Will at least 35 GWdc of solar capacity be installed in 2026?", "yes_sub_title": "At least 35 GWdc"}, {"category": "Economics", "event_key": "KXSOLAR-26", "key": "KXSOLAR-26-40", "no_sub_title": "At least 40 GWdc", "rules_primary": "If at least 40 GWdc of solar capacity is installed in the US in 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-03-31T15:00:00Z", "series": "KXSOLAR", "subtitle": null, "title": "Will at least 40 GWdc of solar capacity be installed in 2026?", "yes_sub_title": "At least 40 GWdc"}, {"category": "Economics", "event_key": "KXSOLAR-26", "key": "KXSOLAR-26-45", "no_sub_title": "At least 45 GWdc", "rules_primary": "If at least 45 GWdc of solar capacity is installed in the US in 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-03-31T15:00:00Z", "series": "KXSOLAR", "subtitle": null, "title": "Will at least 45 GWdc of solar capacity be installed in 2026?", "yes_sub_title": "At least 45 GWdc"}, {"category": "Economics", "event_key": "KXSOLAR-26", "key": "KXSOLAR-26-50", "no_sub_title": "At least 50 GWdc", "rules_primary": "If at least 50 GWdc of solar capacity is installed in the US in 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-03-31T15:00:00Z", "series": "KXSOLAR", "subtitle": null, "title": "Will at least 50 GWdc of solar capacity be installed in 2026?", "yes_sub_title": "At least 50 GWdc"}, {"category": "Economics", "event_key": "KXSOLAR-26", "key": "KXSOLAR-26-55", "no_sub_title": "At least 55 GWdc", "rules_primary": "If at least 55 GWdc of solar capacity is installed in the US in 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-03-31T15:00:00Z", "series": "KXSOLAR", "subtitle": null, "title": "Will at least 55 GWdc of solar capacity be installed in 2026?", "yes_sub_title": "At least 55 GWdc"}]}, {"event_key": "KXARRESTNETANYAHU-28JAN01", "markets": [{"category": "Politics", "event_key": "KXARRESTNETANYAHU-28JAN01", "key": "KXARRESTNETANYAHU-28JAN01-26NOV01", "no_sub_title": "Before Nov 1, 2026", "rules_primary": "If Benjamin Netanyahu has been arrested before Nov 1, 2026, then the market resolves to Yes.", "rules_secondary": "For purposes of this Contract, \"arrested\" means:\nBeing taken into physical custody by law enforcement authorities (including federal, state, local, military, or international law enforcement)\nVoluntarily surrendering to law enforcement authorities in response to an arrest warrant\nBeing formally booked or processed following detention\n\nThe following scenarios would satisfy the Payout Criterion:\nBenjamin Netanyahu is handcuffed and taken to a police station\nBenjamin Netanyahu surrenders at a police station or courthouse with their attorney\nBenjamin Netanyahu is arrested in any country and this is reported by a Source Agency\nBenjamin Netanyahu is detained at an airport or border crossing and formally arrested\n\nThe following scenarios would NOT satisfy the Payout Criterion:\nAn arrest warrant being issued but not executed\nBenjamin Netanyahu being briefly detained but not arrested\nBenjamin Netanyahu being questioned or interviewed without arrest\nBenjamin Netanyahu being placed under house arrest or electronic monitoring without physical custody\nBenjamin Netanyahu being named in an indictment without arrest\nBenjamin Netanyahu being arrested after Nov 1, 2026\nProtective custody that is not an arrest", "scheduled_close": "2026-11-01T04:59:00Z", "series": "KXARRESTNETANYAHU", "subtitle": null, "title": "Will Benjamin Netanyahu be arrested before Nov 1, 2026?", "yes_sub_title": "Before Nov 1, 2026"}, {"category": "Politics", "event_key": "KXARRESTNETANYAHU-28JAN01", "key": "KXARRESTNETANYAHU-28JAN01-27JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If Benjamin Netanyahu has been arrested before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "For purposes of this Contract, \"arrested\" means:\nBeing taken into physical custody by law enforcement authorities (including federal, state, local, military, or international law enforcement)\nVoluntarily surrendering to law enforcement authorities in response to an arrest warrant\nBeing formally booked or processed following detention\n\nThe following scenarios would satisfy the Payout Criterion:\nBenjamin Netanyahu is handcuffed and taken to a police station\nBenjamin Netanyahu surrenders at a police station or courthouse with their attorney\nBenjamin Netanyahu is arrested in any country and this is reported by a Source Agency\nBenjamin Netanyahu is detained at an airport or border crossing and formally arrested\n\nThe following scenarios would NOT satisfy the Payout Criterion:\nAn arrest warrant being issued but not executed\nBenjamin Netanyahu being briefly detained but not arrested\nBenjamin Netanyahu being questioned or interviewed without arrest\nBenjamin Netanyahu being placed under house arrest or electronic monitoring without physical custody\nBenjamin Netanyahu being named in an indictment without arrest\nBenjamin Netanyahu being arrested after Jan 1, 2027\nProtective custody that is not an arrest", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXARRESTNETANYAHU", "subtitle": null, "title": "Will Benjamin Netanyahu be arrested before Jan 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}]}, {"event_key": "KXALIENS-27", "markets": [{"category": "Science and Technology", "event_key": "KXALIENS-27", "key": "KXALIENS-26DEC", "no_sub_title": "Before December", "rules_primary": "If the President, any member of the Cabinet, any member of the Joint Chiefs of Staff, or any US federal agency definitively states that extraterrestrial life or technology exists before Dec 1, 2026, then the market resolves to Yes.", "rules_secondary": "For purposes of this Contract, the Cabinet includes the heads of the 15 government agencies in the Cabinet as of Issuance, as well the Administrator of the EPA, the President's Chief of Staff, Director of National Intelligence, Director of OMB, Director of CIA, United States Trade Representative, Ambassador to the UN, Chair of the Council of Economic Advisers, Administrator of the SBA, and Director of OSTP.", "scheduled_close": "2026-12-01T15:00:00Z", "series": "KXALIENS", "subtitle": null, "title": "Will the U.S. confirm that aliens exist before Dec 1, 2026?", "yes_sub_title": "Before December"}, {"category": "Science and Technology", "event_key": "KXALIENS-27", "key": "KXALIENS-26NOV", "no_sub_title": "Before November", "rules_primary": "If the President, any member of the Cabinet, any member of the Joint Chiefs of Staff, or any US federal agency definitively states that extraterrestrial life or technology exists before Nov 1, 2026, then the market resolves to Yes.", "rules_secondary": "For purposes of this Contract, the Cabinet includes the heads of the 15 government agencies in the Cabinet as of Issuance, as well the Administrator of the EPA, the President's Chief of Staff, Director of National Intelligence, Director of OMB, Director of CIA, United States Trade Representative, Ambassador to the UN, Chair of the Council of Economic Advisers, Administrator of the SBA, and Director of OSTP.", "scheduled_close": "2026-11-01T15:00:00Z", "series": "KXALIENS", "subtitle": null, "title": "Will the U.S. confirm that aliens exist before Nov 1, 2026?", "yes_sub_title": "Before November"}, {"category": "Science and Technology", "event_key": "KXALIENS-27", "key": "KXALIENS-26OCT", "no_sub_title": "Before October", "rules_primary": "If the President, any member of the Cabinet, any member of the Joint Chiefs of Staff, or any US federal agency definitively states that extraterrestrial life or technology exists before Oct 1, 2026, then the market resolves to Yes.", "rules_secondary": "For purposes of this Contract, the Cabinet includes the heads of the 15 government agencies in the Cabinet as of Issuance, as well the Administrator of the EPA, the President's Chief of Staff, Director of National Intelligence, Director of OMB, Director of CIA, United States Trade Representative, Ambassador to the UN, Chair of the Council of Economic Advisers, Administrator of the SBA, and Director of OSTP.", "scheduled_close": "2026-10-01T14:00:00Z", "series": "KXALIENS", "subtitle": null, "title": "Will the U.S. confirm that aliens exist before Oct 1, 2026?", "yes_sub_title": "Before October"}, {"category": "Science and Technology", "event_key": "KXALIENS-27", "key": "KXALIENS-27", "no_sub_title": "Before 2027", "rules_primary": "If the President, any member of the Cabinet, any member of the Joint Chiefs of Staff, or any US federal agency definitively states that extraterrestrial life or technology exists before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "For purposes of this Contract, the Cabinet includes the heads of the 15 government agencies in the Cabinet as of Issuance, as well the Administrator of the EPA, the President's Chief of Staff, Director of National Intelligence, Director of OMB, Director of CIA, United States Trade Representative, Ambassador to the UN, Chair of the Council of Economic Advisers, Administrator of the SBA, and Director of OSTP.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXALIENS", "subtitle": null, "title": "Will the U.S. confirm that aliens exist before 2027?", "yes_sub_title": "Before 2027"}]}, {"event_key": "KXMARTINDNCOUT-26MAY", "markets": [{"category": "Politics", "event_key": "KXMARTINDNCOUT-26MAY", "key": "KXMARTINDNCOUT-26MAY-26DEC01", "no_sub_title": "Before Dec 1, 2026", "rules_primary": "If Ken Martin leaves as chair of the Democratic National Committee before Dec 1, 2026, then the market resolves to Yes.", "rules_secondary": "Ken Martin must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.", "scheduled_close": "2026-12-01T04:59:00Z", "series": "KXMARTINDNCOUT", "subtitle": null, "title": "Will Ken Martin be out as chair of the Democratic National Committee before Dec 1, 2026?", "yes_sub_title": "Before Dec 1, 2026"}, {"category": "Politics", "event_key": "KXMARTINDNCOUT-26MAY", "key": "KXMARTINDNCOUT-26MAY-26OCT01", "no_sub_title": "Before Oct 1, 2026", "rules_primary": "If Ken Martin leaves as chair of the Democratic National Committee before Oct 1, 2026, then the market resolves to Yes.", "rules_secondary": "Ken Martin must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.", "scheduled_close": "2026-10-01T03:59:00Z", "series": "KXMARTINDNCOUT", "subtitle": null, "title": "Will Ken Martin be out as chair of the Democratic National Committee before Oct 1, 2026?", "yes_sub_title": "Before Oct 1, 2026"}, {"category": "Politics", "event_key": "KXMARTINDNCOUT-26MAY", "key": "KXMARTINDNCOUT-26MAY-27JUL01", "no_sub_title": "Before Jul 1, 2027", "rules_primary": "If Ken Martin leaves as chair of the Democratic National Committee before Jul 1, 2027, then the market resolves to Yes.", "rules_secondary": "Ken Martin must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.", "scheduled_close": "2027-07-01T03:59:00Z", "series": "KXMARTINDNCOUT", "subtitle": null, "title": "Will Ken Martin be out as chair of the Democratic National Committee before Jul 1, 2027?", "yes_sub_title": "Before Jul 1, 2027"}, {"category": "Politics", "event_key": "KXMARTINDNCOUT-26MAY", "key": "KXMARTINDNCOUT-26MAY-JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If Ken Martin leaves as chair of the Democratic National Committee before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "Ken Martin must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXMARTINDNCOUT", "subtitle": "::", "title": "Will Ken Martin be out as chair of the Democratic National Committee before Jan 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}]}, {"event_key": "KXUSOPENAIANTH-29JAN29", "markets": [{"category": "Financials", "event_key": "KXUSOPENAIANTH-29JAN29", "key": "KXUSOPENAIANTH-29JAN29-27JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If the U.S. federal government has taken a stake of at least 1% in each of OpenAI and Anthropic (including any successor or parent substantially owning its AI business) before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "Taking a stake means acquiring direct equity ownership, voting shares, or equivalent ownership interests. This includes indirect ownership through wholly controlled investment vehicles and convertible rights treated as equity. Pre-existing stakes count toward the threshold. Ownership is aggregated across all share classes and listings. Crossing the threshold at any point satisfies the criterion regardless of subsequent changes. Non-equity instruments like bonds or loans don't qualify. Stakes by sovereign wealth funds or state-owned enterprises attributed to the body count. The value can be expressed as percentage ownership, monetary value, or share count, with percentage being the default unless specified.", "scheduled_close": "2027-01-01T14:59:00Z", "series": "KXUSOPENAIANTH", "subtitle": null, "title": "Will the U.S. federal government take a stake of at least 1% in each of OpenAI and Anthropic (including any successor or parent substantially owning its AI business) before Jan 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}]}, {"event_key": "KXCRYPTORETURNY-26", "markets": [{"category": "Crypto", "event_key": "KXCRYPTORETURNY-26", "key": "KXCRYPTORETURNY-26-BTC", "no_sub_title": "Bitcoin (BTC)", "rules_primary": "If Bitcoin has a positive return in 2026, then the market resolves to Yes.", "rules_secondary": "Return will be calculated as: (last Price in <period>) minus (first Price in <period>), divided by (first Price in <period>). Price will be calculated by taking a simple average of the real-time CF Benchmarks index price in USD for <cryptocurrency> for the 60 seconds in a given minute, ignoring the top and bottom 20% of values.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCRYPTORETURNY", "subtitle": null, "title": "Which of these cryptocurrencies will have a positive return in 2026?", "yes_sub_title": "Bitcoin (BTC)"}, {"category": "Crypto", "event_key": "KXCRYPTORETURNY-26", "key": "KXCRYPTORETURNY-26-DOGE", "no_sub_title": "Dogecoin (DOGE)", "rules_primary": "If Dogecoin has a positive return in 2026, then the market resolves to Yes.", "rules_secondary": "Return will be calculated as: (last Price in <period>) minus (first Price in <period>), divided by (first Price in <period>). Price will be calculated by taking a simple average of the real-time CF Benchmarks index price in USD for <cryptocurrency> for the 60 seconds in a given minute, ignoring the top and bottom 20% of values.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCRYPTORETURNY", "subtitle": null, "title": "Which of these cryptocurrencies will have a positive return in 2026?", "yes_sub_title": "Dogecoin (DOGE)"}, {"category": "Crypto", "event_key": "KXCRYPTORETURNY-26", "key": "KXCRYPTORETURNY-26-DOT", "no_sub_title": "Polkadot (DOT)", "rules_primary": "If Polkadot has a positive return in 2026, then the market resolves to Yes.", "rules_secondary": "Return will be calculated as: (last Price in <period>) minus (first Price in <period>), divided by (first Price in <period>). Price will be calculated by taking a simple average of the real-time CF Benchmarks index price in USD for <cryptocurrency> for the 60 seconds in a given minute, ignoring the top and bottom 20% of values.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCRYPTORETURNY", "subtitle": null, "title": "Which of these cryptocurrencies will have a positive return in 2026?", "yes_sub_title": "Polkadot (DOT)"}, {"category": "Crypto", "event_key": "KXCRYPTORETURNY-26", "key": "KXCRYPTORETURNY-26-ETH", "no_sub_title": "Ethereum (ETH)", "rules_primary": "If Ethereum has a positive return in 2026, then the market resolves to Yes.", "rules_secondary": "Return will be calculated as: (last Price in <period>) minus (first Price in <period>), divided by (first Price in <period>). Price will be calculated by taking a simple average of the real-time CF Benchmarks index price in USD for <cryptocurrency> for the 60 seconds in a given minute, ignoring the top and bottom 20% of values.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCRYPTORETURNY", "subtitle": null, "title": "Which of these cryptocurrencies will have a positive return in 2026?", "yes_sub_title": "Ethereum (ETH)"}, {"category": "Crypto", "event_key": "KXCRYPTORETURNY-26", "key": "KXCRYPTORETURNY-26-LINK", "no_sub_title": "Chainlink (LINK)", "rules_primary": "If Chainlink has a positive return in 2026, then the market resolves to Yes.", "rules_secondary": "Return will be calculated as: (last Price in <period>) minus (first Price in <period>), divided by (first Price in <period>). Price will be calculated by taking a simple average of the real-time CF Benchmarks index price in USD for <cryptocurrency> for the 60 seconds in a given minute, ignoring the top and bottom 20% of values.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCRYPTORETURNY", "subtitle": null, "title": "Which of these cryptocurrencies will have a positive return in 2026?", "yes_sub_title": "Chainlink (LINK)"}, {"category": "Crypto", "event_key": "KXCRYPTORETURNY-26", "key": "KXCRYPTORETURNY-26-SHIBA", "no_sub_title": "Shiba Inu (SHIB)", "rules_primary": "If Shiba Inu has a positive return in 2026, then the market resolves to Yes.", "rules_secondary": "Return will be calculated as: (last Price in <period>) minus (first Price in <period>), divided by (first Price in <period>). Price will be calculated by taking a simple average of the real-time CF Benchmarks index price in USD for <cryptocurrency> for the 60 seconds in a given minute, ignoring the top and bottom 20% of values.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCRYPTORETURNY", "subtitle": null, "title": "Which of these cryptocurrencies will have a positive return in 2026?", "yes_sub_title": "Shiba Inu (SHIB)"}, {"category": "Crypto", "event_key": "KXCRYPTORETURNY-26", "key": "KXCRYPTORETURNY-26-SOL", "no_sub_title": "Solana (SOL)", "rules_primary": "If Solana has a positive return in 2026, then the market resolves to Yes.", "rules_secondary": "Return will be calculated as: (last Price in <period>) minus (first Price in <period>), divided by (first Price in <period>). Price will be calculated by taking a simple average of the real-time CF Benchmarks index price in USD for <cryptocurrency> for the 60 seconds in a given minute, ignoring the top and bottom 20% of values.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCRYPTORETURNY", "subtitle": null, "title": "Which of these cryptocurrencies will have a positive return in 2026?", "yes_sub_title": "Solana (SOL)"}, {"category": "Crypto", "event_key": "KXCRYPTORETURNY-26", "key": "KXCRYPTORETURNY-26-XLM", "no_sub_title": "Stellar Lumens (XLM)", "rules_primary": "If Stellar Lumens has a positive return in 2026, then the market resolves to Yes.", "rules_secondary": "Return will be calculated as: (last Price in <period>) minus (first Price in <period>), divided by (first Price in <period>). Price will be calculated by taking a simple average of the real-time CF Benchmarks index price in USD for <cryptocurrency> for the 60 seconds in a given minute, ignoring the top and bottom 20% of values.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCRYPTORETURNY", "subtitle": null, "title": "Which of these cryptocurrencies will have a positive return in 2026?", "yes_sub_title": "Stellar Lumens (XLM)"}, {"category": "Crypto", "event_key": "KXCRYPTORETURNY-26", "key": "KXCRYPTORETURNY-26-XRP", "no_sub_title": "Ripple (XRP)", "rules_primary": "If Ripple has a positive return in 2026, then the market resolves to Yes.", "rules_secondary": "Return will be calculated as: (last Price in <period>) minus (first Price in <period>), divided by (first Price in <period>). Price will be calculated by taking a simple average of the real-time CF Benchmarks index price in USD for <cryptocurrency> for the 60 seconds in a given minute, ignoring the top and bottom 20% of values.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCRYPTORETURNY", "subtitle": null, "title": "Which of these cryptocurrencies will have a positive return in 2026?", "yes_sub_title": "Ripple (XRP)"}]}, {"event_key": "KXMACBOOKPRICE-26", "markets": [{"category": "Entertainment", "event_key": "KXMACBOOKPRICE-26", "key": "KXMACBOOKPRICE-26-650", "no_sub_title": "below $650", "rules_primary": "If the lowest priced of the any MacBook model on Apple.com is below $650, on November 27th, 2026 at 10:00 AM ET, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-02-25T15:00:00Z", "series": "KXMACBOOKPRICE", "subtitle": null, "title": "Will lowest priced of the any MacBook model on Apple.com be below $650 on November 27th, 2026 at 10:00 AM ET?", "yes_sub_title": "below $650"}, {"category": "Entertainment", "event_key": "KXMACBOOKPRICE-26", "key": "KXMACBOOKPRICE-26-700", "no_sub_title": "below $700", "rules_primary": "If the lowest priced of the any MacBook model on Apple.com is below $700, on November 27th, 2026 at 10:00 AM ET, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-02-25T15:00:00Z", "series": "KXMACBOOKPRICE", "subtitle": null, "title": "Will lowest priced of the any MacBook model on Apple.com be below $700 on November 27th, 2026 at 10:00 AM ET?", "yes_sub_title": "below $700"}]}, {"event_key": "KXGTASALESRECORD-27JAN31", "markets": [{"category": "Entertainment", "event_key": "KXGTASALESRECORD-27JAN31", "key": "KXGTASALESRECORD-27JAN31-GTA6", "no_sub_title": "Yes", "rules_primary": "If GTA 6 breaks the highest-grossing videogame in 24 hours record in 2026, the market resolves to Yes.", "rules_secondary": "This market refers to the Guinness World Records title \u201cHighest grossing videogame in 24 hours.\u201d The relevant period is the videogame\u2019s first 24 hours following its initial official release. Grand Theft Auto V currently holds this record.\n\nGrand Theft Auto V, developed by Rockstar Games, sold 11.21 million copies and grossed $815.7 million worldwide within 24 hours of its release on September 17, 2013.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2027-01-31T15:00:00Z", "series": "KXGTASALESRECORD", "subtitle": null, "title": "Will GTA 6 break the record for the highest-grossing videogame in 24 hours?", "yes_sub_title": "Yes"}]}], "snapshot_at": "2026-09-05T15:45:16Z"}}, "completion": null}
+{
+  "completion": {
+    "completed_at": "2026-09-05T20:32:51.550919+00:00",
+    "effort": "high",
+    "model": "gpt-5.6-sol",
+    "results": {
+      "KXALIENS-26DEC": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/01/2026 15:00:00\", \"family\": \"quantity_measurement\", \"key\": \"KXALIENS-26DEC\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the President, any member of the Cabinet, any member of the Joint Chiefs of Staff, or any US federal agency definitively states that extraterrestrial life or technology exists before Dec 1, 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaliens-27\", \"web_search_used\": false}"
+      },
+      "KXALIENS-26NOV": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 11/01/2026 15:00:00\", \"family\": \"quantity_measurement\", \"key\": \"KXALIENS-26NOV\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the President, any member of the Cabinet, any member of the Joint Chiefs of Staff, or any US federal agency definitively states that extraterrestrial life or technology exists before Nov 1, 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaliens-27\", \"web_search_used\": false}"
+      },
+      "KXALIENS-26OCT": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/01/2026 14:00:00\", \"family\": \"quantity_measurement\", \"key\": \"KXALIENS-26OCT\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the President, any member of the Cabinet, any member of the Joint Chiefs of Staff, or any US federal agency definitively states that extraterrestrial life or technology exists before Oct 1, 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaliens-27\", \"web_search_used\": false}"
+      },
+      "KXALIENS-27": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"quantity_measurement\", \"key\": \"KXALIENS-27\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the President, any member of the Cabinet, any member of the Joint Chiefs of Staff, or any US federal agency definitively states that extraterrestrial life or technology exists before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaliens-27\", \"web_search_used\": false}"
+      },
+      "KXARRESTNETANYAHU-28JAN01-26NOV01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"Any qualifying arrest under the rules may suffice.\", \"deadline\": \"Before Nov 1, 2026; scheduled close 11/01/2026 04:59:00\", \"family\": \"international_arrest_enforcement\", \"key\": \"KXARRESTNETANYAHU-28JAN01-26NOV01\", \"mandatory_steps\": [{\"source_url\": \"https://www.icc-cpi.int/news/situation-state-palestine-icc-pre-trial-chamber-i-rejects-state-israels-challenges\", \"status\": \"pending\", \"step\": \"A competent authority executes the outstanding ICC arrest warrant or another qualifying arrest basis.\"}], \"obstacle\": \"The warrant has not been executed and enforcement depends on jurisdiction and custody.\", \"predicate\": \"If Benjamin Netanyahu has been arrested before Nov 1, 2026, then the market resolves to Yes.\", \"rationale\": \"The ICC issued an arrest warrant and states alleged conduct appears ongoing. That live warrant supplies an institutional route to arrest, although custody and enforcement remain unresolved.\", \"source_gaps\": [\"Current execution plan or expected travel to an enforcing jurisdiction.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:32:00Z\", \"published_at\": \"2024-11-21\", \"quote\": \"issues warrants of arrest for Benjamin Netanyahu\", \"supports\": \"Confirms a formal arrest warrant that remains the predicate's most concrete enforcement route.\", \"title\": \"Situation in the State of Palestine: ICC issues warrants of arrest\", \"url\": \"https://www.icc-cpi.int/news/situation-state-palestine-icc-pre-trial-chamber-i-rejects-state-israels-challenges\"}], \"subject_key\": \"kxarrestnetanyahu-28jan01\", \"web_search_used\": true}"
+      },
+      "KXARRESTNETANYAHU-28JAN01-27JAN01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"Any qualifying arrest under the rules may suffice.\", \"deadline\": \"Before Jan 1, 2027; scheduled close 01/01/2027 04:59:00\", \"family\": \"international_arrest_enforcement\", \"key\": \"KXARRESTNETANYAHU-28JAN01-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://www.icc-cpi.int/news/situation-state-palestine-icc-pre-trial-chamber-i-rejects-state-israels-challenges\", \"status\": \"pending\", \"step\": \"A competent authority executes the outstanding ICC arrest warrant or another qualifying arrest basis.\"}], \"obstacle\": \"The warrant has not been executed and enforcement depends on jurisdiction and custody.\", \"predicate\": \"If Benjamin Netanyahu has been arrested before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The ICC issued an arrest warrant and states alleged conduct appears ongoing. That live warrant supplies an institutional route to arrest, although custody and enforcement remain unresolved.\", \"source_gaps\": [\"Current execution plan or expected travel to an enforcing jurisdiction.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:32:00Z\", \"published_at\": \"2024-11-21\", \"quote\": \"issues warrants of arrest for Benjamin Netanyahu\", \"supports\": \"Confirms a formal arrest warrant that remains the predicate's most concrete enforcement route.\", \"title\": \"Situation in the State of Palestine: ICC issues warrants of arrest\", \"url\": \"https://www.icc-cpi.int/news/situation-state-palestine-icc-pre-trial-chamber-i-rejects-state-israels-challenges\"}], \"subject_key\": \"kxarrestnetanyahu-28jan01\", \"web_search_used\": true}"
+      },
+      "KXCRYPTORETURNY-26-BTC": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"quantity_measurement\", \"key\": \"KXCRYPTORETURNY-26-BTC\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Bitcoin has a positive return in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcryptoreturny-26\", \"web_search_used\": false}"
+      },
+      "KXCRYPTORETURNY-26-DOGE": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"quantity_measurement\", \"key\": \"KXCRYPTORETURNY-26-DOGE\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Dogecoin has a positive return in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcryptoreturny-26\", \"web_search_used\": false}"
+      },
+      "KXCRYPTORETURNY-26-DOT": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"quantity_measurement\", \"key\": \"KXCRYPTORETURNY-26-DOT\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Polkadot has a positive return in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcryptoreturny-26\", \"web_search_used\": false}"
+      },
+      "KXCRYPTORETURNY-26-ETH": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"quantity_measurement\", \"key\": \"KXCRYPTORETURNY-26-ETH\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Ethereum has a positive return in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcryptoreturny-26\", \"web_search_used\": false}"
+      },
+      "KXCRYPTORETURNY-26-LINK": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"quantity_measurement\", \"key\": \"KXCRYPTORETURNY-26-LINK\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Chainlink has a positive return in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcryptoreturny-26\", \"web_search_used\": false}"
+      },
+      "KXCRYPTORETURNY-26-SHIBA": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"quantity_measurement\", \"key\": \"KXCRYPTORETURNY-26-SHIBA\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Shiba Inu has a positive return in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcryptoreturny-26\", \"web_search_used\": false}"
+      },
+      "KXCRYPTORETURNY-26-SOL": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"quantity_measurement\", \"key\": \"KXCRYPTORETURNY-26-SOL\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Solana has a positive return in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcryptoreturny-26\", \"web_search_used\": false}"
+      },
+      "KXCRYPTORETURNY-26-XLM": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"quantity_measurement\", \"key\": \"KXCRYPTORETURNY-26-XLM\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Stellar Lumens has a positive return in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcryptoreturny-26\", \"web_search_used\": false}"
+      },
+      "KXCRYPTORETURNY-26-XRP": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"quantity_measurement\", \"key\": \"KXCRYPTORETURNY-26-XRP\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Ripple has a positive return in 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcryptoreturny-26\", \"web_search_used\": false}"
+      },
+      "KXGTASALESRECORD-27JAN31-GTA6": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/31/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXGTASALESRECORD-27JAN31-GTA6\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If GTA 6 breaks the highest-grossing videogame in 24 hours record in 2026, the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxgtasalesrecord-27jan31\", \"web_search_used\": false}"
+      },
+      "KXHORMUZWEEKLY-26SEP13-T20": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/15/2026 13:00:00\", \"family\": \"quantity_measurement\", \"key\": \"KXHORMUZWEEKLY-26SEP13-T20\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 20 from Sep 7, 2026 to Sep 13, 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxhormuzweekly-26sep13\", \"web_search_used\": false}"
+      },
+      "KXMACBOOKPRICE-26-650": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 02/25/2027 15:00:00\", \"family\": \"quantity_measurement\", \"key\": \"KXMACBOOKPRICE-26-650\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the lowest priced of the any MacBook model on Apple.com is below $650, on November 27th, 2026 at 10:00 AM ET, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxmacbookprice-26\", \"web_search_used\": false}"
+      },
+      "KXMACBOOKPRICE-26-700": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 02/25/2027 15:00:00\", \"family\": \"quantity_measurement\", \"key\": \"KXMACBOOKPRICE-26-700\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the lowest priced of the any MacBook model on Apple.com is below $700, on November 27th, 2026 at 10:00 AM ET, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxmacbookprice-26\", \"web_search_used\": false}"
+      },
+      "KXMARTINDNCOUT-26MAY-26DEC01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/01/2026 04:59:00\", \"family\": \"observed_outcome\", \"key\": \"KXMARTINDNCOUT-26MAY-26DEC01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Ken Martin leaves as chair of the Democratic National Committee before Dec 1, 2026, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxmartindncout-26may\", \"web_search_used\": false}"
+      },
+      "KXMARTINDNCOUT-26MAY-26OCT01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/01/2026 03:59:00\", \"family\": \"observed_outcome\", \"key\": \"KXMARTINDNCOUT-26MAY-26OCT01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Ken Martin leaves as chair of the Democratic National Committee before Oct 1, 2026, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxmartindncout-26may\", \"web_search_used\": false}"
+      },
+      "KXMARTINDNCOUT-26MAY-27JUL01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 07/01/2027 03:59:00\", \"family\": \"observed_outcome\", \"key\": \"KXMARTINDNCOUT-26MAY-27JUL01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Ken Martin leaves as chair of the Democratic National Committee before Jul 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxmartindncout-26may\", \"web_search_used\": false}"
+      },
+      "KXMARTINDNCOUT-26MAY-JAN01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 04:59:00\", \"family\": \"observed_outcome\", \"key\": \"KXMARTINDNCOUT-26MAY-JAN01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Ken Martin leaves as chair of the Democratic National Committee before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxmartindncout-26may\", \"web_search_used\": false}"
+      },
+      "KXMOCTRUMP25-26-JAN01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 04:59:00\", \"family\": \"observed_outcome\", \"key\": \"KXMOCTRUMP25-26-JAN01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If any Republican member of Congress calls on Trump to be removed as President through the 25th amendment before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxmoctrump25-26\", \"web_search_used\": false}"
+      },
+      "KXNYCTAXBILLIONS-27JAN01": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Any qualifying state and city legislative route may suffice.\", \"deadline\": \"Before Jan 1, 2027\", \"family\": \"new_york_tax_legislation\", \"key\": \"KXNYCTAXBILLIONS-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://assembly.ny.gov/leg/\", \"status\": \"unknown\", \"step\": \"Qualifying state authorization and NYC implementation become law.\"}], \"obstacle\": \"No qualifying bill status was established.\", \"predicate\": \"If a law authorizing a new personal income tax bracket or surcharge on incomes over $1 billion for New York City residents has become law in New York City before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Focused New York legislative and budget searches found current personal-income-tax material but no measure creating a NYC surcharge specifically on incomes over one billion dollars.\", \"source_gaps\": [\"Qualifying bill text, sponsors, and chamber actions.\"], \"sources\": [], \"subject_key\": \"kxnyctaxbillions-27jan01\", \"web_search_used\": true}"
+      },
+      "KXORDPAX-27APR30-T84856018": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 04/30/2027 13:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXORDPAX-27APR30-T84856018\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If CDA reports that O\\u2019Hare International Airport\\u2019s total passenger volume for calendar year 2026 is above 84,856,018 passengers, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxordpax-27apr30\", \"web_search_used\": false}"
+      },
+      "KXORLHOTELDEMAND-27MAY10-T34.5": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 05/10/2027 13:59:00\", \"family\": \"quantity_measurement\", \"key\": \"KXORLHOTELDEMAND-27MAY10-T34.5\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Visit Orlando reports that Metro Orlando\\u2019s hotel demand for calendar year 2026 is above \\n\\n34.5 million room nights, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxorlhoteldemand-27may10\", \"web_search_used\": false}"
+      },
+      "KXSOLAR-26-35": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 03/31/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXSOLAR-26-35\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If at least 35 GWdc of solar capacity is installed in the US in 2026, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsolar-26\", \"web_search_used\": false}"
+      },
+      "KXSOLAR-26-40": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 03/31/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXSOLAR-26-40\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If at least 40 GWdc of solar capacity is installed in the US in 2026, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsolar-26\", \"web_search_used\": false}"
+      },
+      "KXSOLAR-26-45": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 03/31/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXSOLAR-26-45\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If at least 45 GWdc of solar capacity is installed in the US in 2026, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsolar-26\", \"web_search_used\": false}"
+      },
+      "KXSOLAR-26-50": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 03/31/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXSOLAR-26-50\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If at least 50 GWdc of solar capacity is installed in the US in 2026, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsolar-26\", \"web_search_used\": false}"
+      },
+      "KXSOLAR-26-55": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 03/31/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXSOLAR-26-55\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If at least 55 GWdc of solar capacity is installed in the US in 2026, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsolar-26\", \"web_search_used\": false}"
+      },
+      "KXTRYFIRECOOK-27JAN01-26OCT01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/01/2026 14:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXTRYFIRECOOK-27JAN01-26OCT01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the President of the United States has tried to fire Lisa Cook as member of the Board of Governors of the Federal Reserve System before Oct 1, 2026, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxtryfirecook-27jan01\", \"web_search_used\": false}"
+      },
+      "KXTRYFIRECOOK-27JAN01-27JAN01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXTRYFIRECOOK-27JAN01-27JAN01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the President of the United States has tried to fire Lisa Cook as member of the Board of Governors of the Federal Reserve System before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxtryfirecook-27jan01\", \"web_search_used\": false}"
+      },
+      "KXUKSOCIALBAN-27-27APR01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"Any qualifying UK legal route may suffice.\", \"deadline\": \"Before Apr 1, 2027; scheduled close 04/01/2027 03:59:00\", \"family\": \"uk_online_safety_regulation\", \"key\": \"KXUKSOCIALBAN-27-27APR01\", \"mandatory_steps\": [{\"source_url\": \"https://www.gov.uk/government/consultations/growing-up-in-the-online-world-a-national-consultation/outcome/growing-up-in-the-online-world-government-response-july-2026\", \"status\": \"planned\", \"step\": \"Government lays implementing regulations before Parliament.\"}, {\"source_url\": \"https://www.gov.uk/government/consultations/growing-up-in-the-online-world-a-national-consultation/outcome/growing-up-in-the-online-world-government-response-july-2026\", \"status\": \"planned\", \"step\": \"The regulations take effect.\"}], \"obstacle\": \"Regulations and commencement remain unfinished.\", \"predicate\": \"If a UK ban on social media platforms offering accounts to users under age 16 is in effect  after Issuance and before Apr 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The government formally committed to an under-16 social-media restriction, plans regulations by year-end, and says they will take effect in early 2027. This is a dated affirmative path within both deadlines.\", \"source_gaps\": [\"Final regulations and exact commencement date.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:32:00Z\", \"published_at\": \"2026-07-15\", \"quote\": \"lay the first regulations ... by the end of the year, to come into effect in early 2027\", \"supports\": \"Confirms the government's chosen regulatory route and target commencement.\", \"title\": \"Growing up in the online world: government response\", \"url\": \"https://www.gov.uk/government/consultations/growing-up-in-the-online-world-a-national-consultation/outcome/growing-up-in-the-online-world-government-response-july-2026\"}], \"subject_key\": \"kxuksocialban-27\", \"web_search_used\": true}"
+      },
+      "KXUKSOCIALBAN-27-27AUG01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"Any qualifying UK legal route may suffice.\", \"deadline\": \"Before Aug 1, 2027; scheduled close 08/01/2027 03:59:00\", \"family\": \"uk_online_safety_regulation\", \"key\": \"KXUKSOCIALBAN-27-27AUG01\", \"mandatory_steps\": [{\"source_url\": \"https://www.gov.uk/government/consultations/growing-up-in-the-online-world-a-national-consultation/outcome/growing-up-in-the-online-world-government-response-july-2026\", \"status\": \"planned\", \"step\": \"Government lays implementing regulations before Parliament.\"}, {\"source_url\": \"https://www.gov.uk/government/consultations/growing-up-in-the-online-world-a-national-consultation/outcome/growing-up-in-the-online-world-government-response-july-2026\", \"status\": \"planned\", \"step\": \"The regulations take effect.\"}], \"obstacle\": \"Regulations and commencement remain unfinished.\", \"predicate\": \"If a UK ban on social media platforms offering accounts to users under age 16 is in effect  after Issuance and before Aug 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The government formally committed to an under-16 social-media restriction, plans regulations by year-end, and says they will take effect in early 2027. This is a dated affirmative path within both deadlines.\", \"source_gaps\": [\"Final regulations and exact commencement date.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:32:00Z\", \"published_at\": \"2026-07-15\", \"quote\": \"lay the first regulations ... by the end of the year, to come into effect in early 2027\", \"supports\": \"Confirms the government's chosen regulatory route and target commencement.\", \"title\": \"Growing up in the online world: government response\", \"url\": \"https://www.gov.uk/government/consultations/growing-up-in-the-online-world-a-national-consultation/outcome/growing-up-in-the-online-world-government-response-july-2026\"}], \"subject_key\": \"kxuksocialban-27\", \"web_search_used\": true}"
+      },
+      "KXUSOPENAIANTH-29JAN29-27JAN01": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Any qualifying federal ownership route may suffice.\", \"deadline\": \"Before Jan 1, 2027\", \"family\": \"federal_equity_acquisition\", \"key\": \"KXUSOPENAIANTH-29JAN29-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://www.whitehouse.gov/\", \"status\": \"unknown\", \"step\": \"The federal government authorizes and completes equity acquisitions in both companies.\"}], \"obstacle\": \"No official dual-company acquisition plan was established.\", \"predicate\": \"If the U.S. federal government has taken a stake of at least 1% in each of OpenAI and Anthropic (including any successor or parent substantially owning its AI business) before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Focused White House and federal searches did not establish authorization, terms, appropriations, or closing steps for a stake of at least one percent in both companies.\", \"source_gaps\": [\"Official authorization and transaction terms for both companies.\"], \"sources\": [], \"subject_key\": \"kxusopenaianth-29jan29\", \"web_search_used\": true}"
+      }
+    },
+    "web_search": true
+  },
+  "request": {
+    "batch_id": "53",
+    "candidate_keys": [
+      "KXORLHOTELDEMAND-27MAY10-T34.5",
+      "KXTRYFIRECOOK-27JAN01-26OCT01",
+      "KXTRYFIRECOOK-27JAN01-27JAN01",
+      "KXORDPAX-27APR30-T84856018",
+      "KXUKSOCIALBAN-27-27APR01",
+      "KXUKSOCIALBAN-27-27AUG01",
+      "KXHORMUZWEEKLY-26SEP13-T20",
+      "KXMOCTRUMP25-26-JAN01",
+      "KXNYCTAXBILLIONS-27JAN01",
+      "KXSOLAR-26-35",
+      "KXSOLAR-26-40",
+      "KXSOLAR-26-45",
+      "KXSOLAR-26-50",
+      "KXSOLAR-26-55",
+      "KXARRESTNETANYAHU-28JAN01-26NOV01",
+      "KXARRESTNETANYAHU-28JAN01-27JAN01",
+      "KXALIENS-26DEC",
+      "KXALIENS-26NOV",
+      "KXALIENS-26OCT",
+      "KXALIENS-27",
+      "KXMARTINDNCOUT-26MAY-26DEC01",
+      "KXMARTINDNCOUT-26MAY-26OCT01",
+      "KXMARTINDNCOUT-26MAY-27JUL01",
+      "KXMARTINDNCOUT-26MAY-JAN01",
+      "KXUSOPENAIANTH-29JAN29-27JAN01",
+      "KXCRYPTORETURNY-26-BTC",
+      "KXCRYPTORETURNY-26-DOGE",
+      "KXCRYPTORETURNY-26-DOT",
+      "KXCRYPTORETURNY-26-ETH",
+      "KXCRYPTORETURNY-26-LINK",
+      "KXCRYPTORETURNY-26-SHIBA",
+      "KXCRYPTORETURNY-26-SOL",
+      "KXCRYPTORETURNY-26-XLM",
+      "KXCRYPTORETURNY-26-XRP",
+      "KXMACBOOKPRICE-26-650",
+      "KXMACBOOKPRICE-26-700",
+      "KXGTASALESRECORD-27JAN31-GTA6"
+    ],
+    "decision_at": "2026-09-05T19:53:15.489944+00:00",
+    "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-053\\first-output.jsonl",
+    "payload": {
+      "decision_at": "2026-09-05T19:53:15.489944+00:00",
+      "events": [
+        {
+          "event_key": "KXORLHOTELDEMAND-27MAY10",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXORLHOTELDEMAND-27MAY10",
+              "key": "KXORLHOTELDEMAND-27MAY10-T34.5",
+              "no_sub_title": "Above 34.5 million room nights",
+              "rules_primary": "If Visit Orlando reports that Metro Orlando\u2019s hotel demand for calendar year 2026 is above \n\n34.5 million room nights, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is the calendar-year Hotel Demand figure for Metro Orlando, measured in room nights, as reported by Visit Orlando. It does not use average hotel occupancy, average daily rate, RevPAR, short-term-rental demand, visitor volume, or Tourist Development Tax collections.\n\nResolution uses the first official Visit Orlando publication containing the complete 2026 year-end Hotel Demand figure; subsequent revisions do not affect resolution. Visit Orlando separately reports weekly and monthly room-night demand throughout the year.",
+              "scheduled_close": "2027-05-10T13:59:00Z",
+              "series": "KXORLHOTELDEMAND",
+              "subtitle": ":: 2025 baseline",
+              "title": "Will Metro Orlando\u2019s hotel demand for 2026 be above 34.5 million room nights?",
+              "yes_sub_title": "Above 34.5 million room nights"
+            }
+          ]
+        },
+        {
+          "event_key": "KXTRYFIRECOOK-27JAN01",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXTRYFIRECOOK-27JAN01",
+              "key": "KXTRYFIRECOOK-27JAN01-26OCT01",
+              "no_sub_title": "Before Oct 1, 2026",
+              "rules_primary": "If the President of the United States has tried to fire Lisa Cook as member of the Board of Governors of the Federal Reserve System before Oct 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "A \"try to fire\" includes any of the following:\n\nThe President signs an executive order, memorandum, or other official document stating termination;\nDirects any Cabinet member or senior official to terminate the person;\nPublicly states (in a speech, interview, press conference, or verified social media) that he has fired or decided to fire the person;\nThe White House officially announces termination;\nSends written communication to the person informing them of termination;\nInitiates formal legal proceedings for removal\n\nThe following do NOT qualify:\n\nStatements that the person \"should\" resign or be fired;\nExpressions of dissatisfaction;\nAsking or pressuring for voluntary resignation;\nStating the President is \"looking into\" whether he can fire the person;\nStatements by other officials unless directed by the President;\nUnsent letters ordering termination\n\nThis market resolves on the President's attempt to fire, not on whether such attempt is legally valid, successful, or results in the person leaving office.",
+              "scheduled_close": "2026-10-01T14:00:00Z",
+              "series": "KXTRYFIRECOOK",
+              "subtitle": null,
+              "title": "Will the President try to fire the Lisa Cook as member of the Board of Governors of the Federal Reserve System before Oct 1, 2026?",
+              "yes_sub_title": "Before Oct 1, 2026"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXTRYFIRECOOK-27JAN01",
+              "key": "KXTRYFIRECOOK-27JAN01-27JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If the President of the United States has tried to fire Lisa Cook as member of the Board of Governors of the Federal Reserve System before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "A \"try to fire\" includes any of the following:\n\nThe President signs an executive order, memorandum, or other official document stating termination;\nDirects any Cabinet member or senior official to terminate the person;\nPublicly states (in a speech, interview, press conference, or verified social media) that he has fired or decided to fire the person;\nThe White House officially announces termination;\nSends written communication to the person informing them of termination;\nInitiates formal legal proceedings for removal\n\nThe following do NOT qualify:\n\nStatements that the person \"should\" resign or be fired;\nExpressions of dissatisfaction;\nAsking or pressuring for voluntary resignation;\nStating the President is \"looking into\" whether he can fire the person;\nStatements by other officials unless directed by the President;\nUnsent letters ordering termination\n\nThis market resolves on the President's attempt to fire, not on whether such attempt is legally valid, successful, or results in the person leaving office.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXTRYFIRECOOK",
+              "subtitle": null,
+              "title": "Will the President try to fire the Lisa Cook as member of the Board of Governors of the Federal Reserve System before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXORDPAX-27APR30",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXORDPAX-27APR30",
+              "key": "KXORDPAX-27APR30-T84856018",
+              "no_sub_title": "Above 84,856,018 passengers",
+              "rules_primary": "If CDA reports that O\u2019Hare International Airport\u2019s total passenger volume for calendar year 2026 is above 84,856,018 passengers, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is the calendar-year Total Passenger Volume reported by the Chicago Department of Aviation. This includes domestic and international revenue and nonrevenue passengers included in CDA\u2019s passenger-volume statistics. It does not use TSA checkpoint screenings, customs counts, aircraft operations, or passenger projections.\n\nResolution is based on the first CDA publication containing complete January\u2013December 2026 passenger data; subsequent revisions do not affect resolution.",
+              "scheduled_close": "2027-04-30T13:59:00Z",
+              "series": "KXORDPAX",
+              "subtitle": ":: O\u2019Hare\u2019s all-time annual passenger high",
+              "title": "Will O\u2019Hare International Airport\u2019s total passenger volume for 2026 be above 84,856,018 passengers?",
+              "yes_sub_title": "Above 84,856,018 passengers"
+            }
+          ]
+        },
+        {
+          "event_key": "KXUKSOCIALBAN-27",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXUKSOCIALBAN-27",
+              "key": "KXUKSOCIALBAN-27-27APR01",
+              "no_sub_title": "Before Apr 1, 2027",
+              "rules_primary": "If a UK ban on social media platforms offering accounts to users under age 16 is in effect  after Issuance and before Apr 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+              "scheduled_close": "2027-04-01T03:59:00Z",
+              "series": "KXUKSOCIALBAN",
+              "subtitle": null,
+              "title": "Will it be reported by any of the Source Agencies that a UK ban on social media platforms offering accounts to users under age 16 is in effect before Apr 1, 2027?",
+              "yes_sub_title": "Before Apr 1, 2027"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXUKSOCIALBAN-27",
+              "key": "KXUKSOCIALBAN-27-27AUG01",
+              "no_sub_title": "Before Aug 1, 2027",
+              "rules_primary": "If a UK ban on social media platforms offering accounts to users under age 16 is in effect  after Issuance and before Aug 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+              "scheduled_close": "2027-08-01T03:59:00Z",
+              "series": "KXUKSOCIALBAN",
+              "subtitle": null,
+              "title": "Will it be reported by any of the Source Agencies that a UK ban on social media platforms offering accounts to users under age 16 is in effect before Aug 1, 2027?",
+              "yes_sub_title": "Before Aug 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXHORMUZWEEKLY-26SEP13",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXHORMUZWEEKLY-26SEP13",
+              "key": "KXHORMUZWEEKLY-26SEP13-T20",
+              "no_sub_title": "Above 20",
+              "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 20 from Sep 7, 2026 to Sep 13, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The total is calculated by summing daily counts from Sep 7, 2026 to Sep 13, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.",
+              "scheduled_close": "2026-09-15T13:00:00Z",
+              "series": "KXHORMUZWEEKLY",
+              "subtitle": null,
+              "title": "Will there be more than 20 transit calls through the Strait of Hormuz from Sep 7, 2026 to Sep 13, 2026?",
+              "yes_sub_title": "Above 20"
+            }
+          ]
+        },
+        {
+          "event_key": "KXMOCTRUMP25-26",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXMOCTRUMP25-26",
+              "key": "KXMOCTRUMP25-26-JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If any Republican member of Congress calls on Trump to be removed as President through the 25th amendment before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXMOCTRUMP25",
+              "subtitle": null,
+              "title": "Will any Republican member of Congress calls on Trump to be removed as President through the 25th amendment before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXNYCTAXBILLIONS-27JAN01",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXNYCTAXBILLIONS-27JAN01",
+              "key": "KXNYCTAXBILLIONS-27JAN01",
+              "no_sub_title": "Yes",
+              "rules_primary": "If a law authorizing a new personal income tax bracket or surcharge on incomes over $1 billion for New York City residents has become law in New York City before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "Laws passed by New York State are encompassed within the Payout Criterion if they apply to or govern New York City. Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law. For standard legislation requiring executive approval, this includes final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods. For legislation not requiring executive approval, this includes final passage and completion of required waiting periods. For constitutional amendments, this includes passage with required supermajorities and completion of ratification processes. For executive orders, this includes official signature, publication in official government records, and legal effectiveness. Legislative passage without completed executive action, passage by only some required bodies, provisional passage, non-binding resolutions, and draft orders do not constitute enactment. Enactment occurs when all requirements are completed, regardless of pending judicial challenges.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXNYCTAXBILLIONS",
+              "subtitle": "Yes",
+              "title": "Will  become law in New York City before Jan 1, 2027?",
+              "yes_sub_title": "Yes"
+            }
+          ]
+        },
+        {
+          "event_key": "KXSOLAR-26",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXSOLAR-26",
+              "key": "KXSOLAR-26-35",
+              "no_sub_title": "At least 35 GWdc",
+              "rules_primary": "If at least 35 GWdc of solar capacity is installed in the US in 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-03-31T15:00:00Z",
+              "series": "KXSOLAR",
+              "subtitle": null,
+              "title": "Will at least 35 GWdc of solar capacity be installed in 2026?",
+              "yes_sub_title": "At least 35 GWdc"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXSOLAR-26",
+              "key": "KXSOLAR-26-40",
+              "no_sub_title": "At least 40 GWdc",
+              "rules_primary": "If at least 40 GWdc of solar capacity is installed in the US in 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-03-31T15:00:00Z",
+              "series": "KXSOLAR",
+              "subtitle": null,
+              "title": "Will at least 40 GWdc of solar capacity be installed in 2026?",
+              "yes_sub_title": "At least 40 GWdc"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXSOLAR-26",
+              "key": "KXSOLAR-26-45",
+              "no_sub_title": "At least 45 GWdc",
+              "rules_primary": "If at least 45 GWdc of solar capacity is installed in the US in 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-03-31T15:00:00Z",
+              "series": "KXSOLAR",
+              "subtitle": null,
+              "title": "Will at least 45 GWdc of solar capacity be installed in 2026?",
+              "yes_sub_title": "At least 45 GWdc"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXSOLAR-26",
+              "key": "KXSOLAR-26-50",
+              "no_sub_title": "At least 50 GWdc",
+              "rules_primary": "If at least 50 GWdc of solar capacity is installed in the US in 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-03-31T15:00:00Z",
+              "series": "KXSOLAR",
+              "subtitle": null,
+              "title": "Will at least 50 GWdc of solar capacity be installed in 2026?",
+              "yes_sub_title": "At least 50 GWdc"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXSOLAR-26",
+              "key": "KXSOLAR-26-55",
+              "no_sub_title": "At least 55 GWdc",
+              "rules_primary": "If at least 55 GWdc of solar capacity is installed in the US in 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-03-31T15:00:00Z",
+              "series": "KXSOLAR",
+              "subtitle": null,
+              "title": "Will at least 55 GWdc of solar capacity be installed in 2026?",
+              "yes_sub_title": "At least 55 GWdc"
+            }
+          ]
+        },
+        {
+          "event_key": "KXARRESTNETANYAHU-28JAN01",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXARRESTNETANYAHU-28JAN01",
+              "key": "KXARRESTNETANYAHU-28JAN01-26NOV01",
+              "no_sub_title": "Before Nov 1, 2026",
+              "rules_primary": "If Benjamin Netanyahu has been arrested before Nov 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "For purposes of this Contract, \"arrested\" means:\nBeing taken into physical custody by law enforcement authorities (including federal, state, local, military, or international law enforcement)\nVoluntarily surrendering to law enforcement authorities in response to an arrest warrant\nBeing formally booked or processed following detention\n\nThe following scenarios would satisfy the Payout Criterion:\nBenjamin Netanyahu is handcuffed and taken to a police station\nBenjamin Netanyahu surrenders at a police station or courthouse with their attorney\nBenjamin Netanyahu is arrested in any country and this is reported by a Source Agency\nBenjamin Netanyahu is detained at an airport or border crossing and formally arrested\n\nThe following scenarios would NOT satisfy the Payout Criterion:\nAn arrest warrant being issued but not executed\nBenjamin Netanyahu being briefly detained but not arrested\nBenjamin Netanyahu being questioned or interviewed without arrest\nBenjamin Netanyahu being placed under house arrest or electronic monitoring without physical custody\nBenjamin Netanyahu being named in an indictment without arrest\nBenjamin Netanyahu being arrested after Nov 1, 2026\nProtective custody that is not an arrest",
+              "scheduled_close": "2026-11-01T04:59:00Z",
+              "series": "KXARRESTNETANYAHU",
+              "subtitle": null,
+              "title": "Will Benjamin Netanyahu be arrested before Nov 1, 2026?",
+              "yes_sub_title": "Before Nov 1, 2026"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXARRESTNETANYAHU-28JAN01",
+              "key": "KXARRESTNETANYAHU-28JAN01-27JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If Benjamin Netanyahu has been arrested before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "For purposes of this Contract, \"arrested\" means:\nBeing taken into physical custody by law enforcement authorities (including federal, state, local, military, or international law enforcement)\nVoluntarily surrendering to law enforcement authorities in response to an arrest warrant\nBeing formally booked or processed following detention\n\nThe following scenarios would satisfy the Payout Criterion:\nBenjamin Netanyahu is handcuffed and taken to a police station\nBenjamin Netanyahu surrenders at a police station or courthouse with their attorney\nBenjamin Netanyahu is arrested in any country and this is reported by a Source Agency\nBenjamin Netanyahu is detained at an airport or border crossing and formally arrested\n\nThe following scenarios would NOT satisfy the Payout Criterion:\nAn arrest warrant being issued but not executed\nBenjamin Netanyahu being briefly detained but not arrested\nBenjamin Netanyahu being questioned or interviewed without arrest\nBenjamin Netanyahu being placed under house arrest or electronic monitoring without physical custody\nBenjamin Netanyahu being named in an indictment without arrest\nBenjamin Netanyahu being arrested after Jan 1, 2027\nProtective custody that is not an arrest",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXARRESTNETANYAHU",
+              "subtitle": null,
+              "title": "Will Benjamin Netanyahu be arrested before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXALIENS-27",
+          "markets": [
+            {
+              "category": "Science and Technology",
+              "event_key": "KXALIENS-27",
+              "key": "KXALIENS-26DEC",
+              "no_sub_title": "Before December",
+              "rules_primary": "If the President, any member of the Cabinet, any member of the Joint Chiefs of Staff, or any US federal agency definitively states that extraterrestrial life or technology exists before Dec 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "For purposes of this Contract, the Cabinet includes the heads of the 15 government agencies in the Cabinet as of Issuance, as well the Administrator of the EPA, the President's Chief of Staff, Director of National Intelligence, Director of OMB, Director of CIA, United States Trade Representative, Ambassador to the UN, Chair of the Council of Economic Advisers, Administrator of the SBA, and Director of OSTP.",
+              "scheduled_close": "2026-12-01T15:00:00Z",
+              "series": "KXALIENS",
+              "subtitle": null,
+              "title": "Will the U.S. confirm that aliens exist before Dec 1, 2026?",
+              "yes_sub_title": "Before December"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXALIENS-27",
+              "key": "KXALIENS-26NOV",
+              "no_sub_title": "Before November",
+              "rules_primary": "If the President, any member of the Cabinet, any member of the Joint Chiefs of Staff, or any US federal agency definitively states that extraterrestrial life or technology exists before Nov 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "For purposes of this Contract, the Cabinet includes the heads of the 15 government agencies in the Cabinet as of Issuance, as well the Administrator of the EPA, the President's Chief of Staff, Director of National Intelligence, Director of OMB, Director of CIA, United States Trade Representative, Ambassador to the UN, Chair of the Council of Economic Advisers, Administrator of the SBA, and Director of OSTP.",
+              "scheduled_close": "2026-11-01T15:00:00Z",
+              "series": "KXALIENS",
+              "subtitle": null,
+              "title": "Will the U.S. confirm that aliens exist before Nov 1, 2026?",
+              "yes_sub_title": "Before November"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXALIENS-27",
+              "key": "KXALIENS-26OCT",
+              "no_sub_title": "Before October",
+              "rules_primary": "If the President, any member of the Cabinet, any member of the Joint Chiefs of Staff, or any US federal agency definitively states that extraterrestrial life or technology exists before Oct 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "For purposes of this Contract, the Cabinet includes the heads of the 15 government agencies in the Cabinet as of Issuance, as well the Administrator of the EPA, the President's Chief of Staff, Director of National Intelligence, Director of OMB, Director of CIA, United States Trade Representative, Ambassador to the UN, Chair of the Council of Economic Advisers, Administrator of the SBA, and Director of OSTP.",
+              "scheduled_close": "2026-10-01T14:00:00Z",
+              "series": "KXALIENS",
+              "subtitle": null,
+              "title": "Will the U.S. confirm that aliens exist before Oct 1, 2026?",
+              "yes_sub_title": "Before October"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXALIENS-27",
+              "key": "KXALIENS-27",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If the President, any member of the Cabinet, any member of the Joint Chiefs of Staff, or any US federal agency definitively states that extraterrestrial life or technology exists before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "For purposes of this Contract, the Cabinet includes the heads of the 15 government agencies in the Cabinet as of Issuance, as well the Administrator of the EPA, the President's Chief of Staff, Director of National Intelligence, Director of OMB, Director of CIA, United States Trade Representative, Ambassador to the UN, Chair of the Council of Economic Advisers, Administrator of the SBA, and Director of OSTP.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXALIENS",
+              "subtitle": null,
+              "title": "Will the U.S. confirm that aliens exist before 2027?",
+              "yes_sub_title": "Before 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXMARTINDNCOUT-26MAY",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXMARTINDNCOUT-26MAY",
+              "key": "KXMARTINDNCOUT-26MAY-26DEC01",
+              "no_sub_title": "Before Dec 1, 2026",
+              "rules_primary": "If Ken Martin leaves as chair of the Democratic National Committee before Dec 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "Ken Martin must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+              "scheduled_close": "2026-12-01T04:59:00Z",
+              "series": "KXMARTINDNCOUT",
+              "subtitle": null,
+              "title": "Will Ken Martin be out as chair of the Democratic National Committee before Dec 1, 2026?",
+              "yes_sub_title": "Before Dec 1, 2026"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXMARTINDNCOUT-26MAY",
+              "key": "KXMARTINDNCOUT-26MAY-26OCT01",
+              "no_sub_title": "Before Oct 1, 2026",
+              "rules_primary": "If Ken Martin leaves as chair of the Democratic National Committee before Oct 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "Ken Martin must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+              "scheduled_close": "2026-10-01T03:59:00Z",
+              "series": "KXMARTINDNCOUT",
+              "subtitle": null,
+              "title": "Will Ken Martin be out as chair of the Democratic National Committee before Oct 1, 2026?",
+              "yes_sub_title": "Before Oct 1, 2026"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXMARTINDNCOUT-26MAY",
+              "key": "KXMARTINDNCOUT-26MAY-27JUL01",
+              "no_sub_title": "Before Jul 1, 2027",
+              "rules_primary": "If Ken Martin leaves as chair of the Democratic National Committee before Jul 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "Ken Martin must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+              "scheduled_close": "2027-07-01T03:59:00Z",
+              "series": "KXMARTINDNCOUT",
+              "subtitle": null,
+              "title": "Will Ken Martin be out as chair of the Democratic National Committee before Jul 1, 2027?",
+              "yes_sub_title": "Before Jul 1, 2027"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXMARTINDNCOUT-26MAY",
+              "key": "KXMARTINDNCOUT-26MAY-JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If Ken Martin leaves as chair of the Democratic National Committee before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "Ken Martin must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXMARTINDNCOUT",
+              "subtitle": "::",
+              "title": "Will Ken Martin be out as chair of the Democratic National Committee before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXUSOPENAIANTH-29JAN29",
+          "markets": [
+            {
+              "category": "Financials",
+              "event_key": "KXUSOPENAIANTH-29JAN29",
+              "key": "KXUSOPENAIANTH-29JAN29-27JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If the U.S. federal government has taken a stake of at least 1% in each of OpenAI and Anthropic (including any successor or parent substantially owning its AI business) before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "Taking a stake means acquiring direct equity ownership, voting shares, or equivalent ownership interests. This includes indirect ownership through wholly controlled investment vehicles and convertible rights treated as equity. Pre-existing stakes count toward the threshold. Ownership is aggregated across all share classes and listings. Crossing the threshold at any point satisfies the criterion regardless of subsequent changes. Non-equity instruments like bonds or loans don't qualify. Stakes by sovereign wealth funds or state-owned enterprises attributed to the body count. The value can be expressed as percentage ownership, monetary value, or share count, with percentage being the default unless specified.",
+              "scheduled_close": "2027-01-01T14:59:00Z",
+              "series": "KXUSOPENAIANTH",
+              "subtitle": null,
+              "title": "Will the U.S. federal government take a stake of at least 1% in each of OpenAI and Anthropic (including any successor or parent substantially owning its AI business) before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXCRYPTORETURNY-26",
+          "markets": [
+            {
+              "category": "Crypto",
+              "event_key": "KXCRYPTORETURNY-26",
+              "key": "KXCRYPTORETURNY-26-BTC",
+              "no_sub_title": "Bitcoin (BTC)",
+              "rules_primary": "If Bitcoin has a positive return in 2026, then the market resolves to Yes.",
+              "rules_secondary": "Return will be calculated as: (last Price in <period>) minus (first Price in <period>), divided by (first Price in <period>). Price will be calculated by taking a simple average of the real-time CF Benchmarks index price in USD for <cryptocurrency> for the 60 seconds in a given minute, ignoring the top and bottom 20% of values.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCRYPTORETURNY",
+              "subtitle": null,
+              "title": "Which of these cryptocurrencies will have a positive return in 2026?",
+              "yes_sub_title": "Bitcoin (BTC)"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXCRYPTORETURNY-26",
+              "key": "KXCRYPTORETURNY-26-DOGE",
+              "no_sub_title": "Dogecoin (DOGE)",
+              "rules_primary": "If Dogecoin has a positive return in 2026, then the market resolves to Yes.",
+              "rules_secondary": "Return will be calculated as: (last Price in <period>) minus (first Price in <period>), divided by (first Price in <period>). Price will be calculated by taking a simple average of the real-time CF Benchmarks index price in USD for <cryptocurrency> for the 60 seconds in a given minute, ignoring the top and bottom 20% of values.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCRYPTORETURNY",
+              "subtitle": null,
+              "title": "Which of these cryptocurrencies will have a positive return in 2026?",
+              "yes_sub_title": "Dogecoin (DOGE)"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXCRYPTORETURNY-26",
+              "key": "KXCRYPTORETURNY-26-DOT",
+              "no_sub_title": "Polkadot (DOT)",
+              "rules_primary": "If Polkadot has a positive return in 2026, then the market resolves to Yes.",
+              "rules_secondary": "Return will be calculated as: (last Price in <period>) minus (first Price in <period>), divided by (first Price in <period>). Price will be calculated by taking a simple average of the real-time CF Benchmarks index price in USD for <cryptocurrency> for the 60 seconds in a given minute, ignoring the top and bottom 20% of values.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCRYPTORETURNY",
+              "subtitle": null,
+              "title": "Which of these cryptocurrencies will have a positive return in 2026?",
+              "yes_sub_title": "Polkadot (DOT)"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXCRYPTORETURNY-26",
+              "key": "KXCRYPTORETURNY-26-ETH",
+              "no_sub_title": "Ethereum (ETH)",
+              "rules_primary": "If Ethereum has a positive return in 2026, then the market resolves to Yes.",
+              "rules_secondary": "Return will be calculated as: (last Price in <period>) minus (first Price in <period>), divided by (first Price in <period>). Price will be calculated by taking a simple average of the real-time CF Benchmarks index price in USD for <cryptocurrency> for the 60 seconds in a given minute, ignoring the top and bottom 20% of values.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCRYPTORETURNY",
+              "subtitle": null,
+              "title": "Which of these cryptocurrencies will have a positive return in 2026?",
+              "yes_sub_title": "Ethereum (ETH)"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXCRYPTORETURNY-26",
+              "key": "KXCRYPTORETURNY-26-LINK",
+              "no_sub_title": "Chainlink (LINK)",
+              "rules_primary": "If Chainlink has a positive return in 2026, then the market resolves to Yes.",
+              "rules_secondary": "Return will be calculated as: (last Price in <period>) minus (first Price in <period>), divided by (first Price in <period>). Price will be calculated by taking a simple average of the real-time CF Benchmarks index price in USD for <cryptocurrency> for the 60 seconds in a given minute, ignoring the top and bottom 20% of values.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCRYPTORETURNY",
+              "subtitle": null,
+              "title": "Which of these cryptocurrencies will have a positive return in 2026?",
+              "yes_sub_title": "Chainlink (LINK)"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXCRYPTORETURNY-26",
+              "key": "KXCRYPTORETURNY-26-SHIBA",
+              "no_sub_title": "Shiba Inu (SHIB)",
+              "rules_primary": "If Shiba Inu has a positive return in 2026, then the market resolves to Yes.",
+              "rules_secondary": "Return will be calculated as: (last Price in <period>) minus (first Price in <period>), divided by (first Price in <period>). Price will be calculated by taking a simple average of the real-time CF Benchmarks index price in USD for <cryptocurrency> for the 60 seconds in a given minute, ignoring the top and bottom 20% of values.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCRYPTORETURNY",
+              "subtitle": null,
+              "title": "Which of these cryptocurrencies will have a positive return in 2026?",
+              "yes_sub_title": "Shiba Inu (SHIB)"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXCRYPTORETURNY-26",
+              "key": "KXCRYPTORETURNY-26-SOL",
+              "no_sub_title": "Solana (SOL)",
+              "rules_primary": "If Solana has a positive return in 2026, then the market resolves to Yes.",
+              "rules_secondary": "Return will be calculated as: (last Price in <period>) minus (first Price in <period>), divided by (first Price in <period>). Price will be calculated by taking a simple average of the real-time CF Benchmarks index price in USD for <cryptocurrency> for the 60 seconds in a given minute, ignoring the top and bottom 20% of values.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCRYPTORETURNY",
+              "subtitle": null,
+              "title": "Which of these cryptocurrencies will have a positive return in 2026?",
+              "yes_sub_title": "Solana (SOL)"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXCRYPTORETURNY-26",
+              "key": "KXCRYPTORETURNY-26-XLM",
+              "no_sub_title": "Stellar Lumens (XLM)",
+              "rules_primary": "If Stellar Lumens has a positive return in 2026, then the market resolves to Yes.",
+              "rules_secondary": "Return will be calculated as: (last Price in <period>) minus (first Price in <period>), divided by (first Price in <period>). Price will be calculated by taking a simple average of the real-time CF Benchmarks index price in USD for <cryptocurrency> for the 60 seconds in a given minute, ignoring the top and bottom 20% of values.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCRYPTORETURNY",
+              "subtitle": null,
+              "title": "Which of these cryptocurrencies will have a positive return in 2026?",
+              "yes_sub_title": "Stellar Lumens (XLM)"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXCRYPTORETURNY-26",
+              "key": "KXCRYPTORETURNY-26-XRP",
+              "no_sub_title": "Ripple (XRP)",
+              "rules_primary": "If Ripple has a positive return in 2026, then the market resolves to Yes.",
+              "rules_secondary": "Return will be calculated as: (last Price in <period>) minus (first Price in <period>), divided by (first Price in <period>). Price will be calculated by taking a simple average of the real-time CF Benchmarks index price in USD for <cryptocurrency> for the 60 seconds in a given minute, ignoring the top and bottom 20% of values.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCRYPTORETURNY",
+              "subtitle": null,
+              "title": "Which of these cryptocurrencies will have a positive return in 2026?",
+              "yes_sub_title": "Ripple (XRP)"
+            }
+          ]
+        },
+        {
+          "event_key": "KXMACBOOKPRICE-26",
+          "markets": [
+            {
+              "category": "Entertainment",
+              "event_key": "KXMACBOOKPRICE-26",
+              "key": "KXMACBOOKPRICE-26-650",
+              "no_sub_title": "below $650",
+              "rules_primary": "If the lowest priced of the any MacBook model on Apple.com is below $650, on November 27th, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-02-25T15:00:00Z",
+              "series": "KXMACBOOKPRICE",
+              "subtitle": null,
+              "title": "Will lowest priced of the any MacBook model on Apple.com be below $650 on November 27th, 2026 at 10:00 AM ET?",
+              "yes_sub_title": "below $650"
+            },
+            {
+              "category": "Entertainment",
+              "event_key": "KXMACBOOKPRICE-26",
+              "key": "KXMACBOOKPRICE-26-700",
+              "no_sub_title": "below $700",
+              "rules_primary": "If the lowest priced of the any MacBook model on Apple.com is below $700, on November 27th, 2026 at 10:00 AM ET, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-02-25T15:00:00Z",
+              "series": "KXMACBOOKPRICE",
+              "subtitle": null,
+              "title": "Will lowest priced of the any MacBook model on Apple.com be below $700 on November 27th, 2026 at 10:00 AM ET?",
+              "yes_sub_title": "below $700"
+            }
+          ]
+        },
+        {
+          "event_key": "KXGTASALESRECORD-27JAN31",
+          "markets": [
+            {
+              "category": "Entertainment",
+              "event_key": "KXGTASALESRECORD-27JAN31",
+              "key": "KXGTASALESRECORD-27JAN31-GTA6",
+              "no_sub_title": "Yes",
+              "rules_primary": "If GTA 6 breaks the highest-grossing videogame in 24 hours record in 2026, the market resolves to Yes.",
+              "rules_secondary": "This market refers to the Guinness World Records title \u201cHighest grossing videogame in 24 hours.\u201d The relevant period is the videogame\u2019s first 24 hours following its initial official release. Grand Theft Auto V currently holds this record.\n\nGrand Theft Auto V, developed by Rockstar Games, sold 11.21 million copies and grossed $815.7 million worldwide within 24 hours of its release on September 17, 2013.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2027-01-31T15:00:00Z",
+              "series": "KXGTASALESRECORD",
+              "subtitle": null,
+              "title": "Will GTA 6 break the record for the highest-grossing videogame in 24 hours?",
+              "yes_sub_title": "Yes"
+            }
+          ]
+        }
+      ],
+      "snapshot_at": "2026-09-05T15:45:16Z"
+    },
+    "payload_sha256": "6a779b117f1340c90e95f7e5356ee0c8b1a102ea8722f520f99309b109b12464",
+    "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-053\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-053\\first-output.jsonl\n",
+    "requested_effort": "high",
+    "requested_model": "gpt-5.6-sol",
+    "requested_web_search": true,
+    "run_id": "study/broad-procedural-20260905",
+    "run_mode": "study",
+    "stage": "analysis",
+    "theory_id": "study/broad-procedural",
+    "theory_version": 1
+  },
+  "schema_version": 1
+}

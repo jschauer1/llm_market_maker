@@ -1,1 +1,1009 @@
-{"schema_version": 1, "request": {"run_id": "study/broad-procedural-20260905", "theory_id": "study/broad-procedural", "theory_version": 1, "run_mode": "study", "decision_at": "2026-09-05T19:53:15.489944+00:00", "requested_model": "gpt-5.6-sol", "requested_effort": "high", "requested_web_search": true, "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-050\\first-output.jsonl", "stage": "analysis", "batch_id": "50", "candidate_keys": ["KXAPCALLHOUSE-26AUG20-NOV0311P", "KXAPCALLHOUSE-26AUG20-NOV0412A", "KXAPCALLHOUSE-26AUG20-NOV041A", "KXAPCALLHOUSE-26AUG20-NOV044A", "KXAPCALLHOUSE-26AUG20-NOV0612A", "KXAPCALLHOUSE-26AUG20-NOV1112A", "KXVENGLUSTAT-27-Y", "KXCBDECISIONBRAZIL-26SEP16-C25", "KXCBDECISIONBRAZIL-26SEP16-HOLD", "KXNBERRECESSQ-Q1-2025", "KXNBERRECESSQ-Q1-2026", "KXNBERRECESSQ-Q2-2025", "KXNBERRECESSQ-Q3-2025", "KXNBERRECESSQ-Q4-2024", "KXNBERRECESSQ-Q4-2025", "KXBANDANTES-27JAN", "KXZELENSKYYOUT-26OCT01", "KXAAAGASMAX-26DEC31-4.60", "KXAAAGASMAX-26DEC31-4.80", "KXAAAGASMAX-26DEC31-5.00", "KXAAAGASMAX-26DEC31-5.20", "KXAAAGASMAX-26DEC31-5.40", "KXAAAGASMAX-26DEC31-5.60", "KXAAAGASMAX-26DEC31-5.80", "KXAAAGASMAX-26DEC31-6.00", "KXAAAGASMAX-26DEC31-6.20", "KXAAAGASMAX-26DEC31-6.40", "KXAAAGASMAX-26DEC31-6.60", "KXAAAGASMAX-26DEC31-6.80", "KXAAAGASMAX-26DEC31-7.00", "KXSOLMINMON-SOL-26SEP30-6500", "KXSOLMINMON-SOL-26SEP30-7000", "KXSOLMINMON-SOL-26SEP30-7500", "KXSOLMINMON-SOL-26SEP30-8000", "KXSOLMINMON-SOL-26SEP30-9000", "KXSOLMINMON-SOL-26SEP30-9500", "KXMEDIARELEASESPIDERMAN-APR27", "KXMEDIARELEASESPIDERMAN-AUG27", "KXMEDIARELEASESPIDERMAN-DEC26", "KXDEFGDP-26OCT20-T5", "KXUTSKIVISITS-27JUL31-T6000000", "KXLEAVEWALZ-27JAN01-TWAL-27JAN01", "KXAAAGASMINFL-26DEC31-2.30", "KXAAAGASMINFL-26DEC31-2.40", "KXAAAGASMINFL-26DEC31-2.50", "KXAAAGASMINFL-26DEC31-2.60", "KXELECTVENEZUELA-27JAN01", "KXELECTVENEZUELA-27JUN01", "KXSTARSHIPFL-26JUN-26OCT01", "KXSTARSHIPFL-26JUN-27JAN01"], "payload_sha256": "b204d702005fff320460f751e140259024f5e62431ec4d9564b074d6107cb415", "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-050\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-050\\first-output.jsonl\n", "payload": {"decision_at": "2026-09-05T19:53:15.489944+00:00", "events": [{"event_key": "KXAPCALLHOUSE-26AUG20", "markets": [{"category": "Elections", "event_key": "KXAPCALLHOUSE-26AUG20", "key": "KXAPCALLHOUSE-26AUG20-NOV0311P", "no_sub_title": "Before 11PM Nov 3", "rules_primary": "If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 11PM ET on Nov 3, 2026, then the market resolves to Yes.", "rules_secondary": "The call must be an explicit declaration that a candidate, party, or option has won, will win, is projected to win, or equivalent clear language indicating the outlet has determined the winner. The call must appear on one of the outlet's primary platforms (main website, television broadcast, or official social media if that is their primary medium) and not be prefaced with qualifiers suggesting uncertainty such as \"appears to,\" \"likely to,\" \"probably,\" or \"may have.\" The relevant time is when the call first becomes publicly visible on the outlet's platform, not when it may have been written, decided internally, or prepared for publication. If the call is later retracted, the market nonetheless resolves to Yes based on the initial call time. Preliminary exit polls, reporting of other outlets' calls, conditional statements, opinion pieces, and technical glitches do not qualify as definitive calls.", "scheduled_close": "2026-11-04T04:00:00Z", "series": "KXAPCALLHOUSE", "subtitle": null, "title": "Will AP call the 2026 U.S. House majority before 11PM ET on Nov 3, 2026?", "yes_sub_title": "Before 11PM Nov 3"}, {"category": "Elections", "event_key": "KXAPCALLHOUSE-26AUG20", "key": "KXAPCALLHOUSE-26AUG20-NOV0412A", "no_sub_title": "Before Nov 4", "rules_primary": "If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 12AM ET on Nov 4, 2026, then the market resolves to Yes.", "rules_secondary": "The call must be an explicit declaration that a candidate, party, or option has won, will win, is projected to win, or equivalent clear language indicating the outlet has determined the winner. The call must appear on one of the outlet's primary platforms (main website, television broadcast, or official social media if that is their primary medium) and not be prefaced with qualifiers suggesting uncertainty such as \"appears to,\" \"likely to,\" \"probably,\" or \"may have.\" The relevant time is when the call first becomes publicly visible on the outlet's platform, not when it may have been written, decided internally, or prepared for publication. If the call is later retracted, the market nonetheless resolves to Yes based on the initial call time. Preliminary exit polls, reporting of other outlets' calls, conditional statements, opinion pieces, and technical glitches do not qualify as definitive calls.", "scheduled_close": "2026-11-04T05:00:00Z", "series": "KXAPCALLHOUSE", "subtitle": null, "title": "Will AP call the 2026 U.S. House majority before 12AM ET on Nov 4, 2026?", "yes_sub_title": "Before Nov 4"}, {"category": "Elections", "event_key": "KXAPCALLHOUSE-26AUG20", "key": "KXAPCALLHOUSE-26AUG20-NOV041A", "no_sub_title": "Before 1AM Nov 4", "rules_primary": "If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 1AM ET on Nov 4, 2026, then the market resolves to Yes.", "rules_secondary": "The call must be an explicit declaration that a candidate, party, or option has won, will win, is projected to win, or equivalent clear language indicating the outlet has determined the winner. The call must appear on one of the outlet's primary platforms (main website, television broadcast, or official social media if that is their primary medium) and not be prefaced with qualifiers suggesting uncertainty such as \"appears to,\" \"likely to,\" \"probably,\" or \"may have.\" The relevant time is when the call first becomes publicly visible on the outlet's platform, not when it may have been written, decided internally, or prepared for publication. If the call is later retracted, the market nonetheless resolves to Yes based on the initial call time. Preliminary exit polls, reporting of other outlets' calls, conditional statements, opinion pieces, and technical glitches do not qualify as definitive calls.", "scheduled_close": "2026-11-04T06:00:00Z", "series": "KXAPCALLHOUSE", "subtitle": null, "title": "Will AP call the 2026 U.S. House majority before 1AM ET on Nov 4, 2026?", "yes_sub_title": "Before 1AM Nov 4"}, {"category": "Elections", "event_key": "KXAPCALLHOUSE-26AUG20", "key": "KXAPCALLHOUSE-26AUG20-NOV044A", "no_sub_title": "Before 4AM Nov 4", "rules_primary": "If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 4AM ET on Nov 4, 2026, then the market resolves to Yes.", "rules_secondary": "The call must be an explicit declaration that a candidate, party, or option has won, will win, is projected to win, or equivalent clear language indicating the outlet has determined the winner. The call must appear on one of the outlet's primary platforms (main website, television broadcast, or official social media if that is their primary medium) and not be prefaced with qualifiers suggesting uncertainty such as \"appears to,\" \"likely to,\" \"probably,\" or \"may have.\" The relevant time is when the call first becomes publicly visible on the outlet's platform, not when it may have been written, decided internally, or prepared for publication. If the call is later retracted, the market nonetheless resolves to Yes based on the initial call time. Preliminary exit polls, reporting of other outlets' calls, conditional statements, opinion pieces, and technical glitches do not qualify as definitive calls.", "scheduled_close": "2026-11-04T09:00:00Z", "series": "KXAPCALLHOUSE", "subtitle": null, "title": "Will AP call the 2026 U.S. House majority before 4AM ET on Nov 4, 2026?", "yes_sub_title": "Before 4AM Nov 4"}, {"category": "Elections", "event_key": "KXAPCALLHOUSE-26AUG20", "key": "KXAPCALLHOUSE-26AUG20-NOV0612A", "no_sub_title": "Before Nov 6", "rules_primary": "If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 12AM ET on Nov 6, 2026, then the market resolves to Yes.", "rules_secondary": "The call must be an explicit declaration that a candidate, party, or option has won, will win, is projected to win, or equivalent clear language indicating the outlet has determined the winner. The call must appear on one of the outlet's primary platforms (main website, television broadcast, or official social media if that is their primary medium) and not be prefaced with qualifiers suggesting uncertainty such as \"appears to,\" \"likely to,\" \"probably,\" or \"may have.\" The relevant time is when the call first becomes publicly visible on the outlet's platform, not when it may have been written, decided internally, or prepared for publication. If the call is later retracted, the market nonetheless resolves to Yes based on the initial call time. Preliminary exit polls, reporting of other outlets' calls, conditional statements, opinion pieces, and technical glitches do not qualify as definitive calls.", "scheduled_close": "2026-11-06T05:00:00Z", "series": "KXAPCALLHOUSE", "subtitle": null, "title": "Will AP call the 2026 U.S. House majority before 12AM ET on Nov 6, 2026?", "yes_sub_title": "Before Nov 6"}, {"category": "Elections", "event_key": "KXAPCALLHOUSE-26AUG20", "key": "KXAPCALLHOUSE-26AUG20-NOV1112A", "no_sub_title": "Before Nov 11", "rules_primary": "If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 12AM ET on Nov 11, 2026, then the market resolves to Yes.", "rules_secondary": "The call must be an explicit declaration that a candidate, party, or option has won, will win, is projected to win, or equivalent clear language indicating the outlet has determined the winner. The call must appear on one of the outlet's primary platforms (main website, television broadcast, or official social media if that is their primary medium) and not be prefaced with qualifiers suggesting uncertainty such as \"appears to,\" \"likely to,\" \"probably,\" or \"may have.\" The relevant time is when the call first becomes publicly visible on the outlet's platform, not when it may have been written, decided internally, or prepared for publication. If the call is later retracted, the market nonetheless resolves to Yes based on the initial call time. Preliminary exit polls, reporting of other outlets' calls, conditional statements, opinion pieces, and technical glitches do not qualify as definitive calls.", "scheduled_close": "2026-11-11T05:00:00Z", "series": "KXAPCALLHOUSE", "subtitle": null, "title": "Will AP call the 2026 U.S. House majority before 12AM ET on Nov 11, 2026?", "yes_sub_title": "Before Nov 11"}]}, {"event_key": "KXVENGLUSTAT-27", "markets": [{"category": "Financials", "event_key": "KXVENGLUSTAT-27", "key": "KXVENGLUSTAT-27-Y", "no_sub_title": "a full approval or an accelerated approval", "rules_primary": "If the FDA's decision on Venglustat by Sanofi in 2026 is a full approval or an accelerated approval, the market resolves to Yes.", "rules_secondary": "This market will resolve to No if the FDA's decision is a denial (CRL issued), a withdrawal by the sponsor, or a conditional approval \u2014 or if no decision is issued. \n\nVenglustat is an oral small-molecule drug developed by Sanofi that works by slowing down the body's production of a fatty substance called glucosylceramide, which builds up to harmful levels in people with Gaucher disease \u2014 think of it like adjusting a factory's output dial rather than cleaning up the mess after the fact. It belongs to a class called substrate reduction therapy (SRT), meaning it targets the upstream source of the problem rather than replacing a missing enzyme. Because it is a small molecule taken by mouth and designed to cross into the brain, it has potential to address the neurological symptoms that older enzyme-based treatments cannot reach.\n", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXVENGLUSTAT", "subtitle": null, "title": "What will the FDA's decision be on Venglustat by Sanofi in 2026?", "yes_sub_title": "a full approval or an accelerated approval"}]}, {"event_key": "KXCBDECISIONBRAZIL-26SEP16", "markets": [{"category": "Economics", "event_key": "KXCBDECISIONBRAZIL-26SEP16", "key": "KXCBDECISIONBRAZIL-26SEP16-C25", "no_sub_title": "Cut 25bps", "rules_primary": "If the Central Bank of Brazil takes the action of Cut 25bps at the September Monetary Policy Meeting, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).", "scheduled_close": "2026-09-16T21:29:00Z", "series": "KXCBDECISIONBRAZIL", "subtitle": null, "title": "Will the Central Bank of Brazil Cut 25bps at the September Monetary Policy Meeting?", "yes_sub_title": "Cut 25bps"}, {"category": "Economics", "event_key": "KXCBDECISIONBRAZIL-26SEP16", "key": "KXCBDECISIONBRAZIL-26SEP16-HOLD", "no_sub_title": "Maintain current rate", "rules_primary": "If the Central Bank of Brazil takes the action of Maintain current rate at the September Monetary Policy Meeting, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).", "scheduled_close": "2026-09-16T21:29:00Z", "series": "KXCBDECISIONBRAZIL", "subtitle": null, "title": "Will the Central Bank of Brazil Maintain current rate at the September Monetary Policy Meeting?", "yes_sub_title": "Maintain current rate"}]}, {"event_key": "KXNBERRECESSQ", "markets": [{"category": "Economics", "event_key": "KXNBERRECESSQ", "key": "KXNBERRECESSQ-Q1-2025", "no_sub_title": "Q1 2025", "rules_primary": "If the NBER declares the peak of American business activity predating a recession to be in Q1 2025, then the market resolves to Yes.", "rules_secondary": "Clarification 4/15/25 3:00 AM ET: The determination for this market will be based on which quarter NBER highlights (independent of the month they highlight). For example, the most recent recession written as \"February 2020 (2019Q4)\" would resolve YES for the market called \"Q4 2019\" (if this was listed).", "scheduled_close": "2026-12-31T15:00:00Z", "series": "KXNBERRECESSQ", "subtitle": null, "title": "When will the next U.S. recession start?", "yes_sub_title": "Q1 2025"}, {"category": "Economics", "event_key": "KXNBERRECESSQ", "key": "KXNBERRECESSQ-Q1-2026", "no_sub_title": "Q1 2026", "rules_primary": "If the NBER declares the peak of American business activity predating a recession to be in Q1 2026, then the market resolves to Yes.", "rules_secondary": "Clarification 4/15/25 3:00 AM ET: The determination for this market will be based on which quarter NBER highlights (independent of the month they highlight). For example, the most recent recession written as \"February 2020 (2019Q4)\" would resolve YES for the market called \"Q4 2019\" (if this was listed).", "scheduled_close": "2026-12-31T15:00:00Z", "series": "KXNBERRECESSQ", "subtitle": "Q1 2026", "title": "When will the next U.S. recession start?", "yes_sub_title": "Q1 2026"}, {"category": "Economics", "event_key": "KXNBERRECESSQ", "key": "KXNBERRECESSQ-Q2-2025", "no_sub_title": "Q2 2025", "rules_primary": "If the NBER declares the peak of American business activity predating a recession to be in Q2 2025, then the market resolves to Yes.", "rules_secondary": "Clarification 4/15/25 3:00 AM ET: The determination for this market will be based on which quarter NBER highlights (independent of the month they highlight). For example, the most recent recession written as \"February 2020 (2019Q4)\" would resolve YES for the market called \"Q4 2019\" (if this was listed).", "scheduled_close": "2026-12-31T15:00:00Z", "series": "KXNBERRECESSQ", "subtitle": null, "title": "When will the next U.S. recession start?", "yes_sub_title": "Q2 2025"}, {"category": "Economics", "event_key": "KXNBERRECESSQ", "key": "KXNBERRECESSQ-Q3-2025", "no_sub_title": "Q3 2025", "rules_primary": "If the NBER declares the peak of American business activity predating a recession to be in Q3 2025, then the market resolves to Yes.", "rules_secondary": "Clarification 4/15/25 3:00 AM ET: The determination for this market will be based on which quarter NBER highlights (independent of the month they highlight). For example, the most recent recession written as \"February 2020 (2019Q4)\" would resolve YES for the market called \"Q4 2019\" (if this was listed).", "scheduled_close": "2026-12-31T15:00:00Z", "series": "KXNBERRECESSQ", "subtitle": null, "title": "When will the next U.S. recession start?", "yes_sub_title": "Q3 2025"}, {"category": "Economics", "event_key": "KXNBERRECESSQ", "key": "KXNBERRECESSQ-Q4-2024", "no_sub_title": "Q4 2024", "rules_primary": "If the NBER declares the peak of American business activity predating a recession to be in Q4 2024, then the market resolves to Yes.", "rules_secondary": "Clarification 4/15/25 3:00 AM ET: The determination for this market will be based on which quarter NBER highlights (independent of the month they highlight). For example, the most recent recession written as \"February 2020 (2019Q4)\" would resolve YES for the market called \"Q4 2019\" (if this was listed).", "scheduled_close": "2026-12-31T15:00:00Z", "series": "KXNBERRECESSQ", "subtitle": null, "title": "When will the next U.S. recession start?", "yes_sub_title": "Q4 2024"}, {"category": "Economics", "event_key": "KXNBERRECESSQ", "key": "KXNBERRECESSQ-Q4-2025", "no_sub_title": "Q4 2025", "rules_primary": "If the NBER declares the peak of American business activity predating a recession to be in Q4 2025, then the market resolves to Yes.", "rules_secondary": "Clarification 4/15/25 3:00 AM ET: The determination for this market will be based on which quarter NBER highlights (independent of the month they highlight). For example, the most recent recession written as \"February 2020 (2019Q4)\" would resolve YES for the market called \"Q4 2019\" (if this was listed).", "scheduled_close": "2026-12-31T15:00:00Z", "series": "KXNBERRECESSQ", "subtitle": null, "title": "When will the next U.S. recession start?", "yes_sub_title": "Q4 2025"}]}, {"event_key": "KXBANDANTES-27JAN", "markets": [{"category": "Social", "event_key": "KXBANDANTES-27JAN", "key": "KXBANDANTES-27JAN", "no_sub_title": "Before Jan 2027", "rules_primary": "If Dantes is banned from Twitch before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXBANDANTES", "subtitle": null, "title": "Will Dantes be banned from Twitch before Jan 2027?", "yes_sub_title": "Before Jan 2027"}]}, {"event_key": "KXZELENSKYYOUT", "markets": [{"category": "Politics", "event_key": "KXZELENSKYYOUT", "key": "KXZELENSKYYOUT-26OCT01", "no_sub_title": "Before Oct 1, 2026", "rules_primary": "If Volodymyr Zelenskyy has either officially announced their intention to leave as President of Ukraine or has actually left as President of Ukraine before Oct 1, 2026, then the market resolves to Yes.", "rules_secondary": "An \"official announcement\" means a statement by the person themselves, their authorized representative, or the official body governing the office that the person will be departing from the office. Such announcements must be reported by at least one Source Agency to be considered official. The announcement must not specify they are leaving in more than a year from the statement, in which case the market does not resolve to Yes.\n\n\"Leaving office\" means the person no longer holds the office in any capacity, including but not limited to: resignation (effective), termination, removal, impeachment and removal, recall, or the expiration of their term without renewal. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining the office do NOT constitute leaving office. Death does NOT satisfy the Payout Criterion for this Contract. Forced departures (termination, impeachment and removal, etc.) satisfy the Payout Criterion even without a prior announcement.", "scheduled_close": "2026-10-01T03:59:00Z", "series": "KXZELENSKYYOUT", "subtitle": null, "title": "Will Volodymyr Zelenskyy leave President of Ukraine before Oct 1, 2026?", "yes_sub_title": "Before Oct 1, 2026"}]}, {"event_key": "KXAAAGASMAX-26DEC31", "markets": [{"category": "Economics", "event_key": "KXAAAGASMAX-26DEC31", "key": "KXAAAGASMAX-26DEC31-4.60", "no_sub_title": "Above $4.60", "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $4.60 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T06:25:00Z", "series": "KXAAAGASMAX", "subtitle": "$4.60", "title": "Will average **gas prices** be above $4.60 by Dec 31, 2026?", "yes_sub_title": "Above $4.60"}, {"category": "Economics", "event_key": "KXAAAGASMAX-26DEC31", "key": "KXAAAGASMAX-26DEC31-4.80", "no_sub_title": "Above $4.80", "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $4.80 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T06:25:00Z", "series": "KXAAAGASMAX", "subtitle": "$4.80", "title": "Will average **gas prices** be above $4.80 by Dec 31, 2026?", "yes_sub_title": "Above $4.80"}, {"category": "Economics", "event_key": "KXAAAGASMAX-26DEC31", "key": "KXAAAGASMAX-26DEC31-5.00", "no_sub_title": "Above $5.00", "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $5.00 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T06:25:00Z", "series": "KXAAAGASMAX", "subtitle": "$5.00", "title": "Will average **gas prices** be above $5.00 by Dec 31, 2026?", "yes_sub_title": "Above $5.00"}, {"category": "Economics", "event_key": "KXAAAGASMAX-26DEC31", "key": "KXAAAGASMAX-26DEC31-5.20", "no_sub_title": "Above $5.20", "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $5.20 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T06:25:00Z", "series": "KXAAAGASMAX", "subtitle": "$5.20", "title": "Will average **gas prices** be above $5.20 by Dec 31, 2026?", "yes_sub_title": "Above $5.20"}, {"category": "Economics", "event_key": "KXAAAGASMAX-26DEC31", "key": "KXAAAGASMAX-26DEC31-5.40", "no_sub_title": "Above $5.40", "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $5.40 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T06:25:00Z", "series": "KXAAAGASMAX", "subtitle": "$5.40", "title": "Will average **gas prices** be above $5.40 by Dec 31, 2026?", "yes_sub_title": "Above $5.40"}, {"category": "Economics", "event_key": "KXAAAGASMAX-26DEC31", "key": "KXAAAGASMAX-26DEC31-5.60", "no_sub_title": "Above $5.60", "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $5.60 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T06:25:00Z", "series": "KXAAAGASMAX", "subtitle": "$5.60", "title": "Will average **gas prices** be above $5.60 by Dec 31, 2026?", "yes_sub_title": "Above $5.60"}, {"category": "Economics", "event_key": "KXAAAGASMAX-26DEC31", "key": "KXAAAGASMAX-26DEC31-5.80", "no_sub_title": "Above $5.80", "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $5.80 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T06:25:00Z", "series": "KXAAAGASMAX", "subtitle": "$5.80", "title": "Will average **gas prices** be above $5.80 by Dec 31, 2026?", "yes_sub_title": "Above $5.80"}, {"category": "Economics", "event_key": "KXAAAGASMAX-26DEC31", "key": "KXAAAGASMAX-26DEC31-6.00", "no_sub_title": "Above $6.00", "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $6.00 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T06:25:00Z", "series": "KXAAAGASMAX", "subtitle": "$6.00", "title": "Will average **gas prices** be above $6.00 by Dec 31, 2026?", "yes_sub_title": "Above $6.00"}, {"category": "Economics", "event_key": "KXAAAGASMAX-26DEC31", "key": "KXAAAGASMAX-26DEC31-6.20", "no_sub_title": "Above $6.20", "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $6.20 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T06:25:00Z", "series": "KXAAAGASMAX", "subtitle": "$6.20", "title": "Will average **gas prices** be above $6.20 by Dec 31, 2026?", "yes_sub_title": "Above $6.20"}, {"category": "Economics", "event_key": "KXAAAGASMAX-26DEC31", "key": "KXAAAGASMAX-26DEC31-6.40", "no_sub_title": "Above $6.40", "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $6.40 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T06:25:00Z", "series": "KXAAAGASMAX", "subtitle": "$6.40", "title": "Will average **gas prices** be above $6.40 by Dec 31, 2026?", "yes_sub_title": "Above $6.40"}, {"category": "Economics", "event_key": "KXAAAGASMAX-26DEC31", "key": "KXAAAGASMAX-26DEC31-6.60", "no_sub_title": "Above $6.60", "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $6.60 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T06:25:00Z", "series": "KXAAAGASMAX", "subtitle": "$6.60", "title": "Will average **gas prices** be above $6.60 by Dec 31, 2026?", "yes_sub_title": "Above $6.60"}, {"category": "Economics", "event_key": "KXAAAGASMAX-26DEC31", "key": "KXAAAGASMAX-26DEC31-6.80", "no_sub_title": "Above $6.80", "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $6.80 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T06:25:00Z", "series": "KXAAAGASMAX", "subtitle": "$6.80", "title": "Will average **gas prices** be above $6.80 by Dec 31, 2026?", "yes_sub_title": "Above $6.80"}, {"category": "Economics", "event_key": "KXAAAGASMAX-26DEC31", "key": "KXAAAGASMAX-26DEC31-7.00", "no_sub_title": "Above $7.00", "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $7.00 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T06:25:00Z", "series": "KXAAAGASMAX", "subtitle": "$7.00", "title": "Will average **gas prices** be above $7.00 by Dec 31, 2026?", "yes_sub_title": "Above $7.00"}]}, {"event_key": "KXSOLMINMON-SOL-26SEP30", "markets": [{"category": "Crypto", "event_key": "KXSOLMINMON-SOL-26SEP30", "key": "KXSOLMINMON-SOL-26SEP30-6500", "no_sub_title": "Below $65.00", "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $65.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXSOLMINMON", "subtitle": null, "title": "Will SOL trimmed mean be below $65.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Below $65.00"}, {"category": "Crypto", "event_key": "KXSOLMINMON-SOL-26SEP30", "key": "KXSOLMINMON-SOL-26SEP30-7000", "no_sub_title": "Below $70.00", "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $70.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXSOLMINMON", "subtitle": null, "title": "Will SOL trimmed mean be below $70.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Below $70.00"}, {"category": "Crypto", "event_key": "KXSOLMINMON-SOL-26SEP30", "key": "KXSOLMINMON-SOL-26SEP30-7500", "no_sub_title": "Below $75.00", "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $75.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXSOLMINMON", "subtitle": null, "title": "Will SOL trimmed mean be below $75.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Below $75.00"}, {"category": "Crypto", "event_key": "KXSOLMINMON-SOL-26SEP30", "key": "KXSOLMINMON-SOL-26SEP30-8000", "no_sub_title": "Below $80.00", "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $80.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXSOLMINMON", "subtitle": null, "title": "Will SOL trimmed mean be below $80.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Below $80.00"}, {"category": "Crypto", "event_key": "KXSOLMINMON-SOL-26SEP30", "key": "KXSOLMINMON-SOL-26SEP30-9000", "no_sub_title": "Below $90.00", "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $90.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXSOLMINMON", "subtitle": null, "title": "Will SOL trimmed mean be below $90.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Below $90.00"}, {"category": "Crypto", "event_key": "KXSOLMINMON-SOL-26SEP30", "key": "KXSOLMINMON-SOL-26SEP30-9500", "no_sub_title": "Below $95.00", "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $95.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXSOLMINMON", "subtitle": null, "title": "Will SOL trimmed mean be below $95.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Below $95.00"}]}, {"event_key": "KXMEDIARELEASESPIDERMAN", "markets": [{"category": "Entertainment", "event_key": "KXMEDIARELEASESPIDERMAN", "key": "KXMEDIARELEASESPIDERMAN-APR27", "no_sub_title": "Before Apr 1, 2027", "rules_primary": "If the official trailer for Spider-Man: Beyond the Spider-Verse has been publicly released Worldwide through official channels before Apr 1, 2027, then the market resolves to Yes.", "rules_secondary": "The media must be made available to the general public through at least one official distribution channel, including theatrical release, streaming availability, physical media (DVD, Blu-ray), or authorized digital purchase/download. The release must be accessible without special invitations or industry credentials in at least one major metropolitan area if the geography refers to a country. Private screenings, film festivals, leaked content, and torrent availability do not qualify. Trailers and soundtracks do not satisfy the criterion unless the full media is released. Different versions or formats of the same base content (theatrical, director's cut, extended edition) are considered the same media if the core content is substantially identical. Foreign language titles are considered the same media unless otherwise specified.", "scheduled_close": "2027-04-01T03:59:00Z", "series": "KXMEDIARELEASESPIDERMAN", "subtitle": null, "title": "Will the official trailer for Spider-Man: Beyond the Spider-Verse be released Worldwide before Apr 1, 2027?", "yes_sub_title": "Before Apr 1, 2027"}, {"category": "Entertainment", "event_key": "KXMEDIARELEASESPIDERMAN", "key": "KXMEDIARELEASESPIDERMAN-AUG27", "no_sub_title": "Before Aug 1, 2027", "rules_primary": "If the official trailer for Spider-Man: Beyond the Spider-Verse has been publicly released Worldwide through official channels before Aug 1, 2027, then the market resolves to Yes.", "rules_secondary": "The media must be made available to the general public through at least one official distribution channel, including theatrical release, streaming availability, physical media (DVD, Blu-ray), or authorized digital purchase/download. The release must be accessible without special invitations or industry credentials in at least one major metropolitan area if the geography refers to a country. Private screenings, film festivals, leaked content, and torrent availability do not qualify. Trailers and soundtracks do not satisfy the criterion unless the full media is released. Different versions or formats of the same base content (theatrical, director's cut, extended edition) are considered the same media if the core content is substantially identical. Foreign language titles are considered the same media unless otherwise specified.", "scheduled_close": "2027-08-01T03:59:00Z", "series": "KXMEDIARELEASESPIDERMAN", "subtitle": null, "title": "Will the official trailer for Spider-Man: Beyond the Spider-Verse be released Worldwide before Aug 1, 2027?", "yes_sub_title": "Before Aug 1, 2027"}, {"category": "Entertainment", "event_key": "KXMEDIARELEASESPIDERMAN", "key": "KXMEDIARELEASESPIDERMAN-DEC26", "no_sub_title": "Before Dec 1, 2026", "rules_primary": "If the official trailer for Spider-Man: Beyond the Spider-Verse has been publicly released Worldwide through official channels before Dec 1, 2026, then the market resolves to Yes.", "rules_secondary": "The media must be made available to the general public through at least one official distribution channel, including theatrical release, streaming availability, physical media (DVD, Blu-ray), or authorized digital purchase/download. The release must be accessible without special invitations or industry credentials in at least one major metropolitan area if the geography refers to a country. Private screenings, film festivals, leaked content, and torrent availability do not qualify. Trailers and soundtracks do not satisfy the criterion unless the full media is released. Different versions or formats of the same base content (theatrical, director's cut, extended edition) are considered the same media if the core content is substantially identical. Foreign language titles are considered the same media unless otherwise specified.", "scheduled_close": "2026-12-01T04:59:00Z", "series": "KXMEDIARELEASESPIDERMAN", "subtitle": null, "title": "Will the official trailer for Spider-Man: Beyond the Spider-Verse be released Worldwide before Dec 1, 2026?", "yes_sub_title": "Before Dec 1, 2026"}]}, {"event_key": "KXDEFGDP-26OCT20", "markets": [{"category": "Economics", "event_key": "KXDEFGDP-26OCT20", "key": "KXDEFGDP-26OCT20-T5", "no_sub_title": "Below 5%", "rules_primary": "If the U.S. federal budget deficit as a percentage of GDP for fiscal year 2026, as reported in the U.S. Treasury / Office of Management and Budget Joint Statement on Budget Results for Fiscal Year 2026, is below 5%, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-10-20T12:29:00Z", "series": "KXDEFGDP", "subtitle": null, "title": "Will U.S. federal deficit-to-GDP for FY2026 be below 5%?", "yes_sub_title": "Below 5%"}]}, {"event_key": "KXUTSKIVISITS-27JUL31", "markets": [{"category": "Economics", "event_key": "KXUTSKIVISITS-27JUL31", "key": "KXUTSKIVISITS-27JUL31-T6000000", "no_sub_title": "Above 6,000,000 skier visits", "rules_primary": "If Ski Utah reports that Utah ski resort skier visits for the 2026\u201327 ski season is above 6,000,000 skier visits, then the market resolves to Yes.", "rules_secondary": "A skier visit means one person visiting a Utah ski area or resort for all or part of one day or night for the purpose of skiing or snowboarding. Resolution will use Ski Utah\u2019s reported statewide total for the 2026\u201327 winter season.", "scheduled_close": "2027-07-31T15:29:00Z", "series": "KXUTSKIVISITS", "subtitle": null, "title": "Will Utah ski resort skier visits for the 2026\u201327 ski season be above 6,000,000 skier visits?", "yes_sub_title": "Above 6,000,000 skier visits"}]}, {"event_key": "KXLEAVEWALZ-27JAN01", "markets": [{"category": "Politics", "event_key": "KXLEAVEWALZ-27JAN01", "key": "KXLEAVEWALZ-27JAN01-TWAL-27JAN01", "no_sub_title": "Before 2027", "rules_primary": "If Tim Walz leaves as Governor of Minnesota after Issuance and before 2027, then the market resolves to Yes.", "rules_secondary": "Tim Walz must have an actual departure date by vacating the role within the time period. \n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary early departure AND the natural expiration of a term.", "scheduled_close": "2027-01-02T14:59:00Z", "series": "KXLEAVEWALZ", "subtitle": null, "title": "Will Tim Walz leave the governorship of Minnesota after Issuance and before 2027?", "yes_sub_title": "Before 2027"}]}, {"event_key": "KXAAAGASMINFL-26DEC31", "markets": [{"category": "Economics", "event_key": "KXAAAGASMINFL-26DEC31", "key": "KXAAAGASMINFL-26DEC31-2.30", "no_sub_title": "Below $2.30", "rules_primary": "If average regular gas prices for Florida are strictly lower than $2.30 by Dec 31, 2026 according to AAA,  the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T14:55:00Z", "series": "KXAAAGASMINFL", "subtitle": "$2.30", "title": "Will average **gas prices** be above or below $2.30 by Dec 31, 2026?", "yes_sub_title": "Below $2.30"}, {"category": "Economics", "event_key": "KXAAAGASMINFL-26DEC31", "key": "KXAAAGASMINFL-26DEC31-2.40", "no_sub_title": "Below $2.40", "rules_primary": "If average regular gas prices for Florida are strictly lower than $2.40 by Dec 31, 2026 according to AAA,  the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T14:55:00Z", "series": "KXAAAGASMINFL", "subtitle": "$2.40", "title": "Will average **gas prices** be above or below $2.40 by Dec 31, 2026?", "yes_sub_title": "Below $2.40"}, {"category": "Economics", "event_key": "KXAAAGASMINFL-26DEC31", "key": "KXAAAGASMINFL-26DEC31-2.50", "no_sub_title": "Below $2.50", "rules_primary": "If average regular gas prices for Florida are strictly lower than $2.50 by Dec 31, 2026 according to AAA,  the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T14:55:00Z", "series": "KXAAAGASMINFL", "subtitle": "$2.50", "title": "Will average **gas prices** be above or below $2.50 by Dec 31, 2026?", "yes_sub_title": "Below $2.50"}, {"category": "Economics", "event_key": "KXAAAGASMINFL-26DEC31", "key": "KXAAAGASMINFL-26DEC31-2.60", "no_sub_title": "Below $2.60", "rules_primary": "If average regular gas prices for Florida are strictly lower than $2.60 by Dec 31, 2026 according to AAA,  the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T14:55:00Z", "series": "KXAAAGASMINFL", "subtitle": "$2.60", "title": "Will average **gas prices** be above or below $2.60 by Dec 31, 2026?", "yes_sub_title": "Below $2.60"}]}, {"event_key": "KXELECTVENEZUELA", "markets": [{"category": "Elections", "event_key": "KXELECTVENEZUELA", "key": "KXELECTVENEZUELA-27JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If Venezuela holds a presidential election before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXELECTVENEZUELA", "subtitle": null, "title": "Will Venezuela hold a presidential election before Jan 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}, {"category": "Elections", "event_key": "KXELECTVENEZUELA", "key": "KXELECTVENEZUELA-27JUN01", "no_sub_title": "Before Jun 1, 2027", "rules_primary": "If Venezuela holds a presidential election before Jun 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-06-01T14:00:00Z", "series": "KXELECTVENEZUELA", "subtitle": null, "title": "Will Venezuela hold a presidential election before Jun 1, 2027?", "yes_sub_title": "Before Jun 1, 2027"}]}, {"event_key": "KXSTARSHIPFL-26JUN", "markets": [{"category": "Science and Technology", "event_key": "KXSTARSHIPFL-26JUN", "key": "KXSTARSHIPFL-26JUN-26OCT01", "no_sub_title": "Before Oct 1, 2026", "rules_primary": "If the SpaceX Starship has launched from Florida before Oct 1, 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-10-01T03:59:00Z", "series": "KXSTARSHIPFL", "subtitle": "Before 2026", "title": "Will SpaceX's Starship launch from Florida before Oct 1, 2026", "yes_sub_title": "Before Oct 1, 2026"}, {"category": "Science and Technology", "event_key": "KXSTARSHIPFL-26JUN", "key": "KXSTARSHIPFL-26JUN-27JAN01", "no_sub_title": "Before 2027", "rules_primary": "If the SpaceX Starship has launched from Florida before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXSTARSHIPFL", "subtitle": "Before 2027", "title": "Will SpaceX's Starship launch from Florida this year?", "yes_sub_title": "Before 2027"}]}], "snapshot_at": "2026-09-05T15:45:16Z"}}, "completion": null}
+{
+  "completion": {
+    "completed_at": "2026-09-05T20:32:51.533918+00:00",
+    "effort": "high",
+    "model": "gpt-5.6-sol",
+    "results": {
+      "KXAAAGASMAX-26DEC31-4.60": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 06:25:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMAX-26DEC31-4.60\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If AAA reports that the maximum price of national average regular gas for the US is greater than $4.60 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasmax-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMAX-26DEC31-4.80": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 06:25:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMAX-26DEC31-4.80\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If AAA reports that the maximum price of national average regular gas for the US is greater than $4.80 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasmax-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMAX-26DEC31-5.00": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 06:25:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMAX-26DEC31-5.00\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If AAA reports that the maximum price of national average regular gas for the US is greater than $5.00 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasmax-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMAX-26DEC31-5.20": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 06:25:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMAX-26DEC31-5.20\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If AAA reports that the maximum price of national average regular gas for the US is greater than $5.20 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasmax-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMAX-26DEC31-5.40": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 06:25:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMAX-26DEC31-5.40\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If AAA reports that the maximum price of national average regular gas for the US is greater than $5.40 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasmax-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMAX-26DEC31-5.60": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 06:25:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMAX-26DEC31-5.60\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If AAA reports that the maximum price of national average regular gas for the US is greater than $5.60 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasmax-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMAX-26DEC31-5.80": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 06:25:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMAX-26DEC31-5.80\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If AAA reports that the maximum price of national average regular gas for the US is greater than $5.80 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasmax-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMAX-26DEC31-6.00": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 06:25:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMAX-26DEC31-6.00\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If AAA reports that the maximum price of national average regular gas for the US is greater than $6.00 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasmax-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMAX-26DEC31-6.20": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 06:25:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMAX-26DEC31-6.20\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If AAA reports that the maximum price of national average regular gas for the US is greater than $6.20 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasmax-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMAX-26DEC31-6.40": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 06:25:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMAX-26DEC31-6.40\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If AAA reports that the maximum price of national average regular gas for the US is greater than $6.40 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasmax-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMAX-26DEC31-6.60": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 06:25:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMAX-26DEC31-6.60\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If AAA reports that the maximum price of national average regular gas for the US is greater than $6.60 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasmax-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMAX-26DEC31-6.80": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 06:25:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMAX-26DEC31-6.80\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If AAA reports that the maximum price of national average regular gas for the US is greater than $6.80 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasmax-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMAX-26DEC31-7.00": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 06:25:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMAX-26DEC31-7.00\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If AAA reports that the maximum price of national average regular gas for the US is greater than $7.00 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasmax-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMINFL-26DEC31-2.30": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 14:55:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMINFL-26DEC31-2.30\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for Florida are strictly lower than $2.30 by Dec 31, 2026 according to AAA,  the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasminfl-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMINFL-26DEC31-2.40": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 14:55:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMINFL-26DEC31-2.40\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for Florida are strictly lower than $2.40 by Dec 31, 2026 according to AAA,  the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasminfl-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMINFL-26DEC31-2.50": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 14:55:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMINFL-26DEC31-2.50\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for Florida are strictly lower than $2.50 by Dec 31, 2026 according to AAA,  the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasminfl-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMINFL-26DEC31-2.60": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 14:55:00\", \"family\": \"quantity_measurement\", \"key\": \"KXAAAGASMINFL-26DEC31-2.60\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for Florida are strictly lower than $2.60 by Dec 31, 2026 according to AAA,  the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxaaagasminfl-26dec31\", \"web_search_used\": false}"
+      },
+      "KXAPCALLHOUSE-26AUG20-NOV0311P": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 11/04/2026 04:00:00\", \"family\": \"competitive_or_election_outcome\", \"key\": \"KXAPCALLHOUSE-26AUG20-NOV0311P\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 11PM ET on Nov 3, 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive or election outcome, not completion of one necessary institutional pathway.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxapcallhouse-26aug20\", \"web_search_used\": false}"
+      },
+      "KXAPCALLHOUSE-26AUG20-NOV0412A": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 11/04/2026 05:00:00\", \"family\": \"competitive_or_election_outcome\", \"key\": \"KXAPCALLHOUSE-26AUG20-NOV0412A\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 12AM ET on Nov 4, 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive or election outcome, not completion of one necessary institutional pathway.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxapcallhouse-26aug20\", \"web_search_used\": false}"
+      },
+      "KXAPCALLHOUSE-26AUG20-NOV041A": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 11/04/2026 06:00:00\", \"family\": \"competitive_or_election_outcome\", \"key\": \"KXAPCALLHOUSE-26AUG20-NOV041A\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 1AM ET on Nov 4, 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive or election outcome, not completion of one necessary institutional pathway.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxapcallhouse-26aug20\", \"web_search_used\": false}"
+      },
+      "KXAPCALLHOUSE-26AUG20-NOV044A": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 11/04/2026 09:00:00\", \"family\": \"competitive_or_election_outcome\", \"key\": \"KXAPCALLHOUSE-26AUG20-NOV044A\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 4AM ET on Nov 4, 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive or election outcome, not completion of one necessary institutional pathway.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxapcallhouse-26aug20\", \"web_search_used\": false}"
+      },
+      "KXAPCALLHOUSE-26AUG20-NOV0612A": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 11/06/2026 05:00:00\", \"family\": \"competitive_or_election_outcome\", \"key\": \"KXAPCALLHOUSE-26AUG20-NOV0612A\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 12AM ET on Nov 6, 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive or election outcome, not completion of one necessary institutional pathway.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxapcallhouse-26aug20\", \"web_search_used\": false}"
+      },
+      "KXAPCALLHOUSE-26AUG20-NOV1112A": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 11/11/2026 05:00:00\", \"family\": \"competitive_or_election_outcome\", \"key\": \"KXAPCALLHOUSE-26AUG20-NOV1112A\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 12AM ET on Nov 11, 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive or election outcome, not completion of one necessary institutional pathway.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxapcallhouse-26aug20\", \"web_search_used\": false}"
+      },
+      "KXBANDANTES-27JAN": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/01/2027 04:59:00\", \"family\": \"observed_outcome\", \"key\": \"KXBANDANTES-27JAN\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Dantes is banned from Twitch before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxbandantes-27jan\", \"web_search_used\": false}"
+      },
+      "KXCBDECISIONBRAZIL-26SEP16-C25": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/16/2026 21:29:00\", \"family\": \"interpersonal_or_media_occurrence\", \"key\": \"KXCBDECISIONBRAZIL-26SEP16-C25\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Central Bank of Brazil takes the action of Cut 25bps at the September Monetary Policy Meeting, then the market resolves to Yes.\", \"rationale\": \"The predicate is the interpersonal, speech, travel, or media occurrence itself; the rules do not make a separate institutional milestone necessary.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcbdecisionbrazil-26sep16\", \"web_search_used\": false}"
+      },
+      "KXCBDECISIONBRAZIL-26SEP16-HOLD": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 09/16/2026 21:29:00\", \"family\": \"interpersonal_or_media_occurrence\", \"key\": \"KXCBDECISIONBRAZIL-26SEP16-HOLD\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Central Bank of Brazil takes the action of Maintain current rate at the September Monetary Policy Meeting, then the market resolves to Yes.\", \"rationale\": \"The predicate is the interpersonal, speech, travel, or media occurrence itself; the rules do not make a separate institutional milestone necessary.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcbdecisionbrazil-26sep16\", \"web_search_used\": false}"
+      },
+      "KXDEFGDP-26OCT20-T5": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/20/2026 12:29:00\", \"family\": \"quantity_measurement\", \"key\": \"KXDEFGDP-26OCT20-T5\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the U.S. federal budget deficit as a percentage of GDP for fiscal year 2026, as reported in the U.S. Treasury / Office of Management and Budget Joint Statement on Budget Results for Fiscal Year 2026, is below 5%, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxdefgdp-26oct20\", \"web_search_used\": false}"
+      },
+      "KXELECTVENEZUELA-27JAN01": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Any qualifying national presidential election under the rules may suffice.\", \"deadline\": \"Before Jan 1, 2027; scheduled close 01/01/2027 15:00:00\", \"family\": \"presidential_election_administration\", \"key\": \"KXELECTVENEZUELA-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"http://www.cne.gob.ve/\", \"status\": \"unknown\", \"step\": \"The electoral authority calls, administers, and completes a presidential election.\"}], \"obstacle\": \"No current official presidential election calendar was established.\", \"predicate\": \"If Venezuela holds a presidential election before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"A focused search of Venezuelan electoral-authority material did not establish a 2026 or early-2027 presidential election call or calendar.\", \"source_gaps\": [\"Official election call and timetable.\"], \"sources\": [], \"subject_key\": \"kxelectvenezuela\", \"web_search_used\": true}"
+      },
+      "KXELECTVENEZUELA-27JUN01": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Any qualifying national presidential election under the rules may suffice.\", \"deadline\": \"Before Jun 1, 2027; scheduled close 06/01/2027 14:00:00\", \"family\": \"presidential_election_administration\", \"key\": \"KXELECTVENEZUELA-27JUN01\", \"mandatory_steps\": [{\"source_url\": \"http://www.cne.gob.ve/\", \"status\": \"unknown\", \"step\": \"The electoral authority calls, administers, and completes a presidential election.\"}], \"obstacle\": \"No current official presidential election calendar was established.\", \"predicate\": \"If Venezuela holds a presidential election before Jun 1, 2027, then the market resolves to Yes.\", \"rationale\": \"A focused search of Venezuelan electoral-authority material did not establish a 2026 or early-2027 presidential election call or calendar.\", \"source_gaps\": [\"Official election call and timetable.\"], \"sources\": [], \"subject_key\": \"kxelectvenezuela\", \"web_search_used\": true}"
+      },
+      "KXLEAVEWALZ-27JAN01-TWAL-27JAN01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 01/02/2027 14:59:00\", \"family\": \"observed_outcome\", \"key\": \"KXLEAVEWALZ-27JAN01-TWAL-27JAN01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Tim Walz leaves as Governor of Minnesota after Issuance and before 2027, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxleavewalz-27jan01\", \"web_search_used\": false}"
+      },
+      "KXMEDIARELEASESPIDERMAN-APR27": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"An official worldwide release through any qualifying channel suffices.\", \"deadline\": \"Before Apr 1, 2027; scheduled close 04/01/2027 03:59:00\", \"family\": \"studio_trailer_release\", \"key\": \"KXMEDIARELEASESPIDERMAN-APR27\", \"mandatory_steps\": [{\"source_url\": \"https://www.sonypictures.com/\", \"status\": \"unknown\", \"step\": \"Sony completes and officially releases a qualifying trailer.\"}], \"obstacle\": \"No official trailer schedule was established.\", \"predicate\": \"If the official trailer for Spider-Man: Beyond the Spider-Verse has been publicly released Worldwide through official channels before Apr 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Sony's official search surfaced earlier Spider-Verse material but no current Beyond the Spider-Verse trailer release or dated trailer plan.\", \"source_gaps\": [\"Official trailer or dated Sony release plan.\"], \"sources\": [], \"subject_key\": \"kxmediareleasespiderman\", \"web_search_used\": true}"
+      },
+      "KXMEDIARELEASESPIDERMAN-AUG27": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"An official worldwide release through any qualifying channel suffices.\", \"deadline\": \"Before Aug 1, 2027; scheduled close 08/01/2027 03:59:00\", \"family\": \"studio_trailer_release\", \"key\": \"KXMEDIARELEASESPIDERMAN-AUG27\", \"mandatory_steps\": [{\"source_url\": \"https://www.sonypictures.com/\", \"status\": \"unknown\", \"step\": \"Sony completes and officially releases a qualifying trailer.\"}], \"obstacle\": \"No official trailer schedule was established.\", \"predicate\": \"If the official trailer for Spider-Man: Beyond the Spider-Verse has been publicly released Worldwide through official channels before Aug 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Sony's official search surfaced earlier Spider-Verse material but no current Beyond the Spider-Verse trailer release or dated trailer plan.\", \"source_gaps\": [\"Official trailer or dated Sony release plan.\"], \"sources\": [], \"subject_key\": \"kxmediareleasespiderman\", \"web_search_used\": true}"
+      },
+      "KXMEDIARELEASESPIDERMAN-DEC26": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"An official worldwide release through any qualifying channel suffices.\", \"deadline\": \"Before Dec 1, 2026; scheduled close 12/01/2026 04:59:00\", \"family\": \"studio_trailer_release\", \"key\": \"KXMEDIARELEASESPIDERMAN-DEC26\", \"mandatory_steps\": [{\"source_url\": \"https://www.sonypictures.com/\", \"status\": \"unknown\", \"step\": \"Sony completes and officially releases a qualifying trailer.\"}], \"obstacle\": \"No official trailer schedule was established.\", \"predicate\": \"If the official trailer for Spider-Man: Beyond the Spider-Verse has been publicly released Worldwide through official channels before Dec 1, 2026, then the market resolves to Yes.\", \"rationale\": \"Sony's official search surfaced earlier Spider-Verse material but no current Beyond the Spider-Verse trailer release or dated trailer plan.\", \"source_gaps\": [\"Official trailer or dated Sony release plan.\"], \"sources\": [], \"subject_key\": \"kxmediareleasespiderman\", \"web_search_used\": true}"
+      },
+      "KXNBERRECESSQ-Q1-2025": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXNBERRECESSQ-Q1-2025\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the NBER declares the peak of American business activity predating a recession to be in Q1 2025, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnberrecessq\", \"web_search_used\": false}"
+      },
+      "KXNBERRECESSQ-Q1-2026": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXNBERRECESSQ-Q1-2026\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the NBER declares the peak of American business activity predating a recession to be in Q1 2026, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnberrecessq\", \"web_search_used\": false}"
+      },
+      "KXNBERRECESSQ-Q2-2025": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXNBERRECESSQ-Q2-2025\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the NBER declares the peak of American business activity predating a recession to be in Q2 2025, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnberrecessq\", \"web_search_used\": false}"
+      },
+      "KXNBERRECESSQ-Q3-2025": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXNBERRECESSQ-Q3-2025\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the NBER declares the peak of American business activity predating a recession to be in Q3 2025, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnberrecessq\", \"web_search_used\": false}"
+      },
+      "KXNBERRECESSQ-Q4-2024": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXNBERRECESSQ-Q4-2024\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the NBER declares the peak of American business activity predating a recession to be in Q4 2024, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnberrecessq\", \"web_search_used\": false}"
+      },
+      "KXNBERRECESSQ-Q4-2025": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 12/31/2026 15:00:00\", \"family\": \"observed_outcome\", \"key\": \"KXNBERRECESSQ-Q4-2025\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the NBER declares the peak of American business activity predating a recession to be in Q4 2025, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnberrecessq\", \"web_search_used\": false}"
+      },
+      "KXSOLMINMON-SOL-26SEP30-6500": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/01/2026 03:59:59\", \"family\": \"quantity_measurement\", \"key\": \"KXSOLMINMON-SOL-26SEP30-6500\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $65.00, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsolminmon-sol-26sep30\", \"web_search_used\": false}"
+      },
+      "KXSOLMINMON-SOL-26SEP30-7000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/01/2026 03:59:59\", \"family\": \"quantity_measurement\", \"key\": \"KXSOLMINMON-SOL-26SEP30-7000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $70.00, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsolminmon-sol-26sep30\", \"web_search_used\": false}"
+      },
+      "KXSOLMINMON-SOL-26SEP30-7500": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/01/2026 03:59:59\", \"family\": \"quantity_measurement\", \"key\": \"KXSOLMINMON-SOL-26SEP30-7500\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $75.00, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsolminmon-sol-26sep30\", \"web_search_used\": false}"
+      },
+      "KXSOLMINMON-SOL-26SEP30-8000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/01/2026 03:59:59\", \"family\": \"quantity_measurement\", \"key\": \"KXSOLMINMON-SOL-26SEP30-8000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $80.00, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsolminmon-sol-26sep30\", \"web_search_used\": false}"
+      },
+      "KXSOLMINMON-SOL-26SEP30-9000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/01/2026 03:59:59\", \"family\": \"quantity_measurement\", \"key\": \"KXSOLMINMON-SOL-26SEP30-9000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $90.00, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsolminmon-sol-26sep30\", \"web_search_used\": false}"
+      },
+      "KXSOLMINMON-SOL-26SEP30-9500": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/01/2026 03:59:59\", \"family\": \"quantity_measurement\", \"key\": \"KXSOLMINMON-SOL-26SEP30-9500\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $95.00, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxsolminmon-sol-26sep30\", \"web_search_used\": false}"
+      },
+      "KXSTARSHIPFL-26JUN-26OCT01": {
+        "bucket": "substantive_barrier",
+        "rationale": "{\"bucket\": \"substantive_barrier\", \"bypass\": \"A qualifying Florida launch still requires FAA authorization.\", \"deadline\": \"Before Oct 1, 2026\", \"family\": \"commercial_space_launch_authorization\", \"key\": \"KXSTARSHIPFL-26JUN-26OCT01\", \"mandatory_steps\": [{\"source_url\": \"https://www.faa.gov/space/stakeholder_engagement/spacex_starship_ksc\", \"status\": \"pending\", \"step\": \"SpaceX obtains a new or modified FAA vehicle-operator license for a Florida launch.\"}, {\"source_url\": \"https://www.faa.gov/space/stakeholder_engagement/spacex_starship_ksc\", \"status\": \"unknown\", \"step\": \"SpaceX completes and conducts the launch.\"}], \"obstacle\": \"A mandatory FAA license remained outstanding less than a month before the deadline.\", \"predicate\": \"If the SpaceX Starship has launched from Florida before Oct 1, 2026, then the market resolves to Yes.\", \"rationale\": \"The completed environmental review did not authorize launch. FAA expressly required a new or modified operator license, leaving a substantive prerequisite unfinished close to the October deadline.\", \"source_gaps\": [\"Whether FAA has since issued an applicable license.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:31:00Z\", \"published_at\": \"2026-01-30\", \"quote\": \"SpaceX must obtain a new or modification of an existing vehicle operator license\", \"supports\": \"Confirms the mandatory authorization still required after environmental review.\", \"title\": \"SpaceX Starship-Super Heavy Project at KSC LC-39A\", \"url\": \"https://www.faa.gov/space/stakeholder_engagement/spacex_starship_ksc\"}], \"subject_key\": \"kxstarshipfl-26jun\", \"web_search_used\": true}"
+      },
+      "KXSTARSHIPFL-26JUN-27JAN01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"A qualifying Florida launch still requires FAA authorization.\", \"deadline\": \"Before Jan 1, 2027\", \"family\": \"commercial_space_launch_authorization\", \"key\": \"KXSTARSHIPFL-26JUN-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://www.faa.gov/space/stakeholder_engagement/spacex_starship_ksc\", \"status\": \"pending\", \"step\": \"SpaceX obtains a new or modified FAA vehicle-operator license for a Florida launch.\"}, {\"source_url\": \"https://www.faa.gov/space/stakeholder_engagement/spacex_starship_ksc\", \"status\": \"unknown\", \"step\": \"SpaceX completes and conducts the launch.\"}], \"obstacle\": \"Launch licensing remains unfinished.\", \"predicate\": \"If the SpaceX Starship has launched from Florida before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"FAA's January 2026 completion of the KSC environmental review is a dated affirmative milestone on the launch path. Licensing and execution remain, but the later deadline leaves a documented viable route.\", \"source_gaps\": [\"Issued license and launch schedule.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:31:00Z\", \"published_at\": \"2026-01-30\", \"quote\": \"FAA completed a Final Environmental Impact Statement\", \"supports\": \"Confirms completion of a substantive prerequisite while noting licensing remains.\", \"title\": \"SpaceX Starship-Super Heavy Project at KSC LC-39A\", \"url\": \"https://www.faa.gov/space/stakeholder_engagement/spacex_starship_ksc\"}], \"subject_key\": \"kxstarshipfl-26jun\", \"web_search_used\": true}"
+      },
+      "KXUTSKIVISITS-27JUL31-T6000000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 07/31/2027 15:29:00\", \"family\": \"quantity_measurement\", \"key\": \"KXUTSKIVISITS-27JUL31-T6000000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Ski Utah reports that Utah ski resort skier visits for the 2026\\u201327 ski season is above 6,000,000 skier visits, then the market resolves to Yes.\", \"rationale\": \"YES depends on a measured quantity or count crossing the stated threshold; publication or tabulation does not create the underlying outcome.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxutskivisits-27jul31\", \"web_search_used\": false}"
+      },
+      "KXVENGLUSTAT-27-Y": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Any qualifying approval route under the rules may suffice.\", \"deadline\": \"a full approval or an accelerated approval; scheduled close 01/01/2027 04:59:00\", \"family\": \"fda_drug_review\", \"key\": \"KXVENGLUSTAT-27-Y\", \"mandatory_steps\": [{\"source_url\": \"https://www.accessdata.fda.gov/scripts/cder/daf/\", \"status\": \"unknown\", \"step\": \"FDA accepts and completes review of a qualifying venglustat application.\"}], \"obstacle\": \"Current application and review status were not established.\", \"predicate\": \"If the FDA's decision on Venglustat by Sanofi in 2026 is a full approval or an accelerated approval, the market resolves to Yes.\", \"rationale\": \"A focused FDA search did not establish an accepted venglustat application, action date, advisory meeting, or completed decision. That evidence gap does not itself establish a barrier.\", \"source_gaps\": [\"Accepted application and current FDA review timetable.\"], \"sources\": [], \"subject_key\": \"kxvenglustat-27\", \"web_search_used\": true}"
+      },
+      "KXZELENSKYYOUT-26OCT01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"rule deadline; scheduled close 10/01/2026 03:59:00\", \"family\": \"observed_outcome\", \"key\": \"KXZELENSKYYOUT-26OCT01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Volodymyr Zelenskyy has either officially announced their intention to leave as President of Ukraine or has actually left as President of Ukraine before Oct 1, 2026, then the market resolves to Yes.\", \"rationale\": \"YES is the observed occurrence or outcome described by the rule, rather than the end of a separate necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxzelenskyyout\", \"web_search_used\": false}"
+      }
+    },
+    "web_search": true
+  },
+  "request": {
+    "batch_id": "50",
+    "candidate_keys": [
+      "KXAPCALLHOUSE-26AUG20-NOV0311P",
+      "KXAPCALLHOUSE-26AUG20-NOV0412A",
+      "KXAPCALLHOUSE-26AUG20-NOV041A",
+      "KXAPCALLHOUSE-26AUG20-NOV044A",
+      "KXAPCALLHOUSE-26AUG20-NOV0612A",
+      "KXAPCALLHOUSE-26AUG20-NOV1112A",
+      "KXVENGLUSTAT-27-Y",
+      "KXCBDECISIONBRAZIL-26SEP16-C25",
+      "KXCBDECISIONBRAZIL-26SEP16-HOLD",
+      "KXNBERRECESSQ-Q1-2025",
+      "KXNBERRECESSQ-Q1-2026",
+      "KXNBERRECESSQ-Q2-2025",
+      "KXNBERRECESSQ-Q3-2025",
+      "KXNBERRECESSQ-Q4-2024",
+      "KXNBERRECESSQ-Q4-2025",
+      "KXBANDANTES-27JAN",
+      "KXZELENSKYYOUT-26OCT01",
+      "KXAAAGASMAX-26DEC31-4.60",
+      "KXAAAGASMAX-26DEC31-4.80",
+      "KXAAAGASMAX-26DEC31-5.00",
+      "KXAAAGASMAX-26DEC31-5.20",
+      "KXAAAGASMAX-26DEC31-5.40",
+      "KXAAAGASMAX-26DEC31-5.60",
+      "KXAAAGASMAX-26DEC31-5.80",
+      "KXAAAGASMAX-26DEC31-6.00",
+      "KXAAAGASMAX-26DEC31-6.20",
+      "KXAAAGASMAX-26DEC31-6.40",
+      "KXAAAGASMAX-26DEC31-6.60",
+      "KXAAAGASMAX-26DEC31-6.80",
+      "KXAAAGASMAX-26DEC31-7.00",
+      "KXSOLMINMON-SOL-26SEP30-6500",
+      "KXSOLMINMON-SOL-26SEP30-7000",
+      "KXSOLMINMON-SOL-26SEP30-7500",
+      "KXSOLMINMON-SOL-26SEP30-8000",
+      "KXSOLMINMON-SOL-26SEP30-9000",
+      "KXSOLMINMON-SOL-26SEP30-9500",
+      "KXMEDIARELEASESPIDERMAN-APR27",
+      "KXMEDIARELEASESPIDERMAN-AUG27",
+      "KXMEDIARELEASESPIDERMAN-DEC26",
+      "KXDEFGDP-26OCT20-T5",
+      "KXUTSKIVISITS-27JUL31-T6000000",
+      "KXLEAVEWALZ-27JAN01-TWAL-27JAN01",
+      "KXAAAGASMINFL-26DEC31-2.30",
+      "KXAAAGASMINFL-26DEC31-2.40",
+      "KXAAAGASMINFL-26DEC31-2.50",
+      "KXAAAGASMINFL-26DEC31-2.60",
+      "KXELECTVENEZUELA-27JAN01",
+      "KXELECTVENEZUELA-27JUN01",
+      "KXSTARSHIPFL-26JUN-26OCT01",
+      "KXSTARSHIPFL-26JUN-27JAN01"
+    ],
+    "decision_at": "2026-09-05T19:53:15.489944+00:00",
+    "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-050\\first-output.jsonl",
+    "payload": {
+      "decision_at": "2026-09-05T19:53:15.489944+00:00",
+      "events": [
+        {
+          "event_key": "KXAPCALLHOUSE-26AUG20",
+          "markets": [
+            {
+              "category": "Elections",
+              "event_key": "KXAPCALLHOUSE-26AUG20",
+              "key": "KXAPCALLHOUSE-26AUG20-NOV0311P",
+              "no_sub_title": "Before 11PM Nov 3",
+              "rules_primary": "If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 11PM ET on Nov 3, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The call must be an explicit declaration that a candidate, party, or option has won, will win, is projected to win, or equivalent clear language indicating the outlet has determined the winner. The call must appear on one of the outlet's primary platforms (main website, television broadcast, or official social media if that is their primary medium) and not be prefaced with qualifiers suggesting uncertainty such as \"appears to,\" \"likely to,\" \"probably,\" or \"may have.\" The relevant time is when the call first becomes publicly visible on the outlet's platform, not when it may have been written, decided internally, or prepared for publication. If the call is later retracted, the market nonetheless resolves to Yes based on the initial call time. Preliminary exit polls, reporting of other outlets' calls, conditional statements, opinion pieces, and technical glitches do not qualify as definitive calls.",
+              "scheduled_close": "2026-11-04T04:00:00Z",
+              "series": "KXAPCALLHOUSE",
+              "subtitle": null,
+              "title": "Will AP call the 2026 U.S. House majority before 11PM ET on Nov 3, 2026?",
+              "yes_sub_title": "Before 11PM Nov 3"
+            },
+            {
+              "category": "Elections",
+              "event_key": "KXAPCALLHOUSE-26AUG20",
+              "key": "KXAPCALLHOUSE-26AUG20-NOV0412A",
+              "no_sub_title": "Before Nov 4",
+              "rules_primary": "If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 12AM ET on Nov 4, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The call must be an explicit declaration that a candidate, party, or option has won, will win, is projected to win, or equivalent clear language indicating the outlet has determined the winner. The call must appear on one of the outlet's primary platforms (main website, television broadcast, or official social media if that is their primary medium) and not be prefaced with qualifiers suggesting uncertainty such as \"appears to,\" \"likely to,\" \"probably,\" or \"may have.\" The relevant time is when the call first becomes publicly visible on the outlet's platform, not when it may have been written, decided internally, or prepared for publication. If the call is later retracted, the market nonetheless resolves to Yes based on the initial call time. Preliminary exit polls, reporting of other outlets' calls, conditional statements, opinion pieces, and technical glitches do not qualify as definitive calls.",
+              "scheduled_close": "2026-11-04T05:00:00Z",
+              "series": "KXAPCALLHOUSE",
+              "subtitle": null,
+              "title": "Will AP call the 2026 U.S. House majority before 12AM ET on Nov 4, 2026?",
+              "yes_sub_title": "Before Nov 4"
+            },
+            {
+              "category": "Elections",
+              "event_key": "KXAPCALLHOUSE-26AUG20",
+              "key": "KXAPCALLHOUSE-26AUG20-NOV041A",
+              "no_sub_title": "Before 1AM Nov 4",
+              "rules_primary": "If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 1AM ET on Nov 4, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The call must be an explicit declaration that a candidate, party, or option has won, will win, is projected to win, or equivalent clear language indicating the outlet has determined the winner. The call must appear on one of the outlet's primary platforms (main website, television broadcast, or official social media if that is their primary medium) and not be prefaced with qualifiers suggesting uncertainty such as \"appears to,\" \"likely to,\" \"probably,\" or \"may have.\" The relevant time is when the call first becomes publicly visible on the outlet's platform, not when it may have been written, decided internally, or prepared for publication. If the call is later retracted, the market nonetheless resolves to Yes based on the initial call time. Preliminary exit polls, reporting of other outlets' calls, conditional statements, opinion pieces, and technical glitches do not qualify as definitive calls.",
+              "scheduled_close": "2026-11-04T06:00:00Z",
+              "series": "KXAPCALLHOUSE",
+              "subtitle": null,
+              "title": "Will AP call the 2026 U.S. House majority before 1AM ET on Nov 4, 2026?",
+              "yes_sub_title": "Before 1AM Nov 4"
+            },
+            {
+              "category": "Elections",
+              "event_key": "KXAPCALLHOUSE-26AUG20",
+              "key": "KXAPCALLHOUSE-26AUG20-NOV044A",
+              "no_sub_title": "Before 4AM Nov 4",
+              "rules_primary": "If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 4AM ET on Nov 4, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The call must be an explicit declaration that a candidate, party, or option has won, will win, is projected to win, or equivalent clear language indicating the outlet has determined the winner. The call must appear on one of the outlet's primary platforms (main website, television broadcast, or official social media if that is their primary medium) and not be prefaced with qualifiers suggesting uncertainty such as \"appears to,\" \"likely to,\" \"probably,\" or \"may have.\" The relevant time is when the call first becomes publicly visible on the outlet's platform, not when it may have been written, decided internally, or prepared for publication. If the call is later retracted, the market nonetheless resolves to Yes based on the initial call time. Preliminary exit polls, reporting of other outlets' calls, conditional statements, opinion pieces, and technical glitches do not qualify as definitive calls.",
+              "scheduled_close": "2026-11-04T09:00:00Z",
+              "series": "KXAPCALLHOUSE",
+              "subtitle": null,
+              "title": "Will AP call the 2026 U.S. House majority before 4AM ET on Nov 4, 2026?",
+              "yes_sub_title": "Before 4AM Nov 4"
+            },
+            {
+              "category": "Elections",
+              "event_key": "KXAPCALLHOUSE-26AUG20",
+              "key": "KXAPCALLHOUSE-26AUG20-NOV0612A",
+              "no_sub_title": "Before Nov 6",
+              "rules_primary": "If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 12AM ET on Nov 6, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The call must be an explicit declaration that a candidate, party, or option has won, will win, is projected to win, or equivalent clear language indicating the outlet has determined the winner. The call must appear on one of the outlet's primary platforms (main website, television broadcast, or official social media if that is their primary medium) and not be prefaced with qualifiers suggesting uncertainty such as \"appears to,\" \"likely to,\" \"probably,\" or \"may have.\" The relevant time is when the call first becomes publicly visible on the outlet's platform, not when it may have been written, decided internally, or prepared for publication. If the call is later retracted, the market nonetheless resolves to Yes based on the initial call time. Preliminary exit polls, reporting of other outlets' calls, conditional statements, opinion pieces, and technical glitches do not qualify as definitive calls.",
+              "scheduled_close": "2026-11-06T05:00:00Z",
+              "series": "KXAPCALLHOUSE",
+              "subtitle": null,
+              "title": "Will AP call the 2026 U.S. House majority before 12AM ET on Nov 6, 2026?",
+              "yes_sub_title": "Before Nov 6"
+            },
+            {
+              "category": "Elections",
+              "event_key": "KXAPCALLHOUSE-26AUG20",
+              "key": "KXAPCALLHOUSE-26AUG20-NOV1112A",
+              "no_sub_title": "Before Nov 11",
+              "rules_primary": "If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 12AM ET on Nov 11, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The call must be an explicit declaration that a candidate, party, or option has won, will win, is projected to win, or equivalent clear language indicating the outlet has determined the winner. The call must appear on one of the outlet's primary platforms (main website, television broadcast, or official social media if that is their primary medium) and not be prefaced with qualifiers suggesting uncertainty such as \"appears to,\" \"likely to,\" \"probably,\" or \"may have.\" The relevant time is when the call first becomes publicly visible on the outlet's platform, not when it may have been written, decided internally, or prepared for publication. If the call is later retracted, the market nonetheless resolves to Yes based on the initial call time. Preliminary exit polls, reporting of other outlets' calls, conditional statements, opinion pieces, and technical glitches do not qualify as definitive calls.",
+              "scheduled_close": "2026-11-11T05:00:00Z",
+              "series": "KXAPCALLHOUSE",
+              "subtitle": null,
+              "title": "Will AP call the 2026 U.S. House majority before 12AM ET on Nov 11, 2026?",
+              "yes_sub_title": "Before Nov 11"
+            }
+          ]
+        },
+        {
+          "event_key": "KXVENGLUSTAT-27",
+          "markets": [
+            {
+              "category": "Financials",
+              "event_key": "KXVENGLUSTAT-27",
+              "key": "KXVENGLUSTAT-27-Y",
+              "no_sub_title": "a full approval or an accelerated approval",
+              "rules_primary": "If the FDA's decision on Venglustat by Sanofi in 2026 is a full approval or an accelerated approval, the market resolves to Yes.",
+              "rules_secondary": "This market will resolve to No if the FDA's decision is a denial (CRL issued), a withdrawal by the sponsor, or a conditional approval \u2014 or if no decision is issued. \n\nVenglustat is an oral small-molecule drug developed by Sanofi that works by slowing down the body's production of a fatty substance called glucosylceramide, which builds up to harmful levels in people with Gaucher disease \u2014 think of it like adjusting a factory's output dial rather than cleaning up the mess after the fact. It belongs to a class called substrate reduction therapy (SRT), meaning it targets the upstream source of the problem rather than replacing a missing enzyme. Because it is a small molecule taken by mouth and designed to cross into the brain, it has potential to address the neurological symptoms that older enzyme-based treatments cannot reach.\n",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXVENGLUSTAT",
+              "subtitle": null,
+              "title": "What will the FDA's decision be on Venglustat by Sanofi in 2026?",
+              "yes_sub_title": "a full approval or an accelerated approval"
+            }
+          ]
+        },
+        {
+          "event_key": "KXCBDECISIONBRAZIL-26SEP16",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXCBDECISIONBRAZIL-26SEP16",
+              "key": "KXCBDECISIONBRAZIL-26SEP16-C25",
+              "no_sub_title": "Cut 25bps",
+              "rules_primary": "If the Central Bank of Brazil takes the action of Cut 25bps at the September Monetary Policy Meeting, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+              "scheduled_close": "2026-09-16T21:29:00Z",
+              "series": "KXCBDECISIONBRAZIL",
+              "subtitle": null,
+              "title": "Will the Central Bank of Brazil Cut 25bps at the September Monetary Policy Meeting?",
+              "yes_sub_title": "Cut 25bps"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXCBDECISIONBRAZIL-26SEP16",
+              "key": "KXCBDECISIONBRAZIL-26SEP16-HOLD",
+              "no_sub_title": "Maintain current rate",
+              "rules_primary": "If the Central Bank of Brazil takes the action of Maintain current rate at the September Monetary Policy Meeting, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the official policy rate decision announced by the central bank. For central banks with multiple policy rates, only changes to the primary policy rate count. If the meeting is cancelled or delayed past the expiration date, markets for \"No change\" resolve to Yes and all others resolve to No. Emergency rate changes between scheduled meetings do not affect resolution of contracts tied to scheduled meetings. The specific basis point ranges are inclusive (e.g., \"25-50bp\" includes both 25bp and 50bp changes).",
+              "scheduled_close": "2026-09-16T21:29:00Z",
+              "series": "KXCBDECISIONBRAZIL",
+              "subtitle": null,
+              "title": "Will the Central Bank of Brazil Maintain current rate at the September Monetary Policy Meeting?",
+              "yes_sub_title": "Maintain current rate"
+            }
+          ]
+        },
+        {
+          "event_key": "KXNBERRECESSQ",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXNBERRECESSQ",
+              "key": "KXNBERRECESSQ-Q1-2025",
+              "no_sub_title": "Q1 2025",
+              "rules_primary": "If the NBER declares the peak of American business activity predating a recession to be in Q1 2025, then the market resolves to Yes.",
+              "rules_secondary": "Clarification 4/15/25 3:00 AM ET: The determination for this market will be based on which quarter NBER highlights (independent of the month they highlight). For example, the most recent recession written as \"February 2020 (2019Q4)\" would resolve YES for the market called \"Q4 2019\" (if this was listed).",
+              "scheduled_close": "2026-12-31T15:00:00Z",
+              "series": "KXNBERRECESSQ",
+              "subtitle": null,
+              "title": "When will the next U.S. recession start?",
+              "yes_sub_title": "Q1 2025"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXNBERRECESSQ",
+              "key": "KXNBERRECESSQ-Q1-2026",
+              "no_sub_title": "Q1 2026",
+              "rules_primary": "If the NBER declares the peak of American business activity predating a recession to be in Q1 2026, then the market resolves to Yes.",
+              "rules_secondary": "Clarification 4/15/25 3:00 AM ET: The determination for this market will be based on which quarter NBER highlights (independent of the month they highlight). For example, the most recent recession written as \"February 2020 (2019Q4)\" would resolve YES for the market called \"Q4 2019\" (if this was listed).",
+              "scheduled_close": "2026-12-31T15:00:00Z",
+              "series": "KXNBERRECESSQ",
+              "subtitle": "Q1 2026",
+              "title": "When will the next U.S. recession start?",
+              "yes_sub_title": "Q1 2026"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXNBERRECESSQ",
+              "key": "KXNBERRECESSQ-Q2-2025",
+              "no_sub_title": "Q2 2025",
+              "rules_primary": "If the NBER declares the peak of American business activity predating a recession to be in Q2 2025, then the market resolves to Yes.",
+              "rules_secondary": "Clarification 4/15/25 3:00 AM ET: The determination for this market will be based on which quarter NBER highlights (independent of the month they highlight). For example, the most recent recession written as \"February 2020 (2019Q4)\" would resolve YES for the market called \"Q4 2019\" (if this was listed).",
+              "scheduled_close": "2026-12-31T15:00:00Z",
+              "series": "KXNBERRECESSQ",
+              "subtitle": null,
+              "title": "When will the next U.S. recession start?",
+              "yes_sub_title": "Q2 2025"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXNBERRECESSQ",
+              "key": "KXNBERRECESSQ-Q3-2025",
+              "no_sub_title": "Q3 2025",
+              "rules_primary": "If the NBER declares the peak of American business activity predating a recession to be in Q3 2025, then the market resolves to Yes.",
+              "rules_secondary": "Clarification 4/15/25 3:00 AM ET: The determination for this market will be based on which quarter NBER highlights (independent of the month they highlight). For example, the most recent recession written as \"February 2020 (2019Q4)\" would resolve YES for the market called \"Q4 2019\" (if this was listed).",
+              "scheduled_close": "2026-12-31T15:00:00Z",
+              "series": "KXNBERRECESSQ",
+              "subtitle": null,
+              "title": "When will the next U.S. recession start?",
+              "yes_sub_title": "Q3 2025"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXNBERRECESSQ",
+              "key": "KXNBERRECESSQ-Q4-2024",
+              "no_sub_title": "Q4 2024",
+              "rules_primary": "If the NBER declares the peak of American business activity predating a recession to be in Q4 2024, then the market resolves to Yes.",
+              "rules_secondary": "Clarification 4/15/25 3:00 AM ET: The determination for this market will be based on which quarter NBER highlights (independent of the month they highlight). For example, the most recent recession written as \"February 2020 (2019Q4)\" would resolve YES for the market called \"Q4 2019\" (if this was listed).",
+              "scheduled_close": "2026-12-31T15:00:00Z",
+              "series": "KXNBERRECESSQ",
+              "subtitle": null,
+              "title": "When will the next U.S. recession start?",
+              "yes_sub_title": "Q4 2024"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXNBERRECESSQ",
+              "key": "KXNBERRECESSQ-Q4-2025",
+              "no_sub_title": "Q4 2025",
+              "rules_primary": "If the NBER declares the peak of American business activity predating a recession to be in Q4 2025, then the market resolves to Yes.",
+              "rules_secondary": "Clarification 4/15/25 3:00 AM ET: The determination for this market will be based on which quarter NBER highlights (independent of the month they highlight). For example, the most recent recession written as \"February 2020 (2019Q4)\" would resolve YES for the market called \"Q4 2019\" (if this was listed).",
+              "scheduled_close": "2026-12-31T15:00:00Z",
+              "series": "KXNBERRECESSQ",
+              "subtitle": null,
+              "title": "When will the next U.S. recession start?",
+              "yes_sub_title": "Q4 2025"
+            }
+          ]
+        },
+        {
+          "event_key": "KXBANDANTES-27JAN",
+          "markets": [
+            {
+              "category": "Social",
+              "event_key": "KXBANDANTES-27JAN",
+              "key": "KXBANDANTES-27JAN",
+              "no_sub_title": "Before Jan 2027",
+              "rules_primary": "If Dantes is banned from Twitch before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXBANDANTES",
+              "subtitle": null,
+              "title": "Will Dantes be banned from Twitch before Jan 2027?",
+              "yes_sub_title": "Before Jan 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXZELENSKYYOUT",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXZELENSKYYOUT",
+              "key": "KXZELENSKYYOUT-26OCT01",
+              "no_sub_title": "Before Oct 1, 2026",
+              "rules_primary": "If Volodymyr Zelenskyy has either officially announced their intention to leave as President of Ukraine or has actually left as President of Ukraine before Oct 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "An \"official announcement\" means a statement by the person themselves, their authorized representative, or the official body governing the office that the person will be departing from the office. Such announcements must be reported by at least one Source Agency to be considered official. The announcement must not specify they are leaving in more than a year from the statement, in which case the market does not resolve to Yes.\n\n\"Leaving office\" means the person no longer holds the office in any capacity, including but not limited to: resignation (effective), termination, removal, impeachment and removal, recall, or the expiration of their term without renewal. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining the office do NOT constitute leaving office. Death does NOT satisfy the Payout Criterion for this Contract. Forced departures (termination, impeachment and removal, etc.) satisfy the Payout Criterion even without a prior announcement.",
+              "scheduled_close": "2026-10-01T03:59:00Z",
+              "series": "KXZELENSKYYOUT",
+              "subtitle": null,
+              "title": "Will Volodymyr Zelenskyy leave President of Ukraine before Oct 1, 2026?",
+              "yes_sub_title": "Before Oct 1, 2026"
+            }
+          ]
+        },
+        {
+          "event_key": "KXAAAGASMAX-26DEC31",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMAX-26DEC31",
+              "key": "KXAAAGASMAX-26DEC31-4.60",
+              "no_sub_title": "Above $4.60",
+              "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $4.60 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T06:25:00Z",
+              "series": "KXAAAGASMAX",
+              "subtitle": "$4.60",
+              "title": "Will average **gas prices** be above $4.60 by Dec 31, 2026?",
+              "yes_sub_title": "Above $4.60"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMAX-26DEC31",
+              "key": "KXAAAGASMAX-26DEC31-4.80",
+              "no_sub_title": "Above $4.80",
+              "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $4.80 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T06:25:00Z",
+              "series": "KXAAAGASMAX",
+              "subtitle": "$4.80",
+              "title": "Will average **gas prices** be above $4.80 by Dec 31, 2026?",
+              "yes_sub_title": "Above $4.80"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMAX-26DEC31",
+              "key": "KXAAAGASMAX-26DEC31-5.00",
+              "no_sub_title": "Above $5.00",
+              "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $5.00 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T06:25:00Z",
+              "series": "KXAAAGASMAX",
+              "subtitle": "$5.00",
+              "title": "Will average **gas prices** be above $5.00 by Dec 31, 2026?",
+              "yes_sub_title": "Above $5.00"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMAX-26DEC31",
+              "key": "KXAAAGASMAX-26DEC31-5.20",
+              "no_sub_title": "Above $5.20",
+              "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $5.20 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T06:25:00Z",
+              "series": "KXAAAGASMAX",
+              "subtitle": "$5.20",
+              "title": "Will average **gas prices** be above $5.20 by Dec 31, 2026?",
+              "yes_sub_title": "Above $5.20"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMAX-26DEC31",
+              "key": "KXAAAGASMAX-26DEC31-5.40",
+              "no_sub_title": "Above $5.40",
+              "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $5.40 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T06:25:00Z",
+              "series": "KXAAAGASMAX",
+              "subtitle": "$5.40",
+              "title": "Will average **gas prices** be above $5.40 by Dec 31, 2026?",
+              "yes_sub_title": "Above $5.40"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMAX-26DEC31",
+              "key": "KXAAAGASMAX-26DEC31-5.60",
+              "no_sub_title": "Above $5.60",
+              "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $5.60 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T06:25:00Z",
+              "series": "KXAAAGASMAX",
+              "subtitle": "$5.60",
+              "title": "Will average **gas prices** be above $5.60 by Dec 31, 2026?",
+              "yes_sub_title": "Above $5.60"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMAX-26DEC31",
+              "key": "KXAAAGASMAX-26DEC31-5.80",
+              "no_sub_title": "Above $5.80",
+              "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $5.80 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T06:25:00Z",
+              "series": "KXAAAGASMAX",
+              "subtitle": "$5.80",
+              "title": "Will average **gas prices** be above $5.80 by Dec 31, 2026?",
+              "yes_sub_title": "Above $5.80"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMAX-26DEC31",
+              "key": "KXAAAGASMAX-26DEC31-6.00",
+              "no_sub_title": "Above $6.00",
+              "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $6.00 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T06:25:00Z",
+              "series": "KXAAAGASMAX",
+              "subtitle": "$6.00",
+              "title": "Will average **gas prices** be above $6.00 by Dec 31, 2026?",
+              "yes_sub_title": "Above $6.00"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMAX-26DEC31",
+              "key": "KXAAAGASMAX-26DEC31-6.20",
+              "no_sub_title": "Above $6.20",
+              "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $6.20 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T06:25:00Z",
+              "series": "KXAAAGASMAX",
+              "subtitle": "$6.20",
+              "title": "Will average **gas prices** be above $6.20 by Dec 31, 2026?",
+              "yes_sub_title": "Above $6.20"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMAX-26DEC31",
+              "key": "KXAAAGASMAX-26DEC31-6.40",
+              "no_sub_title": "Above $6.40",
+              "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $6.40 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T06:25:00Z",
+              "series": "KXAAAGASMAX",
+              "subtitle": "$6.40",
+              "title": "Will average **gas prices** be above $6.40 by Dec 31, 2026?",
+              "yes_sub_title": "Above $6.40"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMAX-26DEC31",
+              "key": "KXAAAGASMAX-26DEC31-6.60",
+              "no_sub_title": "Above $6.60",
+              "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $6.60 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T06:25:00Z",
+              "series": "KXAAAGASMAX",
+              "subtitle": "$6.60",
+              "title": "Will average **gas prices** be above $6.60 by Dec 31, 2026?",
+              "yes_sub_title": "Above $6.60"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMAX-26DEC31",
+              "key": "KXAAAGASMAX-26DEC31-6.80",
+              "no_sub_title": "Above $6.80",
+              "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $6.80 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T06:25:00Z",
+              "series": "KXAAAGASMAX",
+              "subtitle": "$6.80",
+              "title": "Will average **gas prices** be above $6.80 by Dec 31, 2026?",
+              "yes_sub_title": "Above $6.80"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMAX-26DEC31",
+              "key": "KXAAAGASMAX-26DEC31-7.00",
+              "no_sub_title": "Above $7.00",
+              "rules_primary": "If AAA reports that the maximum price of national average regular gas for the US is greater than $7.00 at any time from Issuance through Dec 31, 2026, inclusive, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T06:25:00Z",
+              "series": "KXAAAGASMAX",
+              "subtitle": "$7.00",
+              "title": "Will average **gas prices** be above $7.00 by Dec 31, 2026?",
+              "yes_sub_title": "Above $7.00"
+            }
+          ]
+        },
+        {
+          "event_key": "KXSOLMINMON-SOL-26SEP30",
+          "markets": [
+            {
+              "category": "Crypto",
+              "event_key": "KXSOLMINMON-SOL-26SEP30",
+              "key": "KXSOLMINMON-SOL-26SEP30-6500",
+              "no_sub_title": "Below $65.00",
+              "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $65.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXSOLMINMON",
+              "subtitle": null,
+              "title": "Will SOL trimmed mean be below $65.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Below $65.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXSOLMINMON-SOL-26SEP30",
+              "key": "KXSOLMINMON-SOL-26SEP30-7000",
+              "no_sub_title": "Below $70.00",
+              "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $70.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXSOLMINMON",
+              "subtitle": null,
+              "title": "Will SOL trimmed mean be below $70.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Below $70.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXSOLMINMON-SOL-26SEP30",
+              "key": "KXSOLMINMON-SOL-26SEP30-7500",
+              "no_sub_title": "Below $75.00",
+              "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $75.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXSOLMINMON",
+              "subtitle": null,
+              "title": "Will SOL trimmed mean be below $75.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Below $75.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXSOLMINMON-SOL-26SEP30",
+              "key": "KXSOLMINMON-SOL-26SEP30-8000",
+              "no_sub_title": "Below $80.00",
+              "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $80.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXSOLMINMON",
+              "subtitle": null,
+              "title": "Will SOL trimmed mean be below $80.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Below $80.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXSOLMINMON-SOL-26SEP30",
+              "key": "KXSOLMINMON-SOL-26SEP30-9000",
+              "no_sub_title": "Below $90.00",
+              "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $90.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXSOLMINMON",
+              "subtitle": null,
+              "title": "Will SOL trimmed mean be below $90.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Below $90.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXSOLMINMON-SOL-26SEP30",
+              "key": "KXSOLMINMON-SOL-26SEP30-9500",
+              "no_sub_title": "Below $95.00",
+              "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $95.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXSOLMINMON",
+              "subtitle": null,
+              "title": "Will SOL trimmed mean be below $95.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Below $95.00"
+            }
+          ]
+        },
+        {
+          "event_key": "KXMEDIARELEASESPIDERMAN",
+          "markets": [
+            {
+              "category": "Entertainment",
+              "event_key": "KXMEDIARELEASESPIDERMAN",
+              "key": "KXMEDIARELEASESPIDERMAN-APR27",
+              "no_sub_title": "Before Apr 1, 2027",
+              "rules_primary": "If the official trailer for Spider-Man: Beyond the Spider-Verse has been publicly released Worldwide through official channels before Apr 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The media must be made available to the general public through at least one official distribution channel, including theatrical release, streaming availability, physical media (DVD, Blu-ray), or authorized digital purchase/download. The release must be accessible without special invitations or industry credentials in at least one major metropolitan area if the geography refers to a country. Private screenings, film festivals, leaked content, and torrent availability do not qualify. Trailers and soundtracks do not satisfy the criterion unless the full media is released. Different versions or formats of the same base content (theatrical, director's cut, extended edition) are considered the same media if the core content is substantially identical. Foreign language titles are considered the same media unless otherwise specified.",
+              "scheduled_close": "2027-04-01T03:59:00Z",
+              "series": "KXMEDIARELEASESPIDERMAN",
+              "subtitle": null,
+              "title": "Will the official trailer for Spider-Man: Beyond the Spider-Verse be released Worldwide before Apr 1, 2027?",
+              "yes_sub_title": "Before Apr 1, 2027"
+            },
+            {
+              "category": "Entertainment",
+              "event_key": "KXMEDIARELEASESPIDERMAN",
+              "key": "KXMEDIARELEASESPIDERMAN-AUG27",
+              "no_sub_title": "Before Aug 1, 2027",
+              "rules_primary": "If the official trailer for Spider-Man: Beyond the Spider-Verse has been publicly released Worldwide through official channels before Aug 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The media must be made available to the general public through at least one official distribution channel, including theatrical release, streaming availability, physical media (DVD, Blu-ray), or authorized digital purchase/download. The release must be accessible without special invitations or industry credentials in at least one major metropolitan area if the geography refers to a country. Private screenings, film festivals, leaked content, and torrent availability do not qualify. Trailers and soundtracks do not satisfy the criterion unless the full media is released. Different versions or formats of the same base content (theatrical, director's cut, extended edition) are considered the same media if the core content is substantially identical. Foreign language titles are considered the same media unless otherwise specified.",
+              "scheduled_close": "2027-08-01T03:59:00Z",
+              "series": "KXMEDIARELEASESPIDERMAN",
+              "subtitle": null,
+              "title": "Will the official trailer for Spider-Man: Beyond the Spider-Verse be released Worldwide before Aug 1, 2027?",
+              "yes_sub_title": "Before Aug 1, 2027"
+            },
+            {
+              "category": "Entertainment",
+              "event_key": "KXMEDIARELEASESPIDERMAN",
+              "key": "KXMEDIARELEASESPIDERMAN-DEC26",
+              "no_sub_title": "Before Dec 1, 2026",
+              "rules_primary": "If the official trailer for Spider-Man: Beyond the Spider-Verse has been publicly released Worldwide through official channels before Dec 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The media must be made available to the general public through at least one official distribution channel, including theatrical release, streaming availability, physical media (DVD, Blu-ray), or authorized digital purchase/download. The release must be accessible without special invitations or industry credentials in at least one major metropolitan area if the geography refers to a country. Private screenings, film festivals, leaked content, and torrent availability do not qualify. Trailers and soundtracks do not satisfy the criterion unless the full media is released. Different versions or formats of the same base content (theatrical, director's cut, extended edition) are considered the same media if the core content is substantially identical. Foreign language titles are considered the same media unless otherwise specified.",
+              "scheduled_close": "2026-12-01T04:59:00Z",
+              "series": "KXMEDIARELEASESPIDERMAN",
+              "subtitle": null,
+              "title": "Will the official trailer for Spider-Man: Beyond the Spider-Verse be released Worldwide before Dec 1, 2026?",
+              "yes_sub_title": "Before Dec 1, 2026"
+            }
+          ]
+        },
+        {
+          "event_key": "KXDEFGDP-26OCT20",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXDEFGDP-26OCT20",
+              "key": "KXDEFGDP-26OCT20-T5",
+              "no_sub_title": "Below 5%",
+              "rules_primary": "If the U.S. federal budget deficit as a percentage of GDP for fiscal year 2026, as reported in the U.S. Treasury / Office of Management and Budget Joint Statement on Budget Results for Fiscal Year 2026, is below 5%, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-10-20T12:29:00Z",
+              "series": "KXDEFGDP",
+              "subtitle": null,
+              "title": "Will U.S. federal deficit-to-GDP for FY2026 be below 5%?",
+              "yes_sub_title": "Below 5%"
+            }
+          ]
+        },
+        {
+          "event_key": "KXUTSKIVISITS-27JUL31",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXUTSKIVISITS-27JUL31",
+              "key": "KXUTSKIVISITS-27JUL31-T6000000",
+              "no_sub_title": "Above 6,000,000 skier visits",
+              "rules_primary": "If Ski Utah reports that Utah ski resort skier visits for the 2026\u201327 ski season is above 6,000,000 skier visits, then the market resolves to Yes.",
+              "rules_secondary": "A skier visit means one person visiting a Utah ski area or resort for all or part of one day or night for the purpose of skiing or snowboarding. Resolution will use Ski Utah\u2019s reported statewide total for the 2026\u201327 winter season.",
+              "scheduled_close": "2027-07-31T15:29:00Z",
+              "series": "KXUTSKIVISITS",
+              "subtitle": null,
+              "title": "Will Utah ski resort skier visits for the 2026\u201327 ski season be above 6,000,000 skier visits?",
+              "yes_sub_title": "Above 6,000,000 skier visits"
+            }
+          ]
+        },
+        {
+          "event_key": "KXLEAVEWALZ-27JAN01",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXLEAVEWALZ-27JAN01",
+              "key": "KXLEAVEWALZ-27JAN01-TWAL-27JAN01",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If Tim Walz leaves as Governor of Minnesota after Issuance and before 2027, then the market resolves to Yes.",
+              "rules_secondary": "Tim Walz must have an actual departure date by vacating the role within the time period. \n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary early departure AND the natural expiration of a term.",
+              "scheduled_close": "2027-01-02T14:59:00Z",
+              "series": "KXLEAVEWALZ",
+              "subtitle": null,
+              "title": "Will Tim Walz leave the governorship of Minnesota after Issuance and before 2027?",
+              "yes_sub_title": "Before 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXAAAGASMINFL-26DEC31",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMINFL-26DEC31",
+              "key": "KXAAAGASMINFL-26DEC31-2.30",
+              "no_sub_title": "Below $2.30",
+              "rules_primary": "If average regular gas prices for Florida are strictly lower than $2.30 by Dec 31, 2026 according to AAA,  the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T14:55:00Z",
+              "series": "KXAAAGASMINFL",
+              "subtitle": "$2.30",
+              "title": "Will average **gas prices** be above or below $2.30 by Dec 31, 2026?",
+              "yes_sub_title": "Below $2.30"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMINFL-26DEC31",
+              "key": "KXAAAGASMINFL-26DEC31-2.40",
+              "no_sub_title": "Below $2.40",
+              "rules_primary": "If average regular gas prices for Florida are strictly lower than $2.40 by Dec 31, 2026 according to AAA,  the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T14:55:00Z",
+              "series": "KXAAAGASMINFL",
+              "subtitle": "$2.40",
+              "title": "Will average **gas prices** be above or below $2.40 by Dec 31, 2026?",
+              "yes_sub_title": "Below $2.40"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMINFL-26DEC31",
+              "key": "KXAAAGASMINFL-26DEC31-2.50",
+              "no_sub_title": "Below $2.50",
+              "rules_primary": "If average regular gas prices for Florida are strictly lower than $2.50 by Dec 31, 2026 according to AAA,  the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T14:55:00Z",
+              "series": "KXAAAGASMINFL",
+              "subtitle": "$2.50",
+              "title": "Will average **gas prices** be above or below $2.50 by Dec 31, 2026?",
+              "yes_sub_title": "Below $2.50"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXAAAGASMINFL-26DEC31",
+              "key": "KXAAAGASMINFL-26DEC31-2.60",
+              "no_sub_title": "Below $2.60",
+              "rules_primary": "If average regular gas prices for Florida are strictly lower than $2.60 by Dec 31, 2026 according to AAA,  the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T14:55:00Z",
+              "series": "KXAAAGASMINFL",
+              "subtitle": "$2.60",
+              "title": "Will average **gas prices** be above or below $2.60 by Dec 31, 2026?",
+              "yes_sub_title": "Below $2.60"
+            }
+          ]
+        },
+        {
+          "event_key": "KXELECTVENEZUELA",
+          "markets": [
+            {
+              "category": "Elections",
+              "event_key": "KXELECTVENEZUELA",
+              "key": "KXELECTVENEZUELA-27JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If Venezuela holds a presidential election before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXELECTVENEZUELA",
+              "subtitle": null,
+              "title": "Will Venezuela hold a presidential election before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            },
+            {
+              "category": "Elections",
+              "event_key": "KXELECTVENEZUELA",
+              "key": "KXELECTVENEZUELA-27JUN01",
+              "no_sub_title": "Before Jun 1, 2027",
+              "rules_primary": "If Venezuela holds a presidential election before Jun 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-06-01T14:00:00Z",
+              "series": "KXELECTVENEZUELA",
+              "subtitle": null,
+              "title": "Will Venezuela hold a presidential election before Jun 1, 2027?",
+              "yes_sub_title": "Before Jun 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXSTARSHIPFL-26JUN",
+          "markets": [
+            {
+              "category": "Science and Technology",
+              "event_key": "KXSTARSHIPFL-26JUN",
+              "key": "KXSTARSHIPFL-26JUN-26OCT01",
+              "no_sub_title": "Before Oct 1, 2026",
+              "rules_primary": "If the SpaceX Starship has launched from Florida before Oct 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-10-01T03:59:00Z",
+              "series": "KXSTARSHIPFL",
+              "subtitle": "Before 2026",
+              "title": "Will SpaceX's Starship launch from Florida before Oct 1, 2026",
+              "yes_sub_title": "Before Oct 1, 2026"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXSTARSHIPFL-26JUN",
+              "key": "KXSTARSHIPFL-26JUN-27JAN01",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If the SpaceX Starship has launched from Florida before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXSTARSHIPFL",
+              "subtitle": "Before 2027",
+              "title": "Will SpaceX's Starship launch from Florida this year?",
+              "yes_sub_title": "Before 2027"
+            }
+          ]
+        }
+      ],
+      "snapshot_at": "2026-09-05T15:45:16Z"
+    },
+    "payload_sha256": "b204d702005fff320460f751e140259024f5e62431ec4d9564b074d6107cb415",
+    "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-050\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-050\\first-output.jsonl\n",
+    "requested_effort": "high",
+    "requested_model": "gpt-5.6-sol",
+    "requested_web_search": true,
+    "run_id": "study/broad-procedural-20260905",
+    "run_mode": "study",
+    "stage": "analysis",
+    "theory_id": "study/broad-procedural",
+    "theory_version": 1
+  },
+  "schema_version": 1
+}

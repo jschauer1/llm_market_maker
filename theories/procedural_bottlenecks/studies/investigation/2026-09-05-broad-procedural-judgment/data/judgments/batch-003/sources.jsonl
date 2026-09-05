@@ -1,0 +1,12 @@
+{"kind":"search","query":"site:house.gov OR site:clerk.house.gov cabinet impeachment resolution 2026 September","searched_at":"2026-09-05T19:56:47Z","result":"no qualifying current official result found"}
+{"kind":"search","query":"site:justice.gov Jerome Powell criminal investigation 2026","searched_at":"2026-09-05T19:56:47Z","result":"no qualifying DOJ result found"}
+{"kind":"search","query":"site:elysee.fr dissolution Assemblée nationale election 2026 September","searched_at":"2026-09-05T19:56:47Z","result":"constitutional route found; no current dissolution announcement"}
+{"kind":"search","query":"site:nasdaq.com Nasdaq-100 GlobalFoundries Zscaler September 2026 addition","searched_at":"2026-09-05T19:56:47Z","result":"June rebalance found; no Q3 addition notice"}
+{"kind":"search","query":"site:congress.gov nomination Kari Lake ambassador Jamaica 2026 PN status","searched_at":"2026-09-05T19:56:47Z","result":"blocked by robots.txt"}
+{"kind":"search","query":"site:whitehouse.gov Kari Lake ambassador Jamaica nomination 2026","searched_at":"2026-09-05T19:56:47Z","result":"nominations index found; no Kari Lake record"}
+{"kind":"search","query":"site:sec.gov Airtable S-1 2026 IPO","searched_at":"2026-09-05T19:56:47Z","result":"no Airtable IPO filing found; acquisition filing found"}
+{"kind":"search","query":"site:airtable.com IPO 2026","searched_at":"2026-09-05T19:56:47Z","result":"no qualifying company IPO confirmation found"}
+{"kind":"consulted_url","event_key":"KXSNAPELECTIONFR","url":"https://www.elysee.fr/en/french-presidency/constitution-of-4-october-1958","accessed_at":"2026-09-05T19:56:47Z","result":"used"}
+{"kind":"consulted_url","event_key":"KXNDXADDQ-26SEP30","url":"https://ir.nasdaq.com/node/110541","accessed_at":"2026-09-05T19:56:47Z","result":"used"}
+{"kind":"consulted_url","event_key":"KXLAKECONF-26MAY12","url":"https://www.whitehouse.gov/presidential-actions/nominations-appointments/","accessed_at":"2026-09-05T19:56:47Z","result":"used"}
+{"kind":"consulted_url","event_key":"KXIPOAIRTABLE","url":"https://www.sec.gov/Archives/edgar/data/2004711/000200471126000009/bsp_ex99-1.htm","accessed_at":"2026-09-05T19:56:47Z","result":"used"}

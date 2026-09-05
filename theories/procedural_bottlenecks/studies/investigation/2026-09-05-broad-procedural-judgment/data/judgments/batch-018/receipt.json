@@ -1,1 +1,973 @@
-{"schema_version": 1, "request": {"run_id": "study/broad-procedural-20260905", "theory_id": "study/broad-procedural", "theory_version": 1, "run_mode": "study", "decision_at": "2026-09-05T19:53:15.489944+00:00", "requested_model": "gpt-5.6-sol", "requested_effort": "high", "requested_web_search": true, "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-018\\first-output.jsonl", "stage": "analysis", "batch_id": "18", "candidate_keys": ["KXFTACOUNTRIES-27-ARG", "KXFTACOUNTRIES-27-CHI", "KXFTACOUNTRIES-27-EU", "KXFTACOUNTRIES-27-IND", "KXFTACOUNTRIES-27-KEN", "KXFTACOUNTRIES-27-TAI", "KXCLAUDE-MYTH-26DEC01", "KXCLAUDE-MYTH-26NOV01", "KXCLAUDE-MYTH-27JAN01", "KXCHINAAI-26SEP30-BAID", "KXCHINAAI-26SEP30-BYTE", "KXCHINAAI-26SEP30-DEEP", "KXCHINAAI-26SEP30-MINI", "KXCHINAAI-26SEP30-MOON", "KXCHINAAI-26SEP30-TENC", "KXCHINAAI-26SEP30-XIAO", "KXCHINAAI-26SEP30-ZAI", "KXLEAVELISACOOK-26JAN-27JAN01", "KXLOCALLAW-WYDAA-27APR01", "KXEDWARDSOUT-26JUL-26NOV03", "KXUSDTTBILL-27FEB28-T58.0", "KXUSDTTBILL-27FEB28-T60.0", "KXUSDTTBILL-27FEB28-T62.0", "KXUSDTTBILL-27FEB28-T64.0", "KXUSDTTBILL-27FEB28-T70.0", "KXBIRTHRIGHTEO-27JAN01", "KXIFINATAMAB-27-Y", "KXCODEAI-26SEP30-CHAT", "KXCODEAI-26SEP30-CLAU", "KXCODEAI-26SEP30-DEEP", "KXCODEAI-26SEP30-GEMI", "KXCODEAI-26SEP30-GLM", "KXCODEAI-26SEP30-GROK", "KXCODEAI-26SEP30-KIMI", "KXCODEAI-26SEP30-MIMO", "KXDJIAREMOVE-27JAN01-AXP", "KXDJIAREMOVE-27JAN01-NKE", "KXDJIAREMOVE-27JAN01-SHW", "KXDJIAREMOVE-27JAN01-TRV", "KXBABELMANDEBWEEKLY-26SEP06-T175", "KXBABELMANDEBWEEKLY-26SEP06-T200", "KXBABELMANDEBWEEKLY-26SEP06-T225", "KXENGAGEMENTWOODSTRUMP-26", "KXTRUMPUFC-26OCT2-DJT", "KXVTMILK-27APR30-T2.40", "KXVTMILK-27APR30-T2.45", "KXVTMILK-27APR30-T2.50", "KXVTMILK-27APR30-T2.55"], "payload_sha256": "dc0252f732ccab01125f0afda26157801195e6b9799d1cfa6b6c393eee4cd82e", "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-018\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-018\\first-output.jsonl\n", "payload": {"decision_at": "2026-09-05T19:53:15.489944+00:00", "events": [{"event_key": "KXFTACOUNTRIES-27", "markets": [{"category": "Politics", "event_key": "KXFTACOUNTRIES-27", "key": "KXFTACOUNTRIES-27-ARG", "no_sub_title": "Argentina", "rules_primary": "If a free trade deal with Argentina has become law, either through Senate ratification and Presidential approval or through Congressional-Executive Agreement and the signature of the President (or at least, signing the implementing legislation) after Issuance before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXFTACOUNTRIES", "subtitle": null, "title": "Will Trump make a new before Jan 1, 2027?", "yes_sub_title": "Argentina"}, {"category": "Politics", "event_key": "KXFTACOUNTRIES-27", "key": "KXFTACOUNTRIES-27-CHI", "no_sub_title": "China", "rules_primary": "If a free trade deal with China has become law, either through Senate ratification and Presidential approval or through Congressional-Executive Agreement and the signature of the President (or at least, signing the implementing legislation) after Issuance before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXFTACOUNTRIES", "subtitle": null, "title": "Will Trump make a new before Jan 1, 2027?", "yes_sub_title": "China"}, {"category": "Politics", "event_key": "KXFTACOUNTRIES-27", "key": "KXFTACOUNTRIES-27-EU", "no_sub_title": "European Union", "rules_primary": "If a free trade deal with European Union has become law, either through Senate ratification and Presidential approval or through Congressional-Executive Agreement and the signature of the President (or at least, signing the implementing legislation) after Issuance before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXFTACOUNTRIES", "subtitle": null, "title": "Will Trump make a new before Jan 1, 2027?", "yes_sub_title": "European Union"}, {"category": "Politics", "event_key": "KXFTACOUNTRIES-27", "key": "KXFTACOUNTRIES-27-IND", "no_sub_title": "India", "rules_primary": "If a free trade deal with India has become law, either through Senate ratification and Presidential approval or through Congressional-Executive Agreement and the signature of the President (or at least, signing the implementing legislation) after Issuance before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXFTACOUNTRIES", "subtitle": "India", "title": "Will Trump make a new before Jan 1, 2027?", "yes_sub_title": "India"}, {"category": "Politics", "event_key": "KXFTACOUNTRIES-27", "key": "KXFTACOUNTRIES-27-KEN", "no_sub_title": "Kenya", "rules_primary": "If a free trade deal with Kenya has become law, either through Senate ratification and Presidential approval or through Congressional-Executive Agreement and the signature of the President (or at least, signing the implementing legislation) after Issuance before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXFTACOUNTRIES", "subtitle": null, "title": "Will Trump make a new before Jan 1, 2027?", "yes_sub_title": "Kenya"}, {"category": "Politics", "event_key": "KXFTACOUNTRIES-27", "key": "KXFTACOUNTRIES-27-TAI", "no_sub_title": "Taiwan", "rules_primary": "If a free trade deal with Taiwan has become law, either through Senate ratification and Presidential approval or through Congressional-Executive Agreement and the signature of the President (or at least, signing the implementing legislation) after Issuance before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXFTACOUNTRIES", "subtitle": null, "title": "Will Trump make a new before Jan 1, 2027?", "yes_sub_title": "Taiwan"}]}, {"event_key": "KXCLAUDE-MYTH", "markets": [{"category": "Science and Technology", "event_key": "KXCLAUDE-MYTH", "key": "KXCLAUDE-MYTH-26DEC01", "no_sub_title": "Before Dec 1, 2026", "rules_primary": "If Anthropic releases A model called Mythos  before Dec 1, 2026, then the market resolves to Yes.", "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.", "scheduled_close": "2026-12-01T04:59:00Z", "series": "KXCLAUDE", "subtitle": null, "title": "Will Anthropic release Mythos before Dec 1, 2026?", "yes_sub_title": "Before Dec 1, 2026"}, {"category": "Science and Technology", "event_key": "KXCLAUDE-MYTH", "key": "KXCLAUDE-MYTH-26NOV01", "no_sub_title": "Before Nov 1, 2026", "rules_primary": "If Anthropic releases A model called Mythos  before Nov 1, 2026, then the market resolves to Yes.", "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.", "scheduled_close": "2026-11-01T04:59:00Z", "series": "KXCLAUDE", "subtitle": null, "title": "Will Anthropic release Mythos before Nov 1, 2026?", "yes_sub_title": "Before Nov 1, 2026"}, {"category": "Science and Technology", "event_key": "KXCLAUDE-MYTH", "key": "KXCLAUDE-MYTH-27JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If Anthropic releases A model called Mythos  before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXCLAUDE", "subtitle": null, "title": "Will Anthropic release Mythos before Jan 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}]}, {"event_key": "KXCHINAAI-26SEP30", "markets": [{"category": "Science and Technology", "event_key": "KXCHINAAI-26SEP30", "key": "KXCHINAAI-26SEP30-BAID", "no_sub_title": "Baidu", "rules_primary": "If Baidu is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.", "rules_secondary": "Qualifying Chinese AI companies are defined as a company whose global or primary operational headquarters is located in mainland China.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-09-30T14:00:00Z", "series": "KXCHINAAI", "subtitle": null, "title": "Top Chinese AI Company this month?", "yes_sub_title": "Baidu"}, {"category": "Science and Technology", "event_key": "KXCHINAAI-26SEP30", "key": "KXCHINAAI-26SEP30-BYTE", "no_sub_title": "ByteDance", "rules_primary": "If ByteDance is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.", "rules_secondary": "Qualifying Chinese AI companies are defined as a company whose global or primary operational headquarters is located in mainland China.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-09-30T14:00:00Z", "series": "KXCHINAAI", "subtitle": null, "title": "Top Chinese AI Company this month?", "yes_sub_title": "ByteDance"}, {"category": "Science and Technology", "event_key": "KXCHINAAI-26SEP30", "key": "KXCHINAAI-26SEP30-DEEP", "no_sub_title": "DeepSeek", "rules_primary": "If DeepSeek is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.", "rules_secondary": "Qualifying Chinese AI companies are defined as a company whose global or primary operational headquarters is located in mainland China.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-09-30T14:00:00Z", "series": "KXCHINAAI", "subtitle": null, "title": "Top Chinese AI Company this month?", "yes_sub_title": "DeepSeek"}, {"category": "Science and Technology", "event_key": "KXCHINAAI-26SEP30", "key": "KXCHINAAI-26SEP30-MINI", "no_sub_title": "MiniMax", "rules_primary": "If MiniMax is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.", "rules_secondary": "Qualifying Chinese AI companies are defined as a company whose global or primary operational headquarters is located in mainland China.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-09-30T14:00:00Z", "series": "KXCHINAAI", "subtitle": null, "title": "Top Chinese AI Company this month?", "yes_sub_title": "MiniMax"}, {"category": "Science and Technology", "event_key": "KXCHINAAI-26SEP30", "key": "KXCHINAAI-26SEP30-MOON", "no_sub_title": "Moonshot", "rules_primary": "If Moonshot is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.", "rules_secondary": "Qualifying Chinese AI companies are defined as a company whose global or primary operational headquarters is located in mainland China.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-09-30T14:00:00Z", "series": "KXCHINAAI", "subtitle": null, "title": "Top Chinese AI Company this month?", "yes_sub_title": "Moonshot"}, {"category": "Science and Technology", "event_key": "KXCHINAAI-26SEP30", "key": "KXCHINAAI-26SEP30-TENC", "no_sub_title": "Tencent", "rules_primary": "If Tencent is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.", "rules_secondary": "Qualifying Chinese AI companies are defined as a company whose global or primary operational headquarters is located in mainland China.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-09-30T14:00:00Z", "series": "KXCHINAAI", "subtitle": null, "title": "Top Chinese AI Company this month?", "yes_sub_title": "Tencent"}, {"category": "Science and Technology", "event_key": "KXCHINAAI-26SEP30", "key": "KXCHINAAI-26SEP30-XIAO", "no_sub_title": "Xiaomi", "rules_primary": "If Xiaomi is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.", "rules_secondary": "Qualifying Chinese AI companies are defined as a company whose global or primary operational headquarters is located in mainland China.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-09-30T14:00:00Z", "series": "KXCHINAAI", "subtitle": null, "title": "Top Chinese AI Company this month?", "yes_sub_title": "Xiaomi"}, {"category": "Science and Technology", "event_key": "KXCHINAAI-26SEP30", "key": "KXCHINAAI-26SEP30-ZAI", "no_sub_title": "Z.ai", "rules_primary": "If Z.ai is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.", "rules_secondary": "Qualifying Chinese AI companies are defined as a company whose global or primary operational headquarters is located in mainland China.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-09-30T14:00:00Z", "series": "KXCHINAAI", "subtitle": null, "title": "Top Chinese AI Company this month?", "yes_sub_title": "Z.ai"}]}, {"event_key": "KXLEAVELISACOOK-26JAN", "markets": [{"category": "Politics", "event_key": "KXLEAVELISACOOK-26JAN", "key": "KXLEAVELISACOOK-26JAN-27JAN01", "no_sub_title": "Before Jan 2027", "rules_primary": "If Lisa DeNell Cook leaves or announces that they will leave their position as Federal Reserve Governor before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "An announcement that they will leave office is sufficient to immediately resolve the market to Yes. However, the announcement must not specify they are leaving in more than a year from the statement, in which case the market does not resolve to Yes. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining the office do not count. Leaving office as a result of death will not count. Forced departures (termination, impeachment and removal, etc.) will count even without a prior announcement.", "scheduled_close": "2027-01-01T15:00:07Z", "series": "KXLEAVELISACOOK", "subtitle": null, "title": "Lisa DeNell Cook out as Federal Reserve Governor before Jan 2027?", "yes_sub_title": "Before Jan 2027"}]}, {"event_key": "KXLOCALLAW-WYDAA-27APR01", "markets": [{"category": "Politics", "event_key": "KXLOCALLAW-WYDAA-27APR01", "key": "KXLOCALLAW-WYDAA-27APR01", "no_sub_title": "Yes", "rules_primary": "If legislation granting a Wyoming state entity (whether newly created or the Wyoming stable token commission with expanded powers) statutory authority to administer government-issued digital assets beyond the Wyoming stable token is enacted in Wyoming before Apr 1, 2027, then the market resolves to Yes.", "rules_secondary": "Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law.\n\nStandard legislation requiring executive approval: final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods\nLegislation not requiring executive approval: final passage and completion of required waiting periods\nConstitutional amendments: passage with required supermajorities and completion of ratification processes\nExecutive orders: official signature, publication in official government records, and legal effectiveness\n\nThe following do NOT constitute enactment:\n\nLegislative passage without completed executive action\nPassage by only some required bodies\nProvisional passage\nNon-binding resolutions\nDraft orders\n\nEnactment occurs when all requirements are completed, regardless of pending judicial challenges.", "scheduled_close": "2027-04-01T03:59:00Z", "series": "KXLOCALLAW", "subtitle": ":: Wyoming", "title": "Will Wyoming create a Digital Asset Authority?", "yes_sub_title": "Yes"}]}, {"event_key": "KXEDWARDSOUT-26JUL", "markets": [{"category": "Politics", "event_key": "KXEDWARDSOUT-26JUL", "key": "KXEDWARDSOUT-26JUL-26NOV03", "no_sub_title": "Before Nov 3, 2026", "rules_primary": "If Chuck Edwards leaves as U.S. representative before Nov 3, 2026, then the market resolves to Yes.", "rules_secondary": "Chuck Edwards must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.", "scheduled_close": "2026-11-03T04:59:00Z", "series": "KXEDWARDSOUT", "subtitle": null, "title": "Will Chuck Edwards be out as U.S. representative before Nov 3, 2026?", "yes_sub_title": "Before Nov 3, 2026"}]}, {"event_key": "KXUSDTTBILL-27FEB28", "markets": [{"category": "Economics", "event_key": "KXUSDTTBILL-27FEB28", "key": "KXUSDTTBILL-27FEB28-T58.0", "no_sub_title": "Above 58.0%", "rules_primary": "If the percentage obtained by dividing the amount listed as \u201cU.S. Treasury Bills\u201d by Total Reserves in Tether International, S.A. de C.V.\u2019s reserve report for December 31, 2026 is above 58.0%, then the market resolves to Yes.", "rules_secondary": "For this market, the percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 will be determined using Tether\u2019s reserve report for the quarter ending December 31, 2026. The market value will be equal to 100 \u00d7 (U.S. Treasury Bills \u00f7 Total Reserves), using the dollar amounts reported by Tether. If the resulting value is reported to more than one decimal place, it will be rounded to one decimal place. If Tether changes the formatting of its reserve report but continues to publish clearly equivalent figures for direct U.S. Treasury Bills and Total Reserves, those figures will be used.", "scheduled_close": "2027-02-28T13:29:00Z", "series": "KXUSDTTBILL", "subtitle": null, "title": "Will percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 be above 58.0%?", "yes_sub_title": "Above 58.0%"}, {"category": "Economics", "event_key": "KXUSDTTBILL-27FEB28", "key": "KXUSDTTBILL-27FEB28-T60.0", "no_sub_title": "Above 60.0%", "rules_primary": "If the percentage obtained by dividing the amount listed as \u201cU.S. Treasury Bills\u201d by Total Reserves in Tether International, S.A. de C.V.\u2019s reserve report for December 31, 2026 is above 60.0%, then the market resolves to Yes.", "rules_secondary": "For this market, the percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 will be determined using Tether\u2019s reserve report for the quarter ending December 31, 2026. The market value will be equal to 100 \u00d7 (U.S. Treasury Bills \u00f7 Total Reserves), using the dollar amounts reported by Tether. If the resulting value is reported to more than one decimal place, it will be rounded to one decimal place. If Tether changes the formatting of its reserve report but continues to publish clearly equivalent figures for direct U.S. Treasury Bills and Total Reserves, those figures will be used.", "scheduled_close": "2027-02-28T13:29:00Z", "series": "KXUSDTTBILL", "subtitle": null, "title": "Will percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 be above 60.0%?", "yes_sub_title": "Above 60.0%"}, {"category": "Economics", "event_key": "KXUSDTTBILL-27FEB28", "key": "KXUSDTTBILL-27FEB28-T62.0", "no_sub_title": "Above 62.0%", "rules_primary": "If the percentage obtained by dividing the amount listed as \u201cU.S. Treasury Bills\u201d by Total Reserves in Tether International, S.A. de C.V.\u2019s reserve report for December 31, 2026 is above 62.0%, then the market resolves to Yes.", "rules_secondary": "For this market, the percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 will be determined using Tether\u2019s reserve report for the quarter ending December 31, 2026. The market value will be equal to 100 \u00d7 (U.S. Treasury Bills \u00f7 Total Reserves), using the dollar amounts reported by Tether. If the resulting value is reported to more than one decimal place, it will be rounded to one decimal place. If Tether changes the formatting of its reserve report but continues to publish clearly equivalent figures for direct U.S. Treasury Bills and Total Reserves, those figures will be used.", "scheduled_close": "2027-02-28T13:29:00Z", "series": "KXUSDTTBILL", "subtitle": null, "title": "Will percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 be above 62.0%?", "yes_sub_title": "Above 62.0%"}, {"category": "Economics", "event_key": "KXUSDTTBILL-27FEB28", "key": "KXUSDTTBILL-27FEB28-T64.0", "no_sub_title": "Above 64.0%", "rules_primary": "If the percentage obtained by dividing the amount listed as \u201cU.S. Treasury Bills\u201d by Total Reserves in Tether International, S.A. de C.V.\u2019s reserve report for December 31, 2026 is above 64.0%, then the market resolves to Yes.", "rules_secondary": "For this market, the percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 will be determined using Tether\u2019s reserve report for the quarter ending December 31, 2026. The market value will be equal to 100 \u00d7 (U.S. Treasury Bills \u00f7 Total Reserves), using the dollar amounts reported by Tether. If the resulting value is reported to more than one decimal place, it will be rounded to one decimal place. If Tether changes the formatting of its reserve report but continues to publish clearly equivalent figures for direct U.S. Treasury Bills and Total Reserves, those figures will be used.", "scheduled_close": "2027-02-28T13:29:00Z", "series": "KXUSDTTBILL", "subtitle": null, "title": "Will percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 be above 64.0%?", "yes_sub_title": "Above 64.0%"}, {"category": "Economics", "event_key": "KXUSDTTBILL-27FEB28", "key": "KXUSDTTBILL-27FEB28-T70.0", "no_sub_title": "Above 70.0%", "rules_primary": "If the percentage obtained by dividing the amount listed as \u201cU.S. Treasury Bills\u201d by Total Reserves in Tether International, S.A. de C.V.\u2019s reserve report for December 31, 2026 is above 70.0%, then the market resolves to Yes.", "rules_secondary": "For this market, the percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 will be determined using Tether\u2019s reserve report for the quarter ending December 31, 2026. The market value will be equal to 100 \u00d7 (U.S. Treasury Bills \u00f7 Total Reserves), using the dollar amounts reported by Tether. If the resulting value is reported to more than one decimal place, it will be rounded to one decimal place. If Tether changes the formatting of its reserve report but continues to publish clearly equivalent figures for direct U.S. Treasury Bills and Total Reserves, those figures will be used.", "scheduled_close": "2027-02-28T13:29:00Z", "series": "KXUSDTTBILL", "subtitle": null, "title": "Will percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 be above 70.0%?", "yes_sub_title": "Above 70.0%"}]}, {"event_key": "KXBIRTHRIGHTEO-27JAN01", "markets": [{"category": "Politics", "event_key": "KXBIRTHRIGHTEO-27JAN01", "key": "KXBIRTHRIGHTEO-27JAN01", "no_sub_title": "Before 2027", "rules_primary": "If the full nationwide taking effect of Trump's Executive Order 14418 for all people it covers before January 1, 2027 is confirmed by any of the Source Agencies after Issuance and before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "This must be confirmed, verified, or established as factual by at least one Source Agency.\n\nNews confirmation is defined as a published article, broadcast segment, or official news report by a Source Agency, that A) explicitly states the full nationwide taking effect of Trump's Executive Order 14418 for all people it covers before January 1, 2027 occurred, is true, or has been verified, B) based on journalistic investigation, sources, or evidence, and C) presented as factual reporting rather than speculation, rumor, or unverified allegation.\n\nFull nationwide effect means federal agencies may legally implement EO 14418 throughout the United States for every covered category. Signing, publication, guidance, or partial applicability does not qualify. Any continuing federal block for a covered person, category, territory, or jurisdiction prevents Yes. A later block does not undo an earlier qualifying period.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXBIRTHRIGHTEO", "subtitle": null, "title": "Will Trump's Executive Order 14418 take full effect before 2027?", "yes_sub_title": "Before 2027"}]}, {"event_key": "KXIFINATAMAB-27", "markets": [{"category": "Financials", "event_key": "KXIFINATAMAB-27", "key": "KXIFINATAMAB-27-Y", "no_sub_title": "a full approval or an accelerated approval", "rules_primary": "If the FDA's decision on Ifinatamab Deruxtecan by Daiichi Sankyo in 2026 is a full approval or an accelerated approval, the market resolves to Yes.", "rules_secondary": "This market will resolve to No if the FDA's decision is a denial (CRL issued), a withdrawal by the sponsor, or a conditional approval \u2014 or if no decision is issued. \n\nIfinatamab deruxtecan (also called I-DXd or DS-7300) is an antibody-drug conjugate \u2014 think of it as a guided missile where a targeting protein is chemically linked to a potent cancer-killing payload. The targeting protein homes in on a molecule called B7-H3 (also known as CD276), which appears in unusually high amounts on the surface of many cancer cells, and once the drug locks onto that target it is pulled inside the cell and releases its toxic payload. In doing so, it aims to kill tumor cells more precisely than traditional chemotherapy, which attacks both healthy and cancerous cells indiscriminately.\n", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXIFINATAMAB", "subtitle": null, "title": "What will the FDA's decision be on Ifinatamab Deruxtecan by Daiichi Sankyo in 2026?", "yes_sub_title": "a full approval or an accelerated approval"}]}, {"event_key": "KXCODEAI-26SEP30", "markets": [{"category": "Science and Technology", "event_key": "KXCODEAI-26SEP30", "key": "KXCODEAI-26SEP30-CHAT", "no_sub_title": "ChatGPT", "rules_primary": "If ChatGPT is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.", "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-09-30T14:00:00Z", "series": "KXCODEAI", "subtitle": null, "title": "Top Coding AI this month?", "yes_sub_title": "ChatGPT"}, {"category": "Science and Technology", "event_key": "KXCODEAI-26SEP30", "key": "KXCODEAI-26SEP30-CLAU", "no_sub_title": "Claude", "rules_primary": "If Claude is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.", "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-09-30T14:00:00Z", "series": "KXCODEAI", "subtitle": null, "title": "Top Coding AI this month?", "yes_sub_title": "Claude"}, {"category": "Science and Technology", "event_key": "KXCODEAI-26SEP30", "key": "KXCODEAI-26SEP30-DEEP", "no_sub_title": "DeepSeek", "rules_primary": "If DeepSeek is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.", "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-09-30T14:00:00Z", "series": "KXCODEAI", "subtitle": null, "title": "Top Coding AI this month?", "yes_sub_title": "DeepSeek"}, {"category": "Science and Technology", "event_key": "KXCODEAI-26SEP30", "key": "KXCODEAI-26SEP30-GEMI", "no_sub_title": "Gemini", "rules_primary": "If Gemini is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.", "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-09-30T14:00:00Z", "series": "KXCODEAI", "subtitle": null, "title": "Top Coding AI this month?", "yes_sub_title": "Gemini"}, {"category": "Science and Technology", "event_key": "KXCODEAI-26SEP30", "key": "KXCODEAI-26SEP30-GLM", "no_sub_title": "GLM", "rules_primary": "If GLM is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.", "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-09-30T14:00:00Z", "series": "KXCODEAI", "subtitle": null, "title": "Top Coding AI this month?", "yes_sub_title": "GLM"}, {"category": "Science and Technology", "event_key": "KXCODEAI-26SEP30", "key": "KXCODEAI-26SEP30-GROK", "no_sub_title": "Grok", "rules_primary": "If Grok is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.", "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-09-30T14:00:00Z", "series": "KXCODEAI", "subtitle": null, "title": "Top Coding AI this month?", "yes_sub_title": "Grok"}, {"category": "Science and Technology", "event_key": "KXCODEAI-26SEP30", "key": "KXCODEAI-26SEP30-KIMI", "no_sub_title": "Kimi", "rules_primary": "If Kimi is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.", "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-09-30T14:00:00Z", "series": "KXCODEAI", "subtitle": null, "title": "Top Coding AI this month?", "yes_sub_title": "Kimi"}, {"category": "Science and Technology", "event_key": "KXCODEAI-26SEP30", "key": "KXCODEAI-26SEP30-MIMO", "no_sub_title": "MiMo", "rules_primary": "If MiMo is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.", "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-09-30T14:00:00Z", "series": "KXCODEAI", "subtitle": null, "title": "Top Coding AI this month?", "yes_sub_title": "MiMo"}]}, {"event_key": "KXDJIAREMOVE-27JAN01", "markets": [{"category": "Financials", "event_key": "KXDJIAREMOVE-27JAN01", "key": "KXDJIAREMOVE-27JAN01-AXP", "no_sub_title": "American Express", "rules_primary": "If American Express is announced to be or is officially removed from Dow Jones Industrial Average during Jun 25, 2026 to Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The market resolves to Yes if either the index administrator officially announces the membership change OR the change takes effect during the specified time period, whichever occurs first. The effective date of the change need not fall within the time period; only the announcement or implementation must occur within the time period. Temporary suspensions do not constitute removal unless explicitly designated as permanent by the index administrator. If an announced addition or removal is subsequently reversed due to error within the time period, the Exchange will determine resolution at its discretion. For companies undergoing mergers, acquisitions, or restructuring, removal from the index due to such corporate actions constitutes removal for purposes of this market. If a spin-off or successor entity is immediately added in place of the original company, the original company is still considered removed. Regular scheduled rebalancing events count as additions or removals if the company's membership status changes during such rebalancing.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXDJIAREMOVE", "subtitle": null, "title": "Will American Express be removed from the Dow Jones Industrial Average in 2026?", "yes_sub_title": "American Express"}, {"category": "Financials", "event_key": "KXDJIAREMOVE-27JAN01", "key": "KXDJIAREMOVE-27JAN01-NKE", "no_sub_title": "Nike", "rules_primary": "If Nike is announced to be or is officially removed from Dow Jones Industrial Average during Jun 25, 2026 to Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The market resolves to Yes if either the index administrator officially announces the membership change OR the change takes effect during the specified time period, whichever occurs first. The effective date of the change need not fall within the time period; only the announcement or implementation must occur within the time period. Temporary suspensions do not constitute removal unless explicitly designated as permanent by the index administrator. If an announced addition or removal is subsequently reversed due to error within the time period, the Exchange will determine resolution at its discretion. For companies undergoing mergers, acquisitions, or restructuring, removal from the index due to such corporate actions constitutes removal for purposes of this market. If a spin-off or successor entity is immediately added in place of the original company, the original company is still considered removed. Regular scheduled rebalancing events count as additions or removals if the company's membership status changes during such rebalancing.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXDJIAREMOVE", "subtitle": null, "title": "Will Nike be removed from the Dow Jones Industrial Average in 2026?", "yes_sub_title": "Nike"}, {"category": "Financials", "event_key": "KXDJIAREMOVE-27JAN01", "key": "KXDJIAREMOVE-27JAN01-SHW", "no_sub_title": "Sherwin-Williams", "rules_primary": "If Sherwin-Williams is announced to be or is officially removed from Dow Jones Industrial Average during Jun 25, 2026 to Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The market resolves to Yes if either the index administrator officially announces the membership change OR the change takes effect during the specified time period, whichever occurs first. The effective date of the change need not fall within the time period; only the announcement or implementation must occur within the time period. Temporary suspensions do not constitute removal unless explicitly designated as permanent by the index administrator. If an announced addition or removal is subsequently reversed due to error within the time period, the Exchange will determine resolution at its discretion. For companies undergoing mergers, acquisitions, or restructuring, removal from the index due to such corporate actions constitutes removal for purposes of this market. If a spin-off or successor entity is immediately added in place of the original company, the original company is still considered removed. Regular scheduled rebalancing events count as additions or removals if the company's membership status changes during such rebalancing.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXDJIAREMOVE", "subtitle": null, "title": "Will Sherwin-Williams be removed from the Dow Jones Industrial Average in 2026?", "yes_sub_title": "Sherwin-Williams"}, {"category": "Financials", "event_key": "KXDJIAREMOVE-27JAN01", "key": "KXDJIAREMOVE-27JAN01-TRV", "no_sub_title": "Travelers Cos", "rules_primary": "If Travelers Cos is announced to be or is officially removed from Dow Jones Industrial Average during Jun 25, 2026 to Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The market resolves to Yes if either the index administrator officially announces the membership change OR the change takes effect during the specified time period, whichever occurs first. The effective date of the change need not fall within the time period; only the announcement or implementation must occur within the time period. Temporary suspensions do not constitute removal unless explicitly designated as permanent by the index administrator. If an announced addition or removal is subsequently reversed due to error within the time period, the Exchange will determine resolution at its discretion. For companies undergoing mergers, acquisitions, or restructuring, removal from the index due to such corporate actions constitutes removal for purposes of this market. If a spin-off or successor entity is immediately added in place of the original company, the original company is still considered removed. Regular scheduled rebalancing events count as additions or removals if the company's membership status changes during such rebalancing.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXDJIAREMOVE", "subtitle": null, "title": "Will Travelers Cos be removed from the Dow Jones Industrial Average in 2026?", "yes_sub_title": "Travelers Cos"}]}, {"event_key": "KXBABELMANDEBWEEKLY-26SEP06", "markets": [{"category": "Politics", "event_key": "KXBABELMANDEBWEEKLY-26SEP06", "key": "KXBABELMANDEBWEEKLY-26SEP06-T175", "no_sub_title": "Above 175", "rules_primary": "If the number of transit calls through the Bab el-Mandeb Strait as reported by the IMF PortWatch is above 175 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.", "rules_secondary": "The total is calculated by summing daily counts from Aug 31, 2026 to Sep 6, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.", "scheduled_close": "2026-09-08T13:00:00Z", "series": "KXBABELMANDEBWEEKLY", "subtitle": null, "title": "Will there be more than 175 transit calls through the Bab el-Mandeb Strait from Aug 31, 2026 to Sep 6, 2026?", "yes_sub_title": "Above 175"}, {"category": "Politics", "event_key": "KXBABELMANDEBWEEKLY-26SEP06", "key": "KXBABELMANDEBWEEKLY-26SEP06-T200", "no_sub_title": "Above 200", "rules_primary": "If the number of transit calls through the Bab el-Mandeb Strait as reported by the IMF PortWatch is above 200 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.", "rules_secondary": "The total is calculated by summing daily counts from Aug 31, 2026 to Sep 6, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.", "scheduled_close": "2026-09-08T13:00:00Z", "series": "KXBABELMANDEBWEEKLY", "subtitle": null, "title": "Will there be more than 200 transit calls through the Bab el-Mandeb Strait from Aug 31, 2026 to Sep 6, 2026?", "yes_sub_title": "Above 200"}, {"category": "Politics", "event_key": "KXBABELMANDEBWEEKLY-26SEP06", "key": "KXBABELMANDEBWEEKLY-26SEP06-T225", "no_sub_title": "Above 225", "rules_primary": "If the number of transit calls through the Bab el-Mandeb Strait as reported by the IMF PortWatch is above 225 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.", "rules_secondary": "The total is calculated by summing daily counts from Aug 31, 2026 to Sep 6, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.", "scheduled_close": "2026-09-08T13:00:00Z", "series": "KXBABELMANDEBWEEKLY", "subtitle": null, "title": "Will there be more than 225 transit calls through the Bab el-Mandeb Strait from Aug 31, 2026 to Sep 6, 2026?", "yes_sub_title": "Above 225"}]}, {"event_key": "KXENGAGEMENTWOODSTRUMP-26", "markets": [{"category": "Entertainment", "event_key": "KXENGAGEMENTWOODSTRUMP-26", "key": "KXENGAGEMENTWOODSTRUMP-26", "no_sub_title": "Before 2027", "rules_primary": "If Tiger Woods and Vanessa Trump are reported to be engaged to be married before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXENGAGEMENTWOODSTRUMP", "subtitle": "Before 2027", "title": "Will Tiger Woods and Vanessa Trump be engaged in 2026?", "yes_sub_title": "Before 2027"}]}, {"event_key": "KXTRUMPUFC-26OCT2", "markets": [{"category": "Politics", "event_key": "KXTRUMPUFC-26OCT2", "key": "KXTRUMPUFC-26OCT2-DJT", "no_sub_title": "Yes", "rules_primary": "If Donald Trump attends UFC 333, then the market resolves to Yes.", "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance. Kalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Ultimate Fighting Championship (UFC) or TKO Group Holdings. All trademarks, logos, and brand names are the property of their respective owners.", "scheduled_close": "2026-10-25T14:00:00Z", "series": "KXTRUMPUFC", "subtitle": null, "title": "Will Donald Trump attend UFC 333?", "yes_sub_title": "Yes"}]}, {"event_key": "KXVTMILK-27APR30", "markets": [{"category": "Economics", "event_key": "KXVTMILK-27APR30", "key": "KXVTMILK-27APR30-T2.40", "no_sub_title": "Above 2.40 billion pounds", "rules_primary": "If USDA NASS reports Vermont\u2019s total milk production for calendar year 2026 is above \n\n2.40 billion pounds, then the market resolves to Yes.", "rules_secondary": "Resolution will be based on Vermont\u2019s total milk production for calendar year 2026, as reported by USDA NASS in its Milk Production, Disposition, and Income annual report. Production is measured in pounds.", "scheduled_close": "2027-04-30T20:29:00Z", "series": "KXVTMILK", "subtitle": null, "title": "Will Vermont\u2019s total milk production for 2026 be above 2.40 billion pounds?", "yes_sub_title": "Above 2.40 billion pounds"}, {"category": "Economics", "event_key": "KXVTMILK-27APR30", "key": "KXVTMILK-27APR30-T2.45", "no_sub_title": "Above 2.45 billion pounds", "rules_primary": "If USDA NASS reports Vermont\u2019s total milk production for calendar year 2026 is above \n\n2.45 billion pounds, then the market resolves to Yes.", "rules_secondary": "Resolution will be based on Vermont\u2019s total milk production for calendar year 2026, as reported by USDA NASS in its Milk Production, Disposition, and Income annual report. Production is measured in pounds.", "scheduled_close": "2027-04-30T20:29:00Z", "series": "KXVTMILK", "subtitle": null, "title": "Will Vermont\u2019s total milk production for 2026 be above 2.45 billion pounds?", "yes_sub_title": "Above 2.45 billion pounds"}, {"category": "Economics", "event_key": "KXVTMILK-27APR30", "key": "KXVTMILK-27APR30-T2.50", "no_sub_title": "Above 2.50 billion pounds", "rules_primary": "If USDA NASS reports Vermont\u2019s total milk production for calendar year 2026 is above \n\n2.50 billion pounds, then the market resolves to Yes.", "rules_secondary": "Resolution will be based on Vermont\u2019s total milk production for calendar year 2026, as reported by USDA NASS in its Milk Production, Disposition, and Income annual report. Production is measured in pounds.", "scheduled_close": "2027-04-30T20:29:00Z", "series": "KXVTMILK", "subtitle": null, "title": "Will Vermont\u2019s total milk production for 2026 be above 2.50 billion pounds?", "yes_sub_title": "Above 2.50 billion pounds"}, {"category": "Economics", "event_key": "KXVTMILK-27APR30", "key": "KXVTMILK-27APR30-T2.55", "no_sub_title": "Above 2.55 billion pounds", "rules_primary": "If USDA NASS reports Vermont\u2019s total milk production for calendar year 2026 is above \n\n2.55 billion pounds, then the market resolves to Yes.", "rules_secondary": "Resolution will be based on Vermont\u2019s total milk production for calendar year 2026, as reported by USDA NASS in its Milk Production, Disposition, and Income annual report. Production is measured in pounds.", "scheduled_close": "2027-04-30T20:29:00Z", "series": "KXVTMILK", "subtitle": null, "title": "Will Vermont\u2019s total milk production for 2026 be above 2.55 billion pounds?", "yes_sub_title": "Above 2.55 billion pounds"}]}], "snapshot_at": "2026-09-05T15:45:16Z"}}, "completion": null}
+{
+  "completion": {
+    "completed_at": "2026-09-05T20:22:46.862298+00:00",
+    "effort": "high",
+    "model": "gpt-5.6-sol",
+    "results": {
+      "KXBABELMANDEBWEEKLY-26SEP06-T175": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"August 31 through September 6, 2026\", \"family\": \"traffic_count_metric\", \"key\": \"KXBABELMANDEBWEEKLY-26SEP06-T175\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the number of transit calls through the Bab el-Mandeb Strait as reported by the IMF PortWatch is above 175 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.\", \"rationale\": \"YES is a count of observed vessel transits over a fixed period; no necessary-step process bears on the aggregate.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"bab_el_mandeb_transit_calls_above_175\", \"web_search_used\": false}"
+      },
+      "KXBABELMANDEBWEEKLY-26SEP06-T200": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"August 31 through September 6, 2026\", \"family\": \"traffic_count_metric\", \"key\": \"KXBABELMANDEBWEEKLY-26SEP06-T200\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the number of transit calls through the Bab el-Mandeb Strait as reported by the IMF PortWatch is above 200 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.\", \"rationale\": \"YES is a count of observed vessel transits over a fixed period; no necessary-step process bears on the aggregate.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"bab_el_mandeb_transit_calls_above_200\", \"web_search_used\": false}"
+      },
+      "KXBABELMANDEBWEEKLY-26SEP06-T225": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"August 31 through September 6, 2026\", \"family\": \"traffic_count_metric\", \"key\": \"KXBABELMANDEBWEEKLY-26SEP06-T225\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the number of transit calls through the Bab el-Mandeb Strait as reported by the IMF PortWatch is above 225 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.\", \"rationale\": \"YES is a count of observed vessel transits over a fixed period; no necessary-step process bears on the aggregate.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"bab_el_mandeb_transit_calls_above_225\", \"web_search_used\": false}"
+      },
+      "KXBIRTHRIGHTEO-27JAN01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"Completion of nationwide guidance and absence of any continuing federal block would satisfy the remaining predicate.\", \"deadline\": \"before January 1, 2027\", \"family\": \"executive_order_implementation\", \"key\": \"KXBIRTHRIGHTEO-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://www.whitehouse.gov/presidential-actions/2026/08/continuing-to-protect-the-meaning-and-value-of-american-citizenship/\", \"status\": \"completed\", \"step\": \"The President signs and publishes EO 14418\"}, {\"source_url\": \"https://www.whitehouse.gov/presidential-actions/2026/08/continuing-to-protect-the-meaning-and-value-of-american-citizenship/\", \"status\": \"pending\", \"step\": \"Agencies issue and apply implementation guidance for all covered categories nationwide\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"A source agency confirms full nationwide legal effect after issuance\"}], \"obstacle\": \"The order required agency guidance within 30 days, and no post-issuance confirmation of full nationwide effect was located.\", \"predicate\": \"If the full nationwide taking effect of Trump's Executive Order 14418 for all people it covers before January 1, 2027 is confirmed by any of the Source Agencies after Issuance and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The signed order directs nationwide agency implementation and requires guidance within 30 days. The operative legal instrument exists, but the rules demand full effect for every category plus qualifying confirmation, which remained pending in the material located.\", \"source_gaps\": [\"No source-agency report after issuance explicitly confirmed full nationwide effect for every covered category.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:50:00Z\", \"published_at\": \"2026-08-06\", \"quote\": \"shall issue public guidance within 30 days\", \"supports\": \"The order was signed and assigned a defined nationwide implementation step to agencies.\", \"title\": \"Executive Order 14418\", \"url\": \"https://www.whitehouse.gov/presidential-actions/2026/08/continuing-to-protect-the-meaning-and-value-of-american-citizenship/\"}], \"subject_key\": \"eo14418_full_nationwide_effect_2026\", \"web_search_used\": true}"
+      },
+      "KXCHINAAI-26SEP30-BAID": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the September 2026 measurement window\", \"family\": \"leaderboard_metric\", \"key\": \"KXCHINAAI-26SEP30-BAID\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Baidu is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.\", \"rationale\": \"YES depends on a future leaderboard score or rank, not completion of a necessary-step process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"chinese_ai_leaderboard_baidu\", \"web_search_used\": false}"
+      },
+      "KXCHINAAI-26SEP30-BYTE": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the September 2026 measurement window\", \"family\": \"leaderboard_metric\", \"key\": \"KXCHINAAI-26SEP30-BYTE\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If ByteDance is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.\", \"rationale\": \"YES depends on a future leaderboard score or rank, not completion of a necessary-step process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"chinese_ai_leaderboard_bytedance\", \"web_search_used\": false}"
+      },
+      "KXCHINAAI-26SEP30-DEEP": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the September 2026 measurement window\", \"family\": \"leaderboard_metric\", \"key\": \"KXCHINAAI-26SEP30-DEEP\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If DeepSeek is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.\", \"rationale\": \"YES depends on a future leaderboard score or rank, not completion of a necessary-step process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"chinese_ai_leaderboard_deepseek\", \"web_search_used\": false}"
+      },
+      "KXCHINAAI-26SEP30-MINI": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the September 2026 measurement window\", \"family\": \"leaderboard_metric\", \"key\": \"KXCHINAAI-26SEP30-MINI\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If MiniMax is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.\", \"rationale\": \"YES depends on a future leaderboard score or rank, not completion of a necessary-step process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"chinese_ai_leaderboard_minimax\", \"web_search_used\": false}"
+      },
+      "KXCHINAAI-26SEP30-MOON": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the September 2026 measurement window\", \"family\": \"leaderboard_metric\", \"key\": \"KXCHINAAI-26SEP30-MOON\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Moonshot is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.\", \"rationale\": \"YES depends on a future leaderboard score or rank, not completion of a necessary-step process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"chinese_ai_leaderboard_moonshot\", \"web_search_used\": false}"
+      },
+      "KXCHINAAI-26SEP30-TENC": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the September 2026 measurement window\", \"family\": \"leaderboard_metric\", \"key\": \"KXCHINAAI-26SEP30-TENC\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Tencent is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.\", \"rationale\": \"YES depends on a future leaderboard score or rank, not completion of a necessary-step process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"chinese_ai_leaderboard_tencent\", \"web_search_used\": false}"
+      },
+      "KXCHINAAI-26SEP30-XIAO": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the September 2026 measurement window\", \"family\": \"leaderboard_metric\", \"key\": \"KXCHINAAI-26SEP30-XIAO\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Xiaomi is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.\", \"rationale\": \"YES depends on a future leaderboard score or rank, not completion of a necessary-step process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"chinese_ai_leaderboard_xiaomi\", \"web_search_used\": false}"
+      },
+      "KXCHINAAI-26SEP30-ZAI": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the September 2026 measurement window\", \"family\": \"leaderboard_metric\", \"key\": \"KXCHINAAI-26SEP30-ZAI\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Z.ai is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.\", \"rationale\": \"YES depends on a future leaderboard score or rank, not completion of a necessary-step process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"chinese_ai_leaderboard_z_ai\", \"web_search_used\": false}"
+      },
+      "KXCLAUDE-MYTH-26DEC01": {
+        "bucket": "substantive_barrier",
+        "rationale": "{\"bucket\": \"substantive_barrier\", \"bypass\": \"Anthropic could open general or broadly purchasable public access while retaining safeguards.\", \"deadline\": \"market-specific: before November 1, December 1, 2026 or January 1, 2027\", \"family\": \"restricted_model_release\", \"key\": \"KXCLAUDE-MYTH-26DEC01\", \"mandatory_steps\": [{\"source_url\": \"https://www.anthropic.com/claude/mythos\", \"status\": \"blocked\", \"step\": \"Anthropic makes a model called Mythos available to the public outside closed or vetted access\"}], \"obstacle\": \"Anthropic limits Mythos access to a small set of vetted organizations.\", \"predicate\": \"If Anthropic releases A model called Mythos  before Dec 1, 2026, then the market resolves to Yes.\", \"rationale\": \"Anthropic has released Mythos 5 and 5.1 only through restricted vetted access. Its current official model page expressly says access remains limited, so the rule's public-release requirement faces a deliberate access-policy barrier.\", \"source_gaps\": [\"No announcement of unrestricted public availability by a market deadline was found.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:50:00Z\", \"published_at\": \"2026-09-01\", \"quote\": \"Access remains limited to a small set of vetted organizations.\", \"supports\": \"The named model exists, but does not meet the required public-access qualifier.\", \"title\": \"Claude Mythos\", \"url\": \"https://www.anthropic.com/claude/mythos\"}], \"subject_key\": \"anthropic_mythos_public_release_before_dec_1_2026\", \"web_search_used\": true}"
+      },
+      "KXCLAUDE-MYTH-26NOV01": {
+        "bucket": "substantive_barrier",
+        "rationale": "{\"bucket\": \"substantive_barrier\", \"bypass\": \"Anthropic could open general or broadly purchasable public access while retaining safeguards.\", \"deadline\": \"market-specific: before November 1, December 1, 2026 or January 1, 2027\", \"family\": \"restricted_model_release\", \"key\": \"KXCLAUDE-MYTH-26NOV01\", \"mandatory_steps\": [{\"source_url\": \"https://www.anthropic.com/claude/mythos\", \"status\": \"blocked\", \"step\": \"Anthropic makes a model called Mythos available to the public outside closed or vetted access\"}], \"obstacle\": \"Anthropic limits Mythos access to a small set of vetted organizations.\", \"predicate\": \"If Anthropic releases A model called Mythos  before Nov 1, 2026, then the market resolves to Yes.\", \"rationale\": \"Anthropic has released Mythos 5 and 5.1 only through restricted vetted access. Its current official model page expressly says access remains limited, so the rule's public-release requirement faces a deliberate access-policy barrier.\", \"source_gaps\": [\"No announcement of unrestricted public availability by a market deadline was found.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:50:00Z\", \"published_at\": \"2026-09-01\", \"quote\": \"Access remains limited to a small set of vetted organizations.\", \"supports\": \"The named model exists, but does not meet the required public-access qualifier.\", \"title\": \"Claude Mythos\", \"url\": \"https://www.anthropic.com/claude/mythos\"}], \"subject_key\": \"anthropic_mythos_public_release_before_nov_1_2026\", \"web_search_used\": true}"
+      },
+      "KXCLAUDE-MYTH-27JAN01": {
+        "bucket": "substantive_barrier",
+        "rationale": "{\"bucket\": \"substantive_barrier\", \"bypass\": \"Anthropic could open general or broadly purchasable public access while retaining safeguards.\", \"deadline\": \"market-specific: before November 1, December 1, 2026 or January 1, 2027\", \"family\": \"restricted_model_release\", \"key\": \"KXCLAUDE-MYTH-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://www.anthropic.com/claude/mythos\", \"status\": \"blocked\", \"step\": \"Anthropic makes a model called Mythos available to the public outside closed or vetted access\"}], \"obstacle\": \"Anthropic limits Mythos access to a small set of vetted organizations.\", \"predicate\": \"If Anthropic releases A model called Mythos  before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Anthropic has released Mythos 5 and 5.1 only through restricted vetted access. Its current official model page expressly says access remains limited, so the rule's public-release requirement faces a deliberate access-policy barrier.\", \"source_gaps\": [\"No announcement of unrestricted public availability by a market deadline was found.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:50:00Z\", \"published_at\": \"2026-09-01\", \"quote\": \"Access remains limited to a small set of vetted organizations.\", \"supports\": \"The named model exists, but does not meet the required public-access qualifier.\", \"title\": \"Claude Mythos\", \"url\": \"https://www.anthropic.com/claude/mythos\"}], \"subject_key\": \"anthropic_mythos_public_release_before_jan_1_2027\", \"web_search_used\": true}"
+      },
+      "KXCODEAI-26SEP30-CHAT": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the September 2026 measurement window\", \"family\": \"leaderboard_metric\", \"key\": \"KXCODEAI-26SEP30-CHAT\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If ChatGPT is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.\", \"rationale\": \"YES depends on a future benchmark score or rank, not completion of a necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"coding_ai_leaderboard_chatgpt\", \"web_search_used\": false}"
+      },
+      "KXCODEAI-26SEP30-CLAU": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the September 2026 measurement window\", \"family\": \"leaderboard_metric\", \"key\": \"KXCODEAI-26SEP30-CLAU\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Claude is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.\", \"rationale\": \"YES depends on a future benchmark score or rank, not completion of a necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"coding_ai_leaderboard_claude\", \"web_search_used\": false}"
+      },
+      "KXCODEAI-26SEP30-DEEP": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the September 2026 measurement window\", \"family\": \"leaderboard_metric\", \"key\": \"KXCODEAI-26SEP30-DEEP\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If DeepSeek is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.\", \"rationale\": \"YES depends on a future benchmark score or rank, not completion of a necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"coding_ai_leaderboard_deepseek\", \"web_search_used\": false}"
+      },
+      "KXCODEAI-26SEP30-GEMI": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the September 2026 measurement window\", \"family\": \"leaderboard_metric\", \"key\": \"KXCODEAI-26SEP30-GEMI\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Gemini is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.\", \"rationale\": \"YES depends on a future benchmark score or rank, not completion of a necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"coding_ai_leaderboard_gemini\", \"web_search_used\": false}"
+      },
+      "KXCODEAI-26SEP30-GLM": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the September 2026 measurement window\", \"family\": \"leaderboard_metric\", \"key\": \"KXCODEAI-26SEP30-GLM\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If GLM is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.\", \"rationale\": \"YES depends on a future benchmark score or rank, not completion of a necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"coding_ai_leaderboard_glm\", \"web_search_used\": false}"
+      },
+      "KXCODEAI-26SEP30-GROK": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the September 2026 measurement window\", \"family\": \"leaderboard_metric\", \"key\": \"KXCODEAI-26SEP30-GROK\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Grok is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.\", \"rationale\": \"YES depends on a future benchmark score or rank, not completion of a necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"coding_ai_leaderboard_grok\", \"web_search_used\": false}"
+      },
+      "KXCODEAI-26SEP30-KIMI": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the September 2026 measurement window\", \"family\": \"leaderboard_metric\", \"key\": \"KXCODEAI-26SEP30-KIMI\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Kimi is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.\", \"rationale\": \"YES depends on a future benchmark score or rank, not completion of a necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"coding_ai_leaderboard_kimi\", \"web_search_used\": false}"
+      },
+      "KXCODEAI-26SEP30-MIMO": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the September 2026 measurement window\", \"family\": \"leaderboard_metric\", \"key\": \"KXCODEAI-26SEP30-MIMO\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If MiMo is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.\", \"rationale\": \"YES depends on a future benchmark score or rank, not completion of a necessary institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"coding_ai_leaderboard_mimo\", \"web_search_used\": false}"
+      },
+      "KXDJIAREMOVE-27JAN01-AXP": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"before January 1, 2027\", \"family\": \"index_committee_selection\", \"key\": \"KXDJIAREMOVE-27JAN01-AXP\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If American Express is announced to be or is officially removed from Dow Jones Industrial Average during Jun 25, 2026 to Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The predicate is a discretionary index-committee composition decision; the rules identify no mandatory staged process whose current status controls removal of the named company.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"djia_component_removal_american_express\", \"web_search_used\": false}"
+      },
+      "KXDJIAREMOVE-27JAN01-NKE": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"before January 1, 2027\", \"family\": \"index_committee_selection\", \"key\": \"KXDJIAREMOVE-27JAN01-NKE\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Nike is announced to be or is officially removed from Dow Jones Industrial Average during Jun 25, 2026 to Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The predicate is a discretionary index-committee composition decision; the rules identify no mandatory staged process whose current status controls removal of the named company.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"djia_component_removal_nike\", \"web_search_used\": false}"
+      },
+      "KXDJIAREMOVE-27JAN01-SHW": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"before January 1, 2027\", \"family\": \"index_committee_selection\", \"key\": \"KXDJIAREMOVE-27JAN01-SHW\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Sherwin-Williams is announced to be or is officially removed from Dow Jones Industrial Average during Jun 25, 2026 to Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The predicate is a discretionary index-committee composition decision; the rules identify no mandatory staged process whose current status controls removal of the named company.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"djia_component_removal_sherwin_williams\", \"web_search_used\": false}"
+      },
+      "KXDJIAREMOVE-27JAN01-TRV": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"before January 1, 2027\", \"family\": \"index_committee_selection\", \"key\": \"KXDJIAREMOVE-27JAN01-TRV\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Travelers Cos is announced to be or is officially removed from Dow Jones Industrial Average during Jun 25, 2026 to Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The predicate is a discretionary index-committee composition decision; the rules identify no mandatory staged process whose current status controls removal of the named company.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"djia_component_removal_travelers_cos\", \"web_search_used\": false}"
+      },
+      "KXEDWARDSOUT-26JUL-26NOV03": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"before November 3, 2026\", \"family\": \"officeholder_departure\", \"key\": \"KXEDWARDSOUT-26JUL-26NOV03\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Chuck Edwards leaves as U.S. representative before Nov 3, 2026, then the market resolves to Yes.\", \"rationale\": \"The predicate can occur through an unscheduled resignation, death-excluded personnel event, or removal; the rules do not supply a necessary staged process whose status can be assessed.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"chuck_edwards_house_departure_2026\", \"web_search_used\": false}"
+      },
+      "KXENGAGEMENTWOODSTRUMP-26": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"before January 1, 2027\", \"family\": \"personal_event\", \"key\": \"KXENGAGEMENTWOODSTRUMP-26\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Tiger Woods and Vanessa Trump are reported to be engaged to be married before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"An engagement is a private discretionary personal event, with no rule-defined necessary process whose status can be assessed.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"tiger_woods_vanessa_trump_engagement_2026\", \"web_search_used\": false}"
+      },
+      "KXFTACOUNTRIES-27-ARG": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"none\", \"deadline\": \"before January 1, 2027\", \"family\": \"international_trade_legislation\", \"key\": \"KXFTACOUNTRIES-27-ARG\", \"mandatory_steps\": [{\"source_url\": \"https://ustr.gov/sites/default/files/files/Press/Releases/2026/US%20Argentina%20ARTI%20English%20Final%20February%202026.pdf\", \"status\": \"completed\", \"step\": \"The United States and Argentina finalize and sign their reciprocal-trade agreement\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Complete the applicable U.S. congressional approval and presidential-signature route\"}], \"obstacle\": \"The agreement's domestic legal implementation was not established.\", \"predicate\": \"If a free trade deal with Argentina has become law, either through Senate ratification and Presidential approval or through Congressional-Executive Agreement and the signature of the President (or at least, signing the implementing legislation) after Issuance before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"USTR published final agreement text after announcing a framework and an expedited path to signature. The international text is concrete, while the market's domestic-law requirement remains substantive.\", \"source_gaps\": [\"No qualifying current agreement and implementing-law timetable was located.\"], \"source_supplement_reason\": \"The market-specific affirmative override accidentally inherited the event-level empty sources list even though its mandatory-step evidence cited this USTR agreement.\", \"sources\": [{\"accessed_at\": \"2026-09-05T20:21:41.2869858Z\", \"published_at\": \"2026-02\", \"quote\": \"Agreement Between the United States of America and the Argentine Republic on Reciprocal Trade and Investment\", \"supports\": \"USTR hosts final bilateral agreement text, establishing that negotiated text and signature-stage work were completed.\", \"title\": \"Agreement Between the United States of America and the Argentine Republic on Reciprocal Trade and Investment\", \"url\": \"https://ustr.gov/sites/default/files/files/Press/Releases/2026/US%20Argentina%20ARTI%20English%20Final%20February%202026.pdf\"}], \"subject_key\": \"us_free_trade_agreement_argentina_2026\", \"web_search_used\": true}"
+      },
+      "KXFTACOUNTRIES-27-CHI": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"unresolved\", \"deadline\": \"before January 1, 2027\", \"family\": \"international_trade_legislation\", \"key\": \"KXFTACOUNTRIES-27-CHI\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"The United States and named counterpart conclude a qualifying free-trade agreement\"}, {\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"Congress or the Senate completes the applicable approval route and the President signs\"}], \"obstacle\": \"none established\", \"predicate\": \"If a free trade deal with China has become law, either through Senate ratification and Presidential approval or through Congressional-Executive Agreement and the signature of the President (or at least, signing the implementing legislation) after Issuance before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Focused USTR research did not establish a current qualifying agreement at the domestic-approval stage for this counterpart.\", \"source_gaps\": [\"No qualifying current agreement and implementing-law timetable was located.\"], \"sources\": [], \"subject_key\": \"us_free_trade_agreement_china_2026\", \"web_search_used\": true}"
+      },
+      "KXFTACOUNTRIES-27-EU": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"unresolved\", \"deadline\": \"before January 1, 2027\", \"family\": \"international_trade_legislation\", \"key\": \"KXFTACOUNTRIES-27-EU\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"The United States and named counterpart conclude a qualifying free-trade agreement\"}, {\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"Congress or the Senate completes the applicable approval route and the President signs\"}], \"obstacle\": \"none established\", \"predicate\": \"If a free trade deal with European Union has become law, either through Senate ratification and Presidential approval or through Congressional-Executive Agreement and the signature of the President (or at least, signing the implementing legislation) after Issuance before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Focused USTR research did not establish a current qualifying agreement at the domestic-approval stage for this counterpart.\", \"source_gaps\": [\"No qualifying current agreement and implementing-law timetable was located.\"], \"sources\": [], \"subject_key\": \"us_free_trade_agreement_european_union_2026\", \"web_search_used\": true}"
+      },
+      "KXFTACOUNTRIES-27-IND": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"An interim agreement can supply negotiated text but still must meet the market's free-trade and domestic-law terms.\", \"deadline\": \"before January 1, 2027\", \"family\": \"international_trade_legislation\", \"key\": \"KXFTACOUNTRIES-27-IND\", \"mandatory_steps\": [{\"source_url\": \"https://ustr.gov/about/policy-offices/press-office/press-releases/2026/june/ambassador-greer-travel-india-and-uzbekistan\", \"status\": \"pending\", \"step\": \"Conclude the broader U.S.-India bilateral trade agreement\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Complete the applicable U.S. congressional approval and presidential-signature route\"}], \"obstacle\": \"The broader agreement had not been concluded or implemented.\", \"predicate\": \"If a free trade deal with India has become law, either through Senate ratification and Presidential approval or through Congressional-Executive Agreement and the signature of the President (or at least, signing the implementing legislation) after Issuance before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"USTR reported active broader bilateral-trade negotiations and a June ministerial trip following an interim framework. That is affirmative work toward a deal, although conclusion and U.S. legal approval remain substantive.\", \"source_gaps\": [\"No qualifying current agreement and implementing-law timetable was located.\"], \"source_supplement_reason\": \"The market-specific affirmative override accidentally inherited the event-level empty sources list even though its mandatory-step evidence cited this USTR announcement.\", \"sources\": [{\"accessed_at\": \"2026-09-05T20:21:41.2869858Z\", \"published_at\": \"2026-06-21\", \"quote\": \"broader U.S.-India Bilateral Trade Agreement negotiations\", \"supports\": \"USTR confirmed active ministerial negotiations toward the broader bilateral trade agreement.\", \"title\": \"Ambassador Greer to Travel to India and Uzbekistan\", \"url\": \"https://ustr.gov/about/policy-offices/press-office/press-releases/2026/june/ambassador-greer-travel-india-and-uzbekistan\"}], \"subject_key\": \"us_free_trade_agreement_india_2026\", \"web_search_used\": true}"
+      },
+      "KXFTACOUNTRIES-27-KEN": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"unresolved\", \"deadline\": \"before January 1, 2027\", \"family\": \"international_trade_legislation\", \"key\": \"KXFTACOUNTRIES-27-KEN\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"The United States and named counterpart conclude a qualifying free-trade agreement\"}, {\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"Congress or the Senate completes the applicable approval route and the President signs\"}], \"obstacle\": \"none established\", \"predicate\": \"If a free trade deal with Kenya has become law, either through Senate ratification and Presidential approval or through Congressional-Executive Agreement and the signature of the President (or at least, signing the implementing legislation) after Issuance before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Focused USTR research did not establish a current qualifying agreement at the domestic-approval stage for this counterpart.\", \"source_gaps\": [\"No qualifying current agreement and implementing-law timetable was located.\"], \"sources\": [], \"subject_key\": \"us_free_trade_agreement_kenya_2026\", \"web_search_used\": true}"
+      },
+      "KXFTACOUNTRIES-27-TAI": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"unresolved\", \"deadline\": \"before January 1, 2027\", \"family\": \"international_trade_legislation\", \"key\": \"KXFTACOUNTRIES-27-TAI\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"The United States and named counterpart conclude a qualifying free-trade agreement\"}, {\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"Congress or the Senate completes the applicable approval route and the President signs\"}], \"obstacle\": \"none established\", \"predicate\": \"If a free trade deal with Taiwan has become law, either through Senate ratification and Presidential approval or through Congressional-Executive Agreement and the signature of the President (or at least, signing the implementing legislation) after Issuance before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Focused USTR research did not establish a current qualifying agreement at the domestic-approval stage for this counterpart.\", \"source_gaps\": [\"No qualifying current agreement and implementing-law timetable was located.\"], \"sources\": [], \"subject_key\": \"us_free_trade_agreement_taiwan_2026\", \"web_search_used\": true}"
+      },
+      "KXIFINATAMAB-27-Y": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"none\", \"deadline\": \"a 2026 FDA decision\", \"family\": \"fda_drug_review\", \"key\": \"KXIFINATAMAB-27-Y\", \"mandatory_steps\": [{\"source_url\": \"https://daiichisankyo.us/web/dsi/press-releases/-/article/ifinatamab-deruxtecan-granted-priority-review-in-the-us-for-adult-patients-with-previously-treated-extensive-stage-small-cell-lung-cancer-who-experienced-disease-progression-on-or-after-platinum-based-chemotherapy\", \"status\": \"completed\", \"step\": \"FDA accepts the BLA and grants Priority Review\"}, {\"source_url\": \"https://daiichisankyo.us/web/dsi/press-releases/-/article/ifinatamab-deruxtecan-granted-priority-review-in-the-us-for-adult-patients-with-previously-treated-extensive-stage-small-cell-lung-cancer-who-experienced-disease-progression-on-or-after-platinum-based-chemotherapy\", \"status\": \"pending\", \"step\": \"FDA completes substantive efficacy, safety, manufacturing, and labeling review\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"FDA issues full or accelerated approval\"}], \"obstacle\": \"The application remains subject to substantive FDA review.\", \"predicate\": \"If the FDA's decision on Ifinatamab Deruxtecan by Daiichi Sankyo in 2026 is a full approval or an accelerated approval, the market resolves to Yes.\", \"rationale\": \"Daiichi Sankyo reports FDA acceptance, Priority Review, RTOR participation, and an October 10 action date. The review is active and dated within 2026, while approval remains a substantive agency determination.\", \"source_gaps\": [\"FDA had not announced a decision by the cutoff.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:50:00Z\", \"published_at\": \"2026-04-13\", \"quote\": \"PDUFA date ... is October 10, 2026\", \"supports\": \"FDA accepted the application for priority review and set a 2026 decision date.\", \"title\": \"Ifinatamab Deruxtecan Granted Priority Review\", \"url\": \"https://daiichisankyo.us/web/dsi/press-releases/-/article/ifinatamab-deruxtecan-granted-priority-review-in-the-us-for-adult-patients-with-previously-treated-extensive-stage-small-cell-lung-cancer-who-experienced-disease-progression-on-or-after-platinum-based-chemotherapy\"}], \"subject_key\": \"ifinatamab_deruxtecan_fda_approval_2026\", \"web_search_used\": true}"
+      },
+      "KXLEAVELISACOOK-26JAN-27JAN01": {
+        "bucket": "substantive_barrier",
+        "rationale": "{\"bucket\": \"substantive_barrier\", \"bypass\": \"Cook could resign voluntarily, or the President could pursue a new compliant for-cause process.\", \"deadline\": \"before January 1, 2027\", \"family\": \"officeholder_removal\", \"key\": \"KXLEAVELISACOOK-26JAN-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://www.supremecourt.gov/opinions/25pdf/25a312_5468.pdf\", \"status\": \"blocked\", \"step\": \"Cook resigns, announces departure, or is validly removed for cause after due process\"}], \"obstacle\": \"The Supreme Court rejected the attempted removal and held that Fed governors have constitutionally valid for-cause protection and pretermination-process rights.\", \"predicate\": \"If Lisa DeNell Cook leaves or announces that they will leave their position as Federal Reserve Governor before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The Court denied the government's stay, upheld removal protection, and required notice and an opportunity to respond before a final removal. Cook remained listed and speaking as a governor in August, creating a substantive legal barrier to the existing forced-departure route.\", \"source_gaps\": [\"No resignation or new completed removal process was found.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:50:00Z\", \"published_at\": \"2026-06-29\", \"quote\": \"Application for stay denied\", \"supports\": \"The Court rejected immediate removal and required a compliant for-cause process.\", \"title\": \"Trump v. Cook\", \"url\": \"https://www.supremecourt.gov/opinions/25pdf/25a312_5468.pdf\"}, {\"accessed_at\": \"2026-09-05T20:50:00Z\", \"published_at\": \"2026-08-05\", \"quote\": \"Governor Lisa D. Cook\", \"supports\": \"Cook was still publicly performing the role in August.\", \"title\": \"Speech by Governor Cook\", \"url\": \"https://www.federalreserve.gov/newsevents/speech/cook20260805a.htm\"}], \"subject_key\": \"lisa_cook_fed_departure_2026\", \"web_search_used\": true}"
+      },
+      "KXLOCALLAW-WYDAA-27APR01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"none\", \"deadline\": \"before April 1, 2027\", \"family\": \"state_legislation\", \"key\": \"KXLOCALLAW-WYDAA-27APR01\", \"mandatory_steps\": [{\"source_url\": \"https://wyoleg.gov/InterimCommittee/2026/S19-2026061527LSO-0010v0.6.pdf\", \"status\": \"completed\", \"step\": \"A Digital Asset Authority bill is drafted and sponsored\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"The bill passes both Wyoming chambers\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"The governor signs it or it otherwise becomes law\"}], \"obstacle\": \"The measure remained an interim draft rather than enacted law.\", \"predicate\": \"If legislation granting a Wyoming state entity (whether newly created or the Wyoming stable token commission with expanded powers) statutory authority to administer government-issued digital assets beyond the Wyoming stable token is enacted in Wyoming before Apr 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Wyoming's official interim agenda directs work on restructuring the Stable Token Commission into a Digital Asset Authority, and an official 2027 draft exists. Legislative passage and executive action remain substantive but a specific path is underway.\", \"source_gaps\": [\"No chamber passage had occurred by the cutoff.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:50:00Z\", \"published_at\": \"2026\", \"quote\": \"restructure the Wyoming Stable Token Commission into a Wyoming Digital Asset Authority\", \"supports\": \"The legislature assigned official work on the qualifying institutional change.\", \"title\": \"Wyoming 2026 Final Interim Topic List\", \"url\": \"https://wyoleg.gov/InterimCommittee/2026/FinalInterimTopicList2026.pdf\"}, {\"accessed_at\": \"2026-09-05T20:50:00Z\", \"published_at\": \"2026\", \"quote\": \"Wyoming Digital Asset Authority\", \"supports\": \"A concrete legislative draft exists for the 2027 session.\", \"title\": \"Wyoming Digital Asset Authority draft\", \"url\": \"https://wyoleg.gov/InterimCommittee/2026/S19-2026061527LSO-0010v0.6.pdf\"}], \"subject_key\": \"wyoming_digital_asset_authority_enactment\", \"web_search_used\": true}"
+      },
+      "KXTRUMPUFC-26OCT2-DJT": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"UFC 333\", \"family\": \"event_attendance\", \"key\": \"KXTRUMPUFC-26OCT2-DJT\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Donald Trump attends UFC 333, then the market resolves to Yes.\", \"rationale\": \"Attendance is a discretionary individual action, with no necessary procedural sequence defined by the rules.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"trump_attendance_ufc333\", \"web_search_used\": false}"
+      },
+      "KXUSDTTBILL-27FEB28-T58.0": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the end of 2026\", \"family\": \"portfolio_metric\", \"key\": \"KXUSDTTBILL-27FEB28-T58.0\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the percentage obtained by dividing the amount listed as \\u201cU.S. Treasury Bills\\u201d by Total Reserves in Tether International, S.A. de C.V.\\u2019s reserve report for December 31, 2026 is above 58.0%, then the market resolves to Yes.\", \"rationale\": \"YES is a comparison of a reported reserve-allocation percentage with a threshold; no necessary-step process determines the measured share.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"usdt_treasury_bill_reserve_share_above_58_0\", \"web_search_used\": false}"
+      },
+      "KXUSDTTBILL-27FEB28-T60.0": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the end of 2026\", \"family\": \"portfolio_metric\", \"key\": \"KXUSDTTBILL-27FEB28-T60.0\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the percentage obtained by dividing the amount listed as \\u201cU.S. Treasury Bills\\u201d by Total Reserves in Tether International, S.A. de C.V.\\u2019s reserve report for December 31, 2026 is above 60.0%, then the market resolves to Yes.\", \"rationale\": \"YES is a comparison of a reported reserve-allocation percentage with a threshold; no necessary-step process determines the measured share.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"usdt_treasury_bill_reserve_share_above_60_0\", \"web_search_used\": false}"
+      },
+      "KXUSDTTBILL-27FEB28-T62.0": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the end of 2026\", \"family\": \"portfolio_metric\", \"key\": \"KXUSDTTBILL-27FEB28-T62.0\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the percentage obtained by dividing the amount listed as \\u201cU.S. Treasury Bills\\u201d by Total Reserves in Tether International, S.A. de C.V.\\u2019s reserve report for December 31, 2026 is above 62.0%, then the market resolves to Yes.\", \"rationale\": \"YES is a comparison of a reported reserve-allocation percentage with a threshold; no necessary-step process determines the measured share.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"usdt_treasury_bill_reserve_share_above_62_0\", \"web_search_used\": false}"
+      },
+      "KXUSDTTBILL-27FEB28-T64.0": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the end of 2026\", \"family\": \"portfolio_metric\", \"key\": \"KXUSDTTBILL-27FEB28-T64.0\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the percentage obtained by dividing the amount listed as \\u201cU.S. Treasury Bills\\u201d by Total Reserves in Tether International, S.A. de C.V.\\u2019s reserve report for December 31, 2026 is above 64.0%, then the market resolves to Yes.\", \"rationale\": \"YES is a comparison of a reported reserve-allocation percentage with a threshold; no necessary-step process determines the measured share.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"usdt_treasury_bill_reserve_share_above_64_0\", \"web_search_used\": false}"
+      },
+      "KXUSDTTBILL-27FEB28-T70.0": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"the end of 2026\", \"family\": \"portfolio_metric\", \"key\": \"KXUSDTTBILL-27FEB28-T70.0\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the percentage obtained by dividing the amount listed as \\u201cU.S. Treasury Bills\\u201d by Total Reserves in Tether International, S.A. de C.V.\\u2019s reserve report for December 31, 2026 is above 70.0%, then the market resolves to Yes.\", \"rationale\": \"YES is a comparison of a reported reserve-allocation percentage with a threshold; no necessary-step process determines the measured share.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"usdt_treasury_bill_reserve_share_above_70_0\", \"web_search_used\": false}"
+      },
+      "KXVTMILK-27APR30-T2.40": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"USDA's 2026 annual reporting deadline\", \"family\": \"aggregate_measurement\", \"key\": \"KXVTMILK-27APR30-T2.40\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports Vermont\\u2019s total milk production for calendar year 2026 is above \\n\\n2.40 billion pounds, then the market resolves to Yes.\", \"rationale\": \"YES is a comparison of statewide milk output with a threshold; no necessary-step process determines the measured total.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"vermont_2026_milk_production_above_2_40_billion_pounds\", \"web_search_used\": false}"
+      },
+      "KXVTMILK-27APR30-T2.45": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"USDA's 2026 annual reporting deadline\", \"family\": \"aggregate_measurement\", \"key\": \"KXVTMILK-27APR30-T2.45\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports Vermont\\u2019s total milk production for calendar year 2026 is above \\n\\n2.45 billion pounds, then the market resolves to Yes.\", \"rationale\": \"YES is a comparison of statewide milk output with a threshold; no necessary-step process determines the measured total.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"vermont_2026_milk_production_above_2_45_billion_pounds\", \"web_search_used\": false}"
+      },
+      "KXVTMILK-27APR30-T2.50": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"USDA's 2026 annual reporting deadline\", \"family\": \"aggregate_measurement\", \"key\": \"KXVTMILK-27APR30-T2.50\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports Vermont\\u2019s total milk production for calendar year 2026 is above \\n\\n2.50 billion pounds, then the market resolves to Yes.\", \"rationale\": \"YES is a comparison of statewide milk output with a threshold; no necessary-step process determines the measured total.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"vermont_2026_milk_production_above_2_50_billion_pounds\", \"web_search_used\": false}"
+      },
+      "KXVTMILK-27APR30-T2.55": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"USDA's 2026 annual reporting deadline\", \"family\": \"aggregate_measurement\", \"key\": \"KXVTMILK-27APR30-T2.55\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports Vermont\\u2019s total milk production for calendar year 2026 is above \\n\\n2.55 billion pounds, then the market resolves to Yes.\", \"rationale\": \"YES is a comparison of statewide milk output with a threshold; no necessary-step process determines the measured total.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"vermont_2026_milk_production_above_2_55_billion_pounds\", \"web_search_used\": false}"
+      }
+    },
+    "web_search": true
+  },
+  "request": {
+    "batch_id": "18",
+    "candidate_keys": [
+      "KXFTACOUNTRIES-27-ARG",
+      "KXFTACOUNTRIES-27-CHI",
+      "KXFTACOUNTRIES-27-EU",
+      "KXFTACOUNTRIES-27-IND",
+      "KXFTACOUNTRIES-27-KEN",
+      "KXFTACOUNTRIES-27-TAI",
+      "KXCLAUDE-MYTH-26DEC01",
+      "KXCLAUDE-MYTH-26NOV01",
+      "KXCLAUDE-MYTH-27JAN01",
+      "KXCHINAAI-26SEP30-BAID",
+      "KXCHINAAI-26SEP30-BYTE",
+      "KXCHINAAI-26SEP30-DEEP",
+      "KXCHINAAI-26SEP30-MINI",
+      "KXCHINAAI-26SEP30-MOON",
+      "KXCHINAAI-26SEP30-TENC",
+      "KXCHINAAI-26SEP30-XIAO",
+      "KXCHINAAI-26SEP30-ZAI",
+      "KXLEAVELISACOOK-26JAN-27JAN01",
+      "KXLOCALLAW-WYDAA-27APR01",
+      "KXEDWARDSOUT-26JUL-26NOV03",
+      "KXUSDTTBILL-27FEB28-T58.0",
+      "KXUSDTTBILL-27FEB28-T60.0",
+      "KXUSDTTBILL-27FEB28-T62.0",
+      "KXUSDTTBILL-27FEB28-T64.0",
+      "KXUSDTTBILL-27FEB28-T70.0",
+      "KXBIRTHRIGHTEO-27JAN01",
+      "KXIFINATAMAB-27-Y",
+      "KXCODEAI-26SEP30-CHAT",
+      "KXCODEAI-26SEP30-CLAU",
+      "KXCODEAI-26SEP30-DEEP",
+      "KXCODEAI-26SEP30-GEMI",
+      "KXCODEAI-26SEP30-GLM",
+      "KXCODEAI-26SEP30-GROK",
+      "KXCODEAI-26SEP30-KIMI",
+      "KXCODEAI-26SEP30-MIMO",
+      "KXDJIAREMOVE-27JAN01-AXP",
+      "KXDJIAREMOVE-27JAN01-NKE",
+      "KXDJIAREMOVE-27JAN01-SHW",
+      "KXDJIAREMOVE-27JAN01-TRV",
+      "KXBABELMANDEBWEEKLY-26SEP06-T175",
+      "KXBABELMANDEBWEEKLY-26SEP06-T200",
+      "KXBABELMANDEBWEEKLY-26SEP06-T225",
+      "KXENGAGEMENTWOODSTRUMP-26",
+      "KXTRUMPUFC-26OCT2-DJT",
+      "KXVTMILK-27APR30-T2.40",
+      "KXVTMILK-27APR30-T2.45",
+      "KXVTMILK-27APR30-T2.50",
+      "KXVTMILK-27APR30-T2.55"
+    ],
+    "decision_at": "2026-09-05T19:53:15.489944+00:00",
+    "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-018\\first-output.jsonl",
+    "payload": {
+      "decision_at": "2026-09-05T19:53:15.489944+00:00",
+      "events": [
+        {
+          "event_key": "KXFTACOUNTRIES-27",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXFTACOUNTRIES-27",
+              "key": "KXFTACOUNTRIES-27-ARG",
+              "no_sub_title": "Argentina",
+              "rules_primary": "If a free trade deal with Argentina has become law, either through Senate ratification and Presidential approval or through Congressional-Executive Agreement and the signature of the President (or at least, signing the implementing legislation) after Issuance before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXFTACOUNTRIES",
+              "subtitle": null,
+              "title": "Will Trump make a new before Jan 1, 2027?",
+              "yes_sub_title": "Argentina"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXFTACOUNTRIES-27",
+              "key": "KXFTACOUNTRIES-27-CHI",
+              "no_sub_title": "China",
+              "rules_primary": "If a free trade deal with China has become law, either through Senate ratification and Presidential approval or through Congressional-Executive Agreement and the signature of the President (or at least, signing the implementing legislation) after Issuance before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXFTACOUNTRIES",
+              "subtitle": null,
+              "title": "Will Trump make a new before Jan 1, 2027?",
+              "yes_sub_title": "China"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXFTACOUNTRIES-27",
+              "key": "KXFTACOUNTRIES-27-EU",
+              "no_sub_title": "European Union",
+              "rules_primary": "If a free trade deal with European Union has become law, either through Senate ratification and Presidential approval or through Congressional-Executive Agreement and the signature of the President (or at least, signing the implementing legislation) after Issuance before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXFTACOUNTRIES",
+              "subtitle": null,
+              "title": "Will Trump make a new before Jan 1, 2027?",
+              "yes_sub_title": "European Union"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXFTACOUNTRIES-27",
+              "key": "KXFTACOUNTRIES-27-IND",
+              "no_sub_title": "India",
+              "rules_primary": "If a free trade deal with India has become law, either through Senate ratification and Presidential approval or through Congressional-Executive Agreement and the signature of the President (or at least, signing the implementing legislation) after Issuance before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXFTACOUNTRIES",
+              "subtitle": "India",
+              "title": "Will Trump make a new before Jan 1, 2027?",
+              "yes_sub_title": "India"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXFTACOUNTRIES-27",
+              "key": "KXFTACOUNTRIES-27-KEN",
+              "no_sub_title": "Kenya",
+              "rules_primary": "If a free trade deal with Kenya has become law, either through Senate ratification and Presidential approval or through Congressional-Executive Agreement and the signature of the President (or at least, signing the implementing legislation) after Issuance before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXFTACOUNTRIES",
+              "subtitle": null,
+              "title": "Will Trump make a new before Jan 1, 2027?",
+              "yes_sub_title": "Kenya"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXFTACOUNTRIES-27",
+              "key": "KXFTACOUNTRIES-27-TAI",
+              "no_sub_title": "Taiwan",
+              "rules_primary": "If a free trade deal with Taiwan has become law, either through Senate ratification and Presidential approval or through Congressional-Executive Agreement and the signature of the President (or at least, signing the implementing legislation) after Issuance before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXFTACOUNTRIES",
+              "subtitle": null,
+              "title": "Will Trump make a new before Jan 1, 2027?",
+              "yes_sub_title": "Taiwan"
+            }
+          ]
+        },
+        {
+          "event_key": "KXCLAUDE-MYTH",
+          "markets": [
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCLAUDE-MYTH",
+              "key": "KXCLAUDE-MYTH-26DEC01",
+              "no_sub_title": "Before Dec 1, 2026",
+              "rules_primary": "If Anthropic releases A model called Mythos  before Dec 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+              "scheduled_close": "2026-12-01T04:59:00Z",
+              "series": "KXCLAUDE",
+              "subtitle": null,
+              "title": "Will Anthropic release Mythos before Dec 1, 2026?",
+              "yes_sub_title": "Before Dec 1, 2026"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCLAUDE-MYTH",
+              "key": "KXCLAUDE-MYTH-26NOV01",
+              "no_sub_title": "Before Nov 1, 2026",
+              "rules_primary": "If Anthropic releases A model called Mythos  before Nov 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+              "scheduled_close": "2026-11-01T04:59:00Z",
+              "series": "KXCLAUDE",
+              "subtitle": null,
+              "title": "Will Anthropic release Mythos before Nov 1, 2026?",
+              "yes_sub_title": "Before Nov 1, 2026"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCLAUDE-MYTH",
+              "key": "KXCLAUDE-MYTH-27JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If Anthropic releases A model called Mythos  before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "Release must be to the public, outside of a closed beta, though limiting it to a high-cost subscription tier is acceptable.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXCLAUDE",
+              "subtitle": null,
+              "title": "Will Anthropic release Mythos before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXCHINAAI-26SEP30",
+          "markets": [
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCHINAAI-26SEP30",
+              "key": "KXCHINAAI-26SEP30-BAID",
+              "no_sub_title": "Baidu",
+              "rules_primary": "If Baidu is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.",
+              "rules_secondary": "Qualifying Chinese AI companies are defined as a company whose global or primary operational headquarters is located in mainland China.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-30T14:00:00Z",
+              "series": "KXCHINAAI",
+              "subtitle": null,
+              "title": "Top Chinese AI Company this month?",
+              "yes_sub_title": "Baidu"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCHINAAI-26SEP30",
+              "key": "KXCHINAAI-26SEP30-BYTE",
+              "no_sub_title": "ByteDance",
+              "rules_primary": "If ByteDance is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.",
+              "rules_secondary": "Qualifying Chinese AI companies are defined as a company whose global or primary operational headquarters is located in mainland China.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-30T14:00:00Z",
+              "series": "KXCHINAAI",
+              "subtitle": null,
+              "title": "Top Chinese AI Company this month?",
+              "yes_sub_title": "ByteDance"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCHINAAI-26SEP30",
+              "key": "KXCHINAAI-26SEP30-DEEP",
+              "no_sub_title": "DeepSeek",
+              "rules_primary": "If DeepSeek is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.",
+              "rules_secondary": "Qualifying Chinese AI companies are defined as a company whose global or primary operational headquarters is located in mainland China.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-30T14:00:00Z",
+              "series": "KXCHINAAI",
+              "subtitle": null,
+              "title": "Top Chinese AI Company this month?",
+              "yes_sub_title": "DeepSeek"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCHINAAI-26SEP30",
+              "key": "KXCHINAAI-26SEP30-MINI",
+              "no_sub_title": "MiniMax",
+              "rules_primary": "If MiniMax is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.",
+              "rules_secondary": "Qualifying Chinese AI companies are defined as a company whose global or primary operational headquarters is located in mainland China.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-30T14:00:00Z",
+              "series": "KXCHINAAI",
+              "subtitle": null,
+              "title": "Top Chinese AI Company this month?",
+              "yes_sub_title": "MiniMax"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCHINAAI-26SEP30",
+              "key": "KXCHINAAI-26SEP30-MOON",
+              "no_sub_title": "Moonshot",
+              "rules_primary": "If Moonshot is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.",
+              "rules_secondary": "Qualifying Chinese AI companies are defined as a company whose global or primary operational headquarters is located in mainland China.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-30T14:00:00Z",
+              "series": "KXCHINAAI",
+              "subtitle": null,
+              "title": "Top Chinese AI Company this month?",
+              "yes_sub_title": "Moonshot"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCHINAAI-26SEP30",
+              "key": "KXCHINAAI-26SEP30-TENC",
+              "no_sub_title": "Tencent",
+              "rules_primary": "If Tencent is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.",
+              "rules_secondary": "Qualifying Chinese AI companies are defined as a company whose global or primary operational headquarters is located in mainland China.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-30T14:00:00Z",
+              "series": "KXCHINAAI",
+              "subtitle": null,
+              "title": "Top Chinese AI Company this month?",
+              "yes_sub_title": "Tencent"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCHINAAI-26SEP30",
+              "key": "KXCHINAAI-26SEP30-XIAO",
+              "no_sub_title": "Xiaomi",
+              "rules_primary": "If Xiaomi is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.",
+              "rules_secondary": "Qualifying Chinese AI companies are defined as a company whose global or primary operational headquarters is located in mainland China.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-30T14:00:00Z",
+              "series": "KXCHINAAI",
+              "subtitle": null,
+              "title": "Top Chinese AI Company this month?",
+              "yes_sub_title": "Xiaomi"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCHINAAI-26SEP30",
+              "key": "KXCHINAAI-26SEP30-ZAI",
+              "no_sub_title": "Z.ai",
+              "rules_primary": "If Z.ai is the Highest Ranked Chinese AI Company model on Arena AI Text Score (Remove Style Control) on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.",
+              "rules_secondary": "Qualifying Chinese AI companies are defined as a company whose global or primary operational headquarters is located in mainland China.\n\nTied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-30T14:00:00Z",
+              "series": "KXCHINAAI",
+              "subtitle": null,
+              "title": "Top Chinese AI Company this month?",
+              "yes_sub_title": "Z.ai"
+            }
+          ]
+        },
+        {
+          "event_key": "KXLEAVELISACOOK-26JAN",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXLEAVELISACOOK-26JAN",
+              "key": "KXLEAVELISACOOK-26JAN-27JAN01",
+              "no_sub_title": "Before Jan 2027",
+              "rules_primary": "If Lisa DeNell Cook leaves or announces that they will leave their position as Federal Reserve Governor before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "An announcement that they will leave office is sufficient to immediately resolve the market to Yes. However, the announcement must not specify they are leaving in more than a year from the statement, in which case the market does not resolve to Yes. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining the office do not count. Leaving office as a result of death will not count. Forced departures (termination, impeachment and removal, etc.) will count even without a prior announcement.",
+              "scheduled_close": "2027-01-01T15:00:07Z",
+              "series": "KXLEAVELISACOOK",
+              "subtitle": null,
+              "title": "Lisa DeNell Cook out as Federal Reserve Governor before Jan 2027?",
+              "yes_sub_title": "Before Jan 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXLOCALLAW-WYDAA-27APR01",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXLOCALLAW-WYDAA-27APR01",
+              "key": "KXLOCALLAW-WYDAA-27APR01",
+              "no_sub_title": "Yes",
+              "rules_primary": "If legislation granting a Wyoming state entity (whether newly created or the Wyoming stable token commission with expanded powers) statutory authority to administer government-issued digital assets beyond the Wyoming stable token is enacted in Wyoming before Apr 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law.\n\nStandard legislation requiring executive approval: final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods\nLegislation not requiring executive approval: final passage and completion of required waiting periods\nConstitutional amendments: passage with required supermajorities and completion of ratification processes\nExecutive orders: official signature, publication in official government records, and legal effectiveness\n\nThe following do NOT constitute enactment:\n\nLegislative passage without completed executive action\nPassage by only some required bodies\nProvisional passage\nNon-binding resolutions\nDraft orders\n\nEnactment occurs when all requirements are completed, regardless of pending judicial challenges.",
+              "scheduled_close": "2027-04-01T03:59:00Z",
+              "series": "KXLOCALLAW",
+              "subtitle": ":: Wyoming",
+              "title": "Will Wyoming create a Digital Asset Authority?",
+              "yes_sub_title": "Yes"
+            }
+          ]
+        },
+        {
+          "event_key": "KXEDWARDSOUT-26JUL",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXEDWARDSOUT-26JUL",
+              "key": "KXEDWARDSOUT-26JUL-26NOV03",
+              "no_sub_title": "Before Nov 3, 2026",
+              "rules_primary": "If Chuck Edwards leaves as U.S. representative before Nov 3, 2026, then the market resolves to Yes.",
+              "rules_secondary": "Chuck Edwards must have an actual departure date and vacate the role within the time period.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+              "scheduled_close": "2026-11-03T04:59:00Z",
+              "series": "KXEDWARDSOUT",
+              "subtitle": null,
+              "title": "Will Chuck Edwards be out as U.S. representative before Nov 3, 2026?",
+              "yes_sub_title": "Before Nov 3, 2026"
+            }
+          ]
+        },
+        {
+          "event_key": "KXUSDTTBILL-27FEB28",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXUSDTTBILL-27FEB28",
+              "key": "KXUSDTTBILL-27FEB28-T58.0",
+              "no_sub_title": "Above 58.0%",
+              "rules_primary": "If the percentage obtained by dividing the amount listed as \u201cU.S. Treasury Bills\u201d by Total Reserves in Tether International, S.A. de C.V.\u2019s reserve report for December 31, 2026 is above 58.0%, then the market resolves to Yes.",
+              "rules_secondary": "For this market, the percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 will be determined using Tether\u2019s reserve report for the quarter ending December 31, 2026. The market value will be equal to 100 \u00d7 (U.S. Treasury Bills \u00f7 Total Reserves), using the dollar amounts reported by Tether. If the resulting value is reported to more than one decimal place, it will be rounded to one decimal place. If Tether changes the formatting of its reserve report but continues to publish clearly equivalent figures for direct U.S. Treasury Bills and Total Reserves, those figures will be used.",
+              "scheduled_close": "2027-02-28T13:29:00Z",
+              "series": "KXUSDTTBILL",
+              "subtitle": null,
+              "title": "Will percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 be above 58.0%?",
+              "yes_sub_title": "Above 58.0%"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXUSDTTBILL-27FEB28",
+              "key": "KXUSDTTBILL-27FEB28-T60.0",
+              "no_sub_title": "Above 60.0%",
+              "rules_primary": "If the percentage obtained by dividing the amount listed as \u201cU.S. Treasury Bills\u201d by Total Reserves in Tether International, S.A. de C.V.\u2019s reserve report for December 31, 2026 is above 60.0%, then the market resolves to Yes.",
+              "rules_secondary": "For this market, the percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 will be determined using Tether\u2019s reserve report for the quarter ending December 31, 2026. The market value will be equal to 100 \u00d7 (U.S. Treasury Bills \u00f7 Total Reserves), using the dollar amounts reported by Tether. If the resulting value is reported to more than one decimal place, it will be rounded to one decimal place. If Tether changes the formatting of its reserve report but continues to publish clearly equivalent figures for direct U.S. Treasury Bills and Total Reserves, those figures will be used.",
+              "scheduled_close": "2027-02-28T13:29:00Z",
+              "series": "KXUSDTTBILL",
+              "subtitle": null,
+              "title": "Will percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 be above 60.0%?",
+              "yes_sub_title": "Above 60.0%"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXUSDTTBILL-27FEB28",
+              "key": "KXUSDTTBILL-27FEB28-T62.0",
+              "no_sub_title": "Above 62.0%",
+              "rules_primary": "If the percentage obtained by dividing the amount listed as \u201cU.S. Treasury Bills\u201d by Total Reserves in Tether International, S.A. de C.V.\u2019s reserve report for December 31, 2026 is above 62.0%, then the market resolves to Yes.",
+              "rules_secondary": "For this market, the percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 will be determined using Tether\u2019s reserve report for the quarter ending December 31, 2026. The market value will be equal to 100 \u00d7 (U.S. Treasury Bills \u00f7 Total Reserves), using the dollar amounts reported by Tether. If the resulting value is reported to more than one decimal place, it will be rounded to one decimal place. If Tether changes the formatting of its reserve report but continues to publish clearly equivalent figures for direct U.S. Treasury Bills and Total Reserves, those figures will be used.",
+              "scheduled_close": "2027-02-28T13:29:00Z",
+              "series": "KXUSDTTBILL",
+              "subtitle": null,
+              "title": "Will percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 be above 62.0%?",
+              "yes_sub_title": "Above 62.0%"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXUSDTTBILL-27FEB28",
+              "key": "KXUSDTTBILL-27FEB28-T64.0",
+              "no_sub_title": "Above 64.0%",
+              "rules_primary": "If the percentage obtained by dividing the amount listed as \u201cU.S. Treasury Bills\u201d by Total Reserves in Tether International, S.A. de C.V.\u2019s reserve report for December 31, 2026 is above 64.0%, then the market resolves to Yes.",
+              "rules_secondary": "For this market, the percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 will be determined using Tether\u2019s reserve report for the quarter ending December 31, 2026. The market value will be equal to 100 \u00d7 (U.S. Treasury Bills \u00f7 Total Reserves), using the dollar amounts reported by Tether. If the resulting value is reported to more than one decimal place, it will be rounded to one decimal place. If Tether changes the formatting of its reserve report but continues to publish clearly equivalent figures for direct U.S. Treasury Bills and Total Reserves, those figures will be used.",
+              "scheduled_close": "2027-02-28T13:29:00Z",
+              "series": "KXUSDTTBILL",
+              "subtitle": null,
+              "title": "Will percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 be above 64.0%?",
+              "yes_sub_title": "Above 64.0%"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXUSDTTBILL-27FEB28",
+              "key": "KXUSDTTBILL-27FEB28-T70.0",
+              "no_sub_title": "Above 70.0%",
+              "rules_primary": "If the percentage obtained by dividing the amount listed as \u201cU.S. Treasury Bills\u201d by Total Reserves in Tether International, S.A. de C.V.\u2019s reserve report for December 31, 2026 is above 70.0%, then the market resolves to Yes.",
+              "rules_secondary": "For this market, the percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 will be determined using Tether\u2019s reserve report for the quarter ending December 31, 2026. The market value will be equal to 100 \u00d7 (U.S. Treasury Bills \u00f7 Total Reserves), using the dollar amounts reported by Tether. If the resulting value is reported to more than one decimal place, it will be rounded to one decimal place. If Tether changes the formatting of its reserve report but continues to publish clearly equivalent figures for direct U.S. Treasury Bills and Total Reserves, those figures will be used.",
+              "scheduled_close": "2027-02-28T13:29:00Z",
+              "series": "KXUSDTTBILL",
+              "subtitle": null,
+              "title": "Will percentage of USDT reserves held in U.S. Treasury Bills at the end of 2026 be above 70.0%?",
+              "yes_sub_title": "Above 70.0%"
+            }
+          ]
+        },
+        {
+          "event_key": "KXBIRTHRIGHTEO-27JAN01",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXBIRTHRIGHTEO-27JAN01",
+              "key": "KXBIRTHRIGHTEO-27JAN01",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If the full nationwide taking effect of Trump's Executive Order 14418 for all people it covers before January 1, 2027 is confirmed by any of the Source Agencies after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "This must be confirmed, verified, or established as factual by at least one Source Agency.\n\nNews confirmation is defined as a published article, broadcast segment, or official news report by a Source Agency, that A) explicitly states the full nationwide taking effect of Trump's Executive Order 14418 for all people it covers before January 1, 2027 occurred, is true, or has been verified, B) based on journalistic investigation, sources, or evidence, and C) presented as factual reporting rather than speculation, rumor, or unverified allegation.\n\nFull nationwide effect means federal agencies may legally implement EO 14418 throughout the United States for every covered category. Signing, publication, guidance, or partial applicability does not qualify. Any continuing federal block for a covered person, category, territory, or jurisdiction prevents Yes. A later block does not undo an earlier qualifying period.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXBIRTHRIGHTEO",
+              "subtitle": null,
+              "title": "Will Trump's Executive Order 14418 take full effect before 2027?",
+              "yes_sub_title": "Before 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXIFINATAMAB-27",
+          "markets": [
+            {
+              "category": "Financials",
+              "event_key": "KXIFINATAMAB-27",
+              "key": "KXIFINATAMAB-27-Y",
+              "no_sub_title": "a full approval or an accelerated approval",
+              "rules_primary": "If the FDA's decision on Ifinatamab Deruxtecan by Daiichi Sankyo in 2026 is a full approval or an accelerated approval, the market resolves to Yes.",
+              "rules_secondary": "This market will resolve to No if the FDA's decision is a denial (CRL issued), a withdrawal by the sponsor, or a conditional approval \u2014 or if no decision is issued. \n\nIfinatamab deruxtecan (also called I-DXd or DS-7300) is an antibody-drug conjugate \u2014 think of it as a guided missile where a targeting protein is chemically linked to a potent cancer-killing payload. The targeting protein homes in on a molecule called B7-H3 (also known as CD276), which appears in unusually high amounts on the surface of many cancer cells, and once the drug locks onto that target it is pulled inside the cell and releases its toxic payload. In doing so, it aims to kill tumor cells more precisely than traditional chemotherapy, which attacks both healthy and cancerous cells indiscriminately.\n",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXIFINATAMAB",
+              "subtitle": null,
+              "title": "What will the FDA's decision be on Ifinatamab Deruxtecan by Daiichi Sankyo in 2026?",
+              "yes_sub_title": "a full approval or an accelerated approval"
+            }
+          ]
+        },
+        {
+          "event_key": "KXCODEAI-26SEP30",
+          "markets": [
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCODEAI-26SEP30",
+              "key": "KXCODEAI-26SEP30-CHAT",
+              "no_sub_title": "ChatGPT",
+              "rules_primary": "If ChatGPT is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.",
+              "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-30T14:00:00Z",
+              "series": "KXCODEAI",
+              "subtitle": null,
+              "title": "Top Coding AI this month?",
+              "yes_sub_title": "ChatGPT"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCODEAI-26SEP30",
+              "key": "KXCODEAI-26SEP30-CLAU",
+              "no_sub_title": "Claude",
+              "rules_primary": "If Claude is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.",
+              "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-30T14:00:00Z",
+              "series": "KXCODEAI",
+              "subtitle": null,
+              "title": "Top Coding AI this month?",
+              "yes_sub_title": "Claude"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCODEAI-26SEP30",
+              "key": "KXCODEAI-26SEP30-DEEP",
+              "no_sub_title": "DeepSeek",
+              "rules_primary": "If DeepSeek is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.",
+              "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-30T14:00:00Z",
+              "series": "KXCODEAI",
+              "subtitle": null,
+              "title": "Top Coding AI this month?",
+              "yes_sub_title": "DeepSeek"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCODEAI-26SEP30",
+              "key": "KXCODEAI-26SEP30-GEMI",
+              "no_sub_title": "Gemini",
+              "rules_primary": "If Gemini is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.",
+              "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-30T14:00:00Z",
+              "series": "KXCODEAI",
+              "subtitle": null,
+              "title": "Top Coding AI this month?",
+              "yes_sub_title": "Gemini"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCODEAI-26SEP30",
+              "key": "KXCODEAI-26SEP30-GLM",
+              "no_sub_title": "GLM",
+              "rules_primary": "If GLM is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.",
+              "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-30T14:00:00Z",
+              "series": "KXCODEAI",
+              "subtitle": null,
+              "title": "Top Coding AI this month?",
+              "yes_sub_title": "GLM"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCODEAI-26SEP30",
+              "key": "KXCODEAI-26SEP30-GROK",
+              "no_sub_title": "Grok",
+              "rules_primary": "If Grok is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.",
+              "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-30T14:00:00Z",
+              "series": "KXCODEAI",
+              "subtitle": null,
+              "title": "Top Coding AI this month?",
+              "yes_sub_title": "Grok"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCODEAI-26SEP30",
+              "key": "KXCODEAI-26SEP30-KIMI",
+              "no_sub_title": "Kimi",
+              "rules_primary": "If Kimi is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.",
+              "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-30T14:00:00Z",
+              "series": "KXCODEAI",
+              "subtitle": null,
+              "title": "Top Coding AI this month?",
+              "yes_sub_title": "Kimi"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXCODEAI-26SEP30",
+              "key": "KXCODEAI-26SEP30-MIMO",
+              "no_sub_title": "MiMo",
+              "rules_primary": "If MiMo is the Highest Ranked DeepSWE score model on Datacurve DeepSWE on Sep 30, 2026 at 10:00am ET, then the market resolves to Yes.",
+              "rules_secondary": "Tied rankings shall be resolved using the publisher's official tie-breaking methodology; if none exists, all tied entities share the highest rank among them.\n\nIf multiple candidates are tied for a given rank, then their Contracts will resolve to $1/(the number of candidates tied), rounded down.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-30T14:00:00Z",
+              "series": "KXCODEAI",
+              "subtitle": null,
+              "title": "Top Coding AI this month?",
+              "yes_sub_title": "MiMo"
+            }
+          ]
+        },
+        {
+          "event_key": "KXDJIAREMOVE-27JAN01",
+          "markets": [
+            {
+              "category": "Financials",
+              "event_key": "KXDJIAREMOVE-27JAN01",
+              "key": "KXDJIAREMOVE-27JAN01-AXP",
+              "no_sub_title": "American Express",
+              "rules_primary": "If American Express is announced to be or is officially removed from Dow Jones Industrial Average during Jun 25, 2026 to Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves to Yes if either the index administrator officially announces the membership change OR the change takes effect during the specified time period, whichever occurs first. The effective date of the change need not fall within the time period; only the announcement or implementation must occur within the time period. Temporary suspensions do not constitute removal unless explicitly designated as permanent by the index administrator. If an announced addition or removal is subsequently reversed due to error within the time period, the Exchange will determine resolution at its discretion. For companies undergoing mergers, acquisitions, or restructuring, removal from the index due to such corporate actions constitutes removal for purposes of this market. If a spin-off or successor entity is immediately added in place of the original company, the original company is still considered removed. Regular scheduled rebalancing events count as additions or removals if the company's membership status changes during such rebalancing.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXDJIAREMOVE",
+              "subtitle": null,
+              "title": "Will American Express be removed from the Dow Jones Industrial Average in 2026?",
+              "yes_sub_title": "American Express"
+            },
+            {
+              "category": "Financials",
+              "event_key": "KXDJIAREMOVE-27JAN01",
+              "key": "KXDJIAREMOVE-27JAN01-NKE",
+              "no_sub_title": "Nike",
+              "rules_primary": "If Nike is announced to be or is officially removed from Dow Jones Industrial Average during Jun 25, 2026 to Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves to Yes if either the index administrator officially announces the membership change OR the change takes effect during the specified time period, whichever occurs first. The effective date of the change need not fall within the time period; only the announcement or implementation must occur within the time period. Temporary suspensions do not constitute removal unless explicitly designated as permanent by the index administrator. If an announced addition or removal is subsequently reversed due to error within the time period, the Exchange will determine resolution at its discretion. For companies undergoing mergers, acquisitions, or restructuring, removal from the index due to such corporate actions constitutes removal for purposes of this market. If a spin-off or successor entity is immediately added in place of the original company, the original company is still considered removed. Regular scheduled rebalancing events count as additions or removals if the company's membership status changes during such rebalancing.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXDJIAREMOVE",
+              "subtitle": null,
+              "title": "Will Nike be removed from the Dow Jones Industrial Average in 2026?",
+              "yes_sub_title": "Nike"
+            },
+            {
+              "category": "Financials",
+              "event_key": "KXDJIAREMOVE-27JAN01",
+              "key": "KXDJIAREMOVE-27JAN01-SHW",
+              "no_sub_title": "Sherwin-Williams",
+              "rules_primary": "If Sherwin-Williams is announced to be or is officially removed from Dow Jones Industrial Average during Jun 25, 2026 to Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves to Yes if either the index administrator officially announces the membership change OR the change takes effect during the specified time period, whichever occurs first. The effective date of the change need not fall within the time period; only the announcement or implementation must occur within the time period. Temporary suspensions do not constitute removal unless explicitly designated as permanent by the index administrator. If an announced addition or removal is subsequently reversed due to error within the time period, the Exchange will determine resolution at its discretion. For companies undergoing mergers, acquisitions, or restructuring, removal from the index due to such corporate actions constitutes removal for purposes of this market. If a spin-off or successor entity is immediately added in place of the original company, the original company is still considered removed. Regular scheduled rebalancing events count as additions or removals if the company's membership status changes during such rebalancing.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXDJIAREMOVE",
+              "subtitle": null,
+              "title": "Will Sherwin-Williams be removed from the Dow Jones Industrial Average in 2026?",
+              "yes_sub_title": "Sherwin-Williams"
+            },
+            {
+              "category": "Financials",
+              "event_key": "KXDJIAREMOVE-27JAN01",
+              "key": "KXDJIAREMOVE-27JAN01-TRV",
+              "no_sub_title": "Travelers Cos",
+              "rules_primary": "If Travelers Cos is announced to be or is officially removed from Dow Jones Industrial Average during Jun 25, 2026 to Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves to Yes if either the index administrator officially announces the membership change OR the change takes effect during the specified time period, whichever occurs first. The effective date of the change need not fall within the time period; only the announcement or implementation must occur within the time period. Temporary suspensions do not constitute removal unless explicitly designated as permanent by the index administrator. If an announced addition or removal is subsequently reversed due to error within the time period, the Exchange will determine resolution at its discretion. For companies undergoing mergers, acquisitions, or restructuring, removal from the index due to such corporate actions constitutes removal for purposes of this market. If a spin-off or successor entity is immediately added in place of the original company, the original company is still considered removed. Regular scheduled rebalancing events count as additions or removals if the company's membership status changes during such rebalancing.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXDJIAREMOVE",
+              "subtitle": null,
+              "title": "Will Travelers Cos be removed from the Dow Jones Industrial Average in 2026?",
+              "yes_sub_title": "Travelers Cos"
+            }
+          ]
+        },
+        {
+          "event_key": "KXBABELMANDEBWEEKLY-26SEP06",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXBABELMANDEBWEEKLY-26SEP06",
+              "key": "KXBABELMANDEBWEEKLY-26SEP06-T175",
+              "no_sub_title": "Above 175",
+              "rules_primary": "If the number of transit calls through the Bab el-Mandeb Strait as reported by the IMF PortWatch is above 175 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The total is calculated by summing daily counts from Aug 31, 2026 to Sep 6, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.",
+              "scheduled_close": "2026-09-08T13:00:00Z",
+              "series": "KXBABELMANDEBWEEKLY",
+              "subtitle": null,
+              "title": "Will there be more than 175 transit calls through the Bab el-Mandeb Strait from Aug 31, 2026 to Sep 6, 2026?",
+              "yes_sub_title": "Above 175"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXBABELMANDEBWEEKLY-26SEP06",
+              "key": "KXBABELMANDEBWEEKLY-26SEP06-T200",
+              "no_sub_title": "Above 200",
+              "rules_primary": "If the number of transit calls through the Bab el-Mandeb Strait as reported by the IMF PortWatch is above 200 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The total is calculated by summing daily counts from Aug 31, 2026 to Sep 6, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.",
+              "scheduled_close": "2026-09-08T13:00:00Z",
+              "series": "KXBABELMANDEBWEEKLY",
+              "subtitle": null,
+              "title": "Will there be more than 200 transit calls through the Bab el-Mandeb Strait from Aug 31, 2026 to Sep 6, 2026?",
+              "yes_sub_title": "Above 200"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXBABELMANDEBWEEKLY-26SEP06",
+              "key": "KXBABELMANDEBWEEKLY-26SEP06-T225",
+              "no_sub_title": "Above 225",
+              "rules_primary": "If the number of transit calls through the Bab el-Mandeb Strait as reported by the IMF PortWatch is above 225 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The total is calculated by summing daily counts from Aug 31, 2026 to Sep 6, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.",
+              "scheduled_close": "2026-09-08T13:00:00Z",
+              "series": "KXBABELMANDEBWEEKLY",
+              "subtitle": null,
+              "title": "Will there be more than 225 transit calls through the Bab el-Mandeb Strait from Aug 31, 2026 to Sep 6, 2026?",
+              "yes_sub_title": "Above 225"
+            }
+          ]
+        },
+        {
+          "event_key": "KXENGAGEMENTWOODSTRUMP-26",
+          "markets": [
+            {
+              "category": "Entertainment",
+              "event_key": "KXENGAGEMENTWOODSTRUMP-26",
+              "key": "KXENGAGEMENTWOODSTRUMP-26",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If Tiger Woods and Vanessa Trump are reported to be engaged to be married before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXENGAGEMENTWOODSTRUMP",
+              "subtitle": "Before 2027",
+              "title": "Will Tiger Woods and Vanessa Trump be engaged in 2026?",
+              "yes_sub_title": "Before 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXTRUMPUFC-26OCT2",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXTRUMPUFC-26OCT2",
+              "key": "KXTRUMPUFC-26OCT2-DJT",
+              "no_sub_title": "Yes",
+              "rules_primary": "If Donald Trump attends UFC 333, then the market resolves to Yes.",
+              "rules_secondary": "Attendance is confirmed if the person is reported present at the event by any Source Agency, including social media posts by the person themselves. Brief appearances or partial attendance count as attendance. Kalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Ultimate Fighting Championship (UFC) or TKO Group Holdings. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-10-25T14:00:00Z",
+              "series": "KXTRUMPUFC",
+              "subtitle": null,
+              "title": "Will Donald Trump attend UFC 333?",
+              "yes_sub_title": "Yes"
+            }
+          ]
+        },
+        {
+          "event_key": "KXVTMILK-27APR30",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXVTMILK-27APR30",
+              "key": "KXVTMILK-27APR30-T2.40",
+              "no_sub_title": "Above 2.40 billion pounds",
+              "rules_primary": "If USDA NASS reports Vermont\u2019s total milk production for calendar year 2026 is above \n\n2.40 billion pounds, then the market resolves to Yes.",
+              "rules_secondary": "Resolution will be based on Vermont\u2019s total milk production for calendar year 2026, as reported by USDA NASS in its Milk Production, Disposition, and Income annual report. Production is measured in pounds.",
+              "scheduled_close": "2027-04-30T20:29:00Z",
+              "series": "KXVTMILK",
+              "subtitle": null,
+              "title": "Will Vermont\u2019s total milk production for 2026 be above 2.40 billion pounds?",
+              "yes_sub_title": "Above 2.40 billion pounds"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXVTMILK-27APR30",
+              "key": "KXVTMILK-27APR30-T2.45",
+              "no_sub_title": "Above 2.45 billion pounds",
+              "rules_primary": "If USDA NASS reports Vermont\u2019s total milk production for calendar year 2026 is above \n\n2.45 billion pounds, then the market resolves to Yes.",
+              "rules_secondary": "Resolution will be based on Vermont\u2019s total milk production for calendar year 2026, as reported by USDA NASS in its Milk Production, Disposition, and Income annual report. Production is measured in pounds.",
+              "scheduled_close": "2027-04-30T20:29:00Z",
+              "series": "KXVTMILK",
+              "subtitle": null,
+              "title": "Will Vermont\u2019s total milk production for 2026 be above 2.45 billion pounds?",
+              "yes_sub_title": "Above 2.45 billion pounds"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXVTMILK-27APR30",
+              "key": "KXVTMILK-27APR30-T2.50",
+              "no_sub_title": "Above 2.50 billion pounds",
+              "rules_primary": "If USDA NASS reports Vermont\u2019s total milk production for calendar year 2026 is above \n\n2.50 billion pounds, then the market resolves to Yes.",
+              "rules_secondary": "Resolution will be based on Vermont\u2019s total milk production for calendar year 2026, as reported by USDA NASS in its Milk Production, Disposition, and Income annual report. Production is measured in pounds.",
+              "scheduled_close": "2027-04-30T20:29:00Z",
+              "series": "KXVTMILK",
+              "subtitle": null,
+              "title": "Will Vermont\u2019s total milk production for 2026 be above 2.50 billion pounds?",
+              "yes_sub_title": "Above 2.50 billion pounds"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXVTMILK-27APR30",
+              "key": "KXVTMILK-27APR30-T2.55",
+              "no_sub_title": "Above 2.55 billion pounds",
+              "rules_primary": "If USDA NASS reports Vermont\u2019s total milk production for calendar year 2026 is above \n\n2.55 billion pounds, then the market resolves to Yes.",
+              "rules_secondary": "Resolution will be based on Vermont\u2019s total milk production for calendar year 2026, as reported by USDA NASS in its Milk Production, Disposition, and Income annual report. Production is measured in pounds.",
+              "scheduled_close": "2027-04-30T20:29:00Z",
+              "series": "KXVTMILK",
+              "subtitle": null,
+              "title": "Will Vermont\u2019s total milk production for 2026 be above 2.55 billion pounds?",
+              "yes_sub_title": "Above 2.55 billion pounds"
+            }
+          ]
+        }
+      ],
+      "snapshot_at": "2026-09-05T15:45:16Z"
+    },
+    "payload_sha256": "dc0252f732ccab01125f0afda26157801195e6b9799d1cfa6b6c393eee4cd82e",
+    "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-018\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-018\\first-output.jsonl\n",
+    "requested_effort": "high",
+    "requested_model": "gpt-5.6-sol",
+    "requested_web_search": true,
+    "run_id": "study/broad-procedural-20260905",
+    "run_mode": "study",
+    "stage": "analysis",
+    "theory_id": "study/broad-procedural",
+    "theory_version": 1
+  },
+  "schema_version": 1
+}

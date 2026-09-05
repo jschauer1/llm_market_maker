@@ -1,1 +1,847 @@
-{"schema_version": 1, "request": {"run_id": "study/broad-procedural-20260905", "theory_id": "study/broad-procedural", "theory_version": 1, "run_mode": "study", "decision_at": "2026-09-05T19:53:15.489944+00:00", "requested_model": "gpt-5.6-sol", "requested_effort": "high", "requested_web_search": true, "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-001\\first-output.jsonl", "stage": "analysis", "batch_id": "1", "candidate_keys": ["KXCANCARBON-27", "KXBOUGAINVILLEIND-27JAN01", "KXVICTORIAPREMIER-27JAN01-DOBR", "KXVICTORIAPREMIER-27JAN01-ESAN", "KXVICTORIAPREMIER-27JAN01-WPIC", "KXDEFAULT-26DEC31", "KXSOLMINY-SOL-26DEC31-4000", "KXAZSEMIJOBS-27JUN04-T24431", "KXAAAGASMAXNY-26DEC31-4.80", "KXAAAGASMAXNY-26DEC31-5.00", "KXAAAGASMAXNY-26DEC31-5.20", "KXAAAGASMAXNY-26DEC31-5.40", "KXAAAGASMAXNY-26DEC31-5.60", "KXAAAGASMAXNY-26DEC31-6.00", "KXVTMAPLE-27JUN30-T2.7", "KXVTMAPLE-27JUN30-T2.8", "KXVTMAPLE-27JUN30-T2.9", "KXVTMAPLE-27JUN30-T3.0", "KXVTMAPLE-27JUN30-T3.2", "KXVTMAPLE-27JUN30-T3.3", "KXME-26DEC31-69000", "KXME-26DEC31-70000", "KXSOLMAXMON-SOL-26SEP30-11000", "KXSOLMAXMON-SOL-26SEP30-11500", "KXSOLMAXMON-SOL-26SEP30-12000", "KXSOLMAXMON-SOL-26SEP30-12500", "KXSOLMAXMON-SOL-26SEP30-13000", "KXSOLMAXMON-SOL-26SEP30-13500", "KXSOLMAXMON-SOL-26SEP30-14000", "KXSOLMAXMON-SOL-26SEP30-14500", "KXNORDSTREAM2-26-27", "KXAUCTIONRECORD-27-BAS-110500000", "KXALBUMRELEASEDATEBEY-NEW-JAN01-27", "KXALBUMRELEASEDATEBEY-NEW-JUN01-27", "KXHORMUZWEEKLY-26SEP06-T10", "KXHORMUZWEEKLY-26SEP06-T15", "KXHORMUZWEEKLY-26SEP06-T20", "KXHORMUZWEEKLY-26SEP06-T25", "KXHORMUZWEEKLY-26SEP06-T30", "KXHORMUZWEEKLY-26SEP06-T45", "KXHKANEKNIGHT-26-YES"], "payload_sha256": "a36df78b666e2c955c6c3e1811928983eb9b2d4396ec02b8c7be47aa2777902a", "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-001\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-001\\first-output.jsonl\n", "payload": {"decision_at": "2026-09-05T19:53:15.489944+00:00", "events": [{"event_key": "KXCANCARBON-27", "markets": [{"category": "Politics", "event_key": "KXCANCARBON-27", "key": "KXCANCARBON-27", "no_sub_title": "Before 2027", "rules_primary": "If Canada's federal carbon tax is repealed before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXCANCARBON", "subtitle": null, "title": "Will the Canadian carbon tax be repealed before 2027?", "yes_sub_title": "Before 2027"}]}, {"event_key": "KXBOUGAINVILLEIND", "markets": [{"category": "Politics", "event_key": "KXBOUGAINVILLEIND", "key": "KXBOUGAINVILLEIND-27JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If Papua New Guinea has agreed to or announced the ratification of Bougainville's independence before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "An agreement or announcement qualifies if it involves formal signing of treaties, parliamentary approval with binding effect, official ratification, formal commitment by the head of state/government with constitutional authority, official statements by authorized ministers, official press releases, formal declarations during government proceedings, or official statements to international bodies. Phased implementation announcements and multi-party agreements where the country is a signatory qualify. Preliminary discussions, conditional agreements contingent on circumstances, opposition party statements, leaked documents, think-tank recommendations, general aspirations without specific commitment, draft legislation without approval, and regional actions (unless specified) do NOT qualify. Retraction of previously announced commitments also does not satisfy the criterion.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXBOUGAINVILLEIND", "subtitle": null, "title": "Will Papua New Guinea ratify Bougainville's independence before Jan 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}]}, {"event_key": "KXVICTORIAPREMIER-27JAN01", "markets": [{"category": "Elections", "event_key": "KXVICTORIAPREMIER-27JAN01", "key": "KXVICTORIAPREMIER-27JAN01-DOBR", "no_sub_title": "Danny O'Brien", "rules_primary": "If Danny O'Brien is the first person to serve as Premier of Victoria after the caretaker period for the 2026 Victorian state election ends before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "This must be confirmed, verified, or established as factual by at least one Source Agency.\n\nThe qualifying person is the person serving as Premier of Victoria when the caretaker period following the 2026 Victorian state election ends. If the government changes, this is the incoming Premier sworn in by the Governor. If the incumbent government is returned, this is the Premier in office when the election result becomes clear. Service only in caretaker capacity before that point does NOT qualify.\n\nIf a person not listed on this event is the first qualifying Premier, every named market resolves NO. If the caretaker period has not ended and no person has qualified before January 1, 2027, every named market resolves NO.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXVICTORIAPREMIER", "subtitle": null, "title": "Will it be confirmed that Danny O'Brien is the first person to serve as Premier of Victoria after the caretaker period for the 2026 Victorian state election ends?", "yes_sub_title": "Danny O'Brien"}, {"category": "Elections", "event_key": "KXVICTORIAPREMIER-27JAN01", "key": "KXVICTORIAPREMIER-27JAN01-ESAN", "no_sub_title": "Ellen Sandell", "rules_primary": "If Ellen Sandell is the first person to serve as Premier of Victoria after the caretaker period for the 2026 Victorian state election ends before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "This must be confirmed, verified, or established as factual by at least one Source Agency.\n\nThe qualifying person is the person serving as Premier of Victoria when the caretaker period following the 2026 Victorian state election ends. If the government changes, this is the incoming Premier sworn in by the Governor. If the incumbent government is returned, this is the Premier in office when the election result becomes clear. Service only in caretaker capacity before that point does NOT qualify.\n\nIf a person not listed on this event is the first qualifying Premier, every named market resolves NO. If the caretaker period has not ended and no person has qualified before January 1, 2027, every named market resolves NO.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXVICTORIAPREMIER", "subtitle": null, "title": "Will it be confirmed that Ellen Sandell is the first person to serve as Premier of Victoria after the caretaker period for the 2026 Victorian state election ends?", "yes_sub_title": "Ellen Sandell"}, {"category": "Elections", "event_key": "KXVICTORIAPREMIER-27JAN01", "key": "KXVICTORIAPREMIER-27JAN01-WPIC", "no_sub_title": "Warren Pickering", "rules_primary": "If Warren Pickering is the first person to serve as Premier of Victoria after the caretaker period for the 2026 Victorian state election ends before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "This must be confirmed, verified, or established as factual by at least one Source Agency.\n\nThe qualifying person is the person serving as Premier of Victoria when the caretaker period following the 2026 Victorian state election ends. If the government changes, this is the incoming Premier sworn in by the Governor. If the incumbent government is returned, this is the Premier in office when the election result becomes clear. Service only in caretaker capacity before that point does NOT qualify.\n\nIf a person not listed on this event is the first qualifying Premier, every named market resolves NO. If the caretaker period has not ended and no person has qualified before January 1, 2027, every named market resolves NO.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXVICTORIAPREMIER", "subtitle": null, "title": "Will it be confirmed that Warren Pickering is the first person to serve as Premier of Victoria after the caretaker period for the 2026 Victorian state election ends?", "yes_sub_title": "Warren Pickering"}]}, {"event_key": "KXDEFAULT-26DEC31", "markets": [{"category": "Economics", "event_key": "KXDEFAULT-26DEC31", "key": "KXDEFAULT-26DEC31", "no_sub_title": "Defaults", "rules_primary": "If the U.S. Department of the Treasury announces that the United States Federal Government failed to make a scheduled payment on a Treasury note, bond, or bill; or that one of the three major credit ratings agencies designate any United States debt in any form of default, before 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXDEFAULT", "subtitle": null, "title": "Will the US default on its debt by Dec 31, 2026?", "yes_sub_title": "Defaults"}]}, {"event_key": "KXSOLMINY-SOL-26DEC31", "markets": [{"category": "Crypto", "event_key": "KXSOLMINY-SOL-26DEC31", "key": "KXSOLMINY-SOL-26DEC31-4000", "no_sub_title": "Below $40.00", "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Dec 31, 2026 is ever below $40.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2027-01-01T04:59:59Z", "series": "KXSOLMINY", "subtitle": null, "title": "Will SOL trimmed mean be below $40.00 by 11:59 PM ET on Dec 31, 2026?", "yes_sub_title": "Below $40.00"}]}, {"event_key": "KXAZSEMIJOBS-27JUN04", "markets": [{"category": "Economics", "event_key": "KXAZSEMIJOBS-27JUN04", "key": "KXAZSEMIJOBS-27JUN04-T24431", "no_sub_title": "Above 24,431 employees", "rules_primary": "If the Arizona\u2019s annual average employment in Semiconductor and Other Electronic Component Manufacturing for 2026 is above 24,431 employees, then the market resolves to Yes.", "rules_secondary": "Resolution uses annual average employment in Arizona for NAICS 3344 - Semiconductor and Other Electronic Component Manufacturing, as reported by BLS QCEW. The 24,431-employee baseline is fixed to the published 2025 value at market launch; later revisions do not change the strike.\n\nQCEW publishes detailed industries for every state and annual-average files once the full year is available. For reference, the complete 2025 annual QCEW data became available with the fourth-quarter release on June 2, 2026.", "scheduled_close": "2027-06-04T13:59:00Z", "series": "KXAZSEMIJOBS", "subtitle": null, "title": "Will Arizona\u2019s annual average employment in Semiconductor and Other Electronic Component Manufacturing for 2026 be above 24,431 employees?", "yes_sub_title": "Above 24,431 employees"}]}, {"event_key": "KXAAAGASMAXNY-26DEC31", "markets": [{"category": "Politics", "event_key": "KXAAAGASMAXNY-26DEC31", "key": "KXAAAGASMAXNY-26DEC31-4.80", "no_sub_title": "Above $4.80", "rules_primary": "If average regular gas prices for New York are strictly greater than $4.80 by Dec 31, 2026 according to AAA,  the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T14:55:00Z", "series": "KXAAAGASMAXNY", "subtitle": "$4.80", "title": "Will average **gas prices** be above or below $4.80 by Dec 31, 2026?", "yes_sub_title": "Above $4.80"}, {"category": "Politics", "event_key": "KXAAAGASMAXNY-26DEC31", "key": "KXAAAGASMAXNY-26DEC31-5.00", "no_sub_title": "Above $5.00", "rules_primary": "If average regular gas prices for New York are strictly greater than $5.00 by Dec 31, 2026 according to AAA,  the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T14:55:00Z", "series": "KXAAAGASMAXNY", "subtitle": "$5.00", "title": "Will average **gas prices** be above or below $5.00 by Dec 31, 2026?", "yes_sub_title": "Above $5.00"}, {"category": "Politics", "event_key": "KXAAAGASMAXNY-26DEC31", "key": "KXAAAGASMAXNY-26DEC31-5.20", "no_sub_title": "Above $5.20", "rules_primary": "If average regular gas prices for New York are strictly greater than $5.20 by Dec 31, 2026 according to AAA,  the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T14:55:00Z", "series": "KXAAAGASMAXNY", "subtitle": "$5.20", "title": "Will average **gas prices** be above or below $5.20 by Dec 31, 2026?", "yes_sub_title": "Above $5.20"}, {"category": "Politics", "event_key": "KXAAAGASMAXNY-26DEC31", "key": "KXAAAGASMAXNY-26DEC31-5.40", "no_sub_title": "Above $5.40", "rules_primary": "If average regular gas prices for New York are strictly greater than $5.40 by Dec 31, 2026 according to AAA,  the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T14:55:00Z", "series": "KXAAAGASMAXNY", "subtitle": "$5.40", "title": "Will average **gas prices** be above or below $5.40 by Dec 31, 2026?", "yes_sub_title": "Above $5.40"}, {"category": "Politics", "event_key": "KXAAAGASMAXNY-26DEC31", "key": "KXAAAGASMAXNY-26DEC31-5.60", "no_sub_title": "Above $5.60", "rules_primary": "If average regular gas prices for New York are strictly greater than $5.60 by Dec 31, 2026 according to AAA,  the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-31T14:55:00Z", "series": "KXAAAGASMAXNY", "subtitle": "$5.60", "title": "Will average **gas prices** be above or below $5.60 by Dec 31, 2026?", "yes_sub_title": "Above $5.60"}, {"category": "Politics", "event_key": "KXAAAGASMAXNY-26DEC31", "key": "KXAAAGASMAXNY-26DEC31-6.00", "no_sub_title": "Above $6.00", "rules_primary": "If average regular gas prices for New York are strictly greater than $6.00 by Dec 31, 2026 according to AAA,  the market resolves to Yes.", "rules_secondary": " ", "scheduled_close": "2026-12-31T14:55:00Z", "series": "KXAAAGASMAXNY", "subtitle": "$6.00", "title": "Will average **gas prices** be above or below $6.00 by Dec 31, 2026?", "yes_sub_title": "Above $6.00"}]}, {"event_key": "KXVTMAPLE-27JUN30", "markets": [{"category": "Economics", "event_key": "KXVTMAPLE-27JUN30", "key": "KXVTMAPLE-27JUN30-T2.7", "no_sub_title": "Above 2.7 million gallons", "rules_primary": "If USDA NASS reports Vermont\u2019s maple syrup production for 2027 is above \n\n2.7 million gallons, then the market resolves to Yes.", "rules_secondary": "The Underlying is USDA NASS\u2019s reported 2027 Vermont maple syrup production, measured in gallons.\n\nHow to locate the Underlying:\nUse Maple Syrup \u2192 Production \u2192 Gallons. The equivalent 2026 page currently reports 3,091,000 gallons.", "scheduled_close": "2027-06-30T15:29:00Z", "series": "KXVTMAPLE", "subtitle": null, "title": "Will Vermont\u2019s maple syrup production for 2027 be above 2.7 million gallons?", "yes_sub_title": "Above 2.7 million gallons"}, {"category": "Economics", "event_key": "KXVTMAPLE-27JUN30", "key": "KXVTMAPLE-27JUN30-T2.8", "no_sub_title": "Above 2.8 million gallons", "rules_primary": "If USDA NASS reports Vermont\u2019s maple syrup production for 2027 is above \n\n2.8 million gallons, then the market resolves to Yes.", "rules_secondary": "The Underlying is USDA NASS\u2019s reported 2027 Vermont maple syrup production, measured in gallons.\n\nHow to locate the Underlying:\nUse Maple Syrup \u2192 Production \u2192 Gallons. The equivalent 2026 page currently reports 3,091,000 gallons.", "scheduled_close": "2027-06-30T15:29:00Z", "series": "KXVTMAPLE", "subtitle": null, "title": "Will Vermont\u2019s maple syrup production for 2027 be above 2.8 million gallons?", "yes_sub_title": "Above 2.8 million gallons"}, {"category": "Economics", "event_key": "KXVTMAPLE-27JUN30", "key": "KXVTMAPLE-27JUN30-T2.9", "no_sub_title": "Above 2.9 million gallons", "rules_primary": "If USDA NASS reports Vermont\u2019s maple syrup production for 2027 is above \n\n2.9 million gallons, then the market resolves to Yes.", "rules_secondary": "The Underlying is USDA NASS\u2019s reported 2027 Vermont maple syrup production, measured in gallons.\n\nHow to locate the Underlying:\nUse Maple Syrup \u2192 Production \u2192 Gallons. The equivalent 2026 page currently reports 3,091,000 gallons.", "scheduled_close": "2027-06-30T15:29:00Z", "series": "KXVTMAPLE", "subtitle": null, "title": "Will Vermont\u2019s maple syrup production for 2027 be above 2.9 million gallons?", "yes_sub_title": "Above 2.9 million gallons"}, {"category": "Economics", "event_key": "KXVTMAPLE-27JUN30", "key": "KXVTMAPLE-27JUN30-T3.0", "no_sub_title": "Above 3.0 million gallons", "rules_primary": "If USDA NASS reports Vermont\u2019s maple syrup production for 2027 is above \n\n3.0 million gallons, then the market resolves to Yes.", "rules_secondary": "The Underlying is USDA NASS\u2019s reported 2027 Vermont maple syrup production, measured in gallons.\n\nHow to locate the Underlying:\nUse Maple Syrup \u2192 Production \u2192 Gallons. The equivalent 2026 page currently reports 3,091,000 gallons.", "scheduled_close": "2027-06-30T15:29:00Z", "series": "KXVTMAPLE", "subtitle": null, "title": "Will Vermont\u2019s maple syrup production for 2027 be above 3.0 million gallons?", "yes_sub_title": "Above 3.0 million gallons"}, {"category": "Economics", "event_key": "KXVTMAPLE-27JUN30", "key": "KXVTMAPLE-27JUN30-T3.2", "no_sub_title": "Above 3.2 million gallons", "rules_primary": "If USDA NASS reports Vermont\u2019s maple syrup production for 2027 is above \n\n3.2 million gallons, then the market resolves to Yes.", "rules_secondary": "The Underlying is USDA NASS\u2019s reported 2027 Vermont maple syrup production, measured in gallons.\n\nHow to locate the Underlying:\nUse Maple Syrup \u2192 Production \u2192 Gallons. The equivalent 2026 page currently reports 3,091,000 gallons.", "scheduled_close": "2027-06-30T15:29:00Z", "series": "KXVTMAPLE", "subtitle": null, "title": "Will Vermont\u2019s maple syrup production for 2027 be above 3.2 million gallons?", "yes_sub_title": "Above 3.2 million gallons"}, {"category": "Economics", "event_key": "KXVTMAPLE-27JUN30", "key": "KXVTMAPLE-27JUN30-T3.3", "no_sub_title": "Above 3.3 million gallons", "rules_primary": "If USDA NASS reports Vermont\u2019s maple syrup production for 2027 is above \n\n3.3 million gallons, then the market resolves to Yes.", "rules_secondary": "The Underlying is USDA NASS\u2019s reported 2027 Vermont maple syrup production, measured in gallons.\n\nHow to locate the Underlying:\nUse Maple Syrup \u2192 Production \u2192 Gallons. The equivalent 2026 page currently reports 3,091,000 gallons.", "scheduled_close": "2027-06-30T15:29:00Z", "series": "KXVTMAPLE", "subtitle": null, "title": "Will Vermont\u2019s maple syrup production for 2027 be above 3.3 million gallons?", "yes_sub_title": "Above 3.3 million gallons"}]}, {"event_key": "KXME-26DEC31", "markets": [{"category": "Financials", "event_key": "KXME-26DEC31", "key": "KXME-26DEC31-69000", "no_sub_title": "At least MX$69,000", "rules_primary": "If the value of S&P/BMV IPC Index (ME) is at least MX$69,000 from Jun 23, 2026 to Dec 31, 2026, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the value of the S&P/BMV IPC Index as reported by the Trading View, using the index's natively published level in its own currency and units; no currency conversion is applied. It is sufficient for the index to reach or exceed MX$69,000 at any single point during from Jun 23, 2026 to Dec 31, 2026 for the market to resolve to Yes \u2014 the level does not need to be sustained. If the index does not reach MX$69,000 at any point during from Jun 23, 2026 to Dec 31, 2026, the market resolves to No. Revisions to the underlying made after expiration will not be accounted for in determining the Expiration Value. \n\nIf no data is available for from Jun 23, 2026 to Dec 31, 2026 by the Expiration Date, all strikes other than \"No data\" or \"None\" resolve to No. The index level is evaluated to two decimal places unless otherwise specified.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXME", "subtitle": null, "title": "Will the S&P/BMV IPC Index be at least MX$69,000 in 2026?", "yes_sub_title": "At least MX$69,000"}, {"category": "Financials", "event_key": "KXME-26DEC31", "key": "KXME-26DEC31-70000", "no_sub_title": "At least MX$70,000", "rules_primary": "If the value of S&P/BMV IPC Index (ME) is at least MX$70,000 from Jun 23, 2026 to Dec 31, 2026, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the value of the S&P/BMV IPC Index as reported by the Trading View, using the index's natively published level in its own currency and units; no currency conversion is applied. It is sufficient for the index to reach or exceed MX$70,000 at any single point during from Jun 23, 2026 to Dec 31, 2026 for the market to resolve to Yes \u2014 the level does not need to be sustained. If the index does not reach MX$70,000 at any point during from Jun 23, 2026 to Dec 31, 2026, the market resolves to No. Revisions to the underlying made after expiration will not be accounted for in determining the Expiration Value. \n\nIf no data is available for from Jun 23, 2026 to Dec 31, 2026 by the Expiration Date, all strikes other than \"No data\" or \"None\" resolve to No. The index level is evaluated to two decimal places unless otherwise specified.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXME", "subtitle": null, "title": "Will the S&P/BMV IPC Index be at least MX$70,000 in 2026?", "yes_sub_title": "At least MX$70,000"}]}, {"event_key": "KXSOLMAXMON-SOL-26SEP30", "markets": [{"category": "Crypto", "event_key": "KXSOLMAXMON-SOL-26SEP30", "key": "KXSOLMAXMON-SOL-26SEP30-11000", "no_sub_title": "Above $110.00", "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n110.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXSOLMAXMON", "subtitle": null, "title": "Will SOL trimmed mean be above $110.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Above $110.00"}, {"category": "Crypto", "event_key": "KXSOLMAXMON-SOL-26SEP30", "key": "KXSOLMAXMON-SOL-26SEP30-11500", "no_sub_title": "Above $115.00", "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n115.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXSOLMAXMON", "subtitle": null, "title": "Will SOL trimmed mean be above $115.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Above $115.00"}, {"category": "Crypto", "event_key": "KXSOLMAXMON-SOL-26SEP30", "key": "KXSOLMAXMON-SOL-26SEP30-12000", "no_sub_title": "Above $120.00", "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n120.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXSOLMAXMON", "subtitle": null, "title": "Will SOL trimmed mean be above $120.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Above $120.00"}, {"category": "Crypto", "event_key": "KXSOLMAXMON-SOL-26SEP30", "key": "KXSOLMAXMON-SOL-26SEP30-12500", "no_sub_title": "Above $125.00", "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n125.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXSOLMAXMON", "subtitle": null, "title": "Will SOL trimmed mean be above $125.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Above $125.00"}, {"category": "Crypto", "event_key": "KXSOLMAXMON-SOL-26SEP30", "key": "KXSOLMAXMON-SOL-26SEP30-13000", "no_sub_title": "Above $130.00", "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n130.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXSOLMAXMON", "subtitle": null, "title": "Will SOL trimmed mean be above $130.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Above $130.00"}, {"category": "Crypto", "event_key": "KXSOLMAXMON-SOL-26SEP30", "key": "KXSOLMAXMON-SOL-26SEP30-13500", "no_sub_title": "Above $135.00", "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n135.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXSOLMAXMON", "subtitle": null, "title": "Will SOL trimmed mean be above $135.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Above $135.00"}, {"category": "Crypto", "event_key": "KXSOLMAXMON-SOL-26SEP30", "key": "KXSOLMAXMON-SOL-26SEP30-14000", "no_sub_title": "Above $140.00", "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n140.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXSOLMAXMON", "subtitle": null, "title": "Will SOL trimmed mean be above $140.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Above $140.00"}, {"category": "Crypto", "event_key": "KXSOLMAXMON-SOL-26SEP30", "key": "KXSOLMAXMON-SOL-26SEP30-14500", "no_sub_title": "Above $145.00", "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n145.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXSOLMAXMON", "subtitle": null, "title": "Will SOL trimmed mean be above $145.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Above $145.00"}]}, {"event_key": "KXNORDSTREAM2-26", "markets": [{"category": "Politics", "event_key": "KXNORDSTREAM2-26", "key": "KXNORDSTREAM2-26-27", "no_sub_title": "Before 2027", "rules_primary": "If Nord Stream 2 enters service before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXNORDSTREAM2", "subtitle": null, "title": "Will NordStream 2 enter service before Jan 1, 2027?", "yes_sub_title": "Before 2027"}]}, {"event_key": "KXAUCTIONRECORD-27-BAS", "markets": [{"category": "Entertainment", "event_key": "KXAUCTIONRECORD-27-BAS", "key": "KXAUCTIONRECORD-27-BAS-110500000", "no_sub_title": "Above $110.5M", "rules_primary": "If the highest publicly reported auction sale price of any Jean-Michel Basquiat artwork sold at public auction in 2026 is above $110.5M, then the market resolves to Yes.", "rules_secondary": "\u201cSale Price\u201d refers to the final publicly reported realized price of the artwork, including buyer\u2019s premium and auction fees, as reported by the relevant Source Agency.\n\nThis market and these products have not been endorsed by Sotheby\u2019s. Any references to Sotheby\u2019s, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Sotheby\u2019s and Kalshi.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXAUCTIONRECORD", "subtitle": "Above $110.5M", "title": "Will Jean-Michel Basquiat break his auction record this season?", "yes_sub_title": "Above $110.5M"}]}, {"event_key": "KXALBUMRELEASEDATEBEY-NEW", "markets": [{"category": "Entertainment", "event_key": "KXALBUMRELEASEDATEBEY-NEW", "key": "KXALBUMRELEASEDATEBEY-NEW-JAN01-27", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If Beyonce releases a new album before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXALBUMRELEASEDATEBEY", "subtitle": null, "title": "Will Beyonce release new album before Jan 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}, {"category": "Entertainment", "event_key": "KXALBUMRELEASEDATEBEY-NEW", "key": "KXALBUMRELEASEDATEBEY-NEW-JUN01-27", "no_sub_title": "Before Jun 1, 2027", "rules_primary": "If Beyonce releases a new album before Jun 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-06-01T14:00:00Z", "series": "KXALBUMRELEASEDATEBEY", "subtitle": null, "title": "Will Beyonce release new album before Jun 1, 2027?", "yes_sub_title": "Before Jun 1, 2027"}]}, {"event_key": "KXHORMUZWEEKLY-26SEP06", "markets": [{"category": "Politics", "event_key": "KXHORMUZWEEKLY-26SEP06", "key": "KXHORMUZWEEKLY-26SEP06-T10", "no_sub_title": "Above 10", "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 10 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.", "rules_secondary": "The total is calculated by summing daily counts from Aug 31, 2026 to Sep 6, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.", "scheduled_close": "2026-09-08T13:00:00Z", "series": "KXHORMUZWEEKLY", "subtitle": null, "title": "Will there be more than 10 transit calls through the Strait of Hormuz from Aug 31, 2026 to Sep 6, 2026?", "yes_sub_title": "Above 10"}, {"category": "Politics", "event_key": "KXHORMUZWEEKLY-26SEP06", "key": "KXHORMUZWEEKLY-26SEP06-T15", "no_sub_title": "Above 15", "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 15 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.", "rules_secondary": "The total is calculated by summing daily counts from Aug 31, 2026 to Sep 6, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.", "scheduled_close": "2026-09-08T13:00:00Z", "series": "KXHORMUZWEEKLY", "subtitle": null, "title": "Will there be more than 15 transit calls through the Strait of Hormuz from Aug 31, 2026 to Sep 6, 2026?", "yes_sub_title": "Above 15"}, {"category": "Politics", "event_key": "KXHORMUZWEEKLY-26SEP06", "key": "KXHORMUZWEEKLY-26SEP06-T20", "no_sub_title": "Above 20", "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 20 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.", "rules_secondary": "The total is calculated by summing daily counts from Aug 31, 2026 to Sep 6, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.", "scheduled_close": "2026-09-08T13:00:00Z", "series": "KXHORMUZWEEKLY", "subtitle": null, "title": "Will there be more than 20 transit calls through the Strait of Hormuz from Aug 31, 2026 to Sep 6, 2026?", "yes_sub_title": "Above 20"}, {"category": "Politics", "event_key": "KXHORMUZWEEKLY-26SEP06", "key": "KXHORMUZWEEKLY-26SEP06-T25", "no_sub_title": "Above 25", "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 25 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.", "rules_secondary": "The total is calculated by summing daily counts from Aug 31, 2026 to Sep 6, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.", "scheduled_close": "2026-09-08T13:00:00Z", "series": "KXHORMUZWEEKLY", "subtitle": null, "title": "Will there be more than 25 transit calls through the Strait of Hormuz from Aug 31, 2026 to Sep 6, 2026?", "yes_sub_title": "Above 25"}, {"category": "Politics", "event_key": "KXHORMUZWEEKLY-26SEP06", "key": "KXHORMUZWEEKLY-26SEP06-T30", "no_sub_title": "Above 30", "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 30 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.", "rules_secondary": "The total is calculated by summing daily counts from Aug 31, 2026 to Sep 6, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.", "scheduled_close": "2026-09-08T13:00:00Z", "series": "KXHORMUZWEEKLY", "subtitle": null, "title": "Will there be more than 30 transit calls through the Strait of Hormuz from Aug 31, 2026 to Sep 6, 2026?", "yes_sub_title": "Above 30"}, {"category": "Politics", "event_key": "KXHORMUZWEEKLY-26SEP06", "key": "KXHORMUZWEEKLY-26SEP06-T45", "no_sub_title": "Above 45", "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 45 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.", "rules_secondary": "The total is calculated by summing daily counts from Aug 31, 2026 to Sep 6, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.", "scheduled_close": "2026-09-08T13:00:00Z", "series": "KXHORMUZWEEKLY", "subtitle": null, "title": "Will there be more than 45 transit calls through the Strait of Hormuz from Aug 31, 2026 to Sep 6, 2026?", "yes_sub_title": "Above 45"}]}, {"event_key": "KXHKANEKNIGHT-26", "markets": [{"category": "Economics", "event_key": "KXHKANEKNIGHT-26", "key": "KXHKANEKNIGHT-26-YES", "no_sub_title": "Harry Kane Knighted in 2026", "rules_primary": "If Harry Kane is confirmed to have been knighted by any of the Source Agencies after Issuance and before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXHKANEKNIGHT", "subtitle": "Harry Kane Knighted in 2026", "title": "Will Harry Kane be Knighted in 2026?", "yes_sub_title": "Harry Kane Knighted in 2026"}]}], "snapshot_at": "2026-09-05T15:45:16Z"}}, "completion": null}
+{
+  "completion": {
+    "completed_at": "2026-09-05T19:59:02.958679+00:00",
+    "effort": "high",
+    "model": "gpt-5.6-sol",
+    "results": {
+      "KXAAAGASMAXNY-26DEC31-4.80": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-12-31T14:55:00Z\", \"family\": \"price_measurement\", \"key\": \"KXAAAGASMAXNY-26DEC31-4.80\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for New York are strictly greater than $4.80 by Dec 31, 2026 according to AAA,  the market resolves to Yes.\", \"rationale\": \"The predicate is a measured retail gasoline-price threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXAAAGASMAXNY-26DEC31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMAXNY-26DEC31-5.00": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-12-31T14:55:00Z\", \"family\": \"price_measurement\", \"key\": \"KXAAAGASMAXNY-26DEC31-5.00\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for New York are strictly greater than $5.00 by Dec 31, 2026 according to AAA,  the market resolves to Yes.\", \"rationale\": \"The predicate is a measured retail gasoline-price threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXAAAGASMAXNY-26DEC31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMAXNY-26DEC31-5.20": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-12-31T14:55:00Z\", \"family\": \"price_measurement\", \"key\": \"KXAAAGASMAXNY-26DEC31-5.20\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for New York are strictly greater than $5.20 by Dec 31, 2026 according to AAA,  the market resolves to Yes.\", \"rationale\": \"The predicate is a measured retail gasoline-price threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXAAAGASMAXNY-26DEC31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMAXNY-26DEC31-5.40": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-12-31T14:55:00Z\", \"family\": \"price_measurement\", \"key\": \"KXAAAGASMAXNY-26DEC31-5.40\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for New York are strictly greater than $5.40 by Dec 31, 2026 according to AAA,  the market resolves to Yes.\", \"rationale\": \"The predicate is a measured retail gasoline-price threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXAAAGASMAXNY-26DEC31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMAXNY-26DEC31-5.60": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-12-31T14:55:00Z\", \"family\": \"price_measurement\", \"key\": \"KXAAAGASMAXNY-26DEC31-5.60\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for New York are strictly greater than $5.60 by Dec 31, 2026 according to AAA,  the market resolves to Yes.\", \"rationale\": \"The predicate is a measured retail gasoline-price threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXAAAGASMAXNY-26DEC31\", \"web_search_used\": false}"
+      },
+      "KXAAAGASMAXNY-26DEC31-6.00": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-12-31T14:55:00Z\", \"family\": \"price_measurement\", \"key\": \"KXAAAGASMAXNY-26DEC31-6.00\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If average regular gas prices for New York are strictly greater than $6.00 by Dec 31, 2026 according to AAA,  the market resolves to Yes.\", \"rationale\": \"The predicate is a measured retail gasoline-price threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXAAAGASMAXNY-26DEC31\", \"web_search_used\": false}"
+      },
+      "KXALBUMRELEASEDATEBEY-NEW-JAN01-27": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"unresolved\", \"deadline\": \"Jan 1, 2027\", \"family\": \"commercial_media_release\", \"key\": \"KXALBUMRELEASEDATEBEY-NEW-JAN01-27\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"Artist and distributor complete and publicly release a qualifying album\"}], \"obstacle\": \"none established\", \"predicate\": \"If Beyonce releases a new album before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"A release is an organizational process, but the focused official-site search found no dated primary announcement or documented obstacle for a qualifying album by the deadline.\", \"source_gaps\": [\"Official album announcement, release date, or production status\"], \"sources\": [], \"subject_key\": \"KXALBUMRELEASEDATEBEY-NEW\", \"web_search_used\": true}"
+      },
+      "KXALBUMRELEASEDATEBEY-NEW-JUN01-27": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"unresolved\", \"deadline\": \"2027-06-01T14:00:00Z\", \"family\": \"commercial_media_release\", \"key\": \"KXALBUMRELEASEDATEBEY-NEW-JUN01-27\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"Artist and distributor complete and publicly release a qualifying album\"}], \"obstacle\": \"none established\", \"predicate\": \"If Beyonce releases a new album before Jun 1, 2027, then the market resolves to Yes.\", \"rationale\": \"A release is an organizational process, but the focused official-site search found no dated primary announcement or documented obstacle for a qualifying album by the deadline.\", \"source_gaps\": [\"Official album announcement, release date, or production status\"], \"sources\": [], \"subject_key\": \"KXALBUMRELEASEDATEBEY-NEW\", \"web_search_used\": true}"
+      },
+      "KXAUCTIONRECORD-27-BAS-110500000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-01-01T15:00:00Z\", \"family\": \"auction_price_outcome\", \"key\": \"KXAUCTIONRECORD-27-BAS-110500000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the highest publicly reported auction sale price of any Jean-Michel Basquiat artwork sold at public auction in 2026 is above $110.5M, then the market resolves to Yes.\", \"rationale\": \"The predicate is the price achieved by an artwork at auction; no necessary institutional decision sequence determines it.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXAUCTIONRECORD-27-BAS\", \"web_search_used\": false}"
+      },
+      "KXAZSEMIJOBS-27JUN04-T24431": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026\", \"family\": \"economic_measurement\", \"key\": \"KXAZSEMIJOBS-27JUN04-T24431\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Arizona\\u2019s annual average employment in Semiconductor and Other Electronic Component Manufacturing for 2026 is above 24,431 employees, then the market resolves to Yes.\", \"rationale\": \"The predicate is a published annual-average employment measurement.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXAZSEMIJOBS-27JUN04\", \"web_search_used\": false}"
+      },
+      "KXBOUGAINVILLEIND-27JAN01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"not needed on the documented path\", \"deadline\": \"Jan 1, 2027\", \"family\": \"constitutional_ratification\", \"key\": \"KXBOUGAINVILLEIND-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://www.pmnec.gov.pg/pm-marape-calls-for-peace-wisdom-and-informed-deliberationas-historic-bougainville-referendum-results-enter-parliament/\", \"status\": \"pending\", \"step\": \"PNG National Parliament makes the final decision on the referendum outcome\"}], \"obstacle\": \"none established\", \"predicate\": \"If Papua New Guinea has agreed to or announced the ratification of Bougainville's independence before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"PNG's prime-ministerial department reports that the referendum package entered Parliament on September 3 and that Parliament could return to it in October. That is affirmative, dated progress on the required ratification path.\", \"source_gaps\": [\"none material to classifying the documented path\"], \"sources\": [{\"accessed_at\": \"2026-09-05T19:58:18.638493+00:00\", \"published_at\": \"2026-09-03\", \"quote\": \"Today\\u2019s Tabling is therefore an important milestone, but it is not the conclusion of the Parliamentary process.\", \"supports\": \"The referendum result and supporting reports were tabled, with Parliament expected to return to the matter, possibly in October.\", \"title\": \"PM Marape calls for deliberation as Bougainville referendum results enter Parliament\", \"url\": \"https://www.pmnec.gov.pg/pm-marape-calls-for-peace-wisdom-and-informed-deliberationas-historic-bougainville-referendum-results-enter-parliament/\"}], \"subject_key\": \"KXBOUGAINVILLEIND\", \"web_search_used\": true}"
+      },
+      "KXCANCARBON-27": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"not needed on the documented path\", \"deadline\": \"Jan 1, 2027\", \"family\": \"legislative_repeal\", \"key\": \"KXCANCARBON-27\", \"mandatory_steps\": [{\"source_url\": \"https://www.canada.ca/en/department-finance/corporate/transparency/briefing-materials/2026/c15-eng.html\", \"status\": \"pending\", \"step\": \"Parliament passes and the Crown enacts legislation permanently repealing the federal fuel-charge framework\"}], \"obstacle\": \"none established\", \"predicate\": \"If Canada's federal carbon tax is repealed before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Official briefing material says legislation to permanently remove the consumer carbon price was before Parliament, providing a dated affirmative path before the contract deadline.\", \"source_gaps\": [\"none material to classifying the documented path\"], \"sources\": [{\"accessed_at\": \"2026-09-05T19:58:18.638493+00:00\", \"published_at\": \"2026-02-05\", \"quote\": \"Eliminating the fuel charge, which is currently before Parliament as part of Bill C-4, will give Canadian consumers and businesses certainty that the consumer carbon price is being permanently removed from legislation.\", \"supports\": \"The government had a repeal bill before Parliament and described its intended legal effect.\", \"title\": \"Briefing binder for the Minister of Finance on Bill C-15\", \"url\": \"https://www.canada.ca/en/department-finance/corporate/transparency/briefing-materials/2026/c15-eng.html\"}], \"subject_key\": \"KXCANCARBON-27\", \"web_search_used\": true}"
+      },
+      "KXDEFAULT-26DEC31": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027\", \"family\": \"default_occurrence\", \"key\": \"KXDEFAULT-26DEC31\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the U.S. Department of the Treasury announces that the United States Federal Government failed to make a scheduled payment on a Treasury note, bond, or bill; or that one of the three major credit ratings agencies designate any United States debt in any form of default, before 2027, then the market resolves to Yes.\", \"rationale\": \"The predicate is a missed debt payment or a ratings designation; it is an occurrence/assessment rather than completion of a necessary-step institutional process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXDEFAULT-26DEC31\", \"web_search_used\": false}"
+      },
+      "KXHKANEKNIGHT-26-YES": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"unresolved\", \"deadline\": \"Jan 1, 2027\", \"family\": \"honours_selection\", \"key\": \"KXHKANEKNIGHT-26-YES\", \"mandatory_steps\": [{\"source_url\": \"https://www.gov.uk/honours/honours-lists\", \"status\": \"unknown\", \"step\": \"Honours committees and the sovereign approve a knighthood for Harry Kane\"}, {\"source_url\": \"https://www.gov.uk/honours/honours-lists\", \"status\": \"pending\", \"step\": \"Award appears in an official honours list before year-end\"}], \"obstacle\": \"none established\", \"predicate\": \"If Harry Kane is confirmed to have been knighted by any of the Source Agencies after Issuance and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The official honours source identifies the remaining publication route, but no public record establishes that Kane has been selected or blocked; the confidential selection status is unavailable.\", \"source_gaps\": [\"Current confidential nomination and approval status\"], \"sources\": [{\"accessed_at\": \"2026-09-05T19:58:18.641944+00:00\", \"published_at\": \"unknown\", \"quote\": \"The lists of who\\u2019s received honours are published at New Year and on the King\\u2019s official birthday in June.\", \"supports\": \"The official source identifies the publication stages; no official record found named Harry Kane.\", \"title\": \"Honours lists\", \"url\": \"https://www.gov.uk/honours/honours-lists\"}], \"subject_key\": \"KXHKANEKNIGHT-26\", \"web_search_used\": true}"
+      },
+      "KXHORMUZWEEKLY-26SEP06-T10": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-09-08T13:00:00Z\", \"family\": \"transport_measurement\", \"key\": \"KXHORMUZWEEKLY-26SEP06-T10\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 10 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.\", \"rationale\": \"The predicate is a reported count of vessel transit calls during a fixed measurement window.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXHORMUZWEEKLY-26SEP06\", \"web_search_used\": false}"
+      },
+      "KXHORMUZWEEKLY-26SEP06-T15": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-09-08T13:00:00Z\", \"family\": \"transport_measurement\", \"key\": \"KXHORMUZWEEKLY-26SEP06-T15\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 15 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.\", \"rationale\": \"The predicate is a reported count of vessel transit calls during a fixed measurement window.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXHORMUZWEEKLY-26SEP06\", \"web_search_used\": false}"
+      },
+      "KXHORMUZWEEKLY-26SEP06-T20": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-09-08T13:00:00Z\", \"family\": \"transport_measurement\", \"key\": \"KXHORMUZWEEKLY-26SEP06-T20\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 20 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.\", \"rationale\": \"The predicate is a reported count of vessel transit calls during a fixed measurement window.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXHORMUZWEEKLY-26SEP06\", \"web_search_used\": false}"
+      },
+      "KXHORMUZWEEKLY-26SEP06-T25": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-09-08T13:00:00Z\", \"family\": \"transport_measurement\", \"key\": \"KXHORMUZWEEKLY-26SEP06-T25\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 25 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.\", \"rationale\": \"The predicate is a reported count of vessel transit calls during a fixed measurement window.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXHORMUZWEEKLY-26SEP06\", \"web_search_used\": false}"
+      },
+      "KXHORMUZWEEKLY-26SEP06-T30": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-09-08T13:00:00Z\", \"family\": \"transport_measurement\", \"key\": \"KXHORMUZWEEKLY-26SEP06-T30\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 30 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.\", \"rationale\": \"The predicate is a reported count of vessel transit calls during a fixed measurement window.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXHORMUZWEEKLY-26SEP06\", \"web_search_used\": false}"
+      },
+      "KXHORMUZWEEKLY-26SEP06-T45": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-09-08T13:00:00Z\", \"family\": \"transport_measurement\", \"key\": \"KXHORMUZWEEKLY-26SEP06-T45\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 45 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.\", \"rationale\": \"The predicate is a reported count of vessel transit calls during a fixed measurement window.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXHORMUZWEEKLY-26SEP06\", \"web_search_used\": false}"
+      },
+      "KXME-26DEC31-69000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-01-01T15:00:00Z\", \"family\": \"market_measurement\", \"key\": \"KXME-26DEC31-69000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the value of S&P/BMV IPC Index (ME) is at least MX$69,000 from Jun 23, 2026 to Dec 31, 2026, then the market resolves to Yes.\", \"rationale\": \"The predicate is an index-level measurement.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXME-26DEC31\", \"web_search_used\": false}"
+      },
+      "KXME-26DEC31-70000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-01-01T15:00:00Z\", \"family\": \"market_measurement\", \"key\": \"KXME-26DEC31-70000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the value of S&P/BMV IPC Index (ME) is at least MX$70,000 from Jun 23, 2026 to Dec 31, 2026, then the market resolves to Yes.\", \"rationale\": \"The predicate is an index-level measurement.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXME-26DEC31\", \"web_search_used\": false}"
+      },
+      "KXNORDSTREAM2-26-27": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"unresolved\", \"deadline\": \"Jan 1, 2027\", \"family\": \"regulatory_certification_and_commissioning\", \"key\": \"KXNORDSTREAM2-26-27\", \"mandatory_steps\": [{\"source_url\": \"https://www.bundesnetzagentur.de/SharedDocs/Downloads/EN/BNetzA/PressSection/PressReleases/2021/20211116_NOS2.pdf?__blob=publicationFile&v=1\", \"status\": \"unknown\", \"step\": \"German regulator certifies an eligible transmission-system operator\"}, {\"source_url\": \"https://www.bundesnetzagentur.de/SharedDocs/Downloads/EN/BNetzA/PressSection/PressReleases/2021/20211116_NOS2.pdf?__blob=publicationFile&v=1\", \"status\": \"unknown\", \"step\": \"Pipeline is technically available and placed into commercial service\"}], \"obstacle\": \"none established\", \"predicate\": \"If Nord Stream 2 enters service before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"A regulator record documents a suspended certification prerequisite, but it is from 2021 and the focused search did not establish current certification, repair, or commissioning status at the cutoff.\", \"source_gaps\": [\"Current regulator docket status\", \"Current physical operability and commissioning plan\"], \"sources\": [{\"accessed_at\": \"2026-09-05T19:58:18.640493+00:00\", \"published_at\": \"2021-11-16\", \"quote\": \"The certification procedure will remain suspended until the main assets and human resources have been transferred to the subsidiary.\", \"supports\": \"The last directly located regulator record documents an unfinished certification prerequisite, but is stale for the decision date.\", \"title\": \"Certification procedure for Nord Stream 2 suspended\", \"url\": \"https://www.bundesnetzagentur.de/SharedDocs/Downloads/EN/BNetzA/PressSection/PressReleases/2021/20211116_NOS2.pdf?__blob=publicationFile&v=1\"}], \"subject_key\": \"KXNORDSTREAM2-26\", \"web_search_used\": true}"
+      },
+      "KXSOLMAXMON-SOL-26SEP30-11000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"11:59 PM ET on Sep 30, 2026 is ever above $\\n110\", \"family\": \"market_measurement\", \"key\": \"KXSOLMAXMON-SOL-26SEP30-11000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\\n110.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a measured cryptocurrency-price threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXSOLMAXMON-SOL-26SEP30\", \"web_search_used\": false}"
+      },
+      "KXSOLMAXMON-SOL-26SEP30-11500": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"11:59 PM ET on Sep 30, 2026 is ever above $\\n115\", \"family\": \"market_measurement\", \"key\": \"KXSOLMAXMON-SOL-26SEP30-11500\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\\n115.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a measured cryptocurrency-price threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXSOLMAXMON-SOL-26SEP30\", \"web_search_used\": false}"
+      },
+      "KXSOLMAXMON-SOL-26SEP30-12000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"11:59 PM ET on Sep 30, 2026 is ever above $\\n120\", \"family\": \"market_measurement\", \"key\": \"KXSOLMAXMON-SOL-26SEP30-12000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\\n120.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a measured cryptocurrency-price threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXSOLMAXMON-SOL-26SEP30\", \"web_search_used\": false}"
+      },
+      "KXSOLMAXMON-SOL-26SEP30-12500": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"11:59 PM ET on Sep 30, 2026 is ever above $\\n125\", \"family\": \"market_measurement\", \"key\": \"KXSOLMAXMON-SOL-26SEP30-12500\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\\n125.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a measured cryptocurrency-price threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXSOLMAXMON-SOL-26SEP30\", \"web_search_used\": false}"
+      },
+      "KXSOLMAXMON-SOL-26SEP30-13000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"11:59 PM ET on Sep 30, 2026 is ever above $\\n130\", \"family\": \"market_measurement\", \"key\": \"KXSOLMAXMON-SOL-26SEP30-13000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\\n130.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a measured cryptocurrency-price threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXSOLMAXMON-SOL-26SEP30\", \"web_search_used\": false}"
+      },
+      "KXSOLMAXMON-SOL-26SEP30-13500": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"11:59 PM ET on Sep 30, 2026 is ever above $\\n135\", \"family\": \"market_measurement\", \"key\": \"KXSOLMAXMON-SOL-26SEP30-13500\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\\n135.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a measured cryptocurrency-price threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXSOLMAXMON-SOL-26SEP30\", \"web_search_used\": false}"
+      },
+      "KXSOLMAXMON-SOL-26SEP30-14000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"11:59 PM ET on Sep 30, 2026 is ever above $\\n140\", \"family\": \"market_measurement\", \"key\": \"KXSOLMAXMON-SOL-26SEP30-14000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\\n140.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a measured cryptocurrency-price threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXSOLMAXMON-SOL-26SEP30\", \"web_search_used\": false}"
+      },
+      "KXSOLMAXMON-SOL-26SEP30-14500": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"11:59 PM ET on Sep 30, 2026 is ever above $\\n145\", \"family\": \"market_measurement\", \"key\": \"KXSOLMAXMON-SOL-26SEP30-14500\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\\n145.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a measured cryptocurrency-price threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXSOLMAXMON-SOL-26SEP30\", \"web_search_used\": false}"
+      },
+      "KXSOLMINY-SOL-26DEC31-4000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"11:59 PM ET on Dec 31, 2026 is ever below $40\", \"family\": \"market_measurement\", \"key\": \"KXSOLMINY-SOL-26DEC31-4000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of SOL after issuance and through 11:59 PM ET on Dec 31, 2026 is ever below $40.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a measured cryptocurrency-price threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXSOLMINY-SOL-26DEC31\", \"web_search_used\": false}"
+      },
+      "KXVICTORIAPREMIER-27JAN01-DOBR": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"unresolved\", \"deadline\": \"Jan 1, 2027\", \"family\": \"election_and_commissioning\", \"key\": \"KXVICTORIAPREMIER-27JAN01-DOBR\", \"mandatory_steps\": [{\"source_url\": \"https://www.parliament.vic.gov.au/election\", \"status\": \"unknown\", \"step\": \"Named person is validly nominated and wins or can command government after the November 28 election\"}, {\"source_url\": \"https://www.parliament.vic.gov.au/election\", \"status\": \"pending\", \"step\": \"Caretaker period ends with returned government clear or incoming premier sworn in\"}], \"obstacle\": \"none established\", \"predicate\": \"If Danny O'Brien is the first person to serve as Premier of Victoria after the caretaker period for the 2026 Victorian state election ends before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The official timetable confirms the election and caretaker sequence, but nominations had not opened and no primary source located establishes a specific named candidate's path to be the first qualifying premier.\", \"source_gaps\": [\"Candidate nomination and party-leadership status for each named person at the decision cutoff\"], \"sources\": [{\"accessed_at\": \"2026-09-05T19:58:18.639494+00:00\", \"published_at\": \"unknown\", \"quote\": \"The next Victorian state election will be held on Saturday, 28 November 2026.\", \"supports\": \"The official election timetable shows nominations had not yet opened and the election was still pending.\", \"title\": \"2026 Victorian state election\", \"url\": \"https://www.parliament.vic.gov.au/election\"}], \"subject_key\": \"victoria_premier_2026::Danny O'Brien\", \"web_search_used\": true}"
+      },
+      "KXVICTORIAPREMIER-27JAN01-ESAN": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"unresolved\", \"deadline\": \"Jan 1, 2027\", \"family\": \"election_and_commissioning\", \"key\": \"KXVICTORIAPREMIER-27JAN01-ESAN\", \"mandatory_steps\": [{\"source_url\": \"https://www.parliament.vic.gov.au/election\", \"status\": \"unknown\", \"step\": \"Named person is validly nominated and wins or can command government after the November 28 election\"}, {\"source_url\": \"https://www.parliament.vic.gov.au/election\", \"status\": \"pending\", \"step\": \"Caretaker period ends with returned government clear or incoming premier sworn in\"}], \"obstacle\": \"none established\", \"predicate\": \"If Ellen Sandell is the first person to serve as Premier of Victoria after the caretaker period for the 2026 Victorian state election ends before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The official timetable confirms the election and caretaker sequence, but nominations had not opened and no primary source located establishes a specific named candidate's path to be the first qualifying premier.\", \"source_gaps\": [\"Candidate nomination and party-leadership status for each named person at the decision cutoff\"], \"sources\": [{\"accessed_at\": \"2026-09-05T19:58:18.639494+00:00\", \"published_at\": \"unknown\", \"quote\": \"The next Victorian state election will be held on Saturday, 28 November 2026.\", \"supports\": \"The official election timetable shows nominations had not yet opened and the election was still pending.\", \"title\": \"2026 Victorian state election\", \"url\": \"https://www.parliament.vic.gov.au/election\"}], \"subject_key\": \"victoria_premier_2026::Ellen Sandell\", \"web_search_used\": true}"
+      },
+      "KXVICTORIAPREMIER-27JAN01-WPIC": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"unresolved\", \"deadline\": \"Jan 1, 2027\", \"family\": \"election_and_commissioning\", \"key\": \"KXVICTORIAPREMIER-27JAN01-WPIC\", \"mandatory_steps\": [{\"source_url\": \"https://www.parliament.vic.gov.au/election\", \"status\": \"unknown\", \"step\": \"Named person is validly nominated and wins or can command government after the November 28 election\"}, {\"source_url\": \"https://www.parliament.vic.gov.au/election\", \"status\": \"pending\", \"step\": \"Caretaker period ends with returned government clear or incoming premier sworn in\"}], \"obstacle\": \"none established\", \"predicate\": \"If Warren Pickering is the first person to serve as Premier of Victoria after the caretaker period for the 2026 Victorian state election ends before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The official timetable confirms the election and caretaker sequence, but nominations had not opened and no primary source located establishes a specific named candidate's path to be the first qualifying premier.\", \"source_gaps\": [\"Candidate nomination and party-leadership status for each named person at the decision cutoff\"], \"sources\": [{\"accessed_at\": \"2026-09-05T19:58:18.639494+00:00\", \"published_at\": \"unknown\", \"quote\": \"The next Victorian state election will be held on Saturday, 28 November 2026.\", \"supports\": \"The official election timetable shows nominations had not yet opened and the election was still pending.\", \"title\": \"2026 Victorian state election\", \"url\": \"https://www.parliament.vic.gov.au/election\"}], \"subject_key\": \"victoria_premier_2026::Warren Pickering\", \"web_search_used\": true}"
+      },
+      "KXVTMAPLE-27JUN30-T2.7": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-06-30T15:29:00Z\", \"family\": \"production_measurement\", \"key\": \"KXVTMAPLE-27JUN30-T2.7\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports Vermont\\u2019s maple syrup production for 2027 is above \\n\\n2.7 million gallons, then the market resolves to Yes.\", \"rationale\": \"The predicate is an agricultural production total.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXVTMAPLE-27JUN30\", \"web_search_used\": false}"
+      },
+      "KXVTMAPLE-27JUN30-T2.8": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-06-30T15:29:00Z\", \"family\": \"production_measurement\", \"key\": \"KXVTMAPLE-27JUN30-T2.8\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports Vermont\\u2019s maple syrup production for 2027 is above \\n\\n2.8 million gallons, then the market resolves to Yes.\", \"rationale\": \"The predicate is an agricultural production total.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXVTMAPLE-27JUN30\", \"web_search_used\": false}"
+      },
+      "KXVTMAPLE-27JUN30-T2.9": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-06-30T15:29:00Z\", \"family\": \"production_measurement\", \"key\": \"KXVTMAPLE-27JUN30-T2.9\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports Vermont\\u2019s maple syrup production for 2027 is above \\n\\n2.9 million gallons, then the market resolves to Yes.\", \"rationale\": \"The predicate is an agricultural production total.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXVTMAPLE-27JUN30\", \"web_search_used\": false}"
+      },
+      "KXVTMAPLE-27JUN30-T3.0": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-06-30T15:29:00Z\", \"family\": \"production_measurement\", \"key\": \"KXVTMAPLE-27JUN30-T3.0\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports Vermont\\u2019s maple syrup production for 2027 is above \\n\\n3.0 million gallons, then the market resolves to Yes.\", \"rationale\": \"The predicate is an agricultural production total.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXVTMAPLE-27JUN30\", \"web_search_used\": false}"
+      },
+      "KXVTMAPLE-27JUN30-T3.2": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-06-30T15:29:00Z\", \"family\": \"production_measurement\", \"key\": \"KXVTMAPLE-27JUN30-T3.2\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports Vermont\\u2019s maple syrup production for 2027 is above \\n\\n3.2 million gallons, then the market resolves to Yes.\", \"rationale\": \"The predicate is an agricultural production total.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXVTMAPLE-27JUN30\", \"web_search_used\": false}"
+      },
+      "KXVTMAPLE-27JUN30-T3.3": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-06-30T15:29:00Z\", \"family\": \"production_measurement\", \"key\": \"KXVTMAPLE-27JUN30-T3.3\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If USDA NASS reports Vermont\\u2019s maple syrup production for 2027 is above \\n\\n3.3 million gallons, then the market resolves to Yes.\", \"rationale\": \"The predicate is an agricultural production total.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"KXVTMAPLE-27JUN30\", \"web_search_used\": false}"
+      }
+    },
+    "web_search": true
+  },
+  "request": {
+    "batch_id": "1",
+    "candidate_keys": [
+      "KXCANCARBON-27",
+      "KXBOUGAINVILLEIND-27JAN01",
+      "KXVICTORIAPREMIER-27JAN01-DOBR",
+      "KXVICTORIAPREMIER-27JAN01-ESAN",
+      "KXVICTORIAPREMIER-27JAN01-WPIC",
+      "KXDEFAULT-26DEC31",
+      "KXSOLMINY-SOL-26DEC31-4000",
+      "KXAZSEMIJOBS-27JUN04-T24431",
+      "KXAAAGASMAXNY-26DEC31-4.80",
+      "KXAAAGASMAXNY-26DEC31-5.00",
+      "KXAAAGASMAXNY-26DEC31-5.20",
+      "KXAAAGASMAXNY-26DEC31-5.40",
+      "KXAAAGASMAXNY-26DEC31-5.60",
+      "KXAAAGASMAXNY-26DEC31-6.00",
+      "KXVTMAPLE-27JUN30-T2.7",
+      "KXVTMAPLE-27JUN30-T2.8",
+      "KXVTMAPLE-27JUN30-T2.9",
+      "KXVTMAPLE-27JUN30-T3.0",
+      "KXVTMAPLE-27JUN30-T3.2",
+      "KXVTMAPLE-27JUN30-T3.3",
+      "KXME-26DEC31-69000",
+      "KXME-26DEC31-70000",
+      "KXSOLMAXMON-SOL-26SEP30-11000",
+      "KXSOLMAXMON-SOL-26SEP30-11500",
+      "KXSOLMAXMON-SOL-26SEP30-12000",
+      "KXSOLMAXMON-SOL-26SEP30-12500",
+      "KXSOLMAXMON-SOL-26SEP30-13000",
+      "KXSOLMAXMON-SOL-26SEP30-13500",
+      "KXSOLMAXMON-SOL-26SEP30-14000",
+      "KXSOLMAXMON-SOL-26SEP30-14500",
+      "KXNORDSTREAM2-26-27",
+      "KXAUCTIONRECORD-27-BAS-110500000",
+      "KXALBUMRELEASEDATEBEY-NEW-JAN01-27",
+      "KXALBUMRELEASEDATEBEY-NEW-JUN01-27",
+      "KXHORMUZWEEKLY-26SEP06-T10",
+      "KXHORMUZWEEKLY-26SEP06-T15",
+      "KXHORMUZWEEKLY-26SEP06-T20",
+      "KXHORMUZWEEKLY-26SEP06-T25",
+      "KXHORMUZWEEKLY-26SEP06-T30",
+      "KXHORMUZWEEKLY-26SEP06-T45",
+      "KXHKANEKNIGHT-26-YES"
+    ],
+    "decision_at": "2026-09-05T19:53:15.489944+00:00",
+    "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-001\\first-output.jsonl",
+    "payload": {
+      "decision_at": "2026-09-05T19:53:15.489944+00:00",
+      "events": [
+        {
+          "event_key": "KXCANCARBON-27",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXCANCARBON-27",
+              "key": "KXCANCARBON-27",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If Canada's federal carbon tax is repealed before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCANCARBON",
+              "subtitle": null,
+              "title": "Will the Canadian carbon tax be repealed before 2027?",
+              "yes_sub_title": "Before 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXBOUGAINVILLEIND",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXBOUGAINVILLEIND",
+              "key": "KXBOUGAINVILLEIND-27JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If Papua New Guinea has agreed to or announced the ratification of Bougainville's independence before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "An agreement or announcement qualifies if it involves formal signing of treaties, parliamentary approval with binding effect, official ratification, formal commitment by the head of state/government with constitutional authority, official statements by authorized ministers, official press releases, formal declarations during government proceedings, or official statements to international bodies. Phased implementation announcements and multi-party agreements where the country is a signatory qualify. Preliminary discussions, conditional agreements contingent on circumstances, opposition party statements, leaked documents, think-tank recommendations, general aspirations without specific commitment, draft legislation without approval, and regional actions (unless specified) do NOT qualify. Retraction of previously announced commitments also does not satisfy the criterion.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXBOUGAINVILLEIND",
+              "subtitle": null,
+              "title": "Will Papua New Guinea ratify Bougainville's independence before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXVICTORIAPREMIER-27JAN01",
+          "markets": [
+            {
+              "category": "Elections",
+              "event_key": "KXVICTORIAPREMIER-27JAN01",
+              "key": "KXVICTORIAPREMIER-27JAN01-DOBR",
+              "no_sub_title": "Danny O'Brien",
+              "rules_primary": "If Danny O'Brien is the first person to serve as Premier of Victoria after the caretaker period for the 2026 Victorian state election ends before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "This must be confirmed, verified, or established as factual by at least one Source Agency.\n\nThe qualifying person is the person serving as Premier of Victoria when the caretaker period following the 2026 Victorian state election ends. If the government changes, this is the incoming Premier sworn in by the Governor. If the incumbent government is returned, this is the Premier in office when the election result becomes clear. Service only in caretaker capacity before that point does NOT qualify.\n\nIf a person not listed on this event is the first qualifying Premier, every named market resolves NO. If the caretaker period has not ended and no person has qualified before January 1, 2027, every named market resolves NO.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXVICTORIAPREMIER",
+              "subtitle": null,
+              "title": "Will it be confirmed that Danny O'Brien is the first person to serve as Premier of Victoria after the caretaker period for the 2026 Victorian state election ends?",
+              "yes_sub_title": "Danny O'Brien"
+            },
+            {
+              "category": "Elections",
+              "event_key": "KXVICTORIAPREMIER-27JAN01",
+              "key": "KXVICTORIAPREMIER-27JAN01-ESAN",
+              "no_sub_title": "Ellen Sandell",
+              "rules_primary": "If Ellen Sandell is the first person to serve as Premier of Victoria after the caretaker period for the 2026 Victorian state election ends before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "This must be confirmed, verified, or established as factual by at least one Source Agency.\n\nThe qualifying person is the person serving as Premier of Victoria when the caretaker period following the 2026 Victorian state election ends. If the government changes, this is the incoming Premier sworn in by the Governor. If the incumbent government is returned, this is the Premier in office when the election result becomes clear. Service only in caretaker capacity before that point does NOT qualify.\n\nIf a person not listed on this event is the first qualifying Premier, every named market resolves NO. If the caretaker period has not ended and no person has qualified before January 1, 2027, every named market resolves NO.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXVICTORIAPREMIER",
+              "subtitle": null,
+              "title": "Will it be confirmed that Ellen Sandell is the first person to serve as Premier of Victoria after the caretaker period for the 2026 Victorian state election ends?",
+              "yes_sub_title": "Ellen Sandell"
+            },
+            {
+              "category": "Elections",
+              "event_key": "KXVICTORIAPREMIER-27JAN01",
+              "key": "KXVICTORIAPREMIER-27JAN01-WPIC",
+              "no_sub_title": "Warren Pickering",
+              "rules_primary": "If Warren Pickering is the first person to serve as Premier of Victoria after the caretaker period for the 2026 Victorian state election ends before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "This must be confirmed, verified, or established as factual by at least one Source Agency.\n\nThe qualifying person is the person serving as Premier of Victoria when the caretaker period following the 2026 Victorian state election ends. If the government changes, this is the incoming Premier sworn in by the Governor. If the incumbent government is returned, this is the Premier in office when the election result becomes clear. Service only in caretaker capacity before that point does NOT qualify.\n\nIf a person not listed on this event is the first qualifying Premier, every named market resolves NO. If the caretaker period has not ended and no person has qualified before January 1, 2027, every named market resolves NO.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXVICTORIAPREMIER",
+              "subtitle": null,
+              "title": "Will it be confirmed that Warren Pickering is the first person to serve as Premier of Victoria after the caretaker period for the 2026 Victorian state election ends?",
+              "yes_sub_title": "Warren Pickering"
+            }
+          ]
+        },
+        {
+          "event_key": "KXDEFAULT-26DEC31",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXDEFAULT-26DEC31",
+              "key": "KXDEFAULT-26DEC31",
+              "no_sub_title": "Defaults",
+              "rules_primary": "If the U.S. Department of the Treasury announces that the United States Federal Government failed to make a scheduled payment on a Treasury note, bond, or bill; or that one of the three major credit ratings agencies designate any United States debt in any form of default, before 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXDEFAULT",
+              "subtitle": null,
+              "title": "Will the US default on its debt by Dec 31, 2026?",
+              "yes_sub_title": "Defaults"
+            }
+          ]
+        },
+        {
+          "event_key": "KXSOLMINY-SOL-26DEC31",
+          "markets": [
+            {
+              "category": "Crypto",
+              "event_key": "KXSOLMINY-SOL-26DEC31",
+              "key": "KXSOLMINY-SOL-26DEC31-4000",
+              "no_sub_title": "Below $40.00",
+              "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Dec 31, 2026 is ever below $40.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2027-01-01T04:59:59Z",
+              "series": "KXSOLMINY",
+              "subtitle": null,
+              "title": "Will SOL trimmed mean be below $40.00 by 11:59 PM ET on Dec 31, 2026?",
+              "yes_sub_title": "Below $40.00"
+            }
+          ]
+        },
+        {
+          "event_key": "KXAZSEMIJOBS-27JUN04",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXAZSEMIJOBS-27JUN04",
+              "key": "KXAZSEMIJOBS-27JUN04-T24431",
+              "no_sub_title": "Above 24,431 employees",
+              "rules_primary": "If the Arizona\u2019s annual average employment in Semiconductor and Other Electronic Component Manufacturing for 2026 is above 24,431 employees, then the market resolves to Yes.",
+              "rules_secondary": "Resolution uses annual average employment in Arizona for NAICS 3344 - Semiconductor and Other Electronic Component Manufacturing, as reported by BLS QCEW. The 24,431-employee baseline is fixed to the published 2025 value at market launch; later revisions do not change the strike.\n\nQCEW publishes detailed industries for every state and annual-average files once the full year is available. For reference, the complete 2025 annual QCEW data became available with the fourth-quarter release on June 2, 2026.",
+              "scheduled_close": "2027-06-04T13:59:00Z",
+              "series": "KXAZSEMIJOBS",
+              "subtitle": null,
+              "title": "Will Arizona\u2019s annual average employment in Semiconductor and Other Electronic Component Manufacturing for 2026 be above 24,431 employees?",
+              "yes_sub_title": "Above 24,431 employees"
+            }
+          ]
+        },
+        {
+          "event_key": "KXAAAGASMAXNY-26DEC31",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXAAAGASMAXNY-26DEC31",
+              "key": "KXAAAGASMAXNY-26DEC31-4.80",
+              "no_sub_title": "Above $4.80",
+              "rules_primary": "If average regular gas prices for New York are strictly greater than $4.80 by Dec 31, 2026 according to AAA,  the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T14:55:00Z",
+              "series": "KXAAAGASMAXNY",
+              "subtitle": "$4.80",
+              "title": "Will average **gas prices** be above or below $4.80 by Dec 31, 2026?",
+              "yes_sub_title": "Above $4.80"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXAAAGASMAXNY-26DEC31",
+              "key": "KXAAAGASMAXNY-26DEC31-5.00",
+              "no_sub_title": "Above $5.00",
+              "rules_primary": "If average regular gas prices for New York are strictly greater than $5.00 by Dec 31, 2026 according to AAA,  the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T14:55:00Z",
+              "series": "KXAAAGASMAXNY",
+              "subtitle": "$5.00",
+              "title": "Will average **gas prices** be above or below $5.00 by Dec 31, 2026?",
+              "yes_sub_title": "Above $5.00"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXAAAGASMAXNY-26DEC31",
+              "key": "KXAAAGASMAXNY-26DEC31-5.20",
+              "no_sub_title": "Above $5.20",
+              "rules_primary": "If average regular gas prices for New York are strictly greater than $5.20 by Dec 31, 2026 according to AAA,  the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T14:55:00Z",
+              "series": "KXAAAGASMAXNY",
+              "subtitle": "$5.20",
+              "title": "Will average **gas prices** be above or below $5.20 by Dec 31, 2026?",
+              "yes_sub_title": "Above $5.20"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXAAAGASMAXNY-26DEC31",
+              "key": "KXAAAGASMAXNY-26DEC31-5.40",
+              "no_sub_title": "Above $5.40",
+              "rules_primary": "If average regular gas prices for New York are strictly greater than $5.40 by Dec 31, 2026 according to AAA,  the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T14:55:00Z",
+              "series": "KXAAAGASMAXNY",
+              "subtitle": "$5.40",
+              "title": "Will average **gas prices** be above or below $5.40 by Dec 31, 2026?",
+              "yes_sub_title": "Above $5.40"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXAAAGASMAXNY-26DEC31",
+              "key": "KXAAAGASMAXNY-26DEC31-5.60",
+              "no_sub_title": "Above $5.60",
+              "rules_primary": "If average regular gas prices for New York are strictly greater than $5.60 by Dec 31, 2026 according to AAA,  the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-31T14:55:00Z",
+              "series": "KXAAAGASMAXNY",
+              "subtitle": "$5.60",
+              "title": "Will average **gas prices** be above or below $5.60 by Dec 31, 2026?",
+              "yes_sub_title": "Above $5.60"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXAAAGASMAXNY-26DEC31",
+              "key": "KXAAAGASMAXNY-26DEC31-6.00",
+              "no_sub_title": "Above $6.00",
+              "rules_primary": "If average regular gas prices for New York are strictly greater than $6.00 by Dec 31, 2026 according to AAA,  the market resolves to Yes.",
+              "rules_secondary": " ",
+              "scheduled_close": "2026-12-31T14:55:00Z",
+              "series": "KXAAAGASMAXNY",
+              "subtitle": "$6.00",
+              "title": "Will average **gas prices** be above or below $6.00 by Dec 31, 2026?",
+              "yes_sub_title": "Above $6.00"
+            }
+          ]
+        },
+        {
+          "event_key": "KXVTMAPLE-27JUN30",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXVTMAPLE-27JUN30",
+              "key": "KXVTMAPLE-27JUN30-T2.7",
+              "no_sub_title": "Above 2.7 million gallons",
+              "rules_primary": "If USDA NASS reports Vermont\u2019s maple syrup production for 2027 is above \n\n2.7 million gallons, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is USDA NASS\u2019s reported 2027 Vermont maple syrup production, measured in gallons.\n\nHow to locate the Underlying:\nUse Maple Syrup \u2192 Production \u2192 Gallons. The equivalent 2026 page currently reports 3,091,000 gallons.",
+              "scheduled_close": "2027-06-30T15:29:00Z",
+              "series": "KXVTMAPLE",
+              "subtitle": null,
+              "title": "Will Vermont\u2019s maple syrup production for 2027 be above 2.7 million gallons?",
+              "yes_sub_title": "Above 2.7 million gallons"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXVTMAPLE-27JUN30",
+              "key": "KXVTMAPLE-27JUN30-T2.8",
+              "no_sub_title": "Above 2.8 million gallons",
+              "rules_primary": "If USDA NASS reports Vermont\u2019s maple syrup production for 2027 is above \n\n2.8 million gallons, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is USDA NASS\u2019s reported 2027 Vermont maple syrup production, measured in gallons.\n\nHow to locate the Underlying:\nUse Maple Syrup \u2192 Production \u2192 Gallons. The equivalent 2026 page currently reports 3,091,000 gallons.",
+              "scheduled_close": "2027-06-30T15:29:00Z",
+              "series": "KXVTMAPLE",
+              "subtitle": null,
+              "title": "Will Vermont\u2019s maple syrup production for 2027 be above 2.8 million gallons?",
+              "yes_sub_title": "Above 2.8 million gallons"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXVTMAPLE-27JUN30",
+              "key": "KXVTMAPLE-27JUN30-T2.9",
+              "no_sub_title": "Above 2.9 million gallons",
+              "rules_primary": "If USDA NASS reports Vermont\u2019s maple syrup production for 2027 is above \n\n2.9 million gallons, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is USDA NASS\u2019s reported 2027 Vermont maple syrup production, measured in gallons.\n\nHow to locate the Underlying:\nUse Maple Syrup \u2192 Production \u2192 Gallons. The equivalent 2026 page currently reports 3,091,000 gallons.",
+              "scheduled_close": "2027-06-30T15:29:00Z",
+              "series": "KXVTMAPLE",
+              "subtitle": null,
+              "title": "Will Vermont\u2019s maple syrup production for 2027 be above 2.9 million gallons?",
+              "yes_sub_title": "Above 2.9 million gallons"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXVTMAPLE-27JUN30",
+              "key": "KXVTMAPLE-27JUN30-T3.0",
+              "no_sub_title": "Above 3.0 million gallons",
+              "rules_primary": "If USDA NASS reports Vermont\u2019s maple syrup production for 2027 is above \n\n3.0 million gallons, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is USDA NASS\u2019s reported 2027 Vermont maple syrup production, measured in gallons.\n\nHow to locate the Underlying:\nUse Maple Syrup \u2192 Production \u2192 Gallons. The equivalent 2026 page currently reports 3,091,000 gallons.",
+              "scheduled_close": "2027-06-30T15:29:00Z",
+              "series": "KXVTMAPLE",
+              "subtitle": null,
+              "title": "Will Vermont\u2019s maple syrup production for 2027 be above 3.0 million gallons?",
+              "yes_sub_title": "Above 3.0 million gallons"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXVTMAPLE-27JUN30",
+              "key": "KXVTMAPLE-27JUN30-T3.2",
+              "no_sub_title": "Above 3.2 million gallons",
+              "rules_primary": "If USDA NASS reports Vermont\u2019s maple syrup production for 2027 is above \n\n3.2 million gallons, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is USDA NASS\u2019s reported 2027 Vermont maple syrup production, measured in gallons.\n\nHow to locate the Underlying:\nUse Maple Syrup \u2192 Production \u2192 Gallons. The equivalent 2026 page currently reports 3,091,000 gallons.",
+              "scheduled_close": "2027-06-30T15:29:00Z",
+              "series": "KXVTMAPLE",
+              "subtitle": null,
+              "title": "Will Vermont\u2019s maple syrup production for 2027 be above 3.2 million gallons?",
+              "yes_sub_title": "Above 3.2 million gallons"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXVTMAPLE-27JUN30",
+              "key": "KXVTMAPLE-27JUN30-T3.3",
+              "no_sub_title": "Above 3.3 million gallons",
+              "rules_primary": "If USDA NASS reports Vermont\u2019s maple syrup production for 2027 is above \n\n3.3 million gallons, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is USDA NASS\u2019s reported 2027 Vermont maple syrup production, measured in gallons.\n\nHow to locate the Underlying:\nUse Maple Syrup \u2192 Production \u2192 Gallons. The equivalent 2026 page currently reports 3,091,000 gallons.",
+              "scheduled_close": "2027-06-30T15:29:00Z",
+              "series": "KXVTMAPLE",
+              "subtitle": null,
+              "title": "Will Vermont\u2019s maple syrup production for 2027 be above 3.3 million gallons?",
+              "yes_sub_title": "Above 3.3 million gallons"
+            }
+          ]
+        },
+        {
+          "event_key": "KXME-26DEC31",
+          "markets": [
+            {
+              "category": "Financials",
+              "event_key": "KXME-26DEC31",
+              "key": "KXME-26DEC31-69000",
+              "no_sub_title": "At least MX$69,000",
+              "rules_primary": "If the value of S&P/BMV IPC Index (ME) is at least MX$69,000 from Jun 23, 2026 to Dec 31, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the value of the S&P/BMV IPC Index as reported by the Trading View, using the index's natively published level in its own currency and units; no currency conversion is applied. It is sufficient for the index to reach or exceed MX$69,000 at any single point during from Jun 23, 2026 to Dec 31, 2026 for the market to resolve to Yes \u2014 the level does not need to be sustained. If the index does not reach MX$69,000 at any point during from Jun 23, 2026 to Dec 31, 2026, the market resolves to No. Revisions to the underlying made after expiration will not be accounted for in determining the Expiration Value. \n\nIf no data is available for from Jun 23, 2026 to Dec 31, 2026 by the Expiration Date, all strikes other than \"No data\" or \"None\" resolve to No. The index level is evaluated to two decimal places unless otherwise specified.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXME",
+              "subtitle": null,
+              "title": "Will the S&P/BMV IPC Index be at least MX$69,000 in 2026?",
+              "yes_sub_title": "At least MX$69,000"
+            },
+            {
+              "category": "Financials",
+              "event_key": "KXME-26DEC31",
+              "key": "KXME-26DEC31-70000",
+              "no_sub_title": "At least MX$70,000",
+              "rules_primary": "If the value of S&P/BMV IPC Index (ME) is at least MX$70,000 from Jun 23, 2026 to Dec 31, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the value of the S&P/BMV IPC Index as reported by the Trading View, using the index's natively published level in its own currency and units; no currency conversion is applied. It is sufficient for the index to reach or exceed MX$70,000 at any single point during from Jun 23, 2026 to Dec 31, 2026 for the market to resolve to Yes \u2014 the level does not need to be sustained. If the index does not reach MX$70,000 at any point during from Jun 23, 2026 to Dec 31, 2026, the market resolves to No. Revisions to the underlying made after expiration will not be accounted for in determining the Expiration Value. \n\nIf no data is available for from Jun 23, 2026 to Dec 31, 2026 by the Expiration Date, all strikes other than \"No data\" or \"None\" resolve to No. The index level is evaluated to two decimal places unless otherwise specified.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXME",
+              "subtitle": null,
+              "title": "Will the S&P/BMV IPC Index be at least MX$70,000 in 2026?",
+              "yes_sub_title": "At least MX$70,000"
+            }
+          ]
+        },
+        {
+          "event_key": "KXSOLMAXMON-SOL-26SEP30",
+          "markets": [
+            {
+              "category": "Crypto",
+              "event_key": "KXSOLMAXMON-SOL-26SEP30",
+              "key": "KXSOLMAXMON-SOL-26SEP30-11000",
+              "no_sub_title": "Above $110.00",
+              "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n110.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXSOLMAXMON",
+              "subtitle": null,
+              "title": "Will SOL trimmed mean be above $110.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Above $110.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXSOLMAXMON-SOL-26SEP30",
+              "key": "KXSOLMAXMON-SOL-26SEP30-11500",
+              "no_sub_title": "Above $115.00",
+              "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n115.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXSOLMAXMON",
+              "subtitle": null,
+              "title": "Will SOL trimmed mean be above $115.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Above $115.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXSOLMAXMON-SOL-26SEP30",
+              "key": "KXSOLMAXMON-SOL-26SEP30-12000",
+              "no_sub_title": "Above $120.00",
+              "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n120.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXSOLMAXMON",
+              "subtitle": null,
+              "title": "Will SOL trimmed mean be above $120.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Above $120.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXSOLMAXMON-SOL-26SEP30",
+              "key": "KXSOLMAXMON-SOL-26SEP30-12500",
+              "no_sub_title": "Above $125.00",
+              "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n125.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXSOLMAXMON",
+              "subtitle": null,
+              "title": "Will SOL trimmed mean be above $125.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Above $125.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXSOLMAXMON-SOL-26SEP30",
+              "key": "KXSOLMAXMON-SOL-26SEP30-13000",
+              "no_sub_title": "Above $130.00",
+              "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n130.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXSOLMAXMON",
+              "subtitle": null,
+              "title": "Will SOL trimmed mean be above $130.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Above $130.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXSOLMAXMON-SOL-26SEP30",
+              "key": "KXSOLMAXMON-SOL-26SEP30-13500",
+              "no_sub_title": "Above $135.00",
+              "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n135.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXSOLMAXMON",
+              "subtitle": null,
+              "title": "Will SOL trimmed mean be above $135.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Above $135.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXSOLMAXMON-SOL-26SEP30",
+              "key": "KXSOLMAXMON-SOL-26SEP30-14000",
+              "no_sub_title": "Above $140.00",
+              "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n140.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXSOLMAXMON",
+              "subtitle": null,
+              "title": "Will SOL trimmed mean be above $140.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Above $140.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXSOLMAXMON-SOL-26SEP30",
+              "key": "KXSOLMAXMON-SOL-26SEP30-14500",
+              "no_sub_title": "Above $145.00",
+              "rules_primary": "If the price of SOL after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n145.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF SOLUSD_RTI price for SOL. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXSOLMAXMON",
+              "subtitle": null,
+              "title": "Will SOL trimmed mean be above $145.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Above $145.00"
+            }
+          ]
+        },
+        {
+          "event_key": "KXNORDSTREAM2-26",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXNORDSTREAM2-26",
+              "key": "KXNORDSTREAM2-26-27",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If Nord Stream 2 enters service before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXNORDSTREAM2",
+              "subtitle": null,
+              "title": "Will NordStream 2 enter service before Jan 1, 2027?",
+              "yes_sub_title": "Before 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXAUCTIONRECORD-27-BAS",
+          "markets": [
+            {
+              "category": "Entertainment",
+              "event_key": "KXAUCTIONRECORD-27-BAS",
+              "key": "KXAUCTIONRECORD-27-BAS-110500000",
+              "no_sub_title": "Above $110.5M",
+              "rules_primary": "If the highest publicly reported auction sale price of any Jean-Michel Basquiat artwork sold at public auction in 2026 is above $110.5M, then the market resolves to Yes.",
+              "rules_secondary": "\u201cSale Price\u201d refers to the final publicly reported realized price of the artwork, including buyer\u2019s premium and auction fees, as reported by the relevant Source Agency.\n\nThis market and these products have not been endorsed by Sotheby\u2019s. Any references to Sotheby\u2019s, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Sotheby\u2019s and Kalshi.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXAUCTIONRECORD",
+              "subtitle": "Above $110.5M",
+              "title": "Will Jean-Michel Basquiat break his auction record this season?",
+              "yes_sub_title": "Above $110.5M"
+            }
+          ]
+        },
+        {
+          "event_key": "KXALBUMRELEASEDATEBEY-NEW",
+          "markets": [
+            {
+              "category": "Entertainment",
+              "event_key": "KXALBUMRELEASEDATEBEY-NEW",
+              "key": "KXALBUMRELEASEDATEBEY-NEW-JAN01-27",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If Beyonce releases a new album before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXALBUMRELEASEDATEBEY",
+              "subtitle": null,
+              "title": "Will Beyonce release new album before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            },
+            {
+              "category": "Entertainment",
+              "event_key": "KXALBUMRELEASEDATEBEY-NEW",
+              "key": "KXALBUMRELEASEDATEBEY-NEW-JUN01-27",
+              "no_sub_title": "Before Jun 1, 2027",
+              "rules_primary": "If Beyonce releases a new album before Jun 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-06-01T14:00:00Z",
+              "series": "KXALBUMRELEASEDATEBEY",
+              "subtitle": null,
+              "title": "Will Beyonce release new album before Jun 1, 2027?",
+              "yes_sub_title": "Before Jun 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXHORMUZWEEKLY-26SEP06",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXHORMUZWEEKLY-26SEP06",
+              "key": "KXHORMUZWEEKLY-26SEP06-T10",
+              "no_sub_title": "Above 10",
+              "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 10 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The total is calculated by summing daily counts from Aug 31, 2026 to Sep 6, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.",
+              "scheduled_close": "2026-09-08T13:00:00Z",
+              "series": "KXHORMUZWEEKLY",
+              "subtitle": null,
+              "title": "Will there be more than 10 transit calls through the Strait of Hormuz from Aug 31, 2026 to Sep 6, 2026?",
+              "yes_sub_title": "Above 10"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXHORMUZWEEKLY-26SEP06",
+              "key": "KXHORMUZWEEKLY-26SEP06-T15",
+              "no_sub_title": "Above 15",
+              "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 15 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The total is calculated by summing daily counts from Aug 31, 2026 to Sep 6, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.",
+              "scheduled_close": "2026-09-08T13:00:00Z",
+              "series": "KXHORMUZWEEKLY",
+              "subtitle": null,
+              "title": "Will there be more than 15 transit calls through the Strait of Hormuz from Aug 31, 2026 to Sep 6, 2026?",
+              "yes_sub_title": "Above 15"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXHORMUZWEEKLY-26SEP06",
+              "key": "KXHORMUZWEEKLY-26SEP06-T20",
+              "no_sub_title": "Above 20",
+              "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 20 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The total is calculated by summing daily counts from Aug 31, 2026 to Sep 6, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.",
+              "scheduled_close": "2026-09-08T13:00:00Z",
+              "series": "KXHORMUZWEEKLY",
+              "subtitle": null,
+              "title": "Will there be more than 20 transit calls through the Strait of Hormuz from Aug 31, 2026 to Sep 6, 2026?",
+              "yes_sub_title": "Above 20"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXHORMUZWEEKLY-26SEP06",
+              "key": "KXHORMUZWEEKLY-26SEP06-T25",
+              "no_sub_title": "Above 25",
+              "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 25 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The total is calculated by summing daily counts from Aug 31, 2026 to Sep 6, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.",
+              "scheduled_close": "2026-09-08T13:00:00Z",
+              "series": "KXHORMUZWEEKLY",
+              "subtitle": null,
+              "title": "Will there be more than 25 transit calls through the Strait of Hormuz from Aug 31, 2026 to Sep 6, 2026?",
+              "yes_sub_title": "Above 25"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXHORMUZWEEKLY-26SEP06",
+              "key": "KXHORMUZWEEKLY-26SEP06-T30",
+              "no_sub_title": "Above 30",
+              "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 30 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The total is calculated by summing daily counts from Aug 31, 2026 to Sep 6, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.",
+              "scheduled_close": "2026-09-08T13:00:00Z",
+              "series": "KXHORMUZWEEKLY",
+              "subtitle": null,
+              "title": "Will there be more than 30 transit calls through the Strait of Hormuz from Aug 31, 2026 to Sep 6, 2026?",
+              "yes_sub_title": "Above 30"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXHORMUZWEEKLY-26SEP06",
+              "key": "KXHORMUZWEEKLY-26SEP06-T45",
+              "no_sub_title": "Above 45",
+              "rules_primary": "If the number of transit calls through the Strait of Hormuz as reported by the IMF PortWatch is above 45 from Aug 31, 2026 to Sep 6, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The total is calculated by summing daily counts from Aug 31, 2026 to Sep 6, 2026. The market will resolve no earlier than Tuesday at 9 AM following the end of the period, once complete data is available.",
+              "scheduled_close": "2026-09-08T13:00:00Z",
+              "series": "KXHORMUZWEEKLY",
+              "subtitle": null,
+              "title": "Will there be more than 45 transit calls through the Strait of Hormuz from Aug 31, 2026 to Sep 6, 2026?",
+              "yes_sub_title": "Above 45"
+            }
+          ]
+        },
+        {
+          "event_key": "KXHKANEKNIGHT-26",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXHKANEKNIGHT-26",
+              "key": "KXHKANEKNIGHT-26-YES",
+              "no_sub_title": "Harry Kane Knighted in 2026",
+              "rules_primary": "If Harry Kane is confirmed to have been knighted by any of the Source Agencies after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXHKANEKNIGHT",
+              "subtitle": "Harry Kane Knighted in 2026",
+              "title": "Will Harry Kane be Knighted in 2026?",
+              "yes_sub_title": "Harry Kane Knighted in 2026"
+            }
+          ]
+        }
+      ],
+      "snapshot_at": "2026-09-05T15:45:16Z"
+    },
+    "payload_sha256": "a36df78b666e2c955c6c3e1811928983eb9b2d4396ec02b8c7be47aa2777902a",
+    "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-001\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-001\\first-output.jsonl\n",
+    "requested_effort": "high",
+    "requested_model": "gpt-5.6-sol",
+    "requested_web_search": true,
+    "run_id": "study/broad-procedural-20260905",
+    "run_mode": "study",
+    "stage": "analysis",
+    "theory_id": "study/broad-procedural",
+    "theory_version": 1
+  },
+  "schema_version": 1
+}

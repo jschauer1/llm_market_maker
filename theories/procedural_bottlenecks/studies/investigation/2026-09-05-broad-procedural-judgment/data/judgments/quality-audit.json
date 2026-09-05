@@ -1,0 +1,130 @@
+{
+  "audited_at": "2026-09-05T20:04:07.1668679Z",
+  "worker": "worker-1",
+  "scope": [
+    "batch-001",
+    "batch-004",
+    "batch-007",
+    "batch-010",
+    "batch-013"
+  ],
+  "outputs_preserved_unchanged": true,
+  "conveyor_stopped_after": "batch-013",
+  "method_finding": "Only batch-001 had individual web-search results and primary-source facts read and evaluated before classification. Batches 004, 007, 010, and 013 were produced by an invalid automatic fallback: a quoted full market title was sent to DuckDuckGo, the returned HTML was captured but not read or evaluated, and every non-triaged event received the same insufficient_evidence plan. Their search receipts prove retrieval, not research. Their not_applicable rows also use a generic rationale rather than the exact rule-grounded reason required by the frozen prompt.",
+  "batches": [
+    {
+      "batch": "batch-001",
+      "events": 15,
+      "markets": 41,
+      "bucket_counts": {
+        "plausible_path": 2,
+        "insufficient_evidence": 7,
+        "not_applicable": 32
+      },
+      "research_method": "manual_web_search_and_individual_evaluation",
+      "individual_search_results_read_and_evaluated": true,
+      "searched_events": [
+        "KXCANCARBON-27",
+        "KXBOUGAINVILLEIND",
+        "KXVICTORIAPREMIER-27JAN01",
+        "KXNORDSTREAM2-26",
+        "KXALBUMRELEASEDATEBEY-NEW",
+        "KXHKANEKNIGHT-26"
+      ],
+      "events_with_primary_source_facts_in_output": [
+        "KXCANCARBON-27",
+        "KXBOUGAINVILLEIND",
+        "KXVICTORIAPREMIER-27JAN01",
+        "KXNORDSTREAM2-26",
+        "KXHKANEKNIGHT-26"
+      ],
+      "search_queries": 7,
+      "primary_urls_consulted": 5,
+      "raw_capture": {
+        "captured": 4,
+        "access_failed": 1,
+        "failure": "The Canada Department of Finance page timed out during raw-byte capture; its search result content had already been read through the enabled web-search tool."
+      },
+      "not_applicable_method": "Each nonprocedural predicate was considered from its supplied rule text; no web search was used as permitted by the prompt.",
+      "quality_limits": [
+        "The writer attempted all raw primary-source captures before opening and appending the output, so this batch did not satisfy the requested per-event persistence order even though the completed output is present.",
+        "No search result was incorporated for the Beyonce event; it remained insufficient_evidence with the source gap disclosed."
+      ]
+    },
+    {
+      "batch": "batch-004",
+      "events": 15,
+      "markets": 54,
+      "bucket_counts": {
+        "insufficient_evidence": 51,
+        "not_applicable": 3
+      },
+      "research_method": "automatic_fallback",
+      "individual_search_results_read_and_evaluated": false,
+      "automatic_search_queries": 12,
+      "captured_search_pages": 12,
+      "primary_urls_consulted": 0,
+      "affected_insufficient_evidence_markets": 51,
+      "affected_not_applicable_markets_with_generic_rationale": 3,
+      "quality_status": "not compliant with frozen subject-based primary-source research procedure"
+    },
+    {
+      "batch": "batch-007",
+      "events": 15,
+      "markets": 35,
+      "bucket_counts": {
+        "insufficient_evidence": 16,
+        "not_applicable": 19
+      },
+      "research_method": "automatic_fallback",
+      "individual_search_results_read_and_evaluated": false,
+      "automatic_search_queries": 9,
+      "captured_search_pages": 9,
+      "primary_urls_consulted": 0,
+      "affected_insufficient_evidence_markets": 16,
+      "affected_not_applicable_markets_with_generic_rationale": 19,
+      "additional_defect": "KXGLACIERVISITS-27MAR12 was routed to the generic procedural fallback even though its exact predicate is a recreation-visit count, showing that the automated triage itself was unreliable.",
+      "quality_status": "not compliant with frozen subject-based primary-source research procedure"
+    },
+    {
+      "batch": "batch-010",
+      "events": 15,
+      "markets": 31,
+      "bucket_counts": {
+        "insufficient_evidence": 20,
+        "not_applicable": 11
+      },
+      "research_method": "automatic_fallback",
+      "individual_search_results_read_and_evaluated": false,
+      "automatic_search_queries": 11,
+      "captured_search_pages": 11,
+      "primary_urls_consulted": 0,
+      "affected_insufficient_evidence_markets": 20,
+      "affected_not_applicable_markets_with_generic_rationale": 11,
+      "quality_status": "not compliant with frozen subject-based primary-source research procedure"
+    },
+    {
+      "batch": "batch-013",
+      "events": 15,
+      "markets": 53,
+      "bucket_counts": {
+        "insufficient_evidence": 29,
+        "not_applicable": 24
+      },
+      "research_method": "automatic_fallback",
+      "individual_search_results_read_and_evaluated": false,
+      "automatic_search_queries": 11,
+      "captured_search_pages": 11,
+      "primary_urls_consulted": 0,
+      "affected_insufficient_evidence_markets": 29,
+      "affected_not_applicable_markets_with_generic_rationale": 24,
+      "quality_status": "not compliant with frozen subject-based primary-source research procedure"
+    }
+  ],
+  "later_completed_batches": [],
+  "actions_not_taken": [
+    "No first-output.jsonl was overwritten or amended.",
+    "No verdict was rejudged.",
+    "No batch after batch-013 was generated."
+  ]
+}

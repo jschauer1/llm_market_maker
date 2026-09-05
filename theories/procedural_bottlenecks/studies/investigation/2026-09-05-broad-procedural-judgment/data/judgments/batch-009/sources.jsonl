@@ -1,0 +1,10 @@
+{"kind":"search","query":"site:sec.gov/Archives/edgar/data/ 2026 S-1 sampled IPO issuers","searched_at":"2026-09-05T19:56:47Z","result":"several unrelated filings returned; no sampled issuer match established"}
+{"kind":"search","query":"site:whitehouse.gov sovereign wealth fund operational holds assets 2026","searched_at":"2026-09-05T19:56:47Z","result":"no primary operational asset-holding record found"}
+{"kind":"search","query":"site:treasury.gov United States sovereign wealth fund 2026 operational","searched_at":"2026-09-05T19:56:47Z","result":"no primary operational asset-holding record found"}
+{"kind":"search","query":"site:blog.google Gemini 4 release 2026","searched_at":"2026-09-05T19:56:47Z","result":"official pre-training status found; no release date"}
+{"kind":"search","query":"site:ny.gov OR site:nyc.gov corporate tax rate Mamdani 2026 law","searched_at":"2026-09-05T19:56:47Z","result":"government budget materials found; no enacted rate increase"}
+{"kind":"search","query":"site:eac.gov 2026 federal election November 3 2026 calendar all states","searched_at":"2026-09-05T19:56:47Z","result":"EAC state profiles and FEC nationwide schedule found"}
+{"kind":"consulted_url","event_key":"KXMIDTERMHAPPEN-2026","url":"https://www.fec.gov/help-candidates-and-committees/dates-and-deadlines/2026-reporting-dates/federal-election-activity-periods-each-state-2026/","accessed_at":"2026-09-05T19:56:47Z","result":"used"}
+{"kind":"consulted_url","event_key":"KXMIDTERMHAPPEN-2026","url":"https://www.eac.gov/election-officials/eac-ncsl-state-election-profiles","accessed_at":"2026-09-05T19:56:47Z","result":"used"}
+{"kind":"consulted_url","event_key":"KXGEMINI-GEM4","url":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/","accessed_at":"2026-09-05T19:56:47Z","result":"used"}
+{"kind":"consulted_url","event_key":"KXNYCCORPORATETAX-27JAN01","url":"https://www.manhattanbp.nyc.gov/wp-content/uploads/2026/04/04.01.2026-MBPO-Preliminary-Budget-Response-FY27-1.pdf","accessed_at":"2026-09-05T19:56:47Z","result":"used"}

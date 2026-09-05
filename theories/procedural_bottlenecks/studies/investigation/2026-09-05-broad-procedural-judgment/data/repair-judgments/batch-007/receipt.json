@@ -1,0 +1,739 @@
+{
+  "completion": {
+    "completed_at": "2026-09-05T20:22:46.773173+00:00",
+    "effort": "high",
+    "model": "gpt-5.6-sol",
+    "results": {
+      "KXACQPYPL-27JAN01-STADPYPL": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Private negotiations could proceed without public precursor disclosure until signing.\", \"deadline\": \"2027-01-01T04:59:00Z\", \"family\": \"corporate_acquisition_announcement\", \"key\": \"KXACQPYPL-27JAN01-STADPYPL\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"not documented\", \"step\": \"Stripe and Advent reach a definitive binding agreement with PayPal\"}, {\"source_url\": \"rules\", \"status\": \"not documented\", \"step\": \"Both named acquirers publicly announce it\"}], \"obstacle\": \"Official filings and newsrooms did not document negotiations, board approval, or a signed agreement, but silence does not establish a substantive barrier to a private transaction.\", \"predicate\": \"If Stripe and Advent International (collectively) announces an agreement to acquire PayPal before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The latest PayPal filing and Stripe newsroom provide no dated affirmative evidence of this specifically structured acquisition path, so the evidence does not support a stronger process label.\", \"source_gaps\": [\"No official evidence from Advent of an active PayPal transaction was found.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-07-28\", \"quote\": \"Form 10-Q ... Period of Report 2026-06-30\", \"supports\": \"PayPal's latest periodic filing was consulted for disclosed corporate developments.\", \"title\": \"PayPal Form 10-Q for quarter ended June 30, 2026\", \"url\": \"https://www.sec.gov/Archives/edgar/data/1633917/0001633917-26-000082-index.html\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-08-25\", \"quote\": \"Stripe agrees to acquire OpenRouter\", \"supports\": \"Stripe's official newsroom discloses a different August acquisition and no PayPal agreement.\", \"title\": \"Stripe newsroom: company and product news\", \"url\": \"https://stripe.com/newsroom/news\"}], \"subject_key\": \"kxacqpypl-27jan01\", \"web_search_used\": true}"
+      },
+      "KXALBUMRELEASENBAYB-27-YOU": {
+        "bucket": "formalities_only",
+        "rationale": "{\"bucket\": \"formalities_only\", \"bypass\": \"not applicable\", \"deadline\": \"2027-01-01T15:00:00Z\", \"family\": \"music_release\", \"key\": \"KXALBUMRELEASENBAYB-27-YOU\", \"mandatory_steps\": [{\"source_url\": \"https://music.apple.com/us/album/ml2/6784378132\", \"status\": \"complete\", \"step\": \"Qualifying original LP or EP released through an official channel\"}, {\"source_url\": \"rules\", \"status\": \"pending formality\", \"step\": \"Public recognition for resolution\"}], \"obstacle\": \"The qualifying release appears complete; only recognition under the contract remains.\", \"predicate\": \"If YoungBoy Never Broke Again releases a new album from February 13, 2026 at 10AM ET and ending on December 31, 2026 at 11:59:59pm Eastern Time, then the market resolves to Yes.\", \"rationale\": \"Apple Music records the 20-track original album ML2 as released June 26, 2026, inside the specified window.\", \"source_gaps\": [\"none\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-06-26\", \"quote\": \"June 26, 2026 20 songs, 56 minutes\", \"supports\": \"An authorized digital channel records a qualifying 20-track 2026 album release during the contract window.\", \"title\": \"Apple Music: ML2 by YoungBoy Never Broke Again\", \"url\": \"https://music.apple.com/us/album/ml2/6784378132\"}], \"subject_key\": \"kxalbumreleasenbayb-27\", \"web_search_used\": true}"
+      },
+      "KXAUCTIONRECORD-27-PIC-179365000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-01-01T15:00:00Z\", \"family\": \"auction_price_metric\", \"key\": \"KXAUCTIONRECORD-27-PIC-179365000\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to a future observed price crossing or ranking threshold.\", \"predicate\": \"If the highest auction sale price of any Pablo Picasso artwork sold at auction on any public auction house reporting final sale prices is above $179,365,000 in 2026, then the market resolves to Yes.\", \"rationale\": \"The predicate is a mechanical market-price or auction-record comparison, not a goal reached through necessary institutional precursor steps.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxauctionrecord-27-pic\", \"web_search_used\": false}"
+      },
+      "KXBTC50VS100-BTC-26DEC31": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-01-01T04:59:00Z\", \"family\": \"market_price_metric\", \"key\": \"KXBTC50VS100-BTC-26DEC31\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to a future observed price crossing or ranking threshold.\", \"predicate\": \"If BTC reaches $50,000 before reaching $100,000 between Issuance and 11:59 PM on Dec 31, 2026, then the market resolves to Yes.\", \"rationale\": \"The predicate is a mechanical market-price or auction-record comparison, not a goal reached through necessary institutional precursor steps.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxbtc50vs100-btc-26dec31\", \"web_search_used\": false}"
+      },
+      "KXBTCMINMON-BTC-26SEP30-5000000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-10-01T03:59:59Z\", \"family\": \"market_price_metric\", \"key\": \"KXBTCMINMON-BTC-26SEP30-5000000\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to a future observed price crossing or ranking threshold.\", \"predicate\": \"If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $50000.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a mechanical market-price or auction-record comparison, not a goal reached through necessary institutional precursor steps.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxbtcminmon-btc-26sep30\", \"web_search_used\": false}"
+      },
+      "KXBTCMINMON-BTC-26SEP30-5250000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-10-01T03:59:59Z\", \"family\": \"market_price_metric\", \"key\": \"KXBTCMINMON-BTC-26SEP30-5250000\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to a future observed price crossing or ranking threshold.\", \"predicate\": \"If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $52500.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a mechanical market-price or auction-record comparison, not a goal reached through necessary institutional precursor steps.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxbtcminmon-btc-26sep30\", \"web_search_used\": false}"
+      },
+      "KXBTCMINMON-BTC-26SEP30-5500000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-10-01T03:59:59Z\", \"family\": \"market_price_metric\", \"key\": \"KXBTCMINMON-BTC-26SEP30-5500000\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to a future observed price crossing or ranking threshold.\", \"predicate\": \"If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $55000.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a mechanical market-price or auction-record comparison, not a goal reached through necessary institutional precursor steps.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxbtcminmon-btc-26sep30\", \"web_search_used\": false}"
+      },
+      "KXBTCMINMON-BTC-26SEP30-5750000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-10-01T03:59:59Z\", \"family\": \"market_price_metric\", \"key\": \"KXBTCMINMON-BTC-26SEP30-5750000\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to a future observed price crossing or ranking threshold.\", \"predicate\": \"If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $57500.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a mechanical market-price or auction-record comparison, not a goal reached through necessary institutional precursor steps.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxbtcminmon-btc-26sep30\", \"web_search_used\": false}"
+      },
+      "KXBTCMINMON-BTC-26SEP30-6000000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-10-01T03:59:59Z\", \"family\": \"market_price_metric\", \"key\": \"KXBTCMINMON-BTC-26SEP30-6000000\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to a future observed price crossing or ranking threshold.\", \"predicate\": \"If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $60000.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a mechanical market-price or auction-record comparison, not a goal reached through necessary institutional precursor steps.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxbtcminmon-btc-26sep30\", \"web_search_used\": false}"
+      },
+      "KXBTCMINMON-BTC-26SEP30-6250000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-10-01T03:59:59Z\", \"family\": \"market_price_metric\", \"key\": \"KXBTCMINMON-BTC-26SEP30-6250000\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to a future observed price crossing or ranking threshold.\", \"predicate\": \"If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $62500.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a mechanical market-price or auction-record comparison, not a goal reached through necessary institutional precursor steps.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxbtcminmon-btc-26sep30\", \"web_search_used\": false}"
+      },
+      "KXBTCMINMON-BTC-26SEP30-6500000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-10-01T03:59:59Z\", \"family\": \"market_price_metric\", \"key\": \"KXBTCMINMON-BTC-26SEP30-6500000\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to a future observed price crossing or ranking threshold.\", \"predicate\": \"If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $65000.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a mechanical market-price or auction-record comparison, not a goal reached through necessary institutional precursor steps.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxbtcminmon-btc-26sep30\", \"web_search_used\": false}"
+      },
+      "KXBTCMINMON-BTC-26SEP30-6750000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-10-01T03:59:59Z\", \"family\": \"market_price_metric\", \"key\": \"KXBTCMINMON-BTC-26SEP30-6750000\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to a future observed price crossing or ranking threshold.\", \"predicate\": \"If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $67500.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a mechanical market-price or auction-record comparison, not a goal reached through necessary institutional precursor steps.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxbtcminmon-btc-26sep30\", \"web_search_used\": false}"
+      },
+      "KXBTCMINMON-BTC-26SEP30-7000000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-10-01T03:59:59Z\", \"family\": \"market_price_metric\", \"key\": \"KXBTCMINMON-BTC-26SEP30-7000000\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to a future observed price crossing or ranking threshold.\", \"predicate\": \"If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $70000.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a mechanical market-price or auction-record comparison, not a goal reached through necessary institutional precursor steps.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxbtcminmon-btc-26sep30\", \"web_search_used\": false}"
+      },
+      "KXBTCMINMON-BTC-26SEP30-7250000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-10-01T03:59:59Z\", \"family\": \"market_price_metric\", \"key\": \"KXBTCMINMON-BTC-26SEP30-7250000\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to a future observed price crossing or ranking threshold.\", \"predicate\": \"If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $72500.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a mechanical market-price or auction-record comparison, not a goal reached through necessary institutional precursor steps.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxbtcminmon-btc-26sep30\", \"web_search_used\": false}"
+      },
+      "KXBTCMINMON-BTC-26SEP30-7500000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-10-01T03:59:59Z\", \"family\": \"market_price_metric\", \"key\": \"KXBTCMINMON-BTC-26SEP30-7500000\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to a future observed price crossing or ranking threshold.\", \"predicate\": \"If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $75000.00, then the market resolves to Yes.\", \"rationale\": \"The predicate is a mechanical market-price or auction-record comparison, not a goal reached through necessary institutional precursor steps.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxbtcminmon-btc-26sep30\", \"web_search_used\": false}"
+      },
+      "KXCRYPTOCAPGAIN-26-27": {
+        "bucket": "substantive_barrier",
+        "rationale": "{\"bucket\": \"substantive_barrier\", \"bypass\": \"A qualifying provision could be inserted into a must-pass year-end tax vehicle, but no such text was documented.\", \"deadline\": \"2027-01-01T15:00:00Z\", \"family\": \"federal_legislation\", \"key\": \"KXCRYPTOCAPGAIN-26-27\", \"mandatory_steps\": [{\"source_url\": \"https://www.govinfo.gov/app/details/BILLS-119s4171is\", \"status\": \"not achieved\", \"step\": \"Qualifying permanent elimination bill completes committee action\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Passage by House and Senate\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Presidential signature or veto override\"}], \"obstacle\": \"The identified bills provide narrow de minimis or conditional exclusions that do not satisfy the market's ban on partial or conditional relief, and the Senate vehicle remains referred to committee with less than four months to enactment.\", \"predicate\": \"If a bill that eliminates capital gains taxes for at least some digital assets becomes law before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Official congressional sources show work on digital-asset tax relief, but the current measures are narrower than the predicate and have not completed committee or either chamber.\", \"source_gaps\": [\"No qualifying full and permanent asset-class exemption in an advanced vehicle was found.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-03-24\", \"quote\": \"introduced ... and referred to the Committee on Finance\", \"supports\": \"The identified Senate tax-relief vehicle remained at introduction/referral and covers only de minimis gains or losses.\", \"title\": \"S. 4171, Virtual Currency Tax Fairness Act\", \"url\": \"https://www.govinfo.gov/app/details/BILLS-119s4171is\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-06-09\", \"quote\": \"excluding the small amount of gain or loss from tax reporting when a digital asset is used to pay network fees\", \"supports\": \"Current House work concerns narrow or conditional exclusions rather than permanent elimination for a qualifying asset class.\", \"title\": \"House Ways and Means digital asset tax legislative hearing\", \"url\": \"https://waysandmeans.house.gov/2026/06/09/chairman-smith-at-digital-asset-legislative-hearing-america-needs-clear-tax-rules-to-remain-digital-asset-capital-of-the-world/\"}], \"subject_key\": \"kxcryptocapgain-26\", \"web_search_used\": true}"
+      },
+      "KXCS2GAME-26SEP051330BOJFIRE-FIRE": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-09-07T17:30:00Z\", \"family\": \"competitive_match_result\", \"key\": \"KXCS2GAME-26SEP051330BOJFIRE-FIRE\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to a live match winner.\", \"predicate\": \"If Fire Flux Esports wins the ESEA Advanced Europe 2026: BOJONG vs. Fire Flux Esports CS2 match originally scheduled for Sep 5, 2026 at 1:30 PM EDT, then the market resolves to Yes.\", \"rationale\": \"The predicate is the result of a scheduled CS2 match, a terminal competitive outcome rather than a process with necessary institutional precursor steps.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxcs2game-26sep051330bojfire\", \"web_search_used\": false}"
+      },
+      "KXDRAINTHESWAMP-27-JAN04": {
+        "bucket": "substantive_barrier",
+        "rationale": "{\"bucket\": \"substantive_barrier\", \"bypass\": \"Sponsors could attach provisions to another vehicle, but that would not necessarily enact a bill titled Drain the Swamp Act and no such plan was documented.\", \"deadline\": \"2027-01-04T15:00:00Z\", \"family\": \"federal_legislation\", \"key\": \"KXDRAINTHESWAMP-27-JAN04\", \"mandatory_steps\": [{\"source_url\": \"https://www.hsgac.senate.gov/legislation/?bill_page=2&bill_year=2025\", \"status\": \"not achieved\", \"step\": \"Committee approval of a bill with the specified title\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Passage by House and Senate\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Presidential signature or veto override\"}], \"obstacle\": \"Multiple bills bearing the title were only introduced or referred, with no committee approval or chamber passage documented before a near end-of-Congress deadline.\", \"predicate\": \"If \\\"Drain the Swamp\\\" Act becomes law before Jan 4, 2027, then the market resolves to Yes.\", \"rationale\": \"Official sponsor and committee records show named measures at the opening stage, leaving committee action, both chambers, and presentment by January 4.\", \"source_gaps\": [\"The market rules do not disambiguate among bills sharing the title.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-06-10\", \"quote\": \"introduced the Drain the Swamp Act\", \"supports\": \"A recent House measure exists but the official sponsor release documents introduction, not committee or chamber passage.\", \"title\": \"Reps. Riley and Landsman introduce the Drain the Swamp Act\", \"url\": \"https://riley.house.gov/2026/06/10/riley-landsman-lead-effort-to-drain-the-swamp/\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2025-01-08\", \"quote\": \"DRAIN THE SWAMP Act ... Read twice and referred to the Committee\", \"supports\": \"The Senate bill with the same title remained referred to committee.\", \"title\": \"Senate Homeland Security Committee legislation listing\", \"url\": \"https://www.hsgac.senate.gov/legislation/?bill_page=2&bill_year=2025\"}], \"subject_key\": \"kxdraintheswamp-27\", \"web_search_used\": true}"
+      },
+      "KXFUJIMORIOUT-26JUL-27JAN01": {
+        "bucket": "substantive_barrier",
+        "rationale": "{\"bucket\": \"substantive_barrier\", \"bypass\": \"An extraordinary resignation or constitutional vacancy could bypass the ordinary term, but none was documented.\", \"deadline\": \"2027-01-01T04:59:00Z\", \"family\": \"head_of_state_early_departure\", \"key\": \"KXFUJIMORIOUT-26JUL-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"not documented\", \"step\": \"Resignation, death, removal, recall, or another permanent vacancy trigger\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Formal cessation of office\"}], \"obstacle\": \"Fujimori began a constitutionally scheduled 2026-2031 term on July 28, and no active resignation or removal proceeding was identified that could produce a permanent departure within five months.\", \"predicate\": \"If Keiko Fujimori leaves as President of Peru before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Peru's Congress confirms the new five-year term. With no identified departure proceeding, the required exceptional early vacancy faces a substantive missing trigger.\", \"source_gaps\": [\"No current congressional vacancy motion or presidential resignation announcement was found.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-07-28\", \"quote\": \"para el per\\u00edodo 2026-2031\", \"supports\": \"Fujimori began a five-year constitutional term only weeks before the cutoff; no active departure process was identified.\", \"title\": \"Congress of Peru: Keiko Fujimori sworn in as constitutional president\", \"url\": \"https://comunicaciones.congreso.gob.pe/noticias/keiko-fujimori-juro-como-presidenta-constitucional-de-la-republica/\"}], \"subject_key\": \"kxfujimoriout-26jul\", \"web_search_used\": true}"
+      },
+      "KXGLACIERVISITS-27MAR12-T3305512": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-03-12T12:54:00Z\", \"family\": \"reported_visitor_metric\", \"key\": \"KXGLACIERVISITS-27MAR12-T3305512\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to whether a measured annual recreation-visits total exceeds a threshold.\", \"predicate\": \"If Glacier National Park reports that total Glacier National Park recreation visits in calendar year 2026 are above 3,305,512, then the market resolves to Yes.\", \"rationale\": \"This is a mechanical threshold on a finalized National Park Service statistic, so precursor-process classification is not applicable.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxglaciervisits-27mar12\", \"web_search_used\": false}"
+      },
+      "KXMAYOROFKINGSTOWN-27JAN01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"The distributor could release episodes as soon as completion and scheduling permit.\", \"deadline\": \"2027-01-01T04:59:00Z\", \"family\": \"television_release\", \"key\": \"KXMAYOROFKINGSTOWN-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://www.paramountpressexpress.com/paramount-plus/shows/mayor-of-kingstown/releases/?view=112256-paramount-crowns-mayor-of-kingstown-with-a-fifth-and-final-season\", \"status\": \"complete\", \"step\": \"Season commissioned\"}, {\"source_url\": \"https://www.paramountpressexpress.com/paramount-plus/shows/mayor-of-kingstown\", \"status\": \"in progress\", \"step\": \"Production\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Official public distribution\"}], \"obstacle\": \"No official release date was published, so scheduling and post-production remain unresolved.\", \"predicate\": \"If Mayor of Kingstown Season 5 has been publicly released in Worldwide through official channels before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Paramount+ formally renewed the eight-episode season and announced production had begun, providing affirmative progress toward release before the deadline.\", \"source_gaps\": [\"No official premiere date was found.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-01-05\", \"quote\": \"renewed for an eight-episode fifth and final season\", \"supports\": \"The distributor formally ordered the qualifying season.\", \"title\": \"Paramount+ renews Mayor of Kingstown for a fifth season\", \"url\": \"https://www.paramountpressexpress.com/paramount-plus/shows/mayor-of-kingstown/releases/?view=112256-paramount-crowns-mayor-of-kingstown-with-a-fifth-and-final-season\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-03-13\", \"quote\": \"PRODUCTION BEGINS ON THE FINAL SEASON\", \"supports\": \"Production is underway, an affirmative precursor to release, although no official release date was posted.\", \"title\": \"Paramount Press Express: Mayor of Kingstown\", \"url\": \"https://www.paramountpressexpress.com/paramount-plus/shows/mayor-of-kingstown\"}], \"subject_key\": \"kxmayorofkingstown-27jan01\", \"web_search_used\": true}"
+      },
+      "KXNVVISIT-27JUN30-T50": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-06-30T13:59:00Z\", \"family\": \"reported_visitor_metric\", \"key\": \"KXNVVISIT-27JUN30-T50\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to whether a measured annual visitor total exceeds a threshold.\", \"predicate\": \"If Travel Nevada reports that Nevada\\u2019s statewide visitor volume for calendar year 2026 is above \\n\\n50 million, then the market resolves to Yes.\", \"rationale\": \"This is a mechanical threshold on a future reported statistic; the causal precursor mechanism is not the right tool for classifying it.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnvvisit-27jun30\", \"web_search_used\": false}"
+      },
+      "KXNVVISIT-27JUN30-T51": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-06-30T13:59:00Z\", \"family\": \"reported_visitor_metric\", \"key\": \"KXNVVISIT-27JUN30-T51\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to whether a measured annual visitor total exceeds a threshold.\", \"predicate\": \"If Travel Nevada reports that Nevada\\u2019s statewide visitor volume for calendar year 2026 is above \\n\\n51 million, then the market resolves to Yes.\", \"rationale\": \"This is a mechanical threshold on a future reported statistic; the causal precursor mechanism is not the right tool for classifying it.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnvvisit-27jun30\", \"web_search_used\": false}"
+      },
+      "KXNVVISIT-27JUN30-T52": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-06-30T13:59:00Z\", \"family\": \"reported_visitor_metric\", \"key\": \"KXNVVISIT-27JUN30-T52\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to whether a measured annual visitor total exceeds a threshold.\", \"predicate\": \"If Travel Nevada reports that Nevada\\u2019s statewide visitor volume for calendar year 2026 is above \\n\\n52 million, then the market resolves to Yes.\", \"rationale\": \"This is a mechanical threshold on a future reported statistic; the causal precursor mechanism is not the right tool for classifying it.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnvvisit-27jun30\", \"web_search_used\": false}"
+      },
+      "KXNVVISIT-27JUN30-T53": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-06-30T13:59:00Z\", \"family\": \"reported_visitor_metric\", \"key\": \"KXNVVISIT-27JUN30-T53\", \"mandatory_steps\": [], \"obstacle\": \"No process obstacle is relevant to whether a measured annual visitor total exceeds a threshold.\", \"predicate\": \"If Travel Nevada reports that Nevada\\u2019s statewide visitor volume for calendar year 2026 is above \\n\\n53 million, then the market resolves to Yes.\", \"rationale\": \"This is a mechanical threshold on a future reported statistic; the causal precursor mechanism is not the right tool for classifying it.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kxnvvisit-27jun30\", \"web_search_used\": false}"
+      },
+      "KXPOPESWIFT-27": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-01-01T04:59:00Z\", \"family\": \"discretionary_private_meeting\", \"key\": \"KXPOPESWIFT-27\", \"mandatory_steps\": [], \"obstacle\": \"A private or public meeting can be arranged directly and has no stable mandatory public precursor sequence.\", \"predicate\": \"If Taylor Swift meets with Pope Leo XIV before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The predicate is a bilateral discretionary encounter. The Holy See's official activity archive shows no scheduled Swift meeting, but absence from the calendar cannot create a process barrier because an audience may be arranged without public intermediate gates.\", \"source_gaps\": [\"No official scheduled meeting was found.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-09-02\", \"quote\": \"Audiences ... 2026\", \"supports\": \"The official papal activity and audience archive was checked and supplied no scheduled Swift meeting or necessary public precursor.\", \"title\": \"Holy See: Pope Leo XIV official archive\", \"url\": \"https://www.vatican.va/content/leo-xiv/en.html\"}], \"subject_key\": \"kxpopeswift-27\", \"web_search_used\": true}"
+      },
+      "KXTARIFFAGREE-27-26DEC01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"The parties could announce a narrow extension or product-specific mutual tariff modification rather than a comprehensive settlement.\", \"deadline\": \"2026-12-01T04:59:00Z\", \"family\": \"bilateral_trade_agreement\", \"key\": \"KXTARIFFAGREE-27-26DEC01\", \"mandatory_steps\": [{\"source_url\": \"https://cacs.mofcom.gov.cn/article/gnwjmdt/sb/zm/202608/188855.html\", \"status\": \"in progress\", \"step\": \"U.S. and Chinese trade principals negotiate tariff terms\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Both governments confirm a new mutual tariff agreement\"}], \"obstacle\": \"Recent retaliatory measures and unresolved details complicate agreement, but neither government has closed the established consultation channel.\", \"predicate\": \"If the United States and China reach a new mutual tariff agreement, publicly announced or confirmed by both governments after Issuance and before Dec 1, 2026, then the market resolves to Yes.\", \"rationale\": \"Official Chinese releases document an agreed negotiation mechanism, tariff reductions agreed in principle, and a July 30 principals' call; the current suspension expires November 10, providing a concrete target for a new extension or modification.\", \"source_gaps\": [\"No next meeting date or jointly finalized text was published.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-05-16\", \"quote\": \"the two sides are still in consultation over details ... work to lock down the outcomes at an early date\", \"supports\": \"Both sides established a live negotiation mechanism and left tariff details for continuing consultation.\", \"title\": \"MOFCOM remarks on preliminary China-U.S. trade consultation outcomes\", \"url\": \"https://english.mofcom.gov.cn/News/SpokesmansRemarks/art/2026/art_5d1f3fbf16354a48918f83ea41d714b4.html\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-07-27\", \"quote\": \"China is ready to continue dialogue and consultations with the U.S. side\", \"supports\": \"China publicly kept the bilateral consultation route open despite a tariff dispute.\", \"title\": \"MOFCOM remarks on U.S. Section 301 measures\", \"url\": \"https://english.mofcom.gov.cn/News/SpokesmansRemarks/art/2026/art_a65ba642a14a4787bde83167bf741e6d.html\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-08-07\", \"quote\": \"7\\u670830\\u65e5\\u4e2d\\u7f8e\\u7ecf\\u8d38\\u7275\\u5934\\u4eba\\u89c6\\u9891\\u901a\\u8bdd\", \"supports\": \"The two trade principals held a video call on July 30, showing the mechanism remained active shortly before the cutoff.\", \"title\": \"MOFCOM response to U.S. restrictive measures\", \"url\": \"https://cacs.mofcom.gov.cn/article/gnwjmdt/sb/zm/202608/188855.html\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2025-11-04\", \"quote\": \"continue the suspension ... until 12:01 a.m. eastern standard time on November 10, 2026\", \"supports\": \"The present U.S. tariff suspension has a November 10, 2026 endpoint that gives the active talks a concrete renewal target.\", \"title\": \"Executive Order 14358 implementing the U.S.-China arrangement\", \"url\": \"https://www.whitehouse.gov/wp-content/uploads/2025/11/eo-14358.pdf\"}], \"subject_key\": \"kxtariffagree-27\", \"web_search_used\": true}"
+      },
+      "KXTARIFFAGREE-27-26NOV01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"The parties could announce a narrow extension or product-specific mutual tariff modification rather than a comprehensive settlement.\", \"deadline\": \"2026-11-01T04:59:00Z\", \"family\": \"bilateral_trade_agreement\", \"key\": \"KXTARIFFAGREE-27-26NOV01\", \"mandatory_steps\": [{\"source_url\": \"https://cacs.mofcom.gov.cn/article/gnwjmdt/sb/zm/202608/188855.html\", \"status\": \"in progress\", \"step\": \"U.S. and Chinese trade principals negotiate tariff terms\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Both governments confirm a new mutual tariff agreement\"}], \"obstacle\": \"Recent retaliatory measures and unresolved details complicate agreement, but neither government has closed the established consultation channel.\", \"predicate\": \"If the United States and China reach a new mutual tariff agreement, publicly announced or confirmed by both governments after Issuance and before Nov 1, 2026, then the market resolves to Yes.\", \"rationale\": \"Official Chinese releases document an agreed negotiation mechanism, tariff reductions agreed in principle, and a July 30 principals' call; the current suspension expires November 10, providing a concrete target for a new extension or modification.\", \"source_gaps\": [\"No next meeting date or jointly finalized text was published.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-05-16\", \"quote\": \"the two sides are still in consultation over details ... work to lock down the outcomes at an early date\", \"supports\": \"Both sides established a live negotiation mechanism and left tariff details for continuing consultation.\", \"title\": \"MOFCOM remarks on preliminary China-U.S. trade consultation outcomes\", \"url\": \"https://english.mofcom.gov.cn/News/SpokesmansRemarks/art/2026/art_5d1f3fbf16354a48918f83ea41d714b4.html\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-07-27\", \"quote\": \"China is ready to continue dialogue and consultations with the U.S. side\", \"supports\": \"China publicly kept the bilateral consultation route open despite a tariff dispute.\", \"title\": \"MOFCOM remarks on U.S. Section 301 measures\", \"url\": \"https://english.mofcom.gov.cn/News/SpokesmansRemarks/art/2026/art_a65ba642a14a4787bde83167bf741e6d.html\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-08-07\", \"quote\": \"7\\u670830\\u65e5\\u4e2d\\u7f8e\\u7ecf\\u8d38\\u7275\\u5934\\u4eba\\u89c6\\u9891\\u901a\\u8bdd\", \"supports\": \"The two trade principals held a video call on July 30, showing the mechanism remained active shortly before the cutoff.\", \"title\": \"MOFCOM response to U.S. restrictive measures\", \"url\": \"https://cacs.mofcom.gov.cn/article/gnwjmdt/sb/zm/202608/188855.html\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2025-11-04\", \"quote\": \"continue the suspension ... until 12:01 a.m. eastern standard time on November 10, 2026\", \"supports\": \"The present U.S. tariff suspension has a November 10, 2026 endpoint that gives the active talks a concrete renewal target.\", \"title\": \"Executive Order 14358 implementing the U.S.-China arrangement\", \"url\": \"https://www.whitehouse.gov/wp-content/uploads/2025/11/eo-14358.pdf\"}], \"subject_key\": \"kxtariffagree-27\", \"web_search_used\": true}"
+      },
+      "KXTARIFFAGREE-27-26OCT01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"The parties could announce a narrow extension or product-specific mutual tariff modification rather than a comprehensive settlement.\", \"deadline\": \"2026-10-01T03:59:00Z\", \"family\": \"bilateral_trade_agreement\", \"key\": \"KXTARIFFAGREE-27-26OCT01\", \"mandatory_steps\": [{\"source_url\": \"https://cacs.mofcom.gov.cn/article/gnwjmdt/sb/zm/202608/188855.html\", \"status\": \"in progress\", \"step\": \"U.S. and Chinese trade principals negotiate tariff terms\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Both governments confirm a new mutual tariff agreement\"}], \"obstacle\": \"Recent retaliatory measures and unresolved details complicate agreement, but neither government has closed the established consultation channel.\", \"predicate\": \"If the United States and China reach a new mutual tariff agreement, publicly announced or confirmed by both governments after Issuance and before Oct 1, 2026, then the market resolves to Yes.\", \"rationale\": \"Official Chinese releases document an agreed negotiation mechanism, tariff reductions agreed in principle, and a July 30 principals' call; the current suspension expires November 10, providing a concrete target for a new extension or modification.\", \"source_gaps\": [\"No next meeting date or jointly finalized text was published.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-05-16\", \"quote\": \"the two sides are still in consultation over details ... work to lock down the outcomes at an early date\", \"supports\": \"Both sides established a live negotiation mechanism and left tariff details for continuing consultation.\", \"title\": \"MOFCOM remarks on preliminary China-U.S. trade consultation outcomes\", \"url\": \"https://english.mofcom.gov.cn/News/SpokesmansRemarks/art/2026/art_5d1f3fbf16354a48918f83ea41d714b4.html\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-07-27\", \"quote\": \"China is ready to continue dialogue and consultations with the U.S. side\", \"supports\": \"China publicly kept the bilateral consultation route open despite a tariff dispute.\", \"title\": \"MOFCOM remarks on U.S. Section 301 measures\", \"url\": \"https://english.mofcom.gov.cn/News/SpokesmansRemarks/art/2026/art_a65ba642a14a4787bde83167bf741e6d.html\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-08-07\", \"quote\": \"7\\u670830\\u65e5\\u4e2d\\u7f8e\\u7ecf\\u8d38\\u7275\\u5934\\u4eba\\u89c6\\u9891\\u901a\\u8bdd\", \"supports\": \"The two trade principals held a video call on July 30, showing the mechanism remained active shortly before the cutoff.\", \"title\": \"MOFCOM response to U.S. restrictive measures\", \"url\": \"https://cacs.mofcom.gov.cn/article/gnwjmdt/sb/zm/202608/188855.html\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2025-11-04\", \"quote\": \"continue the suspension ... until 12:01 a.m. eastern standard time on November 10, 2026\", \"supports\": \"The present U.S. tariff suspension has a November 10, 2026 endpoint that gives the active talks a concrete renewal target.\", \"title\": \"Executive Order 14358 implementing the U.S.-China arrangement\", \"url\": \"https://www.whitehouse.gov/wp-content/uploads/2025/11/eo-14358.pdf\"}], \"subject_key\": \"kxtariffagree-27\", \"web_search_used\": true}"
+      },
+      "KXTARIFFAGREE-27-27JAN01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"The parties could announce a narrow extension or product-specific mutual tariff modification rather than a comprehensive settlement.\", \"deadline\": \"2027-01-01T04:59:00Z\", \"family\": \"bilateral_trade_agreement\", \"key\": \"KXTARIFFAGREE-27-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://cacs.mofcom.gov.cn/article/gnwjmdt/sb/zm/202608/188855.html\", \"status\": \"in progress\", \"step\": \"U.S. and Chinese trade principals negotiate tariff terms\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Both governments confirm a new mutual tariff agreement\"}], \"obstacle\": \"Recent retaliatory measures and unresolved details complicate agreement, but neither government has closed the established consultation channel.\", \"predicate\": \"If the United States and China reach a new mutual tariff agreement, publicly announced or confirmed by both governments after Issuance and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Official Chinese releases document an agreed negotiation mechanism, tariff reductions agreed in principle, and a July 30 principals' call; the current suspension expires November 10, providing a concrete target for a new extension or modification.\", \"source_gaps\": [\"No next meeting date or jointly finalized text was published.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-05-16\", \"quote\": \"the two sides are still in consultation over details ... work to lock down the outcomes at an early date\", \"supports\": \"Both sides established a live negotiation mechanism and left tariff details for continuing consultation.\", \"title\": \"MOFCOM remarks on preliminary China-U.S. trade consultation outcomes\", \"url\": \"https://english.mofcom.gov.cn/News/SpokesmansRemarks/art/2026/art_5d1f3fbf16354a48918f83ea41d714b4.html\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-07-27\", \"quote\": \"China is ready to continue dialogue and consultations with the U.S. side\", \"supports\": \"China publicly kept the bilateral consultation route open despite a tariff dispute.\", \"title\": \"MOFCOM remarks on U.S. Section 301 measures\", \"url\": \"https://english.mofcom.gov.cn/News/SpokesmansRemarks/art/2026/art_a65ba642a14a4787bde83167bf741e6d.html\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-08-07\", \"quote\": \"7\\u670830\\u65e5\\u4e2d\\u7f8e\\u7ecf\\u8d38\\u7275\\u5934\\u4eba\\u89c6\\u9891\\u901a\\u8bdd\", \"supports\": \"The two trade principals held a video call on July 30, showing the mechanism remained active shortly before the cutoff.\", \"title\": \"MOFCOM response to U.S. restrictive measures\", \"url\": \"https://cacs.mofcom.gov.cn/article/gnwjmdt/sb/zm/202608/188855.html\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2025-11-04\", \"quote\": \"continue the suspension ... until 12:01 a.m. eastern standard time on November 10, 2026\", \"supports\": \"The present U.S. tariff suspension has a November 10, 2026 endpoint that gives the active talks a concrete renewal target.\", \"title\": \"Executive Order 14358 implementing the U.S.-China arrangement\", \"url\": \"https://www.whitehouse.gov/wp-content/uploads/2025/11/eo-14358.pdf\"}], \"subject_key\": \"kxtariffagree-27\", \"web_search_used\": true}"
+      },
+      "KXUKBYELECTION-27-26DEC01": {
+        "bucket": "formalities_only",
+        "rationale": "{\"bucket\": \"formalities_only\", \"bypass\": \"A general election could supersede the by-election, but no such event is documented.\", \"deadline\": \"2026-12-01T04:59:00Z\", \"family\": \"uk_parliamentary_by_election\", \"key\": \"KXUKBYELECTION-27-26DEC01\", \"mandatory_steps\": [{\"source_url\": \"https://commonslibrary.parliament.uk/research-briefings/sn04731/\", \"status\": \"routine after vacancy\", \"step\": \"Commons motion and Speaker warrant for writ\"}, {\"source_url\": \"rules\", \"status\": \"routine downstream formality\", \"step\": \"Clerk of the Crown issues writ\"}], \"obstacle\": \"No substantive obstacle is documented after the Holborn and St Pancras vacancy; the remaining writ sequence is the ordinary implementation of an existing vacancy.\", \"predicate\": \"If a writ for a UK parliamentary by-election is issued by the relevant Clerk of the Crown after Issuance and before Dec 1, 2026, then the market resolves to Yes.\", \"rationale\": \"UK Parliament records an actual September 1 vacancy, the House is sitting again from September 7, and the remaining parliamentary motion, warrant, and Clerk issuance are procedural acts before each listed deadline.\", \"source_gaps\": [\"No exact writ-motion date was published.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-09-02\", \"quote\": \"Holborn & St Pancras | Resignation of Sir Keir Starmer, 1 September 2026 | TBA\", \"supports\": \"An actual Commons vacancy exists and Parliament lists its by-election date as pending.\", \"title\": \"UK Parliament: By-elections since the 2024 general election\", \"url\": \"https://www.parliament.uk/about/how/elections-and-voting/by-elections/by-elections-since-the-2024-general-election/\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-09-02\", \"quote\": \"the Speaker cannot issue a writ for the ensuing by-election until the House is sitting\", \"supports\": \"The writ has a defined procedural route through a sitting House.\", \"title\": \"House of Commons Library: Appointments to the Chiltern Hundreds and Manor of Northstead\", \"url\": \"https://commonslibrary.parliament.uk/research-briefings/sn04731/\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-09-04\", \"quote\": \"The House will sit from 2.30pm\", \"supports\": \"The Commons has near-term sitting opportunities before every listed deadline.\", \"title\": \"UK Parliament: Coming up in the Commons 7-11 September\", \"url\": \"https://www.parliament.uk/business/news/2026/september-2026/coming-up-in-the-commons-7-11-september/\"}], \"subject_key\": \"kxukbyelection-27\", \"web_search_used\": true}"
+      },
+      "KXUKBYELECTION-27-26NOV01": {
+        "bucket": "formalities_only",
+        "rationale": "{\"bucket\": \"formalities_only\", \"bypass\": \"A general election could supersede the by-election, but no such event is documented.\", \"deadline\": \"2026-11-01T04:59:00Z\", \"family\": \"uk_parliamentary_by_election\", \"key\": \"KXUKBYELECTION-27-26NOV01\", \"mandatory_steps\": [{\"source_url\": \"https://commonslibrary.parliament.uk/research-briefings/sn04731/\", \"status\": \"routine after vacancy\", \"step\": \"Commons motion and Speaker warrant for writ\"}, {\"source_url\": \"rules\", \"status\": \"routine downstream formality\", \"step\": \"Clerk of the Crown issues writ\"}], \"obstacle\": \"No substantive obstacle is documented after the Holborn and St Pancras vacancy; the remaining writ sequence is the ordinary implementation of an existing vacancy.\", \"predicate\": \"If a writ for a UK parliamentary by-election is issued by the relevant Clerk of the Crown after Issuance and before Nov 1, 2026, then the market resolves to Yes.\", \"rationale\": \"UK Parliament records an actual September 1 vacancy, the House is sitting again from September 7, and the remaining parliamentary motion, warrant, and Clerk issuance are procedural acts before each listed deadline.\", \"source_gaps\": [\"No exact writ-motion date was published.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-09-02\", \"quote\": \"Holborn & St Pancras | Resignation of Sir Keir Starmer, 1 September 2026 | TBA\", \"supports\": \"An actual Commons vacancy exists and Parliament lists its by-election date as pending.\", \"title\": \"UK Parliament: By-elections since the 2024 general election\", \"url\": \"https://www.parliament.uk/about/how/elections-and-voting/by-elections/by-elections-since-the-2024-general-election/\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-09-02\", \"quote\": \"the Speaker cannot issue a writ for the ensuing by-election until the House is sitting\", \"supports\": \"The writ has a defined procedural route through a sitting House.\", \"title\": \"House of Commons Library: Appointments to the Chiltern Hundreds and Manor of Northstead\", \"url\": \"https://commonslibrary.parliament.uk/research-briefings/sn04731/\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-09-04\", \"quote\": \"The House will sit from 2.30pm\", \"supports\": \"The Commons has near-term sitting opportunities before every listed deadline.\", \"title\": \"UK Parliament: Coming up in the Commons 7-11 September\", \"url\": \"https://www.parliament.uk/business/news/2026/september-2026/coming-up-in-the-commons-7-11-september/\"}], \"subject_key\": \"kxukbyelection-27\", \"web_search_used\": true}"
+      },
+      "KXUKBYELECTION-27-26OCT01": {
+        "bucket": "formalities_only",
+        "rationale": "{\"bucket\": \"formalities_only\", \"bypass\": \"A general election could supersede the by-election, but no such event is documented.\", \"deadline\": \"2026-10-01T03:59:00Z\", \"family\": \"uk_parliamentary_by_election\", \"key\": \"KXUKBYELECTION-27-26OCT01\", \"mandatory_steps\": [{\"source_url\": \"https://commonslibrary.parliament.uk/research-briefings/sn04731/\", \"status\": \"routine after vacancy\", \"step\": \"Commons motion and Speaker warrant for writ\"}, {\"source_url\": \"rules\", \"status\": \"routine downstream formality\", \"step\": \"Clerk of the Crown issues writ\"}], \"obstacle\": \"No substantive obstacle is documented after the Holborn and St Pancras vacancy; the remaining writ sequence is the ordinary implementation of an existing vacancy.\", \"predicate\": \"If a writ for a UK parliamentary by-election is issued by the relevant Clerk of the Crown after Issuance and before Oct 1, 2026, then the market resolves to Yes.\", \"rationale\": \"UK Parliament records an actual September 1 vacancy, the House is sitting again from September 7, and the remaining parliamentary motion, warrant, and Clerk issuance are procedural acts before each listed deadline.\", \"source_gaps\": [\"No exact writ-motion date was published.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-09-02\", \"quote\": \"Holborn & St Pancras | Resignation of Sir Keir Starmer, 1 September 2026 | TBA\", \"supports\": \"An actual Commons vacancy exists and Parliament lists its by-election date as pending.\", \"title\": \"UK Parliament: By-elections since the 2024 general election\", \"url\": \"https://www.parliament.uk/about/how/elections-and-voting/by-elections/by-elections-since-the-2024-general-election/\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-09-02\", \"quote\": \"the Speaker cannot issue a writ for the ensuing by-election until the House is sitting\", \"supports\": \"The writ has a defined procedural route through a sitting House.\", \"title\": \"House of Commons Library: Appointments to the Chiltern Hundreds and Manor of Northstead\", \"url\": \"https://commonslibrary.parliament.uk/research-briefings/sn04731/\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-09-04\", \"quote\": \"The House will sit from 2.30pm\", \"supports\": \"The Commons has near-term sitting opportunities before every listed deadline.\", \"title\": \"UK Parliament: Coming up in the Commons 7-11 September\", \"url\": \"https://www.parliament.uk/business/news/2026/september-2026/coming-up-in-the-commons-7-11-september/\"}], \"subject_key\": \"kxukbyelection-27\", \"web_search_used\": true}"
+      },
+      "KXUKBYELECTION-27-27APR01": {
+        "bucket": "formalities_only",
+        "rationale": "{\"bucket\": \"formalities_only\", \"bypass\": \"A general election could supersede the by-election, but no such event is documented.\", \"deadline\": \"2027-04-01T03:59:00Z\", \"family\": \"uk_parliamentary_by_election\", \"key\": \"KXUKBYELECTION-27-27APR01\", \"mandatory_steps\": [{\"source_url\": \"https://commonslibrary.parliament.uk/research-briefings/sn04731/\", \"status\": \"routine after vacancy\", \"step\": \"Commons motion and Speaker warrant for writ\"}, {\"source_url\": \"rules\", \"status\": \"routine downstream formality\", \"step\": \"Clerk of the Crown issues writ\"}], \"obstacle\": \"No substantive obstacle is documented after the Holborn and St Pancras vacancy; the remaining writ sequence is the ordinary implementation of an existing vacancy.\", \"predicate\": \"If a writ for a UK parliamentary by-election is issued by the relevant Clerk of the Crown after Issuance and before Apr 1, 2027, then the market resolves to Yes.\", \"rationale\": \"UK Parliament records an actual September 1 vacancy, the House is sitting again from September 7, and the remaining parliamentary motion, warrant, and Clerk issuance are procedural acts before each listed deadline.\", \"source_gaps\": [\"No exact writ-motion date was published.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-09-02\", \"quote\": \"Holborn & St Pancras | Resignation of Sir Keir Starmer, 1 September 2026 | TBA\", \"supports\": \"An actual Commons vacancy exists and Parliament lists its by-election date as pending.\", \"title\": \"UK Parliament: By-elections since the 2024 general election\", \"url\": \"https://www.parliament.uk/about/how/elections-and-voting/by-elections/by-elections-since-the-2024-general-election/\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-09-02\", \"quote\": \"the Speaker cannot issue a writ for the ensuing by-election until the House is sitting\", \"supports\": \"The writ has a defined procedural route through a sitting House.\", \"title\": \"House of Commons Library: Appointments to the Chiltern Hundreds and Manor of Northstead\", \"url\": \"https://commonslibrary.parliament.uk/research-briefings/sn04731/\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-09-04\", \"quote\": \"The House will sit from 2.30pm\", \"supports\": \"The Commons has near-term sitting opportunities before every listed deadline.\", \"title\": \"UK Parliament: Coming up in the Commons 7-11 September\", \"url\": \"https://www.parliament.uk/business/news/2026/september-2026/coming-up-in-the-commons-7-11-september/\"}], \"subject_key\": \"kxukbyelection-27\", \"web_search_used\": true}"
+      },
+      "KXUKBYELECTION-27-27JAN01": {
+        "bucket": "formalities_only",
+        "rationale": "{\"bucket\": \"formalities_only\", \"bypass\": \"A general election could supersede the by-election, but no such event is documented.\", \"deadline\": \"2027-01-01T04:59:00Z\", \"family\": \"uk_parliamentary_by_election\", \"key\": \"KXUKBYELECTION-27-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://commonslibrary.parliament.uk/research-briefings/sn04731/\", \"status\": \"routine after vacancy\", \"step\": \"Commons motion and Speaker warrant for writ\"}, {\"source_url\": \"rules\", \"status\": \"routine downstream formality\", \"step\": \"Clerk of the Crown issues writ\"}], \"obstacle\": \"No substantive obstacle is documented after the Holborn and St Pancras vacancy; the remaining writ sequence is the ordinary implementation of an existing vacancy.\", \"predicate\": \"If a writ for a UK parliamentary by-election is issued by the relevant Clerk of the Crown after Issuance and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"UK Parliament records an actual September 1 vacancy, the House is sitting again from September 7, and the remaining parliamentary motion, warrant, and Clerk issuance are procedural acts before each listed deadline.\", \"source_gaps\": [\"No exact writ-motion date was published.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-09-02\", \"quote\": \"Holborn & St Pancras | Resignation of Sir Keir Starmer, 1 September 2026 | TBA\", \"supports\": \"An actual Commons vacancy exists and Parliament lists its by-election date as pending.\", \"title\": \"UK Parliament: By-elections since the 2024 general election\", \"url\": \"https://www.parliament.uk/about/how/elections-and-voting/by-elections/by-elections-since-the-2024-general-election/\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-09-02\", \"quote\": \"the Speaker cannot issue a writ for the ensuing by-election until the House is sitting\", \"supports\": \"The writ has a defined procedural route through a sitting House.\", \"title\": \"House of Commons Library: Appointments to the Chiltern Hundreds and Manor of Northstead\", \"url\": \"https://commonslibrary.parliament.uk/research-briefings/sn04731/\"}, {\"accessed_at\": \"2026-09-05T20:12:40Z\", \"published_at\": \"2026-09-04\", \"quote\": \"The House will sit from 2.30pm\", \"supports\": \"The Commons has near-term sitting opportunities before every listed deadline.\", \"title\": \"UK Parliament: Coming up in the Commons 7-11 September\", \"url\": \"https://www.parliament.uk/business/news/2026/september-2026/coming-up-in-the-commons-7-11-september/\"}], \"subject_key\": \"kxukbyelection-27\", \"web_search_used\": true}"
+      }
+    },
+    "web_search": true
+  },
+  "request": {
+    "batch_id": "7",
+    "candidate_keys": [
+      "KXUKBYELECTION-27-26DEC01",
+      "KXUKBYELECTION-27-26NOV01",
+      "KXUKBYELECTION-27-26OCT01",
+      "KXUKBYELECTION-27-27APR01",
+      "KXUKBYELECTION-27-27JAN01",
+      "KXNVVISIT-27JUN30-T50",
+      "KXNVVISIT-27JUN30-T51",
+      "KXNVVISIT-27JUN30-T52",
+      "KXNVVISIT-27JUN30-T53",
+      "KXACQPYPL-27JAN01-STADPYPL",
+      "KXALBUMRELEASENBAYB-27-YOU",
+      "KXTARIFFAGREE-27-26DEC01",
+      "KXTARIFFAGREE-27-26NOV01",
+      "KXTARIFFAGREE-27-26OCT01",
+      "KXTARIFFAGREE-27-27JAN01",
+      "KXCS2GAME-26SEP051330BOJFIRE-FIRE",
+      "KXMAYOROFKINGSTOWN-27JAN01",
+      "KXCRYPTOCAPGAIN-26-27",
+      "KXDRAINTHESWAMP-27-JAN04",
+      "KXGLACIERVISITS-27MAR12-T3305512",
+      "KXFUJIMORIOUT-26JUL-27JAN01",
+      "KXPOPESWIFT-27",
+      "KXAUCTIONRECORD-27-PIC-179365000",
+      "KXBTC50VS100-BTC-26DEC31",
+      "KXBTCMINMON-BTC-26SEP30-5000000",
+      "KXBTCMINMON-BTC-26SEP30-5250000",
+      "KXBTCMINMON-BTC-26SEP30-5500000",
+      "KXBTCMINMON-BTC-26SEP30-5750000",
+      "KXBTCMINMON-BTC-26SEP30-6000000",
+      "KXBTCMINMON-BTC-26SEP30-6250000",
+      "KXBTCMINMON-BTC-26SEP30-6500000",
+      "KXBTCMINMON-BTC-26SEP30-6750000",
+      "KXBTCMINMON-BTC-26SEP30-7000000",
+      "KXBTCMINMON-BTC-26SEP30-7250000",
+      "KXBTCMINMON-BTC-26SEP30-7500000"
+    ],
+    "decision_at": "2026-09-05T19:53:15.489944+00:00",
+    "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\repair-judgments\\batch-007\\first-output.jsonl",
+    "payload": {
+      "decision_at": "2026-09-05T19:53:15.489944+00:00",
+      "events": [
+        {
+          "event_key": "KXUKBYELECTION-27",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXUKBYELECTION-27",
+              "key": "KXUKBYELECTION-27-26DEC01",
+              "no_sub_title": "Before Dec 1, 2026",
+              "rules_primary": "If a writ for a UK parliamentary by-election is issued by the relevant Clerk of the Crown after Issuance and before Dec 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-01T04:59:00Z",
+              "series": "KXUKBYELECTION",
+              "subtitle": null,
+              "title": "Will it be reported by Clerk of the Crown in Chancery and the Clerk of the Crown for Northern Ireland that a writ for a UK parliamentary by-election is issued by the relevant Clerk of the Crown before Dec 1, 2026?",
+              "yes_sub_title": "Before Dec 1, 2026"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXUKBYELECTION-27",
+              "key": "KXUKBYELECTION-27-26NOV01",
+              "no_sub_title": "Before Nov 1, 2026",
+              "rules_primary": "If a writ for a UK parliamentary by-election is issued by the relevant Clerk of the Crown after Issuance and before Nov 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-11-01T04:59:00Z",
+              "series": "KXUKBYELECTION",
+              "subtitle": null,
+              "title": "Will it be reported by Clerk of the Crown in Chancery and the Clerk of the Crown for Northern Ireland that a writ for a UK parliamentary by-election is issued by the relevant Clerk of the Crown before Nov 1, 2026?",
+              "yes_sub_title": "Before Nov 1, 2026"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXUKBYELECTION-27",
+              "key": "KXUKBYELECTION-27-26OCT01",
+              "no_sub_title": "Before Oct 1, 2026",
+              "rules_primary": "If a writ for a UK parliamentary by-election is issued by the relevant Clerk of the Crown after Issuance and before Oct 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-10-01T03:59:00Z",
+              "series": "KXUKBYELECTION",
+              "subtitle": null,
+              "title": "Will it be reported by Clerk of the Crown in Chancery and the Clerk of the Crown for Northern Ireland that a writ for a UK parliamentary by-election is issued by the relevant Clerk of the Crown before Oct 1, 2026?",
+              "yes_sub_title": "Before Oct 1, 2026"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXUKBYELECTION-27",
+              "key": "KXUKBYELECTION-27-27APR01",
+              "no_sub_title": "Before Apr 1, 2027",
+              "rules_primary": "If a writ for a UK parliamentary by-election is issued by the relevant Clerk of the Crown after Issuance and before Apr 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-04-01T03:59:00Z",
+              "series": "KXUKBYELECTION",
+              "subtitle": null,
+              "title": "Will it be reported by Clerk of the Crown in Chancery and the Clerk of the Crown for Northern Ireland that a writ for a UK parliamentary by-election is issued by the relevant Clerk of the Crown before Apr 1, 2027?",
+              "yes_sub_title": "Before Apr 1, 2027"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXUKBYELECTION-27",
+              "key": "KXUKBYELECTION-27-27JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If a writ for a UK parliamentary by-election is issued by the relevant Clerk of the Crown after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXUKBYELECTION",
+              "subtitle": null,
+              "title": "Will it be reported by Clerk of the Crown in Chancery and the Clerk of the Crown for Northern Ireland that a writ for a UK parliamentary by-election is issued by the relevant Clerk of the Crown before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXNVVISIT-27JUN30",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXNVVISIT-27JUN30",
+              "key": "KXNVVISIT-27JUN30-T50",
+              "no_sub_title": "Above 50 million",
+              "rules_primary": "If Travel Nevada reports that Nevada\u2019s statewide visitor volume for calendar year 2026 is above \n\n50 million, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is the statewide Visitor Volume for January\u2013December 2026 published in Travel Nevada\u2019s Q4 2026 Discover the Facts report.",
+              "scheduled_close": "2027-06-30T13:59:00Z",
+              "series": "KXNVVISIT",
+              "subtitle": null,
+              "title": "Will Nevada\u2019s statewide visitor volume for 2026 be above 50 million?",
+              "yes_sub_title": "Above 50 million"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXNVVISIT-27JUN30",
+              "key": "KXNVVISIT-27JUN30-T51",
+              "no_sub_title": "Above 51 million",
+              "rules_primary": "If Travel Nevada reports that Nevada\u2019s statewide visitor volume for calendar year 2026 is above \n\n51 million, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is the statewide Visitor Volume for January\u2013December 2026 published in Travel Nevada\u2019s Q4 2026 Discover the Facts report.",
+              "scheduled_close": "2027-06-30T13:59:00Z",
+              "series": "KXNVVISIT",
+              "subtitle": null,
+              "title": "Will Nevada\u2019s statewide visitor volume for 2026 be above 51 million?",
+              "yes_sub_title": "Above 51 million"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXNVVISIT-27JUN30",
+              "key": "KXNVVISIT-27JUN30-T52",
+              "no_sub_title": "Above 52 million",
+              "rules_primary": "If Travel Nevada reports that Nevada\u2019s statewide visitor volume for calendar year 2026 is above \n\n52 million, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is the statewide Visitor Volume for January\u2013December 2026 published in Travel Nevada\u2019s Q4 2026 Discover the Facts report.",
+              "scheduled_close": "2027-06-30T13:59:00Z",
+              "series": "KXNVVISIT",
+              "subtitle": null,
+              "title": "Will Nevada\u2019s statewide visitor volume for 2026 be above 52 million?",
+              "yes_sub_title": "Above 52 million"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXNVVISIT-27JUN30",
+              "key": "KXNVVISIT-27JUN30-T53",
+              "no_sub_title": "Above 53 million",
+              "rules_primary": "If Travel Nevada reports that Nevada\u2019s statewide visitor volume for calendar year 2026 is above \n\n53 million, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is the statewide Visitor Volume for January\u2013December 2026 published in Travel Nevada\u2019s Q4 2026 Discover the Facts report.",
+              "scheduled_close": "2027-06-30T13:59:00Z",
+              "series": "KXNVVISIT",
+              "subtitle": null,
+              "title": "Will Nevada\u2019s statewide visitor volume for 2026 be above 53 million?",
+              "yes_sub_title": "Above 53 million"
+            }
+          ]
+        },
+        {
+          "event_key": "KXACQPYPL-27JAN01",
+          "markets": [
+            {
+              "category": "Financials",
+              "event_key": "KXACQPYPL-27JAN01",
+              "key": "KXACQPYPL-27JAN01-STADPYPL",
+              "no_sub_title": "Stripe and Advent International (collectively)",
+              "rules_primary": "If Stripe and Advent International (collectively) announces an agreement to acquire PayPal before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The announcement must involve a definitive, binding agreement accompanied by public announcement. Letters of intent, memoranda of understanding, or agreements in principle do not qualify. The deal does not need to close as long as an agreement has been announced. Regulatory blocking or later cancellation does not affect resolution. Cross-border transactions qualify if a definitive agreement is announced. Internal reorganizations, joint ventures, or minority investments do not qualify unless they involve controlling ownership transfer. The acquisition can be structured as asset purchases, stock purchases, tender offers, SPAC combinations, or takeover agreements. Transactions involving subsidiaries qualify, but those limited solely to assets or divisions must represent the majority of operations or equity control.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXACQPYPL",
+              "subtitle": "Stripe and Advent International (collectively)",
+              "title": "Will Stripe and Advent International (collectively) announce acquisition of PayPal before Jan 1, 2027?",
+              "yes_sub_title": "Stripe and Advent International (collectively)"
+            }
+          ]
+        },
+        {
+          "event_key": "KXALBUMRELEASENBAYB-27",
+          "markets": [
+            {
+              "category": "Entertainment",
+              "event_key": "KXALBUMRELEASENBAYB-27",
+              "key": "KXALBUMRELEASENBAYB-27-YOU",
+              "no_sub_title": "YoungBoy Never Broke Again",
+              "rules_primary": "If YoungBoy Never Broke Again releases a new album from February 13, 2026 at 10AM ET and ending on December 31, 2026 at 11:59:59pm Eastern Time, then the market resolves to Yes.",
+              "rules_secondary": "A \u201cnew album\u201d,  must be an original\ncomposition first released during  February 13, 2026 at 10AM ET and ending on December 31, 2026 at 11:59:59pm Eastern Time, including new singles, unreleased\ntracks, or collaborations featuring new material. It may take the form of an LP or EP.\nRe-recordings (unless in a new language), remasters, radio edits, clean or explicit releases\nof the same underlying track(s), remixes, live versions, acoustic versions, instrumentals,\ndemos, alternative takes, \u201cartist version\u201d-style releases, or any other full reproduction of a\nsong already available on Spotify before || Time period || does NOT meet the Payout\nCriterion. Additionally, uploading albums that have not previously been available on\nSpotify but have been widely publicly available before time period does NOT meet the\nPayout Criterion for a \u201cnew album\u201d",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXALBUMRELEASENBAYB",
+              "subtitle": "YoungBoy Never Broke Again",
+              "title": "Will YoungBoy Never Broke Again release a new album in February 13, 2026 at 10:00:00am Eastern Time and ending on December 31, 2026 at 11:59:59pm Eastern Time?",
+              "yes_sub_title": "YoungBoy Never Broke Again"
+            }
+          ]
+        },
+        {
+          "event_key": "KXTARIFFAGREE-27",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXTARIFFAGREE-27",
+              "key": "KXTARIFFAGREE-27-26DEC01",
+              "no_sub_title": "Before Dec 1, 2026",
+              "rules_primary": "If the United States and China reach a new mutual tariff agreement, publicly announced or confirmed by both governments after Issuance and before Dec 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "An extension, modification, or replacement of the tariff truce in effect at Issuance qualifies as a new mutual tariff agreement. A qualifying agreement must address tariff rates or tariff suspensions; agreements limited to other trade matters do not count. Unilateral tariff actions do not count, even if the other side declines to respond. Reports that negotiations are ongoing, near completion, or agreed in principle by only one side do not count. An agreement qualifies once reached and confirmed by both governments, regardless of when it takes effect.\n\nOnly reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+              "scheduled_close": "2026-12-01T04:59:00Z",
+              "series": "KXTARIFFAGREE",
+              "subtitle": null,
+              "title": "Will it be reported by any of the Source Agencies that the United States and China reach a new mutual tariff agreement, publicly announced or confirmed by both governments before Dec 1, 2026?",
+              "yes_sub_title": "Before Dec 1, 2026"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXTARIFFAGREE-27",
+              "key": "KXTARIFFAGREE-27-26NOV01",
+              "no_sub_title": "Before Nov 1, 2026",
+              "rules_primary": "If the United States and China reach a new mutual tariff agreement, publicly announced or confirmed by both governments after Issuance and before Nov 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "An extension, modification, or replacement of the tariff truce in effect at Issuance qualifies as a new mutual tariff agreement. A qualifying agreement must address tariff rates or tariff suspensions; agreements limited to other trade matters do not count. Unilateral tariff actions do not count, even if the other side declines to respond. Reports that negotiations are ongoing, near completion, or agreed in principle by only one side do not count. An agreement qualifies once reached and confirmed by both governments, regardless of when it takes effect.\n\nOnly reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+              "scheduled_close": "2026-11-01T04:59:00Z",
+              "series": "KXTARIFFAGREE",
+              "subtitle": null,
+              "title": "Will it be reported by any of the Source Agencies that the United States and China reach a new mutual tariff agreement, publicly announced or confirmed by both governments before Nov 1, 2026?",
+              "yes_sub_title": "Before Nov 1, 2026"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXTARIFFAGREE-27",
+              "key": "KXTARIFFAGREE-27-26OCT01",
+              "no_sub_title": "Before Oct 1, 2026",
+              "rules_primary": "If the United States and China reach a new mutual tariff agreement, publicly announced or confirmed by both governments after Issuance and before Oct 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "An extension, modification, or replacement of the tariff truce in effect at Issuance qualifies as a new mutual tariff agreement. A qualifying agreement must address tariff rates or tariff suspensions; agreements limited to other trade matters do not count. Unilateral tariff actions do not count, even if the other side declines to respond. Reports that negotiations are ongoing, near completion, or agreed in principle by only one side do not count. An agreement qualifies once reached and confirmed by both governments, regardless of when it takes effect.\n\nOnly reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+              "scheduled_close": "2026-10-01T03:59:00Z",
+              "series": "KXTARIFFAGREE",
+              "subtitle": null,
+              "title": "Will it be reported by any of the Source Agencies that the United States and China reach a new mutual tariff agreement, publicly announced or confirmed by both governments before Oct 1, 2026?",
+              "yes_sub_title": "Before Oct 1, 2026"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXTARIFFAGREE-27",
+              "key": "KXTARIFFAGREE-27-27JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If the United States and China reach a new mutual tariff agreement, publicly announced or confirmed by both governments after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "An extension, modification, or replacement of the tariff truce in effect at Issuance qualifies as a new mutual tariff agreement. A qualifying agreement must address tariff rates or tariff suspensions; agreements limited to other trade matters do not count. Unilateral tariff actions do not count, even if the other side declines to respond. Reports that negotiations are ongoing, near completion, or agreed in principle by only one side do not count. An agreement qualifies once reached and confirmed by both governments, regardless of when it takes effect.\n\nOnly reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXTARIFFAGREE",
+              "subtitle": null,
+              "title": "Will it be reported by any of the Source Agencies that the United States and China reach a new mutual tariff agreement, publicly announced or confirmed by both governments before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXCS2GAME-26SEP051330BOJFIRE",
+          "markets": [
+            {
+              "category": "Sports",
+              "event_key": "KXCS2GAME-26SEP051330BOJFIRE",
+              "key": "KXCS2GAME-26SEP051330BOJFIRE-FIRE",
+              "no_sub_title": "Fire Flux Esports",
+              "rules_primary": "If Fire Flux Esports wins the ESEA Advanced Europe 2026: BOJONG vs. Fire Flux Esports CS2 match originally scheduled for Sep 5, 2026 at 1:30 PM EDT, then the market resolves to Yes.",
+              "rules_secondary": "The following market refers to the full match in the ESEA Advanced Europe 2026: BOJONG vs. Fire Flux Esports CS2 match originally scheduled for Sep 5, 2026 at 1:30 PM EDT\nIf the relevant match is postponed and not started within 48 hours of its originally scheduled start time, the market will resolve to the fair market price.\nIf the relevant match is cancelled before play begins, the market will resolve to the fair market price.\nIf the relevant match is forfeited before any play occurs, the market will resolve to the fair market price.\nIf the relevant match begins and is subsequently forfeited, the market will resolve according to the official result published by the governing body or tournament organizer.\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+              "scheduled_close": "2026-09-07T17:30:00Z",
+              "series": "KXCS2GAME",
+              "subtitle": null,
+              "title": "Fire Flux Esports wins",
+              "yes_sub_title": "Fire Flux Esports"
+            }
+          ]
+        },
+        {
+          "event_key": "KXMAYOROFKINGSTOWN-27JAN01",
+          "markets": [
+            {
+              "category": "Entertainment",
+              "event_key": "KXMAYOROFKINGSTOWN-27JAN01",
+              "key": "KXMAYOROFKINGSTOWN-27JAN01",
+              "no_sub_title": "Yes",
+              "rules_primary": "If Mayor of Kingstown Season 5 has been publicly released in Worldwide through official channels before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The media must be made available to the general public through at least one official distribution channel, including theatrical release, streaming availability, physical media (DVD, Blu-ray), or authorized digital purchase/download. The release must be accessible without special invitations or industry credentials in at least one major metropolitan area if the geography refers to a country. Private screenings, film festivals, leaked content, and torrent availability do not qualify. Trailers and soundtracks do not satisfy the criterion unless the full media is released. Different versions or formats of the same base content (theatrical, director's cut, extended edition) are considered the same media if the core content is substantially identical. Foreign language titles are considered the same media unless otherwise specified.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXMAYOROFKINGSTOWN",
+              "subtitle": "Yes",
+              "title": "Will Mayor of Kingstown Season 5 be released in Worldwide before Jan 1, 2027?",
+              "yes_sub_title": "Yes"
+            }
+          ]
+        },
+        {
+          "event_key": "KXCRYPTOCAPGAIN-26",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXCRYPTOCAPGAIN-26",
+              "key": "KXCRYPTOCAPGAIN-26-27",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If a bill that eliminates capital gains taxes for at least some digital assets becomes law before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The law must explicitly eliminate or permanently repeal the capital gains tax liability for at least one clearly defined class or category of digital assets. \u201cDigital assets\u201d are defined as assets existing solely in digital form and recorded on a digital ledger (including, but not limited to, cryptocurrencies, tokens, and non-fungible tokens). Temporary, partial, or conditional eliminations (e.g., tax relief with an expiration date or reductions rather than full elimination) shall not be considered as meeting this criterion.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXCRYPTOCAPGAIN",
+              "subtitle": null,
+              "title": "Will  becomes law before Jan 1, 2027?",
+              "yes_sub_title": "Before 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXDRAINTHESWAMP-27",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXDRAINTHESWAMP-27",
+              "key": "KXDRAINTHESWAMP-27-JAN04",
+              "no_sub_title": "Before Jan 4, 2027",
+              "rules_primary": "If \"Drain the Swamp\" Act becomes law before Jan 4, 2027, then the market resolves to Yes.",
+              "rules_secondary": "|| Additional Info ||",
+              "scheduled_close": "2027-01-04T15:00:00Z",
+              "series": "KXDRAINTHESWAMP",
+              "subtitle": "Before Jan 4, 2027",
+              "title": "Will \"Drain the Swamp\" Act becomes law before Jan 4, 2027?",
+              "yes_sub_title": "Before Jan 4, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXGLACIERVISITS-27MAR12",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXGLACIERVISITS-27MAR12",
+              "key": "KXGLACIERVISITS-27MAR12-T3305512",
+              "no_sub_title": "Above 3,305,512",
+              "rules_primary": "If Glacier National Park reports that total Glacier National Park recreation visits in calendar year 2026 are above 3,305,512, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is the National Park Service's \u201cRecreation Visits\u201d measure for Glacier National Park. Non-recreation visits, visitor hours, overnight stays, and other visitor-use measures will not be included.\n\nCurrent-year NPS visitation data are preliminary and subject to revision. NPS states that the data are finalized by the end of the first quarter of the following calendar year, so resolution will use the first finalized 2026 recreation-visits total rather than a preliminary monthly or YTD figure.",
+              "scheduled_close": "2027-03-12T12:54:00Z",
+              "series": "KXGLACIERVISITS",
+              "subtitle": ":: Current annual record",
+              "title": "Will Glacier National Park recreation visits in 2026 be above 3,305,512?",
+              "yes_sub_title": "Above 3,305,512"
+            }
+          ]
+        },
+        {
+          "event_key": "KXFUJIMORIOUT-26JUL",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXFUJIMORIOUT-26JUL",
+              "key": "KXFUJIMORIOUT-26JUL-27JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If Keiko Fujimori leaves as President of Peru before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "This market will resolve based on the announcement date, regardless of effective date. An acknowledgement that they will leave office due solely to the scheduled expiration of a constitutionally or legally mandated term limit does not satisfy the Payout Criterion.\n\nIf the person leaves the role due to death (i.e., if the person dies while holding the role), all contracts on the person may resolve to the last fair price as determined in the sole discretion of the Exchange. Temporary leaves of absence, suspensions, or recusals do not constitute leaving, resigning from, or retiring from the role unless the individual formally and permanently ceases to hold the position. If the person vacates the role and then re-occupies the role, the contract may settle on the initial vacation of the role.\n\nFor \"leave,\" cessation of holding the role qualifies, including resignation, retirement, removal, expulsion, expiration of term without renewal, recall, or other means by which the individual no longer occupies the role\u2014this includes both voluntary and involuntary early departure AND the natural expiration of a term.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXFUJIMORIOUT",
+              "subtitle": "Before Jan 1, 2027",
+              "title": "Will Keiko Fujimori be out as President of Peru before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXPOPESWIFT-27",
+          "markets": [
+            {
+              "category": "Social",
+              "event_key": "KXPOPESWIFT-27",
+              "key": "KXPOPESWIFT-27",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If Taylor Swift meets with Pope Leo XIV before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXPOPESWIFT",
+              "subtitle": null,
+              "title": "Will Taylor Swift meet with Pope Leo XIV before Jan 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXAUCTIONRECORD-27-PIC",
+          "markets": [
+            {
+              "category": "Entertainment",
+              "event_key": "KXAUCTIONRECORD-27-PIC",
+              "key": "KXAUCTIONRECORD-27-PIC-179365000",
+              "no_sub_title": "Above $179,365,000",
+              "rules_primary": "If the highest auction sale price of any Pablo Picasso artwork sold at auction on any public auction house reporting final sale prices is above $179,365,000 in 2026, then the market resolves to Yes.",
+              "rules_secondary": "\u201cSale Price\u201d refers to the final publicly reported realized price of the artwork, including buyer\u2019s premium and auction fees, as reported by the relevant Source Agency.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXAUCTIONRECORD",
+              "subtitle": "Above $179,365,000",
+              "title": "Will Pablo Picasso break his auction record this season?",
+              "yes_sub_title": "Above $179,365,000"
+            }
+          ]
+        },
+        {
+          "event_key": "KXBTC50VS100-BTC-26DEC31",
+          "markets": [
+            {
+              "category": "Crypto",
+              "event_key": "KXBTC50VS100-BTC-26DEC31",
+              "key": "KXBTC50VS100-BTC-26DEC31",
+              "no_sub_title": "50,000 first",
+              "rules_primary": "If BTC reaches $50,000 before reaching $100,000 between Issuance and 11:59 PM on Dec 31, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The market tracks whether the cryptocurrency price reaches the first threshold before the second threshold. \"Reaches\" means the price touches or falls below $50,000 (the lower threshold) OR touches or rises above $100,000 (the upper threshold). The first threshold reached determines the outcome. Price is measured using the CF Real-Time Index, taking a simple average over any 60-second period. If $50,000 is reached first, the market resolves to Yes. If $100,000 is reached first, the market resolves to No. If neither threshold is reached by the deadline, the market resolves to No. If no data is available at expiration, the market resolves to No.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXBTC50VS100",
+              "subtitle": "50,000 first",
+              "title": "Will BTC hit $50,000 before $100,000 by Dec 31, 2026?",
+              "yes_sub_title": "50,000 first"
+            }
+          ]
+        },
+        {
+          "event_key": "KXBTCMINMON-BTC-26SEP30",
+          "markets": [
+            {
+              "category": "Crypto",
+              "event_key": "KXBTCMINMON-BTC-26SEP30",
+              "key": "KXBTCMINMON-BTC-26SEP30-5000000",
+              "no_sub_title": "Below $50,000.00",
+              "rules_primary": "If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $50000.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF BRTI price for BTC. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXBTCMINMON",
+              "subtitle": null,
+              "title": "Will BTC trimmed mean be below $50000.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Below $50,000.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXBTCMINMON-BTC-26SEP30",
+              "key": "KXBTCMINMON-BTC-26SEP30-5250000",
+              "no_sub_title": "Below $52,500.00",
+              "rules_primary": "If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $52500.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF BRTI price for BTC. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXBTCMINMON",
+              "subtitle": null,
+              "title": "Will BTC trimmed mean be below $52500.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Below $52,500.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXBTCMINMON-BTC-26SEP30",
+              "key": "KXBTCMINMON-BTC-26SEP30-5500000",
+              "no_sub_title": "Below $55,000.00",
+              "rules_primary": "If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $55000.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF BRTI price for BTC. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXBTCMINMON",
+              "subtitle": null,
+              "title": "Will BTC trimmed mean be below $55000.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Below $55,000.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXBTCMINMON-BTC-26SEP30",
+              "key": "KXBTCMINMON-BTC-26SEP30-5750000",
+              "no_sub_title": "Below $57,500.00",
+              "rules_primary": "If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $57500.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF BRTI price for BTC. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXBTCMINMON",
+              "subtitle": null,
+              "title": "Will BTC trimmed mean be below $57500.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Below $57,500.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXBTCMINMON-BTC-26SEP30",
+              "key": "KXBTCMINMON-BTC-26SEP30-6000000",
+              "no_sub_title": "Below $60,000.00",
+              "rules_primary": "If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $60000.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF BRTI price for BTC. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXBTCMINMON",
+              "subtitle": null,
+              "title": "Will BTC trimmed mean be below $60000.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Below $60,000.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXBTCMINMON-BTC-26SEP30",
+              "key": "KXBTCMINMON-BTC-26SEP30-6250000",
+              "no_sub_title": "Below $62,500.00",
+              "rules_primary": "If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $62500.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF BRTI price for BTC. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXBTCMINMON",
+              "subtitle": null,
+              "title": "Will BTC trimmed mean be below $62500.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Below $62,500.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXBTCMINMON-BTC-26SEP30",
+              "key": "KXBTCMINMON-BTC-26SEP30-6500000",
+              "no_sub_title": "Below $65,000.00",
+              "rules_primary": "If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $65000.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF BRTI price for BTC. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXBTCMINMON",
+              "subtitle": null,
+              "title": "Will BTC trimmed mean be below $65000.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Below $65,000.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXBTCMINMON-BTC-26SEP30",
+              "key": "KXBTCMINMON-BTC-26SEP30-6750000",
+              "no_sub_title": "Below $67,500.00",
+              "rules_primary": "If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $67500.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF BRTI price for BTC. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXBTCMINMON",
+              "subtitle": null,
+              "title": "Will BTC trimmed mean be below $67500.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Below $67,500.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXBTCMINMON-BTC-26SEP30",
+              "key": "KXBTCMINMON-BTC-26SEP30-7000000",
+              "no_sub_title": "Below $70,000.00",
+              "rules_primary": "If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $70000.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF BRTI price for BTC. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXBTCMINMON",
+              "subtitle": null,
+              "title": "Will BTC trimmed mean be below $70000.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Below $70,000.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXBTCMINMON-BTC-26SEP30",
+              "key": "KXBTCMINMON-BTC-26SEP30-7250000",
+              "no_sub_title": "Below $72,500.00",
+              "rules_primary": "If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $72500.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF BRTI price for BTC. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXBTCMINMON",
+              "subtitle": null,
+              "title": "Will BTC trimmed mean be below $72500.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Below $72,500.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXBTCMINMON-BTC-26SEP30",
+              "key": "KXBTCMINMON-BTC-26SEP30-7500000",
+              "no_sub_title": "Below $75,000.00",
+              "rules_primary": "If the price of BTC after issuance and through 11:59 PM ET on Sep 30, 2026 is ever below $75000.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF BRTI price for BTC. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is below the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXBTCMINMON",
+              "subtitle": null,
+              "title": "Will BTC trimmed mean be below $75000.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Below $75,000.00"
+            }
+          ]
+        }
+      ],
+      "snapshot_at": "2026-09-05T15:45:16Z"
+    },
+    "payload_sha256": "78103f9729dd86368a8475d48644533575a59c5c2f41a2c435b3a942b7faaa7a",
+    "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\repair-judgments\\batch-007\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\repair-judgments\\batch-007\\first-output.jsonl\n",
+    "requested_effort": "high",
+    "requested_model": "gpt-5.6-sol",
+    "requested_web_search": true,
+    "run_id": "study/broad-procedural-20260905/research-repair-1",
+    "run_mode": "study",
+    "stage": "analysis-repair",
+    "theory_id": "study/broad-procedural",
+    "theory_version": 1
+  },
+  "schema_version": 1
+}

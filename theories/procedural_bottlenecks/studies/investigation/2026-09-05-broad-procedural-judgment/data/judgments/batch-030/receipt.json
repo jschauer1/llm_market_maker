@@ -1,1 +1,829 @@
-{"schema_version": 1, "request": {"run_id": "study/broad-procedural-20260905", "theory_id": "study/broad-procedural", "theory_version": 1, "run_mode": "study", "decision_at": "2026-09-05T19:53:15.489944+00:00", "requested_model": "gpt-5.6-sol", "requested_effort": "high", "requested_web_search": true, "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-030\\first-output.jsonl", "stage": "analysis", "batch_id": "30", "candidate_keys": ["KXTRUMPACT-26AUG30-T3", "KXTRUMPACT-26AUG30-T4", "KXUMICHOVR-26DEC18-T65.0", "KXBTC2026200-27JAN01-200000", "KXKANYEISRAEL-27JAN01", "KXZACKPOLANSKIOUT-27-JAN01", "KXRATECUT-26DEC31", "KXETHMAXMON-ETH-26SEP30-275000", "KXETHMAXMON-ETH-26SEP30-300000", "KXETHMAXMON-ETH-26SEP30-325000", "KXETHMAXMON-ETH-26SEP30-350000", "KXETHMAXMON-ETH-26SEP30-375000", "KXETHMAXMON-ETH-26SEP30-400000", "KXETHMAXMON-ETH-26SEP30-425000", "KXKATZOUT-26JAN01-27JAN01", "KXGREENIND-27", "KXEUMFFDEAL-27JUL01-27JAN01", "KXRKLBLAUNCH-NEUT-26DEC01", "KXRKLBLAUNCH-NEUT-26NOV01", "KXRKLBLAUNCH-NEUT-27FEB01", "KXRKLBLAUNCH-NEUT-27JAN01", "KXRKLBLAUNCH-NEUT-27MAR01", "KXBTCMAXY-26DEC31-109999.99", "KXBTCMAXY-26DEC31-119999.99", "KXBTCMAXY-26DEC31-129999.99", "KXBTCMAXY-26DEC31-139999.99", "KXBTCMAXY-26DEC31-149999.99", "KXBTCMAXY-26DEC31-199999.99", "KXBTCMAXY-26DEC31-99999.99", "KXEACNOM-27-26OCT01", "KXMEDIAGUESTTBPN-27-DAR", "KXMEDIAGUESTTBPN-27-SAM", "KXBIGBROTHERRANK-26DEC31R3-ANG", "KXBIGBROTHERRANK-26DEC31R3-BAR", "KXBIGBROTHERRANK-26DEC31R3-DEE", "KXBIGBROTHERRANK-26DEC31R3-DRE", "KXBIGBROTHERRANK-26DEC31R3-MEL", "KXBIGBROTHERRANK-26DEC31R3-RIC", "KXBIGBROTHERRANK-26DEC31R3-TAY", "KXBIGBROTHERRANK-26DEC31R3-YAS"], "payload_sha256": "ac7f88cde26e63ddc202ae42b020357f8170977ac38e66e89f3658dcf0abc73a", "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-030\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-030\\first-output.jsonl\n", "payload": {"decision_at": "2026-09-05T19:53:15.489944+00:00", "events": [{"event_key": "KXTRUMPACT-26AUG30", "markets": [{"category": "Politics", "event_key": "KXTRUMPACT-26AUG30", "key": "KXTRUMPACT-26AUG30-T3", "no_sub_title": "At least 3", "rules_primary": "If Donald Trump has taken at least 3 presidential actions from Aug 30, 2026 through Sep 5, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Sep 6, 2026), then the market resolves to Yes.", "rules_secondary": "The market solely resolves to the publication dates visibly displayed on the \"Presidential Actions\" tab at whitehouse.gov at 10:00 AM ET on Sep 6, 2026. The week runs from Aug 30, 2026 through Sep 5, 2026. The actions may include proclamations, executive orders, nominations & appointments, and memoranda. Any item listed on the page counts, regardless of its legal effect.\n\nExamples (for Jan 10, 2026):\n\nExecutive Order with a Jan 7 signing date is released with a Jan 10 publication date \u2192 resolves Yes\nProclamation e-mailed to White House Press Pool but not uploaded by 10:00 AM next day \u2192 resolves No\nProclamation is released Jan 10 with a backdated Jan 9 publication date \u2192 resolves No\nBill signed into law and shows up on \"Briefings & Statements\" instead of \"Presidential Actions\" \u2192 resolves No", "scheduled_close": "2026-09-06T14:00:00Z", "series": "KXTRUMPACT", "subtitle": null, "title": "Will there be at least 3 presidential actions in the week of Aug 30, 2026?", "yes_sub_title": "At least 3"}, {"category": "Politics", "event_key": "KXTRUMPACT-26AUG30", "key": "KXTRUMPACT-26AUG30-T4", "no_sub_title": "At least 4", "rules_primary": "If Donald Trump has taken at least 4 presidential actions from Aug 30, 2026 through Sep 5, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Sep 6, 2026), then the market resolves to Yes.", "rules_secondary": "The market solely resolves to the publication dates visibly displayed on the \"Presidential Actions\" tab at whitehouse.gov at 10:00 AM ET on Sep 6, 2026. The week runs from Aug 30, 2026 through Sep 5, 2026. The actions may include proclamations, executive orders, nominations & appointments, and memoranda. Any item listed on the page counts, regardless of its legal effect.\n\nExamples (for Jan 10, 2026):\n\nExecutive Order with a Jan 7 signing date is released with a Jan 10 publication date \u2192 resolves Yes\nProclamation e-mailed to White House Press Pool but not uploaded by 10:00 AM next day \u2192 resolves No\nProclamation is released Jan 10 with a backdated Jan 9 publication date \u2192 resolves No\nBill signed into law and shows up on \"Briefings & Statements\" instead of \"Presidential Actions\" \u2192 resolves No", "scheduled_close": "2026-09-06T14:00:00Z", "series": "KXTRUMPACT", "subtitle": null, "title": "Will there be at least 4 presidential actions in the week of Aug 30, 2026?", "yes_sub_title": "At least 4"}]}, {"event_key": "KXUMICHOVR-26DEC18", "markets": [{"category": "Economics", "event_key": "KXUMICHOVR-26DEC18", "key": "KXUMICHOVR-26DEC18-T65.0", "no_sub_title": "Yes", "rules_primary": "If any University of Michigan Consumer Sentiment Index final monthly release, published after Issuance and during 2026, reports a value above 65.0\u3164, then the market resolves to Yes.", "rules_secondary": "This market covers only final monthly Consumer Sentiment releases scheduled to occur in calendar year 2026 and does not include any release scheduled for 2027.", "scheduled_close": "2026-12-18T14:55:00Z", "series": "KXUMICHOVR", "subtitle": null, "title": "Will University of Michigan Consumer Sentiment Index for 2026 go above 65.0\u3164?", "yes_sub_title": "Yes"}]}, {"event_key": "KXBTC2026200-27JAN01", "markets": [{"category": "Crypto", "event_key": "KXBTC2026200-27JAN01", "key": "KXBTC2026200-27JAN01-200000", "no_sub_title": "Above $200000", "rules_primary": "If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $200000 starting 2025-10-10 and before Jan 1, 2027 at 12:00 AM ET, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the CF Bitcoin Real-Time Index (BRTI) using a trimmed mean calculation. The resolution value is calculated by taking all BRTI values for each minute from market issuance until the specified time on the target date, removing the top 20% and bottom 20% of values, then averaging the remaining 60% of values. If the BRTI crosses the threshold at any point during the measurement period (triggering early expiration), the market immediately resolves. If no data is available at the expiration time, the market resolves to No. The market can resolve early if Bitcoin definitively crosses the threshold before the target date and time.", "scheduled_close": "2027-01-01T05:00:00Z", "series": "KXBTC2026200", "subtitle": null, "title": "Will Bitcoin be above $200000 by Jan 1, 2027 at 11:59PM ET?", "yes_sub_title": "Above $200000"}]}, {"event_key": "KXKANYEISRAEL", "markets": [{"category": "Politics", "event_key": "KXKANYEISRAEL", "key": "KXKANYEISRAEL-27JAN01", "no_sub_title": "Yes", "rules_primary": "If Kanye West / Ye has physically travelled to and been present within the geographic boundaries of Israel before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "Physical presence within the geographic boundaries of the area is required. Flying over without landing, layovers during which the person remains in the airplane or airport, virtual or remote appearances, future visit plans, or (unless explicitly specified) presence in adjacent international waters or solely within embassy or consulate grounds do NOT constitute a visit. International airports are considered within the boundaries of their host jurisdiction. A visit that began before the specified time period and is ongoing as of its start does not count; however, if the person departs and re-enters the area during the time period, the re-entry constitutes a new visit and does count.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXKANYEISRAEL", "subtitle": "Yes", "title": "Will Kanye West / Ye visit Israel before Jan 1, 2027?", "yes_sub_title": "Yes"}]}, {"event_key": "KXZACKPOLANSKIOUT-27", "markets": [{"category": "Politics", "event_key": "KXZACKPOLANSKIOUT-27", "key": "KXZACKPOLANSKIOUT-27-JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If the Leader of the Green Party of England and Wales has resigned or otherwise left their specified position before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "An announcement that the official will leave the office within the next year also resolves the market to Yes.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXZACKPOLANSKIOUT", "subtitle": null, "title": "Will the Leader of the Green Party of England and Wales resign before Jan 1, 2027?", "yes_sub_title": "Before Jan 1, 2027"}]}, {"event_key": "KXRATECUT-26DEC31", "markets": [{"category": "Economics", "event_key": "KXRATECUT-26DEC31", "key": "KXRATECUT-26DEC31", "no_sub_title": "Cuts", "rules_primary": "If the Federal Reserve cuts its target federal funds rate range at least once between February 26, 2026 and December 31, 2026, then the market resolves to Yes.", "rules_secondary": "The market will close and determine on the first 10 AM ET following the occurrence of the event if the event occurs prior to the target date.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXRATECUT", "subtitle": null, "title": "Will the Federal Reserve cut rates before 2027?", "yes_sub_title": "Cuts"}]}, {"event_key": "KXETHMAXMON-ETH-26SEP30", "markets": [{"category": "Crypto", "event_key": "KXETHMAXMON-ETH-26SEP30", "key": "KXETHMAXMON-ETH-26SEP30-275000", "no_sub_title": "Above $2,750.00", "rules_primary": "If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n2750.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF ETHUSD_RTI price for ETH. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXETHMAXMON", "subtitle": null, "title": "Will ETH trimmed mean be above $2750.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Above $2,750.00"}, {"category": "Crypto", "event_key": "KXETHMAXMON-ETH-26SEP30", "key": "KXETHMAXMON-ETH-26SEP30-300000", "no_sub_title": "Above $3,000.00", "rules_primary": "If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n3000.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF ETHUSD_RTI price for ETH. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXETHMAXMON", "subtitle": null, "title": "Will ETH trimmed mean be above $3000.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Above $3,000.00"}, {"category": "Crypto", "event_key": "KXETHMAXMON-ETH-26SEP30", "key": "KXETHMAXMON-ETH-26SEP30-325000", "no_sub_title": "Above $3,250.00", "rules_primary": "If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n3250.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF ETHUSD_RTI price for ETH. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXETHMAXMON", "subtitle": null, "title": "Will ETH trimmed mean be above $3250.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Above $3,250.00"}, {"category": "Crypto", "event_key": "KXETHMAXMON-ETH-26SEP30", "key": "KXETHMAXMON-ETH-26SEP30-350000", "no_sub_title": "Above $3,500.00", "rules_primary": "If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n3500.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF ETHUSD_RTI price for ETH. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXETHMAXMON", "subtitle": null, "title": "Will ETH trimmed mean be above $3500.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Above $3,500.00"}, {"category": "Crypto", "event_key": "KXETHMAXMON-ETH-26SEP30", "key": "KXETHMAXMON-ETH-26SEP30-375000", "no_sub_title": "Above $3,750.00", "rules_primary": "If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n3750.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF ETHUSD_RTI price for ETH. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXETHMAXMON", "subtitle": null, "title": "Will ETH trimmed mean be above $3750.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Above $3,750.00"}, {"category": "Crypto", "event_key": "KXETHMAXMON-ETH-26SEP30", "key": "KXETHMAXMON-ETH-26SEP30-400000", "no_sub_title": "Above $4,000.00", "rules_primary": "If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n4000.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF ETHUSD_RTI price for ETH. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXETHMAXMON", "subtitle": null, "title": "Will ETH trimmed mean be above $4000.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Above $4,000.00"}, {"category": "Crypto", "event_key": "KXETHMAXMON-ETH-26SEP30", "key": "KXETHMAXMON-ETH-26SEP30-425000", "no_sub_title": "Above $4,250.00", "rules_primary": "If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n4250.00, then the market resolves to Yes.", "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF ETHUSD_RTI price for ETH. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.", "scheduled_close": "2026-10-01T03:59:59Z", "series": "KXETHMAXMON", "subtitle": null, "title": "Will ETH trimmed mean be above $4250.00 by 11:59 PM ET on Sep 30, 2026?", "yes_sub_title": "Above $4,250.00"}]}, {"event_key": "KXKATZOUT-26JAN01", "markets": [{"category": "Politics", "event_key": "KXKATZOUT-26JAN01", "key": "KXKATZOUT-26JAN01-27JAN01", "no_sub_title": "Before 2027", "rules_primary": "If Israel Katz has either officially announced their intention to leave as Minister of Defense of Israel or has actually left as Minister of Defense of Israel before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "An \"official announcement\" means a statement by the person themselves, their authorized representative, or the official body governing the office that the person will be departing from the office. Such announcements must be reported by at least one Source Agency to be considered official. The announcement must not specify they are leaving in more than a year from the statement, in which case the market does not resolve to Yes.\n\n\"Leaving office\" means the person no longer holds the office in any capacity, including but not limited to: resignation (effective), termination, removal, impeachment and removal, recall, or the expiration of their term without renewal. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining the office do NOT constitute leaving office. Death does NOT satisfy the Payout Criterion for this Contract. Forced departures (termination, impeachment and removal, etc.) satisfy the Payout Criterion even without a prior announcement.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXKATZOUT", "subtitle": null, "title": "Will Israel Katz leave Minister of Defense of Israel before Jan 1, 2027?", "yes_sub_title": "Before 2027"}]}, {"event_key": "KXGREENIND-27", "markets": [{"category": "Elections", "event_key": "KXGREENIND-27", "key": "KXGREENIND-27", "no_sub_title": "Before 2027", "rules_primary": "If Greenland has held an independence referendum after Issuance and before Jan 1, 2027 whose outcome is a majority of voters vote for independence, then the market resolves to Yes.", "rules_secondary": "A referendum to join another country will also be considered as an independence referendum for this purpose.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXGREENIND", "subtitle": null, "title": "Will Greenland vote for independence before 2027?", "yes_sub_title": "Before 2027"}]}, {"event_key": "KXEUMFFDEAL-27JUL01", "markets": [{"category": "Politics", "event_key": "KXEUMFFDEAL-27JUL01", "key": "KXEUMFFDEAL-27JUL01-27JAN01", "no_sub_title": "Before Jan 1, 2027", "rules_primary": "If all 27 EU member states agree to or announce the final agreed terms of the overall political agreement on the 2028-2034 EU long-term budget (MFF), as officially declared by the European Council to have been reached by all 27 EU member states before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "The European Council must officially declare that all 27 EU member states have reached political agreement on the overall 2028-2034 MFF terms. A commitment or timetable to reach agreement later, a negotiating box, a partial or sectoral mandate, or a package leaving MFF-level terms unresolved does not qualify. European Parliament consent, formal legislative adoption, and entry into force are not required.\n\nAn agreement or announcement qualifies if it involves any of the following:\n\nFormal commitment by the head of state/government with constitutional authority\nOfficial statements by authorized ministers\nOfficial press releases\nFormal declarations during government proceedings\nOfficial statements to international bodies\n\nPhased implementation announcements and multi-party agreements where all 27 EU member states are signatories also qualify.\n\nThe following do NOT qualify:\n\nPreliminary discussions\nConditional agreements contingent on circumstances\nOpposition party statements\nLeaked documents\nThink-tank recommendations\nGeneral aspirations without specific commitment\nDraft legislation without approval\nRegional actions (unless specified)\nRetraction of previously announced commitments", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXEUMFFDEAL", "subtitle": null, "title": "EU long-term budget deal before 2027?", "yes_sub_title": "Before Jan 1, 2027"}]}, {"event_key": "KXRKLBLAUNCH-NEUT", "markets": [{"category": "Science and Technology", "event_key": "KXRKLBLAUNCH-NEUT", "key": "KXRKLBLAUNCH-NEUT-26DEC01", "no_sub_title": "Before December 2026", "rules_primary": "If Rocket Lab Corporation launches Neutron After issuance and before Dec 1, 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-12-01T04:59:00Z", "series": "KXRKLBLAUNCH", "subtitle": "Before December, 2026", "title": "When will Rocket Lab Corporation launch Neutron?", "yes_sub_title": "Before December 2026"}, {"category": "Science and Technology", "event_key": "KXRKLBLAUNCH-NEUT", "key": "KXRKLBLAUNCH-NEUT-26NOV01", "no_sub_title": "Before November 2026", "rules_primary": "If Rocket Lab Corporation launches Neutron After issuance and before Nov 1, 2026, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2026-11-01T04:59:00Z", "series": "KXRKLBLAUNCH", "subtitle": "Before November, 2026", "title": "When will Rocket Lab Corporation launch Neutron?", "yes_sub_title": "Before November 2026"}, {"category": "Science and Technology", "event_key": "KXRKLBLAUNCH-NEUT", "key": "KXRKLBLAUNCH-NEUT-27FEB01", "no_sub_title": "Before February 2027", "rules_primary": "If Rocket Lab Corporation launches Neutron After issuance and before Feb 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-02-01T04:59:00Z", "series": "KXRKLBLAUNCH", "subtitle": "Before February, 2027", "title": "When will Rocket Lab Corporation launch Neutron?", "yes_sub_title": "Before February 2027"}, {"category": "Science and Technology", "event_key": "KXRKLBLAUNCH-NEUT", "key": "KXRKLBLAUNCH-NEUT-27JAN01", "no_sub_title": "Before 2027", "rules_primary": "If Rocket Lab Corporation launches Neutron After issuance and before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXRKLBLAUNCH", "subtitle": null, "title": "When will Rocket Lab Corporation launch Neutron?", "yes_sub_title": "Before 2027"}, {"category": "Science and Technology", "event_key": "KXRKLBLAUNCH-NEUT", "key": "KXRKLBLAUNCH-NEUT-27MAR01", "no_sub_title": "Before March 2027", "rules_primary": "If Rocket Lab Corporation launches Neutron After issuance and before Mar 1, 2027, then the market resolves to Yes.", "rules_secondary": "", "scheduled_close": "2027-03-01T04:59:00Z", "series": "KXRKLBLAUNCH", "subtitle": "Before March, 2027", "title": "When will Rocket Lab Corporation launch Neutron?", "yes_sub_title": "Before March 2027"}]}, {"event_key": "KXBTCMAXY-26DEC31", "markets": [{"category": "Crypto", "event_key": "KXBTCMAXY-26DEC31", "key": "KXBTCMAXY-26DEC31-109999.99", "no_sub_title": "Above $109,999.99", "rules_primary": "If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $109999.99 starting 01/02/2026 06:00 PM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the CF Bitcoin Real-Time Index (BRTI) using a trimmed mean calculation. The resolution value is calculated by taking all BRTI values for each minute from market issuance until the specified time on the target date, removing the top 20% and bottom 20% of values, then averaging the remaining 60% of values. If the BRTI crosses the threshold at any point during the measurement period (triggering early expiration), the market immediately resolves. If no data is available at the expiration time, the market resolves to No. The market can resolve early if Bitcoin definitively crosses the threshold before the target date and time.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXBTCMAXY", "subtitle": null, "title": "Will Bitcoin be above $109,999.99 by Dec 31, 2026 at 11:59 PM ET?", "yes_sub_title": "Above $109,999.99"}, {"category": "Crypto", "event_key": "KXBTCMAXY-26DEC31", "key": "KXBTCMAXY-26DEC31-119999.99", "no_sub_title": "Above $119,999.99", "rules_primary": "If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $119999.99 starting 01/01/2026 12:00 AM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the CF Bitcoin Real-Time Index (BRTI) using a trimmed mean calculation. The resolution value is calculated by taking all BRTI values for each minute from market issuance until the specified time on the target date, removing the top 20% and bottom 20% of values, then averaging the remaining 60% of values. If the BRTI crosses the threshold at any point during the measurement period (triggering early expiration), the market immediately resolves. If no data is available at the expiration time, the market resolves to No. The market can resolve early if Bitcoin definitively crosses the threshold before the target date and time.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXBTCMAXY", "subtitle": null, "title": "Will Bitcoin be above $119,999.99 by Dec 31, 2026 at 11:59 PM ET?", "yes_sub_title": "Above $119,999.99"}, {"category": "Crypto", "event_key": "KXBTCMAXY-26DEC31", "key": "KXBTCMAXY-26DEC31-129999.99", "no_sub_title": "Above $129,999.99", "rules_primary": "If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $129999.99 starting 01/01/2026 12:00 AM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the CF Bitcoin Real-Time Index (BRTI) using a trimmed mean calculation. The resolution value is calculated by taking all BRTI values for each minute from market issuance until the specified time on the target date, removing the top 20% and bottom 20% of values, then averaging the remaining 60% of values. If the BRTI crosses the threshold at any point during the measurement period (triggering early expiration), the market immediately resolves. If no data is available at the expiration time, the market resolves to No. The market can resolve early if Bitcoin definitively crosses the threshold before the target date and time.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXBTCMAXY", "subtitle": null, "title": "Will Bitcoin be above $129,999.99 by Dec 31, 2026 at 11:59 PM ET?", "yes_sub_title": "Above $129,999.99"}, {"category": "Crypto", "event_key": "KXBTCMAXY-26DEC31", "key": "KXBTCMAXY-26DEC31-139999.99", "no_sub_title": "Above $139,999.99", "rules_primary": "If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $139999.99 starting 01/01/2026 12:00 AM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the CF Bitcoin Real-Time Index (BRTI) using a trimmed mean calculation. The resolution value is calculated by taking all BRTI values for each minute from market issuance until the specified time on the target date, removing the top 20% and bottom 20% of values, then averaging the remaining 60% of values. If the BRTI crosses the threshold at any point during the measurement period (triggering early expiration), the market immediately resolves. If no data is available at the expiration time, the market resolves to No. The market can resolve early if Bitcoin definitively crosses the threshold before the target date and time.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXBTCMAXY", "subtitle": null, "title": "Will Bitcoin be above $139,999.99 by Dec 31, 2026 at 11:59 PM ET?", "yes_sub_title": "Above $139,999.99"}, {"category": "Crypto", "event_key": "KXBTCMAXY-26DEC31", "key": "KXBTCMAXY-26DEC31-149999.99", "no_sub_title": "Above $149,999.99", "rules_primary": "If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $149999.99 starting 01/01/2026 12:00 AM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the CF Bitcoin Real-Time Index (BRTI) using a trimmed mean calculation. The resolution value is calculated by taking all BRTI values for each minute from market issuance until the specified time on the target date, removing the top 20% and bottom 20% of values, then averaging the remaining 60% of values. If the BRTI crosses the threshold at any point during the measurement period (triggering early expiration), the market immediately resolves. If no data is available at the expiration time, the market resolves to No. The market can resolve early if Bitcoin definitively crosses the threshold before the target date and time.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXBTCMAXY", "subtitle": null, "title": "Will Bitcoin be above $149,999.99 by Dec 31, 2026 at 11:59 PM ET?", "yes_sub_title": "Above $149,999.99"}, {"category": "Crypto", "event_key": "KXBTCMAXY-26DEC31", "key": "KXBTCMAXY-26DEC31-199999.99", "no_sub_title": "Above $199,999.99", "rules_primary": "If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $199999.99 starting 10/01/2025 10:00 AM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the CF Bitcoin Real-Time Index (BRTI) using a trimmed mean calculation. The resolution value is calculated by taking all BRTI values for each minute from market issuance until the specified time on the target date, removing the top 20% and bottom 20% of values, then averaging the remaining 60% of values. If the BRTI crosses the threshold at any point during the measurement period (triggering early expiration), the market immediately resolves. If no data is available at the expiration time, the market resolves to No. The market can resolve early if Bitcoin definitively crosses the threshold before the target date and time.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXBTCMAXY", "subtitle": null, "title": "Will Bitcoin be above $199,999.99 by Dec 31, 2026 at 11:59 PM ET?", "yes_sub_title": "Above $199,999.99"}, {"category": "Crypto", "event_key": "KXBTCMAXY-26DEC31", "key": "KXBTCMAXY-26DEC31-99999.99", "no_sub_title": "Above $99,999.99", "rules_primary": "If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $99999.99 starting 01/02/2026 06:00 PM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.", "rules_secondary": "The market resolves based on the CF Bitcoin Real-Time Index (BRTI) using a trimmed mean calculation. The resolution value is calculated by taking all BRTI values for each minute from market issuance until the specified time on the target date, removing the top 20% and bottom 20% of values, then averaging the remaining 60% of values. If the BRTI crosses the threshold at any point during the measurement period (triggering early expiration), the market immediately resolves. If no data is available at the expiration time, the market resolves to No. The market can resolve early if Bitcoin definitively crosses the threshold before the target date and time.", "scheduled_close": "2027-01-01T04:59:00Z", "series": "KXBTCMAXY", "subtitle": null, "title": "Will Bitcoin be above $99,999.99 by Dec 31, 2026 at 11:59 PM ET?", "yes_sub_title": "Above $99,999.99"}]}, {"event_key": "KXEACNOM-27", "markets": [{"category": "Politics", "event_key": "KXEACNOM-27", "key": "KXEACNOM-27-26OCT01", "no_sub_title": "Before Oct 1, 2026", "rules_primary": "If any person is nominated to be member of the Election Assistance Commission after Issuance and before Oct 1, 2026. then the market resolves to Yes.", "rules_secondary": "Official announcements made by the President of a nomination shall satisfy the Payout Criterion, even if they are not yet sent to the Senate.", "scheduled_close": "2026-10-01T14:00:00Z", "series": "KXEACNOM", "subtitle": null, "title": "Will someone be nominated for member of the Election Assistance Commission before Oct 1, 2026?", "yes_sub_title": "Before Oct 1, 2026"}]}, {"event_key": "KXMEDIAGUESTTBPN-27", "markets": [{"category": "Entertainment", "event_key": "KXMEDIAGUESTTBPN-27", "key": "KXMEDIAGUESTTBPN-27-DAR", "no_sub_title": "Dario Amodei", "rules_primary": "If Dario Amodei is on TBPN after April 03,2026 at 10:00AM and before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "If Dario Amodei appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of TBPN (e.g., the host playing a portion of a speech or song excerpt by Dario Amodei), the Payout Criterion is not satisfied.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXMEDIAGUESTTBPN", "subtitle": null, "title": "Will Dario Amodei be on TBPN before 2027?", "yes_sub_title": "Dario Amodei"}, {"category": "Entertainment", "event_key": "KXMEDIAGUESTTBPN-27", "key": "KXMEDIAGUESTTBPN-27-SAM", "no_sub_title": "Sam Altman", "rules_primary": "If Sam Altman is on TBPN after April 03,2026 at 10:00AM and before Jan 1, 2027, then the market resolves to Yes.", "rules_secondary": "If Sam Altman appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of TBPN (e.g., the host playing a portion of a speech or song excerpt by Sam Altman), the Payout Criterion is not satisfied.", "scheduled_close": "2027-01-01T15:00:00Z", "series": "KXMEDIAGUESTTBPN", "subtitle": "Sam Altman", "title": "Will Sam Altman be on TBPN before 2027?", "yes_sub_title": "Sam Altman"}]}, {"event_key": "KXBIGBROTHERRANK-26DEC31R3", "markets": [{"category": "Entertainment", "event_key": "KXBIGBROTHERRANK-26DEC31R3", "key": "KXBIGBROTHERRANK-26DEC31R3-ANG", "no_sub_title": "Angela Murray", "rules_primary": "If Angela Murray finishes 3rd in Big Brother Season 28, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.", "scheduled_close": "2026-12-31T15:00:00Z", "series": "KXBIGBROTHERRANK", "subtitle": null, "title": "Will Angela Murray finish in 3 place in Big Brother Season 28?", "yes_sub_title": "Angela Murray"}, {"category": "Entertainment", "event_key": "KXBIGBROTHERRANK-26DEC31R3", "key": "KXBIGBROTHERRANK-26DEC31R3-BAR", "no_sub_title": "Barrett Pfeiffer", "rules_primary": "If Barrett Pfeiffer finishes 3rd in Big Brother Season 28, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.", "scheduled_close": "2026-12-31T15:00:00Z", "series": "KXBIGBROTHERRANK", "subtitle": null, "title": "Will Barrett Pfeiffer finish in 3 place in Big Brother Season 28?", "yes_sub_title": "Barrett Pfeiffer"}, {"category": "Entertainment", "event_key": "KXBIGBROTHERRANK-26DEC31R3", "key": "KXBIGBROTHERRANK-26DEC31R3-DEE", "no_sub_title": "Dee Valladares", "rules_primary": "If Dee Valladares finishes 3rd in Big Brother Season 28, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.", "scheduled_close": "2026-12-31T15:00:00Z", "series": "KXBIGBROTHERRANK", "subtitle": null, "title": "Will Dee Valladares finish in 3 place in Big Brother Season 28?", "yes_sub_title": "Dee Valladares"}, {"category": "Entertainment", "event_key": "KXBIGBROTHERRANK-26DEC31R3", "key": "KXBIGBROTHERRANK-26DEC31R3-DRE", "no_sub_title": "Drew Campbell", "rules_primary": "If Drew Campbell finishes 3rd in Big Brother Season 28, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.", "scheduled_close": "2026-12-31T15:00:00Z", "series": "KXBIGBROTHERRANK", "subtitle": null, "title": "Will Drew Campbell finish in 3 place in Big Brother Season 28?", "yes_sub_title": "Drew Campbell"}, {"category": "Entertainment", "event_key": "KXBIGBROTHERRANK-26DEC31R3", "key": "KXBIGBROTHERRANK-26DEC31R3-MEL", "no_sub_title": "Melody Morris", "rules_primary": "If Melody Morris finishes 3rd in Big Brother Season 28, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.", "scheduled_close": "2026-12-31T15:00:00Z", "series": "KXBIGBROTHERRANK", "subtitle": null, "title": "Will Melody Morris finish in 3 place in Big Brother Season 28?", "yes_sub_title": "Melody Morris"}, {"category": "Entertainment", "event_key": "KXBIGBROTHERRANK-26DEC31R3", "key": "KXBIGBROTHERRANK-26DEC31R3-RIC", "no_sub_title": "Rick Devens", "rules_primary": "If Rick Devens finishes 3rd in Big Brother Season 28, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.", "scheduled_close": "2026-12-31T15:00:00Z", "series": "KXBIGBROTHERRANK", "subtitle": null, "title": "Will Rick Devens finish in 3 place in Big Brother Season 28?", "yes_sub_title": "Rick Devens"}, {"category": "Entertainment", "event_key": "KXBIGBROTHERRANK-26DEC31R3", "key": "KXBIGBROTHERRANK-26DEC31R3-TAY", "no_sub_title": "Taylor Brown", "rules_primary": "If Taylor Brown finishes 3rd in Big Brother Season 28, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.", "scheduled_close": "2026-12-31T15:00:00Z", "series": "KXBIGBROTHERRANK", "subtitle": null, "title": "Will Taylor Brown finish in 3 place in Big Brother Season 28?", "yes_sub_title": "Taylor Brown"}, {"category": "Entertainment", "event_key": "KXBIGBROTHERRANK-26DEC31R3", "key": "KXBIGBROTHERRANK-26DEC31R3-YAS", "no_sub_title": "Yash Patel", "rules_primary": "If Yash Patel finishes 3rd in Big Brother Season 28, then the market resolves to Yes.", "rules_secondary": "This market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.", "scheduled_close": "2026-12-31T15:00:00Z", "series": "KXBIGBROTHERRANK", "subtitle": null, "title": "Will Yash Patel finish in 3 place in Big Brother Season 28?", "yes_sub_title": "Yash Patel"}]}], "snapshot_at": "2026-09-05T15:45:16Z"}}, "completion": null}
+{
+  "completion": {
+    "completed_at": "2026-09-05T20:32:51.450877+00:00",
+    "effort": "high",
+    "model": "gpt-5.6-sol",
+    "results": {
+      "KXBIGBROTHERRANK-26DEC31R3-ANG": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"Season 28\", \"family\": \"competition_outcome\", \"key\": \"KXBIGBROTHERRANK-26DEC31R3-ANG\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Angela Murray finishes 3rd in Big Brother Season 28, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive reality-show finish, not a necessary-step bottleneck.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"big_brother_season28_third_place\", \"web_search_used\": false}"
+      },
+      "KXBIGBROTHERRANK-26DEC31R3-BAR": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"Season 28\", \"family\": \"competition_outcome\", \"key\": \"KXBIGBROTHERRANK-26DEC31R3-BAR\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Barrett Pfeiffer finishes 3rd in Big Brother Season 28, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive reality-show finish, not a necessary-step bottleneck.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"big_brother_season28_third_place\", \"web_search_used\": false}"
+      },
+      "KXBIGBROTHERRANK-26DEC31R3-DEE": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"Season 28\", \"family\": \"competition_outcome\", \"key\": \"KXBIGBROTHERRANK-26DEC31R3-DEE\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Dee Valladares finishes 3rd in Big Brother Season 28, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive reality-show finish, not a necessary-step bottleneck.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"big_brother_season28_third_place\", \"web_search_used\": false}"
+      },
+      "KXBIGBROTHERRANK-26DEC31R3-DRE": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"Season 28\", \"family\": \"competition_outcome\", \"key\": \"KXBIGBROTHERRANK-26DEC31R3-DRE\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Drew Campbell finishes 3rd in Big Brother Season 28, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive reality-show finish, not a necessary-step bottleneck.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"big_brother_season28_third_place\", \"web_search_used\": false}"
+      },
+      "KXBIGBROTHERRANK-26DEC31R3-MEL": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"Season 28\", \"family\": \"competition_outcome\", \"key\": \"KXBIGBROTHERRANK-26DEC31R3-MEL\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Melody Morris finishes 3rd in Big Brother Season 28, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive reality-show finish, not a necessary-step bottleneck.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"big_brother_season28_third_place\", \"web_search_used\": false}"
+      },
+      "KXBIGBROTHERRANK-26DEC31R3-RIC": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"Season 28\", \"family\": \"competition_outcome\", \"key\": \"KXBIGBROTHERRANK-26DEC31R3-RIC\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Rick Devens finishes 3rd in Big Brother Season 28, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive reality-show finish, not a necessary-step bottleneck.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"big_brother_season28_third_place\", \"web_search_used\": false}"
+      },
+      "KXBIGBROTHERRANK-26DEC31R3-TAY": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"Season 28\", \"family\": \"competition_outcome\", \"key\": \"KXBIGBROTHERRANK-26DEC31R3-TAY\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Taylor Brown finishes 3rd in Big Brother Season 28, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive reality-show finish, not a necessary-step bottleneck.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"big_brother_season28_third_place\", \"web_search_used\": false}"
+      },
+      "KXBIGBROTHERRANK-26DEC31R3-YAS": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"Season 28\", \"family\": \"competition_outcome\", \"key\": \"KXBIGBROTHERRANK-26DEC31R3-YAS\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Yash Patel finishes 3rd in Big Brother Season 28, then the market resolves to Yes.\", \"rationale\": \"YES depends on a competitive reality-show finish, not a necessary-step bottleneck.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"big_brother_season28_third_place\", \"web_search_used\": false}"
+      },
+      "KXBTC2026200-27JAN01-200000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"before January 1, 2027\", \"family\": \"market_metric\", \"key\": \"KXBTC2026200-27JAN01-200000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $200000 starting 2025-10-10 and before Jan 1, 2027 at 12:00 AM ET, then the market resolves to Yes.\", \"rationale\": \"YES is a direct price-index threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"bitcoin_price_above_200000_2026\", \"web_search_used\": false}"
+      },
+      "KXBTCMAXY-26DEC31-109999.99": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through December 31, 2026\", \"family\": \"market_metric\", \"key\": \"KXBTCMAXY-26DEC31-109999.99\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $109999.99 starting 01/02/2026 06:00 PM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.\", \"rationale\": \"YES is a direct crypto-price threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"bitcoin_price_maximum_2026\", \"web_search_used\": false}"
+      },
+      "KXBTCMAXY-26DEC31-119999.99": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through December 31, 2026\", \"family\": \"market_metric\", \"key\": \"KXBTCMAXY-26DEC31-119999.99\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $119999.99 starting 01/01/2026 12:00 AM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.\", \"rationale\": \"YES is a direct crypto-price threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"bitcoin_price_maximum_2026\", \"web_search_used\": false}"
+      },
+      "KXBTCMAXY-26DEC31-129999.99": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through December 31, 2026\", \"family\": \"market_metric\", \"key\": \"KXBTCMAXY-26DEC31-129999.99\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $129999.99 starting 01/01/2026 12:00 AM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.\", \"rationale\": \"YES is a direct crypto-price threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"bitcoin_price_maximum_2026\", \"web_search_used\": false}"
+      },
+      "KXBTCMAXY-26DEC31-139999.99": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through December 31, 2026\", \"family\": \"market_metric\", \"key\": \"KXBTCMAXY-26DEC31-139999.99\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $139999.99 starting 01/01/2026 12:00 AM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.\", \"rationale\": \"YES is a direct crypto-price threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"bitcoin_price_maximum_2026\", \"web_search_used\": false}"
+      },
+      "KXBTCMAXY-26DEC31-149999.99": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through December 31, 2026\", \"family\": \"market_metric\", \"key\": \"KXBTCMAXY-26DEC31-149999.99\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $149999.99 starting 01/01/2026 12:00 AM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.\", \"rationale\": \"YES is a direct crypto-price threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"bitcoin_price_maximum_2026\", \"web_search_used\": false}"
+      },
+      "KXBTCMAXY-26DEC31-199999.99": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through December 31, 2026\", \"family\": \"market_metric\", \"key\": \"KXBTCMAXY-26DEC31-199999.99\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $199999.99 starting 10/01/2025 10:00 AM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.\", \"rationale\": \"YES is a direct crypto-price threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"bitcoin_price_maximum_2026\", \"web_search_used\": false}"
+      },
+      "KXBTCMAXY-26DEC31-99999.99": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through December 31, 2026\", \"family\": \"market_metric\", \"key\": \"KXBTCMAXY-26DEC31-99999.99\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $99999.99 starting 01/02/2026 06:00 PM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.\", \"rationale\": \"YES is a direct crypto-price threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"bitcoin_price_maximum_2026\", \"web_search_used\": false}"
+      },
+      "KXEACNOM-27-26OCT01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"before October 1, 2026\", \"family\": \"presidential_nomination\", \"key\": \"KXEACNOM-27-26OCT01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If any person is nominated to be member of the Election Assistance Commission after Issuance and before Oct 1, 2026. then the market resolves to Yes.\", \"rationale\": \"The predicate is a discretionary nomination act with no mandatory external approval required for YES.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"election_assistance_commission_nomination\", \"web_search_used\": false}"
+      },
+      "KXETHMAXMON-ETH-26SEP30-275000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through September 30, 2026\", \"family\": \"market_metric\", \"key\": \"KXETHMAXMON-ETH-26SEP30-275000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\\n2750.00, then the market resolves to Yes.\", \"rationale\": \"YES is a direct crypto-price threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"ethereum_price_maximum_september2026\", \"web_search_used\": false}"
+      },
+      "KXETHMAXMON-ETH-26SEP30-300000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through September 30, 2026\", \"family\": \"market_metric\", \"key\": \"KXETHMAXMON-ETH-26SEP30-300000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\\n3000.00, then the market resolves to Yes.\", \"rationale\": \"YES is a direct crypto-price threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"ethereum_price_maximum_september2026\", \"web_search_used\": false}"
+      },
+      "KXETHMAXMON-ETH-26SEP30-325000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through September 30, 2026\", \"family\": \"market_metric\", \"key\": \"KXETHMAXMON-ETH-26SEP30-325000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\\n3250.00, then the market resolves to Yes.\", \"rationale\": \"YES is a direct crypto-price threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"ethereum_price_maximum_september2026\", \"web_search_used\": false}"
+      },
+      "KXETHMAXMON-ETH-26SEP30-350000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through September 30, 2026\", \"family\": \"market_metric\", \"key\": \"KXETHMAXMON-ETH-26SEP30-350000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\\n3500.00, then the market resolves to Yes.\", \"rationale\": \"YES is a direct crypto-price threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"ethereum_price_maximum_september2026\", \"web_search_used\": false}"
+      },
+      "KXETHMAXMON-ETH-26SEP30-375000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through September 30, 2026\", \"family\": \"market_metric\", \"key\": \"KXETHMAXMON-ETH-26SEP30-375000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\\n3750.00, then the market resolves to Yes.\", \"rationale\": \"YES is a direct crypto-price threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"ethereum_price_maximum_september2026\", \"web_search_used\": false}"
+      },
+      "KXETHMAXMON-ETH-26SEP30-400000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through September 30, 2026\", \"family\": \"market_metric\", \"key\": \"KXETHMAXMON-ETH-26SEP30-400000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\\n4000.00, then the market resolves to Yes.\", \"rationale\": \"YES is a direct crypto-price threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"ethereum_price_maximum_september2026\", \"web_search_used\": false}"
+      },
+      "KXETHMAXMON-ETH-26SEP30-425000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"through September 30, 2026\", \"family\": \"market_metric\", \"key\": \"KXETHMAXMON-ETH-26SEP30-425000\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\\n4250.00, then the market resolves to Yes.\", \"rationale\": \"YES is a direct crypto-price threshold comparison.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"ethereum_price_maximum_september2026\", \"web_search_used\": false}"
+      },
+      "KXEUMFFDEAL-27JUL01-27JAN01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"The predicate resolves on the European Council\\u2019s final political agreement; later legislative adoption is not required.\", \"deadline\": \"before January 1, 2027\", \"family\": \"multilateral_budget_negotiation\", \"key\": \"KXEUMFFDEAL-27JUL01-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://commission.europa.eu/publications/multiannual-financial-framework_en\", \"status\": \"complete\", \"step\": \"Commission presents the MFF proposal\"}, {\"source_url\": \"https://www.consilium.europa.eu/en/policies/the-eu-s-long-term-budget-2028-2034/timeline-eu-long-term-budget-2028-2034/\", \"status\": \"pending\", \"step\": \"Member states negotiate a final package\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"All 27 member states reach and announce political agreement\"}], \"obstacle\": \"Horizontal and financial issues remained under negotiation.\", \"predicate\": \"If all 27 EU member states agree to or announce the final agreed terms of the overall political agreement on the 2028-2034 EU long-term budget (MFF), as officially declared by the European Council to have been reached by all 27 EU member states before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"The Commission proposal is complete, the Council has partial positions, leaders scheduled an October negotiating milestone, and the official aim is agreement before end-2026. Material unanimity negotiations remain, but this is a dated viable path.\", \"source_gaps\": [\"No final negotiating box or evidence of unanimity was available.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:29:42.8258743Z\", \"published_at\": \"2026\", \"quote\": \"advance work by the European Council meeting on 15 October 2026\", \"supports\": \"The Council has a dated next negotiating milestone.\", \"title\": \"EU long-term budget 2028\\u20132034 timeline\", \"url\": \"https://www.consilium.europa.eu/en/policies/the-eu-s-long-term-budget-2028-2034/timeline-eu-long-term-budget-2028-2034/\"}, {\"accessed_at\": \"2026-09-05T20:29:42.8258743Z\", \"published_at\": \"2025-07-17\", \"quote\": \"Proposal for a Council Regulation ... 2028 to 2034\", \"supports\": \"The Commission completed the initiating proposal.\", \"title\": \"Multiannual Financial Framework proposal\", \"url\": \"https://commission.europa.eu/publications/multiannual-financial-framework_en\"}], \"subject_key\": \"eu_2028_2034_mff_political_agreement\", \"web_search_used\": true}"
+      },
+      "KXGREENIND-27": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"unresolved\", \"deadline\": \"before January 1, 2027\", \"family\": \"constitutional_referendum\", \"key\": \"KXGREENIND-27\", \"mandatory_steps\": [{\"source_url\": \"https://stm.dk/en/the-prime-ministers-office/the-unity-of-the-realm/greenland/\", \"status\": \"unknown\", \"step\": \"Greenland and Denmark negotiate an independence agreement\"}, {\"source_url\": \"https://stm.dk/en/the-prime-ministers-office/the-unity-of-the-realm/greenland/\", \"status\": \"unknown\", \"step\": \"Inatsisartut consents\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Hold a referendum producing a majority for independence\"}], \"obstacle\": \"none established\", \"predicate\": \"If Greenland has held an independence referendum after Issuance and before Jan 1, 2027 whose outcome is a majority of voters vote for independence, then the market resolves to Yes.\", \"rationale\": \"Official materials describe the legal route and a current constitutional commission, but no referendum call, agreement, or 2026 schedule was found.\", \"source_gaps\": [\"No official 2026 referendum date or completed independence agreement was established.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:29:42.8258743Z\", \"published_at\": \"unknown\", \"quote\": \"an agreement ... is to be concluded with the consent of Inatsisartut and is to be endorsed by a referendum\", \"supports\": \"Independence requires an agreement, parliamentary consent, and referendum.\", \"title\": \"Danish Prime Minister\\u2019s Office: Greenland\", \"url\": \"https://stm.dk/en/the-prime-ministers-office/the-unity-of-the-realm/greenland/\"}, {\"accessed_at\": \"2026-09-05T20:29:42.8258743Z\", \"published_at\": \"2026-03-19\", \"quote\": \"holdt ... sit konstituerende m\\u00f8de\", \"supports\": \"A constitutional commission had begun work in March 2026.\", \"title\": \"Greenland Section 21 Commission begins work\", \"url\": \"https://naalakkersuisut.gl/Nyheder/2026/03/1903_kommission?sc_lang=da\"}], \"subject_key\": \"greenland_independence_referendum_2026\", \"web_search_used\": true}"
+      },
+      "KXKANYEISRAEL-27JAN01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"before January 1, 2027\", \"family\": \"personal_travel\", \"key\": \"KXKANYEISRAEL-27JAN01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Kanye West / Ye has physically travelled to and been present within the geographic boundaries of Israel before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is a discretionary personal travel occurrence without a rule-defined necessary process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"kanye_west_israel_visit\", \"web_search_used\": false}"
+      },
+      "KXKATZOUT-26JAN01-27JAN01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"before January 1, 2027\", \"family\": \"political_departure\", \"key\": \"KXKATZOUT-26JAN01-27JAN01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Israel Katz has either officially announced their intention to leave as Minister of Defense of Israel or has actually left as Minister of Defense of Israel before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Departure or announcement is a discretionary political/personnel outcome without a rule-defined procedural sequence.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"israel_katz_defense_minister_departure\", \"web_search_used\": false}"
+      },
+      "KXMEDIAGUESTTBPN-27-DAR": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"before January 1, 2027\", \"family\": \"media_appearance\", \"key\": \"KXMEDIAGUESTTBPN-27-DAR\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Dario Amodei is on TBPN after April 03,2026 at 10:00AM and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is a discretionary media appearance by the named person.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"tbpn_guest_appearance_2026\", \"web_search_used\": false}"
+      },
+      "KXMEDIAGUESTTBPN-27-SAM": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"before January 1, 2027\", \"family\": \"media_appearance\", \"key\": \"KXMEDIAGUESTTBPN-27-SAM\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Sam Altman is on TBPN after April 03,2026 at 10:00AM and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"YES is a discretionary media appearance by the named person.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"tbpn_guest_appearance_2026\", \"web_search_used\": false}"
+      },
+      "KXRATECUT-26DEC31": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"before December 31, 2026\", \"family\": \"central_bank_decision\", \"key\": \"KXRATECUT-26DEC31\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Federal Reserve cuts its target federal funds rate range at least once between February 26, 2026 and December 31, 2026, then the market resolves to Yes.\", \"rationale\": \"YES depends on the direction of a future monetary-policy decision.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"federal_reserve_rate_cut_2026\", \"web_search_used\": false}"
+      },
+      "KXRKLBLAUNCH-NEUT-26DEC01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"none\", \"deadline\": \"market-specific: before December 1, 2026, January 1, April 1, July 1, or October 1, 2027\", \"family\": \"launch_vehicle_development\", \"key\": \"KXRKLBLAUNCH-NEUT-26DEC01\", \"mandatory_steps\": [{\"source_url\": \"https://rocketlabcorp.gcs-web.com/news-releases/news-release-details/rocket-lab-announces-second-quarter-2026-financial-results-posts\", \"status\": \"pending\", \"step\": \"Complete first-flight hardware assembly, integration, and qualification\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Complete launch-site and regulatory readiness\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Launch Neutron\"}], \"obstacle\": \"Qualification work remains, and Rocket Lab\\u2019s earlier schedule was revised after a stage-1 tank test failure.\", \"predicate\": \"If Rocket Lab Corporation launches Neutron After issuance and before Dec 1, 2026, then the market resolves to Yes.\", \"rationale\": \"Rocket Lab reports active assembly, integration, and testing of first-flight hardware and previously targeted Q4 2026. This supports a concrete path, although qualification and launch remain substantive and the earliest rung is not assured.\", \"source_gaps\": [\"No exact launch date or completed qualification was announced.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:29:42.8258743Z\", \"published_at\": \"2026-08-10\", \"quote\": \"critical milestones across Neutron\\u2019s assembly, integration, and testing of first-flight hardware\", \"supports\": \"Current first-flight hardware work is underway.\", \"title\": \"Rocket Lab second quarter 2026 results\", \"url\": \"https://rocketlabcorp.gcs-web.com/news-releases/news-release-details/rocket-lab-announces-second-quarter-2026-financial-results-posts\"}, {\"accessed_at\": \"2026-09-05T20:29:42.8258743Z\", \"published_at\": \"2026-02-26\", \"quote\": \"first launch now targeted for Q4 2026\", \"supports\": \"The company published a launch window overlapping the market deadlines.\", \"title\": \"Rocket Lab 2026 development schedule update\", \"url\": \"https://www.sec.gov/Archives/edgar/data/1819994/000181999426000012/rklb-02262026ex991.htm\"}], \"subject_key\": \"rocket_lab_neutron_inaugural_launch\", \"web_search_used\": true}"
+      },
+      "KXRKLBLAUNCH-NEUT-26NOV01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"none\", \"deadline\": \"market-specific: before December 1, 2026, January 1, April 1, July 1, or October 1, 2027\", \"family\": \"launch_vehicle_development\", \"key\": \"KXRKLBLAUNCH-NEUT-26NOV01\", \"mandatory_steps\": [{\"source_url\": \"https://rocketlabcorp.gcs-web.com/news-releases/news-release-details/rocket-lab-announces-second-quarter-2026-financial-results-posts\", \"status\": \"pending\", \"step\": \"Complete first-flight hardware assembly, integration, and qualification\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Complete launch-site and regulatory readiness\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Launch Neutron\"}], \"obstacle\": \"Qualification work remains, and Rocket Lab\\u2019s earlier schedule was revised after a stage-1 tank test failure.\", \"predicate\": \"If Rocket Lab Corporation launches Neutron After issuance and before Nov 1, 2026, then the market resolves to Yes.\", \"rationale\": \"Rocket Lab reports active assembly, integration, and testing of first-flight hardware and previously targeted Q4 2026. This supports a concrete path, although qualification and launch remain substantive and the earliest rung is not assured.\", \"source_gaps\": [\"No exact launch date or completed qualification was announced.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:29:42.8258743Z\", \"published_at\": \"2026-08-10\", \"quote\": \"critical milestones across Neutron\\u2019s assembly, integration, and testing of first-flight hardware\", \"supports\": \"Current first-flight hardware work is underway.\", \"title\": \"Rocket Lab second quarter 2026 results\", \"url\": \"https://rocketlabcorp.gcs-web.com/news-releases/news-release-details/rocket-lab-announces-second-quarter-2026-financial-results-posts\"}, {\"accessed_at\": \"2026-09-05T20:29:42.8258743Z\", \"published_at\": \"2026-02-26\", \"quote\": \"first launch now targeted for Q4 2026\", \"supports\": \"The company published a launch window overlapping the market deadlines.\", \"title\": \"Rocket Lab 2026 development schedule update\", \"url\": \"https://www.sec.gov/Archives/edgar/data/1819994/000181999426000012/rklb-02262026ex991.htm\"}], \"subject_key\": \"rocket_lab_neutron_inaugural_launch\", \"web_search_used\": true}"
+      },
+      "KXRKLBLAUNCH-NEUT-27FEB01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"none\", \"deadline\": \"market-specific: before December 1, 2026, January 1, April 1, July 1, or October 1, 2027\", \"family\": \"launch_vehicle_development\", \"key\": \"KXRKLBLAUNCH-NEUT-27FEB01\", \"mandatory_steps\": [{\"source_url\": \"https://rocketlabcorp.gcs-web.com/news-releases/news-release-details/rocket-lab-announces-second-quarter-2026-financial-results-posts\", \"status\": \"pending\", \"step\": \"Complete first-flight hardware assembly, integration, and qualification\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Complete launch-site and regulatory readiness\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Launch Neutron\"}], \"obstacle\": \"Qualification work remains, and Rocket Lab\\u2019s earlier schedule was revised after a stage-1 tank test failure.\", \"predicate\": \"If Rocket Lab Corporation launches Neutron After issuance and before Feb 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Rocket Lab reports active assembly, integration, and testing of first-flight hardware and previously targeted Q4 2026. This supports a concrete path, although qualification and launch remain substantive and the earliest rung is not assured.\", \"source_gaps\": [\"No exact launch date or completed qualification was announced.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:29:42.8258743Z\", \"published_at\": \"2026-08-10\", \"quote\": \"critical milestones across Neutron\\u2019s assembly, integration, and testing of first-flight hardware\", \"supports\": \"Current first-flight hardware work is underway.\", \"title\": \"Rocket Lab second quarter 2026 results\", \"url\": \"https://rocketlabcorp.gcs-web.com/news-releases/news-release-details/rocket-lab-announces-second-quarter-2026-financial-results-posts\"}, {\"accessed_at\": \"2026-09-05T20:29:42.8258743Z\", \"published_at\": \"2026-02-26\", \"quote\": \"first launch now targeted for Q4 2026\", \"supports\": \"The company published a launch window overlapping the market deadlines.\", \"title\": \"Rocket Lab 2026 development schedule update\", \"url\": \"https://www.sec.gov/Archives/edgar/data/1819994/000181999426000012/rklb-02262026ex991.htm\"}], \"subject_key\": \"rocket_lab_neutron_inaugural_launch\", \"web_search_used\": true}"
+      },
+      "KXRKLBLAUNCH-NEUT-27JAN01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"none\", \"deadline\": \"market-specific: before December 1, 2026, January 1, April 1, July 1, or October 1, 2027\", \"family\": \"launch_vehicle_development\", \"key\": \"KXRKLBLAUNCH-NEUT-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://rocketlabcorp.gcs-web.com/news-releases/news-release-details/rocket-lab-announces-second-quarter-2026-financial-results-posts\", \"status\": \"pending\", \"step\": \"Complete first-flight hardware assembly, integration, and qualification\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Complete launch-site and regulatory readiness\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Launch Neutron\"}], \"obstacle\": \"Qualification work remains, and Rocket Lab\\u2019s earlier schedule was revised after a stage-1 tank test failure.\", \"predicate\": \"If Rocket Lab Corporation launches Neutron After issuance and before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Rocket Lab reports active assembly, integration, and testing of first-flight hardware and previously targeted Q4 2026. This supports a concrete path, although qualification and launch remain substantive and the earliest rung is not assured.\", \"source_gaps\": [\"No exact launch date or completed qualification was announced.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:29:42.8258743Z\", \"published_at\": \"2026-08-10\", \"quote\": \"critical milestones across Neutron\\u2019s assembly, integration, and testing of first-flight hardware\", \"supports\": \"Current first-flight hardware work is underway.\", \"title\": \"Rocket Lab second quarter 2026 results\", \"url\": \"https://rocketlabcorp.gcs-web.com/news-releases/news-release-details/rocket-lab-announces-second-quarter-2026-financial-results-posts\"}, {\"accessed_at\": \"2026-09-05T20:29:42.8258743Z\", \"published_at\": \"2026-02-26\", \"quote\": \"first launch now targeted for Q4 2026\", \"supports\": \"The company published a launch window overlapping the market deadlines.\", \"title\": \"Rocket Lab 2026 development schedule update\", \"url\": \"https://www.sec.gov/Archives/edgar/data/1819994/000181999426000012/rklb-02262026ex991.htm\"}], \"subject_key\": \"rocket_lab_neutron_inaugural_launch\", \"web_search_used\": true}"
+      },
+      "KXRKLBLAUNCH-NEUT-27MAR01": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"none\", \"deadline\": \"market-specific: before December 1, 2026, January 1, April 1, July 1, or October 1, 2027\", \"family\": \"launch_vehicle_development\", \"key\": \"KXRKLBLAUNCH-NEUT-27MAR01\", \"mandatory_steps\": [{\"source_url\": \"https://rocketlabcorp.gcs-web.com/news-releases/news-release-details/rocket-lab-announces-second-quarter-2026-financial-results-posts\", \"status\": \"pending\", \"step\": \"Complete first-flight hardware assembly, integration, and qualification\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Complete launch-site and regulatory readiness\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Launch Neutron\"}], \"obstacle\": \"Qualification work remains, and Rocket Lab\\u2019s earlier schedule was revised after a stage-1 tank test failure.\", \"predicate\": \"If Rocket Lab Corporation launches Neutron After issuance and before Mar 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Rocket Lab reports active assembly, integration, and testing of first-flight hardware and previously targeted Q4 2026. This supports a concrete path, although qualification and launch remain substantive and the earliest rung is not assured.\", \"source_gaps\": [\"No exact launch date or completed qualification was announced.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:29:42.8258743Z\", \"published_at\": \"2026-08-10\", \"quote\": \"critical milestones across Neutron\\u2019s assembly, integration, and testing of first-flight hardware\", \"supports\": \"Current first-flight hardware work is underway.\", \"title\": \"Rocket Lab second quarter 2026 results\", \"url\": \"https://rocketlabcorp.gcs-web.com/news-releases/news-release-details/rocket-lab-announces-second-quarter-2026-financial-results-posts\"}, {\"accessed_at\": \"2026-09-05T20:29:42.8258743Z\", \"published_at\": \"2026-02-26\", \"quote\": \"first launch now targeted for Q4 2026\", \"supports\": \"The company published a launch window overlapping the market deadlines.\", \"title\": \"Rocket Lab 2026 development schedule update\", \"url\": \"https://www.sec.gov/Archives/edgar/data/1819994/000181999426000012/rklb-02262026ex991.htm\"}], \"subject_key\": \"rocket_lab_neutron_inaugural_launch\", \"web_search_used\": true}"
+      },
+      "KXTRUMPACT-26AUG30-T3": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"September 5, 2026\", \"family\": \"document_count\", \"key\": \"KXTRUMPACT-26AUG30-T3\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Donald Trump has taken at least 3 presidential actions from Aug 30, 2026 through Sep 5, 2026 (as checked on the \\u201cPresidential Actions\\u201d page at whitehouse.gov at 10:00 AM ET on Sep 6, 2026), then the market resolves to Yes.\", \"rationale\": \"YES is a count of items on an official webpage during a fixed week, not completion of a necessary-step process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"trump_presidential_action_count_aug30_sep5_2026\", \"web_search_used\": false}"
+      },
+      "KXTRUMPACT-26AUG30-T4": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"September 5, 2026\", \"family\": \"document_count\", \"key\": \"KXTRUMPACT-26AUG30-T4\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If Donald Trump has taken at least 4 presidential actions from Aug 30, 2026 through Sep 5, 2026 (as checked on the \\u201cPresidential Actions\\u201d page at whitehouse.gov at 10:00 AM ET on Sep 6, 2026), then the market resolves to Yes.\", \"rationale\": \"YES is a count of items on an official webpage during a fixed week, not completion of a necessary-step process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"trump_presidential_action_count_aug30_sep5_2026\", \"web_search_used\": false}"
+      },
+      "KXUMICHOVR-26DEC18-T65.0": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"during 2026\", \"family\": \"economic_metric\", \"key\": \"KXUMICHOVR-26DEC18-T65.0\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If any University of Michigan Consumer Sentiment Index final monthly release, published after Issuance and during 2026, reports a value above 65.0\\u3164, then the market resolves to Yes.\", \"rationale\": \"YES compares a published survey index with a threshold; no necessary-step mechanism determines the measured value.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"university_michigan_consumer_sentiment_2026\", \"web_search_used\": false}"
+      },
+      "KXZACKPOLANSKIOUT-27-JAN01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"before January 1, 2027\", \"family\": \"political_departure\", \"key\": \"KXZACKPOLANSKIOUT-27-JAN01\", \"mandatory_steps\": [], \"obstacle\": \"none established\", \"predicate\": \"If the Leader of the Green Party of England and Wales has resigned or otherwise left their specified position before Jan 1, 2027, then the market resolves to Yes.\", \"rationale\": \"Departure from a party leadership role is a discretionary political outcome rather than a mandatory staged process.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"green_party_england_wales_leader_departure\", \"web_search_used\": false}"
+      }
+    },
+    "web_search": true
+  },
+  "request": {
+    "batch_id": "30",
+    "candidate_keys": [
+      "KXTRUMPACT-26AUG30-T3",
+      "KXTRUMPACT-26AUG30-T4",
+      "KXUMICHOVR-26DEC18-T65.0",
+      "KXBTC2026200-27JAN01-200000",
+      "KXKANYEISRAEL-27JAN01",
+      "KXZACKPOLANSKIOUT-27-JAN01",
+      "KXRATECUT-26DEC31",
+      "KXETHMAXMON-ETH-26SEP30-275000",
+      "KXETHMAXMON-ETH-26SEP30-300000",
+      "KXETHMAXMON-ETH-26SEP30-325000",
+      "KXETHMAXMON-ETH-26SEP30-350000",
+      "KXETHMAXMON-ETH-26SEP30-375000",
+      "KXETHMAXMON-ETH-26SEP30-400000",
+      "KXETHMAXMON-ETH-26SEP30-425000",
+      "KXKATZOUT-26JAN01-27JAN01",
+      "KXGREENIND-27",
+      "KXEUMFFDEAL-27JUL01-27JAN01",
+      "KXRKLBLAUNCH-NEUT-26DEC01",
+      "KXRKLBLAUNCH-NEUT-26NOV01",
+      "KXRKLBLAUNCH-NEUT-27FEB01",
+      "KXRKLBLAUNCH-NEUT-27JAN01",
+      "KXRKLBLAUNCH-NEUT-27MAR01",
+      "KXBTCMAXY-26DEC31-109999.99",
+      "KXBTCMAXY-26DEC31-119999.99",
+      "KXBTCMAXY-26DEC31-129999.99",
+      "KXBTCMAXY-26DEC31-139999.99",
+      "KXBTCMAXY-26DEC31-149999.99",
+      "KXBTCMAXY-26DEC31-199999.99",
+      "KXBTCMAXY-26DEC31-99999.99",
+      "KXEACNOM-27-26OCT01",
+      "KXMEDIAGUESTTBPN-27-DAR",
+      "KXMEDIAGUESTTBPN-27-SAM",
+      "KXBIGBROTHERRANK-26DEC31R3-ANG",
+      "KXBIGBROTHERRANK-26DEC31R3-BAR",
+      "KXBIGBROTHERRANK-26DEC31R3-DEE",
+      "KXBIGBROTHERRANK-26DEC31R3-DRE",
+      "KXBIGBROTHERRANK-26DEC31R3-MEL",
+      "KXBIGBROTHERRANK-26DEC31R3-RIC",
+      "KXBIGBROTHERRANK-26DEC31R3-TAY",
+      "KXBIGBROTHERRANK-26DEC31R3-YAS"
+    ],
+    "decision_at": "2026-09-05T19:53:15.489944+00:00",
+    "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-030\\first-output.jsonl",
+    "payload": {
+      "decision_at": "2026-09-05T19:53:15.489944+00:00",
+      "events": [
+        {
+          "event_key": "KXTRUMPACT-26AUG30",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXTRUMPACT-26AUG30",
+              "key": "KXTRUMPACT-26AUG30-T3",
+              "no_sub_title": "At least 3",
+              "rules_primary": "If Donald Trump has taken at least 3 presidential actions from Aug 30, 2026 through Sep 5, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Sep 6, 2026), then the market resolves to Yes.",
+              "rules_secondary": "The market solely resolves to the publication dates visibly displayed on the \"Presidential Actions\" tab at whitehouse.gov at 10:00 AM ET on Sep 6, 2026. The week runs from Aug 30, 2026 through Sep 5, 2026. The actions may include proclamations, executive orders, nominations & appointments, and memoranda. Any item listed on the page counts, regardless of its legal effect.\n\nExamples (for Jan 10, 2026):\n\nExecutive Order with a Jan 7 signing date is released with a Jan 10 publication date \u2192 resolves Yes\nProclamation e-mailed to White House Press Pool but not uploaded by 10:00 AM next day \u2192 resolves No\nProclamation is released Jan 10 with a backdated Jan 9 publication date \u2192 resolves No\nBill signed into law and shows up on \"Briefings & Statements\" instead of \"Presidential Actions\" \u2192 resolves No",
+              "scheduled_close": "2026-09-06T14:00:00Z",
+              "series": "KXTRUMPACT",
+              "subtitle": null,
+              "title": "Will there be at least 3 presidential actions in the week of Aug 30, 2026?",
+              "yes_sub_title": "At least 3"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXTRUMPACT-26AUG30",
+              "key": "KXTRUMPACT-26AUG30-T4",
+              "no_sub_title": "At least 4",
+              "rules_primary": "If Donald Trump has taken at least 4 presidential actions from Aug 30, 2026 through Sep 5, 2026 (as checked on the \u201cPresidential Actions\u201d page at whitehouse.gov at 10:00 AM ET on Sep 6, 2026), then the market resolves to Yes.",
+              "rules_secondary": "The market solely resolves to the publication dates visibly displayed on the \"Presidential Actions\" tab at whitehouse.gov at 10:00 AM ET on Sep 6, 2026. The week runs from Aug 30, 2026 through Sep 5, 2026. The actions may include proclamations, executive orders, nominations & appointments, and memoranda. Any item listed on the page counts, regardless of its legal effect.\n\nExamples (for Jan 10, 2026):\n\nExecutive Order with a Jan 7 signing date is released with a Jan 10 publication date \u2192 resolves Yes\nProclamation e-mailed to White House Press Pool but not uploaded by 10:00 AM next day \u2192 resolves No\nProclamation is released Jan 10 with a backdated Jan 9 publication date \u2192 resolves No\nBill signed into law and shows up on \"Briefings & Statements\" instead of \"Presidential Actions\" \u2192 resolves No",
+              "scheduled_close": "2026-09-06T14:00:00Z",
+              "series": "KXTRUMPACT",
+              "subtitle": null,
+              "title": "Will there be at least 4 presidential actions in the week of Aug 30, 2026?",
+              "yes_sub_title": "At least 4"
+            }
+          ]
+        },
+        {
+          "event_key": "KXUMICHOVR-26DEC18",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXUMICHOVR-26DEC18",
+              "key": "KXUMICHOVR-26DEC18-T65.0",
+              "no_sub_title": "Yes",
+              "rules_primary": "If any University of Michigan Consumer Sentiment Index final monthly release, published after Issuance and during 2026, reports a value above 65.0\u3164, then the market resolves to Yes.",
+              "rules_secondary": "This market covers only final monthly Consumer Sentiment releases scheduled to occur in calendar year 2026 and does not include any release scheduled for 2027.",
+              "scheduled_close": "2026-12-18T14:55:00Z",
+              "series": "KXUMICHOVR",
+              "subtitle": null,
+              "title": "Will University of Michigan Consumer Sentiment Index for 2026 go above 65.0\u3164?",
+              "yes_sub_title": "Yes"
+            }
+          ]
+        },
+        {
+          "event_key": "KXBTC2026200-27JAN01",
+          "markets": [
+            {
+              "category": "Crypto",
+              "event_key": "KXBTC2026200-27JAN01",
+              "key": "KXBTC2026200-27JAN01-200000",
+              "no_sub_title": "Above $200000",
+              "rules_primary": "If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $200000 starting 2025-10-10 and before Jan 1, 2027 at 12:00 AM ET, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the CF Bitcoin Real-Time Index (BRTI) using a trimmed mean calculation. The resolution value is calculated by taking all BRTI values for each minute from market issuance until the specified time on the target date, removing the top 20% and bottom 20% of values, then averaging the remaining 60% of values. If the BRTI crosses the threshold at any point during the measurement period (triggering early expiration), the market immediately resolves. If no data is available at the expiration time, the market resolves to No. The market can resolve early if Bitcoin definitively crosses the threshold before the target date and time.",
+              "scheduled_close": "2027-01-01T05:00:00Z",
+              "series": "KXBTC2026200",
+              "subtitle": null,
+              "title": "Will Bitcoin be above $200000 by Jan 1, 2027 at 11:59PM ET?",
+              "yes_sub_title": "Above $200000"
+            }
+          ]
+        },
+        {
+          "event_key": "KXKANYEISRAEL",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXKANYEISRAEL",
+              "key": "KXKANYEISRAEL-27JAN01",
+              "no_sub_title": "Yes",
+              "rules_primary": "If Kanye West / Ye has physically travelled to and been present within the geographic boundaries of Israel before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "Physical presence within the geographic boundaries of the area is required. Flying over without landing, layovers during which the person remains in the airplane or airport, virtual or remote appearances, future visit plans, or (unless explicitly specified) presence in adjacent international waters or solely within embassy or consulate grounds do NOT constitute a visit. International airports are considered within the boundaries of their host jurisdiction. A visit that began before the specified time period and is ongoing as of its start does not count; however, if the person departs and re-enters the area during the time period, the re-entry constitutes a new visit and does count.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXKANYEISRAEL",
+              "subtitle": "Yes",
+              "title": "Will Kanye West / Ye visit Israel before Jan 1, 2027?",
+              "yes_sub_title": "Yes"
+            }
+          ]
+        },
+        {
+          "event_key": "KXZACKPOLANSKIOUT-27",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXZACKPOLANSKIOUT-27",
+              "key": "KXZACKPOLANSKIOUT-27-JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If the Leader of the Green Party of England and Wales has resigned or otherwise left their specified position before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "An announcement that the official will leave the office within the next year also resolves the market to Yes.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXZACKPOLANSKIOUT",
+              "subtitle": null,
+              "title": "Will the Leader of the Green Party of England and Wales resign before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXRATECUT-26DEC31",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXRATECUT-26DEC31",
+              "key": "KXRATECUT-26DEC31",
+              "no_sub_title": "Cuts",
+              "rules_primary": "If the Federal Reserve cuts its target federal funds rate range at least once between February 26, 2026 and December 31, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The market will close and determine on the first 10 AM ET following the occurrence of the event if the event occurs prior to the target date.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXRATECUT",
+              "subtitle": null,
+              "title": "Will the Federal Reserve cut rates before 2027?",
+              "yes_sub_title": "Cuts"
+            }
+          ]
+        },
+        {
+          "event_key": "KXETHMAXMON-ETH-26SEP30",
+          "markets": [
+            {
+              "category": "Crypto",
+              "event_key": "KXETHMAXMON-ETH-26SEP30",
+              "key": "KXETHMAXMON-ETH-26SEP30-275000",
+              "no_sub_title": "Above $2,750.00",
+              "rules_primary": "If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n2750.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF ETHUSD_RTI price for ETH. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXETHMAXMON",
+              "subtitle": null,
+              "title": "Will ETH trimmed mean be above $2750.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Above $2,750.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXETHMAXMON-ETH-26SEP30",
+              "key": "KXETHMAXMON-ETH-26SEP30-300000",
+              "no_sub_title": "Above $3,000.00",
+              "rules_primary": "If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n3000.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF ETHUSD_RTI price for ETH. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXETHMAXMON",
+              "subtitle": null,
+              "title": "Will ETH trimmed mean be above $3000.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Above $3,000.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXETHMAXMON-ETH-26SEP30",
+              "key": "KXETHMAXMON-ETH-26SEP30-325000",
+              "no_sub_title": "Above $3,250.00",
+              "rules_primary": "If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n3250.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF ETHUSD_RTI price for ETH. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXETHMAXMON",
+              "subtitle": null,
+              "title": "Will ETH trimmed mean be above $3250.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Above $3,250.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXETHMAXMON-ETH-26SEP30",
+              "key": "KXETHMAXMON-ETH-26SEP30-350000",
+              "no_sub_title": "Above $3,500.00",
+              "rules_primary": "If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n3500.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF ETHUSD_RTI price for ETH. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXETHMAXMON",
+              "subtitle": null,
+              "title": "Will ETH trimmed mean be above $3500.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Above $3,500.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXETHMAXMON-ETH-26SEP30",
+              "key": "KXETHMAXMON-ETH-26SEP30-375000",
+              "no_sub_title": "Above $3,750.00",
+              "rules_primary": "If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n3750.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF ETHUSD_RTI price for ETH. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXETHMAXMON",
+              "subtitle": null,
+              "title": "Will ETH trimmed mean be above $3750.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Above $3,750.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXETHMAXMON-ETH-26SEP30",
+              "key": "KXETHMAXMON-ETH-26SEP30-400000",
+              "no_sub_title": "Above $4,000.00",
+              "rules_primary": "If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n4000.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF ETHUSD_RTI price for ETH. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXETHMAXMON",
+              "subtitle": null,
+              "title": "Will ETH trimmed mean be above $4000.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Above $4,000.00"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXETHMAXMON-ETH-26SEP30",
+              "key": "KXETHMAXMON-ETH-26SEP30-425000",
+              "no_sub_title": "Above $4,250.00",
+              "rules_primary": "If the price of ETH after issuance and through 11:59 PM ET on Sep 30, 2026 is ever above $\n4250.00, then the market resolves to Yes.",
+              "rules_secondary": "At each minute throughout the market duration, a settlement value is calculated using every minute-by-minute CF ETHUSD_RTI price for ETH. For each of these individual minute-by-minute checks, the top 20% and bottom 20% of the cumulative dataset are removed before calculating the average of the remaining values. If the trimmed mean associated with any single minute during the period is above the threshold, the market resolves to Yes. This methodology reduces the impact of extreme price spikes or drops. The measurement period runs from when the market is issued until the specified end time. If CF Benchmarks data is unavailable or incomplete at the expiration time, affected strikes resolve to No. For cryptocurrencies with multiple versions, the Exchange will specify which version or ticker is being tracked.",
+              "scheduled_close": "2026-10-01T03:59:59Z",
+              "series": "KXETHMAXMON",
+              "subtitle": null,
+              "title": "Will ETH trimmed mean be above $4250.00 by 11:59 PM ET on Sep 30, 2026?",
+              "yes_sub_title": "Above $4,250.00"
+            }
+          ]
+        },
+        {
+          "event_key": "KXKATZOUT-26JAN01",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXKATZOUT-26JAN01",
+              "key": "KXKATZOUT-26JAN01-27JAN01",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If Israel Katz has either officially announced their intention to leave as Minister of Defense of Israel or has actually left as Minister of Defense of Israel before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "An \"official announcement\" means a statement by the person themselves, their authorized representative, or the official body governing the office that the person will be departing from the office. Such announcements must be reported by at least one Source Agency to be considered official. The announcement must not specify they are leaving in more than a year from the statement, in which case the market does not resolve to Yes.\n\n\"Leaving office\" means the person no longer holds the office in any capacity, including but not limited to: resignation (effective), termination, removal, impeachment and removal, recall, or the expiration of their term without renewal. Temporary absences such as medical leave, suspension with possibility of return, or delegation of duties while retaining the office do NOT constitute leaving office. Death does NOT satisfy the Payout Criterion for this Contract. Forced departures (termination, impeachment and removal, etc.) satisfy the Payout Criterion even without a prior announcement.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXKATZOUT",
+              "subtitle": null,
+              "title": "Will Israel Katz leave Minister of Defense of Israel before Jan 1, 2027?",
+              "yes_sub_title": "Before 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXGREENIND-27",
+          "markets": [
+            {
+              "category": "Elections",
+              "event_key": "KXGREENIND-27",
+              "key": "KXGREENIND-27",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If Greenland has held an independence referendum after Issuance and before Jan 1, 2027 whose outcome is a majority of voters vote for independence, then the market resolves to Yes.",
+              "rules_secondary": "A referendum to join another country will also be considered as an independence referendum for this purpose.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXGREENIND",
+              "subtitle": null,
+              "title": "Will Greenland vote for independence before 2027?",
+              "yes_sub_title": "Before 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXEUMFFDEAL-27JUL01",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXEUMFFDEAL-27JUL01",
+              "key": "KXEUMFFDEAL-27JUL01-27JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If all 27 EU member states agree to or announce the final agreed terms of the overall political agreement on the 2028-2034 EU long-term budget (MFF), as officially declared by the European Council to have been reached by all 27 EU member states before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The European Council must officially declare that all 27 EU member states have reached political agreement on the overall 2028-2034 MFF terms. A commitment or timetable to reach agreement later, a negotiating box, a partial or sectoral mandate, or a package leaving MFF-level terms unresolved does not qualify. European Parliament consent, formal legislative adoption, and entry into force are not required.\n\nAn agreement or announcement qualifies if it involves any of the following:\n\nFormal commitment by the head of state/government with constitutional authority\nOfficial statements by authorized ministers\nOfficial press releases\nFormal declarations during government proceedings\nOfficial statements to international bodies\n\nPhased implementation announcements and multi-party agreements where all 27 EU member states are signatories also qualify.\n\nThe following do NOT qualify:\n\nPreliminary discussions\nConditional agreements contingent on circumstances\nOpposition party statements\nLeaked documents\nThink-tank recommendations\nGeneral aspirations without specific commitment\nDraft legislation without approval\nRegional actions (unless specified)\nRetraction of previously announced commitments",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXEUMFFDEAL",
+              "subtitle": null,
+              "title": "EU long-term budget deal before 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXRKLBLAUNCH-NEUT",
+          "markets": [
+            {
+              "category": "Science and Technology",
+              "event_key": "KXRKLBLAUNCH-NEUT",
+              "key": "KXRKLBLAUNCH-NEUT-26DEC01",
+              "no_sub_title": "Before December 2026",
+              "rules_primary": "If Rocket Lab Corporation launches Neutron After issuance and before Dec 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-12-01T04:59:00Z",
+              "series": "KXRKLBLAUNCH",
+              "subtitle": "Before December, 2026",
+              "title": "When will Rocket Lab Corporation launch Neutron?",
+              "yes_sub_title": "Before December 2026"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXRKLBLAUNCH-NEUT",
+              "key": "KXRKLBLAUNCH-NEUT-26NOV01",
+              "no_sub_title": "Before November 2026",
+              "rules_primary": "If Rocket Lab Corporation launches Neutron After issuance and before Nov 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-11-01T04:59:00Z",
+              "series": "KXRKLBLAUNCH",
+              "subtitle": "Before November, 2026",
+              "title": "When will Rocket Lab Corporation launch Neutron?",
+              "yes_sub_title": "Before November 2026"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXRKLBLAUNCH-NEUT",
+              "key": "KXRKLBLAUNCH-NEUT-27FEB01",
+              "no_sub_title": "Before February 2027",
+              "rules_primary": "If Rocket Lab Corporation launches Neutron After issuance and before Feb 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-02-01T04:59:00Z",
+              "series": "KXRKLBLAUNCH",
+              "subtitle": "Before February, 2027",
+              "title": "When will Rocket Lab Corporation launch Neutron?",
+              "yes_sub_title": "Before February 2027"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXRKLBLAUNCH-NEUT",
+              "key": "KXRKLBLAUNCH-NEUT-27JAN01",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If Rocket Lab Corporation launches Neutron After issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXRKLBLAUNCH",
+              "subtitle": null,
+              "title": "When will Rocket Lab Corporation launch Neutron?",
+              "yes_sub_title": "Before 2027"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXRKLBLAUNCH-NEUT",
+              "key": "KXRKLBLAUNCH-NEUT-27MAR01",
+              "no_sub_title": "Before March 2027",
+              "rules_primary": "If Rocket Lab Corporation launches Neutron After issuance and before Mar 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-03-01T04:59:00Z",
+              "series": "KXRKLBLAUNCH",
+              "subtitle": "Before March, 2027",
+              "title": "When will Rocket Lab Corporation launch Neutron?",
+              "yes_sub_title": "Before March 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXBTCMAXY-26DEC31",
+          "markets": [
+            {
+              "category": "Crypto",
+              "event_key": "KXBTCMAXY-26DEC31",
+              "key": "KXBTCMAXY-26DEC31-109999.99",
+              "no_sub_title": "Above $109,999.99",
+              "rules_primary": "If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $109999.99 starting 01/02/2026 06:00 PM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the CF Bitcoin Real-Time Index (BRTI) using a trimmed mean calculation. The resolution value is calculated by taking all BRTI values for each minute from market issuance until the specified time on the target date, removing the top 20% and bottom 20% of values, then averaging the remaining 60% of values. If the BRTI crosses the threshold at any point during the measurement period (triggering early expiration), the market immediately resolves. If no data is available at the expiration time, the market resolves to No. The market can resolve early if Bitcoin definitively crosses the threshold before the target date and time.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXBTCMAXY",
+              "subtitle": null,
+              "title": "Will Bitcoin be above $109,999.99 by Dec 31, 2026 at 11:59 PM ET?",
+              "yes_sub_title": "Above $109,999.99"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXBTCMAXY-26DEC31",
+              "key": "KXBTCMAXY-26DEC31-119999.99",
+              "no_sub_title": "Above $119,999.99",
+              "rules_primary": "If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $119999.99 starting 01/01/2026 12:00 AM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the CF Bitcoin Real-Time Index (BRTI) using a trimmed mean calculation. The resolution value is calculated by taking all BRTI values for each minute from market issuance until the specified time on the target date, removing the top 20% and bottom 20% of values, then averaging the remaining 60% of values. If the BRTI crosses the threshold at any point during the measurement period (triggering early expiration), the market immediately resolves. If no data is available at the expiration time, the market resolves to No. The market can resolve early if Bitcoin definitively crosses the threshold before the target date and time.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXBTCMAXY",
+              "subtitle": null,
+              "title": "Will Bitcoin be above $119,999.99 by Dec 31, 2026 at 11:59 PM ET?",
+              "yes_sub_title": "Above $119,999.99"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXBTCMAXY-26DEC31",
+              "key": "KXBTCMAXY-26DEC31-129999.99",
+              "no_sub_title": "Above $129,999.99",
+              "rules_primary": "If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $129999.99 starting 01/01/2026 12:00 AM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the CF Bitcoin Real-Time Index (BRTI) using a trimmed mean calculation. The resolution value is calculated by taking all BRTI values for each minute from market issuance until the specified time on the target date, removing the top 20% and bottom 20% of values, then averaging the remaining 60% of values. If the BRTI crosses the threshold at any point during the measurement period (triggering early expiration), the market immediately resolves. If no data is available at the expiration time, the market resolves to No. The market can resolve early if Bitcoin definitively crosses the threshold before the target date and time.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXBTCMAXY",
+              "subtitle": null,
+              "title": "Will Bitcoin be above $129,999.99 by Dec 31, 2026 at 11:59 PM ET?",
+              "yes_sub_title": "Above $129,999.99"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXBTCMAXY-26DEC31",
+              "key": "KXBTCMAXY-26DEC31-139999.99",
+              "no_sub_title": "Above $139,999.99",
+              "rules_primary": "If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $139999.99 starting 01/01/2026 12:00 AM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the CF Bitcoin Real-Time Index (BRTI) using a trimmed mean calculation. The resolution value is calculated by taking all BRTI values for each minute from market issuance until the specified time on the target date, removing the top 20% and bottom 20% of values, then averaging the remaining 60% of values. If the BRTI crosses the threshold at any point during the measurement period (triggering early expiration), the market immediately resolves. If no data is available at the expiration time, the market resolves to No. The market can resolve early if Bitcoin definitively crosses the threshold before the target date and time.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXBTCMAXY",
+              "subtitle": null,
+              "title": "Will Bitcoin be above $139,999.99 by Dec 31, 2026 at 11:59 PM ET?",
+              "yes_sub_title": "Above $139,999.99"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXBTCMAXY-26DEC31",
+              "key": "KXBTCMAXY-26DEC31-149999.99",
+              "no_sub_title": "Above $149,999.99",
+              "rules_primary": "If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $149999.99 starting 01/01/2026 12:00 AM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the CF Bitcoin Real-Time Index (BRTI) using a trimmed mean calculation. The resolution value is calculated by taking all BRTI values for each minute from market issuance until the specified time on the target date, removing the top 20% and bottom 20% of values, then averaging the remaining 60% of values. If the BRTI crosses the threshold at any point during the measurement period (triggering early expiration), the market immediately resolves. If no data is available at the expiration time, the market resolves to No. The market can resolve early if Bitcoin definitively crosses the threshold before the target date and time.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXBTCMAXY",
+              "subtitle": null,
+              "title": "Will Bitcoin be above $149,999.99 by Dec 31, 2026 at 11:59 PM ET?",
+              "yes_sub_title": "Above $149,999.99"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXBTCMAXY-26DEC31",
+              "key": "KXBTCMAXY-26DEC31-199999.99",
+              "no_sub_title": "Above $199,999.99",
+              "rules_primary": "If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $199999.99 starting 10/01/2025 10:00 AM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the CF Bitcoin Real-Time Index (BRTI) using a trimmed mean calculation. The resolution value is calculated by taking all BRTI values for each minute from market issuance until the specified time on the target date, removing the top 20% and bottom 20% of values, then averaging the remaining 60% of values. If the BRTI crosses the threshold at any point during the measurement period (triggering early expiration), the market immediately resolves. If no data is available at the expiration time, the market resolves to No. The market can resolve early if Bitcoin definitively crosses the threshold before the target date and time.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXBTCMAXY",
+              "subtitle": null,
+              "title": "Will Bitcoin be above $199,999.99 by Dec 31, 2026 at 11:59 PM ET?",
+              "yes_sub_title": "Above $199,999.99"
+            },
+            {
+              "category": "Crypto",
+              "event_key": "KXBTCMAXY-26DEC31",
+              "key": "KXBTCMAXY-26DEC31-99999.99",
+              "no_sub_title": "Above $99,999.99",
+              "rules_primary": "If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $99999.99 starting 01/02/2026 06:00 PM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.",
+              "rules_secondary": "The market resolves based on the CF Bitcoin Real-Time Index (BRTI) using a trimmed mean calculation. The resolution value is calculated by taking all BRTI values for each minute from market issuance until the specified time on the target date, removing the top 20% and bottom 20% of values, then averaging the remaining 60% of values. If the BRTI crosses the threshold at any point during the measurement period (triggering early expiration), the market immediately resolves. If no data is available at the expiration time, the market resolves to No. The market can resolve early if Bitcoin definitively crosses the threshold before the target date and time.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXBTCMAXY",
+              "subtitle": null,
+              "title": "Will Bitcoin be above $99,999.99 by Dec 31, 2026 at 11:59 PM ET?",
+              "yes_sub_title": "Above $99,999.99"
+            }
+          ]
+        },
+        {
+          "event_key": "KXEACNOM-27",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXEACNOM-27",
+              "key": "KXEACNOM-27-26OCT01",
+              "no_sub_title": "Before Oct 1, 2026",
+              "rules_primary": "If any person is nominated to be member of the Election Assistance Commission after Issuance and before Oct 1, 2026. then the market resolves to Yes.",
+              "rules_secondary": "Official announcements made by the President of a nomination shall satisfy the Payout Criterion, even if they are not yet sent to the Senate.",
+              "scheduled_close": "2026-10-01T14:00:00Z",
+              "series": "KXEACNOM",
+              "subtitle": null,
+              "title": "Will someone be nominated for member of the Election Assistance Commission before Oct 1, 2026?",
+              "yes_sub_title": "Before Oct 1, 2026"
+            }
+          ]
+        },
+        {
+          "event_key": "KXMEDIAGUESTTBPN-27",
+          "markets": [
+            {
+              "category": "Entertainment",
+              "event_key": "KXMEDIAGUESTTBPN-27",
+              "key": "KXMEDIAGUESTTBPN-27-DAR",
+              "no_sub_title": "Dario Amodei",
+              "rules_primary": "If Dario Amodei is on TBPN after April 03,2026 at 10:00AM and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "If Dario Amodei appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of TBPN (e.g., the host playing a portion of a speech or song excerpt by Dario Amodei), the Payout Criterion is not satisfied.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXMEDIAGUESTTBPN",
+              "subtitle": null,
+              "title": "Will Dario Amodei be on TBPN before 2027?",
+              "yes_sub_title": "Dario Amodei"
+            },
+            {
+              "category": "Entertainment",
+              "event_key": "KXMEDIAGUESTTBPN-27",
+              "key": "KXMEDIAGUESTTBPN-27-SAM",
+              "no_sub_title": "Sam Altman",
+              "rules_primary": "If Sam Altman is on TBPN after April 03,2026 at 10:00AM and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "If Sam Altman appears solely in an advertisement, or solely via a prerecorded audioclip that was not recorded for purposes of TBPN (e.g., the host playing a portion of a speech or song excerpt by Sam Altman), the Payout Criterion is not satisfied.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXMEDIAGUESTTBPN",
+              "subtitle": "Sam Altman",
+              "title": "Will Sam Altman be on TBPN before 2027?",
+              "yes_sub_title": "Sam Altman"
+            }
+          ]
+        },
+        {
+          "event_key": "KXBIGBROTHERRANK-26DEC31R3",
+          "markets": [
+            {
+              "category": "Entertainment",
+              "event_key": "KXBIGBROTHERRANK-26DEC31R3",
+              "key": "KXBIGBROTHERRANK-26DEC31R3-ANG",
+              "no_sub_title": "Angela Murray",
+              "rules_primary": "If Angela Murray finishes 3rd in Big Brother Season 28, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+              "scheduled_close": "2026-12-31T15:00:00Z",
+              "series": "KXBIGBROTHERRANK",
+              "subtitle": null,
+              "title": "Will Angela Murray finish in 3 place in Big Brother Season 28?",
+              "yes_sub_title": "Angela Murray"
+            },
+            {
+              "category": "Entertainment",
+              "event_key": "KXBIGBROTHERRANK-26DEC31R3",
+              "key": "KXBIGBROTHERRANK-26DEC31R3-BAR",
+              "no_sub_title": "Barrett Pfeiffer",
+              "rules_primary": "If Barrett Pfeiffer finishes 3rd in Big Brother Season 28, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+              "scheduled_close": "2026-12-31T15:00:00Z",
+              "series": "KXBIGBROTHERRANK",
+              "subtitle": null,
+              "title": "Will Barrett Pfeiffer finish in 3 place in Big Brother Season 28?",
+              "yes_sub_title": "Barrett Pfeiffer"
+            },
+            {
+              "category": "Entertainment",
+              "event_key": "KXBIGBROTHERRANK-26DEC31R3",
+              "key": "KXBIGBROTHERRANK-26DEC31R3-DEE",
+              "no_sub_title": "Dee Valladares",
+              "rules_primary": "If Dee Valladares finishes 3rd in Big Brother Season 28, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+              "scheduled_close": "2026-12-31T15:00:00Z",
+              "series": "KXBIGBROTHERRANK",
+              "subtitle": null,
+              "title": "Will Dee Valladares finish in 3 place in Big Brother Season 28?",
+              "yes_sub_title": "Dee Valladares"
+            },
+            {
+              "category": "Entertainment",
+              "event_key": "KXBIGBROTHERRANK-26DEC31R3",
+              "key": "KXBIGBROTHERRANK-26DEC31R3-DRE",
+              "no_sub_title": "Drew Campbell",
+              "rules_primary": "If Drew Campbell finishes 3rd in Big Brother Season 28, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+              "scheduled_close": "2026-12-31T15:00:00Z",
+              "series": "KXBIGBROTHERRANK",
+              "subtitle": null,
+              "title": "Will Drew Campbell finish in 3 place in Big Brother Season 28?",
+              "yes_sub_title": "Drew Campbell"
+            },
+            {
+              "category": "Entertainment",
+              "event_key": "KXBIGBROTHERRANK-26DEC31R3",
+              "key": "KXBIGBROTHERRANK-26DEC31R3-MEL",
+              "no_sub_title": "Melody Morris",
+              "rules_primary": "If Melody Morris finishes 3rd in Big Brother Season 28, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+              "scheduled_close": "2026-12-31T15:00:00Z",
+              "series": "KXBIGBROTHERRANK",
+              "subtitle": null,
+              "title": "Will Melody Morris finish in 3 place in Big Brother Season 28?",
+              "yes_sub_title": "Melody Morris"
+            },
+            {
+              "category": "Entertainment",
+              "event_key": "KXBIGBROTHERRANK-26DEC31R3",
+              "key": "KXBIGBROTHERRANK-26DEC31R3-RIC",
+              "no_sub_title": "Rick Devens",
+              "rules_primary": "If Rick Devens finishes 3rd in Big Brother Season 28, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+              "scheduled_close": "2026-12-31T15:00:00Z",
+              "series": "KXBIGBROTHERRANK",
+              "subtitle": null,
+              "title": "Will Rick Devens finish in 3 place in Big Brother Season 28?",
+              "yes_sub_title": "Rick Devens"
+            },
+            {
+              "category": "Entertainment",
+              "event_key": "KXBIGBROTHERRANK-26DEC31R3",
+              "key": "KXBIGBROTHERRANK-26DEC31R3-TAY",
+              "no_sub_title": "Taylor Brown",
+              "rules_primary": "If Taylor Brown finishes 3rd in Big Brother Season 28, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+              "scheduled_close": "2026-12-31T15:00:00Z",
+              "series": "KXBIGBROTHERRANK",
+              "subtitle": null,
+              "title": "Will Taylor Brown finish in 3 place in Big Brother Season 28?",
+              "yes_sub_title": "Taylor Brown"
+            },
+            {
+              "category": "Entertainment",
+              "event_key": "KXBIGBROTHERRANK-26DEC31R3",
+              "key": "KXBIGBROTHERRANK-26DEC31R3-YAS",
+              "no_sub_title": "Yash Patel",
+              "rules_primary": "If Yash Patel finishes 3rd in Big Brother Season 28, then the market resolves to Yes.",
+              "rules_secondary": "This market and these products have not been endorsed by Big Brother. Any references to Big Brother, or any associated marks are descriptive only and do not indicate an endorsement of this product or any affiliation between Big Brother and Kalshi.",
+              "scheduled_close": "2026-12-31T15:00:00Z",
+              "series": "KXBIGBROTHERRANK",
+              "subtitle": null,
+              "title": "Will Yash Patel finish in 3 place in Big Brother Season 28?",
+              "yes_sub_title": "Yash Patel"
+            }
+          ]
+        }
+      ],
+      "snapshot_at": "2026-09-05T15:45:16Z"
+    },
+    "payload_sha256": "ac7f88cde26e63ddc202ae42b020357f8170977ac38e66e89f3658dcf0abc73a",
+    "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-030\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\judgments\\batch-030\\first-output.jsonl\n",
+    "requested_effort": "high",
+    "requested_model": "gpt-5.6-sol",
+    "requested_web_search": true,
+    "run_id": "study/broad-procedural-20260905",
+    "run_mode": "study",
+    "stage": "analysis",
+    "theory_id": "study/broad-procedural",
+    "theory_version": 1
+  },
+  "schema_version": 1
+}

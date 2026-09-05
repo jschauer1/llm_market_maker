@@ -1,0 +1,22 @@
+{"kind":"search","query":"site:waymo.com 2026 Boston Washington Denver Detroit Las Vegas London Portland Sacramento San Diego Seattle Tampa launch","searched_at":"2026-09-05T19:56:47Z","result":"official city-status and launch pages found"}
+{"kind":"search","query":"site:congress.gov FY2027 NDAA passed House Senate September 2026","searched_at":"2026-09-05T19:56:47Z","result":"blocked by robots.txt; official committee sources found in follow-up"}
+{"kind":"search","query":"site:whitehouse.gov 2026 executive action mandatory review AI models before public release","searched_at":"2026-09-05T19:56:47Z","result":"official voluntary-framework order found"}
+{"kind":"search","query":"site:house.gov 2026 calendar pre-election recess September 18 2026","searched_at":"2026-09-05T19:56:47Z","result":"current Clerk and calendar pages found; decisive color coding not in text"}
+{"kind":"search","query":"site:armedservices.house.gov FY27 NDAA 2026 passed committee","searched_at":"2026-09-05T19:56:47Z","result":"House committee passage found"}
+{"kind":"search","query":"site:armed-services.senate.gov FY2027 NDAA 2026","searched_at":"2026-09-05T19:56:47Z","result":"Senate filing found"}
+{"kind":"search","query":"site:senate.gov Patients Before Monopolies Act 2026","searched_at":"2026-09-05T19:56:47Z","result":"bipartisan reintroduction found"}
+{"kind":"search","query":"2026 acquisition agreement Anthropic Brown-Forman BP eBay Figma GitLab official","searched_at":"2026-09-05T19:56:47Z","result":"Brown-Forman official discussions found; no qualifying agreements for other sampled targets"}
+{"kind":"search","query":"site:fcc.gov Brendan Carr chairman September 2026","searched_at":"2026-09-05T19:56:47Z","result":"recent FCC incumbent reference found; no departure action"}
+{"kind":"search","query":"site:whitehouse.gov 2026 veto message President Trump Congress September 2026","searched_at":"2026-09-05T19:56:47Z","result":"current veto tally and a failed override found; no pending success path"}
+{"kind":"consulted_url","event_key":"KXWAYMOCITY-26DEC","url":"https://waymo.com/intl/es/updates/?hl=fr-ch","accessed_at":"2026-09-05T19:56:47Z","result":"used"}
+{"kind":"consulted_url","event_key":"KXWAYMOCITY-26DEC","url":"https://waymo.com/blog/2026/09/ride-in-denver-san-diego-tampa/","accessed_at":"2026-09-05T19:56:47Z","result":"used"}
+{"kind":"consulted_url","event_key":"KXWAYMOCITY-26DEC","url":"https://waymo.com/blog/shorts/ro-den-lv-sd-tmpa/","accessed_at":"2026-09-05T19:56:47Z","result":"used"}
+{"kind":"consulted_url","event_key":"KXACQANNOUNCEANNUAL-27JAN01","url":"https://www.brown-forman.com/article/brown-forman-confirms-discussions-pernod-ricard-march-26-2026","accessed_at":"2026-09-05T19:56:47Z","result":"used"}
+{"kind":"consulted_url","event_key":"KXNDAA-26JUL","url":"https://armedservices.house.gov/news/documentsingle.aspx?DocumentID=6713","accessed_at":"2026-09-05T19:56:47Z","result":"used"}
+{"kind":"consulted_url","event_key":"KXNDAA-26JUL","url":"https://www.armed-services.senate.gov/press-releases/sasc-chairman-roger-wicker-and-ranking-member-jack-reed-announce-fy27-ndaa-filing","accessed_at":"2026-09-05T19:56:47Z","result":"used"}
+{"kind":"consulted_url","event_key":"KXAIREVIEW-26JUN","url":"https://www.whitehouse.gov/presidential-actions/2026/06/promoting-advanced-artificial-intelligence-innovation-and-security/","accessed_at":"2026-09-05T19:56:47Z","result":"used"}
+{"kind":"consulted_url","event_key":"KXPATIENTSMONOPOLIES-27","url":"https://www.hawley.senate.gov/hawley-warren-reintroduce-bipartisan-legislation-to-limit-pbms-put-patients-first/","accessed_at":"2026-09-05T19:56:47Z","result":"used"}
+{"kind":"consulted_url","event_key":"KXVETOOVERRIDE-29JAN20","url":"https://www.senate.gov/legislative/vetoes/vetoCounts.htm","accessed_at":"2026-09-05T19:56:47Z","result":"used"}
+{"kind":"consulted_url","event_key":"KXVETOOVERRIDE-29JAN20","url":"https://www.bennet.senate.gov/2026/01/08/bennet-statement-on-houses-failed-veto-override-vote/","accessed_at":"2026-09-05T19:56:47Z","result":"used"}
+{"kind":"consulted_url","event_key":"KXHOUSEADJOURN-26","url":"https://clerk.house.gov/Static/","accessed_at":"2026-09-05T19:56:47Z","result":"used"}
+{"kind":"consulted_url","event_key":"KXCARROUT-27JAN01","url":"https://docs.fcc.gov/public/attachments/DOC-422339A1.pdf","accessed_at":"2026-09-05T19:56:47Z","result":"used"}

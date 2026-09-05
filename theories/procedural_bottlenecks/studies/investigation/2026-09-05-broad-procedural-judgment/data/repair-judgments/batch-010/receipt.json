@@ -1,0 +1,667 @@
+{
+  "completion": {
+    "completed_at": "2026-09-05T20:32:51.351614+00:00",
+    "effort": "high",
+    "model": "gpt-5.6-sol",
+    "results": {
+      "KXAUCTIONRECORD-27-WAR-195040000": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-01-01\", \"family\": \"auction_price\", \"key\": \"KXAUCTIONRECORD-27-WAR-195040000\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"A qualifying public auction completes and reports its realized price\"}], \"obstacle\": \"none established\", \"predicate\": \"A publicly reported final sale price, including premium and fees, for a Warhol artwork exceeds $195,040,000 during 2026.\", \"rationale\": \"The predicate is a realized competitive auction price. Consignment and auction administration do not determine whether bidder performance clears the exact price threshold.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"andy_warhol_2026_public_auction_high_price\", \"web_search_used\": false}"
+      },
+      "KXBILLSCOUNT-26SEP-8.0": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-10-01\", \"family\": \"aggregate_count\", \"key\": \"KXBILLSCOUNT-26SEP-8.0\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Qualifying enactments occur and are counted during September\"}], \"obstacle\": \"none established\", \"predicate\": \"The President signs exactly eight bills or joint resolutions into law during September 2026.\", \"rationale\": \"This contract is an aggregate monthly count across unrelated enactments, rather than one identifiable decision with a stable chain of necessary steps whose current status controls the exact total.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_federal_laws_signed_2026_09_count\", \"web_search_used\": false}"
+      },
+      "KXDIAZOUT-MDC-26DEC01": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Direct resignation or a qualifying announcement remains possible, but no dated affirmative route was found.\", \"deadline\": \"2026-12-01T15:00:00Z\", \"family\": \"leadership_departure\", \"key\": \"KXDIAZOUT-MDC-26DEC01\", \"mandatory_steps\": [{\"source_url\": \"https://www.granma.cu/cuba/2026-08-21/los-verdugos-han-escogido-los-jueves-denuncia-diaz-canel-nuevas-sanciones-de-estados-unidos-21-08-2026-10-08-53\", \"status\": \"unknown\", \"step\": \"A covered resignation, removal, succession decision, or qualifying departure announcement occurs\"}], \"obstacle\": \"none established\", \"predicate\": \"D\\u00edaz-Canel leaves either the Cuban presidency or Communist Party first secretary office, or announces a departure within one year, before 2026-12-01T15:00:00Z.\", \"rationale\": \"Recent official sources confirm D\\u00edaz-Canel still held both covered offices, but incumbency and the absence of a departure announcement are not procedural obstacles. No current primary evidence established either a viable departure process or a substantive barrier for this rung.\", \"source_gaps\": [\"No official departure proceeding, succession action, or qualifying announcement was found by the cutoff.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-08-21\", \"quote\": \"el Primer Secretario del Comit\\u00e9 Central del Partido y Presidente de la Rep\\u00fablica, Miguel D\\u00edaz-Canel Berm\\u00fadez\", \"supports\": \"An official Cuban source identified D\\u00edaz-Canel as holding both covered offices on August 21.\", \"title\": \"Los verdugos han escogido los jueves, denuncia D\\u00edaz-Canel\", \"url\": \"https://www.granma.cu/cuba/2026-08-21/los-verdugos-han-escogido-los-jueves-denuncia-diaz-canel-nuevas-sanciones-de-estados-unidos-21-08-2026-10-08-53\"}, {\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-07-30\", \"quote\": \"Primer Secretario del Comit\\u00e9 Central del Partido y Presidente de la Rep\\u00fablica, Miguel D\\u00edaz-Canel Berm\\u00fadez\", \"supports\": \"A second recent official source confirmed D\\u00edaz-Canel remained in both offices.\", \"title\": \"El camino es dif\\u00edcil, pero la voluntad de vencer es inquebrantable\", \"url\": \"https://www.granma.cu/cuba/2026-07-30/el-camino-es-dificil-pero-la-voluntad-de-vencer-es-inquebrantable-30-07-2026-21-07-14\"}], \"subject_key\": \"miguel_diaz_canel_departure_from_covered_office\", \"web_search_used\": true}"
+      },
+      "KXDIAZOUT-MDC-26NOV01": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Direct resignation or a qualifying announcement remains possible, but no dated affirmative route was found.\", \"deadline\": \"2026-11-01T15:00:00Z\", \"family\": \"leadership_departure\", \"key\": \"KXDIAZOUT-MDC-26NOV01\", \"mandatory_steps\": [{\"source_url\": \"https://www.granma.cu/cuba/2026-08-21/los-verdugos-han-escogido-los-jueves-denuncia-diaz-canel-nuevas-sanciones-de-estados-unidos-21-08-2026-10-08-53\", \"status\": \"unknown\", \"step\": \"A covered resignation, removal, succession decision, or qualifying departure announcement occurs\"}], \"obstacle\": \"none established\", \"predicate\": \"D\\u00edaz-Canel leaves either the Cuban presidency or Communist Party first secretary office, or announces a departure within one year, before 2026-11-01T15:00:00Z.\", \"rationale\": \"Recent official sources confirm D\\u00edaz-Canel still held both covered offices, but incumbency and the absence of a departure announcement are not procedural obstacles. No current primary evidence established either a viable departure process or a substantive barrier for this rung.\", \"source_gaps\": [\"No official departure proceeding, succession action, or qualifying announcement was found by the cutoff.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-08-21\", \"quote\": \"el Primer Secretario del Comit\\u00e9 Central del Partido y Presidente de la Rep\\u00fablica, Miguel D\\u00edaz-Canel Berm\\u00fadez\", \"supports\": \"An official Cuban source identified D\\u00edaz-Canel as holding both covered offices on August 21.\", \"title\": \"Los verdugos han escogido los jueves, denuncia D\\u00edaz-Canel\", \"url\": \"https://www.granma.cu/cuba/2026-08-21/los-verdugos-han-escogido-los-jueves-denuncia-diaz-canel-nuevas-sanciones-de-estados-unidos-21-08-2026-10-08-53\"}, {\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-07-30\", \"quote\": \"Primer Secretario del Comit\\u00e9 Central del Partido y Presidente de la Rep\\u00fablica, Miguel D\\u00edaz-Canel Berm\\u00fadez\", \"supports\": \"A second recent official source confirmed D\\u00edaz-Canel remained in both offices.\", \"title\": \"El camino es dif\\u00edcil, pero la voluntad de vencer es inquebrantable\", \"url\": \"https://www.granma.cu/cuba/2026-07-30/el-camino-es-dificil-pero-la-voluntad-de-vencer-es-inquebrantable-30-07-2026-21-07-14\"}], \"subject_key\": \"miguel_diaz_canel_departure_from_covered_office\", \"web_search_used\": true}"
+      },
+      "KXDIAZOUT-MDC-26OCT01": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Direct resignation or a qualifying announcement remains possible, but no dated affirmative route was found.\", \"deadline\": \"2026-10-01T14:00:00Z\", \"family\": \"leadership_departure\", \"key\": \"KXDIAZOUT-MDC-26OCT01\", \"mandatory_steps\": [{\"source_url\": \"https://www.granma.cu/cuba/2026-08-21/los-verdugos-han-escogido-los-jueves-denuncia-diaz-canel-nuevas-sanciones-de-estados-unidos-21-08-2026-10-08-53\", \"status\": \"unknown\", \"step\": \"A covered resignation, removal, succession decision, or qualifying departure announcement occurs\"}], \"obstacle\": \"none established\", \"predicate\": \"D\\u00edaz-Canel leaves either the Cuban presidency or Communist Party first secretary office, or announces a departure within one year, before 2026-10-01T14:00:00Z.\", \"rationale\": \"Recent official sources confirm D\\u00edaz-Canel still held both covered offices, but incumbency and the absence of a departure announcement are not procedural obstacles. No current primary evidence established either a viable departure process or a substantive barrier for this rung.\", \"source_gaps\": [\"No official departure proceeding, succession action, or qualifying announcement was found by the cutoff.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-08-21\", \"quote\": \"el Primer Secretario del Comit\\u00e9 Central del Partido y Presidente de la Rep\\u00fablica, Miguel D\\u00edaz-Canel Berm\\u00fadez\", \"supports\": \"An official Cuban source identified D\\u00edaz-Canel as holding both covered offices on August 21.\", \"title\": \"Los verdugos han escogido los jueves, denuncia D\\u00edaz-Canel\", \"url\": \"https://www.granma.cu/cuba/2026-08-21/los-verdugos-han-escogido-los-jueves-denuncia-diaz-canel-nuevas-sanciones-de-estados-unidos-21-08-2026-10-08-53\"}, {\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-07-30\", \"quote\": \"Primer Secretario del Comit\\u00e9 Central del Partido y Presidente de la Rep\\u00fablica, Miguel D\\u00edaz-Canel Berm\\u00fadez\", \"supports\": \"A second recent official source confirmed D\\u00edaz-Canel remained in both offices.\", \"title\": \"El camino es dif\\u00edcil, pero la voluntad de vencer es inquebrantable\", \"url\": \"https://www.granma.cu/cuba/2026-07-30/el-camino-es-dificil-pero-la-voluntad-de-vencer-es-inquebrantable-30-07-2026-21-07-14\"}], \"subject_key\": \"miguel_diaz_canel_departure_from_covered_office\", \"web_search_used\": true}"
+      },
+      "KXFLOCKDROPPED-27-ATLGA": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"unresolved\", \"deadline\": \"2027-02-01T04:59:00Z\", \"family\": \"municipal_contract_termination\", \"key\": \"KXFLOCKDROPPED-27-ATLGA\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"An empowered Atlanta body, executive, or police department terminates, declines renewal, lets the contract expire without replacement, or otherwise discontinues Flock cameras\"}, {\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"A source agency reports the qualifying action\"}], \"obstacle\": \"none established\", \"predicate\": \"Atlanta takes a qualifying action on or after August 21, 2026 that ends its use of Flock Safety cameras and a source agency reports it before February 1, 2027.\", \"rationale\": \"Targeted searches of Atlanta government and police records did not yield a current contract end date, renewal docket, empowered proposal, or discontinuation decision. The municipal process could apply, but its live status is missing.\", \"source_gaps\": [\"No current official Atlanta contract, procurement, council, mayoral, or police record establishing the Flock decision path was retrieved.\"], \"sources\": [], \"subject_key\": \"atlanta_flock_safety_camera_discontinuation\", \"web_search_used\": true}"
+      },
+      "KXLEGISLATIVECOMBO-27JAN-ALLAW": {
+        "bucket": "substantive_barrier",
+        "rationale": "{\"bucket\": \"substantive_barrier\", \"bypass\": \"Senate leadership could revive the bill, discharge or attach farm provisions to another vehicle, but no current official source established such a bypass after the failed vote.\", \"deadline\": \"before 2027-01-01\", \"family\": \"multi_bill_enactment\", \"key\": \"KXLEGISLATIVECOMBO-27JAN-ALLAW\", \"mandatory_steps\": [{\"source_url\": \"https://www.banking.senate.gov/newsroom/majority/chairman-scott-senate-banking-committee-advance-clarity-act-in-historic-bipartisan-vote\", \"status\": \"pending\", \"step\": \"A qualifying crypto market-structure bill completes Congress and enactment\"}, {\"source_url\": \"https://www.agriculture.senate.gov/newsroom/rep/press/release/boozman-deeply-disappointed-democrats-block-farm-bill\", \"status\": \"pending\", \"step\": \"A qualifying farm bill advances through the Senate, reconciles with the House, and is enacted\"}, {\"source_url\": \"https://financialservices.house.gov/news/documentsingle.aspx?DocumentID=411153\", \"status\": \"pending\", \"step\": \"A comprehensive housing bill completes the Senate, reconciliation, and enactment\"}], \"obstacle\": \"The Senate Agriculture Committee failed on August 6 to advance the farm bill, leaving a currently blocked mandatory component of the all-of-three predicate with less than four months for renewed Senate action, reconciliation, and enactment.\", \"predicate\": \"A qualifying crypto market-structure bill, omnibus multiyear farm bill, and comprehensive federal housing bill all become law before January 2027.\", \"rationale\": \"Crypto and housing measures show affirmative congressional progress, but every component must become law. The Senate farm-bill committee defeat is an actual current obstacle, and the remaining full enactment chain creates a deadline conflict for the combined predicate.\", \"source_gaps\": [\"No post-August 6 official timetable or endorsed bypass for Senate farm-bill advancement was found.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-05-14\", \"quote\": \"The Committee voted 15-9 to advance H.R. 3633, the Digital Asset Market Clarity Act.\", \"supports\": \"The crypto component had advanced from Senate Banking but still required further enactment steps.\", \"title\": \"Chairman Scott: Senate Banking Committee Advances CLARITY Act in Historic Bipartisan Vote\", \"url\": \"https://www.banking.senate.gov/newsroom/majority/chairman-scott-senate-banking-committee-advance-clarity-act-in-historic-bipartisan-vote\"}, {\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-08-06\", \"quote\": \"the House passed its bipartisan farm bill on April 30 by a vote of 224-200\", \"supports\": \"The House component was complete, but the source reports the Senate committee failed to advance its bill.\", \"title\": \"Chairman Thompson Statement on Senate Failure to Advance the Farm Bill\", \"url\": \"https://agriculture.house.gov/news/documentsingle.aspx?DocumentID=8259\"}, {\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-08-06\", \"quote\": \"all committee Democrats voted against advancing the legislation, effectively blocking its consideration\", \"supports\": \"A current failed Senate committee vote obstructed enactment of the required farm-bill component.\", \"title\": \"Boozman Deeply Disappointed Democrats Block Farm Bill\", \"url\": \"https://www.agriculture.senate.gov/newsroom/rep/press/release/boozman-deeply-disappointed-democrats-block-farm-bill\"}, {\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-05-29\", \"quote\": \"the House passed the revised 21st Century ROAD to Housing Act by an overwhelming 396-13 vote\", \"supports\": \"A comprehensive housing bill had passed the House but still required Senate action and enactment.\", \"title\": \"House Passes Revised 21st Century ROAD to Housing Act\", \"url\": \"https://financialservices.house.gov/news/documentsingle.aspx?DocumentID=411153\"}], \"subject_key\": \"us_crypto_farm_housing_three_bill_enactment_2026\", \"web_search_used\": true}"
+      },
+      "KXMACHADOVENEZUELA-26JUN29-JAN01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-01-01\", \"family\": \"personal_travel\", \"key\": \"KXMACHADOVENEZUELA-26JUN29-JAN01\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"Machado physically travels into Venezuela and exits her transport\"}], \"obstacle\": \"none established\", \"predicate\": \"Mar\\u00eda Corina Machado physically enters Venezuela and exits her transport there before 2027-01-01.\", \"rationale\": \"The exact predicate is a person's physical travel act. Plans and announcements expressly do not count, and no stable institutional approval or necessary-step mechanism is required by the rules for the visit itself.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"maria_corina_machado_physical_visit_to_venezuela\", \"web_search_used\": false}"
+      },
+      "KXMACHADOVENEZUELA-26JUN29-OCT01": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-10-01\", \"family\": \"personal_travel\", \"key\": \"KXMACHADOVENEZUELA-26JUN29-OCT01\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"Machado physically travels into Venezuela and exits her transport\"}], \"obstacle\": \"none established\", \"predicate\": \"Mar\\u00eda Corina Machado physically enters Venezuela and exits her transport there before 2026-10-01.\", \"rationale\": \"The exact predicate is a person's physical travel act. Plans and announcements expressly do not count, and no stable institutional approval or necessary-step mechanism is required by the rules for the visit itself.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"maria_corina_machado_physical_visit_to_venezuela\", \"web_search_used\": false}"
+      },
+      "KXMORTGAGERATE-26DEC-T6.8": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-01-01\", \"family\": \"measurement_release\", \"key\": \"KXMORTGAGERATE-26DEC-T6.8\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Freddie Mac measures and publishes weekly PMMS averages\"}], \"obstacle\": \"none established\", \"predicate\": \"A Freddie Mac weekly U.S. 30-year fixed mortgage-rate average is Above 6.8% during 2026.\", \"rationale\": \"The contract turns on the numerical level of a recurring market-rate measurement. Publication observes the value; no necessary-step process controls whether the rate crosses this rung.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"freddie_mac_30yr_frm_2026_weekly_high\", \"web_search_used\": false}"
+      },
+      "KXMORTGAGERATE-26DEC-T6.9": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-01-01\", \"family\": \"measurement_release\", \"key\": \"KXMORTGAGERATE-26DEC-T6.9\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Freddie Mac measures and publishes weekly PMMS averages\"}], \"obstacle\": \"none established\", \"predicate\": \"A Freddie Mac weekly U.S. 30-year fixed mortgage-rate average is Above 6.9% during 2026.\", \"rationale\": \"The contract turns on the numerical level of a recurring market-rate measurement. Publication observes the value; no necessary-step process controls whether the rate crosses this rung.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"freddie_mac_30yr_frm_2026_weekly_high\", \"web_search_used\": false}"
+      },
+      "KXMORTGAGERATE-26DEC-T7.0": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2027-01-01\", \"family\": \"measurement_release\", \"key\": \"KXMORTGAGERATE-26DEC-T7.0\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Freddie Mac measures and publishes weekly PMMS averages\"}], \"obstacle\": \"none established\", \"predicate\": \"A Freddie Mac weekly U.S. 30-year fixed mortgage-rate average is Above 7.0% during 2026.\", \"rationale\": \"The contract turns on the numerical level of a recurring market-rate measurement. Publication observes the value; no necessary-step process controls whether the rate crosses this rung.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"freddie_mac_30yr_frm_2026_weekly_high\", \"web_search_used\": false}"
+      },
+      "KXNYCGROCERYCASE-GROCERY27-0101": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Related, consolidated, transferred, successor, and review proceedings can qualify, but their status is also unknown.\", \"deadline\": \"2027-01-01T04:59:00Z\", \"family\": \"court_injunction\", \"key\": \"KXNYCGROCERYCASE-GROCERY27-0101\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"Plaintiffs seek qualifying injunctive relief in a covered proceeding\"}, {\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"The court considers the request and issues a separate qualifying written order\"}], \"obstacle\": \"none established\", \"predicate\": \"A New York State court issues qualifying written relief in or formally related to Index Nos. 160693/2026 or 160694/2026 that pauses or prevents at least one municipal grocery store before 2027-01-01T04:59:00Z.\", \"rationale\": \"The rules identify a judicial mechanism, but targeted official-docket searches did not retrieve the cases' current motion, briefing, assignment, or hearing status. Case names alone do not establish a viable path or an obstacle for this deadline.\", \"source_gaps\": [\"A current primary NYSCEF or court docket for Index Nos. 160693/2026 and 160694/2026 was not retrieved.\"], \"sources\": [], \"subject_key\": \"nyc_municipal_grocery_litigation_160693_160694\", \"web_search_used\": true}"
+      },
+      "KXNYCGROCERYCASE-GROCERY27-0701": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Related, consolidated, transferred, successor, and review proceedings can qualify, but their status is also unknown.\", \"deadline\": \"2027-07-01T03:59:00Z\", \"family\": \"court_injunction\", \"key\": \"KXNYCGROCERYCASE-GROCERY27-0701\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"Plaintiffs seek qualifying injunctive relief in a covered proceeding\"}, {\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"The court considers the request and issues a separate qualifying written order\"}], \"obstacle\": \"none established\", \"predicate\": \"A New York State court issues qualifying written relief in or formally related to Index Nos. 160693/2026 or 160694/2026 that pauses or prevents at least one municipal grocery store before 2027-07-01T03:59:00Z.\", \"rationale\": \"The rules identify a judicial mechanism, but targeted official-docket searches did not retrieve the cases' current motion, briefing, assignment, or hearing status. Case names alone do not establish a viable path or an obstacle for this deadline.\", \"source_gaps\": [\"A current primary NYSCEF or court docket for Index Nos. 160693/2026 and 160694/2026 was not retrieved.\"], \"sources\": [], \"subject_key\": \"nyc_municipal_grocery_litigation_160693_160694\", \"web_search_used\": true}"
+      },
+      "KXNYCGROCERYCASE-GROCERY27-1201": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Related, consolidated, transferred, successor, and review proceedings can qualify, but their status is also unknown.\", \"deadline\": \"2026-12-01T04:59:00Z\", \"family\": \"court_injunction\", \"key\": \"KXNYCGROCERYCASE-GROCERY27-1201\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"Plaintiffs seek qualifying injunctive relief in a covered proceeding\"}, {\"source_url\": \"rules\", \"status\": \"unknown\", \"step\": \"The court considers the request and issues a separate qualifying written order\"}], \"obstacle\": \"none established\", \"predicate\": \"A New York State court issues qualifying written relief in or formally related to Index Nos. 160693/2026 or 160694/2026 that pauses or prevents at least one municipal grocery store before 2026-12-01T04:59:00Z.\", \"rationale\": \"The rules identify a judicial mechanism, but targeted official-docket searches did not retrieve the cases' current motion, briefing, assignment, or hearing status. Case names alone do not establish a viable path or an obstacle for this deadline.\", \"source_gaps\": [\"A current primary NYSCEF or court docket for Index Nos. 160693/2026 and 160694/2026 was not retrieved.\"], \"sources\": [], \"subject_key\": \"nyc_municipal_grocery_litigation_160693_160694\", \"web_search_used\": true}"
+      },
+      "KXNYCMINWAGE-27JAN01": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"City or state legislation could supply a route, but the retrieved texts have unresolved coverage and effective-date fit.\", \"deadline\": \"2027-01-01T04:59:00Z\", \"family\": \"legislation\", \"key\": \"KXNYCMINWAGE-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://legistar.council.nyc.gov/LegislationDetail.aspx?GUID=8A9D75D7-55AE-4F9A-B411-69904826532F&ID=7944787&Options=&Search=\", \"status\": \"pending\", \"step\": \"A qualifying proposal completes committee review and final legislative passage\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Required executive action, override, waiting periods, and legal effectiveness are completed\"}], \"obstacle\": \"none established\", \"predicate\": \"A binding New York City law enacted before January 1, 2027 establishes a city minimum wage of at least $30 per hour effective no later than 2030.\", \"rationale\": \"Official records show city and state proposals only at referral or committee status. Introduction and referral are not affirmative evidence of a viable enactment path and are not themselves obstacles; the available status is too weak, while coverage schedules may not satisfy the exact citywide predicate.\", \"source_gaps\": [\"No committee action, floor schedule, executive commitment, or authoritative analysis confirming that either bill satisfies the contract's full coverage and 2030 timing was found.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-03-10\", \"quote\": \"Status: Committee\", \"supports\": \"The city proposal remained in committee and had not completed passage or executive action.\", \"title\": \"Int 0757-2026\", \"url\": \"https://legistar.council.nyc.gov/LegislationDetail.aspx?GUID=8A9D75D7-55AE-4F9A-B411-69904826532F&ID=7944787&Options=&Search=\"}, {\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-03-06\", \"quote\": \"referred to labor\", \"supports\": \"The state proposal had only been referred to committee.\", \"title\": \"A10507 Actions and Text\", \"url\": \"https://nyassembly.gov/leg/?Actions=Y&Text=Y&bn=A10507&term=2025\"}], \"subject_key\": \"nyc_30_dollar_minimum_wage_by_2030_enactment\", \"web_search_used\": true}"
+      },
+      "KXPARDONSTRUMP-26SEP-1": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-10-01\", \"family\": \"aggregate_count\", \"key\": \"KXPARDONSTRUMP-26SEP-1\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Qualifying clemency grants occur and the persons are counted during September\"}], \"obstacle\": \"none established\", \"predicate\": \"The President grants qualifying clemency to 1 persons during September 2026.\", \"rationale\": \"The predicate is an aggregate count of discretionary individual clemency acts, not one identifiable process with stable necessary steps whose present status controls the exact total.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_presidential_clemency_2026_09_count\", \"web_search_used\": false}"
+      },
+      "KXPARDONSTRUMP-26SEP-62": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-10-01\", \"family\": \"aggregate_count\", \"key\": \"KXPARDONSTRUMP-26SEP-62\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Qualifying clemency grants occur and the persons are counted during September\"}], \"obstacle\": \"none established\", \"predicate\": \"The President grants qualifying clemency to 25 to 99 persons during September 2026.\", \"rationale\": \"The predicate is an aggregate count of discretionary individual clemency acts, not one identifiable process with stable necessary steps whose present status controls the exact total.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"us_presidential_clemency_2026_09_count\", \"web_search_used\": false}"
+      },
+      "KXPRESSSECANNOUNCE-26AUG-OCT01": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Trump can select and announce an acting or interim official directly, but no dated affirmative route was found.\", \"deadline\": \"2026-10-01T03:59:00Z\", \"family\": \"executive_appointment_announcement\", \"key\": \"KXPRESSSECANNOUNCE-26AUG-OCT01\", \"mandatory_steps\": [{\"source_url\": \"https://www.whitehouse.gov/releases/2026/08/never-surrender-karoline-leavitts-historic-tenure-as-white-house-press-secretary/\", \"status\": \"unknown\", \"step\": \"Trump selects a next, acting, or interim press secretary\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Trump makes a qualifying announcement naming that person\"}], \"obstacle\": \"none established\", \"predicate\": \"Donald Trump announces by 2026-10-01T03:59:00Z a named next White House Press Secretary, including an acting or interim secretary.\", \"rationale\": \"The White House confirmed Leavitt's final day, establishing a vacancy, but a vacancy alone is only generic possibility. No official candidate, selection milestone, or scheduled announcement was found, and absence of an announcement is not a substantive barrier.\", \"source_gaps\": [\"No official named successor, selection timetable, or qualifying Trump announcement was found by the cutoff.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-08-27\", \"quote\": \"Today, Karoline Leavitt completes her final day as the 36th White House Press Secretary.\", \"supports\": \"The White House confirmed the incumbent's departure, creating the vacancy covered by the contracts.\", \"title\": \"Never Surrender: Karoline Leavitt's Historic Tenure as White House Press Secretary\", \"url\": \"https://www.whitehouse.gov/releases/2026/08/never-surrender-karoline-leavitts-historic-tenure-as-white-house-press-secretary/\"}], \"subject_key\": \"trump_next_white_house_press_secretary_announcement\", \"web_search_used\": true}"
+      },
+      "KXPRESSSECANNOUNCE-26AUG-SEP08": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Trump can select and announce an acting or interim official directly, but no dated affirmative route was found.\", \"deadline\": \"2026-09-08T03:59:00Z\", \"family\": \"executive_appointment_announcement\", \"key\": \"KXPRESSSECANNOUNCE-26AUG-SEP08\", \"mandatory_steps\": [{\"source_url\": \"https://www.whitehouse.gov/releases/2026/08/never-surrender-karoline-leavitts-historic-tenure-as-white-house-press-secretary/\", \"status\": \"unknown\", \"step\": \"Trump selects a next, acting, or interim press secretary\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Trump makes a qualifying announcement naming that person\"}], \"obstacle\": \"none established\", \"predicate\": \"Donald Trump announces by 2026-09-08T03:59:00Z a named next White House Press Secretary, including an acting or interim secretary.\", \"rationale\": \"The White House confirmed Leavitt's final day, establishing a vacancy, but a vacancy alone is only generic possibility. No official candidate, selection milestone, or scheduled announcement was found, and absence of an announcement is not a substantive barrier.\", \"source_gaps\": [\"No official named successor, selection timetable, or qualifying Trump announcement was found by the cutoff.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-08-27\", \"quote\": \"Today, Karoline Leavitt completes her final day as the 36th White House Press Secretary.\", \"supports\": \"The White House confirmed the incumbent's departure, creating the vacancy covered by the contracts.\", \"title\": \"Never Surrender: Karoline Leavitt's Historic Tenure as White House Press Secretary\", \"url\": \"https://www.whitehouse.gov/releases/2026/08/never-surrender-karoline-leavitts-historic-tenure-as-white-house-press-secretary/\"}], \"subject_key\": \"trump_next_white_house_press_secretary_announcement\", \"web_search_used\": true}"
+      },
+      "KXPRESSSECANNOUNCE-26AUG-SEP15": {
+        "bucket": "insufficient_evidence",
+        "rationale": "{\"bucket\": \"insufficient_evidence\", \"bypass\": \"Trump can select and announce an acting or interim official directly, but no dated affirmative route was found.\", \"deadline\": \"2026-09-15T03:59:00Z\", \"family\": \"executive_appointment_announcement\", \"key\": \"KXPRESSSECANNOUNCE-26AUG-SEP15\", \"mandatory_steps\": [{\"source_url\": \"https://www.whitehouse.gov/releases/2026/08/never-surrender-karoline-leavitts-historic-tenure-as-white-house-press-secretary/\", \"status\": \"unknown\", \"step\": \"Trump selects a next, acting, or interim press secretary\"}, {\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"Trump makes a qualifying announcement naming that person\"}], \"obstacle\": \"none established\", \"predicate\": \"Donald Trump announces by 2026-09-15T03:59:00Z a named next White House Press Secretary, including an acting or interim secretary.\", \"rationale\": \"The White House confirmed Leavitt's final day, establishing a vacancy, but a vacancy alone is only generic possibility. No official candidate, selection milestone, or scheduled announcement was found, and absence of an announcement is not a substantive barrier.\", \"source_gaps\": [\"No official named successor, selection timetable, or qualifying Trump announcement was found by the cutoff.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-08-27\", \"quote\": \"Today, Karoline Leavitt completes her final day as the 36th White House Press Secretary.\", \"supports\": \"The White House confirmed the incumbent's departure, creating the vacancy covered by the contracts.\", \"title\": \"Never Surrender: Karoline Leavitt's Historic Tenure as White House Press Secretary\", \"url\": \"https://www.whitehouse.gov/releases/2026/08/never-surrender-karoline-leavitts-historic-tenure-as-white-house-press-secretary/\"}], \"subject_key\": \"trump_next_white_house_press_secretary_announcement\", \"web_search_used\": true}"
+      },
+      "KXSENATENHD-26-CPAP": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-09-08 primary election\", \"family\": \"competitive_election\", \"key\": \"KXSENATENHD-26-CPAP\", \"mandatory_steps\": [{\"source_url\": \"https://www.sos.nh.gov/2026-2027-political-calendar\", \"status\": \"pending\", \"step\": \"Democratic voters choose the nominee in the state primary\"}], \"obstacle\": \"none established\", \"predicate\": \"Chris Pappas wins the Democratic nomination for New Hampshire's 2026 Class II U.S. Senate election.\", \"rationale\": \"The official calendar confirms a pending competitive primary. Which candidate wins is determined by live voter performance rather than a procedural prerequisite whose present status changes whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"unknown\", \"quote\": \"State Primary Election ... September 8, 2026\", \"supports\": \"The official calendar confirms the nomination is decided through a pending primary election.\", \"title\": \"2026-2027 Political Calendar\", \"url\": \"https://www.sos.nh.gov/2026-2027-political-calendar\"}], \"subject_key\": \"new_hampshire_2026_democratic_us_senate_nominee\", \"web_search_used\": true}"
+      },
+      "KXSENATENHD-26-KMAN": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"2026-09-08 primary election\", \"family\": \"competitive_election\", \"key\": \"KXSENATENHD-26-KMAN\", \"mandatory_steps\": [{\"source_url\": \"https://www.sos.nh.gov/2026-2027-political-calendar\", \"status\": \"pending\", \"step\": \"Democratic voters choose the nominee in the state primary\"}], \"obstacle\": \"none established\", \"predicate\": \"Karishma Manzur wins the Democratic nomination for New Hampshire's 2026 Class II U.S. Senate election.\", \"rationale\": \"The official calendar confirms a pending competitive primary. Which candidate wins is determined by live voter performance rather than a procedural prerequisite whose present status changes whether the predicate can occur.\", \"source_gaps\": [\"none\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"unknown\", \"quote\": \"State Primary Election ... September 8, 2026\", \"supports\": \"The official calendar confirms the nomination is decided through a pending primary election.\", \"title\": \"2026-2027 Political Calendar\", \"url\": \"https://www.sos.nh.gov/2026-2027-political-calendar\"}], \"subject_key\": \"new_hampshire_2026_democratic_us_senate_nominee\", \"web_search_used\": true}"
+      },
+      "KXSPCELAUNCH-COMM-27FEB01": {
+        "bucket": "substantive_barrier",
+        "rationale": "{\"bucket\": \"substantive_barrier\", \"bypass\": \"An accelerated installation and test schedule is the only apparent route, but the company provided no supported earlier commercial date.\", \"deadline\": \"2027-02-01T04:59:00Z\", \"family\": \"commercial_spaceflight\", \"key\": \"KXSPCELAUNCH-COMM-27FEB01\", \"mandatory_steps\": [{\"source_url\": \"https://investors.virgingalactic.com/news/news-details/2026/Virgin-Galactic-Announces-Second-Quarter-2026-Financial-Results-and-Provides-Business-Update/default.aspx\", \"status\": \"pending\", \"step\": \"Complete Delta spacecraft systems installations\"}, {\"source_url\": \"https://www.sec.gov/Archives/edgar/data/1706946/000170694626000128/spce-20260630.htm\", \"status\": \"pending\", \"step\": \"Conduct the planned Delta flight-test program\"}, {\"source_url\": \"https://investors.virgingalactic.com/news/news-details/2026/Virgin-Galactic-Announces-Second-Quarter-2026-Financial-Results-and-Provides-Business-Update/default.aspx\", \"status\": \"pending\", \"step\": \"Conduct the first commercial Delta launch\"}], \"obstacle\": \"Virgin Galactic moved the first commercial flight to February 2027 to complete systems installations; February begins after both contract cutoffs.\", \"predicate\": \"Virgin Galactic launches its next commercial Delta-class SpaceShip after issuance and before 2027-02-01T04:59:00Z.\", \"rationale\": \"The company's August update and SEC filing place unfinished installations and flight testing before commercial service and explicitly move the first commercial flight to February 2027. That is a current substantive timing conflict for this cutoff.\", \"source_gaps\": [\"No company-supported accelerated commercial-flight date before the contract deadline was found.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-08-12\", \"quote\": \"First Commercial Spaceflight Moves to February 2027 to Complete Systems Installations\", \"supports\": \"The company moved the first commercial Delta flight to February 2027 because systems installation remained unfinished.\", \"title\": \"Virgin Galactic Announces Second Quarter 2026 Financial Results and Provides Business Update\", \"url\": \"https://investors.virgingalactic.com/news/news-details/2026/Virgin-Galactic-Announces-Second-Quarter-2026-Financial-Results-and-Provides-Business-Update/default.aspx\"}, {\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-08-12\", \"quote\": \"We expect flight testing to commence in October 2026 and commercial service to begin in February 2027.\", \"supports\": \"The filed schedule places flight testing before commercial service, with service beginning in February 2027.\", \"title\": \"Virgin Galactic Holdings, Inc. Form 10-Q for quarter ended June 30, 2026\", \"url\": \"https://www.sec.gov/Archives/edgar/data/1706946/000170694626000128/spce-20260630.htm\"}], \"subject_key\": \"virgin_galactic_next_delta_commercial_launch\", \"web_search_used\": true}"
+      },
+      "KXSPCELAUNCH-COMM-27JAN01": {
+        "bucket": "substantive_barrier",
+        "rationale": "{\"bucket\": \"substantive_barrier\", \"bypass\": \"An accelerated installation and test schedule is the only apparent route, but the company provided no supported earlier commercial date.\", \"deadline\": \"2027-01-01T04:59:00Z\", \"family\": \"commercial_spaceflight\", \"key\": \"KXSPCELAUNCH-COMM-27JAN01\", \"mandatory_steps\": [{\"source_url\": \"https://investors.virgingalactic.com/news/news-details/2026/Virgin-Galactic-Announces-Second-Quarter-2026-Financial-Results-and-Provides-Business-Update/default.aspx\", \"status\": \"pending\", \"step\": \"Complete Delta spacecraft systems installations\"}, {\"source_url\": \"https://www.sec.gov/Archives/edgar/data/1706946/000170694626000128/spce-20260630.htm\", \"status\": \"pending\", \"step\": \"Conduct the planned Delta flight-test program\"}, {\"source_url\": \"https://investors.virgingalactic.com/news/news-details/2026/Virgin-Galactic-Announces-Second-Quarter-2026-Financial-Results-and-Provides-Business-Update/default.aspx\", \"status\": \"pending\", \"step\": \"Conduct the first commercial Delta launch\"}], \"obstacle\": \"Virgin Galactic moved the first commercial flight to February 2027 to complete systems installations; February begins after both contract cutoffs.\", \"predicate\": \"Virgin Galactic launches its next commercial Delta-class SpaceShip after issuance and before 2027-01-01T04:59:00Z.\", \"rationale\": \"The company's August update and SEC filing place unfinished installations and flight testing before commercial service and explicitly move the first commercial flight to February 2027. That is a current substantive timing conflict for this cutoff.\", \"source_gaps\": [\"No company-supported accelerated commercial-flight date before the contract deadline was found.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-08-12\", \"quote\": \"First Commercial Spaceflight Moves to February 2027 to Complete Systems Installations\", \"supports\": \"The company moved the first commercial Delta flight to February 2027 because systems installation remained unfinished.\", \"title\": \"Virgin Galactic Announces Second Quarter 2026 Financial Results and Provides Business Update\", \"url\": \"https://investors.virgingalactic.com/news/news-details/2026/Virgin-Galactic-Announces-Second-Quarter-2026-Financial-Results-and-Provides-Business-Update/default.aspx\"}, {\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-08-12\", \"quote\": \"We expect flight testing to commence in October 2026 and commercial service to begin in February 2027.\", \"supports\": \"The filed schedule places flight testing before commercial service, with service beginning in February 2027.\", \"title\": \"Virgin Galactic Holdings, Inc. Form 10-Q for quarter ended June 30, 2026\", \"url\": \"https://www.sec.gov/Archives/edgar/data/1706946/000170694626000128/spce-20260630.htm\"}], \"subject_key\": \"virgin_galactic_next_delta_commercial_launch\", \"web_search_used\": true}"
+      },
+      "KXTEMPHELP-26OCT02-T2.490": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"first publication of the September 2026 observation\", \"family\": \"measurement_release\", \"key\": \"KXTEMPHELP-26OCT02-T2.490\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"FRED publishes the first September 2026 TEMPHELPS observation\"}], \"obstacle\": \"none established\", \"predicate\": \"First-published seasonally adjusted September 2026 TEMPHELPS value is Above 2.490 million.\", \"rationale\": \"The predicate is the numerical content of a future statistical release. Publication is only the observation mechanism; no necessary-step process changes whether the measured value clears this rung.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"fred_temphelps_2026_09_first_release\", \"web_search_used\": false}"
+      },
+      "KXTEMPHELP-26OCT02-T2.500": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"first publication of the September 2026 observation\", \"family\": \"measurement_release\", \"key\": \"KXTEMPHELP-26OCT02-T2.500\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"FRED publishes the first September 2026 TEMPHELPS observation\"}], \"obstacle\": \"none established\", \"predicate\": \"First-published seasonally adjusted September 2026 TEMPHELPS value is Above 2.500 million.\", \"rationale\": \"The predicate is the numerical content of a future statistical release. Publication is only the observation mechanism; no necessary-step process changes whether the measured value clears this rung.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"fred_temphelps_2026_09_first_release\", \"web_search_used\": false}"
+      },
+      "KXTEMPHELP-26OCT02-T2.510": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"first publication of the September 2026 observation\", \"family\": \"measurement_release\", \"key\": \"KXTEMPHELP-26OCT02-T2.510\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"FRED publishes the first September 2026 TEMPHELPS observation\"}], \"obstacle\": \"none established\", \"predicate\": \"First-published seasonally adjusted September 2026 TEMPHELPS value is Above 2.510 million.\", \"rationale\": \"The predicate is the numerical content of a future statistical release. Publication is only the observation mechanism; no necessary-step process changes whether the measured value clears this rung.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"fred_temphelps_2026_09_first_release\", \"web_search_used\": false}"
+      },
+      "KXTEMPHELP-26OCT02-T2.520": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"first publication of the September 2026 observation\", \"family\": \"measurement_release\", \"key\": \"KXTEMPHELP-26OCT02-T2.520\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"FRED publishes the first September 2026 TEMPHELPS observation\"}], \"obstacle\": \"none established\", \"predicate\": \"First-published seasonally adjusted September 2026 TEMPHELPS value is Above 2.520 million.\", \"rationale\": \"The predicate is the numerical content of a future statistical release. Publication is only the observation mechanism; no necessary-step process changes whether the measured value clears this rung.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"fred_temphelps_2026_09_first_release\", \"web_search_used\": false}"
+      },
+      "KXTEMPHELP-26OCT02-T2.530": {
+        "bucket": "not_applicable",
+        "rationale": "{\"bucket\": \"not_applicable\", \"bypass\": \"not applicable\", \"deadline\": \"first publication of the September 2026 observation\", \"family\": \"measurement_release\", \"key\": \"KXTEMPHELP-26OCT02-T2.530\", \"mandatory_steps\": [{\"source_url\": \"rules\", \"status\": \"pending\", \"step\": \"FRED publishes the first September 2026 TEMPHELPS observation\"}], \"obstacle\": \"none established\", \"predicate\": \"First-published seasonally adjusted September 2026 TEMPHELPS value is Above 2.530 million.\", \"rationale\": \"The predicate is the numerical content of a future statistical release. Publication is only the observation mechanism; no necessary-step process changes whether the measured value clears this rung.\", \"source_gaps\": [\"none\"], \"sources\": [], \"subject_key\": \"fred_temphelps_2026_09_first_release\", \"web_search_used\": false}"
+      },
+      "KXUSAMEASLESELIMINATE-27": {
+        "bucket": "plausible_path",
+        "rationale": "{\"bucket\": \"plausible_path\", \"bypass\": \"The scheduled November RVC review is the supported route; no alternate determination mechanism is needed.\", \"deadline\": \"2027-01-01\", \"family\": \"regulatory_determination\", \"key\": \"KXUSAMEASLESELIMINATE-27\", \"mandatory_steps\": [{\"source_url\": \"https://www.paho.org/en/news/2-3-2026-update-review-measles-elimination-status\", \"status\": \"pending\", \"step\": \"U.S. health authorities complete and submit outbreak/genomic evidence for review\"}, {\"source_url\": \"https://www.paho.org/en/news/2-3-2026-update-review-measles-elimination-status\", \"status\": \"pending\", \"step\": \"RVC reviews the United States and makes the covered determination\"}], \"obstacle\": \"none established; the substantive epidemiological criteria remain unresolved\", \"predicate\": \"PAHO's RVC determines after issuance and before January 1, 2027 that endemic measles transmission has been re-established in the United States.\", \"rationale\": \"PAHO affirmatively scheduled the United States review for November 2026, before the deadline, while current outbreak data give that review a live evidentiary subject. This supports a viable process path without predicting the RVC's judgment.\", \"source_gaps\": [\"The RVC's evidentiary record, agenda, and eventual conclusion were not yet public.\"], \"sources\": [{\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-03-02\", \"quote\": \"The review of the elimination status of the United States and Mexico will take place in November 2026.\", \"supports\": \"PAHO scheduled an RVC review of the United States for November 2026.\", \"title\": \"Update on review of measles elimination status\", \"url\": \"https://www.paho.org/en/news/2-3-2026-update-review-measles-elimination-status\"}, {\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-05-21\", \"quote\": \"United States: Sustained elimination with major concerns.\", \"supports\": \"PAHO had not yet classified the United States as re-established endemic transmission.\", \"title\": \"Measles Outbreak Situation Report No. 3\", \"url\": \"https://www.paho.org/sites/default/files/2026/05/measles-outbreak-situation-report-no3-21may-2026.pdf\"}, {\"accessed_at\": \"2026-09-05T20:35:00Z\", \"published_at\": \"2026-07-17\", \"quote\": \"As of July 16, 2026, a total of 2,260 confirmed measles cases were reported in the United States.\", \"supports\": \"CDC documented extensive current outbreak activity relevant to the scheduled RVC review.\", \"title\": \"Measles Cases and Outbreaks\", \"url\": \"https://www.cdc.gov/measles/data-research/index.html/\"}], \"subject_key\": \"paho_rvc_us_measles_reestablishment_2026\", \"web_search_used\": true}"
+      }
+    },
+    "web_search": true
+  },
+  "request": {
+    "batch_id": "10",
+    "candidate_keys": [
+      "KXTEMPHELP-26OCT02-T2.490",
+      "KXTEMPHELP-26OCT02-T2.500",
+      "KXTEMPHELP-26OCT02-T2.510",
+      "KXTEMPHELP-26OCT02-T2.520",
+      "KXTEMPHELP-26OCT02-T2.530",
+      "KXUSAMEASLESELIMINATE-27",
+      "KXBILLSCOUNT-26SEP-8.0",
+      "KXDIAZOUT-MDC-26DEC01",
+      "KXDIAZOUT-MDC-26NOV01",
+      "KXDIAZOUT-MDC-26OCT01",
+      "KXFLOCKDROPPED-27-ATLGA",
+      "KXNYCGROCERYCASE-GROCERY27-0101",
+      "KXNYCGROCERYCASE-GROCERY27-0701",
+      "KXNYCGROCERYCASE-GROCERY27-1201",
+      "KXSPCELAUNCH-COMM-27FEB01",
+      "KXSPCELAUNCH-COMM-27JAN01",
+      "KXPARDONSTRUMP-26SEP-1",
+      "KXPARDONSTRUMP-26SEP-62",
+      "KXPRESSSECANNOUNCE-26AUG-OCT01",
+      "KXPRESSSECANNOUNCE-26AUG-SEP08",
+      "KXPRESSSECANNOUNCE-26AUG-SEP15",
+      "KXLEGISLATIVECOMBO-27JAN-ALLAW",
+      "KXSENATENHD-26-CPAP",
+      "KXSENATENHD-26-KMAN",
+      "KXAUCTIONRECORD-27-WAR-195040000",
+      "KXMORTGAGERATE-26DEC-T6.8",
+      "KXMORTGAGERATE-26DEC-T6.9",
+      "KXMORTGAGERATE-26DEC-T7.0",
+      "KXNYCMINWAGE-27JAN01",
+      "KXMACHADOVENEZUELA-26JUN29-JAN01",
+      "KXMACHADOVENEZUELA-26JUN29-OCT01"
+    ],
+    "decision_at": "2026-09-05T19:53:15.489944+00:00",
+    "output_path": "C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\repair-judgments\\batch-010\\first-output.jsonl",
+    "payload": {
+      "decision_at": "2026-09-05T19:53:15.489944+00:00",
+      "events": [
+        {
+          "event_key": "KXTEMPHELP-26OCT02",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXTEMPHELP-26OCT02",
+              "key": "KXTEMPHELP-26OCT02-T2.490",
+              "no_sub_title": "Above 2.490 million",
+              "rules_primary": "If All Employees, Temporary Help Services for September 2026 is above 2.490 million, according to FRED series TEMPHELPS, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is the first published, seasonally adjusted September 2026 value for FRED series TEMPHELPS. Revisions to previously published values will not be considered.",
+              "scheduled_close": "2026-10-02T13:29:00Z",
+              "series": "KXTEMPHELP",
+              "subtitle": null,
+              "title": "Will All Employees, Temporary Help Services for September 2026 be above 2.490 million?",
+              "yes_sub_title": "Above 2.490 million"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXTEMPHELP-26OCT02",
+              "key": "KXTEMPHELP-26OCT02-T2.500",
+              "no_sub_title": "Above 2.500 million",
+              "rules_primary": "If All Employees, Temporary Help Services for September 2026 is above 2.500 million, according to FRED series TEMPHELPS, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is the first published, seasonally adjusted September 2026 value for FRED series TEMPHELPS. Revisions to previously published values will not be considered.",
+              "scheduled_close": "2026-10-02T13:29:00Z",
+              "series": "KXTEMPHELP",
+              "subtitle": null,
+              "title": "Will All Employees, Temporary Help Services for September 2026 be above 2.500 million?",
+              "yes_sub_title": "Above 2.500 million"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXTEMPHELP-26OCT02",
+              "key": "KXTEMPHELP-26OCT02-T2.510",
+              "no_sub_title": "Above 2.510 million",
+              "rules_primary": "If All Employees, Temporary Help Services for September 2026 is above 2.510 million, according to FRED series TEMPHELPS, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is the first published, seasonally adjusted September 2026 value for FRED series TEMPHELPS. Revisions to previously published values will not be considered.",
+              "scheduled_close": "2026-10-02T13:29:00Z",
+              "series": "KXTEMPHELP",
+              "subtitle": null,
+              "title": "Will All Employees, Temporary Help Services for September 2026 be above 2.510 million?",
+              "yes_sub_title": "Above 2.510 million"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXTEMPHELP-26OCT02",
+              "key": "KXTEMPHELP-26OCT02-T2.520",
+              "no_sub_title": "Above 2.520 million",
+              "rules_primary": "If All Employees, Temporary Help Services for September 2026 is above 2.520 million, according to FRED series TEMPHELPS, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is the first published, seasonally adjusted September 2026 value for FRED series TEMPHELPS. Revisions to previously published values will not be considered.",
+              "scheduled_close": "2026-10-02T13:29:00Z",
+              "series": "KXTEMPHELP",
+              "subtitle": null,
+              "title": "Will All Employees, Temporary Help Services for September 2026 be above 2.520 million?",
+              "yes_sub_title": "Above 2.520 million"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXTEMPHELP-26OCT02",
+              "key": "KXTEMPHELP-26OCT02-T2.530",
+              "no_sub_title": "Above 2.530 million",
+              "rules_primary": "If All Employees, Temporary Help Services for September 2026 is above 2.530 million, according to FRED series TEMPHELPS, then the market resolves to Yes.",
+              "rules_secondary": "The Underlying is the first published, seasonally adjusted September 2026 value for FRED series TEMPHELPS. Revisions to previously published values will not be considered.",
+              "scheduled_close": "2026-10-02T13:29:00Z",
+              "series": "KXTEMPHELP",
+              "subtitle": null,
+              "title": "Will All Employees, Temporary Help Services for September 2026 be above 2.530 million?",
+              "yes_sub_title": "Above 2.530 million"
+            }
+          ]
+        },
+        {
+          "event_key": "KXUSAMEASLESELIMINATE-27",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXUSAMEASLESELIMINATE-27",
+              "key": "KXUSAMEASLESELIMINATE-27",
+              "no_sub_title": "Yes",
+              "rules_primary": "If PAHO's Regional Verification Commission (RVC) determines that endemic measles transmission has been re-established in the United States  after Issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "Only reporting from any of the Source Agencies qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+              "scheduled_close": "2027-01-01T09:48:00Z",
+              "series": "KXUSAMEASLESELIMINATE",
+              "subtitle": null,
+              "title": "Will it be reported by any of the Source Agencies that PAHO's Regional Verification Commission (RVC) determines that endemic measles transmission has been re-established in the United States before Jan 1, 2027?",
+              "yes_sub_title": "Yes"
+            }
+          ]
+        },
+        {
+          "event_key": "KXBILLSCOUNT-26SEP",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXBILLSCOUNT-26SEP",
+              "key": "KXBILLSCOUNT-26SEP-8.0",
+              "no_sub_title": "8",
+              "rules_primary": "If the President signs exactly 8 bills into law in Sep 2026, then the market resolves to Yes.",
+              "rules_secondary": "Joint resolutions are included.",
+              "scheduled_close": "2026-10-01T14:00:00Z",
+              "series": "KXBILLSCOUNT",
+              "subtitle": null,
+              "title": "Will 8 to 8 bills become law in Sep 2026?",
+              "yes_sub_title": "8"
+            }
+          ]
+        },
+        {
+          "event_key": "KXDIAZOUT-MDC",
+          "markets": [
+            {
+              "category": "Elections",
+              "event_key": "KXDIAZOUT-MDC",
+              "key": "KXDIAZOUT-MDC-26DEC01",
+              "no_sub_title": "Before December 1, 2026",
+              "rules_primary": "If Miguel D\u00edaz-Canel leaves office before December 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "An announcement that the Miguel D\u00edaz-Canel will leave the office within the next year is also encompassed by the Payout Criterion. If Miguel D\u00edaz-Canel leaves solely because they have died, the associated market will resolve and the Exchange will determine the payouts to the holders of long and short positions based upon the last traded price (prior to the death). If a last traded price is not available or is not logically consistent, or if the Exchange determines at its sole discretion that the last traded prices prior to death do not represent a fair settlement value, the Outcome Review Committee will be responsible for making a binding determination of fair allocation.\n\nClarification (05/23/26): To clarify, Miguel D\u00edaz-Canel currently holds two positions relevant to this market: First Secretary of the Communist Party of Cuba and President of Cuba. For purposes of this contract, departure from either position will satisfy the Payout Criterion.",
+              "scheduled_close": "2026-12-01T15:00:00Z",
+              "series": "KXDIAZOUT",
+              "subtitle": null,
+              "title": "Will Miguel D\u00edaz-Canel leave office before 2026-12-01T15:00:00.000Z?",
+              "yes_sub_title": "Before December 1, 2026"
+            },
+            {
+              "category": "Elections",
+              "event_key": "KXDIAZOUT-MDC",
+              "key": "KXDIAZOUT-MDC-26NOV01",
+              "no_sub_title": "Before November 1, 2026",
+              "rules_primary": "If Miguel D\u00edaz-Canel leaves office before November 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "An announcement that the Miguel D\u00edaz-Canel will leave the office within the next year is also encompassed by the Payout Criterion. If Miguel D\u00edaz-Canel leaves solely because they have died, the associated market will resolve and the Exchange will determine the payouts to the holders of long and short positions based upon the last traded price (prior to the death). If a last traded price is not available or is not logically consistent, or if the Exchange determines at its sole discretion that the last traded prices prior to death do not represent a fair settlement value, the Outcome Review Committee will be responsible for making a binding determination of fair allocation.\n\nClarification (05/23/26): To clarify, Miguel D\u00edaz-Canel currently holds two positions relevant to this market: First Secretary of the Communist Party of Cuba and President of Cuba. For purposes of this contract, departure from either position will satisfy the Payout Criterion.",
+              "scheduled_close": "2026-11-01T15:00:00Z",
+              "series": "KXDIAZOUT",
+              "subtitle": null,
+              "title": "Will Miguel D\u00edaz-Canel leave office before 2026-11-01T15:00:00.000Z?",
+              "yes_sub_title": "Before November 1, 2026"
+            },
+            {
+              "category": "Elections",
+              "event_key": "KXDIAZOUT-MDC",
+              "key": "KXDIAZOUT-MDC-26OCT01",
+              "no_sub_title": "Before October 1, 2026",
+              "rules_primary": "If Miguel D\u00edaz-Canel leaves office before October 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "An announcement that the Miguel D\u00edaz-Canel will leave the office within the next year is also encompassed by the Payout Criterion. If Miguel D\u00edaz-Canel leaves solely because they have died, the associated market will resolve and the Exchange will determine the payouts to the holders of long and short positions based upon the last traded price (prior to the death). If a last traded price is not available or is not logically consistent, or if the Exchange determines at its sole discretion that the last traded prices prior to death do not represent a fair settlement value, the Outcome Review Committee will be responsible for making a binding determination of fair allocation.\n\nClarification (05/23/26): To clarify, Miguel D\u00edaz-Canel currently holds two positions relevant to this market: First Secretary of the Communist Party of Cuba and President of Cuba. For purposes of this contract, departure from either position will satisfy the Payout Criterion.",
+              "scheduled_close": "2026-10-01T14:00:00Z",
+              "series": "KXDIAZOUT",
+              "subtitle": null,
+              "title": "Will Miguel D\u00edaz-Canel leave office before 2026-10-01T14:00:00.000Z?",
+              "yes_sub_title": "Before October 1, 2026"
+            }
+          ]
+        },
+        {
+          "event_key": "KXFLOCKDROPPED-27",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXFLOCKDROPPED-27",
+              "key": "KXFLOCKDROPPED-27-ATLGA",
+              "no_sub_title": "Atlanta, GA",
+              "rules_primary": "If Atlanta, Georgia ends its use of Flock Safety license plate reader cameras after Issuance and before Feb 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "A jurisdiction ends its use of Flock Safety cameras if its governing body, chief executive, or police department:\n\nterminates a Flock Safety contract before the contract's scheduled end date, or\ndeclines to renew or extend a Flock Safety contract, or declines to allow an automatic renewal to take effect, or\nallows a Flock Safety contract to reach its scheduled end date without entering a renewal or replacement agreement, or\notherwise discontinues the jurisdiction's use of Flock Safety cameras, including by moving to a different license plate reader vendor.\n\nThe action must occur on or after August 21, 2026, and be reported before February 1, 2027.\n\nThe following do NOT count:\n\nRenewing or extending the contract, even with added privacy safeguards, audit requirements or use restrictions\nA temporary pause, camera deactivation, or moratorium that leaves the underlying contract in force and does not prevent its renewal\nA non-binding resolution, advisory referendum or committee recommendation that the official empowered to act has not acted upon\n\nEach jurisdiction is judged on its own, and action by a jurisdiction not named in this event does not affect any market here.\n\nOnly reporting from a Source Agency qualifies for the purposes of this market. Reports that merely reference prior publications (from before Issuance) do not qualify. Republishing of content originally produced by other sources (e.g., wire services) only qualifies if the content is hosted on the outlet's official platform and the outlet is clearly identified as the publishing entity.",
+              "scheduled_close": "2027-02-01T04:59:00Z",
+              "series": "KXFLOCKDROPPED",
+              "subtitle": null,
+              "title": "Will it be reported by a Source Agency that Atlanta, Georgia ends its use of Flock Safety license plate reader cameras before Feb 1, 2027?",
+              "yes_sub_title": "Atlanta, GA"
+            }
+          ]
+        },
+        {
+          "event_key": "KXNYCGROCERYCASE-GROCERY27",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXNYCGROCERYCASE-GROCERY27",
+              "key": "KXNYCGROCERYCASE-GROCERY27-0101",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If a New York State court issues an order prohibiting, suspending, or pausing the opening or operation of at least one planned New York City municipal grocery store in Multicultural Business Coalition v. City of New York, Index Nos. 160693/2026 and 160694/2026, or a proceeding formally related to, consolidated with, transferred from, renumbering, succeeding, or reviewing either named matter and concerning the same requested relief before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The ruling must:\nBe issued by a New York State court in Multicultural Business Coalition v. City of New York, Index Nos. 160693/2026 and 160694/2026, or a proceeding formally related to, consolidated with, transferred from, renumbering, succeeding, or reviewing either named matter and concerning the same requested relief\nAddress the matter described by the specified judgment\nBe issued through a written order, opinion, judgment, or decision\n\nA temporary restraining order, preliminary injunction, permanent injunction, or other written relief qualifies if it has the operative effect of prohibiting, suspending, or pausing the opening or operation of at least one planned New York City municipal grocery store. Partial relief affecting only one planned store is sufficient. A temporary restraint contained only in an order to show cause does NOT qualify; the restraint must be issued through a separate qualifying written order, opinion, judgment, or decision.\n\nThe following do NOT satisfy the Payout Criterion:\nOral rulings from the bench unless reduced to a written order\nTentative rulings that are not made final\nDraft opinions that leak but are not officially issued\nSettlements or voluntary dismissals\nAdministrative or scheduling orders\nOrders to show cause\nMinute orders that do not address the substantive issue in the specified judgment\n\nFor clarity:\nSua sponte rulings count if they match the specified judgment\nPer curiam opinions and summary orders count as rulings\nIf multiple judges issue separate opinions, the majority/plurality opinion controls",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXNYCGROCERYCASE",
+              "subtitle": null,
+              "title": "Will a court halt an NYC municipal grocery store before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXNYCGROCERYCASE-GROCERY27",
+              "key": "KXNYCGROCERYCASE-GROCERY27-0701",
+              "no_sub_title": "Before Jul 1, 2027",
+              "rules_primary": "If a New York State court issues an order prohibiting, suspending, or pausing the opening or operation of at least one planned New York City municipal grocery store in Multicultural Business Coalition v. City of New York, Index Nos. 160693/2026 and 160694/2026, or a proceeding formally related to, consolidated with, transferred from, renumbering, succeeding, or reviewing either named matter and concerning the same requested relief before Jul 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The ruling must:\nBe issued by a New York State court in Multicultural Business Coalition v. City of New York, Index Nos. 160693/2026 and 160694/2026, or a proceeding formally related to, consolidated with, transferred from, renumbering, succeeding, or reviewing either named matter and concerning the same requested relief\nAddress the matter described by the specified judgment\nBe issued through a written order, opinion, judgment, or decision\n\nA temporary restraining order, preliminary injunction, permanent injunction, or other written relief qualifies if it has the operative effect of prohibiting, suspending, or pausing the opening or operation of at least one planned New York City municipal grocery store. Partial relief affecting only one planned store is sufficient. A temporary restraint contained only in an order to show cause does NOT qualify; the restraint must be issued through a separate qualifying written order, opinion, judgment, or decision.\n\nThe following do NOT satisfy the Payout Criterion:\nOral rulings from the bench unless reduced to a written order\nTentative rulings that are not made final\nDraft opinions that leak but are not officially issued\nSettlements or voluntary dismissals\nAdministrative or scheduling orders\nOrders to show cause\nMinute orders that do not address the substantive issue in the specified judgment\n\nFor clarity:\nSua sponte rulings count if they match the specified judgment\nPer curiam opinions and summary orders count as rulings\nIf multiple judges issue separate opinions, the majority/plurality opinion controls",
+              "scheduled_close": "2027-07-01T03:59:00Z",
+              "series": "KXNYCGROCERYCASE",
+              "subtitle": null,
+              "title": "Will a court halt an NYC municipal grocery store before Jul 1, 2027?",
+              "yes_sub_title": "Before Jul 1, 2027"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXNYCGROCERYCASE-GROCERY27",
+              "key": "KXNYCGROCERYCASE-GROCERY27-1201",
+              "no_sub_title": "Before Dec 1, 2026",
+              "rules_primary": "If a New York State court issues an order prohibiting, suspending, or pausing the opening or operation of at least one planned New York City municipal grocery store in Multicultural Business Coalition v. City of New York, Index Nos. 160693/2026 and 160694/2026, or a proceeding formally related to, consolidated with, transferred from, renumbering, succeeding, or reviewing either named matter and concerning the same requested relief before Dec 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The ruling must:\nBe issued by a New York State court in Multicultural Business Coalition v. City of New York, Index Nos. 160693/2026 and 160694/2026, or a proceeding formally related to, consolidated with, transferred from, renumbering, succeeding, or reviewing either named matter and concerning the same requested relief\nAddress the matter described by the specified judgment\nBe issued through a written order, opinion, judgment, or decision\n\nA temporary restraining order, preliminary injunction, permanent injunction, or other written relief qualifies if it has the operative effect of prohibiting, suspending, or pausing the opening or operation of at least one planned New York City municipal grocery store. Partial relief affecting only one planned store is sufficient. A temporary restraint contained only in an order to show cause does NOT qualify; the restraint must be issued through a separate qualifying written order, opinion, judgment, or decision.\n\nThe following do NOT satisfy the Payout Criterion:\nOral rulings from the bench unless reduced to a written order\nTentative rulings that are not made final\nDraft opinions that leak but are not officially issued\nSettlements or voluntary dismissals\nAdministrative or scheduling orders\nOrders to show cause\nMinute orders that do not address the substantive issue in the specified judgment\n\nFor clarity:\nSua sponte rulings count if they match the specified judgment\nPer curiam opinions and summary orders count as rulings\nIf multiple judges issue separate opinions, the majority/plurality opinion controls",
+              "scheduled_close": "2026-12-01T04:59:00Z",
+              "series": "KXNYCGROCERYCASE",
+              "subtitle": null,
+              "title": "Will a court halt an NYC municipal grocery store before Dec 1, 2026?",
+              "yes_sub_title": "Before Dec 1, 2026"
+            }
+          ]
+        },
+        {
+          "event_key": "KXSPCELAUNCH-COMM",
+          "markets": [
+            {
+              "category": "Science and Technology",
+              "event_key": "KXSPCELAUNCH-COMM",
+              "key": "KXSPCELAUNCH-COMM-27FEB01",
+              "no_sub_title": "Before February 2027",
+              "rules_primary": "If Virgin Galactic launches next commercial Delta-class SpaceShip After issuance and before Feb 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-02-01T04:59:00Z",
+              "series": "KXSPCELAUNCH",
+              "subtitle": "Before February, 2027",
+              "title": "When will Virgin Galactic launch next commercial Delta-class SpaceShip ?",
+              "yes_sub_title": "Before February 2027"
+            },
+            {
+              "category": "Science and Technology",
+              "event_key": "KXSPCELAUNCH-COMM",
+              "key": "KXSPCELAUNCH-COMM-27JAN01",
+              "no_sub_title": "Before 2027",
+              "rules_primary": "If Virgin Galactic launches next commercial Delta-class SpaceShip After issuance and before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXSPCELAUNCH",
+              "subtitle": null,
+              "title": "When will Virgin Galactic launch next commercial Delta-class SpaceShip ?",
+              "yes_sub_title": "Before 2027"
+            }
+          ]
+        },
+        {
+          "event_key": "KXPARDONSTRUMP-26SEP",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXPARDONSTRUMP-26SEP",
+              "key": "KXPARDONSTRUMP-26SEP-1",
+              "no_sub_title": "1",
+              "rules_primary": "If the President pardons, commutes the sentence of, or gives reprieve to exactly 1 persons in Sep 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-10-01T14:00:00Z",
+              "series": "KXPARDONSTRUMP",
+              "subtitle": null,
+              "title": "Will exactly 1 people be pardoned in Sep 2026?",
+              "yes_sub_title": "1"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXPARDONSTRUMP-26SEP",
+              "key": "KXPARDONSTRUMP-26SEP-62",
+              "no_sub_title": "25 to 99",
+              "rules_primary": "If the President pardons, commutes the sentence of, or gives reprieve to between 25 and 99 persons in Sep 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-10-01T14:00:00Z",
+              "series": "KXPARDONSTRUMP",
+              "subtitle": null,
+              "title": "Will between 25 and 99 people be pardoned in Sep 2026?",
+              "yes_sub_title": "25 to 99"
+            }
+          ]
+        },
+        {
+          "event_key": "KXPRESSSECANNOUNCE-26AUG",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXPRESSSECANNOUNCE-26AUG",
+              "key": "KXPRESSSECANNOUNCE-26AUG-OCT01",
+              "no_sub_title": "Before Oct 1, 2026",
+              "rules_primary": "If Donald Trump has made any announcement (e.g., Truth Social post) naming the next White House Press Secretary (including acting/interim) before Oct 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-10-01T03:59:00Z",
+              "series": "KXPRESSSECANNOUNCE",
+              "subtitle": null,
+              "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Oct 1, 2026?",
+              "yes_sub_title": "Before Oct 1, 2026"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXPRESSSECANNOUNCE-26AUG",
+              "key": "KXPRESSSECANNOUNCE-26AUG-SEP08",
+              "no_sub_title": "Before Sep 8, 2026",
+              "rules_primary": "If Donald Trump has made any announcement (e.g., Truth Social post) naming the next White House Press Secretary (including acting/interim) before Sep 8, 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-09-08T03:59:00Z",
+              "series": "KXPRESSSECANNOUNCE",
+              "subtitle": null,
+              "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Sep 8, 2026?",
+              "yes_sub_title": "Before Sep 8, 2026"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXPRESSSECANNOUNCE-26AUG",
+              "key": "KXPRESSSECANNOUNCE-26AUG-SEP15",
+              "no_sub_title": "Before Sep 15, 2026",
+              "rules_primary": "If Donald Trump has made any announcement (e.g., Truth Social post) naming the next White House Press Secretary (including acting/interim) before Sep 15, 2026, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-09-15T03:59:00Z",
+              "series": "KXPRESSSECANNOUNCE",
+              "subtitle": null,
+              "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (including acting/interim) before Sep 15, 2026?",
+              "yes_sub_title": "Before Sep 15, 2026"
+            }
+          ]
+        },
+        {
+          "event_key": "KXLEGISLATIVECOMBO-27JAN",
+          "markets": [
+            {
+              "category": "Elections",
+              "event_key": "KXLEGISLATIVECOMBO-27JAN",
+              "key": "KXLEGISLATIVECOMBO-27JAN-ALLAW",
+              "no_sub_title": "Legislating combo",
+              "rules_primary": "If ALL of the following occur for before Jan 2027: a crypto market structure bill: become law, the farm bill: become law, a federal housing bill: become law, then the market resolves to Yes.",
+              "rules_secondary": "The bills must follow these definitions:\na crypto market structure bill (see KXCRYPTOSTRUCTURE for more detail)\nan omnibus, multiyear law that governs an array of agricultural and food programs\ncomprehensive federal legislation to increase housing supply and affordability, including through reforms to federal housing programs, expanded financing authority, streamlined development and environmental review requirements, and measures to address barriers to homebuilding\n\nThis is a combination market requiring ALL specified outcomes to occur for the contract to pay out. If ANY single component resolves to No or becomes impossible, the entire contract immediately resolves to No. Each component is resolved according to its corresponding Kalshi ruleset: a crypto market structure bill (BILL), the farm bill (BILL), a federal housing bill (BILL). All conditions must be satisfied before Jan 2027.",
+              "scheduled_close": "2027-01-03T15:00:00Z",
+              "series": "KXLEGISLATIVECOMBO",
+              "subtitle": null,
+              "title": "Will a crypto market structure bill be become law AND the farm bill be become law AND a federal housing bill be become law for Jan 2027?",
+              "yes_sub_title": "Legislating combo"
+            }
+          ]
+        },
+        {
+          "event_key": "KXSENATENHD-26",
+          "markets": [
+            {
+              "category": "Elections",
+              "event_key": "KXSENATENHD-26",
+              "key": "KXSENATENHD-26-CPAP",
+              "no_sub_title": "Chris Pappas",
+              "rules_primary": "If Chris Pappas wins the nomination for the Democratic Party to contest the 2026 Class II New Hampshire Senate seat, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-11-03T15:00:00Z",
+              "series": "KXSENATENHD",
+              "subtitle": null,
+              "title": "Will Chris Pappas be the Democratic nominee for the Senate in New Hampshire?",
+              "yes_sub_title": "Chris Pappas"
+            },
+            {
+              "category": "Elections",
+              "event_key": "KXSENATENHD-26",
+              "key": "KXSENATENHD-26-KMAN",
+              "no_sub_title": "Karishma Manzur",
+              "rules_primary": "If Karishma Manzur wins the nomination for the Democratic Party to contest the 2026 Class II New Hampshire Senate seat, then the market resolves to Yes.",
+              "rules_secondary": "",
+              "scheduled_close": "2026-11-03T15:00:00Z",
+              "series": "KXSENATENHD",
+              "subtitle": null,
+              "title": "Will Karishma Manzur be the Democratic nominee for the Senate in New Hampshire?",
+              "yes_sub_title": "Karishma Manzur"
+            }
+          ]
+        },
+        {
+          "event_key": "KXAUCTIONRECORD-27-WAR",
+          "markets": [
+            {
+              "category": "Entertainment",
+              "event_key": "KXAUCTIONRECORD-27-WAR",
+              "key": "KXAUCTIONRECORD-27-WAR-195040000",
+              "no_sub_title": "Above $195,040,000",
+              "rules_primary": "If the highest auction sale price of any Andy Warhol artwork sold at auction on any public auction house reporting final sale prices is above $195,040,000 in 2026, then the market resolves to Yes.",
+              "rules_secondary": "\u201cSale Price\u201d refers to the final publicly reported realized price of the artwork, including buyer\u2019s premium and auction fees, as reported by the relevant Source Agency.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXAUCTIONRECORD",
+              "subtitle": "Above $195,040,000",
+              "title": "Will Andy Warhol break his auction record this season?",
+              "yes_sub_title": "Above $195,040,000"
+            }
+          ]
+        },
+        {
+          "event_key": "KXMORTGAGERATE-26DEC",
+          "markets": [
+            {
+              "category": "Economics",
+              "event_key": "KXMORTGAGERATE-26DEC",
+              "key": "KXMORTGAGERATE-26DEC-T6.8",
+              "no_sub_title": "Above 6.8%",
+              "rules_primary": "If the 30-Yr FRM is above 6.8% in 2026, then the market resolves to Yes.",
+              "rules_secondary": "Freddie Mac U.S. weekly averages as of the Primary Mortgage Market Survey is the source agency.",
+              "scheduled_close": "2027-01-01T13:29:00Z",
+              "series": "KXMORTGAGERATE",
+              "subtitle": null,
+              "title": "How high will 30yr mortgage rate get this year?",
+              "yes_sub_title": "Above 6.8%"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXMORTGAGERATE-26DEC",
+              "key": "KXMORTGAGERATE-26DEC-T6.9",
+              "no_sub_title": "Above 6.9%",
+              "rules_primary": "If the 30-Yr FRM is above 6.9% in 2026, then the market resolves to Yes.",
+              "rules_secondary": "Freddie Mac U.S. weekly averages as of the Primary Mortgage Market Survey is the source agency.",
+              "scheduled_close": "2027-01-01T13:29:00Z",
+              "series": "KXMORTGAGERATE",
+              "subtitle": null,
+              "title": "How high will 30yr mortgage rate get this year?",
+              "yes_sub_title": "Above 6.9%"
+            },
+            {
+              "category": "Economics",
+              "event_key": "KXMORTGAGERATE-26DEC",
+              "key": "KXMORTGAGERATE-26DEC-T7.0",
+              "no_sub_title": "Above 7.0%",
+              "rules_primary": "If the 30-Yr FRM is above 7.0% in 2026, then the market resolves to Yes.",
+              "rules_secondary": "Freddie Mac U.S. weekly averages as of the Primary Mortgage Market Survey is the source agency.",
+              "scheduled_close": "2027-01-01T13:29:00Z",
+              "series": "KXMORTGAGERATE",
+              "subtitle": null,
+              "title": "How high will 30yr mortgage rate get this year?",
+              "yes_sub_title": "Above 7.0%"
+            }
+          ]
+        },
+        {
+          "event_key": "KXNYCMINWAGE-27JAN01",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXNYCMINWAGE-27JAN01",
+              "key": "KXNYCMINWAGE-27JAN01",
+              "no_sub_title": "Yes",
+              "rules_primary": "If a bill establishing a minimum wage of at least $30 per hour for New York City set to go in effect 2030 or earlier has become law in New York City before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "Enactment requires completion of all constitutional and legal requirements for the legislation to become binding law. For standard legislation requiring executive approval, this includes final passage by all required legislative bodies, executive signature OR becoming law despite executive inaction OR successful veto override, and satisfaction of any required waiting periods. For legislation not requiring executive approval, this includes final passage and completion of required waiting periods. For constitutional amendments, this includes passage with required supermajorities and completion of ratification processes. For executive orders, this includes official signature, publication in official government records, and legal effectiveness. Legislative passage without completed executive action, passage by only some required bodies, provisional passage, non-binding resolutions, and draft orders do not constitute enactment. Enactment occurs when all requirements are completed, regardless of pending judicial challenges.",
+              "scheduled_close": "2027-01-01T04:59:00Z",
+              "series": "KXNYCMINWAGE",
+              "subtitle": null,
+              "title": "Will Mamdani raise the minimum wage to $30 before 2027?",
+              "yes_sub_title": "Yes"
+            }
+          ]
+        },
+        {
+          "event_key": "KXMACHADOVENEZUELA-26JUN29",
+          "markets": [
+            {
+              "category": "Politics",
+              "event_key": "KXMACHADOVENEZUELA-26JUN29",
+              "key": "KXMACHADOVENEZUELA-26JUN29-JAN01",
+              "no_sub_title": "Before Jan 1, 2027",
+              "rules_primary": "If Mar\u00eda Corina Machado has physically travelled to and been present within the geographic boundaries of Venezuela before Jan 1, 2027, then the market resolves to Yes.",
+              "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+              "scheduled_close": "2027-01-01T15:00:00Z",
+              "series": "KXMACHADOVENEZUELA",
+              "subtitle": null,
+              "title": "Will Mar\u00eda Corina Machado visit Venezuela before Jan 1, 2027?",
+              "yes_sub_title": "Before Jan 1, 2027"
+            },
+            {
+              "category": "Politics",
+              "event_key": "KXMACHADOVENEZUELA-26JUN29",
+              "key": "KXMACHADOVENEZUELA-26JUN29-OCT01",
+              "no_sub_title": "Before Oct 1, 2026",
+              "rules_primary": "If Mar\u00eda Corina Machado has physically travelled to and been present within the geographic boundaries of Venezuela before Oct 1, 2026, then the market resolves to Yes.",
+              "rules_secondary": "The following do NOT constitute a visit:\n\nFlying over the area without landing\nLayovers during which the person remains in an airplane\nVirtual or remote appearances\nPresence in international waters adjacent to the area\nPresence solely within embassy or consulate grounds\nPlans, announcements, or scheduling of future visits that do not occur during the applicable time period\n\nFor the avoidance of doubt, a visit occurs only when the person exits an aircraft, vehicle, vessel, or train within the area, or otherwise physically enters the area not aboard one. Remaining aboard, including during flyovers, drive-throughs, and non-exit refueling stops, does not constitute a visit. Exiting within the area constitutes a visit regardless of duration or method of exit.",
+              "scheduled_close": "2026-10-01T14:00:00Z",
+              "series": "KXMACHADOVENEZUELA",
+              "subtitle": null,
+              "title": "Will Mar\u00eda Corina Machado visit Venezuela before Oct 1, 2026?",
+              "yes_sub_title": "Before Oct 1, 2026"
+            }
+          ]
+        }
+      ],
+      "snapshot_at": "2026-09-05T15:45:16Z"
+    },
+    "payload_sha256": "96688614665953e77c60d3be83252a01235e60b6e0cdae1a5a49add8479fd007",
+    "rendered_prompt": "# Broad procedural judgment \u2014 prospective discovery, revision 1\n\nYou are an independent price-blind judge. Read only this prompt and the\nspecified bare input. The operator already loaded repository research policy.\nDo not inspect receipts, other studies, the database, old verdicts or prices.\nDo not spawn agents. Use the requested model/effort, and report actual search\nusage honestly. This is an experiment, not a betting recommendation.\n\nQuestion: Does a real, identifiable decision or process have necessary steps\nwhose current status changes whether the exact contract predicate can happen\nby its actual payout deadline? The mechanism applies across all domains.\nDo not reject a domain merely because it is unfamiliar or not FDA/legislation.\nDo not forecast a probability or name a price, position, edge or fair value.\n\nWork in supplied event order; classify EVERY listed market exactly once.\nRead rules_primary and rules_secondary together. The scheduled close can be\nafter an economic deadline: extract the actual rule deadline and exact event\nthat pays YES. Different subjects/rungs in an event can have different labels.\nIdentify shared subjects so repeated deadline rungs cannot masquerade as\nindependent evidence. Family describes mechanism, not whether it looks good.\n\nUse these categories:\n\n- `substantive_barrier`: A necessary substantive step is unfinished and a\n  documented current obstacle or timing conflict obstructs the path by THIS\n  deadline. Cite the required step AND the obstacle; examine credible bypasses.\n  A later target date is not proof of impossibility. A past rejection needs\n  current status. Merely pending work, a difficult election, or no announcement\n  is not a barrier.\n- `plausible_path`: Material steps remain, but dated affirmative evidence\n  supports a viable path by the deadline. A generic possibility, hopes, rumors,\n  or \u201cthere is still time\u201d is insufficient. This label does not predict YES.\n- `formalities_only`: The substantive decision is already made or completed;\n  only a routine ministerial act remains to satisfy the contract. A vote,\n  signature with discretion, genuine review or substantive launch is not a\n  formality. Check whether the rules already resolve on the earlier decision.\n- `insufficient_evidence`: The mechanism could apply, but available status is\n  missing, stale, contradictory or too weak for the labels above. Preserve the\n  gap, never fill it with intuition. Search failure remains this category.\n- `not_applicable`: No identifiable institutional/organizational process or\n  necessary-step mechanism bears on this predicate. State the exact reason;\n  pure live sporting performance, measurement totals and spontaneous mentions\n  are usual examples. Natural/aggregate outcomes can have institutional\n  components, so classify the actual contract rather than its category.\n\nResearch efficiently across shared sources and deadlines. Use current primary\nsources (official records, agency/company statements, filings, court dockets,\norganizer schedules); reliable reporting may identify a primary source. Search\nby subject/predicate, not Kalshi ticker. Avoid market and prediction websites\nbecause their prices/outcomes defeat blindness. Keep source publication dates\nand distinguish scheduled targets from completed acts. Check current status\nbefore compressing a packet. Do not browse historical sources as though they\nwere today's status. Only sources public by the decision timestamp may support\nthe verdict. If a publication day overlaps that timestamp and its hour is\nunknown, disclose ambiguity and abstain when it matters.\n\nFor not_applicable, exact rule text is sufficient; no pointless search. For\nother categories, search source status, reuse within one event when applicable,\nand preserve what was actually found. Do not impose a per-family success quota\nor force a label to make the sample interesting. A focused unresolved search\ncan end with insufficient_evidence; do not spend indefinitely on one subject.\n\nWrite one JSON object per line to the specified NEW output file. Append and\nflush after each event so paid work survives interruption. Never overwrite\nexisting verdicts. Schema for every line (no extra numeric probability fields):\n\n```json\n{\n  \"key\": \"exact input market key\",\n  \"bucket\": \"one category above\",\n  \"subject_key\": \"stable entity+underlying action, shared across rungs\",\n  \"family\": \"short mechanism family, e.g. corporate_transaction\",\n  \"predicate\": \"what exactly makes this contract YES\",\n  \"deadline\": \"rule deadline, or unknown with explanation\",\n  \"mandatory_steps\": [{\"step\":\"necessary step\",\"status\":\"complete|pending|unknown\",\"source_url\":\"url or rules\"}],\n  \"obstacle\": \"documented obstacle or none established\",\n  \"bypass\": \"supported route around the obstacle or unresolved\",\n  \"rationale\": \"compact explanation grounded in actual cited evidence\",\n  \"sources\": [{\"url\":\"primary URL\",\"title\":\"title\",\"published_at\":\"date or unknown\",\"accessed_at\":\"UTC timestamp\",\"quote\":\"short supporting excerpt\",\"supports\":\"precise fact\"}],\n  \"source_gaps\": [\"material missing status or none\"],\n  \"web_search_used\": true\n}\n```\n\nRetain source search receipts in a separate sources.jsonl beside the output,\nincluding unsuccessful searches and URLs consulted. Save raw primary source\nbytes with retrieval timestamp and SHA-256 where directly accessible; report\naccess failures instead of inventing captures. Keep rationale short enough to\nreview, while retaining the necessary evidence. After each completed batch,\nreport counts and the output path to the operator. Do not inspect prices to\ndecide which judgments deserve reporting.\n\n\nBare input: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\repair-judgments\\batch-010\\input.json\nOutput: C:\\Users\\jbs00\\OneDrive\\Documents\\Current_Work\\LLM_market_identifier\\theories\\procedural_bottlenecks\\studies\\investigation\\2026-09-05-broad-procedural-judgment\\data\\repair-judgments\\batch-010\\first-output.jsonl\n",
+    "requested_effort": "high",
+    "requested_model": "gpt-5.6-sol",
+    "requested_web_search": true,
+    "run_id": "study/broad-procedural-20260905/research-repair-1",
+    "run_mode": "study",
+    "stage": "analysis-repair",
+    "theory_id": "study/broad-procedural",
+    "theory_version": 1
+  },
+  "schema_version": 1
+}
