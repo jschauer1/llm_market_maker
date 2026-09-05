@@ -104,7 +104,7 @@ def prepare(cohort, packets, rules_path):
                             "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
                             "source_count": len(selected["sources"]),
                             "excluded_sources": selected["excluded_sources"]})
-    folder = STUDY / "judgments" / cohort
+    folder = STUDY / "data" / "judgments" / cohort
     folder.mkdir(parents=True, exist_ok=True)
     prompt = (STUDY / "judge-prompt.md").read_text(encoding="utf-8")
     prompt += f"\nInput file: {folder / 'input.json'}\nOutput file: {folder / 'first-output.json'}\n"
@@ -128,7 +128,7 @@ def prepare(cohort, packets, rules_path):
 
 
 def complete(cohort):
-    folder = STUDY / "judgments" / cohort
+    folder = STUDY / "data" / "judgments" / cohort
     output = read(folder / "first-output.json")
     receipt = judgments.load_batch(folder / "receipt.json")
     cases = {case["case_id"]: case for case in receipt.request.payload["cases"]}
